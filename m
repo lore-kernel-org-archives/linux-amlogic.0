@@ -4,65 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BB96CD3427
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 May 2026 12:54:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 557E7CD343B
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 May 2026 14:42:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
 	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3jJkOgGEWefD42zucb7+0huVHYA/YYWkG24UE4b0jBU=; b=EPKNWx4OLNh22f
-	JwGOlt+2WYZE5UQT+sTyAVc/q0F+2AW2ne9RRFCWxL3kHN3AkTatYsZKJxzl24oZ8cxqs+ekqpMC7
-	sy1heLeBxxXHLlBQRPPb5BtGc/2wlTqiJ1ShmbxdY10x+Ipu84LsfTD87h/eOO0dx4wj7fpxWqs+p
-	Rn/TFCI0tv+hMDwTex3ucgWf3ej+tVX70+wQ9h5RfJi026LTvokF8VbTe+xOIrck3O9isrZUXUBhf
-	hIBhqGaQvqBpZ0L2eynz4SykrvltW7P3lT7wwV0Lc5FtSXU9MYY97omru+dRfi6WFE/Gx0r73Nwi+
-	8CSQNnDAK6e4IAI2Io/w==;
+	List-Owner; bh=2/ojS0+9HHjiB0lRloTNL/N3CuiQ/+zxbwEpwT9r0Mc=; b=fSQqK7SbGpTvt9
+	qdpAj6PqmVtIZ2r+by/yJivjUOIsUKLWSYjSiAI3djLwsHQS4MLZ9Hr3Zonnn/kyRoThafVdNl7hq
+	mTmDpK9wSu9H28uIIrgDg0o63IMjtSEU6UugyOPZQ64aoY3E2Qik+XBSgn6bmw0+JAPQsEZnoPMXz
+	sozuxBokiVVqRFqF95QKoJvo4Ul5h0+KITuIwUi/ZwZxahk17dw6YA7MefWhwGgcRYXv83HqfOOsX
+	8lMiByDP83W5oogY0qdlUZbFbESSZ/9EP+Qa1bBXwfPW3L53XHYrNa32ch+hAJAVQv6GlJhOHVTY4
+	PnzEM+cL8Iie6ekxgSOg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wKyEg-00000003p0x-0ZB3;
-	Thu, 07 May 2026 12:53:50 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1wKzvx-000000045W9-3WMN;
+	Thu, 07 May 2026 14:42:37 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wKyEe-00000003p0i-3Xql;
-	Thu, 07 May 2026 12:53:48 +0000
+	id 1wKzvx-000000045Vx-0yN3
+	for linux-amlogic@lists.infradead.org;
+	Thu, 07 May 2026 14:42:37 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 002F960181;
-	Thu,  7 May 2026 12:53:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0272BC2BCB2;
-	Thu,  7 May 2026 12:53:42 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id E0DDB60181;
+	Thu,  7 May 2026 14:42:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D9B7C2BCB2;
+	Thu,  7 May 2026 14:42:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778158427;
-	bh=NDq1yRkDTD9n1Z9MRjKoR/KHoPrasWXZhi/Utqu0UcA=;
+	s=k20201202; t=1778164955;
+	bh=KCX3N2x1ol+I49/DTQ1+oZRTrXDmnXU69S4wRqEshBY=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=N1jGAtff4iiwWK8TKDqlW/GLbEyNu3o3HVgehLHfvadTuXxf0BrWwQYQlSTGU0kWc
-	 NRSJH4ZQ9uNyjB5ig8ciNzDaG6IDvDP2IoCHLirfjtUhdGxA03Pwwj6F9mSmDUz5LV
-	 +Ll2TquOmBdV1ZWPAFpUHRQ6158JRSd6XZ4VYB2vvsDzZnHCUimBCuFLIUad5x+BaT
-	 nbN9iG1eXcXzbe8UKNtLfDju67QwMZ3r2a24adutuhe9CDmdlOYdx9TZJ6JQOT7Cbq
-	 3H2ETgluYKH8BwEQW2QtaDyPMzqkMdnE6NZkWsA8omTUdQfmtZdnl6aIDq46kZWVZ6
-	 nzmsj+38KEQYg==
-From: Lee Jones <lee@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Beniamino Galvani <b.galvani@gmail.com>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
- Lukasz Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>, Ronald Claveau <linux-kernel-dev@aliel.fr>
-Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
-In-Reply-To: <20260421-add-mcu-fan-khadas-vim4-v4-1-447114a28f2d@aliel.fr>
-References: <20260421-add-mcu-fan-khadas-vim4-v4-1-447114a28f2d@aliel.fr>
-Subject: Re: (subset) [PATCH v4 1/8] dt-bindings: mfd: khadas: Add new
- compatible for Khadas VIM4 MCU
-Message-Id: <177815842272.1844364.17432398965217021542.b4-ty@b4>
-Date: Thu, 07 May 2026 13:53:42 +0100
+	b=Lgex9zLPFUXvGoh3Fd8qSnVoRYLjxpJmChkOW8Do9qhjrmdqCsIUSq7uFM6E/K0bF
+	 UO1kyz/4EJS/Gar4wnYK5y0czE3T/hP1bj0zqIzLWYzKQ/ZNBkYme7ySdcXeYkOgu+
+	 SrAskf1jAZ9vhNW4X7WdNoR9oHaTq74RJDw2jsyWhk6KVC4+flC+ZhOdSrCC98M7Em
+	 6Nicsp7Z+mNM8cPig7puQptrJtSK4WoW6tmDCHvV9GylGCCj6DefWDDMwLHmMgGW6J
+	 wijoKbSFe1X1FJenol0a1VnVx2ZNbE+JfpIs6DHaPnwfVNqmEEqeZZhjltlFqPVRLY
+	 q7Crk+K48S8NA==
+From: Mark Brown <broonie@kernel.org>
+To: sunny.luo@amlogic.com, Stepan Ionichev <sozdayvek@gmail.com>
+Cc: xianwei.zhao@amlogic.com, linux-amlogic@lists.infradead.org, 
+ linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20260506183513.482-1-sozdayvek@gmail.com>
+References: <20260506183513.482-1-sozdayvek@gmail.com>
+Subject: Re: [PATCH] spi: amlogic-spisg: drop misleading NULL check on
+ exdesc
+Message-Id: <177814235817.749715.9876596107513114221.b4-ty@b4>
+Date: Thu, 07 May 2026 17:25:58 +0900
 MIME-Version: 1.0
-X-Mailer: b4 0.16-dev-ad80c
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1129; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=KCX3N2x1ol+I49/DTQ1+oZRTrXDmnXU69S4wRqEshBY=;
+ b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBp/KTZvdxWwUlXuiOEDiIKk8B9yMKA4zhQvM3ak
+ W4npfMS+oSJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCafyk2QAKCRAk1otyXVSH
+ 0FVfB/40AuY8Cg0XYUtbrUCfRo3oYFbHVIA6foa6QyeMJEKVRDSHgUOKBYHTjYvl0H5kzvLHqgJ
+ AC3TVs7hQ0zTWSo3jOd0iLeGd2izDXyc7GgSUsZOb3G2m69YECBK5QIVPo7cgMmj9peq9cQR8nT
+ psRPH/A1PH8oFIrf0+6eluvqIOKxQBWUwYGlbJMQVwmOUdka0OGKwpEveGwlOdobVS3G7SgIane
+ wtqwQCmJdGySNpkxtNDFiaIKlhzWOWrMfGAXCgHn5s3TTf2lu3b4cD1DM4MMToskfOB5iCEAqdF
+ lGN5KRuQ74qduuUbnjZn6Q5p8r3JPdHsKTq+QV0tMN9y2V/M
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,18 +76,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVHVlLCAyMSBBcHIgMjAyNiAxMzo0OToxOCArMDIwMCwgUm9uYWxkIENsYXZlYXUgd3JvdGU6
-Cj4gVGhlIEtoYWRhcyBWSU00IE1DVSByZWdpc3RlciBpcyBzbGlnaHRseSBkaWZmZXJlbnQKPiBm
-cm9tIHByZXZpb3VzIGJvYXJkcycgTUNVLgo+IFRoaXMgYm9hcmQgYWxzbyBmZWF0dXJlcyBhIHN3
-aXRjaGFibGUgcG93ZXIgc291cmNlIGZvciBpdHMgZmFuLgoKQXBwbGllZCwgdGhhbmtzIQoKWzEv
-OF0gZHQtYmluZGluZ3M6IG1mZDoga2hhZGFzOiBBZGQgbmV3IGNvbXBhdGlibGUgZm9yIEtoYWRh
-cyBWSU00IE1DVQogICAgICBjb21taXQ6IGExMDg3OGU2OTk1NjdkODgyNjcyMDBhZmRiMTY1MTA3
-NTY3ZTAyODcKCi0tCkxlZSBKb25lcyBb5p2O55C85pavXQoKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0Cmxp
-bnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On Wed, 06 May 2026 23:35:12 +0500, Stepan Ionichev wrote:
+> spi: amlogic-spisg: drop misleading NULL check on exdesc
+
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-7.2
+
+Thanks!
+
+[1/1] spi: amlogic-spisg: drop misleading NULL check on exdesc
+      https://git.kernel.org/broonie/spi/c/54725e3049e1
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
