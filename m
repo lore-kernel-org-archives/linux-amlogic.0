@@ -4,53 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCB68CD37B0
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 May 2026 07:37:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0761CD342F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 May 2026 07:37:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2uAhZ2wjEXn8xoGT/q5gQ7cuvHu1UBiuy02ITqdKS/k=; b=y/erF6UpUelYBc
-	WQO4XP6PMg+Sv8RwET/LUiBCkvUs30aaeWLQl+7o5SYsDf9HsRm5Ufu/6Lwpqjy00QnbmN7QCqvFK
-	rEa+jvwJQ40zOjrZxscyU5tU4o2k+DhrqgZoSem/t+r06xGhhHFot8lb5Vnbperjq6gNzqaGkW3Aq
-	hjiB6lS9xxwWjErsNILX/GT1l1sU3IB5LRu+6YGzB+YxnU9SsUQu7YSpWYIrs7Nkd2WmhVY4EBYAz
-	gyJsiAa9cy82fufUcLUdKGAQIX6qvAQy1c3RvKLx3G0JHWsuZZ+b3wkOWX45ougSKQpy2/GMzQX+A
-	kosDZ2JMnJ5QksRsWWzQ==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=P9fIdZmUIzD34WOM0mBH/RVdjMVRJHsAv9asuAFLw/c=; b=c3+5PlplqCadMx
+	zVgkb4V1rcm5Euj13j1f0mhn+j/qBMz7BrwwKm7vMUQ8OquMErkCNvRGfct+4ikmIdcQ1vCVEzVLw
+	IBH+hcJPYBF4JiOggoY6s+aSxoeVXh9FdnJk3WReyXZCo8kVPlkX4rHk9qC2rSZY4x6mSQa8fyTKk
+	nZPU2edcZPAzk8pZduE/OGh4/E+MS651V02mq3vxeDgtI4sfJmZfrBdwqTiMlsU71TXw7OkOpaQIb
+	9hLvwMQeQ0JR5FR4iG1eU2FX6T0hAulbhUgwnEst15yUO/+0+3QvHYKwX+nOaeXfeCQ+vIyTXghgj
+	4BVdwdkJ/XN142/7QQhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wLFle-00000005raZ-0kLJ;
-	Fri, 08 May 2026 07:37:02 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1wLFm3-00000005ryT-1hBr;
+	Fri, 08 May 2026 07:37:32 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wLFla-00000005rUg-3vyQ;
-	Fri, 08 May 2026 07:36:59 +0000
+	id 1wLFm2-00000005rvy-0VFi;
+	Fri, 08 May 2026 07:37:26 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Reply-To:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Sender:Content-ID:Content-Description:In-Reply-To:References;
+	bh=+ElRWP4rJQXxON89Z9zzFfyL0M5BL6rlFlNmqQWWeF8=; b=Vo7/y6uJczJWDOO9XCaD3YsTti
+	pObPNNMDaXPM9ozRIpkUlFVb4z5hqaO/YPYdzETwFIDF+0RWzQmv96VLQ2spMVNrlkCtggpZunC/M
+	wh9TMx1APF2UZqBdK0VCoUcDgoTYU1vHWHwuhbbrGLQTQcuKvyX/LNjqsLR/nWuLJRCYpWF9r945x
+	fhP6FBo6b7IJmlGS3e+wzltelLnGcOIPYSst4Ja0C8AaSZXQmQYtjn23Yoh2Sn/wWQixVcopF0tk5
+	/p6K0dmjJ2TYB8o5XvOd02r6V6Ne7fXiNZcF2fq3gvb3seN4LZZQty2vp85crAjazzEcYrEMJaB1j
+	hdDoBrkw==;
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	by desiato.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
+	id 1wLFlf-00000005bK9-3BfG;
+	Fri, 08 May 2026 07:37:06 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 229E460252;
-	Fri,  8 May 2026 07:36:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C3DE5C2BCB4;
+	by sea.source.kernel.org (Postfix) with ESMTP id DC29C403EC;
+	Fri,  8 May 2026 07:36:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B6436C2BCB0;
 	Fri,  8 May 2026 07:36:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1778225817;
-	bh=5P3oB3t/H+M/VWPcldvUPMKT0Ow+fk7RIqkl6O2cI+0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=XACC5UYVvyKFUulCycU3Xkxd9WIMzOW58lMm1E+C/YcMTgBi7IcvSQ3K45jL/6KuB
-	 ihT9Nz8+sMLW0HxY9pC1bfSMu1YtSNh8iFCMAvrELKbN4jr8Ft+tHh2rF5FPXp5zQu
-	 OeRH97st8/PLPZcd2nHO9JN8etQiVCcFKjZNsFKd/qPXvWgbQsuoUDT5qee2WPG7IR
-	 HcXbKZhQTSYC37BBQ9buX22G8WRQUgiFKCFgPWSEL3BE+h5ox0VnGw1wunLpAJS0b3
-	 t/90ZISWWr1y3Bjlp6QyG0hyc/wHaEyA8rXTRwhhbhp1t30S2W4F+JWAUQJpqNV90L
-	 NyY4PG2h9Vxzg==
+	bh=A1soFdD0r4US6yDMTZRbjriVCP7JZmrk16cvvRa11AQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=PLFgS0HpeE73xaapfPE9ZIZstV7g1gJbLXd/5wWn037YpvP7EbvHJZfNbhrUodb92
+	 SVCtEXcg0qEASex8bNDV7ztUhwyF/Xp1MLGpA5NmTB4CmBhbcs9AokSo7ESHn/xeix
+	 fgM+QdkMWl6F/Ehr65c4dPXqhhKA28ayabPG2HrSoRmuRkt6V5CMnupER/aq+8W18t
+	 yjBGYkb/o4/Ejp/CAkJHsCZ63+MvTaNRbuCthyh7ZuoeFT3PoQtHgO6HN2VrupLHO8
+	 0J6BdxEKNDgEQTHc9GQZUaOPX5Hl7m8OXmAzuCrbp+eldo/cm+r52s0UNZ+lxJKLJA
+	 3fwd/1LNb9+bw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B4515CD3436;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A1E74CD3447;
 	Fri,  8 May 2026 07:36:57 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Fri, 08 May 2026 07:36:54 +0000
-Subject: [PATCH 1/3] irqchip/meson-gpio: fix incorrect register address
+Subject: [PATCH 0/3] irqchip: Add GPIO interrupt support for Amlogic A9
+Date: Fri, 08 May 2026 07:36:53 +0000
+Message-Id: <20260508-a9-gpio-irqchip-v1-0-9dc5f3e022e0@amlogic.com>
 MIME-Version: 1.0
-Message-Id: <20260508-a9-gpio-irqchip-v1-1-9dc5f3e022e0@amlogic.com>
-References: <20260508-a9-gpio-irqchip-v1-0-9dc5f3e022e0@amlogic.com>
-In-Reply-To: <20260508-a9-gpio-irqchip-v1-0-9dc5f3e022e0@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAJWS/WkC/x3MQQqAIBBA0avIrBswKcuuEi1Ep5pNmkIE4t2Tl
+ m/xf4FMiSnDIgokejhzuBr6ToA77XUQsm8GJZWWo5zRGjwiB+R0u5Mj+kmrfiBnnPbQqpho5/c
+ /rlutHzYDPXxhAAAA
+X-Change-ID: 20260508-a9-gpio-irqchip-d76214ec9c6d
 To: Thomas Gleixner <tglx@kernel.org>, 
  Neil Armstrong <neil.armstrong@linaro.org>, 
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
@@ -61,16 +77,20 @@ Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
  Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778225816; l=1007;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778225816; l=772;
  i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=M9zM13CLYOdG+lkNB/tDdOWTKQ5cZ8tHYqZIsNYUo+4=;
- b=qZctPN2tSMJSPBgkkvRhlV2W+Ntn38soTuIOLXMPw7l1tQGc2KIYT5X8SsQjTaTjoAzgCj9i+
- 3tfomMZgj8gASyXaPOMb3Rs1X/ws7vR2ku7AfIfYNw9mKkB/EB2f9SQ
+ bh=A1soFdD0r4US6yDMTZRbjriVCP7JZmrk16cvvRa11AQ=;
+ b=PUTdu/0oehvaqyiIMJg5q4YOtOBv59FaV+RpC//iZQ+5aZeSr4vf6dcdVuwfqIsiVqReLzPDw
+ OKi3Ww8/M0fBXQg4RCaMvXhk4co7hps3vShnklLRi4S2usQtF9OByqP
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
  auth_id=578
 X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260508_083705_034074_4BDF5EB5 
+X-CRM114-Status: UNSURE (   6.90  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,34 +108,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Fix one error about reg address when set irq type for S4.
 
-When set gpio irq type(level and single-edge) for S4, register address is
-REG_EDGE_POL, not both-edge trigger register. This patch fix it.
+Add string of bindings and driver to support A9 GPIO interrupt.
 
-Fixes: bbd6fcc76b39 ("irqchip: Add support for Amlogic A4 and A5 SoCs")
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
- drivers/irqchip/irq-meson-gpio.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+Xianwei Zhao (3):
+      irqchip/meson-gpio: fix incorrect register address
+      dt-bindings: interrupt-controller: Add support for Amlogic A9 SoCs
+      irqchip/meson-gpio: Add support for Amlogic A9 SoCs
 
-diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
-index f722e9c57e2e..74a376ef452e 100644
---- a/drivers/irqchip/irq-meson-gpio.c
-+++ b/drivers/irqchip/irq-meson-gpio.c
-@@ -415,8 +415,7 @@ static int meson_s4_gpio_irq_set_type(struct meson_gpio_irq_controller *ctl,
- 	if (type & (IRQ_TYPE_EDGE_RISING | IRQ_TYPE_EDGE_FALLING))
- 		val |= BIT(ctl->params->edge_single_offset + idx);
- 
--	meson_gpio_irq_update_bits(ctl, params->edge_pol_reg,
--				   BIT(idx) | BIT(12 + idx), val);
-+	meson_gpio_irq_update_bits(ctl, REG_EDGE_POL, BIT(idx) | BIT(12 + idx), val);
- 	return 0;
- };
- 
+ .../amlogic,meson-gpio-intc.yaml                   | 21 ++++--
+ drivers/irqchip/irq-meson-gpio.c                   | 78 +++++++++++++++++++++-
+ 2 files changed, 93 insertions(+), 6 deletions(-)
+---
+base-commit: 8b379d5e9eb7933c73e77e768d95f11ef2833c26
+change-id: 20260508-a9-gpio-irqchip-d76214ec9c6d
 
+Best regards,
 -- 
-2.52.0
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
 
 
