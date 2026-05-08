@@ -4,63 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 017FFCD3442
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 May 2026 17:24:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B25FECD342F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 May 2026 04:25:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=aWjaM1I9FobO19knIii2OapQq08OS+DEGFH1Jnap8Ss=; b=wHdNqBArXUK9/COxHhBULI0BJc
-	U4vWtQW7EkyioCb8SwVWjgY/9LPQ2ih4l5cShOXnyEEw3VbK6ikHGvV+d7VeOh+5Y1aqKLFJtrPA+
-	BbkvPnQaXcqLWCChnU1Ew9NjX8K2L4xD1RtYbxPBXL89yL0z1dHmbb7qb0yDI91b6D1aQFxOjxt/8
-	B3dhOq07CRk25YGVlTNrxlPtjcWVPtBYweo3rKPcZ0NQ2q8Bw4zSh9rxCN3R/IX+u+9e9YtJOm74F
-	mZOH0Z28sp4QFWjHU0SFWcJL5wSX1VoLkdfOM2yJnBJoQ0Nr2XchAnp4N+w5WZP8dbP5RFhnjbWSf
-	f8v8acnQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=GcIU9q4vilqAVOUvHSYx6zFaOsO43lD6DujG9BpuPzE=; b=LY/6X20fAsVmJA
+	s6AHHIQoEx7kok2fPcwKFFZeIblbpYbu+wiOlJ8oqU/wzWV5q3g5IwjPCont2WNi0T0U69kUKOApT
+	Ha7p+/8C9qyON4Qn2y+XZnoWaRASnqnh/CncS4Lg50cO15qJ2v9zfN8isOpkE135CI6mjXVk0+Scf
+	ByHv5UswyUnDWamxpuhS8kOBf2M+5QQeg4kVISQZIBo2eZWvyPbztp1AS+E5YRWcSQWBwIAXUnDPi
+	Ac8ohAj1YlbdPxWdFB9hTKNkXVEQ4oQOPD4ruEz872RIZrtD7e961iOAo58/LEpAh/HiktgJ1wA8u
+	tOGBcT2Ge+qn1+atnFPw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wL2Ss-00000004TT7-2AvI;
-	Thu, 07 May 2026 17:24:46 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1wLCmY-00000005WWG-43gb;
+	Fri, 08 May 2026 04:25:46 +0000
+Received: from mail-m822136163.xmail.ntesmail.com ([8.221.36.163])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wL2Sq-00000004TRA-3E57;
-	Thu, 07 May 2026 17:24:44 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 373E06024D;
-	Thu,  7 May 2026 17:24:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F400C2BCB2;
-	Thu,  7 May 2026 17:24:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778174683;
-	bh=P2uFCtkUNsia+m6fpAEh1XqkuX3NtaugGNibOKloo4o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CpwAj9kc8UHoERSQHR0XSVqory3ohRb6FqTA8C81qrIvv/U+4tAaRBmUd5plpauW6
-	 O2+JfcJ/rrfXrnYcdDnCt4nXNbQ7v8EyO5n7h3FzT2LaOIxaF7axtWgiCEMU+q6X3A
-	 S+SXGhN92RGwwBvB1L4ZrstRVtXNn95gG9/V78z9EnqRy/Bkbjcn9Fbb7RhN/K1eUs
-	 LPu0e+wfwM7aZMG9k9BAxL/mgkZkFnHfloGEYsd48Oj1b3Pct2pPAN9xwN8aMIBJbH
-	 ZAIPpiwJixuexPRRoCx0FKTdHCo8iikc2sMAFS8fY6VLthtXyBd5rRsqg/1CTTB/sd
-	 TsYOru+1Mv6yw==
-Date: Thu, 7 May 2026 18:24:39 +0100
-From: Conor Dooley <conor@kernel.org>
-To: xianwei.zhao@amlogic.com
-Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctl: amlogic,pinctrl-a4: Add
- compatible string for A9
-Message-ID: <20260507-juice-helpless-b04e31e10778@spud>
-References: <20260507-a9-pinctrl-v2-0-49774feff2ef@amlogic.com>
- <20260507-a9-pinctrl-v2-1-49774feff2ef@amlogic.com>
+	id 1wLCmU-00000005WUd-2hUl
+	for linux-amlogic@lists.infradead.org;
+	Fri, 08 May 2026 04:25:46 +0000
+Received: from DESKTOP-SUEFNF9.taila7e912.ts.net (unknown [221.228.238.82])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3d94c5089;
+	Fri, 8 May 2026 12:25:27 +0800 (GMT+08:00)
+From: Dawei Feng <dawei.feng@seu.edu.cn>
+To: clabbe@baylibre.com
+Cc: herbert@gondor.apana.org.au,
+	davem@davemloft.net,
+	linux-crypto@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	jianhao.xu@seu.edu.cn,
+	Dawei Feng <dawei.feng@seu.edu.cn>,
+	stable@vger.kernel.org,
+	Zilin Guan <zilin@seu.edu.cn>
+Subject: [PATCH] crypto: amlogic - avoid double cleanup in meson_crypto_probe()
+Date: Fri,  8 May 2026 12:24:16 +0800
+Message-Id: <20260508042416.419216-1-dawei.feng@seu.edu.cn>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-In-Reply-To: <20260507-a9-pinctrl-v2-1-49774feff2ef@amlogic.com>
+X-HM-Tid: 0a9e05d5551b03a2kunm37bde91c1c4a92
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCSxlOVk5MT0IZQ0JPT0NDTFYeHw
+	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlJSUpVSUlDVUlIQ1VDSVlXWRYaDxIVHRRZQVlPS0hVSktJSE
+	5DQ1VKS0tVS1kG
+DKIM-Signature: a=rsa-sha256;
+	b=RwZmqKMWXSvafifpiB3lnaIkS/Ws2hOXUbtyBstRe+r09wGDe1p0qCRphGqU114LaSTlC11y6DthlTeD0cs89CFTfYy8DZ5moo0XraSfWDk3M5HSsYYKEkWFB2C6equZR6QfftJoGs4vJwMrZGNT6luBSP/LnUpsl/MFaOdMo9o=; c=relaxed/relaxed; s=default; d=seu.edu.cn; v=1;
+	bh=mHVqsCvb98Lei5CXFJf/akKsThFt9Vc2evrRIiE7DqE=;
+	h=date:mime-version:subject:message-id:from;
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260507_212544_133870_DE7D72BE 
+X-CRM114-Status: GOOD (  12.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,48 +70,144 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7014333791645555260=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+When meson_allocate_chanlist() fails after a partial allocation, it already
+unwinds the allocated chanlist state through its local error path.
+meson_crypto_probe() then jump to error_flow and calls
+meson_free_chanlist() again, causing the same per-flow resources to be torn
+down twice. In the reproduced failure path, the second teardown
+re-entered crypto_engine_exit() on an already destroyed worker and KASAN
+reported a slab-use-after-free in kthread_destroy_worker().
 
---===============7014333791645555260==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hcasBY/b5pRydqvZ"
-Content-Disposition: inline
+Prevent double-free by handling partial allocation failures locally within
+meson_allocate_chanlist() and skipping the outer cleanup path.
 
+The bug was first flagged by an experimental analysis tool we are
+developing for kernel memory-management bugs while analyzing
+v6.13-rc1. The tool is still under development and is not yet publicly
+available.
 
---hcasBY/b5pRydqvZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The bug was reproduced in a QEMU x86_64 guest booted with KASAN on v7.1,
+using the reproducer under tools/testing/meson_crypto_probe. The reproducer
+forces the second dma_alloc_attrs() call in the gxl-crypto probe path to
+return NULL, making meson_allocate_chanlist() fail after partial
+initialization. On the unpatched kernel this reliably triggered a
+slab-use-after-free. With this fix applied, the same reproducer no longer
+emits any KASAN report and the probe fails cleanly with -ENOMEM.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+    ==================================================================
+    BUG: KASAN: slab-use-after-free in kthread_destroy_worker+0xb2/0xd0
+    Read of size 8 at addr ff1100010c057a68 by task insmod/265
 
---hcasBY/b5pRydqvZ
-Content-Type: application/pgp-signature; name="signature.asc"
+    CPU: 1 UID: 0 PID: 265 Comm: insmod Tainted: G           O        7.1.0-rc2-00376-g810af9adc907-dirty #10 PREEMPT(lazy)
+    Tainted: [O]=OOT_MODULE
+    Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 1.15.0-1 04/01/2014
+    Call Trace:
+     <TASK>
+     dump_stack_lvl+0x68/0xa0
+     print_report+0xcb/0x5e0
+     ? __virt_addr_valid+0x21d/0x3f0
+     ? kthread_destroy_worker+0xb2/0xd0
+     ? kthread_destroy_worker+0xb2/0xd0
+     kasan_report+0xca/0x100
+     ? kthread_destroy_worker+0xb2/0xd0
+     kthread_destroy_worker+0xb2/0xd0
+     meson_crypto_probe+0x4d0/0xc10 [amlogic_gxl_crypto]
+     platform_probe+0x99/0x140
+     really_probe+0x1c6/0x6a0
+     ? __pfx___device_attach_driver+0x10/0x10
+     __driver_probe_device+0x248/0x310
+     ? acpi_driver_match_device+0xb0/0x100
+     driver_probe_device+0x48/0x210
+     ? __pfx___device_attach_driver+0x10/0x10
+     __device_attach_driver+0x160/0x320
+     bus_for_each_drv+0x104/0x190
+     ? __pfx_bus_for_each_drv+0x10/0x10
+     ? _raw_spin_unlock_irqrestore+0x2c/0x50
+     __device_attach+0x19d/0x3b0
+     ? __pfx___device_attach+0x10/0x10
+     ? do_raw_spin_unlock+0x53/0x220
+     device_initial_probe+0x78/0xa0
+     bus_probe_device+0x5b/0x130
+     device_add+0xcfd/0x1430
+     ? __pfx_device_add+0x10/0x10
+     ? insert_resource+0x34/0x50
+     ? lock_release+0xc9/0x290
+     platform_device_add+0x24e/0x590
+     ? __pfx_meson_crypto_probe_repro_init+0x10/0x10 [meson_crypto_probe_repro]
+     meson_crypto_probe_repro_init+0x330/0xff0 [meson_crypto_probe_repro]
+     do_one_initcall+0xc0/0x450
+     ? __pfx_do_one_initcall+0x10/0x10
+     ? _raw_spin_unlock_irqrestore+0x2c/0x50
+     ? __create_object+0x59/0x80
+     ? kasan_unpoison+0x27/0x60
+     do_init_module+0x27b/0x7d0
+     ? __pfx_do_init_module+0x10/0x10
+     ? kasan_quarantine_put+0x84/0x1d0
+     ? kfree+0x32c/0x510
+     ? load_module+0x561e/0x5ff0
+     load_module+0x54fe/0x5ff0
+     ? __pfx_load_module+0x10/0x10
+     ? security_file_permission+0x20/0x40
+     ? kernel_read_file+0x23d/0x6e0
+     ? mmap_region+0x235/0x4a0
+     ? __pfx_kernel_read_file+0x10/0x10
+     ? __file_has_perm+0x2c0/0x3e0
+     init_module_from_file+0x158/0x180
+     ? __pfx_init_module_from_file+0x10/0x10
+     ? __lock_acquire+0x45a/0x1ba0
+     ? idempotent_init_module+0x315/0x610
+     ? lock_release+0xc9/0x290
+     ? lockdep_init_map_type+0x4b/0x220
+     ? do_raw_spin_unlock+0x53/0x220
+     idempotent_init_module+0x330/0x610
+     ? __pfx_idempotent_init_module+0x10/0x10
+     ? __pfx_cred_has_capability.isra.0+0x10/0x10
+     ? ksys_mmap_pgoff+0x385/0x520
+     __x64_sys_finit_module+0xbe/0x120
+     do_syscall_64+0x115/0x690
+     entry_SYSCALL_64_after_hwframe+0x77/0x7f
+    RIP: 0033:0x7f7d6d31690d
+    Code: 5b 41 5c c3 66 0f 1f 84 00 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d f3 b4 0f 00 f7 d8 >
+    RSP: 002b:00007fffc027ac68 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+    RAX: ffffffffffffffda RBX: 000055f7b81967c0 RCX: 00007f7d6d31690d
+    RDX: 0000000000000000 RSI: 000055f79a0d6cd2 RDI: 0000000000000003
+    RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+    R10: 0000000000000003 R11: 0000000000000246 R12: 000055f79a0d6cd2
+    R13: 000055f7b8196790 R14: 000055f79a0d5888 R15: 000055f7b81968e0
+     </TASK>
 
------BEGIN PGP SIGNATURE-----
+Fixes: 48fe583fe541 ("crypto: amlogic - Add crypto accelerator for amlogic GXL")
+Cc: stable@vger.kernel.org
+Signed-off-by: Zilin Guan <zilin@seu.edu.cn>
+Signed-off-by: Dawei Feng <dawei.feng@seu.edu.cn>
+---
+ drivers/crypto/amlogic/amlogic-gxl-core.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-iHQEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCafzK1wAKCRB4tDGHoIJi
-0lmTAPj2IuWZOzkdHyd1WG3b7KQWEm0yZDOhSvUgbOssnp7HAQCGYO2izgbTLuuW
-g6S0C7Z2i/91Jf5RCru9LETDYWvfCw==
-=CbFS
------END PGP SIGNATURE-----
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
+index 1c18a5b8470e..6cb33949915f 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-core.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
+@@ -291,8 +291,8 @@ static int meson_crypto_probe(struct platform_device *pdev)
+ 	return 0;
+ error_alg:
+ 	meson_unregister_algs(mc);
+-error_flow:
+ 	meson_free_chanlist(mc, MAXFLOW - 1);
++error_flow:
+ 	clk_disable_unprepare(mc->busclk);
+ 	return err;
+ }
+-- 
+2.34.1
 
---hcasBY/b5pRydqvZ--
-
-
---===============7014333791645555260==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============7014333791645555260==--
-
