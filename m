@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50E55CD37B9
-	for <linux-amlogic@archiver.kernel.org>; Sun, 10 May 2026 12:43:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0AE6CD37B6
+	for <linux-amlogic@archiver.kernel.org>; Sun, 10 May 2026 12:43:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ox68lUZY7G7dMIS9yR4IFe32sRh8I2LiL82V5pEOG14=; b=osdy0/r0RIGMHz
-	qtKXAxIyc34kjAjmPDlZH73WaqlocxpHblBm3GmZa5gDtE7nNh6EWReOY0POgly9tdZMU8/hIhrOO
-	3RjzWFqTPkBiz1luKUrf7Vaqvl41mpFBHMznAtV7JVTP4wxZYAlKscFT7IpypAw8HMNIFC+QXjl2t
-	KCtWEpC5uStWqw9EgTs5cYyHWJv3hPXHxv8vQVuggf3uKRHIxmBVlpk0DA+Pypow+C1ab60rERkMp
-	SaROsX4He6FPBOLDt1/CKmwBF8yXhWckua0q+zTFphK6pZsoVYxFhfLocDtcPqHAVLR4rN3DL9G5p
-	iWzdWThoITFtXxYBkTkA==;
+	List-Owner; bh=s+judwMCMwwt28u4CnrQeMNJ+Be1f3ksAq2Uxtbdh84=; b=riM7MU2CcIOcdf
+	/UmvyIvWUPf1WHvkLpXQ4z2/KKJYsMhRG6otJvBA2R7VnexoxlvtNjJy2KESLMOnRg03zO5zmuEt5
+	C3uS7pv4/QXulnDc3mb0ant9DCdgJIlLOvuHUj4CSJAyAioP9Cz2C6CZ8zkwckEK8mb0O4sHvU/hi
+	jsmDfbx9EUkeaGkC4GrpriIlm7cPu+MN2JUCTY3zqtfSxGlPvaqaZH1afIJE5Pdr2YKUWR81yeYvK
+	y/LN5FMJTkpxI75udjnWWhVM2ZMp+7tQrM2rvZuNd/YyUIYaP3PvGrx2DQqS1v2ahf9zkcl0S38oU
+	v1hnAF4SRt0KRHOXKCgg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wM3VF-0000000AlSm-3Lrm;
-	Sun, 10 May 2026 12:43:25 +0000
-Received: from smtp.forwardemail.net ([121.127.44.66])
+	id 1wM3VW-0000000AljJ-0qqH;
+	Sun, 10 May 2026 12:43:42 +0000
+Received: from smtp.forwardemail.net ([149.28.215.223])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wM3V0-0000000Al89-3jpj
+	id 1wM3VT-0000000AleV-19B3
 	for linux-amlogic@lists.infradead.org;
-	Sun, 10 May 2026 12:43:13 +0000
+	Sun, 10 May 2026 12:43:41 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
  h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
  Message-ID: Date: Subject: Cc: To: From; q=dns/txt; s=fe-e1b5cab7be;
- t=1778416989; bh=3GqVsmYGwtYL1lA8+dzYuKNA/PzhqGwOr6aKWiXkMl0=;
- b=TqwFVOHjHTjfKIKW7tzGp12WWdb17/olPfUhTpLy0bzgtFZRLBlZZ4n2SZr0HAAzNZC+9MCQb
- M0A4AAZtmTW0IqNr76N2J9QSSCFiKEjTRV7TXKQr+w0wV3pEQlmu1G3amp2f0P+eNV4q+sD2Gij
- 5g3IVh/vPj7ylG7xflFj0ghcZu4IxDM7k0xqZkfRowA993IHd6L7pO5TA7mWXL2tvgQ0IdTOANb
- Yg6lPkeoC1cQgjBVRToi5FCmDsde1cIW6PdRyJjU3SFdM3wCMau5Dhf371gk8hddTgMwJud+F1l
- m+04k53ZY8jif0b2VP6/IsJPaRfzEuuGdx/bh/tO4/rA==
-X-Forward-Email-ID: 6a007d410d91f03a31a0bd38
+ t=1778416989; bh=swdZ+u7Sa2gVzodUsUsScCzNIHbNmogFoetuhS14ZzM=;
+ b=qt9SzgoxR2rW9WmWan9ixOU2ReAFu+eEOLuTvFAk9QASOgmvqauPUE8XfohCcQxofY2U5ZaAW
+ dCvCJnRnprVRI8rWXuSAmmRs5UX4nipqkagSHAg7xdVqBcP4qu38abNrNjssKF9ASpVsoVNy6MW
+ hJoBHJvkdgWJShg6HzVeVshZXI2FP2iLE6oMvcTkaqc/OWi4lVBRHkHBO5hM642sUFXf7V2t/Ii
+ Z1eyi4ghFdeaofcIWAlkPl1vpOY7qkDrcR+y8XIchtYhrF2I55/8Ulo2+wOw9TmvGeHhBKqq4Bx
+ ZGVja5qpIA+0qXgKjYO4rq+Th3MXOgbAsykWbExbV+bw==
+X-Forward-Email-ID: 6a007d160d91f03a31a0bc3b
 X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.66
+ 149.28.215.223
 X-Forward-Email-Version: 2.8.0
 X-Forward-Email-Website: https://forwardemail.net
 X-Complaints-To: abuse@forwardemail.net
@@ -57,21 +57,17 @@ To: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Maxime Ripard <mripard@kernel.org>,
 	Thomas Zimmermann <tzimmermann@suse.de>,
 	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v5 18/21] drm: bridge: dw_hdmi: Remove the empty dw_hdmi_setup_rx_sense()
-Date: Sun, 10 May 2026 12:41:02 +0000
-Message-ID: <20260510124111.1226584-19-jonas@kwiboo.se>
+	Simona Vetter <simona@ffwll.ch>
+Subject: [PATCH v5 09/21] drm: bridge: dw_hdmi: Invalidate CEC phys addr from connector detect
+Date: Sun, 10 May 2026 12:40:53 +0000
+Message-ID: <20260510124111.1226584-10-jonas@kwiboo.se>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260510124111.1226584-1-jonas@kwiboo.se>
 References: <20260510124111.1226584-1-jonas@kwiboo.se>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260510_054311_135813_809C36A3 
-X-CRM114-Status: UNSURE (   8.32  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260510_054340_177804_4ADF4F67 
+X-CRM114-Status: GOOD (  10.76  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,62 +85,56 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The dw_hdmi_setup_rx_sense() helper is empty and no longer needed after
-recent RXSENSE and HPD rework, remove it.
+Wait until the connector detect ops is called to invalidate CEC phys
+addr instead of doing it directly from the irq handler.
 
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 ---
 v5: No change
-v4: New patch
+v4: No change
+v3: No change
+v2: Collect r-b tag
 ---
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 5 -----
- drivers/gpu/drm/meson/meson_dw_hdmi.c     | 3 ---
- include/drm/bridge/dw_hdmi.h              | 2 --
- 3 files changed, 10 deletions(-)
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 18 +++++++++++-------
+ 1 file changed, 11 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-index 7fd2de41bc02..a388efeb6a87 100644
+index 5fd26ff8f55b..aae1b890167b 100644
 --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
 +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-@@ -3000,11 +3000,6 @@ static irqreturn_t dw_hdmi_hardirq(int irq, void *dev_id)
- 	return ret;
+@@ -2472,7 +2472,17 @@ dw_hdmi_connector_detect(struct drm_connector *connector, bool force)
+ {
+ 	struct dw_hdmi *hdmi = container_of(connector, struct dw_hdmi,
+ 					     connector);
+-	return dw_hdmi_detect(hdmi);
++	enum drm_connector_status status;
++
++	status = dw_hdmi_detect(hdmi);
++
++	if (status == connector_status_disconnected) {
++		mutex_lock(&hdmi->cec_notifier_mutex);
++		cec_notifier_phys_addr_invalidate(hdmi->cec_notifier);
++		mutex_unlock(&hdmi->cec_notifier_mutex);
++	}
++
++	return status;
  }
  
--void dw_hdmi_setup_rx_sense(struct dw_hdmi *hdmi, bool hpd, bool rx_sense)
--{
--}
--EXPORT_SYMBOL_GPL(dw_hdmi_setup_rx_sense);
--
- static irqreturn_t dw_hdmi_irq(int irq, void *dev_id)
- {
- 	struct dw_hdmi *hdmi = dev_id;
-diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-index 9ba83bf4787c..3ad84cebf2c9 100644
---- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-@@ -524,9 +524,6 @@ static irqreturn_t dw_hdmi_top_thread_irq(int irq, void *dev_id)
- 		if (stat & HDMITX_TOP_INTR_HPD_RISE)
- 			hpd_connected = true;
+ static int dw_hdmi_connector_get_modes(struct drm_connector *connector)
+@@ -3106,12 +3116,6 @@ static irqreturn_t dw_hdmi_irq(int irq, void *dev_id)
+ 				       phy_stat & HDMI_PHY_HPD,
+ 				       phy_stat & HDMI_PHY_RX_SENSE);
  
--		dw_hdmi_setup_rx_sense(dw_hdmi->hdmi, hpd_connected,
--				       hpd_connected);
+-		if ((phy_stat & (HDMI_PHY_RX_SENSE | HDMI_PHY_HPD)) == 0) {
+-			mutex_lock(&hdmi->cec_notifier_mutex);
+-			cec_notifier_phys_addr_invalidate(hdmi->cec_notifier);
+-			mutex_unlock(&hdmi->cec_notifier_mutex);
+-		}
 -
- 		drm_helper_hpd_irq_event(dw_hdmi->bridge->dev);
- 		drm_bridge_hpd_notify(dw_hdmi->bridge,
- 				      hpd_connected ? connector_status_connected
-diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
-index d587c4076a25..cea6618f097c 100644
---- a/include/drm/bridge/dw_hdmi.h
-+++ b/include/drm/bridge/dw_hdmi.h
-@@ -187,8 +187,6 @@ struct dw_hdmi *dw_hdmi_bind(struct platform_device *pdev,
- void dw_hdmi_suspend(struct dw_hdmi *hdmi);
- void dw_hdmi_resume(struct dw_hdmi *hdmi);
- 
--void dw_hdmi_setup_rx_sense(struct dw_hdmi *hdmi, bool hpd, bool rx_sense);
--
- int dw_hdmi_set_plugged_cb(struct dw_hdmi *hdmi, hdmi_codec_plugged_cb fn,
- 			   struct device *codec_dev);
- void dw_hdmi_set_sample_non_pcm(struct dw_hdmi *hdmi, unsigned int non_pcm);
+ 		if ((intr_stat & HDMI_IH_PHY_STAT0_HPD) &&
+ 		    (phy_stat & HDMI_PHY_HPD))
+ 			status = connector_status_connected;
 -- 
 2.54.0
 
