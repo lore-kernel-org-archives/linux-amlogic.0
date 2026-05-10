@@ -4,72 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6FC0CD37AF
-	for <linux-amlogic@archiver.kernel.org>; Sat,  9 May 2026 13:53:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B083ECD37BA
+	for <linux-amlogic@archiver.kernel.org>; Sun, 10 May 2026 12:42:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=s5mmYFt+JZkRQ0RC+GDL1D7xrqeEIzvE2P5KW/8DwxE=; b=pp7zRC9hU09YAY
-	A10fEJZtb+MLRAnYMprnM8vZz/y0jiYyCarc2ivZ+yNGjK6DaGiszhOP3TX55p6m0xu1sG8xn8lSJ
-	JXcODiysejKNIt4E8V8P4nWhrdWV7wxva+5muHHtIRhsPeiRC8zN3TzE2j13v6PIeoVkeuJUNItn4
-	FVx0GgL0fjxynhp837lTHZleUB8pVX4jpVMCy3ptrsyN00zGHmwA0OJxJZcAFQYelSDprBtAUw+PA
-	axUHjUkf+xrpdx/opQLcHnZpu2boc6Pvx5lornAepg3zoqlGYZiuaA1wAk5KeKHlK5XNouMGCY+r3
-	y7bsNoUrh5R/mCpH4eLA==;
+	List-Owner; bh=6DKiTsHA6htjAE9jkPy7Y0JwTEAnt0kqvMTQdkR3aBE=; b=scP0eeXN0aoJ+0
+	yDaHcmgGgFwEaahs9oWvwTFQIo2XmmwnVmOxUiMdEld4+WFBQthJhp3hvS3QLgStumkLKSMUMtNQh
+	vUdkqUlg9a3o4EkWtLTuygGoSBni+3q3rgw/WoiUOUdmfkzA7f60GmqlgmwowHtg1sKfImi1Jvq4X
+	YRqtUiSnwkJhFEc0TI54Z1+/TR5BQh28Rc12AvT8oLVeDrL/DUEwZznCjlFJpibii5fa7af6Qxxw6
+	wucwFXWchOBWw44GnUA2uE4N+yEKCR/wJqZ+HHu1l8bfIzocZ6/sNjZ5qqsYJXwv+l+DE+Seu+UAW
+	7qIGKqXSlcuzJTR74EqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wLi78-000000094RA-43zk;
-	Sat, 09 May 2026 13:53:06 +0000
-Received: from m16.mail.163.com ([117.135.210.3])
+	id 1wM3U5-0000000AjfZ-2cmq;
+	Sun, 10 May 2026 12:42:13 +0000
+Received: from smtp.forwardemail.net ([121.127.44.73])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wLi76-000000094Oq-0c8U;
-	Sat, 09 May 2026 13:53:05 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=bA
-	NmvbLt+8Ujqf6tYt1+682HyqqifCqoKidfg9mgZAE=; b=W2ZZ42Y88kYSULRPhs
-	GVnKkWbp8CHhnbXdmTp3wWc6HxYG+850fIqoKx8Zf1Dznqq2BHQd3ZHPRfAUBRQf
-	vdP/ljd8Gz9M4KBKQ8SeRqsTDvUU5a9QlqOb7PUiTweaxkWqwbtTUSU7vq76xQrf
-	fZ8EhNs3cqk+wUinSMdBCN4q0=
-Received: from Precision-7960.. (unknown [])
-	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wDXLzL8O_9p486jAQ--.37610S5;
-	Sat, 09 May 2026 21:52:00 +0800 (CST)
-From: Hans Zhang <18255117159@163.com>
-To: bhelgaas@google.com,
-	lpieralisi@kernel.org,
-	kwilczynski@kernel.org,
-	mani@kernel.org,
-	jingoohan1@gmail.com
-Cc: mx@lists.linux.dev,
-	linuxppc-dev@lists.ozlabs.org,
-	linux-amlogic@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org,
-	sophgo@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-tegra@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Hans Zhang <18255117159@163.com>
-Subject: [PATCH 3/3] PCI: dwc: Simplify platform drivers using cached capability offset
-Date: Sat,  9 May 2026 21:51:52 +0800
-Message-Id: <20260509135152.2241235-4-18255117159@163.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260509135152.2241235-1-18255117159@163.com>
-References: <20260509135152.2241235-1-18255117159@163.com>
+	id 1wM3U0-0000000AjX0-0zPc
+	for linux-amlogic@lists.infradead.org;
+	Sun, 10 May 2026 12:42:12 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
+ Message-ID: Date: Subject: Cc: To: From; q=dns/txt; s=fe-e1b5cab7be;
+ t=1778416919; bh=X0LXcByJTPpSTjNasSsMucOHjcHJLVs9+adcXo4a/UA=;
+ b=wEJ7K8Iq7j652t4tMChHfcFsOvEiZcHDeAah1HrFOnHb2hQ2gbBgIgRsysoT6eW8lQ/Pw5NW3
+ /4uaZV6B9X5iUhoUPLlzMrWgeD3UIkYWhxhDmWZu61kyUf2JesZ/sPzzNyR3iN2fqnV0e4OlMb1
+ C1TlWBuYC7/xjchxjU7cllGrrVseQqdIivmv1m/mhp8q+nIYL5XDf6CBrbZN5qASs5fmCWpeGDp
+ 2bNDWxJ4EEFbFesaCERVlQAbcTQSFJcLSDYcXKQSY00rBCo8WDMo+holDxFjoVmuBzyh3L0vbUH
+ 1uz2uYMIDdNs3uOnpMoVFZ4dPonKI8PrOHaGIm2mvSdQ==
+X-Forward-Email-ID: 6a007cfc0d91f03a31a0bb38
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 2.8.0
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+From: Jonas Karlman <jonas@kwiboo.se>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>
+Subject: [PATCH v5 03/21] drm: bridge: dw_hdmi: Call poweron/poweroff from atomic enable/disable
+Date: Sun, 10 May 2026 12:40:47 +0000
+Message-ID: <20260510124111.1226584-4-jonas@kwiboo.se>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260510124111.1226584-1-jonas@kwiboo.se>
+References: <20260510124111.1226584-1-jonas@kwiboo.se>
 MIME-Version: 1.0
-X-CM-TRANSID: _____wDXLzL8O_9p486jAQ--.37610S5
-X-Coremail-Antispam: 1Uf129KBjvAXoWfCFykJFykWr15uF1kWw48WFg_yoW8uF1fGo
-	Z3Xry8X3W7Gr18XrWIvanxKry7ZwnFv3W5Arn293yDu343A3W5Jr93J3Z8uw12kr4Iyw45
-	AayDGw1fZFsrWw17n29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
-	AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvj4RRrWFUUUUU
-X-Originating-IP: [140.206.53.66]
-X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbC6wBpDWn-PAC1jgAA3e
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260509_065304_809707_B3632AD2 
-X-CRM114-Status: GOOD (  17.88  )
+X-CRM114-CacheID: sfid-20260510_054210_460976_64F10033 
+X-CRM114-Status: GOOD (  12.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,531 +79,121 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, imx@lists.linux.dev, Liu Ying <victor.liu@nxp.com>, linux-kernel@vger.kernel.org, Sandy Huang <hjc@rock-chips.com>, dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev, Diederik de Haas <diederik@cknow-tech.com>, linux-rockchip@lists.infradead.org, linux-amlogic@lists.infradead.org, Andy Yan <andy.yan@rock-chips.com>, Chen-Yu Tsai <wens@kernel.org>, Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Replace explicit dw_pcie_find_capability(pci, PCI_CAP_ID_EXP) calls
-with the cached pci->pcie_cap in all DWC-based platform drivers:
+Change to only call poweron/poweroff from atomic_enable/atomic_disable
+funcs instead of trying to be clever by keeping a bridge_is_on state and
+poweron/off in the hotplug irq handler.
 
-- i.MX6, Layerscape EP, Meson
-- Rockchip (also remove redundant NULL check and fix typo)
-- Eswin, Fu740
-- Intel Gateway, Qualcomm EP, Qualcomm RC
-- Sophgo, Spacemit-k1, Spear13xx
-- Tegra194 (remove private pcie_cap_base)
+The bridge is already enabled/disabled depending on connection state
+with the call to drm_helper_hpd_irq_event() in hotplug irq handler.
 
-For drivers that need the offset before the core caches it (e.g.,
-ls_pcie_ep_probe), use dw_pcie_get_pcie_cap() to ensure caching.
+A benefit of this is that drm mode_config mutex is always held at
+poweron/off, something that may reduce the need for the dw-hdmi mutex.
 
-Adjust variable types from u16 to u8 where appropriate.
-
-Signed-off-by: Hans Zhang <18255117159@163.com>
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 ---
- drivers/pci/controller/dwc/pci-imx6.c         |  6 +--
- .../pci/controller/dwc/pci-layerscape-ep.c    |  4 +-
- drivers/pci/controller/dwc/pci-meson.c        |  4 +-
- drivers/pci/controller/dwc/pcie-dw-rockchip.c | 15 +++---
- drivers/pci/controller/dwc/pcie-eswin.c       |  3 +-
- drivers/pci/controller/dwc/pcie-fu740.c       |  2 +-
- drivers/pci/controller/dwc/pcie-intel-gw.c    |  2 +-
- drivers/pci/controller/dwc/pcie-qcom-ep.c     | 11 ++--
- drivers/pci/controller/dwc/pcie-qcom.c        | 24 ++++-----
- drivers/pci/controller/dwc/pcie-sophgo.c      |  8 ++-
- drivers/pci/controller/dwc/pcie-spacemit-k1.c |  5 +-
- drivers/pci/controller/dwc/pcie-spear13xx.c   |  6 +--
- drivers/pci/controller/dwc/pcie-tegra194.c    | 51 +++++++------------
- 13 files changed, 56 insertions(+), 85 deletions(-)
+v5: No change
+v4: No change
+v3: Collect r-b tag
+v2: Update commit message
+---
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 33 ++---------------------
+ 1 file changed, 2 insertions(+), 31 deletions(-)
 
-diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-index e35044cc5218..dc464b460fc1 100644
---- a/drivers/pci/controller/dwc/pci-imx6.c
-+++ b/drivers/pci/controller/dwc/pci-imx6.c
-@@ -936,10 +936,10 @@ static void imx_pcie_ltssm_enable(struct device *dev)
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+index b7bfc0e9a6b2..8f7949d2c7f2 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+@@ -171,7 +171,6 @@ struct dw_hdmi {
+ 	enum drm_connector_force force;	/* mutex-protected force state */
+ 	struct drm_connector *curr_conn;/* current connector (only valid when !disabled) */
+ 	bool disabled;			/* DRM has disabled our bridge */
+-	bool bridge_is_on;		/* indicates the bridge is on */
+ 	bool rxsense;			/* rxsense state */
+ 	u8 phy_mask;			/* desired phy int mask settings */
+ 	u8 mc_clkdis;			/* clock disable register */
+@@ -2400,8 +2399,6 @@ static void initialize_hdmi_ih_mutes(struct dw_hdmi *hdmi)
+ 
+ static void dw_hdmi_poweron(struct dw_hdmi *hdmi)
  {
- 	struct imx_pcie *imx_pcie = dev_get_drvdata(dev);
- 	const struct imx_pcie_drvdata *drvdata = imx_pcie->drvdata;
--	u8 offset = dw_pcie_find_capability(imx_pcie->pci, PCI_CAP_ID_EXP);
-+	struct dw_pcie *pci = imx_pcie->pci;
- 	u32 tmp;
- 
--	tmp = dw_pcie_readl_dbi(imx_pcie->pci, offset + PCI_EXP_LNKCAP);
-+	tmp = dw_pcie_readl_dbi(pci, pci->pcie_cap + PCI_EXP_LNKCAP);
- 	phy_set_speed(imx_pcie->phy, FIELD_GET(PCI_EXP_LNKCAP_SLS, tmp));
- 	if (drvdata->ltssm_mask)
- 		regmap_update_bits(imx_pcie->iomuxc_gpr, drvdata->ltssm_off, drvdata->ltssm_mask,
-@@ -965,7 +965,7 @@ static int imx_pcie_start_link(struct dw_pcie *pci)
- {
- 	struct imx_pcie *imx_pcie = to_imx_pcie(pci);
- 	struct device *dev = pci->dev;
--	u8 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-+	u8 offset = pci->pcie_cap;
- 	u32 tmp;
- 	int ret;
- 
-diff --git a/drivers/pci/controller/dwc/pci-layerscape-ep.c b/drivers/pci/controller/dwc/pci-layerscape-ep.c
-index 8936975ff104..fdb89ae13e4a 100644
---- a/drivers/pci/controller/dwc/pci-layerscape-ep.c
-+++ b/drivers/pci/controller/dwc/pci-layerscape-ep.c
-@@ -84,7 +84,7 @@ static irqreturn_t ls_pcie_ep_event_handler(int irq, void *dev_id)
- 
- 	if (val & PEX_PF0_PME_MES_DR_LUD) {
- 
--		offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-+		offset = dw_pcie_get_pcie_cap(pci);
- 
- 		/*
- 		 * The values of the Maximum Link Width and Supported Link
-@@ -266,7 +266,7 @@ static int __init ls_pcie_ep_probe(struct platform_device *pdev)
- 
- 	platform_set_drvdata(pdev, pcie);
- 
--	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-+	offset = dw_pcie_get_pcie_cap(pci);
- 	pcie->lnkcap = dw_pcie_readl_dbi(pci, offset + PCI_EXP_LNKCAP);
- 
- 	ret = dw_pcie_ep_init(&pci->ep);
-diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-index 0694084f612b..e8750178fbb0 100644
---- a/drivers/pci/controller/dwc/pci-meson.c
-+++ b/drivers/pci/controller/dwc/pci-meson.c
-@@ -276,7 +276,7 @@ static void meson_set_max_payload(struct meson_pcie *mp, int size)
- {
- 	struct dw_pcie *pci = &mp->pci;
- 	u32 val;
--	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-+	u8 offset = pci->pcie_cap;
- 	int max_payload_size = meson_size_to_payload(mp, size);
- 
- 	val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
-@@ -292,7 +292,7 @@ static void meson_set_max_rd_req_size(struct meson_pcie *mp, int size)
- {
- 	struct dw_pcie *pci = &mp->pci;
- 	u32 val;
--	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-+	u8 offset = pci->pcie_cap;
- 	int max_rd_req_size = meson_size_to_payload(mp, size);
- 
- 	val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
-diff --git a/drivers/pci/controller/dwc/pcie-dw-rockchip.c b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-index 731d93663cca..9acdc18a573e 100644
---- a/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-+++ b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-@@ -366,17 +366,14 @@ static void rockchip_pcie_configure_l1ss(struct dw_pcie *pci)
- 
- static void rockchip_pcie_enable_l0s(struct dw_pcie *pci)
- {
--	u32 cap, lnkcap;
-+	u32 lnkcap;
- 
- 	/* Enable L0S capability for all SoCs */
--	cap = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
--	if (cap) {
--		lnkcap = dw_pcie_readl_dbi(pci, cap + PCI_EXP_LNKCAP);
--		lnkcap |= PCI_EXP_LNKCAP_ASPM_L0S;
--		dw_pcie_dbi_ro_wr_en(pci);
--		dw_pcie_writel_dbi(pci, cap + PCI_EXP_LNKCAP, lnkcap);
--		dw_pcie_dbi_ro_wr_dis(pci);
+-	hdmi->bridge_is_on = true;
+-
+ 	/*
+ 	 * The curr_conn field is guaranteed to be valid here, as this function
+ 	 * is only be called when !hdmi->disabled.
+@@ -2415,30 +2412,6 @@ static void dw_hdmi_poweroff(struct dw_hdmi *hdmi)
+ 		hdmi->phy.ops->disable(hdmi, hdmi->phy.data);
+ 		hdmi->phy.enabled = false;
+ 	}
+-
+-	hdmi->bridge_is_on = false;
+-}
+-
+-static void dw_hdmi_update_power(struct dw_hdmi *hdmi)
+-{
+-	int force = hdmi->force;
+-
+-	if (hdmi->disabled) {
+-		force = DRM_FORCE_OFF;
+-	} else if (force == DRM_FORCE_UNSPECIFIED) {
+-		if (hdmi->rxsense)
+-			force = DRM_FORCE_ON;
+-		else
+-			force = DRM_FORCE_OFF;
 -	}
-+	lnkcap = dw_pcie_readl_dbi(pci, pci->pcie_cap + PCI_EXP_LNKCAP);
-+	lnkcap |= PCI_EXP_LNKCAP_ASPM_L0S;
-+	dw_pcie_dbi_ro_wr_en(pci);
-+	dw_pcie_writel_dbi(pci, pci->pcie_cap + PCI_EXP_LNKCAP, lnkcap);
-+	dw_pcie_dbi_ro_wr_dis(pci);
- }
- 
- static int rockchip_pcie_start_link(struct dw_pcie *pci)
-diff --git a/drivers/pci/controller/dwc/pcie-eswin.c b/drivers/pci/controller/dwc/pcie-eswin.c
-index 2845832b3824..2e5b94c27026 100644
---- a/drivers/pci/controller/dwc/pcie-eswin.c
-+++ b/drivers/pci/controller/dwc/pcie-eswin.c
-@@ -84,8 +84,7 @@ static int eswin_pcie_start_link(struct dw_pcie *pci)
- 
- static bool eswin_pcie_link_up(struct dw_pcie *pci)
- {
--	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
--	u16 val = dw_pcie_readw_dbi(pci, offset + PCI_EXP_LNKSTA);
-+	u16 val = dw_pcie_readw_dbi(pci, pci->pcie_cap + PCI_EXP_LNKSTA);
- 
- 	return val & PCI_EXP_LNKSTA_DLLLA;
- }
-diff --git a/drivers/pci/controller/dwc/pcie-fu740.c b/drivers/pci/controller/dwc/pcie-fu740.c
-index 66367252032b..553a940e6d89 100644
---- a/drivers/pci/controller/dwc/pcie-fu740.c
-+++ b/drivers/pci/controller/dwc/pcie-fu740.c
-@@ -179,7 +179,7 @@ static int fu740_pcie_start_link(struct dw_pcie *pci)
- {
- 	struct device *dev = pci->dev;
- 	struct fu740_pcie *afp = dev_get_drvdata(dev);
--	u8 cap_exp = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-+	u8 cap_exp = pci->pcie_cap;
- 	int ret;
- 	u32 orig, tmp;
- 
-diff --git a/drivers/pci/controller/dwc/pcie-intel-gw.c b/drivers/pci/controller/dwc/pcie-intel-gw.c
-index c21906eced61..939b9dcac7fe 100644
---- a/drivers/pci/controller/dwc/pcie-intel-gw.c
-+++ b/drivers/pci/controller/dwc/pcie-intel-gw.c
-@@ -121,7 +121,7 @@ static void intel_pcie_ltssm_disable(struct intel_pcie *pcie)
- static void intel_pcie_link_setup(struct intel_pcie *pcie)
- {
- 	u32 val;
--	u8 offset = dw_pcie_find_capability(&pcie->pci, PCI_CAP_ID_EXP);
-+	u8 offset = pcie->pci.pcie_cap;
- 
- 	val = pcie_rc_cfg_rd(pcie, offset + PCI_EXP_LNKCTL);
- 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-index 257c2bcb5f76..d041189be248 100644
---- a/drivers/pci/controller/dwc/pcie-qcom-ep.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-@@ -307,14 +307,14 @@ static void qcom_pcie_dw_write_dbi2(struct dw_pcie *pci, void __iomem *base,
- static void qcom_pcie_ep_icc_update(struct qcom_pcie_ep *pcie_ep)
- {
- 	struct dw_pcie *pci = &pcie_ep->pci;
--	u32 offset, status;
--	int speed, width;
--	int ret;
-+	int speed, width, ret;
-+	u32 status;
-+	u8 offset;
- 
- 	if (!pcie_ep->icc_mem)
- 		return;
- 
--	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-+	offset = dw_pcie_get_pcie_cap(pci);
- 	status = readw(pci->dbi_base + offset + PCI_EXP_LNKSTA);
- 
- 	speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, status);
-@@ -492,14 +492,13 @@ static int qcom_pcie_perst_deassert(struct dw_pcie *pci)
- 	dw_pcie_dbi_ro_wr_en(pci);
- 
- 	/* Set the L0s Exit Latency to 2us-4us = 0x6 */
--	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-+	offset = dw_pcie_get_pcie_cap(pci);
- 	val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_LNKCAP);
- 	val &= ~PCI_EXP_LNKCAP_L0SEL;
- 	val |= FIELD_PREP(PCI_EXP_LNKCAP_L0SEL, 0x6);
- 	dw_pcie_writel_dbi(pci, offset + PCI_EXP_LNKCAP, val);
- 
- 	/* Set the L1 Exit Latency to be 32us-64 us = 0x6 */
--	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
- 	val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_LNKCAP);
- 	val &= ~PCI_EXP_LNKCAP_L1EL;
- 	val |= FIELD_PREP(PCI_EXP_LNKCAP_L1EL, 0x6);
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index af6bf5cce65b..ddb0ae2bf64b 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -333,26 +333,22 @@ static int qcom_pcie_start_link(struct dw_pcie *pci)
- static void qcom_pcie_clear_aspm_l0s(struct dw_pcie *pci)
- {
- 	struct qcom_pcie *pcie = to_qcom_pcie(pci);
--	u16 offset;
- 	u32 val;
- 
- 	if (!pcie->cfg->no_l0s)
- 		return;
- 
--	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
 -
- 	dw_pcie_dbi_ro_wr_en(pci);
- 
--	val = readl(pci->dbi_base + offset + PCI_EXP_LNKCAP);
-+	val = readl(pci->dbi_base + pci->pcie_cap + PCI_EXP_LNKCAP);
- 	val &= ~PCI_EXP_LNKCAP_ASPM_L0S;
--	writel(val, pci->dbi_base + offset + PCI_EXP_LNKCAP);
-+	writel(val, pci->dbi_base + pci->pcie_cap + PCI_EXP_LNKCAP);
- 
- 	dw_pcie_dbi_ro_wr_dis(pci);
+-	if (force == DRM_FORCE_OFF) {
+-		if (hdmi->bridge_is_on)
+-			dw_hdmi_poweroff(hdmi);
+-	} else {
+-		if (!hdmi->bridge_is_on)
+-			dw_hdmi_poweron(hdmi);
+-	}
  }
  
- static void qcom_pcie_set_slot_nccs(struct dw_pcie *pci)
- {
--	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
- 	u32 val;
+ /*
+@@ -2563,7 +2536,6 @@ static void dw_hdmi_connector_force(struct drm_connector *connector)
  
- 	dw_pcie_dbi_ro_wr_en(pci);
-@@ -362,9 +358,9 @@ static void qcom_pcie_set_slot_nccs(struct dw_pcie *pci)
- 	 * notifications for the Hot-Plug commands. So set the NCCS field to
- 	 * avoid waiting for the completions.
- 	 */
--	val = readl(pci->dbi_base + offset + PCI_EXP_SLTCAP);
-+	val = readl(pci->dbi_base + pci->pcie_cap + PCI_EXP_SLTCAP);
- 	val |= PCI_EXP_SLTCAP_NCCS;
--	writel(val, pci->dbi_base + offset + PCI_EXP_SLTCAP);
-+	writel(val, pci->dbi_base + pci->pcie_cap + PCI_EXP_SLTCAP);
- 
- 	dw_pcie_dbi_ro_wr_dis(pci);
+ 	mutex_lock(&hdmi->mutex);
+ 	hdmi->force = connector->force;
+-	dw_hdmi_update_power(hdmi);
+ 	dw_hdmi_update_phy_mask(hdmi);
+ 	mutex_unlock(&hdmi->mutex);
  }
-@@ -900,7 +896,7 @@ static int qcom_pcie_init_2_3_3(struct qcom_pcie *pcie)
- static int qcom_pcie_post_init_2_3_3(struct qcom_pcie *pcie)
- {
- 	struct dw_pcie *pci = pcie->pci;
--	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-+	u8 offset = pci->pcie_cap;
- 	u32 val;
+@@ -2988,7 +2960,7 @@ static void dw_hdmi_bridge_atomic_disable(struct drm_bridge *bridge,
+ 	mutex_lock(&hdmi->mutex);
+ 	hdmi->disabled = true;
+ 	hdmi->curr_conn = NULL;
+-	dw_hdmi_update_power(hdmi);
++	dw_hdmi_poweroff(hdmi);
+ 	dw_hdmi_update_phy_mask(hdmi);
+ 	handle_plugged_change(hdmi, false);
+ 	mutex_unlock(&hdmi->mutex);
+@@ -3006,7 +2978,7 @@ static void dw_hdmi_bridge_atomic_enable(struct drm_bridge *bridge,
+ 	mutex_lock(&hdmi->mutex);
+ 	hdmi->disabled = false;
+ 	hdmi->curr_conn = connector;
+-	dw_hdmi_update_power(hdmi);
++	dw_hdmi_poweron(hdmi);
+ 	dw_hdmi_update_phy_mask(hdmi);
+ 	handle_plugged_change(hdmi, true);
+ 	mutex_unlock(&hdmi->mutex);
+@@ -3106,7 +3078,6 @@ void dw_hdmi_setup_rx_sense(struct dw_hdmi *hdmi, bool hpd, bool rx_sense)
+ 		if (hpd)
+ 			hdmi->rxsense = true;
  
- 	val = readl(pcie->parf + PARF_PHY_CTRL);
-@@ -1209,7 +1205,7 @@ static int qcom_pcie_init_2_9_0(struct qcom_pcie *pcie)
- static int qcom_pcie_post_init_2_9_0(struct qcom_pcie *pcie)
- {
- 	struct dw_pcie *pci = pcie->pci;
--	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-+	u8 offset = pci->pcie_cap;
- 	u32 val;
- 	int i;
- 
-@@ -1254,8 +1250,7 @@ static int qcom_pcie_post_init_2_9_0(struct qcom_pcie *pcie)
- 
- static bool qcom_pcie_link_up(struct dw_pcie *pci)
- {
--	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
--	u16 val = readw(pci->dbi_base + offset + PCI_EXP_LNKSTA);
-+	u16 val = readw(pci->dbi_base + pci->pcie_cap + PCI_EXP_LNKSTA);
- 
- 	return val & PCI_EXP_LNKSTA_DLLLA;
- }
-@@ -1559,15 +1554,14 @@ static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
- 
- static void qcom_pcie_icc_opp_update(struct qcom_pcie *pcie)
- {
--	u32 offset, status, width, speed;
-+	u32 status, width, speed;
- 	struct dw_pcie *pci = pcie->pci;
- 	struct dev_pm_opp_key key = {};
- 	unsigned long freq_kbps;
- 	struct dev_pm_opp *opp;
- 	int ret, freq_mbps;
- 
--	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
--	status = readw(pci->dbi_base + offset + PCI_EXP_LNKSTA);
-+	status = readw(pci->dbi_base + pci->pcie_cap + PCI_EXP_LNKSTA);
- 
- 	/* Only update constraints if link is up. */
- 	if (!(status & PCI_EXP_LNKSTA_DLLLA))
-diff --git a/drivers/pci/controller/dwc/pcie-sophgo.c b/drivers/pci/controller/dwc/pcie-sophgo.c
-index 044088898819..5a2cd95c6de7 100644
---- a/drivers/pci/controller/dwc/pcie-sophgo.c
-+++ b/drivers/pci/controller/dwc/pcie-sophgo.c
-@@ -164,15 +164,13 @@ static void sophgo_pcie_msi_enable(struct dw_pcie_rp *pp)
- static void sophgo_pcie_disable_l0s_l1(struct dw_pcie_rp *pp)
- {
- 	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
--	u32 offset, val;
--
--	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-+	u32 val;
- 
- 	dw_pcie_dbi_ro_wr_en(pci);
- 
--	val = dw_pcie_readl_dbi(pci, PCI_EXP_LNKCAP + offset);
-+	val = dw_pcie_readl_dbi(pci, PCI_EXP_LNKCAP + pci->pcie_cap);
- 	val &= ~(PCI_EXP_LNKCAP_ASPM_L0S | PCI_EXP_LNKCAP_ASPM_L1);
--	dw_pcie_writel_dbi(pci, PCI_EXP_LNKCAP + offset, val);
-+	dw_pcie_writel_dbi(pci, PCI_EXP_LNKCAP + pci->pcie_cap, val);
- 
- 	dw_pcie_dbi_ro_wr_dis(pci);
- }
-diff --git a/drivers/pci/controller/dwc/pcie-spacemit-k1.c b/drivers/pci/controller/dwc/pcie-spacemit-k1.c
-index be20a520255b..6f0556336f44 100644
---- a/drivers/pci/controller/dwc/pcie-spacemit-k1.c
-+++ b/drivers/pci/controller/dwc/pcie-spacemit-k1.c
-@@ -114,12 +114,9 @@ static void k1_pcie_disable_resources(struct k1_pcie *k1)
- static void k1_pcie_disable_aspm_l1(struct k1_pcie *k1)
- {
- 	struct dw_pcie *pci = &k1->pci;
--	u8 offset;
-+	u8 offset = pci->pcie_cap + PCI_EXP_LNKCAP;
- 	u32 val;
- 
--	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
--	offset += PCI_EXP_LNKCAP;
--
- 	dw_pcie_dbi_ro_wr_en(pci);
- 	val = dw_pcie_readl_dbi(pci, offset);
- 	val &= ~PCI_EXP_LNKCAP_ASPM_L1;
-diff --git a/drivers/pci/controller/dwc/pcie-spear13xx.c b/drivers/pci/controller/dwc/pcie-spear13xx.c
-index 01794a9d3ad2..920454266f3f 100644
---- a/drivers/pci/controller/dwc/pcie-spear13xx.c
-+++ b/drivers/pci/controller/dwc/pcie-spear13xx.c
-@@ -122,7 +122,7 @@ static int spear13xx_pcie_host_init(struct dw_pcie_rp *pp)
- {
- 	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
- 	struct spear13xx_pcie *spear13xx_pcie = to_spear13xx_pcie(pci);
--	u32 exp_cap_off = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-+	u8 offset = pci->pcie_cap;
- 	u32 val;
- 
- 	spear13xx_pcie->app_base = pci->dbi_base + 0x2000;
-@@ -132,9 +132,9 @@ static int spear13xx_pcie_host_init(struct dw_pcie_rp *pp)
- 	 * default value in capability register is 512 bytes. So force
- 	 * it to 128 here.
- 	 */
--	val = dw_pcie_readw_dbi(pci, exp_cap_off + PCI_EXP_DEVCTL);
-+	val = dw_pcie_readw_dbi(pci, offset + PCI_EXP_DEVCTL);
- 	val &= ~PCI_EXP_DEVCTL_READRQ;
--	dw_pcie_writew_dbi(pci, exp_cap_off + PCI_EXP_DEVCTL, val);
-+	dw_pcie_writew_dbi(pci, offset + PCI_EXP_DEVCTL, val);
- 
- 	dw_pcie_writew_dbi(pci, PCI_VENDOR_ID, 0x104A);
- 	dw_pcie_writew_dbi(pci, PCI_DEVICE_ID, 0xCD80);
-diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
-index 9dcfa194050e..0d5a5e9027d9 100644
---- a/drivers/pci/controller/dwc/pcie-tegra194.c
-+++ b/drivers/pci/controller/dwc/pcie-tegra194.c
-@@ -268,7 +268,6 @@ struct tegra_pcie_dw {
- 	u32 num_lanes;
- 	u32 cid;
- 	u32 ras_des_cap;
--	u32 pcie_cap_base;
- 	u32 aspm_cmrt;
- 	u32 aspm_pwr_on_t;
- 	u32 aspm_l0s_enter_lat;
-@@ -312,7 +311,7 @@ static void tegra_pcie_icc_set(struct tegra_pcie_dw *pcie)
- 	struct dw_pcie *pci = &pcie->pci;
- 	u32 val, speed, width;
- 
--	val = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKSTA);
-+	val = dw_pcie_readw_dbi(pci, pci->pcie_cap + PCI_EXP_LNKSTA);
- 
- 	speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, val);
- 	width = FIELD_GET(PCI_EXP_LNKSTA_NLW, val);
-@@ -340,22 +339,22 @@ static void apply_bad_link_workaround(struct dw_pcie_rp *pp)
- 	 * stable anyway, not waiting to confirm if link is really
- 	 * transitioning to Gen-2 speed
- 	 */
--	val = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKSTA);
-+	val = dw_pcie_readw_dbi(pci, pci->pcie_cap + PCI_EXP_LNKSTA);
- 	if (val & PCI_EXP_LNKSTA_LBMS) {
- 		current_link_width = FIELD_GET(PCI_EXP_LNKSTA_NLW, val);
- 		if (pcie->init_link_width > current_link_width) {
- 			dev_warn(pci->dev, "PCIe link is bad, width reduced\n");
--			val = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base +
-+			val = dw_pcie_readw_dbi(pci, pci->pcie_cap +
- 						PCI_EXP_LNKCTL2);
- 			val &= ~PCI_EXP_LNKCTL2_TLS;
- 			val |= PCI_EXP_LNKCTL2_TLS_2_5GT;
--			dw_pcie_writew_dbi(pci, pcie->pcie_cap_base +
-+			dw_pcie_writew_dbi(pci, pci->pcie_cap +
- 					   PCI_EXP_LNKCTL2, val);
- 
--			val = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base +
-+			val = dw_pcie_readw_dbi(pci, pci->pcie_cap +
- 						PCI_EXP_LNKCTL);
- 			val |= PCI_EXP_LNKCTL_RL;
--			dw_pcie_writew_dbi(pci, pcie->pcie_cap_base +
-+			dw_pcie_writew_dbi(pci, pci->pcie_cap +
- 					   PCI_EXP_LNKCTL, val);
- 		}
+-		dw_hdmi_update_power(hdmi);
+ 		dw_hdmi_update_phy_mask(hdmi);
  	}
-@@ -399,17 +398,17 @@ static irqreturn_t tegra_pcie_rp_irq_handler(int irq, void *arg)
- 			apply_bad_link_workaround(pp);
- 		}
- 		if (status_l1 & APPL_INTR_STATUS_L1_8_0_BW_MGT_INT_STS) {
--			val_w = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base +
-+			val_w = dw_pcie_readw_dbi(pci, pci->pcie_cap +
- 						  PCI_EXP_LNKSTA);
- 			val_w |= PCI_EXP_LNKSTA_LBMS;
--			dw_pcie_writew_dbi(pci, pcie->pcie_cap_base +
-+			dw_pcie_writew_dbi(pci, pci->pcie_cap +
- 					   PCI_EXP_LNKSTA, val_w);
- 
- 			appl_writel(pcie,
- 				    APPL_INTR_STATUS_L1_8_0_BW_MGT_INT_STS,
- 				    APPL_INTR_STATUS_L1_8_0);
- 
--			val_w = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base +
-+			val_w = dw_pcie_readw_dbi(pci, pci->pcie_cap +
- 						  PCI_EXP_LNKSTA);
- 			dev_dbg(pci->dev, "Link Speed : Gen-%u\n", val_w &
- 				PCI_EXP_LNKSTA_CLS);
-@@ -675,7 +674,7 @@ static void init_host_aspm(struct tegra_pcie_dw *pcie)
- 
- 	l1ss = dw_pcie_find_ext_capability(pci, PCI_EXT_CAP_ID_L1SS);
- 
--	pcie->ras_des_cap = dw_pcie_find_ext_capability(&pcie->pci,
-+	pcie->ras_des_cap = dw_pcie_find_ext_capability(pci,
- 							PCI_EXT_CAP_ID_VNDR);
- 
- 	/* Enable ASPM counters */
-@@ -766,15 +765,12 @@ static void tegra_pcie_enable_system_interrupts(struct dw_pcie_rp *pp)
- 		appl_writel(pcie, val, APPL_INTR_EN_L1_18);
- 	}
- 
--	val_w = dw_pcie_readw_dbi(&pcie->pci, pcie->pcie_cap_base +
--				  PCI_EXP_LNKSTA);
-+	val_w = dw_pcie_readw_dbi(pci, pci->pcie_cap + PCI_EXP_LNKSTA);
- 	pcie->init_link_width = FIELD_GET(PCI_EXP_LNKSTA_NLW, val_w);
- 
--	val_w = dw_pcie_readw_dbi(&pcie->pci, pcie->pcie_cap_base +
--				  PCI_EXP_LNKCTL);
-+	val_w = dw_pcie_readw_dbi(pci, pci->pcie_cap + PCI_EXP_LNKCTL);
- 	val_w |= PCI_EXP_LNKCTL_LBMIE;
--	dw_pcie_writew_dbi(&pcie->pci, pcie->pcie_cap_base + PCI_EXP_LNKCTL,
--			   val_w);
-+	dw_pcie_writew_dbi(pci, pci->pcie_cap + PCI_EXP_LNKCTL, val_w);
- }
- 
- static void tegra_pcie_enable_intx_interrupts(struct dw_pcie_rp *pp)
-@@ -903,10 +899,6 @@ static int tegra_pcie_dw_host_init(struct dw_pcie_rp *pp)
- 
- 	pp->bridge->ops = &tegra_pci_ops;
- 
--	if (!pcie->pcie_cap_base)
--		pcie->pcie_cap_base = dw_pcie_find_capability(&pcie->pci,
--							      PCI_CAP_ID_EXP);
--
- 	val = dw_pcie_readl_dbi(pci, PCI_IO_BASE);
- 	val &= ~(IO_BASE_IO_DECODE | IO_BASE_IO_DECODE_BIT8);
- 	dw_pcie_writel_dbi(pci, PCI_IO_BASE, val);
-@@ -927,10 +919,9 @@ static int tegra_pcie_dw_host_init(struct dw_pcie_rp *pp)
- 
- 	/* Clear Slot Clock Configuration bit if SRNS configuration */
- 	if (pcie->enable_srns) {
--		val_16 = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base +
--					   PCI_EXP_LNKSTA);
-+		val_16 = dw_pcie_readw_dbi(pci, pci->pcie_cap + PCI_EXP_LNKSTA);
- 		val_16 &= ~PCI_EXP_LNKSTA_SLC;
--		dw_pcie_writew_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKSTA,
-+		dw_pcie_writew_dbi(pci, pci->pcie_cap + PCI_EXP_LNKSTA,
- 				   val_16);
- 	}
- 
-@@ -1047,8 +1038,7 @@ static int tegra_pcie_dw_start_link(struct dw_pcie *pci)
- 
- static bool tegra_pcie_dw_link_up(struct dw_pcie *pci)
- {
--	struct tegra_pcie_dw *pcie = to_tegra_pcie(pci);
--	u32 val = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKSTA);
-+	u32 val = dw_pcie_readw_dbi(pci, pci->pcie_cap + PCI_EXP_LNKSTA);
- 
- 	return val & PCI_EXP_LNKSTA_DLLLA;
- }
-@@ -1878,16 +1868,13 @@ static void pex_ep_event_pex_rst_deassert(struct tegra_pcie_dw *pcie)
- 		dw_pcie_writel_dbi(pci, GEN3_RELATED_OFF, val);
- 	}
- 
--	pcie->pcie_cap_base = dw_pcie_find_capability(&pcie->pci,
--						      PCI_CAP_ID_EXP);
-+	dw_pcie_get_pcie_cap(pci);
- 
- 	/* Clear Slot Clock Configuration bit if SRNS configuration */
- 	if (pcie->enable_srns) {
--		val_16 = dw_pcie_readw_dbi(pci, pcie->pcie_cap_base +
--					   PCI_EXP_LNKSTA);
-+		val_16 = dw_pcie_readw_dbi(pci, pci->pcie_cap + PCI_EXP_LNKSTA);
- 		val_16 &= ~PCI_EXP_LNKSTA_SLC;
--		dw_pcie_writew_dbi(pci, pcie->pcie_cap_base + PCI_EXP_LNKSTA,
--				   val_16);
-+		dw_pcie_writew_dbi(pci, pci->pcie_cap + PCI_EXP_LNKSTA, val_16);
- 	}
- 
- 	clk_set_rate(pcie->core_clk, GEN4_CORE_CLK_FREQ);
+ 	mutex_unlock(&hdmi->mutex);
 -- 
-2.34.1
+2.54.0
 
 
 _______________________________________________
