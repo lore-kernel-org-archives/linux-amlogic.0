@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEF2DCD37BB
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB282CD37BC
 	for <linux-amlogic@archiver.kernel.org>; Sun, 10 May 2026 12:42:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,31 +12,31 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1aYsjPoABlNCVt97VsR4fRyT+tZV83oMTwqsa2nwMtE=; b=btKuG8/NpTGwhq
-	afAshCLxkUNnVzsMWU4RG6QqcL4lsXja6ZJcPfnaRZjVijvn1PtZZ7gP+e9OilEJT8WxVUQg7Y/RP
-	4Zj3SyfMkkj228cDFstZDyBPgYC2ms1gm8YSstMkLqrrsXAda/pcysb9/r2xKvyzoL/7LOsGk4geD
-	j3u5pISgdFlt0K3++1j34T8/kU9QxL9qPa77xI5CM6Nt3LfgDwVl2y2ctrLX/xzNi/u90M3sxvg2R
-	ckqj4jS65R3KuU8Ja9gk8z4IbTUNZK0MvYXEfINP0dNKuVOxW0QhuRKV9UI44b2WCKZkJs/+iGCqU
-	KvB4tpU/Io5ezyCnEPYw==;
+	List-Owner; bh=gm9b045IcG8DnAmjtTH+vKJGBcOWisBfLbs01XraJL4=; b=mEJdcFvsTkYrec
+	7hU9Slvfx+5Gt+7qXOF0cuVLTIaIzI54ylXX/mkxwwN/y5+eO413nFxXnYxhHEZnTfS6l/irUn/ut
+	VsZQZQvZlwLKqfJ2QL3nVQluutEs50NGZN2hE1+UgF2w8FXfVYNAyfbnp9dVe/of/2U2dKTWC46Qu
+	AvTgWY1zDjVFAYmaVvOu9ewzP57qvLgQvk/VzddgaJMHBgjJYTiFJilRgWcCvgnydIzZxhNSTjW5b
+	b4pREPYvHG11sx7eML4YJPlB660lCBJhe2uJ5aoP5gguaTQSUjWcTg/XnbfYnunRw/nAj2g/uTFvM
+	orIg870vYsODZiLDJxhA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wM3U3-0000000Ajd7-0jVL;
-	Sun, 10 May 2026 12:42:11 +0000
+	id 1wM3U2-0000000Ajct-43ZV;
+	Sun, 10 May 2026 12:42:10 +0000
 Received: from smtp.forwardemail.net ([121.127.44.73])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wM3Tz-0000000AjX2-3TIt
+	id 1wM3Ty-0000000AjWW-1hyD
 	for linux-amlogic@lists.infradead.org;
 	Sun, 10 May 2026 12:42:09 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
  h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
  Message-ID: Date: Subject: Cc: To: From; q=dns/txt; s=fe-e1b5cab7be;
- t=1778416916; bh=78AOuGQg8tc5swNE8UvyFsFo0iqbHxC/+qxic9ecTQY=;
- b=MTTG1eAzQ/fpeoX1TRpqhx9eAGu81bDzyiZ9DMmdEKV8ov32BgC9hy1p9AQvfvF8kfMxY80YO
- +w1M6YPUgsU4SeHUMMDu5tEOOBZdukvvsuklRoVtZAxzHZjjzmUeUhGuxbEh7AyBBa5/Byu5Z2b
- 9TvNzCgPjVlzinnBnG5+lQUn2ZJlVQ2fPRTrXzCbeeUNHffgokw1NKhtWwkXyS7UHG7P0KdrN9s
- NR83AfG2C6PvRVoGM5VurAeSKaGB2N1Wl2H7IavEDH/QB45P/G/kuxL/V60iIOaxQakZNxSA+Ll
- zm3J3//lQiHjMTOQxRySlF+VTlbOuXfuEOTq9SEspV2g==
-X-Forward-Email-ID: 6a007d000d91f03a31a0bb53
+ t=1778416916; bh=YPElDtV9eg2ObFwq32yfRisczcjIwpWrEjsNQBlqzi0=;
+ b=YhlkrLZRWwq2XbbsDUaX02ZVag0jmccag3rZh+RSlfDnBQDkTZyXmZH8pRNV6l9JWPXF+7ah+
+ Vgzr+nHsz3guIBk5A6qUSqpnA6/WtI+oUvEGY8Usj1tnH169506G6AXTLyvJbIGu2wEXuxBJtuJ
+ yebUcXI8neZBhETIL9wa8rK180nvQ4PanpJTh/wCP1l3ZP+M80IA+16GQIL1iLmFH7gvgJOXCGB
+ a2tEN/AIiK6B3KtnpafCdvi3bW18bcbsJ7oaNDTcUBI+16ifKk8n/iPif344k89aVaMkZKsMn3Z
+ l6MPaR2IWeM73XdFv9phtcSpCdyxtDVqtsRsD1bVKMzQ==
+X-Forward-Email-ID: 6a007cf30d91f03a31a0bb02
 X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
  121.127.44.73
 X-Forward-Email-Version: 2.8.0
@@ -58,17 +58,16 @@ To: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Thomas Zimmermann <tzimmermann@suse.de>,
 	David Airlie <airlied@gmail.com>,
 	Simona Vetter <simona@ffwll.ch>
-Subject: [PATCH v5 04/21] drm: bridge: dw_hdmi: Use passed mode instead of stored previous_mode
-Date: Sun, 10 May 2026 12:40:48 +0000
-Message-ID: <20260510124111.1226584-5-jonas@kwiboo.se>
+Subject: [PATCH v5 01/21] drm: bridge: dw_hdmi: Disable scrambler feature when not supported
+Date: Sun, 10 May 2026 12:40:45 +0000
+Message-ID: <20260510124111.1226584-2-jonas@kwiboo.se>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260510124111.1226584-1-jonas@kwiboo.se>
 References: <20260510124111.1226584-1-jonas@kwiboo.se>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260510_054208_330133_B7803A81 
-X-CRM114-Status: UNSURE (   9.46  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260510_054207_689906_4F3F7E59 
+X-CRM114-Status: GOOD (  10.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,57 +79,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, imx@lists.linux.dev, Liu Ying <victor.liu@nxp.com>, linux-kernel@vger.kernel.org, Sandy Huang <hjc@rock-chips.com>, dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev, Diederik de Haas <diederik@cknow-tech.com>, linux-rockchip@lists.infradead.org, linux-amlogic@lists.infradead.org, Andy Yan <andy.yan@rock-chips.com>, Chen-Yu Tsai <wens@kernel.org>, Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, linux-arm-kernel@lists.infradead.org
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, imx@lists.linux.dev, Liu Ying <victor.liu@nxp.com>, linux-kernel@vger.kernel.org, Sandy Huang <hjc@rock-chips.com>, dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev, Diederik de Haas <diederik@cknow-tech.com>, linux-rockchip@lists.infradead.org, Christopher Obbard <chris.obbard@collabora.com>, linux-amlogic@lists.infradead.org, Andy Yan <andy.yan@rock-chips.com>, Chen-Yu Tsai <wens@kernel.org>, Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use the passed mode instead of mixing use of passed mode and the stored
-previous_mode in dw_hdmi_setup(). The passed mode is currenly always the
-previous_mode.
+The scrambler feature can be left enabled when hotplugging from a sink
+and mode that require scrambling to a sink that does not support SCDC or
+scrambling.
 
-Also fix a small typo and add a variable to help shorten a code line.
+Typically a blank screen or 'no signal' message can be observed after
+using a HDMI 2.0 4K@60Hz mode and then hotplugging to a sink that only
+support HDMI 1.4.
 
+Fix this by disabling the scrambler feature when SCDC is not supported.
+
+Fixes: 264fce6cc2c1 ("drm/bridge: dw-hdmi: Add SCDC and TMDS Scrambling support")
+Reported-by: Christopher Obbard <chris.obbard@collabora.com>
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 ---
 v5: No change
 v4: No change
 v3: Collect r-b tag
-v2: Update commit message, s/type/typo/
+v2: New patch
 ---
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 9 ++++-----
- 1 file changed, 4 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-index 8f7949d2c7f2..aa12397b3343 100644
+index 41b3a9cfa2f5..d3e6a6562870 100644
 --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
 +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-@@ -2258,6 +2258,7 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi,
- 			 const struct drm_connector *connector,
- 			 const struct drm_display_mode *mode)
- {
-+	const struct drm_display_info *display = &connector->display_info;
- 	int ret;
+@@ -2135,6 +2135,8 @@ static void hdmi_av_composer(struct dw_hdmi *hdmi,
+ 				    HDMI_MC_SWRSTZ);
+ 			drm_scdc_set_scrambling(hdmi->curr_conn, 0);
+ 		}
++	} else if (hdmi->version >= 0x200a) {
++		hdmi_writeb(hdmi, 0, HDMI_FC_SCRAMBLER_CTRL);
+ 	}
  
- 	hdmi_disable_overflow_interrupts(hdmi);
-@@ -2303,12 +2304,10 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi,
- 	hdmi->hdmi_data.video_mode.mdataenablepolarity = true;
- 
- 	/* HDMI Initialization Step B.1 */
--	hdmi_av_composer(hdmi, &connector->display_info, mode);
-+	hdmi_av_composer(hdmi, display, mode);
- 
--	/* HDMI Initializateion Step B.2 */
--	ret = hdmi->phy.ops->init(hdmi, hdmi->phy.data,
--				  &connector->display_info,
--				  &hdmi->previous_mode);
-+	/* HDMI Initialization Step B.2 */
-+	ret = hdmi->phy.ops->init(hdmi, hdmi->phy.data, display, mode);
- 	if (ret)
- 		return ret;
- 	hdmi->phy.enabled = true;
+ 	/* Set up horizontal active pixel width */
 -- 
 2.54.0
 
