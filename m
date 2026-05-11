@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93A8DCD484A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 May 2026 12:47:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 743CDCD37AC
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 May 2026 12:47:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ri6phOycbh8bmjYingRoRWdLWzySjcEQkvDiXGOj6G8=; b=H6YqbAfIadkk9h
-	P0dgFb28BGZof+QRgzNqQELJYusNpkCt/nnYasporwTr0XauCyBPAt8WQrSVhTzTWSdd+VUHaJ/pK
-	bHK+RfpznjKIXRZYmWmUrZBtR2sMaQjh9R9o114zrYMnZQ7+HN/lXgGjzRz+z0Zql1lMGG+Plgc/0
-	BsJ62AWfU5G4QLZQBour+ZtpABHNsrCB+b3SznuKsBBjjSpnhL798O9UnuPCAf7MIH+4PjeuFJwvE
-	hq2LTX1i8yA6yUJ7k1LOs8c2cew5cvPXytU+2+0+2doYK5Es1ganF6FguSdx0vUFBZ7Uz0V7Z8LLp
-	owdj3phvRpVmr96PZf2Q==;
+	List-Owner; bh=pkaWhmxqi8lJ5EAv/dpzdacd6AtZMjkhS2bd1ldFC60=; b=2mH9EAglWzfNqC
+	aHXYCjUyG8EnM6mvqQ1e3dGuNlZHklWaQstITg1ZNaNPBLFjXYjSfLrjqXfRE48nlDsH7BPhz8khs
+	w9Cm5sG10ib5HCmuGz92J27kRVoawZzIRIMgmZNTw+tD839LlcI3y0N7XP9V93LTwk0MG4LkwiItT
+	QzReeOszEkfTyA35LExFUjelEQ9o5zwltImioq/fnNyY8eUrqlCV9mX8ET9wvVXj6uNdNFmQh4goW
+	REcGtC0EY755DijbIp0J31vbU20xclJho138NwDop885xRcdO/OUSyZf7HnpGDmpvr4jSUW5FVHSJ
+	iVwxBQvzZ2MjsGuO6v6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wMQ2u-0000000Db6M-2hwU;
-	Mon, 11 May 2026 12:47:40 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1wMQ30-0000000DbCV-2yi8;
+	Mon, 11 May 2026 12:47:46 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wMQ2s-0000000Db3t-45Mb;
-	Mon, 11 May 2026 12:47:39 +0000
+	id 1wMQ2t-0000000Db3e-0wBG;
+	Mon, 11 May 2026 12:47:41 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5548B60120;
-	Mon, 11 May 2026 12:47:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id EA3ECC32782;
+	by sea.source.kernel.org (Postfix) with ESMTP id 8173B443B6;
+	Mon, 11 May 2026 12:47:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 5B052C2BCC9;
 	Mon, 11 May 2026 12:47:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778503658;
-	bh=Lfvh+dBQZ+MTctmytjC5st1lQ2bX2pMQb6GvmIPWIa8=;
+	s=k20201202; t=1778503657;
+	bh=SQlj6jkwDCbT3jRiT47QIwFmoJqrzaaVVRfy35hEhdA=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=TVmpHA/kuuyUd8tCVdZbVKsv2XOwMr2dPHL/iY2qhHuPGKGNXgs+ui4SiAPCraRTd
-	 8Rc/nJ9H/op5Dr17Onsf+/dtADobiCDVzHDsept9Z/rcxa12GR/RkGGuvaTCZP+87G
-	 bGOecO63KobCOf5Lmd2jkieJYvEgGbLxwDvJ5Zbt5vMR+uFQqit2i2Nkuk5+kQgfAn
-	 ENgDnSBrH8mc1q4gMGvc8f2y7No6TlPRHwEjH32gopem54Y/i6xLnyF4HFhHTBxC7s
-	 fSVr0JOpmMweno0s62DV5b0ZvXwvbDOVRZUa9tzp9kfXaDimoMd13y3IB5CJRvoQ6w
-	 7ZLdTB6ZPQVyw==
+	b=VmNim4TfIyilMKSqPJwvRlVIZ4JGwR9/13L4Mut3K4JCFFvK/fBxkR2zjlRSDXBmy
+	 3Bp+AOTWc2t5BI6ydvNxq+mOxRBJdbr4ice/X22KnAm4yTI11pnNZKqtajJwAxj58G
+	 odBzSijo6Oh+uqyP9+5HWU75qIziCzunqX86+U7JJebfMpcSBUhcODh10wx2lCZvbg
+	 /ozU5pSRA96c6b5s8KmvKqPwF/nyMy0oKoAtrvMqm+G+0pEBN0p8OnvRUBlJ/7lzr5
+	 J4co1KUZ3nkwbfEYWNZcZrVTp2ArOiSzOMXHdcKt3+r7m+n0tCb56OS+g+RD1XjazI
+	 6H+VYkBN+moSg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DCF5DCD484A;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4B057CD37AC;
 	Mon, 11 May 2026 12:47:37 +0000 (UTC)
 From: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
-Date: Mon, 11 May 2026 20:47:32 +0800
-Subject: [PATCH 10/10] clk: amlogic: Add A9 AO clock controller driver
+Date: Mon, 11 May 2026 20:47:24 +0800
+Subject: [PATCH 02/10] dt-bindings: clock: Add Amlogic A9 PLL clock
+ controller
 MIME-Version: 1.0
-Message-Id: <20260511-b4-a9_clk-v1-10-41cb4071b7c9@amlogic.com>
+Message-Id: <20260511-b4-a9_clk-v1-2-41cb4071b7c9@amlogic.com>
 References: <20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com>
 In-Reply-To: <20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com>
 To: Michael Turquette <mturquette@baylibre.com>, 
@@ -64,16 +65,19 @@ Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, 
  linux-arm-kernel@lists.infradead.org, Jian Hu <jian.hu@amlogic.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778503655; l=16323;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778503655; l=4908;
  i=jian.hu@amlogic.com; s=20260415; h=from:subject:message-id;
- bh=tyqWC7XRbrBKYoioMbyFA0OB4CBbbbDYN+NFH9jI9WE=;
- b=TEptvt0C4N8ltwUJJpEroGzt5cZZAgVCg+8PZUmLyoUkIjTRDQlJjitDDQvYYyZanTWGImLjZ
- Cw/+uyn5mclBmP0nQjIZe6fjdsMP5Zv3EIrHEn58PV9kQQoBr2IN+A/
+ bh=Dw8+4rmGWhvklI0IY1bbxEsDvxGe4eMGmJlQnz5m84Y=;
+ b=ogxseIgSy3HtgVEp/52GBBk8CaS6blwg0OHeB60EnMhfT8H4FyIVBPtYGOCeE9i5zc3QM/Ial
+ GukT4dDtT98C7/VQHgf+rAJoxoEiCh5jXrc+cR6SC3fMfn69d6baAVM
 X-Developer-Key: i=jian.hu@amlogic.com; a=ed25519;
  pk=zHUE+rNtH9z+Sb8au1/elWknjFQmy5QDVkBoxleuOIA=
 X-Endpoint-Received: by B4 Relay for jian.hu@amlogic.com/20260415 with
  auth_id=735
 X-Original-From: Jian Hu <jian.hu@amlogic.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260511_054739_322993_C9FAEA7F 
+X-CRM114-Status: GOOD (  11.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,527 +97,191 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Jian Hu <jian.hu@amlogic.com>
 
-Add the Always-on clock controller driver for the Amlogic A9 SoC family.
+Add the PLL clock controller dt-bindings for the Amlogic A9 SoC family.
 
 Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 ---
- drivers/clk/meson/Makefile   |   2 +-
- drivers/clk/meson/a9-aoclk.c | 494 +++++++++++++++++++++++++++++++++++++++++++
- 2 files changed, 495 insertions(+), 1 deletion(-)
+ .../bindings/clock/amlogic,a9-pll-clkc.yaml        | 110 +++++++++++++++++++++
+ include/dt-bindings/clock/amlogic,a9-pll-clkc.h    |  55 +++++++++++
+ 2 files changed, 165 insertions(+)
 
-diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-index 2b5b67b14efc..91af609ce815 100644
---- a/drivers/clk/meson/Makefile
-+++ b/drivers/clk/meson/Makefile
-@@ -20,7 +20,7 @@ obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
- obj-$(CONFIG_COMMON_CLK_A1_PLL) += a1-pll.o
- obj-$(CONFIG_COMMON_CLK_A1_PERIPHERALS) += a1-peripherals.o
- obj-$(CONFIG_COMMON_CLK_A9_PLL) += a9-pll.o
--obj-$(CONFIG_COMMON_CLK_A9_PERIPHERALS) += a9-peripherals.o
-+obj-$(CONFIG_COMMON_CLK_A9_PERIPHERALS) += a9-peripherals.o a9-aoclk.o
- obj-$(CONFIG_COMMON_CLK_C3_PLL) += c3-pll.o
- obj-$(CONFIG_COMMON_CLK_C3_PERIPHERALS) += c3-peripherals.o
- obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
-diff --git a/drivers/clk/meson/a9-aoclk.c b/drivers/clk/meson/a9-aoclk.c
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,a9-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a9-pll-clkc.yaml
 new file mode 100644
-index 000000000000..3c42eaf585d2
+index 000000000000..4ee6013ba1a1
 --- /dev/null
-+++ b/drivers/clk/meson/a9-aoclk.c
-@@ -0,0 +1,494 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
++++ b/Documentation/devicetree/bindings/clock/amlogic,a9-pll-clkc.yaml
+@@ -0,0 +1,110 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2026 Amlogic, Inc. All rights reserved
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/amlogic,a9-pll-clkc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic A9 Series PLL Clock Controller
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++  - Jerome Brunet <jbrunet@baylibre.com>
++  - Jian Hu <jian.hu@amlogic.com>
++  - Xianwei Zhao <xianwei.zhao@amlogic.com>
++
++properties:
++  compatible:
++    enum:
++      - amlogic,a9-gp0-pll
++      - amlogic,a9-hifi0-pll
++      - amlogic,a9-hifi1-pll
++      - amlogic,a9-mclk0-pll
++      - amlogic,a9-mclk1-pll
++
++  reg:
++    maxItems: 1
++
++  '#clock-cells':
++    const: 1
++
++  clocks:
++    items:
++      - description: pll input oscillator gate
++      - description: fixed input clock source for mclk_sel_0
++      - description: u3p2pll input clock source for mclk_sel_0 (optional)
++    minItems: 1
++
++  clock-names:
++    items:
++      - const: in0
++      - const: in1
++      - const: in2
++    minItems: 1
++
++required:
++  - compatible
++  - '#clock-cells'
++  - reg
++  - clocks
++  - clock-names
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - amlogic,a9-mclk0-pll
++              - amlogic,a9-mclk1-pll
++
++    then:
++      properties:
++        clocks:
++          maxItems: 3
++
++        clock-names:
++          maxItems: 3
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - amlogic,a9-gp0-pll
++              - amlogic,a9-hifi0-pll
++              - amlogic,a9-hifi1-pll
++
++    then:
++      properties:
++        clocks:
++          maxItems: 1
++
++        clock-names:
++          maxItems: 1
++
++additionalProperties: false
++
++examples:
++  - |
++    apb4 {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        clock-controller@8200 {
++            compatible = "amlogic,a9-gp0-pll";
++            reg = <0x0 0x8200 0x0 0x20>;
++            #clock-cells = <1>;
++            clocks = <&scmi_clk 0>;
++            clock-names = "in0";
++        };
++
++        clock-controller@8330 {
++            compatible = "amlogic,a9-mclk0-pll";
++            reg = <0x0 0x8330 0x0 0x14>;
++            #clock-cells = <1>;
++            clocks = <&scmi_clk 4>,
++                     <&scmi_clk 8>;
++            clock-names = "in0", "in1";
++        };
++    };
+diff --git a/include/dt-bindings/clock/amlogic,a9-pll-clkc.h b/include/dt-bindings/clock/amlogic,a9-pll-clkc.h
+new file mode 100644
+index 000000000000..31edb0bc95e7
+--- /dev/null
++++ b/include/dt-bindings/clock/amlogic,a9-pll-clkc.h
+@@ -0,0 +1,55 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
 +/*
-+ * Copyright (C) 2026 Amlogic, Inc. All rights reserved
++ * Copyright (C) 2026 Amlogic, Inc. All rights reserved.
 + */
 +
-+#include <linux/clk-provider.h>
-+#include <linux/platform_device.h>
-+#include <dt-bindings/clock/amlogic,a9-aoclkc.h>
-+#include "clk-regmap.h"
-+#include "clk-dualdiv.h"
-+#include "meson-clkc-utils.h"
++#ifndef __AMLOGIC_A9_PLL_CLKC_H
++#define __AMLOGIC_A9_PLL_CLKC_H
 +
-+#define AO_OSCIN_CTRL			0x00
-+#define AO_SYS_CLK0			0x04
-+#define AO_PWM_CLK_A_CTRL		0x1c
-+#define AO_PWM_CLK_B_CTRL		0x20
-+#define AO_PWM_CLK_C_CTRL		0x24
-+#define AO_PWM_CLK_D_CTRL		0x28
-+#define AO_PWM_CLK_E_CTRL		0x2c
-+#define AO_PWM_CLK_F_CTRL		0x30
-+#define AO_PWM_CLK_G_CTRL		0x34
-+#define AO_CEC_CTRL0			0x38
-+#define AO_CEC_CTRL1			0x3c
-+#define AO_RTC_BY_OSCIN_CTRL0		0x50
-+#define AO_RTC_BY_OSCIN_CTRL1		0x54
++/* GP0 */
++#define CLKID_GP0_IN_DIV2_DIV		0
++#define CLKID_GP0_IN_DIV2		1
++#define CLKID_GP0_PLL_DCO		2
++#define CLKID_GP0_PLL			3
 +
-+#define A9_COMP_SEL(_name, _reg, _shift, _mask, _pdata) \
-+	MESON_COMP_SEL(a9_, _name, _reg, _shift, _mask, _pdata, NULL, 0, 0)
++/* HIFI0 */
++#define CLKID_HIFI0_IN_DIV2_DIV		0
++#define CLKID_HIFI0_IN_DIV2		1
++#define CLKID_HIFI0_PLL_DCO		2
++#define CLKID_HIFI0_PLL			3
 +
-+#define A9_COMP_DIV(_name, _reg, _shift, _width) \
-+	MESON_COMP_DIV(a9_, _name, _reg, _shift, _width, 0, CLK_SET_RATE_PARENT)
++/* HIFI1 */
++#define CLKID_HIFI1_IN_DIV2_DIV		0
++#define CLKID_HIFI1_IN_DIV2		1
++#define CLKID_HIFI1_PLL_DCO		2
++#define CLKID_HIFI1_PLL			3
 +
-+#define A9_COMP_GATE(_name, _reg, _bit) \
-+	MESON_COMP_GATE(a9_, _name, _reg, _bit, CLK_SET_RATE_PARENT)
++/* MCLK0 */
++#define CLKID_MCLK0_IN_DIV2		0
++#define CLKID_MCLK0_PLL_DCO		1
++#define CLKID_MCLK0_0_PLL		2
++#define CLKID_MCLK0_0_PRE		3
++#define CLKID_MCLK0_0_SEL		4
++#define CLKID_MCLK0_0_DIV		5
++#define CLKID_MCLK0_0			6
++#define CLKID_MCLK0_1_PLL		7
++#define CLKID_MCLK0_1_PRE		8
++#define CLKID_MCLK0_1_SEL		9
++#define CLKID_MCLK0_1_DIV		10
++#define CLKID_MCLK0_1			11
 +
-+static struct clk_regmap a9_ao_xtal_in = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = AO_OSCIN_CTRL,
-+		.bit_idx = 3,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "ao_xtal_in",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_data = &(const struct clk_parent_data) {
-+			.fw_name = "xtal",
-+		},
-+		.num_parents = 1,
-+		/*
-+		 * It may be ao_sys's parent clock, its child clocks mark
-+		 * CLK_IS_CRITICAL, So mark CLK_IS_CRITICAL for it.
-+		 */
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+};
++/* MCLK1 */
++#define CLKID_MCLK1_IN_DIV2		0
++#define CLKID_MCLK1_PLL_DCO		1
++#define CLKID_MCLK1_0_PLL		2
++#define CLKID_MCLK1_0_PRE		3
++#define CLKID_MCLK1_0_SEL		4
++#define CLKID_MCLK1_0_DIV		5
++#define CLKID_MCLK1_0			6
++#define CLKID_MCLK1_1_PLL		7
++#define CLKID_MCLK1_1_PRE		8
++#define CLKID_MCLK1_1_SEL		9
++#define CLKID_MCLK1_1_DIV		10
++#define CLKID_MCLK1_1			11
 +
-+static struct clk_regmap a9_ao_xtal = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = AO_OSCIN_CTRL,
-+		.mask = 0x1,
-+		.shift = 0,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ao_xtal",
-+		.ops = &clk_regmap_mux_ops,
-+		/* ext_32k is from external PAD, do not automatically reparent */
-+		.parent_data = (const struct clk_parent_data []) {
-+			{ .hw = &a9_ao_xtal_in.hw },
-+			{ .fw_name = "ext_32k", },
-+		},
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_NO_REPARENT,
-+	},
-+};
-+
-+static struct clk_regmap a9_ao_sys = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = AO_OSCIN_CTRL,
-+		.mask = 0x1,
-+		.shift = 1,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ao_sys",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = (const struct clk_parent_data []) {
-+			{ .hw = &a9_ao_xtal.hw },
-+			{ .fw_name = "sys", },
-+		},
-+		.num_parents = 2,
-+		.flags = CLK_SET_PARENT_GATE,
-+	},
-+};
-+
-+static const struct clk_parent_data a9_ao_pclk_parents = { .hw = &a9_ao_sys.hw };
-+
-+#define A9_AO_PCLK(_name, _bit, _flags)		       \
-+	MESON_PCLK(a9_ao_sys_##_name, AO_SYS_CLK0, _bit, \
-+		   &a9_ao_pclk_parents, _flags)
-+
-+/*
-+ * A9 integrates a low-power microprocessor (Always-on CPU: AOCPU). Some AO sys
-+ * clocks control the AOCPU modules. Mark the AOCPU-related clocks with
-+ * CLK_IS_CRITICAL to avoid them being disabled and impacting AOCPU functionality.
-+ * AOCPU-related clocks list:
-+ * - clktree
-+ * - rst_ctrl
-+ * - pad
-+ * - irq
-+ * - pwrctrl
-+ * - aocpu
-+ * - sram
-+ */
-+static A9_AO_PCLK(i2c3,		0,	0);
-+static A9_AO_PCLK(rtc_reg,	1,	0);
-+static A9_AO_PCLK(clktree,	2,	CLK_IS_CRITICAL);
-+static A9_AO_PCLK(rst_ctrl,	3,	CLK_IS_CRITICAL);
-+static A9_AO_PCLK(pad,		4,	CLK_IS_CRITICAL);
-+static A9_AO_PCLK(rtc_dig,	5,	0);
-+static A9_AO_PCLK(irq,		6,	CLK_IS_CRITICAL);
-+static A9_AO_PCLK(pwrctrl,	7,	CLK_IS_CRITICAL);
-+static A9_AO_PCLK(pwm_a,	8,	0);
-+static A9_AO_PCLK(pwm_b,	9,	0);
-+static A9_AO_PCLK(pwm_c,	10,	0);
-+static A9_AO_PCLK(pwm_d,	11,	0);
-+static A9_AO_PCLK(pwm_e,	12,	0);
-+static A9_AO_PCLK(pwm_f,	13,	0);
-+static A9_AO_PCLK(pwm_g,	14,	0);
-+static A9_AO_PCLK(i2c_a,	15,	0);
-+static A9_AO_PCLK(i2c_b,	16,	0);
-+static A9_AO_PCLK(i2c_c,	17,	0);
-+static A9_AO_PCLK(i2c_d,	18,	0);
-+static A9_AO_PCLK(sed,		19,	0);
-+static A9_AO_PCLK(ir_ctrl,	20,	0);
-+static A9_AO_PCLK(uart_b,	21,	0);
-+static A9_AO_PCLK(uart_c,	22,	0);
-+static A9_AO_PCLK(uart_d,	23,	0);
-+static A9_AO_PCLK(uart_e,	24,	0);
-+static A9_AO_PCLK(spisg_0,	25,	0);
-+static A9_AO_PCLK(rtc_secure,	26,	0);
-+static A9_AO_PCLK(cec,		27,	0);
-+static A9_AO_PCLK(aocpu,	28,	CLK_IS_CRITICAL);
-+static A9_AO_PCLK(sram,		29,	CLK_IS_CRITICAL);
-+static A9_AO_PCLK(spisg_1,	30,	0);
-+static A9_AO_PCLK(spisg_2,	31,	0);
-+
-+static const struct clk_parent_data a9_ao_pwm_parents[] = {
-+	{ .hw = &a9_ao_xtal.hw },
-+	{ .fw_name = "fdiv5", },
-+	{ .fw_name = "fdiv4", },
-+	{ .fw_name = "fdiv3", }
-+};
-+
-+static A9_COMP_SEL(ao_pwm_a, AO_PWM_CLK_A_CTRL, 9, 0x7, a9_ao_pwm_parents);
-+static A9_COMP_DIV(ao_pwm_a, AO_PWM_CLK_A_CTRL, 0, 8);
-+static A9_COMP_GATE(ao_pwm_a, AO_PWM_CLK_A_CTRL, 8);
-+
-+static A9_COMP_SEL(ao_pwm_b, AO_PWM_CLK_B_CTRL, 9, 0x7, a9_ao_pwm_parents);
-+static A9_COMP_DIV(ao_pwm_b, AO_PWM_CLK_B_CTRL, 0, 8);
-+static A9_COMP_GATE(ao_pwm_b, AO_PWM_CLK_A_CTRL, 8);
-+
-+static A9_COMP_SEL(ao_pwm_c, AO_PWM_CLK_C_CTRL, 9, 0x7, a9_ao_pwm_parents);
-+static A9_COMP_DIV(ao_pwm_c, AO_PWM_CLK_C_CTRL, 0, 8);
-+static A9_COMP_GATE(ao_pwm_c, AO_PWM_CLK_C_CTRL, 8);
-+
-+static A9_COMP_SEL(ao_pwm_d, AO_PWM_CLK_D_CTRL, 9, 0x7, a9_ao_pwm_parents);
-+static A9_COMP_DIV(ao_pwm_d, AO_PWM_CLK_D_CTRL, 0, 8);
-+static A9_COMP_GATE(ao_pwm_d, AO_PWM_CLK_D_CTRL, 8);
-+
-+static A9_COMP_SEL(ao_pwm_e, AO_PWM_CLK_E_CTRL, 9, 0x7, a9_ao_pwm_parents);
-+static A9_COMP_DIV(ao_pwm_e, AO_PWM_CLK_E_CTRL, 0, 8);
-+static A9_COMP_GATE(ao_pwm_e, AO_PWM_CLK_E_CTRL, 8);
-+
-+static A9_COMP_SEL(ao_pwm_f, AO_PWM_CLK_F_CTRL, 9, 0x7, a9_ao_pwm_parents);
-+static A9_COMP_DIV(ao_pwm_f, AO_PWM_CLK_F_CTRL, 0, 8);
-+static A9_COMP_GATE(ao_pwm_f, AO_PWM_CLK_F_CTRL, 8);
-+
-+static A9_COMP_SEL(ao_pwm_g, AO_PWM_CLK_G_CTRL, 9, 0x7, a9_ao_pwm_parents);
-+static A9_COMP_DIV(ao_pwm_g, AO_PWM_CLK_G_CTRL, 0, 8);
-+static A9_COMP_GATE(ao_pwm_g, AO_PWM_CLK_G_CTRL, 8);
-+
-+static struct clk_regmap a9_ao_rtc_dualdiv_in = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = AO_RTC_BY_OSCIN_CTRL0,
-+		.bit_idx = 31,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "ao_rtc_duandiv_in",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_ao_xtal.hw
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static const struct meson_clk_dualdiv_param a9_ao_dualdiv_table[] = {
-+	{ 733, 732, 8, 11, 1 },
-+	{ /* sentinel */ }
-+};
-+
-+static struct clk_regmap a9_ao_rtc_dualdiv_div = {
-+	.data = &(struct meson_clk_dualdiv_data){
-+		.n1 = {
-+			.reg_off = AO_RTC_BY_OSCIN_CTRL0,
-+			.shift   = 0,
-+			.width   = 12,
-+		},
-+		.n2 = {
-+			.reg_off = AO_RTC_BY_OSCIN_CTRL0,
-+			.shift   = 12,
-+			.width   = 12,
-+		},
-+		.m1 = {
-+			.reg_off = AO_RTC_BY_OSCIN_CTRL1,
-+			.shift   = 0,
-+			.width   = 12,
-+		},
-+		.m2 = {
-+			.reg_off = AO_RTC_BY_OSCIN_CTRL1,
-+			.shift   = 12,
-+			.width   = 12,
-+		},
-+		.dual = {
-+			.reg_off = AO_RTC_BY_OSCIN_CTRL0,
-+			.shift   = 28,
-+			.width   = 1,
-+		},
-+		.table = a9_ao_dualdiv_table,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "a9_ao_rtc_dualdiv_div",
-+		.ops = &meson_clk_dualdiv_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_ao_rtc_dualdiv_in.hw
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap a9_ao_rtc_dualdiv_sel = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = AO_RTC_BY_OSCIN_CTRL1,
-+		.mask = 0x1,
-+		.shift = 24,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ao_rtc_dualdiv_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_ao_rtc_dualdiv_div.hw,
-+			&a9_ao_rtc_dualdiv_in.hw,
-+		},
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap a9_ao_rtc_dualdiv = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = AO_RTC_BY_OSCIN_CTRL0,
-+		.bit_idx = 30,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "ao_rtc_dualdiv",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_ao_rtc_dualdiv_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap a9_ao_rtc = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = AO_RTC_BY_OSCIN_CTRL1,
-+		.mask = 0x1,
-+		.shift = 30,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ao_rtc",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_ao_xtal.hw,
-+			&a9_ao_rtc_dualdiv.hw,
-+		},
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap a9_ao_cec_dualdiv_in = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = AO_CEC_CTRL0,
-+		.bit_idx = 31,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "ao_cec_dualdiv_in",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_ao_xtal.hw
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap a9_ao_cec_dualdiv_div = {
-+	.data = &(struct meson_clk_dualdiv_data){
-+		.n1 = {
-+			.reg_off = AO_CEC_CTRL0,
-+			.shift   = 0,
-+			.width   = 12,
-+		},
-+		.n2 = {
-+			.reg_off = AO_CEC_CTRL0,
-+			.shift   = 12,
-+			.width   = 12,
-+		},
-+		.m1 = {
-+			.reg_off = AO_CEC_CTRL1,
-+			.shift   = 0,
-+			.width   = 12,
-+		},
-+		.m2 = {
-+			.reg_off = AO_CEC_CTRL1,
-+			.shift   = 12,
-+			.width   = 12,
-+		},
-+		.dual = {
-+			.reg_off = AO_CEC_CTRL0,
-+			.shift   = 28,
-+			.width   = 1,
-+		},
-+		.table = a9_ao_dualdiv_table,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ao_cec_dualdiv_div",
-+		.ops = &meson_clk_dualdiv_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_ao_cec_dualdiv_in.hw
-+		},
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap a9_ao_cec_dualdiv_sel = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = AO_CEC_CTRL1,
-+		.mask = 0x1,
-+		.shift = 24,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ao_cec_dualdiv_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_ao_cec_dualdiv_div.hw,
-+			&a9_ao_cec_dualdiv_in.hw,
-+		},
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap a9_ao_cec_dualdiv = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = AO_CEC_CTRL0,
-+		.bit_idx = 30,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ao_cec_dualdiv",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_ao_cec_dualdiv_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap a9_ao_cec = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = AO_CEC_CTRL1,
-+		.mask = 0x1,
-+		.shift = 30,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ao_cec",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&a9_ao_cec_dualdiv.hw,
-+			&a9_ao_rtc.hw,
-+		},
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_hw *a9_ao_hw_clks[] = {
-+	[CLKID_AO_XTAL_IN]		= &a9_ao_xtal_in.hw,
-+	[CLKID_AO_XTAL]			= &a9_ao_xtal.hw,
-+	[CLKID_AO_SYS]			= &a9_ao_sys.hw,
-+	[CLKID_AO_SYS_I3C]		= &a9_ao_sys_i2c3.hw,
-+	[CLKID_AO_SYS_RTC_REG]		= &a9_ao_sys_rtc_reg.hw,
-+	[CLKID_AO_SYS_CLKTREE]		= &a9_ao_sys_clktree.hw,
-+	[CLKID_AO_SYS_RST_CTRL]		= &a9_ao_sys_rst_ctrl.hw,
-+	[CLKID_AO_SYS_PAD]		= &a9_ao_sys_pad.hw,
-+	[CLKID_AO_SYS_RTC_DIG]		= &a9_ao_sys_rtc_dig.hw,
-+	[CLKID_AO_SYS_IRQ]		= &a9_ao_sys_irq.hw,
-+	[CLKID_AO_SYS_PWRCTRL]		= &a9_ao_sys_pwrctrl.hw,
-+	[CLKID_AO_SYS_PWM_A]		= &a9_ao_sys_pwm_a.hw,
-+	[CLKID_AO_SYS_PWM_B]		= &a9_ao_sys_pwm_b.hw,
-+	[CLKID_AO_SYS_PWM_C]		= &a9_ao_sys_pwm_c.hw,
-+	[CLKID_AO_SYS_PWM_D]		= &a9_ao_sys_pwm_d.hw,
-+	[CLKID_AO_SYS_PWM_E]		= &a9_ao_sys_pwm_e.hw,
-+	[CLKID_AO_SYS_PWM_F]		= &a9_ao_sys_pwm_f.hw,
-+	[CLKID_AO_SYS_PWM_G]		= &a9_ao_sys_pwm_g.hw,
-+	[CLKID_AO_SYS_I2C_A]		= &a9_ao_sys_i2c_a.hw,
-+	[CLKID_AO_SYS_I2C_B]		= &a9_ao_sys_i2c_b.hw,
-+	[CLKID_AO_SYS_I2C_C]		= &a9_ao_sys_i2c_c.hw,
-+	[CLKID_AO_SYS_I2C_D]		= &a9_ao_sys_i2c_d.hw,
-+	[CLKID_AO_SYS_SED]		= &a9_ao_sys_sed.hw,
-+	[CLKID_AO_SYS_IR_CTRL]		= &a9_ao_sys_ir_ctrl.hw,
-+	[CLKID_AO_SYS_UART_B]		= &a9_ao_sys_uart_b.hw,
-+	[CLKID_AO_SYS_UART_C]		= &a9_ao_sys_uart_c.hw,
-+	[CLKID_AO_SYS_UART_D]		= &a9_ao_sys_uart_d.hw,
-+	[CLKID_AO_SYS_UART_E]		= &a9_ao_sys_uart_e.hw,
-+	[CLKID_AO_SYS_SPISG_0]		= &a9_ao_sys_spisg_0.hw,
-+	[CLKID_AO_SYS_RTC_SECURE]	= &a9_ao_sys_rtc_secure.hw,
-+	[CLKID_AO_SYS_CEC]		= &a9_ao_sys_cec.hw,
-+	[CLKID_AO_SYS_AOCPU]		= &a9_ao_sys_aocpu.hw,
-+	[CLKID_AO_SYS_SRAM]		= &a9_ao_sys_sram.hw,
-+	[CLKID_AO_SYS_SPISG_1]		= &a9_ao_sys_spisg_1.hw,
-+	[CLKID_AO_SYS_SPISG_2]		= &a9_ao_sys_spisg_2.hw,
-+	[CLKID_AO_PWM_A_SEL]		= &a9_ao_pwm_a_sel.hw,
-+	[CLKID_AO_PWM_A_DIV]		= &a9_ao_pwm_a_div.hw,
-+	[CLKID_AO_PWM_A]		= &a9_ao_pwm_a.hw,
-+	[CLKID_AO_PWM_B_SEL]		= &a9_ao_pwm_b_sel.hw,
-+	[CLKID_AO_PWM_B_DIV]		= &a9_ao_pwm_b_div.hw,
-+	[CLKID_AO_PWM_B]		= &a9_ao_pwm_b.hw,
-+	[CLKID_AO_PWM_C_SEL]		= &a9_ao_pwm_c_sel.hw,
-+	[CLKID_AO_PWM_C_DIV]		= &a9_ao_pwm_c_div.hw,
-+	[CLKID_AO_PWM_C]		= &a9_ao_pwm_c.hw,
-+	[CLKID_AO_PWM_D_SEL]		= &a9_ao_pwm_d_sel.hw,
-+	[CLKID_AO_PWM_D_DIV]		= &a9_ao_pwm_d_div.hw,
-+	[CLKID_AO_PWM_D]		= &a9_ao_pwm_d.hw,
-+	[CLKID_AO_PWM_E_SEL]		= &a9_ao_pwm_e_sel.hw,
-+	[CLKID_AO_PWM_E_DIV]		= &a9_ao_pwm_e_div.hw,
-+	[CLKID_AO_PWM_E]		= &a9_ao_pwm_e.hw,
-+	[CLKID_AO_PWM_F_SEL]		= &a9_ao_pwm_f_sel.hw,
-+	[CLKID_AO_PWM_F_DIV]		= &a9_ao_pwm_f_div.hw,
-+	[CLKID_AO_PWM_F]		= &a9_ao_pwm_f.hw,
-+	[CLKID_AO_PWM_G_SEL]		= &a9_ao_pwm_g_sel.hw,
-+	[CLKID_AO_PWM_G_DIV]		= &a9_ao_pwm_g_div.hw,
-+	[CLKID_AO_PWM_G]		= &a9_ao_pwm_g.hw,
-+	[CLKID_AO_RTC_DUALDIV_IN]	= &a9_ao_rtc_dualdiv_in.hw,
-+	[CLKID_AO_RTC_DUALDIV_DIV]	= &a9_ao_rtc_dualdiv_div.hw,
-+	[CLKID_AO_RTC_DUALDIV_SEL]	= &a9_ao_rtc_dualdiv_sel.hw,
-+	[CLKID_AO_RTC_DUALDIV]		= &a9_ao_rtc_dualdiv.hw,
-+	[CLKID_AO_RTC]			= &a9_ao_rtc.hw,
-+	[CLKID_AO_CEC_DUALDIV_IN]	= &a9_ao_cec_dualdiv_in.hw,
-+	[CLKID_AO_CEC_DUALDIV_DIV]	= &a9_ao_cec_dualdiv_div.hw,
-+	[CLKID_AO_CEC_DUALDIV_SEL]	= &a9_ao_cec_dualdiv_sel.hw,
-+	[CLKID_AO_CEC_DUALDIV]		= &a9_ao_cec_dualdiv.hw,
-+	[CLKID_AO_CEC]			= &a9_ao_cec.hw,
-+};
-+
-+static const struct meson_clkc_data a9_ao_clkc_data = {
-+	.hw_clks = {
-+		.hws = a9_ao_hw_clks,
-+		.num = ARRAY_SIZE(a9_ao_hw_clks),
-+	},
-+};
-+
-+static const struct of_device_id a9_ao_clkc_match_table[] = {
-+	{
-+		.compatible	= "amlogic,a9-aoclkc",
-+		.data		= &a9_ao_clkc_data,
-+	},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, a9_ao_clkc_match_table);
-+
-+static struct platform_driver a9_ao_clkc_driver = {
-+	.probe		= meson_clkc_mmio_probe,
-+	.driver		= {
-+		.name	= "a9-aoclkc",
-+		.of_match_table = a9_ao_clkc_match_table,
-+	},
-+};
-+module_platform_driver(a9_ao_clkc_driver);
-+
-+MODULE_DESCRIPTION("Amlogic A9 Always-ON Clock Controller driver");
-+MODULE_AUTHOR("Jian Hu <jian.hu@amlogic.com>");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS("CLK_MESON");
++#endif  /* __AMLOGIC_A9_PLL_CLKC_H */
 
 -- 
 2.47.1
