@@ -4,120 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A11F2CD37B7
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 May 2026 08:00:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6901CD484C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 May 2026 12:47:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eK/HRO1LK6dCRxAyVPkPBi+y9VSFhRR26WrWoFTxh4k=; b=kHKoDVgfcC8IeD
-	ttd9QdVU79WH5NwaWWu+6v+dkTkMj7BVaPC2G1VLHvQDcCICQY8hIipnGqo3psWfds0S2YWeq5bH6
-	JwEw8238BRwkhpMJi3KxrzcX5cP0/wq8Z9gjye3oymA/XN9zv+v+hujOdL9ZGQeqSXP0leaMDAtFT
-	jOw3/aFIqaoFwjjsGfIIQR4qA/YCXIw9fjkGk031Blysatjt418SsRE1dRnd8nZXF/Z+rphCBw8Zo
-	R0/OzDrdISKfjuGH3ljwNDtaznT9cT8RwsNNQ/9MZkkwh/t2GIKvN1Fh1nMv37XCpJEQRVTQe6s77
-	BqHnZgImkgVJzYf7El4Q==;
+	List-Owner; bh=rT8d8wGwWLWE4VE6F5/fDNPRi86KlhSAS9upaoAINxk=; b=OG+xW4R0NoD23w
+	ICfDI2NzD0W8JdI2lt8+BeFTHvMiZ+9MzjFD3mjXR29LIeSBfSAaBybIEECgrzbh+WmR0jYBJ1Zwb
+	Wh6LbhGbocrHzazbXSM0bxrDnSYhac8/lcvdz6Xk4k38YPrwXVzcm3mjSwWKmdBpZrHsgIIuNrs8R
+	lGCIsnnXtpNxwt44Pw3rsNA8Jjxv5S63t9hJFlMy+NzG1ETjV7/uEM+7U7g6deVqdZNEuVHcZTDCD
+	iIuBO65idW4OW6hLhYMEqCrTSrkmLD7iuXRYBUEJJktvRVOp1oFsUjDuJ8a91HGGfF0aUWZTfIarA
+	lzxriggmiaf2cFk/2NYw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wMLZ1-0000000CgOw-2QFf;
-	Mon, 11 May 2026 08:00:31 +0000
-Received: from mail-westeuropeazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c201::6] helo=AM0PR02CU008.outbound.protection.outlook.com)
+	id 1wMQ2v-0000000Db7F-1yan;
+	Mon, 11 May 2026 12:47:41 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wMLYy-0000000CgNl-3Gk3;
-	Mon, 11 May 2026 08:00:29 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ow/jVZL3GoIl+c93iPbYdSQvxzxsLubDtBwNyUwmtUnpkfi8DKzdthzm15X/eodfEJglfws+nPp2V0QxGpU/ITa1uX2/GMihppv9LYULS/04osF+SlGgWCeeBEWCJ+0MWqgUEX/SPZYUyffro37q6iEyTUwPP+IaaDcqN4kOJKrFCb2SSukgpENKVqXr/euv0pwfPUcHgp59aC9XBmCGaBj1Robv1aZQsjT1D7JQdwD7ieUHiNzaYp9SB8vrHR0Dgfh22If9azFR2d6xNUnq4TEzZW1KV0VxoVzwjwV6ws6gjf1Goah+gT+xTgQk8+3E9D7bbjyYgKWgHfgat+O40g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5r9Q3EYcCO7i6tMHGCp//y/9iaflG6MqzqyAatSxt58=;
- b=bydxGoCUew0fK9DwIyRqvaLEUyVfD+tSQCa6ksva1fvaof1gee+4i7cBnAfBYNaUrQkeQAj0v1mJeQjnoyQZOwzp82XvGHqwuMabQndxuFSxS6tKGDpaYUg9LQdEE6V3Q24FhwezVi4CSjD3puw9TE6KDfln++2uKOwuzO/lhO7+vG4o+wndtE4o00myX1gMcZMIOR09L47i7NzSOyYdZEhk2bR/B9PA5Y6Ntr8EO5iinemh0mopF7TqXdMN5FwB3Iuc+Ge03JDemc8ITfK+YSu3H1B5mtlBXG8RFfZSCtfZuieylavsgYfEBpPgW2dod1aPkdxbQe79COHxATb9lg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.60) smtp.rcpttodomain=163.com smtp.mailfrom=foss.st.com; dmarc=fail
- (p=none sp=none pct=100) action=none header.from=foss.st.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5r9Q3EYcCO7i6tMHGCp//y/9iaflG6MqzqyAatSxt58=;
- b=bYpS2M5QgaWdtfmN3hjk/wvKzjvlicIuxsLDfa+3H5sVJ92ShVHQLgv6dQeinHaXL4nW4lUiRjfgUo+4bEwtcjYJ3Seyehly+P2m5wMHQTLltNJdgRLZNq72ohCyWcvTkOA1KMGI0AwVtrIyLT4xkAX5c+019qNsAriKhAcMqJSG+YoOxs9rN1COGdevdKjprjO6XK/n1K67L2t28HvgROLGoSj4f/u64/DGY9exZTYAs7H3xgCo3FiDT8WrTHXFkqioyP7G+3KnYEWlemKuG5RfuyYKmZoeZaqK1E0g/USGWmfJPn45C0x9Zr6nvFuL4FfuZhL7dcSxdUtjYcLM0A==
-Received: from DUZPR01CA0059.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:469::13) by AMBPR10MB9883.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:20b:75e::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.23; Mon, 11 May
- 2026 08:00:23 +0000
-Received: from DB1PEPF000509F9.eurprd02.prod.outlook.com
- (2603:10a6:10:469:cafe::bf) by DUZPR01CA0059.outlook.office365.com
- (2603:10a6:10:469::13) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9891.23 via Frontend Transport; Mon,
- 11 May 2026 08:00:23 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.60)
- smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.60; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.60) by
- DB1PEPF000509F9.mail.protection.outlook.com (10.167.242.155) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.25.13 via Frontend Transport; Mon, 11 May 2026 08:00:21 +0000
-Received: from STKDAG1NODE1.st.com (10.75.128.132) by smtpO365.st.com
- (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Mon, 11 May
- 2026 10:03:44 +0200
-Received: from [10.48.87.93] (10.48.87.93) by STKDAG1NODE1.st.com
- (10.75.128.132) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Mon, 11 May
- 2026 10:00:17 +0200
-Message-ID: <4e9c1ede-d42f-4894-a3d1-28e095903f6e@foss.st.com>
-Date: Mon, 11 May 2026 10:00:17 +0200
+	id 1wMQ2t-0000000Db3g-0w9z;
+	Mon, 11 May 2026 12:47:40 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id B737A445B8;
+	Mon, 11 May 2026 12:47:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 962E3C2BCFF;
+	Mon, 11 May 2026 12:47:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778503657;
+	bh=K8swoX6FxSY3+YCc6uF9MI8GHhydGylx3BI+Fh5y6Q0=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=oAGYe1/ysQwhazYy1QBhxbdq2eIOtfxfGi/c/MuSBHWcCUPxh8bsIIjyHeMPYXyZ3
+	 MlbR/rOcot34lOVoI2EHufWAIlBzuDj8x28RnO/NaUGsaRMnMsSNtz9FiiACqp5tb8
+	 sH2Up/YW0wUJGzZAiWaGyXPO5YMELyLjgmNK323bGlCkXsI4PrMTsVHeRD88Ysoruc
+	 zsAiMuezSmrAFOQTDrONzZ57LVi47PwAQbLpdJ2hXOUfENJ6dYRilBd3LY+k5MsZIi
+	 1EwC3ZkC+JxTUR9RIsgda+eWb3/k8yJldaGby+Y7z15to2tv6RECDBgjGFNsf1JSKZ
+	 mWc8LeDYJ6GwA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8E444CD484A;
+	Mon, 11 May 2026 12:47:37 +0000 (UTC)
+From: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
+Date: Mon, 11 May 2026 20:47:28 +0800
+Subject: [PATCH 06/10] clk: amlogic: PLL reset signal supports active-low
+ configuration
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/10] spi: stm32-ospi: Use FIELD_MODIFY()
-To: Hans Zhang <18255117159@163.com>, <broonie@kernel.org>,
-	<sunny.luo@amlogic.com>, <xianwei.zhao@amlogic.com>,
-	<neil.armstrong@linaro.org>, <khilman@baylibre.com>, <han.xu@nxp.com>,
-	<haibo.chen@nxp.com>, <mcoquelin.stm32@gmail.com>,
-	<alexandre.torgue@foss.st.com>, <lhjeff911@gmail.com>,
-	<hayashi.kunihiko@socionext.com>, <mhiramat@kernel.org>,
-	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>
-CC: <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<imx@lists.linux.dev>, <linux-stm32@st-md-mailman.stormreply.com>
-References: <20260430155456.36998-1-18255117159@163.com>
- <20260430155456.36998-8-18255117159@163.com>
-Content-Language: en-US
-From: Patrice CHOTARD <patrice.chotard@foss.st.com>
-In-Reply-To: <20260430155456.36998-8-18255117159@163.com>
-X-Originating-IP: [10.48.87.93]
-X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE1.st.com
- (10.75.128.132)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB1PEPF000509F9:EE_|AMBPR10MB9883:EE_
-X-MS-Office365-Filtering-Correlation-Id: b5af85cb-2e09-4064-f597-08deaf3359bc
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|36860700016|82310400026|376014|7416014|921020|18002099003|56012099003|22082099003;
-X-Microsoft-Antispam-Message-Info: uavQhdDhnLa2uO0ANj2WEDNU+AHiOHrbECtbFNtqrDeEE4LzfIDUJqY9X+gDFJ5U3EIkWXjNIQfblWV/Hk3Ur5CqoFgem/+OIqWlFRU/3YUYmZjfXggT/h9PbteljA0QigspAkj6+nZyuP84DMc9ozmfcQ6zPeQrOVV4yUT07KkzZX/918QmAb5gyqjEes9q0DG0CrifcmNshGL6F+/kxjvw/f1L4dXfXwAUw0YJpRXMChkf6YgjP2YxIgw949AtigX9gIzoyOLTnuKuqeIY9o6MaZ2tarPRf8SKf+wGraDmEJyKKuzsc6U3o1GsNpnCMMkE/HxHrRbVBvBKovfVxV8DYTIgXiWmEz3axKEs1lIDoRs1PLG+AjEcQR1zW6o1+qFGJTqeKY1eV9J4yxqD8WYqIxK8+PPAngUI8/lYAOaCuGYJEJZsy9d2lAD1JuAMfGPlzLeqObEb9njz11lz6dZsRJ7RnkUmCSuavCW78hUDBI1wltxQwscEEYSjoXtUdmmhdnp+cVN5ewNn4kEP6ygJIcuXnH7gprMISCctcqwy52C4iWfLBmhxm6AKxNH1FrbqpKeRHSOiUM+dBHe5y/ha/St2BQZ7T8j6O9Ph2TtEnaGRK2lVZRtYj9pSlycfq0Ey7owMkIJngDWsr2vZt6HNVhED+jJzsriYGZbDX7iIfckuzv9igH5veJ35nFPCQTil6m7qglS7IN4zQhKi6XcD48n0ml0RvqhAb2tSqZclmLy/zZU2KaNkffAQ0uu7TOOOURithrRKnfF6codmbA==
-X-Forefront-Antispam-Report: CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700016)(82310400026)(376014)(7416014)(921020)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: FfYzux6GJTnoi4IRxf6iSKWv9F/oIRg1z4tIfZz8H8EumIUirKksgf3ofeiCc5QO2Zt5Tfm8m28JCwks1BXPf8Q1DDlogt9erfx2kf6USO5+IbHaWxJs3JNhG8BJYb8fXqgS4uAPJxn/aioXqyYiussiJUKGLV086NmRVltHCKuImAenzsfUl5BG2R+sAn6GyazlHPZqfYM7DQ5YcDHmMEuZAv4vZWkmc+3CSnn/AJ/FTdzgn5qp4iErYb9WLSOIaoW7N/5Q6c9anYcDtI9uSLIm7x8cPPbQWQvq4hvI7VkaINUV74jTwVcEAG9lzprKMX3ppiBLIsWAGY7S0A1DEZsk9o5Qq6GI+zj3hrj4Ne9tZJ+4sYICi9TlnnD9dt22yTEDEGR5O1XbSJr4mkHlla7QD8wTxCDDD+ntKKIkaBkM3w+Q51R8qINeRr4wtK4d
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2026 08:00:21.5878
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b5af85cb-2e09-4064-f597-08deaf3359bc
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource: DB1PEPF000509F9.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AMBPR10MB9883
+Message-Id: <20260511-b4-a9_clk-v1-6-41cb4071b7c9@amlogic.com>
+References: <20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com>
+In-Reply-To: <20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com>
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, Jian Hu <jian.hu@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778503655; l=3454;
+ i=jian.hu@amlogic.com; s=20260415; h=from:subject:message-id;
+ bh=clfKrUtBIiCGEypSBaa2X6SEz4kq2wv6xubbYMfZPdA=;
+ b=TQsjaczUkxYfqykhe1RZLaYt8pFwVorzMVt91OgYqNavgIrXbqhT5etrHMKLk00RIsy2VfBqQ
+ n92VY6wnhDYCAu5gyiqoaqtcC6hb13tOUnP1+bO4u76dbbNy+GoTGTP
+X-Developer-Key: i=jian.hu@amlogic.com; a=ed25519;
+ pk=zHUE+rNtH9z+Sb8au1/elWknjFQmy5QDVkBoxleuOIA=
+X-Endpoint-Received: by B4 Relay for jian.hu@amlogic.com/20260415 with
+ auth_id=735
+X-Original-From: Jian Hu <jian.hu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260511_010028_849707_B0D51A33 
-X-CRM114-Status: UNSURE (   8.98  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260511_054739_324970_5D1A3FAA 
+X-CRM114-Status: GOOD (  15.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,47 +89,120 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: jian.hu@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+From: Jian Hu <jian.hu@amlogic.com>
+
+In the A9 design, the PLL reset signal is configured as active-low.
+
+Add the flag 'CLK_MESON_PLL_RST_N' to indicate that the PLL reset signal
+is active-low.
+
+Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+---
+ drivers/clk/meson/clk-pll.c | 42 +++++++++++++++++++++++++++++++-----------
+ drivers/clk/meson/clk-pll.h |  2 ++
+ 2 files changed, 33 insertions(+), 11 deletions(-)
+
+diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+index 5a0bd75f85a9..8568ad6ba7b6 100644
+--- a/drivers/clk/meson/clk-pll.c
++++ b/drivers/clk/meson/clk-pll.c
+@@ -295,10 +295,14 @@ static int meson_clk_pll_is_enabled(struct clk_hw *hw)
+ {
+ 	struct clk_regmap *clk = to_clk_regmap(hw);
+ 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
++	unsigned int rst;
+ 
+-	if (MESON_PARM_APPLICABLE(&pll->rst) &&
+-	    meson_parm_read(clk->map, &pll->rst))
+-		return 0;
++	if (MESON_PARM_APPLICABLE(&pll->rst)) {
++		rst = meson_parm_read(clk->map, &pll->rst);
++		if ((rst && !(pll->flags & CLK_MESON_PLL_RST_ACTIVE_LOW)) ||
++		    (!rst && (pll->flags & CLK_MESON_PLL_RST_ACTIVE_LOW)))
++			return 0;
++	}
+ 
+ 	if (!meson_parm_read(clk->map, &pll->en) ||
+ 	    !meson_parm_read(clk->map, &pll->l))
+@@ -326,14 +330,22 @@ static int meson_clk_pll_init(struct clk_hw *hw)
+ 		return 0;
+ 
+ 	if (pll->init_count) {
+-		if (MESON_PARM_APPLICABLE(&pll->rst))
+-			meson_parm_write(clk->map, &pll->rst, 1);
++		if (MESON_PARM_APPLICABLE(&pll->rst)) {
++			if (pll->flags & CLK_MESON_PLL_RST_ACTIVE_LOW)
++				meson_parm_write(clk->map, &pll->rst, 0);
++			else
++				meson_parm_write(clk->map, &pll->rst, 1);
++		}
+ 
+ 		regmap_multi_reg_write(clk->map, pll->init_regs,
+ 				       pll->init_count);
+ 
+-		if (MESON_PARM_APPLICABLE(&pll->rst))
+-			meson_parm_write(clk->map, &pll->rst, 0);
++		if (MESON_PARM_APPLICABLE(&pll->rst)) {
++			if (pll->flags & CLK_MESON_PLL_RST_ACTIVE_LOW)
++				meson_parm_write(clk->map, &pll->rst, 1);
++			else
++				meson_parm_write(clk->map, &pll->rst, 0);
++		}
+ 	}
+ 
+ 	return 0;
+@@ -363,15 +375,23 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
+ 		return 0;
+ 
+ 	/* Make sure the pll is in reset */
+-	if (MESON_PARM_APPLICABLE(&pll->rst))
+-		meson_parm_write(clk->map, &pll->rst, 1);
++	if (MESON_PARM_APPLICABLE(&pll->rst)) {
++		if (pll->flags & CLK_MESON_PLL_RST_ACTIVE_LOW)
++			meson_parm_write(clk->map, &pll->rst, 0);
++		else
++			meson_parm_write(clk->map, &pll->rst, 1);
++	}
+ 
+ 	/* Enable the pll */
+ 	meson_parm_write(clk->map, &pll->en, 1);
+ 
+ 	/* Take the pll out reset */
+-	if (MESON_PARM_APPLICABLE(&pll->rst))
+-		meson_parm_write(clk->map, &pll->rst, 0);
++	if (MESON_PARM_APPLICABLE(&pll->rst)) {
++		if (pll->flags & CLK_MESON_PLL_RST_ACTIVE_LOW)
++			meson_parm_write(clk->map, &pll->rst, 1);
++		else
++			meson_parm_write(clk->map, &pll->rst, 0);
++	}
+ 
+ 	/*
+ 	 * Compared with the previous SoCs, self-adaption current module
+diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
+index 97b7c70376a3..1be7e6e77631 100644
+--- a/drivers/clk/meson/clk-pll.h
++++ b/drivers/clk/meson/clk-pll.h
+@@ -31,6 +31,8 @@ struct pll_mult_range {
+ #define CLK_MESON_PLL_NOINIT_ENABLED	BIT(1)
+ /* l_detect signal is active-high */
+ #define CLK_MESON_PLL_L_DETECT_ACTIVE_HIGH	BIT(2)
++/* rst signal is active-low (Power-on reset) */
++#define CLK_MESON_PLL_RST_ACTIVE_LOW	BIT(3)
+ 
+ struct meson_clk_pll_data {
+ 	struct parm en;
+
+-- 
+2.47.1
 
 
-On 4/30/26 17:54, Hans Zhang wrote:
-> Use FIELD_MODIFY() to remove open-coded bit manipulation.
-> No functional change intended.
-> 
-> Signed-off-by: Hans Zhang <18255117159@163.com>
-> ---
->  drivers/spi/spi-stm32-ospi.c | 7 +++----
->  1 file changed, 3 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/spi/spi-stm32-ospi.c b/drivers/spi/spi-stm32-ospi.c
-> index 4461c6e24b9e..3757f6ba8fc6 100644
-> --- a/drivers/spi/spi-stm32-ospi.c
-> +++ b/drivers/spi/spi-stm32-ospi.c
-> @@ -470,10 +470,9 @@ static int stm32_ospi_send(struct spi_device *spi, const struct spi_mem_op *op)
->  	u8 cs = spi->chip_select[ffs(spi->cs_index_mask) - 1];
->  
->  	cr = readl_relaxed(ospi->regs_base + OSPI_CR);
-> -	cr &= ~CR_CSSEL;
-> -	cr |= FIELD_PREP(CR_CSSEL, cs);
-> -	cr &= ~CR_FMODE_MASK;
-> -	cr |= FIELD_PREP(CR_FMODE_MASK, ospi->fmode);
-> +	FIELD_MODIFY(CR_CSSEL, &cr, cs);
-> +
-> +	FIELD_MODIFY(CR_FMODE_MASK, &cr, ospi->fmode);
->  	writel_relaxed(cr, regs_base + OSPI_CR);
->  
->  	if (op->data.nbytes)
-
-Hi Hans
-
-Reviewed-by: Patrice Chotard <patrice.chotard@foss.st.com>
-
-Thanks
-Patrice
 
 _______________________________________________
 linux-amlogic mailing list
