@@ -4,52 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01751CD37BE
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 May 2026 12:47:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D97D7CD484D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 May 2026 12:47:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vlHQQMAin2k/+JAgrRodHa+zYZQ98969vooC2QLmcSQ=; b=Cjqco7J8c3iu//
-	BO2ThYs/3isMNjdRcOmhiE4EN5JMEd/g1AVbZvoiJVNQ2jmUatuULXgZBA5E9/jRcMQ1rwultyFhm
-	0GZ0r2q0EJUFsBABKLqq4v4wO0HywDoo8mOksifi9vJ6J0NAJ0L9qqwB+882BFfbps2YcO37tVCDd
-	AmYP+edY2Fps7DfQl75sWExAPLmyZJSUBhtIXUk8HqmtAoyr3gUjp+qLlWTipVe61HPxFVfyh1AhR
-	ryvPGdonGEY7wQy8Z3w85sXbvpRdowdfyJF57oOOQMz2ZkZWZfSdx9NFQldLoXFefeMHX3bi+qH18
-	E2IyqLrpwiWFrzeRPh0A==;
+	List-Owner; bh=F5OjkZVpZD753zEqbrdwbbeVHz+3ezgc1J0mZofLLC0=; b=QpmI7eCsQG58up
+	sDIC5f42s+oebxO9iD/9pACTcOBMK7kEIvJHgft+EebbHXJhvgryTJNOizZPCiI6+CE9UUzRiXO1v
+	3qZA8MKkOiopMiuIvL/hy6DYGrrcMYLRQ8oDgFlTomJI56EM0iDBYFd65fz7vohgGQ/a3Nk4jFViH
+	GgI7CrcC5UfHF76zSyytV5t9SmujI4zz2M6uAMo0NEfAEDjqcsmwwCBYiduhxNBLpIzF5fdGjjvit
+	D9SzYRfJ5Cu4xl4C/+0Pm4MhraWNmbbCjTvOqWz2eFR+j954pW7vdNR3RpfRWMj7KdSrHpJ5rmsU/
+	MBwm981YuN+ZWi1BZ16Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wMQ30-0000000DbDG-3pqc;
-	Mon, 11 May 2026 12:47:46 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1wMQ35-0000000DbMO-2lbM;
+	Mon, 11 May 2026 12:47:51 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wMQ2t-0000000Db3f-1BW4;
-	Mon, 11 May 2026 12:47:41 +0000
+	id 1wMQ34-0000000DbIq-26B1;
+	Mon, 11 May 2026 12:47:50 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Reply-To:Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Content-ID:Content-Description;
+	bh=kYPpKxoNaXv4Z5BqLrk1OfS3Ae9BuGP+k2dhkm4VFIw=; b=ZQjD0nW8DQGIBTVvS6yq8H/3nz
+	gIiN0B05THepsGUkFBvY/VqaiD3V/ah25vLk/r2xBIGbJQN4QMbtzNRVRpmOn85+mXcfzEvjCRUXX
+	xwca0Uu9naUaCOtdotYwBOX0T/V2kgJgFy9eG4iATt9dGPYUCMtL9IluDk30gRpwFwr6JH8xpNAEa
+	xiiGOOi5dHweOH8EAY5f7ijHXbQadqx5CZo9N+cJ3ZlKXr/tw+9rAqN2yp9ANb8n3ESH4f9yIOAy0
+	sCSiFLG+5QP1CRDuPnAWBXK1B8iK4AS4qv7y8TuYykzGB0CSh0Js18wb9ftvxBNU36q578x1muS46
+	9kB9yoIg==;
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	by desiato.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
+	id 1wMQ2w-0000000BgEc-2rTO;
+	Mon, 11 May 2026 12:47:48 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 75D3D44290;
+	by sea.source.kernel.org (Postfix) with ESMTP id 9DB0F44562;
 	Mon, 11 May 2026 12:47:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 49D50C2BCF7;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 758BEC2BCFA;
 	Mon, 11 May 2026 12:47:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1778503657;
-	bh=1h0GCfAEW2loTu/PbhVV3Fa6M0whsFyXD2zgjczKc9w=;
+	bh=w61D9nDSjOGbCeTRESLL/wqDnxK8vEpE4KGtb7oG1yY=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=lHPJ3ZOHg30/tXDpnIe8GP+IICNVEhwqm7Bh9gMya4Hk9q8m6mSpyfvPlqVSvHAq6
-	 GwvKdgq8i0AttM2zjj8es3orHSdNuN74exjdAAofE2WuAN/G42WUgnoCj1XCUgp3oO
-	 +wJOWUBt9Eskj6EoG6GW9u2lNQ2hyWOXt4IYPj8jBSQ9HC2BRQEaNngsKe47aU+93A
-	 yC/6JadpJN9LjIljNyFSXTBoy9GA2pogKbIoKY0jZM4sBhHgz5xqvPm10bpdF+/ATj
-	 2ftGMQZLfOeT7hKexBDvF9nfscKEarwl825Q32jk0Wf4N7iKEPO2Zc8HjXUw2c98tl
-	 U+sKdhniZAY4g==
+	b=akLugeoxENu0zoxv1AAYnpY1OYqvQkzx9EySKzEjXo5fQ4mG5QIaqD/KbwEQSx9Uj
+	 7A3Y8EK1Ig1ahsINCsmyKQrsw2fHWv2LueH+msifoNntrPfFK5fcaGKgdHIMmrrSNU
+	 phetRcnKDcUqRweyQ95I3ANUJwihwsgJB19me98LwbWusS5sZjfKts1X2N6SXsxu55
+	 pMkyGId1e/UWbPpoWlQuX7/TyC9v/71OhaJgTHnngDm1Zde1Z0kGoHIpVZR5Putkf3
+	 /hl50uk9KdnDPKIlBPjaksLO1b7WEKEH/rj8ZbcSaPnqTfDyShER7D5C4uHjPBL4YA
+	 JSstObrbCz1yA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3872CCD37BE;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6E65BCD484C;
 	Mon, 11 May 2026 12:47:37 +0000 (UTC)
 From: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
-Date: Mon, 11 May 2026 20:47:23 +0800
-Subject: [PATCH 01/10] dt-bindings: clock: Add Amlogic A9 SCMI clock
+Date: Mon, 11 May 2026 20:47:26 +0800
+Subject: [PATCH 04/10] dt-bindings: clock: Add Amlogic A9 AO clock
  controller
 MIME-Version: 1.0
-Message-Id: <20260511-b4-a9_clk-v1-1-41cb4071b7c9@amlogic.com>
+Message-Id: <20260511-b4-a9_clk-v1-4-41cb4071b7c9@amlogic.com>
 References: <20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com>
 In-Reply-To: <20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com>
 To: Michael Turquette <mturquette@baylibre.com>, 
@@ -65,20 +79,19 @@ Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, 
  linux-arm-kernel@lists.infradead.org, Jian Hu <jian.hu@amlogic.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778503655; l=2094;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778503655; l=5288;
  i=jian.hu@amlogic.com; s=20260415; h=from:subject:message-id;
- bh=XTWH35VQS5hQCyMsc3Rqm4Jf3SS3Wpu6au+/+82jp4M=;
- b=0qyx1x+Xocdhfssspl3XdDuyxegDJHm7fUJPPU+wIM1sH3jOffmTnfNwmSILLf8iBnHwppgJS
- kUaqfCzzcZcAbAIsyTVPRnbsBg/v0A60MQhMnh97ytVfMahgO+Y9Y19
+ bh=1QLomhykNDYNajB5yiiTnaHai4+LlJ1tM/UJHnRhMtk=;
+ b=mc8AnKvg95IWoepADRRSErgQT/iLxxGLJSBqtm/1TQEe9I/BML41uCKtbkYyW8aYotSRt+L/L
+ g07pH/6PYCtDpO7QPI6jXIo1eeS3DqOjtLtEh7zIb9W/EihuQ8mEjVp
 X-Developer-Key: i=jian.hu@amlogic.com; a=ed25519;
  pk=zHUE+rNtH9z+Sb8au1/elWknjFQmy5QDVkBoxleuOIA=
 X-Endpoint-Received: by B4 Relay for jian.hu@amlogic.com/20260415 with
  auth_id=735
 X-Original-From: Jian Hu <jian.hu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260511_054739_395284_EF604BD0 
-X-CRM114-Status: UNSURE (   9.01  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260511_134744_340506_C4EAB346 
+X-CRM114-Status: GOOD (  10.65  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,70 +111,179 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Jian Hu <jian.hu@amlogic.com>
 
-Add the SCMI clock controller dt-bindings for the Amlogic A9 SoC family.
+Add the Always-On clock controller dt-bindings for the Amlogic A9
+SoC family.
 
 Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 ---
- include/dt-bindings/clock/amlogic,a9-scmi-clkc.h | 51 ++++++++++++++++++++++++
- 1 file changed, 51 insertions(+)
+ .../bindings/clock/amlogic,a9-aoclkc.yaml          | 76 ++++++++++++++++++++++
+ include/dt-bindings/clock/amlogic,a9-aoclkc.h      | 76 ++++++++++++++++++++++
+ 2 files changed, 152 insertions(+)
 
-diff --git a/include/dt-bindings/clock/amlogic,a9-scmi-clkc.h b/include/dt-bindings/clock/amlogic,a9-scmi-clkc.h
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,a9-aoclkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a9-aoclkc.yaml
 new file mode 100644
-index 000000000000..d543db9fe035
+index 000000000000..973cac3c6988
 --- /dev/null
-+++ b/include/dt-bindings/clock/amlogic,a9-scmi-clkc.h
-@@ -0,0 +1,51 @@
++++ b/Documentation/devicetree/bindings/clock/amlogic,a9-aoclkc.yaml
+@@ -0,0 +1,76 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2026 Amlogic, Inc. All rights reserved
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/amlogic,a9-aoclkc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic A9 Series Always-On Clock Controller
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++  - Jerome Brunet <jbrunet@baylibre.com>
++  - Jian Hu <jian.hu@amlogic.com>
++  - Xianwei Zhao <xianwei.zhao@amlogic.com>
++
++properties:
++  compatible:
++    const: amlogic,a9-aoclkc
++
++  reg:
++    maxItems: 1
++
++  '#clock-cells':
++    const: 1
++
++  clocks:
++    minItems: 5
++    items:
++      - description: input oscillator
++      - description: input fclk div 3
++      - description: input fclk div 4
++      - description: input fclk div 5
++      - description: input sys clk
++      - description: external fixed 32k (optional)
++
++  clock-names:
++    minItems: 5
++    items:
++      - const: xtal
++      - const: fdiv3
++      - const: fdiv4
++      - const: fdiv5
++      - const: sys
++      - const: ext_32k
++
++required:
++  - compatible
++  - reg
++  - '#clock-cells'
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    aobus {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        clock-controller@0 {
++            compatible = "amlogic,a9-aoclkc";
++            reg = <0x0 0x0 0x0 0x58>;
++            #clock-cells = <1>;
++            clocks = <&xtal>,
++                     <&scmi_clk 14>,
++                     <&scmi_clk 16>,
++                     <&scmi_clk 18>,
++                     <&scmi_clk 21>;
++            clock-names = "xtal",
++                          "fdiv3",
++                          "fdiv4",
++                          "fdiv5",
++                          "sys";
++        };
++    };
+diff --git a/include/dt-bindings/clock/amlogic,a9-aoclkc.h b/include/dt-bindings/clock/amlogic,a9-aoclkc.h
+new file mode 100644
+index 000000000000..a7d704d4b58e
+--- /dev/null
++++ b/include/dt-bindings/clock/amlogic,a9-aoclkc.h
+@@ -0,0 +1,76 @@
 +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
 +/*
 + * Copyright (C) 2026 Amlogic, Inc. All rights reserved.
 + */
 +
-+#ifndef __AMLOGIC_A9_SCMI_CLKC_H
-+#define __AMLOGIC_A9_SCMI_CLKC_H
++#ifndef __AMLOGIC_A9_AO_CLKC_H
++#define __AMLOGIC_A9_AO_CLKC_H
 +
-+#define CLKID_GP0_PLL_OSC			0
-+#define CLKID_GP1_PLL_OSC			1
-+#define CLKID_HIFI_PLL_OSC			2
-+#define CLKID_GP2_PLL_OSC			3
-+#define CLKID_MCLK_PLL_OSC			4
-+#define CLKID_FIXED_PLL				5
-+#define CLKID_FCLK_50M_PREDIV			6
-+#define CLKID_FCLK_50M_DIV			7
-+#define CLKID_FCLK_50M				8
-+#define CLKID_FCLK_DIV2_DIV			9
-+#define CLKID_FCLK_DIV2				10
-+#define CLKID_FCLK_DIV2P5_DIV			11
-+#define CLKID_FCLK_DIV2P5			12
-+#define CLKID_FCLK_DIV3_DIV			13
-+#define CLKID_FCLK_DIV3				14
-+#define CLKID_FCLK_DIV4_DIV			15
-+#define CLKID_FCLK_DIV4				16
-+#define CLKID_FCLK_DIV5_DIV			17
-+#define CLKID_FCLK_DIV5				18
-+#define CLKID_FCLK_DIV7_DIV			19
-+#define CLKID_FCLK_DIV7				20
-+#define CLKID_SYS_CLK				21
-+#define CLKID_SYS_AO_SYS			22
-+#define CLKID_SYS_MMC_APB			23
-+#define CLKID_SYS_CPU_APB			24
-+#define CLKID_SYS_GIC				25
-+#define CLKID_AXI_CLK				26
-+#define CLKID_AXI_SYS_NIC			27
-+#define CLKID_AXI_RAMA				28
-+#define CLKID_CPU_CLK				29
-+#define CLKID_A78_CLK				30
-+#define CLKID_DSU_CLK				31
-+#define CLKID_ACLKM				32
-+#define CLKID_GP1_PLL				33
-+#define CLKID_GP2_PLL				34
-+#define CLKID_SYS_PLL_DIV16			35
-+#define CLKID_CPU_CLK_DIV16			36
-+#define CLKID_A78_CLK_DIV16			37
-+#define CLKID_DSU_CLK_DIV16			38
-+#define CLKID_GIC_CLK				39
-+#define CLKID_RTC				40
++#define CLKID_AO_XTAL_IN			0
++#define CLKID_AO_XTAL				1
++#define CLKID_AO_SYS				2
++#define CLKID_AO_SYS_I3C			3
++#define CLKID_AO_SYS_RTC_REG			4
++#define CLKID_AO_SYS_CLKTREE			5
++#define CLKID_AO_SYS_RST_CTRL			6
++#define CLKID_AO_SYS_PAD			7
++#define CLKID_AO_SYS_RTC_DIG			8
++#define CLKID_AO_SYS_IRQ			9
++#define CLKID_AO_SYS_PWRCTRL			10
++#define CLKID_AO_SYS_PWM_A			11
++#define CLKID_AO_SYS_PWM_B			12
++#define CLKID_AO_SYS_PWM_C			13
++#define CLKID_AO_SYS_PWM_D			14
++#define CLKID_AO_SYS_PWM_E			15
++#define CLKID_AO_SYS_PWM_F			16
++#define CLKID_AO_SYS_PWM_G			17
++#define CLKID_AO_SYS_I2C_A			18
++#define CLKID_AO_SYS_I2C_B			19
++#define CLKID_AO_SYS_I2C_C			20
++#define CLKID_AO_SYS_I2C_D			21
++#define CLKID_AO_SYS_SED			22
++#define CLKID_AO_SYS_IR_CTRL			23
++#define CLKID_AO_SYS_UART_B			24
++#define CLKID_AO_SYS_UART_C			25
++#define CLKID_AO_SYS_UART_D			26
++#define CLKID_AO_SYS_UART_E			27
++#define CLKID_AO_SYS_SPISG_0			28
++#define CLKID_AO_SYS_RTC_SECURE			29
++#define CLKID_AO_SYS_CEC			30
++#define CLKID_AO_SYS_AOCPU			31
++#define CLKID_AO_SYS_SRAM			32
++#define CLKID_AO_SYS_SPISG_1			33
++#define CLKID_AO_SYS_SPISG_2			34
++#define CLKID_AO_PWM_A_SEL			35
++#define CLKID_AO_PWM_A_DIV			36
++#define CLKID_AO_PWM_A				37
++#define CLKID_AO_PWM_B_SEL			38
++#define CLKID_AO_PWM_B_DIV			39
++#define CLKID_AO_PWM_B				40
++#define CLKID_AO_PWM_C_SEL			41
++#define CLKID_AO_PWM_C_DIV			42
++#define CLKID_AO_PWM_C				43
++#define CLKID_AO_PWM_D_SEL			44
++#define CLKID_AO_PWM_D_DIV			45
++#define CLKID_AO_PWM_D				46
++#define CLKID_AO_PWM_E_SEL			47
++#define CLKID_AO_PWM_E_DIV			48
++#define CLKID_AO_PWM_E				49
++#define CLKID_AO_PWM_F_SEL			50
++#define CLKID_AO_PWM_F_DIV			51
++#define CLKID_AO_PWM_F				52
++#define CLKID_AO_PWM_G_SEL			53
++#define CLKID_AO_PWM_G_DIV			54
++#define CLKID_AO_PWM_G				55
++#define CLKID_AO_RTC_DUALDIV_IN			56
++#define CLKID_AO_RTC_DUALDIV_DIV		57
++#define CLKID_AO_RTC_DUALDIV_SEL		58
++#define CLKID_AO_RTC_DUALDIV			59
++#define CLKID_AO_RTC				60
++#define CLKID_AO_CEC_DUALDIV_IN			61
++#define CLKID_AO_CEC_DUALDIV_DIV		62
++#define CLKID_AO_CEC_DUALDIV_SEL		63
++#define CLKID_AO_CEC_DUALDIV			64
++#define CLKID_AO_CEC				65
 +
-+#endif /* __AMLOGIC_A9_SCMI_CLKC_H */
++#endif  /* __AMLOGIC_A9_AO_CLKC_H */
 
 -- 
 2.47.1
