@@ -4,77 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83559CD37B2
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 May 2026 15:36:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80779CD37B2
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 May 2026 15:43:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NZeHGqF+mE+eFvvrcjE6rKfTvLKJ3+x1tdfzCMui83Y=; b=TAYvxMUaKt9+GQ
-	QRfELw2+Mkr/fPqKGjoOZR1dm6s1lQZN6XiKHk0AnwLIJfdSdO1Ne0Kq/XWcGFJq16aQZlJzwKAEi
-	eQPXVQZ7VoM7MU5gefIlpdKhSUNQc4p7KS+fpriNghnHExVTe6RrfmRPvLisWHXI/iR8OBkrJxNAG
-	3C8lT+JSjy8SLiu8uFoKN3USFwZEcpWHxTWT49XizW+btjutLKu/IwB3TeGqY1fZ+4jdFmyN82qzH
-	zZ04DHY9wxAPCJ6pjnOMMN0d9m9JqVOO9NPXbtJjJMMxDJUHZaXlvDnkagsgcOJ0KZa5woQv08KIc
-	4ExVxhAJKTb2NblH3tnA==;
+	List-Owner; bh=cZqMdCaBTNJhfFLGs0ejOseZ6mzSBijiJxPt5dJjziY=; b=pBPqhws/23JP77
+	GZOkE+D5qkdUvGPTloodwb89li35sAFxKJ5xBPn8sz+UOY5RK3G1eKtCF/rA4UMaKGAxQdeeqpwyf
+	74DZFsWGe7ajzov9KXeWAwBbDxxWBzVTomo9kXWmvrlCMpa4DtdD1uqyo1z6D5E4DYUxPQcMl1ghg
+	+lv2eqOJX7xTS3wzmQjN8vT4GSYYFttQzQeuCl/JrpvzcAW36gHWTiPdenCpFmSAUi4e6xiZp5F96
+	I4C60Q8nOSdrIBD1VEm60lws5FzoFV2CatxkEjuHpHYrIzOn0+y1x6dTDLJLcdeBsv0hO5v4xAxQl
+	0+Zp8GxkDuL9XOoJW8/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wMSgU-0000000E48R-2LlH;
-	Mon, 11 May 2026 15:36:42 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+	id 1wMSme-0000000E5dN-3OxL;
+	Mon, 11 May 2026 15:43:04 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wMSgR-0000000E47N-0W2m
+	id 1wMSmc-0000000E5bs-0ko8
 	for linux-amlogic@lists.infradead.org;
-	Mon, 11 May 2026 15:36:41 +0000
+	Mon, 11 May 2026 15:43:03 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1778513797;
+	s=mimecast20190719; t=1778514181;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=RokP4FryjglM8RTSO6xPMzNsz+yonGnt7z5nuw4bWYA=;
-	b=Jj2UqDUPD0nHAaA6KA8YrJf6gtmyICxeqAQBFsypEwj8gpDaQsWJQo9ab41rOmF1gET6jF
-	j0leyxFz7TGGnQEr/6kTdmxD6ZDwqamAIZGNDOinDkAZ469GxG7wIPKdxgR8nlH3zCp1aO
-	n08J6J470QOaXJrl1fQDT3nAT2uYfKE=
+	bh=bpfOYAfhxaho32Y3Oxw5vJvJkJp0w7dPiCCTyuEFxhc=;
+	b=g4y+grqq129+gAr8rxGgRX1KmT7/+/v76VAGEbZTTiOLwyfpWvlnpiNdhIjkrtFYwIy5bP
+	3Ww7QkdA5JZR1pxQygk9B8F4cbOMFGRwDtiyU9YqioeVpqbEqmFCqhwxtRJHF72cERFeSE
+	kNv9FWWuOXWrHJKUtPfcR3hy7lR0c60=
 Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
  [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-495-XJT1Ch9oOHiXSZT-HM6UPw-1; Mon, 11 May 2026 11:36:36 -0400
-X-MC-Unique: XJT1Ch9oOHiXSZT-HM6UPw-1
-X-Mimecast-MFC-AGG-ID: XJT1Ch9oOHiXSZT-HM6UPw_1778513795
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8d6061bd722so583533085a.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 11 May 2026 08:36:35 -0700 (PDT)
+ us-mta-638-VWV0nPgPNrO4Opvn_gaHmg-1; Mon, 11 May 2026 11:42:58 -0400
+X-MC-Unique: VWV0nPgPNrO4Opvn_gaHmg-1
+X-Mimecast-MFC-AGG-ID: VWV0nPgPNrO4Opvn_gaHmg_1778514178
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8e8950b3ee1so794905685a.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 11 May 2026 08:42:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778513795; x=1779118595;
+        d=1e100.net; s=20251104; t=1778514178; x=1779118978;
         h=user-agent:in-reply-to:content-disposition:mime-version:references
          :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=RokP4FryjglM8RTSO6xPMzNsz+yonGnt7z5nuw4bWYA=;
-        b=d50Ul7H+zRiS4rMpOTwdjWqApiANqTJBfhvRtZqtT0hR4pnuQSXm7GEIMZ/o/bv8Qq
-         lWVH8eUwsrslBhj2If8SSjplWOZfgirdT7MsQsI0epJrqOpmbObh3ENJ4kfMu5RTchda
-         9pWrks9NU1hZQkgV2yQgGz99s/r/f1SWTDLdsu51yAyYSsXWQkXCH+9gotrItkdB+XFd
-         13/E0YT7kAUP3atmUvNytRYpEhLIy3V6t1DFmlOBs0bCwops27z88km7Rb9RUi2O1Rz1
-         Fp8f/z0+NubdBJyj5o5/XBpAbzrYEpbx08jhwIEqcw76AX356qe4/jE2rbihnTalqMjD
-         orrQ==
-X-Forwarded-Encrypted: i=1; AFNElJ/SwvxhUfC3JQ4Sz7p9cYJt6OWpc3OoP1YjqEhUhztIyR6OABS4SEJwaYGRfDdCyVqBhfQQQfn3VAev2tGV@lists.infradead.org
-X-Gm-Message-State: AOJu0Yzx8QPyaTwlbXdZ/FNd+Jygd7hCodhHvXPrtNDp2XjJdMimMwl8
-	ki0a/kc6TdrsBqxxs9UKmVCQZjsJxSX3AVU1SN1CkPorvoKuEpB/luRYwucQLyidCgtfc7RuXbF
-	auVq3TAk1ic+s0MWhQ1tVp6fxWVFIalUrmBoE4nIxpunjjrD/kSqSYTvk6P33Z5xe1ZvLwBu6
-X-Gm-Gg: Acq92OFaAxQib6w2+HjEhUkeOqFXlIdbxgyUJg78RkY9w6pB39znLUiohQtHsz4ikjW
-	KjBAyR2yJBlSgButTPu0eiflt8QsCTzZHB5uhy0hU2FDdfZGVMg8/p19EHt1ADyjO7DD+FcRUnU
-	pSpsX/p8O6kDuPsZaFQQotdulPyTiQhpChV4519hPnIhKLpMwqkUScWy5LDGVlYQEChsea0lzZp
-	9g5KXe2hJXPjhMfsWUOR18PRfemEIU3JSb2Rl4X5hjNKYmVsFFi/4chAenGPJ9giBExDzDm5Q5Y
-	3bIixxi9ZjNGU8wo2QXX5FvCqHtU5LSNN+ZLkndoy2+uy2M0uwEzczIHfDRYi8AyFf27ZyIhRDK
-	tlybzmWlR3YcZ6hO273Ol29T84NQXw+XQkn/dzto4mxmm6GPX5vXPFCQc
-X-Received: by 2002:a05:620a:4453:b0:8f2:a656:1d8c with SMTP id af79cd13be357-909102449e3mr1418347285a.38.1778513795039;
-        Mon, 11 May 2026 08:36:35 -0700 (PDT)
-X-Received: by 2002:a05:620a:4453:b0:8f2:a656:1d8c with SMTP id af79cd13be357-909102449e3mr1418337185a.38.1778513794109;
-        Mon, 11 May 2026 08:36:34 -0700 (PDT)
+        bh=bpfOYAfhxaho32Y3Oxw5vJvJkJp0w7dPiCCTyuEFxhc=;
+        b=F/mtVCp5r9A+ZuXiJwO8bEapWL3g6YubKDnIK3UyD7eTjgkugusYVk7/WR5E+kOvwJ
+         MmOIVSZrmDXc1zqyVOd+BTkb2Nzk022mM/c9L20BYwi5bgZj2jEWtN4Suj9IYV8ovu4D
+         oGO0fONNmxVcQ76bx1J2eBvV2opID1+hc6k2ZaG4JHy/2wD+MWe1BhD6KizfPMaxhgww
+         Q1RtYotMND8Feyme+iYkFF/3XfaqUXiEMU4zEw1mF+aXDv1niPdWsWVtbntpbTUuT3/v
+         7Oe64qi7LeoR5pii4IX4oLf+o5BalCHpbwDpXVP+eIu6C4+WgqMOrYOgbuwTLPUKO/ie
+         X0Uw==
+X-Forwarded-Encrypted: i=1; AFNElJ8HeL9qXUQqgMZbaSCbZOuIsccNn0t0blw3KIjUgXn9cfVsDA3UqE0eKJSl37sGdkpBBF0FAAvhAOtpEsgR@lists.infradead.org
+X-Gm-Message-State: AOJu0Yyci9r/5BU9nj+bf07CExtALpOnQ8ruEZDXAdU3VGklF0IJUXhK
+	ZIWYNCcRMYWVRlwEmguoRA77pioShGlIky3Sy0OSdq/qDHfIvxQvxDDdLDLFkMRvJg7Kx7q2Pvo
+	J++V00ikzycKqgl/NmTeFibuDgk2fGO9vvEX3ZWeq7vW1g/R62Djo5TDKsuyrhSdL0ktZXQdc
+X-Gm-Gg: Acq92OFHD1DuG+Udhmj5M5YxALKQcrAw9OWwXmtsQ6eb3DyS3hA4CUn8G1nYpldyYKK
+	CEZRfORWYJRKX69sWQlcDfQWS5iiojFUovA9a9lfKT61Y64AhpdXnWOrffK5Ytq8Q8J5gn6zjl3
+	K0JutnHmxmkb/SNVW6rbsj4eh1HrkschAGb65t6deK5yImYael4Imv41ypk/0QsWPCwSn/JMvCk
+	EjJSVsK6SC49fJuEEhLq6GLCImnvKgyAiMcKjieK7Y8j2tqQ/JxLPWYu4YdTJJm+jKgH+CsHZcb
+	DXSN9UdW3RFl9Z/5S5LhlLHrWOylb15yfE7KkI4+U7XLhj5eAYyQvSOOktDefyc9wD2Nx7toLxg
+	9dNdCu/TWamdOgI/zx35/cSiw0WDxrL7Y8ZEnS6Hz1GJF8FAzdCXk62KP3EZXJvUTbSk=
+X-Received: by 2002:a05:620a:408c:b0:909:b197:4692 with SMTP id af79cd13be357-909b197494emr1308069885a.62.1778514177687;
+        Mon, 11 May 2026 08:42:57 -0700 (PDT)
+X-Received: by 2002:a05:620a:408c:b0:909:b197:4692 with SMTP id af79cd13be357-909b197494emr1308062385a.62.1778514176979;
+        Mon, 11 May 2026 08:42:56 -0700 (PDT)
 Received: from redhat.com (c-73-183-52-120.hsd1.pa.comcast.net. [73.183.52.120])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-907b8d9ea06sm1075432485a.20.2026.05.11.08.36.31
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8c3db21d23bsm42160056d6.15.2026.05.11.08.42.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 May 2026 08:36:33 -0700 (PDT)
-Date: Mon, 11 May 2026 11:36:31 -0400
+        Mon, 11 May 2026 08:42:55 -0700 (PDT)
+Date: Mon, 11 May 2026 11:42:54 -0400
 From: Brian Masney <bmasney@redhat.com>
 To: jian.hu@amlogic.com
 Cc: Michael Turquette <mturquette@baylibre.com>,
@@ -89,20 +89,21 @@ Cc: Michael Turquette <mturquette@baylibre.com>,
 	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 08/10] clk: amlogic: Add A9 PLL clock controller driver
-Message-ID: <agH3f3F0pUNOzdPB@redhat.com>
+Subject: Re: [PATCH 09/10] clk: amlogic: Add A9 peripherals clock controller
+ driver
+Message-ID: <agH4_gClJW8CVV75@redhat.com>
 References: <20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com>
- <20260511-b4-a9_clk-v1-8-41cb4071b7c9@amlogic.com>
+ <20260511-b4-a9_clk-v1-9-41cb4071b7c9@amlogic.com>
 MIME-Version: 1.0
-In-Reply-To: <20260511-b4-a9_clk-v1-8-41cb4071b7c9@amlogic.com>
+In-Reply-To: <20260511-b4-a9_clk-v1-9-41cb4071b7c9@amlogic.com>
 User-Agent: Mutt/2.3.1 (2026-03-20)
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: tfP-rgaGyxkbp_Q203CJ2Gf1PaIdJLMY5uOE3EC9RIA_1778513795
+X-Mimecast-MFC-PROC-ID: MdrmZNS3gu7RLX37dGSFJ3to0z6yDpHhmY6WTq8u2fM_1778514178
 X-Mimecast-Originator: redhat.com
 Content-Disposition: inline
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260511_083639_315043_C07B46A0 
-X-CRM114-Status: GOOD (  25.45  )
+X-CRM114-CacheID: sfid-20260511_084302_387411_DDF2C62C 
+X-CRM114-Status: GOOD (  20.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -121,28 +122,28 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi Jian,
 
-On Mon, May 11, 2026 at 08:47:30PM +0800, Jian Hu via B4 Relay wrote:
+On Mon, May 11, 2026 at 08:47:31PM +0800, Jian Hu via B4 Relay wrote:
 > From: Jian Hu <jian.hu@amlogic.com>
 > 
-> Add the PLL clock controller driver for the Amlogic A9 SoC family.
+> Add the peripherals clock controller driver for the Amlogic A9 SoC family.
 > 
 > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 > ---
->  drivers/clk/meson/Kconfig  |  13 +
->  drivers/clk/meson/Makefile |   1 +
->  drivers/clk/meson/a9-pll.c | 831 +++++++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 845 insertions(+)
+>  drivers/clk/meson/Kconfig          |   15 +
+>  drivers/clk/meson/Makefile         |    1 +
+>  drivers/clk/meson/a9-peripherals.c | 2317 ++++++++++++++++++++++++++++++++++++
+>  3 files changed, 2333 insertions(+)
 > 
 > diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-> index cf8cf3f9e4ee..3549e67d6988 100644
+> index 3549e67d6988..48a15a5e1323 100644
 > --- a/drivers/clk/meson/Kconfig
 > +++ b/drivers/clk/meson/Kconfig
-> @@ -132,6 +132,19 @@ config COMMON_CLK_A1_PERIPHERALS
->  	  device, A1 SoC Family. Say Y if you want A1 Peripherals clock
->  	  controller to work.
+> @@ -145,6 +145,21 @@ config COMMON_CLK_A9_PLL
+>  	  device, AKA A9. PLLs are required by most peripheral to operate.
+>  	  Say Y if you want A9 PLL clock controller to work.
 >  
-> +config COMMON_CLK_A9_PLL
-> +	tristate "Amlogic A9 SoC PLL controller support"
+> +config COMMON_CLK_A9_PERIPHERALS
+> +	tristate "Amlogic A9 SoC peripherals clock controller support"
 > +	depends on ARM64
 
 depends on ARM64 || COMPILE_TEST
@@ -150,34 +151,36 @@ depends on ARM64 || COMPILE_TEST
 > +	default ARCH_MESON
 > +	select COMMON_CLK_MESON_REGMAP
 > +	select COMMON_CLK_MESON_CLKC_UTILS
-> +	select COMMON_CLK_MESON_PLL
+> +	select COMMON_CLK_MESON_DUALDIV
+> +	select COMMON_CLK_MESON_VID_PLL_DIV
 > +	imply COMMON_CLK_SCMI
+> +	imply COMMON_CLK_A9_PLL
 > +	help
-> +	  Support for the PLL clock controller on Amlogic A311Y3 based
-> +	  device, AKA A9. PLLs are required by most peripheral to operate.
-> +	  Say Y if you want A9 PLL clock controller to work.
+> +	  Support for the peripherals clock controller on Amlogic A311Y3 based
+> +	  device, AKA A9. Peripherals are required by most peripheral to operate.
+> +	  Say Y if you want A9 peripherals clock controller to work.
 > +
 >  config COMMON_CLK_C3_PLL
 >  	tristate "Amlogic C3 PLL clock controller"
 >  	depends on ARM64
 > diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-> index c6719694a242..77636033061f 100644
+> index 77636033061f..2b5b67b14efc 100644
 > --- a/drivers/clk/meson/Makefile
 > +++ b/drivers/clk/meson/Makefile
-> @@ -19,6 +19,7 @@ obj-$(CONFIG_COMMON_CLK_AXG) += axg.o axg-aoclk.o
->  obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
+> @@ -20,6 +20,7 @@ obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
 >  obj-$(CONFIG_COMMON_CLK_A1_PLL) += a1-pll.o
 >  obj-$(CONFIG_COMMON_CLK_A1_PERIPHERALS) += a1-peripherals.o
-> +obj-$(CONFIG_COMMON_CLK_A9_PLL) += a9-pll.o
+>  obj-$(CONFIG_COMMON_CLK_A9_PLL) += a9-pll.o
+> +obj-$(CONFIG_COMMON_CLK_A9_PERIPHERALS) += a9-peripherals.o
 >  obj-$(CONFIG_COMMON_CLK_C3_PLL) += c3-pll.o
 >  obj-$(CONFIG_COMMON_CLK_C3_PERIPHERALS) += c3-peripherals.o
 >  obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
-> diff --git a/drivers/clk/meson/a9-pll.c b/drivers/clk/meson/a9-pll.c
+> diff --git a/drivers/clk/meson/a9-peripherals.c b/drivers/clk/meson/a9-peripherals.c
 > new file mode 100644
-> index 000000000000..84b591c3afff
+> index 000000000000..338a91c473ea
 > --- /dev/null
-> +++ b/drivers/clk/meson/a9-pll.c
-> @@ -0,0 +1,831 @@
+> +++ b/drivers/clk/meson/a9-peripherals.c
+> @@ -0,0 +1,2317 @@
 > +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
 > +/*
 > + * Copyright (C) 2026 Amlogic, Inc. All rights reserved
@@ -185,848 +188,406 @@ depends on ARM64 || COMPILE_TEST
 > +
 > +#include <linux/clk-provider.h>
 > +#include <linux/platform_device.h>
-> +#include <dt-bindings/clock/amlogic,a9-pll-clkc.h>
+> +#include <dt-bindings/clock/amlogic,a9-peripherals-clkc.h>
 > +#include "clk-regmap.h"
-> +#include "clk-pll.h"
+> +#include "clk-dualdiv.h"
+> +#include "vid-pll-div.h"
 > +#include "meson-clkc-utils.h"
 
-Sort the headers
+Sort the headers.
 
 > +
-> +#define GP0PLL_CTRL0			0x00
-> +#define GP0PLL_CTRL1			0x04
-> +#define GP0PLL_CTRL2			0x08
-> +#define GP0PLL_CTRL3			0x0c
-> +#define GP0PLL_CTRL4			0x10
+> +#define SYS_CLK_EN0_REG0			0x30
+> +#define SYS_CLK_EN0_REG1			0x34
+> +#define SYS_CLK_EN0_REG2			0x38
+> +#define SYS_CLK_EN0_REG3			0x3c
+> +#define SD_EMMC_CLK_CTRL0			0x90
+> +#define SD_EMMC_CLK_CTRL1			0x94
+> +#define PWM_CLK_H_CTRL				0xbc
+> +#define PWM_CLK_I_CTRL				0xc0
+> +#define PWM_CLK_J_CTRL				0xc4
+> +#define PWM_CLK_K_CTRL				0xc8
+> +#define PWM_CLK_L_CTRL				0xcc
+> +#define PWM_CLK_M_CTRL				0xd0
+> +#define PWM_CLK_N_CTRL				0xd4
+> +#define SPISG_CLK_CTRL				0x100
+> +#define SPISG_CLK_CTRL1				0x104
+> +#define SAR_CLK_CTRL				0x150
+> +#define AMFC_CLK_CTRL				0x154
+> +#define NNA_CLK_CTRL				0x15c
+> +#define USB_CLK_CTRL				0x160
+> +#define PCIE_TL_CLK_CTRL			0x164
+> +#define CMPR_CLK_CTRL				0x168
+> +#define DEWARP_CLK_CTRL				0x16c
+> +#define SC_CLK_CTRL				0x170
+> +#define DPTX_CLK_CTRL				0x178
+> +#define ISP_CLK_CTRL				0x17c
+> +#define CVE_CLK_CTRL				0x180
+> +#define PP_CLK_CTRL				0x184
+> +#define GLB_CLK_CTRL				0x188
+> +#define USB_CLK_CTRL0				0x18c
+> +#define USB_CLK_CTRL1				0x190
+> +#define CAN_CLK_CTRL				0x194
+> +#define CAN_CLK_CTRL1				0x198
+> +#define I3C_CLK_CTRL				0x19c
+> +#define TS_CLK_CTRL				0x1a0
+> +#define ETH_CLK_CTRL				0x1a4
+> +#define GEN_CLK_CTRL				0x1a8
+> +#define CLK12_24_CTRL				0x1ac
+> +#define MALI_CLK_CTRL				0x200
+> +#define MALI_STACK_CLK_CTRL			0x204
+> +#define DSPA_CLK_CTRL				0x220
+> +#define HEVCF_CLK_CTRL				0x240
+> +#define HCODEC_CLK_CTRL				0x244
+> +#define VPU_CLK_CTRL				0x260
+> +#define VAPB_CLK_CTRL				0x268
+> +#define VPU_CLKB_CTRL				0x280
+> +#define HDMI_CLK_CTRL				0x284
+> +#define HTX_CLK_CTRL				0x28c
+> +#define HTX_CLK_CTRL1				0x290
+> +#define HRX_CLK_CTRL				0x294
+> +#define HRX_CLK_CTRL1				0x298
+> +#define HRX_CLK_CTRL2				0x29c
+> +#define HRX_CLK_CTRL3				0x2a0
+> +#define VID_LOCK_CLK_CTRL			0x2a4
+> +#define VDIN_MEAS_CLK_CTRL			0x2a8
+> +#define VID_PLL_CLK_DIV				0x2b0
+> +#define VID_CLK_CTRL				0x2c0
+> +#define VID_CLK_CTRL2				0x2c4
+> +#define VID_CLK_DIV				0x2c8
+> +#define VIID_CLK_DIV				0x2cc
+> +#define VIID_CLK_CTRL				0x2d0
+> +#define MIPI_CSI_PHY_CLK_CTRL			0x2e0
+> +#define DSI_MEAS_CLK_CTRL			0x2f4
 > +
-> +/* HIFI0 and HIFI1 share the same IP and register offset layout. */
-> +#define HIFIPLL_CTRL0			0x00
-> +#define HIFIPLL_CTRL1			0x04
-> +#define HIFIPLL_CTRL2			0x08
-> +#define HIFIPLL_CTRL3			0x0c
-> +#define HIFIPLL_CTRL4			0x10
-> +
-> +/* MCLK0 and MCLK1 share the same IP and register offset layout. */
-> +#define MCLKPLL_CTRL0			0x00
-> +#define MCLKPLL_CTRL1			0x04
-> +#define MCLKPLL_CTRL2			0x08
-> +#define MCLKPLL_CTRL3			0x0c
-> +#define MCLKPLL_CTRL4			0x10
-> +
-> +#define A9_COMP_SEL(_name, _reg, _shift, _mask, _pdata) \
-> +	MESON_COMP_SEL(a9_, _name, _reg, _shift, _mask, _pdata, NULL, 0, 0)
+> +#define A9_COMP_SEL(_name, _reg, _shift, _mask, _pdata, _table) \
+> +	MESON_COMP_SEL(a9_, _name, _reg, _shift, _mask, _pdata, _table, 0, 0)
 > +
 > +#define A9_COMP_DIV(_name, _reg, _shift, _width) \
 > +	MESON_COMP_DIV(a9_, _name, _reg, _shift, _width, 0, CLK_SET_RATE_PARENT)
 > +
-> +#define A9_COMP_GATE(_name, _reg, _bit) \
-> +	MESON_COMP_GATE(a9_, _name, _reg, _bit, CLK_SET_RATE_PARENT)
+> +#define A9_COMP_GATE(_name, _reg, _bit, _iflags) \
+> +	MESON_COMP_GATE(a9_, _name, _reg, _bit, CLK_SET_RATE_PARENT | (_iflags))
 > +
-> +/*
-> + * Compared with previous SoC PLLs, the A9 PLL input path has an inherent
-> + * 2-divider. The N pre-divider follows the same calculation rule as OD,
-> + * where the pre-divider ratio equals 2^N.
-> + *
-> + * A9 PLL is composed as follows:
-> + *
-> + *                      PLL
-> + *         +---------------------------------+
-> + *         |                                 |
-> + *         |             +--+                |
-> + *  in/2 >>---[ /2^N ]-->|  |      +-----+   |
-> + *         |             |  |------| DCO |----->> out
-> + *         |  +--------->|  |      +--v--+   |
-> + *         |  |          +--+         |      |
-> + *         |  |                       |      |
-> + *         |  +--[ *(M + (F/Fmax) ]<--+      |
-> + *         |                                 |
-> + *         +---------------------------------+
-> + *
-> + * out = in / 2  * (m + frac / frac_max) / 2^n
-> + */
+> +static const struct clk_parent_data a9_sys_pclk_parents = { .fw_name = "sys" };
 > +
-> +static struct clk_fixed_factor a9_gp0_in_div2_div = {
-> +	.mult = 1,
-> +	.div = 2,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "gp0_in_div2_div",
-> +		.ops = &clk_fixed_factor_ops,
-> +		.parent_data = &(const struct clk_parent_data) {
-> +			.fw_name = "in0",
-> +		},
-> +		.num_parents = 1,
-> +	},
+> +#define A9_SYS_PCLK(_name, _reg, _bit) \
+> +	MESON_PCLK(a9_##_name, _reg, _bit, &a9_sys_pclk_parents, 0)
+> +
+> +static A9_SYS_PCLK(sys_am_axi,		SYS_CLK_EN0_REG0, 0);
+> +static A9_SYS_PCLK(sys_dos,		SYS_CLK_EN0_REG0, 1);
+> +static A9_SYS_PCLK(sys_mipi_dsi,	SYS_CLK_EN0_REG0, 3);
+> +static A9_SYS_PCLK(sys_eth_phy,		SYS_CLK_EN0_REG0, 4);
+> +static A9_SYS_PCLK(sys_amfc,		SYS_CLK_EN0_REG0, 5);
+> +static A9_SYS_PCLK(sys_mali,		SYS_CLK_EN0_REG0, 6);
+> +static A9_SYS_PCLK(sys_nna,		SYS_CLK_EN0_REG0, 7);
+> +static A9_SYS_PCLK(sys_eth_axi,		SYS_CLK_EN0_REG0, 8);
+> +static A9_SYS_PCLK(sys_dp_apb,		SYS_CLK_EN0_REG0, 9);
+> +static A9_SYS_PCLK(sys_edptx_apb,	SYS_CLK_EN0_REG0, 10);
+> +static A9_SYS_PCLK(sys_u3hsg,		SYS_CLK_EN0_REG0, 11);
+> +static A9_SYS_PCLK(sys_aucpu,		SYS_CLK_EN0_REG0, 14);
+> +static A9_SYS_PCLK(sys_glb,		SYS_CLK_EN0_REG0, 15);
+> +static A9_SYS_PCLK(sys_combo_dphy_apb,	SYS_CLK_EN0_REG0, 17);
+> +static A9_SYS_PCLK(sys_hdmirx_apb,	SYS_CLK_EN0_REG0, 18);
+> +static A9_SYS_PCLK(sys_hdmirx_pclk,	SYS_CLK_EN0_REG0, 19);
+> +static A9_SYS_PCLK(sys_mipi_dsi_phy,	SYS_CLK_EN0_REG0, 20);
+> +static A9_SYS_PCLK(sys_can0,		SYS_CLK_EN0_REG0, 21);
+> +static A9_SYS_PCLK(sys_can1,		SYS_CLK_EN0_REG0, 22);
+> +static A9_SYS_PCLK(sys_sd_emmc_a,	SYS_CLK_EN0_REG0, 24);
+> +static A9_SYS_PCLK(sys_sd_emmc_b,	SYS_CLK_EN0_REG0, 25);
+> +static A9_SYS_PCLK(sys_sd_emmc_c,	SYS_CLK_EN0_REG0, 26);
+> +static A9_SYS_PCLK(sys_sc,		SYS_CLK_EN0_REG0, 27);
+> +static A9_SYS_PCLK(sys_acodec,		SYS_CLK_EN0_REG0, 28);
+> +static A9_SYS_PCLK(sys_mipi_isp,	SYS_CLK_EN0_REG0, 29);
+> +static A9_SYS_PCLK(sys_msr,		SYS_CLK_EN0_REG0, 30);
+> +static A9_SYS_PCLK(sys_audio,		SYS_CLK_EN0_REG1, 0);
+> +static A9_SYS_PCLK(sys_mipi_dsi_b,	SYS_CLK_EN0_REG1, 1);
+> +static A9_SYS_PCLK(sys_mipi_dsi1_phy,	SYS_CLK_EN0_REG1, 2);
+> +static A9_SYS_PCLK(sys_eth,		SYS_CLK_EN0_REG1, 3);
+> +static A9_SYS_PCLK(sys_eth_1g_mac,	SYS_CLK_EN0_REG1, 4);
+> +static A9_SYS_PCLK(sys_uart_a,		SYS_CLK_EN0_REG1, 5);
+> +static A9_SYS_PCLK(sys_uart_f,		SYS_CLK_EN0_REG1, 10);
+> +static A9_SYS_PCLK(sys_ts_a55,		SYS_CLK_EN0_REG1, 11);
+> +static A9_SYS_PCLK(sys_eth_1g_axi,	SYS_CLK_EN0_REG1, 12);
+> +static A9_SYS_PCLK(sys_ts_dos,		SYS_CLK_EN0_REG1, 13);
+> +static A9_SYS_PCLK(sys_u3drd_b,		SYS_CLK_EN0_REG1, 14);
+> +static A9_SYS_PCLK(sys_ts_core,		SYS_CLK_EN0_REG1, 15);
+> +static A9_SYS_PCLK(sys_ts_pll,		SYS_CLK_EN0_REG1, 16);
+> +static A9_SYS_PCLK(sys_csi_dig_clkin,	SYS_CLK_EN0_REG1, 18);
+> +static A9_SYS_PCLK(sys_cve,		SYS_CLK_EN0_REG1, 19);
+> +static A9_SYS_PCLK(sys_ge2d,		SYS_CLK_EN0_REG1, 20);
+> +static A9_SYS_PCLK(sys_spisg,		SYS_CLK_EN0_REG1, 21);
+> +static A9_SYS_PCLK(sys_u3drd_1,		SYS_CLK_EN0_REG1, 22);
+> +static A9_SYS_PCLK(sys_u2h,		SYS_CLK_EN0_REG1, 23);
+> +static A9_SYS_PCLK(sys_pcie_mac_a,	SYS_CLK_EN0_REG1, 24);
+> +static A9_SYS_PCLK(sys_u3drd_a,		SYS_CLK_EN0_REG1, 25);
+> +static A9_SYS_PCLK(sys_u2drd,		SYS_CLK_EN0_REG1, 26);
+> +static A9_SYS_PCLK(sys_pcie_phy,	SYS_CLK_EN0_REG1, 27);
+> +static A9_SYS_PCLK(sys_pcie_mac_b,	SYS_CLK_EN0_REG1, 28);
+> +static A9_SYS_PCLK(sys_periph,		SYS_CLK_EN0_REG1, 29);
+> +static A9_SYS_PCLK(sys_pio,		SYS_CLK_EN0_REG2, 0);
+> +static A9_SYS_PCLK(sys_i3c,		SYS_CLK_EN0_REG2, 1);
+> +static A9_SYS_PCLK(sys_i2c_m_e,		SYS_CLK_EN0_REG2, 2);
+> +static A9_SYS_PCLK(sys_i2c_m_f,		SYS_CLK_EN0_REG2, 3);
+> +static A9_SYS_PCLK(sys_hdmitx_apb,	SYS_CLK_EN0_REG2, 4);
+> +static A9_SYS_PCLK(sys_i2c_m_i,		SYS_CLK_EN0_REG2, 5);
+> +static A9_SYS_PCLK(sys_i2c_m_g,		SYS_CLK_EN0_REG2, 6);
+> +static A9_SYS_PCLK(sys_i2c_m_h,		SYS_CLK_EN0_REG2, 7);
+> +static A9_SYS_PCLK(sys_hdmi20_aes,	SYS_CLK_EN0_REG2, 9);
+> +static A9_SYS_PCLK(sys_csi2_host,	SYS_CLK_EN0_REG2, 16);
+> +static A9_SYS_PCLK(sys_csi2_adapt,	SYS_CLK_EN0_REG2, 17);
+> +static A9_SYS_PCLK(sys_dspa,		SYS_CLK_EN0_REG2, 21);
+> +static A9_SYS_PCLK(sys_pp_dma,		SYS_CLK_EN0_REG2, 22);
+> +static A9_SYS_PCLK(sys_pp_wrapper,	SYS_CLK_EN0_REG2, 23);
+> +static A9_SYS_PCLK(sys_vpu_intr,	SYS_CLK_EN0_REG2, 25);
+> +static A9_SYS_PCLK(sys_csi2_phy,	SYS_CLK_EN0_REG2, 27);
+> +static A9_SYS_PCLK(sys_saradc,		SYS_CLK_EN0_REG2, 28);
+> +static A9_SYS_PCLK(sys_pwm_j,		SYS_CLK_EN0_REG2, 30);
+> +static A9_SYS_PCLK(sys_pwm_i,		SYS_CLK_EN0_REG2, 31);
+> +static A9_SYS_PCLK(sys_pwm_h,		SYS_CLK_EN0_REG3, 0);
+> +static A9_SYS_PCLK(sys_pwm_n,		SYS_CLK_EN0_REG3, 8);
+> +static A9_SYS_PCLK(sys_pwm_m,		SYS_CLK_EN0_REG3, 9);
+> +static A9_SYS_PCLK(sys_pwm_l,		SYS_CLK_EN0_REG3, 10);
+> +static A9_SYS_PCLK(sys_pwm_k,		SYS_CLK_EN0_REG3, 11);
+> +
+> +/* Channel 5 is unconnected. */
+> +static u32 a9_sd_emmc_parents_val_table[] = { 0, 1, 2, 3, 4, 6, 7 };
+> +static const struct clk_parent_data a9_sd_emmc_parents[] = {
+> +	{ .fw_name = "xtal", },
+> +	{ .fw_name = "fdiv2", },
+> +	{ .fw_name = "fdiv3", },
+> +	{ .fw_name = "hifi0", },
+> +	{ .fw_name = "fdiv2p5", },
+> +	{ .fw_name = "gp1", },
+> +	{ .fw_name = "gp0", }
+> +};
+> +
+> +static A9_COMP_SEL(sd_emmc_a, SD_EMMC_CLK_CTRL0, 9, 0x7, a9_sd_emmc_parents,
+> +		   a9_sd_emmc_parents_val_table);
+> +static A9_COMP_DIV(sd_emmc_a, SD_EMMC_CLK_CTRL0, 0, 7);
+> +static A9_COMP_GATE(sd_emmc_a, SD_EMMC_CLK_CTRL0, 8, 0);
+> +
+> +static A9_COMP_SEL(sd_emmc_b, SD_EMMC_CLK_CTRL0, 25, 0x7, a9_sd_emmc_parents,
+> +		   a9_sd_emmc_parents_val_table);
+> +static A9_COMP_DIV(sd_emmc_b, SD_EMMC_CLK_CTRL0, 16, 7);
+> +static A9_COMP_GATE(sd_emmc_b, SD_EMMC_CLK_CTRL0, 24, 0);
+> +
+> +static A9_COMP_SEL(sd_emmc_c, SD_EMMC_CLK_CTRL1, 9, 0x7, a9_sd_emmc_parents,
+> +		   a9_sd_emmc_parents_val_table);
+> +static A9_COMP_DIV(sd_emmc_c, SD_EMMC_CLK_CTRL1, 0, 7);
+> +static A9_COMP_GATE(sd_emmc_c, SD_EMMC_CLK_CTRL1, 8, 0);
+> +
+> +static const struct clk_parent_data a9_pwm_parents[] = {
+> +	{ .fw_name = "xtal", },
+> +	{ .fw_name = "fdiv5", },
+> +	{ .fw_name = "fdiv4", },
+> +	{ .fw_name = "fdiv3", }
+> +};
+> +
+> +static A9_COMP_SEL(pwm_h, PWM_CLK_H_CTRL, 9, 0x7, a9_pwm_parents, NULL);
+> +static A9_COMP_DIV(pwm_h, PWM_CLK_H_CTRL, 0, 8);
+> +static A9_COMP_GATE(pwm_h, PWM_CLK_H_CTRL, 8, 0);
+> +
+> +static A9_COMP_SEL(pwm_i, PWM_CLK_I_CTRL, 9, 0x7, a9_pwm_parents, NULL);
+> +static A9_COMP_DIV(pwm_i, PWM_CLK_I_CTRL, 0, 8);
+> +static A9_COMP_GATE(pwm_i, PWM_CLK_I_CTRL, 8, 0);
+> +
+> +static A9_COMP_SEL(pwm_j, PWM_CLK_J_CTRL, 9, 0x7, a9_pwm_parents, NULL);
+> +static A9_COMP_DIV(pwm_j, PWM_CLK_J_CTRL, 0, 8);
+> +static A9_COMP_GATE(pwm_j, PWM_CLK_J_CTRL, 8, 0);
+> +
+> +static A9_COMP_SEL(pwm_k, PWM_CLK_K_CTRL, 9, 0x7, a9_pwm_parents, NULL);
+> +static A9_COMP_DIV(pwm_k, PWM_CLK_K_CTRL, 0, 8);
+> +static A9_COMP_GATE(pwm_k, PWM_CLK_K_CTRL, 8, 0);
+> +
+> +static A9_COMP_SEL(pwm_l, PWM_CLK_L_CTRL, 9, 0x7, a9_pwm_parents, NULL);
+> +static A9_COMP_DIV(pwm_l, PWM_CLK_L_CTRL, 0, 8);
+> +static A9_COMP_GATE(pwm_l, PWM_CLK_L_CTRL, 8, 0);
+> +
+> +static A9_COMP_SEL(pwm_m, PWM_CLK_M_CTRL, 9, 0x7, a9_pwm_parents, NULL);
+> +static A9_COMP_DIV(pwm_m, PWM_CLK_M_CTRL, 0, 8);
+> +static A9_COMP_GATE(pwm_m, PWM_CLK_M_CTRL, 8, 0);
+> +
+> +static A9_COMP_SEL(pwm_n, PWM_CLK_N_CTRL, 9, 0x7, a9_pwm_parents, NULL);
+> +static A9_COMP_DIV(pwm_n, PWM_CLK_N_CTRL, 0, 8);
+> +static A9_COMP_GATE(pwm_n, PWM_CLK_N_CTRL, 8, 0);
+> +
+> +static const struct clk_parent_data a9_spisg_parents[] = {
+> +	{ .fw_name = "xtal", },
+> +	{ .fw_name = "sys", },
+> +	{ .fw_name = "fdiv4", },
+> +	{ .fw_name = "fdiv3", },
+> +	{ .fw_name = "fdiv2", },
+> +	{ .fw_name = "fdiv5", },
+> +	{ .fw_name = "fdiv7", },
+> +	{ .fw_name = "gp0", }
+> +};
+> +
+> +static A9_COMP_SEL(spisg, SPISG_CLK_CTRL, 9, 0x7, a9_spisg_parents, NULL);
+> +static A9_COMP_DIV(spisg, SPISG_CLK_CTRL, 0, 6);
+> +static A9_COMP_GATE(spisg, SPISG_CLK_CTRL, 8, 0);
+> +
+> +static A9_COMP_SEL(spisg1, SPISG_CLK_CTRL, 25, 0x7, a9_spisg_parents, NULL);
+> +static A9_COMP_DIV(spisg1, SPISG_CLK_CTRL, 16, 6);
+> +static A9_COMP_GATE(spisg1, SPISG_CLK_CTRL, 24, 0);
+> +
+> +static A9_COMP_SEL(spisg2, SPISG_CLK_CTRL1, 9, 0x7, a9_spisg_parents, NULL);
+> +static A9_COMP_DIV(spisg2, SPISG_CLK_CTRL1, 0, 6);
+> +static A9_COMP_GATE(spisg2, SPISG_CLK_CTRL1, 8, 0);
+> +
+> +static const struct clk_parent_data a9_saradc_parents[] = {
+> +	{ .fw_name = "xtal", },
+> +	{ .fw_name = "sys", }
+> +};
+> +
+> +static A9_COMP_SEL(saradc, SAR_CLK_CTRL, 9, 0x7, a9_saradc_parents, NULL);
+> +static A9_COMP_DIV(saradc, SAR_CLK_CTRL, 0, 8);
+> +static A9_COMP_GATE(saradc, SAR_CLK_CTRL, 8, 0);
+> +
+> +static const struct clk_parent_data a9_amfc_parents[] = {
+> +	{ .fw_name = "xtal", },
+> +	{ .fw_name = "sys", },
+> +	{ .fw_name = "fdiv2", },
+> +	{ .fw_name = "fdiv2p5", },
+> +	{ .fw_name = "fdiv3", },
+> +	{ .fw_name = "fdiv4", },
+> +	{ .fw_name = "fdiv5", },
+> +	{ .fw_name = "fdiv7", }
+> +};
+> +
+> +static A9_COMP_SEL(amfc, AMFC_CLK_CTRL, 9, 0x7, a9_amfc_parents, NULL);
+> +static A9_COMP_DIV(amfc, AMFC_CLK_CTRL, 0, 6);
+> +static A9_COMP_GATE(amfc, AMFC_CLK_CTRL, 8, 0);
+> +
+> +static const struct clk_parent_data a9_nna_parents[] = {
+> +	{ .fw_name = "xtal", },
+> +	{ .fw_name = "fdiv2p5", },
+> +	{ .fw_name = "fdiv4", },
+> +	{ .fw_name = "fdiv3", },
+> +	{ .fw_name = "fdiv5", },
+> +	{ .fw_name = "fdiv2", },
+> +	{ .fw_name = "gp2", },
+> +	{ .fw_name = "hifi", }
 
-You can use CLK_HW_INIT_FW_NAME() for the hw.init here and other places
-below.
+hifi isn't in the dt bindings. Should this be hifi0 and/or hifi1?
 
 > +};
 > +
-> +static struct clk_regmap a9_gp0_in_div2 = {
-> +	.data = &(struct clk_regmap_gate_data) {
-> +		.offset = GP0PLL_CTRL0,
-> +		.bit_idx = 27,
+> +static A9_COMP_SEL(nna, NNA_CLK_CTRL, 9, 0x7, a9_nna_parents, NULL);
+> +static A9_COMP_DIV(nna, NNA_CLK_CTRL, 0, 7);
+> +static A9_COMP_GATE(nna, NNA_CLK_CTRL, 8, 0);
+> +
+> +/* Channel 5 and 6 are unconnected. */
+> +static u32 a9_usb_250m_parents_val_table[] = { 0, 1, 2, 3, 4, 7 };
+> +static const struct clk_parent_data a9_usb_250m_parents[] = {
+> +	{ .fw_name = "fdiv4", },
+> +	{ .fw_name = "fdiv3", },
+> +	{ .fw_name = "fdiv5", },
+> +	{ .fw_name = "fdiv2", },
+> +	{ .fw_name = "fdiv7", },
+> +	{ .fw_name = "fdiv2p5", }
+> +};
+> +
+> +static A9_COMP_SEL(usb_250m, USB_CLK_CTRL, 9, 0x7, a9_usb_250m_parents,
+> +		   a9_usb_250m_parents_val_table);
+> +static A9_COMP_DIV(usb_250m, USB_CLK_CTRL, 0, 7);
+> +static A9_COMP_GATE(usb_250m, USB_CLK_CTRL, 8, 0);
+> +
+> +static const struct clk_parent_data a9_usb_48m_pre_parents[] = {
+> +	{ .fw_name = "fdiv4", },
+> +	{ .fw_name = "fdiv3", },
+> +	{ .fw_name = "fdiv5", },
+> +	{ .fw_name = "fdiv2", },
+> +	{ .fw_name = "fdiv7", },
+> +	{ .fw_name = "fdiv2p5", }
+> +};
+> +
+> +static A9_COMP_SEL(usb_48m_pre, USB_CLK_CTRL, 25, 0x7, a9_usb_48m_pre_parents,
+> +		   NULL);
+> +static A9_COMP_DIV(usb_48m_pre, USB_CLK_CTRL, 16, 7);
+> +static A9_COMP_GATE(usb_48m_pre, USB_CLK_CTRL, 24, 0);
+> +
+> +static const struct clk_parent_data a9_pcie_tl_parents[] = {
+> +	{ .fw_name = "fdiv4", },
+> +	{ .fw_name = "fdiv3", },
+> +	{ .fw_name = "fdiv5", },
+> +	{ .fw_name = "fdiv2", },
+> +	{ .fw_name = "fdiv2p5", },
+> +	{ .fw_name = "gp0", },
+> +	{ .fw_name = "sys", },
+> +	{ .fw_name = "xtal", }
+> +};
+> +
+> +static A9_COMP_SEL(pcie_tl, PCIE_TL_CLK_CTRL, 9, 0x7, a9_pcie_tl_parents,
+> +		   NULL);
+> +static A9_COMP_DIV(pcie_tl, PCIE_TL_CLK_CTRL, 0, 7);
+> +static A9_COMP_GATE(pcie_tl, PCIE_TL_CLK_CTRL, 8, 0);
+> +
+> +static A9_COMP_SEL(pcie1_tl, PCIE_TL_CLK_CTRL, 25, 0x7, a9_pcie_tl_parents,
+> +		   NULL);
+> +static A9_COMP_DIV(pcie1_tl, PCIE_TL_CLK_CTRL, 16, 7);
+> +static A9_COMP_GATE(pcie1_tl, PCIE_TL_CLK_CTRL, 24, 0);
+> +
+> +static const struct clk_parent_data a9_cmpr_parents[] = {
+> +	{ .fw_name = "xtal", },
+> +	{ .fw_name = "fdiv2p5", },
+> +	{ .fw_name = "fdiv3", },
+> +	{ .fw_name = "fdiv4", },
+> +	{ .fw_name = "fdiv5", },
+> +	{ .fw_name = "fdiv7", },
+> +	{ .fw_name = "hifi0", },
+> +	{ .fw_name = "gp1", }
+> +};
+> +
+> +static A9_COMP_SEL(cmpr, CMPR_CLK_CTRL, 25, 0x7, a9_cmpr_parents, NULL);
+> +static A9_COMP_DIV(cmpr, CMPR_CLK_CTRL, 16, 7);
+> +static A9_COMP_GATE(cmpr, CMPR_CLK_CTRL, 24, 0);
+> +
+> +static const struct clk_parent_data a9_dewarpa_parents[] = {
+> +	{ .fw_name = "fdiv2p5", },
+> +	{ .fw_name = "fdiv3", },
+> +	{ .fw_name = "fdiv4", },
+> +	{ .fw_name = "fdiv5", },
+> +	{ .fw_name = "fdiv7", },
+> +	{ .fw_name = "gp0", },
+> +	{ .fw_name = "hifi0", },
+> +	{ .fw_name = "gp1", }
+> +};
+> +
+> +static A9_COMP_SEL(dewarpa, DEWARP_CLK_CTRL, 9, 0x7, a9_dewarpa_parents, NULL);
+> +static A9_COMP_DIV(dewarpa, DEWARP_CLK_CTRL, 0, 7);
+> +static A9_COMP_GATE(dewarpa, DEWARP_CLK_CTRL, 8, 0);
+> +
+> +static const struct clk_parent_data a9_sc_parents[] = {
+> +	{ .fw_name = "fdiv2", },
+> +	{ .fw_name = "fdiv3", },
+> +	{ .fw_name = "fdiv5", },
+> +	{ .fw_name = "xtal", }
+> +};
+> +
+> +static A9_COMP_SEL(sc_pre, SC_CLK_CTRL, 9, 0x7, a9_sc_parents, NULL);
+> +static A9_COMP_DIV(sc_pre, SC_CLK_CTRL, 0, 8);
+> +static A9_COMP_GATE(sc_pre, SC_CLK_CTRL, 8, 0);
+> +
+> +static struct clk_regmap a9_sc = {
+> +	.data = &(struct clk_regmap_div_data) {
+> +		.offset = SC_CLK_CTRL,
+> +		.shift = 16,
+> +		.width = 4,
 > +	},
 > +	.hw.init = &(struct clk_init_data) {
-> +		.name = "gp0_in_div2",
-> +		.ops = &clk_regmap_gate_ops,
+> +		.name = "sc",
+> +		.ops = &clk_regmap_divider_ops,
 > +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a9_gp0_in_div2_div.hw
+> +			&a9_sc_pre.hw
 > +		},
 > +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +/* The output frequency range of the A9 PLL_DCO is 1.4 GHz to 2.8 GHz. */
-> +static const struct pll_mult_range a9_pll_mult_range = {
-> +	.min = 117,
-> +	.max = 233,
-> +};
-> +
-> +static const struct reg_sequence a9_gp0_pll_init_regs[] = {
-> +	{ .reg = GP0PLL_CTRL0, .def = 0x00010000 },
-> +	{ .reg = GP0PLL_CTRL1, .def = 0x11480000 },
-> +	{ .reg = GP0PLL_CTRL2, .def = 0x1219b010 },
-> +	{ .reg = GP0PLL_CTRL3, .def = 0x00008010 }
-> +};
-> +
-> +static struct clk_regmap a9_gp0_pll_dco = {
-> +	.data = &(struct meson_clk_pll_data) {
-> +		.en = {
-> +			.reg_off = GP0PLL_CTRL0,
-> +			.shift   = 28,
-> +			.width   = 1,
-> +		},
-> +		.m = {
-> +			.reg_off = GP0PLL_CTRL0,
-> +			.shift   = 0,
-> +			.width   = 9,
-> +		},
-> +		.n = {
-> +			.reg_off = GP0PLL_CTRL0,
-> +			.shift   = 12,
-> +			.width   = 3,
-> +		},
-> +		.frac = {
-> +			.reg_off = GP0PLL_CTRL1,
-> +			.shift   = 0,
-> +			.width   = 17,
-> +		},
-> +		.l = {
-> +			.reg_off = GP0PLL_CTRL0,
-> +			.shift   = 31,
-> +			.width   = 1,
-> +		},
-> +		.rst = {
-> +			.reg_off = GP0PLL_CTRL0,
-> +			.shift   = 29,
-> +			.width   = 1,
-> +		},
-> +		.l_detect = {
-> +			.reg_off = GP0PLL_CTRL0,
-> +			.shift   = 30,
-> +			.width   = 1,
-> +		},
-> +		.range = &a9_pll_mult_range,
-> +		.init_regs = a9_gp0_pll_init_regs,
-> +		.init_count = ARRAY_SIZE(a9_gp0_pll_init_regs),
-> +		.flags = CLK_MESON_PLL_RST_ACTIVE_LOW |
-> +			 CLK_MESON_PLL_N_POWER_OF_TWO |
-> +			 CLK_MESON_PLL_L_DETECT_ACTIVE_HIGH,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "gp0_pll_dco",
-> +		.ops = &meson_clk_pll_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a9_gp0_in_div2.hw
-> +		},
-> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
 > +	},
 
-You can use CLK_HW_INIT_HWS() here and other places below.
+You can use CLK_HW_INIT_HWS() here.
 
 Brian
-
-
-> +};
-> +
-> +/* For gp0, hifi and mclk pll, the maximum value of od is 4. */
-> +static const struct clk_div_table a9_pll_od_table[] = {
-> +	{ 0,  1 },
-> +	{ 1,  2 },
-> +	{ 2,  4 },
-> +	{ 3,  8 },
-> +	{ 4,  16 },
-> +	{ /* sentinel */ }
-> +};
-> +
-> +static struct clk_regmap a9_gp0_pll = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = GP0PLL_CTRL0,
-> +		.shift = 20,
-> +		.width = 3,
-> +		.table = a9_pll_od_table,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "gp0_pll",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a9_gp0_pll_dco.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +static struct clk_fixed_factor a9_hifi0_in_div2_div = {
-> +	.mult = 1,
-> +	.div = 2,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "hifi0_in_div2_div",
-> +		.ops = &clk_fixed_factor_ops,
-> +		.parent_data = &(const struct clk_parent_data) {
-> +			.fw_name = "in0",
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a9_hifi0_in_div2 = {
-> +	.data = &(struct clk_regmap_gate_data) {
-> +		.offset = HIFIPLL_CTRL0,
-> +		.bit_idx = 27,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "hifi0_in_div2",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a9_hifi0_in_div2_div.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static const struct reg_sequence a9_hifi0_pll_init_regs[] = {
-> +	{ .reg = HIFIPLL_CTRL0, .def = 0x00010000 },
-> +	{ .reg = HIFIPLL_CTRL1, .def = 0x11480000 },
-> +	{ .reg = HIFIPLL_CTRL2, .def = 0x1219b010 },
-> +	{ .reg = HIFIPLL_CTRL3, .def = 0x00008010 }
-> +};
-> +
-> +static struct clk_regmap a9_hifi0_pll_dco = {
-> +	.data = &(struct meson_clk_pll_data) {
-> +		.en = {
-> +			.reg_off = HIFIPLL_CTRL0,
-> +			.shift   = 28,
-> +			.width   = 1,
-> +		},
-> +		.m = {
-> +			.reg_off = HIFIPLL_CTRL0,
-> +			.shift   = 0,
-> +			.width   = 9,
-> +		},
-> +		.n = {
-> +			.reg_off = HIFIPLL_CTRL0,
-> +			.shift   = 12,
-> +			.width   = 3,
-> +		},
-> +		.frac = {
-> +			.reg_off = HIFIPLL_CTRL1,
-> +			.shift   = 0,
-> +			.width   = 17,
-> +		},
-> +		.l = {
-> +			.reg_off = HIFIPLL_CTRL0,
-> +			.shift   = 31,
-> +			.width   = 1,
-> +		},
-> +		.rst = {
-> +			.reg_off = HIFIPLL_CTRL0,
-> +			.shift   = 29,
-> +			.width   = 1,
-> +		},
-> +		.l_detect = {
-> +			.reg_off = HIFIPLL_CTRL0,
-> +			.shift   = 30,
-> +			.width   = 1,
-> +		},
-> +		.range = &a9_pll_mult_range,
-> +		.init_regs = a9_hifi0_pll_init_regs,
-> +		.init_count = ARRAY_SIZE(a9_hifi0_pll_init_regs),
-> +		.frac_max = 100000,
-> +		.flags = CLK_MESON_PLL_RST_ACTIVE_LOW |
-> +			 CLK_MESON_PLL_N_POWER_OF_TWO |
-> +			 CLK_MESON_PLL_L_DETECT_ACTIVE_HIGH,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "hifi0_pll_dco",
-> +		.ops = &meson_clk_pll_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a9_hifi0_in_div2.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a9_hifi0_pll = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = HIFIPLL_CTRL0,
-> +		.shift = 20,
-> +		.width = 3,
-> +		.table = a9_pll_od_table,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "hifi0_pll",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a9_hifi0_pll_dco.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +static struct clk_fixed_factor a9_hifi1_in_div2_div = {
-> +	.mult = 1,
-> +	.div = 2,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "hifi1_in_div2_div",
-> +		.ops = &clk_fixed_factor_ops,
-> +		.parent_data = &(const struct clk_parent_data) {
-> +			.fw_name = "in0",
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a9_hifi1_in_div2 = {
-> +	.data = &(struct clk_regmap_gate_data) {
-> +		.offset = HIFIPLL_CTRL0,
-> +		.bit_idx = 27,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "hifi1_in_div2",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a9_hifi1_in_div2_div.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static const struct reg_sequence a9_hifi1_pll_init_regs[] = {
-> +	{ .reg = HIFIPLL_CTRL0, .def = 0x00010000 },
-> +	{ .reg = HIFIPLL_CTRL1, .def = 0x11480000 },
-> +	{ .reg = HIFIPLL_CTRL2, .def = 0x1219b011 },
-> +	{ .reg = HIFIPLL_CTRL3, .def = 0x00008010 }
-> +};
-> +
-> +static struct clk_regmap a9_hifi1_pll_dco = {
-> +	.data = &(struct meson_clk_pll_data) {
-> +		.en = {
-> +			.reg_off = HIFIPLL_CTRL0,
-> +			.shift   = 28,
-> +			.width   = 1,
-> +		},
-> +		.m = {
-> +			.reg_off = HIFIPLL_CTRL0,
-> +			.shift   = 0,
-> +			.width   = 9,
-> +		},
-> +		.n = {
-> +			.reg_off = HIFIPLL_CTRL0,
-> +			.shift   = 12,
-> +			.width   = 3,
-> +		},
-> +		.frac = {
-> +			.reg_off = HIFIPLL_CTRL1,
-> +			.shift   = 0,
-> +			.width   = 17,
-> +		},
-> +		.l = {
-> +			.reg_off = HIFIPLL_CTRL0,
-> +			.shift   = 31,
-> +			.width   = 1,
-> +		},
-> +		.rst = {
-> +			.reg_off = HIFIPLL_CTRL0,
-> +			.shift   = 29,
-> +			.width   = 1,
-> +		},
-> +		.l_detect = {
-> +			.reg_off = HIFIPLL_CTRL0,
-> +			.shift   = 30,
-> +			.width   = 1,
-> +		},
-> +		.range = &a9_pll_mult_range,
-> +		.init_regs = a9_hifi1_pll_init_regs,
-> +		.init_count = ARRAY_SIZE(a9_hifi1_pll_init_regs),
-> +		.frac_max = 100000,
-> +		.flags = CLK_MESON_PLL_RST_ACTIVE_LOW |
-> +			 CLK_MESON_PLL_N_POWER_OF_TWO |
-> +			 CLK_MESON_PLL_L_DETECT_ACTIVE_HIGH,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "hifi1_pll_dco",
-> +		.ops = &meson_clk_pll_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a9_hifi1_in_div2.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a9_hifi1_pll = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = HIFIPLL_CTRL0,
-> +		.shift = 20,
-> +		.width = 3,
-> +		.table = a9_pll_od_table,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "hifi1_pll",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a9_hifi1_pll_dco.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +/*
-> + * Unlike GP0 and HIFI PLLs, the input divider 2 of MCLK PLL is
-> + * enabled by default and has no enable control bit.
-> + */
-> +static struct clk_fixed_factor a9_mclk0_in_div2 = {
-> +	.mult = 1,
-> +	.div = 2,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "mclk0_in_div2_div",
-> +		.ops = &clk_fixed_factor_ops,
-> +		.parent_data = &(const struct clk_parent_data) {
-> +			.fw_name = "in0",
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static const struct reg_sequence a9_mclk0_pll_init_regs[] = {
-> +	{ .reg = MCLKPLL_CTRL1, .def = 0x00422000 },
-> +	{ .reg = MCLKPLL_CTRL2, .def = 0x60000100 },
-> +	{ .reg = MCLKPLL_CTRL3, .def = 0x02000200 },
-> +	{ .reg = MCLKPLL_CTRL4, .def = 0xd616d616 }
-> +};
-> +
-> +static struct clk_regmap a9_mclk0_pll_dco = {
-> +	.data = &(struct meson_clk_pll_data) {
-> +		.en = {
-> +			.reg_off = MCLKPLL_CTRL0,
-> +			.shift   = 28,
-> +			.width   = 1,
-> +		},
-> +		.m = {
-> +			.reg_off = MCLKPLL_CTRL0,
-> +			.shift   = 0,
-> +			.width   = 9,
-> +		},
-> +		.n = {
-> +			.reg_off = MCLKPLL_CTRL0,
-> +			.shift   = 12,
-> +			.width   = 3,
-> +		},
-> +		.l = {
-> +			.reg_off = MCLKPLL_CTRL0,
-> +			.shift   = 31,
-> +			.width   = 1,
-> +		},
-> +		.rst = {
-> +			.reg_off = MCLKPLL_CTRL0,
-> +			.shift   = 29,
-> +			.width   = 1,
-> +		},
-> +		.l_detect = {
-> +			.reg_off = MCLKPLL_CTRL0,
-> +			.shift   = 30,
-> +			.width   = 1,
-> +		},
-> +		.range = &a9_pll_mult_range,
-> +		.init_regs = a9_mclk0_pll_init_regs,
-> +		.init_count = ARRAY_SIZE(a9_mclk0_pll_init_regs),
-> +		.flags = CLK_MESON_PLL_RST_ACTIVE_LOW |
-> +			 CLK_MESON_PLL_N_POWER_OF_TWO |
-> +			 CLK_MESON_PLL_L_DETECT_ACTIVE_HIGH,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "mclk0_pll_dco",
-> +		.ops = &meson_clk_pll_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a9_mclk0_in_div2.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a9_mclk0_0_pll = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = MCLKPLL_CTRL3,
-> +		.shift = 0,
-> +		.width = 3,
-> +		.table = a9_pll_od_table,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "mclk0_0_pll",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a9_mclk0_pll_dco.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a9_mclk0_0_pre = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = MCLKPLL_CTRL3,
-> +		.shift = 3,
-> +		.width = 5,
-> +		.flags = CLK_DIVIDER_MAX_AT_ZERO,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "mclk0_0_pre",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a9_mclk0_0_pll.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +static const struct clk_parent_data a9_mclk0_0_parents[] = {
-> +	{ .hw = &a9_mclk0_0_pre.hw },
-> +	{ .fw_name = "in0" },
-> +	{ .fw_name = "in1" },
-> +	{ .fw_name = "in2" }
-> +};
-> +
-> +static A9_COMP_SEL(mclk0_0, MCLKPLL_CTRL3, 12, 0x3, a9_mclk0_0_parents);
-> +static A9_COMP_DIV(mclk0_0, MCLKPLL_CTRL3, 10, 1);
-> +static A9_COMP_GATE(mclk0_0, MCLKPLL_CTRL3, 8);
-> +
-> +static struct clk_regmap a9_mclk0_1_pll = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = MCLKPLL_CTRL3,
-> +		.shift = 16,
-> +		.width = 3,
-> +		.table = a9_pll_od_table,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "mclk0_1_pll",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a9_mclk0_pll_dco.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a9_mclk0_1_pre = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = MCLKPLL_CTRL3,
-> +		.shift = 19,
-> +		.width = 5,
-> +		.flags = CLK_DIVIDER_MAX_AT_ZERO,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "mclk0_1_pre",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a9_mclk0_1_pll.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +static const struct clk_parent_data a9_mclk0_1_parents[] = {
-> +	{ .hw = &a9_mclk0_1_pre.hw },
-> +	{ .fw_name = "in0" },
-> +	{ .fw_name = "in1" },
-> +	{ .fw_name = "in2" }
-> +};
-> +
-> +static A9_COMP_SEL(mclk0_1, MCLKPLL_CTRL3, 28, 0x3, a9_mclk0_1_parents);
-> +static A9_COMP_DIV(mclk0_1, MCLKPLL_CTRL3, 26, 1);
-> +static A9_COMP_GATE(mclk0_1, MCLKPLL_CTRL3, 24);
-> +
-> +static struct clk_fixed_factor a9_mclk1_in_div2 = {
-> +	.mult = 1,
-> +	.div = 2,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "mclk1_in_div2",
-> +		.ops = &clk_fixed_factor_ops,
-> +		.parent_data = &(const struct clk_parent_data) {
-> +			.fw_name = "in0",
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a9_mclk1_pll_dco = {
-> +	.data = &(struct meson_clk_pll_data) {
-> +		.en = {
-> +			.reg_off = MCLKPLL_CTRL0,
-> +			.shift   = 28,
-> +			.width   = 1,
-> +		},
-> +		.m = {
-> +			.reg_off = MCLKPLL_CTRL0,
-> +			.shift   = 0,
-> +			.width   = 9,
-> +		},
-> +		.n = {
-> +			.reg_off = MCLKPLL_CTRL0,
-> +			.shift   = 12,
-> +			.width   = 3,
-> +		},
-> +		.l = {
-> +			.reg_off = MCLKPLL_CTRL0,
-> +			.shift   = 31,
-> +			.width   = 1,
-> +		},
-> +		.rst = {
-> +			.reg_off = MCLKPLL_CTRL0,
-> +			.shift   = 29,
-> +			.width   = 1,
-> +		},
-> +		.l_detect = {
-> +			.reg_off = MCLKPLL_CTRL0,
-> +			.shift   = 30,
-> +			.width   = 1,
-> +		},
-> +		.range = &a9_pll_mult_range,
-> +		.init_regs = a9_mclk0_pll_init_regs,
-> +		.init_count = ARRAY_SIZE(a9_mclk0_pll_init_regs),
-> +		.flags = CLK_MESON_PLL_RST_ACTIVE_LOW |
-> +			 CLK_MESON_PLL_N_POWER_OF_TWO |
-> +			 CLK_MESON_PLL_L_DETECT_ACTIVE_HIGH,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "mclk1_pll_dco",
-> +		.ops = &meson_clk_pll_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a9_mclk1_in_div2.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a9_mclk1_0_pll = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = MCLKPLL_CTRL3,
-> +		.shift = 0,
-> +		.width = 3,
-> +		.table = a9_pll_od_table,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "mclk1_0_pll",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a9_mclk1_pll_dco.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a9_mclk1_0_pre = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = MCLKPLL_CTRL3,
-> +		.shift = 3,
-> +		.width = 5,
-> +		.flags = CLK_DIVIDER_MAX_AT_ZERO,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "mclk1_0_pre",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a9_mclk1_0_pll.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +static const struct clk_parent_data a9_mclk1_0_parents[] = {
-> +	{ .hw = &a9_mclk1_0_pre.hw },
-> +	{ .fw_name = "in0" },
-> +	{ .fw_name = "in1" },
-> +	{ .fw_name = "in2" }
-> +};
-> +
-> +static A9_COMP_SEL(mclk1_0, MCLKPLL_CTRL3, 12, 0x3, a9_mclk1_0_parents);
-> +static A9_COMP_DIV(mclk1_0, MCLKPLL_CTRL3, 10, 1);
-> +static A9_COMP_GATE(mclk1_0, MCLKPLL_CTRL3, 8);
-> +
-> +static struct clk_regmap a9_mclk1_1_pll = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = MCLKPLL_CTRL3,
-> +		.shift = 16,
-> +		.width = 3,
-> +		.table = a9_pll_od_table,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "mclk1_1_pll",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a9_mclk1_pll_dco.hw
-> +		},
-> +		.num_parents = 1,
-> +	},
-> +};
-> +
-> +static struct clk_regmap a9_mclk1_1_pre = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = MCLKPLL_CTRL3,
-> +		.shift = 19,
-> +		.width = 5,
-> +		.flags = CLK_DIVIDER_MAX_AT_ZERO,
-> +	},
-> +	.hw.init = &(struct clk_init_data) {
-> +		.name = "mclk1_1_pre",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_hws = (const struct clk_hw *[]) {
-> +			&a9_mclk1_1_pll.hw
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +static const struct clk_parent_data a9_mclk1_1_parents[] = {
-> +	{ .hw = &a9_mclk1_1_pre.hw },
-> +	{ .fw_name = "in0" },
-> +	{ .fw_name = "in1" },
-> +	{ .fw_name = "in2" }
-> +};
-> +
-> +static A9_COMP_SEL(mclk1_1, MCLKPLL_CTRL3, 28, 0x3, a9_mclk1_1_parents);
-> +static A9_COMP_DIV(mclk1_1, MCLKPLL_CTRL3, 26, 1);
-> +static A9_COMP_GATE(mclk1_1, MCLKPLL_CTRL3, 24);
-> +
-> +static struct clk_hw *a9_gp0_hw_clks[] = {
-> +	[CLKID_GP0_IN_DIV2_DIV]		= &a9_gp0_in_div2_div.hw,
-> +	[CLKID_GP0_IN_DIV2]		= &a9_gp0_in_div2.hw,
-> +	[CLKID_GP0_PLL_DCO]		= &a9_gp0_pll_dco.hw,
-> +	[CLKID_GP0_PLL]			= &a9_gp0_pll.hw,
-> +};
-> +
-> +static struct clk_hw *a9_hifi0_hw_clks[] = {
-> +	[CLKID_HIFI0_IN_DIV2_DIV]	= &a9_hifi0_in_div2_div.hw,
-> +	[CLKID_HIFI0_IN_DIV2]		= &a9_hifi0_in_div2.hw,
-> +	[CLKID_HIFI0_PLL_DCO]		= &a9_hifi0_pll_dco.hw,
-> +	[CLKID_HIFI0_PLL]		= &a9_hifi0_pll.hw,
-> +};
-> +
-> +static struct clk_hw *a9_hifi1_hw_clks[] = {
-> +	[CLKID_HIFI1_IN_DIV2_DIV]	= &a9_hifi1_in_div2_div.hw,
-> +	[CLKID_HIFI1_IN_DIV2]		= &a9_hifi1_in_div2.hw,
-> +	[CLKID_HIFI1_PLL_DCO]		= &a9_hifi1_pll_dco.hw,
-> +	[CLKID_HIFI1_PLL]		= &a9_hifi1_pll.hw,
-> +};
-> +
-> +static struct clk_hw *a9_mclk0_hw_clks[] = {
-> +	[CLKID_MCLK0_IN_DIV2]		= &a9_mclk0_in_div2.hw,
-> +	[CLKID_MCLK0_PLL_DCO]		= &a9_mclk0_pll_dco.hw,
-> +	[CLKID_MCLK0_0_PLL]		= &a9_mclk0_0_pll.hw,
-> +	[CLKID_MCLK0_0_PRE]		= &a9_mclk0_0_pre.hw,
-> +	[CLKID_MCLK0_0_SEL]		= &a9_mclk0_0_sel.hw,
-> +	[CLKID_MCLK0_0_DIV]		= &a9_mclk0_0_div.hw,
-> +	[CLKID_MCLK0_0]			= &a9_mclk0_0.hw,
-> +	[CLKID_MCLK0_1_PLL]		= &a9_mclk0_1_pll.hw,
-> +	[CLKID_MCLK0_1_PRE]		= &a9_mclk0_1_pre.hw,
-> +	[CLKID_MCLK0_1_SEL]		= &a9_mclk0_1_sel.hw,
-> +	[CLKID_MCLK0_1_DIV]		= &a9_mclk0_1_div.hw,
-> +	[CLKID_MCLK0_1]			= &a9_mclk0_1.hw,
-> +};
-> +
-> +static struct clk_hw *a9_mclk1_hw_clks[] = {
-> +	[CLKID_MCLK1_IN_DIV2]		= &a9_mclk1_in_div2.hw,
-> +	[CLKID_MCLK1_PLL_DCO]		= &a9_mclk1_pll_dco.hw,
-> +	[CLKID_MCLK1_0_PLL]		= &a9_mclk1_0_pll.hw,
-> +	[CLKID_MCLK1_0_PRE]		= &a9_mclk1_0_pre.hw,
-> +	[CLKID_MCLK1_0_SEL]		= &a9_mclk1_0_sel.hw,
-> +	[CLKID_MCLK1_0_DIV]		= &a9_mclk1_0_div.hw,
-> +	[CLKID_MCLK1_0]			= &a9_mclk1_0.hw,
-> +	[CLKID_MCLK1_1_PLL]		= &a9_mclk1_1_pll.hw,
-> +	[CLKID_MCLK1_1_PRE]		= &a9_mclk1_1_pre.hw,
-> +	[CLKID_MCLK1_1_SEL]		= &a9_mclk1_1_sel.hw,
-> +	[CLKID_MCLK1_1_DIV]		= &a9_mclk1_1_div.hw,
-> +	[CLKID_MCLK1_1]			= &a9_mclk1_1.hw,
-> +};
-> +
-> +static const struct meson_clkc_data a9_gp0_data = {
-> +	.hw_clks = {
-> +		.hws = a9_gp0_hw_clks,
-> +		.num = ARRAY_SIZE(a9_gp0_hw_clks),
-> +	},
-> +};
-> +
-> +static const struct meson_clkc_data a9_hifi0_data = {
-> +	.hw_clks = {
-> +		.hws = a9_hifi0_hw_clks,
-> +		.num = ARRAY_SIZE(a9_hifi0_hw_clks),
-> +	},
-> +};
-> +
-> +static const struct meson_clkc_data a9_hifi1_data = {
-> +	.hw_clks = {
-> +		.hws = a9_hifi1_hw_clks,
-> +		.num = ARRAY_SIZE(a9_hifi1_hw_clks),
-> +	},
-> +};
-> +
-> +static const struct meson_clkc_data a9_mclk0_data = {
-> +	.hw_clks = {
-> +		.hws = a9_mclk0_hw_clks,
-> +		.num = ARRAY_SIZE(a9_mclk0_hw_clks),
-> +	},
-> +};
-> +
-> +static const struct meson_clkc_data a9_mclk1_data = {
-> +	.hw_clks = {
-> +		.hws = a9_mclk1_hw_clks,
-> +		.num = ARRAY_SIZE(a9_mclk1_hw_clks),
-> +	},
-> +};
-> +
-> +static const struct of_device_id a9_pll_clkc_match_table[] = {
-> +	{ .compatible = "amlogic,a9-gp0-pll",	.data = &a9_gp0_data, },
-> +	{ .compatible = "amlogic,a9-hifi0-pll",	.data = &a9_hifi0_data, },
-> +	{ .compatible = "amlogic,a9-hifi1-pll",	.data = &a9_hifi1_data, },
-> +	{ .compatible = "amlogic,a9-mclk0-pll",	.data = &a9_mclk0_data, },
-> +	{ .compatible = "amlogic,a9-mclk1-pll", .data = &a9_mclk1_data, },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, a9_pll_clkc_match_table);
-> +
-> +static struct platform_driver a9_pll_clkc_driver = {
-> +	.probe		= meson_clkc_mmio_probe,
-> +	.driver		= {
-> +		.name	= "a9-pll-clkc",
-> +		.of_match_table = a9_pll_clkc_match_table,
-> +	},
-> +};
-> +module_platform_driver(a9_pll_clkc_driver);
-> +
-> +MODULE_DESCRIPTION("Amlogic A9 PLL Clock Controller Driver");
-> +MODULE_AUTHOR("Jian Hu <jian.hu@amlogic.com>");
-> +MODULE_LICENSE("GPL");
-> +MODULE_IMPORT_NS("CLK_MESON");
-> 
-> -- 
-> 2.47.1
-> 
-> 
 
 
 _______________________________________________
