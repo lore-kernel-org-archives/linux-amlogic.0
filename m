@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6901CD484C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 975B3CD484D
 	for <linux-amlogic@archiver.kernel.org>; Mon, 11 May 2026 12:47:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rT8d8wGwWLWE4VE6F5/fDNPRi86KlhSAS9upaoAINxk=; b=OG+xW4R0NoD23w
-	ICfDI2NzD0W8JdI2lt8+BeFTHvMiZ+9MzjFD3mjXR29LIeSBfSAaBybIEECgrzbh+WmR0jYBJ1Zwb
-	Wh6LbhGbocrHzazbXSM0bxrDnSYhac8/lcvdz6Xk4k38YPrwXVzcm3mjSwWKmdBpZrHsgIIuNrs8R
-	lGCIsnnXtpNxwt44Pw3rsNA8Jjxv5S63t9hJFlMy+NzG1ETjV7/uEM+7U7g6deVqdZNEuVHcZTDCD
-	iIuBO65idW4OW6hLhYMEqCrTSrkmLD7iuXRYBUEJJktvRVOp1oFsUjDuJ8a91HGGfF0aUWZTfIarA
-	lzxriggmiaf2cFk/2NYw==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Y3y22j1WNDCMfa/lMGk5euLkDzgchEQfLkmkWzXRUQw=; b=KeUYOEb2B4ASp6
+	g07XGvx3i9/LSa8RhZe3fKXyJDzu8vOsghM9Ctcf1SZ8syihYoU7/4oQ5RTLNnrqw/gtbi7k8b/IM
+	AIi+e5eySayCn8EX1/lS9Yah5+yJ5Ti1hLpWgHGvMl3uul3J2MsEwdMkRWFUGWYejtHVjqdjTIWWR
+	zPt869OVtPJYHuxOKUx2oXZEzi8lBVhDx/dgSXLxVN8WkDyO0qpeVP4YpYtC3FP51rbQ3fk/iqfK7
+	5hodRNqVHu1nBWP4f8uTuh0IQVfQYbxnC8H1Bn/YYJIRRasSp367k0Kz94Wa3WR8/8amLaSca53xp
+	Vmw3qS5Dx9O7qv9Kt0/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wMQ2v-0000000Db7F-1yan;
-	Mon, 11 May 2026 12:47:41 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
-	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wMQ2t-0000000Db3g-0w9z;
+	id 1wMQ2u-0000000Db5B-0StY;
 	Mon, 11 May 2026 12:47:40 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
+	id 1wMQ2s-0000000Db3V-1F3m;
+	Mon, 11 May 2026 12:47:38 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id B737A445B8;
+	by tor.source.kernel.org (Postfix) with ESMTP id 9194B6001A;
 	Mon, 11 May 2026 12:47:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 962E3C2BCFF;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 3C5C3C2BCB0;
 	Mon, 11 May 2026 12:47:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1778503657;
-	bh=K8swoX6FxSY3+YCc6uF9MI8GHhydGylx3BI+Fh5y6Q0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=oAGYe1/ysQwhazYy1QBhxbdq2eIOtfxfGi/c/MuSBHWcCUPxh8bsIIjyHeMPYXyZ3
-	 MlbR/rOcot34lOVoI2EHufWAIlBzuDj8x28RnO/NaUGsaRMnMsSNtz9FiiACqp5tb8
-	 sH2Up/YW0wUJGzZAiWaGyXPO5YMELyLjgmNK323bGlCkXsI4PrMTsVHeRD88Ysoruc
-	 zsAiMuezSmrAFOQTDrONzZ57LVi47PwAQbLpdJ2hXOUfENJ6dYRilBd3LY+k5MsZIi
-	 1EwC3ZkC+JxTUR9RIsgda+eWb3/k8yJldaGby+Y7z15to2tv6RECDBgjGFNsf1JSKZ
-	 mWc8LeDYJ6GwA==
+	bh=d/bn89pQhI2eZfLETFYCMIW9bPsVZbUfOMIG98dS5ow=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=Qw9WdMUNgGqK8AfboWuXU5o59I10StRQMnuTXn91d9s0/qNjfQ+4DFK/jW2yEdESZ
+	 mu/hCKvve91312R5G6r/315BmFpsD3LuYQ5z8A2MWkOeZm56kzWov2WG2t13TxFYOG
+	 VfuzMIG0gi2oMA+Z7uXmSA2GgKrkvK9cMdCO/U8nfwJIbbSmks3DHjwg20bfOvUy5+
+	 kGLnoGUUBpfjkkR1kUluMUwTLeZAqxGgk/tyLArUHJ47ImJl8NXoYI9g7WDnsCFzHy
+	 6MrK4PU10sIFlmBphz2bCrjl/MmLXhF/nZV6OWNFPaAt8lYlvtouyOa1F0MJDT0JS1
+	 E1NW9NTpxEBcw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8E444CD484A;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 25A8DCD4840;
 	Mon, 11 May 2026 12:47:37 +0000 (UTC)
 From: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
-Date: Mon, 11 May 2026 20:47:28 +0800
-Subject: [PATCH 06/10] clk: amlogic: PLL reset signal supports active-low
- configuration
+Subject: [PATCH 00/10] Add support for A9 family clock controller
+Date: Mon, 11 May 2026 20:47:22 +0800
+Message-Id: <20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com>
 MIME-Version: 1.0
-Message-Id: <20260511-b4-a9_clk-v1-6-41cb4071b7c9@amlogic.com>
-References: <20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com>
-In-Reply-To: <20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIANvPAWoC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDU0ND3SQT3UTL+OScbF0zczNTo2TDxFRTs1QloPqCotS0zAqwWdGxtbU
+ AQ6L9iVsAAAA=
+X-Change-ID: 20260511-b4-a9_clk-67652c1ae56e
 To: Michael Turquette <mturquette@baylibre.com>, 
  Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -65,19 +66,16 @@ Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, 
  linux-arm-kernel@lists.infradead.org, Jian Hu <jian.hu@amlogic.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1778503655; l=3454;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1778503655; l=3503;
  i=jian.hu@amlogic.com; s=20260415; h=from:subject:message-id;
- bh=clfKrUtBIiCGEypSBaa2X6SEz4kq2wv6xubbYMfZPdA=;
- b=TQsjaczUkxYfqykhe1RZLaYt8pFwVorzMVt91OgYqNavgIrXbqhT5etrHMKLk00RIsy2VfBqQ
- n92VY6wnhDYCAu5gyiqoaqtcC6hb13tOUnP1+bO4u76dbbNy+GoTGTP
+ bh=d/bn89pQhI2eZfLETFYCMIW9bPsVZbUfOMIG98dS5ow=;
+ b=LlCL2gW0AbGiMXgURqP5wwCamriSIUD5Er+NKhm9/SMSQrpiAR/13zXTQ2VlPl/eICNq37nPq
+ 5A9qDf5T7EmBFn5HX3ZqZb76Rgaz5RkDb4nFutBsWItSUe9zONYQfk9
 X-Developer-Key: i=jian.hu@amlogic.com; a=ed25519;
  pk=zHUE+rNtH9z+Sb8au1/elWknjFQmy5QDVkBoxleuOIA=
 X-Endpoint-Received: by B4 Relay for jian.hu@amlogic.com/20260415 with
  auth_id=735
 X-Original-From: Jian Hu <jian.hu@amlogic.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260511_054739_324970_5D1A3FAA 
-X-CRM114-Status: GOOD (  15.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,112 +93,82 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Jian Hu <jian.hu@amlogic.com>
+There are 4 clock controllers in A9 SoC:
+- SCMI clock controller: these clocks are managed by the
+  Trusted Firmware-A(TF-A) and handled through SCMI.
+- PLL clock controller.
+- peripheral clock controller.
+- AO clock controller.
 
-In the A9 design, the PLL reset signal is configured as active-low.
+There are reserved register regions placed between individual PLLs, so a
+separate driver is implemented for each PLL, similar to T7.
 
-Add the flag 'CLK_MESON_PLL_RST_N' to indicate that the PLL reset signal
-is active-low.
+Compared to previous SoCs PLLs, the A9 PLL controller introduces 4 new features:
+1.PLL l_detect signal supports active-high configuration.
+  Previous A7 and T7 l_detect signals are active-low.
+2.PLL reset signal supports active-low configuration.
+  Previous reset signals are active-high.
+3.Support POWER_OF_TWO for the PLL pre-divider N;
+  the N pre-divider follows the same calculation rule as OD.
+4.The PLL input path includes an inherent divide-by-2 divider.
+
+Implement the first three features in clk-pll.c (verified on A9 and T7),
+with no impact to PLL logic on existing SoCs. Add a fixed divide-by-2 to
+A9 PLL driver for the fourth feature.
+ 
+A9 PLL is composed as follows:
+ 
+                       PLL
+          +---------------------------------+
+          |                                 |
+          |             +--+                |
+   in/2 >>---[ /2^N ]-->|  |      +-----+   |
+          |             |  |------| DCO |----->> out
+          |  +--------->|  |      +--v--+   |
+          |  |          +--+         |      |
+          |  |                       |      |
+          |  +--[ *(M + (F/Fmax) ]<--+      |
+          |                                 |
+          +---------------------------------+
+ 
+  out = in / 2  * (m + frac / frac_max) / 2^n
 
 Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 ---
- drivers/clk/meson/clk-pll.c | 42 +++++++++++++++++++++++++++++++-----------
- drivers/clk/meson/clk-pll.h |  2 ++
- 2 files changed, 33 insertions(+), 11 deletions(-)
+Jian Hu (10):
+      dt-bindings: clock: Add Amlogic A9 SCMI clock controller
+      dt-bindings: clock: Add Amlogic A9 PLL clock controller
+      dt-bindings: clock: Add Amlogic A9 peripherals clock controller
+      dt-bindings: clock: Add Amlogic A9 AO clock controller
+      clk: amlogic: PLL l_detect signal supports active-high configuration
+      clk: amlogic: PLL reset signal supports active-low configuration
+      clk: amlogic: Support POWER_OF_TWO for PLL pre-divider
+      clk: amlogic: Add A9 PLL clock controller driver
+      clk: amlogic: Add A9 peripherals clock controller driver
+      clk: amlogic: Add A9 AO clock controller driver
 
-diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-index 5a0bd75f85a9..8568ad6ba7b6 100644
---- a/drivers/clk/meson/clk-pll.c
-+++ b/drivers/clk/meson/clk-pll.c
-@@ -295,10 +295,14 @@ static int meson_clk_pll_is_enabled(struct clk_hw *hw)
- {
- 	struct clk_regmap *clk = to_clk_regmap(hw);
- 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
-+	unsigned int rst;
- 
--	if (MESON_PARM_APPLICABLE(&pll->rst) &&
--	    meson_parm_read(clk->map, &pll->rst))
--		return 0;
-+	if (MESON_PARM_APPLICABLE(&pll->rst)) {
-+		rst = meson_parm_read(clk->map, &pll->rst);
-+		if ((rst && !(pll->flags & CLK_MESON_PLL_RST_ACTIVE_LOW)) ||
-+		    (!rst && (pll->flags & CLK_MESON_PLL_RST_ACTIVE_LOW)))
-+			return 0;
-+	}
- 
- 	if (!meson_parm_read(clk->map, &pll->en) ||
- 	    !meson_parm_read(clk->map, &pll->l))
-@@ -326,14 +330,22 @@ static int meson_clk_pll_init(struct clk_hw *hw)
- 		return 0;
- 
- 	if (pll->init_count) {
--		if (MESON_PARM_APPLICABLE(&pll->rst))
--			meson_parm_write(clk->map, &pll->rst, 1);
-+		if (MESON_PARM_APPLICABLE(&pll->rst)) {
-+			if (pll->flags & CLK_MESON_PLL_RST_ACTIVE_LOW)
-+				meson_parm_write(clk->map, &pll->rst, 0);
-+			else
-+				meson_parm_write(clk->map, &pll->rst, 1);
-+		}
- 
- 		regmap_multi_reg_write(clk->map, pll->init_regs,
- 				       pll->init_count);
- 
--		if (MESON_PARM_APPLICABLE(&pll->rst))
--			meson_parm_write(clk->map, &pll->rst, 0);
-+		if (MESON_PARM_APPLICABLE(&pll->rst)) {
-+			if (pll->flags & CLK_MESON_PLL_RST_ACTIVE_LOW)
-+				meson_parm_write(clk->map, &pll->rst, 1);
-+			else
-+				meson_parm_write(clk->map, &pll->rst, 0);
-+		}
- 	}
- 
- 	return 0;
-@@ -363,15 +375,23 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
- 		return 0;
- 
- 	/* Make sure the pll is in reset */
--	if (MESON_PARM_APPLICABLE(&pll->rst))
--		meson_parm_write(clk->map, &pll->rst, 1);
-+	if (MESON_PARM_APPLICABLE(&pll->rst)) {
-+		if (pll->flags & CLK_MESON_PLL_RST_ACTIVE_LOW)
-+			meson_parm_write(clk->map, &pll->rst, 0);
-+		else
-+			meson_parm_write(clk->map, &pll->rst, 1);
-+	}
- 
- 	/* Enable the pll */
- 	meson_parm_write(clk->map, &pll->en, 1);
- 
- 	/* Take the pll out reset */
--	if (MESON_PARM_APPLICABLE(&pll->rst))
--		meson_parm_write(clk->map, &pll->rst, 0);
-+	if (MESON_PARM_APPLICABLE(&pll->rst)) {
-+		if (pll->flags & CLK_MESON_PLL_RST_ACTIVE_LOW)
-+			meson_parm_write(clk->map, &pll->rst, 1);
-+		else
-+			meson_parm_write(clk->map, &pll->rst, 0);
-+	}
- 
- 	/*
- 	 * Compared with the previous SoCs, self-adaption current module
-diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
-index 97b7c70376a3..1be7e6e77631 100644
---- a/drivers/clk/meson/clk-pll.h
-+++ b/drivers/clk/meson/clk-pll.h
-@@ -31,6 +31,8 @@ struct pll_mult_range {
- #define CLK_MESON_PLL_NOINIT_ENABLED	BIT(1)
- /* l_detect signal is active-high */
- #define CLK_MESON_PLL_L_DETECT_ACTIVE_HIGH	BIT(2)
-+/* rst signal is active-low (Power-on reset) */
-+#define CLK_MESON_PLL_RST_ACTIVE_LOW	BIT(3)
- 
- struct meson_clk_pll_data {
- 	struct parm en;
+ .../bindings/clock/amlogic,a9-aoclkc.yaml          |   76 +
+ .../clock/amlogic,a9-peripherals-clkc.yaml         |  150 ++
+ .../bindings/clock/amlogic,a9-pll-clkc.yaml        |  110 +
+ drivers/clk/meson/Kconfig                          |   28 +
+ drivers/clk/meson/Makefile                         |    2 +
+ drivers/clk/meson/a9-aoclk.c                       |  494 +++++
+ drivers/clk/meson/a9-peripherals.c                 | 2317 ++++++++++++++++++++
+ drivers/clk/meson/a9-pll.c                         |  831 +++++++
+ drivers/clk/meson/clk-pll.c                        |   79 +-
+ drivers/clk/meson/clk-pll.h                        |    6 +
+ include/dt-bindings/clock/amlogic,a9-aoclkc.h      |   76 +
+ .../clock/amlogic,a9-peripherals-clkc.h            |  352 +++
+ include/dt-bindings/clock/amlogic,a9-pll-clkc.h    |   55 +
+ include/dt-bindings/clock/amlogic,a9-scmi-clkc.h   |   51 +
+ 14 files changed, 4609 insertions(+), 18 deletions(-)
+---
+base-commit: ca89c88bcf69daca829044c638a8163d5ce47af0
+change-id: 20260511-b4-a9_clk-67652c1ae56e
 
+Best regards,
 -- 
-2.47.1
+Jian Hu <jian.hu@amlogic.com>
 
 
 
