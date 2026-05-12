@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5504ACD4F3E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F39ACD4F25
 	for <linux-amlogic@archiver.kernel.org>; Tue, 12 May 2026 17:48:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Y0EzxqoR5CR+erssTcLvLy10d7JsO0bCc8oYTgCZtoM=; b=xSN7ZnlwhqfQca
-	4xEFeFMedbJD9b8sAFuLwZskdpylqjun22bDVCn2xjjzKsL5pPpEaIK+s0ZmIKk38hDh/a1Yc1hif
-	ojryKSIY5o1ntkMMWo175OiY6TqKF7VjSc41P0Paw/6BofpplSV/w8nz+S77AoNzOHMN0aeQw8IFD
-	+nlCovTafUX00YnnYqJx1keEFAnnzD3dGzw+/1XrjS37NlEAQMbyJWT3Afw4jyw+Uahdn2Z8nvlLS
-	BoDelz2tQmDfR5kiljjqzNJ5P+lMuD+iRoK+v4HsL4JQf5B/kWonITSAnBh5CB6TYA6C20EaJARcc
-	5fS3BoHCeWmHT9HSh+cw==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=sX/c1ZnM0jN7uzNER+GnHEiuSrO0qvk93QvRZLYrTeA=; b=Gv58blZhgC6JK2
+	SQh/CH6rBBu2vZXB+LRhVaCNheOaRbOAVxkwDFi8E0/Bh7gwNKsAkH5VyZUs830zl49sjZwzr9QLk
+	JHLksHR5C8Mr4Q8FJR1xR8jJZQIx1BLkCnrUXbmHsUcvZBJ+Sa4S2AdDCq9mNs3ch77OSi3Zj3rbe
+	x/NIHi86qRDpdvG2Z8N14+mAevC0RDOHv7Anc1L6vUvigZbeuco9t4mocrm+N/IXSD+rtUvK1Nz1A
+	Lbn/IdTU8sm6xB5Fn//n/r1pRSCwFY1ebHTfOvKcJCPvdSZphIymc6M5elj6kFM7f2rnmg69m/Y4K
+	v9viBysQqPKvtUP2i10Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wMrDT-0000000HaSd-0nmh;
-	Tue, 12 May 2026 17:48:23 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1wMrDU-0000000HaTV-3WrO;
+	Tue, 12 May 2026 17:48:24 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wMrDR-0000000HaRp-2kci;
-	Tue, 12 May 2026 17:48:21 +0000
+	id 1wMrDS-0000000HaRk-3wRV;
+	Tue, 12 May 2026 17:48:24 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 210BE6013B;
-	Tue, 12 May 2026 17:48:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C83E3C2BCFA;
+	by sea.source.kernel.org (Postfix) with ESMTP id CCB7240842;
+	Tue, 12 May 2026 17:48:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A5926C2BCF5;
 	Tue, 12 May 2026 17:48:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1778608100;
-	bh=fcW13kjSD93mQbIhQzCZ6BHO6+uiUNMkiFo3/S9zFOI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=jvQNT6kOjZDRDJgCV6PO9c//cQO9AL1lHVvtGDkV813udL+7TtbTsoNnCTKXPuD64
-	 1/QeVBEMwll15/TS+agJkqctRn0+iWcBB873BfnLsObv6NoI++QZ4J5oyBD+g08tvM
-	 oDQUrOB39ZBO4d1SVA8lIDNO6Yd7BK8k5hJVOAVJ8i32b+7M5TLx37muNx8Rex1YG2
-	 KDF8vRaVP1OY8l1jnD4eNGl3UcKCGEz6lOvqE0U+p35VnQEqK3Hhay0V3DpNpsNrG9
-	 VMC9zVo8yLJYH3EoWNtF7qnV6fIV6Mq5FLgEu6I9coB4pXe3B5LrpEcJUJTB105VoI
-	 Oam6nTFxDaGMA==
+	bh=GdO8sMea8p5bxncxQmac1W2vVytj8wlQkstRRnaIfAw=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=HtlGqH6iKLS332d4OwrID/Utvdk/6MFk9bCWFWw3UiAFIy2sS4X60c146SzCQ5BMY
+	 GcPP4A1eGW9ddkuLTUVuwwf1X0GWx2+Nu+LhaU9sK8+V3ITAWJi9nwd20JMAGIaIEw
+	 gieFD4YYnZXfoesifKCwz+IhLrVD3kM0IPppdPIIkjHb6ITLPFltOhGcRXFH/dGuJ0
+	 1/KsjmBedo4IFYcKCN584jEU9wvugFilKOFZ0H/Z3yq4TuRFZLMz6dT8v6l+EUHRY+
+	 RdKZfy5ZuXtYbFKslU2jF2T2jrJCCG4eYGY1cRMfDP9cYqMsMss+Di2DyV0b106V5/
+	 FwxteDelv92Ug==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BB9E1CD4F24;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 94DB1CD343F;
 	Tue, 12 May 2026 17:48:20 +0000 (UTC)
 From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Tue, 12 May 2026 19:47:29 +0200
-Subject: [PATCH 2/2] arm64: dts: amlogic: t7: khadas-vim4: add PWM-driven
- status LED
+Subject: [PATCH 0/2] Khadas VIM4 PWM status LED support
+Date: Tue, 12 May 2026 19:47:27 +0200
+Message-Id: <20260512-add-kvim4-sysled-v1-0-7178719a43e7@aliel.fr>
 MIME-Version: 1.0
-Message-Id: <20260512-add-kvim4-sysled-v1-2-7178719a43e7@aliel.fr>
-References: <20260512-add-kvim4-sysled-v1-0-7178719a43e7@aliel.fr>
-In-Reply-To: <20260512-add-kvim4-sysled-v1-0-7178719a43e7@aliel.fr>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMQQrCMBCF4auUWTvQhKRoryJdxGTUQZNqJi2V0
+ rsb2uX/4H0rCGUmgb5ZIdPMwmOqoU4N+KdLD0IOtUG3umut0uhCwNfM0aD85E0Bz94re7Ha2E5
+ BvX0y3XnZyetwdKbvVOVyjHBzQujHGLn0TaKl4K4bbWDYtj9QbGYBkwAAAA==
+X-Change-ID: 20260512-add-kvim4-sysled-8cc159524561
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
@@ -61,18 +62,22 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1966;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1413;
  i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=ljQWRXfzQQh8+VfKgDXENiNlXKLzV1x0O1tJjws741c=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQxZz+iOTDNUAxlZuft2cj74q23NnBk7RKjZxtJpo1iuW5
- vWhqr+jlIVBjItBVkyRpX+u5Yl3l4+e+bpHPQVmDisTyBAGLk4BmIjOf4Z/RlOWnGoRnP0j7dAi
- 190me1fo61VWLg7R+zvjztvgysq8LkaGaXu+2JwO5FQ6nr7i+4N6I9G19zji5roJWQsZqE8KuXC
- SGQA=
+ bh=GdO8sMea8p5bxncxQmac1W2vVytj8wlQkstRRnaIfAw=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQxZz+l2bwpmb9nEdfroq6MT7tJSbjdYdzIs/NZ3OnCU26
+ 17jLKGzHaUsDGJcDLJiiiz9cy1PvLt89MzXPeopMHNYmUCGMHBxCsBEggMYGc5/zeMyzspUTWFZ
+ Gl72LNu1ZZZKoHS9Wu2KmImXrJZ6JDL84VtbeO3ww98eX1LWeBjbsdTxJPh/6XSTCuKV9X3h7/S
+ bCQA=
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
  fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
 X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
  auth_id=744
 X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260512_104823_024553_7CA7F34A 
+X-CRM114-Status: UNSURE (   9.03  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,84 +95,39 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+This series adds support for the PWM-driven status LED on the Khadas
+VIM4 board (Amlogic T7).
 
-The VIM4 board exposes a status LED wired to the PWM_AO_C_D output.
-Enable the pwm_ao_cd controller with its pinmux, and declare a
-pwm-leds node with a heartbeat trigger.
+The VIM4 exposes a heartbeat LED wired to the PWM_AO_C output, routed
+through pin group pwm_ao_c_d. Before wiring it up in the board DTS,
+the SoC pinmux definitions had to be corrected: the original
+pwm_ao_c node was conflating two distinct pin groups (pwm_ao_c_d and
+pwm_ao_c_e) into a single ambiguous entry.
 
-Also, move the xtal-clk node to restore alphabetical ordering.
+Patch 1 fixes the pwm_ao_c pinmux entries in the T7 DTSI by splitting
+them into two properly named nodes. Neither alternate is in use yet,
+so there is no functional impact on existing boards.
+
+Patch 2 enables the pwm_ao_cd controller on the VIM4 and adds a
+pwm-leds node with a heartbeat trigger. The xtal-clk node is also
+moved to restore alphabetical ordering among root node children.
 
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
+Ronald Claveau (2):
+      arm64: dts: amlogic: t7: Fix pwm_ao_c pinmux definitions
+      arm64: dts: amlogic: t7: khadas-vim4: add PWM-driven status LED
+
  .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  | 30 +++++++++++++++++-----
- 1 file changed, 23 insertions(+), 7 deletions(-)
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        | 12 +++++++--
+ 2 files changed, 33 insertions(+), 9 deletions(-)
+---
+base-commit: 31f32e8cdf59291e467250dfc57d1a8c718f63d2
+change-id: 20260512-add-kvim4-sysled-8cc159524561
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-index 69d6118ba57e7..c41525a34b721 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-@@ -45,13 +45,6 @@ secmon_reserved_bl32: secmon@5300000 {
- 		};
- 	};
- 
--	xtal: xtal-clk {
--		compatible = "fixed-clock";
--		clock-frequency = <24000000>;
--		clock-output-names = "xtal";
--		#clock-cells = <0>;
--	};
--
- 	dc_in: regulator-dc-in {
- 		compatible = "regulator-fixed";
- 		regulator-name = "DC_IN";
-@@ -60,6 +53,16 @@ dc_in: regulator-dc-in {
- 		regulator-always-on;
- 	};
- 
-+	pwm-leds {
-+		compatible = "pwm-leds";
-+
-+		status {
-+			linux,default-trigger="heartbeat";
-+			max-brightness = <255>;
-+			pwms = <&pwm_ao_cd 0 30040 0>;
-+		};
-+	};
-+
- 	sd_3v3: regulator-sdcard-3v3 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "SD_3V3";
-@@ -155,6 +158,13 @@ wifi32k: wifi32k {
- 		clock-frequency = <32768>;
- 			pwms = <&pwm_ab 0 30518 0>;
- 	};
-+
-+	xtal: xtal-clk {
-+		compatible = "fixed-clock";
-+		clock-frequency = <24000000>;
-+		clock-output-names = "xtal";
-+		#clock-cells = <0>;
-+	};
- };
- 
- &pwm_ab {
-@@ -163,6 +173,12 @@ &pwm_ab {
- 	pinctrl-names = "default";
- };
- 
-+&pwm_ao_cd {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_ao_c_d_pins>;
-+	pinctrl-names = "default";
-+};
-+
- /* SDIO */
- &sd_emmc_a {
- 	status = "okay";
-
+Best regards,
 -- 
-2.49.0
+Ronald Claveau <linux-kernel-dev@aliel.fr>
 
 
 
