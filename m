@@ -4,59 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0405CD4F21
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 May 2026 03:53:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67436CD37B6
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 May 2026 07:25:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
 	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=09lfDxr7dmzWS/4kGUjVYXaIWOxNzODFKVwyMoljegY=; b=Yo/ocZSY8NzR+OP5tSO7z65ljA
-	Nt8+++5DsOaobPj8/dlSPbmtERYiJ8Dxm+rZywNaS5VDydTVUBwn9kT5RQOclhaqAMx1ZQSOe4Fei
-	rjZNPSIlWP8cue0QpnFXib5vZ1+bY9ZLhd52ZHI/9/CP3GfQdUaWrYoMrf9jJf6PijGPXDV9+BDWM
-	QX4RLlHy4MQSNz7a0fHvmyo+OGVva25Mt5h5fTFmCXC0TIF6+gnFtrL7CsUWyf3LrtuTH4otboteQ
-	2V1GIquQ8zZsvl268xsgPDKAF/Iw4kNiLQF8oe/T0Su3qGrH70LJm95G8ILekMRqkbJEs8VFS/DCi
-	NPoVdJ5g==;
+	bh=CGY6eia9Z/odETVBOZFcIoUhsWnMO5K+dvz6kdaJKLU=; b=hwE9221BnenK2oB8RAQ7QJHCjB
+	kzkqsMklkbPzs+7FcAWGXACHvSokJq+lLktOwAg8MGBwEvb2ud1lyDK/FKxsqySCCA35wCDTcqYlo
+	GpcJzOGvgq+oPKZo4Lz7SdzEWYre8aNQULm7IMdTWJiFV2fqWhnTfzkF/jB5jKImYcwoXwF4wfSyB
+	Cz+qSIGyr7pW9MNv6Cwbr0xMIqyLfcf2IJz6ZbNb5S9NuS/grIROPXA0a402sUFdg1IqC9JfWEiD/
+	eZE142P4H3FLkj/bHF4qk/rIwrwr0YM9rkaTJHslIP91WJITx36kcIEFMiSIIH1mPIojm4bYz1SaM
+	K+6T8cww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wN0fF-000000018wL-3QvL;
-	Wed, 13 May 2026 03:53:41 +0000
-Received: from mail-koreacentralazon11023099.outbound.protection.outlook.com ([40.107.44.99] helo=SEYPR02CU001.outbound.protection.outlook.com)
+	id 1wN3yY-00000001Z2K-1ZVK;
+	Wed, 13 May 2026 07:25:50 +0000
+Received: from mail-japaneastazon11023111.outbound.protection.outlook.com ([52.101.127.111] helo=TYDPR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wN0fD-000000018vX-25EM;
-	Wed, 13 May 2026 03:53:40 +0000
+	id 1wN3yV-00000001Z1F-3VRd;
+	Wed, 13 May 2026 07:25:49 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=j1iIWI92IAEkhLob7acAxoAh/dPPUxKu4cfKT41N+jjHwppjhNHvgjCOwIjoqX205qULY8idNIW2PwkiUHR8WLYXpf7tyJYyvmzI7sENCyHZf958i56mKHfQaszhuzHkeGxIovyVLv61i2ct4FrA8w4I7m77Tg19HtYSa3b9Fy+r6Z9gtf2dZQQeUCj5grXfL/+BMP0JgI7V0EIuQ4IieDAnDyQyPVrG4a5F9Eh+FiSsPsn5lX5lFvLgjSIWZc5arN4w6oOOFo9d3qC4lsfNT7S4MBTfyccoeHpSw6NoiiM7uuPdD8SfSiE7+Y2tvJUusYHnfZmKNPHxkuAOT8NDCQ==
+ b=WEKVIewheX41VaI8HsSmvQT03FRzjJXlBUdRCjx4c6elJM4KopFG9m3xTI7LeMtBaa9RDLzw3bkSH1tW2EVSIQpLCmbkOVFVisTO44cf8BIBIcsf1fg7wLMGIrQOyINXRNIBuyuR2wCYitn05lpPEuIJstX/nccdY4WREJ8AVttOen6WyYmT3pa+foIjURq9zIpZWIulf7w3TUPxek98y4PYxhdFzjL/dFtzwCTlW0ZtPMdrR4s9hYL9AXifYtI2nP3RRwADOazQwtYTbM7nCGfL6vIYcSOHdvfSA66aSEOnfvI5GKt0po6Wmn4c/Ju6aJta5cFE+M4vCF6EVwxBHA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tGhCh2OQkZFdnv4sRHIHoYbKGv1fjIyVUxMgrDgsNmM=;
- b=PEp/m9R+moBzezYIhgig21CAG8Yu/TCBBXihFlYVuCl7okBPnb42oMeOXTvjz+PZErohymEZTcnCt5lOZhEMwiOZF71obLeiku3Zvh0jYtS/G/C5nUCjrcFXMkD5XG0OsRyeeiPntw1qlLQyCxTUFCxaRk5t8Rhq+L/lXydueZXoCENWaZxrlSQggdKzZwm0fEgTVb78hFjIsdymkHE6CeNiuTpWiAJaokOtRilRJGyrd5hS2Lz04O4x+30nArz1zFHTjjcx3rZ4eAJhnBNINuwufCJNuyI3JgCPhDqe7w35J4L9laQ0T3+iXCfGFtTTaRv7CfL4fPMBMAZE+CnEDA==
+ bh=3/WwL7N/OvpByCUycYChuqKva1z9+4Ra0MlaDDK9xZU=;
+ b=lKNCAXNtY82fkawKK9iJRZa98Pe6xkS3h/Yt+iJ4JIy5CsAuMTWG1FLO2A4RCGuGqytRcIz8f7cFlZDtFneL511H6OB65Haxf2eWvO3VbSIdjNSSP4D36qpQIcoQlLuc68oze2zfZubCpz3C+gQd0mmndqURQZ6jjN0b0K1xpzuRecZXxzb69ygHFsRTeNrvLxAp3E+bEyGJjDiReCFrnfsjbnsDl1Ddn4ioDEpAXikeyhEfutknBf0ZdOYZexPZyG+kGPeNDyzZOJUAYfiQt76abxZTH4VYUltvvphNbdV2UZeTbGNcuQrvEIgpNOe/KLDiiYi+OLRj7InTJpTlHw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
  dkim=pass header.d=amlogic.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tGhCh2OQkZFdnv4sRHIHoYbKGv1fjIyVUxMgrDgsNmM=;
- b=rUkd0Dk56Mqk3wuoBnSf4sYc1TRbZlciEo6sJepvw4ITBzW1dZMilKOufnviRIf65M73QRSJybb0vuIwdZQf+JVjp8v+09NDNuwcQh/uIb9ih8hV2ZK278HEpZjqHAbYE1PG1PWZXiKB3T5YUwwnvmRedBzqFd/w0CU2Vm8clgdsyH98s3Y4xcerGJyLOi7JFi6QcVaPBXMDR/X05z/Ws6y/UyADmVpXcKMXHDLjSOmKpukdAIF9C26ypSWUfilw24BCImPQaVDVwE50DgB5z6xpkYLiqHE4XCvPoCpB2ou+8mPI5NYU7DufNf6Np2oh2zUOHWJCxX1Fn/9mmk5tsA==
+ bh=3/WwL7N/OvpByCUycYChuqKva1z9+4Ra0MlaDDK9xZU=;
+ b=tvHOHW6PDWGzdFJpOuLAUm3lJid3yhiaWyD81+HqCnk92lMrWEtxblokVT9afVlG0cShmrDIOLDOZlU2+jjjQnmYzN4EhDK8g95clhshNI3Psma+QT9j/kh24c+QbfkHqsxSYaCijporf3jt47YMt7CcXC/cA5Q4DnR4Sbn1nqXVXfX72mSH9w4uVkO+GowLv/aBNB4rF5ieP8Xci+0JUqBUocta7EwJnBJUHkVNnOnY7NSMEWKZYkAd1OfsFDGuEE1HqvqyAG3ePYqT/4H11Mys4/jG6tuP9JuXA+nc57oIqRBFCyIjhMG1oZpU3PFfG/hrTGApiaZwPzIQFq1xKg==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amlogic.com;
 Received: from KL1PR03MB7149.apcprd03.prod.outlook.com (2603:1096:820:ca::7)
- by SEZPR03MB7837.apcprd03.prod.outlook.com (2603:1096:101:17e::5) with
+ by SEZPR03MB7914.apcprd03.prod.outlook.com (2603:1096:101:186::13) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.25.17; Wed, 13 May
- 2026 03:53:20 +0000
+ 2026 07:25:40 +0000
 Received: from KL1PR03MB7149.apcprd03.prod.outlook.com
  ([fe80::2f06:12a:fff0:6506]) by KL1PR03MB7149.apcprd03.prod.outlook.com
  ([fe80::2f06:12a:fff0:6506%5]) with mapi id 15.21.0025.012; Wed, 13 May 2026
- 03:53:19 +0000
-Message-ID: <f597307c-d1c0-4add-b3f9-34ee1bda0a24@amlogic.com>
-Date: Wed, 13 May 2026 11:53:15 +0800
+ 07:25:40 +0000
+Message-ID: <5aa307a7-bd01-424e-87a3-1c7b4f787a1b@amlogic.com>
+Date: Wed, 13 May 2026 15:25:38 +0800
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 06/10] clk: amlogic: PLL reset signal supports active-low
- configuration
+Subject: Re: [PATCH 08/10] clk: amlogic: Add A9 PLL clock controller driver
 To: Brian Masney <bmasney@redhat.com>
 Cc: Michael Turquette <mturquette@baylibre.com>,
  Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -69,77 +68,75 @@ Cc: Michael Turquette <mturquette@baylibre.com>,
  devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org
 References: <20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com>
- <20260511-b4-a9_clk-v1-6-41cb4071b7c9@amlogic.com>
- <agH0FMzku3QRlB50@redhat.com>
+ <20260511-b4-a9_clk-v1-8-41cb4071b7c9@amlogic.com>
+ <agH3f3F0pUNOzdPB@redhat.com>
 From: Jian Hu <jian.hu@amlogic.com>
-In-Reply-To: <agH0FMzku3QRlB50@redhat.com>
-X-ClientProxiedBy: SE2P216CA0007.KORP216.PROD.OUTLOOK.COM
- (2603:1096:101:117::9) To KL1PR03MB7149.apcprd03.prod.outlook.com
- (2603:1096:820:ca::7)
+In-Reply-To: <agH3f3F0pUNOzdPB@redhat.com>
+X-ClientProxiedBy: SG2P153CA0031.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c7::18)
+ To KL1PR03MB7149.apcprd03.prod.outlook.com (2603:1096:820:ca::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB7149:EE_|SEZPR03MB7837:EE_
-X-MS-Office365-Filtering-Correlation-Id: 305aaf65-63b9-4d3c-afa6-08deb0a32bee
+X-MS-TrafficTypeDiagnostic: KL1PR03MB7149:EE_|SEZPR03MB7914:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8baa01b5-cb5a-434b-6d26-08deb0c0d5df
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016|22082099003|56012099003|18002099003|11063799003;
-X-Microsoft-Antispam-Message-Info: R68Uj9LQI8rj5Dla3KklwfvX7dOQkhruxEpUVggFQw6AwQRLVbvNfz8RF0QnFx9XubmqkUs3OBHq6eyeRA18HUvIs08Tj1vzkTbANpUXkY+IrAEPBT+VE+6ttbAuSxDiQQp8xQvymYP9/aU3kaGbUSP0f2/pinsjeikysP2lgFRT6YqOOZpkbdyKZyBlxyzOkzemczLlx+BMvDDftee3doo184WZX51YoD/wlt0Se7dSG0q6yuJOdqc7AWS/D/oxMwFh9S6Vq1QNbTksqRTjztjqJBzRuyIV+Y32T8cZzRvei/K3vHfPIJnvpwtdtuJZneGie+P5yu+BbypjRoRYbZdh8Dq3Y9j7bvc+7vaU8gdfwRi7HjPNmr8bQV/UdJEaulopugOT2a1PRyDd+Jskgk2cOX6epW2M32JOsRm7ARex2+9iebVClpv6GkgcQFxJZjUQ+XVVSLjHXiVhwOUBLLJdM4WrLKdLlOyJfcyChTLcA7qg/mjW/s5VUSotzm7siKT4KS1xWToMXx7sOofsJWqNsXP8he1W6UxLqoo8CLXnuZSCcmgwb3U+24Yyv3o3AXRgY1VRRH6RolFtIOjP/+y8wn/4jbFo/GBdz44/Ny5dycM2brZUBTRLbdMjRuljQ+ArAphTXdY1VAwXiItL7JM6bl4GTIZMk3wYnK98lfxt+QQZCDyoUyfFZON8CYaf
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB7149.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(22082099003)(56012099003)(18002099003)(11063799003);DIR:OUT;SFP:1102;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|1800799024|11063799003|3023799003|18002099003|22082099003|56012099003;
+X-Microsoft-Antispam-Message-Info: jv2whWq5RjHfJyoTHpyVwZijfpa/5i8bMXsIN1dJ3lsj6eNbEguA/O5gmg+W8uXzkng+3BolpYGUl3UNrYU+Bknj4bOnqVcanL3ckMlXnEqjG//82FEVEHeCptb1QFL4DaN9AB0ThEcriZ7H+pZo34XfZBeGQ+YVbLGreCdavkgRftflRwU5z8MPWB1ORBz5ThJhRjp8CXBPUeDTbEJcVBuNjtRTesAGuz2XuKhVdZFPmE71p7hshNFkOVzpvIIwsHjMOH2wuOYrdXG9Vp3jmKZdJCY32VFUZTv1IIjS/QQQvik8/imY0xlvDu6vkqUgHh3y4qevK0A7VUQvHql2gosl6eYnoETJFXj+HuNJEpyVc+mN04h15NOLoubdc+HZ/JNYodULQofAA1sRV6hHaS5d6XanE6DESQUAgk0Y46+KhgNXPVxxM90AlG61W/DVhgmAuwzW/BmtLOmc+FKhp8X34+VHJm5kETU4JNMGeuViqGM/44Lys7Onr7D6fDvgKMdWfVmgWdzl3CQSeSz+lXN1fLZqtvcicZjhCbvSYkPBF2YkL9vBDR6tbgUFlbuSQfjY7duQIspCARPbXRb03JaMdsro3E7EVydEqtTrpZsG+UFC0l2s6VcfjC6sMKx1WS1veDGotX8F+ZdM75SXstLav8uE44uDgjYajejoJwn7CyJZsqdjB3oxdpUriAGo
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB7149.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024)(11063799003)(3023799003)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NGVja0dSZVZPbkVObWFpZzNkWlhlYWFoUWxlQmh6SG5UY3FtWWlBcGFrcWdy?=
- =?utf-8?B?WnZNa0Q4VVRKZU13RWl0WTVJMXl5a0xlZTNOV0JJbTFNL2NLS0FkRStpc3hE?=
- =?utf-8?B?OXpmUVk5TXM5aGxQd2NVVExBUG5YMGR1VExCcFFKZDBGd1d4Y09VUnpicXNu?=
- =?utf-8?B?Y21GSnJqYkZTUTZHM2IzandIZTlrVGY0c3gwUE1IOVJ6TFdOVks5TE4zLzZt?=
- =?utf-8?B?OEZ2enVqenliVTkxNDhqTUJyaXV0cHlLVHk3MXhoQ0w5ZzFQc003YXFpTktj?=
- =?utf-8?B?ZElyRHJYTTFUTU5qZFVXWWhmUjBEakxKUkgxVG9zLytZTjNzWDhIVlRxc2Ix?=
- =?utf-8?B?ajkydTUrUW5nNlJyR2dWanhldktNeC9mcDdZVTlKTWdCTVVra3FIeVZCeXNp?=
- =?utf-8?B?NEl3SWtzR0F4citnNGF5U0JGK3JTQUE5NnJVZVFUMnpTWHZ5OUpZZkZsbDlT?=
- =?utf-8?B?UlRuWTh1K1VPd2xMMVJ4T3FqR3VKTGZQY0x5ZC91NVpHclFNSWpwak9LSnhD?=
- =?utf-8?B?RG9Jbm1sRTVzNUV1VHhlbG1Ka3JWQmc2MmZQVUJSbERGSmptbnV3bzNHWWJE?=
- =?utf-8?B?THlHS0g4NkFmRDlrZk1NbEg1aU8va050VkdpeVV0ekw2K1hVN0lHVk9GQ1Zo?=
- =?utf-8?B?bzd1ZGZvZHpYR3puaDJDSStsV2tLY2l6VXdpT2lpb0JCUUNudzMwbG1KbUtz?=
- =?utf-8?B?ZVNVV2dtdlZ6dlRoTVEyQk9TTXJRdFdMWlNxR1lkckdkb3JjODgyM0g5OEov?=
- =?utf-8?B?ZlFCTU1PWlAvWEQ2RW1SdHZLWXV4Mlp4RTB0aC9SRUxMZUtiRkFodmxiZ281?=
- =?utf-8?B?Y21YOWNBbTF2dG1OSjcySWlPY3JvR3YxdlVOOXFwMmJ2UzFRcGJ6THVvTlNz?=
- =?utf-8?B?L2Voc3o1STMyb0xVR0RTSVMyZ0xyS2lWaHNJSWlYVDdHUGJPUWFPcmhKSDBs?=
- =?utf-8?B?THBES3pMYnlLckgranBNSXJRN0o3Q0VVS0NTeGhSYnpvdWtvZ2puR04wZ0Zr?=
- =?utf-8?B?TUxkMS9TWEozb250dEpKcU9WRnRMYlVWUC8xRWQ0c2ZBamdHM2lwdENEcmgw?=
- =?utf-8?B?L3JVNnBkVUJ1SHdYbzRTVk1JdVJlR2lHK0poYllQVGtCbytxR1EvV0ZwQWZD?=
- =?utf-8?B?UThHY2EwRHJuSTdFbmlwMVgzUTlpVXFGWW02bjZseDF6M0s4QkwzaFRCbGNk?=
- =?utf-8?B?cEIxWTRwMGNERWlPR3FxT1hWdmhzdDlvcThpbTJMSEp5NUNOQnJBeW9ncEFM?=
- =?utf-8?B?SUFZODhqeG1DUXFZakpYSnpZYlFsWGYxeXFaRmt2SEtJWnVzQjcrUTI0eCs1?=
- =?utf-8?B?RXQ2Z2xDQ1RUbllLYTRlVXRtdzJ4M2YzdjVNbUlCb21LamhaNFMzN3ZWYnY1?=
- =?utf-8?B?NkQxZkVHSlFmSGlFdFF3ejh0eHBoOGpNZWFUaGMwZG1iWm1Fek85RDN2Z3hF?=
- =?utf-8?B?czgvQUNJLzRSS0dLRWNCa0sraUlYNTNyTlRQeU5lOW9QbHV0VEFIN3FwZUFi?=
- =?utf-8?B?U1pTQXh6WXRISjJTSk83cloveTkvSGE1aE4vMjg0R1lTTklFN0laUGV3bm1a?=
- =?utf-8?B?cmxHUlRNa2xHNlNjMUZrcE5CS0ZUa00zbHJ4dU5vNHNDNzlOV3JOS2s3cjQr?=
- =?utf-8?B?bUVKK0ZoL2ozR1g4T0I2amd1R210NHl2T0NDMkNkUWJmUWVVTTNTM2ZOYkhv?=
- =?utf-8?B?ZWN0L0VTcFJDMHdsbEh1SkF3ekZjeEJXVFcxTng0VDh6VGZucTQ0cTYrTThG?=
- =?utf-8?B?VTZIYWVCZ0VmSUFuSzBHZFhrbEJnMUI1aUg3cTBqVGpwb1NZb1I2eGJTZDNx?=
- =?utf-8?B?OE91VjFEZS9mTEMvTkxxOUFNZndvOUtxYXMxK0RKTUNZY2wwSnBSa01hQlNU?=
- =?utf-8?B?elRRaUFJUUFzVEhZY2U2ZHZ0T3VlVGF4Q3FrdnFMY09lbnpEYURHZ0t5eHR6?=
- =?utf-8?B?cGw5d3N1UnVSTk5kM0dFNVhUd3QzckRqZGFSU2lFbEtFRFhQRFZBNmlJSU9o?=
- =?utf-8?B?cU1lTjZ5cEpPZUozTllKdU54d3Q3NXVSTmxqNUV6ZDJ6TEJZWHl4UGtETmxW?=
- =?utf-8?B?SHhhUk5lejNSSW0rKzVOUElaMHdjQzZhdlZRblFlWWUwZG1odWxVMzlMZjdN?=
- =?utf-8?B?MXMyc2xTS2RMbjJJWTk1OXc2a2VwdGZYelhYY1IxVXRiR1pvQlp5U0g5TUps?=
- =?utf-8?B?QlM4c1BoVVk1Smgwd29pbGxtUVJNQ3lWUXJLRDBURkdsQ2Z6ejRGaXM2eWd6?=
- =?utf-8?B?V0hPeVhjVUZSeGZZTWRJOVF0dG5NbjJpdUNJYXRsYk1qcGx3bGpLc3JZUW1m?=
- =?utf-8?B?anhQRm0wVlIxeGpiV2dFVGhGRzR1b2FVQVNudTRiUHFpMU8rOVBBUT09?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c0g2STBtNXpsNFhLT0ZrVnBucE05d1IzcUFYU1k4TS95b1YzYkEvVTRIeGMy?=
+ =?utf-8?B?NTNXNmpEcVJucUNOM2ppcnVQUkNlQjdDWS8yTE1TaTVuTjN3NGtEZEc1NHRn?=
+ =?utf-8?B?VS82di9JWXA2UVFMZStyNHBjcTRiM0ZoL2E0dnZFbnpoTEdldFkzQTcra2Rn?=
+ =?utf-8?B?MU5qZjZEV3J4VnZ4bzMyMnJVeDd0UFpwQTBQSjUwdWFqUzBoOTNoeE5VOWp1?=
+ =?utf-8?B?WkhmNUhUdHByWDFYQ2V6YTMyL0V4VWhzbnFBUWh4YUQwN0pyVU5DUnF4VEdJ?=
+ =?utf-8?B?M2J1UzRpeVlLV0JPcjI5N3R1Z0RSYnhSQVZZOE10TDBDZ2tNNVdyeVFDTXY0?=
+ =?utf-8?B?ZW14Y3M2azRINXJUMjdNWVpYVmlyMW50RFN6alJJc29uREo5Y2dkSjhOdXNs?=
+ =?utf-8?B?MW4ydjA5TS8zNWxzNDJpdk1FdmNXYWJRbHNWOXlTSW9qaDRUeHNVQkEvd2Yw?=
+ =?utf-8?B?VTkrS1BhV2FmanIyaHpwMHNnYjRhT0xVN2NmcXkxM3VrTjZFQnVIRkcrV1FV?=
+ =?utf-8?B?SkpCaGFDREorRHlVNC9BMXdXeGNKdmpDc1Ftcy9FQUdOWVBTY1FRalZLNDN2?=
+ =?utf-8?B?cENPczRzK3R1R0tKQlNZOUxIRHEvNnpqbS85UUN3bjlqZ2tEZjlCNjV3N1Ju?=
+ =?utf-8?B?SEk0N3ZuM25rVWFoTkE4WXc5M3BWa1FOc0xHOTZUU2c4ZnljM0tOTm0wMEJN?=
+ =?utf-8?B?ZXcrc0YzOEVnS0xlSVNxMzlrQkdTSHZZUnhhcGQ0SG9mektRZW9nRE1aMnRh?=
+ =?utf-8?B?TXpLWjN2Ty85M1JrVlZCRmJ5TEorSEErZGJWdS9UQjUzcnVyY0VjaytyV0RG?=
+ =?utf-8?B?T3Nwa0U5VURBRU9RZ2s2T2JwUExRNzdSQ2tlNk1RM0N0SHJaWENnejNKZzJF?=
+ =?utf-8?B?Z2wxWHQvcjNTdWc3UXpTUm1ubjRUeENtMVlQejNSL0hyYkR3UU9YcEg2ZFBa?=
+ =?utf-8?B?TzNpOUJPRThnZHBEYWRpdzFVR29UV2c5RmVONVBZZWU0bVpEbUVjcUdkeUE2?=
+ =?utf-8?B?ZWREVml4c2lxSFNRTFZhU2doZklkRGpXWWQvWEVFNklNMm4rMkJZbUlVdlJU?=
+ =?utf-8?B?UFdKUVFPNWJmZ0VmNlBnbTFrK3FraHVMMDNMRzlPUXZ0bW9MV0FGNnF6ck43?=
+ =?utf-8?B?OTlwTnVsdG9sdkVMSXhaVlBvdjR6ZC9Ia2VyK3c5V2tibENQdUx4dFBYazlP?=
+ =?utf-8?B?NGhHN1p2WHdyOU43VHQwVElqM3lzeXFobjZOVXUvNFZZYlNUS2dQbHAvN1pE?=
+ =?utf-8?B?OVFpTVlrVFFmY0hYWnp2dWo1R2NRclFScHVvdGRaNjZqNUgxTWJkaU42NjI2?=
+ =?utf-8?B?RDBsQkJCSVhkNzd2TmUxSFZmYjZUYnAyVWNJenA1djdiK3h1YjFPcDNVa1VL?=
+ =?utf-8?B?UW8rVGdkQVJNNStTZnE0RFVyVWgrbmdVNVhsTXE0bEVmVTZrU1M0T0RqZkVz?=
+ =?utf-8?B?LzFROWlkY3pPN1pCVStndDVsTzkrYjZubnlCaVFhbERIOVdFakhMNkV1elVE?=
+ =?utf-8?B?K3JqZmxGSCt4cHh1ektmeFhuNTZOSFQ2TWR2Zy9BT1ZDQlRkbUZpM2diZHY1?=
+ =?utf-8?B?K0RjaExTMEhYYmtqZmpoN1BSWWFhMTFrakZRRnh5MWFPK2xQeE9mRUtJTFBm?=
+ =?utf-8?B?c0lwTTJLM29sWDBiMm5EeDVCdFhhZjg4QTFrV2l3eU94MnNRcFExcGswRStr?=
+ =?utf-8?B?aGpxSlJUZll3RE91NzFkc2RUY3BicXgrMXp5cUgrSElPYm5ETmY3QkJEdlNU?=
+ =?utf-8?B?aWhFTlRSRmREeW14UXpoN3Vwc2QzdWxMazZjWTZOVHQ2SnEwWFpTRUNna3BL?=
+ =?utf-8?B?Zk55ZGU2SkF5V09TcDl4eU1wQkI4S0tuWjZiMUVSQUtlUHpudlp6elRYK1VP?=
+ =?utf-8?B?TEFTRTNWQ1cyU3RWMitncCttcU5ic3lMY2xHZjF3NDd2cHRRWFRSd244Mkpw?=
+ =?utf-8?B?M1JoYXd5amZRZGt2UXZSYUgzTXRmdW1INEVBS0ZWRURqdEw1bmhySUgvU1JQ?=
+ =?utf-8?B?K1NtTVBOTSszeWo3ME5oZER4ZjhsaGFpUDFkT0orOEFWQzlHaXIyRE54QzdR?=
+ =?utf-8?B?UHcwRFlkTWJpU3dES3ltZFJUTmg3ZC83N29HbjJ0MHdYQVU0bkpBSHZrZ0hT?=
+ =?utf-8?B?QUM1a3ZOYTVLcllTS011L255Yk9mcDZDbmQyY3ZFbnVWRFdtRzZpNGZmTkxS?=
+ =?utf-8?B?Ynlwck9rZ1Z5bWdLOG9qMUlsc0lkdVhWeGR0aHAvNm5mbG5kTnR3N3ZFbkxU?=
+ =?utf-8?B?RVVkTGdYWGlBSlN0VXJXS292bXhTRU55MC9GbGE5amcwNjZNaEpFY3I0cVox?=
+ =?utf-8?B?Z1ZBWGpNbkpSQkVIa0c4Sy9ES2pjUmhhUi80VDdud0U2bFczQXJSdz09?=
 X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 305aaf65-63b9-4d3c-afa6-08deb0a32bee
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8baa01b5-cb5a-434b-6d26-08deb0c0d5df
 X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB7149.apcprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2026 03:53:19.8550
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2026 07:25:40.3254
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: l5GXOJP2k2mXLOUI6eibXRa4Qm29OcGM+aS12J30MTyveuOa1cugoXHVCos0k9J9nX3bEDxh/EQuZBfwlQRzBQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB7837
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1vhbUZm/Z1BahPP9WowulNZ5H86394Vwq1u5BLDO/ZItgLaxCCWOmyxuXruiIXR5K/yHLURf/oV9bTHAyp1GnQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB7914
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260512_205339_543134_2D9F335D 
-X-CRM114-Status: UNSURE (   9.61  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260513_002547_998061_8C6D3521 
+X-CRM114-Status: GOOD (  20.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -151,23 +148,275 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgQnJhaW4sCgoKVGhhbmtzIGZvciB5b3VyIHJldmlldy4KCk9uIDUvMTEvMjAyNiAxMToyMSBQ
-TSwgQnJpYW4gTWFzbmV5IHdyb3RlOgo+IFsgRVhURVJOQUwgRU1BSUwgXQo+Cj4gT24gTW9uLCBN
-YXkgMTEsIDIwMjYgYXQgMDg6NDc6MjhQTSArMDgwMCwgSmlhbiBIdSB2aWEgQjQgUmVsYXkgd3Jv
-dGU6Cj4+IEZyb206IEppYW4gSHUgPGppYW4uaHVAYW1sb2dpYy5jb20+Cj4+Cj4+IEluIHRoZSBB
-OSBkZXNpZ24sIHRoZSBQTEwgcmVzZXQgc2lnbmFsIGlzIGNvbmZpZ3VyZWQgYXMgYWN0aXZlLWxv
-dy4KPj4KPj4gQWRkIHRoZSBmbGFnICdDTEtfTUVTT05fUExMX1JTVF9OJyB0byBpbmRpY2F0ZSB0
-aGF0IHRoZSBQTEwgcmVzZXQgc2lnbmFsCj4+IGlzIGFjdGl2ZS1sb3cuCj4gVGhpcyBmbGFnIGlz
-bid0IGluIHRoZSBwYXRjaC4gSSBhc3N1bWUgdGhhdCB5b3UgbWVhbgo+IENMS19NRVNPTl9QTExf
-UlNUX0FDVElWRV9MT1c/Cj4KPiBCcmlhbgoKClllcyzCoCBZb3UgYXJlIHJpZ2h0LCB0aGUgZmxh
-ZyBzaG91bGQgaW5kZWVkIGJlIENMS19NRVNPTl9QTExfUlNUX0FDVElWRV9MT1cuCgpJIHdpbGwg
-Zml4IHRoZSBkZXNjcmlwdGlvbiBpbiB0aGUgbmV4dCB2ZXJzaW9uLgoKVGhhbmsgeW91IGZvciBw
-b2ludGluZyBpdCBvdXQuCgoKWy4uLi4uLl0KCgpCZXN0IHJlZ2FyZHMsCgpKaWFuCgoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBt
-YWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0
-cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+
+On 5/11/2026 11:36 PM, Brian Masney wrote:
+> [ EXTERNAL EMAIL ]
+>
+> Hi Jian,
+>
+> On Mon, May 11, 2026 at 08:47:30PM +0800, Jian Hu via B4 Relay wrote:
+>> From: Jian Hu <jian.hu@amlogic.com>
+>>
+>> Add the PLL clock controller driver for the Amlogic A9 SoC family.
+>>
+>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>> ---
+>>   drivers/clk/meson/Kconfig  |  13 +
+>>   drivers/clk/meson/Makefile |   1 +
+>>   drivers/clk/meson/a9-pll.c | 831 +++++++++++++++++++++++++++++++++++++++++++++
+>>   3 files changed, 845 insertions(+)
+>>
+>> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+>> index cf8cf3f9e4ee..3549e67d6988 100644
+>> --- a/drivers/clk/meson/Kconfig
+>> +++ b/drivers/clk/meson/Kconfig
+>> @@ -132,6 +132,19 @@ config COMMON_CLK_A1_PERIPHERALS
+>>          device, A1 SoC Family. Say Y if you want A1 Peripherals clock
+>>          controller to work.
+>>
+>> +config COMMON_CLK_A9_PLL
+>> +     tristate "Amlogic A9 SoC PLL controller support"
+>> +     depends on ARM64
+> depends on ARM64 || COMPILE_TEST
+
+
+Ok, I will add COMPILE_TEST in the next version.
+
+>> +     default ARCH_MESON
+>> +     select COMMON_CLK_MESON_REGMAP
+>> +     select COMMON_CLK_MESON_CLKC_UTILS
+>> +     select COMMON_CLK_MESON_PLL
+>> +     imply COMMON_CLK_SCMI
+>> +     help
+>> +       Support for the PLL clock controller on Amlogic A311Y3 based
+>> +       device, AKA A9. PLLs are required by most peripheral to operate.
+>> +       Say Y if you want A9 PLL clock controller to work.
+>> +
+>>   config COMMON_CLK_C3_PLL
+>>        tristate "Amlogic C3 PLL clock controller"
+>>        depends on ARM64
+>> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+>> index c6719694a242..77636033061f 100644
+>> --- a/drivers/clk/meson/Makefile
+>> +++ b/drivers/clk/meson/Makefile
+>> @@ -19,6 +19,7 @@ obj-$(CONFIG_COMMON_CLK_AXG) += axg.o axg-aoclk.o
+>>   obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
+>>   obj-$(CONFIG_COMMON_CLK_A1_PLL) += a1-pll.o
+>>   obj-$(CONFIG_COMMON_CLK_A1_PERIPHERALS) += a1-peripherals.o
+>> +obj-$(CONFIG_COMMON_CLK_A9_PLL) += a9-pll.o
+>>   obj-$(CONFIG_COMMON_CLK_C3_PLL) += c3-pll.o
+>>   obj-$(CONFIG_COMMON_CLK_C3_PERIPHERALS) += c3-peripherals.o
+>>   obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
+>> diff --git a/drivers/clk/meson/a9-pll.c b/drivers/clk/meson/a9-pll.c
+>> new file mode 100644
+>> index 000000000000..84b591c3afff
+>> --- /dev/null
+>> +++ b/drivers/clk/meson/a9-pll.c
+>> @@ -0,0 +1,831 @@
+>> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+>> +/*
+>> + * Copyright (C) 2026 Amlogic, Inc. All rights reserved
+>> + */
+>> +
+>> +#include <linux/clk-provider.h>
+>> +#include <linux/platform_device.h>
+>> +#include <dt-bindings/clock/amlogic,a9-pll-clkc.h>
+>> +#include "clk-regmap.h"
+>> +#include "clk-pll.h"
+>> +#include "meson-clkc-utils.h"
+> Sort the headers
+
+
+Ok , I will place dt-bindings header at the top.
+
+After updated:
+
+#include <dt-bindings/clock/amlogic,a9-pll-clkc.h>
+#include <linux/clk-provider.h>
+#include <linux/platform_device.h>
+#include "clk-regmap.h"
+#include "clk-pll.h"
+#include "meson-clkc-utils.h"
+
+
+If I have misunderstood, please correct me.
+
+>> +
+>> +#define GP0PLL_CTRL0                 0x00
+>> +#define GP0PLL_CTRL1                 0x04
+>> +#define GP0PLL_CTRL2                 0x08
+>> +#define GP0PLL_CTRL3                 0x0c
+>> +#define GP0PLL_CTRL4                 0x10
+>> +
+>> +/* HIFI0 and HIFI1 share the same IP and register offset layout. */
+>> +#define HIFIPLL_CTRL0                        0x00
+>> +#define HIFIPLL_CTRL1                        0x04
+>> +#define HIFIPLL_CTRL2                        0x08
+>> +#define HIFIPLL_CTRL3                        0x0c
+>> +#define HIFIPLL_CTRL4                        0x10
+>> +
+>> +/* MCLK0 and MCLK1 share the same IP and register offset layout. */
+>> +#define MCLKPLL_CTRL0                        0x00
+>> +#define MCLKPLL_CTRL1                        0x04
+>> +#define MCLKPLL_CTRL2                        0x08
+>> +#define MCLKPLL_CTRL3                        0x0c
+>> +#define MCLKPLL_CTRL4                        0x10
+>> +
+>> +#define A9_COMP_SEL(_name, _reg, _shift, _mask, _pdata) \
+>> +     MESON_COMP_SEL(a9_, _name, _reg, _shift, _mask, _pdata, NULL, 0, 0)
+>> +
+>> +#define A9_COMP_DIV(_name, _reg, _shift, _width) \
+>> +     MESON_COMP_DIV(a9_, _name, _reg, _shift, _width, 0, CLK_SET_RATE_PARENT)
+>> +
+>> +#define A9_COMP_GATE(_name, _reg, _bit) \
+>> +     MESON_COMP_GATE(a9_, _name, _reg, _bit, CLK_SET_RATE_PARENT)
+>> +
+>> +/*
+>> + * Compared with previous SoC PLLs, the A9 PLL input path has an inherent
+>> + * 2-divider. The N pre-divider follows the same calculation rule as OD,
+>> + * where the pre-divider ratio equals 2^N.
+>> + *
+>> + * A9 PLL is composed as follows:
+>> + *
+>> + *                      PLL
+>> + *         +---------------------------------+
+>> + *         |                                 |
+>> + *         |             +--+                |
+>> + *  in/2 >>---[ /2^N ]-->|  |      +-----+   |
+>> + *         |             |  |------| DCO |----->> out
+>> + *         |  +--------->|  |      +--v--+   |
+>> + *         |  |          +--+         |      |
+>> + *         |  |                       |      |
+>> + *         |  +--[ *(M + (F/Fmax) ]<--+      |
+>> + *         |                                 |
+>> + *         +---------------------------------+
+>> + *
+>> + * out = in / 2  * (m + frac / frac_max) / 2^n
+>> + */
+>> +
+>> +static struct clk_fixed_factor a9_gp0_in_div2_div = {
+>> +     .mult = 1,
+>> +     .div = 2,
+>> +     .hw.init = &(struct clk_init_data){
+>> +             .name = "gp0_in_div2_div",
+>> +             .ops = &clk_fixed_factor_ops,
+>> +             .parent_data = &(const struct clk_parent_data) {
+>> +                     .fw_name = "in0",
+>> +             },
+>> +             .num_parents = 1,
+>> +     },
+> You can use CLK_HW_INIT_FW_NAME() for the hw.init here and other places
+> below.
+
+
+Ok, I will use CLK_HW_INIT_FW_NAME instead in the next version.
+
+>> +};
+>> +
+>> +static struct clk_regmap a9_gp0_in_div2 = {
+>> +     .data = &(struct clk_regmap_gate_data) {
+>> +             .offset = GP0PLL_CTRL0,
+>> +             .bit_idx = 27,
+>> +     },
+>> +     .hw.init = &(struct clk_init_data) {
+>> +             .name = "gp0_in_div2",
+>> +             .ops = &clk_regmap_gate_ops,
+>> +             .parent_hws = (const struct clk_hw *[]) {
+>> +                     &a9_gp0_in_div2_div.hw
+>> +             },
+>> +             .num_parents = 1,
+>> +     },
+>> +};
+>> +
+>> +/* The output frequency range of the A9 PLL_DCO is 1.4 GHz to 2.8 GHz. */
+>> +static const struct pll_mult_range a9_pll_mult_range = {
+>> +     .min = 117,
+>> +     .max = 233,
+>> +};
+>> +
+>> +static const struct reg_sequence a9_gp0_pll_init_regs[] = {
+>> +     { .reg = GP0PLL_CTRL0, .def = 0x00010000 },
+>> +     { .reg = GP0PLL_CTRL1, .def = 0x11480000 },
+>> +     { .reg = GP0PLL_CTRL2, .def = 0x1219b010 },
+>> +     { .reg = GP0PLL_CTRL3, .def = 0x00008010 }
+>> +};
+>> +
+>> +static struct clk_regmap a9_gp0_pll_dco = {
+>> +     .data = &(struct meson_clk_pll_data) {
+>> +             .en = {
+>> +                     .reg_off = GP0PLL_CTRL0,
+>> +                     .shift   = 28,
+>> +                     .width   = 1,
+>> +             },
+>> +             .m = {
+>> +                     .reg_off = GP0PLL_CTRL0,
+>> +                     .shift   = 0,
+>> +                     .width   = 9,
+>> +             },
+>> +             .n = {
+>> +                     .reg_off = GP0PLL_CTRL0,
+>> +                     .shift   = 12,
+>> +                     .width   = 3,
+>> +             },
+>> +             .frac = {
+>> +                     .reg_off = GP0PLL_CTRL1,
+>> +                     .shift   = 0,
+>> +                     .width   = 17,
+>> +             },
+>> +             .l = {
+>> +                     .reg_off = GP0PLL_CTRL0,
+>> +                     .shift   = 31,
+>> +                     .width   = 1,
+>> +             },
+>> +             .rst = {
+>> +                     .reg_off = GP0PLL_CTRL0,
+>> +                     .shift   = 29,
+>> +                     .width   = 1,
+>> +             },
+>> +             .l_detect = {
+>> +                     .reg_off = GP0PLL_CTRL0,
+>> +                     .shift   = 30,
+>> +                     .width   = 1,
+>> +             },
+>> +             .range = &a9_pll_mult_range,
+>> +             .init_regs = a9_gp0_pll_init_regs,
+>> +             .init_count = ARRAY_SIZE(a9_gp0_pll_init_regs),
+>> +             .flags = CLK_MESON_PLL_RST_ACTIVE_LOW |
+>> +                      CLK_MESON_PLL_N_POWER_OF_TWO |
+>> +                      CLK_MESON_PLL_L_DETECT_ACTIVE_HIGH,
+>> +     },
+>> +     .hw.init = &(struct clk_init_data) {
+>> +             .name = "gp0_pll_dco",
+>> +             .ops = &meson_clk_pll_ops,
+>> +             .parent_hws = (const struct clk_hw *[]) {
+>> +                     &a9_gp0_in_div2.hw
+>> +             },
+>> +             .num_parents = 1,
+>> +     },
+> You can use CLK_HW_INIT_HWS() here and other places below.
+>
+> Brian
+>
+
+Ok, I will use CLK_HW_INIT_HW instead for single parent case.
+
+
+Best regards,
+
+Jian
+
+[......]
+
+>> 2.47.1
+>>
+>>
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
