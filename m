@@ -4,81 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEAB8CD4851
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 May 2026 12:21:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC2DFCD4F24
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 May 2026 12:35:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=q0kqZY+dQBG7AEfpB008HmnOeRPBgw2ohbtJRJqQX7k=; b=JLNMi/VZ27A1NhFX6stqCBRU9l
-	FKkEro/IUTl7S78J/DmZ0mbf18VDpVkZdrSRaO/urlKBY02G+BEb7As0p2Woao3LOY8SecRuKhz5S
-	50A+kCuNYUTNKNAVJQJH3iBLaeM5WBjA8GR2cXjn72HFtiGn0n/v5rtIP8B8/k7Kv+LA6EeVQh03Z
-	a2Yuy2mWc9wOsB2D3j/KUZSnbMtzcPNrtkEXd7JOz27U/w7AcNsvy4vnW1aWfyqEoVUUXOpe35xIQ
-	i8touQiLAzg3SsfzyqpnXHMjUUZYY7gMeocWK5IxMFkusJdj1RamtXHzHU69FuqhZw4sPKVyvvLP+
-	qXoIO8IQ==;
+	bh=L+mGR6CJT1aUFFKDpyophh8l+aTLrK/xCHRY/MaFTd8=; b=pX57nkXxSDWz9MONJKjkIVEev0
+	mvPX/DUGwr5CUGS9GY9xUmZnJ8ANEDPkOWmOddoKJXcQhHL03ApoZeuOoeXoCUYqdmEHldXycs9y1
+	yGC566LcP1cozWMbiYW+43R9fWzuXew9uHnRmjvjkkj703/L2SBwjlDW9CltCDk6BNQ5/pURTrLtO
+	m/Ck7WHOmI9obi7Iol1c8xZJRVk1u9C9OOJPZVA3YIHAD9CYmP3eJAfVSzbmhrorD8SZ0aGdXIdfD
+	eh0EUWaloYgbm5XeuCz7i+EUA13yiK2U7JJuKhn3AFsFpuEv/UxRccTEvCdHJ7OGG+5TQS9X/9aid
+	vof8fIjw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wN8ah-00000002Sqz-2EhI;
-	Wed, 13 May 2026 12:21:31 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1wN8oP-00000002VAb-1dzB;
+	Wed, 13 May 2026 12:35:41 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wN8ae-00000002SpP-1P1m
+	id 1wN8oI-00000002V80-45lW
 	for linux-amlogic@lists.infradead.org;
-	Wed, 13 May 2026 12:21:29 +0000
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-4896c22fcbaso58829085e9.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 13 May 2026 05:21:27 -0700 (PDT)
+	Wed, 13 May 2026 12:35:40 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-44b052142e1so3774457f8f.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 13 May 2026 05:35:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1778674886; x=1779279686; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1778675733; x=1779280533; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zyU4Sq6iUSpynWqIwbV4HNx55pG0GP3Xn1AeqfpoAcY=;
-        b=acaE6XLstju+sGNmXUxSTe7m8+Y0YmBUTaryiFNPLkocS6qjO9xiroNLQoNZ7bRsHh
-         RazWc7B58K3DoWpYt/r7Lo+YV1gCuDsyF3P2mt2kO1KKLbMj/KuHgRLKjomvuoK3i5dJ
-         YZs3Ffyr9nn22n5JnZxSvzTsz3kQvfAf+hx7mxYc8UIH+cDZ/pb8MYe1tUb1AWWEq4CT
-         f5wVKivLGguA4tzSQ9X1/C4snTyPtnJQsDHmwFuRtXLZVOeIOICUxU4iedm7JDq0IzeQ
-         SpsseOQ3T18xUQCwIZt7d6p1v0agZof29PBFVcrlK3MCPqpW3XkP2/MkwOu3dDSqr+EY
-         5vAA==
+        bh=AAlKYHkO3xfLK4ijlvnpDwU+hwyw+vWg0NuomY0f+2s=;
+        b=BwWMszT6GHSFjUf2Kg3zDbxS/YjSQ7LhVuIwO6Y0yjEFa9ejzvA2egEgy5lmR4+FCP
+         OPn/E2Gw7PjoO1MZvKe3JHGr00YLCAcdO6JV5wVli+Q1VdEnXcRh4lBNGbWjv2s4HDwH
+         HRlhQqd575kEgAVIGslnSFTNIOTne3qxb5FDsCOlEbs9QiJAMGBtb4hVG9N9eORKxcAu
+         8vk+8vmjKyDdFUf/huc77ARjGqdBFU8N4eNxOSRTMSWeRGPPfzgIQu6BOs6vhmePx7OL
+         VG6Ic/hVuWrwbAsQ8f75KBlEGFTtrGFcYKspg+M8avBnWq6xiU6573+pGYQ/CU4p4bq8
+         OEpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778674886; x=1779279686;
+        d=1e100.net; s=20251104; t=1778675733; x=1779280533;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=zyU4Sq6iUSpynWqIwbV4HNx55pG0GP3Xn1AeqfpoAcY=;
-        b=N3xwsmZkbhuuZQfWh8kRPXJa6oCf+xYS9Lvzc1VExEn+3Zyv3YnGz7rsk+UaXK6jrM
-         O38YBOBKbsXCVc4blh1Cgdq7eRHjdUCmuNvQxY1IkY3wv0qLQ0Byf5dxioT/TAfTL/uo
-         wLzSEZVVTM9qApZcMZszCA4xYIchgGhaVIzGfFdgKSZI53XQfKNe3V8yiQ7CaPlPYiCV
-         MV8hQqM9GOWOtWB/JNyrznuymnvILH4BC/vCoWb0Zv2452rwVLj+pReBIDDlkxMaDexB
-         F4ivaLObgrbJOBNT5Xt5nZiAlF4NnBPHUEX+JFzgCbss5g7RjsBaXyWzIZ/+n3VLrHTm
-         v/Dw==
-X-Forwarded-Encrypted: i=1; AFNElJ8fpm8V9yPnDcAHre3ZaUq8awPNTlTnK0UjrEEqdkR7B3cigaTFeZ4Roiu5BvQMQJgCbtOyVRVfF0EkfvVb@lists.infradead.org
-X-Gm-Message-State: AOJu0Yx2V/P27tp+mRfBwoZBNUY9/Fzp7cpvPLeX+Usz05Iof/GtAcmM
-	R3CKG9uDQXqDWok6za0F22BrhbPZLIMWKsF/tPaRxpdQ9z6TaYhPJysD3RQTW47ReDc=
-X-Gm-Gg: Acq92OEVttVwUUJNv/HWOjlzzk1KsAQG+5MLpbzWF0AemlNmwF2dYAFFoY96+HxslHT
-	97j6EhKuBNx5y88Jzz088MFj/PyYOrDko+NhkwQwG9fbfhEKz5J9d1UfdVDSKkx64eh//u/KuvE
-	nDrFP8bKdPtk0ZVCW5AJtQ2NkDGbQu6IwzBuKtH43NKyh/mdkBOk48JWti7ERgmcEe7Ol9t4Mvu
-	dFQlcZ0ACmE0WxIjEnaEzB5arLa+KbZ4qS9c+U1BwypepFCQ56amf01cG16cnMe3DF/jxP7AyZ/
-	3mY21ww27HZnnGhNW8LlLV82vgTn+obKokXricHAqRg1WxyHQIMzkobjrvYjKCuosAjRROXlKLI
-	kNkDaxy9VvrXfYP195SSEw8EeZqroA3L7ws5VrbEKzIGBPpmnvakn+mqRIJFofmAxQvdH/FYSKK
-	IMC4z3S2p4q2Iob/xR+ShWxY372Iqp+otlCATI8fGbPlpuPaTIgmRoso5vc7E3Zi3hpJL4PfcoX
-	5qnb+nq36XHDto=
-X-Received: by 2002:a05:600c:19ce:b0:489:a4:e578 with SMTP id 5b1f17b1804b1-48fc9a34777mr40690665e9.14.1778674886244;
-        Wed, 13 May 2026 05:21:26 -0700 (PDT)
+        bh=AAlKYHkO3xfLK4ijlvnpDwU+hwyw+vWg0NuomY0f+2s=;
+        b=DuWCP55lZXDJ2LzIhdUef0UXnSmRvDaQ+Wt0zUpE3MLkOgNoRuHrUxaDWsSJbFXvCI
+         8qvPK1p9nPCFAguv5XVriFndr3EuZUgKz+fvuoCPR0tdm+D697Ja04uiuEw4OXV12KD0
+         bpRfIwxFKs++Qjpjj550G8yC8/knu6yRMJKUfKIUuCT3yHYCoEQ5s6iOM3py/8+lVAUI
+         UBsdxfOBwu7av6bLF2QP1QHjjsUiqkgaqmOFEDptoKp7lK7WQLLmiiuS5C3Cipjiu+IK
+         2h0Q7VBnlU30jAxAbfD/gcsB6a4FCrMk96iLtAL5ZvQDmo0ip3fvF9oXrf7UkjfU/oWY
+         k02w==
+X-Forwarded-Encrypted: i=1; AFNElJ+L81RGvrnCo9q7Kojtuj0T+N41AjCg59P4SZrpzSUs21Im8x1kn8egGsmJv2kQlNTEpn8c0hJVMob6cS7b@lists.infradead.org
+X-Gm-Message-State: AOJu0YwPdZN25RBD0yFE0+p9vx67o5AJhI9pSCFprgKL0opKMIkpbawR
+	FqIasXdg8YQhhy6TmBCijqzDcULKo4ydWDeBbASLntx1fU9gqkjAYJFeNvpgNuYz7qA=
+X-Gm-Gg: Acq92OHk18nL0IgYOrM8wpMe5LW9QtEN1+7iZTG31Y4XE+k1t39NBQW+qvGiy44WHPq
+	loovVicuVwFIfmjaLzwANKgMu6ffJzzYsTzGJPkM+sY/dZz9uCHWJ9y8kanOPOM6lM/KqFzb+Ne
+	PQj1u0UlH6mNfDGO8AdEqZkxHybP6aGri0txQPbhUlWQpQZ9I81Mkl7VZFBosA6pt/qy8GzWDgI
+	XfNNSBoKsn7g97Dp8PJ4CjHlmfqy8KrHoKbna2JXJld/VXPjYZ033lz/jId/P5WzyMkReUe3wdA
+	G2K9J0r3nF+Mxp1VSMATrXlCPfffZIxUThBTLsstPXP+mZDEZ3CRaRt5gRTmYFvpMr1dRXMooBt
+	/TKpycUzUo+6JMQcrWsBePZPz17JFn4Enw5r2nCiCM6hQv+VR5f8Y981knytBJtMZrIddcB+jaP
+	zlskHwIYUBQJDnhDelhYVvp69xU4kl9sphhbD8dpsYy+U99TexYDT2uHiXbNTy8ubM+6o0MfBva
+	iVX
+X-Received: by 2002:a05:6000:25c4:b0:44f:f454:8a4d with SMTP id ffacd0b85a97d-45c59228fe8mr5283745f8f.23.1778675732839;
+        Wed, 13 May 2026 05:35:32 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:106d:1080:6ee4:8e37:145:d60b? ([2a01:e0a:106d:1080:6ee4:8e37:145:d60b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48fc8d68b14sm71555635e9.12.2026.05.13.05.21.25
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45491da03a7sm41009555f8f.33.2026.05.13.05.35.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 May 2026 05:21:25 -0700 (PDT)
-Message-ID: <f965ac54-f302-4e0a-b079-564abcaaa38f@linaro.org>
-Date: Wed, 13 May 2026 14:21:25 +0200
+        Wed, 13 May 2026 05:35:32 -0700 (PDT)
+Message-ID: <3ab93bcd-81d7-4917-ae6d-3b8e7ba81dc6@linaro.org>
+Date: Wed, 13 May 2026 14:35:31 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 2/3] arm64: dts: amlogic: t7: khadas-vim4: reorder root
- node
+Subject: Re: [PATCH v2 3/3] arm64: dts: amlogic: t7: khadas-vim4: add
+ PWM-driven status LED
 To: linux-kernel-dev@aliel.fr, Kevin Hilman <khilman@baylibre.com>,
  Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
@@ -87,7 +87,7 @@ To: linux-kernel-dev@aliel.fr, Kevin Hilman <khilman@baylibre.com>,
 Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20260513-add-kvim4-sysled-v2-0-3ec9779e8875@aliel.fr>
- <20260513-add-kvim4-sysled-v2-2-3ec9779e8875@aliel.fr>
+ <20260513-add-kvim4-sysled-v2-3-3ec9779e8875@aliel.fr>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -114,10 +114,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20260513-add-kvim4-sysled-v2-2-3ec9779e8875@aliel.fr>
+In-Reply-To: <20260513-add-kvim4-sysled-v2-3-3ec9779e8875@aliel.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260513_052128_400730_91C49486 
-X-CRM114-Status: GOOD (  11.27  )
+X-CRM114-CacheID: sfid-20260513_053537_142193_E716479B 
+X-CRM114-Status: GOOD (  12.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -138,45 +138,49 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 On 5/13/26 12:43, Ronald Claveau via B4 Relay wrote:
 > From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 > 
-> Move the xtal-clk node to restore alphabetical ordering.
+> The VIM4 board exposes a status LED wired to the PWM_AO_C_D output.
+> Enable the pwm_ao_cd controller with its pinmux, and declare a
+> pwm-leds node with a heartbeat trigger.
 > 
 > Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 > ---
->   .../boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts     | 14 +++++++-------
->   1 file changed, 7 insertions(+), 7 deletions(-)
+>   .../boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts   | 16 ++++++++++++++++
+>   1 file changed, 16 insertions(+)
 > 
 > diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-> index 69d6118ba57e7..fd1b983354a01 100644
+> index fd1b983354a01..c41525a34b721 100644
 > --- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
 > +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-> @@ -45,13 +45,6 @@ secmon_reserved_bl32: secmon@5300000 {
->   		};
+> @@ -53,6 +53,16 @@ dc_in: regulator-dc-in {
+>   		regulator-always-on;
 >   	};
 >   
-> -	xtal: xtal-clk {
-> -		compatible = "fixed-clock";
-> -		clock-frequency = <24000000>;
-> -		clock-output-names = "xtal";
-> -		#clock-cells = <0>;
-> -	};
-> -
->   	dc_in: regulator-dc-in {
->   		compatible = "regulator-fixed";
->   		regulator-name = "DC_IN";
-> @@ -155,6 +148,13 @@ wifi32k: wifi32k {
->   		clock-frequency = <32768>;
->   			pwms = <&pwm_ab 0 30518 0>;
->   	};
+> +	pwm-leds {
+> +		compatible = "pwm-leds";
 > +
-> +	xtal: xtal-clk {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <24000000>;
-> +		clock-output-names = "xtal";
-> +		#clock-cells = <0>;
+> +		status {
+> +			linux,default-trigger="heartbeat";
+> +			max-brightness = <255>;
+> +			pwms = <&pwm_ao_cd 0 30040 0>;
+> +		};
 > +	};
+> +
+>   	sd_3v3: regulator-sdcard-3v3 {
+>   		compatible = "regulator-fixed";
+>   		regulator-name = "SD_3V3";
+> @@ -163,6 +173,12 @@ &pwm_ab {
+>   	pinctrl-names = "default";
 >   };
 >   
->   &pwm_ab {
+> +&pwm_ao_cd {
+> +	status = "okay";
+> +	pinctrl-0 = <&pwm_ao_c_d_pins>;
+> +	pinctrl-names = "default";
+> +};
+> +
+>   /* SDIO */
+>   &sd_emmc_a {
+>   	status = "okay";
 > 
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
