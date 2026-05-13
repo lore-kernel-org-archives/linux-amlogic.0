@@ -4,120 +4,119 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFB84CD37B6
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 May 2026 08:05:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00212CD4F35
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 May 2026 08:22:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=pUED4vhFg0NooJQf00PYHJpwMJkTFwuOlwNwnPM8kAw=; b=v22g9/UrhCAVtRZvJM/NITxjNV
-	550Ct6njDEJkF3PN8Spa1ngGx838oHXzTgosYBorcil4tDj0tVn0FSCEEDjD/F7bIW+Bxr7n6+9u2
-	b6pYKmcJ0MjDk6TVSDexLBIm5SRV5jd7V9LxDDmqNHZ9G/ZYAZwM7Jzap0bmcjo6+9FHE9f5ias2f
-	kjQOpQov3gR+Dr1yd8MBc+0svH7CRw2pFIFeXLQvESS8bfVPvfDfJbQzRaBmF7ZhBAGhNTzpG8Ean
-	7cJ9dhfGrmPa2P0/lVx4MBzkYFJr+h2Y4EVJhIvYnngHwmaLH9uH6rx1Axf1SAwzV0q2Lk/OyPEAK
-	hzttUeoQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=/MP2aobiZdMLylo1JXa/jZFy9O3yQXVjHxOGrig30G0=; b=P5XT9BwXemep0v
+	N1ON0hbRX0Jj+zCRipxCNKSF+xjDUdfKvHAhnAnuJ4AXKKpl8nWJ/0nrIRoUEvO0gn/OOJp0ncGjc
+	X/MlG38TzJESZRBNDO/I3X3lvn8Bo0Fj2wKvqZFQdynLz2lHhnmO70LLAD0bJyQb6QiNxwiwHqruX
+	O46fgROuDO+wKkcNU9fjVn5esTPfDIWQUAKAsJ39unuhwgdt7dwik9SHYZJscJg0fO0VuEfns7IUM
+	6kqfdQQxBMYNUY9XSGPFvzTjvJ+TB3CAHqqSQ8aGeD1pdYBo56r9Rp5iSlbUzrtz/R+VVh6ZzElSr
+	RtiLwxsdw+CfVDCjDkTg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wN4ay-00000001gNS-3OCD;
-	Wed, 13 May 2026 08:05:32 +0000
-Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
+	id 1wN4rY-00000001ixO-1085;
+	Wed, 13 May 2026 08:22:40 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wN4aw-00000001gMB-0vWB
-	for linux-amlogic@lists.infradead.org;
-	Wed, 13 May 2026 08:05:31 +0000
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-45562c41ec7so2964432f8f.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 13 May 2026 01:05:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1778659528; x=1779264328; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=H9Oyh3R17SazgZSVRstGp1eP0rajxnRJzO9DzoLCeLA=;
-        b=j0/XBdYOGIDnIPjpktGhWpX/BkyEvVYm3ILTizIjyb0hREhvinvM4xsk81m4WDmJwb
-         1zE3X0KDWHwSj15CS/CforzQw8uepEEAaFrUIjp1b7cGGNoEMF0e5Met1E6SmCHvtdjn
-         v+EFO5QhEfP3MdHbfO32/irbD8uNjA5eVxVWe88kZChhAytRhPTH2u+/lyIrS4G8VYxw
-         Pny+EEsknUfHyZ2XPGCavY1jw6egMX1pEz8D+BKayzF01s+MN5epSArBDxawlGYNrQ1M
-         8gny6lJGOw6ppSYwiLOOIZnYS+Y/cE9rOZpoHwDlL1+hzzyVS/1bDcRMOLTpdz8yrBle
-         B5WA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778659528; x=1779264328;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=H9Oyh3R17SazgZSVRstGp1eP0rajxnRJzO9DzoLCeLA=;
-        b=BK7D/tosi9OGHNnzd0qkZ0V1hZOnoKUgES4PyupK8u/Ldq36/VMe2IG5Nm9CQZA4fx
-         0vEYZDIBlMAG9QDjDBQuPmi5gRJZvkqccQ+HTAVOs3fDicUxXKqOcJ2zACDahFFH6Qzq
-         TKEaznQBcA7WW3EZ4qutmOT61+nSI/AzV3tqvU/jsk76Wzq2yPxyXPIWXXouMWuXWslw
-         vJazrzYG3rMdg7g6Zi2ik9UyBiuKS9XlisFCcdUW8FyUsrY6dYjxX8OfUG5IdAjylueH
-         XRIm9hhgsxITX9mgZJ7qWQxpKW6X+ZcB+g2nkAnl3ABLqzBioeCjlezDcq4XYLewvC8A
-         39gA==
-X-Forwarded-Encrypted: i=1; AFNElJ/w7kNUSqlU7FMPKMk2yK3wtd5Jye3Yj7W9csxe+BjsjtCfnmelQHfmiAhklgXDYXkoc5Gw2nc/VSdYhUp/@lists.infradead.org
-X-Gm-Message-State: AOJu0YwjSyVeOFlws+wIkprRN4f+WIqXmj6PggQcH+YaYahxrQ21XkJd
-	+n0EKQeCNbSoYoUlzrEhtxH03hiy6Y7jxexmlr6Ym6t6TDTfdK9nBycwsLzsU7lKRHA=
-X-Gm-Gg: Acq92OFYTp5yu73S42yvjspjZwC5h1j7uLnrKsUH80yv5iCCInIF2HI7/Djs6+WtM6t
-	0RSCFRtsC+Orb5F13Y/pZtCxQojTQaAcNmgcOmwCgJeE1Xt1SFM2E02YTxE4A7GLp0a0a+Doh7f
-	IPzdfIgujjeCSF1ehEUC4JVPboNwfaSL5VYYKeAlzYwR24RBsxmjcm33vyVSWgMQU28OjGOQB6q
-	4bQgCuwjBPKB7v2lmUWn78Bz4Ge45P09s8XlSl/Og1K/YCaPd95/Pjnl5o5MntInf7atj82fbXz
-	KhulVobR5/tz83CZ1qbf9dr4+DF+Kq4yBOLLucpX6OlrLDUymueIf07H6h+2+7l9pr5/0EidaoQ
-	tXAp+ZEUYAVPl+3hQRbaBDjHTSUrUE7LhupuS7sfdbimWKvzluf6M5v21VqWDoqAEexVgp9iZcA
-	iTpqCKK4iAXUorVtPwnwojmPDFejDAeXLTwdyWiECnppIZGu1kq6MYPCoLGqFaUVd5qIrVoBN20
-	kKc
-X-Received: by 2002:a05:6000:288c:b0:43c:fe66:43ec with SMTP id ffacd0b85a97d-45c584a793bmr3189360f8f.14.1778659528110;
-        Wed, 13 May 2026 01:05:28 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:106d:1080:6ee4:8e37:145:d60b? ([2a01:e0a:106d:1080:6ee4:8e37:145:d60b])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4548e6a6470sm32980706f8f.7.2026.05.13.01.05.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 May 2026 01:05:27 -0700 (PDT)
-Message-ID: <7ad282ae-fffa-4d0a-9cec-65d8f6b40544@linaro.org>
-Date: Wed, 13 May 2026 10:05:26 +0200
+	id 1wN4rV-00000001iwF-26o5;
+	Wed, 13 May 2026 08:22:39 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 925D0440BD;
+	Wed, 13 May 2026 08:22:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D244C2BCB7;
+	Wed, 13 May 2026 08:22:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778660555;
+	bh=IRcBtVVf0aiqAc8MbpnoxdYYdE8xYEJIxc4vAPNSvdo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kSxa5TrL1BULHQroC+/wB7yAQEWNe6HcSWf7RJROtWzfHIpV+K/GBmNJpmHd64TqH
+	 mmrG1q+cyvxP0jF1o5pKduIF4b9K75nQWCYBEQWZJ1iSa0UXha5KOU9dVGXRS/FedX
+	 21ovFZ5hGDBskGXDZjdNLS5fXS6IQVAEu+RgTkHtd9c5CyOy195R24wDGh6/CWopFJ
+	 mBXcy8vUyTLJfTmmAgm6rCaRStnxUSsca6WrmRWA9MvWRmwQS+OpEbyW6550YDk4Lt
+	 1xLChBbEGRYHq24eXTrrPf7PFZevcO3UhKy0A98O5JTWV9MRX3OzeWu8Iba0q/EKog
+	 gnCwKVBLeIEyw==
+Date: Wed, 13 May 2026 13:52:29 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Liu Ying <victor.liu@nxp.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Clark <robin.clark@oss.qualcomm.com>,
+	Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>,
+	Akhil P Oommen <akhilpo@oss.qualcomm.com>,
+	Dmitry Baryshkov <lumag@kernel.org>,
+	Abhinav Kumar <abhinav.kumar@linux.dev>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Nas Chung <nas.chung@chipsnmedia.com>,
+	Jackson Lee <jackson.lee@chipsnmedia.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Mirela Rabulea <mirela.rabulea@nxp.com>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Hugues Fruchet <hugues.fruchet@foss.st.com>,
+	Alain Volmat <alain.volmat@foss.st.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	MD Danish Anwar <danishanwar@ti.com>,
+	Roger Quadros <rogerq@kernel.org>,
+	Parvathi Pudi <parvathi@couthit.com>,
+	Mohan Reddy Putluru <pmohan@couthit.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Mark Brown <broonie@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Linus Walleij <linusw@kernel.org>,
+	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+	"Andrew F. Davis" <afd@ti.com>,
+	Hussain Khaja <basharath@couthit.com>, Suman Anna <s-anna@ti.com>,
+	Ben Levinsky <ben.levinsky@amd.com>,
+	Tanmay Shah <tanmay.shah@amd.com>,
+	Erwan Leray <erwan.leray@foss.st.com>,
+	Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+	Roger Quadros <rogerq@ti.com>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+	dmaengine@vger.kernel.org, linux-media@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-spi@vger.kernel.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: Consolidate "sram" property definition
+Message-ID: <agQ0xZGrZJDmNFsX@vaman>
+References: <20260511165942.2774868-1-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 2/2] arm64: dts: amlogic: t7: khadas-vim4: add PWM-driven
- status LED
-To: linux-kernel-dev@aliel.fr, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260512-add-kvim4-sysled-v1-0-7178719a43e7@aliel.fr>
- <20260512-add-kvim4-sysled-v1-2-7178719a43e7@aliel.fr>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20260512-add-kvim4-sysled-v1-2-7178719a43e7@aliel.fr>
+Content-Disposition: inline
+In-Reply-To: <20260511165942.2774868-1-robh@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260513_010530_277806_3F5E4DAA 
-X-CRM114-Status: GOOD (  14.78  )
+X-CRM114-CacheID: sfid-20260513_012237_580690_E945CF19 
+X-CRM114-Status: UNSURE (   7.44  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,93 +128,19 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 5/12/26 19:47, Ronald Claveau via B4 Relay wrote:
-> From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-> 
-> The VIM4 board exposes a status LED wired to the PWM_AO_C_D output.
-> Enable the pwm_ao_cd controller with its pinmux, and declare a
-> pwm-leds node with a heartbeat trigger.
-> 
-> Also, move the xtal-clk node to restore alphabetical ordering.
+On 11-05-26, 11:59, Rob Herring (Arm) wrote:
+> The "sram" property has become a de facto standard property, so create a
+> common schema for it and drop all the duplicated definitions.
 
-Please send a separate patch for that
+Acked-by: Vinod Koul <vkoul@kernel.org>
 
-> 
-> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
-> ---
->   .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  | 30 +++++++++++++++++-----
->   1 file changed, 23 insertions(+), 7 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-> index 69d6118ba57e7..c41525a34b721 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-> @@ -45,13 +45,6 @@ secmon_reserved_bl32: secmon@5300000 {
->   		};
->   	};
->   
-> -	xtal: xtal-clk {
-> -		compatible = "fixed-clock";
-> -		clock-frequency = <24000000>;
-> -		clock-output-names = "xtal";
-> -		#clock-cells = <0>;
-> -	};
-> -
->   	dc_in: regulator-dc-in {
->   		compatible = "regulator-fixed";
->   		regulator-name = "DC_IN";
-> @@ -60,6 +53,16 @@ dc_in: regulator-dc-in {
->   		regulator-always-on;
->   	};
->   
-> +	pwm-leds {
-> +		compatible = "pwm-leds";
-> +
-> +		status {
-> +			linux,default-trigger="heartbeat";
-> +			max-brightness = <255>;
-> +			pwms = <&pwm_ao_cd 0 30040 0>;
-> +		};
-> +	};
-> +
->   	sd_3v3: regulator-sdcard-3v3 {
->   		compatible = "regulator-fixed";
->   		regulator-name = "SD_3V3";
-> @@ -155,6 +158,13 @@ wifi32k: wifi32k {
->   		clock-frequency = <32768>;
->   			pwms = <&pwm_ab 0 30518 0>;
->   	};
-> +
-> +	xtal: xtal-clk {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <24000000>;
-> +		clock-output-names = "xtal";
-> +		#clock-cells = <0>;
-> +	};
->   };
->   
->   &pwm_ab {
-> @@ -163,6 +173,12 @@ &pwm_ab {
->   	pinctrl-names = "default";
->   };
->   
-> +&pwm_ao_cd {
-> +	status = "okay";
-> +	pinctrl-0 = <&pwm_ao_c_d_pins>;
-> +	pinctrl-names = "default";
-> +};
-> +
->   /* SDIO */
->   &sd_emmc_a {
->   	status = "okay";
-> 
-
+-- 
+~Vinod
 
 _______________________________________________
 linux-amlogic mailing list
