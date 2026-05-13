@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB1B1CD4F3F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37D4FCD4F3C
 	for <linux-amlogic@archiver.kernel.org>; Wed, 13 May 2026 12:37:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,85 +12,83 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
 	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/9e4A73HSnD0b9tzzhWSGXq6+gYf5GuKnRAAC/lqnk8=; b=sSTR8OFaaX9awR
-	8k8jM3Si3XN+zrvQwfvNie4l+KY88+UWXQgRK079ymPaM1cy0sWJOUh3zlHXhGiI6rZnnp8tVTnu0
-	oqUz9krNQeGs+WSlOxgoBEhZbrtiX4TKSbdX3f3+sLMXEsGGvKzFoZp2z0U6T5COvNBeBbhjzqKY/
-	aKQHmhjOOUN6V05yR76jTAyXkuP8GMTxMBcaACr5cn35AGJJ2/56NgPBF24BWh87SFwcIZZoG7vQA
-	3DB/YEYSLl2nE3meYNHu+cuqGqC0IyzgKBvTkP/ZNzKnr0Br7WGSOSG+3f2INebp14JV4tvTlp4MP
-	rZiFydjADcGjwg3O+C0g==;
+	List-Owner; bh=NpIK6S7U4GdwruszLk3aEo/xUxpPIA/XflmujVnTFMM=; b=3BAJH2zAGU9s/M
+	qVnN4Tggq53Up4Giky5vQOxAlALCKP1yoeSrjty2HpolqyLfZZUoIz3JYL4lNLIBC5XSe9uY3vRnS
+	9f84vr6z90wEGYPOUWZc1QzQ9pRHno4+sANykSgundOo0M698aSCIrNaqgqEeTwTCiOW4T/cAZANM
+	JfTQsjiojWfjQd1rvjsgln72l4ey8P1Z6uvkgMNutUqVv2smN55bh82MOymLS8fSNHwKuqStoTEWq
+	nN/vsdJ/HNhbwmzeBNCKXB5/XxbUorvsLMGu7GeWN6TqhAJtxtDwMzeY/nXXRNgxEEAQ0QpnUBZoE
+	Ao7w74gPMUnGtWkx6VqA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wN8pq-00000002VVm-4BAD;
+	id 1wN8pr-00000002VVt-0Luh;
 	Wed, 13 May 2026 12:37:11 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wN8pm-00000002VS1-1aVK
+	id 1wN8pm-00000002VSF-1ZhT
 	for linux-amlogic@lists.infradead.org;
 	Wed, 13 May 2026 12:37:09 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4891d7164ddso37258235e9.3
-        for <linux-amlogic@lists.infradead.org>; Wed, 13 May 2026 05:37:04 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-488a14c31eeso45995835e9.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 13 May 2026 05:37:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1778675824; x=1779280624; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0OjILpIxhty0m5xDC2n3oCru1zYqs+0xnRTwGa41TTw=;
-        b=p6uFXVreZ0QNXgB2aaSoUXOi3q5d9pYTUEtMCvlucrDTuWEJjp+DYneEQGeVJhlDKz
-         x7pa1qF7oeabyE8UPLY3yQeXVPv26QqoBFBXRnBIuRYbKvavoatOC1Z7vkDyTOCIf0gM
-         o8cxrBGJjtJnckZk0jj0VQXehkEjRCKN3yDyYPXp7Qy/NTRsm1kOm1gXHGOb5Th6hmbe
-         rDXOW6smVaDSDBerM4PuGdKrfxT37LxES5T8wO5mB5ZlGFQaZsnl18TDE8LVjXPhDAUw
-         NXzAq26dWgzPtlEOvHWUoSXZc1R6AWle5QKP5Tcuuo1utU18uMrkAG9vHX/w5Vbkl9sR
-         4PeA==
+        bh=YOt16YkryKexmXJipwSE2igWxVT46laeHn0nxx/qJ1E=;
+        b=Prm32rwLTAlcrQYdtd4fa+gl+K8n2yD96slHlhKf87F9sVl3/L9/qLPIGTG6gGKKCx
+         BV4GB41X9sDRPF3qv1xpzM7W4ouOtIAsDJLnPync+AbMCX+x16YXhmRWxjHAoV0IdW/3
+         Fr3TxlGT/bEm3NUZ30GfsJ1yFt4K8g/eJLcoSKDKlgqq8/oMTOusZxZXT5jIYGqBVjMT
+         nYOKjpoU3ULMSv/rZxKYO90GOrLPTwcWcoKOCOmiZFbCqBmoCbtnrWQIBL34dGiODszA
+         qsC8pOGqI6xNCi+lXAf2OXB4t81UU/0gp7S0E90eyWq6N3JN4GkdHUs+XuFX2QzBxzrD
+         ZrkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20251104; t=1778675824; x=1779280624;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=0OjILpIxhty0m5xDC2n3oCru1zYqs+0xnRTwGa41TTw=;
-        b=LI1g3ontSLRxm2oIDvujIxiathgEsPIJhIJsTdZs3K0LCDtcMV4birKEoU9iNYjnWl
-         rtaatd+rZecEfpY7RcPCHgyPZBCQSe8tvnBnOLrTjbwoFE7jj7AoAWgnlm/H6wQw7ezv
-         PMVP/FPfTFyqcYMwejbhEKPArpCoULyWqIeW6QwJDHbj492isVqj6K73mAUK4n0tCAc1
-         aKJ6FGZ0LCrEVwKq57g1UdsmdcnuUX7W5MzCw9BPRrMGiWemW+3ycHEe/sPdC+7EjL3T
-         QB4x8wbmudsd8uh+2tqVRVRZlhGglguyA/dfC7x6AZ9IYqQRcL8ljg++dw/4Sdf5lwZF
-         weKQ==
-X-Forwarded-Encrypted: i=1; AFNElJ9re/vBVGTWdwVzv2JGdbErlHIV7hXjFxylc6GsG1/htRYr43XSx1P2owJ3WDNcgVN80bhKIdByHSgkf2Av@lists.infradead.org
-X-Gm-Message-State: AOJu0YydYxfxoQlLT+8Kbh69ievakgtrCJEeZYQIjStFOaJ4ib+k42fO
-	RvIFwxcbPRz/1rMfCkXEjgQrNME1zWvXYeVlvWJtb30BC+1UVFsPZ1xJ3mawhsiwHXw=
-X-Gm-Gg: Acq92OECOXzO7Xqi/DDaYRt8K9IR61fYfngqED+cmp2oe58Vef3j1S8iBmLrUWObQEf
-	G8jces+93oYlNYU8zWvX+Qlu+ala0ZWv1kKERywgPjg9exovytkDnDpqpVNKi9J7LI91/iiz2sQ
-	5ybADBe2SfWadgU/3fvXR6ro7Gr0y08VBJelbk5xixgDeLhCDGz2fF9UtEa6/xHmQIl5LDuqdCz
-	F9y2smSuKm9goi4c4RS7TpVTjmpqtWrshaLiKrNSPDmWvDFX90McVk7IDgAmWd+M4Ih08lFhb0D
-	MSuMIhPULLbVDty1TNZ6oMDYV/CqI+rCtlxNjMKB/CbIuYiz6yZMDlDvCi3KbnDfjixJxSgdd4q
-	mtAnuvAYnH7bG4H7eKAiPZH96hRIvb/8uZYpmzYWJucfL3dlRNbuzyNU6TwXUsIoRppOyHSJSt2
-	hH3cuDdud/tllVTYlEHSuFljLnilGJW6P8vCmO3Xnmps80
-X-Received: by 2002:a05:600c:5246:b0:48a:52d4:888c with SMTP id 5b1f17b1804b1-48fce9b5f95mr42872205e9.3.1778675823502;
-        Wed, 13 May 2026 05:37:03 -0700 (PDT)
+        bh=YOt16YkryKexmXJipwSE2igWxVT46laeHn0nxx/qJ1E=;
+        b=Gw9DKXPexHhthZip7RnI9a6Htkvd2xmuhh2dbCMPm4IYKTG5EkbNQCwqWajrcR/VXy
+         SrWsvt257M3SY4j407zO51H1jQmTHz1j7N3Gjdf9bzw3b0kgpuDEN94ujqWui+Rb90ap
+         Y7bSMqWvQ+++sh+B/jM22PM8f+F6B4oaXa9em6a42smiG0+/qFB21oSAo76H+8AVzIZx
+         qPTHnNg6G5/4cHfVNsuTm6d0tDA1zgYqNYCK1YIZzNA9e8Y1yS6UIKne4OKoNwx7N3a5
+         8p3OEWntskUaweIf82jkDBabmK493dXz3hH622aRNTZivZ8Lv3KNFXXZbB/fs2RZjkU7
+         ujzw==
+X-Forwarded-Encrypted: i=1; AFNElJ/h0rLR8GuN+Qm4eNJzA35YwqJctHj534Z22UWduShs9H3pBypR3aI9bVXk7RgeesY7ts88+Jx5rw0wkvwm@lists.infradead.org
+X-Gm-Message-State: AOJu0Yzb7BzMqKzckVwaN6TGaHHJB3aK6YHEbQV8rGcJMgx/uSaR/K2i
+	We1oE8W04ocN8Ip0QzIAGTcTb2jH0Jm3hoZKvfa/H9i3tCvtsuQIx4ZHhJfHCXkxuc0=
+X-Gm-Gg: Acq92OFb9lz2CZJWOsZxcRT+CAFwJWX8Ee8Y59eiFpf3Ox6AMGO7nh5QfIaeZ9BH7N2
+	QcLkgZFwNFpnP7LV2NevdII6wlBIRkNc/csuybMcbSldRUPZ7+E5kKRmxVTwAlSVh5I2zgR7uxI
+	k4SvNqw1pYH7/uejv2Kw9Oay6A6IyOvAagYeFNoknnpL6HHL5NCEcNmQMb0wPihqubiLnip76+m
+	++8ASex0/4HAyalyvPMh/KcGNxtiUZOpqeiHhsSn09e6AI5EZnWjKGKFm1noPwxVOZaoceeVUNo
+	xTUvkMi4QJaBulx9TrCcFsaNCp5QZm9K36x9oBHoxUUg8lcBC6NhTOOvbHPqqAN7WxrXxkz0C5/
+	p+7k+Mg79sptKvWcGG+HOEJkUAeG9qm6AcDED9pvLvsfkKiSB/AX9vchsZ7M0Ka0DV1pIBs5TZ1
+	nOYIoaG3rXsiLOkpSv4mSvzTBYZp+BtKaFT0ECSWCPny/L
+X-Received: by 2002:a05:600c:3ba2:b0:48a:563c:c8d6 with SMTP id 5b1f17b1804b1-48fc9a0dd8cmr50279545e9.7.1778675824336;
+        Wed, 13 May 2026 05:37:04 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48fc8d74536sm75006895e9.15.2026.05.13.05.37.02
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48fc8d74536sm75006895e9.15.2026.05.13.05.37.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Wed, 13 May 2026 05:37:03 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
+To: Philipp Zabel <p.zabel@pengutronix.de>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- kernel test robot <lkp@intel.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-In-Reply-To: <20260330-fix-invalid-property-v2-1-228c51c8de93@aliel.fr>
-References: <20260330-fix-invalid-property-v2-1-228c51c8de93@aliel.fr>
-Subject: Re: [PATCH v2] arm64: dts: amlogic: t7: khadas-vim4: Remove
- invalid property
-Message-Id: <177867582268.1433419.12828948814232574314.b4-ty@b4>
-Date: Wed, 13 May 2026 14:37:02 +0200
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260331-fix-aml-t7-null-reset-v1-2-eb95b625234c@aliel.fr>
+References: <20260331-fix-aml-t7-null-reset-v1-2-eb95b625234c@aliel.fr>
+Subject: Re: (subset) [PATCH 2/2] arm64: dts: amlogic: t7: Fix missing
+ required reset property
+Message-Id: <177867582359.1433419.10249035871609628577.b4-ty@b4>
+Date: Wed, 13 May 2026 14:37:03 +0200
 MIME-Version: 1.0
 X-Mailer: b4 0.15.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260513_053706_449990_AAD068C2 
-X-CRM114-Status: UNSURE (   9.11  )
+X-CRM114-CacheID: sfid-20260513_053706_461101_CB7C4CA3 
+X-CRM114-Status: UNSURE (   9.38  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -110,17 +108,14 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On Mon, 30 Mar 2026 14:11:21 +0200, Ronald Claveau wrote:
-> Fix introduced invalid property for Khadas VIM4 sdcard regulator.
-> 
-> arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dtb: regulator-sdcard-3v3 (regulator-fixed): Unevaluated properties are not allowed ('enable-active-low' was unexpected)
-> 
-> 
+On Tue, 31 Mar 2026 16:24:05 +0200, Ronald Claveau wrote:
+> CHECK_DTBS shows missing reset required property in T7 DTBS.
+> A new CHECK_DTBS with this patch does not show this anymore.
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v7.2/arm64-dt)
 
-[1/1] arm64: dts: amlogic: t7: khadas-vim4: Remove invalid property
-      https://git.kernel.org/amlogic/c/6f14ba3c3fa3d67b72e052f431f6776470eb2cbd
+[2/2] arm64: dts: amlogic: t7: Fix missing required reset property
+      https://git.kernel.org/amlogic/c/068bad69dc4d3ffdd8ecf41b455cc9e1617d00bc
 
 These changes has been applied on the intermediate git tree [1].
 
