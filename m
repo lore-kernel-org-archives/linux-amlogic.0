@@ -4,186 +4,154 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 592BCCD4F21
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 May 2026 13:26:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0A54CD4F3D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 May 2026 18:00:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mS+30M/OfDPJNFC8IaPJbpwS8AyVnyCGPJwVxNVEV8A=; b=341KSl86ySomoi
-	h2w3CDVorbiVQ6amqblpL4JjN4ycbfrlAiUfYG+rqboFa4t2JWqh8lZj92l/detPQbMVfhDiNUCPy
-	DvCKcc2DmDQVHt3sfgx/hXVj6eNe6NhGvUxITDydLBoaews2hJgvcxE4UwANtWrS3m8uprALLSwoo
-	KvI0hoRd8XdMKgk+LS6WWqJblQKEgIeawUWgZpai/ATlTR24NU96pRuYTnrfqyWU0/0OZJuVCj82x
-	RO13J0aJVBF8rs7Tgi9y3mAmr6ovlTfo09FjxqEJBSXuATZpZgxTlUSGkSwIiMWkH8RZmUGr7HeU4
-	Bld62eTR729hMVi1xPpA==;
+	List-Owner; bh=x15GA2uH29jYIcJP6ljCTGSugxK6w3GBtOLwMRW/N58=; b=yl0bKQA3e8it/Q
+	/ssr+u8KRo+AP1sU3rG8SjCjSEJ6mYzKVPAKBAE+yQX5HtnpwaRMz6Twyfh7gzbrFL6k1/0mC6bt3
+	/+IkYRLQOtJ7EgQ5/aMHlpxn9G3kl+lKFHkwPelmpZN3Yj/pVylkXS0bQ/YvSO2RL/5eHMFzDdjXS
+	3ORRHRxSe/oYhACgpO7+JLA7D4OUuAANSKPNG6QPHEj0RIQZ5EopNz0Y49IQcamkZ/3TFdvrVVJb8
+	w8zZ3Et/RhJ1BxVaASgs1IGU7+8290/BLet9rcZK+rlkqSYoFIPPQJjIm+e1WTgQjbBYjHokFVyfI
+	QhMrHJSB8wdAG/imBHEQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wN9bQ-00000002kHK-2Azz;
-	Wed, 13 May 2026 13:26:20 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1wNDsD-00000003PtK-14bZ;
+	Wed, 13 May 2026 17:59:57 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wN9bN-00000002kEk-2U9y
-	for linux-amlogic@lists.infradead.org;
-	Wed, 13 May 2026 13:26:18 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64D8nTBt2888500
-	for <linux-amlogic@lists.infradead.org>; Wed, 13 May 2026 13:26:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=1A2JIuivfxTHNE33J+4ZfrSn
-	HuAPEzqRV86Vt32AWoc=; b=k2+sVBYmVZ6IQNmSNTSEz1M1qd4wswCJFFvnyNxc
-	kR7lMnI/qoifc5tBfwJtdRKCTTiGgdsMz53yoebwClcfnY4u2z7KDVV8N0s5w8pM
-	W8cKzo6Pyw49XSwLNl/sGtES8RtxR5OCVPg+6l6DrndShstRX+wLtSHhICzhmews
-	uiyfDo5q4si49V20xzR96tc/NOXPeH4eyVCo+zdiJIPFh4emrffgdjOMqnK6ZoGV
-	oJ9ZRRaP4uFdbrNL+30g4uuGP9zSrK3seLT8SuPK1egfaPDPK2XirOkRWhQ/qoyn
-	8L7rD/LIjoc0YeAGlxRJ2/m/+QPHuV5C/YWW/sNOMVpgvg==
-Received: from mail-ua1-f69.google.com (mail-ua1-f69.google.com [209.85.222.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e4p4gh0mb-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-amlogic@lists.infradead.org>; Wed, 13 May 2026 13:26:17 +0000 (GMT)
-Received: by mail-ua1-f69.google.com with SMTP id a1e0cc1a2514c-95f4d5efbe9so4659915241.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 13 May 2026 06:26:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1778678776; x=1779283576; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1A2JIuivfxTHNE33J+4ZfrSnHuAPEzqRV86Vt32AWoc=;
-        b=W/ikqESy1J4jWck6+0wbX8YI7sWKcMP9ASTe9zxORvPPh80jhPiT5pAaUyWDdY/Utl
-         rm0spFgq7dV8weEojQGUY/TO2iEx7ZYpzTtIfVPtlEjOwriAyqxTBXWtEJoE4ojVx+cg
-         UjjK+EdIHGyHDp6jRejN7swMUxPTgivoXr0sTIA4k5huexTt4QBBKpf/xtOFrtM0N3Ct
-         RR5R5PL85cBqMweBXFLejIizPBkwrpuIC29sXtkyfddYLhATIWFFc0nlWxpKuXHeKMDb
-         CPxS6//ndcrYjRr3vO7gVJ0c8BpCwSwJD/c95zPj87DUzqpiMryAPmzMjUr5/MMrLv9r
-         aHTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778678776; x=1779283576;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1A2JIuivfxTHNE33J+4ZfrSnHuAPEzqRV86Vt32AWoc=;
-        b=h7W26Ohb635OU39YXHga5T1eql+zxwi0ep85uwNOzHr1YSxM+bPtlq4C/nhG9nkFdW
-         PLMryVn2ZCNhpnkNDrVZAVH2ZLF4qM7ZpWS1UD3uA7nfyF1DAZGrm+z5tib/pwozLXBO
-         a084Yzt+db1tICLIoNuNvtu1JAZ//6xQFGDMZRD7wGxSttD+U6kg4seKIeGIiT1xpDgN
-         JCcgQ5aZcW+bnszb4mSDwFbraDpU7gjONAXS8mvh0fbog6c7AioroQ/1PjjYeDgaVuFn
-         eBVclVgohDfO8swmDb3T+zQVrIxLBK2BFG0xwfGjPLsyTE0urNkY+PSkgtXu73Z9rS4E
-         1zpg==
-X-Forwarded-Encrypted: i=1; AFNElJ9PgoscO5ug6He9wIckO52vyZVBqw+N76+S4jg2csW2afPPAgubkS3J/cytuokGct0ryxsR5MXjiB4RzNBI@lists.infradead.org
-X-Gm-Message-State: AOJu0YwLgfSS1m3Rrm9qarT4jnBsCojfV7HlEnRL4FdHdPLoLJagQ6xE
-	HxvQ2FSEd/HB8W3T20Hd4S8bE8/1FXbycJm6IyBDfV2pA3ow+vyWyjiIcmOvVBbCoKFQhHoDRZA
-	8Gee41RxoSdc7zDHA+zNvQ2dnlXG5fY25E2KxPsvpkAjqQhIUTay9AKVpk9K8jEko3Z8XTwdhZw
-	==
-X-Gm-Gg: Acq92OFN81ZxAI8U5vbmEAXQr1rC2gT/kWCi2B1SA43IqRIwC2iGq5PLLCcGEmlbHs4
-	r7rLhSdnWb2QggjZVjODXcWrJexfG85C9WZivrAqtLnwVIIIdj6GVMyiBEGGzcAiDC07XVIJP8y
-	sMKDJYMY6zsWEPNKtluVpUXm/01mWUsdp1tyivac7XGoqMRwlJaICSHkpw5lEWfRtq5XsoJuegF
-	wKYvyFE0NqviRrudL0+73aM7tlStvHKm9j8Ma3slztgkpj71FEENFRoUMNEv9+0zNTjtw5pHu6/
-	0j2I5AcxCuiqN8/N6UZeJB4LY1s+yYrvftBjCnjSbOyd0WjHp0OMVQDR97tZqGz+T3ti4KKvnfF
-	jp4IWa5dBH3JcY7/Y/9NJmdHCNzc3kQFsNl4cDFjKJjzPIYPV1lRUdFCB0/RcbNjr5sCA3XHlwp
-	eJJWO59zJ81wQwz9pkgMa0B8pKSXVNkek7jSA=
-X-Received: by 2002:a05:6102:c4c:b0:5fe:af0c:79f5 with SMTP id ada2fe7eead31-637733e73b9mr1509870137.5.1778678776033;
-        Wed, 13 May 2026 06:26:16 -0700 (PDT)
-X-Received: by 2002:a05:6102:c4c:b0:5fe:af0c:79f5 with SMTP id ada2fe7eead31-637733e73b9mr1509786137.5.1778678775359;
-        Wed, 13 May 2026 06:26:15 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-393f60db2f3sm41011661fa.22.2026.05.13.06.26.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 May 2026 06:26:13 -0700 (PDT)
-Date: Wed, 13 May 2026 16:26:12 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Liu Ying <victor.liu@nxp.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Akhil P Oommen <akhilpo@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jesszhan0024@gmail.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Vinod Koul <vkoul@kernel.org>, Nas Chung <nas.chung@chipsnmedia.com>,
-        Jackson Lee <jackson.lee@chipsnmedia.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Mirela Rabulea <mirela.rabulea@nxp.com>,
-        Detlev Casanova <detlev.casanova@collabora.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Hugues Fruchet <hugues.fruchet@foss.st.com>,
-        Alain Volmat <alain.volmat@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, MD Danish Anwar <danishanwar@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Parvathi Pudi <parvathi@couthit.com>,
-        Mohan Reddy Putluru <pmohan@couthit.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Michal Simek <michal.simek@amd.com>, Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        Linus Walleij <linusw@kernel.org>,
-        Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
-        "Andrew F. Davis" <afd@ti.com>, Hussain Khaja <basharath@couthit.com>,
-        Suman Anna <s-anna@ti.com>, Ben Levinsky <ben.levinsky@amd.com>,
-        Tanmay Shah <tanmay.shah@amd.com>,
-        Erwan Leray <erwan.leray@foss.st.com>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Roger Quadros <rogerq@ti.com>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, imx@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
-        dmaengine@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-spi@vger.kernel.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: Consolidate "sram" property definition
-Message-ID: <ldpcnzvloffhiubmv6zxhfzqo4oz3ntkmav6zjprmbnsrxd46z@t72iga4xvaji>
-References: <20260511165942.2774868-1-robh@kernel.org>
+	id 1wNDs9-00000003PsK-0kKF;
+	Wed, 13 May 2026 17:59:54 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id BF4CF407EE;
+	Wed, 13 May 2026 17:59:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B184C19425;
+	Wed, 13 May 2026 17:59:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778695191;
+	bh=dmsAP9VeVH8ZarAqxYjVIHNXsgqomDY2LxrLOfBtREs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=K9BOyPMwzZtZ1o8TWVOTN1hX2Xu3tgzhJqLl//vPECR5ncJg6vT+X2ORxne0vrhno
+	 6LCPwrqbJ4UvLYBBpBKG0ht49nClZjpcu3cXU9ihJQtqITKu5/IHX7+HVg6LkoMbrr
+	 UcbH0CHuxtzo4+Xs1suhSAfPnTwdtLdIgAyJNDNPFZTDwESH/Hyn10gwCWuFtkGj7/
+	 gfsIm8/UdP9ly5bu93ZPeW6BfGtTGnTJ/EW10QAJmMlVUFYeOY9cpX0VZdLj39B+fi
+	 sAjvx1fDXB0APZBkkf5O1C6Ybk6yXtpAhC43Kj0yQKs5RVh1ZQsUyikf5tUiZZUbYq
+	 UmEqxTJSKhh9Q==
+Message-ID: <de3ae096-5edc-451e-8e93-74012797ce48@kernel.org>
+Date: Wed, 13 May 2026 19:59:33 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: Consolidate "sram" property definition
+To: "Rob Herring (Arm)" <robh@kernel.org>, Liu Ying <victor.liu@nxp.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Rob Clark
+ <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Akhil P Oommen <akhilpo@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar
+ <abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>, Vinod Koul
+ <vkoul@kernel.org>, Nas Chung <nas.chung@chipsnmedia.com>,
+ Jackson Lee <jackson.lee@chipsnmedia.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Mirela Rabulea <mirela.rabulea@nxp.com>,
+ Detlev Casanova <detlev.casanova@collabora.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Heiko Stuebner <heiko@sntech.de>, Hugues Fruchet
+ <hugues.fruchet@foss.st.com>, Alain Volmat <alain.volmat@foss.st.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ MD Danish Anwar <danishanwar@ti.com>, Roger Quadros <rogerq@kernel.org>,
+ Parvathi Pudi <parvathi@couthit.com>,
+ Mohan Reddy Putluru <pmohan@couthit.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Michal Simek <michal.simek@amd.com>, Mark Brown <broonie@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Linus Walleij <linusw@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>,
+ Felix Fietkau <nbd@nbd.name>, "Andrew F. Davis" <afd@ti.com>,
+ Hussain Khaja <basharath@couthit.com>, Suman Anna <s-anna@ti.com>,
+ Ben Levinsky <ben.levinsky@amd.com>, Tanmay Shah <tanmay.shah@amd.com>,
+ Erwan Leray <erwan.leray@foss.st.com>,
+ Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Cc: Roger Quadros <rogerq@ti.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ dmaengine@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-spi@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20260511165942.2774868-1-robh@kernel.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
 In-Reply-To: <20260511165942.2774868-1-robh@kernel.org>
-X-Proofpoint-GUID: 2sR23AbnPEFN0S_3ulNmY7zMEBDv2qjI
-X-Authority-Analysis: v=2.4 cv=DOS/JSNb c=1 sm=1 tr=0 ts=6a047bf9 cx=c_pps
- a=UbhLPJ621ZpgOD2l3yZY1w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22 a=VwQbUJbxAAAA:8
- a=EUspDBNiAAAA:8 a=VwfjHJzzgIKQiJfiZN8A:9 a=CjuIK1q_8ugA:10
- a=TOPH6uDL9cOC6tEoww4z:22
-X-Proofpoint-ORIG-GUID: 2sR23AbnPEFN0S_3ulNmY7zMEBDv2qjI
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTEzMDEzOCBTYWx0ZWRfX2NmaG4NVi4mE
- CePRtdjFgHB8qY5EyBu3HCIFNsuiss3BAF9LTdB2n+J7ukaj2uIfXlzSaq8Mm4BjobxAK+VtREM
- 50FsS10uctLJxbp62qFgIBU4G/u0QA2WC9TNYKv63TrCwNN5CbkgGXlgBilJsAkZBbYtY47mhOW
- JV5kWusV+qXGrZPAmWc/ZApJczpxl5O7O1VH7mr1tfflU3lndHPr1qaN7+B5w9NRgV6Ft85f8zt
- N1hs5UeziHGNvxWjdjYLqWJYiaX/1tPPnhnPPImUv8KatmDMsUFof1CPHxTOcSMHHNEJsXejvoa
- BuFovecoxmcbtpfckF6RLZqnwJmdnjeTZpT9oUknJUqw0NcV/PDbdD4QgaeOyll1PqFRPQz0cDU
- UjyxgN8dWUyDGpLOMr9MBhLCtMAVujJ3tpskeGnHwq9t77q2FzbT2lnS7dH93CCG1PrsgD0YZt0
- hXRwVnOvBpfe3ifce5w==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-13_01,2026-05-08_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 adultscore=0 impostorscore=0 bulkscore=0 clxscore=1015
- priorityscore=1501 phishscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605050000 definitions=main-2605130138
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260513_062617_640342_3427C426 
-X-CRM114-Status: GOOD (  14.68  )
+X-CRM114-CacheID: sfid-20260513_105953_260539_B06B781B 
+X-CRM114-Status: UNSURE (   7.03  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -200,40 +168,16 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, May 11, 2026 at 11:59:36AM -0500, Rob Herring (Arm) wrote:
+On 11/05/2026 18:59, Rob Herring (Arm) wrote:
 > The "sram" property has become a de facto standard property, so create a
 > common schema for it and drop all the duplicated definitions.
 > 
 > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  .../imx/fsl,imx8qxp-dc-command-sequencer.yaml |  2 +-
->  .../devicetree/bindings/display/msm/gpu.yaml  |  6 +----
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Acked-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> # display/msm
-
-
->  .../bindings/dma/stericsson,dma40.yaml        |  8 ++----
->  .../bindings/media/cnm,wave521c.yaml          |  2 +-
->  .../bindings/media/nxp,imx8-jpeg.yaml         |  6 ++---
->  .../bindings/media/rockchip,vdec.yaml         |  5 ++--
->  .../bindings/media/st,stm32-dcmi.yaml         |  6 ++---
->  .../devicetree/bindings/net/mediatek,net.yaml |  3 +--
->  .../bindings/net/ti,icssg-prueth.yaml         |  2 +-
->  .../bindings/net/ti,icssm-prueth.yaml         |  2 +-
->  .../remoteproc/amlogic,meson-mx-ao-arc.yaml   |  7 +----
->  .../bindings/remoteproc/ti,k3-dsp-rproc.yaml  |  8 ------
->  .../bindings/remoteproc/ti,k3-r5f-rproc.yaml  |  8 ------
->  .../remoteproc/xlnx,zynqmp-r5fss.yaml         |  9 +------
->  .../devicetree/bindings/spi/st,stm32-spi.yaml | 10 +++----
->  .../bindings/sram/sram-consumer.yaml          | 26 +++++++++++++++++++
->  16 files changed, 48 insertions(+), 62 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sram/sram-consumer.yaml
-> 
-
--- 
-With best wishes
-Dmitry
+Best regards,
+Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
