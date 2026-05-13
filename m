@@ -4,82 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31423CD4851
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 May 2026 07:40:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B84CCD37B6
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 May 2026 08:04:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Subject:From:To:MIME-Version:Date:
-	Message-ID:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Bk6pWXZ2NLM7HvNRQ+uRqHFOB7efVEbHOfgZ6Fl6gAM=; b=cfNzOQT4ZfgP3o
-	bypQm2ikVuP3cd4IhQEBTzHMEOlcRPLc4LNI5VaJEvZg1njxUExVNYCny27AlbadoQYE+InSlWLMS
-	080jg7IG8VVl+0MaAzmUP+mWfK99NjoPDz+xFjSe+R1zAUI/4YgsXbQQooy1Ut/drMeQSqVLvRcEe
-	vdJ0gxiwA5u6oXGkKxQ4C4id97w4/CDZnNs869lQne6MKbFdBDgqtvDOMo4WnOg4cGQJ5I877mQ5Q
-	GQto3qyzij5eL+Y/A/YZYwlNiYQyfEsHuWwFGoXw6rURE0fdu0xnoZgdarj0m5p1W3cRiO634pRAy
-	Iilq86XyXIEu1Zs1X/DQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=SvugLEQ9ZTWdV9pNTbZaD848gyB7waamAlT9gAfYXm8=; b=UUSaPqOBq3HLQMgH9ZFS44dd4v
+	gly6Ub2+GcqaRaAzDgKVd3vqaZCTAzAuXOqIozjJRIgqseMao2xr0O1Z6IlRgBEGFnfzjL71lNZMT
+	ekXgRCpF7+u724kZhGe2GfJALCzTfVGsmin2H+XNPVbvs5oXB64uO17f6kVNRO4xrDdvGhCtILYsV
+	QyeUz1GnCnujmysowCMqd+8StdGaXxLM4nlZzQdQIAQvpInvNriBPmydi/ps2GcAE5LTH2mPWxcx6
+	2v/H3MJd0skfkVmq8Fo+8MUe4mivIDmsMnwC6YZQRrASTJrXoM71Bxs0YHUvnP9Dpuxvz4eLI6nqh
+	4pcqKoLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wN4CO-00000001bGE-2Rj5;
-	Wed, 13 May 2026 07:40:08 +0000
-Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
+	id 1wN4Zp-00000001g2T-1Ixo;
+	Wed, 13 May 2026 08:04:21 +0000
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wN4CL-00000001bFE-3dj1
+	id 1wN4Zm-00000001g1L-48gV
 	for linux-amlogic@lists.infradead.org;
-	Wed, 13 May 2026 07:40:07 +0000
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-44dd5cb0f81so4732384f8f.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 13 May 2026 00:40:04 -0700 (PDT)
+	Wed, 13 May 2026 08:04:20 +0000
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-43d75312379so4856844f8f.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 13 May 2026 01:04:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1778658003; x=1779262803; darn=lists.infradead.org;
-        h=content-transfer-encoding:organization:autocrypt:subject
-         :content-language:from:reply-to:to:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=k+EUVRrLLFJIwYQfTJo5gatL82V7QInoa6f0bdZf/c4=;
-        b=WZ5wX0kXePSLt2gMyHMUZMpl6tbD7TrH4AH//2hHhvc4nyGovTYQceIKFIXQrcDoDx
-         0iQwIoCbP1J3x5bfcsRPFthV7jgoTw3GGlGmuzkQ2VZsvak3CWTku6RMjXvE840UdK+f
-         6WA8ghqq7mzxnWBtvow7hV5HFKTfeWh/m61SSGr3KZNxyg0PkIMX/DsKa5eNJ1DPPAwi
-         HK7CamJXApfgQGq97KtTHMKORHQnupMJ9VThy8KfN3mt6kSUkWGesC6y2ga+4hQSshn5
-         Snor0NDjKYNLjiFXkJk9hGj21cQzuCTtNG+BVDM4cmBRFwRy6oNgUqcXOu62OCYTqhuD
-         T9Eg==
+        d=linaro.org; s=google; t=1778659457; x=1779264257; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fV5hlvS/EBlkq3ce8ENwrX2ys5xakCpqN1K0vJsBTFM=;
+        b=F+tx6+r2eIRnZzLP/+ZAMxvT7yfUCQVUDIeQIErfIUr7N9PfFaAgUuXWdVcOff4Wlt
+         6Je61+IwvNA3xzARTTA9kQ+oDEeeXahAE3aQKXlFk3rdPfbsfsH+SmuSshu05KZDwwwS
+         hsmtyTC9uqEgPGsICxv+Kq9EKlwzN019ncrgJBy3QD7rbHoj51VRyo0N6SoYOp/04FVB
+         UdlXwxexJumBvESxoIPXZlOEC5xfLwymoKaEbUlByUmAPfVvTmBt+oqnBxuu9HfQ25yX
+         v5DopQT2nIXW9IkLS06ezkZE1HGpHyjdECBNRjkMs0xox+napJK7qS6SXxBgasKG+KVE
+         gQoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778658003; x=1779262803;
-        h=content-transfer-encoding:organization:autocrypt:subject
-         :content-language:from:reply-to:to:user-agent:mime-version:date
-         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=k+EUVRrLLFJIwYQfTJo5gatL82V7QInoa6f0bdZf/c4=;
-        b=YVoTHapwXc6OpuKFXY2mL+pjnNbJhzXJs7HI7RJrEZMxTBUFBeYRI18hoeUj/kDDEp
-         fTxoq3jnC0+ckMTDMT4wSkaVO8xtEXM1V7Mhs12Q2WWiflZCbKmZ5Y071KD/AxIj3Tgv
-         pw+N1zk4+zgfm0UfbO9iRuWUO8SMcs6jQwDBmNb/V7d1R8n+FLlIMNIES2Jhp8ciXvuD
-         PXx/J2Ocr+qVNeXWcndPcWzISEdyIaxrDRYczCA9KsVkpkR+mXuM9CwgjfwhyqRSM0oA
-         kz2DEzfdNr9qADnfSfMtV6dJcoVmAngFPjwb9CeNCChyjXtxhVPUKxIIRRumvh4sX/Ss
-         K0vA==
-X-Gm-Message-State: AOJu0YwC34t4OuEJO71OK9bcrboRkU0iUS6cPch3QOgp9f9jNJ3fN+S2
-	9EQ/NhOBbDOiL2vvDxJKFSIs11DFXoq9iHMwmYTqQ3W+0N3a2uDmOhoQVW9U7cJS0bvLgSSACKv
-	Q1YTztUs=
-X-Gm-Gg: Acq92OHFHQVU+D7OjHOjlj0VF9Wfro9j/y1Uc+79RmLcQdv4Cnb6mmPLsiUyTSAQ0em
-	6/iDxxe2vWDBO6+FGr5mP5E8n77e0aiHPJ/OrU4FKSw5d1BTN0AgHrly1DVJ4mAcpHHwx7NkJkD
-	4G7GFes4+6/1omsbSqi/cpwbdUbrTs0YokOLh4VaTx1w4uTGzy5mu7/5U9lbXYqCINCdv6gbQE4
-	hBLfwr5b5HYymuiG4LJu2leroCNpLxVqwsyd5lXdvaqFF5djvPvk89rXaXN4q2pEf7vHpf2ByED
-	vomxAk2iHv7mk3yLkgb4JrPAHs4n8PtvqgV20qXu22vPg4Lo0sLS1qQi7EUxu+LoQiWKzE/EpoF
-	G7pcaUE0+qEONU1YGtsiv4p0bEGPWBD7EpPNaZYljw04jRCKHpNSMOoAzjqaPk37rMps80sjf0O
-	C2+vGfFD1vDnEECT6tvHtxf1gtQ//7qvRc6Ti725H51MW04/Ot0y81Qq86eYCOMvirpiuozArCJ
-	+bS
-X-Received: by 2002:adf:ff8e:0:b0:441:29cd:a18e with SMTP id ffacd0b85a97d-45ac33b2032mr8242995f8f.23.1778658003116;
-        Wed, 13 May 2026 00:40:03 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1778659457; x=1779264257;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fV5hlvS/EBlkq3ce8ENwrX2ys5xakCpqN1K0vJsBTFM=;
+        b=d8cm2KBBOqwyqGK7VC+HM1Id989rvmLKUGsea+hkQ0TZXah40nEU7DIUL1u3/34tPI
+         YazXN3R/m+Qip1Y5Mto2NNccPHHoDnIcPx6CzZUqeSp+Gtf6ajSDC/pmVfme/K5mE8NI
+         rg4q8+8v/4+UDq6VkajCFzGpLbNkWPPzqEtepd/SNigxkVC6bdRk06jdPAWpNDUJHMZV
+         pqLPoNqT8AleTM0cLouTa3lQt8BSsk1+Eb3ddXd+oddha8A3Mmziq2lq3z+ofSKxAX/k
+         HuMq60lSTHctOEmNbD+AMwNsTm3TPChyrN60FB+TEDbUz43eTpmg3gBF5XrhOd9ZY2ZS
+         LkOw==
+X-Forwarded-Encrypted: i=1; AFNElJ+3uQrTV/kg4+UxqYIgewaXC/FXhIHZ8JJx2/d8e5MkhjLFQPg+9IHa7/FgiOhc1EMDBNTMTqbvRBLWyI48@lists.infradead.org
+X-Gm-Message-State: AOJu0YxT+7PCMtwn6TJOxaefRTV15+BBxB6rOpBizsv/kZ57nug0vsBo
+	YPfzcn9Og03CL2a5t6DZuaK82h0kjo7sMzmioCjY+b9fPqMywbQSZvUEECyVj+vWPfY=
+X-Gm-Gg: Acq92OFdWTCKJKDmZA7cc1hsLeC7RveuxodG8/JpdA0doAzgmaLJg3ZVsul3Rg7Y9Ro
+	/gHmic7Jf2r89rD1It7H352zbSqe81Bju5kzMDez1eL7xPioaimNS7xl+QXJj6lhEmTxgDtWnbP
+	9lD1bN7UyqyAaXSergOmtXosNT7Nl8yumKGjqAOZy0w3JdCDdcZ4YTLcEeRQXjarYSCWjIsxfcN
+	TENI/b5lcEj1vQdTAnRxtmkH6OOcBp/w213AlwozkVhA9sfl0r4opHUaqzmHUOWmZpT4jrBOPGz
+	pPmZBgRLug+GtNGgpL+V5Kd51/o5FcLbm1My1/8itZ09aNgF4CNfixs8Ccj9fTx37bWKYyV9mQE
+	UqmvnOAqsD/pTtzFa/iFfGjZLmkwKHsUjI23TFSht1Aesj0FPqGKRLSilgccLTEQa79tFIiDBdz
+	/15zSQsJJDtZviSqaNj4EFJPGDXq+co0QtGncuRVNk8MANalffgM9OjkcKCdXDF9c0E1JuPURQl
+	7p+
+X-Received: by 2002:a5d:5887:0:b0:455:51cf:9f92 with SMTP id ffacd0b85a97d-45c46e02119mr3774439f8f.18.1778659457065;
+        Wed, 13 May 2026 01:04:17 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:106d:1080:6ee4:8e37:145:d60b? ([2a01:e0a:106d:1080:6ee4:8e37:145:d60b])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45c7f2775desm3549376f8f.30.2026.05.13.00.40.02
-        for <linux-amlogic@lists.infradead.org>
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45491bae13csm37346990f8f.29.2026.05.13.01.04.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 May 2026 00:40:02 -0700 (PDT)
-Message-ID: <1ef9839c-caa2-4a36-bec5-84a2a1dddbe6@linaro.org>
-Date: Wed, 13 May 2026 09:40:02 +0200
+        Wed, 13 May 2026 01:04:16 -0700 (PDT)
+Message-ID: <d6f59417-67a4-4230-b3d5-0ef73ff002c6@linaro.org>
+Date: Wed, 13 May 2026 10:04:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-To: linux-amlogic@lists.infradead.org
 From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 1/2] arm64: dts: amlogic: t7: Fix pwm_ao_c pinmux
+ definitions
+To: linux-kernel-dev@aliel.fr, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260512-add-kvim4-sysled-v1-0-7178719a43e7@aliel.fr>
+ <20260512-add-kvim4-sysled-v1-1-7178719a43e7@aliel.fr>
 Content-Language: en-US, fr
-Subject: [ANN] sashiko review allowed to reply
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -105,10 +114,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
+In-Reply-To: <20260512-add-kvim4-sysled-v1-1-7178719a43e7@aliel.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260513_004005_945709_8A77F476 
-X-CRM114-Status: UNSURE (   5.27  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260513_010419_071198_37F2A659 
+X-CRM114-Status: GOOD (  14.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,27 +135,58 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+On 5/12/26 19:47, Ronald Claveau via B4 Relay wrote:
+> From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+> 
+> The pwm_ao_c pin node was incomplete: it was missing the group name
+> suffix, conflating two distinct pin groups (pwm_ao_c_d and pwm_ao_c_e)
+> into a single, ambiguous entry.
+> 
+> Split the node into two separate pinmux entries:
+>    - pwm_ao_c_d_pins: uses group "pwm_ao_c_d"
+>    - pwm_ao_c_e_pins: uses group "pwm_ao_c_e"
+> 
+> Both alternate pins are not yet referenced by any peripheral node,
+> so this has no functional impact on existing boards. No backport needed.
+> 
+> Fixes: ee6e05a49b93 ("arm64: dts: amlogic: t7: Add PWM pinctrl nodes")
+> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+> ---
+>   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 12 ++++++++++--
+>   1 file changed, 10 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+> index 7fe72c94ed623..62f6b9baad28b 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+> @@ -400,9 +400,17 @@ mux {
+>   					};
+>   				};
+>   
+> -				pwm_ao_c_pins: pwm-ao-c {
+> +				pwm_ao_c_d_pins: pwm-ao-c-d {
+>   					mux {
+> -						groups = "pwm_ao_c";
+> +						groups = "pwm_ao_c_d";
+> +						function = "pwm_ao_c";
+> +						bias-disable;
+> +					};
+> +				};
+> +
+> +				pwm_ao_c_e_pins: pwm-ao-c-e {
+> +					mux {
+> +						groups = "pwm_ao_c_e";
+>   						function = "pwm_ao_c";
+>   						bias-disable;
+>   					};
+> 
 
-As an experiment, I allowed the https://sashiko.dev/ review tool
-to reply to the linux-amlogic messages with some review.
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Note that the review performed by LLMs must be used with extreme care
-since they may hallucinate or completely miss the point of the changeset.
-
-But I think it can give us some inputs when submitting and
-reviewing patches.
-
-If somehow it becomes too noisy I'll disable it.
+I'll squash it on the old commit.
 
 Thanks,
 Neil
-
--- 
-Neil Armstrong <neil.armstrong@linaro.org>
-Senior Kernel Engineer - Linaro
-https://linaro.org/
-
 
 _______________________________________________
 linux-amlogic mailing list
