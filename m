@@ -4,154 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B787CD4F25
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 May 2026 15:19:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B95ADCD4F25
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 May 2026 16:13:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:
-	CC:To:Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QbnYzMyRmF38l39vFL1j4FPYYY/5iwNAnbUorvTPcSM=; b=NC4DLhAs3XSOYq
-	Z9RNO49wudhndbqrd8jFJiL+MY59cDA2LrSPo8bJUUuDR0Zo4Wa+rqZRm+k/7yOFMaTwgwf4d4Agc
-	1nPXo5fZtrTEI2rZvUUkkVkpninf7u2DEgnifPVWdOqmYGQIUuDhN+MbfgAD4R7BND/FlzDXJJ/xP
-	+vvWxNLEXbCxOjJg3T4kj3tmhhalKqXazzI3DVWdoAkCOer/bLALPte3S+rnEYB86E4T2WWq5PIOl
-	LJ6yGPN58JwKwEg4OBk5TRnzTdl3817DwtFBKAc5ddH+nVYhZKEqb8SMhnVhedP2IcjCIw+qSIV7S
-	xm1JvNNJjp+RJiP/wgGA==;
+	List-Owner; bh=S+PIruwc90XBOlCB7OSfA7JpZTXA2dZt07LKzDh/aWk=; b=IJRAjg4FytP7Lx
+	aTkDtdWwU1ItGMLbURVjR4/N9tZXBIrFvzYN4xiV+JmkqBep/f+yt6MGbqnfRkPD/vXoBg6tzJ0hS
+	rj/80bV3gm2+YKYeVBcrcYMC1IynAPCgLrkDhvMXef9JH03YTsGyeyYl65g86+rrvZqrNvxNLunUN
+	lZH1OljqsWsQ8TqqokcqhT7EsnXrUu+hsALmPTAlfqK4kETdIaooX9ByKG6Qeergnf12KfWXTfdJQ
+	dGqzudvuXoeTXuaLA8YwLpwe2Kj6JKw3kEln/2lKQvpEVKSppqcKyYxgcrBZIhQ/caE9z7jobSO3o
+	f98E3SzGK2IhiyALDulA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wNXpx-00000005sy6-38e2;
-	Thu, 14 May 2026 15:18:58 +0000
-Received: from mail-westusazlp170120002.outbound.protection.outlook.com ([2a01:111:f403:c001::2] helo=SJ2PR03CU001.outbound.protection.outlook.com)
+	id 1wNYg6-000000060hr-1ZOk;
+	Thu, 14 May 2026 16:12:50 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wNXpu-00000005sxJ-0ydD;
-	Thu, 14 May 2026 15:18:56 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TXFrWPquLzE6Bpef/4RtSQVmrOwJ93jic1ZLvYEPTwD4xf8uQY3OCRvvQI9J4O2/Uwwz/d9YjkeANz6ApEqmhoCFQCI5cvh53b8T21rjMVu+t+lpZZ4sCcQwtVVWrdQ5+cYPLDt9rkE9mNQNHoRR4gQ20QRxJ05XsmYh3+g4mjG1HHXDaK7SyP6ybGXipi0n/b1SWz5ArFBg3WctPPD/AY1B/KX9gAnYK5PItwegJkcQmr6y/fZIaWYWZ5fgImlVs6e0wxjcxEHDaPVJRsqE+quURjVGiFrhnX55TPO8dlp5qFwu9IYv31UbVPom1zaU/BfrWuhxw7ven2kynxpQ7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=82HPIZb934xq7hP0IkNiKj+xuQ4pFwyQoeWjUNdr8fQ=;
- b=QNX0+RCjM1lHkRq2nxEUWDdX88oVmqVxHSSEz3updK3mG3rR6CWs6/hE4xeUT6XuXLgZNFAK3Oe9PsO5RJO3wSy4/dqePJ7i+5pj3aWfqmP3X51gLMTHNnDRwBdZKLktU/CB8AkUacUX6oixaQHk7MQ6FahS958u2gK16HlMctuGbQ6PIhvEeCyDHZUKDVoc+nxdGJ1AJOz1c7VV3MrukytmKWTrLaW1QlKJhaU/bb1b7h1TBCiZ/VdPxpLanDkRNva2cynaRUfyu3egWw9irhhBdot/wduNG1+1TrpG8/nkxqcpUuhQ/Rl2e04g17fXDRZviZosSs7Dli93LJvpqA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=82HPIZb934xq7hP0IkNiKj+xuQ4pFwyQoeWjUNdr8fQ=;
- b=vL+gf6NoL+H3q3KvdmMHNuRjpIAsIB8CgepqSku9FN/fJpOS7yjYAFyX5a9bmCtqB6MHrnk0biYen2SYAfw3zSLjay0XcYUUdwpJhPTDsjP9imPEv4BqkweBuZw4e1yQNx9NNV+y1upZkxWPgI1ji/dJsWgJJCBaCBMv7wwZf58=
-Received: from BY5PR03CA0026.namprd03.prod.outlook.com (2603:10b6:a03:1e0::36)
- by MN2PR12MB4128.namprd12.prod.outlook.com (2603:10b6:208:1dd::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Thu, 14 May
- 2026 15:18:45 +0000
-Received: from SJ5PEPF000001D0.namprd05.prod.outlook.com
- (2603:10b6:a03:1e0:cafe::a4) by BY5PR03CA0026.outlook.office365.com
- (2603:10b6:a03:1e0::36) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9870.27 via Frontend Transport; Thu,
- 14 May 2026 15:18:45 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ5PEPF000001D0.mail.protection.outlook.com (10.167.242.52) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.25.13 via Frontend Transport; Thu, 14 May 2026 15:18:45 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.41; Thu, 14 May
- 2026 10:18:25 -0500
-Received: from satlexmb08.amd.com (10.181.42.217) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 14 May
- 2026 10:18:25 -0500
-Received: from [172.31.11.23] (10.180.168.240) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Thu, 14 May 2026 10:18:20 -0500
-Message-ID: <f2222868-fef2-4a40-be1c-214020289440@amd.com>
-Date: Thu, 14 May 2026 10:18:19 -0500
+	id 1wNYg2-000000060gM-1xUC
+	for linux-amlogic@lists.infradead.org;
+	Thu, 14 May 2026 16:12:49 +0000
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-43eb05b1875so4891443f8f.3
+        for <linux-amlogic@lists.infradead.org>; Thu, 14 May 2026 09:12:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1778775164; x=1779379964; darn=lists.infradead.org;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CVKq2ofJtZZwfzsFBSnZCZG0o+hDi7JCHHG+Wj8ChZg=;
+        b=A0IVfsL5IQejz3Q/Ai0UgioNaLDFuWWOOIrFV4b9NA+nsNVlbu4DpKTxDnXNBP1uWG
+         qqf4XkrdmdSMpxeqoWzJr1gEt1In6u3sz8jLOfETgmOlLjNAajE2m/iWRj35zDTbQtff
+         KkhKFCpUWROt8WkQINF6uuRNJygaJjWU+q5FAh4rBll9s4lMIPaIaL6ceTtHcBrsXtq+
+         XsECmu0tfnKakom+dvuFaTBKd3x8GwveQdnFumGj0IhVt7lwfbWrsyPSxcCe6t9tG4oL
+         gHnhhnZP/c7IrgVfEvuuDMRhaZfcD7J4fifUxu/Ryk64ALfIhyR1R9XBGRgXVgwNImQL
+         TWkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778775164; x=1779379964;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=CVKq2ofJtZZwfzsFBSnZCZG0o+hDi7JCHHG+Wj8ChZg=;
+        b=n54kCUU3wxkyjLAKkidw10Aqdcv3LtVBeCVjhm+6W1Bd9cpNwKj0skP+nglHXl2FYv
+         VVo+zEhpzt5W4oCnvO7h8sVva9iGdlyGgz5zPbz5Bpmx/c3XA0Ds7nl18h7Q6IHebK/V
+         2T+mtIZd6Ek1U41kQGOy7G5ZLwB+r114Lxn8uaIRurM53YcDD/YqTviEQUsn7ShGe2/Q
+         Ei3whd6HLVhbrsmtitLQX5jAEqMKO9Dl91HuAdxBzbHALxizDVeb4M1R+vpBjDG90gkA
+         CKEUv+ftMpF99YHgw88QfmbaBLqpdzAnSWLSAcRKPpoYW74+IlG36d8JQIMG0wygdEDX
+         fOUg==
+X-Forwarded-Encrypted: i=1; AFNElJ8y2HOe2ovDTl0FTfzH53KZw2DwygkNqP7kai+DU0tnUhpyDbfUr88/aJBWymrdgeWJ0lT1g2UCQwLWvoiM@lists.infradead.org
+X-Gm-Message-State: AOJu0YwTfexbv4dgJlQHCC4yFB6p3XcRWM7Povh+xdYU3I3I4jXAOL1a
+	7KiGmg/+msK6KaYQIon843BxcWuQvDJY/MbjpoRWm2e4QeqlsY9E7+IGTrTNKEoL4WE=
+X-Gm-Gg: Acq92OFNgYTPIfmAk9Fc/XU9LLGpR5Zw6diXppo9CcHKesZuDrPIpfZO7fl0gLPAU6D
+	+jjaIjW+S4IrU5/9kGhCSGQhM7pWZcRs6aDXLdtml5TB9LgasezmJsGprovIYndIBsl0nP1Zxjv
+	hCPJ8fcMzXn/m/LoeC+S/2JscUHhX/xuGrs4Tse4LOSuO5GiYlLFD13nIeVmkgajCigsaSnl7RV
+	mMOzYPpV1X7speTT+nEFf/Yo6JoK7r4IZYFNXgys06AH3H7OSyJrdCWHcRTpdtqkQpr1Rjyb1eE
+	uGSUUcTrrb3zcf5XVj64pCt38nUdg5PzhDoQrD4r87PJlFCT9YovfKDlUFm0s590mhbUktHCkhL
+	sK1jk9nt/tnsMrDJWsZptkuBtFQK/kqMZJ173f5QX8igeZktNJb7cyOys1mBC2Sug0AjMeLNwPG
+	WlvlHj82B1j0Ij9aDJzbM=
+X-Received: by 2002:a05:6000:2c01:b0:456:e27d:d6aa with SMTP id ffacd0b85a97d-45c5762d196mr13168131f8f.2.1778775163814;
+        Thu, 14 May 2026 09:12:43 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:8f63:bf1e:b5:28d8])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-45d9ed30110sm8435696f8f.13.2026.05.14.09.12.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 May 2026 09:12:43 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
+ <sboyd@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Neil Armstrong
+ <neil.armstrong@linaro.org>,  Xianwei Zhao <xianwei.zhao@amlogic.com>,
+  Kevin Hilman <khilman@baylibre.com>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  jian.hu@amlogic.com,
+  linux-kernel@vger.kernel.org,  linux-clk@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-amlogic@lists.infradead.org,
+  linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 08/10] clk: amlogic: Add A9 PLL clock controller driver
+In-Reply-To: <20260511-b4-a9_clk-v1-8-41cb4071b7c9@amlogic.com> (Jian Hu via's
+	message of "Mon, 11 May 2026 20:47:30 +0800")
+References: <20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com>
+	<20260511-b4-a9_clk-v1-8-41cb4071b7c9@amlogic.com>
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Thu, 14 May 2026 18:12:41 +0200
+Message-ID: <1jh5oa6kcm.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: Consolidate "sram" property definition
-To: "Rob Herring (Arm)" <robh@kernel.org>, Liu Ying <victor.liu@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Clark <robin.clark@oss.qualcomm.com>,
-	Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>, "Akhil P
- Oommen" <akhilpo@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>,
-	Abhinav Kumar <abhinav.kumar@linux.dev>, Jessica Zhang
-	<jesszhan0024@gmail.com>, Marijn Suijten <marijn.suijten@somainline.org>,
-	Vinod Koul <vkoul@kernel.org>, Nas Chung <nas.chung@chipsnmedia.com>, Jackson
- Lee <jackson.lee@chipsnmedia.com>, Mauro Carvalho Chehab
-	<mchehab@kernel.org>, Mirela Rabulea <mirela.rabulea@nxp.com>, "Detlev
- Casanova" <detlev.casanova@collabora.com>, Ezequiel Garcia
-	<ezequiel@vanguardiasur.com.ar>, Heiko Stuebner <heiko@sntech.de>, "Hugues
- Fruchet" <hugues.fruchet@foss.st.com>, Alain Volmat
-	<alain.volmat@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Andrew Lunn
-	<andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, "Eric
- Dumazet" <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
-	<pabeni@redhat.com>, MD Danish Anwar <danishanwar@ti.com>, Roger Quadros
-	<rogerq@kernel.org>, Parvathi Pudi <parvathi@couthit.com>, "Mohan Reddy
- Putluru" <pmohan@couthit.com>, Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, "Jerome
- Brunet" <jbrunet@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Michal Simek <michal.simek@amd.com>,
-	Mark Brown <broonie@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, "Linus
- Walleij" <linusw@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>, "Felix
- Fietkau" <nbd@nbd.name>, "Andrew F. Davis" <afd@ti.com>, Hussain Khaja
-	<basharath@couthit.com>, Suman Anna <s-anna@ti.com>, Ben Levinsky
-	<ben.levinsky@amd.com>, Tanmay Shah <tanmay.shah@amd.com>, Erwan Leray
-	<erwan.leray@foss.st.com>, Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-CC: Roger Quadros <rogerq@ti.com>, <dri-devel@lists.freedesktop.org>,
-	<devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-msm@vger.kernel.org>, <freedreno@lists.freedesktop.org>,
-	<dmaengine@vger.kernel.org>, <linux-media@vger.kernel.org>,
-	<linux-rockchip@lists.infradead.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>, <netdev@vger.kernel.org>,
-	<linux-remoteproc@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-spi@vger.kernel.org>, <linux-mediatek@lists.infradead.org>
-References: <20260511165942.2774868-1-robh@kernel.org>
-Content-Language: en-US
-From: "Shah, Tanmay" <tanmays@amd.com>
-In-Reply-To: <20260511165942.2774868-1-robh@kernel.org>
-Received-SPF: None (SATLEXMB04.amd.com: tanmays@amd.com does not designate
- permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001D0:EE_|MN2PR12MB4128:EE_
-X-MS-Office365-Filtering-Correlation-Id: d5794162-9094-4f75-6f33-08deb1cc1728
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|36860700016|1800799024|82310400026|7416014|376014|3023799003|921020|22082099003|18002099003|56012099003|11063799003;
-X-Microsoft-Antispam-Message-Info: j434hSJwySlu8HAmf+PxHnPKbC7mjagUUc/NDouRkBkY97/dERW9Z3NdALbm64PVV7jZ9WcxXqu8oGDc/M7KIwlzrPEHBuF/eKy8fQId+tAStvKEy7IS9M5aDTW6rrbUA5EDR8Ql4vUbrf8vMWCETcxjglknUVjl4J+gKiDBdhp8dK+CrLmUJwPOjQkPLSx0uqfc9tUdN6R5grhq0JKZWcdTmX5J63ARD4yecvv7nMnU41Z8zo2WJvYl3NEF7Hv2I/EscDrZ+6vRhFKDt3iA05aGj+AHrIGEH37gEiY3caacAUTiWwYle6TXpwKh7CHhYPBfmCJutonDk6XawnLsmk3sNPcM2Lj7ZG9wiFKyPx7JB9sLjHzsCNXWvgw0EC3CvS1RE5b6xPxK73dHkRO+WuYZKaefyVgsFgI/wdbSuZqbdffTLcE2ouzESZNwLcuVHsHmpvOAy2kls4ZAF3c5Z4AKJ6RdxHJwzsd1sdSgNvIX3QonUe5QIES8G6JscyGdeUjY2EgHkEQaNqsZ54K85xA91+Z/PE5Lisw85CO1dVKnHSdQBnfVLlEfshtWXpjUk5WwBtG3N7eaEJgFA0tAI5r8er+kM88320VKcaX6MFfowambZD505E4gVUDT9YH/teLrkQMnDeIvOfWMoWJXvTRU6Inf28FvEDfO4F2UatvgqbmEHxLWeTD7xB3arbyDbe3vE+Tztg2yt+U9nTAj56SMPQodK31lktZQfnXeUFo=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(1800799024)(82310400026)(7416014)(376014)(3023799003)(921020)(22082099003)(18002099003)(56012099003)(11063799003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: zexsxn6b5AthW2x+zN0EYG9Ngq90bzd6CSKZTo2VzAp9+IndlYFtjc0S1vCc+1ye4M6eW/K7Eg9Ame/XU2bmjHW6AAkQg2ZXL3VWruC8RMhlz3C5NPvkT/reFIzJzDifl24yr6nscFHPHZPACTQAzhmb1+Q4EXDbvl4HuX58SY5DpG84Ypb4DnSGdq7ZVYSLlKzky88SvE0iGBXgS75cLEYbGluJ+iqH8in47hkM8OcUFFda7cC0CfcVqq6QDKcRRkWtzbItTLB20YfRJmHDuw6tH0hHLPFIAQspAVAq3tvU/L9LzCCDgC2Z57d8Cinof/v5dO170/01BJhgo11YnfWBr+ZvCVk8pjcEd69HiZDOTVn4ynP8eVudbot44W1AZB+UPC+NRQhO+GDO6eMgWKBNZItuByTgyapW2Qqdc8FezBEnikkAgkEaqUkOEAO8
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 May 2026 15:18:45.2187
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d5794162-9094-4f75-6f33-08deb1cc1728
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001D0.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4128
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260514_081854_346068_FD49FE97 
-X-CRM114-Status: GOOD (  20.35  )
+X-CRM114-CacheID: sfid-20260514_091246_865230_76075DB6 
+X-CRM114-Status: GOOD (  30.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -163,336 +102,984 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: tanmay.shah@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Reviewed-by: Tanmay Shah <tanmay.shah@amd.com>
+On lun. 11 mai 2026 at 20:47, Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org> wrote:
 
-On 5/11/2026 11:59 AM, Rob Herring (Arm) wrote:
-> The "sram" property has become a de facto standard property, so create a
-> common schema for it and drop all the duplicated definitions.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> From: Jian Hu <jian.hu@amlogic.com>
+>
+> Add the PLL clock controller driver for the Amlogic A9 SoC family.
+>
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 > ---
->  .../imx/fsl,imx8qxp-dc-command-sequencer.yaml |  2 +-
->  .../devicetree/bindings/display/msm/gpu.yaml  |  6 +----
->  .../bindings/dma/stericsson,dma40.yaml        |  8 ++----
->  .../bindings/media/cnm,wave521c.yaml          |  2 +-
->  .../bindings/media/nxp,imx8-jpeg.yaml         |  6 ++---
->  .../bindings/media/rockchip,vdec.yaml         |  5 ++--
->  .../bindings/media/st,stm32-dcmi.yaml         |  6 ++---
->  .../devicetree/bindings/net/mediatek,net.yaml |  3 +--
->  .../bindings/net/ti,icssg-prueth.yaml         |  2 +-
->  .../bindings/net/ti,icssm-prueth.yaml         |  2 +-
->  .../remoteproc/amlogic,meson-mx-ao-arc.yaml   |  7 +----
->  .../bindings/remoteproc/ti,k3-dsp-rproc.yaml  |  8 ------
->  .../bindings/remoteproc/ti,k3-r5f-rproc.yaml  |  8 ------
->  .../remoteproc/xlnx,zynqmp-r5fss.yaml         |  9 +------
->  .../devicetree/bindings/spi/st,stm32-spi.yaml | 10 +++----
->  .../bindings/sram/sram-consumer.yaml          | 26 +++++++++++++++++++
->  16 files changed, 48 insertions(+), 62 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sram/sram-consumer.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-command-sequencer.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-command-sequencer.yaml
-> index 27118f4c0d28..fd095e5742c5 100644
-> --- a/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-command-sequencer.yaml
-> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc-command-sequencer.yaml
-> @@ -41,7 +41,7 @@ properties:
->        - const: sw3
+>  drivers/clk/meson/Kconfig  |  13 +
+>  drivers/clk/meson/Makefile |   1 +
+>  drivers/clk/meson/a9-pll.c | 831 +++++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 845 insertions(+)
+>
+> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> index cf8cf3f9e4ee..3549e67d6988 100644
+> --- a/drivers/clk/meson/Kconfig
+> +++ b/drivers/clk/meson/Kconfig
+> @@ -132,6 +132,19 @@ config COMMON_CLK_A1_PERIPHERALS
+>  	  device, A1 SoC Family. Say Y if you want A1 Peripherals clock
+>  	  controller to work.
 >  
->    sram:
-> -    $ref: /schemas/types.yaml#/definitions/phandle
-> +    maxItems: 1
->      description: phandle pointing to the mmio-sram device node
->  
->  required:
-> diff --git a/Documentation/devicetree/bindings/display/msm/gpu.yaml b/Documentation/devicetree/bindings/display/msm/gpu.yaml
-> index 04b2328903ca..358759fad8dc 100644
-> --- a/Documentation/devicetree/bindings/display/msm/gpu.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/gpu.yaml
-> @@ -84,13 +84,9 @@ properties:
->      maxItems: 64
->  
->    sram:
-> -    $ref: /schemas/types.yaml#/definitions/phandle-array
->      minItems: 1
->      maxItems: 4
-> -    items:
-> -      maxItems: 1
-> -    description: |
-> -      phandles to one or more reserved on-chip SRAM regions.
-> +    description:
->        phandle to the On Chip Memory (OCMEM) that's present on some a3xx and
->        a4xx Snapdragon SoCs. See
->        Documentation/devicetree/bindings/sram/qcom,ocmem.yaml
-> diff --git a/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml b/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml
-> index 607da11e7baa..d8f92838f4c9 100644
-> --- a/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml
-> +++ b/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml
-> @@ -136,13 +136,9 @@ properties:
->      maxItems: 1
->  
->    sram:
-> -    $ref: /schemas/types.yaml#/definitions/phandle-array
-> -    description: A phandle array with inner size 1 (no arg cells).
-> -      First phandle is the LCPA (Logical Channel Parameter Address) memory.
-> -      Second phandle is the  LCLA (Logical Channel Link base Address) memory.
-> -    maxItems: 2
->      items:
-> -      maxItems: 1
-> +      - description: LCPA (Logical Channel Parameter Address) memory.
-> +      - description: LCLA (Logical Channel Link base Address) memory.
->  
->    memcpy-channels:
->      $ref: /schemas/types.yaml#/definitions/uint32-array
-> diff --git a/Documentation/devicetree/bindings/media/cnm,wave521c.yaml b/Documentation/devicetree/bindings/media/cnm,wave521c.yaml
-> index 6a11c1d11fb5..6cd33dfd095d 100644
-> --- a/Documentation/devicetree/bindings/media/cnm,wave521c.yaml
-> +++ b/Documentation/devicetree/bindings/media/cnm,wave521c.yaml
-> @@ -37,7 +37,7 @@ properties:
->      maxItems: 1
->  
->    sram:
-> -    $ref: /schemas/types.yaml#/definitions/phandle
-> +    maxItems: 1
->      description:
->        The VPU uses the SRAM to store some of the reference data instead of
->        storing it on DMA memory. It is mainly used for the purpose of reducing
-> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
-> index 18cc6315a821..6ba668aa633d 100644
-> --- a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
-> +++ b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
-> @@ -56,10 +56,10 @@ properties:
->      maxItems: 5               # Wrapper and 4 slots
->  
->    sram:
-> -    $ref: /schemas/types.yaml#/definitions/phandle
-> +    maxItems: 1
->      description:
-> -      Optional phandle to a reserved on-chip SRAM regions. The SRAM can
-> -      be used for descriptor storage, which may improve bus utilization.
-> +      The SRAM can be used for descriptor storage, which may improve bus
-> +      utilization.
->  
->  required:
->    - compatible
-> diff --git a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
-> index 42022401d0ff..4f38a0ef29d8 100644
-> --- a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
-> +++ b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
-> @@ -91,9 +91,8 @@ properties:
->      maxItems: 1
->  
->    sram:
-> -    $ref: /schemas/types.yaml#/definitions/phandle
-> -    description: |
-> -      phandle to a reserved on-chip SRAM regions.
-> +    maxItems: 1
-> +    description:
->        Some SoCs, like rk3588 provide on-chip SRAM to store temporary
->        buffers during decoding.
->  
-> diff --git a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-> index d9fbb90b0977..7c2ddd27780f 100644
-> --- a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-> +++ b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-> @@ -47,10 +47,10 @@ properties:
->      maxItems: 1
->  
->    sram:
-> -    $ref: /schemas/types.yaml#/definitions/phandle
-> +    maxItems: 1
->      description:
-> -      phandle to a reserved SRAM region which is used as temporary
-> -      storage memory between DMA and MDMA engines.
-> +      SRAM region which is used as temporary storage memory between DMA and
-> +      MDMA engines.
->  
->    port:
->      $ref: /schemas/graph.yaml#/$defs/port-base
-> diff --git a/Documentation/devicetree/bindings/net/mediatek,net.yaml b/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> index cc346946291a..6bbd83c6aaf7 100644
-> --- a/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> +++ b/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> @@ -67,8 +67,7 @@ properties:
->        - const: ppe
->  
->    sram:
-> -    $ref: /schemas/types.yaml#/definitions/phandle
-> -    description: phandle to mmio SRAM
-> +    maxItems: 1
->  
->    mediatek,ethsys:
->      $ref: /schemas/types.yaml#/definitions/phandle
-> diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> index c296e5711848..883033b19b8f 100644
-> --- a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> +++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> @@ -21,7 +21,7 @@ properties:
->        - ti,am654-sr1-icssg-prueth  # for AM65x SoC family, SR1.0
->  
->    sram:
-> -    $ref: /schemas/types.yaml#/definitions/phandle
-> +    maxItems: 1
->      description:
->        phandle to MSMC SRAM node
->  
-> diff --git a/Documentation/devicetree/bindings/net/ti,icssm-prueth.yaml b/Documentation/devicetree/bindings/net/ti,icssm-prueth.yaml
-> index a98ad45ca66f..9370c43bc66a 100644
-> --- a/Documentation/devicetree/bindings/net/ti,icssm-prueth.yaml
-> +++ b/Documentation/devicetree/bindings/net/ti,icssm-prueth.yaml
-> @@ -24,7 +24,7 @@ properties:
->        - ti,am3359-prueth   # for AM33x SoC family
->  
->    sram:
-> -    $ref: /schemas/types.yaml#/definitions/phandle
-> +    maxItems: 1
->      description:
->        phandle to OCMC SRAM node
->  
-> diff --git a/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml b/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml
-> index 76e8ca44906a..3f710433e937 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml
-> @@ -48,12 +48,7 @@ properties:
->      minItems: 1
->  
->    sram:
-> -    $ref: /schemas/types.yaml#/definitions/phandle
-> -    description:
-> -      phandles to a reserved SRAM region which is used as the memory of
-> -      the ARC core. The region should be defined as child nodes of the
-> -      AHB SRAM node as per the generic bindings in
-> -      Documentation/devicetree/bindings/sram/sram.yaml
-> +    maxItems: 1
->  
->    amlogic,secbus2:
->      $ref: /schemas/types.yaml#/definitions/phandle
-> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> index b51bb863d759..8b1ed384ef22 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> @@ -75,16 +75,8 @@ properties:
->  # --------------------
->  
->    sram:
-> -    $ref: /schemas/types.yaml#/definitions/phandle-array
->      minItems: 1
->      maxItems: 4
-> -    items:
-> -      maxItems: 1
-> -    description: |
-> -      phandles to one or more reserved on-chip SRAM regions. The regions
-> -      should be defined as child nodes of the respective SRAM node, and
-> -      should be defined as per the generic bindings in,
-> -      Documentation/devicetree/bindings/sram/sram.yaml
->  
->  allOf:
->    - if:
-> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
-> index 775e9b3a1938..14e6b2f817b3 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
-> @@ -224,16 +224,8 @@ patternProperties:
->            at 0x0) or 0 (BTCM at 0x0), default value is 1 if omitted.
->  
->        sram:
-> -        $ref: /schemas/types.yaml#/definitions/phandle-array
->          minItems: 1
->          maxItems: 4
-> -        items:
-> -          maxItems: 1
-> -        description: |
-> -          phandles to one or more reserved on-chip SRAM regions. The regions
-> -          should be defined as child nodes of the respective SRAM node, and
-> -          should be defined as per the generic bindings in,
-> -          Documentation/devicetree/bindings/sram/sram.yaml
->  
->      required:
->        - compatible
-> diff --git a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
-> index ee63c03949c9..c7d5e58330d6 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
-> @@ -106,20 +106,13 @@ patternProperties:
->            - const: rx
->  
->        sram:
-> -        $ref: /schemas/types.yaml#/definitions/phandle-array
->          minItems: 1
->          maxItems: 8
-> -        items:
-> -          maxItems: 1
-> -        description: |
-> +        description:
->            phandles to one or more reserved on-chip SRAM regions. Other than TCM,
->            the RPU can execute instructions and access data from the OCM memory,
->            the main DDR memory, and other system memories.
->  
-> -          The regions should be defined as child nodes of the respective SRAM
-> -          node, and should be defined as per the generic bindings in
-> -          Documentation/devicetree/bindings/sram/sram.yaml
-> -
->        memory-region:
->          description: |
->            List of phandles to the reserved memory regions associated with the
-> diff --git a/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml b/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml
-> index 472e92974714..6d7d595e4ab3 100644
-> --- a/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/st,stm32-spi.yaml
-> @@ -89,12 +89,10 @@ properties:
->        - const: rxm2m
->  
->    sram:
-> -    $ref: /schemas/types.yaml#/definitions/phandle
-> -    description: |
-> -      Phandles to a reserved SRAM region which is used as temporary
-> -      storage memory between DMA and MDMA engines.
-> -      The region should be defined as child node of the AHB SRAM node
-> -      as per the generic bindings in Documentation/devicetree/bindings/sram/sram.yaml
-> +    maxItems: 1
-> +    description:
-> +      SRAM region which is used as temporary storage memory between DMA and
-> +      MDMA engines.
->  
->    power-domains:
->      maxItems: 1
-> diff --git a/Documentation/devicetree/bindings/sram/sram-consumer.yaml b/Documentation/devicetree/bindings/sram/sram-consumer.yaml
+> +config COMMON_CLK_A9_PLL
+> +	tristate "Amlogic A9 SoC PLL controller support"
+> +	depends on ARM64
+> +	default ARCH_MESON
+> +	select COMMON_CLK_MESON_REGMAP
+> +	select COMMON_CLK_MESON_CLKC_UTILS
+> +	select COMMON_CLK_MESON_PLL
+> +	imply COMMON_CLK_SCMI
+> +	help
+> +	  Support for the PLL clock controller on Amlogic A311Y3 based
+> +	  device, AKA A9. PLLs are required by most peripheral to operate.
+> +	  Say Y if you want A9 PLL clock controller to work.
+> +
+>  config COMMON_CLK_C3_PLL
+>  	tristate "Amlogic C3 PLL clock controller"
+>  	depends on ARM64
+> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+> index c6719694a242..77636033061f 100644
+> --- a/drivers/clk/meson/Makefile
+> +++ b/drivers/clk/meson/Makefile
+> @@ -19,6 +19,7 @@ obj-$(CONFIG_COMMON_CLK_AXG) += axg.o axg-aoclk.o
+>  obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
+>  obj-$(CONFIG_COMMON_CLK_A1_PLL) += a1-pll.o
+>  obj-$(CONFIG_COMMON_CLK_A1_PERIPHERALS) += a1-peripherals.o
+> +obj-$(CONFIG_COMMON_CLK_A9_PLL) += a9-pll.o
+>  obj-$(CONFIG_COMMON_CLK_C3_PLL) += c3-pll.o
+>  obj-$(CONFIG_COMMON_CLK_C3_PERIPHERALS) += c3-peripherals.o
+>  obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
+> diff --git a/drivers/clk/meson/a9-pll.c b/drivers/clk/meson/a9-pll.c
 > new file mode 100644
-> index 000000000000..f00087bd2879
+> index 000000000000..84b591c3afff
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sram/sram-consumer.yaml
-> @@ -0,0 +1,26 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sram/sram-consumer.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/drivers/clk/meson/a9-pll.c
+> @@ -0,0 +1,831 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+> +/*
+> + * Copyright (C) 2026 Amlogic, Inc. All rights reserved
+> + */
 > +
-> +title: SRAM Consumers
+> +#include <linux/clk-provider.h>
+> +#include <linux/platform_device.h>
+> +#include <dt-bindings/clock/amlogic,a9-pll-clkc.h>
+> +#include "clk-regmap.h"
+> +#include "clk-pll.h"
+> +#include "meson-clkc-utils.h"
 > +
-> +maintainers:
-> +  - Rob Herring <robh@kernel.org>
+> +#define GP0PLL_CTRL0			0x00
+> +#define GP0PLL_CTRL1			0x04
+> +#define GP0PLL_CTRL2			0x08
+> +#define GP0PLL_CTRL3			0x0c
+> +#define GP0PLL_CTRL4			0x10
 > +
-> +select: true
+> +/* HIFI0 and HIFI1 share the same IP and register offset layout. */
+> +#define HIFIPLL_CTRL0			0x00
+> +#define HIFIPLL_CTRL1			0x04
+> +#define HIFIPLL_CTRL2			0x08
+> +#define HIFIPLL_CTRL3			0x0c
+> +#define HIFIPLL_CTRL4			0x10
 > +
-> +properties:
-> +  sram:
-> +    description:
-> +      Phandles to one or more reserved on-chip SRAM regions. The regions
-> +      should be defined as child nodes of the respective SRAM node, and
-> +      should be defined as per the generic bindings in,
-> +      Documentation/devicetree/bindings/sram/sram.yaml
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      maxItems: 1
+> +/* MCLK0 and MCLK1 share the same IP and register offset layout. */
+> +#define MCLKPLL_CTRL0			0x00
+> +#define MCLKPLL_CTRL1			0x04
+> +#define MCLKPLL_CTRL2			0x08
+> +#define MCLKPLL_CTRL3			0x0c
+> +#define MCLKPLL_CTRL4			0x10
 > +
-> +additionalProperties: true
-> +...
+> +#define A9_COMP_SEL(_name, _reg, _shift, _mask, _pdata) \
+> +	MESON_COMP_SEL(a9_, _name, _reg, _shift, _mask, _pdata, NULL, 0, 0)
+> +
+> +#define A9_COMP_DIV(_name, _reg, _shift, _width) \
+> +	MESON_COMP_DIV(a9_, _name, _reg, _shift, _width, 0, CLK_SET_RATE_PARENT)
+> +
+> +#define A9_COMP_GATE(_name, _reg, _bit) \
+> +	MESON_COMP_GATE(a9_, _name, _reg, _bit, CLK_SET_RATE_PARENT)
+> +
+> +/*
+> + * Compared with previous SoC PLLs, the A9 PLL input path has an inherent
+> + * 2-divider. The N pre-divider follows the same calculation rule as OD,
+> + * where the pre-divider ratio equals 2^N.
+> + *
+> + * A9 PLL is composed as follows:
+> + *
+> + *                      PLL
+> + *         +---------------------------------+
+> + *         |                                 |
+> + *         |             +--+                |
+> + *  in/2 >>---[ /2^N ]-->|  |      +-----+   |
+> + *         |             |  |------| DCO |----->> out
+> + *         |  +--------->|  |      +--v--+   |
+> + *         |  |          +--+         |      |
+> + *         |  |                       |      |
+> + *         |  +--[ *(M + (F/Fmax) ]<--+      |
+> + *         |                                 |
+> + *         +---------------------------------+
+> + *
+> + * out = in / 2  * (m + frac / frac_max) / 2^n
+> + */
+> +
+> +static struct clk_fixed_factor a9_gp0_in_div2_div = {
+> +	.mult = 1,
+> +	.div = 2,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "gp0_in_div2_div",
+> +		.ops = &clk_fixed_factor_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "in0",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap a9_gp0_in_div2 = {
+> +	.data = &(struct clk_regmap_gate_data) {
+> +		.offset = GP0PLL_CTRL0,
+> +		.bit_idx = 27,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "gp0_in_div2",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a9_gp0_in_div2_div.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
 
+When document something, be sure it matches what you are doing
+afterward. It is confusing otherwise. Your comments above clearly miss
+this gate.
+
+A fixed 2 divider followed by a power of 2 divider ? Is it actually how
+the HW works or your modelisation power of 2 that's shifted by 1,
+mapping :
+ * 0 -> 2
+ * 1 -> 4
+ * etc ...
+
+?
+
+> +
+> +/* The output frequency range of the A9 PLL_DCO is 1.4 GHz to 2.8 GHz. */
+> +static const struct pll_mult_range a9_pll_mult_range = {
+> +	.min = 117,
+> +	.max = 233,
+> +};
+
+If PLL restriction is actually the DCO output rate, and only the reason
+to keep the pre-devider in the range above, I would definitely welcome a
+rework to express the constraints properly and split the pre-divider out.
+
+> +
+> +static const struct reg_sequence a9_gp0_pll_init_regs[] = {
+> +	{ .reg = GP0PLL_CTRL0, .def = 0x00010000 },
+> +	{ .reg = GP0PLL_CTRL1, .def = 0x11480000 },
+> +	{ .reg = GP0PLL_CTRL2, .def = 0x1219b010 },
+> +	{ .reg = GP0PLL_CTRL3, .def = 0x00008010 }
+> +};
+> +
+> +static struct clk_regmap a9_gp0_pll_dco = {
+> +	.data = &(struct meson_clk_pll_data) {
+> +		.en = {
+> +			.reg_off = GP0PLL_CTRL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.m = {
+> +			.reg_off = GP0PLL_CTRL0,
+> +			.shift   = 0,
+> +			.width   = 9,
+> +		},
+> +		.n = {
+> +			.reg_off = GP0PLL_CTRL0,
+> +			.shift   = 12,
+> +			.width   = 3,
+> +		},
+> +		.frac = {
+> +			.reg_off = GP0PLL_CTRL1,
+> +			.shift   = 0,
+> +			.width   = 17,
+> +		},
+> +		.l = {
+> +			.reg_off = GP0PLL_CTRL0,
+> +			.shift   = 31,
+> +			.width   = 1,
+> +		},
+> +		.rst = {
+> +			.reg_off = GP0PLL_CTRL0,
+> +			.shift   = 29,
+> +			.width   = 1,
+> +		},
+> +		.l_detect = {
+> +			.reg_off = GP0PLL_CTRL0,
+> +			.shift   = 30,
+> +			.width   = 1,
+> +		},
+> +		.range = &a9_pll_mult_range,
+> +		.init_regs = a9_gp0_pll_init_regs,
+> +		.init_count = ARRAY_SIZE(a9_gp0_pll_init_regs),
+> +		.flags = CLK_MESON_PLL_RST_ACTIVE_LOW |
+> +			 CLK_MESON_PLL_N_POWER_OF_TWO |
+> +			 CLK_MESON_PLL_L_DETECT_ACTIVE_HIGH,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "gp0_pll_dco",
+> +		.ops = &meson_clk_pll_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a9_gp0_in_div2.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +/* For gp0, hifi and mclk pll, the maximum value of od is 4. */
+> +static const struct clk_div_table a9_pll_od_table[] = {
+> +	{ 0,  1 },
+> +	{ 1,  2 },
+> +	{ 2,  4 },
+> +	{ 3,  8 },
+> +	{ 4,  16 },
+> +	{ /* sentinel */ }
+> +};
+> +
+> +static struct clk_regmap a9_gp0_pll = {
+> +	.data = &(struct clk_regmap_div_data) {
+> +		.offset = GP0PLL_CTRL0,
+> +		.shift = 20,
+> +		.width = 3,
+> +		.table = a9_pll_od_table,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "gp0_pll",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a9_gp0_pll_dco.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor a9_hifi0_in_div2_div = {
+> +	.mult = 1,
+> +	.div = 2,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "hifi0_in_div2_div",
+> +		.ops = &clk_fixed_factor_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "in0",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap a9_hifi0_in_div2 = {
+> +	.data = &(struct clk_regmap_gate_data) {
+> +		.offset = HIFIPLL_CTRL0,
+> +		.bit_idx = 27,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "hifi0_in_div2",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a9_hifi0_in_div2_div.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static const struct reg_sequence a9_hifi0_pll_init_regs[] = {
+> +	{ .reg = HIFIPLL_CTRL0, .def = 0x00010000 },
+> +	{ .reg = HIFIPLL_CTRL1, .def = 0x11480000 },
+> +	{ .reg = HIFIPLL_CTRL2, .def = 0x1219b010 },
+> +	{ .reg = HIFIPLL_CTRL3, .def = 0x00008010 }
+> +};
+
+It look like GP0 and HIFI PLL are exactly the same IP, you've even
+documented it as such. Yet all the code is duplicated. That's not OK.
+
+I understand that way we statically declared the clocks so far pushed
+you in that direction. That's something I'd like to fix properly
+someday.
+
+In the meantime, you could at least duplicate the memory at runtime to
+avoid copy/pasting the code. A minor change to clkc utils as suggested
+at the end of this message could help you do so.
+
+Same probably applies to mclks.
+
+> +
+> +static struct clk_regmap a9_hifi0_pll_dco = {
+> +	.data = &(struct meson_clk_pll_data) {
+> +		.en = {
+> +			.reg_off = HIFIPLL_CTRL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.m = {
+> +			.reg_off = HIFIPLL_CTRL0,
+> +			.shift   = 0,
+> +			.width   = 9,
+> +		},
+> +		.n = {
+> +			.reg_off = HIFIPLL_CTRL0,
+> +			.shift   = 12,
+> +			.width   = 3,
+> +		},
+> +		.frac = {
+> +			.reg_off = HIFIPLL_CTRL1,
+> +			.shift   = 0,
+> +			.width   = 17,
+> +		},
+> +		.l = {
+> +			.reg_off = HIFIPLL_CTRL0,
+> +			.shift   = 31,
+> +			.width   = 1,
+> +		},
+> +		.rst = {
+> +			.reg_off = HIFIPLL_CTRL0,
+> +			.shift   = 29,
+> +			.width   = 1,
+> +		},
+> +		.l_detect = {
+> +			.reg_off = HIFIPLL_CTRL0,
+> +			.shift   = 30,
+> +			.width   = 1,
+> +		},
+> +		.range = &a9_pll_mult_range,
+> +		.init_regs = a9_hifi0_pll_init_regs,
+> +		.init_count = ARRAY_SIZE(a9_hifi0_pll_init_regs),
+> +		.frac_max = 100000,
+> +		.flags = CLK_MESON_PLL_RST_ACTIVE_LOW |
+> +			 CLK_MESON_PLL_N_POWER_OF_TWO |
+> +			 CLK_MESON_PLL_L_DETECT_ACTIVE_HIGH,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "hifi0_pll_dco",
+> +		.ops = &meson_clk_pll_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a9_hifi0_in_div2.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap a9_hifi0_pll = {
+> +	.data = &(struct clk_regmap_div_data) {
+> +		.offset = HIFIPLL_CTRL0,
+> +		.shift = 20,
+> +		.width = 3,
+> +		.table = a9_pll_od_table,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "hifi0_pll",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a9_hifi0_pll_dco.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor a9_hifi1_in_div2_div = {
+> +	.mult = 1,
+> +	.div = 2,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "hifi1_in_div2_div",
+> +		.ops = &clk_fixed_factor_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "in0",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap a9_hifi1_in_div2 = {
+> +	.data = &(struct clk_regmap_gate_data) {
+> +		.offset = HIFIPLL_CTRL0,
+> +		.bit_idx = 27,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "hifi1_in_div2",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a9_hifi1_in_div2_div.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static const struct reg_sequence a9_hifi1_pll_init_regs[] = {
+> +	{ .reg = HIFIPLL_CTRL0, .def = 0x00010000 },
+> +	{ .reg = HIFIPLL_CTRL1, .def = 0x11480000 },
+> +	{ .reg = HIFIPLL_CTRL2, .def = 0x1219b011 },
+> +	{ .reg = HIFIPLL_CTRL3, .def = 0x00008010 }
+> +};
+> +
+> +static struct clk_regmap a9_hifi1_pll_dco = {
+> +	.data = &(struct meson_clk_pll_data) {
+> +		.en = {
+> +			.reg_off = HIFIPLL_CTRL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.m = {
+> +			.reg_off = HIFIPLL_CTRL0,
+> +			.shift   = 0,
+> +			.width   = 9,
+> +		},
+> +		.n = {
+> +			.reg_off = HIFIPLL_CTRL0,
+> +			.shift   = 12,
+> +			.width   = 3,
+> +		},
+> +		.frac = {
+> +			.reg_off = HIFIPLL_CTRL1,
+> +			.shift   = 0,
+> +			.width   = 17,
+> +		},
+> +		.l = {
+> +			.reg_off = HIFIPLL_CTRL0,
+> +			.shift   = 31,
+> +			.width   = 1,
+> +		},
+> +		.rst = {
+> +			.reg_off = HIFIPLL_CTRL0,
+> +			.shift   = 29,
+> +			.width   = 1,
+> +		},
+> +		.l_detect = {
+> +			.reg_off = HIFIPLL_CTRL0,
+> +			.shift   = 30,
+> +			.width   = 1,
+> +		},
+> +		.range = &a9_pll_mult_range,
+> +		.init_regs = a9_hifi1_pll_init_regs,
+> +		.init_count = ARRAY_SIZE(a9_hifi1_pll_init_regs),
+> +		.frac_max = 100000,
+> +		.flags = CLK_MESON_PLL_RST_ACTIVE_LOW |
+> +			 CLK_MESON_PLL_N_POWER_OF_TWO |
+> +			 CLK_MESON_PLL_L_DETECT_ACTIVE_HIGH,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "hifi1_pll_dco",
+> +		.ops = &meson_clk_pll_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a9_hifi1_in_div2.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap a9_hifi1_pll = {
+> +	.data = &(struct clk_regmap_div_data) {
+> +		.offset = HIFIPLL_CTRL0,
+> +		.shift = 20,
+> +		.width = 3,
+> +		.table = a9_pll_od_table,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "hifi1_pll",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a9_hifi1_pll_dco.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +/*
+> + * Unlike GP0 and HIFI PLLs, the input divider 2 of MCLK PLL is
+> + * enabled by default and has no enable control bit.
+> + */
+> +static struct clk_fixed_factor a9_mclk0_in_div2 = {
+> +	.mult = 1,
+> +	.div = 2,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "mclk0_in_div2_div",
+> +		.ops = &clk_fixed_factor_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "in0",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static const struct reg_sequence a9_mclk0_pll_init_regs[] = {
+> +	{ .reg = MCLKPLL_CTRL1, .def = 0x00422000 },
+> +	{ .reg = MCLKPLL_CTRL2, .def = 0x60000100 },
+> +	{ .reg = MCLKPLL_CTRL3, .def = 0x02000200 },
+> +	{ .reg = MCLKPLL_CTRL4, .def = 0xd616d616 }
+> +};
+> +
+> +static struct clk_regmap a9_mclk0_pll_dco = {
+> +	.data = &(struct meson_clk_pll_data) {
+> +		.en = {
+> +			.reg_off = MCLKPLL_CTRL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.m = {
+> +			.reg_off = MCLKPLL_CTRL0,
+> +			.shift   = 0,
+> +			.width   = 9,
+> +		},
+> +		.n = {
+> +			.reg_off = MCLKPLL_CTRL0,
+> +			.shift   = 12,
+> +			.width   = 3,
+> +		},
+> +		.l = {
+> +			.reg_off = MCLKPLL_CTRL0,
+> +			.shift   = 31,
+> +			.width   = 1,
+> +		},
+> +		.rst = {
+> +			.reg_off = MCLKPLL_CTRL0,
+> +			.shift   = 29,
+> +			.width   = 1,
+> +		},
+> +		.l_detect = {
+> +			.reg_off = MCLKPLL_CTRL0,
+> +			.shift   = 30,
+> +			.width   = 1,
+> +		},
+> +		.range = &a9_pll_mult_range,
+> +		.init_regs = a9_mclk0_pll_init_regs,
+> +		.init_count = ARRAY_SIZE(a9_mclk0_pll_init_regs),
+> +		.flags = CLK_MESON_PLL_RST_ACTIVE_LOW |
+> +			 CLK_MESON_PLL_N_POWER_OF_TWO |
+> +			 CLK_MESON_PLL_L_DETECT_ACTIVE_HIGH,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "mclk0_pll_dco",
+> +		.ops = &meson_clk_pll_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a9_mclk0_in_div2.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap a9_mclk0_0_pll = {
+> +	.data = &(struct clk_regmap_div_data) {
+> +		.offset = MCLKPLL_CTRL3,
+> +		.shift = 0,
+> +		.width = 3,
+> +		.table = a9_pll_od_table,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "mclk0_0_pll",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a9_mclk0_pll_dco.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap a9_mclk0_0_pre = {
+> +	.data = &(struct clk_regmap_div_data) {
+> +		.offset = MCLKPLL_CTRL3,
+> +		.shift = 3,
+> +		.width = 5,
+> +		.flags = CLK_DIVIDER_MAX_AT_ZERO,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "mclk0_0_pre",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a9_mclk0_0_pll.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static const struct clk_parent_data a9_mclk0_0_parents[] = {
+> +	{ .hw = &a9_mclk0_0_pre.hw },
+> +	{ .fw_name = "in0" },
+> +	{ .fw_name = "in1" },
+> +	{ .fw_name = "in2" }
+> +};
+> +
+> +static A9_COMP_SEL(mclk0_0, MCLKPLL_CTRL3, 12, 0x3, a9_mclk0_0_parents);
+> +static A9_COMP_DIV(mclk0_0, MCLKPLL_CTRL3, 10, 1);
+> +static A9_COMP_GATE(mclk0_0, MCLKPLL_CTRL3, 8);
+> +
+> +static struct clk_regmap a9_mclk0_1_pll = {
+> +	.data = &(struct clk_regmap_div_data) {
+> +		.offset = MCLKPLL_CTRL3,
+> +		.shift = 16,
+> +		.width = 3,
+> +		.table = a9_pll_od_table,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "mclk0_1_pll",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a9_mclk0_pll_dco.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap a9_mclk0_1_pre = {
+> +	.data = &(struct clk_regmap_div_data) {
+> +		.offset = MCLKPLL_CTRL3,
+> +		.shift = 19,
+> +		.width = 5,
+> +		.flags = CLK_DIVIDER_MAX_AT_ZERO,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "mclk0_1_pre",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a9_mclk0_1_pll.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static const struct clk_parent_data a9_mclk0_1_parents[] = {
+> +	{ .hw = &a9_mclk0_1_pre.hw },
+> +	{ .fw_name = "in0" },
+> +	{ .fw_name = "in1" },
+> +	{ .fw_name = "in2" }
+> +};
+> +
+> +static A9_COMP_SEL(mclk0_1, MCLKPLL_CTRL3, 28, 0x3, a9_mclk0_1_parents);
+> +static A9_COMP_DIV(mclk0_1, MCLKPLL_CTRL3, 26, 1);
+> +static A9_COMP_GATE(mclk0_1, MCLKPLL_CTRL3, 24);
+> +
+> +static struct clk_fixed_factor a9_mclk1_in_div2 = {
+> +	.mult = 1,
+> +	.div = 2,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "mclk1_in_div2",
+> +		.ops = &clk_fixed_factor_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "in0",
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap a9_mclk1_pll_dco = {
+> +	.data = &(struct meson_clk_pll_data) {
+> +		.en = {
+> +			.reg_off = MCLKPLL_CTRL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.m = {
+> +			.reg_off = MCLKPLL_CTRL0,
+> +			.shift   = 0,
+> +			.width   = 9,
+> +		},
+> +		.n = {
+> +			.reg_off = MCLKPLL_CTRL0,
+> +			.shift   = 12,
+> +			.width   = 3,
+> +		},
+> +		.l = {
+> +			.reg_off = MCLKPLL_CTRL0,
+> +			.shift   = 31,
+> +			.width   = 1,
+> +		},
+> +		.rst = {
+> +			.reg_off = MCLKPLL_CTRL0,
+> +			.shift   = 29,
+> +			.width   = 1,
+> +		},
+> +		.l_detect = {
+> +			.reg_off = MCLKPLL_CTRL0,
+> +			.shift   = 30,
+> +			.width   = 1,
+> +		},
+> +		.range = &a9_pll_mult_range,
+> +		.init_regs = a9_mclk0_pll_init_regs,
+> +		.init_count = ARRAY_SIZE(a9_mclk0_pll_init_regs),
+> +		.flags = CLK_MESON_PLL_RST_ACTIVE_LOW |
+> +			 CLK_MESON_PLL_N_POWER_OF_TWO |
+> +			 CLK_MESON_PLL_L_DETECT_ACTIVE_HIGH,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "mclk1_pll_dco",
+> +		.ops = &meson_clk_pll_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a9_mclk1_in_div2.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap a9_mclk1_0_pll = {
+> +	.data = &(struct clk_regmap_div_data) {
+> +		.offset = MCLKPLL_CTRL3,
+> +		.shift = 0,
+> +		.width = 3,
+> +		.table = a9_pll_od_table,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "mclk1_0_pll",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a9_mclk1_pll_dco.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap a9_mclk1_0_pre = {
+> +	.data = &(struct clk_regmap_div_data) {
+> +		.offset = MCLKPLL_CTRL3,
+> +		.shift = 3,
+> +		.width = 5,
+> +		.flags = CLK_DIVIDER_MAX_AT_ZERO,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "mclk1_0_pre",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a9_mclk1_0_pll.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static const struct clk_parent_data a9_mclk1_0_parents[] = {
+> +	{ .hw = &a9_mclk1_0_pre.hw },
+> +	{ .fw_name = "in0" },
+> +	{ .fw_name = "in1" },
+> +	{ .fw_name = "in2" }
+> +};
+> +
+> +static A9_COMP_SEL(mclk1_0, MCLKPLL_CTRL3, 12, 0x3, a9_mclk1_0_parents);
+> +static A9_COMP_DIV(mclk1_0, MCLKPLL_CTRL3, 10, 1);
+> +static A9_COMP_GATE(mclk1_0, MCLKPLL_CTRL3, 8);
+> +
+> +static struct clk_regmap a9_mclk1_1_pll = {
+> +	.data = &(struct clk_regmap_div_data) {
+> +		.offset = MCLKPLL_CTRL3,
+> +		.shift = 16,
+> +		.width = 3,
+> +		.table = a9_pll_od_table,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "mclk1_1_pll",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a9_mclk1_pll_dco.hw
+> +		},
+> +		.num_parents = 1,
+> +	},
+> +};
+> +
+> +static struct clk_regmap a9_mclk1_1_pre = {
+> +	.data = &(struct clk_regmap_div_data) {
+> +		.offset = MCLKPLL_CTRL3,
+> +		.shift = 19,
+> +		.width = 5,
+> +		.flags = CLK_DIVIDER_MAX_AT_ZERO,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "mclk1_1_pre",
+> +		.ops = &clk_regmap_divider_ops,
+> +		.parent_hws = (const struct clk_hw *[]) {
+> +			&a9_mclk1_1_pll.hw
+> +		},
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static const struct clk_parent_data a9_mclk1_1_parents[] = {
+> +	{ .hw = &a9_mclk1_1_pre.hw },
+> +	{ .fw_name = "in0" },
+> +	{ .fw_name = "in1" },
+> +	{ .fw_name = "in2" }
+> +};
+> +
+> +static A9_COMP_SEL(mclk1_1, MCLKPLL_CTRL3, 28, 0x3, a9_mclk1_1_parents);
+> +static A9_COMP_DIV(mclk1_1, MCLKPLL_CTRL3, 26, 1);
+> +static A9_COMP_GATE(mclk1_1, MCLKPLL_CTRL3, 24);
+> +
+> +static struct clk_hw *a9_gp0_hw_clks[] = {
+> +	[CLKID_GP0_IN_DIV2_DIV]		= &a9_gp0_in_div2_div.hw,
+> +	[CLKID_GP0_IN_DIV2]		= &a9_gp0_in_div2.hw,
+> +	[CLKID_GP0_PLL_DCO]		= &a9_gp0_pll_dco.hw,
+> +	[CLKID_GP0_PLL]			= &a9_gp0_pll.hw,
+> +};
+> +
+> +static struct clk_hw *a9_hifi0_hw_clks[] = {
+> +	[CLKID_HIFI0_IN_DIV2_DIV]	= &a9_hifi0_in_div2_div.hw,
+> +	[CLKID_HIFI0_IN_DIV2]		= &a9_hifi0_in_div2.hw,
+> +	[CLKID_HIFI0_PLL_DCO]		= &a9_hifi0_pll_dco.hw,
+> +	[CLKID_HIFI0_PLL]		= &a9_hifi0_pll.hw,
+> +};
+> +
+> +static struct clk_hw *a9_hifi1_hw_clks[] = {
+> +	[CLKID_HIFI1_IN_DIV2_DIV]	= &a9_hifi1_in_div2_div.hw,
+> +	[CLKID_HIFI1_IN_DIV2]		= &a9_hifi1_in_div2.hw,
+> +	[CLKID_HIFI1_PLL_DCO]		= &a9_hifi1_pll_dco.hw,
+> +	[CLKID_HIFI1_PLL]		= &a9_hifi1_pll.hw,
+> +};
+> +
+> +static struct clk_hw *a9_mclk0_hw_clks[] = {
+> +	[CLKID_MCLK0_IN_DIV2]		= &a9_mclk0_in_div2.hw,
+> +	[CLKID_MCLK0_PLL_DCO]		= &a9_mclk0_pll_dco.hw,
+> +	[CLKID_MCLK0_0_PLL]		= &a9_mclk0_0_pll.hw,
+> +	[CLKID_MCLK0_0_PRE]		= &a9_mclk0_0_pre.hw,
+> +	[CLKID_MCLK0_0_SEL]		= &a9_mclk0_0_sel.hw,
+> +	[CLKID_MCLK0_0_DIV]		= &a9_mclk0_0_div.hw,
+> +	[CLKID_MCLK0_0]			= &a9_mclk0_0.hw,
+> +	[CLKID_MCLK0_1_PLL]		= &a9_mclk0_1_pll.hw,
+> +	[CLKID_MCLK0_1_PRE]		= &a9_mclk0_1_pre.hw,
+> +	[CLKID_MCLK0_1_SEL]		= &a9_mclk0_1_sel.hw,
+> +	[CLKID_MCLK0_1_DIV]		= &a9_mclk0_1_div.hw,
+> +	[CLKID_MCLK0_1]			= &a9_mclk0_1.hw,
+> +};
+> +
+> +static struct clk_hw *a9_mclk1_hw_clks[] = {
+> +	[CLKID_MCLK1_IN_DIV2]		= &a9_mclk1_in_div2.hw,
+> +	[CLKID_MCLK1_PLL_DCO]		= &a9_mclk1_pll_dco.hw,
+> +	[CLKID_MCLK1_0_PLL]		= &a9_mclk1_0_pll.hw,
+> +	[CLKID_MCLK1_0_PRE]		= &a9_mclk1_0_pre.hw,
+> +	[CLKID_MCLK1_0_SEL]		= &a9_mclk1_0_sel.hw,
+> +	[CLKID_MCLK1_0_DIV]		= &a9_mclk1_0_div.hw,
+> +	[CLKID_MCLK1_0]			= &a9_mclk1_0.hw,
+> +	[CLKID_MCLK1_1_PLL]		= &a9_mclk1_1_pll.hw,
+> +	[CLKID_MCLK1_1_PRE]		= &a9_mclk1_1_pre.hw,
+> +	[CLKID_MCLK1_1_SEL]		= &a9_mclk1_1_sel.hw,
+> +	[CLKID_MCLK1_1_DIV]		= &a9_mclk1_1_div.hw,
+> +	[CLKID_MCLK1_1]			= &a9_mclk1_1.hw,
+> +};
+> +
+> +static const struct meson_clkc_data a9_gp0_data = {
+> +	.hw_clks = {
+> +		.hws = a9_gp0_hw_clks,
+> +		.num = ARRAY_SIZE(a9_gp0_hw_clks),
+> +	},
+> +};
+> +
+> +static const struct meson_clkc_data a9_hifi0_data = {
+> +	.hw_clks = {
+> +		.hws = a9_hifi0_hw_clks,
+> +		.num = ARRAY_SIZE(a9_hifi0_hw_clks),
+> +	},
+> +};
+> +
+> +static const struct meson_clkc_data a9_hifi1_data = {
+> +	.hw_clks = {
+> +		.hws = a9_hifi1_hw_clks,
+> +		.num = ARRAY_SIZE(a9_hifi1_hw_clks),
+> +	},
+> +};
+> +
+> +static const struct meson_clkc_data a9_mclk0_data = {
+> +	.hw_clks = {
+> +		.hws = a9_mclk0_hw_clks,
+> +		.num = ARRAY_SIZE(a9_mclk0_hw_clks),
+> +	},
+> +};
+> +
+> +static const struct meson_clkc_data a9_mclk1_data = {
+> +	.hw_clks = {
+> +		.hws = a9_mclk1_hw_clks,
+> +		.num = ARRAY_SIZE(a9_mclk1_hw_clks),
+> +	},
+> +};
+> +
+> +static const struct of_device_id a9_pll_clkc_match_table[] = {
+> +	{ .compatible = "amlogic,a9-gp0-pll",	.data = &a9_gp0_data, },
+> +	{ .compatible = "amlogic,a9-hifi0-pll",	.data = &a9_hifi0_data, },
+> +	{ .compatible = "amlogic,a9-hifi1-pll",	.data = &a9_hifi1_data, },
+> +	{ .compatible = "amlogic,a9-mclk0-pll",	.data = &a9_mclk0_data, },
+> +	{ .compatible = "amlogic,a9-mclk1-pll", .data = &a9_mclk1_data, },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, a9_pll_clkc_match_table);
+> +
+> +static struct platform_driver a9_pll_clkc_driver = {
+> +	.probe		= meson_clkc_mmio_probe,
+> +	.driver		= {
+> +		.name	= "a9-pll-clkc",
+> +		.of_match_table = a9_pll_clkc_match_table,
+> +	},
+> +};
+> +module_platform_driver(a9_pll_clkc_driver);
+> +
+> +MODULE_DESCRIPTION("Amlogic A9 PLL Clock Controller Driver");
+> +MODULE_AUTHOR("Jian Hu <jian.hu@amlogic.com>");
+> +MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS("CLK_MESON");
+
+-- >8 --
+diff --git a/drivers/clk/meson/meson-clkc-utils.c b/drivers/clk/meson/meson-clkc-utils.c
+index 870f50548e26..f95a0d9212fa 100644
+--- a/drivers/clk/meson/meson-clkc-utils.c
++++ b/drivers/clk/meson/meson-clkc-utils.c
+@@ -26,16 +26,12 @@ struct clk_hw *meson_clk_hw_get(struct of_phandle_args *clkspec, void *clk_hw_da
+ }
+ EXPORT_SYMBOL_NS_GPL(meson_clk_hw_get, "CLK_MESON");
+ 
+-static int meson_clkc_init(struct device *dev, struct regmap *map)
++static int meson_clkc_init(struct device *dev, struct regmap *map,
++	const struct meson_clkc_data *data)
+ {
+-	const struct meson_clkc_data *data;
+ 	struct clk_hw *hw;
+ 	int ret, i;
+ 
+-	data = of_device_get_match_data(dev);
+-	if (!data)
+-		return -EINVAL;
+-
+ 	if (data->init_count)
+ 		regmap_multi_reg_write(map, data->init_regs, data->init_count);
+ 
+@@ -59,6 +55,7 @@ static int meson_clkc_init(struct device *dev, struct regmap *map)
+ 
+ int meson_clkc_syscon_probe(struct platform_device *pdev)
+ {
++	const struct meson_clkc_data *data;
+ 	struct device *dev = &pdev->dev;
+ 	struct device_node *np;
+ 	struct regmap *map;
+@@ -71,7 +68,11 @@ int meson_clkc_syscon_probe(struct platform_device *pdev)
+ 		return PTR_ERR(map);
+ 	}
+ 
+-	return meson_clkc_init(dev, map);
++	data = of_device_get_match_data(dev);
++	if (!data)
++		return -EINVAL;
++
++	return meson_clkc_init(dev, map, data);
+ }
+ EXPORT_SYMBOL_NS_GPL(meson_clkc_syscon_probe, "CLK_MESON");
+ 
+@@ -102,7 +103,7 @@ int meson_clkc_mmio_probe(struct platform_device *pdev)
+ 	if (IS_ERR(map))
+ 		return PTR_ERR(map);
+ 
+-	return meson_clkc_init(dev, map);
++	return meson_clkc_init(dev, map, data);
+ }
+ EXPORT_SYMBOL_NS_GPL(meson_clkc_mmio_probe, "CLK_MESON");
 
 _______________________________________________
 linux-amlogic mailing list
