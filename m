@@ -4,53 +4,109 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F972CD4F3E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 May 2026 12:35:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D973ECD4851
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 May 2026 15:11:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=apmwW9uiuJeZlR6RO8kAXDV4EqIRWrK8dKc8hg1BOC4=; b=EmaY9FsFay5P11
-	oBB8/rodDX/GgHaSY3NhYmYUQnAcpiQ1aMjAznE5XMvOc234UTE0Tu7QI3vcivmrsaRlJX58B425v
-	yG7zXEupy3qOKm+DfkFjcW9yh/tRb59SxxgtJSEfxBo5bjArd+/vNTPqNGKhEYjSeyufAc/5FCsYn
-	5tnr9qdvHfwB/d+aq2uBMoIU121jILi99EfStIE+qOC+7tL7J5cnlodLQONtTu4W74GbqvdJICgUq
-	2HV+vJeKwMwgVlEAJxIFY8NRwvIvwmCM0N6k/iXak875lAlYAIVNm8/Kd2ZYW5tC+LB3vUIjoMIDS
-	k6eGJ3OIOYXKKuc7wDAA==;
+	List-Owner; bh=b7KwAbyQNs8nJJfdM0pGR3uGYk2D2zljmfz9JVImE/E=; b=PZzb/Itq1NeyEe
+	mhkw6Jn5Kb9drFaj2Dp1+7Id1r8nt7lNjSKP0iNo42bmCG7oeoteuDbd1c3ERijsai94UVAXYPMVM
+	CGCd+Wg2MeqAU07Gp7BLRG4CHp8V3Q0BuKnDTkgL0o7KU1M9rYsXFn554PHmSiadv0hScptCTCjPB
+	MxvK6AAcWFfN9hGYQc6aj6uTJakAB30qPxwFvKwDfusFDhg96WLoCb6URIFEjV9PWe6jjd98nqSic
+	6Wh6+4iW4H2aGlaQVMGnq9ySpJ22ZmFRoScdtR3SfoKqOKWIJc4nvXWWUy5OFyhj111T9PyaDWuMn
+	CZMsyWyInjBEbUjoX8NQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wNVHt-00000005TES-2FxX;
-	Thu, 14 May 2026 12:35:37 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1wNXiS-00000005rJO-1CrC;
+	Thu, 14 May 2026 15:11:12 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wNVHs-00000005TE1-2Irn
+	id 1wNXiQ-00000005rHL-3uYQ
+	for linux-amlogic@bombadil.infradead.org;
+	Thu, 14 May 2026 15:11:11 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Type:MIME-Version:Message-ID:
+	Date:References:In-Reply-To:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=02NHwmt4Q/1Wwv24vtMYzG1XiCeSXVTnDMbrgdzumy0=; b=ENF4L1a/dUPqMRDeXpmWFKVxkI
+	OPcFHgEzf/f0+5w5Y+hXPyEUi6WqX4f1pcP7YvYDrH3/3+T+9ubvhFWpKiKfrmmt7ZO3wqyBsg4kr
+	BaEaNus+e/7h/s3OAmQW8w+Hut8c1xtyX2/EeLqV07BiFUA9wf4+59y4Ihpp2B1yheRo4cEARr+2j
+	laAB8ogW/cOltpW3RyB2D7Tb/WKwz4iJyngwLGHdXLrxW7V38mbPcbvJQuhHHqxO0APj4B7a4wXbi
+	9YqQnzIgzz4uLA+uqt2oMSyfS1WLi+TICC9yUwBTYsKNUZRIgvq6XCfnfDczZzsjrgn92lS2F5Z12
+	zrnY/05A==;
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	by desiato.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
+	id 1wNXiM-00000003E1l-0tB5
 	for linux-amlogic@lists.infradead.org;
-	Thu, 14 May 2026 12:35:36 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 980946013B;
-	Thu, 14 May 2026 12:35:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31AE7C2BCB3;
-	Thu, 14 May 2026 12:35:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778762135;
-	bh=ue0XnE9SvQVuCGe1TZZL3sutQ2TrRfF8XisyxaCg3+4=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=B12K8BZe1QW1gaWlTdxhjYG06cGDSHxEJbzZ2kLWxPIT04g9xXyDbrNBFi70WkJxx
-	 VUxNMisX1MOUFRgkPHejfBDC///CzSaah3nFxThVHl9bRm5pIaZuofjCxV4SUnoV8h
-	 QD3LtrPwYxCQJ3U+pk/Eh/t7KXd/AZhqPy2DE9tnhAwIWbho2yp/OW+hOUI9C5vVqg
-	 I01DkpbTl/NlT2WtaI3QpgDT4TsMgbIHU+39X4s1kJ+aaw1vFPiMDICIrHXaDzPUTr
-	 Y/OtepAE/nocOCz+Td63YYBK/b8WhYBXa018/uA1XU7aDp3OrmstJlD6NznrAqKyAN
-	 +pt2nj9bSj/Zw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH RESEND v3 5/6] soc: qcom: pmic-glink-altmode: pass down
- HPD_IRQ events
-To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
-Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
-In-Reply-To: <20260513-hpd-irq-events-v3-5-086857017f16@oss.qualcomm.com>
-References: <20260513-hpd-irq-events-v3-5-086857017f16@oss.qualcomm.com>
-Date: Thu, 14 May 2026 12:35:34 +0000
-Message-Id: <20260514123535.31AE7C2BCB3@smtp.kernel.org>
+	Thu, 14 May 2026 15:11:09 +0000
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-4585a116a4aso3702199f8f.3
+        for <linux-amlogic@lists.infradead.org>; Thu, 14 May 2026 08:11:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1778771464; x=1779376264; darn=lists.infradead.org;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=02NHwmt4Q/1Wwv24vtMYzG1XiCeSXVTnDMbrgdzumy0=;
+        b=hWgNH2jn1I6aX84Y99F227P8heEKoUcmNLoqLi3FeeXrPkxCF5LOpyGm7O7GzTYc0r
+         VxlrxwmYCWGQWfWFRs3aarJAoMP1QMjCYshtWhHldbFQIxFafTFcYmqb8rjSBJ6yEYfa
+         TCe5geOPkzvMxj86Yb/CHbtF3uniODvRktFb1AKAFAtkowovcgV/OQK201GW5ezWIHun
+         rTviAvpTpVWENb3u45T/dks2ycHKfXz39RQ3NjGwUCWmrZ2AVvgYnRZlv7Y4GTzsgZyd
+         E5TtFIPC7llQhEpfDJhxPQFyoM4aW1TONphF9a0c7wFMoHXoZ5Co8AZQWem9/LNuT9Iy
+         fy2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778771464; x=1779376264;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=02NHwmt4Q/1Wwv24vtMYzG1XiCeSXVTnDMbrgdzumy0=;
+        b=fC8DskxsfDOg6hEvpxiDE10+3kCrCC3ocNOfES3V7EPXjxmyX7GC+570S33bAVcJ0s
+         uMHOhdJBPVLVil2KY6U36LA1vNRXO0Nd+IJbxurJlaBiQGkJzOPGruVqZ6FK/XhDSQnX
+         8yScWIvOB/BsCoJzMeqfZuugtIQ64eo9dPe1mxcU2m1jJX3FWouHXkKKZmELzSJ3ei7n
+         8u6B6scvS3x07801i+/zKJGkYUqVsn1DscUne598bQ8ObcJFFh4/FLFgfHG2ZvF9cL+J
+         NdpwTbkpA0e7Aa/mYmBt9QLBpa5hqRR+/+L7H0WaHoBb49Wg77QlY67voJMkfxdTwiZ0
+         pR6w==
+X-Forwarded-Encrypted: i=1; AFNElJ+YGQuVVgw2zT6jOaEPC2NBZ0tT+sl3sNRSss9mCMD3MyK9OoXHdn3rXEryErrQkubgVTzKCIG3p0dJwOOE@lists.infradead.org
+X-Gm-Message-State: AOJu0Yy0x/LMrdPZULANYM2o3msid3QfLxNCX9mGKRIL/BeQWpvYjooc
+	HzrKtOQ/bqdsY/ECw/UqDzgnggOebI+8mu3ZWoiIZ3cnXBZEDhAgBQUOKSRO8fpF7JU=
+X-Gm-Gg: Acq92OEymH9+1wGU8rIcLK68x83ORTgNgcP0FdB+6rCitCShq6xfeyzJZ10pJjZYx7a
+	pCEwOXrwrAjvji/1uEPGKZpAI5S0G7UbkHVTcGfxSHGL55uHyHjsMals/TokwxgAR7HzM4rTy91
+	DNqWOzcNmuS1PcuxsF5GM8+CpguvWEOKck8XRuld60m0qxny8b9X1gGUZFjzaH+fbOnqLHfEYKb
+	P5UjO7h7ijiLgCj7RDRHa/dUiedNZ0Tglfd2leiV+LbS7xmDjkXt2PGV3XL7QpuM3juDVs8902r
+	Km1d9ey7/OkURLxBqx9ITGeHErJhn3DjcDTAY8kj9lNzmR/UHxeJWjHDVuWLnd+nZ3ESjgcAEHX
+	RufzAHWHZCahstv236TwdlzagNtkVEgE9XPTPoWEQJmaaSEwYRByB8RQT1OZ2NcLY24IpHE47iy
+	kHMnNe3cIo14H0h5pIJ+RUWqnxg/Y/1g==
+X-Received: by 2002:a05:6000:26c1:b0:439:c62a:6dc2 with SMTP id ffacd0b85a97d-45c7bb4a90emr12856516f8f.41.1778771463953;
+        Thu, 14 May 2026 08:11:03 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:8f63:bf1e:b5:28d8])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-45d9ed30110sm8047555f8f.13.2026.05.14.08.11.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 May 2026 08:11:03 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
+ <sboyd@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Neil Armstrong
+ <neil.armstrong@linaro.org>,  Xianwei Zhao <xianwei.zhao@amlogic.com>,
+  Kevin Hilman <khilman@baylibre.com>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  jian.hu@amlogic.com,
+  linux-kernel@vger.kernel.org,  linux-clk@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-amlogic@lists.infradead.org,
+  linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 07/10] clk: amlogic: Support POWER_OF_TWO for PLL
+ pre-divider
+In-Reply-To: <20260511-b4-a9_clk-v1-7-41cb4071b7c9@amlogic.com> (Jian Hu via's
+	message of "Mon, 11 May 2026 20:47:29 +0800")
+References: <20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com>
+	<20260511-b4-a9_clk-v1-7-41cb4071b7c9@amlogic.com>
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Thu, 14 May 2026 17:11:01 +0200
+Message-ID: <1jy0hm6n7e.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260514_161106_607041_6F0D10A2 
+X-CRM114-Status: GOOD (  23.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,47 +118,127 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0hpZ2hdIFVzZS1BZnRlci1GcmVl
-IG9uIGRldmljZSB1bmJpbmQgZHVlIHRvIHVuY2FuY2VsbGVkIHdvcmtxdWV1ZSBpdGVtcy4KLS0K
-CmNvbW1pdCBjOWEwNWZkYjdhZTk1YzU2NTBjY2ZiYmQxMjE5NmM0MTY5ZDJkMWM0CkF1dGhvcjog
-RG1pdHJ5IEJhcnlzaGtvdiA8ZG1pdHJ5LmJhcnlzaGtvdkBvc3MucXVhbGNvbW0uY29tPgoKc29j
-OiBxY29tOiBwbWljLWdsaW5rLWFsdG1vZGU6IHBhc3MgZG93biBIUERfSVJRIGV2ZW50cwogICAg
-ClRoaXMgY29tbWl0IHVwZGF0ZXMgdGhlIFBNSUMgR0xJTksgYWx0bW9kZSBkcml2ZXIgdG8gcGFz
-cyBJUlFfSFBEIGV2ZW50cwp0byB0aGUgSFBEIGJyaWRnZS4gVGhpcyBhbGxvd3MgdGhlIGV2ZW50
-cyB0byBiZSBkZWxpdmVyZWQgdG8gdGhlIERpc3BsYXlQb3J0CmRyaXZlci4KCj4gZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvc29jL3Fjb20vcG1pY19nbGlua19hbHRtb2RlLmMgYi9kcml2ZXJzL3NvYy9x
-Y29tL3BtaWNfZ2xpbmtfYWx0bW9kZS5jCj4gLS0tIGEvZHJpdmVycy9zb2MvcWNvbS9wbWljX2ds
-aW5rX2FsdG1vZGUuYwo+ICsrKyBiL2RyaXZlcnMvc29jL3Fjb20vcG1pY19nbGlua19hbHRtb2Rl
-LmMKPiBAQCAtMzczLDcgKzM3MywxMSBAQCBzdGF0aWMgdm9pZCBwbWljX2dsaW5rX2FsdG1vZGVf
-d29ya2VyKHN0cnVjdCB3b3JrX3N0cnVjdCAqd29yaykKPiAgCQllbHNlCj4gIAkJCWNvbm5fc3Rh
-dHVzID0gY29ubmVjdG9yX3N0YXR1c19kaXNjb25uZWN0ZWQ7Cj4gIAo+IC0JCWRybV9hdXhfaHBk
-X2JyaWRnZV9ub3RpZnkoJmFsdF9wb3J0LT5icmlkZ2UtPmRldiwgY29ubl9zdGF0dXMpOwo+ICsJ
-CWRybV9hdXhfaHBkX2JyaWRnZV9ub3RpZnlfZXh0cmEoJmFsdF9wb3J0LT5icmlkZ2UtPmRldiwK
-PiArCQkJCQkJY29ubl9zdGF0dXMsCj4gKwkJCQkJCWFsdF9wb3J0LT5ocGRfaXJxID8KPiArCQkJ
-CQkJRFJNX0NPTk5FQ1RPUl9EUF9JUlFfSFBEIDoKPiArCQkJCQkJRFJNX0NPTk5FQ1RPUl9OT19F
-WFRSQV9TVEFUVVMpOwoKV2hpbGUgcmV2aWV3aW5nIHRoaXMgY2hhbmdlLCBJIG5vdGljZWQgYSBw
-cmUtZXhpc3RpbmcgaXNzdWUgd2l0aCB0aGUgbGlmZWN5Y2xlCm9mIHRoaXMgd29yayBpdGVtLgoK
-VGhlIGFsdG1vZGUgc3RydWN0dXJlIGlzIGFsbG9jYXRlZCB1c2luZyBkZXZtX2t6YWxsb2MsIGFu
-ZCBtdWx0aXBsZSB3b3JrCml0ZW1zIGxpa2UgYWx0X3BvcnQtPndvcmsgYW5kIGFsdG1vZGUtPmVu
-YWJsZV93b3JrIGFyZSBpbml0aWFsaXplZCwgYnV0IHRoZXkKYXJlIG5ldmVyIGV4cGxpY2l0bHkg
-Y2FuY2VsZWQgZHVyaW5nIGRldmljZSB0ZWFyZG93bi4KCldoZW4gdGhlIGRldmljZSBpcyB1bmJv
-dW5kLCBkZXZyZXMgYXV0b21hdGljYWxseSBmcmVlcyB0aGUgYWx0bW9kZSBzdHJ1Y3R1cmUuCklm
-IHRoaXMgd29yayBpdGVtIGlzIHBlbmRpbmcgb3IgZXhlY3V0aW5nIGNvbmN1cnJlbnRseSBvbiB0
-aGUgc3lzdGVtIHdvcmtxdWV1ZQpkdXJpbmcgdW5iaW5kLCBjb3VsZCBpdCBkZXJlZmVyZW5jZSB0
-aGUgZnJlZWQgYWx0bW9kZSBvciBhbHRfcG9ydCBzdHJ1Y3R1cmVzCmFuZCBjYXVzZSBhIHVzZS1h
-ZnRlci1mcmVlPwoKU2hvdWxkIGEgY2FuY2VsX3dvcmtfc3luYyBhY3Rpb24gYmUgcmVnaXN0ZXJl
-ZCB2aWEgZGV2bV9hZGRfYWN0aW9uX29yX3Jlc2V0CnRvIGVuc3VyZSB0aGVzZSB3b3JrIGl0ZW1z
-IGFyZSBmbHVzaGVkIGJlZm9yZSB0aGUgbWVtb3J5IGlzIGZyZWVkPwoKLS0gClNhc2hpa28gQUkg
-cmV2aWV3IMK3IGh0dHBzOi8vc2FzaGlrby5kZXYvIy9wYXRjaHNldC8yMDI2MDUxMy1ocGQtaXJx
-LWV2ZW50cy12My0wLTA4Njg1NzAxN2YxNkBvc3MucXVhbGNvbW0uY29tP3BhcnQ9NQoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBt
-YWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0
-cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On lun. 11 mai 2026 at 20:47, Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org> wrote:
+
+> From: Jian Hu <jian.hu@amlogic.com>
+>
+> The A9 PLL pre-divider uses a division factor of 2^n to ensure a clock
+> duty cycle of 50% after predivision.
+>
+> Add flag 'CLK_MESON_PLL_N_POWER_OF_TWO' to indicate that the PLL
+> pre-divider division factor is 2^n.
+
+I understand what you are doing here but I have to ask why this can't be
+implemented with independent dividers that already supports power of 2 ?
+
+>
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> ---
+>  drivers/clk/meson/clk-pll.c | 28 +++++++++++++++++++++++-----
+>  drivers/clk/meson/clk-pll.h |  2 ++
+>  2 files changed, 25 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+> index 8568ad6ba7b6..49483e431d44 100644
+> --- a/drivers/clk/meson/clk-pll.c
+> +++ b/drivers/clk/meson/clk-pll.c
+> @@ -66,6 +66,9 @@ static unsigned long __pll_params_to_rate(unsigned long parent_rate,
+>  		rate += DIV_ROUND_UP_ULL(frac_rate, frac_max);
+>  	}
+>  
+> +	if (pll->flags & CLK_MESON_PLL_N_POWER_OF_TWO)
+> +		n = 1 << n;
+> +
+>  	return DIV_ROUND_UP_ULL(rate, n);
+>  }
+>  
+> @@ -83,7 +86,7 @@ static unsigned long meson_clk_pll_recalc_rate(struct clk_hw *hw,
+>  	 * it would result in a division by zero. The rate can't be
+>  	 * calculated in this case
+>  	 */
+> -	if (n == 0)
+> +	if (n == 0 && !(pll->flags & CLK_MESON_PLL_N_POWER_OF_TWO))
+>  		return 0;
+>  
+>  	m = meson_parm_read(clk->map, &pll->m);
+> @@ -103,7 +106,12 @@ static unsigned int __pll_params_with_frac(unsigned long rate,
+>  {
+>  	unsigned int frac_max = pll->frac_max ? pll->frac_max :
+>  						(1 << pll->frac.width);
+> -	u64 val = (u64)rate * n;
+> +	u64 val;
+> +
+> +	if (pll->flags & CLK_MESON_PLL_N_POWER_OF_TWO)
+> +		n = 1 << n;
+> +
+> +	val = (u64)rate * n;
+>  
+>  	/* Bail out if we are already over the requested rate */
+>  	if (rate < parent_rate * m / n)
+> @@ -142,7 +150,8 @@ static int meson_clk_get_pll_table_index(unsigned int index,
+>  					 unsigned int *n,
+>  					 struct meson_clk_pll_data *pll)
+>  {
+> -	if (!pll->table[index].n)
+> +	if (!pll->table[index].n &&
+> +	    !(pll->flags & CLK_MESON_PLL_N_POWER_OF_TWO))
+>  		return -EINVAL;
+>  
+>  	*m = pll->table[index].m;
+> @@ -156,7 +165,12 @@ static unsigned int meson_clk_get_pll_range_m(unsigned long rate,
+>  					      unsigned int n,
+>  					      struct meson_clk_pll_data *pll)
+>  {
+> -	u64 val = (u64)rate * n;
+> +	u64 val;
+> +
+> +	if (pll->flags & CLK_MESON_PLL_N_POWER_OF_TWO)
+> +		n = 1 << n;
+> +
+> +	val = (u64)rate * n;
+>  
+>  	if (__pll_round_closest_mult(pll))
+>  		return DIV_ROUND_CLOSEST_ULL(val, parent_rate);
+> @@ -173,11 +187,15 @@ static int meson_clk_get_pll_range_index(unsigned long rate,
+>  {
+>  	*n = index + 1;
+>  
+> +	if ((pll->flags & CLK_MESON_PLL_N_POWER_OF_TWO))
+> +		*n = index;
+> +
+>  	/* Check the predivider range */
+>  	if (*n >= (1 << pll->n.width))
+>  		return -EINVAL;
+>  
+> -	if (*n == 1) {
+> +	if ((*n == 1 && !(pll->flags & CLK_MESON_PLL_N_POWER_OF_TWO)) ||
+> +	    (*n == 0 && (pll->flags & CLK_MESON_PLL_N_POWER_OF_TWO))) {
+>  		/* Get the boundaries out the way */
+>  		if (rate <= pll->range->min * parent_rate) {
+>  			*m = pll->range->min;
+> diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
+> index 1be7e6e77631..60b2772a54c8 100644
+> --- a/drivers/clk/meson/clk-pll.h
+> +++ b/drivers/clk/meson/clk-pll.h
+> @@ -33,6 +33,8 @@ struct pll_mult_range {
+>  #define CLK_MESON_PLL_L_DETECT_ACTIVE_HIGH	BIT(2)
+>  /* rst signal is active-low (Power-on reset) */
+>  #define CLK_MESON_PLL_RST_ACTIVE_LOW	BIT(3)
+> +/* The division factor of the PLL pre-divider is 2^n */
+> +#define CLK_MESON_PLL_N_POWER_OF_TWO	BIT(4)
+>  
+>  struct meson_clk_pll_data {
+>  	struct parm en;
+
+-- 
+Jerome
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
