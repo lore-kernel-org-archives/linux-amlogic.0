@@ -4,114 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A600CD343F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 May 2026 15:11:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCFEDCD4F25
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 May 2026 15:37:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=j0sFw1s6Z5r6FS7dlETIO/I362bw7QiXJDnEYDeiYSg=; b=W08d76e/nQCB7M
-	X1k+v15+zGuG7a9hQ3tdkk3t9uzLb8mCWlWNOHHL2kCENgMQbX+BD9eKqte7jXDbBw2hcPIg6UwZy
-	J9zpPywnqzIX1QKsAuMYmIFA7U2xKI7VfiGbXlI25otWUj61C+Ps7z8B2C9QSDxbxAK3swSDRlabd
-	9aAimm3bhhoetdXH8d2iM8DCGv+Z5ld+UHLhV2d3qo6+auhOnQrB3NoD+ZKG5yJ054FWaSlte3RjV
-	76rBi8kovnHhUNL+G0LOK9t4FXzaiFttI3TdMnty0oA8UISvy/BO+dvxcrtdUndlsrilQXnsROcvY
-	dQxflDTFFQja8yvSoZWA==;
+	List-Owner; bh=70EFcTo8sncxG2w0/1ROk8iZb6otPiwMibEYAoCNorI=; b=zc0pJaX+MhvyA7
+	WJLg8VsPoHauKe6l2XyNek3gaOMOzY2tnQP9b1GXD0UkK0Luo0zO64WNF379eBo9Mn1vhvTj5pI9E
+	bkkVAtBvyzp1FAPzxN7zPuocRsFXpZ1en7AzvGXhcTZP3vv26RLmz5YnwyV7mB0yWEzZIzTg0lK8L
+	4GbyeYoTRzxE3Q//okwf1hQgcFi2zeFS9fLQXZT4x4gI38GEuKjlpjHwtgr9jBFuFefUC0q7tiQ9e
+	lG2gyaUr4zAoUJlyY0IhdrDWhJyWbeCr9Vl6KTehZbgsFlGsjkq7fZ0uaGdHXvaYgm7i3rqe58n/8
+	mMyZlNbXvee7sTD10Amw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wNuCC-00000008fBT-2zaM;
-	Fri, 15 May 2026 15:11:24 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1wNuat-00000008lib-3t6N;
+	Fri, 15 May 2026 15:36:55 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wNuC9-00000008f8Y-3VkT
-	for linux-amlogic@bombadil.infradead.org;
-	Fri, 15 May 2026 15:11:21 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
-	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=rDDrzBwWLv7cxXzysL5yYXylItmsqFDKcdeZuZx/a38=; b=p/nTJFlZu0YB9AqZbs5/sSLdJ5
-	MznL+aMmgWzu/v4q5ZWlG7DVNJHAnu/hmskzhfbXWER0GoR8xysxi+gEb73FrgCPdvxuA7wrs7uVI
-	Qw/LyOAPOjjtEAZJTsjuZ1MTvKmwpy+aVc3VOd91eY/WfYndIJ+o0yfXh/A2eiMmycu2fnrKG3d4k
-	O5BwNVwS14CVsgYUEPcH3AiG3c6SHiJydS9t/PAeIqbwNdBgRZj4KbJKIsURh0Ad4WR0d4eIBI6Ye
-	AwSgWmHuw22zmbm+6D4F9+2wmO25WBdBXJ/2Au9XFVE/ufXmWwNZ4GcMG8xbdOzb+BSgto05quiVv
-	qDR8LNEg==;
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
-	by desiato.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wNuC4-00000005XKd-3fCi
+	id 1wNuar-00000008lhY-0N07
 	for linux-amlogic@lists.infradead.org;
-	Fri, 15 May 2026 15:11:20 +0000
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-488a8ca4aadso82596475e9.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 15 May 2026 08:11:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1778857875; x=1779462675; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rDDrzBwWLv7cxXzysL5yYXylItmsqFDKcdeZuZx/a38=;
-        b=Tt5qtDUH3vkzCy1du1eV0CoQkoOO3UcusdyDzPSitWLUAFNmbgQjF857fJV7Sk6q75
-         +Omems9+AdR8zqUwSMXrcRxn+FvotIiu3/f0QQjjLJGP5OQDJYrWCNFgkCZKpSPBbvhw
-         QGo7p+fNh4AhIT9t9QcOuKQOKZJpK1YkDklf+j6PNIG/oWtBtSrQP0icOB7wz/gS7pQ1
-         tMIhDHI+R8SJxNCsu5BGmklcIJ9hiLMR9vfW0btQhhDUqBRphTESVE6Sb/s8kJwLk2Kc
-         WyUpZesafXNx7ebsuggvk7CSs8ZV0Qhpu62usU6k98NPqdQ/oWpXJeQnIxuER/uJNxnR
-         cECg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778857875; x=1779462675;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=rDDrzBwWLv7cxXzysL5yYXylItmsqFDKcdeZuZx/a38=;
-        b=QqCeJz+4xSfj6GhRQdk4yTrHvetY5hvrGl+VzRRBAEX6z+rkEOVV9fJE5G2cdMcBfg
-         lbXsziu498Mau99ZUlfZZzZjTW8ZuXXMfB6z5Jchg0ZDznqp/Km4/cXh0w0KdieZ0gFM
-         n+5TuBYMq1TTHK79kaQiehtwUwEe1qfy9mN33KIAPU2Xo3nGIMcR7prIRcU7iSrpFDgt
-         mpd2ov1XGY5LYgGwCiSPpMSn1+i6Zz20iRBs6t93pJq5rsMMxARHjyubwvyOzX3HUuHj
-         jft42T7+UNhLj2JxM2hMFEUmFJmihNvub3aPyYZwioK3UNbdPt7x4ULNuVAjkA/mu4y1
-         IGYg==
-X-Forwarded-Encrypted: i=1; AFNElJ+b1TSxoiReQeqTFwlR3k48H0mLpY3QBVlT/ezJta58pw+oiQwqWQ/Hb6D3rs5SD9URqIEwYpLzfy5aLdmN@lists.infradead.org
-X-Gm-Message-State: AOJu0YxBeg/QpD3PfjepbGBw8cuGDjZa2WBRiz2mrBU3Azc4RLmpiqy6
-	BfEMNJ+JSiwYdsap1CjuAeYaaqnGr0pxxLHn2IYv+K9jzsYr4V/z0OUrZWz7/ZdFKBw=
-X-Gm-Gg: Acq92OGicOmWVEIZW4b0NKC8LI085pIkXrNUqzSpFyBXMRgSYuMpjibpZza7Wv6IHcV
-	Wfnrf46B6eKBEdbkENCyhr4D9pn9XKN9NfVmZOpot44f5qKkYHj2FuiLRulKzfz6HQbeqad7dtd
-	WpPUehHhncLkDdfaH1froaRTUdOhi8uzXUu1+WPZWIDS+t7DOQ6CUwiE+rXwwjP7UZzxS52Yf5c
-	hmkxjlhvq0HDHv4oU9SLimSMN7B8IfBUJfx3LRc/0XUjekwU1AjJzsxOrcDusFsULbd6g0atgVe
-	uZJxSTd+aHSNjljsGh40B7Ag8PCeRs+hUv6c9ECnn9Ktgywd6x/WaNHp7h5kYanKj0p4AVZUUzC
-	L6S1EJD4P/kkb7mWa7E3KQvhoPidtk/l6SwHji6XFPOQ+XD1OiE/lljoVQnIS4/uKmsB0lNeFBQ
-	5DreG3SgTzWypI7+iy6r8o
-X-Received: by 2002:a05:6000:250a:b0:45d:4b37:7fcf with SMTP id ffacd0b85a97d-45e5c58951emr6150818f8f.15.1778857875103;
-        Fri, 15 May 2026 08:11:15 -0700 (PDT)
-Received: from [127.0.1.1] ([151.41.223.93])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45da0a19c2dsm15262062f8f.21.2026.05.15.08.11.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 May 2026 08:11:14 -0700 (PDT)
-From: Valerio Setti <vsetti@baylibre.com>
-Date: Fri, 15 May 2026 17:10:37 +0200
-Subject: [PATCH 1/4] ASoC: meson: gx: add gx-formatter and gx-interface
-MIME-Version: 1.0
-Message-Id: <20260515-reshape-aiu-as-axg-v1-1-53b457784ff3@baylibre.com>
-References: <20260515-reshape-aiu-as-axg-v1-0-53b457784ff3@baylibre.com>
-In-Reply-To: <20260515-reshape-aiu-as-axg-v1-0-53b457784ff3@baylibre.com>
-To: Jerome Brunet <jbrunet@baylibre.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- Valerio Setti <vsetti@baylibre.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=11315; i=vsetti@baylibre.com;
- h=from:subject:message-id; bh=j6Zh4RLoIBZtyp/kwYar+Xu3SLB01yR+UX6gB7d84TE=;
- b=owGbwMvMwCF2z3ty7kUrRgbG02pJDFns5v31Lufn3Togwrkoq36i9Qw/rjX9GdeMVPrFWk+yH
- Fun+Muto5SFQYyDQVZMkYVl+r3fBaVqD40TThbAzGFlAhnCwMUpABM5xMrIsFjmd/bqK9ytE3dO
- Pvxcr6I7fsrG8NwWPUGJH20TdFW3mTEyTJYTNnnVqf89bObMKLn4HxtbVkpOFO5mvtskMT9jWUI
- /FwA=
-X-Developer-Key: i=vsetti@baylibre.com; a=openpgp;
- fpr=0497DEFB707526E13360C970DE4B936DD13A0100
+	Fri, 15 May 2026 15:36:54 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id DD92040C2A;
+	Fri, 15 May 2026 15:36:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 965F8C2BCB7;
+	Fri, 15 May 2026 15:36:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1778859411;
+	bh=0Wa4iRVGipy/x0jLPjRFY3D849ubgsHYZI5LrwClCoY=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
+	b=jjLyMnANp4qwANlfTkLnVF0+G+b3GHhIAV3/vzlhHHg+/YpltSqpPTpTkZIgHa26B
+	 gkXU2yh1rbeMmFfukQYnIzoEgLq8SRdEs+KoaF6ZDx68awy02CFW/qH2ROxpJ3/H4l
+	 v5GxhhZ1i2DBY5gFQHAWsluwTyaqX83z9Zuj68zL/4BT41sn4CbyXEIlP1vtLmi3Qa
+	 IHtKCVPC619z39FSKJl7qTsczQc0LjOgTHF3GKxCtNKFHqGPkEbd0ammFkpFoY86xd
+	 7jdBlT+mRls2bnc6ncnbD3V9tni3PVCRupdGwCLNTJR62HFJlpe2dr7xIBgMIQwCWL
+	 0HnDW2H9H2SQQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 1/4] ASoC: meson: gx: add gx-formatter and gx-interface
+To: "Valerio Setti" <vsetti@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org
+In-Reply-To: <20260515-reshape-aiu-as-axg-v1-1-53b457784ff3@baylibre.com>
+References: <20260515-reshape-aiu-as-axg-v1-1-53b457784ff3@baylibre.com>
+Date: Fri, 15 May 2026 15:36:51 +0000
+Message-Id: <20260515153651.965F8C2BCB7@smtp.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260515_161117_263938_C675024E 
-X-CRM114-Status: GOOD (  28.10  )
+X-CRM114-CacheID: sfid-20260515_083653_171586_07E5BF59 
+X-CRM114-Status: GOOD (  20.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,438 +64,73 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-These files are the basic block which allow to shape I2S in GX devices
-the same as the AXG ones: the DAI backend only controls the interface
-(i.e. clocks and pins) whereas a formatter takes care of properly
-formatting the data.
-
-gx-formatter and gx-interface are strongly inspired to axg-tdm-formatter
-and axg-tdm, respectively. The long term plan is to join the two platforms
-to use the same formatter solution.
-
-There is only a minor addition here compared to what has been done for
-AXG and it's "gx_formatter_create()" which is required in order to let
-already existing AIU code to make use of this formatter without making any
-devicetree change.
-
-Signed-off-by: Valerio Setti <vsetti@baylibre.com>
----
- sound/soc/meson/Makefile       |   1 +
- sound/soc/meson/gx-formatter.c | 277 +++++++++++++++++++++++++++++++++++++++++
- sound/soc/meson/gx-formatter.h |  47 +++++++
- sound/soc/meson/gx-interface.h |  45 +++++++
- 4 files changed, 370 insertions(+)
-
-diff --git a/sound/soc/meson/Makefile b/sound/soc/meson/Makefile
-index 24078e4396b02d545d8ba4bcb1632979001354e3..146ec81526ba091a174a113ce3d8412ddbbfd9dd 100644
---- a/sound/soc/meson/Makefile
-+++ b/sound/soc/meson/Makefile
-@@ -4,6 +4,7 @@ snd-soc-meson-aiu-y := aiu.o
- snd-soc-meson-aiu-y += aiu-acodec-ctrl.o
- snd-soc-meson-aiu-y += aiu-codec-ctrl.o
- snd-soc-meson-aiu-y += aiu-encoder-i2s.o
-+snd-soc-meson-aiu-y += gx-formatter.o
- snd-soc-meson-aiu-y += aiu-encoder-spdif.o
- snd-soc-meson-aiu-y += aiu-fifo.o
- snd-soc-meson-aiu-y += aiu-fifo-i2s.o
-diff --git a/sound/soc/meson/gx-formatter.c b/sound/soc/meson/gx-formatter.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..db93546ed9217f711fcdbeddbd815ce21f27bab5
---- /dev/null
-+++ b/sound/soc/meson/gx-formatter.c
-@@ -0,0 +1,277 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+//
-+// Copyright (c) 2026 BayLibre, SAS.
-+// Author: Valerio Setti <vsetti@baylibre.com>
-+
-+#include <linux/module.h>
-+#include <linux/of_platform.h>
-+#include <linux/regmap.h>
-+#include <sound/soc.h>
-+
-+#include "gx-formatter.h"
-+
-+struct gx_formatter {
-+	struct list_head list;
-+	struct gx_stream *stream;
-+	const struct gx_formatter_driver *drv;
-+	bool enabled;
-+	struct regmap *map;
-+};
-+
-+static int gx_formatter_enable(struct gx_formatter *formatter)
-+{
-+	int ret;
-+
-+	/* Do nothing if the formatter is already enabled */
-+	if (formatter->enabled)
-+		return 0;
-+
-+	/* Setup the stream parameter in the formatter */
-+	if (formatter->drv->ops->prepare) {
-+		ret = formatter->drv->ops->prepare(formatter->map,
-+					   formatter->drv->quirks,
-+					   formatter->stream);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	/* Finally, actually enable the formatter */
-+	if (formatter->drv->ops->enable)
-+		formatter->drv->ops->enable(formatter->map);
-+
-+	formatter->enabled = true;
-+
-+	return 0;
-+}
-+
-+static void gx_formatter_disable(struct gx_formatter *formatter)
-+{
-+	/* Do nothing if the formatter is already disabled */
-+	if (!formatter->enabled)
-+		return;
-+
-+	if (formatter->drv->ops->disable)
-+		formatter->drv->ops->disable(formatter->map);
-+
-+	formatter->enabled = false;
-+}
-+
-+static int gx_formatter_attach(struct gx_formatter *formatter)
-+{
-+	struct gx_stream *ts = formatter->stream;
-+	int ret = 0;
-+
-+	mutex_lock(&ts->lock);
-+
-+	/* Catch up if the stream is already running when we attach */
-+	if (ts->ready) {
-+		ret = gx_formatter_enable(formatter);
-+		if (ret) {
-+			pr_err("failed to enable formatter\n");
-+			goto out;
-+		}
-+	}
-+
-+	list_add_tail(&formatter->list, &ts->formatter_list);
-+out:
-+	mutex_unlock(&ts->lock);
-+	return ret;
-+}
-+
-+static void gx_formatter_detach(struct gx_formatter *formatter)
-+{
-+	struct gx_stream *ts = formatter->stream;
-+
-+	mutex_lock(&ts->lock);
-+	list_del(&formatter->list);
-+	mutex_unlock(&ts->lock);
-+
-+	gx_formatter_disable(formatter);
-+}
-+
-+static int gx_formatter_power_up(struct gx_formatter *formatter,
-+				      struct snd_soc_dapm_widget *w)
-+{
-+	struct gx_stream *ts = formatter->drv->ops->get_stream(w);
-+	int ret;
-+
-+	/*
-+	 * If we don't get a stream at this stage, it would mean that the
-+	 * widget is powering up but is not attached to any backend DAI.
-+	 * It should not happen, ever !
-+	 */
-+	if (WARN_ON(!ts))
-+		return -ENODEV;
-+
-+	formatter->stream = ts;
-+	ret = gx_formatter_attach(formatter);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static void gx_formatter_power_down(struct gx_formatter *formatter)
-+{
-+	gx_formatter_detach(formatter);
-+	formatter->stream = NULL;
-+}
-+
-+int gx_formatter_event(struct snd_soc_dapm_widget *w,
-+		       struct snd_kcontrol *control,
-+		       int event)
-+{
-+	struct snd_soc_component *c;
-+	struct gx_formatter *formatter;
-+	int ret = 0;
-+
-+	c = snd_soc_dapm_to_component(w->dapm);
-+
-+	if (w->priv)
-+		formatter = w->priv;
-+	else
-+		formatter = snd_soc_component_get_drvdata(c);
-+
-+	switch (event) {
-+	case SND_SOC_DAPM_PRE_PMU:
-+		ret = gx_formatter_power_up(formatter, w);
-+		break;
-+
-+	case SND_SOC_DAPM_PRE_PMD:
-+		gx_formatter_power_down(formatter);
-+		break;
-+
-+	default:
-+		dev_err(c->dev, "Unexpected event %d\n", event);
-+		return -EINVAL;
-+	}
-+
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(gx_formatter_event);
-+
-+int gx_formatter_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	const struct gx_formatter_driver *drv;
-+	struct gx_formatter *formatter;
-+	void __iomem *regs;
-+
-+	drv = of_device_get_match_data(dev);
-+	if (!drv) {
-+		dev_err(dev, "failed to match device\n");
-+		return -ENODEV;
-+	}
-+
-+	formatter = devm_kzalloc(dev, sizeof(*formatter), GFP_KERNEL);
-+	if (!formatter)
-+		return -ENOMEM;
-+	platform_set_drvdata(pdev, formatter);
-+	formatter->drv = drv;
-+
-+	regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(regs))
-+		return PTR_ERR(regs);
-+
-+	formatter->map = devm_regmap_init_mmio(dev, regs, drv->regmap_cfg);
-+	if (IS_ERR(formatter->map)) {
-+		dev_err(dev, "failed to init regmap: %ld\n",
-+			PTR_ERR(formatter->map));
-+		return PTR_ERR(formatter->map);
-+	}
-+
-+	return devm_snd_soc_register_component(dev, drv->component_drv,
-+					       NULL, 0);
-+}
-+EXPORT_SYMBOL_GPL(gx_formatter_probe);
-+
-+int gx_formatter_create(struct device *dev,
-+			struct snd_soc_dapm_widget *w,
-+			const struct gx_formatter_driver *drv,
-+			struct regmap *regmap)
-+{
-+	struct gx_formatter *formatter;
-+
-+	formatter = devm_kzalloc(dev, sizeof(*formatter), GFP_KERNEL);
-+	if (!formatter)
-+		return -ENOMEM;
-+
-+	formatter->drv = drv;
-+	formatter->map = regmap;
-+
-+	w->priv = formatter;
-+
-+	return 0;
-+}
-+
-+int gx_stream_start(struct gx_stream *ts)
-+{
-+	struct gx_formatter *formatter;
-+	int ret = 0;
-+
-+	mutex_lock(&ts->lock);
-+
-+	/* Start all the formatters attached to the stream */
-+	list_for_each_entry(formatter, &ts->formatter_list, list) {
-+		ret = gx_formatter_enable(formatter);
-+		if (ret) {
-+			pr_err("failed to start tdm stream\n");
-+			goto out;
-+		}
-+	}
-+
-+	ts->ready = true;
-+
-+out:
-+	mutex_unlock(&ts->lock);
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(gx_stream_start);
-+
-+void gx_stream_stop(struct gx_stream *ts)
-+{
-+	struct gx_formatter *formatter;
-+
-+	mutex_lock(&ts->lock);
-+	ts->ready = false;
-+
-+	/* Stop all the formatters attached to the stream */
-+	list_for_each_entry(formatter, &ts->formatter_list, list) {
-+		gx_formatter_disable(formatter);
-+	}
-+
-+	mutex_unlock(&ts->lock);
-+}
-+EXPORT_SYMBOL_GPL(gx_stream_stop);
-+
-+struct gx_stream *gx_stream_alloc(struct gx_iface *iface)
-+{
-+	struct gx_stream *ts;
-+
-+	ts = kzalloc(sizeof(*ts), GFP_KERNEL);
-+	if (ts) {
-+		INIT_LIST_HEAD(&ts->formatter_list);
-+		mutex_init(&ts->lock);
-+		ts->iface = iface;
-+	}
-+
-+	return ts;
-+}
-+EXPORT_SYMBOL_GPL(gx_stream_alloc);
-+
-+void gx_stream_free(struct gx_stream *ts)
-+{
-+	/*
-+	 * If the list is not empty, it would mean that one of the formatter
-+	 * widget is still powered and attached to the interface while we
-+	 * are removing the TDM DAI. It should not be possible
-+	 */
-+	WARN_ON(!list_empty(&ts->formatter_list));
-+	mutex_destroy(&ts->lock);
-+	kfree(ts);
-+}
-+EXPORT_SYMBOL_GPL(gx_stream_free);
-+
-+MODULE_DESCRIPTION("Amlogic GX formatter driver");
-+MODULE_AUTHOR("Valerio Setti <vsetti@baylibre.com>");
-+MODULE_LICENSE("GPL");
-diff --git a/sound/soc/meson/gx-formatter.h b/sound/soc/meson/gx-formatter.h
-new file mode 100644
-index 0000000000000000000000000000000000000000..05670c3dfb9f43ac3ee959f1d3d11bacee020c43
---- /dev/null
-+++ b/sound/soc/meson/gx-formatter.h
-@@ -0,0 +1,47 @@
-+/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-+/*
-+ * Copyright (c) 2026 Baylibre SAS.
-+ * Author: Valerio Setti <vsetti@baylibre.com>
-+ */
-+
-+#ifndef _MESON_GX_FORMATTER_H
-+#define _MESON_GX_FORMATTER_H
-+
-+#include "gx-interface.h"
-+
-+struct platform_device;
-+struct regmap;
-+struct snd_soc_dapm_widget;
-+struct snd_kcontrol;
-+
-+struct gx_formatter_hw {
-+	unsigned int skew_offset;
-+};
-+
-+struct gx_formatter_ops {
-+	struct gx_stream *(*get_stream)(struct snd_soc_dapm_widget *w);
-+	void (*enable)(struct regmap *map);
-+	void (*disable)(struct regmap *map);
-+	int (*prepare)(struct regmap *map,
-+		       const struct gx_formatter_hw *quirks,
-+		       struct gx_stream *ts);
-+};
-+
-+struct gx_formatter_driver {
-+	const struct snd_soc_component_driver *component_drv;
-+	const struct regmap_config *regmap_cfg;
-+	const struct gx_formatter_ops *ops;
-+	const struct gx_formatter_hw *quirks;
-+};
-+
-+int gx_formatter_event(struct snd_soc_dapm_widget *w,
-+		       struct snd_kcontrol *control,
-+		       int event);
-+int gx_formatter_probe(struct platform_device *pdev);
-+
-+int gx_formatter_create(struct device *dev,
-+			struct snd_soc_dapm_widget *w,
-+			const struct gx_formatter_driver *drv,
-+			struct regmap *regmap);
-+
-+#endif /* _MESON_GX_FORMATTER_H */
-diff --git a/sound/soc/meson/gx-interface.h b/sound/soc/meson/gx-interface.h
-new file mode 100644
-index 0000000000000000000000000000000000000000..d9ab894589fa039f7fdd76765390630a2c6d8fbf
---- /dev/null
-+++ b/sound/soc/meson/gx-interface.h
-@@ -0,0 +1,45 @@
-+/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-+/*
-+ * Copyright (c) 2026 Baylibre SAS.
-+ * Author: Valerio Setti <vsetti@baylibre.com>
-+ */
-+
-+#ifndef _MESON_GX_INTERFACE_H
-+#define _MESON_GX_INTERFACE_H
-+
-+#include <linux/clk.h>
-+#include <linux/regmap.h>
-+#include <sound/pcm.h>
-+#include <sound/soc.h>
-+#include <sound/soc-dai.h>
-+
-+struct gx_iface {
-+	struct clk *mclk;
-+	unsigned long mclk_rate;
-+
-+	/* format is common to all the DAIs of the iface */
-+	unsigned int fmt;
-+
-+	/* For component wide symmetry */
-+	int rate;
-+};
-+
-+struct gx_stream {
-+	struct gx_iface *iface;
-+	struct list_head formatter_list;
-+	struct mutex lock;
-+	unsigned int channels;
-+	unsigned int width;
-+	unsigned int physical_width;
-+	bool ready;
-+
-+	/* For continuous clock tracking */
-+	bool clk_enabled;
-+};
-+
-+struct gx_stream *gx_stream_alloc(struct gx_iface *iface);
-+void gx_stream_free(struct gx_stream *ts);
-+int gx_stream_start(struct gx_stream *ts);
-+void gx_stream_stop(struct gx_stream *ts);
-+
-+#endif /* _MESON_GX_INTERFACE_H */
-
--- 
-2.39.5
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MiBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0NyaXRpY2FsXSBVbmhhbmRsZWQg
+ZXJyb3IgcGF0aHMgZHVyaW5nIHdpZGdldCBwb3dlci11cCBsZWF2ZSB0aGUgZm9ybWF0dGVyIGlu
+IGFuIGluY29tcGxldGUgc3RhdGUsIGNhdXNpbmcgZGV0ZXJtaW5pc3RpYyBrZXJuZWwgcGFuaWNz
+IGR1cmluZyBwb3dlci1kb3duLgotIFtIaWdoXSBNaXNzaW5nIHJvbGxiYWNrIG9mIGVuYWJsZWQg
+Zm9ybWF0dGVycyBpbiBgZ3hfc3RyZWFtX3N0YXJ0YCBmYWlsdXJlIHBhdGggbGVhZHMgdG8gaGFy
+ZHdhcmUgc3RhdGUgbGVha3MuCi0tCgpjb21taXQgMzdmMTRjZjUyOTMzZjgwMmRhZGQ0OGZiNTBj
+Mzg3NmFkMWUwZTJjNQpBdXRob3I6IFZhbGVyaW8gU2V0dGkgPHZzZXR0aUBiYXlsaWJyZS5jb20+
+ClN1YmplY3Q6IEFTb0M6IG1lc29uOiBneDogYWRkIGd4LWZvcm1hdHRlciBhbmQgZ3gtaW50ZXJm
+YWNlCgpUaGlzIGNvbW1pdCBhZGRzIGJhc2ljIGZvcm1hdHRlciBhbmQgaW50ZXJmYWNlIGJsb2Nr
+cyB0byBzaGFwZSBJMlMgaW4gR1ggCmRldmljZXMuIEl0IGludHJvZHVjZXMgZ3hfZm9ybWF0dGVy
+X2NyZWF0ZSgpIHRvIGFsbG93IGV4aXN0aW5nIEFJVSBjb2RlIHRvCnV0aWxpemUgdGhlIGZvcm1h
+dHRlciB3aXRob3V0IGRldmljZXRyZWUgbW9kaWZpY2F0aW9ucy4KCj4gZGlmZiAtLWdpdCBhL3Nv
+dW5kL3NvYy9tZXNvbi9neC1mb3JtYXR0ZXIuYyBiL3NvdW5kL3NvYy9tZXNvbi9neC1mb3JtYXR0
+ZXIuYwo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4gaW5kZXggMDAwMDAwMDAwMDAwMC4uZGI5MzU0
+NmVkOTIxNwo+IC0tLSAvZGV2L251bGwKPiArKysgYi9zb3VuZC9zb2MvbWVzb24vZ3gtZm9ybWF0
+dGVyLmMKClsgLi4uIF0KCj4gK3N0YXRpYyBpbnQgZ3hfZm9ybWF0dGVyX3Bvd2VyX3VwKHN0cnVj
+dCBneF9mb3JtYXR0ZXIgKmZvcm1hdHRlciwKPiArCQkJCSAgICAgIHN0cnVjdCBzbmRfc29jX2Rh
+cG1fd2lkZ2V0ICp3KQo+ICt7Cj4gKwlzdHJ1Y3QgZ3hfc3RyZWFtICp0cyA9IGZvcm1hdHRlci0+
+ZHJ2LT5vcHMtPmdldF9zdHJlYW0odyk7Cj4gKwlpbnQgcmV0Owo+ICsKPiArCS8qCj4gKwkgKiBJ
+ZiB3ZSBkb24ndCBnZXQgYSBzdHJlYW0gYXQgdGhpcyBzdGFnZSwgaXQgd291bGQgbWVhbiB0aGF0
+IHRoZQo+ICsJICogd2lkZ2V0IGlzIHBvd2VyaW5nIHVwIGJ1dCBpcyBub3QgYXR0YWNoZWQgdG8g
+YW55IGJhY2tlbmQgREFJLgo+ICsJICogSXQgc2hvdWxkIG5vdCBoYXBwZW4sIGV2ZXIgIQo+ICsJ
+ICovCj4gKwlpZiAoV0FSTl9PTighdHMpKQo+ICsJCXJldHVybiAtRU5PREVWOwoKV2lsbCB0aGlz
+IGNhdXNlIGEgTlVMTCBwb2ludGVyIGRlcmVmZXJlbmNlIGxhdGVyIGlmIHRoZSB3YXJuaW5nIHRy
+aWdnZXJzPwoKU2luY2UgQVNvQyBEQVBNIGNvcmUgaWdub3JlcyBlcnJvciBjb2RlcyByZXR1cm5l
+ZCBieSB3aWRnZXQgUFJFX1BNVSBldmVudHMsCnRoZSB3aWRnZXQgd2lsbCBzdGlsbCBiZSBjb25z
+aWRlcmVkIHBvd2VyZWQgdXAgYW5kIHRoZSBQUkVfUE1EIGV2ZW50IHdpbGwKZXZlbnR1YWxseSBl
+eGVjdXRlIHdoZW4gdGhlIHN0cmVhbSBzdG9wcy4KCklmIHRoaXMgcmV0dXJucyAtRU5PREVWIGhl
+cmUsIGZvcm1hdHRlci0+c3RyZWFtIHJlbWFpbnMgTlVMTC4gV2hlbiBQUkVfUE1ECnRyaWdnZXJz
+IGd4X2Zvcm1hdHRlcl9wb3dlcl9kb3duKCkgYW5kIHRoZW4gZ3hfZm9ybWF0dGVyX2RldGFjaCgp
+LCB0aGUKZGV0YWNoIGZ1bmN0aW9uIHdpbGwgYXR0ZW1wdCB0byBsb2NrIHRzLT5sb2NrIHdoZXJl
+IHRzIGlzIE5VTEwuCgo+ICsKPiArCWZvcm1hdHRlci0+c3RyZWFtID0gdHM7Cj4gKwlyZXQgPSBn
+eF9mb3JtYXR0ZXJfYXR0YWNoKGZvcm1hdHRlcik7Cj4gKwlpZiAocmV0KQo+ICsJCXJldHVybiBy
+ZXQ7CgpDb3VsZCB0aGlzIGVycm9yIHBhdGggYWxzbyBsZWFkIHRvIGEgY3Jhc2ggZHVyaW5nIHRo
+ZSBQUkVfUE1EIHRlYXJkb3duPwoKSWYgZ3hfZm9ybWF0dGVyX2F0dGFjaCgpIGZhaWxzLCBpdCBz
+a2lwcyBhZGRpbmcgZm9ybWF0dGVyLT5saXN0IHRvIHRoZQpzdHJlYW0ncyBmb3JtYXR0ZXJfbGlz
+dC4gTGF0ZXIsIHdoZW4gdGhlIHN0cmVhbSBzdG9wcyBhbmQgUFJFX1BNRCBpcyBpbnZva2VkLApn
+eF9mb3JtYXR0ZXJfZGV0YWNoKCkgdW5jb25kaXRpb25hbGx5IGNhbGxzIGxpc3RfZGVsKCZmb3Jt
+YXR0ZXItPmxpc3QpLgoKU2luY2UgdGhlIGxpc3Qgd2FzIG5ldmVyIGluaXRpYWxpemVkIHdpdGgg
+SU5JVF9MSVNUX0hFQUQoKSBvciBhZGRlZCB0byB0aGUKbGlzdCwgY2FsbGluZyBsaXN0X2RlbCgp
+IG9uIGl0IHdpbGwgZGVyZWZlcmVuY2UgdW5pbml0aWFsaXplZCBwb2ludGVycy4KCj4gKwo+ICsJ
+cmV0dXJuIDA7Cj4gK30KClsgLi4uIF0KCj4gK2ludCBneF9zdHJlYW1fc3RhcnQoc3RydWN0IGd4
+X3N0cmVhbSAqdHMpCj4gK3sKPiArCXN0cnVjdCBneF9mb3JtYXR0ZXIgKmZvcm1hdHRlcjsKPiAr
+CWludCByZXQgPSAwOwo+ICsKPiArCW11dGV4X2xvY2soJnRzLT5sb2NrKTsKPiArCj4gKwkvKiBT
+dGFydCBhbGwgdGhlIGZvcm1hdHRlcnMgYXR0YWNoZWQgdG8gdGhlIHN0cmVhbSAqLwo+ICsJbGlz
+dF9mb3JfZWFjaF9lbnRyeShmb3JtYXR0ZXIsICZ0cy0+Zm9ybWF0dGVyX2xpc3QsIGxpc3QpIHsK
+PiArCQlyZXQgPSBneF9mb3JtYXR0ZXJfZW5hYmxlKGZvcm1hdHRlcik7Cj4gKwkJaWYgKHJldCkg
+ewo+ICsJCQlwcl9lcnIoImZhaWxlZCB0byBzdGFydCB0ZG0gc3RyZWFtXG4iKTsKPiArCQkJZ290
+byBvdXQ7CgpEbyB3ZSBuZWVkIHRvIGRpc2FibGUgdGhlIGZvcm1hdHRlcnMgdGhhdCB3ZXJlIGFs
+cmVhZHkgc3VjY2Vzc2Z1bGx5IGVuYWJsZWQKaW4gcHJldmlvdXMgaXRlcmF0aW9ucyBvZiB0aGlz
+IGxvb3AgYmVmb3JlIHJldHVybmluZz8KClRoZSBBTFNBIGNvcmUgZG9lcyBub3QgYXV0b21hdGlj
+YWxseSBpbnZva2UgdGhlIFNUT1AgdHJpZ2dlciB3aGVuIGEgU1RBUlQKdHJpZ2dlciBmYWlscy4g
+UmV0dXJuaW5nIGFuIGVycm9yIGhlcmUgd2l0aG91dCByb2xsaW5nIGJhY2sgdGhlIGVhcmxpZXIK
+Zm9ybWF0dGVycyBjb3VsZCBsZWF2ZSB0aGUgaGFyZHdhcmUgY2xvY2tzIGFuZCByZWdpc3RlcnMg
+cGVybWFuZW50bHkgZW5hYmxlZCwKcmVzdWx0aW5nIGluIGxlYWtlZCByZXNvdXJjZXMuCgo+ICsJ
+CX0KPiArCX0KPiArCj4gKwl0cy0+cmVhZHkgPSB0cnVlOwo+ICsKPiArb3V0Ogo+ICsJbXV0ZXhf
+dW5sb2NrKCZ0cy0+bG9jayk7Cj4gKwlyZXR1cm4gcmV0Owo+ICt9CgotLSAKU2FzaGlrbyBBSSBy
+ZXZpZXcgwrcgaHR0cHM6Ly9zYXNoaWtvLmRldi8jL3BhdGNoc2V0LzIwMjYwNTE1LXJlc2hhcGUt
+YWl1LWFzLWF4Zy12MS0wLTUzYjQ1Nzc4NGZmM0BiYXlsaWJyZS5jb20/cGFydD0xCgpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1h
+aWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3Rz
+LmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
