@@ -4,56 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E33DACD4F3D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 May 2026 09:28:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBF72CD343F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 May 2026 10:24:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:From:Subject:
-	Message-Id:Date:Mime-Version:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pD3pKJCxty6nPh/FKebxVEqC+zSe7JTjrogyt5S1W8s=; b=yswih3wimRNjiK
-	wObp8ZSj5DzFEZdDm/pD4T2IQHqReTRSgqhiElL4Oo9M8mXvmhJ469siGBdY/bkBJNZHofXPtcd/2
-	mVUSsVjhomqvFxEI9p1WpENUpznhfpIQL0BLbU7NMHMpII+JgAuGW/UslFQRBtn95xhZP3vsRkC2+
-	1VH7PXfhlIoc+QlQPSCM+KcOwNsJSvgqjP/ZCUBg8AdhmUFAoUDmpmeKIz74tkwXOWfsrmxL/hDWm
-	rEFwmzPDRrwGU9Tlrzc9mWGpobGP0/DdGzdQ0qcA7J377pXV0bECOwvpu2UeoBwRc89wVEV2LKWDg
-	4iTJzy3Od+3ZXz2keIHA==;
+	List-Owner; bh=bKgOFZ26oYVp6db4Vr5ijwQlulHheQxzSvhXaOcL7zo=; b=ihu5g8Irl1Q8lf
+	xL/5DmPFR56tMNAJwVNF2NnUGGtgIGxgYTbmJGEMYgy0KOCm6jlSAasJqPCFHhbHdzLe23uv7DobR
+	lCdaZSoUbfICJtlMem+tTx4gSr9TAe3wca8dfDrApc4NONrg+tyGLV3oE8sujbjK2X/UAd+ba0pgf
+	FHmPfDHZK9lTmKW79NmHrVjcGJehiybnu4zA7v6IqBv6JCZMQDJrxOjce08GQhpW5cLu195CAm85g
+	vXQaXp9eB2uYQdXuW8Cvq7FwfBLlygo5mvtWit8nwVdR4HFpxI3hEj4pc18VNsb0fDH1Y5quy7JCg
+	NsNqfMr090ZrS/yIiOqg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wNopt-00000007t49-3b0x;
-	Fri, 15 May 2026 09:28:01 +0000
-Received: from out-189.mta0.migadu.com ([91.218.175.189])
+	id 1wNpi9-000000081rD-1eFB;
+	Fri, 15 May 2026 10:24:05 +0000
+Received: from abb.hmeau.com ([180.181.231.80])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wNopr-00000007svW-1wxM;
-	Fri, 15 May 2026 09:28:01 +0000
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
-	s=key1; t=1778837242;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=wkqU5nqKWTIVrSrlwa2ijV+50Ew3qQdlXh1W5GNiI6Y=;
-	b=G9l0ffmvrtA4Zf8COr+my1FshdP4by8FSoXyG9uvoR95floWSI8b3I+KOL7hURxeOdY+YM
-	EccYaBB/Ua0rTM7umnPs/m1RfZFFvXSw5OfzoAva8eojD4GA1BAV1SPwbp2tjf/BEohmXL
-	QhC2guUC8OUsXYGwbnxOIzPqpqU0XZQeJxhLgxQnN2AAN6uWPInB5MpdY5VVBmd/SkJGBJ
-	MCJMJLZ1q48jpk1Ng2wyMxBEzJSOLcxO5Pv5ftEsZdkyzRsW/4B+zcWKIh6xznsC/5nb2X
-	qVNmFSumPprmAZ9Pa4aUYhrpvdOwBHvhJ5kmzPwkwfc/5FmWTZz+mstYCnvCJA==
-Date: Fri, 15 May 2026 11:27:01 +0200
-Message-Id: <DIJ5622KU06C.2KOK2EVAMP0NX@cknow-tech.com>
-Subject: Re: [PATCH v5 00/21] drm: bridge: dw_hdmi: Misc enable/disable, CEC
- and EDID cleanup
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <diederik@cknow-tech.com>
-To: "Jonas Karlman" <jonas@kwiboo.se>, "Andrzej Hajda"
- <andrzej.hajda@intel.com>, "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Robert Foss" <rfoss@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>
-References: <20260510124111.1226584-1-jonas@kwiboo.se>
-In-Reply-To: <20260510124111.1226584-1-jonas@kwiboo.se>
-X-Migadu-Flow: FLOW_OUT
+	id 1wNpi6-000000081ps-0pXo
+	for linux-amlogic@lists.infradead.org;
+	Fri, 15 May 2026 10:24:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=gondor.apana.org.au; s=h01; h=In-Reply-To:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:cc:to:subject:message-id:date:
+	from:content-type:reply-to; bh=PvbSSysDoVrZemjFZZG7ax47szEisjMVuslblnZ/F/M=; 
+	b=gcmEkcGF5jhn2B7c1fNZVcM97LSD2U5nM7S8l4g58eR+wlqh0pUnoVqCYPfh/paOUM6xhr4/3Pe
+	KAXvKYJR5XJScRPqMZaEUquKn6IJa+U9/gwjBV94K/dgqi31GWdJ79qIfM6Iw+92+5s9jSWdGEiBT
+	M6aAac4HBJi2FbMpQHKDEimGF8kqSBirSG4gVFiNBtIA4tmRsKpMWLx5fHAMEZvRveRN8csmaCqlf
+	mWsT2shBnFlFHo3xRPaTEfpG2AAs+B+nmA2waPVtojKAn7hNhoWzxOZeP8zzOxerStpWsgwBmU0K8
+	ApDzJjptSBH6rFqpAU6KNMibhAOW8zGsLIZA==;
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
+	id 1wNphz-00EOYM-2R;
+	Fri, 15 May 2026 18:23:56 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 15 May 2026 18:23:55 +0800
+Date: Fri, 15 May 2026 18:23:55 +0800
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: Dawei Feng <dawei.feng@seu.edu.cn>
+Cc: clabbe@baylibre.com, davem@davemloft.net, linux-crypto@vger.kernel.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+	jianhao.xu@seu.edu.cn, stable@vger.kernel.org,
+	Zilin Guan <zilin@seu.edu.cn>
+Subject: Re: [PATCH] crypto: amlogic - avoid double cleanup in
+ meson_crypto_probe()
+Message-ID: <agb0O_i_QJCTuKPU@gondor.apana.org.au>
+References: <20260508042416.419216-1-dawei.feng@seu.edu.cn>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20260508042416.419216-1-dawei.feng@seu.edu.cn>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260515_022800_178240_3309E45C 
-X-CRM114-Status: GOOD (  27.69  )
+X-CRM114-CacheID: sfid-20260515_032402_251361_43E07678 
+X-CRM114-Status: GOOD (  18.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,209 +69,131 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: imx@lists.linux.dev, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Diederik de Haas <diederik@cknow-tech.com>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jernej Skrabec <jernej.skrabec@gmail.com>, linux-rockchip@lists.infradead.org, Luca Ceresoli <luca.ceresoli@bootlin.com>, linux-sunxi@lists.linux.dev, Liu Ying <victor.liu@nxp.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, linux-amlogic@lists.infradead.org, Chen-Yu Tsai <wens@kernel.org>, linux-arm-kernel@lists.infradead.org, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Sandy Huang <hjc@rock-chips.com>, Thomas Zimmermann <tzimmermann@suse.de>, Andy Yan <andy.yan@rock-chips.com>, Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jonas,
+On Fri, May 08, 2026 at 12:24:16PM +0800, Dawei Feng wrote:
+> When meson_allocate_chanlist() fails after a partial allocation, it already
+> unwinds the allocated chanlist state through its local error path.
+> meson_crypto_probe() then jump to error_flow and calls
+> meson_free_chanlist() again, causing the same per-flow resources to be torn
+> down twice. In the reproduced failure path, the second teardown
+> re-entered crypto_engine_exit() on an already destroyed worker and KASAN
+> reported a slab-use-after-free in kthread_destroy_worker().
+> 
+> Prevent double-free by handling partial allocation failures locally within
+> meson_allocate_chanlist() and skipping the outer cleanup path.
+> 
+> The bug was first flagged by an experimental analysis tool we are
+> developing for kernel memory-management bugs while analyzing
+> v6.13-rc1. The tool is still under development and is not yet publicly
+> available.
+> 
+> The bug was reproduced in a QEMU x86_64 guest booted with KASAN on v7.1,
+> using the reproducer under tools/testing/meson_crypto_probe. The reproducer
+> forces the second dma_alloc_attrs() call in the gxl-crypto probe path to
+> return NULL, making meson_allocate_chanlist() fail after partial
+> initialization. On the unpatched kernel this reliably triggered a
+> slab-use-after-free. With this fix applied, the same reproducer no longer
+> emits any KASAN report and the probe fails cleanly with -ENOMEM.
+> 
+>     ==================================================================
+>     BUG: KASAN: slab-use-after-free in kthread_destroy_worker+0xb2/0xd0
+>     Read of size 8 at addr ff1100010c057a68 by task insmod/265
+> 
+>     CPU: 1 UID: 0 PID: 265 Comm: insmod Tainted: G           O        7.1.0-rc2-00376-g810af9adc907-dirty #10 PREEMPT(lazy)
+>     Tainted: [O]=OOT_MODULE
+>     Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 1.15.0-1 04/01/2014
+>     Call Trace:
+>      <TASK>
+>      dump_stack_lvl+0x68/0xa0
+>      print_report+0xcb/0x5e0
+>      ? __virt_addr_valid+0x21d/0x3f0
+>      ? kthread_destroy_worker+0xb2/0xd0
+>      ? kthread_destroy_worker+0xb2/0xd0
+>      kasan_report+0xca/0x100
+>      ? kthread_destroy_worker+0xb2/0xd0
+>      kthread_destroy_worker+0xb2/0xd0
+>      meson_crypto_probe+0x4d0/0xc10 [amlogic_gxl_crypto]
+>      platform_probe+0x99/0x140
+>      really_probe+0x1c6/0x6a0
+>      ? __pfx___device_attach_driver+0x10/0x10
+>      __driver_probe_device+0x248/0x310
+>      ? acpi_driver_match_device+0xb0/0x100
+>      driver_probe_device+0x48/0x210
+>      ? __pfx___device_attach_driver+0x10/0x10
+>      __device_attach_driver+0x160/0x320
+>      bus_for_each_drv+0x104/0x190
+>      ? __pfx_bus_for_each_drv+0x10/0x10
+>      ? _raw_spin_unlock_irqrestore+0x2c/0x50
+>      __device_attach+0x19d/0x3b0
+>      ? __pfx___device_attach+0x10/0x10
+>      ? do_raw_spin_unlock+0x53/0x220
+>      device_initial_probe+0x78/0xa0
+>      bus_probe_device+0x5b/0x130
+>      device_add+0xcfd/0x1430
+>      ? __pfx_device_add+0x10/0x10
+>      ? insert_resource+0x34/0x50
+>      ? lock_release+0xc9/0x290
+>      platform_device_add+0x24e/0x590
+>      ? __pfx_meson_crypto_probe_repro_init+0x10/0x10 [meson_crypto_probe_repro]
+>      meson_crypto_probe_repro_init+0x330/0xff0 [meson_crypto_probe_repro]
+>      do_one_initcall+0xc0/0x450
+>      ? __pfx_do_one_initcall+0x10/0x10
+>      ? _raw_spin_unlock_irqrestore+0x2c/0x50
+>      ? __create_object+0x59/0x80
+>      ? kasan_unpoison+0x27/0x60
+>      do_init_module+0x27b/0x7d0
+>      ? __pfx_do_init_module+0x10/0x10
+>      ? kasan_quarantine_put+0x84/0x1d0
+>      ? kfree+0x32c/0x510
+>      ? load_module+0x561e/0x5ff0
+>      load_module+0x54fe/0x5ff0
+>      ? __pfx_load_module+0x10/0x10
+>      ? security_file_permission+0x20/0x40
+>      ? kernel_read_file+0x23d/0x6e0
+>      ? mmap_region+0x235/0x4a0
+>      ? __pfx_kernel_read_file+0x10/0x10
+>      ? __file_has_perm+0x2c0/0x3e0
+>      init_module_from_file+0x158/0x180
+>      ? __pfx_init_module_from_file+0x10/0x10
+>      ? __lock_acquire+0x45a/0x1ba0
+>      ? idempotent_init_module+0x315/0x610
+>      ? lock_release+0xc9/0x290
+>      ? lockdep_init_map_type+0x4b/0x220
+>      ? do_raw_spin_unlock+0x53/0x220
+>      idempotent_init_module+0x330/0x610
+>      ? __pfx_idempotent_init_module+0x10/0x10
+>      ? __pfx_cred_has_capability.isra.0+0x10/0x10
+>      ? ksys_mmap_pgoff+0x385/0x520
+>      __x64_sys_finit_module+0xbe/0x120
+>      do_syscall_64+0x115/0x690
+>      entry_SYSCALL_64_after_hwframe+0x77/0x7f
+>     RIP: 0033:0x7f7d6d31690d
+>     Code: 5b 41 5c c3 66 0f 1f 84 00 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d f3 b4 0f 00 f7 d8 >
+>     RSP: 002b:00007fffc027ac68 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+>     RAX: ffffffffffffffda RBX: 000055f7b81967c0 RCX: 00007f7d6d31690d
+>     RDX: 0000000000000000 RSI: 000055f79a0d6cd2 RDI: 0000000000000003
+>     RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+>     R10: 0000000000000003 R11: 0000000000000246 R12: 000055f79a0d6cd2
+>     R13: 000055f7b8196790 R14: 000055f79a0d5888 R15: 000055f7b81968e0
+>      </TASK>
+> 
+> Fixes: 48fe583fe541 ("crypto: amlogic - Add crypto accelerator for amlogic GXL")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Zilin Guan <zilin@seu.edu.cn>
+> Signed-off-by: Dawei Feng <dawei.feng@seu.edu.cn>
+> ---
+>  drivers/crypto/amlogic/amlogic-gxl-core.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-On Sun May 10, 2026 at 2:42 PM CEST, Jonas Karlman wrote:
-> This is a revival of an old dw-hdmi series and is the first series part
-> of a new effort to upstream old LibreELEC HDMI 2.0 patches for Rockchip
-> RK33xx devices.
->
-> This series ensure poweron/poweroff and CEC phys addr invalidation is
-> happening under drm mode_config mutex lock, and also ensure EDID is
-> updated after a HPD low voltage pulse by changing to debounce hotplug
-> processing.
->
-> These changes have mainly been tested on Rockchip RK3328, RK3399 and
-> RK3568 devices using both the dw-hdmi connector and also using a basic
-> convert to use a bridge connector.
-
-Yesterday I made a test run and the TL;DR is this:
-
-Tested-by: Diederik de Haas <diederik@cknow-tech.com>  # Rock64, RockPro64, Quartz64-B
-
-The longer version ...
-
-Test setup:
-I have a 1080p monitor capable of HDMI 1.4 (I think) and a 4K TV capable of
-HDMI 2.0 (but not 2.1). I'm running Debian Testing/Sid on them with Sway
-1.12-rc3-1 (from Experimental) and see if that works (at all) and then I try to
-play one or more of my 'test' videos with mpv and using v4l2request HW accel.
-I used 2 kernels: 7.1-rc3 and 7.1-rc3 with this patch set.
-
-One of the possible issues that may have been fixed with this patch set is
-doing hotplugging of the HDMI connection, especially going from 4K to 1080p.
-So when testing I unplugged my 4K cable and plugged in the 1080p cable and
-looked if it has adjusted things properly. I also checked dmesg to see if
-there were interesting msgs.
-
-> Testing with a Rock Pi 4 (RK3399) using a Raspberry Pi Monitor with
-> Linux kms client console using drm.debug=0xe should log something like
-> following:
->
->  Power cycle monitor using the power button:
->   [CONNECTOR:68:HDMI-A-1] CEA VCDB 0x4a
->   [CONNECTOR:68:HDMI-A-1] HDMI: DVI dual 0, max TMDS clock 0 kHz
->   [CONNECTOR:68:HDMI-A-1] ELD monitor RPI MON156
->   [CONNECTOR:68:HDMI-A-1] HDMI: latency present 0 0, video latency 0 0, audio latency 0 0
->   [CONNECTOR:68:HDMI-A-1] ELD size 36, SAD count 1
->   [CONNECTOR:68:HDMI-A-1] Same epoch counter 10
->  
->  Cable unplugged:
->   [CONNECTOR:68:HDMI-A-1] EDID changed, epoch counter 11
->   [CONNECTOR:68:HDMI-A-1] status updated from connected to disconnected
->   [CONNECTOR:68:HDMI-A-1] Changed epoch counter 10 => 12
->   [CONNECTOR:68:HDMI-A-1] generating connector hotplug event
->   [CONNECTOR:68:HDMI-A-1] Sent hotplug event
-
-When I was preparing my testing session the 'Sent hotplug event' caught my eye
-as it seemed like a clear differentiator between the kernel with and without
-this patch set.
-Unfortunately during my 'real' testing session I did not see that message ...
-
->  Cable connected:
->   [CONNECTOR:68:HDMI-A-1] CEA VCDB 0x4a
->   [CONNECTOR:68:HDMI-A-1] HDMI: DVI dual 0, max TMDS clock 0 kHz
->   [CONNECTOR:68:HDMI-A-1] ELD monitor RPI MON156
->   [CONNECTOR:68:HDMI-A-1] HDMI: latency present 0 0, video latency 0 0, audio latency 0 0
->   [CONNECTOR:68:HDMI-A-1] ELD size 36, SAD count 1
->   [CONNECTOR:68:HDMI-A-1] status updated from disconnected to connected
->   [CONNECTOR:68:HDMI-A-1] Changed epoch counter 12 => 13
->   [CONNECTOR:68:HDMI-A-1] generating connector hotplug event
->   [CONNECTOR:68:HDMI-A-1] Sent hotplug event
-
-... but I did see all the others. With my 4K TV I got
-``max TMDS clock 300000 kHz``
-but on my 1080p monitor I got 0 kHz just like quoted above.
-
-I also checked CEC and EDID with the following commands:
-- ``cat /sys/kernel/debug/cec/cec0/status``
-- ``di-edid-decode /sys/devices/platform/display-subsystem/drm/card0/card0-HDMI-A-1/edid``
-
-And in all cases they produced identical outputs.
-
-Rock64 testing:
-
-On the Rock64 I got a stack trace:
-
-```sh
-root@rock64-test:~# dmesg --level 4
-[    2.302852] dw-apb-uart ff130000.serial: forbid DMA for kernel console
-[    5.068434] dw_wdt ff1a0000.watchdog: No valid TOPs array specified
-[    5.841772] dwc2 ff580000.usb: supply vusb_d not found, using dummy regulator
-[    5.842752] dwc2 ff580000.usb: supply vusb_a not found, using dummy regulator
-[    7.392797] ------------[ cut here ]------------
-[    7.393236] WARNING: drivers/media/cec/core/cec-adap.c:1116 at cec_received_msg_ts+0x530/0xc10 [cec], CPU#0: irq/50-dw-hdmi-/186
-[    7.394811] Modules linked in: dw_hdmi_cec(+) hid_generic usbhid rockchipdrm hid dw_hdmi_qp dw_mipi_dsi realtek dw_hdmi phy_package analogix_dp drm_dp_aux_bus dwmac_rk drm_display_helper stmmac_platform xhci_plat_hcd stmmac cec rc_core xhci_hcd pcs_xpcs drm_client_lib phylink rtc_rk808 drm_dma_helper ohci_platform rk808_regulator mdio_devres dwc2 of_mdio drm_kms_helper ehci_platform dwc3 ehci_hcd fixed_phy udc_core ohci_hcd drm fwnode_mdio usbcore libphy syscon_reboot_mode ulpi gpio_rockchip phy_rockchip_inno_usb2 dw_mmc_rockchip reboot_mode io_domain gpio_syscon mdio_bus dw_mmc_pltfm fixed usb_common dw_wdt dw_mmc phy_rockchip_inno_hdmi spi_rockchip nvmem_rockchip_efuse i2c_rk3x pl330
-[    7.404613] CPU: 0 UID: 0 PID: 186 Comm: irq/50-dw-hdmi- Not tainted 7.1-rc3+unreleased-arm64-cknow #1 PREEMPTLAZY  Debian 7.1~rc3-2
-[    7.406138] Hardware name: Pine64 Rock64 (DT)
-[    7.406725] pstate: a0000005 (NzCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-[    7.407634] pc : cec_received_msg_ts+0x530/0xc10 [cec]
-[    7.408344] lr : dw_hdmi_cec_thread+0x98/0xb8 [dw_hdmi_cec]
-[    7.409095] sp : ffff8000809e3cc0
-[    7.409552] x29: ffff8000809e3d30 x28: 0000000000000000 x27: 0000000000000000
-[    7.410500] x26: ffff0000faae44ac x25: ffffa02b5edaf370 x24: ffff00000bd9f6a0
-[    7.411447] x23: ffffa02b60e3e000 x22: ffff0000faae4400 x21: 0000000000000001
-[    7.412392] x20: ffff0000faae4400 x19: ffff00000a887800 x18: ffff5fd59d9c7000
-[    7.413333] x17: 0000000061dcb992 x16: ffffa02b5edf4d88 x15: ffffa02b60e421d0
-[    7.414256] x14: ffffa02b60d5a100 x13: 00000000000000c0 x12: ffff0000fe721100
-[    7.415175] x11: 00000000000000c0 x10: 0000000000000db0 x9 : ffffa02af03675c8
-[    7.416095] x8 : ffff0000fa3f0e10 x7 : 0000000000000000 x6 : 0000000000000010
-[    7.417011] x5 : ffff5fd59d9c7000 x4 : ffff000000c7ccc0 x3 : ffff00000bd9f680
-[    7.417927] x2 : 00000001b8300c79 x1 : 00000000ffffffff x0 : 0000000000000000
-[    7.418845] Call trace:
-[    7.419174]  cec_received_msg_ts+0x530/0xc10 [cec] (P)
-[    7.419855]  dw_hdmi_cec_thread+0x98/0xb8 [dw_hdmi_cec]
-[    7.420536]  irq_thread_fn+0x30/0xc0
-[    7.421021]  irq_thread+0x19c/0x3e8
-[    7.421491]  kthread+0x134/0x150
-[    7.421925]  ret_from_fork+0x10/0x20
-[    7.422405] ---[ end trace 0000000000000000 ]---
-[   23.252709] rockchip-i2s ff000000.i2s: using zero-initialized flat cache, this may cause unexpected behavior
-```
-
-This was with the kernel *with* this patch set (and connected to 4K TV; no
-idea if that's relevant though).
-But I did not see any adverse affects from it and when I tried again today,
-I did NOT get a/that stack trace.
-
-The Rock64 was the device which showed most clearly the difference between
-having this patch set applied or not.
-As always, I started with the kernel without this patch set and booted it up
-connected to my 4K TV. Then I logged into a Sway session via greetd (thus ~
-also Sway) and everything looked fine*.
-I then tried hotplugging the HDMI from my 4K TV to my 1080p monitor ... and I
-did NOT get any output on my monitor. I didn't even see any message in dmesg
-that it noticed that first a cable got unplugged and later another cable got
-plugged. My monitor itself did notice when I then unplugged the cable again.
-When I then plugged the 4K cable back in, my TV showed Sway like before and
-AFAICT everything was working again.
-
-When I booted into the kernel WITH this patch set, hotplugging back and forth
-worked absolutely fine :-D The screen resolution got adjusted to the new one
-and dmesg noticed the unplugging and plugging actions and it showed similar
-messages as Jonas showed in his cover page (and quoted above).
-With the exception of 'Sent hotplug event' as mentioned above.
-
-*) There are pretty substantial artifacts which are AFAIUI due to the
-not-exactly-fast GPU and memory, but that's unrelated to this patch set.
-Playing a HW accelerated video full-screen often works pretty decently.
-
-RockPro64 testing:
-
-I can be much shorter about the RockPro64.
-Everything seemed to work just fine with and without this patch set applied. So
-no improvement, but also no regressions.
-
-Quartz64-B testing:
-
-Same story as with RockPro64: no improvements, but also no regressions.
-I did notice that ``drm.debug=0xe`` was *quite* verbose on this device.
-On Rock64 and RockPro64 I saw various drm related msgs in dmesg _when I
-actually did something_ but on Q64-B I got several ~ identical lines per
-second, whether I did sth or not. But that was with and without this patch
-set, so I guess that's a general RK356X 'issue' (if at all an issue).
-
-Cheers,
-  Diederik
-
-> Jonas Karlman (21):
->   drm: bridge: dw_hdmi: Disable scrambler feature when not supported
->   drm: bridge: dw_hdmi: Only notify connected status on HPD interrupt
->   drm: bridge: dw_hdmi: Call poweron/poweroff from atomic enable/disable
->   drm: bridge: dw_hdmi: Use passed mode instead of stored previous_mode
->   drm: bridge: dw_hdmi: Fold poweron and setup functions
->   drm: bridge: dw_hdmi: Remove previous_mode and mode_set
->   drm: bridge: dw_hdmi: Hold bridge ref until connector cleanup
->   drm: bridge: dw_hdmi: Unregister CEC notifier during connector cleanup
->   drm: bridge: dw_hdmi: Invalidate CEC phys addr from connector detect
->   drm: bridge: dw_hdmi: Remove cec_notifier_mutex
->   drm: bridge: dw_hdmi: Extract dw_hdmi_connector_status_update()
->   drm: bridge: dw_hdmi: Use dw_hdmi_connector_status_update()
->   drm: bridge: dw_hdmi: Use display_info is_hdmi and has_audio
->   drm: bridge: dw_hdmi: Use generic CEC notifier helpers
->   drm: bridge: dw_hdmi: Add common suspend helper
->   drm: bridge: dw_hdmi: Use delayed_work to debounce hotplug event
->   drm: bridge: dw_hdmi: Rework HDP and RXSENSE interrupt handling
->   drm: bridge: dw_hdmi: Remove the empty dw_hdmi_setup_rx_sense()
->   drm: bridge: dw_hdmi: Remove the empty dw_hdmi_phy_update_hpd()
->   drm: bridge: dw_hdmi: Merge top and bottom half IRQ handlers
->   drm: bridge: dw_hdmi: Drop call to drm_bridge_hpd_notify()
->
->  drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c |   5 +-
->  drivers/gpu/drm/bridge/synopsys/Kconfig     |   1 +
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c   | 483 +++++++-------------
->  drivers/gpu/drm/meson/meson_dw_hdmi.c       |   5 +-
->  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c |  13 +-
->  drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c      |   2 -
->  include/drm/bridge/dw_hdmi.h                |   7 +-
->  7 files changed, 194 insertions(+), 322 deletions(-)
-
+Patch applied.  Thanks.
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
 _______________________________________________
 linux-amlogic mailing list
