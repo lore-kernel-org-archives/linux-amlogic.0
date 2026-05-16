@@ -4,56 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18E47CD4851
-	for <linux-amlogic@archiver.kernel.org>; Sat, 16 May 2026 19:43:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B459CD4F3C
+	for <linux-amlogic@archiver.kernel.org>; Sat, 16 May 2026 19:44:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4KVQWckWAvWupuAtXztlXvLHaDO50XMfn0KkvrYTsEU=; b=wgMN9nhioWFX4Y
-	d9xjJYUBYcmqQ/ooFRsoWGYXU6/d5lQo6yAkYU2YS8TkjNWyNCAaZP5WT8WPbeeagGJyD2ZTaP6zw
-	MP5lz0NdjySrgNQvd350KuZ+mr0X53fMXtV0fndl2ryGDQky371Z0HbFikXR/wrPp3owRYfENorBz
-	BXt6giMeOYUUcO8hs+Fc7PBQUYSbkHWmXVvWttx4zFU/D7rWntcWsALNfgbY5vRZRUdr3jnLR/b2W
-	ptmH1RDKRGfS6P5/mj/QqKdJ3K8lTpYjmsFNYP/wAsPnTdOMG5q4dyic65/aJMGI+np7Bm7nRnjH3
-	eBiDRh6ilxu9icPzLOgg==;
+	List-Owner; bh=95n5qDzhi512awQzZzTG9FC/2wYeeumApDAwUoxVpBY=; b=w5pV7y358CScap
+	CJ42VAc/QtJcCIjl2d0AXnOY/PwWZ2WQRoxqLtNXHC1W51nqcHBoL4dt2Z2ow0ZCXZGzIomyqzZ5m
+	bea4ZfMdEjTFofzlKoudwJXHcq2A3ORnfU+Hq+drl/2JiJgU1tfCRuDJSE8RWQeiMJN4POTCYqXjx
+	HaXxzPpQo+zY3YwFlLsyZi0L/LS1qpsGiX5Lzckf2mWC63FJ7nnb0F3izOWyVDcxGhhGrUe0vZUQG
+	hdVTiPbpER0wz1AZXTpCflkjO6PRRagpl2vtJCxQu1pgsR+AskgyxmEJutD7gRKT886cyyyA3gVaG
+	EZTkIKmIDdSTuWwDPC6Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wOKut-0000000BOlP-3UXi;
-	Sat, 16 May 2026 19:43:19 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1wOKvV-0000000BOsa-3p7O;
+	Sat, 16 May 2026 19:43:57 +0000
+Received: from smtp.forwardemail.net ([121.127.44.66])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wOKuq-0000000BOkD-2RKL
+	id 1wOKvT-0000000BOrA-0ABF
 	for linux-amlogic@lists.infradead.org;
-	Sat, 16 May 2026 19:43:17 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 99E9843309;
-	Sat, 16 May 2026 19:43:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4211FC19425;
-	Sat, 16 May 2026 19:43:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1778960594;
-	bh=4p1ja3PdkljLMW/wiFgeXQ+4PM2PIeQxKd65WFYC730=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=fUb8r7rcqcinn/8MiCslPLweUwWjvjJW1lS7AqLFan8gLSu0ZW033W0Dakzm8jHRA
-	 g9dXp0fA7UCuS8dsJyfykaDWWBIH1PyLOm6gydPtzSG2yqRmbfO0XcclIfN5tEr0D6
-	 7+rKLeO8T+DoPTMNYv8Y8w0uPl0XpG4II0AS+DXI7kjd6aGfYaoZIzRL1GqoP4anPm
-	 tJjfderQdJZZhXGTR3KlOvdUQXSLLY7QmIWQYoc2ord7zuQakwMEPS1TQ8wrkq2Ydw
-	 yIlVpobUWhx12A7406t1mKYH7igK/8XIxyQTHegwF7SFOdYYuZ8UrmEQtS9m6GmkPq
-	 4qePyl6zB2bFw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 19/22] drm: bridge: dw_hdmi: Rework HDP and RXSENSE
- interrupt handling
-To: "Jonas Karlman" <jonas@kwiboo.se>
-Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org, imx@lists.linux.dev, linux-sunxi@lists.linux.dev, Frank.Li@kernel.org
-In-Reply-To: <20260516183838.2024991-20-jonas@kwiboo.se>
-References: <20260516183838.2024991-20-jonas@kwiboo.se>
-Date: Sat, 16 May 2026 19:43:13 +0000
-Message-Id: <20260516194314.4211FC19425@smtp.kernel.org>
+	Sat, 16 May 2026 19:43:56 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1778960630;
+ bh=qdqxexX5mOstRuzAbF9sWFbFUGmWoYy5Hp06rH3GWRM=;
+ b=IyWxBLmW8qiyRIgExaV/e17LWhpZuwIjSTf5uDYbdwc6fTElq+ww/5dBDON8ctQVKmyh0MYi+
+ bWGUHBcnOw7ylpdXuD2Ks+18dXqJ854XTUibaKscNhmSUGmPLZ3iqfLg6348FfaiQILX7le3r//
+ aEtkFu7l8cUVym2hR4WQHfPOUSJJMYkN6g+lc6AyuMRheydbS9qtfL+xKqVssa9xDrGua7U7Y+J
+ mGeelP8Ja2UxYm9E2WPI4O2DdSoIN9YHnGVortXCFqmMoyY+twuu6tYVfuyhQkdZhdWzaG54Eju
+ DBweNq5bHA8TQn2WPoNWg99tRk+LnAzAobpkEedBKG7Q==
+X-Forward-Email-ID: 6a08c8e55c12e46019b2216b
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.66
+X-Forward-Email-Version: 2.8.12
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <533dd01f-9516-4267-9376-1e5ba42ba124@kwiboo.se>
+Date: Sat, 16 May 2026 21:43:30 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 13/22] drm: bridge: dw_hdmi: Use generic CEC notifier
+ helpers
+To: sashiko-reviews@lists.linux.dev
+Cc: Frank.Li@kernel.org, linux-sunxi@lists.linux.dev, imx@lists.linux.dev,
+ neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
+References: <20260516183838.2024991-14-jonas@kwiboo.se>
+ <20260516192001.27E4EC19425@smtp.kernel.org>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20260516192001.27E4EC19425@smtp.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260516_124316_663697_615321CA 
-X-CRM114-Status: GOOD (  21.40  )
+X-CRM114-CacheID: sfid-20260516_124355_505227_3151695B 
+X-CRM114-Status: GOOD (  19.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,97 +73,98 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0hpZ2hdIENsZWFyaW5nIHRoZSBX
-MUMgSFBEIGludGVycnVwdCBhZnRlciByZWFkaW5nIHRoZSBsaXZlIHN0YXR1cyBhbmQgc2V0dGlu
-ZyB0aGUgbmV3IHBvbGFyaXR5IGNyZWF0ZXMgYSByYWNlIGNvbmRpdGlvbiB0aGF0IGNhbiBwZXJt
-YW5lbnRseSBicmVhayBob3RwbHVnIGRldGVjdGlvbi4KLS0KCmNvbW1pdCA0MDk3MzU0OGQzY2U3
-YmZlMTcyMmMwZDUzYjgyOGY4ZWYwY2E0ZDgxCkF1dGhvcjogSm9uYXMgS2FybG1hbiA8am9uYXNA
-a3dpYm9vLnNlPgoKZHJtOiBicmlkZ2U6IGR3X2hkbWk6IFJld29yayBIRFAgYW5kIFJYU0VOU0Ug
-aW50ZXJydXB0IGhhbmRsaW5nCgpUaGlzIGNvbW1pdCByZW1vdmVzIFJYU0VOU0UgaGFuZGxpbmcg
-dG8gc2ltcGxpZnkgdGhlIEhQRCBpbnRlcnJ1cHQKaGFuZGxpbmcsIGRlcGVuZGluZyBpbnN0ZWFk
-IG9uIGEgZGVsYXllZCB3b3JrIHRvIGRldGVjdCBjb25uZWN0aW9uCnN0YXR1cyBvciBFRElEIGNo
-YW5nZXMuIEl0IGFsc28gZW5zdXJlcyB0aGUgaW5pdGlhbCBIUEQgaW50ZXJydXB0CnBvbGFyaXR5
-IGlzIGJhc2VkIG9uIHRoZSBjdXJyZW50IEhQRCBzdGF0dXMuCgo+IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vYnJpZGdlL3N5bm9wc3lzL2R3LWhkbWkuYyBiL2RyaXZlcnMvZ3B1L2RybS9i
-cmlkZ2Uvc3lub3BzeXMvZHctaGRtaS5jCj4gaW5kZXggMzAwZGFjNGE2YzM1OC4uMzllOTRkMjIy
-NDliMiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYnJpZGdlL3N5bm9wc3lzL2R3LWhk
-bWkuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9icmlkZ2Uvc3lub3BzeXMvZHctaGRtaS5jCgpb
-IC4uLiBdCgo+IEBAIC0zMDYwLDc4ICszMDExLDI5IEBAIHN0YXRpYyBpcnFyZXR1cm5fdCBkd19o
-ZG1pX2hhcmRpcnEoaW50IGlycSwgdm9pZCAqZGV2X2lkKQo+ICAKPiAgc3RhdGljIGlycXJldHVy
-bl90IGR3X2hkbWlfaXJxKGludCBpcnEsIHZvaWQgKmRldl9pZCkKPiAgewo+ICAJc3RydWN0IGR3
-X2hkbWkgKmhkbWkgPSBkZXZfaWQ7Cj4gLQl1OCBpbnRyX3N0YXQsIHBoeV9pbnRfcG9sLCBwaHlf
-cG9sX21hc2ssIHBoeV9zdGF0Owo+IC0JZW51bSBkcm1fY29ubmVjdG9yX3N0YXR1cyBzdGF0dXMg
-PSBjb25uZWN0b3Jfc3RhdHVzX3Vua25vd247Cj4gLQo+IC0JaW50cl9zdGF0ID0gaGRtaV9yZWFk
-YihoZG1pLCBIRE1JX0lIX1BIWV9TVEFUMCk7Cj4gLQlwaHlfaW50X3BvbCA9IGhkbWlfcmVhZGIo
-aGRtaSwgSERNSV9QSFlfUE9MMCk7Cj4gLQlwaHlfc3RhdCA9IGhkbWlfcmVhZGIoaGRtaSwgSERN
-SV9QSFlfU1RBVDApOwo+IC0KPiAtCXBoeV9wb2xfbWFzayA9IDA7Cj4gLQlpZiAoaW50cl9zdGF0
-ICYgSERNSV9JSF9QSFlfU1RBVDBfSFBEKQo+IC0JCXBoeV9wb2xfbWFzayB8PSBIRE1JX1BIWV9I
-UEQ7Cj4gLQlpZiAoaW50cl9zdGF0ICYgSERNSV9JSF9QSFlfU1RBVDBfUlhfU0VOU0UwKQo+IC0J
-CXBoeV9wb2xfbWFzayB8PSBIRE1JX1BIWV9SWF9TRU5TRTA7Cj4gLQlpZiAoaW50cl9zdGF0ICYg
-SERNSV9JSF9QSFlfU1RBVDBfUlhfU0VOU0UxKQo+IC0JCXBoeV9wb2xfbWFzayB8PSBIRE1JX1BI
-WV9SWF9TRU5TRTE7Cj4gLQlpZiAoaW50cl9zdGF0ICYgSERNSV9JSF9QSFlfU1RBVDBfUlhfU0VO
-U0UyKQo+IC0JCXBoeV9wb2xfbWFzayB8PSBIRE1JX1BIWV9SWF9TRU5TRTI7Cj4gLQlpZiAoaW50
-cl9zdGF0ICYgSERNSV9JSF9QSFlfU1RBVDBfUlhfU0VOU0UzKQo+IC0JCXBoeV9wb2xfbWFzayB8
-PSBIRE1JX1BIWV9SWF9TRU5TRTM7Cj4gLQo+IC0JaWYgKHBoeV9wb2xfbWFzaykKPiAtCQloZG1p
-X21vZGIoaGRtaSwgfnBoeV9pbnRfcG9sLCBwaHlfcG9sX21hc2ssIEhETUlfUEhZX1BPTDApOwo+
-ICsJdTggaW50cl9zdGF0Owo+ICAKPiAgCS8qCj4gLQkgKiBSWCBzZW5zZSB0ZWxscyB1cyB3aGV0
-aGVyIHRoZSBURE1TIHRyYW5zbWl0dGVycyBhcmUgZGV0ZWN0aW5nCj4gLQkgKiBsb2FkIC0gaW4g
-b3RoZXIgd29yZHMsIHRoZXJlJ3Mgc29tZXRoaW5nIGxpc3RlbmluZyBvbiB0aGUKPiAtCSAqIG90
-aGVyIGVuZCBvZiB0aGUgbGluay4gIFVzZSB0aGlzIHRvIGRlY2lkZSB3aGV0aGVyIHdlIHNob3Vs
-ZAo+IC0JICogcG93ZXIgb24gdGhlIHBoeSBhcyBIUEQgbWF5IGJlIHRvZ2dsZWQgYnkgdGhlIHNp
-bmsgdG8gbWVyZWx5Cj4gLQkgKiBhc2sgdGhlIHNvdXJjZSB0byByZS1yZWFkIHRoZSBFRElELgo+
-ICsJICogSW50ZXJydXB0IGdlbmVyYXRpb24gaXMgYWNjb21wbGlzaGVkIGluIHRoZSBmb2xsb3dp
-bmcgd2F5Ogo+ICsJICogICBpbnRlcnJ1cHQgPSAobWFzayA9PSAwKSAmJiAocG9sYXJpdHkgPT0g
-c3RhdHVzKQo+ICsJICogQWxsIGludGVycnVwdHMgYXJlIGZvcndhcmRlZCB0byB0aGUgSW50ZXJy
-dXB0IEhhbmRsZXIgc3RpY2t5IGJpdAo+ICsJICogcmVnaXN0ZXIgaWhfcGh5X3N0YXQwIGFuZCBt
-dXRlZCB1c2luZyB0aGUgcmVnaXN0ZXIgaWhfbXV0ZV9waHlfc3RhdDAuCj4gIAkgKi8KPiAtCWlm
-IChpbnRyX3N0YXQgJgo+IC0JICAgIChIRE1JX0lIX1BIWV9TVEFUMF9SWF9TRU5TRSB8IEhETUlf
-SUhfUEhZX1NUQVQwX0hQRCkpIHsKPiAtCQlkd19oZG1pX3NldHVwX3J4X3NlbnNlKGhkbWksCj4g
-LQkJCQkgICAgICAgcGh5X3N0YXQgJiBIRE1JX1BIWV9IUEQsCj4gLQkJCQkgICAgICAgcGh5X3N0
-YXQgJiBIRE1JX1BIWV9SWF9TRU5TRSk7Cj4gLQo+IC0JCWlmICgoaW50cl9zdGF0ICYgSERNSV9J
-SF9QSFlfU1RBVDBfSFBEKSAmJgo+IC0JCSAgICAocGh5X3N0YXQgJiBIRE1JX1BIWV9IUEQpKQo+
-IC0JCQlzdGF0dXMgPSBjb25uZWN0b3Jfc3RhdHVzX2Nvbm5lY3RlZDsKPiArCWludHJfc3RhdCA9
-IGhkbWlfcmVhZGIoaGRtaSwgSERNSV9JSF9QSFlfU1RBVDApOwo+ICsJaWYgKGludHJfc3RhdCAm
-IEhETUlfSUhfUEhZX1NUQVQwX0hQRCkgewo+ICsJCWVudW0gZHJtX2Nvbm5lY3Rvcl9zdGF0dXMg
-c3RhdHVzOwo+ICAKPiAtCQlpZiAoIShwaHlfc3RhdCAmIChIRE1JX1BIWV9IUEQgfCBIRE1JX1BI
-WV9SWF9TRU5TRSkpKQo+IC0JCQlzdGF0dXMgPSBjb25uZWN0b3Jfc3RhdHVzX2Rpc2Nvbm5lY3Rl
-ZDsKPiAtCX0KPiArCQkvKiBTZXQgSFBEIGludGVycnVwdCBwb2xhcml0eSBiYXNlZCBvbiBjdXJy
-ZW50IEhQRCBzdGF0dXMuICovCj4gKwkJc3RhdHVzID0gZHdfaGRtaV9waHlfcmVhZF9ocGQoaGRt
-aSwgaGRtaS0+cGh5LmRhdGEpOwo+ICsJCWhkbWlfbW9kYihoZG1pLCBzdGF0dXMgPT0gY29ubmVj
-dG9yX3N0YXR1c19jb25uZWN0ZWQgPwo+ICsJCQkgIDAgOiBIRE1JX1BIWV9IUEQsIEhETUlfUEhZ
-X0hQRCwgSERNSV9QSFlfUE9MMCk7Cj4gIAo+IC0JaWYgKHN0YXR1cyAhPSBjb25uZWN0b3Jfc3Rh
-dHVzX3Vua25vd24pIHsKPiAgCQlkZXZfZGJnKGhkbWktPmRldiwgIkVWRU5UPSVzXG4iLAo+ICAJ
-CQlzdGF0dXMgPT0gY29ubmVjdG9yX3N0YXR1c19jb25uZWN0ZWQgPwo+ICAJCQkicGx1Z2luIiA6
-ICJwbHVnb3V0Iik7Cj4gQEAgLTMxNDEsOCArMzA0Myw3IEBAIHN0YXRpYyBpcnFyZXR1cm5fdCBk
-d19oZG1pX2lycShpbnQgaXJxLCB2b2lkICpkZXZfaWQpCj4gIAl9Cj4gIAo+ICAJaGRtaV93cml0
-ZWIoaGRtaSwgaW50cl9zdGF0LCBIRE1JX0lIX1BIWV9TVEFUMCk7CgpDYW4gdGhpcyBzZXF1ZW5j
-ZSBjcmVhdGUgYSByYWNlIGNvbmRpdGlvbiB0aGF0IGJyZWFrcyBob3RwbHVnIGRldGVjdGlvbj8K
-CklmIHRoZSBIUEQgbGluZSB0b2dnbGVzIChmb3IgZXhhbXBsZSwgZHVlIHRvIGNvbnRhY3QgYm91
-bmNlKSBhZnRlcgpkd19oZG1pX3BoeV9yZWFkX2hwZCgpIGJ1dCBiZWZvcmUgdGhpcyBmaW5hbCBo
-ZG1pX3dyaXRlYigpLCB0aGUgaGFyZHdhcmUKY291bGQgZ2VuZXJhdGUgYSBuZXcgaW50ZXJydXB0
-IGFuZCBzZXQgdGhlIHN0aWNreSBiaXQgYWdhaW4uCgpTaW5jZSB0aGUgZmluYWwgaGRtaV93cml0
-ZWIoKSB3cml0ZXMgdGhlIG9yaWdpbmFsIGludHJfc3RhdCAod2hpY2ggaGFzIHRoZQpIUEQgYml0
-IHNldCkgYmFjayB0byB0aGUgcmVnaXN0ZXIsIGFuZCB0aGUgcmVnaXN0ZXIgaXMgd3JpdGUtMS10
-by1jbGVhciwgaXQKd2lsbCBjbGVhciB0aGlzIG5ld2x5IGdlbmVyYXRlZCBpbnRlcnJ1cHQuCgpU
-aGlzIGNvdWxkIGxlYXZlIHRoZSBkcml2ZXIgYW5kIGhhcmR3YXJlIG91dCBvZiBzeW5jLCB3aXRo
-IHRoZSBoYXJkd2FyZQp3YWl0aW5nIGZvciBhIHBvbGFyaXR5IHRyYW5zaXRpb24gdGhhdCBoYXMg
-YWxyZWFkeSBvY2N1cnJlZCwgY2F1c2luZyBhbGwKZnV0dXJlIHBsdWcvdW5wbHVnIGV2ZW50cyB0
-byBiZSBpZ25vcmVkLgoKU2hvdWxkIHRoZSBpbnRlcnJ1cHQgc3RhdHVzIGJlIGNsZWFyZWQgYmVm
-b3JlIHJlYWRpbmcgdGhlIGxpdmUgc3RhdGUgYW5kCnVwZGF0aW5nIHRoZSBwb2xhcml0eSB0byBj
-bG9zZSB0aGlzIHJhY2Ugd2luZG93PwoKPiAtCWhkbWlfd3JpdGViKGhkbWksIH4oSERNSV9JSF9Q
-SFlfU1RBVDBfSFBEIHwgSERNSV9JSF9QSFlfU1RBVDBfUlhfU0VOU0UpLAo+IC0JCSAgICBIRE1J
-X0lIX01VVEVfUEhZX1NUQVQwKTsKPiArCWhkbWlfd3JpdGViKGhkbWksIH5IRE1JX0lIX1BIWV9T
-VEFUMF9IUEQsIEhETUlfSUhfTVVURV9QSFlfU1RBVDApOwo+ICAKPiAgCXJldHVybiBJUlFfSEFO
-RExFRDsKPiAgfQoKLS0gClNhc2hpa28gQUkgcmV2aWV3IMK3IGh0dHBzOi8vc2FzaGlrby5kZXYv
-Iy9wYXRjaHNldC8yMDI2MDUxNjE4MzgzOC4yMDI0OTkxLTEtam9uYXNAa3dpYm9vLnNlP3BhcnQ9
-MTkKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4
-LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpo
-dHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On 5/16/2026 9:20 PM, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> - [High] Use-After-Free and Memory Leak in CEC notifier cleanup due to drmm and manual lifecycle mismatch
+> --
+> 
+> commit eb59f6fe976b03aa5f719b79a28355b27f403bfe
+> Author: Jonas Karlman <jonas@kwiboo.se>
+> Subject: drm: bridge: dw_hdmi: Use generic CEC notifier helpers
+> 
+> This commit replaces open-coded CEC notifier handling with generic CEC
+> helpers using drmm_connector_hdmi_cec_notifier_register. It also removes
+> the manual notifier unregistration from dw_hdmi_connector_destroy.
+> 
+>> The drmm release action for the generic CEC notifier should run just
+>> before dw_hdmi_connector_destroy(), closely matching the lifetime of
+>> the replaced CEC notifier and the connector.
+> 
+> Is this lifecycle assumption accurate for drivers that do not use drmm
+> for mode config?
+
+Yes, drm_mode_config_init() was converted to call its drmm_ variant in
+v5.8-rc1, with commit c3b790ea07a1 ("drm: Manage drm_mode_config_init
+with drmm_"). Effectively meaning that all drm drivers use drmm for mode
+config.
+
+>> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+>> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+>> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> [ ... ]
+>> @@ -2547,9 +2543,6 @@ static void dw_hdmi_connector_destroy(struct drm_connector *connector)
+>>  {
+>>  	struct dw_hdmi *hdmi = container_of(connector, struct dw_hdmi, connector);
+>>  
+>> -	cec_notifier_conn_unregister(hdmi->cec_notifier);
+>> -	hdmi->cec_notifier = NULL;
+>> -
+>>  	drm_connector_cleanup(connector);
+>>  	drm_bridge_put(&hdmi->bridge);
+>>  }
+> 
+> Since drm_connector_cleanup() zeroes the connector memory, and
+> drm_bridge_put() can drop the final reference to the bridge (which frees
+> the dw_hdmi structure and its embedded connector), could this lead to a
+> use-after-free?
+
+It should not, destroy() is the last call made for the connector, and
+the drm_bridge_put() is here to ensure that the struct dw_hdmi is still
+around when drm_connector_cleanup() is called, to avoid a use-after-free.
+
+> If a user-space application holds an open file descriptor to the DRM device
+> during driver unbind, the DRM device remains alive. The deferred drmm
+> release action will only execute later when the file descriptor is closed
+> and the DRM device's refcount drops to zero.
+> 
+> When the drmm action eventually runs, it will dereference the freed
+> connector pointer.
+> 
+> Additionally, because drm_connector_cleanup() executes
+> memset(connector, 0, sizeof(*connector)), won't connector->cec.data become
+> NULL? This would cause the delayed drmm release action to silently skip
+> unregistration, leaking the cec_notifier object.
+
+It should not, drmm release actions are called in reverse order, and
+drmm_connector_hdmi_cec_notifier_register() is called last, meaning its
+release action should be called before drm_mode_config_cleanup() is
+called by the the release action for drmm_mode_config_init().
+
+Regards,
+Jonas
+
+> [ ... ]
+>> @@ -2609,15 +2600,8 @@ static int dw_hdmi_connector_create(struct dw_hdmi *hdmi)
+> [ ... ]
+>> -	notifier = cec_notifier_conn_register(hdmi->dev, NULL, &conn_info);
+>> -	if (!notifier)
+>> -		return -ENOMEM;
+>> -
+>> -	hdmi->cec_notifier = notifier;
+>> -
+>> -	return 0;
+>> +	return drmm_connector_hdmi_cec_notifier_register(connector, NULL,
+>> +							 hdmi->dev);
+>>  }
+> 
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
