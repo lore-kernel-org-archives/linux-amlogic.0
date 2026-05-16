@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5CA3CD4851
-	for <linux-amlogic@archiver.kernel.org>; Sat, 16 May 2026 18:39:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCBAACD4F49
+	for <linux-amlogic@archiver.kernel.org>; Sat, 16 May 2026 18:39:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ty44SItbVSVe/RNtmU0sM2BEwFmjjevuYLOL3ecWG14=; b=cIFNWlSd+ggZ4o
-	dR/WT+eUduCb6gm5DTbGZfZzTF+1b46rCl8Trdq0sfSK1jnKE043k9SAfu1gGYbxlPKMOSwOjAivL
-	UsIIlaFM7+bST+HBJJ+XF/4u03zszOdRn3L4Yp1rms+NLLlj+7ZosFs7MciY0VFaoW5TA/4mPgWLC
-	AXhm9F1SNpmgUqLTl1ijARmSoJ7WogFHG3i0dJpUw8/NFEKzl8k1RxX2EthKyRmLdxTCtZ75q0l5B
-	qxPsD4Wb/tgJAV5g4/sQgNm19N7jDH0Wuq01l/9ihvIRB4H1y4BZAc11tuA2tQSZlF3pyMBIeQ4kU
-	OEZLUm8QC92pBhos/2bA==;
+	List-Owner; bh=LEnzdgM64woaS3qGzgxCHF7CATlW6xoYu/zCQDQW6gQ=; b=XeTquP6B1Y/fWN
+	Vr345ZuAI0czrM3CgLVTIL8NmaglvbLf7qXXoIuAdzhrLubnv5XspqiwORMVP0k3CgJp2mnziwRoo
+	mkrFEuvJiUs4K+72ftck/KX5GOwt/YxZ1BhkY31kiXXyDKXJxRV8bymn/ER896YjKvMPqtVGYGc3v
+	D0y0D5fVn3L7+764SBfahJdKJv/uqzMlXvumJk7FwHcWffxf6Aiy6PzuzMmKvobpWrAbw+eFT/6QS
+	C2TkqHyqGl/1SAjeE0Zh528umVtcooeJDoqeexcO8L47DcmQo1sxJ4YR0Dhrx7Rk9JBssB2to2APO
+	d8VACIxIGZPoRkb3SEww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wOJvV-0000000BFiL-0Fbw;
-	Sat, 16 May 2026 18:39:53 +0000
-Received: from smtp.forwardemail.net ([121.127.44.73])
+	id 1wOJvW-0000000BFkx-0rWR;
+	Sat, 16 May 2026 18:39:54 +0000
+Received: from smtp.forwardemail.net ([121.127.44.66])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wOJvO-0000000BFVO-2QGK
+	id 1wOJvQ-0000000BFZz-3ujY
 	for linux-amlogic@lists.infradead.org;
-	Sat, 16 May 2026 18:39:50 +0000
+	Sat, 16 May 2026 18:39:53 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
  h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
  Message-ID: Date: Subject: Cc: To: From; q=dns/txt; s=fe-e1b5cab7be;
- t=1778956786; bh=+D1KqkLN/SPso9FLi8QFUtB2wuHbBS99Pzq1qlbp+tg=;
- b=FF3UgCJ4ZCaU5IWnJmIgTaqyGpH52ambxnvx6NxH06Hb9DBhLFURTEp+MPLpOI3QZygCoGF4s
- YP3j3jGmE+X9s+4FKJgq0uosdeaKMjnWn4ydCRhATDCcb0/fcnbuk425YO58xqCsrwbwaOyPNPZ
- QwBTW5HB0MFxd3Urir5CoEr16RYidrGRtzzklgTaR77g7Qyh96wdf/13RzNrldvR2ja5pGFpdvh
- tha9HmcWzTXvB7rWp4SRn/1vUXpn4qnDTL2BA014FSO5tSs+c20NHFSXOZgAOqjn9XVqjDTzZ+A
- nvHFiF262Qtn3djhdbzG4buP2onAbcGyK+tK2ocLCEpQ==
-X-Forward-Email-ID: 6a08b9e379c7625f20eeee36
+ t=1778956788; bh=tmYzQWTppsVGtjN4ebY67s57SKQ5ZcvxGraXQngqzZc=;
+ b=FkLOBe7UcmGYDneShXeMSwt1X7CTeK5fzA+nfDVh+11xfstvNi7keKPFVvYACwMCHdvX1qqHv
+ znB6sEFD7tfFJf6FwtBW9Ib0xvfN8MSz6g4c1+jfLRGLwiLzRQX+0tyI5BYXruyQEEaAML+uBBp
+ 7NFzLyNwS+RJ0E4SxE2qNjXRVolVKbHGd07NFRnTrdra7GYEW41C6DUEHhQNF1LfGaYgK5p4gI3
+ a9LKOH4CUE5QlWTLecfOidsNjwYdSQNl5kbS9etWPH0fjjdptqSVDhifF0RpnJfRKAtcAdbqzwh
+ 6avyhPBLTTpnXLfbH6FWPZwzHVzaf4C9Wx3CKHJ3y5Mw==
+X-Forward-Email-ID: 6a08b9bd79c7625f20eeed22
 X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
+ 121.127.44.66
 X-Forward-Email-Version: 2.8.12
 X-Forward-Email-Website: https://forwardemail.net
 X-Complaints-To: abuse@forwardemail.net
@@ -57,18 +57,18 @@ To: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Maxime Ripard <mripard@kernel.org>,
 	Thomas Zimmermann <tzimmermann@suse.de>,
 	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>
-Subject: [PATCH v6 11/22] drm: bridge: dw_hdmi: Extract dw_hdmi_connector_status_update()
-Date: Sat, 16 May 2026 18:38:21 +0000
-Message-ID: <20260516183838.2024991-12-jonas@kwiboo.se>
+	Simona Vetter <simona@ffwll.ch>,
+	Lucas Stach <l.stach@pengutronix.de>
+Subject: [PATCH v6 02/22] drm: bridge: dw_hdmi: Only notify connected status on HPD interrupt
+Date: Sat, 16 May 2026 18:38:12 +0000
+Message-ID: <20260516183838.2024991-3-jonas@kwiboo.se>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260516183838.2024991-1-jonas@kwiboo.se>
 References: <20260516183838.2024991-1-jonas@kwiboo.se>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260516_113946_822866_04932026 
-X-CRM114-Status: UNSURE (   9.54  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260516_113949_097288_0A3E7C83 
+X-CRM114-Status: GOOD (  13.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,70 +86,59 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Move connector EDID update and CEC phys addr handling to a helper
-function as a preparation before moving EDID refresh from get_modes
-funcs to detect/force funcs.
+drm_helper_hpd_irq_event() and drm_bridge_hpd_notify() may incorrectly
+be called with a connected status when HPD is high and RX sense is
+changed. This typically happens when the HDMI cable is unplugged,
+shortly before the HPD is changed to low.
 
+The original intent of commit da09daf88108 ("drm: bridge: dw_hdmi: only
+trigger hotplug event on link change") was to signal hotplug event at
+correct interrupt states.
+
+Based on the commit message the intent was to trigger hotplug event:
+- when HPD goes high (plugin)
+- when both HPD and RX sense has gone low (plugout)
+
+However, following interrupt state changes can typically be observed
+when the HDMI cable is unplugged:
+- RX interrupt:  HPD=high RX=low  -> triggers a connected event
+- HPD interrupt: HPD=low  RX=low  -> triggers a disconnected event
+
+Fix this by only notify connected status on the HPD interrupt when HPD
+is going high, not on the RX sense interrupt when RX sense is changed.
+
+After this a connected event should be triggered when HPD=high at HPD
+interrupt, and a disconnected event should be triggered when both
+HPD=low and RX=low at either HPD or RX interrupt.
+
+Fixes: da09daf88108 ("drm: bridge: dw_hdmi: only trigger hotplug event on link change")
 Reviewed-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 Tested-by: Diederik de Haas <diederik@cknow-tech.com>  # Rock64, RockPro64, Quartz64-B
 Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 ---
-v6: Pass struct dw_hdmi as a parameter, to allow calls from bridge funcs,
-    Collect t-b tag
+v6: Collect t-b tag
 v5: No change
 v4: Collect r-b tag
-v3: New patch
+v3: Update commit message
+v2: New patch
 ---
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 27 ++++++++++++++---------
- 1 file changed, 17 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-index 0dd4c823c60a..a056e147731b 100644
+index d3e6a6562870..b7bfc0e9a6b2 100644
 --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
 +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-@@ -2466,6 +2466,21 @@ static const struct drm_edid *dw_hdmi_edid_read(struct dw_hdmi *hdmi,
-  * DRM Connector Operations
-  */
+@@ -3157,7 +3157,8 @@ static irqreturn_t dw_hdmi_irq(int irq, void *dev_id)
+ 			mutex_unlock(&hdmi->cec_notifier_mutex);
+ 		}
  
-+static void
-+dw_hdmi_connector_status_update(struct dw_hdmi *hdmi,
-+				struct drm_connector *connector,
-+				enum drm_connector_status status)
-+{
-+	const struct drm_edid *drm_edid;
-+
-+	drm_edid = dw_hdmi_edid_read(hdmi, connector);
-+	drm_edid_connector_update(connector, drm_edid);
-+	drm_edid_free(drm_edid);
-+
-+	cec_notifier_set_phys_addr(hdmi->cec_notifier,
-+				   connector->display_info.source_physical_address);
-+}
-+
- static enum drm_connector_status
- dw_hdmi_connector_detect(struct drm_connector *connector, bool force)
- {
-@@ -2485,18 +2500,10 @@ static int dw_hdmi_connector_get_modes(struct drm_connector *connector)
- {
- 	struct dw_hdmi *hdmi = container_of(connector, struct dw_hdmi,
- 					     connector);
--	const struct drm_edid *drm_edid;
--	int ret;
+-		if (phy_stat & HDMI_PHY_HPD)
++		if ((intr_stat & HDMI_IH_PHY_STAT0_HPD) &&
++		    (phy_stat & HDMI_PHY_HPD))
+ 			status = connector_status_connected;
  
--	drm_edid = dw_hdmi_edid_read(hdmi, connector);
-+	dw_hdmi_connector_status_update(hdmi, connector, connector->status);
- 
--	drm_edid_connector_update(connector, drm_edid);
--	cec_notifier_set_phys_addr(hdmi->cec_notifier,
--				   connector->display_info.source_physical_address);
--	ret = drm_edid_connector_add_modes(connector);
--	drm_edid_free(drm_edid);
--
--	return ret;
-+	return drm_edid_connector_add_modes(connector);
- }
- 
- static int dw_hdmi_connector_atomic_check(struct drm_connector *connector,
+ 		if (!(phy_stat & (HDMI_PHY_HPD | HDMI_PHY_RX_SENSE)))
 -- 
 2.54.0
 
