@@ -4,39 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B0BACD4F3C
-	for <linux-amlogic@archiver.kernel.org>; Sat, 16 May 2026 18:40:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23F66CD4F3C
+	for <linux-amlogic@archiver.kernel.org>; Sat, 16 May 2026 18:41:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5m0ILdL54JDQrIn+P50GLqf72JhG4g1B1gqriqb4u1M=; b=hMtSXtEH/UuT0T
-	dd0zlR/WES0dZRwdu67mwxqwluaRQbUjXN/AHocxffslVy2vSq92ZOBpZ9KUPqCWR4ZYvCiXbWYeg
-	+HiTVCDJlIZzk/2c+h4roNG8aTOckiEwpBDAgvpd+TMhCBvPsAFX5gKBQo2zqQjX43pN9Fbi2yRsZ
-	SoPcm10dWQE4NHMg6L1rAG7f7GJTKPISYhRhmT2hsN7Sl95fyL+uFfTnZ0ZCMnVrbYokyDyiK2sxs
-	DrBqGHsxLarIsN+OoraS0ZFMgCjJMa3WnUZQ2aIaoQPof43i+HBSV3FAwzWgnVg4qRsmkHxDC3uhc
-	TdwaZc9Z4cZHDuEdgYlA==;
+	List-Owner; bh=cOE0UbTM664L6yk1RArgnC3FgoghJE19qgQhoGAXcuE=; b=lrUnvfOKlYLH2k
+	2jDhkXJoA97LEz7EdmDkqneL8s7Q5Yb9HGuZOqr8zhSyBo8ZfUnBaeR2KKZnQjc7sf5eqndi06BJc
+	LfARuBdZ3pygZyEsO8nGYQpjxRlGNhG6bNAT0fuYQnvYzLFWoRNVQV4nB9ZYwzgTmkZhQeNgeQPqJ
+	m7haqFtGx9oGqdqBnRF0S/22Ps6SW2Vc83dW831SxzAUPrc/9SuiVsUQBNASv0VClMHEd+hGt7BPa
+	0r0C2GlOcasYjioArgjIF66lf09hFCHjpdHGspMCpZwAOP/b8J5Nwg4G5UVlRJlZGQO/OGhIY6JMG
+	nfwYlrNVYx5bVQROAhSA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wOJw6-0000000BGse-3xSF;
-	Sat, 16 May 2026 18:40:30 +0000
+	id 1wOJwi-0000000BHHb-2FBQ;
+	Sat, 16 May 2026 18:41:08 +0000
 Received: from smtp.forwardemail.net ([121.127.44.73])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wOJvy-0000000BGdg-0YlM
+	id 1wOJwe-0000000BHFE-28Cf
 	for linux-amlogic@lists.infradead.org;
-	Sat, 16 May 2026 18:40:27 +0000
+	Sat, 16 May 2026 18:41:07 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
  h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
  Message-ID: Date: Subject: Cc: To: From; q=dns/txt; s=fe-e1b5cab7be;
- t=1778956821; bh=La8Pp28MA1FscyJmMaeuUETZMDR7fnDjFGmU5JireP0=;
- b=hiqaF1PdXUub603UAZPmr2+B7ZUDgo+iT+rEKjeVixqO7wMUxp6nStctQHlTOaM7acbuYIgLu
- RgeZVwGJlgZKSk83xn/cCRk0NNGyAMWTQZuJuRB46C8UtnMX7qSC2JiQMHpcktpBu2IH46oy2xV
- 4+XXHZka2he3VSI/0OC/4KJ07Wjqrhrur4QojMRMGDC9/5v4vYrcT6exLf5BZ6EDPo+8nMGCyGw
- dkQmybj0qOecrozkdCleuuM6U1j+Zgzjgyzm4CR7Uae8YYdGKE4j0Guzw7WFSHxWpRi3gsclWJc
- 9bHNQrsfoqi72HT0JLXA51EHUrkee6gXLs1+XlKCjotg==
-X-Forward-Email-ID: 6a08ba0f79c7625f20eeef4a
+ t=1778956863; bh=F+B4zzfm0qQngrqIRhNxCD+JotMwmB0joBA2rRqW0KA=;
+ b=dRDQu/KEX419w0x52imv8FLix+GyYEmsqHMFFUnW/cVDwKQWZ+Cjh4P6zSTui6uquZl0xe4q8
+ rEgr/OOc1bgJQKyoHHuT7oifA1lmfbNC323oMvPEijP0FVCi3OZDlnL65Pb9+P8Cx0v7+LLR03B
+ UR4niKaDE8Kxp2doM3mHyx06PyVzMVx4A9KGAGgkQ9NpjqI2VFqlC4NwuJ08+qdj91SrNcDu0//
+ Wa0yWazLyMB3kCfgyFLszJur16UoGVx8WWmJTTw87YckPBoSLfrlAZ0VrYJ1erKHTtMWSZJdd82
+ 6qiLFd0aNaJSow6h6pxagVuMzcWxbGl6b22qM2vK0aSA==
+X-Forward-Email-ID: 6a08ba1479c7625f20eeef65
 X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
  121.127.44.73
 X-Forward-Email-Version: 2.8.12
@@ -49,7 +49,6 @@ To: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
 	Robert Foss <rfoss@kernel.org>,
 	Heiko Stuebner <heiko@sntech.de>,
-	Liu Ying <victor.liu@nxp.com>,
 	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
 	Jonas Karlman <jonas@kwiboo.se>,
 	Jernej Skrabec <jernej.skrabec@gmail.com>,
@@ -58,26 +57,17 @@ To: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Maxime Ripard <mripard@kernel.org>,
 	Thomas Zimmermann <tzimmermann@suse.de>,
 	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Sandy Huang <hjc@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Samuel Holland <samuel@sholland.org>
-Subject: [PATCH v6 21/22] drm: bridge: dw_hdmi: Remove the empty dw_hdmi_phy_update_hpd()
-Date: Sat, 16 May 2026 18:38:31 +0000
-Message-ID: <20260516183838.2024991-22-jonas@kwiboo.se>
+	Simona Vetter <simona@ffwll.ch>
+Subject: [PATCH v6 22/22] drm: bridge: dw_hdmi: Merge top and bottom half IRQ handlers
+Date: Sat, 16 May 2026 18:38:32 +0000
+Message-ID: <20260516183838.2024991-23-jonas@kwiboo.se>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260516183838.2024991-1-jonas@kwiboo.se>
 References: <20260516183838.2024991-1-jonas@kwiboo.se>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260516_114022_294214_7079B3D3 
-X-CRM114-Status: UNSURE (   9.77  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260516_114105_272905_07B85788 
+X-CRM114-Status: GOOD (  12.09  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,128 +79,98 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, imx@lists.linux.dev, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev, Diederik de Haas <diederik@cknow-tech.com>, linux-rockchip@lists.infradead.org, linux-amlogic@lists.infradead.org, Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, linux-arm-kernel@lists.infradead.org
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, imx@lists.linux.dev, Liu Ying <victor.liu@nxp.com>, linux-kernel@vger.kernel.org, Sandy Huang <hjc@rock-chips.com>, dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev, Diederik de Haas <diederik@cknow-tech.com>, linux-rockchip@lists.infradead.org, linux-amlogic@lists.infradead.org, Andy Yan <andy.yan@rock-chips.com>, Chen-Yu Tsai <wens@kernel.org>, Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The dw_hdmi_phy_update_hpd() helper is empty and no longer needed after
-recent RXSENSE and HPD rework, remove it.
+The bottom half IRQ handler only modify delay of or queue a delayed work
+used for HPD handling. The mod_delayed_work() called is documented as
+being safe to call from any context including IRQ handler.
+
+Merge top and bottom half IRQ handlers to simplify IRQ handling now that
+HPD event is handled using a delayed work.
 
 Tested-by: Diederik de Haas <diederik@cknow-tech.com>  # Rock64, RockPro64, Quartz64-B
 Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 ---
-v6: Collect t-b tag
+v6: Collect r-b tag
 v5: No change
 v4: New patch
 ---
- drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c | 1 -
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c   | 7 -------
- drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 2 --
- drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c      | 2 --
- include/drm/bridge/dw_hdmi.h                | 4 ----
- 5 files changed, 16 deletions(-)
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 34 ++++++++---------------
+ 1 file changed, 11 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c
-index 8e8cfd66f23b..20d389dbfdc5 100644
---- a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c
-+++ b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c
-@@ -78,7 +78,6 @@ static const struct dw_hdmi_phy_ops imx8mp_hdmi_phy_ops = {
- 	.disable	= imx8mp_hdmi_phy_disable,
- 	.setup_hpd	= im8mp_hdmi_phy_setup_hpd,
- 	.read_hpd	= dw_hdmi_phy_read_hpd,
--	.update_hpd	= dw_hdmi_phy_update_hpd,
- };
- 
- static int imx8mp_dw_hdmi_bind(struct device *dev)
 diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-index 59864b9084f6..79851ae27496 100644
+index 79851ae27496..a9b2707149b6 100644
 --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
 +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-@@ -1687,12 +1687,6 @@ enum drm_connector_status dw_hdmi_phy_read_hpd(struct dw_hdmi *hdmi,
- }
- EXPORT_SYMBOL_GPL(dw_hdmi_phy_read_hpd);
+@@ -2993,30 +2993,18 @@ static irqreturn_t dw_hdmi_hardirq(int irq, void *dev_id)
+ 	if (hdmi->i2c)
+ 		ret = dw_hdmi_i2c_irq(hdmi);
  
--void dw_hdmi_phy_update_hpd(struct dw_hdmi *hdmi, void *data,
--			    bool force, bool disabled, bool rxsense)
--{
--}
--EXPORT_SYMBOL_GPL(dw_hdmi_phy_update_hpd);
+-	intr_stat = hdmi_readb(hdmi, HDMI_IH_PHY_STAT0);
+-	if (intr_stat) {
+-		hdmi_writeb(hdmi, ~0, HDMI_IH_MUTE_PHY_STAT0);
+-		return IRQ_WAKE_THREAD;
+-	}
 -
- void dw_hdmi_phy_setup_hpd(struct dw_hdmi *hdmi, void *data)
- {
+-	return ret;
+-}
+-
+-static irqreturn_t dw_hdmi_irq(int irq, void *dev_id)
+-{
+-	struct dw_hdmi *hdmi = dev_id;
+-	u8 intr_stat;
+-
  	/*
-@@ -1716,7 +1710,6 @@ static const struct dw_hdmi_phy_ops dw_hdmi_synopsys_phy_ops = {
- 	.init = dw_hdmi_phy_init,
- 	.disable = dw_hdmi_phy_disable,
- 	.read_hpd = dw_hdmi_phy_read_hpd,
--	.update_hpd = dw_hdmi_phy_update_hpd,
- 	.setup_hpd = dw_hdmi_phy_setup_hpd,
- };
+ 	 * Interrupt generation is accomplished in the following way:
+ 	 *   interrupt = (mask == 0) && (polarity == status)
+ 	 * All interrupts are forwarded to the Interrupt Handler sticky bit
+ 	 * register ih_phy_stat0 and muted using the register ih_mute_phy_stat0.
+ 	 */
+-	intr_stat = hdmi_readb(hdmi, HDMI_IH_PHY_STAT0);
+-	if (intr_stat & HDMI_IH_PHY_STAT0_HPD) {
++	intr_stat = hdmi_readb(hdmi, HDMI_IH_PHY_STAT0) & HDMI_IH_PHY_STAT0_HPD;
++	if (intr_stat) {
+ 		enum drm_connector_status status;
  
-diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-index 0dc1eb5d2ae3..7136e713df2e 100644
---- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-+++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-@@ -413,7 +413,6 @@ static const struct dw_hdmi_phy_ops rk3228_hdmi_phy_ops = {
- 	.init		= dw_hdmi_rockchip_genphy_init,
- 	.disable	= dw_hdmi_rockchip_genphy_disable,
- 	.read_hpd	= dw_hdmi_phy_read_hpd,
--	.update_hpd	= dw_hdmi_phy_update_hpd,
- 	.setup_hpd	= dw_hdmi_rk3228_setup_hpd,
- };
++		hdmi_writeb(hdmi, ~0, HDMI_IH_MUTE_PHY_STAT0);
++
+ 		/* Set HPD interrupt polarity based on current HPD status. */
+ 		status = dw_hdmi_phy_read_hpd(hdmi, hdmi->phy.data);
+ 		hdmi_modb(hdmi, status == connector_status_connected ?
+@@ -3028,12 +3016,13 @@ static irqreturn_t dw_hdmi_irq(int irq, void *dev_id)
  
-@@ -449,7 +448,6 @@ static const struct dw_hdmi_phy_ops rk3328_hdmi_phy_ops = {
- 	.init		= dw_hdmi_rockchip_genphy_init,
- 	.disable	= dw_hdmi_rockchip_genphy_disable,
- 	.read_hpd	= dw_hdmi_rk3328_read_hpd,
--	.update_hpd	= dw_hdmi_phy_update_hpd,
- 	.setup_hpd	= dw_hdmi_rk3328_setup_hpd,
- };
+ 		mod_delayed_work(system_percpu_wq, &hdmi->hpd_work,
+ 				 msecs_to_jiffies(HOTPLUG_DEBOUNCE_MS));
++
++		hdmi_writeb(hdmi, intr_stat, HDMI_IH_PHY_STAT0);
++		hdmi_writeb(hdmi, ~HDMI_IH_PHY_STAT0_HPD, HDMI_IH_MUTE_PHY_STAT0);
++		ret = IRQ_HANDLED;
+ 	}
  
-diff --git a/drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c b/drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c
-index 4fa69c463dc4..2ac99b8ce8c4 100644
---- a/drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c
-+++ b/drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c
-@@ -221,7 +221,6 @@ static const struct dw_hdmi_phy_ops sun8i_a83t_hdmi_phy_ops = {
- 	.init		= sun8i_a83t_hdmi_phy_config,
- 	.disable	= sun8i_a83t_hdmi_phy_disable,
- 	.read_hpd	= dw_hdmi_phy_read_hpd,
--	.update_hpd	= dw_hdmi_phy_update_hpd,
- 	.setup_hpd	= dw_hdmi_phy_setup_hpd,
- };
+-	hdmi_writeb(hdmi, intr_stat, HDMI_IH_PHY_STAT0);
+-	hdmi_writeb(hdmi, ~HDMI_IH_PHY_STAT0_HPD, HDMI_IH_MUTE_PHY_STAT0);
+-
+-	return IRQ_HANDLED;
++	return ret;
+ }
  
-@@ -395,7 +394,6 @@ static const struct dw_hdmi_phy_ops sun8i_h3_hdmi_phy_ops = {
- 	.init		= sun8i_h3_hdmi_phy_config,
- 	.disable	= sun8i_h3_hdmi_phy_disable,
- 	.read_hpd	= dw_hdmi_phy_read_hpd,
--	.update_hpd	= dw_hdmi_phy_update_hpd,
- 	.setup_hpd	= dw_hdmi_phy_setup_hpd,
- };
+ static void dw_hdmi_hpd_work(struct work_struct *work)
+@@ -3343,9 +3332,8 @@ struct dw_hdmi *dw_hdmi_probe(struct platform_device *pdev,
+ 	INIT_DELAYED_WORK(&hdmi->hpd_work, dw_hdmi_hpd_work);
+ 	disable_delayed_work(&hdmi->hpd_work);
  
-diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
-index a612b9fa6dbb..10013b8d3adb 100644
---- a/include/drm/bridge/dw_hdmi.h
-+++ b/include/drm/bridge/dw_hdmi.h
-@@ -118,8 +118,6 @@ struct dw_hdmi_phy_ops {
- 		    const struct drm_display_mode *mode);
- 	void (*disable)(struct dw_hdmi *hdmi, void *data);
- 	enum drm_connector_status (*read_hpd)(struct dw_hdmi *hdmi, void *data);
--	void (*update_hpd)(struct dw_hdmi *hdmi, void *data,
--			   bool force, bool disabled, bool rxsense);
- 	void (*setup_hpd)(struct dw_hdmi *hdmi, void *data);
- };
+-	ret = devm_request_threaded_irq(dev, irq, dw_hdmi_hardirq,
+-					dw_hdmi_irq, IRQF_SHARED,
+-					dev_name(dev), hdmi);
++	ret = devm_request_irq(dev, irq, dw_hdmi_hardirq, IRQF_SHARED,
++			       dev_name(dev), hdmi);
+ 	if (ret)
+ 		goto err_res;
  
-@@ -213,8 +211,6 @@ void dw_hdmi_phy_gen2_reset(struct dw_hdmi *hdmi);
- 
- enum drm_connector_status dw_hdmi_phy_read_hpd(struct dw_hdmi *hdmi,
- 					       void *data);
--void dw_hdmi_phy_update_hpd(struct dw_hdmi *hdmi, void *data,
--			    bool force, bool disabled, bool rxsense);
- void dw_hdmi_phy_setup_hpd(struct dw_hdmi *hdmi, void *data);
- 
- bool dw_hdmi_bus_fmt_is_420(struct dw_hdmi *hdmi);
 -- 
 2.54.0
 
