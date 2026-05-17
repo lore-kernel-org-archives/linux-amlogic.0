@@ -4,64 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0A3ACD4851
-	for <linux-amlogic@archiver.kernel.org>; Sat, 16 May 2026 20:11:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 724B1CD4F21
+	for <linux-amlogic@archiver.kernel.org>; Sun, 17 May 2026 11:54:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=l2KfVf9zVOqB+clDBcfvWye2TLivfuRVGm0enKnXj3U=; b=kJxHl+hw0h/kPi
-	ufgYNbFP+cIV/ySSRPHFufyKndpFbcP/P39RUk5qTiedU3d7jPANUmJ3uA7oMUbwh/9Q3T6sl5idR
-	GwoxdBJlACC58OjXYMArsV+y1hzxVWJDlhpYVKotBYGUQoNaarl0z6hQma7I6BGGdblY8TLklrTgc
-	hj6tvLwYGgQaCuQ3DphJ1os5oLYFe20f2FVb8yhNIIQAWQjxMUrmiD8zgZUtA5+gahqcolVEwG5qO
-	jsN7WQKmKI6+xdkLHlop0CwQjkbcE+mpiQxEJVX1SwA0TF/KtdEj77Q1sIR8Mo8Ml4lm//f81vYZQ
-	Sfzfob2CB6wc50Sfar5w==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=chFrWMy2n47F3Rzu4pQB7IeLHNC2LXKWHR45C8sO7iQ=; b=Vx3+D94tkCTrZh
+	87lHDDCwFiudfNK7DWXu0qpfSi3v35XAyL1K2LA8elsywjnTh6iDP2KRNT+ksw1TpK4e1qHRoBTXm
+	wJoBwpdVheHon56/18othJH1l68CTQmDaGnB6ee5GSUdXF1lBX9yEd2G1/i7B2fK0bKF9WxmYZnwk
+	/UmJpO/4RuJXkJF3gAzzDUJ4Z0kKEBJw9/h+cNGel0uoBio+aTt/Mo037P6kLHusXVG43wWQpKlJ9
+	iO0jZ6w9m5oGdBb+rQhJ84Z7NqAi8vkZDOj/NG5Pi9Mujp5CsJFzopf+CWT/XmCScd+WT53Iu0COD
+	PuSjjIiNTK103wfSzYag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wOLMJ-0000000BRCY-0OXt;
-	Sat, 16 May 2026 20:11:39 +0000
-Received: from smtp.forwardemail.net ([121.127.44.73])
+	id 1wOa4H-0000000CeNv-2o5h;
+	Sun, 17 May 2026 11:54:01 +0000
+Received: from mail-pl1-x62f.google.com ([2607:f8b0:4864:20::62f])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wOLMH-0000000BRC4-0kws
+	id 1wOa4F-0000000CeMx-0SHa
 	for linux-amlogic@lists.infradead.org;
-	Sat, 16 May 2026 20:11:38 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1778962296;
- bh=vlHCAIotM5Ww/YlAnImpQ9bOoYRl3nXprmzP151Dkbk=;
- b=a+cin9tKT3iPwr5LVVo50rAEnNDa8hutJbPKcdZ4zOZuGAb+DlUmiZmu6xZpjMLlab6q2OuSg
- qtFeDGaq3UaH5I/Spc8RdUlVLkAjjtuPYdEvy3mBr6RaXekeuNfim4ifEM6FDqgBmVNtLHyVaha
- AGvE3Fg9sAPpoeKN89ugHQy6c0XTaQMRM8CYgRt1klrqlMGRuXPrcIde3r7S5F9rfituddAh2/n
- iYOiBKO4zU/mz/z530S7q9GO59rC5aOzuslA7xXP4v09Giz9Vk1Q0Me4+sWRW7LBYKRErJplz1Y
- hXEgqMCAn1JsM0Y/B1AE+iObHvWnjyhkU3i4Z4Orwhqw==
-X-Forward-Email-ID: 6a08cce65c12e46019b2272e
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
-X-Forward-Email-Version: 2.8.12
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <2ff890b4-ee97-467d-ba27-a3471861ef48@kwiboo.se>
-Date: Sat, 16 May 2026 22:00:36 +0200
+	Sun, 17 May 2026 11:54:00 +0000
+Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-2ba6485d219so8715185ad.3
+        for <linux-amlogic@lists.infradead.org>; Sun, 17 May 2026 04:53:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1779018838; x=1779623638; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eVgsGf4Z/8axsFXoaM/enuI2zsZhhgsgIIwSowsD/SY=;
+        b=RNDNlCBtRPQFIWoXog3kSh/LKHc5IQ4VxZ8o2W+niuvXgOrWczHwK71Xv7HDLxB7ci
+         4DMMXz/Kh6QGo7EehUu0MbfpcVveCyEu0UKGw10+r7A+OiyrcjZ9e240KzLOzze80dy/
+         vkEHnVxAsbNsZrsTPZgw3Pl5wxrTugKhMC7xprbQsNQ7pU17BDFEH8BarzriqOJcfaNI
+         AChhvHq7Itb9xVoFZrvyBeke/zXkMR3TB72UfXhySGykBdgj6fiNxZ2MX80AnHHqLyQS
+         Wt4Jt++SH3KvMq1yu6VC0hDri00Lxu9xVVDvc79xYtEqnhdJJSfKPKCKf4+1Q5+7ZGEh
+         eEfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779018838; x=1779623638;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eVgsGf4Z/8axsFXoaM/enuI2zsZhhgsgIIwSowsD/SY=;
+        b=I0s5vVfeJ9Xiy3+H7z4nHu/r51qCdsYSclB9vr9VKeSzbR5NwJKBC2Vu6s3qowu/qX
+         Ngu4Tp8mF2GQYS75POUumrskFZYmsokqTnj85tWliUjguW6DgXWIiWXSx2TZwfmZwcvs
+         N6GyvidZRR/oRGebaeiQOhTYdG5J47oOQNW+wv4WGJR/UE4gNx39FCEJIWOxHIvwfeQn
+         TMp/lKu9nZw/BcY+LuCpg8wJWm87WRXHFrKGpaQJ/6p93jyUM+51AJDHTGftJsSiNp5D
+         469b+AynYo6xhqqawTsA3hPqWkFnw6qp/2nxrp/C9SmUAfwR42QRDBsrnOlPGnp3SrhA
+         FFRQ==
+X-Forwarded-Encrypted: i=1; AFNElJ9oVx6juElrdqXLSYZEyzloZG7Vu+NX7z/HWQ2HkvCv3Soud96UiJuVko8ofym2kV+/G+XrAmpIZ4s6QW9O@lists.infradead.org
+X-Gm-Message-State: AOJu0Yy/XQ7u/3cxqDcID87vsiU+BN3Jr9dVRaEhjHWeysa6vHc53zDS
+	dj/5uRxaYpAD5CRKvLd2yfw61QG67191DW7rcpuyv8jNweaC6deRxbQv
+X-Gm-Gg: Acq92OET57v8ky4CWngik0Zaax2Fh23ZwbWaxPJVN1GNLKjMTErN6Q03ozyeF5kylyN
+	sNtaMfr+m4+9YQCCHCAeJa/uaooYt+fLgQUNzxNmuaRpVyv+TfPiNl9OkWfr9L8OxgyjWnIPIQ9
+	tzLqqwZgfEJeL/c5GUmJWLfcyYNLAbKbOYxPr0E3GXRGYZQxNBnRlwTblcxJhTo5Ycv0cvweEWm
+	3HEx+kx1GzV2QvyoAKX2u/sM/C6FHmODbulzzGGOvAShL6SmF6T3j/fOJo2hOdWO7C/oLwQJbFJ
+	HI4Ppk+OEMCN+JFXeBZLD903XmJQIi3IYVf8fsCQHIj1v6f7H6k4LkV4jQrx/ZxWRw7md2bkkCN
+	gU6mqAVZhioXC9Io5IqbFqKWUSmZqV/+/w5kUDYI8Twz3dHf628rAZN3uv8Egub4gtshqp403Xb
+	Q3ONKbP0fQ75aOtXNGLp89
+X-Received: by 2002:a17:902:ebc3:b0:2b0:6e6a:8504 with SMTP id d9443c01a7336-2bd7e973c40mr125388885ad.27.1779018838177;
+        Sun, 17 May 2026 04:53:58 -0700 (PDT)
+Received: from lgs.. ([101.76.249.46])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2bd5d0fd856sm118282215ad.66.2026.05.17.04.53.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 May 2026 04:53:57 -0700 (PDT)
+From: Guangshuo Li <lgs201920130244@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	linux-media@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Guangshuo Li <lgs201920130244@gmail.com>
+Subject: [PATCH] media: meson: ge2d: avoid double free on video register failure
+Date: Sun, 17 May 2026 19:53:43 +0800
+Message-ID: <20260517115343.955015-1-lgs201920130244@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 17/22] drm: bridge: dw_hdmi: Drop call to
- drm_bridge_hpd_notify()
-To: sashiko-reviews@lists.linux.dev
-Cc: neil.armstrong@linaro.org, linux-sunxi@lists.linux.dev,
- linux-amlogic@lists.infradead.org, Frank.Li@kernel.org, imx@lists.linux.dev
-References: <20260516183838.2024991-18-jonas@kwiboo.se>
- <20260516195224.9E2CBC19425@smtp.kernel.org>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20260516195224.9E2CBC19425@smtp.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260516_131137_310578_211CD707 
-X-CRM114-Status: GOOD (  19.71  )
+X-CRM114-CacheID: sfid-20260517_045359_149951_DCE30827 
+X-CRM114-Status: GOOD (  11.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,80 +104,62 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 5/16/2026 9:52 PM, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [High] Removing drm_bridge_hpd_notify() violates the DRM bridge API contract and causes hotplug events to be permanently lost during system suspend.
-> --
-> 
-> commit 6b3491e39082015ab62431ea0c93c74c9344b995
-> Author: Jonas Karlman <jonas@kwiboo.se>
-> 
-> drm: bridge: dw_hdmi: Drop call to drm_bridge_hpd_notify()
-> 
-> This commit removes the drm_bridge_hpd_notify() call from the dw_hdmi IRQ
-> handler, relying instead only on drm_helper_hpd_irq_event() to avoid sending
-> duplicate hotplug uevents to userspace.
-> 
->> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->> index e9c4e24c090ca..6cc7b2a860bd8 100644
->> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->> @@ -3101,10 +3101,8 @@ static irqreturn_t dw_hdmi_irq(int irq, void *dev_id)
->>  			status == connector_status_connected ?
->>  			"plugin" : "plugout");
->>  
->> -		if (hdmi->bridge.dev) {
->> +		if (hdmi->bridge.dev)
->>  			drm_helper_hpd_irq_event(hdmi->bridge.dev);
->> -			drm_bridge_hpd_notify(&hdmi->bridge, status);
->> -		}
->>  	}
-> 
-> Will removing drm_bridge_hpd_notify() cause hotplug events to be permanently
-> lost if they occur during system suspend?
+ge2d_probe() allocates a video_device with video_device_alloc() and
+releases it from the rel_vdev error path if video_register_device()
+fails.
 
-No, drm_mode_config_helper_resume() is called at resume.
+This can double free the video_device when __video_register_device()
+reaches device_register() and that call fails:
 
-> Since the driver advertises DRM_BRIDGE_OP_HPD, does the DRM bridge API
-> contract still require it to call drm_bridge_hpd_notify() to properly
-> propagate hotplug events to the rest of the bridge chain?
+  video_register_device()
+    -> __video_register_device()
+       -> device_register() fails
+          -> put_device(&vdev->dev)
+             -> v4l2_device_release()
+                -> vdev->release(vdev)
+                   -> video_device_release(vdev)
 
-No, hpd_notify() funcs are still called from bridge connector detect().
+  ge2d_probe()
+    -> rel_vdev
+       -> video_device_release(ge2d->vfd)
 
-> Looking at drm_helper_hpd_irq_event(), it aborts early if polling is
-> disabled:
-> 
-> drivers/gpu/drm/drm_probe_helper.c:drm_helper_hpd_irq_event() {
-> 	struct drm_connector *connector, *first_changed_connector = NULL;
-> 	struct drm_connector_list_iter conn_iter;
-> 	int changed = 0;
-> 
-> 	if (!dev->mode_config.poll_enabled)
-> 		return false;
-> ...
-> }
-> 
-> During system suspend, drm_kms_helper_poll_disable() sets poll_enabled
-> to false. If an HPD interrupt fires while the system is suspended, won't
-> drm_helper_hpd_irq_event() silently drop the event without updating the
-> connector status or scheduling any deferred work?
+Use video_device_release_empty() while registering the device so that
+registration failure paths do not free ge2d->vfd through vdev->release().
+ge2d_probe() then releases ge2d->vfd exactly once from rel_vdev. Restore
+video_device_release() after successful registration so the registered
+device keeps its normal lifetime handling.
 
-No, drm_mode_config_helper_suspend/resume() will call hpd_enable/disable()
-to signal when the connector/bridge should start listening for HPD. I.e.
-not during suspend.
+This issue was found by a static analysis tool I am developing.
 
-> Furthermore, when the system resumes, output_poll_execute() explicitly skips
-> connectors that use the DRM_CONNECTOR_POLL_HPD flag, and the dw_hdmi resume
-> handler does not appear to manually trigger a hotplug event check.
-> 
-> Could this result in the system being completely unaware of any display
-> connections or disconnections that happened while suspended, at least until
-> a manual reprobe is forced by userspace?
+Fixes: 59a635327ca7 ("media: meson: Add M2M driver for the Amlogic GE2D Accelerator Unit")
+Signed-off-by: Guangshuo Li <lgs201920130244@gmail.com>
+---
+ drivers/media/platform/amlogic/meson-ge2d/ge2d.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-No, drm_mode_config_helper_resume() is called at resume.
+diff --git a/drivers/media/platform/amlogic/meson-ge2d/ge2d.c b/drivers/media/platform/amlogic/meson-ge2d/ge2d.c
+index c5dc03905ce0..b367169e6ad8 100644
+--- a/drivers/media/platform/amlogic/meson-ge2d/ge2d.c
++++ b/drivers/media/platform/amlogic/meson-ge2d/ge2d.c
+@@ -983,6 +983,7 @@ static int ge2d_probe(struct platform_device *pdev)
+ 	}
+ 
+ 	*vfd = ge2d_videodev;
++	vfd->release = video_device_release_empty;
+ 	vfd->lock = &ge2d->mutex;
+ 	vfd->v4l2_dev = &ge2d->v4l2_dev;
+ 
+@@ -1005,6 +1006,7 @@ static int ge2d_probe(struct platform_device *pdev)
+ 
+ 	v4l2_info(&ge2d->v4l2_dev, "Registered %s as /dev/%s\n",
+ 		  vfd->name, video_device_node_name(vfd));
++	vfd->release = video_device_release;
+ 
+ 	return 0;
+ 
+-- 
+2.43.0
 
-Regards,
-Jonas
 
 _______________________________________________
 linux-amlogic mailing list
