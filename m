@@ -4,56 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FA24CD37AC
-	for <linux-amlogic@archiver.kernel.org>; Sun, 17 May 2026 12:30:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E37CCD4F4B
+	for <linux-amlogic@archiver.kernel.org>; Sun, 17 May 2026 17:12:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=slw46se3O5mlVmCKeE60b0TqubhZXc3e9eTGBF8MdPc=; b=Cdh2f+KrC7jYrx
-	XRxsnBuxoB7Y7BLUr2LsJZj0BMHx7xIoZLRDlFiYjZhtGK27+YKeviacqbwMdiDfi+ZTxvcjRR9uf
-	JRlObmA/gzfK75iTjAJDzN47tSZWaBOLC062pWn/gF6F+LstFhuHTRGFqv5wo8YRFpgU3b/dZMhA2
-	yfN5MVua8HOTmYuaRLs0USyx3XRqG3br0AneCXrQc9tXIh/R4qorCuSkNrMBpuYUkSOFr8msG4dvF
-	r0pfNz7H4+HRKv4WUwNqvjkSc81jrfUI0QKPrIofdSCyB1jOO5fi4atUu/rLAL+9vTxflQdnn7lxq
-	Tfy+vTPHI2LueOCjGuaQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Nre3DIko0VJovdw9KLST+8roLvtmpEJxAPwP8tb8yJ4=; b=v6szEgACOZEsoPD9B3DqC2ejnT
+	ivfZ3oubHtJVPPnxykyx05VqDi9qKTUfCPSM3qHGbDl+LlOna+A8OF0htQak3fUDbSCITcwWvn4T5
+	YChwxq4Ahofq/2f9FoW8w+A8rRsCmuP2YN5jH4R1vySWwxSdf2jXJBcQMe6gS/8Z2GPnmSdmQ2Xkg
+	tMFzoMSz0iT7DLZfpeMAvtMBRg+yASMkxnsQ/8u9T/VugvsM5xUN9x7v5XxreG3K/mxA0gFDMkRG/
+	bCvPa0cSayRDdkwLV/80R1SjNRiQVzWdauwutxffL0M23tRATnAcKvdUy5hWvEFChwzx2az47tmJU
+	fMHNUDZw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wOad5-0000000Ch8Z-1Wdt;
-	Sun, 17 May 2026 12:29:59 +0000
+	id 1wOf2j-0000000D58F-3CWT;
+	Sun, 17 May 2026 17:12:45 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wOad2-0000000Ch83-08gb
-	for linux-amlogic@lists.infradead.org;
-	Sun, 17 May 2026 12:29:57 +0000
+	id 1wOf2h-0000000D57k-1Wje;
+	Sun, 17 May 2026 17:12:44 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6E6524005A;
-	Sun, 17 May 2026 12:29:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29299C2BCB0;
-	Sun, 17 May 2026 12:29:55 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 996F340DC1;
+	Sun, 17 May 2026 17:12:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0632C2BCB8;
+	Sun, 17 May 2026 17:12:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779020995;
-	bh=za96MwCYhI/B/AaZrELRzd33nfgttPOx5WfappJRNdM=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=izLhmVBJ8DvaNSKTdHtDDcLy1b8BqNnUK+FMK61grDXyMoPHFBL2p54eZ8Z4xBh4r
-	 nSD//NFR9XdoSLPVBMiLlLa4BXiDkabQBarYRRXDlA8HT4xyajACfY8k7CCktB+tpp
-	 rO3BIVi1kBHBsNxPacDx6DB7UFBHeQoQxO0vPYdR3I7C2HWMZv5vf5ARUnynPHitr5
-	 /n8dQ2zt8nCxfQtBg+Wqbm6wa8oIoqSSXU8rkHXvomfCsMufZ0UzEe5fPnEPGqTGuc
-	 rzFjVbU55Ouojr6oy6ZNfNcYMeICnPZJ2wQVg0wU5ocQUeAxy5USfF+uSpYsz7JhJg
-	 0YnXlQKoV1krg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] media: meson: ge2d: avoid double free on video register
- failure
-To: "Guangshuo Li" <lgs201920130244@gmail.com>
-Cc: linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org
-In-Reply-To: <20260517115343.955015-1-lgs201920130244@gmail.com>
-References: <20260517115343.955015-1-lgs201920130244@gmail.com>
-Date: Sun, 17 May 2026 12:29:54 +0000
-Message-Id: <20260517122955.29299C2BCB0@smtp.kernel.org>
+	s=k20201202; t=1779037962;
+	bh=rZTvaM2qqzZ0+ZHapysXVlkiReT0C0YfxuSAed7oo4U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RUrmpOI5z3LGWD8/mdNkUlYbcEA4ysfIOvjNwFRxSxquanwD9ZR3iTnB+zT95QL4s
+	 BmgZ3CpZXgSsU25OUFfr+ynh/HdoGAP6IPd2DjvkMbRwg0jthmTYzrzjIbZk1paajv
+	 U7tO/7oaP4A5gHOcBuSm+xDyKJHnJpvgpb3KP41K0n9NhdnMiGcfdqvyUqVK2B08ZY
+	 lrpWt9CBYbSMa16NE3SOPUm3Q3zFNuwKaKAzflJMaP7qMamAdeFVNa1GV8b8ictQD+
+	 YqCjNxbWwokvEf0AaTrKrRm23D86U0T8KhMuk5dD8Qx7BZNO7SReEPlyoX35YncqkF
+	 mPGdwlJrpqUUA==
+Date: Sun, 17 May 2026 19:12:39 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: xianwei.zhao@amlogic.com
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v2 2/2] pwm: meson: Add support for Amlogic S7
+Message-ID: <agn2Yp3mzI7DcsyN@monoceros>
+References: <20260402-s6-s7-pwm-v2-0-657dce040956@amlogic.com>
+ <20260402-s6-s7-pwm-v2-2-657dce040956@amlogic.com>
+MIME-Version: 1.0
+In-Reply-To: <20260402-s6-s7-pwm-v2-2-657dce040956@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260517_052956_115363_6BEC0176 
-X-CRM114-Status: GOOD (  12.09  )
+X-CRM114-CacheID: sfid-20260517_101243_451655_EA11619D 
+X-CRM114-Status: GOOD (  22.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,65 +71,137 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0000978575544568005=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MiBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0hpZ2hdIFRoZSBwYXRjaCdzIHdv
-cmthcm91bmQgZm9yIGEgZG91YmxlIGZyZWUgdmlvbGF0ZXMga29iamVjdCBsaWZlY3ljbGUgcnVs
-ZXMsIGludHJvZHVjaW5nIGEgVXNlLUFmdGVyLUZyZWUuCi0gW0hpZ2hdIFByZS1leGlzdGluZyBV
-c2UtQWZ0ZXItRnJlZSBkdWUgdG8gZGV2aWNlLW1hbmFnZWQgKGRldm0pIG1lbW9yeSBsaWZlY3lj
-bGUgbWlzbWF0Y2ggd2l0aCBhc3luY2hyb25vdXMgY2hhcmFjdGVyIGRldmljZSBvcGVyYXRpb25z
-LgotLQoKY29tbWl0IDdlZDZjZTBlYTExNmNkOGRjZDVmZjJlMTgzN2Y1ZDMzOWNkYTkwZmEKQXV0
-aG9yOiBHdWFuZ3NodW8gTGkgPGxnczIwMTkyMDEzMDI0NEBnbWFpbC5jb20+CgptZWRpYTogbWVz
-b246IGdlMmQ6IGF2b2lkIGRvdWJsZSBmcmVlIG9uIHZpZGVvIHJlZ2lzdGVyIGZhaWx1cmUKClRo
-aXMgY29tbWl0IGF0dGVtcHRzIHRvIGZpeCBhIGRvdWJsZSBmcmVlIHdoZW4gdmlkZW9fcmVnaXN0
-ZXJfZGV2aWNlCmZhaWxzIGJ5IHRlbXBvcmFyaWx5IGFzc2lnbmluZyB2aWRlb19kZXZpY2VfcmVs
-ZWFzZV9lbXB0eSB0byB0aGUgdmlkZW8KZGV2aWNlIHJlbGVhc2UgY2FsbGJhY2suIEl0IHJlc3Rv
-cmVzIHRoZSBvcmlnaW5hbCBjYWxsYmFjayBpZiByZWdpc3RyYXRpb24Kc3VjY2VlZHMuCgo+IGRp
-ZmYgLS1naXQgYS9kcml2ZXJzL21lZGlhL3BsYXRmb3JtL2FtbG9naWMvbWVzb24tZ2UyZC9nZTJk
-LmMgYi9kcml2ZXJzL21lZGlhL3BsYXRmb3JtL2FtbG9naWMvbWVzb24tZ2UyZC9nZTJkLmMKPiBp
-bmRleCBjNWRjMDM5MDVjZTBmLi5iMzY3MTY5ZTZhZDg0IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMv
-bWVkaWEvcGxhdGZvcm0vYW1sb2dpYy9tZXNvbi1nZTJkL2dlMmQuYwo+ICsrKyBiL2RyaXZlcnMv
-bWVkaWEvcGxhdGZvcm0vYW1sb2dpYy9tZXNvbi1nZTJkL2dlMmQuYwo+IEBAIC05ODMsNiArOTgz
-LDcgQEAgc3RhdGljIGludCBnZTJkX3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYp
-Cj4gIAl9Cj4gIAo+ICAJKnZmZCA9IGdlMmRfdmlkZW9kZXY7Cj4gKwl2ZmQtPnJlbGVhc2UgPSB2
-aWRlb19kZXZpY2VfcmVsZWFzZV9lbXB0eTsKCkNhbiB0aGlzIHdvcmthcm91bmQgaW50cm9kdWNl
-IGEgdXNlLWFmdGVyLWZyZWUgcmVncmVzc2lvbiBpbiB0aGUga29iamVjdCBjb3JlPwoKV2hlbiBf
-X3ZpZGVvX3JlZ2lzdGVyX2RldmljZSBmYWlscyBpbnNpZGUgZGV2aWNlX3JlZ2lzdGVyLCBpdCBj
-YWxscwpwdXRfZGV2aWNlIHRvIGRyb3AgdGhlIHJlZmVyZW5jZSBjb3VudC4gVGhlIGRyaXZlciBj
-b3JlIGV4cGVjdHMgdGhlIHJlbGVhc2UKY2FsbGJhY2sgdG8gZnJlZSB0aGUgY29udGFpbmluZyBz
-dHJ1Y3R1cmUuCgpCeSB0ZW1wb3JhcmlseSBzdWJzdGl0dXRpbmcgdmZkLT5yZWxlYXNlIHdpdGgg
-dmlkZW9fZGV2aWNlX3JlbGVhc2VfZW1wdHksCnB1dF9kZXZpY2Ugd2lsbCBub3QgZnJlZSB0aGUg
-bWVtb3J5IHN5bmNocm9ub3VzbHkuIFRoZSBkcml2ZXIgdGhlbiBleHBsaWNpdGx5CmZyZWVzIHRo
-ZSB2aWRlb19kZXZpY2UgaW4gdGhlIGVycm9yIHBhdGggdmlhIHZpZGVvX2RldmljZV9yZWxlYXNl
-LgoKSG93ZXZlciwgcHV0X2RldmljZSBpcyBub3QgZ3VhcmFudGVlZCB0byBleGVjdXRlIGNsZWFu
-dXAgc3luY2hyb25vdXNseS4gSWYKYXN5bmNocm9ub3VzIGtvYmplY3QgcmVsZWFzZSBkZWJ1Z2dp
-bmcgaXMgZW5hYmxlZCwgaXQgc2NoZWR1bGVzIGNsZWFudXAKYXN5bmNocm9ub3VzbHkgb24gYSB3
-b3JrcXVldWUuCgpFeHBsaWNpdGx5IGZyZWVpbmcgdGhlIHZpZGVvX2RldmljZSBzdHJ1Y3QgaW1t
-ZWRpYXRlbHkgYWZ0ZXIgcmVnaXN0cmF0aW9uCmZhaWxzIGNvdWxkIGRlc3Ryb3kgdGhlIGVtYmVk
-ZGVkIGRldmljZSBzdHJ1Y3QgbWVtb3J5IHdoaWxlIHRoZSBrb2JqZWN0IGNvcmUKc3RpbGwgaG9s
-ZHMgYW4gYXN5bmNocm9ub3VzIHJlZmVyZW5jZS4KCj4gIAl2ZmQtPmxvY2sgPSAmZ2UyZC0+bXV0
-ZXg7Cj4gIAl2ZmQtPnY0bDJfZGV2ID0gJmdlMmQtPnY0bDJfZGV2OwoKRG9lcyB0aGUgdXNlIG9m
-IGRldm0gbWVtb3J5IGZvciB0aGUgbWVzb25fZ2UyZCBzdHJ1Y3QgY3JlYXRlIGEgbGlmZWN5Y2xl
-Cm1pc21hdGNoIHdpdGggdGhlIHZpZGVvIGRldmljZT8KClRoZSBnZTJkIGNvbnRleHQgaXMgYWxs
-b2NhdGVkIHZpYSBkZXZtX2t6YWxsb2MsIHdoaWNoIGF1dG9tYXRpY2FsbHkgZnJlZXMKdGhlIG1l
-bW9yeSB3aGVuIHRoZSBkcml2ZXIgdW5iaW5kcy4gSG93ZXZlciwgdGhpcyBjb250ZXh0IGVtYmVk
-cyBmaWVsZHMKbGlrZSB2NGwyX2RldiBhbmQgbXV0ZXggdGhhdCBhcmUgcmVmZXJlbmNlZCBieSB0
-aGUgdmlkZW9fZGV2aWNlLgoKSWYgYSB1c2VyIHByb2Nlc3Mgb3BlbnMgdGhlIHZpZGVvIGNoYXJh
-Y3RlciBkZXZpY2UgYW5kIGhvbGRzIHRoZSBmaWxlCmRlc2NyaXB0b3Igb3BlbiwgdGhlIHZpZGVv
-X2RldmljZSByZW1haW5zIGFjdGl2ZSBldmVuIGFmdGVyIHRoZSBkcml2ZXIKdW5iaW5kcyBhbmQg
-dGhlIGRldm0gbWVtb3J5IGlzIGZyZWVkLgoKSWYgdGhlIHVzZXIgbGF0ZXIgY2xvc2VzIHRoZSBm
-aWxlIGRlc2NyaXB0b3IsIHRoZSBmaW5hbCByZWZlcmVuY2UgZHJvcAppbnZva2VzIHY0bDJfcmVs
-ZWFzZSwgd2hpY2ggZGVyZWZlcmVuY2VzIHZkZXYtPnY0bDJfZGV2IGFuZCBhdHRlbXB0cwp0byBs
-b2NrIHRoZSBmcmVlZCBnZTJkLT5tdXRleCwgcmVzdWx0aW5nIGluIGEgdXNlLWFmdGVyLWZyZWUg
-cmVncmVzc2lvbi4KCi0tIApTYXNoaWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nhc2hpa28uZGV2
-LyMvcGF0Y2hzZXQvMjAyNjA1MTcxMTUzNDMuOTU1MDE1LTEtbGdzMjAxOTIwMTMwMjQ0QGdtYWls
-LmNvbT9wYXJ0PTEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFk
-ZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4
-LWFtbG9naWMK
+
+--===============0000978575544568005==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="eenroa65e3lftv6j"
+Content-Disposition: inline
+
+
+--eenroa65e3lftv6j
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 2/2] pwm: meson: Add support for Amlogic S7
+MIME-Version: 1.0
+
+Hello,
+
+On Thu, Apr 02, 2026 at 02:40:16AM +0000, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>=20
+> Add support for Amlogic S7 PWM. Amlogic S7 different from the
+> previous SoCs, a controller includes one pwm, at the same time,
+> the controller has only one input clock source.
+>=20
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  drivers/pwm/pwm-meson.c | 32 +++++++++++++++++++++++++++++---
+>  1 file changed, 29 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+> index 8c6bf3d49753..7a43c42ef3d6 100644
+> --- a/drivers/pwm/pwm-meson.c
+> +++ b/drivers/pwm/pwm-meson.c
+> @@ -113,6 +113,7 @@ struct meson_pwm_data {
+>  	int (*channels_init)(struct pwm_chip *chip);
+>  	bool has_constant;
+>  	bool has_polarity;
+> +	bool single_pwm;
+
+Conceptually I'd prefer a `npwm` field here. That doesn't take more
+space in memory and simplifies the logic a bit. (At the cost of having
+to adapt all already existing meson_pwm_data instances, but that's fine
+in my book.)
+
+>  };
+> =20
+>  struct meson_pwm {
+> @@ -503,6 +504,18 @@ static void meson_pwm_s4_put_clk(void *data)
+>  	clk_put(clk);
+>  }
+> =20
+> +static int meson_pwm_init_channels_s7(struct pwm_chip *chip)
+> +{
+> +	struct device *dev =3D pwmchip_parent(chip);
+> +	struct meson_pwm *meson =3D to_meson_pwm(chip);
+> +
+> +	meson->channels[0].clk =3D devm_clk_get(dev, NULL);
+> +	if (IS_ERR(meson->channels[0].clk))
+> +		return dev_err_probe(dev, PTR_ERR(meson->channels[0].clk),
+> +				     "Failed to get clk\n");
+> +	return 0;
+> +}
+> +
+>  static int meson_pwm_init_channels_s4(struct pwm_chip *chip)
+>  {
+>  	struct device *dev =3D pwmchip_parent(chip);
+> @@ -592,6 +605,13 @@ static const struct meson_pwm_data pwm_s4_data =3D {
+>  	.has_polarity =3D true,
+>  };
+> =20
+> +static const struct meson_pwm_data pwm_s7_data =3D {
+> +	.channels_init =3D meson_pwm_init_channels_s7,
+> +	.has_constant =3D true,
+> +	.has_polarity =3D true,
+> +	.single_pwm =3D true,
+> +};
+> +
+>  static const struct of_device_id meson_pwm_matches[] =3D {
+>  	{
+>  		.compatible =3D "amlogic,meson8-pwm-v2",
+> @@ -642,6 +662,10 @@ static const struct of_device_id meson_pwm_matches[]=
+ =3D {
+>  		.compatible =3D "amlogic,meson-s4-pwm",
+>  		.data =3D &pwm_s4_data
+>  	},
+> +	{
+> +		.compatible =3D "amlogic,s7-pwm",
+> +		.data =3D &pwm_s7_data
+> +	},
+>  	{},
+
+If you touch that array in the next revision, please make this line:
+
+	{ }
+
+(I.e. add a space and drop the comma.)
+
+Best regards
+Uwe
+
+--eenroa65e3lftv6j
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmoJ9wUACgkQj4D7WH0S
+/k6z4gf8CDKq+whV8je2O5ohJtU1A9GFL80VjHGqWPlp1Vzj64QRpZCZCbBwA/Mr
+VhA7vIcUm2o6m3dGLNdz5Y6CXusEk+afjTh3eQOMgyOXCbK6gL69QQ3TU/RCGuIX
+AGorWZzjsaV9UveLX4vc2VcZHEfxNb2AWNjvOgRfWrVb82Tw9cmg5Ago9dTFaSmz
+LKS03jU9jzuo4qge4VeKniPvSp+a/5YyTGgPOpFcR8RP8/orcE5EhCSI9J4QE+Ad
+Ynysyz8gr+delAF0En9fx190Psp2HsJvaEHO8C5xDfNXWkLw0tEiWD3QZVPY5TFH
+MgfGGtsEIzVFRLKzVpfLkWRtc6Dr7Q==
+=fPc/
+-----END PGP SIGNATURE-----
+
+--eenroa65e3lftv6j--
+
+
+--===============0000978575544568005==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============0000978575544568005==--
+
