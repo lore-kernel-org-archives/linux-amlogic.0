@@ -4,83 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A647CD4F52
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 May 2026 12:56:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F211CD4F3C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 May 2026 12:56:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Ny/5SVroushc7Kx3MP3kREBliuJKxnjZmyu1sMUlcH0=; b=oq5VW8Cdop4mZjP1G/kHonTy2f
-	rZZsMVq5Rg2G9XKVT8I2lVAvTtUHIawYcpV0bhBzSidb1llYIzOI+13sgF8ggGVmuWS92JkCr9+BS
-	yhRXFxh1QudhyGYlKEFcWvnpXOM0iw4+ifxxu4rZmOuof7fXaj9SUWtS9h5WSxd4vvuKGzrk1y030
-	luiC/ct4g7RJQ4b0ceTDLx1Eqnscnzjj64iQSISSRwnNKGifplkXN1wkJvAAmAgFLHnR3aBRTkpnT
-	w3VVw1Uw4B9mDUgnYwaaop2XfEjIz0HwigcbsSMTb0ueqcdly3PCeRZuFpIW1i4HrEXD6eI73X6EN
-	cDEET2mQ==;
+	bh=9YqLL5GW4Q554QoTYvTsLMODN/72ejRz6a9dTGpsgds=; b=H7llZdoDUH1lq6vPmpDKXqOAQn
+	8ITNYkRIkrKonV9e6CSw37gi3uEFgh36GmDv7M58IXeHaee/6pXVctQWAWqSIpyXALOIH69e/kK78
+	Ik4Ux/BATaH8Yp5HCk1ME30u3Q5m83byPLhQNOTDBElg4wXd+4m9kbwzLng7//0Zj4e9aMZnykH/C
+	r3fsDtdtwPLHWLGhvy6fEl+BzvAx2ZVgJf3v0cGjWw8wlRt9V6llgMOv6NEMW7HCORVaANi1nIZy7
+	4vB6HxKOih+W2ajcoFBxb22FhM38fQpfnV3jfkCgwAXBQWcF5vgd53DWD9m0QXmh56ad5A88I6UMC
+	6BubdAbg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wOxWN-0000000Fixm-0pxb;
-	Mon, 18 May 2026 12:56:35 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	id 1wOxWU-0000000Fj0s-1KfS;
+	Mon, 18 May 2026 12:56:42 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wOxWK-0000000Fiwr-3t9G
+	id 1wOxWR-0000000FizD-2xIx
 	for linux-amlogic@lists.infradead.org;
-	Mon, 18 May 2026 12:56:34 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-45e7c636e74so684849f8f.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 18 May 2026 05:56:32 -0700 (PDT)
+	Mon, 18 May 2026 12:56:40 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-48fe26a177cso15427055e9.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 18 May 2026 05:56:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1779108991; x=1779713791; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1779108998; x=1779713798; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=wG5JigRzl+8hFDlaIdzHX8LNfceobFw3oJ/CoEjhnh4=;
-        b=dIxW2M6h2DUrcQJw2hQ21dxJb0r68eCHtEGavxlY96lXGGHUmRfDKrYh39U5TS6TK7
-         cJ0NDVBjNKGrPcuLfVrmxn16LEvqsuJFqzbwL7/eAmeVkJsXggEfUh7+0vdlh9/gA3MW
-         Jlh/fIUtqSpYY9wvbnsLxUURLnPvCRRUe2/5YUH/2LNiHU3cM1Ijblw6gMBYI9WU56MA
-         ItgVmhzMtkFtSUcGQF0tNVi//eUclhJwe1Z+0Q5QwjTBRO63aG4raPWOwwrQzg0T5XYc
-         nL3w9paoPfKmWKNBf8Qh08xsNROi2w8xnLz+BSiUdlrwgM7s+C13ovgK4VmwwGLpDvX3
-         EoaA==
+        bh=fTzZu6PNEHK5eJaUTG9yj4SnM6fDyLlKBKNjBkf8mjE=;
+        b=ODw11VenkSBiNuXly80YFJmDNzNvNA7/7joldMHZ7L6FUaUxcO4/yuHSPyO/VkhSy1
+         dL6b5sVoGnMENat44cgB9cVqKyhMGwMG2nJ1uhAryK0r5EWb6llYUpD5IwimubapCFir
+         OXb1FXtXBNAqnZ/lxETT7PBnS54We0Gcd7fEhOnaePvOhSTutaEByMeVWxnBOiWOdF5P
+         BJXXARL0DiMtJCB8tYuuo4KcNC9/IALRwHcHKWTzUGulbb9QiSDRggCFZHM5Wmty2r2m
+         y7YYNPgLlQfjcIG4zRh20PL3Fd6CzkkZT9gDtmfikpw3m3H9jgsK50JpeF72h1vufA07
+         xyuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779108991; x=1779713791;
+        d=1e100.net; s=20251104; t=1779108998; x=1779713798;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wG5JigRzl+8hFDlaIdzHX8LNfceobFw3oJ/CoEjhnh4=;
-        b=p5J3Dc1op7gY/mWPIRlSLiZ1hZi19T48yyWO6XPpw/io4Wq4pyRKbVbKCvDt7g4NBx
-         8L988HM8C9AYEuhtj73Arf87+8I0Wg/+uLr7i+hmBLcnbZa5N2V5Ejoo/VQC0AOl8oGM
-         inw4iY4sh9ATeDHmh3oYxXouGJjrcGjswcvDc7Rodw6P9DOQXUXAtXtaZR1HvGsUliGx
-         AhV/H1VdT1O20uXCrEqO8kDuq/yxq/wleIZKgZOdPM29gBo0TUCwNDfSm5zqy4gPwOgQ
-         2FP9XZJvaAM1dLMc2GpXl/URlAfW0cQLwc7Hjgf89zJUrmZtfw4UD7n6fJr27pRBOTnU
-         l8AA==
-X-Gm-Message-State: AOJu0YwnyIvuPcZ0tPT5xdvnBwsr52hSr3GiufVvW3LKn3ZKnvhWBSCS
-	0c/jIoWu2YCfVxCTiNlKrQdBfl8hMNJCNsF6Ws+OEy4LjQxBxcjGqTV+7Jl+A8R9IS0=
-X-Gm-Gg: Acq92OHUO06cXM0gUeQf6KBKpUD29KNitadTTw7eDCdMVshI72eVe4M086hvr0sSzSE
-	nSV3vuP0Iof/sjLERqvQ4uCE672B0DiHHqSlup2BgkfMN3xY+heRarJzNVGK5+c2s98cblqbQzt
-	JlAJ0VzmX61oG1sh+AiT/hQRXWlvM4cbOjscpezD1rm/eS+i5EZ8szI73oesrJek8I0ZRptYCBQ
-	9fA8t7553I1jyN5fSuuH0tby3xsV3pePKwQqwmIHLahc6ZC48oW2LBJIMD7z4a9pAYK6E+NYREY
-	irAJQwYjn+tcKJMj3OEz5u/le0j2WaBx6DARj/jG2rsrEp75kBgFsYpyjGZX9Z0bFeXKLhKrsES
-	oevTXMcBortrPzNH7uNUH1YWMPWxldvr00NjYS81A2Bt94S3zJl3kNhFQkp9GtjX+hmSxgSOE8L
-	AVirqI14u34919yyq49LLAf0q5UJwvzK2E9dUGPPxSCIgKAPPhBctaOYuzN1oymWGdQyIIUPbCM
-	Pv0ajI=
-X-Received: by 2002:a05:6000:603:b0:45d:3aa3:7f76 with SMTP id ffacd0b85a97d-45e5c5ebd5amr24498434f8f.33.1779108990553;
-        Mon, 18 May 2026 05:56:30 -0700 (PDT)
+        bh=fTzZu6PNEHK5eJaUTG9yj4SnM6fDyLlKBKNjBkf8mjE=;
+        b=Eh9DSR1FOKX5r6SqOtQZOEnfNQPVuLqUjwt/HNh+4owq4K2KvFTDzbgcWVxti6dTgf
+         S4Lpa9ayXCcW9dtRq3g+5nRUr6YnUCTAs58DMay7WtiSS6w3llsUc0SW+GLmuEsoXtVr
+         P+EPBX08PTHa2MpSuMS5xXAZ+EU6KGlzHeyADOffJ8tUu3o53oiCXtM17ykzznDQmhTu
+         hJyfdk4hIpZjkArd8yMt5vshk+wz5PeOmHVJOom2/WjjDIrBcCRoudAHE1M+9XsMSmYu
+         7p3gnWMIkw8eMWLdl+YWURmrSZE9mC6w2rWsU6WxQzFHbysn06dO/tDWt3slL1lxST8O
+         OP6A==
+X-Forwarded-Encrypted: i=1; AFNElJ/++h4kQTZ4dHyTvakP4YfUpIpLGMWYkMv0c74dDtKWF/Nva8FGJ4931onDtNkAyfuMxhUu4wrOREXwCmp7@lists.infradead.org
+X-Gm-Message-State: AOJu0YwiFsXBDAATyy569f6wilCec17ipjoYdDp17tDoR+8rVJGPfaJw
+	MBic+QqMnPl3AMX2yUQpjyhARQ/OOSOoVWB7zaryhLv0bHoqopnPnLth71wh1tSdtfk=
+X-Gm-Gg: Acq92OFb9iW73+TPgvJmmVJQntua1xZxGj5tnvxSAhidVuKJkBqW7WF5YaUmsnfZ8nW
+	iShjEz9AufIXelFsTxMp4E12ubu2dxYbwqwb3H+bhQPhBFv5ykJGEahz5Kxakq84IBOUEqn0j2Q
+	b/2nNRoy/yMg0QbSjiwPan4bUgS6T0RppOUCic2xw/i3QYXAF2xyZHzHWJfNJm/XGXQAYgT99c2
+	KBkaR3bL3LldF0+9nn5Uy9eT0j71PBBhH6ZIvajLV3aKhAalioVXjeeonZtKI7lC9hXGetVAjB7
+	VFbpPmYaV2ouVKMIa6bd481YumkbhMZj7UKpvmp4ymdyrJLMJfFTE60+dqqqf+B3WmVKChnYW2r
+	7C9MG0P+88GcQiEeCoZhsVt8agEr+GG2gdmDB65bAoxkkyFRnnuZvOLmbiq5nGrM5KUlZB8Hbc3
+	iEWO68EPWj6k/nGghLQJN4NnuCuX3QW9i8jTaqY1gxJoQ3ERGohE9oJMB3VpYr6y7gRmehbfQQk
+	ysoN+1oDhmKWPWLVw==
+X-Received: by 2002:a05:600c:34cc:b0:48e:60a3:220a with SMTP id 5b1f17b1804b1-48fe59af1cemr249848065e9.0.1779108997664;
+        Mon, 18 May 2026 05:56:37 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:106d:1080:1029:e3c5:362e:1250? ([2a01:e0a:106d:1080:1029:e3c5:362e:1250])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45da0a1aeafsm38940230f8f.23.2026.05.18.05.56.29
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48fe537c516sm276340275e9.13.2026.05.18.05.56.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 May 2026 05:56:30 -0700 (PDT)
-Message-ID: <940d7714-4303-4e82-a006-3066d2165844@linaro.org>
-Date: Mon, 18 May 2026 14:56:29 +0200
+        Mon, 18 May 2026 05:56:37 -0700 (PDT)
+Message-ID: <08de1873-d2d8-4387-8521-7161ad71ee46@linaro.org>
+Date: Mon, 18 May 2026 14:56:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
+From: Neil Armstrong <neil.armstrong@linaro.org>
 Subject: Re: [PATCH] PCI: meson: Propagate devm_add_action_or_reset() failure
-To: sashiko-reviews@lists.linux.dev, Shuvam Pandey <shuvampandey1@gmail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-pci@vger.kernel.org
+To: Shuvam Pandey <shuvampandey1@gmail.com>, Yue Wang <yue.wang@Amlogic.com>,
+ "Lorenzo Pieralisi <lpieralisi@kernel.org>" <kwilczynski@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-pci@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <177909148011.9588.6639767953842842291@gmail.com>
- <20260518082022.F4229C2BCB7@smtp.kernel.org>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -107,10 +113,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20260518082022.F4229C2BCB7@smtp.kernel.org>
+In-Reply-To: <177909148011.9588.6639767953842842291@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260518_055633_004551_8821BA6C 
-X-CRM114-Status: GOOD (  20.21  )
+X-CRM114-CacheID: sfid-20260518_055639_760852_D4B59308 
+X-CRM114-Status: GOOD (  14.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,66 +134,41 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 5/18/26 10:20, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [High] Missing `.remove` callback or `.suppress_bind_attrs = true` leaves PCI subsystem and PHY active after driver unbind.
-> --
+On 5/18/26 10:04, Shuvam Pandey wrote:
+> meson_pcie_probe_clock() enables a clock and then registers a devres
+> action to disable it during teardown. If devm_add_action_or_reset()
+> fails, it runs the action immediately, disabling the clock.
 > 
-> commit fde9e1cd9d05730f72b074fa8edf3a1233d11384
-> Author: Shuvam Pandey <shuvampandey1@gmail.com>
+> The return value is currently ignored, so on that failure path
+> meson_pcie_probe_clock() returns the disabled clock and probe continues.
+> Return the error so the existing probe error path unwinds normally.
 > 
-> PCI: meson: Propagate devm_add_action_or_reset() failure
+> Fixes: 9c0ef6d34fdbf ("PCI: amlogic: Add the Amlogic Meson PCIe controller driver")
+> Signed-off-by: Shuvam Pandey <shuvampandey1@gmail.com>
+> ---
+>   drivers/pci/controller/dwc/pci-meson.c | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> This commit updates meson_pcie_probe_clock() to check the return value
-> of devm_add_action_or_reset(). If it fails, the error is returned so
-> that the probe error path can unwind normally.
-> 
->> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
->> index 0694084f612b7..8d495bcc3a41a 100644
->> --- a/drivers/pci/controller/dwc/pci-meson.c
->> +++ b/drivers/pci/controller/dwc/pci-meson.c
->> @@ -204,7 +204,9 @@ static inline struct clk *meson_pcie_probe_clock(struct device *dev,
->>   		return ERR_PTR(ret);
->>   	}
->>   
->> -	devm_add_action_or_reset(dev, meson_pcie_disable_clock, clk);
->> +	ret = devm_add_action_or_reset(dev, meson_pcie_disable_clock, clk);
->> +	if (ret)
->> +		return ERR_PTR(ret);
-> 
-> This isn't a bug introduced by this patch, but could this driver be unbound
-> via sysfs, triggering a use-after-free?
-> 
-> The meson_pcie_probe() function registers the PCI host controller via
-> dw_pcie_host_init(&pci->pp) and powers on the PHY via meson_pcie_power_on().
-> 
-> However, the driver does not implement a .remove callback to call
-> dw_pcie_host_deinit() and meson_pcie_power_off(), nor does it set
-> .suppress_bind_attrs = true in its platform_driver struct.
-> 
-> If the driver is unbound via /sys/bus/platform/drivers/meson-pcie/unbind,
-> the device core will trigger devres cleanup. This frees the mp structure,
-> unmaps IO memory, disables clocks, and releases resets.
-> 
-> Because the PCI subsystem is never explicitly unregistered via
-> dw_pcie_host_deinit(), the PCI core retains references to the destroyed root
-> bus and freed structures.
-> 
-> Can a subsequent access by the PCI subsystem or userspace cause a
-> use-after-free and system crash?
+> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+> index 0694084f612b..8d495bcc3a41 100644
+> --- a/drivers/pci/controller/dwc/pci-meson.c
+> +++ b/drivers/pci/controller/dwc/pci-meson.c
+> @@ -204,7 +204,9 @@ static inline struct clk *meson_pcie_probe_clock(struct device *dev,
+>   		return ERR_PTR(ret);
+>   	}
+>   
+> -	devm_add_action_or_reset(dev, meson_pcie_disable_clock, clk);
+> +	ret = devm_add_action_or_reset(dev, meson_pcie_disable_clock, clk);
+> +	if (ret)
+> +		return ERR_PTR(ret);
+>   
+>   	return clk;
+>   }
 
-This probably a bug to fix, but totally unrelated to this change
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-> 
-> Additionally, the PHY is left permanently powered on without its required
-> clocks. Should the driver either implement a proper teardown in a .remove
-> hook or prevent unbinding by setting .suppress_bind_attrs = true?
-> 
->>   
->>   	return clk;
->>   }
-> 
-
+Thanks,
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
