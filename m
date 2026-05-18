@@ -4,115 +4,131 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26EACCD4F52
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 May 2026 14:32:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F03F9CD4F4A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 May 2026 16:57:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=sKnaITQ8vNF7uuG4Pc0sK5XHgQ4S+qYjKG+hG9ooBLw=; b=x78r53eLLoD5HL+Z8aTsw4bwxH
-	tC8VbTYCell8Nc2KHWcKpeW2nKt1238E3CUR40HfVBbJP1aB2JZsYMHOUZkEAbwtdln7Z8l5uGTiw
-	jS/6uOHo4kQwxe/xhCVuPs+Ntm5igl+m4g1xgQYaT58gEcKmTe1LI2u3e68VJyGMWFuwmi2qIki9p
-	L7SZ+4AMW2GnKajDjpsbzS+zn/8IwPOoGinbaAjqJqm/lIg/TSeJuwc0JgdfJTwG+rMA6GXiaWxp0
-	BDBEKZeGdH5CV9U0KFPDpqrFWvwbV3sZPK1qvzewP6DhPYX6sbQZFBl89BFHbnt9v0tUwayqVYgvA
-	1cgX1l8Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=GsulRFW/8i7GdWKzvVAV+Qnf/geeoGRqEMfmjAydD2I=; b=vKJ4B71x5dO0Um
+	zAO1NENDigT/3PcMj0b9CQwEKBuKX/YlXy7NKiWLQh28/5ArGJ2CYUWXWE+1NYc+5/wHMffwJNMeZ
+	PpNJeqo1tSm+ApEkH/8vPeXrOKv9mi1g1MLXrj0xE+iVcTUcrUANl7Z+f4mDCARo2CdI/36B+lcmm
+	PIfQFZKvkU7z/t2DmP3izjuqMKWEHQxVUbvxL5mFulhZJe4QPcoeDOB7S5RcA6DMu6vRYI+cCEjfr
+	m6o0rCWodzYYnwFDmJ7YOwV0LEzgtLOo4WUrjtWlXPLR4XvzcDFIluxCmOCZA7k4v2PtDtMW9wEzz
+	sVXFmO5DLTpaWHAxIp9w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wOz0o-0000000Fz6R-3ASO;
-	Mon, 18 May 2026 14:32:06 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1wP1HB-0000000GM5L-0IqV;
+	Mon, 18 May 2026 16:57:09 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wOz0l-0000000Fz3e-36Qc
+	id 1wP1H8-0000000GM4j-0gP8
 	for linux-amlogic@lists.infradead.org;
-	Mon, 18 May 2026 14:32:04 +0000
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-48a3e9862f0so13555995e9.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 18 May 2026 07:32:03 -0700 (PDT)
+	Mon, 18 May 2026 16:57:07 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64IAWMoF2685242
+	for <linux-amlogic@lists.infradead.org>; Mon, 18 May 2026 16:57:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	oS80oywX8PrOdUvnsdr0tbCl87/qMb146EIaDFpi5Qw=; b=Lph9lkhM7RHB4WJS
+	HYRdYQSyQ3AnizgjyRgzxFIQBeX/gTDJLudMB3GRZvILp9QiDVJud9WHBfnYU/1K
+	VvL9POgcn//6SJj/XUYnT5RKDTylTlQE3c2hf3nGg+Ck7wnffXXSDqMmeXy9n47u
+	gw4bpObSEdVqSiXh3h7rWraB8ZR5YNvP+UaAL55Y22g0A+6I156jx300itfJv/0Z
+	2dklDRwyGjhdPckjE2SZiz/wIhduNHTLBg2tun+b4rJWo2tbCtGUsp8BeHqZMI2I
+	mrV0TTsyOqDofyElMGj3XMz1pU/FSq/0v9+S3y3ki+wgK9gZecky9zYRFBUTK3mA
+	TawYng==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e7vrbttkx-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-amlogic@lists.infradead.org>; Mon, 18 May 2026 16:57:05 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-514a182b90dso35685411cf.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 18 May 2026 09:57:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1779114722; x=1779719522; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=L4rDUc5EqEKFX11/kqxVh1oXm8vbkQVcvmcoTJm6o8g=;
-        b=EivV4mMmmhCoQfSfrVddiH2WrO4c2QMGe96PfBjfhmFUX+HSDSbLoZgVJgto4MzUZA
-         fqBSpwaTZukoW3zf/Y2dQLT2ziNzvyo1nTIhx6zf4SW2HD2fHlPsVhHHPI+pDCOSQcK1
-         OpqQAtiuxxlEzl4PrfaK5FBVqiP/0OJfRIV15dgi7CH46VSWJQ1oDQbDQMmWHK0tq/57
-         SwBPHyFzCwlQBFHzsMToLe6wk/wln1saH4/wd1kPxamuYQHKI9n0MySzfwT8nsO+U3nD
-         t0XeFO/4dQsVUrJvSS7wZok4KySf30K7bWatba/8F9I5XSNnn5ziYwFK9zaQ7ra5kjTX
-         4yYg==
+        d=oss.qualcomm.com; s=google; t=1779123424; x=1779728224; darn=lists.infradead.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=oS80oywX8PrOdUvnsdr0tbCl87/qMb146EIaDFpi5Qw=;
+        b=RIDGdDW3zeJELxvqJSI/5qiDEXU7PpvLlF2kRy4a3H1Z1ZX9oN6LDgOJagxRdRiZyK
+         jH0Df2zCt7wz3SNc8o0dn876XnvsMN3cKs7+shLFcJ1EvZxPWHjEUdVmjL2ZrlQFKdc7
+         3V+A6sS3829bWt1gJrKbyOryz2YaM44E0twByjINDMTaPJGU6Mn/lOmxWFeQ+MEUdq57
+         vtoNW/f0rqThCBOMng4LiodxHhFuxHZql4VM6uGBqyXZ4E17RwGrUEFNz+1vDzUTl4C0
+         exHHnmxQS4L+qjRk19BLXUA/1aR5sUmqQ8O4U8smjMkGjhp7Affj2xpqQmE0CC0yyxiJ
+         6Vnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779114722; x=1779719522;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=L4rDUc5EqEKFX11/kqxVh1oXm8vbkQVcvmcoTJm6o8g=;
-        b=Fe3/8En7h80ow0RxLHgmU+pusH/RxKuv2THZcxcdOKKqeAfL4cowlSfewaRQqez1v2
-         A9ybFdsT+yQMgopyoXHE3Efv+T2YUtGHPusM9yTfp437pmYJELW31/o+TTRYdUBAfQ5W
-         fb6d3hVqDJ4+IEFDYaAPlKRfVaAa+XE/cjlgIbjPjyCT3KPihVrcqP1Wcppop8xe+Y+h
-         /luPrtjwVRsUwC4969/s+9OSMYoa5jU84Dz48285v0ydriuc3UixzjX9/r37+9Z/I+tm
-         CvKz6t73BFk1uuaC+MAu1arN6Uz8li+H6SHafPrtCXjR5InzDi8vUI1/y3W5IKC9htOx
-         T6Zw==
-X-Gm-Message-State: AOJu0YxXPKNpTPwR7Ui7VCoeH2EDrHvhGELsU1MlToBtWnzAFpmmi9SR
-	xjNyYuciwJjU4phdzM9WSH2LjIPvVlA8GfbOQ6y7On4RS5xnLV2vr8wJihRlHLrqQto=
-X-Gm-Gg: Acq92OHQbVTukXjt8Vb4JryJZk8tEx0L2p2/Z3otXf8tiWOjiCnjMnlfrE5qbsvV6e5
-	lzfMJSzAVg7RwnB6vqsei+CDevYJgEb/3l3WwRjj319rWvEctqmjBC97d7hVmZz/aoxKR3/BIcd
-	2bjf9OadgRT02ET9DETPFQos0iwFbMYstVA12oqKBDqHZgkOFXOP9ITQlcvRe9V1PNOGsotjiYB
-	kL5q6m5ZVhybaNdYVe+xPGD2xpLDKxqjrkHIwBoAwzE6Y1cdKptyUmls2zeCWET8gY59DYuN2VT
-	40ZOE1yXEhfyU2995iQm8GLWW8jqf/jOHpyI2QTee/QJU8xoErv20xH3PKQBUEFyI+MIirzWh7b
-	6Q7EpOqfZSxZ3Jl6/+ldnPe1CFZhtx2CUQ26P6mudTXxueNQwhkYolhxTkNZCXlA+duF5yk9iId
-	dhFh00Zxsyxl42fEYZs6CWbV7F4STGr8Vwk6hhGPmBApk7KyFDdI0lqk1/Ih8Z39yEHouN11C3D
-	gziSX4=
-X-Received: by 2002:a05:600c:4851:b0:48a:79d8:a8d6 with SMTP id 5b1f17b1804b1-48feea99dc7mr117236255e9.7.1779114721755;
-        Mon, 18 May 2026 07:32:01 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:106d:1080:1029:e3c5:362e:1250? ([2a01:e0a:106d:1080:1029:e3c5:362e:1250])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48fe4dac000sm265809055e9.0.2026.05.18.07.32.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 May 2026 07:32:01 -0700 (PDT)
-Message-ID: <72b341e6-5ada-48e9-a9c1-a442810b15da@linaro.org>
-Date: Mon, 18 May 2026 16:32:00 +0200
+        d=1e100.net; s=20251104; t=1779123424; x=1779728224;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oS80oywX8PrOdUvnsdr0tbCl87/qMb146EIaDFpi5Qw=;
+        b=CNF/y5anUDbyWBWQqZU5CwgYi8IXfuFrURfkIZ1VAC/6OlE3YJHbaPWPn1PXFnjaCt
+         CiduIn+/gjzIjDq5fRMOezlMEJfwCQoiLN2xJxymSoRP5ywWzBPljFaImnuk0ioi2GJS
+         gMmDHTCWpTQZGmZ5FdxBCGFAfAFf/lQSa0yZ3lKMKgD2XcKojGfo5yyeeH+QUDyqXhQf
+         G7uIT+SvvOPxZEs1vH6X0nyRAb5Kiw0pi+4bN2y5+/pNhCr3wBGnxUaayJNV8FbtMzpT
+         U3GowNLk5L48AuHjoUCmf7UetE/y1x4PhTvQbVHOVCkpAJVY0eC5MWXamJ1LQ6TMmXDk
+         7Q9w==
+X-Gm-Message-State: AOJu0Yxsn8TWgrEfv0CGJ9cq0JMOcQH4woJ4vqZRBRoLqycFIxXypesj
+	t+lnhfqbIzgwA4XCBq5GbSMHMr1OSXj+jBIshWsBL7xLjk12KuzukQA1NL7bX2PIhD/0EcZE+He
+	6vVDlo/7a+6Q+fhfbPp5gAE3w3dQsAOXzJHtkeuADFsBCgE2Yy+poOFsaaDYUVROLwX6+jKNBXA
+	==
+X-Gm-Gg: Acq92OGE7sHuav4WAtgEnnQ66JenMmmF6wv6isFjvDXDwV2h6CcV9dlpb9FAca8taAr
+	7Hq7/xrFr043jRpGmtxn02ts9bjt8o6aq0LHTRqWczOQN+m2Tz1T6IvTxptNKrznidzYGQffrMJ
+	oMg3dTeclfroIvVqMtCtV/IqrQOCh1vQkIdo2yNLDTBE2AsdsGMXaG/U7Qoj8CoAOQUGSgadgaE
+	EfQznVggzFH68GJ0EMegfuwV0nhkX+FuKcxHie5DDTQZT18oN3hTV93HoOcdjbt+wacpR9N8qIX
+	wC40RnOj73DE7ePGZS0JloLolOwbMh4dvLotgRJ5gNVYT27BSguGaoTFXP1beBLcJZb1F50+ihe
+	NZetzS2r+1MlxeidCycHQbK+OzhWTNYF/HduaBF92c+O9Z1Oxb0NcyihTpzCkeKh4wRwWVMVyEr
+	a2gjFZgUy9gRVFmJhNqKfBxYn8x4kqxpGvbew=
+X-Received: by 2002:ac8:580e:0:b0:50f:b465:94ae with SMTP id d75a77b69052e-5165a1db136mr220005411cf.29.1779123423003;
+        Mon, 18 May 2026 09:57:03 -0700 (PDT)
+X-Received: by 2002:ac8:580e:0:b0:50f:b465:94ae with SMTP id d75a77b69052e-5165a1db136mr220004851cf.29.1779123422479;
+        Mon, 18 May 2026 09:57:02 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a91c33ddb0sm3454888e87.78.2026.05.18.09.57.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 May 2026 09:57:01 -0700 (PDT)
+Date: Mon, 18 May 2026 19:56:59 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: sashiko-reviews@lists.linux.dev
+Cc: linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org
+Subject: Re: [PATCH RESEND v3 1/6] drm/connector: report IRQ_HPD events to
+ drm_connector_oob_hotplug_event()
+Message-ID: <c7fcmligd5jys5645spcmx2ydlh53fqllsx2cf7e4ffcqqkb3t@25ff5u7xhhpg>
+References: <20260513-hpd-irq-events-v3-1-086857017f16@oss.qualcomm.com>
+ <20260514104424.04B3FC2BCB3@smtp.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] pinctrl: meson: amlogic-a4: fix gpio output glitch
-To: xianwei.zhao@amlogic.com, Linus Walleij <linusw@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260518-fix-set-value-glitch-v1-1-d350732dc934@amlogic.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20260518-fix-set-value-glitch-v1-1-d350732dc934@amlogic.com>
+Content-Disposition: inline
+In-Reply-To: <20260514104424.04B3FC2BCB3@smtp.kernel.org>
+X-Proofpoint-GUID: onKOqsYpJh9h0XYVdJlENgyy489J54M0
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE4MDE2NiBTYWx0ZWRfX/CthyPlxFwfl
+ ZG9yM4gacAJ1P8U+myujUnub20x+A2mzsWf2gPD0aJpqPLhEa7O31YDfSip/A1mQ7ifdTFGHxmy
+ pxY7rEIpkrYdS9GMUzkAukuBjKHvCfi/r8YbccXhAbOpyM/BG7+BBbRmup2spiD2GGWNbn33tsH
+ iHzGGZ8BJGt7jbm8Y+ksYBhruZkcxG4jKZrkiw5LfKiaPkaUJzTLhOJoe4zL6B/dQ2dVsxAC2xT
+ Ujwrh6Sh+CMkrrOvM1sbGbmLQKxF9GLl0O9IGBma6ax87hqtfDk9IHiaCMkE8kAAmMAeKk3pz2Z
+ F+X0oyy9DT+d3I+2djzrBrVzuVe9eSPsgyYhtRGyyOFdWX1myIjFnNEaIvOF7y7ORWOLjzH53On
+ zF0XSqdyhnoI7lPaV8ywhZ+ShG1uTh+zAlU96Qh9V1z3rlVYmCAqVti4noJ8vUSUjXaE5EoIOaj
+ V8C7uVp7J3e2LRcXoKQ==
+X-Authority-Analysis: v=2.4 cv=KZ3idwYD c=1 sm=1 tr=0 ts=6a0b44e1 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=8nJEP1OIZ-IA:10
+ a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22 a=c92rfblmAAAA:8
+ a=EUspDBNiAAAA:8 a=JfrnYn6hAAAA:8 a=VwQbUJbxAAAA:8 a=OU9p-j7wOag53X3kEogA:9
+ a=3ZKOabzyN94A:10 a=wPNLvfGTeEIA:10 a=uxP6HrT_eTzRwkO_Te1X:22
+ a=GvGzcOZaWPEFPQC_NcjD:22 a=1CNFftbPRP8L7MoqJWF3:22
+X-Proofpoint-ORIG-GUID: onKOqsYpJh9h0XYVdJlENgyy489J54M0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-18_03,2026-05-18_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 phishscore=0 priorityscore=1501 adultscore=0
+ clxscore=1015 spamscore=0 lowpriorityscore=0 bulkscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605180166
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260518_073203_827135_E5094C68 
-X-CRM114-Status: GOOD (  18.31  )
+X-CRM114-CacheID: sfid-20260518_095706_210666_BA08F695 
+X-CRM114-Status: GOOD (  29.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,85 +140,130 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 5/18/26 10:26, Xianwei Zhao via B4 Relay wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> 
-> When the system transitions from bootloader to kernel, the GPIO is
-> expected to keep driving high.
-> 
-> However, the Linux kernel first configures the pin direction and then
-> sets the output value. This may cause a brief low-level glitch on the
-> GPIO line, which can be problematic for regulator control.
-> 
-> By configuring the output value before switching the pin direction to
-> output, the glitch can be avoided.
-> 
-> This commit fixes the issue by swapping the configuration order.
-> 
-> Fixes: 6e9be3abb78c ("pinctrl: Add driver support for Amlogic SoCs")
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
-> fix one issue when set gpio line high.
-> ---
->   drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 15 +++++++--------
->   1 file changed, 7 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-> index 35d27626a336..1bd58fbbd26a 100644
-> --- a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-> +++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-> @@ -548,11 +548,11 @@ static int aml_pinconf_set_output_drive(struct aml_pinctrl *info,
->   {
->   	int ret;
->   
-> -	ret = aml_pinconf_set_output(info, pin, true);
-> +	ret = aml_pinconf_set_drive(info, pin, high);
->   	if (ret)
->   		return ret;
->   
-> -	return aml_pinconf_set_drive(info, pin, high);
-> +	return aml_pinconf_set_output(info, pin, true);
->   }
->   
->   static int aml_pinconf_set(struct pinctrl_dev *pcdev, unsigned int pin,
-> @@ -921,15 +921,14 @@ static int aml_gpio_direction_output(struct gpio_chip *chip, unsigned int gpio,
->   	unsigned int bit, reg;
->   	int ret;
->   
-> -	aml_gpio_calc_reg_and_bit(bank, AML_REG_DIR, gpio, &reg, &bit);
-> -	ret = regmap_update_bits(bank->reg_gpio, reg, BIT(bit), 0);
-> +	aml_gpio_calc_reg_and_bit(bank, AML_REG_OUT, gpio, &reg, &bit);
-> +	ret = regmap_update_bits(bank->reg_gpio, reg, BIT(bit),
-> +				 value ? BIT(bit) : 0);
->   	if (ret < 0)
->   		return ret;
->   
-> -	aml_gpio_calc_reg_and_bit(bank, AML_REG_OUT, gpio, &reg, &bit);
-> -
-> -	return regmap_update_bits(bank->reg_gpio, reg, BIT(bit),
-> -				  value ? BIT(bit) : 0);
-> +	aml_gpio_calc_reg_and_bit(bank, AML_REG_DIR, gpio, &reg, &bit);
-> +	return regmap_update_bits(bank->reg_gpio, reg, BIT(bit), 0);
->   }
->   
->   static int aml_gpio_set(struct gpio_chip *chip, unsigned int gpio, int value)
-> 
-> ---
-> base-commit: 73d4991a6949eedb51e442d4e81415017d85975b
-> change-id: 20260518-fix-set-value-glitch-f43cd366c295
-> 
-> Best regards,
+On Thu, May 14, 2026 at 10:44:23AM +0000, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 2 potential issu=
+e(s) to consider:
+> - [High] IRQ_HPD events are silently dropped if a status update triggers =
+a reconfiguration while the HPD state remains unchanged.
+> - [High] Deferred events in `dp_altmode_configured()` unconditionally rep=
+ort the display as connected and leak stale `pending_irq_hpd` / `pending_hp=
+d` state.
+> --
+> =
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> commit 53d82f9a5286a8fa5530ca1be94f61940637586b
+> Author: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> =
 
-Thanks,
-Neil
+> drm/connector: report IRQ_HPD events to drm_connector_oob_hotplug_event()
+> =
+
+> This commit extends the drm_connector_oob_hotplug_event() interface to re=
+port
+> DisplayPort irq events. These events are now forwarded through the alt mo=
+de
+> messages to the sink drivers to support multi-stream transport handling.
+> =
+
+> > diff --git a/drivers/usb/typec/altmodes/displayport.c b/drivers/usb/typ=
+ec/altmodes/displayport.c
+> > index 35d9c30869900..7182a8e2e7101 100644
+> > --- a/drivers/usb/typec/altmodes/displayport.c
+> > +++ b/drivers/usb/typec/altmodes/displayport.c
+> [ ... ]
+> > @@ -212,7 +214,10 @@ static int dp_altmode_configured(struct dp_altmode=
+ *dp)
+> >  	 */
+> >  	if (dp->pending_hpd) {
+> >  		drm_connector_oob_hotplug_event(dp->connector_fwnode,
+> > -						connector_status_connected);
+> > +						connector_status_connected,
+> > +						dp->pending_irq_hpd ?
+> > +						DRM_CONNECTOR_DP_IRQ_HPD :
+> > +						DRM_CONNECTOR_NO_EXTRA_STATUS);
+> =
+
+> Are irq events silently dropped if a status update triggers a
+> reconfiguration while the hotplug detect state remains unchanged?
+> =
+
+> Looking at dp_altmode_status_update(), if a status update requires
+> reconfiguration, the code attempts to buffer the event:
+
+Only if the DP isn't configured at the moment of the event.
+
+> =
+
+> 	if (!(con & DP_CONF_CURRENTLY(dp->data.conf))) {
+> 		ret =3D dp_altmode_configure(dp, con);
+> 		if (!ret) {
+> 			dp->state =3D dp->plug_prime ? DP_STATE_CONFIGURE_PRIME :
+> 						     DP_STATE_CONFIGURE;
+> 			if (dp->hpd !=3D hpd) {
+> 				dp->hpd =3D hpd;
+> 				dp->pending_hpd =3D true;
+> 			}
+> 			if (dp->hpd && dp->pending_hpd && irq_hpd)
+> 				dp->pending_irq_hpd =3D true;
+> 		}
+> 	}
+> =
+
+> It only sets dp->pending_hpd =3D true if the hotplug detect state has tog=
+gled. If
+> it remains unchanged, dp->pending_hpd stays false. This prevents
+> dp->pending_irq_hpd from being set even if irq_hpd is true.
+
+Because it's all about the pending events. If there is no HPD set, then
+there is no point in processing IRQ_HPD events too (please correct me if
+I'm wrong).
+
+> =
+
+> Could this cause DisplayPort irq events that arrive concurrently with a
+> configuration change to be lost, preventing downstream multi-stream trans=
+port
+> topology updates and link training?
+> =
+
+> Additionally, does this deferred event unconditionally report the display=
+ as
+> connected and leak stale state?
+> =
+
+> If multiple status update messages arrive before configuration
+> completes, dp->hpd can transition to false while dp->pending_hpd and
+> dp->pending_irq_hpd remain true.
+> =
+
+> Similarly, if the alt mode is exited via CMD_EXIT_MODE while
+> dp->pending_hpd is true, these pending flags are never cleared.
+> =
+
+> Will this cause the drm driver to receive a spurious connection event and
+> irq when configuration completes or when the alt mode is later re-entered?
+> =
+
+> -- =
+
+> Sashiko AI review =B7 https://sashiko.dev/#/patchset/20260513-hpd-irq-eve=
+nts-v3-0-086857017f16@oss.qualcomm.com?part=3D1
+> =
+
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+-- =
+
+With best wishes
+Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
