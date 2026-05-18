@@ -4,71 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2653CD4F49
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 May 2026 08:20:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8350CD4F3C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 May 2026 08:26:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=h3ILNVoIKNINwyJ4DeSPrR+HXLs+9avjEbVk0FZ11JI=; b=uM4pH6kY3rfOgG
-	MQAje4FwUK71hBestsCvLTGyW8BU7I+a0/+n1kleYo//FFcQWv3zeZe6hwQo35Krgx7sajXPsXEYD
-	2Biu08pX9n0++Gh7CXTxT/ajcLSqz36vgdTzufknDNn1AIp4BcejyDKPoKIZ/vm3kjl83SrLxsCOF
-	R4yrj6qUWpv+2tS3zMHT5//E/Lh5O0VLnCdS7RXtGAJiJ7blYToUAiffJB79EviCKjP7BITLgB9MV
-	UJyFB5qs0gKzof++o7/awgFabDzugUTyE1PdQ9xdICg5NZiSeMAJaBC37h7zHpUR+ZzR0aJ3SyyJ+
-	HKvJvVzZTCSrumI/hx+Q==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=dIysovgnb+gemT3R8p21bY0+vG0OQODRxWBLBQcgbV8=; b=w7ylzyLW/CMBmM
+	pca1L3AD77r/FFpAACu1a+Iys+/mLxXeKo99eOW3QRhK+R3W46bG8fQsDljDQPI/bObp/E9Y36u9q
+	Hvz1tNmHOw01rgSdvjWZ4M/64OSJekVck2uF33yYJFFpIEm2uOwcKIsg/ulpXq9ff2u6vMslF91sJ
+	oOVLL1Y9qkUyZhCy55uHOvwILiT0+2EB8NmBFHGXJTuzC2po/2qJ5gueGsZdzOhBGhDBAkDno4tj0
+	OnlrbH5nRT8OFZnLX0RC7aCLvCy1EvFaKLcWPndnvZ0orJFTsuJPf1YYgj9XpD6xS9llpvdN+shYs
+	Oyx99jaLc65KMgTeyTIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wOtDC-0000000Ekmc-2elJ;
-	Mon, 18 May 2026 08:20:30 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1wOtIv-0000000EnLC-2RQ8;
+	Mon, 18 May 2026 08:26:25 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wOtDB-0000000Ekm8-1q8l
-	for linux-amlogic@bombadil.infradead.org;
-	Mon, 18 May 2026 08:20:29 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Message-Id:Date:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Cc:To:Reply-To:
-	Subject:From:Sender:MIME-Version:Content-ID:Content-Description;
-	bh=g4bnEDNecCM+Ga2ef92UJNFGSxnv39DrQ6YOKqkvW5U=; b=rGCuxUHt7lAuu23lABSUcqtomQ
-	GJdUxJvA+8Qv0J3hQhWPfZVsmPRkczg0xZQsK5rLpYmsmYgv/I/1xH2Tf4WtsEjrxnLUV//QWL/1j
-	31YGPwr4BMjWipnl7PznTDDm5ezB1sIuw8CWWnMTIaHuEq4Cq6ekkrFhJNMCki3v7mKCsTCcoDVct
-	/ypv+wgsK/SkaPpj7oPUaUnf9gFxTWD3UBiKakFGw9KVKa7+LG1t38enoSmR9wsn/6+aGHT56don0
-	Fe6IDWv1QaGqDCNcXkA3gq/lUMqdfEDBjC4uH1ZjFZhVBXI2DOa99UTSF3wOgb9bdo3sCRLitXjNZ
-	DY74yv7A==;
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
-	by desiato.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wOtD8-0000000AKwY-02FJ
-	for linux-amlogic@lists.infradead.org;
-	Mon, 18 May 2026 08:20:28 +0000
+	id 1wOtIu-0000000EnKF-1MuW;
+	Mon, 18 May 2026 08:26:24 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 4BD0443B57;
-	Mon, 18 May 2026 08:20:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F4229C2BCB7;
-	Mon, 18 May 2026 08:20:22 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 81D1E6001A;
+	Mon, 18 May 2026 08:26:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 302C8C2BCC6;
+	Mon, 18 May 2026 08:26:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779092423;
-	bh=FurP3HEQ9b9LHdO+CXg7i/LiT5Ml3ld200d24ik4tk8=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date:From;
-	b=E8VzRWfIuz2gxpz/5L+hEaJsK01wu6jxOZUqeMAh7xgBX9u/1WeWq7MZaFFxUwYI3
-	 jiQCtW0VjSPwmJ0WGwrKwnqx7qytSdk0o0wRDgnq7b88ESkXv6MJ91zqg+RwEu+r99
-	 D8TZ0YZQxl+R5JLqQzBTtRLcQxC4pIWh0F3bKclyl3M16OpTrCA/QzkcA9BXnR+3TY
-	 VwVsEt/2rfs154rYBZQV0KkfsTUWLF0aNJrchLKdiIHHO+tJsOFajcqv87QSxkgP6d
-	 OL1l5rDg6WridJ1+BiUxrPKF0fRyL4WWJdQ+SDKeGCn3YcyqSJTz3aUgw69a/9RFhk
-	 +/mTbP4FyUkWQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] PCI: meson: Propagate devm_add_action_or_reset()
- failure
-To: "Shuvam Pandey" <shuvampandey1@gmail.com>
-Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org, linux-pci@vger.kernel.org
-In-Reply-To: <177909148011.9588.6639767953842842291@gmail.com>
-References: <177909148011.9588.6639767953842842291@gmail.com>
-Date: Mon, 18 May 2026 08:20:22 +0000
-Message-Id: <20260518082022.F4229C2BCB7@smtp.kernel.org>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260518_092026_567615_F8447789 
-X-CRM114-Status: GOOD (  13.11  )
+	s=k20201202; t=1779092783;
+	bh=gF8Z0lDWvqPjxyeiNxBSuBywQXoR5uTnCFjFlTsul+w=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=AFTFtOBszLvoMlud9z860++DzA04pwIvYtlIMxUN4swYXjLWVU7tLL+K78Wi30C4S
+	 jIbR6aj2H3npLY+qzNewg79qPtreHLHwlKd/Oii0Xb919FSESb76bgUNSpWvnKUalN
+	 XEU+wCUMFghSbAcBGaO4lscsoTP69iHdkB3UG8opj4iXn3YtoKVI7qRMi6FwObYfeJ
+	 FEztjG37D2Mp+62tER9gl82Mpgu761zxsakSu8dzKUJ6ytmuEGuQN+K7RxJXl6p9wR
+	 cz36sqgQsmlXK6wh7FW7qSESVwIC3RcFfnd6umgHxsYltkVXheX89z+ncdOv370TRF
+	 z0d18VZDgYzLg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1F49DCD4F52;
+	Mon, 18 May 2026 08:26:23 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Mon, 18 May 2026 08:26:20 +0000
+Subject: [PATCH] pinctrl: meson: amlogic-a4: fix gpio output glitch
+MIME-Version: 1.0
+Message-Id: <20260518-fix-set-value-glitch-v1-1-d350732dc934@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIACvNCmoC/x2MQQqAIBAAvxJ7biG1pPpKdBDdaiEstCIQ/550H
+ JiZBJECU4SxShDo4ciHLyDqCuxm/ErIrjDIRuqmEz0u/GKkCx+z34TrzpfdcGmVdUprK4cOSno
+ GKt6/neacP6WFXLJmAAAA
+X-Change-ID: 20260518-fix-set-value-glitch-f43cd366c295
+To: Linus Walleij <linusw@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1779092781; l=2464;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=HQut5DoHHLHMAAEMHfB1ndnbzPoAfeLWYAz1btYy/v4=;
+ b=iSGDTNSp99CxN/n337nlmpKipA9olU98cB3IT8K22NnaIVpfwhI4C4MCEB0dIVlmR3IlTXd9Y
+ FhrDNoLUCdxC0Nekxu1rUksY4RIWqW9zWwDlGWEmyCvbAmOWryO6CqJ
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,55 +82,85 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0hpZ2hdIE1pc3NpbmcgYC5yZW1v
-dmVgIGNhbGxiYWNrIG9yIGAuc3VwcHJlc3NfYmluZF9hdHRycyA9IHRydWVgIGxlYXZlcyBQQ0kg
-c3Vic3lzdGVtIGFuZCBQSFkgYWN0aXZlIGFmdGVyIGRyaXZlciB1bmJpbmQuCi0tCgpjb21taXQg
-ZmRlOWUxY2Q5ZDA1NzMwZjcyYjA3NGZhOGVkZjNhMTIzM2QxMTM4NApBdXRob3I6IFNodXZhbSBQ
-YW5kZXkgPHNodXZhbXBhbmRleTFAZ21haWwuY29tPgoKUENJOiBtZXNvbjogUHJvcGFnYXRlIGRl
-dm1fYWRkX2FjdGlvbl9vcl9yZXNldCgpIGZhaWx1cmUKClRoaXMgY29tbWl0IHVwZGF0ZXMgbWVz
-b25fcGNpZV9wcm9iZV9jbG9jaygpIHRvIGNoZWNrIHRoZSByZXR1cm4gdmFsdWUKb2YgZGV2bV9h
-ZGRfYWN0aW9uX29yX3Jlc2V0KCkuIElmIGl0IGZhaWxzLCB0aGUgZXJyb3IgaXMgcmV0dXJuZWQg
-c28KdGhhdCB0aGUgcHJvYmUgZXJyb3IgcGF0aCBjYW4gdW53aW5kIG5vcm1hbGx5LgoKPiBkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNpLW1lc29uLmMgYi9kcml2ZXJz
-L3BjaS9jb250cm9sbGVyL2R3Yy9wY2ktbWVzb24uYwo+IGluZGV4IDA2OTQwODRmNjEyYjcuLjhk
-NDk1YmNjM2E0MWEgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNp
-LW1lc29uLmMKPiArKysgYi9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2ktbWVzb24uYwo+
-IEBAIC0yMDQsNyArMjA0LDkgQEAgc3RhdGljIGlubGluZSBzdHJ1Y3QgY2xrICptZXNvbl9wY2ll
-X3Byb2JlX2Nsb2NrKHN0cnVjdCBkZXZpY2UgKmRldiwKPiAgCQlyZXR1cm4gRVJSX1BUUihyZXQp
-Owo+ICAJfQo+ICAKPiAtCWRldm1fYWRkX2FjdGlvbl9vcl9yZXNldChkZXYsIG1lc29uX3BjaWVf
-ZGlzYWJsZV9jbG9jaywgY2xrKTsKPiArCXJldCA9IGRldm1fYWRkX2FjdGlvbl9vcl9yZXNldChk
-ZXYsIG1lc29uX3BjaWVfZGlzYWJsZV9jbG9jaywgY2xrKTsKPiArCWlmIChyZXQpCj4gKwkJcmV0
-dXJuIEVSUl9QVFIocmV0KTsKClRoaXMgaXNuJ3QgYSBidWcgaW50cm9kdWNlZCBieSB0aGlzIHBh
-dGNoLCBidXQgY291bGQgdGhpcyBkcml2ZXIgYmUgdW5ib3VuZAp2aWEgc3lzZnMsIHRyaWdnZXJp
-bmcgYSB1c2UtYWZ0ZXItZnJlZT8KClRoZSBtZXNvbl9wY2llX3Byb2JlKCkgZnVuY3Rpb24gcmVn
-aXN0ZXJzIHRoZSBQQ0kgaG9zdCBjb250cm9sbGVyIHZpYQpkd19wY2llX2hvc3RfaW5pdCgmcGNp
-LT5wcCkgYW5kIHBvd2VycyBvbiB0aGUgUEhZIHZpYSBtZXNvbl9wY2llX3Bvd2VyX29uKCkuCgpI
-b3dldmVyLCB0aGUgZHJpdmVyIGRvZXMgbm90IGltcGxlbWVudCBhIC5yZW1vdmUgY2FsbGJhY2sg
-dG8gY2FsbApkd19wY2llX2hvc3RfZGVpbml0KCkgYW5kIG1lc29uX3BjaWVfcG93ZXJfb2ZmKCks
-IG5vciBkb2VzIGl0IHNldAouc3VwcHJlc3NfYmluZF9hdHRycyA9IHRydWUgaW4gaXRzIHBsYXRm
-b3JtX2RyaXZlciBzdHJ1Y3QuCgpJZiB0aGUgZHJpdmVyIGlzIHVuYm91bmQgdmlhIC9zeXMvYnVz
-L3BsYXRmb3JtL2RyaXZlcnMvbWVzb24tcGNpZS91bmJpbmQsCnRoZSBkZXZpY2UgY29yZSB3aWxs
-IHRyaWdnZXIgZGV2cmVzIGNsZWFudXAuIFRoaXMgZnJlZXMgdGhlIG1wIHN0cnVjdHVyZSwKdW5t
-YXBzIElPIG1lbW9yeSwgZGlzYWJsZXMgY2xvY2tzLCBhbmQgcmVsZWFzZXMgcmVzZXRzLgoKQmVj
-YXVzZSB0aGUgUENJIHN1YnN5c3RlbSBpcyBuZXZlciBleHBsaWNpdGx5IHVucmVnaXN0ZXJlZCB2
-aWEKZHdfcGNpZV9ob3N0X2RlaW5pdCgpLCB0aGUgUENJIGNvcmUgcmV0YWlucyByZWZlcmVuY2Vz
-IHRvIHRoZSBkZXN0cm95ZWQgcm9vdApidXMgYW5kIGZyZWVkIHN0cnVjdHVyZXMuCgpDYW4gYSBz
-dWJzZXF1ZW50IGFjY2VzcyBieSB0aGUgUENJIHN1YnN5c3RlbSBvciB1c2Vyc3BhY2UgY2F1c2Ug
-YQp1c2UtYWZ0ZXItZnJlZSBhbmQgc3lzdGVtIGNyYXNoPwoKQWRkaXRpb25hbGx5LCB0aGUgUEhZ
-IGlzIGxlZnQgcGVybWFuZW50bHkgcG93ZXJlZCBvbiB3aXRob3V0IGl0cyByZXF1aXJlZApjbG9j
-a3MuIFNob3VsZCB0aGUgZHJpdmVyIGVpdGhlciBpbXBsZW1lbnQgYSBwcm9wZXIgdGVhcmRvd24g
-aW4gYSAucmVtb3ZlCmhvb2sgb3IgcHJldmVudCB1bmJpbmRpbmcgYnkgc2V0dGluZyAuc3VwcHJl
-c3NfYmluZF9hdHRycyA9IHRydWU/Cgo+ICAKPiAgCXJldHVybiBjbGs7Cj4gIH0KCi0tIApTYXNo
-aWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nhc2hpa28uZGV2LyMvcGF0Y2hzZXQvMTc3OTA5MTQ4
-MDExLjk1ODguNjYzOTc2Nzk1Mzg0Mjg0MjI5MUBnbWFpbC5jb20/cGFydD0xCgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxp
-bmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmlu
-ZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+When the system transitions from bootloader to kernel, the GPIO is
+expected to keep driving high.
+
+However, the Linux kernel first configures the pin direction and then
+sets the output value. This may cause a brief low-level glitch on the
+GPIO line, which can be problematic for regulator control.
+
+By configuring the output value before switching the pin direction to
+output, the glitch can be avoided.
+
+This commit fixes the issue by swapping the configuration order.
+
+Fixes: 6e9be3abb78c ("pinctrl: Add driver support for Amlogic SoCs")
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+fix one issue when set gpio line high.
+---
+ drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 15 +++++++--------
+ 1 file changed, 7 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+index 35d27626a336..1bd58fbbd26a 100644
+--- a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
++++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+@@ -548,11 +548,11 @@ static int aml_pinconf_set_output_drive(struct aml_pinctrl *info,
+ {
+ 	int ret;
+ 
+-	ret = aml_pinconf_set_output(info, pin, true);
++	ret = aml_pinconf_set_drive(info, pin, high);
+ 	if (ret)
+ 		return ret;
+ 
+-	return aml_pinconf_set_drive(info, pin, high);
++	return aml_pinconf_set_output(info, pin, true);
+ }
+ 
+ static int aml_pinconf_set(struct pinctrl_dev *pcdev, unsigned int pin,
+@@ -921,15 +921,14 @@ static int aml_gpio_direction_output(struct gpio_chip *chip, unsigned int gpio,
+ 	unsigned int bit, reg;
+ 	int ret;
+ 
+-	aml_gpio_calc_reg_and_bit(bank, AML_REG_DIR, gpio, &reg, &bit);
+-	ret = regmap_update_bits(bank->reg_gpio, reg, BIT(bit), 0);
++	aml_gpio_calc_reg_and_bit(bank, AML_REG_OUT, gpio, &reg, &bit);
++	ret = regmap_update_bits(bank->reg_gpio, reg, BIT(bit),
++				 value ? BIT(bit) : 0);
+ 	if (ret < 0)
+ 		return ret;
+ 
+-	aml_gpio_calc_reg_and_bit(bank, AML_REG_OUT, gpio, &reg, &bit);
+-
+-	return regmap_update_bits(bank->reg_gpio, reg, BIT(bit),
+-				  value ? BIT(bit) : 0);
++	aml_gpio_calc_reg_and_bit(bank, AML_REG_DIR, gpio, &reg, &bit);
++	return regmap_update_bits(bank->reg_gpio, reg, BIT(bit), 0);
+ }
+ 
+ static int aml_gpio_set(struct gpio_chip *chip, unsigned int gpio, int value)
+
+---
+base-commit: 73d4991a6949eedb51e442d4e81415017d85975b
+change-id: 20260518-fix-set-value-glitch-f43cd366c295
+
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
