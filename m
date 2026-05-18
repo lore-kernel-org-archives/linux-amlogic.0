@@ -4,39 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6B29CD4F4A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 May 2026 18:02:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C93B5CD4F3C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 May 2026 18:02:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tEktU3E/VB6WpNFXlCxrIbW7PDkpprzaorimbReNohQ=; b=Htw4muAN7DNJ00
-	fmdc4LzIBj3gKcEK00yPgH9Ao8JmEFRRE5qmHbEJpMMrHSkPjkzEuLlxbVAKiD9+RhFStvZUxBuhA
-	qTY8fg+S0UNCITd4NwEtExamSNKyaFWp3eQ3n7Tuq7NCDKXfOi/6BemAoSzvHKvkpGxT8Zzy/CR8y
-	12AClvGT1LFwhfdzvgR5PEbybJPdOywGcixBivatfKvi7A5TULOHBq00V7MWcvuaPamrboCH1gIaa
-	9jwMS3QHaMiEjs78gVRFJk5PQmfLu8tFGtomvKyGSkSneNawEU1VJN2I869ZgX0dgd5yUd1pSGPmw
-	fIdRtjf8rtuWLnLckmpQ==;
+	List-Owner; bh=S8CgxpDRP7BfpF9fMx7hISVX+1Z2MWk+QQpsxWigPho=; b=E7/qExRaRcOUoC
+	LPG0a6srdS+fZhiO0va4LctrQOtA9BCtkPulkVmb0yXcxurJuDa4whLY6hKSmT9OGWfJt+GyYs3tq
+	InMBUVwgXTDw7V0ET2X3bjs+5CucDKbXGvdm9mU4ybQlcmAPWzF+W+hz0ZLg20r3Eq683+oUjR0zp
+	NnwPG/BNAjolABr1xCoAvHDSKQalN5FUfWYT14Txf0Q2N6pCHv2llvqRt7nFjmp89JgIpeHX+LYxw
+	44e+9Cg5KBBPyRKGH2ikKyXAj/DlU2KqbrP12MAOxlW4N5l7tBqIrssAeKtVCC0KekTh1S23dmCIB
+	9SGnhsnmuPCEOxB8ra2w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wP2IV-0000000GScp-3L23;
-	Mon, 18 May 2026 18:02:35 +0000
+	id 1wP2Ib-0000000GSiT-0Oig;
+	Mon, 18 May 2026 18:02:41 +0000
 Received: from smtp.forwardemail.net ([121.127.44.66])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wP2IT-0000000GSbH-2Fej
+	id 1wP2IX-0000000GSee-4727
 	for linux-amlogic@lists.infradead.org;
-	Mon, 18 May 2026 18:02:34 +0000
+	Mon, 18 May 2026 18:02:39 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
  h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
  Message-ID: Date: Subject: Cc: To: From; q=dns/txt; s=fe-e1b5cab7be;
- t=1779127353; bh=RDtWO1bQ5DXpi9puwzpO7ZNdN3UnLZgsoflq5+aG8Jc=;
- b=dCTYDDf2ofYO5fWowNGUXXUoJJBmT/6fRVZfzT5nAjO0Gr54QWowExxWo/skknj0qxpvNHiIi
- 9Rv1pse4Nl4bDoYjCJ237SOn4YFqAMLAlkPgCjaqaNtqkMFDGt1yp2bo9R7FvscOQU4SqWxZDWL
- C7PdU4AYbKCJyb9tf07D8jeI1w0mHTEL/lAqkrR21h+2RQscTgCoQs0V8/YVX8wwWgbsqocikMP
- H3RgNKg393XqeMEUhO6FFoLDv4gnFTRnwUb4yd/NNGO2tNuZMVY9vVsKCC/CyrdPzI4IdnOLDRa
- C2Sy4ux8nzPwlxbcRRFhRktBiULNH+axGlumC5EpcMuQ==
-X-Forward-Email-ID: 6a0b5432b84dbc72d2274de5
+ t=1779127356; bh=rHR6JQhfCZioVtWjb43UfYe+VOtInpIVxB1wWysQtG0=;
+ b=Ns+MaGNTyKv5bhavyC5fjKmcI9wvSGrPoTRdnjjPkasJrBFmGk9pc9ZbkROLqMyZZ2c5mfqaK
+ 6459D6WlFaIirJWwsLzSLBfrNvR/94sp4fQZrCcx7yYSlTwkQT/V785NEGZFel+ysbwwkkVW/9z
+ ZSMNs2MDDhWSieMbXs+X7kySSTGDtuAIfHAIe0Sk3qDZ03nfRf0Z16CCCb1DLn0QGkOWiI0//5a
+ CC0+iZBJcBjerzap7T/3hQwhQc8DwzBFElWEGXJT26oI1/jnMwCL+apgGXJR1zyB0hNILfXN2D/
+ ZI70ozbzvqjLvVfY9GktiB5V3lk8keoFMwrEPwDlb36g==
+X-Forward-Email-ID: 6a0b5436b84dbc72d2274e00
 X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
  121.127.44.66
 X-Forward-Email-Version: 2.8.12
@@ -58,20 +58,18 @@ To: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Thomas Zimmermann <tzimmermann@suse.de>,
 	David Airlie <airlied@gmail.com>,
 	Simona Vetter <simona@ffwll.ch>,
-	Russell King <rmk+kernel@armlinux.org.uk>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Archit Taneja <architt@codeaurora.org>
-Subject: [PATCH v7 03/23] drm: bridge: dw_hdmi: Free IRQ before CEC adapter is unregistered
-Date: Mon, 18 May 2026 18:01:39 +0000
-Message-ID: <20260518180206.2480119-4-jonas@kwiboo.se>
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Louis Chauvet <louis.chauvet@bootlin.com>
+Subject: [PATCH v7 04/23] drm: bridge: dw_hdmi: Hold bridge ref until connector cleanup
+Date: Mon, 18 May 2026 18:01:40 +0000
+Message-ID: <20260518180206.2480119-5-jonas@kwiboo.se>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260518180206.2480119-1-jonas@kwiboo.se>
 References: <20260518180206.2480119-1-jonas@kwiboo.se>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260518_110233_661736_7BB42F51 
-X-CRM114-Status: UNSURE (   9.26  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260518_110238_104406_5C8CFDEF 
+X-CRM114-Status: GOOD (  12.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,68 +87,107 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The interrupt allocated with devm_request_threaded_irq() can be
-use-after-free when the devres release action try to free_irq().
+drmres connector cleanup typically run after devres has released the
+last dw-hdmi bridge reference. Since struct dw_hdmi, where the connector
+lives, is freed when the last bridge reference is released, connector
+cleanup can end up accessing freed memory.
 
-KASAN report a slab-use-after-free in dw_hdmi_cec_hardirq during unbind:
-
-Call trace:
+Call trace without a bridge reference held until connector cleanup:
+- dw_hdmi_bridge_detach()
+- dw_hdmi_bridge_destroy()      <<-- struct dw_hdmi is free()
+- [drm:drm_managed_release] drmres release begin
+- [drm:drm_managed_release] REL (...) drm_mode_config_init_release (0 bytes)
+- dw_hdmi_connector_destroy()
+  - drm_connector_cleanup()     <<-- drm_connector is use-after-free
   [...]
-  dw_hdmi_cec_hardirq+0x4cc/0x560
-  free_irq+0x48c/0x7e4
-  devm_irq_release+0x54/0x90
-  dr_node_release+0x38/0x5c
-  release_nodes+0xac/0x130
-  devres_release_all+0xf4/0x1b0
-  device_unbind_cleanup+0x28/0x1f8
-  device_release_driver_internal+0x358/0x470
-  device_release_driver+0x18/0x24
-  bus_remove_device+0x33c/0x4f0
-  device_del+0x2d8/0x790
-  platform_device_del+0x34/0x1e0
-  platform_device_unregister+0x14/0x3c
-  dw_hdmi_remove+0x74/0x180
-  [...]
+- [drm:drm_managed_release] drmres release end
 
-Freed by:
-  [...]
-  kfree+0x1dc/0x5dc
-  cec_delete_adapter+0xd4/0x118
-  cec_devnode_release+0xa4/0xe0
-  device_release+0xa0/0x200
-  kobject_put+0x14c/0x26c
-  put_device+0x14/0x30
-  cec_unregister_adapter+0x20c/0x280
-  dw_hdmi_cec_remove+0x8c/0xd0
-  [...]
+Hold a bridge reference for as long as the connector exists and drop it
+after drm_connector_cleanup() has completed to keep struct dw_hdmi alive
+until connector teardown is finished and avoids the use-after-free.
 
-Explicitly devm_free_irq() before the CEC adapter is unregistered to
-fix this possible use-after-free issue.
+Call trace with a bridge reference held until connector cleanup:
+- dw_hdmi_bridge_detach()
+- [drm:drm_managed_release] drmres release begin
+- [drm:drm_managed_release] REL (...) drm_mode_config_init_release (0 bytes)
+- dw_hdmi_connector_destroy()
+  - drm_connector_cleanup()     <<-- drm_connector is destroy()
+  - drm_bridge_put()
+- dw_hdmi_bridge_destroy()      <<-- struct dw_hdmi is free()
+  [...]
+- [drm:drm_managed_release] drmres release end
 
-Fixes: a616e63c56ef ("drm/bridge: dw-hdmi: add cec driver")
+Fixes: ed6987b67418 ("drm/bridge: dw-hdmi: convert to devm_drm_bridge_alloc() API")
+Tested-by: Diederik de Haas <diederik@cknow-tech.com>  # Rock64, RockPro64, Quartz64-B
 Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 ---
-v7: New patch
+v7: Add fixes tag, re-order patch
+v6: Collect t-b tag
+v5: New patch
 
-KASAN report a slab-use-after-free in dw_hdmi_cec_hardirq when,
+This use-after-free issue likely existed before commit ed6987b67418 when
+devm_kzalloc() was used instead of devm_drm_bridge_alloc(). However,
+v6.16-rc1 first introduced bridge refcount and drm_bridge_put(),
+parts that are used to help fix the use-after-free issue.
+
+KASAN report a slab-use-after-free in __refcount_add_not_zero when,
   echo fe0a0000.hdmi > /sys/bus/platform/drivers/dwhdmi-rockchip/unbind
 on a Rockchip RK3566 device prior to this fix.
 ---
- drivers/gpu/drm/bridge/synopsys/dw-hdmi-cec.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 23 ++++++++++++++++++-----
+ 1 file changed, 18 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-cec.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-cec.c
-index 9549dabde941..67a2a242d3ca 100644
---- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-cec.c
-+++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-cec.c
-@@ -309,6 +309,7 @@ static void dw_hdmi_cec_remove(struct platform_device *pdev)
- 	struct dw_hdmi_cec *cec = platform_get_drvdata(pdev);
- 
- 	cec_notifier_cec_adap_unregister(cec->notify, cec->adap);
-+	devm_free_irq(&pdev->dev, cec->irq, cec->adap);
- 	cec_unregister_adapter(cec->adap);
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+index b7bfc0e9a6b2..9d795c550f8a 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+@@ -2568,10 +2568,18 @@ static void dw_hdmi_connector_force(struct drm_connector *connector)
+ 	mutex_unlock(&hdmi->mutex);
  }
  
++static void dw_hdmi_connector_destroy(struct drm_connector *connector)
++{
++	struct dw_hdmi *hdmi = container_of(connector, struct dw_hdmi, connector);
++
++	drm_connector_cleanup(connector);
++	drm_bridge_put(&hdmi->bridge);
++}
++
+ static const struct drm_connector_funcs dw_hdmi_connector_funcs = {
+ 	.fill_modes = drm_helper_probe_single_connector_modes,
+ 	.detect = dw_hdmi_connector_detect,
+-	.destroy = drm_connector_cleanup,
++	.destroy = dw_hdmi_connector_destroy,
+ 	.force = dw_hdmi_connector_force,
+ 	.reset = drm_atomic_helper_connector_reset,
+ 	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
+@@ -2588,6 +2596,7 @@ static int dw_hdmi_connector_create(struct dw_hdmi *hdmi)
+ 	struct drm_connector *connector = &hdmi->connector;
+ 	struct cec_connector_info conn_info;
+ 	struct cec_notifier *notifier;
++	int ret;
+ 
+ 	if (hdmi->version >= 0x200a)
+ 		connector->ycbcr_420_allowed =
+@@ -2600,10 +2609,14 @@ static int dw_hdmi_connector_create(struct dw_hdmi *hdmi)
+ 
+ 	drm_connector_helper_add(connector, &dw_hdmi_connector_helper_funcs);
+ 
+-	drm_connector_init_with_ddc(hdmi->bridge.dev, connector,
+-				    &dw_hdmi_connector_funcs,
+-				    DRM_MODE_CONNECTOR_HDMIA,
+-				    hdmi->ddc);
++	ret = drm_connector_init_with_ddc(hdmi->bridge.dev, connector,
++					  &dw_hdmi_connector_funcs,
++					  DRM_MODE_CONNECTOR_HDMIA,
++					  hdmi->ddc);
++	if (ret)
++		return ret;
++
++	drm_bridge_get(&hdmi->bridge);
+ 
+ 	/*
+ 	 * drm_connector_attach_max_bpc_property() requires the
 -- 
 2.54.0
 
