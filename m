@@ -4,99 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9ABF7CD4F50
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 May 2026 17:06:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F107CD4F52
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 May 2026 18:02:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Date:From:
-	References:In-Reply-To:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+ftkmn7lYNrk4ICNOrR0EKqKX85+2KStAqysi151y9o=; b=SCzCaN34VKYS+u
-	aiGiIbSSv6Nz3Fifrm4ZSeeWwEW0S21MI/hSV4ODrJ/8O+tspNJ3HG2p23SG8EBrNBlDEO+wz91zt
-	ROYwt487w5JynWH1FUuDO79OQC57FfZ7uGHy/83FU+zz7pvuW8PeiLUQ/TT7LykaE8cGqHH4vUKVO
-	UTZFw5uZ4uV4sHn50s0hxqJpbgD8Fa5begyvHtfLqTWQ66Zs6y/5+jkXGUghS0D/+4J6zxcn9W45W
-	bljIalb7W5SV131lJs3hUd4RtEOkv/sVlPiS5cc4xUTbUmaZm9H+VLtDg4imjaVk/pbDBY95AM5zF
-	4ByV8HavMHvSEyTDeNrQ==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=OsiRiubXlRmNqxNDDhp0mp6xwAHHxohSwT1ioXQ8LNc=; b=hC9JD+olyckm6/
+	ZQFVazBILM7AiYJcr5g4vcNiEWzzLikehwDwJHwXjm5c45AZfz2TtUX48MwJpLLaNUk893sN0RJQ0
+	p5xc+dV2DAnZVAlFIvBUg5Tq42XWQfMWBzzMIau/s+UhVmZ8vtJZhg04PAZXdxYSerirIqynquumw
+	xwz2bzGOPRvEJx0g4EmNLnXLrQHvUb+6O3cpwVbuUiW+jDBNuxfBEw+it8oEit72oquCgBh/dcLtl
+	0VA2n9m0pRiKD2UL2XFg8w+SrvFPg1ymfcJCEv2rhcfX9c1FcB11BMUuUvogV8a/6tuMzM9Z029h3
+	8fs+BnErXxewNPJA0Xpg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wP1Q2-0000000GN7A-0hob;
-	Mon, 18 May 2026 17:06:18 +0000
-Received: from mail-pg1-x533.google.com ([2607:f8b0:4864:20::533])
+	id 1wP2IL-0000000GSYV-2esp;
+	Mon, 18 May 2026 18:02:25 +0000
+Received: from smtp.forwardemail.net ([121.127.44.66])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wP1Pz-0000000GN5t-15gP
+	id 1wP2II-0000000GSWp-0GfF
 	for linux-amlogic@lists.infradead.org;
-	Mon, 18 May 2026 17:06:16 +0000
-Received: by mail-pg1-x533.google.com with SMTP id 41be03b00d2f7-c80291e6237so1936668a12.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 18 May 2026 10:06:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779123975; x=1779728775; darn=lists.infradead.org;
-        h=cc:to:subject:date:from:references:in-reply-to:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=zllnXd80rkp5aHt7G7/Ts91W3aw+U7xcISZlpRJwkn8=;
-        b=FUgxldQfrSwUJQ68LsfDrJxDFeVI57Da5VAeIeVlDbqm/d1UE6Tm3wYd3QB9fcedDI
-         KvBllUK6GSV32CJU/jmmRbsoRdpUCFWxaVUxqLFMkksV2tH8yBA85NeOdklWzTRVpqn0
-         IFfS9aR+J1we1w57SX0JXJIwD/bRh/Ku56nIYaqfkqBk27u28wwCrZhMkTB1wVU+5qmx
-         4DncYgRYj9x5WmGpYefksqn1t0Nxd4aiauu4niGI5IQxUWwLMC5lR5ol8QvM/sc5/lxm
-         PdpcqTi5A4ncCBydlSMzDh6iq8LiYHBrHvjvpBJ6Pq6X37dmD/+yiatfDm0ote7xlCxJ
-         eYoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779123975; x=1779728775;
-        h=cc:to:subject:date:from:references:in-reply-to:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zllnXd80rkp5aHt7G7/Ts91W3aw+U7xcISZlpRJwkn8=;
-        b=bNR8r8gSOsg8nmk7idAEBVTpHFSEMGZjTpOR2OLDYIVEMw7T7BsdCfMi+9+hz0DxpB
-         x6vHY5NoV/nESwhDlFJJV7L08IEBbwpka32rqRMYaeJ/Xr9gzc3ND6EC+qR8VNTdjlCN
-         P1SL7siWM47vg+FNJkLqTFpuMWGNDWHDg2ztrjFcIKYD86XCECPos8IZ06vU4HrOQ5vi
-         zNPI9TYJVSsSJG6THoABCkbWsNtqZO9EMXYeWf+Gcl4VpLAiLmkAxh5QZ8RoIc/3pb9H
-         ErXUkxZYZ3qFkSRlMjHmD1t2rXKvJIiPVMmWMobl72S1SMwuZH/lh7RNtks5bBkE0iqt
-         5ZqA==
-X-Forwarded-Encrypted: i=1; AFNElJ+3qtiOw5FBEArS08xqxJBzRvzw9UzrLyfjtL15G7K7gtmnC92SvlhlwLvinFh29bPF4G3Rz/t1pDxep5hu@lists.infradead.org
-X-Gm-Message-State: AOJu0YwdFsUCCbl0HxZ3ntwJindKCIC6+DVo/2aj2wrUr4MKvjluvP+n
-	/GmmoIrMwX9B23KrUkziU7DMywfeARSiQGtkzFM+QU/k2+dBSjDiPbJY
-X-Gm-Gg: Acq92OGkqd6dAg8ETtju73bnyCiAifQTUuQZJ9cuQJc6El3F7eZrVOhiT0syFtF6CO1
-	ohJjhXbk1zxgKrtnSgCOXuW1W92hiF3to6ZomxvrikgicA5CvQvTOsA2H3+KZmK1U0j5BK30KVD
-	N8aeVmubQKN8hSjUcmuvBInvUY8GEE2vrxtRxDdriRgYxpGxshmAG2XL2+FVEjQh8XW4d9QkAVD
-	6u6EnFuDCvFdxbmOeSKqcvYzx01JdR8umYYkmb+3vn0oeXdjfKQsYCSUXZe3g0ivtt7bQVgpZj8
-	/O8tzUJVBvTXOhXoEOSxEHgWWbSQ8/Qwm8Gf5mtc5wqmcR5gLOwaloD/L5406M2ri/SPas7bAGN
-	nrTkH86xRieAQl/3XntsPH2R/97cPF0mnAJGhzl/cE1bs05jd6pWi5zvNrefzBn+5KLH5C6+p/b
-	Is3lFZhpe4QaUpGHSWzlrYx+P/13XHq7na6IdYSttYUa0aUGZpRbLjx8qWS2SuE34W0ZnFNuZKn
-	bONPQFaRQ5MNoAz5w==
-X-Received: by 2002:aa7:88d1:0:b0:83d:b0a0:90e3 with SMTP id d2e1a72fcca58-83f33c344a1mr16612881b3a.31.1779123974543;
-        Mon, 18 May 2026 10:06:14 -0700 (PDT)
-Received: from 1.0.0.127.in-addr.arpa ([110.44.115.146])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-83f19c7ed3fsm14932377b3a.45.2026.05.18.10.06.08
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 18 May 2026 10:06:14 -0700 (PDT)
-Message-ID: <1a0c86ab264cdc1c79c917e984b90991af51d827.1779123847.git.shuvampandey1@gmail.com>
-In-Reply-To: =?utf-8?q?=3C0f97352506d8d813f70f441de4d63fcd5b7d1c3e=2E1779123?=
- =?utf-8?q?847=2Egit=2Eshuvampandey1=40gmail=2Ecom=3E?=
-References: =?utf-8?q?=3C0f97352506d8d813f70f441de4d63fcd5b7d1c3e=2E17791238?=
- =?utf-8?q?47=2Egit=2Eshuvampandey1=40gmail=2Ecom=3E?=
-From: Shuvam Pandey <shuvampandey1@gmail.com>
-Date: Mon, 18 May 2026 22:44:18 +0545
-Subject: [PATCH 2/2] PCI: meson: Add missing remove callback
-To: Jingoo Han <jingoohan1@gmail.com>,
-    Manivannan Sadhasivam <mani@kernel.org>,
-    Lorenzo Pieralisi <lpieralisi@kernel.org>,
-    =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-    Bjorn Helgaas <bhelgaas@google.com>,
-    Yue Wang <yue.wang@Amlogic.com>,
-    Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Rob Herring <robh@kernel.org>,
-    Kevin Hilman <khilman@baylibre.com>,
-    Jerome Brunet <jbrunet@baylibre.com>,
-    Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-    Fan Ni <fan.ni@samsung.com>,
-    Shradha Todi <shradha.t@samsung.com>,
-    Hanjie Lin <hanjie.lin@amlogic.com>,
-    linux-pci@vger.kernel.org,
-    linux-amlogic@lists.infradead.org,
-    linux-arm-kernel@lists.infradead.org,
-    linux-kernel@vger.kernel.org
+	Mon, 18 May 2026 18:02:24 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: MIME-Version: Message-ID: Date: Subject: Cc:
+ To: From; q=dns/txt; s=fe-e1b5cab7be; t=1779127340;
+ bh=ucKXF6VzM30bPjxSkBsneInrw/BjvpOQxwAaTEJvKFc=;
+ b=v99VeLbOLxBR5/bSeFTG1qnLg147pZ8D/8TYXf8gh7KgRPpbyVhPYI+b4j40E4bVilMuEVIYo
+ zYicV3EY03EeLNHkzuukSIvS2DFOjF+JboGDrdtSqtcXW4sX+5+gzRAJ0uMop7stjJOUQl9rmuU
+ cqSxhNjyIl9U7bdgtBiXxdJVZ1eHHcj8bi0g2xAI7EmlrvIoDpzkReDU3TW/WvRNHg1mfX7+VJv
+ LPSiYuMu/Rkm3eCpSf0eslD8iaw2+Iqav0jOkUjDVW5dOzEiPZ5Ck8Jv4y7eGiqr4ii7T6PnUat
+ PT931lqi4dyR23FQY7pkXNpuiJn0o14B3Ut4IXCPAk2w==
+X-Forward-Email-ID: 6a0b5424b84dbc72d2274d94
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.66
+X-Forward-Email-Version: 2.8.12
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+From: Jonas Karlman <jonas@kwiboo.se>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Subject: [PATCH v7 00/23] drm: bridge: dw_hdmi: Misc enable/disable, CEC and EDID cleanup
+Date: Mon, 18 May 2026 18:01:36 +0000
+Message-ID: <20260518180206.2480119-1-jonas@kwiboo.se>
+X-Mailer: git-send-email 2.54.0
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260518_100615_309968_55FAF4EA 
-X-CRM114-Status: GOOD (  12.01  )
+X-CRM114-CacheID: sfid-20260518_110222_195573_1D674BF9 
+X-CRM114-Status: GOOD (  15.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,56 +68,166 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
+Cc: imx@lists.linux.dev, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Diederik de Haas <diederik@cknow-tech.com>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jernej Skrabec <jernej.skrabec@gmail.com>, linux-rockchip@lists.infradead.org, Luca Ceresoli <luca.ceresoli@bootlin.com>, linux-sunxi@lists.linux.dev, Jonas Karlman <jonas@kwiboo.se>, Liu Ying <victor.liu@nxp.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, linux-amlogic@lists.infradead.org, Chen-Yu Tsai <wens@kernel.org>, linux-arm-kernel@lists.infradead.org, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Sandy Huang <hjc@rock-chips.com>, Thomas Zimmermann <tzimmermann@suse.de>, Andy Yan <andy.yan@rock-chips.com>, Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-meson_pcie_probe() powers on the PHY and registers the DesignWare host
-bridge with dw_pcie_host_init(), but the driver has no remove callback.
-On driver unbind or module unload, the driver core therefore proceeds to
-devres cleanup without first unregistering the host bridge or powering off
-the PHY.
+This is a revival of an old dw-hdmi series and is the first series part
+of a new effort to upstream old LibreELEC HDMI 2.0 patches for Rockchip
+RK33xx devices.
 
-Add a remove callback that deinitializes the DesignWare host bridge and
-powers off the PHY while device-managed resources are still valid.
+This series ensure poweron/poweroff and CEC phys addr invalidation is
+happening during normal DRM funcs, ensures EDID and CEC phys addr is
+updated in detect() similar to how the bridge connector works with a
+HDMI bridge attached, and also changes to debounce hotplug processing
+to prevent a full disable/enable cycle during a HPD low voltage pulse.
 
-Fixes: 9c0ef6d34fdb ("PCI: amlogic: Add the Amlogic Meson PCIe controller driver")
-Signed-off-by: Shuvam Pandey <shuvampandey1@gmail.com>
----
- drivers/pci/controller/dwc/pci-meson.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+After this series HPD, EDID and CEC handling should work very similar
+regardless is the dw-hdmi connector or the bridge connector is used.
+It should also help ensure a smoother transition when dw-hdmi is fully
+converted into a HDMI bridge in a future series.
 
-diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-index 0694084f6..c96e2244a 100644
---- a/drivers/pci/controller/dwc/pci-meson.c
-+++ b/drivers/pci/controller/dwc/pci-meson.c
-@@ -451,6 +451,14 @@ static int meson_pcie_probe(struct platform_device *pdev)
- 	return ret;
- }
- 
-+static void meson_pcie_remove(struct platform_device *pdev)
-+{
-+	struct meson_pcie *mp = platform_get_drvdata(pdev);
-+
-+	dw_pcie_host_deinit(&mp->pci.pp);
-+	meson_pcie_power_off(mp);
-+}
-+
- static const struct of_device_id meson_pcie_of_match[] = {
- 	{
- 		.compatible = "amlogic,axg-pcie",
-@@ -464,6 +472,7 @@ MODULE_DEVICE_TABLE(of, meson_pcie_of_match);
- 
- static struct platform_driver meson_pcie_driver = {
- 	.probe = meson_pcie_probe,
-+	.remove = meson_pcie_remove,
- 	.driver = {
- 		.name = "meson-pcie",
- 		.of_match_table = meson_pcie_of_match,
+These changes have mainly been tested on Rockchip RK3328, RK3399 and
+RK3568 devices using both the dw-hdmi connector and also using a basic
+convert to use a bridge connector. The changes has also been tested on
+Amlogic S905X, S905Y2 and A311D devices that uses the bridge connector.
+
+Testing with a Rock Pi 4 (RK3399) using a Reaspberry Pi Monitor with
+Linux kms client console using drm.debug=0xe should log something like
+following:
+
+ Power cycle monitor using the power button:
+  [CONNECTOR:68:HDMI-A-1] CEA VCDB 0x4a
+  [CONNECTOR:68:HDMI-A-1] HDMI: DVI dual 0, max TMDS clock 0 kHz
+  [CONNECTOR:68:HDMI-A-1] ELD monitor RPI MON156
+  [CONNECTOR:68:HDMI-A-1] HDMI: latency present 0 0, video latency 0 0, audio latency 0 0
+  [CONNECTOR:68:HDMI-A-1] ELD size 36, SAD count 1
+  [CONNECTOR:68:HDMI-A-1] Same epoch counter 10
+
+ Cable unplugged:
+  [CONNECTOR:68:HDMI-A-1] EDID changed, epoch counter 11
+  [CONNECTOR:68:HDMI-A-1] status updated from connected to disconnected
+  [CONNECTOR:68:HDMI-A-1] Changed epoch counter 10 => 12
+  [CONNECTOR:68:HDMI-A-1] generating connector hotplug event
+  [CONNECTOR:68:HDMI-A-1] Sent hotplug event
+
+ Cable connected:
+  [CONNECTOR:68:HDMI-A-1] CEA VCDB 0x4a
+  [CONNECTOR:68:HDMI-A-1] HDMI: DVI dual 0, max TMDS clock 0 kHz
+  [CONNECTOR:68:HDMI-A-1] ELD monitor RPI MON156
+  [CONNECTOR:68:HDMI-A-1] HDMI: latency present 0 0, video latency 0 0, audio latency 0 0
+  [CONNECTOR:68:HDMI-A-1] ELD size 36, SAD count 1
+  [CONNECTOR:68:HDMI-A-1] status updated from disconnected to connected
+  [CONNECTOR:68:HDMI-A-1] Changed epoch counter 12 => 13
+  [CONNECTOR:68:HDMI-A-1] generating connector hotplug event
+  [CONNECTOR:68:HDMI-A-1] Sent hotplug event
+
+This series has evolved into an initial part of a larger multi series
+effort to:
+- drm: bridge: dw_hdmi: Misc enable/disable, CEC and EDID cleanup [v7]
+- drm/bridge: dw-hdmi: Improve input/output bus format handling
+- drm/bridge: dw-hdmi: Convert to a HDMI bridge and use of bridge connector
+- drm/bridge: dw-hdmi: Add and use tmds_char_rate_valid() plat data ops
+- drm/meson: hdmi: Misc cleanup and use CEC notifier helpers [v1]
+- phy: rockchip: inno-hdmi: Change TMDS rate handling to configure() ops [v4]
+- drm/rockchip: dw_hdmi: Misc cleanup and propagate bus format [v2]
+- drm/rockchip: dw_hdmi: Enable YCbCr and Deep Color modes
+Link to snapshot: https://github.com/Kwiboo/linux-rockchip/commits/next-20260518-rk-hdmi-v5/
+
+Changes in v7:
+- Add patch to fix use-after-free when CEC adapter is unregistered
+- Only declare CEC notifier support when CEC device register succeeds
+- Re-order patches to drop drm_edid_raw() use before exposing more usage
+- Change to free irq before mute and clear using IH regs
+- Rebased on next-20260518
+Link to v6: https://lore.kernel.org/dri-devel/20260516183838.2024991-1-jonas@kwiboo.se/
+
+Changes in v6:
+- Update EDID and CEC phys addr in the bridge detect() func
+- Add CEC notifier bridge op for the bridge connector
+- Change back to disable_delayed_work_sync() in hpd disable ops,
+  a possible deadlock is avoided by not using drm_bridge_hpd_notify()
+- Drop use of a suspend helper now that hpd disable ops use sync() calls
+- Ensure HPD interrupt is masked and IRQ handler is disabled early
+  in dw_hdmi_remove() to prevent any irq re-arming of delayed work
+- Update a few commit messages and cover letter
+- Collect t-b tags
+Link to v5: https://lore.kernel.org/dri-devel/20260510124111.1226584-1-jonas@kwiboo.se/
+
+Changes in v5:
+- Add patch that holds a bridge ref until connector cleanup, to fix
+  a use-after-free issue during connector cleanup
+- Add patch that unregister CEC notifier during connector cleanup
+- Add patch that adds a common suspend helper
+- Add patch that drops call to drm_bridge_hpd_notify()
+- Collect r-b tag
+- Rebased on next-20260508
+Link to v4: https://lore.kernel.org/dri-devel/20260504191059.275928-1-jonas@kwiboo.se/
+
+Changes in v4:
+- Change to use generic CEC notifier helpers
+- Disable/mask hpd_work until enable_hpd()/hpd_enable()
+- Read connector status directly from HW regs in hpd_work
+- Continued rework of HDP and RXSENSE interrupt handling
+- Collect r-b tags
+- Rebased on next-20260430
+Link to v3: https://lore.kernel.org/dri-devel/20260403185303.80748-1-jonas@kwiboo.se/
+
+Changes in v3:
+- Rework EDID refresh handling to closer match bridge connector
+- Use delayed work to debounce HPD processing
+- Update commit messages
+- Collect r-b tags
+- Rebased on next-20260401
+Link to v2: https://lore.kernel.org/dri-devel/20240908132823.3308029-1-jonas@kwiboo.se/
+
+Changes in v2:
+- Add patch to disable scrambler feature when not supported
+- Add patch to only notify connected status on HPD interrupt
+- Update commit messages
+- Collect r-b tags
+- Rebased on next-20240906
+Link to v1: https://lore.kernel.org/dri-devel/20240611155108.1436502-1-jonas@kwiboo.se/
+
+Jonas Karlman (23):
+  drm: bridge: dw_hdmi: Disable scrambler feature when not supported
+  drm: bridge: dw_hdmi: Only notify connected status on HPD interrupt
+  drm: bridge: dw_hdmi: Free IRQ before CEC adapter is unregistered
+  drm: bridge: dw_hdmi: Hold bridge ref until connector cleanup
+  drm: bridge: dw_hdmi: Call poweron/poweroff from atomic enable/disable
+  drm: bridge: dw_hdmi: Use passed mode instead of stored previous_mode
+  drm: bridge: dw_hdmi: Fold poweron and setup functions
+  drm: bridge: dw_hdmi: Remove previous_mode and mode_set
+  drm: bridge: dw_hdmi: Unregister CEC notifier during connector cleanup
+  drm: bridge: dw_hdmi: Invalidate CEC phys addr from connector detect
+  drm: bridge: dw_hdmi: Remove cec_notifier_mutex
+  drm: bridge: dw_hdmi: Extract dw_hdmi_connector_status_update()
+  drm: bridge: dw_hdmi: Use dw_hdmi_connector_status_update()
+  drm: bridge: dw_hdmi: Use display_info is_hdmi and has_audio
+  drm: bridge: dw_hdmi: Use generic CEC notifier helpers
+  drm: bridge: dw_hdmi: Update EDID and CEC phys addr in bridge detect()
+  drm: bridge: dw_hdmi: Declare bridge CEC notifier support
+  drm: bridge: dw_hdmi: Drop call to drm_bridge_hpd_notify()
+  drm: bridge: dw_hdmi: Use delayed_work to debounce hotplug event
+  drm: bridge: dw_hdmi: Rework HDP and RXSENSE interrupt handling
+  drm: bridge: dw_hdmi: Remove the empty dw_hdmi_setup_rx_sense()
+  drm: bridge: dw_hdmi: Remove the empty dw_hdmi_phy_update_hpd()
+  drm: bridge: dw_hdmi: Merge top and bottom half IRQ handlers
+
+ drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c   |   1 -
+ drivers/gpu/drm/bridge/synopsys/Kconfig       |   1 +
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-cec.c |   1 +
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c     | 502 +++++++-----------
+ drivers/gpu/drm/meson/meson_dw_hdmi.c         |   3 -
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c   |   2 -
+ drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c        |   2 -
+ include/drm/bridge/dw_hdmi.h                  |   6 -
+ 8 files changed, 192 insertions(+), 326 deletions(-)
+
 -- 
-2.50.1 (Apple Git-155)
+2.54.0
 
 
 _______________________________________________
