@@ -4,81 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0DB5CD4851
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 May 2026 07:30:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FC41CD4851
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 May 2026 07:31:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=+DmlF8PjYQTJE4ZxuGJLzLLNMivYPBD3vIVBH9o4vSY=; b=d1sD1cf8iyJamwS4XgK8QTcgBL
-	7K/HE9WQvTPKPCIaWLhgL6dNAzFbooYoFnUhxD7tqEfB6ng5epTBvPA1ixjruoZa+oIAj7geevRT6
-	CrzWTHA/TJaC7ylds9uHzlF8/TpNmNNZ9ZSOX40xLlFC7mlFkBKzp+lJU1PB9gredB82HN4vZ8EWk
-	VPmbVpkmCHcLvU9CzPiC9D/yW3BZcRcYpN/oh9fOSES9F5kPPzFxfpDY4kIUoC9JQ4TjeI6CSnehj
-	STVjT7GM33bHwFvYTebtkGmXIGIvLDCAFGCIpPle5Cad5g+jz/AQS3J/TmAox5GDuTm6zgDGY7jlI
-	WdzobOdQ==;
+	bh=yVq/SiHHTOZe8LAT5BhDDPOfcRHfsfcH9s2Tgla/vlY=; b=ddkXXKPUE5dp8Il4C/wVnsVU4X
+	6lywOb8f/AGOUGa4bRkQc5zKdESW1ecZoQbqIsVIJoNcQFcqSBVnKAe2UjxJXJzfCqEWJfulDNjcr
+	z5GRAsIenwUnDMRUs9TLp+NwTuCicyEHCstTb303TkbeXFHFxJWv3rpcYgQQc14mo+I90b+t13vBc
+	vrJ0usgr5jpVpydg8R7D88T4TBZePgQbJVK5DcG6qp78bgreMLJ+BmYyBteVQg22mYUtiXr7hF24C
+	eDrZ804hadSu4/L+dL8B2PIrDE2fvLQ8OsINoWknQ+Ro68bvo3LdE6OEhNeVsOTtx8omtKXpdzeGE
+	eKoePw+Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wPEuS-00000000VER-3iSG;
-	Tue, 19 May 2026 07:30:36 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1wPEva-00000000VUq-3PZd;
+	Tue, 19 May 2026 07:31:46 +0000
+Received: from mail-lf1-x135.google.com ([2a00:1450:4864:20::135])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wPEuP-00000000VCY-1WuH
+	id 1wPEvX-00000000VSp-26FU
 	for linux-amlogic@lists.infradead.org;
-	Tue, 19 May 2026 07:30:35 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4896c22fcbaso26839435e9.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 19 May 2026 00:30:32 -0700 (PDT)
+	Tue, 19 May 2026 07:31:45 +0000
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-5a87782588cso3796153e87.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 19 May 2026 00:31:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1779175831; x=1779780631; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1779175901; x=1779780701; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=gHs1pX0u3NNghxESRV2f8uVEQJJT3wKuX92QnXmS80Q=;
-        b=dhKhJEFgaBPQsYqwdp97QuPM+oEEp82W/GcpnGbP9Sl2JeheXYO7S9bdnwINtlkMjq
-         HAElSxBPwn5A7NLElvTxC4cY6PmlvylJzn/dFJRiWCcrKvYZ9w5SS0tsHcawhYPJSSdw
-         a7JIJErOk4ta0xWBVpcRuXSbN7D0sY9kHtEaK6Jgtp6izg9yz5Mx4fv7FhIXKi7EmeU8
-         JnIzozaAqgvLYctBtxxwQWadxdqkFjTMVxAl9uZ1eRFJLwFpeQwRDLN/Gv9Elt+L/0Fs
-         gsq8FqrVD+BaSA4x1CUOwKUkXJayannGxIlO7d7pIPzv5zPfJvzoJ7Srhzma3nosZFMi
-         d0Rw==
+        bh=U3SA13elET4TYgmxY3hJVngIm5W/klIYH+PuWe1fxys=;
+        b=DFefCnsjqx1HmK5U0W7xQY7si7/ojzbr7B5NA1eYkdUxTEEnXFnrN+kGYUBt9epHr2
+         UjP3c87eMEJB08sCAeiByEfqE24ENkuZz9CJ62L0b90o2BuqbEGxdTVxNpm31tWXI84x
+         HembTw/txwuH741yrCUJMVyRUYanhas1buh4ZgNBM+hxd3z15Z/uOh9RhectCI1poOaU
+         RwdYG9p62F3QwRVeyXRIZ4DD8LzcSDm/a/hiRrGijlmsUDUMYyCEdts3PqHyUp3hkWZ4
+         X4sMmaISq/4MWSD+8HDLiwnmHLPq1mOus/pzz9vAzKQeAeFchYjGCI4mwtpYmzpwKlyX
+         pwkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779175831; x=1779780631;
+        d=1e100.net; s=20251104; t=1779175901; x=1779780701;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gHs1pX0u3NNghxESRV2f8uVEQJJT3wKuX92QnXmS80Q=;
-        b=CJnaJGaPp2y5mW/QfQ4e4w4I9CQJb3MJb/ZrSpHmLZIveV8EbBLXgz4WgLhRhECzmG
-         D5tqmyfFEcbzxgjvZ0XIoE3tqBfYYEQX0LRa7J5dKkK859gbNwNnQgZxIE1P7SQZJklN
-         pYmP2NPBJNRrGGerFkjoC18QTT+KrCj8MMtq9YM9ny/zqSldGYKW+BDQzw0jfH9dAyZd
-         W10vIxKu/0QAivf3mOVTrdX7RPSjNroMSoYX2Vej7DaHzdxZSW0iO8h9xKjWmAKocCc3
-         7E6AkpoP37djNx//LUmqPeFwzkKwqEPTCALupAIUtrdp5Ew/VxanHM0tkIo/14TbYSbE
-         NQnA==
-X-Forwarded-Encrypted: i=1; AFNElJ8YKLRZ//5GHMi/AI8ZwN9VDmvt3eV/t8z532ePYcHsgjqcei2fylRfblVtZKdeyV/PLi+Ou/3wDb8tpyEr@lists.infradead.org
-X-Gm-Message-State: AOJu0YzqVnC4IEXoMSHMRkEfmwICBwBg+PWdy6hXbqR3PZZdgkjtEL27
-	zl3SRa/DjkapnRWFL+Nx6peTF8TtSvLxxRK14Xj6BZAWIGFQbLandW8DC5BwTcebeEY=
-X-Gm-Gg: Acq92OGhTVqeHVdtBG76ctfgGkTZN1Cm8QYz4NXvprDhCQTixL1+fqRRxoQlVUdoVgs
-	HDAQA8JYf1V0Etji5RJ+y1xqbIZQ9G86yNgR85L6+98rtY7jn6eF1Cx9SYF4Hobj37pa13xSWWw
-	Z8Z0UlVowSJgE+0brl5R9jGGoJVaLnLAp0DRQ7wHevN6K/76LfxraD3J1/XNc+yhvIERaGIHXcr
-	NTVvTXLjRjzbs8J7Rj172XWAYTZRUXuqIiYc04uCu/K6XVYJIhQ55VukShw7Yy9T54ai+hKCxTs
-	Md0dJbzBM/YIh62SgqvSVtADLsS4lNxj3ntwTVJDSmOnqaGaZcReoV5dg4M85Ld3ju9raPS1F2b
-	zX8L1yqttBu1kjjAAKFZOGiVtTcmT+QgUEbagTJ2AH8oplUBPMLHYgUEQ6w4MmqNcBZSFraJuEi
-	90jOh/0UIKDHAbO4EUwJZwEyeALgaq6uEYU7gYBFnP/P7ABYxeHR2RzDQy9SGABqEzYOZXlBz9i
-	eIGlaLEPX7+j8Q=
-X-Received: by 2002:a05:600c:350b:b0:48a:58ae:9938 with SMTP id 5b1f17b1804b1-48ff3346102mr208556935e9.19.1779175831272;
-        Tue, 19 May 2026 00:30:31 -0700 (PDT)
+        bh=U3SA13elET4TYgmxY3hJVngIm5W/klIYH+PuWe1fxys=;
+        b=RuWPBbGQRsMxkXZpeVNf7XD3qjmhjdOK429NWl+TS4BI2c/8BoWFJJn6UgoJ+WHeud
+         osLXvihIQe6hX9JtDBogkbWQHVhhL9GRoDOJffHsYDw9W3n4eneXSOFSC9EhiVnZBmIM
+         Dii5ZJgF3jibNDxm0m3A+FwgAe19fn+ch0Hp6iNop80CNUIMviH4uFYBFUebBmo+UbY/
+         AtCPkem2gjdko/MraXZtkr7DjfC0T7yA5+8D+X84kJjg/LPV5QHECZwWzJGtSnvtxcNo
+         Qh9I3kspVfIYQkIofCSTCihsfxFsw42i8wubWGq3TmNDFS+yAai+1PkdkOpXKbm2NR2s
+         oFAw==
+X-Forwarded-Encrypted: i=1; AFNElJ8FTSCW0J3ZestwfzQS38O8qSnVwPiPn80bx9+wTgzpLAqdDDb0MkPNdiF0CLXVg+g3vBBwI9sIz06ui0M4@lists.infradead.org
+X-Gm-Message-State: AOJu0YzUSrrUvbLv40hPddaGPWMpRg+4oMI1Y7EeEo2ZQJgnrgpTkTso
+	qw2VP2iyRrFww3pJ2qrGXES9XT9r6/YBcN1czD5KuByNu5hYhgMDEPi2akpiUUoSla8=
+X-Gm-Gg: Acq92OGc+bqQ4AMgu3meMPA/L+pQL4Yn3HAzY4ULPGcXXr0H5tUY+6LLzPuNXVn3xmT
+	nB80mXHDJR411QHCoGMiafxFNjRmE12rTZVWNZ7/JFgHIcUEo/Do/yzmzhldkS0Y3sTyNLxzSEX
+	8VNEUW+mHJXT9K1pjCMjA8DjRDghmz6S0T8bDyQCbvksSf05ZwNLNoLU354MJA6/j1Nscq1GsMe
+	amUGpcxFoPbb7gUn2ZnrerQWiIxzc5J/Qf3dJF1Yb554aA+DB2YKMvsPffnvDLtjpehU8w5/50y
+	ehuitmtLvwQHsIEKa3CwLAQZ1hHxHrQXV21W968ZNZMCXUyTNjKRk17Ytuto8MknePRJq0e2ZB8
+	L/MVPEyJnOUG94yOuxAxNFTGMYFAz+Z0SYuFCNV7HFHuExHd2anE7HueKiIQZ0K2gatkZjQE7o4
+	I9ja6Rp7yTjv9xEM+kNNrpGe+miJCCWQAhXAwrVbmFBVnRgnfeLDiZUukSCZGMG9hDaD9JuW6Gf
+	nyY
+X-Received: by 2002:a05:6512:1317:b0:5a8:fbe0:bc71 with SMTP id 2adb3069b0e04-5aa0e611478mr5339169e87.15.1779175901177;
+        Tue, 19 May 2026 00:31:41 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:106d:1080:1d4b:274c:94d:a69f? ([2a01:e0a:106d:1080:1d4b:274c:94d:a69f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48feaf0fb46sm100860345e9.11.2026.05.19.00.30.30
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45da0fe2464sm44941676f8f.32.2026.05.19.00.31.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 May 2026 00:30:30 -0700 (PDT)
-Message-ID: <78f3211e-cdb8-4f76-a311-d4d66fc68d3d@linaro.org>
-Date: Tue, 19 May 2026 09:30:30 +0200
+        Tue, 19 May 2026 00:31:40 -0700 (PDT)
+Message-ID: <c6beeeb7-f764-4a84-aff7-5e29250027a1@linaro.org>
+Date: Tue, 19 May 2026 09:31:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 06/13] drm/meson: encoder_hdmi: Use bridge connector CEC
- notifier
+Subject: Re: [PATCH 07/13] drm/meson: encoder_hdmi: Report ycbcr_420_allowed
+ from encoder
 To: Jonas Karlman <jonas@kwiboo.se>, Kevin Hilman <khilman@baylibre.com>,
  Heiko Stuebner <heiko@sntech.de>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -90,7 +90,7 @@ Cc: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  linux-rockchip@lists.infradead.org
 References: <20260518194744.2483580-1-jonas@kwiboo.se>
- <20260518194744.2483580-7-jonas@kwiboo.se>
+ <20260518194744.2483580-8-jonas@kwiboo.se>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -117,10 +117,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20260518194744.2483580-7-jonas@kwiboo.se>
+In-Reply-To: <20260518194744.2483580-8-jonas@kwiboo.se>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260519_003034_255915_18B45A56 
-X-CRM114-Status: GOOD (  21.16  )
+X-CRM114-CacheID: sfid-20260519_003143_570137_3381729D 
+X-CRM114-Status: GOOD (  13.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -139,193 +139,39 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 5/18/26 21:47, Jonas Karlman wrote:
-> The dw-hdmi bridge detect() func now updates EDID and CEC phys addr for
-> the connector and any registered generic CEC notifier.
+> The bridge connector report ycbcr_420_allowed support when all bridges
+> in the chain support ycbcr_420_allowed.
 > 
-> Replace the open-coded CEC notifier handling with use of the bridge CEC
-> notifier op.
+> Report ycbcr_420_allowed on the encoder bridge so that the bridge
+> connector automatically can report correct ycbcr_420_allowed support.
 > 
 > Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 > ---
->   drivers/gpu/drm/meson/Kconfig              |  1 +
->   drivers/gpu/drm/meson/meson_encoder_hdmi.c | 85 +++++-----------------
->   2 files changed, 19 insertions(+), 67 deletions(-)
+>   drivers/gpu/drm/meson/meson_encoder_hdmi.c | 4 +---
+>   1 file changed, 1 insertion(+), 3 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/meson/Kconfig b/drivers/gpu/drm/meson/Kconfig
-> index 417f79829cf8..0dc5ca21e4fc 100644
-> --- a/drivers/gpu/drm/meson/Kconfig
-> +++ b/drivers/gpu/drm/meson/Kconfig
-> @@ -13,6 +13,7 @@ config DRM_MESON
->   	select REGMAP_MMIO
->   	select MESON_CANVAS
->   	select CEC_CORE if CEC_NOTIFIER
-> +	select DRM_DISPLAY_HDMI_CEC_NOTIFIER_HELPER if CEC_NOTIFIER
->   
->   config DRM_MESON_DW_HDMI
->   	tristate "HDMI Synopsys Controller support for Amlogic Meson Display"
 > diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-> index 1b9a1d9ed3d3..45104ef35344 100644
+> index 45104ef35344..484675cb8284 100644
 > --- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
 > +++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-> @@ -16,8 +16,6 @@
->   #include <linux/regulator/consumer.h>
->   #include <linux/reset.h>
->   
-> -#include <media/cec-notifier.h>
-> -
->   #include <drm/drm_atomic_helper.h>
->   #include <drm/drm_bridge.h>
->   #include <drm/drm_bridge_connector.h>
-> @@ -41,7 +39,6 @@ struct meson_encoder_hdmi {
->   	struct drm_connector *connector;
->   	struct meson_drm *priv;
->   	unsigned long output_bus_fmt;
-> -	struct cec_notifier *cec_notifier;
->   };
->   
->   #define bridge_to_meson_encoder_hdmi(x) \
-> @@ -57,14 +54,6 @@ static int meson_encoder_hdmi_attach(struct drm_bridge *bridge,
->   				 &encoder_hdmi->bridge, flags);
->   }
->   
-> -static void meson_encoder_hdmi_detach(struct drm_bridge *bridge)
-> -{
-> -	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
-> -
-> -	cec_notifier_conn_unregister(encoder_hdmi->cec_notifier);
-> -	encoder_hdmi->cec_notifier = NULL;
-> -}
-> -
->   static void meson_encoder_hdmi_set_vclk(struct meson_encoder_hdmi *encoder_hdmi,
->   					const struct drm_display_mode *mode)
->   {
-> @@ -321,27 +310,9 @@ static int meson_encoder_hdmi_atomic_check(struct drm_bridge *bridge,
->   	return 0;
->   }
->   
-> -static void meson_encoder_hdmi_hpd_notify(struct drm_bridge *bridge,
-> -					  struct drm_connector *connector,
-> -					  enum drm_connector_status status)
-> -{
-> -	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
-> -
-> -	if (!encoder_hdmi->cec_notifier)
-> -		return;
-> -
-> -	if (status == connector_status_connected)
-> -		cec_notifier_set_phys_addr(encoder_hdmi->cec_notifier,
-> -					   connector->display_info.source_physical_address);
-> -	else
-> -		cec_notifier_phys_addr_invalidate(encoder_hdmi->cec_notifier);
-> -}
-> -
->   static const struct drm_bridge_funcs meson_encoder_hdmi_bridge_funcs = {
->   	.attach = meson_encoder_hdmi_attach,
-> -	.detach = meson_encoder_hdmi_detach,
->   	.mode_valid = meson_encoder_hdmi_mode_valid,
-> -	.hpd_notify = meson_encoder_hdmi_hpd_notify,
->   	.atomic_enable = meson_encoder_hdmi_atomic_enable,
->   	.atomic_disable = meson_encoder_hdmi_atomic_disable,
->   	.atomic_get_input_bus_fmts = meson_encoder_hdmi_get_inp_bus_fmts,
-> @@ -374,9 +345,9 @@ int meson_encoder_hdmi_probe(struct meson_drm *priv)
->   
->   	meson_encoder_hdmi->bridge.next_bridge = of_drm_find_and_get_bridge(remote);
->   	if (!meson_encoder_hdmi->bridge.next_bridge) {
-> -		ret = dev_err_probe(priv->dev, -EPROBE_DEFER,
-> -				    "Failed to find HDMI transceiver bridge\n");
-> -		goto err_put_node;
-> +		of_node_put(remote);
-> +		return dev_err_probe(priv->dev, -EPROBE_DEFER,
-> +				     "Failed to find HDMI transceiver bridge\n");
->   	}
->   
->   	/* HDMI Encoder Bridge */
-> @@ -384,6 +355,13 @@ int meson_encoder_hdmi_probe(struct meson_drm *priv)
+> @@ -354,6 +354,7 @@ int meson_encoder_hdmi_probe(struct meson_drm *priv)
+>   	meson_encoder_hdmi->bridge.of_node = priv->dev->of_node;
 >   	meson_encoder_hdmi->bridge.type = DRM_MODE_CONNECTOR_HDMIA;
 >   	meson_encoder_hdmi->bridge.interlace_allowed = true;
+> +	meson_encoder_hdmi->bridge.ycbcr_420_allowed = true;
 >   
-> +	pdev = of_find_device_by_node(remote);
-> +	of_node_put(remote);
-> +	if (pdev) {
-> +		meson_encoder_hdmi->bridge.ops |= DRM_BRIDGE_OP_HDMI_CEC_NOTIFIER;
-> +		meson_encoder_hdmi->bridge.hdmi_cec_dev = &pdev->dev;
-> +	}
-> +
->   	drm_bridge_add(&meson_encoder_hdmi->bridge);
+>   	pdev = of_find_device_by_node(remote);
+>   	of_node_put(remote);
+> @@ -406,9 +407,6 @@ int meson_encoder_hdmi_probe(struct meson_drm *priv)
 >   
->   	meson_encoder_hdmi->priv = priv;
-> @@ -391,30 +369,24 @@ int meson_encoder_hdmi_probe(struct meson_drm *priv)
->   	/* Encoder */
->   	ret = drm_simple_encoder_init(priv->drm, &meson_encoder_hdmi->encoder,
->   				      DRM_MODE_ENCODER_TMDS);
-> -	if (ret) {
-> -		dev_err_probe(priv->dev, ret, "Failed to init HDMI encoder\n");
-> -		goto err_put_node;
-> -	}
-> +	if (ret)
-> +		return dev_err_probe(priv->dev, ret, "Failed to init HDMI encoder\n");
+>   	drm_connector_attach_max_bpc_property(meson_encoder_hdmi->connector, 8, 8);
 >   
->   	meson_encoder_hdmi->encoder.possible_crtcs = BIT(0);
->   
->   	/* Attach HDMI Encoder Bridge to Encoder */
->   	ret = drm_bridge_attach(&meson_encoder_hdmi->encoder, &meson_encoder_hdmi->bridge, NULL,
->   				DRM_BRIDGE_ATTACH_NO_CONNECTOR);
-> -	if (ret) {
-> -		dev_err_probe(priv->dev, ret, "Failed to attach bridge\n");
-> -		goto err_put_node;
-> -	}
-> +	if (ret)
-> +		return dev_err_probe(priv->dev, ret, "Failed to attach bridge\n");
->   
->   	/* Initialize & attach Bridge Connector */
->   	meson_encoder_hdmi->connector = drm_bridge_connector_init(priv->drm,
->   							&meson_encoder_hdmi->encoder);
-> -	if (IS_ERR(meson_encoder_hdmi->connector)) {
-> -		ret = dev_err_probe(priv->dev,
-> -				    PTR_ERR(meson_encoder_hdmi->connector),
-> -				    "Unable to create HDMI bridge connector\n");
-> -		goto err_put_node;
-> -	}
-> +	if (IS_ERR(meson_encoder_hdmi->connector))
-> +		return dev_err_probe(priv->dev,
-> +				     PTR_ERR(meson_encoder_hdmi->connector),
-> +				     "Unable to create HDMI bridge connector\n");
->   
->   	/*
->   	 * We should have now in place:
-> @@ -437,32 +409,11 @@ int meson_encoder_hdmi_probe(struct meson_drm *priv)
->   	/* Handle this here until handled by drm_bridge_connector_init() */
->   	meson_encoder_hdmi->connector->ycbcr_420_allowed = true;
->   
-> -	pdev = of_find_device_by_node(remote);
-> -	of_node_put(remote);
-> -	if (pdev) {
-> -		struct cec_connector_info conn_info;
-> -		struct cec_notifier *notifier;
-> -
-> -		cec_fill_conn_info_from_drm(&conn_info, meson_encoder_hdmi->connector);
-> -
-> -		notifier = cec_notifier_conn_register(&pdev->dev, NULL, &conn_info);
-> -		if (!notifier) {
-> -			put_device(&pdev->dev);
-> -			return -ENOMEM;
-> -		}
-> -
-> -		meson_encoder_hdmi->cec_notifier = notifier;
-> -	}
+> -	/* Handle this here until handled by drm_bridge_connector_init() */
+> -	meson_encoder_hdmi->connector->ycbcr_420_allowed = true;
 > -
 >   	priv->encoders[MESON_ENC_HDMI] = meson_encoder_hdmi;
 >   
 >   	dev_dbg(priv->dev, "HDMI encoder initialized\n");
->   
->   	return 0;
-> -
-> -err_put_node:
-> -	of_node_put(remote);
-> -	return ret;
->   }
->   
->   void meson_encoder_hdmi_remove(struct meson_drm *priv)
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
