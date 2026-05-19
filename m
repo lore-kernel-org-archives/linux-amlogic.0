@@ -4,62 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A3FACD5BAB
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 May 2026 15:19:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08BA5CD4F3C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 May 2026 16:10:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+81cEo9gU2PCaAgdbBhukzQlSSGNdBzO57wNnl3xePA=; b=3MbeqnLmqg7Nx7
-	spcZUJiZj8YbxHevUNAT8BKdf68zolyKAD2CmWQb4/y/6BNK3NPJc0ObtyBSun13tl4StuFBdxXrJ
-	sy1DzGyAY374j0RPibe47bQOiqbg8EIqulWkUj8Ldk0JMxAJF7MeQQfnUMhLUDbULRJNyupEI7nHO
-	4eXlY0ozWg5OXdhnkF9IwEZK7XDrXmWKYtURUyTA29HiGoT+07Zu33ahyY7JAN3TN9oUkYAvW61el
-	Y70cW/ptVqy2JwQK6Qhwe6qqVugnqmLIwgPrlQZlUp30InpPGgc8K+LT9fbWmOgKNFYWIj+89P6Xs
-	CkwOyQfxdA92NxOwBf0Q==;
+	List-Owner; bh=L57WXTF1UJ18icpA3HJ+a4lChVQk2XA5P9RoSscc6U8=; b=co23Mj1TMn2OR+
+	O0PyzuCe6zm458tdZbXkSE4Nm6exXsfSbNTD3Bl16l0Fkuwt2rROBHfJ3oa11Y8/VFVxm/MVxrext
+	57eJj2vnCl4pwh1VNiSX/pfCLigJyguaYmRSHJ8AjAx6gHlISRMu142KtxSjW8I+8HJ+aBZaoy5U2
+	K2bOyrJi0hNnUUGby2Fro6vpUUBpkeqrG4NuIyhQn2Fa5tSHFDrZawwmQROSjDYjtACfbojYzBZwB
+	DiWVGsA+Y9AzislM04VGWvt+yw9qB6roSHpmzdP8mmTfe3UmpdkJaadnEAWHozrvoIEeyCDUCdKRY
+	eDbAVM0ilZwjXdsWzoJQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wPMEB-00000001zWS-0Fkn;
-	Tue, 19 May 2026 15:19:27 +0000
-Received: from smtp.forwardemail.net ([121.127.44.66])
+	id 1wPN15-00000002BEj-0h2m;
+	Tue, 19 May 2026 16:09:59 +0000
+Received: from m16.mail.163.com ([220.197.31.4])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wPME1-00000001zIA-3JP5
-	for linux-amlogic@lists.infradead.org;
-	Tue, 19 May 2026 15:19:25 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1779203952;
- bh=UysSrWx2IaBnmq7p+RKc3cNjOUxboHqJt85KySMdL0U=;
- b=UP71aKD8jd1h2ABdkRMuqSjeKMKE2+D8oa02GQBNh9X5rGBdo6uOsYq3oy1ElrqvlenRAEAiz
- CGCqBXI3ieXzvP1GnaC9PaDosGMkQlhsHxWwRVzJtUy90/yD0KvBYtIHGTO0C6dkoSDQlGeLsB4
- KrOH8da4hUgG2jZ03AzC0AgcTE+LMsLh8v6bfN8wKQUjpXcrUpnXlXcVVhEzaDZxEcQ+GaFsIRB
- 577zEv7HkHUtpucSsQ/fO6qinR669sPIf4BPebdwUxeboN9AvJIEvUV1ULOh6DGbFrFZ7DW803C
- 64cEm//xCVfShj+y8nXpkhapzppzI2vzA41b/C+e6A/Q==
-X-Forward-Email-ID: 6a0c7f56b6cbacb3a8d0c696
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.66
-X-Forward-Email-Version: 2.8.12
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <e90eddfc-2f57-418a-ae05-43a411d72b99@kwiboo.se>
-Date: Tue, 19 May 2026 17:18:40 +0200
+	id 1wPN12-00000002BDQ-09hw;
+	Tue, 19 May 2026 16:09:57 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=JLeG6x1Y3dfOvgAW0mg1VnFVfEP9lZkOIYEiUHHIyoA=;
+	b=JUyt0G87rt7PYlK4QmM8e4B8RwvbyXFoil0YpiApMe3XoreMYWYuEqJf5cPfwf
+	qlBIVDUaQLyHq0JgoD73DUE643nlzgebsfiYDyj3SJ0JmWnZ7d0U+bjJkV9ql9SY
+	HGrtIli4iTrWBVdI6Ps9vODOFptHtzla5d5m36vbO5yK4=
+Received: from [IPV6:240e:b8f:91b3:d000:9130:b3d8:6241:39fd] (unknown [])
+	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wBXXrU4iwxqGKJPCQ--.44368S2;
+	Wed, 20 May 2026 00:09:29 +0800 (CST)
+Message-ID: <5cc6fbcc-98eb-4da5-b123-2c04c4d39326@163.com>
+Date: Wed, 20 May 2026 00:09:28 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 04/23] drm: bridge: dw_hdmi: Hold bridge ref until
- connector cleanup
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-References: <20260518180206.2480119-1-jonas@kwiboo.se>
- <20260518180206.2480119-5-jonas@kwiboo.se>
- <177919241969.545972.18169905222569864569.b4-review@b4>
+Subject: Re: [PATCH 0/3] PCI: dwc: Cache PCIe capability offset and simplify
+ drivers
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+ jingoohan1@gmail.com, mx@lists.linux.dev, linuxppc-dev@lists.ozlabs.org,
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, sophgo@lists.linux.dev,
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+ linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260509135152.2241235-1-18255117159@163.com>
+ <beqy5ykxgo4ianya6r4mahkkyujs6lly475u26vqaemgqsdnhp@2pn5ipczwc34>
 Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <177919241969.545972.18169905222569864569.b4-review@b4>
+From: Hans Zhang <18255117159@163.com>
+In-Reply-To: <beqy5ykxgo4ianya6r4mahkkyujs6lly475u26vqaemgqsdnhp@2pn5ipczwc34>
+X-CM-TRANSID: _____wBXXrU4iwxqGKJPCQ--.44368S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxGryfKrW8tFykKr18tF1fJFb_yoW5ArWkpa
+	y5tF4IyF18tF4S9a12v3WDuF13t3Z7AFyDJ39xW34SvFya9F17Wr10yrWftF97JrW2qr1a
+	kF45ta47uFs5JFUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRiiSJUUUUU=
+X-Originating-IP: [240e:b8f:91b3:d000:9130:b3d8:6241:39fd]
+X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbC7BqOMmoMizpQVQAA3Y
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260519_081923_807003_F023EDE4 
+X-CRM114-CacheID: sfid-20260519_090956_436526_A17D64CA 
 X-CRM114-Status: GOOD (  15.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -72,67 +75,96 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: imx@lists.linux.dev, Heiko Stuebner <heiko@sntech.de>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Diederik de Haas <diederik@cknow-tech.com>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Andrzej Hajda <andrzej.hajda@intel.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Robert Foss <rfoss@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, linux-rockchip@lists.infradead.org, linux-sunxi@lists.linux.dev, Liu Ying <victor.liu@nxp.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, linux-amlogic@lists.infradead.org, Chen-Yu Tsai <wens@kernel.org>, linux-arm-kernel@lists.infradead.org, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Neil Armstrong <neil.armstrong@linaro.org>, Louis Chauvet <louis.chauvet@bootlin.com>, Sandy Huang <hjc@rock-chips.com>, Thomas Zimmermann <tzimmermann@suse.de>, Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Andy Yan <andy.yan@rock-chips.com>, Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Luca,
 
-On 5/19/2026 2:06 PM, Luca Ceresoli wrote:
-> On Mon, 18 May 2026 18:01:40 +0000, Jonas Karlman <jonas@kwiboo.se> wrote:
-> 
-> Hello Jonas,
-> 
+
+On 5/19/26 21:57, Manivannan Sadhasivam wrote:
+> On Sat, May 09, 2026 at 09:51:49PM +0800, Hans Zhang wrote:
+>> The DWC PCIe core and its many platform drivers repeatedly call
+>> dw_pcie_find_capability(pci, PCI_CAP_ID_EXP) to obtain the offset of the
+>> PCI Express Capability structure. This is wasteful and makes the code
+>> verbose. And some even search for the PCI_CAP_ID_EXP offset value within
+>> the suspend/resume functions.
 >>
->> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->> index b7bfc0e9a6b2..9d795c550f8a 100644
->> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->> @@ -2600,10 +2609,14 @@ static int dw_hdmi_connector_create(struct dw_hdmi *hdmi)
->>  
->>  	drm_connector_helper_add(connector, &dw_hdmi_connector_helper_funcs);
->>  
->> -	drm_connector_init_with_ddc(hdmi->bridge.dev, connector,
->> -				    &dw_hdmi_connector_funcs,
->> -				    DRM_MODE_CONNECTOR_HDMIA,
->> -				    hdmi->ddc);
->> +	ret = drm_connector_init_with_ddc(hdmi->bridge.dev, connector,
->> +					  &dw_hdmi_connector_funcs,
->> +					  DRM_MODE_CONNECTOR_HDMIA,
->> +					  hdmi->ddc);
->> +	if (ret)
->> +		return ret;
->> +
->> +	drm_bridge_get(&hdmi->bridge);
 > 
-> I'm not fully following the code paths, but both the report and the fix
-> make sense to me. Only I'd move the drm_bridge_get() before
-> drm_connector_init_with_ddc(), to avoid a short window where no reference
-> is held and the bridge might be destroyed before drm_bridge_get() is
-> called. I'm not sure this can happen, but it's better to write the code in
-> a way that clearly makes it impossible.
+> Sashiko has flagged some real issues with this series in accessing DBI space
+> very early and 'pci->pcie_cap' being 0.
 
-dw_hdmi_connector_create() is only called from dw_hdmi_bridge_attach()
-so the bridge should already have a ref for the lifetime of this call.
 
-I explicitly chose the placement after drm_connector_init_with_ddc()
-to ensure ref count is correctly balanced without having to add a
-drm_bridge_put() call in any error path. I.e. connector destroy() is
-only called when drm_connector_init_with_ddc() succeeds.
+Hi Mani,
 
-This code/call is also planned to be removed in a future series, so I do
-not think moving drm_bridge_get() is necessary unless you think we need
-to protect against possible bad behavior from DRM core?
+We have discussed this issue in the Cadence driver. I think it won't 
+cause any problems. Specifically as follows:
 
-Regards,
-Jonas
+https://lore.kernel.org/linux-pci/5823faec-d972-4c77-90ec-a215c686e0a8@163.com/
+"""
+As per PCIe r7.0, sec 7.5.1.1.11, Since all PCI Express Functions are 
+required to implement the PCI Express Capability structure, which
+must be included somewhere in this linked list.
+"""
+
+
+
+Bjorn also responded as follows:
+https://lore.kernel.org/linux-pci/20260505212306.GA744158@bhelgaas/
+"""
+It's true that all Root Ports must have a PCIe Capability.
+"""
+
+
+
+Mani, should I continue to make the judgment that 'pci->pcie_cap' might 
+be 0 as per your instructions?
+
+
+
+Best regards,
+Hans
+
 
 > 
-> Otherwise looks good.
+> Those needs to be fixed.
 > 
-> Luca
+> - Mani
+> 
+>> Add a cached pcie_cap field in struct dw_pcie and a helper
+>> dw_pcie_get_pcie_cap() to initialize it once at probe time. Then replace
+>> all explicit capability searches with the cached value across the
+>> entire dwc subtree.
+>>
+>> Hans Zhang (3):
+>>    PCI: dwc: Add pcie_cap field and helper in designware header
+>>    PCI: dwc: Use cached PCIe capability offset in core
+>>    PCI: dwc: Simplify platform drivers using cached capability offset
+>>
+>>   drivers/pci/controller/dwc/pci-imx6.c         |  6 +--
+>>   .../pci/controller/dwc/pci-layerscape-ep.c    |  4 +-
+>>   drivers/pci/controller/dwc/pci-meson.c        |  4 +-
+>>   .../pci/controller/dwc/pcie-designware-ep.c   |  4 +-
+>>   .../pci/controller/dwc/pcie-designware-host.c |  4 +-
+>>   drivers/pci/controller/dwc/pcie-designware.c  | 16 +++---
+>>   drivers/pci/controller/dwc/pcie-designware.h  | 17 +++++++
+>>   drivers/pci/controller/dwc/pcie-dw-rockchip.c | 15 +++---
+>>   drivers/pci/controller/dwc/pcie-eswin.c       |  3 +-
+>>   drivers/pci/controller/dwc/pcie-fu740.c       |  2 +-
+>>   drivers/pci/controller/dwc/pcie-intel-gw.c    |  2 +-
+>>   drivers/pci/controller/dwc/pcie-qcom-ep.c     | 11 ++--
+>>   drivers/pci/controller/dwc/pcie-qcom.c        | 24 ++++-----
+>>   drivers/pci/controller/dwc/pcie-sophgo.c      |  8 ++-
+>>   drivers/pci/controller/dwc/pcie-spacemit-k1.c |  5 +-
+>>   drivers/pci/controller/dwc/pcie-spear13xx.c   |  6 +--
+>>   drivers/pci/controller/dwc/pcie-tegra194.c    | 51 +++++++------------
+>>   17 files changed, 85 insertions(+), 97 deletions(-)
+>>
+>>
+>> base-commit: 70390501d1944d4e5b8f7352be180fceb3a44132
+>> -- 
+>> 2.34.1
+>>
 > 
 
 
