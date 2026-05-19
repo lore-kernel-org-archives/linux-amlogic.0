@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB293CD4F54
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 May 2026 06:29:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5EF2CD4F3C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 May 2026 06:32:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zVyX4zgzKyyERLhgO3GFQ5jBMWJ27zxUCBdVHGo/+XA=; b=CC0tyWqbslkOjt
-	FN/+rEpn2p7DfJIk9qC/4daaYnuYBANrKVZMBIVW09IqNZKUqShqJ0pCPplXgMTxejd4Ob/3c4vU0
-	AnAwQfQpTn+LhipWXqFVOfXXfktE5rKHPVvDdboGzmg65Ao/vjIQtiiEK3IQDC+5EVtF23q7QoPoI
-	l4P8iI6REN+QDNKwW/MKL7guaxZhymzwiCrubZlKFHjbvkCQV9LXrkgi4o6AYkigwwlHZyUdcW20X
-	QvsrR0ubyk8VOhTyfwLPWgyPxHwZ/d+0xCbjvJG2EOUvrfoWwCgsIcj3E1RVNYnxFPlmHfLIIcW5M
-	xlhz3e6tjQtSbk5ryn7Q==;
+	List-Owner; bh=4mR8H+W+YRTgmlps9VM9l700paFVwkHdDO6lFYjg4QE=; b=1qeB0wqPNnRppN
+	7rgSQll7J644GTfWuEPdz6Tl51Nx5HwzHcRSDZXtpLcUPlGDEBR1xAwRPjgji1mB5vk9beHvtDUKl
+	6dygkohyjIIBSZH+sEFg6ju3iPRbGRYGR0w/livyxuaC/lWRmZuiwGKTcTK70+W2f52amuJ7jtBPx
+	UsRIlO8XIx8lE2zxrHqOYWah+pso9wEQlKcrHtmMqpJaTc54Xn14bq2z+e/TdWS+auKby9nOFIc0x
+	1behJkPUM2VloklrGj8gAJZx64TC3CTn7K8OMYRtECD3miYhc7DH9Y6vLCX+UKMDGSjFP1EfTT3+/
+	IG/+FzkmHB7Eh/iyaRZw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wPDxL-00000000LFP-00Dk;
-	Tue, 19 May 2026 06:29:31 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1wPE0Y-00000000LtP-3Jh6;
+	Tue, 19 May 2026 06:32:50 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wPDxJ-00000000LEr-0K0t;
-	Tue, 19 May 2026 06:29:29 +0000
+	id 1wPE0W-00000000Lse-1kNM;
+	Tue, 19 May 2026 06:32:49 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 82B0360052;
-	Tue, 19 May 2026 06:29:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD349C2BCB3;
-	Tue, 19 May 2026 06:29:23 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id C29F743662;
+	Tue, 19 May 2026 06:32:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03983C2BCB3;
+	Tue, 19 May 2026 06:32:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1779172168;
-	bh=Bb09Qg4E3F+Fq36BezSKvCvgDt/EXtMiv/2PmEfy4rg=;
+	s=k20201202; t=1779172367;
+	bh=ZS8bu+mUGnJsQfUHh5+D7X6IBZxeFHb4boLNUv+hbtk=;
 	h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
-	b=U68D6t7Dq9PG/+1ZD97WIcpBwihxV0A2v3tCH4NTmZPrGqvtB0EcNl6OdLebWgpN9
-	 UzYFXMz9/DK2BVgEKMeKHx28/z30Q8sW2RZcRCcu1hjO62QT6SVnyF9GrJ34i6rkt6
-	 821FHpU5jj25YNv2rfuS6ImD8xRx1mG7beceH0rqNJ8Ppz8z8uCEmx5UG0f99YPtku
-	 fMIwZdEzMf2/OszzrOaVfwB0CN/J3yjTslyN6OHN0iDWkTZiybetdxS4xUOQJ7xCEm
-	 7zPQO4mmya9vQVTcZEmyhOq4sYc+JOLNs8zB+38xLKUuBZkNlj/14mKUSr1pCRcggZ
-	 D8PmKI2XgQX7w==
-Message-ID: <46d05ad3-0334-4fad-816c-cce0d5403a14@kernel.org>
-Date: Tue, 19 May 2026 08:29:22 +0200
+	b=C6jpm0NE1YWpNOEyLkNml4qFiFT5iAzgwNHy9/WOWO/8Mguh5ACyzbepbI3sND5VN
+	 uaGG7gFRVNXoTmoMvIqs0Yqn8TMD5W0iUr9EilOCyPSdtycggrrLOmQ1LGUMMGFUDv
+	 frBFtZhVWms/kA5HX84CFrj5VG2zwFT8FklZfqkTwi+xSIG4LUNdepSunu8N2YjbSZ
+	 roGum5iOnK1LneWHLbttRiZkfLZp2mjKNftjfvSz6QpOeJoSG7sc6Wk7DI5Iqh5A6s
+	 kueYKW9BBfcanCe+vUlxUC6RZxwB2Gxk7CPUlM+que/ucJzoE5nTaSpJKl+fqh/wo2
+	 j5qS0PT5EJAbA==
+Message-ID: <4b51d6a4-057a-4a92-86c2-a6f41b5d4608@kernel.org>
+Date: Tue, 19 May 2026 08:32:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Hans Verkuil <hverkuil+cisco@kernel.org>
-Subject: Re: [PATCH v7 13/23] drm: bridge: dw_hdmi: Use
- dw_hdmi_connector_status_update()
+Subject: Re: [PATCH v7 15/23] drm: bridge: dw_hdmi: Use generic CEC notifier
+ helpers
 To: Jonas Karlman <jonas@kwiboo.se>, Andrzej Hajda <andrzej.hajda@intel.com>,
  Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
  Heiko Stuebner <heiko@sntech.de>,
@@ -58,9 +58,12 @@ To: Jonas Karlman <jonas@kwiboo.se>, Andrzej Hajda <andrzej.hajda@intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
 References: <20260518180206.2480119-1-jonas@kwiboo.se>
- <20260518180206.2480119-14-jonas@kwiboo.se>
+ <20260518180206.2480119-16-jonas@kwiboo.se>
 Content-Language: en-US, nl
-In-Reply-To: <20260518180206.2480119-14-jonas@kwiboo.se>
+In-Reply-To: <20260518180206.2480119-16-jonas@kwiboo.se>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260518_233248_501994_0E3E7FBB 
+X-CRM114-Status: GOOD (  20.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,17 +82,19 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 18/05/2026 20:01, Jonas Karlman wrote:
-> Update connector EDID and CEC phys addr from detect and force funcs to
-> ensure that userspace always have access to latest read EDID after a
-> sink use a HPD low voltage pulse to indicate that EDID has changed.
+> The commit 8b1a8f8b2002 ("drm/display: add CEC helpers code") added
+> generic CEC helpers to be used by HDMI drivers.
 > 
-> With EDID being updated in detect and force funcs, there should no
-> longer be a need to re-read EDID in get_modes funcs, so drop it.
+> Replace the open-coded CEC notifier handling with use of the generic CEC
+> notifier helpers. Ensure DRM_DISPLAY_HDMI_CEC_NOTIFIER_HELPER is also
+> selected when DRM_DW_HDMI_CEC is enabled so that the CEC helpers is
+> available.
 > 
-> This change make the dw-hdmi connector work more closely like the bridge
-> connector does with a hdmi bridge.
+> The drmm release action for the generic CEC notifier should run just
+> before dw_hdmi_connector_destroy(), closely matching the lifetime of
+> the replaced CEC notifier and the connector.
 > 
-> Reviewed-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 > Tested-by: Diederik de Haas <diederik@cknow-tech.com>  # Rock64, RockPro64, Quartz64-B
 > Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 
@@ -101,86 +106,110 @@ Regards,
 
 > ---
 > v7: No change
-> v6: Pass struct dw_hdmi as a parameter,
+> v6: Update commit message,
 >     Collect t-b tag
-> v5: No change
-> v4: Move last_connector_result assign in force ops to this patch,
->     Collect r-b tag
-> v3: Reworked 'Update EDID during hotplug processing' patch
+> v5: Collect r-b tag
+> v4: New patch
 > ---
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 28 ++++++++++++-----------
->  1 file changed, 15 insertions(+), 13 deletions(-)
+>  drivers/gpu/drm/bridge/synopsys/Kconfig   |  1 +
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 26 +++++------------------
+>  2 files changed, 6 insertions(+), 21 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/bridge/synopsys/Kconfig b/drivers/gpu/drm/bridge/synopsys/Kconfig
+> index a46df7583bcf..e6723af03b43 100644
+> --- a/drivers/gpu/drm/bridge/synopsys/Kconfig
+> +++ b/drivers/gpu/drm/bridge/synopsys/Kconfig
+> @@ -49,6 +49,7 @@ config DRM_DW_HDMI_CEC
+>  	depends on DRM_DW_HDMI
+>  	select CEC_CORE
+>  	select CEC_NOTIFIER
+> +	select DRM_DISPLAY_HDMI_CEC_NOTIFIER_HELPER
+>  	help
+>  	  Support the CE interface which is part of the Synopsys
+>  	  Designware HDMI block.
 > diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> index a056e147731b..a4ecf830103d 100644
+> index 0e84dff72470..37406555af7b 100644
 > --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
 > +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> @@ -2473,36 +2473,36 @@ dw_hdmi_connector_status_update(struct dw_hdmi *hdmi,
->  {
->  	const struct drm_edid *drm_edid;
+> @@ -23,12 +23,11 @@
+>  #include <linux/dma-mapping.h>
+>  #include <linux/spinlock.h>
 >  
-> +	if (status == connector_status_disconnected) {
-> +		drm_edid_connector_update(connector, NULL);
-> +		cec_notifier_phys_addr_invalidate(hdmi->cec_notifier);
-> +		return;
-> +	}
-> +
->  	drm_edid = dw_hdmi_edid_read(hdmi, connector);
->  	drm_edid_connector_update(connector, drm_edid);
+> -#include <media/cec-notifier.h>
+> -
+>  #include <linux/media-bus-format.h>
+>  #include <linux/videodev2.h>
+>  
+>  #include <drm/bridge/dw_hdmi.h>
+> +#include <drm/display/drm_hdmi_cec_helper.h>
+>  #include <drm/display/drm_hdmi_helper.h>
+>  #include <drm/display/drm_scdc_helper.h>
+>  #include <drm/drm_atomic.h>
+> @@ -183,8 +182,6 @@ struct dw_hdmi {
+>  	void (*enable_audio)(struct dw_hdmi *hdmi);
+>  	void (*disable_audio)(struct dw_hdmi *hdmi);
+>  
+> -	struct cec_notifier *cec_notifier;
+> -
+>  	hdmi_codec_plugged_cb plugged_cb;
+>  	struct device *codec_dev;
+>  	enum drm_connector_status last_connector_result;
+> @@ -2453,7 +2450,7 @@ dw_hdmi_connector_status_update(struct dw_hdmi *hdmi,
+>  
+>  	if (status == connector_status_disconnected) {
+>  		drm_edid_connector_update(connector, NULL);
+> -		cec_notifier_phys_addr_invalidate(hdmi->cec_notifier);
+> +		drm_connector_cec_phys_addr_invalidate(connector);
+>  		return;
+>  	}
+>  
+> @@ -2462,8 +2459,7 @@ dw_hdmi_connector_status_update(struct dw_hdmi *hdmi,
 >  	drm_edid_free(drm_edid);
 >  
-> -	cec_notifier_set_phys_addr(hdmi->cec_notifier,
-> -				   connector->display_info.source_physical_address);
-> +	if (status == connector_status_connected)
-> +		cec_notifier_set_phys_addr(hdmi->cec_notifier,
-> +				connector->display_info.source_physical_address);
+>  	if (status == connector_status_connected)
+> -		cec_notifier_set_phys_addr(hdmi->cec_notifier,
+> -				connector->display_info.source_physical_address);
+> +		drm_connector_cec_phys_addr_set(connector);
 >  }
 >  
 >  static enum drm_connector_status
->  dw_hdmi_connector_detect(struct drm_connector *connector, bool force)
+> @@ -2525,9 +2521,6 @@ static void dw_hdmi_connector_destroy(struct drm_connector *connector)
 >  {
-> -	struct dw_hdmi *hdmi = container_of(connector, struct dw_hdmi,
-> -					     connector);
-> +	struct dw_hdmi *hdmi = container_of(connector, struct dw_hdmi, connector);
->  	enum drm_connector_status status;
+>  	struct dw_hdmi *hdmi = container_of(connector, struct dw_hdmi, connector);
 >  
->  	status = dw_hdmi_detect(hdmi);
->  
-> -	if (status == connector_status_disconnected)
-> -		cec_notifier_phys_addr_invalidate(hdmi->cec_notifier);
-> +	dw_hdmi_connector_status_update(hdmi, connector, status);
->  
->  	return status;
->  }
->  
->  static int dw_hdmi_connector_get_modes(struct drm_connector *connector)
->  {
-> -	struct dw_hdmi *hdmi = container_of(connector, struct dw_hdmi,
-> -					     connector);
+> -	cec_notifier_conn_unregister(hdmi->cec_notifier);
+> -	hdmi->cec_notifier = NULL;
 > -
-> -	dw_hdmi_connector_status_update(hdmi, connector, connector->status);
-> -
->  	return drm_edid_connector_add_modes(connector);
+>  	drm_connector_cleanup(connector);
+>  	drm_bridge_put(&hdmi->bridge);
 >  }
->  
-> @@ -2532,13 +2532,15 @@ static int dw_hdmi_connector_atomic_check(struct drm_connector *connector,
->  
->  static void dw_hdmi_connector_force(struct drm_connector *connector)
+> @@ -2550,8 +2543,6 @@ static const struct drm_connector_helper_funcs dw_hdmi_connector_helper_funcs =
+>  static int dw_hdmi_connector_create(struct dw_hdmi *hdmi)
 >  {
-> -	struct dw_hdmi *hdmi = container_of(connector, struct dw_hdmi,
-> -					     connector);
-> +	struct dw_hdmi *hdmi = container_of(connector, struct dw_hdmi, connector);
+>  	struct drm_connector *connector = &hdmi->connector;
+> -	struct cec_connector_info conn_info;
+> -	struct cec_notifier *notifier;
+>  	int ret;
 >  
->  	mutex_lock(&hdmi->mutex);
->  	hdmi->force = connector->force;
-> +	hdmi->last_connector_result = connector->status;
->  	dw_hdmi_update_phy_mask(hdmi);
->  	mutex_unlock(&hdmi->mutex);
-> +
-> +	dw_hdmi_connector_status_update(hdmi, connector, connector->status);
+>  	if (hdmi->version >= 0x200a)
+> @@ -2587,15 +2578,8 @@ static int dw_hdmi_connector_create(struct dw_hdmi *hdmi)
+>  
+>  	drm_connector_attach_encoder(connector, hdmi->bridge.encoder);
+>  
+> -	cec_fill_conn_info_from_drm(&conn_info, connector);
+> -
+> -	notifier = cec_notifier_conn_register(hdmi->dev, NULL, &conn_info);
+> -	if (!notifier)
+> -		return -ENOMEM;
+> -
+> -	hdmi->cec_notifier = notifier;
+> -
+> -	return 0;
+> +	return drmm_connector_hdmi_cec_notifier_register(connector, NULL,
+> +							 hdmi->dev);
 >  }
 >  
->  static void dw_hdmi_connector_destroy(struct drm_connector *connector)
+>  /* -----------------------------------------------------------------------------
 
 
 _______________________________________________
