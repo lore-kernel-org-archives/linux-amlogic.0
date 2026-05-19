@@ -4,81 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FC41CD4851
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 May 2026 07:31:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F19F7CD4F57
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 May 2026 07:33:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=yVq/SiHHTOZe8LAT5BhDDPOfcRHfsfcH9s2Tgla/vlY=; b=ddkXXKPUE5dp8Il4C/wVnsVU4X
-	6lywOb8f/AGOUGa4bRkQc5zKdESW1ecZoQbqIsVIJoNcQFcqSBVnKAe2UjxJXJzfCqEWJfulDNjcr
-	z5GRAsIenwUnDMRUs9TLp+NwTuCicyEHCstTb303TkbeXFHFxJWv3rpcYgQQc14mo+I90b+t13vBc
-	vrJ0usgr5jpVpydg8R7D88T4TBZePgQbJVK5DcG6qp78bgreMLJ+BmYyBteVQg22mYUtiXr7hF24C
-	eDrZ804hadSu4/L+dL8B2PIrDE2fvLQ8OsINoWknQ+Ro68bvo3LdE6OEhNeVsOTtx8omtKXpdzeGE
-	eKoePw+Q==;
+	bh=4+PrfAkKlm1t6RN3U5mR1029LTvDgZeWOZE1lWSCYbY=; b=MuW08RWw3xUbIweFOa+5ZZ3JZv
+	b9CVjAbbkrY4PWq75fDkwReZJfvVWj6SgDDY7kHa9yFLS0cB+ukDeCOTocFAXtCla8il6Xe1+VAQS
+	mUOcdRcOxlYBRDRMbYPZAX6jAr9R1awq0dRU5qOqhJKZCsEKpeg84ghyiYqwbUdNcjYkseNlKXArI
+	G6pZLxmZUQ6t5GGNeDm/9EYGDxoOd2Zd7QRV1LDShjqFgube0yEJb2GMd2nnlkYSNnboo3ps3cI/1
+	+akAnDSC0o4ZF7fPDOwqbs395qYFD62ftrmtOSZadhgq3v7sqaEmd0a0+munn5ml0H5B73ePx+3/J
+	J96vcxFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wPEva-00000000VUq-3PZd;
-	Tue, 19 May 2026 07:31:46 +0000
-Received: from mail-lf1-x135.google.com ([2a00:1450:4864:20::135])
+	id 1wPEx1-00000000VtO-3JwA;
+	Tue, 19 May 2026 07:33:15 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wPEvX-00000000VSp-26FU
+	id 1wPEwx-00000000VrI-2J11
 	for linux-amlogic@lists.infradead.org;
-	Tue, 19 May 2026 07:31:45 +0000
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-5a87782588cso3796153e87.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 19 May 2026 00:31:42 -0700 (PDT)
+	Tue, 19 May 2026 07:33:13 +0000
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4891d7164ddso17722105e9.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 19 May 2026 00:33:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1779175901; x=1779780701; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1779175990; x=1779780790; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=U3SA13elET4TYgmxY3hJVngIm5W/klIYH+PuWe1fxys=;
-        b=DFefCnsjqx1HmK5U0W7xQY7si7/ojzbr7B5NA1eYkdUxTEEnXFnrN+kGYUBt9epHr2
-         UjP3c87eMEJB08sCAeiByEfqE24ENkuZz9CJ62L0b90o2BuqbEGxdTVxNpm31tWXI84x
-         HembTw/txwuH741yrCUJMVyRUYanhas1buh4ZgNBM+hxd3z15Z/uOh9RhectCI1poOaU
-         RwdYG9p62F3QwRVeyXRIZ4DD8LzcSDm/a/hiRrGijlmsUDUMYyCEdts3PqHyUp3hkWZ4
-         X4sMmaISq/4MWSD+8HDLiwnmHLPq1mOus/pzz9vAzKQeAeFchYjGCI4mwtpYmzpwKlyX
-         pwkg==
+        bh=WT2XihSgFDy/lOv8L6CXXNwwAVk4RQea7wu+1npHTP8=;
+        b=XVcsT5k/vsdFpkPE3o6X0mNezq2ofxJ9C92/3hEQxULToZQha49BV6K2sKGcP7iAEV
+         XtIpyGbjFhvVfiYJXh5KCgeu3Go9W161+jgsozxyjchZV8ACb2Kfn4AT5G07TjSlDy7T
+         Vy7ooKqQzhScq56aglztUk11tmvOWh8mRq8OXvXAGUybXQ1Ccq6ZpVfXWeI8eYpcECCq
+         8qvo66/mQQW8kj9mztOq1NIvkHOgdb/4swrwB+ZEvb5bxh7i0GLggfrMzSRGkAbzm478
+         2w2RJXyB/J2vRqBO7suGBncRKZvEzmlDhRN3lG1OrXqF8OfYZCu2EjLm1EPB9XFLUseL
+         foxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779175901; x=1779780701;
+        d=1e100.net; s=20251104; t=1779175990; x=1779780790;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=U3SA13elET4TYgmxY3hJVngIm5W/klIYH+PuWe1fxys=;
-        b=RuWPBbGQRsMxkXZpeVNf7XD3qjmhjdOK429NWl+TS4BI2c/8BoWFJJn6UgoJ+WHeud
-         osLXvihIQe6hX9JtDBogkbWQHVhhL9GRoDOJffHsYDw9W3n4eneXSOFSC9EhiVnZBmIM
-         Dii5ZJgF3jibNDxm0m3A+FwgAe19fn+ch0Hp6iNop80CNUIMviH4uFYBFUebBmo+UbY/
-         AtCPkem2gjdko/MraXZtkr7DjfC0T7yA5+8D+X84kJjg/LPV5QHECZwWzJGtSnvtxcNo
-         Qh9I3kspVfIYQkIofCSTCihsfxFsw42i8wubWGq3TmNDFS+yAai+1PkdkOpXKbm2NR2s
-         oFAw==
-X-Forwarded-Encrypted: i=1; AFNElJ8FTSCW0J3ZestwfzQS38O8qSnVwPiPn80bx9+wTgzpLAqdDDb0MkPNdiF0CLXVg+g3vBBwI9sIz06ui0M4@lists.infradead.org
-X-Gm-Message-State: AOJu0YzUSrrUvbLv40hPddaGPWMpRg+4oMI1Y7EeEo2ZQJgnrgpTkTso
-	qw2VP2iyRrFww3pJ2qrGXES9XT9r6/YBcN1czD5KuByNu5hYhgMDEPi2akpiUUoSla8=
-X-Gm-Gg: Acq92OGc+bqQ4AMgu3meMPA/L+pQL4Yn3HAzY4ULPGcXXr0H5tUY+6LLzPuNXVn3xmT
-	nB80mXHDJR411QHCoGMiafxFNjRmE12rTZVWNZ7/JFgHIcUEo/Do/yzmzhldkS0Y3sTyNLxzSEX
-	8VNEUW+mHJXT9K1pjCMjA8DjRDghmz6S0T8bDyQCbvksSf05ZwNLNoLU354MJA6/j1Nscq1GsMe
-	amUGpcxFoPbb7gUn2ZnrerQWiIxzc5J/Qf3dJF1Yb554aA+DB2YKMvsPffnvDLtjpehU8w5/50y
-	ehuitmtLvwQHsIEKa3CwLAQZ1hHxHrQXV21W968ZNZMCXUyTNjKRk17Ytuto8MknePRJq0e2ZB8
-	L/MVPEyJnOUG94yOuxAxNFTGMYFAz+Z0SYuFCNV7HFHuExHd2anE7HueKiIQZ0K2gatkZjQE7o4
-	I9ja6Rp7yTjv9xEM+kNNrpGe+miJCCWQAhXAwrVbmFBVnRgnfeLDiZUukSCZGMG9hDaD9JuW6Gf
-	nyY
-X-Received: by 2002:a05:6512:1317:b0:5a8:fbe0:bc71 with SMTP id 2adb3069b0e04-5aa0e611478mr5339169e87.15.1779175901177;
-        Tue, 19 May 2026 00:31:41 -0700 (PDT)
+        bh=WT2XihSgFDy/lOv8L6CXXNwwAVk4RQea7wu+1npHTP8=;
+        b=k45AhnICEfVVchsZmGC2WjBLTgOWbkpncOXEvTo5SnkTuXLFt3uRdckcEGb+oLPTub
+         g8L+ALJszxJngcTaM+R5AxRsaBzFN9ZpLEl2rT6/Op49kuVmCsaF9Ynm9pfTM5wAoQab
+         e4v+Bh3pbK4OQ9DntlayG9iZmjwbPpmCRChBXuz6qGKZLKSbWLJL1ygBFAYiNzSdzTw8
+         5rrKWaiuPWMEKup4Rk8z2Yw1hHHG+USQVdKe6CrLNmSXuD6EQ3Ntf+t4yaSnpf//OF7+
+         f7KTSew6yKzU5fOOliWSNZqlrSNclbyn0gEFzzTtaMACpDNBDQoRnZ/ya/wE7X5dr3XD
+         B7Kw==
+X-Forwarded-Encrypted: i=1; AFNElJ+jo8h5ud7dFGUCHums5hDgz++JJDxKvQBkJw2V9zaEUN2OEyAfmhLe4L/nu/KixKAmoY8ieVXYeSq9USJl@lists.infradead.org
+X-Gm-Message-State: AOJu0YyAm0NrmNBFeOxrdvljJa+OhuODYUCnuPrENn1St1tySoudA6y9
+	vzBCTvZqKR53bP3J8liiprKm437XocwhvZsM4UtaHCpmohyWW9QEJ8Y9xGkvfJS+SrE=
+X-Gm-Gg: Acq92OHbh2Gxj9smxFFbTPBG37emzeKKukdxjB3dhi2h40j3eLoFDA26bNdMCK6T9kK
+	DG/EHtaEfpzSGBIMFmTlfaNXo7MZas1lHQvlkz7Q09QCRf/2HvwK+b4LCprn56B3Kq+5w7lc4CI
+	hUucuyBIqyc0Xu7id5HCOoPF949R8GwlVl22e2KfwRoYuK05LggH0vyxW6i7Rs5rtP1T5z9u/P1
+	Z7Du+GSzsbCLaqoaA58NGB0YQg/FXgjbqi0u+eu+vb//o/moI36VQTncgMnWE/wC34X6lYyhtXl
+	8SDzQSUlaq+vV5sWTIwB4i+ufrjrUIxJ0qwLSE7IJb0C/wzj0xCUPZcPT4/Eo++cYQkYd7TAw4c
+	slguCpocHanzXg7KskZWQjeNKlgzgOYA6F4hN2+q+2ZpfgC3uPl8/LetjoTD+hCZve3AYCHCPlE
+	Z7WPaUOZgvqcr9kvteJBTpJtDMnOi+Y3iQaaaRYblneDrv88QJ3pcpzmZyMUSFIEKLH8dVbkLmR
+	zzRxo34IxLLQlY=
+X-Received: by 2002:a05:600c:858d:b0:48e:82b4:b54 with SMTP id 5b1f17b1804b1-48fe6514873mr222865245e9.23.1779175989618;
+        Tue, 19 May 2026 00:33:09 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:106d:1080:1d4b:274c:94d:a69f? ([2a01:e0a:106d:1080:1d4b:274c:94d:a69f])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45da0fe2464sm44941676f8f.32.2026.05.19.00.31.40
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48ff43f213esm136408795e9.1.2026.05.19.00.33.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 May 2026 00:31:40 -0700 (PDT)
-Message-ID: <c6beeeb7-f764-4a84-aff7-5e29250027a1@linaro.org>
-Date: Tue, 19 May 2026 09:31:39 +0200
+        Tue, 19 May 2026 00:33:09 -0700 (PDT)
+Message-ID: <4ed0c9c4-6a48-4c25-9caa-16914587e580@linaro.org>
+Date: Tue, 19 May 2026 09:33:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 07/13] drm/meson: encoder_hdmi: Report ycbcr_420_allowed
- from encoder
+Subject: Re: [PATCH 08/13] drm/meson: dw-hdmi: Use local dev variable
+ consistently in bind()
 To: Jonas Karlman <jonas@kwiboo.se>, Kevin Hilman <khilman@baylibre.com>,
  Heiko Stuebner <heiko@sntech.de>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -90,7 +90,7 @@ Cc: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  linux-rockchip@lists.infradead.org
 References: <20260518194744.2483580-1-jonas@kwiboo.se>
- <20260518194744.2483580-8-jonas@kwiboo.se>
+ <20260518194744.2483580-9-jonas@kwiboo.se>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -117,10 +117,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20260518194744.2483580-8-jonas@kwiboo.se>
+In-Reply-To: <20260518194744.2483580-9-jonas@kwiboo.se>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260519_003143_570137_3381729D 
-X-CRM114-Status: GOOD (  13.59  )
+X-CRM114-CacheID: sfid-20260519_003311_609146_31ADDF2D 
+X-CRM114-Status: GOOD (  14.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -139,39 +139,40 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 5/18/26 21:47, Jonas Karlman wrote:
-> The bridge connector report ycbcr_420_allowed support when all bridges
-> in the chain support ycbcr_420_allowed.
-> 
-> Report ycbcr_420_allowed on the encoder bridge so that the bridge
-> connector automatically can report correct ycbcr_420_allowed support.
+> Replace indirect struct device accesses via pdev->dev with the local dev
+> parameter already available in meson_dw_hdmi_bind(), for consistency and
+> readability.
 > 
 > Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 > ---
->   drivers/gpu/drm/meson/meson_encoder_hdmi.c | 4 +---
->   1 file changed, 1 insertion(+), 3 deletions(-)
+>   drivers/gpu/drm/meson/meson_dw_hdmi.c | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-> index 45104ef35344..484675cb8284 100644
-> --- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-> +++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-> @@ -354,6 +354,7 @@ int meson_encoder_hdmi_probe(struct meson_drm *priv)
->   	meson_encoder_hdmi->bridge.of_node = priv->dev->of_node;
->   	meson_encoder_hdmi->bridge.type = DRM_MODE_CONNECTOR_HDMIA;
->   	meson_encoder_hdmi->bridge.interlace_allowed = true;
-> +	meson_encoder_hdmi->bridge.ycbcr_420_allowed = true;
+> diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+> index 30099bf71aad..fcd2426af9fc 100644
+> --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
+> +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+> @@ -671,9 +671,9 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
 >   
->   	pdev = of_find_device_by_node(remote);
->   	of_node_put(remote);
-> @@ -406,9 +407,6 @@ int meson_encoder_hdmi_probe(struct meson_drm *priv)
+>   	DRM_DEBUG_DRIVER("\n");
 >   
->   	drm_connector_attach_max_bpc_property(meson_encoder_hdmi->connector, 8, 8);
+> -	match = of_device_get_match_data(&pdev->dev);
+> +	match = of_device_get_match_data(dev);
+>   	if (!match) {
+> -		dev_err(&pdev->dev, "failed to get match data\n");
+> +		dev_err(dev, "failed to get match data\n");
+>   		return -ENODEV;
+>   	}
 >   
-> -	/* Handle this here until handled by drm_bridge_connector_init() */
-> -	meson_encoder_hdmi->connector->ycbcr_420_allowed = true;
-> -
->   	priv->encoders[MESON_ENC_HDMI] = meson_encoder_hdmi;
+> @@ -771,7 +771,7 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
+>   		return PTR_ERR(meson_dw_hdmi->hdmi);
+>   	}
 >   
->   	dev_dbg(priv->dev, "HDMI encoder initialized\n");
+> -	meson_dw_hdmi->bridge = of_drm_find_and_get_bridge(pdev->dev.of_node);
+> +	meson_dw_hdmi->bridge = of_drm_find_and_get_bridge(dev->of_node);
+>   	if (!meson_dw_hdmi->bridge) {
+>   		devm_free_irq(dev, irq, meson_dw_hdmi);
+>   		dw_hdmi_remove(meson_dw_hdmi->hdmi);
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
