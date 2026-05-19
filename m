@@ -4,73 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EEA6CD4F4A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 May 2026 19:49:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E5A1CD4F3C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 May 2026 06:21:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zd68nCHtPDHTgJzg7dSajM3R4GU8RvWH3Uo8hRj4zXU=; b=ZqmO7cYDE2saS7
-	aFajHuDGsgod9bz4BvBs6/ahhrssPpygDH3WE7hMfF3fJm0TH5pV/7HcENt2GCy8gi4FBX0zOHjUZ
-	67kd4dX1AXySJaDVtWXBWyE5V2vMVmAmvxj3UjfJX+/ocd4TcXvGZYcREOe6EYRODKfu51uR2Pxl+
-	dzZxD2L+XF+2n3SlpOE1BQV6sLb+AUx/IdUJHgqgMjktsELwpzTg84D9mvh+1iQt2tF1W+seDF0O/
-	MTfkBrfy94aU/AaRpp9BXZrRLJZ3EWFRptNcumgr55B0wTo4GSJWPZYG4Bh9CatFQ7EvWlfh8Lxu5
-	eYenC1TX8wp1pR/8jqbQ==;
+	List-Owner; bh=rWiKu6CJ9p3WQnZuuiUpGE88HvYqTlAdulOG6nXo43A=; b=or6bqoQdcBwpfD
+	nXLmZeHIv+91wa/Ich58NJAcR350LPBiLHUwHuwC/H5FPOGYBNSXFxMVQ7onNsvGxGUtQGOL+bdiF
+	7uRe1aBrq8rettcIQ5Uy/HU43EZPZ//N/+vmU5+tkAcOcMnBNAPWl+vya2BjproKqWWnVMnAnisgx
+	lZvQoZpvHYprd9sqdAunOvgTmKxsyBYfXKPIQpYVJUAWJ9VDVp1cvqfi6T62SNnqLbx9tvYc2+Xsb
+	pmZOlL6L9lszuRjSk+IVCoQWKjUTY2K3tCAG187st3kC5ERUDzoAFbaDJ6MY9OKmy9DbmPunTG2EZ
+	wjd5CMBMOjHCSNN0Amkw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wP3xh-0000000Gmtb-26KA;
-	Mon, 18 May 2026 19:49:13 +0000
-Received: from smtp.forwardemail.net ([149.28.215.223])
+	id 1wPDpj-00000000JMj-43Of;
+	Tue, 19 May 2026 06:21:39 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wP3xe-0000000GmoY-1rnp
-	for linux-amlogic@lists.infradead.org;
-	Mon, 18 May 2026 19:49:12 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
- Message-ID: Date: Subject: Cc: To: From; q=dns/txt; s=fe-e1b5cab7be;
- t=1779133749; bh=7oMd33Pu3qFKqhyhcRlxwcdcgttbfUQtZ40oIOhs3ik=;
- b=zgLp11Yt8MNVepfqiQrrkaZt0D+3pa6HzQlx730jQez/SAavnLVuyMsHlR560qemPvIGSYyA3
- RXuYD81hXm/l5SCqKKjPxXYLPXA2LjMZ8kakLVtkR1hfFyX5e14SmZxlJyBH8XPRf9q7xZniYzZ
- /zqg14PqvftjcFImzrF0FVjUYZU+f0npFz/XP1zgjPIJiUA41OLrif3TSGeS8NYw8nyXezrbz+Y
- 143cYQixonU9v/iwPPcmDUzxEzJuq6zocuyI6wLFisU+B9/0l/Mwr0FHNXWADW9wRj5phpP6kLm
- feHm6DztOfM2Bzz9A14nEVnCWzGa2T+S/1dJOTQjCSiA==
-X-Forward-Email-ID: 6a0b6d21b74b0ebd362eef85
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 2.8.12
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-From: Jonas Karlman <jonas@kwiboo.se>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: dri-devel@lists.freedesktop.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Jonas Karlman <jonas@kwiboo.se>,
-	linux-rockchip@lists.infradead.org
-Subject: [PATCH 13/13] drm/meson: dw-hdmi: Use suspend_late/resume_early/resume_noirq pm ops
-Date: Mon, 18 May 2026 19:47:41 +0000
-Message-ID: <20260518194744.2483580-14-jonas@kwiboo.se>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260518194744.2483580-1-jonas@kwiboo.se>
-References: <20260518194744.2483580-1-jonas@kwiboo.se>
+	id 1wPDpi-00000000JMM-2wmv;
+	Tue, 19 May 2026 06:21:38 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id DF74060052;
+	Tue, 19 May 2026 06:21:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91448C2BCB3;
+	Tue, 19 May 2026 06:21:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1779171697;
+	bh=bI1+JJlEbofJwf56QKg8oCf2syw9NjpmEZehTGAplJQ=;
+	h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
+	b=WWVuvCg3lq9kj/W9OHODE0FAt4VK9CPQwu6zrFMcsNHdAqHhuzXGUZGwy47s+6CJa
+	 72YU4jF38E/VoKdeqoOIf5/QWpSv8RvP81fnP/amdv5Atnb8XbyxcH68VxhFGCx3ps
+	 WslsvsyfQ2rbuY7x6SBVCsHXrAwRQvdmM7k8Yq0Hg+Pylth9J7eDPnvJGfCMhsGgGK
+	 neW3YY0ok1Q6kxW+5X/1OzpeDgTPpOBbYkjnqhb6PDYNe5BWbfv8/IIAH583IJVKgb
+	 OSCoe7lNCaR78GmefFw7YcG3rj6IFuKpUu6uf9VY2+GBWUMQYIa+Tni5LvSrU8pACF
+	 UWv2Xe4Ihmgtw==
+Message-ID: <a34f5914-80b7-4d95-a220-79001309214a@kernel.org>
+Date: Tue, 19 May 2026 08:21:30 +0200
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260518_124910_504431_8B07A201 
-X-CRM114-Status: GOOD (  14.94  )
+User-Agent: Mozilla Thunderbird
+From: Hans Verkuil <hverkuil+cisco@kernel.org>
+Subject: Re: [PATCH v7 03/23] drm: bridge: dw_hdmi: Free IRQ before CEC
+ adapter is unregistered
+To: Jonas Karlman <jonas@kwiboo.se>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Russell King <rmk+kernel@armlinux.org.uk>, Hans Verkuil
+ <hverkuil@kernel.org>, Archit Taneja <architt@codeaurora.org>
+References: <20260518180206.2480119-1-jonas@kwiboo.se>
+ <20260518180206.2480119-4-jonas@kwiboo.se>
+Content-Language: en-US, nl
+In-Reply-To: <20260518180206.2480119-4-jonas@kwiboo.se>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,156 +74,82 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, imx@lists.linux.dev, Liu Ying <victor.liu@nxp.com>, linux-kernel@vger.kernel.org, Sandy Huang <hjc@rock-chips.com>, dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev, Diederik de Haas <diederik@cknow-tech.com>, linux-rockchip@lists.infradead.org, linux-amlogic@lists.infradead.org, Andy Yan <andy.yan@rock-chips.com>, Chen-Yu Tsai <wens@kernel.org>, Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-meson_drv_pm_suspend()/drm_mode_config_helper_suspend() and
-meson_drv_pm_resume()/drm_mode_config_helper_resume() is called
-after/before the suspend/resume pm ops of dw-hdmi.
+On 18/05/2026 20:01, Jonas Karlman wrote:
+> The interrupt allocated with devm_request_threaded_irq() can be
+> use-after-free when the devres release action try to free_irq().
+> 
+> KASAN report a slab-use-after-free in dw_hdmi_cec_hardirq during unbind:
+> 
+> Call trace:
+>   [...]
+>   dw_hdmi_cec_hardirq+0x4cc/0x560
+>   free_irq+0x48c/0x7e4
+>   devm_irq_release+0x54/0x90
+>   dr_node_release+0x38/0x5c
+>   release_nodes+0xac/0x130
+>   devres_release_all+0xf4/0x1b0
+>   device_unbind_cleanup+0x28/0x1f8
+>   device_release_driver_internal+0x358/0x470
+>   device_release_driver+0x18/0x24
+>   bus_remove_device+0x33c/0x4f0
+>   device_del+0x2d8/0x790
+>   platform_device_del+0x34/0x1e0
+>   platform_device_unregister+0x14/0x3c
+>   dw_hdmi_remove+0x74/0x180
+>   [...]
+> 
+> Freed by:
+>   [...]
+>   kfree+0x1dc/0x5dc
+>   cec_delete_adapter+0xd4/0x118
+>   cec_devnode_release+0xa4/0xe0
+>   device_release+0xa0/0x200
+>   kobject_put+0x14c/0x26c
+>   put_device+0x14/0x30
+>   cec_unregister_adapter+0x20c/0x280
+>   dw_hdmi_cec_remove+0x8c/0xd0
+>   [...]
+> 
+> Explicitly devm_free_irq() before the CEC adapter is unregistered to
+> fix this possible use-after-free issue.
+> 
+> Fixes: a616e63c56ef ("drm/bridge: dw-hdmi: add cec driver")
+> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 
-This result in atomic_disable() being called after
-meson_dw_hdmi_pm_suspend() and atomic_enable() before
-meson_dw_hdmi_pm_resume()/dw_hdmi_resume() is called.
+Acked-by: Hans Verkuil <hverkuil+cisco@kernel.org>
 
-Suspend (without changes):
-- meson_dw_hdmi_pm_suspend()
-- meson_drv_pm_suspend()
-  - drm_mode_config_helper_suspend()
-    - atomic_disable()
+Regards,
 
-Resume (without changes):
-- resume_irq()            <<-- system freeze at hdmi-tx irq on G12B
-- meson_drv_pm_resume()
-  - drm_mode_config_helper_resume()
-    - atomic_enable()
-- meson_dw_hdmi_pm_resume()
-  - meson_dw_hdmi_init()
-  - dw_hdmi_resume()
-    - dw_hdmi_init_hw()
+	Hans
 
-Change to use suspend_late/resume_early pm ops for system suspend to
-ensure pm ops for dw-hdmi is run after/before meson_drv pm ops.
-
-The G12B can trigger an IRQ (stat=0x40) very early during resume_irq
-that causes a system freeze. Move the meson_dw_hdmi_init() call to
-resume_noirq pm ops to resolve the system freeze.
-
-Also move meson_dw_hdmi_init() to run before interrupt allocation to
-ensure HW has been initialized when first IRQ is triggered.
-
-Suspend (with changes):
-- meson_drv_pm_suspend()
-  - drm_mode_config_helper_suspend()
-    - atomic_disable()
-- meson_dw_hdmi_pm_suspend_late()
-
-Resume (with changes):
-- meson_dw_hdmi_pm_resume_noirq()
-  - meson_dw_hdmi_init()
-- resume_irq()
-- meson_dw_hdmi_pm_resume_early()
-  - dw_hdmi_resume()
-    - dw_hdmi_init_hw()
-- meson_drv_pm_resume()
-  - drm_mode_config_helper_resume()
-    - atomic_enable()
-
-Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
----
-This can be tested using CONFIG_PM_DEBUG with a simulated suspend:
-  echo N > /sys/module/printk/parameters/console_suspend
-  echo 1 > /sys/power/pm_debug_messages
-  echo platform > /sys/power/pm_test
-  echo mem > /sys/power/state
-or using something like following for real suspend/resume:
-  echo N > /sys/module/printk/parameters/console_suspend
-  rtcwake -m mem -s 5 -d /dev/rtc1
-
-On S905X a simulated platform pm_test could only be tested. On G12A both
-simulated and real suspend works. And on G12B the board seems to freeze
-at a later stage when taking out of real suspend, however platform
-pm_test works.
----
- drivers/gpu/drm/meson/meson_dw_hdmi.c | 27 +++++++++++++++++++--------
- 1 file changed, 19 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-index 7b465e216759..16f15466a6f4 100644
---- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-@@ -696,6 +696,8 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
- 	if (IS_ERR(dw_plat_data->regm))
- 		return PTR_ERR(dw_plat_data->regm);
- 
-+	meson_dw_hdmi_init(meson_dw_hdmi);
-+
- 	irq = platform_get_irq(pdev, 0);
- 	if (irq < 0)
- 		return irq;
-@@ -706,8 +708,6 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
- 		return dev_err_probe(dev, ret,
- 				     "Failed to request hdmi top irq\n");
- 
--	meson_dw_hdmi_init(meson_dw_hdmi);
--
- 	/* Bridge / Connector */
- 
- 	dw_plat_data->priv_data = meson_dw_hdmi;
-@@ -763,7 +763,7 @@ static const struct component_ops meson_dw_hdmi_ops = {
- 	.unbind	= meson_dw_hdmi_unbind,
- };
- 
--static int __maybe_unused meson_dw_hdmi_pm_suspend(struct device *dev)
-+static int __maybe_unused meson_dw_hdmi_pm_suspend_late(struct device *dev)
- {
- 	struct meson_dw_hdmi *meson_dw_hdmi = dev_get_drvdata(dev);
- 
-@@ -777,7 +777,19 @@ static int __maybe_unused meson_dw_hdmi_pm_suspend(struct device *dev)
- 	return 0;
- }
- 
--static int __maybe_unused meson_dw_hdmi_pm_resume(struct device *dev)
-+static int __maybe_unused meson_dw_hdmi_pm_resume_early(struct device *dev)
-+{
-+	struct meson_dw_hdmi *meson_dw_hdmi = dev_get_drvdata(dev);
-+
-+	if (!meson_dw_hdmi)
-+		return 0;
-+
-+	dw_hdmi_resume(meson_dw_hdmi->hdmi);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused meson_dw_hdmi_pm_resume_noirq(struct device *dev)
- {
- 	struct meson_dw_hdmi *meson_dw_hdmi = dev_get_drvdata(dev);
- 
-@@ -786,8 +798,6 @@ static int __maybe_unused meson_dw_hdmi_pm_resume(struct device *dev)
- 
- 	meson_dw_hdmi_init(meson_dw_hdmi);
- 
--	dw_hdmi_resume(meson_dw_hdmi->hdmi);
--
- 	return 0;
- }
- 
-@@ -802,8 +812,9 @@ static void meson_dw_hdmi_remove(struct platform_device *pdev)
- }
- 
- static const struct dev_pm_ops meson_dw_hdmi_pm_ops = {
--	SET_SYSTEM_SLEEP_PM_OPS(meson_dw_hdmi_pm_suspend,
--				meson_dw_hdmi_pm_resume)
-+	SET_LATE_SYSTEM_SLEEP_PM_OPS(meson_dw_hdmi_pm_suspend_late,
-+				     meson_dw_hdmi_pm_resume_early)
-+	SET_NOIRQ_SYSTEM_SLEEP_PM_OPS(NULL, meson_dw_hdmi_pm_resume_noirq)
- };
- 
- static const struct of_device_id meson_dw_hdmi_of_table[] = {
--- 
-2.54.0
+> ---
+> v7: New patch
+> 
+> KASAN report a slab-use-after-free in dw_hdmi_cec_hardirq when,
+>   echo fe0a0000.hdmi > /sys/bus/platform/drivers/dwhdmi-rockchip/unbind
+> on a Rockchip RK3566 device prior to this fix.
+> ---
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi-cec.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-cec.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-cec.c
+> index 9549dabde941..67a2a242d3ca 100644
+> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-cec.c
+> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-cec.c
+> @@ -309,6 +309,7 @@ static void dw_hdmi_cec_remove(struct platform_device *pdev)
+>  	struct dw_hdmi_cec *cec = platform_get_drvdata(pdev);
+>  
+>  	cec_notifier_cec_adap_unregister(cec->notify, cec->adap);
+> +	devm_free_irq(&pdev->dev, cec->irq, cec->adap);
+>  	cec_unregister_adapter(cec->adap);
+>  }
+>  
 
 
 _______________________________________________
