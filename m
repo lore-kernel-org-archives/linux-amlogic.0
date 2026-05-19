@@ -4,68 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2459CD4F3C
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 May 2026 16:28:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97C46CD4F5E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 May 2026 16:49:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DqEf5OaZcE75OF8Np+Yd6rYgFZ2+HIajjOShSLLbIVE=; b=kB/HAXh9MQfDVI
-	zi01AGzGToIV+A5r7QUfO1+lmkQKRhw73C7aBaHAdZrOjZIaeslCsXSDkfquhVb9dfapJe+X6TW1A
-	QchoZFZm4j1JfFj8x+UFv4y5xmORSA4xMdP8ipRlGjeo1aFhB0z4FZaZd22bXcHKaHtl/NLbAGPX3
-	f3GR29wK2knVhLurV3JIgyo3IwH2Vo8ff+WyItLga042UK8kTmV+9Tt+cEsRUYh1KHw6VLlPWg4pO
-	J/JwKZyjTpVRvnW/K7FCaRIHUyyVddr3eaRZTmwQyGHODeqtaKZFGR2bldnP3iJmSncwp/Pd9wXwv
-	exXTdAmDDhpHTJQNzfiA==;
+	List-Owner; bh=GHsWroNAkBDQ2GLHcLcj01ye5Igy+1B29GKhUOXvb00=; b=hIYUmX57HRuC98
+	txA/6uFWMYOCFLXzzzFkxj91OOdLN3po11iIS0j+OjVon6H/vXAL0yUhxN5Hs+lI/AdNaExPhV+pw
+	HXtHMa0qJXD37Xgj/2Bmw+IHOwZ549EkMng1+4IDCThDu0e2EsGJ1fTkjW2cIunw5qc55W8Bxv9AB
+	Vir25SlUatyzV8bDIs+BeeGCZliI1Szr1MxVb7uFL/8/Mr+Ydjg20CT6O25gciK+SaVLnzNj5Rtqw
+	m1LR2W5U/HNwjfXb19/EYh/lX2QZei8nb7R6xbC83bFWH8r5Bcjnell3rUp3h6JlYMbWVUBJkCW71
+	sz+MH0w8qFKaOvDkeeUg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wPNIW-00000002EPT-1PA5;
-	Tue, 19 May 2026 16:28:00 +0000
-Received: from m16.mail.163.com ([117.135.210.4])
+	id 1wPNdY-00000002IAg-2Isl;
+	Tue, 19 May 2026 16:49:44 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wPNIR-00000002ENZ-0zjl;
-	Tue, 19 May 2026 16:27:57 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=HEzVodalGePwQa0r0A0yc+dOQ9J8DF1f8pqfWHrsuSk=;
-	b=mkAQ+9qgGabS1i8OItgzH9nPB22PSXb1+d91WzICOmsEtS/r6QFeeHtqKA1W5/
-	m9VrN7fmFjkpo6vTEdLqaVrbjqtXsvmwIJodwhdIl3IMv7T2BavKmxqxify2H8uO
-	PjyXtOG+aBdv1+ITi0wqxv/8WztCkfwZOUJRUZNCESIyk=
-Received: from [IPV6:240e:b8f:91b3:d000:9130:b3d8:6241:39fd] (unknown [])
-	by gzga-smtp-mtada-g1-2 (Coremail) with SMTP id _____wDXEFBpjwxq6iYtCQ--.55083S2;
-	Wed, 20 May 2026 00:27:22 +0800 (CST)
-Message-ID: <3464ded9-721a-4eb2-afb6-bbca6fdc8a46@163.com>
-Date: Wed, 20 May 2026 00:27:21 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+	id 1wPNdX-00000002IA7-1nXX;
+	Tue, 19 May 2026 16:49:43 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 98D436022C;
+	Tue, 19 May 2026 16:49:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FA12C2BCB8;
+	Tue, 19 May 2026 16:49:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1779209382;
+	bh=xK7G16bEnZgohr2GyDq+tZifrjDBAqojOxTNLJhUbiw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZcJ/m4MeM2e98nnOTWyxvz0J/hHpuy2z+cR32k07YBEdAsrTReXtpj7hfVlMsvGlw
+	 yJJYp5kvNjdIqpCwscGHQA56+TjGyzl/dZsVPXAwpVk/HE52dM8WNVt2xHGifb4268
+	 ukJWQPCeyERVndgALRGPasfOJTh3aaHh6ONkilTpHGPTz0XWSJ3Rxa62xrSxHMjseK
+	 e9TsViLHyP+GvHcE8couHEqJSm2xfg/nxEOorcVP9VnTPlk8LKolVT7rgg0EWrpzpU
+	 AeYCgpVNMG7Nn2SNACkuPVj0jHTyxhbuG1qAcXJpBwk+7Mvp/PN3W6YUEaVF7Vm8Up
+	 P+3U6rw/fm8ZA==
+Date: Tue, 19 May 2026 22:19:33 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Hans Zhang <18255117159@163.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org, 
+	jingoohan1@gmail.com, mx@lists.linux.dev, linuxppc-dev@lists.ozlabs.org, 
+	linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, sophgo@lists.linux.dev, linux-riscv@lists.infradead.org, 
+	spacemit@lists.linux.dev, linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Subject: Re: [PATCH 0/3] PCI: dwc: Cache PCIe capability offset and simplify
  drivers
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
- jingoohan1@gmail.com, mx@lists.linux.dev, linuxppc-dev@lists.ozlabs.org,
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, sophgo@lists.linux.dev,
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
- linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-kernel@vger.kernel.org
+Message-ID: <m332ocvmmdzcgnzmzxmbn2nmczxuhplt5efh64fd22fagrot42@x3okixj5qjb2>
 References: <20260509135152.2241235-1-18255117159@163.com>
  <beqy5ykxgo4ianya6r4mahkkyujs6lly475u26vqaemgqsdnhp@2pn5ipczwc34>
  <5cc6fbcc-98eb-4da5-b123-2c04c4d39326@163.com>
  <bejh7em2a67a6wohtakovbg6wqwhjoxkuqtdompsexfm5bbzrf@yqwcqeg6yugq>
-Content-Language: en-US
-From: Hans Zhang <18255117159@163.com>
-In-Reply-To: <bejh7em2a67a6wohtakovbg6wqwhjoxkuqtdompsexfm5bbzrf@yqwcqeg6yugq>
-X-CM-TRANSID: _____wDXEFBpjwxq6iYtCQ--.55083S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxJr47Gw4rWF47AFy3tr43Jrb_yoW8uryfpa
-	y3JF1Syr48XF4fXan2va1rZF4xt3ZxArWUZ395Cryavr9I9Fy3JrsY9ryYkF9rCFs2yr15
-	uF4Yqry29r15AaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRiiSJUUUUU=
-X-Originating-IP: [240e:b8f:91b3:d000:9130:b3d8:6241:39fd]
-X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbCxAubP2oMj2sFdQAA3Z
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260519_092755_716847_8EC19923 
-X-CRM114-Status: GOOD (  10.81  )
+ <3464ded9-721a-4eb2-afb6-bbca6fdc8a46@163.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <3464ded9-721a-4eb2-afb6-bbca6fdc8a46@163.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,80 +72,47 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-
-On 5/20/26 00:15, Manivannan Sadhasivam wrote:
-> On Wed, May 20, 2026 at 12:09:28AM +0800, Hans Zhang wrote:
->>
->>
->> On 5/19/26 21:57, Manivannan Sadhasivam wrote:
->>> On Sat, May 09, 2026 at 09:51:49PM +0800, Hans Zhang wrote:
->>>> The DWC PCIe core and its many platform drivers repeatedly call
->>>> dw_pcie_find_capability(pci, PCI_CAP_ID_EXP) to obtain the offset of the
->>>> PCI Express Capability structure. This is wasteful and makes the code
->>>> verbose. And some even search for the PCI_CAP_ID_EXP offset value within
->>>> the suspend/resume functions.
->>>>
->>>
->>> Sashiko has flagged some real issues with this series in accessing DBI space
->>> very early and 'pci->pcie_cap' being 0.
->>
->>
->> Hi Mani,
->>
->> We have discussed this issue in the Cadence driver. I think it won't cause
->> any problems. Specifically as follows:
->>
->> https://lore.kernel.org/linux-pci/5823faec-d972-4c77-90ec-a215c686e0a8@163.com/
->> """
->> As per PCIe r7.0, sec 7.5.1.1.11, Since all PCI Express Functions are
->> required to implement the PCI Express Capability structure, which
->> must be included somewhere in this linked list.
->> """
->>
->>
->>
->> Bjorn also responded as follows:
->> https://lore.kernel.org/linux-pci/20260505212306.GA744158@bhelgaas/
->> """
->> It's true that all Root Ports must have a PCIe Capability.
->> """
->>
-> 
-> Ok, what about reading the DBI registers very early?
-
-Hi Mani,
-
-Yes. I have performed the DBI read register operation at the very 
-beginning of the following code.
-
-
-dw_pcie_ep_init()
-   dw_pcie_get_pcie_cap(pci);
-
-dw_pcie_host_init
-   dw_pcie_get_pcie_cap(pci);
-
-
-However, for some glue drivers, they need to configure the registers of 
-the PCIe Express Capability earlier than calling 
-dw_pcie_host_init()/dw_pcie_ep_init(). So, for example, in the file: 
-drivers/pci/controller/dwc/pcie-tegra194.c. Here, it is necessary to 
-find the value of 'pci->pcie_cap' earlier. Then, 
-dw_pcie_host_init()/dw_pcie_ep_init() will no longer search for the 
-offset value of the PCIe Express Capability.
-
-
-Best regards,
-Hans
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gV2VkLCBNYXkgMjAsIDIwMjYgYXQgMTI6Mjc6MjFBTSArMDgwMCwgSGFucyBaaGFuZyB3cm90
+ZToKPiAKPiAKPiBPbiA1LzIwLzI2IDAwOjE1LCBNYW5pdmFubmFuIFNhZGhhc2l2YW0gd3JvdGU6
+Cj4gPiBPbiBXZWQsIE1heSAyMCwgMjAyNiBhdCAxMjowOToyOEFNICswODAwLCBIYW5zIFpoYW5n
+IHdyb3RlOgo+ID4gPiAKPiA+ID4gCj4gPiA+IE9uIDUvMTkvMjYgMjE6NTcsIE1hbml2YW5uYW4g
+U2FkaGFzaXZhbSB3cm90ZToKPiA+ID4gPiBPbiBTYXQsIE1heSAwOSwgMjAyNiBhdCAwOTo1MTo0
+OVBNICswODAwLCBIYW5zIFpoYW5nIHdyb3RlOgo+ID4gPiA+ID4gVGhlIERXQyBQQ0llIGNvcmUg
+YW5kIGl0cyBtYW55IHBsYXRmb3JtIGRyaXZlcnMgcmVwZWF0ZWRseSBjYWxsCj4gPiA+ID4gPiBk
+d19wY2llX2ZpbmRfY2FwYWJpbGl0eShwY2ksIFBDSV9DQVBfSURfRVhQKSB0byBvYnRhaW4gdGhl
+IG9mZnNldCBvZiB0aGUKPiA+ID4gPiA+IFBDSSBFeHByZXNzIENhcGFiaWxpdHkgc3RydWN0dXJl
+LiBUaGlzIGlzIHdhc3RlZnVsIGFuZCBtYWtlcyB0aGUgY29kZQo+ID4gPiA+ID4gdmVyYm9zZS4g
+QW5kIHNvbWUgZXZlbiBzZWFyY2ggZm9yIHRoZSBQQ0lfQ0FQX0lEX0VYUCBvZmZzZXQgdmFsdWUg
+d2l0aGluCj4gPiA+ID4gPiB0aGUgc3VzcGVuZC9yZXN1bWUgZnVuY3Rpb25zLgo+ID4gPiA+ID4g
+Cj4gPiA+ID4gCj4gPiA+ID4gU2FzaGlrbyBoYXMgZmxhZ2dlZCBzb21lIHJlYWwgaXNzdWVzIHdp
+dGggdGhpcyBzZXJpZXMgaW4gYWNjZXNzaW5nIERCSSBzcGFjZQo+ID4gPiA+IHZlcnkgZWFybHkg
+YW5kICdwY2ktPnBjaWVfY2FwJyBiZWluZyAwLgo+ID4gPiAKPiA+ID4gCj4gPiA+IEhpIE1hbmks
+Cj4gPiA+IAo+ID4gPiBXZSBoYXZlIGRpc2N1c3NlZCB0aGlzIGlzc3VlIGluIHRoZSBDYWRlbmNl
+IGRyaXZlci4gSSB0aGluayBpdCB3b24ndCBjYXVzZQo+ID4gPiBhbnkgcHJvYmxlbXMuIFNwZWNp
+ZmljYWxseSBhcyBmb2xsb3dzOgo+ID4gPiAKPiA+ID4gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcv
+bGludXgtcGNpLzU4MjNmYWVjLWQ5NzItNGM3Ny05MGVjLWEyMTVjNjg2ZTBhOEAxNjMuY29tLwo+
+ID4gPiAiIiIKPiA+ID4gQXMgcGVyIFBDSWUgcjcuMCwgc2VjIDcuNS4xLjEuMTEsIFNpbmNlIGFs
+bCBQQ0kgRXhwcmVzcyBGdW5jdGlvbnMgYXJlCj4gPiA+IHJlcXVpcmVkIHRvIGltcGxlbWVudCB0
+aGUgUENJIEV4cHJlc3MgQ2FwYWJpbGl0eSBzdHJ1Y3R1cmUsIHdoaWNoCj4gPiA+IG11c3QgYmUg
+aW5jbHVkZWQgc29tZXdoZXJlIGluIHRoaXMgbGlua2VkIGxpc3QuCj4gPiA+ICIiIgo+ID4gPiAK
+PiA+ID4gCj4gPiA+IAo+ID4gPiBCam9ybiBhbHNvIHJlc3BvbmRlZCBhcyBmb2xsb3dzOgo+ID4g
+PiBodHRwczovL2xvcmUua2VybmVsLm9yZy9saW51eC1wY2kvMjAyNjA1MDUyMTIzMDYuR0E3NDQx
+NThAYmhlbGdhYXMvCj4gPiA+ICIiIgo+ID4gPiBJdCdzIHRydWUgdGhhdCBhbGwgUm9vdCBQb3J0
+cyBtdXN0IGhhdmUgYSBQQ0llIENhcGFiaWxpdHkuCj4gPiA+ICIiIgo+ID4gPiAKPiA+IAo+ID4g
+T2ssIHdoYXQgYWJvdXQgcmVhZGluZyB0aGUgREJJIHJlZ2lzdGVycyB2ZXJ5IGVhcmx5Pwo+IAo+
+IEhpIE1hbmksCj4gCj4gWWVzLiBJIGhhdmUgcGVyZm9ybWVkIHRoZSBEQkkgcmVhZCByZWdpc3Rl
+ciBvcGVyYXRpb24gYXQgdGhlIHZlcnkgYmVnaW5uaW5nCj4gb2YgdGhlIGZvbGxvd2luZyBjb2Rl
+Lgo+IAo+IAo+IGR3X3BjaWVfZXBfaW5pdCgpCj4gICBkd19wY2llX2dldF9wY2llX2NhcChwY2kp
+Owo+IAo+IGR3X3BjaWVfaG9zdF9pbml0Cj4gICBkd19wY2llX2dldF9wY2llX2NhcChwY2kpOwo+
+IAoKVGhlc2UgYm90aCBjYWxscyB3aWxsIGNhdXNlIGNyYXNoIG9uIGEgbG90IG9mIHBsYXRmb3Jt
+cyBiZWNhdXNlIHRoZXNlIHdpbGwgYmUKcmVhZGluZyB0aGUgREJJIHJlZ2lzdGVycyB3aGlsZSB0
+aGUgcmVzb3VyY2VzIGFyZSBub3QgZW5hYmxlZC4KCi0gTWFuaQoKLS0gCuCuruCuo+Cuv+CuteCu
+o+CvjeCuo+CuqeCvjSDgrprgrqTgrr7grprgrr/grrXgrq7gr40KCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0
+CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFk
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
