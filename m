@@ -4,121 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEFA9CD4F54
-	for <linux-amlogic@archiver.kernel.org>; Wed, 20 May 2026 10:00:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4CA3CD4F54
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 May 2026 12:27:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
-	MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=OdT5mb3NGBBKg18Q6wilTpjlPdVEW9xM0cpBfA9DkSM=; b=suyk9RNKecZdRycGPob3iXG7LK
-	11qjP4O/yL5YXNhOjhYtJHZPk7hHlJHwfoeA7ecelZjmiLv6Z7JfqTvsPcPz8bbJRHmXUIGaGELPm
-	nnL9Tu9+JRC/N6BJhI+Lmp5n6+RMkmbZ4nGjhs3PUd/ywNdw/8416Jnq1pQDWHgmkK42GsoJh5VaH
-	8yPx3ri6hoA0yuvUaJUsknEzkNWGe+MBErVewhlHayrm0DYPpbeACYaGRL1iLrLwO9uh7dNtuVLju
-	WUEDqTUYTstC0/wE/Ls5o26Umws77woKRCAOHietXM7esFxT6BV6O2reRymiwn4QTQfd0ar+vw2mH
-	8pExHaWA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=BLhCyFbPnyahFA5U5UYzIhczSA9eUVSZdZWyZXFcX50=; b=dxf3fdBxJ1KyDn
+	4TuNLskX59WvXohAfVlTai7aLCa0RN86u2HzZnBGtclxrqTCurlX6uHx4Mdlxs3giOy3kMx5vJR38
+	4lhNS4J882WWiejdxrGWfY7n0GPDLHWLAisbZV82vUVSaJUBY3OunypEsBTUHDci6eHrrKNDF53vu
+	UwQk26WBTyd02R+6FSFQhhP8Beouhu/HzuOrV+uBAhz0kqrx7Ge9CoJouQME2G4eQQfc1eKzSCpOW
+	Kb+t4piG3YVSLX/65eDnaMGqWk8fegBzv9geJaL3QXzABNTIKPGAAXI9LvwnxSKlP/z6BVjGIpynF
+	V4OZ2YXXhKSDPU7YCcdA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wPdib-00000004Fnp-1llU;
-	Wed, 20 May 2026 10:00:01 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1wPg0r-00000004YRr-1atU;
+	Wed, 20 May 2026 12:27:01 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wPdiX-00000004Flk-3wPJ
+	id 1wPg0m-00000004YQE-0jHs
 	for linux-amlogic@lists.infradead.org;
-	Wed, 20 May 2026 10:00:00 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-488a88aeec9so55116775e9.2
-        for <linux-amlogic@lists.infradead.org>; Wed, 20 May 2026 02:59:57 -0700 (PDT)
+	Wed, 20 May 2026 12:26:57 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64K6wX5E2065271
+	for <linux-amlogic@lists.infradead.org>; Wed, 20 May 2026 12:26:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=R2TeQqks38QIoyDMGjnlHZik
+	TcCtv1Rua8ztzIrSGMs=; b=IEL3c5PjqWlF+XsnVNBCelp1TMrAsAl6meLx5Fpo
+	Qr75sMcTLEqvMdOoHpU+OYtP9rhIOv8nIPX2wfHkYe4nimwsj6eonlhLInzGyoGl
+	oVbmLIkw1KIBlyCCv2dRGadc3GEqceUukay8kCYuJCqZoEdQWqv7JKh3rokRh08w
+	Uw9B+rDuloBd2LhhoKtrHOmBshYeaAUnYl5ZUQrOOdDMV4niA2Ik+YRqg/JSVkE3
+	E569Mg7PhhYWhMWuS8uuPG91zGmYPDzSEjVVfHeVMZ/bqIpFWEmQfMJzWK0Y5oxS
+	Hh9rAA455ZRtUUTKQxNd6bvmZcDtMzG4mGTNObVxK1Q1SQ==
+Received: from mail-ua1-f70.google.com (mail-ua1-f70.google.com [209.85.222.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e8t3t4mc6-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-amlogic@lists.infradead.org>; Wed, 20 May 2026 12:26:54 +0000 (GMT)
+Received: by mail-ua1-f70.google.com with SMTP id a1e0cc1a2514c-95cfe3d4c16so9544577241.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 20 May 2026 05:26:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1779271196; x=1779875996; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ftqjr2c9P2PPCEd88S/Oil8e3fYUvE62NodfKYwliwA=;
-        b=atgoxI4sojBY36Fxv6wG0bLh8QTOS+UpLEmN7mZJ7EQ5NIm/xE0IhZ33qX1fhFnqfI
-         swxQ2zV2vSVYYfdFGeSOrysziIeBpMfIQf2XaS1mNKWgCOsDxKz4OpD6kiCu4n7/L3eQ
-         +dvTby1T2X3nYIwdkJ3jaFZQ/iJs6t7gcjvzZud+r41X/ORaIU7OsC0Nz4Gp4tgUlLh6
-         1nHtlMNmRaORMVpLY+LxSqNBOBnPjqOCWcVFffRLYz9AykNTmoC9+c+5y5jpNMFKso14
-         DZom4x3Mk12t9zl/BeVGryQS3auD2psnClA1c6NN8E4BQyujGOoVdmsbu3iLHJLPwsYi
-         Jy3Q==
+        d=oss.qualcomm.com; s=google; t=1779280013; x=1779884813; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=R2TeQqks38QIoyDMGjnlHZikTcCtv1Rua8ztzIrSGMs=;
+        b=UCdj1uV9lMTrXd5nQlAlyzC1Q1KWO8sw0OtJxTjEbLPwyDVIk+70IKC1yPZfGu4rq9
+         /6W+cwq9ZeVqXPjN/uwfUf3S2VLebC3wXEerOiWYQyJpUYSHEE+NGkgFteE6ZcgRpLob
+         UbcaCzbMxqCe2r4pK1RSTqrft4YSxE4rbfpqoj/406mfXEeO+/PXZfVd2KXp3uVCBCjK
+         +2Ok8bMvu8RN/Z04HszqJNeGlppmnI4Xx0Fw8PMlfotjcosp3tCxI4y91cHY7adGtrfZ
+         ZAfr/pTy28lapyMjEnEGZnjg9Nnb6j6Tu1JVq6GzW8AsZgLp/J03PyMX9sU+5HKZt3Hy
+         Sk9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779271196; x=1779875996;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20251104; t=1779280013; x=1779884813;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Ftqjr2c9P2PPCEd88S/Oil8e3fYUvE62NodfKYwliwA=;
-        b=sS+4Qn+b+eH/CzSW3g7/BjkpXNquP8McQ+bvI9YRrpxg0coHI/i5IrXxrJVPS+Uz5A
-         xx0MIIuetD/Ae8nzuWVjYRz3oeOVuqVgh1IrnKbdzJbHUfYB41dg2dvpXctoCeSl3vwf
-         f22M6H5UXB7HqhwHnWL2vXmoVjyGdwskBONg75itovJk1VtgWuxyI16B1UerJ+bPaVxc
-         TB23+6W43ZdUJWWvF+tDdIkt92vZI9uf78DtMBz7ECdh6TSkzeFjjWQq10KZ8Pc05Ig+
-         x8x/RuAoARBcF8moN0JCAyzN+IT/lIIm7mVBsv3UivpBbh6y69IRky/EQpCKGoni8PKC
-         FtMw==
-X-Forwarded-Encrypted: i=1; AFNElJ9MsQrGNbvwZ+pujACNStWdVJBYtSct2GeZrF+/DIx0HO9rGCb9Pote0158M2EwVNeUUw8WIL279FN5e/uI@lists.infradead.org
-X-Gm-Message-State: AOJu0YzwWOK74CO3Gg2mXPt7XaT0rVvWXkjzDschkyT6tPP0kKZXmmY8
-	gFPQ3J9Flg0u2U3VJQF281pEXVNSw5CMTLkj46guUAST7IWt60346Q/yhqgpA4bIK7Q=
-X-Gm-Gg: Acq92OFIGgT9tIfv4WLAlHOHZ9GZiEn/piQJJ6fNN0xsKVu6LvjyWmm104jWFJe00sn
-	tfA+Ci0DgBk3SXU3cLC7m1dHVioteCi7y4BeKWZvNd5CuyAnv+ZSNdW3OCD2HTq6zSHW2Nr5SCq
-	SR6vJgXX9QyQ76WdkZmRaah5/4xmNtny90vC4s3ebo/fdSh26ZigXMcp/Rx3TOnQWARHcFDlGI3
-	PZ79CAnObO59wsjM+qdzCKM/EMThe2Y/6tpH42Kdp0+Oj0zl+VRPpolAglsPpoPj9W2Z7yAlfF/
-	hrrJjxuYWryeDApnhftoLVDmlgJWcWXdXPS8xjb3BvT/UWiGvQSWcmpy7GqU+PzBKXw/LQ9VVFQ
-	72jZXb3TMQZCtcNb3cVkZpbdZzGtC1saSUhTJiATBy+0I8xs7OqR54zcaBmIddy+1gqEY5d2Wv1
-	RhAPCsZvQnPuNgsg6tfXAhfmkEkaqGKnmia4Q9yGCjFHX5YYCkoy65XKb9W5e4bO+1oe94DIIE8
-	Pr9
-X-Received: by 2002:a05:600c:698d:b0:48f:e230:2a1c with SMTP id 5b1f17b1804b1-48fe6631158mr379762695e9.31.1779271195765;
-        Wed, 20 May 2026 02:59:55 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:106d:1080:5dda:3751:f88e:6ff? ([2a01:e0a:106d:1080:5dda:3751:f88e:6ff])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48fe537ccf5sm378154185e9.14.2026.05.20.02.59.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 May 2026 02:59:55 -0700 (PDT)
-Message-ID: <24594ab4-6865-48b7-9e92-ae6a744c8d58@linaro.org>
-Date: Wed, 20 May 2026 11:59:53 +0200
+        bh=R2TeQqks38QIoyDMGjnlHZikTcCtv1Rua8ztzIrSGMs=;
+        b=FioYyty7eRhmSC0ABFbQT3J+4WFC+i5dIAJPmAnxMWu9EcddRbdgR6MGAdb1vt8lse
+         a7qSwhCGimYycJZI62evyOFXBvuw8ZcL/ByMYnHo1mGMgmiKEYuiyHjp9N27r8YRmpfO
+         TT4H9NFWR8SVBekRxIXPvpSu1039aeneg2RaCCvwQmAFp30M5DZe2qn5NIfXMFj1qN42
+         eY1FLtRwQ6GWHOt0PtmePWl83CdQR4eS+pAQkOcgSdh1ZPL0H5o6enQrHDQ5xYJljZ7L
+         Mn+9nrXMSuGKj6IGFb7Mnt/XWGTBwTJ9v8Z2p9srq8tN7ncZ/KK8OWnlckHlh0W583TX
+         yq1g==
+X-Forwarded-Encrypted: i=1; AFNElJ/Wd/P57MRJMvI1PkIX6XEDZvuN7/5Y1FzL+Dqb0/pGLZ0IPbSoCLb29MfZey6woA+8QAWSvy6WN2ftoAqk@lists.infradead.org
+X-Gm-Message-State: AOJu0YwNrqth8r2E00yPfsFbsa0lyh2YEH7Bor3FLnn7joLPDC8ODho5
+	ricac8bn7q4kPbGtRJYniMBBTu5DjtsQYphR8SHEZRaM3w+QR7idYBhXwtsZmzaYOfi9j6TMjra
+	LhusNzGjDIl9PdnptxKW5DFJrCH5YWzGihV7yCCoi7JqbkyR1S3dsInA5qLexPBMcPpCIeKKjnw
+	==
+X-Gm-Gg: Acq92OFfPQ8Ixn8R4mcPLs2oSwyxClgMYKdrGuNEe9AKdc0DhtCK5pvhZNm+hkgjdGq
+	A5tYt4JEII9/JCrOQev9ZtUZfryybMiEa6iudBsxSDEUqzoNnQ9EPsWo5UddZ+qa5zoJn7X0qM6
+	hn+PzbJ9oQxnNmsiV3r17SWWBdi/Okqi+1u2onhaSvAcYo2hWYQRYjc1yRDqu5/6tusHfckONDj
+	JKXu4t1YCWSD7XuS+LogM5RPXxsniMFKea9FCDLCmT/D6SaXaWrwvX2mlcIOrFk1K5mwgOODQ3j
+	jI4Xbs5zEWotU2HYl/x3GWhoQtol0f6nwEQ1MH6dh2tTuS16mjP4mpDI5q6yggUhUq2lOZ7DYQw
+	7lw68pzIDqS4+tikbm6HAFC6I9bVz4coW/zEz2NebgizbVNt4UJuxNCnLQWsAwuHl0u47B3oFgt
+	ZDvLicOkr7dvz0VR5pkDufV0WUTMKc/qoJLMs=
+X-Received: by 2002:a05:6102:5e86:b0:633:d7ec:153c with SMTP id ada2fe7eead31-63a3c801ffemr13878868137.3.1779280013343;
+        Wed, 20 May 2026 05:26:53 -0700 (PDT)
+X-Received: by 2002:a05:6102:5e86:b0:633:d7ec:153c with SMTP id ada2fe7eead31-63a3c801ffemr13878848137.3.1779280012801;
+        Wed, 20 May 2026 05:26:52 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a90f11a7a0sm4868217e87.24.2026.05.20.05.26.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 May 2026 05:26:51 -0700 (PDT)
+Date: Wed, 20 May 2026 15:26:49 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Adrien Grassein <adrien.grassein@gmail.com>,
+        Jani Nikula <jani.nikula@linux.intel.com>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+        Tvrtko Ursulin <tursulin@ursulin.net>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Pengyu Luo <mitltlatltl@gmail.com>, Nikita Travkin <nikita@trvn.ru>,
+        Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+        intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org
+Subject: Re: [PATCH RESEND v3 1/6] drm/connector: report IRQ_HPD events to
+ drm_connector_oob_hotplug_event()
+Message-ID: <vvlw4f6xo7krq3xoyxuoaa3tecrgduw5qlujp3qf3zzibzjesv@demhqzadavql>
+References: <20260513-hpd-irq-events-v3-0-086857017f16@oss.qualcomm.com>
+ <20260513-hpd-irq-events-v3-1-086857017f16@oss.qualcomm.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v7 20/23] drm: bridge: dw_hdmi: Rework HDP and RXSENSE
- interrupt handling
-To: Jonas Karlman <jonas@kwiboo.se>, Andrzej Hajda <andrzej.hajda@intel.com>,
- Robert Foss <rfoss@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-References: <20260518180206.2480119-1-jonas@kwiboo.se>
- <20260518180206.2480119-21-jonas@kwiboo.se>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20260518180206.2480119-21-jonas@kwiboo.se>
+Content-Disposition: inline
+In-Reply-To: <20260513-hpd-irq-events-v3-1-086857017f16@oss.qualcomm.com>
+X-Proofpoint-GUID: Cpu08Lg94PiZU3Q08jBAPQ7EoWwtK7wo
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTIwMDEyMCBTYWx0ZWRfX3S6CdeQtKY+5
+ MdzrExLFq1ADFXY9wyUEkxHFV69diaLzTPH7GhqA7kQ45h7XfQUw/huIWE0T8QnmCc9sa2cPcXm
+ /+w2qHuQVF+OGVUXjzR0c6pjaMnT6YQ8eCGhSdH76KnGqpzLvGCp2dhEc0rjT5EsuORh3KZLgNH
+ /SL+B9n3yxGtawYtOyvM4jtQZ7pv3mNV3Fev355A6oe8SJNkXHTlp+5ZK2U2RL+bc9G4k/n1lMZ
+ Wc7R2ReovNaInasj30q0CkT39u7Frb+qZB8S6vvq5gFlRbNmeq2yB66hantWh7L7US1cAdgJtUa
+ r/ErHJVR2PKRcXDnmNMOWCV8H7iyqcy20ZkVz4QViAIbSjB5EJ3AiZj43eqN2+N5N0Vwk2mI6Vm
+ a4scVBdsRbjOSg5Mx2lJhEbnxEZrlk3RBxsoNz8mvqjFrnZP6Y74d25ADWYQ6tpEaYieFiQOeo0
+ JBh+vrPVTZE50UcUATw==
+X-Proofpoint-ORIG-GUID: Cpu08Lg94PiZU3Q08jBAPQ7EoWwtK7wo
+X-Authority-Analysis: v=2.4 cv=C4LZDwP+ c=1 sm=1 tr=0 ts=6a0da88e cx=c_pps
+ a=R6oCqFB+Yf/t2GF8e0/dFg==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22 a=EUspDBNiAAAA:8
+ a=6jUhzznPuw0D9V4-6sIA:9 a=CjuIK1q_8ugA:10 a=TD8TdBvy0hsOASGTdmB-:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-05-20_02,2026-05-18_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 clxscore=1015 spamscore=0 phishscore=0 priorityscore=1501
+ adultscore=0 bulkscore=0 lowpriorityscore=0 malwarescore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605200120
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260520_025958_114944_97EB0CAD 
-X-CRM114-Status: GOOD (  34.84  )
+X-CRM114-CacheID: sfid-20260520_052656_328276_125807BD 
+X-CRM114-Status: GOOD (  31.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,315 +170,148 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, imx@lists.linux.dev, Liu Ying <victor.liu@nxp.com>, linux-kernel@vger.kernel.org, Sandy Huang <hjc@rock-chips.com>, dri-devel@lists.freedesktop.org, linux-sunxi@lists.linux.dev, Diederik de Haas <diederik@cknow-tech.com>, linux-rockchip@lists.infradead.org, linux-amlogic@lists.infradead.org, Andy Yan <andy.yan@rock-chips.com>, Chen-Yu Tsai <wens@kernel.org>, Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 5/18/26 20:01, Jonas Karlman wrote:
-> The commit aeac23bda87f ("drm: bridge/dw_hdmi: improve HDMI
-> enable/disable handling") added use of PHY RXSENSE indications to avoid
-> triggering a full enable/disable of the HDMI block when a sink use a HPD
-> low voltage level pulse to indicate changes of the EDID.
+On Wed, May 13, 2026 at 09:23:21PM +0300, Dmitry Baryshkov wrote:
+> The DisplayPort standard defines a special kind of events called IRQ.
+> These events are used to notify DP Source about the events on the Sink
+> side. It is extremely important for DP MST handling, where the MST
+> events are reported through this IRQ.
 > 
-> HDMI Specification Version 1.4b chapter 8.5 mentions:
+> In case of the USB-C DP AltMode there is no actual HPD pulse, but the
+> events are ported through the bits in the AltMode VDOs.
 > 
->    An HDMI Sink shall indicate any change to the contents of the E-EDID
->    by driving a low voltage level pulse on the Hot Plug Detect pin. This
->    pulse shall be at least 100 msec.
+> Extend the drm_connector_oob_hotplug_event() interface and report IRQ
+> events to the DisplayPort Sink drivers.
 > 
-> A delayed work is now used to debounce reacting on a HPD low voltage
-> level pulse when a sink changes the EDID. The delayed work triggers a
-> hotplug uevent every time the connection status or EDID has changed.
-> 
-> Remove RXSENSE handling to simplify the HPD interrupt handling and
-> instead depend on the delayed work to detect any connection status or
-> EDID changes.
-> 
-> This also ensures the initial HPD interrupt polarity is based on current
-> HPD status to avoid an unnecessary interrupt from being triggered
-> immediately at probe or resume when a sink is connected.
-
-I'm still puzzled of the removal of RX_SENSE entirely as v1, and I since the
-rx_sense code is not easy to understand I don't have an opinion on that.
-
-Can someone with more knowledge can comment on that ?
-
-Neil
-
-> 
-> Tested-by: Diederik de Haas <diederik@cknow-tech.com>  # Rock64, RockPro64, Quartz64-B
-> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 > ---
-> v7: Remove clear of STAT0_RX_SENSE in dw_hdmi_remove() added in prior
->      patch
-> v6: Update commit message,
->      Collect t-b tag
-> v5: Add comment about interrupt generation
-> v4: New patch
-> ---
->   drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 147 ++++------------------
->   1 file changed, 22 insertions(+), 125 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> index 270db58a0e7c..2e09bff5faf7 100644
-> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> @@ -161,11 +161,7 @@ struct dw_hdmi {
->   	struct pinctrl_state *unwedge_state;
->   
->   	struct mutex mutex;		/* for state below */
-> -	enum drm_connector_force force;	/* mutex-protected force state */
->   	struct drm_connector *curr_conn;/* current connector (only valid when !disabled) */
-> -	bool disabled;			/* DRM has disabled our bridge */
-> -	bool rxsense;			/* rxsense state */
-> -	u8 phy_mask;			/* desired phy int mask settings */
->   	u8 mc_clkdis;			/* clock disable register */
->   
->   	spinlock_t audio_lock;
-> @@ -196,14 +192,6 @@ const struct dw_hdmi_plat_data *dw_hdmi_to_plat_data(struct dw_hdmi *hdmi)
->   }
->   EXPORT_SYMBOL_GPL(dw_hdmi_to_plat_data);
->   
-> -#define HDMI_IH_PHY_STAT0_RX_SENSE \
-> -	(HDMI_IH_PHY_STAT0_RX_SENSE0 | HDMI_IH_PHY_STAT0_RX_SENSE1 | \
-> -	 HDMI_IH_PHY_STAT0_RX_SENSE2 | HDMI_IH_PHY_STAT0_RX_SENSE3)
-> -
-> -#define HDMI_PHY_RX_SENSE \
-> -	(HDMI_PHY_RX_SENSE0 | HDMI_PHY_RX_SENSE1 | \
-> -	 HDMI_PHY_RX_SENSE2 | HDMI_PHY_RX_SENSE3)
-> -
->   static inline void hdmi_writeb(struct dw_hdmi *hdmi, u8 val, int offset)
->   {
->   	regmap_write(hdmi->regm, offset << hdmi->reg_shift, val);
-> @@ -1702,36 +1690,25 @@ EXPORT_SYMBOL_GPL(dw_hdmi_phy_read_hpd);
->   void dw_hdmi_phy_update_hpd(struct dw_hdmi *hdmi, void *data,
->   			    bool force, bool disabled, bool rxsense)
->   {
-> -	u8 old_mask = hdmi->phy_mask;
-> -
-> -	if (force || disabled || !rxsense)
-> -		hdmi->phy_mask |= HDMI_PHY_RX_SENSE;
-> -	else
-> -		hdmi->phy_mask &= ~HDMI_PHY_RX_SENSE;
-> -
-> -	if (old_mask != hdmi->phy_mask)
-> -		hdmi_writeb(hdmi, hdmi->phy_mask, HDMI_PHY_MASK0);
->   }
->   EXPORT_SYMBOL_GPL(dw_hdmi_phy_update_hpd);
->   
->   void dw_hdmi_phy_setup_hpd(struct dw_hdmi *hdmi, void *data)
->   {
->   	/*
-> -	 * Configure the PHY RX SENSE and HPD interrupts polarities and clear
-> -	 * any pending interrupt.
-> +	 * Configure the PHY HPD interrupt polarity based on current HPD status
-> +	 * and clear any pending interrupt.
->   	 */
-> -	hdmi_writeb(hdmi, HDMI_PHY_HPD | HDMI_PHY_RX_SENSE, HDMI_PHY_POL0);
-> -	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
-> -		    HDMI_IH_PHY_STAT0);
-> +	hdmi_modb(hdmi, hdmi_readb(hdmi, HDMI_PHY_STAT0) & HDMI_PHY_HPD ?
-> +		  0 : HDMI_PHY_HPD, HDMI_PHY_HPD, HDMI_PHY_POL0);
-> +	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD, HDMI_IH_PHY_STAT0);
->   
->   	/* Enable cable hot plug irq. */
-> -	hdmi_writeb(hdmi, hdmi->phy_mask, HDMI_PHY_MASK0);
-> +	hdmi_writeb(hdmi, ~HDMI_PHY_HPD, HDMI_PHY_MASK0);
->   
->   	/* Clear and unmute interrupts. */
-> -	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
-> -		    HDMI_IH_PHY_STAT0);
-> -	hdmi_writeb(hdmi, ~(HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE),
-> -		    HDMI_IH_MUTE_PHY_STAT0);
-> +	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD, HDMI_IH_PHY_STAT0);
-> +	hdmi_writeb(hdmi, ~HDMI_IH_PHY_STAT0_HPD, HDMI_IH_MUTE_PHY_STAT0);
->   }
->   EXPORT_SYMBOL_GPL(dw_hdmi_phy_setup_hpd);
->   
-> @@ -2395,26 +2372,6 @@ static void dw_hdmi_poweroff(struct dw_hdmi *hdmi)
->   	}
->   }
->   
-> -/*
-> - * Adjust the detection of RXSENSE according to whether we have a forced
-> - * connection mode enabled, or whether we have been disabled.  There is
-> - * no point processing RXSENSE interrupts if we have a forced connection
-> - * state, or DRM has us disabled.
-> - *
-> - * We also disable rxsense interrupts when we think we're disconnected
-> - * to avoid floating TDMS signals giving false rxsense interrupts.
-> - *
-> - * Note: we still need to listen for HPD interrupts even when DRM has us
-> - * disabled so that we can detect a connect event.
-> - */
-> -static void dw_hdmi_update_phy_mask(struct dw_hdmi *hdmi)
-> -{
-> -	if (hdmi->phy.ops->update_hpd)
-> -		hdmi->phy.ops->update_hpd(hdmi, hdmi->phy.data,
-> -					  hdmi->force, hdmi->disabled,
-> -					  hdmi->rxsense);
-> -}
-> -
->   static enum drm_connector_status dw_hdmi_detect(struct dw_hdmi *hdmi)
->   {
->   	enum drm_connector_status result;
-> @@ -2512,9 +2469,7 @@ static void dw_hdmi_connector_force(struct drm_connector *connector)
->   	struct dw_hdmi *hdmi = container_of(connector, struct dw_hdmi, connector);
->   
->   	mutex_lock(&hdmi->mutex);
-> -	hdmi->force = connector->force;
->   	hdmi->last_connector_result = connector->status;
-> -	dw_hdmi_update_phy_mask(hdmi);
->   	mutex_unlock(&hdmi->mutex);
->   
->   	dw_hdmi_connector_status_update(hdmi, connector, connector->status);
-> @@ -2932,10 +2887,8 @@ static void dw_hdmi_bridge_atomic_disable(struct drm_bridge *bridge,
->   	struct dw_hdmi *hdmi = bridge->driver_private;
->   
->   	mutex_lock(&hdmi->mutex);
-> -	hdmi->disabled = true;
->   	hdmi->curr_conn = NULL;
->   	dw_hdmi_poweroff(hdmi);
-> -	dw_hdmi_update_phy_mask(hdmi);
->   	handle_plugged_change(hdmi, false);
->   	mutex_unlock(&hdmi->mutex);
->   }
-> @@ -2954,10 +2907,8 @@ static void dw_hdmi_bridge_atomic_enable(struct drm_bridge *bridge,
->   	mode = &drm_atomic_get_new_crtc_state(state, crtc)->adjusted_mode;
->   
->   	mutex_lock(&hdmi->mutex);
-> -	hdmi->disabled = false;
->   	hdmi->curr_conn = connector;
->   	dw_hdmi_poweron(hdmi, connector, mode);
-> -	dw_hdmi_update_phy_mask(hdmi);
->   	handle_plugged_change(hdmi, true);
->   	mutex_unlock(&hdmi->mutex);
->   }
-> @@ -3060,78 +3011,29 @@ static irqreturn_t dw_hdmi_hardirq(int irq, void *dev_id)
->   
->   void dw_hdmi_setup_rx_sense(struct dw_hdmi *hdmi, bool hpd, bool rx_sense)
->   {
-> -	mutex_lock(&hdmi->mutex);
-> -
-> -	if (!hdmi->force) {
-> -		/*
-> -		 * If the RX sense status indicates we're disconnected,
-> -		 * clear the software rxsense status.
-> -		 */
-> -		if (!rx_sense)
-> -			hdmi->rxsense = false;
-> -
-> -		/*
-> -		 * Only set the software rxsense status when both
-> -		 * rxsense and hpd indicates we're connected.
-> -		 * This avoids what seems to be bad behaviour in
-> -		 * at least iMX6S versions of the phy.
-> -		 */
-> -		if (hpd)
-> -			hdmi->rxsense = true;
-> -
-> -		dw_hdmi_update_phy_mask(hdmi);
-> -	}
-> -	mutex_unlock(&hdmi->mutex);
->   }
->   EXPORT_SYMBOL_GPL(dw_hdmi_setup_rx_sense);
->   
->   static irqreturn_t dw_hdmi_irq(int irq, void *dev_id)
->   {
->   	struct dw_hdmi *hdmi = dev_id;
-> -	u8 intr_stat, phy_int_pol, phy_pol_mask, phy_stat;
-> -	enum drm_connector_status status = connector_status_unknown;
-> -
-> -	intr_stat = hdmi_readb(hdmi, HDMI_IH_PHY_STAT0);
-> -	phy_int_pol = hdmi_readb(hdmi, HDMI_PHY_POL0);
-> -	phy_stat = hdmi_readb(hdmi, HDMI_PHY_STAT0);
-> -
-> -	phy_pol_mask = 0;
-> -	if (intr_stat & HDMI_IH_PHY_STAT0_HPD)
-> -		phy_pol_mask |= HDMI_PHY_HPD;
-> -	if (intr_stat & HDMI_IH_PHY_STAT0_RX_SENSE0)
-> -		phy_pol_mask |= HDMI_PHY_RX_SENSE0;
-> -	if (intr_stat & HDMI_IH_PHY_STAT0_RX_SENSE1)
-> -		phy_pol_mask |= HDMI_PHY_RX_SENSE1;
-> -	if (intr_stat & HDMI_IH_PHY_STAT0_RX_SENSE2)
-> -		phy_pol_mask |= HDMI_PHY_RX_SENSE2;
-> -	if (intr_stat & HDMI_IH_PHY_STAT0_RX_SENSE3)
-> -		phy_pol_mask |= HDMI_PHY_RX_SENSE3;
-> -
-> -	if (phy_pol_mask)
-> -		hdmi_modb(hdmi, ~phy_int_pol, phy_pol_mask, HDMI_PHY_POL0);
-> +	u8 intr_stat;
->   
->   	/*
-> -	 * RX sense tells us whether the TDMS transmitters are detecting
-> -	 * load - in other words, there's something listening on the
-> -	 * other end of the link.  Use this to decide whether we should
-> -	 * power on the phy as HPD may be toggled by the sink to merely
-> -	 * ask the source to re-read the EDID.
-> +	 * Interrupt generation is accomplished in the following way:
-> +	 *   interrupt = (mask == 0) && (polarity == status)
-> +	 * All interrupts are forwarded to the Interrupt Handler sticky bit
-> +	 * register ih_phy_stat0 and muted using the register ih_mute_phy_stat0.
->   	 */
-> -	if (intr_stat &
-> -	    (HDMI_IH_PHY_STAT0_RX_SENSE | HDMI_IH_PHY_STAT0_HPD)) {
-> -		dw_hdmi_setup_rx_sense(hdmi,
-> -				       phy_stat & HDMI_PHY_HPD,
-> -				       phy_stat & HDMI_PHY_RX_SENSE);
-> +	intr_stat = hdmi_readb(hdmi, HDMI_IH_PHY_STAT0);
-> +	if (intr_stat & HDMI_IH_PHY_STAT0_HPD) {
-> +		enum drm_connector_status status;
->   
-> -		if ((intr_stat & HDMI_IH_PHY_STAT0_HPD) &&
-> -		    (phy_stat & HDMI_PHY_HPD))
-> -			status = connector_status_connected;
-> +		/* Set HPD interrupt polarity based on current HPD status. */
-> +		status = dw_hdmi_phy_read_hpd(hdmi, hdmi->phy.data);
-> +		hdmi_modb(hdmi, status == connector_status_connected ?
-> +			  0 : HDMI_PHY_HPD, HDMI_PHY_HPD, HDMI_PHY_POL0);
->   
-> -		if (!(phy_stat & (HDMI_PHY_HPD | HDMI_PHY_RX_SENSE)))
-> -			status = connector_status_disconnected;
-> -	}
-> -
-> -	if (status != connector_status_unknown) {
->   		dev_dbg(hdmi->dev, "EVENT=%s\n",
->   			status == connector_status_connected ?
->   			"plugin" : "plugout");
-> @@ -3141,8 +3043,7 @@ static irqreturn_t dw_hdmi_irq(int irq, void *dev_id)
->   	}
->   
->   	hdmi_writeb(hdmi, intr_stat, HDMI_IH_PHY_STAT0);
-> -	hdmi_writeb(hdmi, ~(HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE),
-> -		    HDMI_IH_MUTE_PHY_STAT0);
-> +	hdmi_writeb(hdmi, ~HDMI_IH_PHY_STAT0_HPD, HDMI_IH_MUTE_PHY_STAT0);
->   
->   	return IRQ_HANDLED;
->   }
-> @@ -3343,9 +3244,6 @@ struct dw_hdmi *dw_hdmi_probe(struct platform_device *pdev,
->   	hdmi->dev = dev;
->   	hdmi->sample_rate = 48000;
->   	hdmi->channels = 2;
-> -	hdmi->disabled = true;
-> -	hdmi->rxsense = true;
-> -	hdmi->phy_mask = (u8)~(HDMI_PHY_HPD | HDMI_PHY_RX_SENSE);
->   	hdmi->mc_clkdis = 0x7f;
->   	hdmi->last_connector_result = connector_status_disconnected;
->   
-> @@ -3599,8 +3497,7 @@ void dw_hdmi_remove(struct dw_hdmi *hdmi)
->   	/* Free, mute and clear phy interrupts */
->   	devm_free_irq(hdmi->dev, irq, hdmi);
->   	hdmi_writeb(hdmi, ~0, HDMI_IH_MUTE_PHY_STAT0);
-> -	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
-> -		    HDMI_IH_PHY_STAT0);
-> +	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD, HDMI_IH_PHY_STAT0);
->   
->   	/* Cancel any pending hot plug work */
->   	cancel_delayed_work_sync(&hdmi->hpd_work);
+>  drivers/gpu/drm/drm_connector.c          |  5 ++++-
+>  drivers/usb/typec/altmodes/displayport.c | 15 +++++++++++----
+>  include/drm/drm_connector.h              | 19 ++++++++++++++++++-
+>  3 files changed, 33 insertions(+), 6 deletions(-)
 
+Greg, Heikki, would you please ack merging this through the drm tree?
+
+> 
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+> index 47dc53c4a738..edee9daccd51 100644
+> --- a/drivers/gpu/drm/drm_connector.c
+> +++ b/drivers/gpu/drm/drm_connector.c
+> @@ -3510,6 +3510,8 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
+>   * drm_connector_oob_hotplug_event - Report out-of-band hotplug event to connector
+>   * @connector_fwnode: fwnode_handle to report the event on
+>   * @status: hot plug detect logical state
+> + * @extra_status: additional information provided by the sink without changing
+> + * the HPD state (or in addition to such a change).
+>   *
+>   * On some hardware a hotplug event notification may come from outside the display
+>   * driver / device. An example of this is some USB Type-C setups where the hardware
+> @@ -3520,7 +3522,8 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
+>   * a drm_connector reference through calling drm_connector_find_by_fwnode().
+>   */
+>  void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
+> -				     enum drm_connector_status status)
+> +				     enum drm_connector_status status,
+> +				     enum drm_connector_status_extra extra_status)
+>  {
+>  	struct drm_connector *connector;
+>  
+> diff --git a/drivers/usb/typec/altmodes/displayport.c b/drivers/usb/typec/altmodes/displayport.c
+> index 35d9c3086990..7182a8e2e710 100644
+> --- a/drivers/usb/typec/altmodes/displayport.c
+> +++ b/drivers/usb/typec/altmodes/displayport.c
+> @@ -189,7 +189,9 @@ static int dp_altmode_status_update(struct dp_altmode *dp)
+>  	} else {
+>  		drm_connector_oob_hotplug_event(dp->connector_fwnode,
+>  						hpd ? connector_status_connected :
+> -						      connector_status_disconnected);
+> +						      connector_status_disconnected,
+> +						(hpd && irq_hpd) ? DRM_CONNECTOR_DP_IRQ_HPD :
+> +								   DRM_CONNECTOR_NO_EXTRA_STATUS);
+>  		dp->hpd = hpd;
+>  		sysfs_notify(&dp->alt->dev.kobj, "displayport", "hpd");
+>  		if (hpd && irq_hpd) {
+> @@ -212,7 +214,10 @@ static int dp_altmode_configured(struct dp_altmode *dp)
+>  	 */
+>  	if (dp->pending_hpd) {
+>  		drm_connector_oob_hotplug_event(dp->connector_fwnode,
+> -						connector_status_connected);
+> +						connector_status_connected,
+> +						dp->pending_irq_hpd ?
+> +						DRM_CONNECTOR_DP_IRQ_HPD :
+> +						DRM_CONNECTOR_NO_EXTRA_STATUS);
+>  		sysfs_notify(&dp->alt->dev.kobj, "displayport", "hpd");
+>  		dp->pending_hpd = false;
+>  		if (dp->pending_irq_hpd) {
+> @@ -397,7 +402,8 @@ static int dp_altmode_vdm(struct typec_altmode *alt,
+>  			dp->data.conf = 0;
+>  			if (dp->hpd) {
+>  				drm_connector_oob_hotplug_event(dp->connector_fwnode,
+> -								connector_status_disconnected);
+> +								connector_status_disconnected,
+> +								DRM_CONNECTOR_NO_EXTRA_STATUS);
+>  				dp->hpd = false;
+>  				sysfs_notify(&dp->alt->dev.kobj, "displayport", "hpd");
+>  			}
+> @@ -827,7 +833,8 @@ void dp_altmode_remove(struct typec_altmode *alt)
+>  
+>  	if (dp->connector_fwnode) {
+>  		drm_connector_oob_hotplug_event(dp->connector_fwnode,
+> -						connector_status_disconnected);
+> +						connector_status_disconnected,
+> +						DRM_CONNECTOR_NO_EXTRA_STATUS);
+>  
+>  		fwnode_handle_put(dp->connector_fwnode);
+>  	}
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> index f83f28cae207..e05197e970d3 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -91,6 +91,22 @@ enum drm_connector_status {
+>  	connector_status_unknown = 3,
+>  };
+>  
+> +/**
+> + * enum drm_connector_status_extra - additional events sent by the sink /
+> + * display together or in replacement of the HPD status changes.
+> + */
+> +enum drm_connector_status_extra {
+> +	/**
+> +	 * @DRM_CONNECTOR_NO_EXTRA_STATUS: No additional status reported.
+> +	 */
+> +	DRM_CONNECTOR_NO_EXTRA_STATUS,
+> +	/**
+> +	 * @DRM_CONNECTOR_DP_IRQ_HPD: DisplayPort Sink has sent the
+> +	 * IRQ_HPD (either by the HPD short pulse or via the AltMode event).
+> +	 */
+> +	DRM_CONNECTOR_DP_IRQ_HPD,
+> +};
+> +
+>  /**
+>   * enum drm_connector_registration_state - userspace registration status for
+>   * a &drm_connector
+> @@ -2521,7 +2537,8 @@ drm_connector_is_unregistered(struct drm_connector *connector)
+>  }
+>  
+>  void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
+> -				     enum drm_connector_status status);
+> +				     enum drm_connector_status status,
+> +				     enum drm_connector_status_extra extra_status);
+>  const char *drm_get_connector_type_name(unsigned int connector_type);
+>  const char *drm_get_connector_status_name(enum drm_connector_status status);
+>  const char *drm_get_subpixel_order_name(enum subpixel_order order);
+> 
+> -- 
+> 2.47.3
+> 
+
+-- 
+With best wishes
+Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
