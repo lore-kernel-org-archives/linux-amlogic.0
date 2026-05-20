@@ -4,111 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBEE5CD5BAC
-	for <linux-amlogic@archiver.kernel.org>; Thu, 21 May 2026 13:19:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DED5CD4F3D
+	for <linux-amlogic@archiver.kernel.org>; Thu, 21 May 2026 15:52:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:From:MIME-Version:Date:
-	Message-ID:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=OXPXCAEA1LRKAzVZni1M+PZQ7ffGwj9zigdPfE2XUKA=; b=sDeV5S1n3Xn8zp
-	p8PrcHDYI+U/vTz7+ZBXRT/sbvec+VsOcyc+3Sthb8nlzkG16qkfS+iry8x8cokH2XtJmibBusYhB
-	QlEZpmqYmuf1v65JtQO4CIjEe/j/gbrFnu8HIxYEFCka77UKBbm6Bbiq4azZl6iHWV5kblr1J8PRn
-	SYWhGCrthBN3Ufp09xBbIyOtQuxOvq72Or1UUvCdnqGUO/CyGut4LVzUJ/rU4MkzeWdFRlloyhgCL
-	m7fFQxBzNYVRa2VZVmXwGBmzH8zeWxLWbU4hRPYepy2RobJ4RpKfF/GyVHmOS9SFZi3jq1moVftEB
-	SojeuS+hUI9D1HbA+Glw==;
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=KzfbTPWtCUxqfS5PDY4Sf6wcKvWXbY71P4JSsFSWC/g=; b=vgHpIa/jfeR2TJ
+	imMf6eQyk32WaVfqCeUugkq0A1r0Gha+iQfI2PhYNTclUAaRSSp52ggvn8wkiMu8PL4quXoqdORfA
+	0PPAv9tUlu5X5kXoc8OZScPiyXc7URWQspixW99GQ5N1DMSVecgyis/uPfJPYa6mjG95janRjTPdS
+	68i6Txo/HMcW8LxQLJxVxUvtp/J1ny2bLWi7bUgr4oSmH6JX9QH7srbzby2O6uUAUiwQ2f1GGBXUs
+	ofOCMSKZlTQNllsQ12LPOWX5obx70R1VHDeqXE8KjYtyeQMsWN8zrJAm927wLXGZciQXvtFez87h8
+	QHdP8nhP0qfLfYnHFjFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wQ3JM-00000007qd5-2WWo;
-	Thu, 21 May 2026 13:19:40 +0000
+	id 1wQ5hU-00000008PGh-2bk0;
+	Thu, 21 May 2026 15:52:44 +0000
 Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wQ3JJ-00000007qbv-2zka
+	id 1wQ5hR-00000008PFa-13rg
 	for linux-amlogic@lists.infradead.org;
-	Thu, 21 May 2026 13:19:39 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-48fde648a71so44120165e9.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 21 May 2026 06:19:37 -0700 (PDT)
+	Thu, 21 May 2026 15:52:43 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-49039a8851fso8994175e9.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 21 May 2026 08:52:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1779369576; x=1779974376; darn=lists.infradead.org;
-        h=content-transfer-encoding:organization:autocrypt:content-language
-         :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
+        d=baylibre.com; s=google; t=1779378759; x=1779983559; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kVStZuaynsxldxI4z6f6e5rL63M/lihgHYjp99abbpQ=;
-        b=uSAWHVyuGMKh+TwJu98tXuhiSRgIJUV2ItVUWoUV12nfTiet9UDgxWcC8PsaoAbZ91
-         Tf4/qFzjcn7eR415knUz2mhBafY/OFARr+chEvjh1qDwfa+nzvGtu5G1BHmGvbfK9Ue1
-         BpBqsciLc61vcbQ374UWG8iGI+oHlTO+1kEGgVbRn0LlLQuL1/yJwVekuCaPV6j4FydQ
-         NTaD3K1ZjLdJWX/JOrI/6QLmfcv2rdjqblYd2SPL2Vzr10b20CAJdJ+91rLZUhQhZ2YF
-         hmGOgP5fVTF8B5P1WYbq7b23FFbhD45SgzQ9rpiqbGPHDVBsVj79i4hRThb2MWS/tXA8
-         INuw==
+        bh=N0fd59xd2Em+FBe64KRflWpdgg6Qr9ICe9rTkp6Iams=;
+        b=CA/mJ3JjKbf+tV8aJANOjCub2s2PgnFNY2S+KQfCYP/qKL6S1yl3rj6j7Vb9lH6781
+         KK18pZ6Stra7WooKcArRM8jxy1xQp2juVWGd3gasx3z7ZrAth2ACV9uoDe3paGJKYEq6
+         JvxCwH4pR06stySoiCOfvwu32bUnWl8HmVGSXBZ87aKE1SAhbbgvYYVMYL0me17ssdG1
+         kCCkIeSw0aKgZHnomBNXWkeQ/MIWyD6GOPECFw0T45uq/IxkfT7Zq4OMc11xF8vCcKNV
+         UKVgTozPTOSURX897CVP+2q2ePr3snGB79RSZDzBrcH0cuGQE/cWW9t0dGOAFgDCi7yI
+         jiig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779369576; x=1779974376;
-        h=content-transfer-encoding:organization:autocrypt:content-language
-         :cc:to:reply-to:subject:from:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20251104; t=1779378759; x=1779983559;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=kVStZuaynsxldxI4z6f6e5rL63M/lihgHYjp99abbpQ=;
-        b=RAUGou8H1JaeVvufJ7wHYeWY4rvJax+IB4r9i7KGe0I1UpVNUPSX3PnHzshNeZEweU
-         quGlFZD2sJtLcJrocPHzr4UCPSvpTwk7t89JcnGm3UHBg7kBgz3jViIwka6gizCyMhNK
-         IoYEuK1OKZtOspmb3TJ8gZZK4TR/crupVjp7DxTmFR87QEGrnizT/Qzqb1wPCYQPvFKL
-         kA8i0V0N8M76FNDdOVFwtdWBOXzJjKIZkwcNiCjKoJEhFPMbURqLKnIrL7KGUCkPZ+Ra
-         elx2lwz58+HSkl1revhlU548eUmxaRHHnzB9LzIhQq45lhkJuMtV/D2uOvV8R992xqUR
-         ENoA==
-X-Gm-Message-State: AOJu0Yw4Et/sOEs+LUq0zvwg7aT24HOo1v/iQn2nU08vOuULdrjxO+D3
-	4EErvBPLlUS7NGIbYKpbz19oyJEm0nWctEIs8TBFhPhYscXYCkgJyB2xMgiPHGeWKEJQdyiBqt9
-	GwILF
-X-Gm-Gg: Acq92OGiM/AW5xVKkIC471DSWlOURqr9vROgWaHKCakIDYGyih8bpIJ+EJmweQz5/5L
-	TMDQvRCZ+q6vPYgXmhNlndc+eZvvaHZpWg/ZIAmriSZQOLAnGcH8HG48n7f4SOHrx3wWhHNUrQt
-	B01y5Qj9g5Ix3i11bBnzf9E4MI7Cs8wH6qXS7M7CCqYsi72/pQ7FRbv4Zii9Y0GLj6eFX9RNnrQ
-	Q+aRCqbTgCvNflUj5T/t4yb0k210JdEcedxzq1xIOCBv/f7DYqd3Qztq/1k8+12rOIXFkjAZmfC
-	M5upapVCiriKoluXm0y0GgkcaXuG6IQBscwmtzLIH12sLa/dg1yAq29+ssRc8K32CmJOllubakW
-	xANp573MEc3ADiuVTKgxRr8MSXKhij3NwIA15fUb1jIIfHAOIY2fgdbDLkVPZid+8BYDCsd2rdV
-	ZRXhgdzAccVy91fneDXf1GerXkZqS7gSJ7fshefNrzzXfHStkZ2zhPrsu42q2yLoCIQWXQSTZpP
-	tTedRM=
-X-Received: by 2002:a05:600c:46d1:b0:490:3d3d:805a with SMTP id 5b1f17b1804b1-4903d3d823bmr15928265e9.12.1779369575712;
-        Thu, 21 May 2026 06:19:35 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:106d:1080:7e6c:bb76:ade5:7e8b? ([2a01:e0a:106d:1080:7e6c:bb76:ade5:7e8b])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45eaa92f622sm3169586f8f.24.2026.05.21.06.19.34
+        bh=N0fd59xd2Em+FBe64KRflWpdgg6Qr9ICe9rTkp6Iams=;
+        b=QrpcEV30RqOE1AfA+/9DkB3sXt0mnOURgrfKE/fTsYZLLGy9fzxcK3SB1SoLsgIgbQ
+         FgJiYKBS4Mkl3q+XmPAk2KJpaai2fZ80G8xNqh8GGzu6X+rvjyHcHYBiEtuKv1/R9s7n
+         rBoHdIO08F3YnLJbVrVem1TnrprvalLa2YHhTbZjbC9gixRYkbm0SqcKPVZURPyGfgg7
+         tR+33iwaIsD7MwPwgHwXip3Tx9s3OqPkHYVibyp3zsv0A/HpecGEV5Vos4nrup/qdgDR
+         JHnLxmfmDW3gw0mq4wynmiDQcPnjFugpLBapj2Ai3DNsULT0B9gLavrtOr5YJAHgbr5I
+         xJMg==
+X-Gm-Message-State: AOJu0Yy8tktpHbMvwvtXOlPcBqDXtOAoJvZmHBB2Kc+JmuXRCTir8UuP
+	BU1YV7u0qCBWyvmhcOZvZ6yviYhyz1e1MgExziYriduELHjFpskZJ2kFBBzkZMVpzEE=
+X-Gm-Gg: Acq92OH3EMxd4vebz52MG284L9eP58l1YXSAciioxidzyBdWEkg6sj05S4JzvN5ZzVt
+	FDZZjL+aGW9Fqp3fH5ZwkaWv4C5zepHxHSBKlnD6XESMDmZmDVd3/OaXf2T0IGkyQoFD7E0rIJf
+	t0I3pNsNoYTjy/q1d6T2mYmuj6FtiwcSACmvbyWRv6brrLjRWuRY64Z7FFla/HDbpg2YyVq7Dd1
+	fCQaIxt3RvfohWDbXZNONAkYxql5VF0B8LeqorvoedcrPGAfy2tkkuXDPyttXXr+Zah0CTMN0Bs
+	INctbTrv7/prUIEZ7HMFDvIrRqv7dB5WGNsHuSu1dsiJYqtBV+j4ApVMqDV/7mV+CViLWva0iWS
+	J5p3XHNLbtkrqEtmuf+S+/33isktEtixeN8wHNswuxAG/Hv9vNKvp2gL34RYRZKB5ftCxsJIqA9
+	smVY5PQaOLRxYDQdXhOsvJhEzquw==
+X-Received: by 2002:a05:600c:4e87:b0:490:3b87:be0f with SMTP id 5b1f17b1804b1-4903b87bf47mr35860365e9.23.1779378758957;
+        Thu, 21 May 2026 08:52:38 -0700 (PDT)
+Received: from [192.168.3.100] ([151.41.223.93])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4903c99cb43sm34383775e9.4.2026.05.21.08.52.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 May 2026 06:19:34 -0700 (PDT)
-Message-ID: <16fc7412-c470-4f3f-b6c8-55c35698a424@linaro.org>
-Date: Thu, 21 May 2026 15:19:34 +0200
+        Thu, 21 May 2026 08:52:38 -0700 (PDT)
+Message-ID: <a2306afb-eacf-4132-9cd2-ef1bde8cd0a3@baylibre.com>
+Date: Wed, 20 May 2026 18:05:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [GIT PULL] amlogic ARM64 DT updates for v7.2 take 1
-To: soc@kernel.org, arm@kernel.org
-Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
+Subject: Re: [PATCH 1/4] ASoC: meson: gx: add gx-formatter and gx-interface
+Content-Language: en-US
+To: sashiko-reviews@lists.linux.dev
+Cc: linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org
+References: <20260515-reshape-aiu-as-axg-v1-1-53b457784ff3@baylibre.com>
+ <20260515153651.965F8C2BCB7@smtp.kernel.org>
+From: Valerio Setti <vsetti@baylibre.com>
+In-Reply-To: <20260515153651.965F8C2BCB7@smtp.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260521_061937_783680_EC2B33A7 
-X-CRM114-Status: UNSURE (   6.53  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260521_085241_590352_F807C658 
+X-CRM114-Status: GOOD (  13.80  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,92 +95,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
 
-Here's the Amlogic ARM64 DT changes for v7.2, contains improvements for the Khadas VIM4
-and VIM1s SBCs, plus some additions for the Phicomm N1 and a couple of low priority fixes.
+> 
+>> +int gx_stream_start(struct gx_stream *ts)
+>> +{
+>> +	struct gx_formatter *formatter;
+>> +	int ret = 0;
+>> +
+>> +	mutex_lock(&ts->lock);
+>> +
+>> +	/* Start all the formatters attached to the stream */
+>> +	list_for_each_entry(formatter, &ts->formatter_list, list) {
+>> +		ret = gx_formatter_enable(formatter);
+>> +		if (ret) {
+>> +			pr_err("failed to start tdm stream\n");
+>> +			goto out;
+> 
+> Do we need to disable the formatters that were already successfully enabled
+> in previous iterations of this loop before returning?
+> 
+> The ALSA core does not automatically invoke the STOP trigger when a START
+> trigger fails. Returning an error here without rolling back the earlier
+> formatters could leave the hardware clocks and registers permanently enabled,
+> resulting in leaked resources.
+> 
 
-This PR is largely the same as `amlogic-arm64-dt-for-v7.1`, but I sent the fixes
-separately as `amlogic-fixes-v7.1-rc` as discussed with Arnd, so this tag
-`amlogic-arm64-dt-for-v7.2-v1` is based on top of `amlogic-fixes-v7.1-rc`.
+I don't mind adding this check, but I have a question for reviewers for 
+sake of knowledge.
+I just checked and it seemes to me that actually when 
+"soc_pcm_trigger()" fails to SNDRV_PCM_TRIGGER_START it rolls back to 
+SNDRV_PCM_TRIGGER_STOP. Sure I'm missing something that Sashiko found, 
+but I cannot figure out what. Any help on this?
 
-Thanks,
-Neil
+-- 
+Valerio
 
-The following changes since commit 174a0ef3b33434f475c87e66f37980e39b73805a:
-
-   arm64: dts: meson-gxl-p230: fix ethernet PHY interrupt number (2026-04-21 15:46:29 +0200)
-
-are available in the Git repository at:
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git amlogic-arm64-dt-for-v7.2-v1
-
-for you to fetch changes up to 43e6ece01ba673c3bd8dd1638bcd93827d254b3d:
-
-   arm64: dts: amlogic: t7: Add i2c pinctrl node (2026-05-18 16:23:29 +0200)
-
-----------------------------------------------------------------
-Amlogic ARM64 DT for v7.2 take 1:
-- Khadas VIM4 (T7 SoC) features:
-  - Memory layout fixup
-  - GIC register range
-  - Model name fixup
-  - PWM, eMMC, SD card and SDIO support
-  - PWM LED
-  - I2C pinctrl node
-- Khadas VIM1s Features
-  - Bluetooth
-  - PWM LED
-  - Power Key
-  - Function Key via SARADC
-  - RTC
-  - Remote control keymap
-- Bluetooth node for Phicomm N1
-
-----------------------------------------------------------------
-Jian Hu (1):
-       arm64: dts: amlogic: t7: Add clock controller nodes
-
-Jun Yan (1):
-       arm64: dts: amlogic: meson-gxl-s905d-phicomm-n1: add bluetooth node
-
-Nick Xie (9):
-       arm64: dts: amlogic: meson-s4: add UART_A node
-       arm64: dts: amlogic: meson-s4-s905y4-khadas-vim1s: enable bluetooth
-       arm64: dts: amlogic: meson-s4-s905y4-khadas-vim1s: add PWM LED support
-       arm64: dts: amlogic: meson-s4-s905y4-khadas-vim1s: add POWER key support
-       arm64: dts: amlogic: meson-s4: add internal SARADC controller
-       arm64: dts: amlogic: meson-s4-s905y4-khadas-vim1s: add Function key support
-       arm64: dts: amlogic: meson-s4: add VRTC node
-       arm64: dts: amlogic: meson-s4-s905y4-khadas-vim1s: enable HYM8563 RTC
-       arm64: dts: amlogic: meson-s4-s905y4-khadas-vim1s: use rc-khadas keymap
-
-Ronald Claveau (12):
-       arm64: dts: amlogic: t7: Add eMMC, SD card and SDIO pinctrl nodes
-       arm64: dts: amlogic: t7: Add PWM pinctrl nodes
-       arm64: dts: amlogic: t7: khadas-vim4: Add power regulators
-       arm64: dts: amlogic: t7: khadas-vim4: Remove invalid property
-       arm64: dts: amlogic: t7: Add MMC controller nodes
-       arm64: dts: amlogic: t7: Add PWM controller nodes
-       arm64: dts: amlogic: t7: khadas-vim4: Add SDIO power sequence and WiFi clock
-       arm64: dts: amlogic: t7: khadas-vim4: Add MMC nodes
-       arm64: dts: amlogic: t7: Fix missing required reset property
-       arm64: dts: amlogic: t7: khadas-vim4: reorder root node
-       arm64: dts: amlogic: t7: khadas-vim4: add PWM-driven status LED
-       arm64: dts: amlogic: t7: Add i2c pinctrl node
-
-  .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  | 215 +++++++++
-  arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        | 482 +++++++++++++++++++++
-  .../dts/amlogic/meson-gxl-s905d-phicomm-n1.dts     |  15 +
-  .../dts/amlogic/meson-s4-s905y4-khadas-vim1s.dts   |  81 ++++
-  arch/arm64/boot/dts/amlogic/meson-s4.dtsi          |  45 ++
-  5 files changed, 838 insertions(+)
 
 _______________________________________________
 linux-amlogic mailing list
