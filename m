@@ -4,63 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A4C4CD5BAA
-	for <linux-amlogic@archiver.kernel.org>; Wed, 20 May 2026 06:46:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CB3CCD5BAA
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 May 2026 07:24:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:In-Reply-To:
-	To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=h7uifYyDFNe3WKe1tUbOB4IvDXEWdmNd8he188/HbwA=; b=A1XWIrMHbxI7ga
-	Tfud2E3RQdI+eh6xD778bnS7MuC6KUXmnfkBTxf4FN1ILVbMrTiD8REVjL0ybUMdZk1t5Xzn8moCF
-	EqVpAVZqWeyRrI5LZZ2MGs3uY94seqGK6MLCddrfzV+HgcElstxjZWsitlttSf4C73kxMEiedkb1E
-	4XtQ9WklxPZcciT1LBu8tn3EGRZiGV32oE81LbLsqZxBaa46/syn+0ocEbNXDzshdo1DUFAyTazL+
-	r3wr0GRtN1UbMLEK1UIvqu2TAtFzMIZ9cMBaiWgd8QFqTQdprS7yMnAkuOhOt2ngVu7DE8rxyGlE7
-	NKzlTv5778Yb7Eaupwnw==;
+	List-Owner; bh=AiR4YaSf0wUbFA3tpFPM/HKywByLIuzKRARCp4lkWD0=; b=5CY0wrLwZOgkFx
+	IS9CFK0Genjw8eiKOL/y2fERFeMha59D4xY03t4ynd2r6fsvg8Tnm3Rd26lME63xQLUGmp9C6y1oo
+	AbewG9SI2v9/sueIjaSdp7yN5195ERV41N0YM1zhq3uAMsJKvbjeNBcLbbcsUgSIeYq4wwjd1sS40
+	xsCkeQPVdmNgv+lGmrb2TmtWDCPsR+gZ9MAsmUsEcjHUOxnIxjeSi87LAkoBu/UdDQ38HAAdowEKy
+	JrUoWQKHySO9gj99nF9j9V2XMlkd8NqXLavdo2+w1EmZP8RTuvHe89PXB3XyfAnR5QXfPjDzjPSTV
+	2tvX5wdaBLv1ZI1QsKCA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wPah2-00000003haL-1pWH;
-	Wed, 20 May 2026 06:46:12 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+	id 1wPbHx-00000003msa-16zU;
+	Wed, 20 May 2026 07:24:21 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wPagy-00000003hYb-13kv
+	id 1wPbHt-00000003mri-2HkC
 	for linux-amlogic@lists.infradead.org;
-	Wed, 20 May 2026 06:46:11 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 0BFAD4E42CFD;
-	Wed, 20 May 2026 06:46:05 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id AC8436070E;
-	Wed, 20 May 2026 06:46:04 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7F087107E8EB1;
-	Wed, 20 May 2026 08:45:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1779259562; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=dKcYje4RS7cFmYoZ2tIYKDA+VMl5+PAkjiozJ5zsCH4=;
-	b=MPo/MyjFKZ6BLm7Xiy+fB0ERKTpIT0x6QG+V098ck6ZrRqCxnovmlWjPKem/Awa8nRtVV+
-	I7TOtCWoxJEkX1bOZTr8+JUy26Fm7leRcwuQQFlxzJWJZbVOgmhNoDitsYwqnkKJqipDxb
-	wiKdpc1Vmww38H2Xkj5bjaekS8bK8sdcWHRGOCiVYkeTHonfCOH8g8BKk+x2s8TPSUrDGA
-	FEczjeTg5EUO/2/MDs29H+6Jq/BSFK9aNLeTpyFGmiUK4/rB4fFd68inDJvxE0BjyFkUBt
-	q8c4k1nLmHbvNtJbKPg0Ce8TtFJzhug7firDgpkrVHalWizJUAcg2FPap/P3VA==
+	Wed, 20 May 2026 07:24:19 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-488b3f8fa2bso43608415e9.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 20 May 2026 00:24:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1779261855; x=1779866655; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:user-agent
+         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ohsf7Kwxw4dURrBVAg9+548r3Hkt++rO/LjKiVp3o1A=;
+        b=aNf1OeXNpEnpmfHXbVV2yhqMNNHf33U0I2TYU4ovZw+UlfqP6VxdXYbschHJk1dDB6
+         6N408cFbVK+0HVIQgpmbfUqoxGu3uJyqZ0XfxbwZzqn3KDpzbtJhlhQ/4H50V6B6aZte
+         Nqr7b1P1+FpEud1PFZ6IUFWetjzFC5bg2p5akbh7eGDO1wfnlWEFlX7Ou6CXKUtC+myM
+         lfgXZFjibGyOoBKQDmPgbkRVsdPXOyu7dD8p3bR4H79s6f+DLfwuPyHxflNu9Vuyt9mf
+         8upvizBk90COU3iHwc3k9iZrBKs/8YG7Oarter/CcA0qhCk2M0niOJ8USxBkuwqXx8Xa
+         t3dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1779261855; x=1779866655;
+        h=content-transfer-encoding:mime-version:message-id:date:user-agent
+         :references:in-reply-to:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ohsf7Kwxw4dURrBVAg9+548r3Hkt++rO/LjKiVp3o1A=;
+        b=diV3zKmvtS9uM7H38NFXcSAsMmCr7j1FcNuv2sIsG7M0l6SvqHKZ1H64Dt3cFEoDsC
+         934lwabZtSO3ASs7ne8iXf83AXLfuhtWQE0X13bHwK0TQlJMjQKUH6rLt+/U3FpOgYxq
+         EP/EfSqbZlFQG10INXojeuYv3aA8q7u4HY9nsIqCb9YSRqFXVpzf/iGEXziBWslAo+YO
+         OshMqpbra2Cu/kDvNS6PG4AmTYS51jOofuWci0lGL+UvVvXoQ/wycsFWz+DWVE0l+X0q
+         0k9Z4K8LEwGYDhYdPxZXd89YG35HvCgrRMONd+WcuOadFkYbFfmMbSRr8KO7X8uL0/Np
+         Mv6g==
+X-Forwarded-Encrypted: i=1; AFNElJ86r7oh9RzVWWPOrXf2XxxkhNxUEBJeU1CtUS34OV5eLOsx77VGlp/ZF1Y9K5E5IpMItIfxXbtenRHMJdKR@lists.infradead.org
+X-Gm-Message-State: AOJu0YwYIiu/L6yN4dPbQa2ILw3Xa1u610csKRQ/hp4Z99PpgiJGFqrq
+	R57zLJjimzmIqy5pJ4TvJ5tG9J7Bi6H4lSgs0T53zF4xlSE1m4pUIHXsJ4F1NmHLyO0=
+X-Gm-Gg: Acq92OFuRFkPVeqjdpyySAQ4l0OnGPsqKLhj8zxMtiCkvxeSLwEpoPQUK+np6RCvEht
+	8YcMIbwQp/bmJ/PpPAqrq9LkMtHBVqFcjtS03Db8zToHZkQVc8w1pPEEzaOVLahy2Scw/rvB9Zs
+	xBd+1r2S3pz9WVhcwWVHmPIwIOQbNn7vQPZSGWGFZOme+KbyKRtTkMlOrdP8/27rruqNs6WdB01
+	sB8Ub0ySraY7tUAv4KAQ6pu5bHF8TDn8P+XQuoJdk2ALgYK103O7UhpKEpDGPrjuSqvsmVVsDu0
+	cAs+Oe3vHMYu/lstsnnUt1ptXkmYSoft6U63x+xvwE3NzfSXUP2BWDgtE4DSlsrHHTKs7mR6pPC
+	YMnHFNFbAzYFyFxMOAYQs9M/xX5XUkrWVQQeXfxXwyHSM4o4xmjZinkhBJX8x9d/jzFCl1W/tgl
+	roEgZDYiSR85/cXZHX5alaBQ==
+X-Received: by 2002:a05:600c:c0d0:b0:48a:761:5816 with SMTP id 5b1f17b1804b1-48fe53774b4mr270166855e9.8.1779261855105;
+        Wed, 20 May 2026 00:24:15 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:fa19:c0c9:991f:186d])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-49008c047absm86786415e9.0.2026.05.20.00.24.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 May 2026 00:24:14 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jian Hu <jian.hu@amlogic.com>
+Cc: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>,  Michael
+ Turquette <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>,
+  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>,  Neil Armstrong
+ <neil.armstrong@linaro.org>,  Xianwei Zhao <xianwei.zhao@amlogic.com>,
+  Kevin Hilman <khilman@baylibre.com>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  linux-kernel@vger.kernel.org,
+  linux-clk@vger.kernel.org,  devicetree@vger.kernel.org,
+  linux-amlogic@lists.infradead.org,  linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 05/10] clk: amlogic: PLL l_detect signal supports
+ active-high configuration
+In-Reply-To: <d023303e-e785-4b60-85cd-c83cc3f890e4@amlogic.com> (Jian Hu's
+	message of "Wed, 20 May 2026 11:25:35 +0800")
+References: <20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com>
+	<20260511-b4-a9_clk-v1-5-41cb4071b7c9@amlogic.com>
+	<1jse7u6n3q.fsf@starbuckisacylon.baylibre.com>
+	<d023303e-e785-4b60-85cd-c83cc3f890e4@amlogic.com>
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Wed, 20 May 2026 09:24:12 +0200
+Message-ID: <1jwlwy5ysj.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH v7 04/23] drm: bridge: dw_hdmi: Hold bridge ref until
- connector cleanup
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <e90eddfc-2f57-418a-ae05-43a411d72b99@kwiboo.se>
-References: <20260518180206.2480119-1-jonas@kwiboo.se>
- <20260518180206.2480119-5-jonas@kwiboo.se>
- <177919241969.545972.18169905222569864569.b4-review@b4>
- <e90eddfc-2f57-418a-ae05-43a411d72b99@kwiboo.se>
-Date: Wed, 20 May 2026 08:45:49 +0200
-Message-Id: <177925954999.1337464.14745526881417951688.b4-reply@b4>
-X-Mailer: b4 0.15.2
-X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260519_234608_430692_1454669E 
-X-CRM114-Status: GOOD (  22.20  )
+X-CRM114-CacheID: sfid-20260520_002417_611051_8FC1DD3E 
+X-CRM114-Status: GOOD (  19.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,75 +106,65 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: imx@lists.linux.dev, Heiko Stuebner <heiko@sntech.de>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Diederik de Haas <diederik@cknow-tech.com>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Andrzej Hajda <andrzej.hajda@intel.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Robert Foss <rfoss@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, linux-rockchip@lists.infradead.org, Luca Ceresoli <luca.ceresoli@bootlin.com>, linux-sunxi@lists.linux.dev, Liu Ying <victor.liu@nxp.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, linux-amlogic@lists.infradead.org, Chen-Yu Tsai <wens@kernel.org>, linux-arm-kernel@lists.infradead.org, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Neil Armstrong <neil.armstrong@linaro.org>, Louis Chauvet <louis.chauvet@bootlin.com>, Sandy Huang <hjc@rock-chips.com>, Thomas Zimmermann <tzimmermann@suse.de>, Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Andy Yan <andy.yan@rock-chips.com>, Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Jonas,
-
-On 2026-05-19 17:18 +0200, Jonas Karlman wrote:
-> Hello Luca,
->
-> On 5/19/2026 2:06 PM, Luca Ceresoli wrote:
-> > On Mon, 18 May 2026 18:01:40 +0000, Jonas Karlman <jonas@kwiboo.se> wrote:
-> >
-> > Hello Jonas,
-> >
-> >>
-> >> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> >> index b7bfc0e9a6b2..9d795c550f8a 100644
-> >> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> >> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> >> @@ -2600,10 +2609,14 @@ static int dw_hdmi_connector_create(struct dw_hdmi *hdmi)
-> >>
-> >>  	drm_connector_helper_add(connector, &dw_hdmi_connector_helper_funcs);
-> >>
-> >> -	drm_connector_init_with_ddc(hdmi->bridge.dev, connector,
-> >> -				    &dw_hdmi_connector_funcs,
-> >> -				    DRM_MODE_CONNECTOR_HDMIA,
-> >> -				    hdmi->ddc);
-> >> +	ret = drm_connector_init_with_ddc(hdmi->bridge.dev, connector,
-> >> +					  &dw_hdmi_connector_funcs,
-> >> +					  DRM_MODE_CONNECTOR_HDMIA,
-> >> +					  hdmi->ddc);
-> >> +	if (ret)
-> >> +		return ret;
-> >> +
-> >> +	drm_bridge_get(&hdmi->bridge);
-> >
-> > I'm not fully following the code paths, but both the report and the fix
-> > make sense to me. Only I'd move the drm_bridge_get() before
-> > drm_connector_init_with_ddc(), to avoid a short window where no reference
-> > is held and the bridge might be destroyed before drm_bridge_get() is
-> > called. I'm not sure this can happen, but it's better to write the code in
-> > a way that clearly makes it impossible.
->
-> dw_hdmi_connector_create() is only called from dw_hdmi_bridge_attach()
-> so the bridge should already have a ref for the lifetime of this call.
-
-Ah, that's true. So the patch is correct.
-
-Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-
-In case you send a new iteration, please add this extra explanation to the
-commit message, similar to the above paragraph.
-
-> I explicitly chose the placement after drm_connector_init_with_ddc()
-> to ensure ref count is correctly balanced without having to add a
-> drm_bridge_put() call in any error path. I.e. connector destroy() is
-> only called when drm_connector_init_with_ddc() succeeds.
->
-> This code/call is also planned to be removed in a future series,
-
-In order to remove the !DRM_BRIDGE_ATTACH_NO_CONNECTOR case? That would be
-welcome!
-
-Luca
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gbWVyLiAyMCBtYWkgMjAyNiBhdCAxMToyNSwgSmlhbiBIdSA8amlhbi5odUBhbWxvZ2ljLmNv
+bT4gd3JvdGU6Cgo+IE9uIDUvMTQvMjAyNiAxMToxMyBQTSwgSmVyb21lIEJydW5ldCB3cm90ZToK
+Pj4gWyBFWFRFUk5BTCBFTUFJTCBdCj4+Cj4+IE9uIGx1bi4gMTEgbWFpIDIwMjYgYXQgMjA6NDcs
+IEppYW4gSHUgdmlhIEI0IFJlbGF5IDxkZXZudWxsK2ppYW4uaHUuYW1sb2dpYy5jb21Aa2VybmVs
+Lm9yZz4gd3JvdGU6Cj4+Cj4+PiBGcm9tOiBKaWFuIEh1IDxqaWFuLmh1QGFtbG9naWMuY29tPgo+
+Pj4KPj4+IGxfZGV0ZWN0IGNvbnRyb2xzIHRoZSBlbmFibGUvZGlzYWJsZSBvZiB0aGUgUExMIGxv
+Y2stZGV0ZWN0IG1vZHVsZS4KPj4+Cj4+PiBGb3IgQTksIHRoZSBsX2RldGVjdCBzaWduYWwgaXMg
+YWN0aXZlLWhpZ2g6Cj4+PiAwIC0+IERpc2FibGUgbG9jay1kZXRlY3QgbW9kdWxlOwo+Pj4gMSAt
+PiBFbmFibGUgbG9jay1kZXRlY3QgbW9kdWxlLgo+Pj4KPj4+IEhlcmUsIGEgZmxhZyBDTEtfTUVT
+T05fUExMX0xfREVURUNUX0FDVElWRV9ISUdIIGlzIGFkZGVkIHRvIGhhbmRsZSBjYXNlcwo+Pj4g
+bGlrZSBBOSwgd2hlcmUgdGhlIHNpZ25hbCBpcyBhY3RpdmUtaGlnaC4KPj4+Cj4+PiBTaWduZWQt
+b2ZmLWJ5OiBKaWFuIEh1IDxqaWFuLmh1QGFtbG9naWMuY29tPgo+Pj4gLS0tCj4+PiAgIGRyaXZl
+cnMvY2xrL21lc29uL2Nsay1wbGwuYyB8IDkgKysrKysrKy0tCj4+PiAgIGRyaXZlcnMvY2xrL21l
+c29uL2Nsay1wbGwuaCB8IDIgKysKPj4+ICAgMiBmaWxlcyBjaGFuZ2VkLCA5IGluc2VydGlvbnMo
+KyksIDIgZGVsZXRpb25zKC0pCj4+Pgo+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvY2xrL21lc29u
+L2Nsay1wbGwuYyBiL2RyaXZlcnMvY2xrL21lc29uL2Nsay1wbGwuYwo+Pj4gaW5kZXggMWVhNjU3
+OWE3NjBmLi41YTBiZDc1Zjg1YTkgMTAwNjQ0Cj4+PiAtLS0gYS9kcml2ZXJzL2Nsay9tZXNvbi9j
+bGstcGxsLmMKPj4+ICsrKyBiL2RyaXZlcnMvY2xrL21lc29uL2Nsay1wbGwuYwo+Pj4gQEAgLTM4
+OCw4ICszODgsMTMgQEAgc3RhdGljIGludCBtZXNvbl9jbGtfcGxsX2VuYWJsZShzdHJ1Y3QgY2xr
+X2h3ICpodykKPj4+ICAgICAgICB9Cj4+Pgo+Pj4gICAgICAgIGlmIChNRVNPTl9QQVJNX0FQUExJ
+Q0FCTEUoJnBsbC0+bF9kZXRlY3QpKSB7Cj4+PiAtICAgICAgICAgICAgIG1lc29uX3Bhcm1fd3Jp
+dGUoY2xrLT5tYXAsICZwbGwtPmxfZGV0ZWN0LCAxKTsKPj4+IC0gICAgICAgICAgICAgbWVzb25f
+cGFybV93cml0ZShjbGstPm1hcCwgJnBsbC0+bF9kZXRlY3QsIDApOwo+Pj4gKyAgICAgICAgICAg
+ICBpZiAocGxsLT5mbGFncyAmIENMS19NRVNPTl9QTExfTF9ERVRFQ1RfQUNUSVZFX0hJR0gpIHsK
+Pj4+ICsgICAgICAgICAgICAgICAgICAgICBtZXNvbl9wYXJtX3dyaXRlKGNsay0+bWFwLCAmcGxs
+LT5sX2RldGVjdCwgMCk7Cj4+PiArICAgICAgICAgICAgICAgICAgICAgbWVzb25fcGFybV93cml0
+ZShjbGstPm1hcCwgJnBsbC0+bF9kZXRlY3QsIDEpOwo+Pj4gKyAgICAgICAgICAgICB9IGVsc2Ug
+ewo+Pj4gKyAgICAgICAgICAgICAgICAgICAgIG1lc29uX3Bhcm1fd3JpdGUoY2xrLT5tYXAsICZw
+bGwtPmxfZGV0ZWN0LCAxKTsKPj4+ICsgICAgICAgICAgICAgICAgICAgICBtZXNvbl9wYXJtX3dy
+aXRlKGNsay0+bWFwLCAmcGxsLT5sX2RldGVjdCwgMCk7Cj4+PiArICAgICAgICAgICAgIH0KPj4g
+SSdtIG5vdCBhIGZhbiBvZiB0aGlzIGNvZGUgZHVwbGljYXRpb24uCj4+IFVzZSB0aGUgaW50cm9k
+dWNlZCBDTEtfTUVTT05fUExMX0xfREVURUNUX0FDVElWRV9ISUdIIHRvIGNvbXB1dGUgdGhlCj4+
+IGZpcnN0IHZhbHVlLCB0aGVuIGZsaXAgdGhlIGJpdC4KPgo+Cj4gT2ssIEkgd2lsbCB1cGRhdGUg
+dGhpcyBpbiB0aGUgbmV4dCB2ZXJzaW9uLgo+Cj4gSGVyZSBpcyB0aGUgdXBkYXRlZCBjb2RlOgo+
+Cj4gwqAgwqAgwqAgwqAgaWYgKE1FU09OX1BBUk1fQVBQTElDQUJMRSgmcGxsLT5sX2RldGVjdCkp
+IHsKPiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCBtZXNvbl9wYXJtX3dyaXRl
+KGNsay0+bWFwLCAmcGxsLT5sX2RldGVjdCwKPiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCAhKHBsbC0+ZmxhZ3MgJgo+IENMS19NRVNPTl9QTExfTF9ERVRFQ1RfQUNUSVZFX0hJ
+R0gpKTsKPiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCBtZXNvbl9wYXJtX3dy
+aXRlKGNsay0+bWFwLCAmcGxsLT5sX2RldGVjdCwKPiDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCAhIShwbGwtPmZsYWdzICYKPiBDTEtfTUVTT05fUExMX0xfREVURUNUX0FDVElW
+RV9ISUdIKSk7CgpQbGVhc2UgdXNlIGEgdmFyaWFibGUuIE1ha2UgaXQgY2xlYW4gCgo+IMKgIMKg
+IMKgIMKgIH0KPgo+Pj4gICAgICAgIH0KPj4+Cj4+PiAgICAgICAgaWYgKG1lc29uX2Nsa19wbGxf
+d2FpdF9sb2NrKGh3KSkKPj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2Nsay9tZXNvbi9jbGstcGxs
+LmggYi9kcml2ZXJzL2Nsay9tZXNvbi9jbGstcGxsLmgKPj4+IGluZGV4IDk0OTE1N2ZiN2JmNS4u
+OTdiN2M3MDM3NmEzIDEwMDY0NAo+Pj4gLS0tIGEvZHJpdmVycy9jbGsvbWVzb24vY2xrLXBsbC5o
+Cj4+PiArKysgYi9kcml2ZXJzL2Nsay9tZXNvbi9jbGstcGxsLmgKPj4+IEBAIC0yOSw2ICsyOSw4
+IEBAIHN0cnVjdCBwbGxfbXVsdF9yYW5nZSB7Cj4+Pgo+Pj4gICAjZGVmaW5lIENMS19NRVNPTl9Q
+TExfUk9VTkRfQ0xPU0VTVCAgQklUKDApCj4+PiAgICNkZWZpbmUgQ0xLX01FU09OX1BMTF9OT0lO
+SVRfRU5BQkxFRCBCSVQoMSkKPj4+ICsvKiBsX2RldGVjdCBzaWduYWwgaXMgYWN0aXZlLWhpZ2gg
+Ki8KPj4+ICsjZGVmaW5lIENMS19NRVNPTl9QTExfTF9ERVRFQ1RfQUNUSVZFX0hJR0ggICBCSVQo
+MikKPj4+Cj4+PiAgIHN0cnVjdCBtZXNvbl9jbGtfcGxsX2RhdGEgewo+Pj4gICAgICAgIHN0cnVj
+dCBwYXJtIGVuOwo+PiAtLQo+PiBKZXJvbWUKPgo+IEJlc3QgcmVnYXJkcywKPgo+IEppYW4KCi0t
+IApKZXJvbWUKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFk
+Lm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFt
+bG9naWMK
