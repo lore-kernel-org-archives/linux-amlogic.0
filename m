@@ -4,66 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7337FCD5BAB
-	for <linux-amlogic@archiver.kernel.org>; Thu, 21 May 2026 23:15:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47E86CD5BAF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 21 May 2026 23:17:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=795QcpASt/UoOGrV/mLxB4w53FNj2Z/veKzjQY0oZRU=; b=CY5yU/GotdyjsusXYaMdgeaUD6
-	s7Mol0LqhEog68CkebRJ0JU/YLpJs1Qa4OP/+21s4cVcqG7Lb+w+0bDc+M45tc2LVpxJgQseSpyUi
-	Zwc4vYZcDrDDBEobZ3OKZakeToQM4WANmVlXybMNfv48EClMzt72gmP1KcTJZrOc5porgD3aio5Tk
-	ZssQmH7QqjkK3iW4IXkYM5PVdrcMg1yVLufNifrumKUbQKvwHdwsz2POjBYHUVAQAbjgBeGS93u91
-	iAYcGp0w7kGPX8tC0W1DlVRVTSGMFyp3s8tfaJNurV9X8p62pKcRZJg/vzUe6lA86lOcBq2lKwzTE
-	uUKsZ66g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=UNqrSktevxpVJGk/opd4npuZshTKcb/8TxTWqzeba4g=; b=c35KzNRCpC2w/v
+	W7hrYgSoJYrF3KshKl9ZW8szUReE7i5IxlOJ1h18qkND9YAvy4zM0rQqe8fCvCUi2ijmDKjPyqRWs
+	a15nBpoAKmnabS82qkQQ92g2vgS0E+RxbMXBOZaHNa5Jie6P7Ww6OpOacyeoXt1s6b1oFtwhW0Q+V
+	tDzqIK4TLdpPnrwgD1ykr0ORJxDn30OFsRboBqhEUwqcaUcLLzzZVw+LRsusRl+ssJqVQ2in5alTj
+	jSNxhaFL5xTPP7O7S/UZoFnGlbwjDdDgEK/cgEOSGfXKxoO1JeUZ7VyVKNeS3ZyB9fB8bgPdlFL8r
+	9DMkESKcd/u7XN0UpMiA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wQCbw-00000009IJW-1DTi;
-	Thu, 21 May 2026 23:15:28 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1wQCdp-00000009IYX-3VU7;
+	Thu, 21 May 2026 23:17:25 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wQCbu-00000009IIt-08G6;
-	Thu, 21 May 2026 23:15:27 +0000
+	id 1wQCdo-00000009IYD-0Ny2;
+	Thu, 21 May 2026 23:17:24 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 42EF040D63;
-	Thu, 21 May 2026 23:15:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A99951F000E9;
-	Thu, 21 May 2026 23:15:22 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 09639600FF;
+	Thu, 21 May 2026 23:17:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDE661F000E9;
+	Thu, 21 May 2026 23:17:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779405325;
-	bh=PuXgeCnji3vg9DTM+nKRuB/6/d26RWL0oGImlyNcPbw=;
+	s=k20260515; t=1779405442;
+	bh=j0ebOmJn6u1MxYGewPLj3waI4xbAN7qaMrGtxlI3D9I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=DxhLHMYU6tWsxNh9zW97uFyxTP7/DurE9I8PIJvZLot2zke61AorZxPxFUSpYjoVe
-	 kO6WmZxmuBvE7vn9OVlCQTcto1d0HuCFhIhkhU+d6+V4zn2cZFFWYekylUEH5K3y+2
-	 EGdqpb96jpzE74ZxG0j+wbfglvBvps2+MSJ1rgM/sdeJIEJWe/zcXA8t0ZPmagvNpU
-	 9A1q3sD0rLXrOjhKRD5e/T068x7eUESObiyjgUDW8lObhNaEMab4v/lT1OFnnGOo8U
-	 jxL2nEifcCDUXATscqxKY2WYueXeYVNdRD+AZfoukgvEJA22ucfw9biKD6IaFroBrr
-	 D132M18RQ9tYg==
-Date: Fri, 22 May 2026 00:15:19 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Valerio Setti <vsetti@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 4/4] ASoC: meson: aiu: use aiu-formatter-i2s to format
- I2S output data
-Message-ID: <758a4ef9-1a3e-475a-ae1e-83523330d006@sirena.org.uk>
-References: <20260515-reshape-aiu-as-axg-v1-0-53b457784ff3@baylibre.com>
- <20260515-reshape-aiu-as-axg-v1-4-53b457784ff3@baylibre.com>
+	b=RqthTvJfQ1ACcaGzGV9ao9TFO/VRou8BJSP4JXt5IuYUBfih0U8dNTpXsMpDFcQWN
+	 O2dNS6Ivf7Q6wszwppAtNLAsmvvOQy/Worly6dF6ld38KOYeFxSzvTW+1hkmlLtpoo
+	 fU4+SrUi280Gm73Wh3vlxI9wiQ6JHfSQYVw3f3dNeMF1f6gjPHmDL6yLilvfc1Y5HP
+	 lP56Q6RZIZq1EsXOT8HpJK4l3bGpmzExwWA3iwU5Ob8/A9YBMujzk1TMfpInqOYc2Z
+	 H6AI0Z4Ou+98aTsTYrHKIN56xvdcobEUMajumYS/CzrlB/Y9yZGZ5N2cslRACkzBLz
+	 94wZdfkD3uqqA==
+Date: Thu, 21 May 2026 18:17:15 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Adrien Grassein <adrien.grassein@gmail.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
+	Rodrigo Vivi <rodrigo.vivi@intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+	Tvrtko Ursulin <tursulin@ursulin.net>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, 
+	Abhinav Kumar <abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>, 
+	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Pengyu Luo <mitltlatltl@gmail.com>, Nikita Travkin <nikita@trvn.ru>, 
+	Yongxing Mou <yongxing.mou@oss.qualcomm.com>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
+Subject: Re: [PATCH RESEND v3 5/6] soc: qcom: pmic-glink-altmode: pass down
+ HPD_IRQ events
+Message-ID: <ag-SWn5FgRLBqUTR@baldur>
+References: <20260513-hpd-irq-events-v3-0-086857017f16@oss.qualcomm.com>
+ <20260513-hpd-irq-events-v3-5-086857017f16@oss.qualcomm.com>
 MIME-Version: 1.0
-In-Reply-To: <20260515-reshape-aiu-as-axg-v1-4-53b457784ff3@baylibre.com>
-X-Cookie: No shirt, no shoes, no service.
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260521_161526_113273_FCFC87D9 
-X-CRM114-Status: GOOD (  11.37  )
+Content-Disposition: inline
+In-Reply-To: <20260513-hpd-irq-events-v3-5-086857017f16@oss.qualcomm.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,100 +83,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============3881267913065449431=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Wed, May 13, 2026 at 09:23:25PM +0300, Dmitry Baryshkov wrote:
+> Pass IRQ_HPD events to the HPD bridge, letting those to be delivered to
+> the DisplayPort driver.
+> 
 
---===============3881267913065449431==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="kGRBy1aXTob5Y1K8"
-Content-Disposition: inline
+Acked-by: Bjorn Andersson <andersson@kernel.org>
 
+Regards,
+Bjorn
 
---kGRBy1aXTob5Y1K8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Fri, May 15, 2026 at 05:10:40PM +0200, Valerio Setti wrote:
-> Create a new DAPM widget for "I2S formatter" and place it on the path
-> between FIFO and output DAI interface. Remove I2S output formatting code
-> from aiu-encoder-i2s since it's now implemented from aiu-formatter-i2s.
-
-This series, it looks like this specific patch, is breaking pcm-test on
-my libretech Le Potato board, the clocking looks to be seriously messed
-up.  I'm getting:
-
-# selftests: alsa: pcm-test
-# TAP version 13
-# # Card 0/LIBRETECHCC - LIBRETECH-CC (LIBRETECH-CC)
-# # LIBRETECHCC.0 - fe.dai-link-0 (*)
-# 1..7
-# # default.time1.LIBRETECHCC.0.0.PLAYBACK - 8kHz mono large periods
-# ok 1 # SKIP default.time1.LIBRETECHCC.0.0.PLAYBACK
-# # snd_pcm_hw_params_set_channels 1: Invalid argument
-# # default.time2.LIBRETECHCC.0.0.PLAYBACK - 8kHz stereo large periods
-# # default.time2.LIBRETECHCC.0.0.PLAYBACK hw_params.RW_INTERLEAVED.S16_LE.8000.2.8000.32000 sw_params.32000
-# not ok 2 default.time2.LIBRETECHCC.0.0.PLAYBACK
-# # time mismatch: expected 2000ms got 4425
-# # default.time3.LIBRETECHCC.0.0.PLAYBACK - 44.1kHz stereo large periods
-# # default.time3.LIBRETECHCC.0.0.PLAYBACK hw_params.RW_INTERLEAVED.S16_LE.44100.2.22528.192000 sw_params.180224
-# not ok 3 default.time3.LIBRETECHCC.0.0.PLAYBACK
-# # time mismatch: expected 2000ms got 4852
-# # default.time4.LIBRETECHCC.0.0.PLAYBACK - 48kHz stereo small periods
-# # default.time4.LIBRETECHCC.0.0.PLAYBACK hw_params.RW_INTERLEAVED.S16_LE.48000.2.512.4096 sw_params.4096
-# not ok 4 default.time4.LIBRETECHCC.0.0.PLAYBACK
-# # expected 48000, wrote 4096
-# # default.time5.LIBRETECHCC.0.0.PLAYBACK - 48kHz stereo large periods
-# # default.time5.LIBRETECHCC.0.0.PLAYBACK hw_params.RW_INTERLEAVED.S16_LE.48000.2.24000.192000 sw_params.192000
-# not ok 5 default.time5.LIBRETECHCC.0.0.PLAYBACK
-# # time mismatch: expected 2000ms got 4489
-# # default.time6.LIBRETECHCC.0.0.PLAYBACK - 48kHz 6 channel large periods
-# # default.time6.LIBRETECHCC.0.0.PLAYBACK hw_params.RW_INTERLEAVED.S16_LE.48000.2.48000.262144 sw_params.240000
-# not ok 6 default.time6.LIBRETECHCC.0.0.PLAYBACK
-# # time mismatch: expected 2000ms got 6135
-# # default.time7.LIBRETECHCC.0.0.PLAYBACK - 96kHz stereo large periods
-# # default.time7.LIBRETECHCC.0.0.PLAYBACK hw_params.RW_INTERLEAVED.S16_LE.96000.2.48000.192000 sw_params.192000
-# not ok 7 default.time7.LIBRETECHCC.0.0.PLAYBACK
-# # time mismatch: expected 2000ms got 2287
-# # 1 skipped test(s) detected. Consider enabling relevant config options to improve coverage.
-# # Totals: pass:0 fail:6 xfail:0 xpass:0 skip:1 error:0
-
-Full log:
-
-   https://lava.sirena.org.uk/scheduler/job/2786342#L1934
-
-The prior patches seem to test fine, it's this one that seems to
-introduce the issue.
-
---kGRBy1aXTob5Y1K8
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmoPkgcACgkQJNaLcl1U
-h9Cr9wf9GZVxQsEvIE5A3ipkHKDFMMS69vG4WyE+XAQvUUYD24bVJHKuASshuek5
-MPsHrOTy8LYEDCuVOLdMd0ilswgl3O/W1BSwdePwFon3Xec2T2UizWpdEk6d8Zsb
-EVFQcE3Lmzdcgq17uma30ijZhzLWJnG3ZeSeeMQIEGlrxowrfpvjIh48v2XQ5IB1
-kvkE0pcQYxWV27Blv3YSz7F4QzRPi0wpOgUDZitASb+bf1GJIyeNnBgp5d70s9kf
-gpTN5jw9FYrgnv03F8FT36d8+SCoLpiW8nVx1aWs1tyj/mEV1UPMJZMh1de3WCxt
-mMqEy1yvKUpQqO+oiEKrda1zNeYf9w==
-=witK
------END PGP SIGNATURE-----
-
---kGRBy1aXTob5Y1K8--
-
-
---===============3881267913065449431==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
+>  drivers/soc/qcom/pmic_glink_altmode.c | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/soc/qcom/pmic_glink_altmode.c b/drivers/soc/qcom/pmic_glink_altmode.c
+> index 619bad2c27ee..946eb20b8f83 100644
+> --- a/drivers/soc/qcom/pmic_glink_altmode.c
+> +++ b/drivers/soc/qcom/pmic_glink_altmode.c
+> @@ -373,7 +373,11 @@ static void pmic_glink_altmode_worker(struct work_struct *work)
+>  		else
+>  			conn_status = connector_status_disconnected;
+>  
+> -		drm_aux_hpd_bridge_notify(&alt_port->bridge->dev, conn_status);
+> +		drm_aux_hpd_bridge_notify_extra(&alt_port->bridge->dev,
+> +						conn_status,
+> +						alt_port->hpd_irq ?
+> +						DRM_CONNECTOR_DP_IRQ_HPD :
+> +						DRM_CONNECTOR_NO_EXTRA_STATUS);
+>  	} else if (alt_port->mux_ctrl == MUX_CTRL_STATE_TUNNELING) {
+>  		if (alt_port->svid == USB_TYPEC_TBT_SID)
+>  			pmic_glink_altmode_enable_tbt(altmode, alt_port);
+> 
+> -- 
+> 2.47.3
+> 
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============3881267913065449431==--
-
