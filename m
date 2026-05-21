@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B798CD5BAF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 21 May 2026 08:13:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4268CD5BA4
+	for <linux-amlogic@archiver.kernel.org>; Thu, 21 May 2026 08:13:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xNC7WiaLji3vrhJwwVxaSHj65q094L3SkR5J4OkQ2UM=; b=Nk3h4dAgp5U8Ls
-	YouMJN3Mo+vpXn/w+CoCpLKIZjgoMqBKcTXvzYqhkhDNscDyHXZF6y6m1kBD9sPLFPVf72hp9LDgo
-	OBPjUppZZR8h3h9vmO+oQQ6aaQblIOWZFqXN2CTZooyT8kTV7JXtsLPxX7Hx8AO5YuZzj8dvkGK/4
-	Q9b1zqMf3UZzUwCLWNRZ9X9LYlXrIuj1/nTR4ky0vvXgV81hozxazl9R+AgjbHZYd96R65QJm+/d8
-	pNeGcxXGOjco9R4yKI608hLhSSaF2Kq1OraiNvjLOEyiH7pspjnesATXW5fgPvjTexVg7dAb7bJQb
-	QvC1xtoslLDzrjR3cRHA==;
+	List-Owner; bh=hZv8TH0h9dUh2aXVa1k0Nx8RvsMZtMnbw38UjMwun/I=; b=HWepbL23VVnRwN
+	tWiKISvsZ0WVAgQRI88XVs+dMhvtAkx8vXqR1gm/qWMjl1kTk4Q9KKLPFO/QTlYFKhZzS/wOlF5kH
+	BASrazwFz91PnSYzcLJJJlNp+7ONxbcCriNfxt+LPdQDOxRL39nyrohGHPeL1aK5+vhTOMPpyNA3C
+	SCDd3u9AgImLjg59HWnZlJs+Wvqq6e9WIBTVJRJigJbMyr7jnn5LL4B9zhO7Z+BSDTcWFB8Ls5aOB
+	A+PjEvutoMfdznCFMOUfxo+NQq0T8mV8U22BtHs5ycfgXDB6rv46Q4x5LTvXPPTkC+XhpfFo1Yp+Y
+	tYJPxe9hne6m724QD4Hg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wPyWW-000000075Pq-3ocz;
-	Thu, 21 May 2026 08:12:56 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1wPyWa-000000075S5-0VH1;
+	Thu, 21 May 2026 08:13:00 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wPyWV-000000075Oo-2bBs
+	id 1wPyWV-000000075OX-0fqH
 	for linux-amlogic@lists.infradead.org;
-	Thu, 21 May 2026 08:12:55 +0000
+	Thu, 21 May 2026 08:12:57 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id A33FC601FA;
+	by sea.source.kernel.org (Postfix) with ESMTP id 8CA054453B;
 	Thu, 21 May 2026 08:12:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 4334EC2BCB9;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 5C48BC2BCC6;
 	Thu, 21 May 2026 08:12:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1779351174;
-	bh=/BgmOAire621Z/jgVhyfIQNUbAABDn5uV30D8Z3Qf0U=;
+	bh=y/b9wlxCN5v9CwssmtYRofX/cfAwD74siDfgGXM7A1U=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=uYa9Djy1bz9tlVQA5o5V1aca4mAVJVrTGBaqnPezqAnIm55IOOgzmGeHIXqT0n8qX
-	 qHIDAVvX0Xyzcj+CGqR7ibSu/6nYA0/hmBsCzb1hrmLcc0U8+MQSdFpV9CPAP7acLS
-	 ePa3+jcMNbUB2Qrc7eS3YJpUf26xGp48c914gHzpxYrj1VoOB8PFlKKvqmftLwYUag
-	 NCmvW0wP4lNAloHDMVm9AXmIugxWQGhQNoGsqFrXEv7djnyzDPPLDvV1zWsQz/via+
-	 0INe76PoWUfFzTfCwFjeN2F75GCSt2ALZ43b29T2O6cZA3iK77GtZqxhZs4coPFG8N
-	 Kv2/cIsIorKYA==
+	b=q2Lt/K2uDYuXOwjpAjwWVx/tiJqg9tTwEIDSXZy7YtOmL+3G7g7xFS0JJpOkDZ0QL
+	 W4FVpP7gQo5TDVJaAUim8j3u84c1Fx5QaoCoHO5ht2IIMwwbhPdLYafqoafmGoxOSa
+	 J1Px0f56k8vttmii6ta3XdVufNa4nUCPZqhioq9sAQzUuZ+I/xtwDVeVHIlXc9Gfzu
+	 K9ndTjZPMmfa5Mo6pvmF8xrQaC2uX87dj34mi7v3KcxLfbiaohOhPESxXGLHAmGHxk
+	 3dIDZA6lMqu25rIVXwNiKUrnraNvi2Va7zHAe4B2TbJbgyEjlUvTGgdx2zpVhp40ad
+	 cu6jBnOdmX3Kw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2FBCACD4F5E;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 443FECD5BAF;
 	Thu, 21 May 2026 08:12:54 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Thu, 21 May 2026 08:12:43 +0000
-Subject: [PATCH v8 1/3] dt-bindings: dma: Add Amlogic A9 SoC DMA
+Date: Thu, 21 May 2026 08:12:44 +0000
+Subject: [PATCH v8 2/3] dmaengine: amlogic: Add general DMA driver for A9
 MIME-Version: 1.0
-Message-Id: <20260521-amlogic-dma-v8-1-86cc2ce94142@amlogic.com>
+Message-Id: <20260521-amlogic-dma-v8-2-86cc2ce94142@amlogic.com>
 References: <20260521-amlogic-dma-v8-0-86cc2ce94142@amlogic.com>
 In-Reply-To: <20260521-amlogic-dma-v8-0-86cc2ce94142@amlogic.com>
 To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -60,18 +60,21 @@ To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
 Cc: linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-hardening@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+ Frank Li <Frank.Li@nxp.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1779351171; l=2780;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1779351171; l=23126;
  i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=wQ86G1QdzFbWQ2wHf2Egs+gPp1C5gmZDaeMgB/r2pGQ=;
- b=hyq/TzKTAio0s6rn2CA6PCvdEDXGwbmiCoaIiNWEZ1XLvrSxsTg1tUi/ttKU+kwsgrZkhpYER
- zD8+6+ZclbWA9GVGuqDar2v4uCbOONhAC5P/MagyEXZcS2AZTMaxB65
+ bh=1d4FqRlupsRpr84Hb8ENUOBtZLLv3ZPkuKr2UZT5znI=;
+ b=QgsuDv6Hf2uxl9Rxe/dBwDT9xIbA44JhuNwh0vj/7qtsPUbKDQSR9xsLdP+zf8l8ouhKKWRwn
+ k9MYi5whoObAIA3UADOk+pd2+M8AXdaKh9rNi65OoCPJhnL5WJL1NoR
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
  auth_id=578
 X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260521_011255_270714_1C08C552 
+X-CRM114-Status: GOOD (  21.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,59 +87,753 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Reply-To: xianwei.zhao@amlogic.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-RnJvbTogWGlhbndlaSBaaGFvIDx4aWFud2VpLnpoYW9AYW1sb2dpYy5jb20+CgpBZGQgZG9jdW1l
-bnRhdGlvbiBkZXNjcmliaW5nIHRoZSBBbWxvZ2ljIEE5IFNvQyBETUEuIEFuZCBhZGQKdGhlIHBy
-b3BlcnRpZXMgc3BlY2lmaWMgdmFsdWVzIGRlZmluZXMgaW50byBhIG5ldyBpbmNsdWRlIGZpbGUu
-CgpSZXZpZXdlZC1ieTogS3J6eXN6dG9mIEtvemxvd3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBv
-c3MucXVhbGNvbW0uY29tPgpTaWduZWQtb2ZmLWJ5OiBYaWFud2VpIFpoYW8gPHhpYW53ZWkuemhh
-b0BhbWxvZ2ljLmNvbT4KLS0tCiAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9kbWEvYW1sb2dpYyxh
-OS1kbWEueWFtbCAgICB8IDY1ICsrKysrKysrKysrKysrKysrKysrKysKIGluY2x1ZGUvZHQtYmlu
-ZGluZ3MvZG1hL2FtbG9naWMsYTktZG1hLmggICAgICAgICAgIHwgIDggKysrCiAyIGZpbGVzIGNo
-YW5nZWQsIDczIGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2Rldmlj
-ZXRyZWUvYmluZGluZ3MvZG1hL2FtbG9naWMsYTktZG1hLnlhbWwgYi9Eb2N1bWVudGF0aW9uL2Rl
-dmljZXRyZWUvYmluZGluZ3MvZG1hL2FtbG9naWMsYTktZG1hLnlhbWwKbmV3IGZpbGUgbW9kZSAx
-MDA2NDQKaW5kZXggMDAwMDAwMDAwMDAwLi5lZmQ3YjI2MDJjMzMKLS0tIC9kZXYvbnVsbAorKysg
-Yi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZG1hL2FtbG9naWMsYTktZG1hLnlh
-bWwKQEAgLTAsMCArMSw2NSBAQAorIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMC1v
-bmx5IE9SIEJTRC0yLUNsYXVzZQorJVlBTUwgMS4yCistLS0KKyRpZDogaHR0cDovL2RldmljZXRy
-ZWUub3JnL3NjaGVtYXMvZG1hL2FtbG9naWMsYTktZG1hLnlhbWwjCiskc2NoZW1hOiBodHRwOi8v
-ZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMKKwordGl0bGU6IEFtbG9naWMg
-Z2VuZXJhbCBETUEgY29udHJvbGxlcgorCitkZXNjcmlwdGlvbjoKKyAgVGhpcyBpcyBhIGdlbmVy
-YWwtcHVycG9zZSBwZXJpcGhlcmFsIERNQSBjb250cm9sbGVyLiBJdCBjdXJyZW50bHkgc3VwcG9y
-dHMKKyAgbWFqb3IgcGVyaXBoZXJhbHMgaW5jbHVkaW5nIEkyQywgSTNDLCBQSU8sIGFuZCBDQU4t
-QlVTLiBUcmFuc21pdCBhbmQgcmVjZWl2ZQorICBmb3IgdGhlIHNhbWUgcGVyaXBoZXJhbCB1c2Ug
-dHdvIHNlcGFyYXRlIGNoYW5uZWxzLCBjb250cm9sbGVkIGJ5IGRpZmZlcmVudAorICByZWdpc3Rl
-ciBzZXRzLiBJMkMgYW5kIEkzQyB0cmFuc2ZlciBkYXRhIGluIDEtYnl0ZSB1bml0cywgd2hpbGUg
-UElPIGFuZAorICBDQU4tQlVTIHRyYW5zZmVyIGRhdGEgaW4gNC1ieXRlIHVuaXRzLiBGcm9tIHRo
-ZSBjb250cm9sbGVy4oCZcyBwZXJzcGVjdGl2ZSwKKyAgdGhlcmUgaXMgbm8gc2lnbmlmaWNhbnQg
-ZGlmZmVyZW5jZS4KKworbWFpbnRhaW5lcnM6CisgIC0gWGlhbndlaSBaaGFvIDx4aWFud2VpLnpo
-YW9AYW1sb2dpYy5jb20+CisKK3Byb3BlcnRpZXM6CisgIGNvbXBhdGlibGU6CisgICAgY29uc3Q6
-IGFtbG9naWMsYTktZG1hCisKKyAgcmVnOgorICAgIG1heEl0ZW1zOiAxCisKKyAgaW50ZXJydXB0
-czoKKyAgICBtYXhJdGVtczogMQorCisgIGNsb2NrczoKKyAgICBtYXhJdGVtczogMQorCisgIGNs
-b2NrLW5hbWVzOgorICAgIGNvbnN0OiBzeXMKKworICAnI2RtYS1jZWxscyc6CisgICAgY29uc3Q6
-IDIKKworICBkbWEtY2hhbm5lbHM6CisgICAgbWF4aW11bTogNjQKKworcmVxdWlyZWQ6CisgIC0g
-Y29tcGF0aWJsZQorICAtIHJlZworICAtIGludGVycnVwdHMKKyAgLSBjbG9ja3MKKyAgLSAnI2Rt
-YS1jZWxscycKKyAgLSBkbWEtY2hhbm5lbHMKKworYWxsT2Y6CisgIC0gJHJlZjogZG1hLWNvbnRy
-b2xsZXIueWFtbCMKKwordW5ldmFsdWF0ZWRQcm9wZXJ0aWVzOiBmYWxzZQorCitleGFtcGxlczoK
-KyAgLSB8CisgICAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2ludGVycnVwdC1jb250cm9sbGVyL2Fy
-bS1naWMuaD4KKyAgICBkbWEtY29udHJvbGxlckBmZTQwMDAwMHsKKyAgICAgICAgY29tcGF0aWJs
-ZSA9ICJhbWxvZ2ljLGE5LWRtYSI7CisgICAgICAgIHJlZyA9IDwweGZlNDAwMDAwIDB4NDAwMD47
-CisgICAgICAgIGludGVycnVwdHMgPSA8R0lDX1NQSSAzNSBJUlFfVFlQRV9FREdFX1JJU0lORz47
-CisgICAgICAgIGNsb2NrcyA9IDwmY2xrYyA0NT47CisgICAgICAgICNkbWEtY2VsbHMgPSA8Mj47
-CisgICAgICAgIGRtYS1jaGFubmVscyA9IDwyOD47CisgICAgfTsKZGlmZiAtLWdpdCBhL2luY2x1
-ZGUvZHQtYmluZGluZ3MvZG1hL2FtbG9naWMsYTktZG1hLmggYi9pbmNsdWRlL2R0LWJpbmRpbmdz
-L2RtYS9hbWxvZ2ljLGE5LWRtYS5oCm5ldyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAwMDAwMDAw
-MDAwMC4uYzU5YzJmZDRiOTU2Ci0tLSAvZGV2L251bGwKKysrIGIvaW5jbHVkZS9kdC1iaW5kaW5n
-cy9kbWEvYW1sb2dpYyxhOS1kbWEuaApAQCAtMCwwICsxLDggQEAKKy8qIFNQRFgtTGljZW5zZS1J
-ZGVudGlmaWVyOiAoR1BMLTIuMCBPUiBNSVQpICovCisKKyNpZm5kZWYgX19EVF9CSU5ESU5HU19E
-TUFfQU1MT0dJQ19ETUFfSF9fCisjZGVmaW5lIF9fRFRfQklORElOR1NfRE1BX0FNTE9HSUNfRE1B
-X0hfXworCisjZGVmaW5lIERNQV9UWAkJCTAKKyNkZWZpbmUgRE1BX1JYCQkJMQorI2VuZGlmIC8q
-IF9fRFRfQklORElOR1NfRE1BX0FNTE9HSUNfRE1BX0hfXyAqLwoKLS0gCjIuNTIuMAoKCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2lj
-IG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xp
-c3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+Amlogic A9 SoCs include a general-purpose DMA controller that can be used
+by multiple peripherals, such as I2C PIO and I3C. Each peripheral group
+is associated with a dedicated DMA channel in hardware.
+
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ drivers/dma/Kconfig       |  10 +
+ drivers/dma/Makefile      |   1 +
+ drivers/dma/amlogic-dma.c | 682 ++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 693 insertions(+)
+
+diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
+index e98e3e8c5036..400ae0f11f89 100644
+--- a/drivers/dma/Kconfig
++++ b/drivers/dma/Kconfig
+@@ -85,6 +85,16 @@ config AMCC_PPC440SPE_ADMA
+ 	help
+ 	  Enable support for the AMCC PPC440SPe RAID engines.
+ 
++config AMLOGIC_DMA
++	tristate "Amlogic general DMA support"
++	depends on ARCH_MESON || COMPILE_TEST
++	select DMA_ENGINE
++	select DMA_VIRTUAL_CHANNELS
++	select REGMAP_MMIO
++	help
++	  Enable support for the Amlogic general DMA engines. THis DMA
++	  controller is used some Amlogic SoCs, such as A9.
++
+ config APPLE_ADMAC
+ 	tristate "Apple ADMAC support"
+ 	depends on ARCH_APPLE || COMPILE_TEST
+diff --git a/drivers/dma/Makefile b/drivers/dma/Makefile
+index df566c4958b6..8457383281a8 100644
+--- a/drivers/dma/Makefile
++++ b/drivers/dma/Makefile
+@@ -16,6 +16,7 @@ obj-$(CONFIG_DMATEST) += dmatest.o
+ obj-$(CONFIG_ALTERA_MSGDMA) += altera-msgdma.o
+ obj-$(CONFIG_AMBA_PL08X) += amba-pl08x.o
+ obj-$(CONFIG_AMCC_PPC440SPE_ADMA) += ppc4xx/
++obj-$(CONFIG_AMLOGIC_DMA) += amlogic-dma.o
+ obj-$(CONFIG_APPLE_ADMAC) += apple-admac.o
+ obj-$(CONFIG_ARM_DMA350) += arm-dma350.o
+ obj-$(CONFIG_AT_HDMAC) += at_hdmac.o
+diff --git a/drivers/dma/amlogic-dma.c b/drivers/dma/amlogic-dma.c
+new file mode 100644
+index 000000000000..7dae5ba15c7e
+--- /dev/null
++++ b/drivers/dma/amlogic-dma.c
+@@ -0,0 +1,682 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
++/*
++ * Copyright (C) 2025 Amlogic, Inc. All rights reserved
++ * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
++ */
++
++#include <dt-bindings/dma/amlogic,a9-dma.h>
++#include <linux/bitfield.h>
++#include <linux/clk.h>
++#include <linux/device.h>
++#include <linux/dma-mapping.h>
++#include <linux/dmaengine.h>
++#include <linux/interrupt.h>
++#include <linux/init.h>
++#include <linux/list.h>
++#include <linux/mm.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/of_dma.h>
++#include <linux/platform_device.h>
++#include <linux/regmap.h>
++#include <linux/slab.h>
++#include <linux/types.h>
++
++#include "virt-dma.h"
++
++#define RCH_REG_BASE		0x0
++#define WCH_REG_BASE		0x2000
++/*
++ * Each rch (read from memory) REG offset  Rch_offset 0x0 each channel total 0x40
++ * rch addr = DMA_base + Rch_offset+ chan_id * 0x40 + reg_offset
++ */
++#define RCH_READY		0x0
++#define RCH_STATUS		0x4
++#define RCH_CFG			0x8
++#define CFG_CLEAR		BIT(25)
++#define CFG_PAUSE		BIT(26)
++#define CFG_ENABLE		BIT(27)
++#define CFG_DONE		BIT(28)
++#define RCH_ADDR		0xc
++#define RCH_LEN			0x10
++#define RCH_RD_LEN		0x14
++#define RCH_PRT			0x18
++#define RCH_SYCN_STAT		0x1c
++#define RCH_ADDR_LOW		0x20
++#define RCH_ADDR_HIGH		0x24
++/* if work on 64, it work with RCH_PRT */
++#define RCH_PTR_HIGH		0x28
++
++/*
++ * Each wch (write to memory) REG offset  Wch_offset 0x2000 each channel total 0x40
++ * wch addr = DMA_base + Wch_offset+ chan_id * 0x40 + reg_offset
++ */
++#define WCH_READY		0x0
++#define WCH_TOTAL_LEN		0x4
++#define WCH_CFG			0x8
++#define WCH_ADDR		0xc
++#define WCH_LEN			0x10
++#define WCH_RD_LEN		0x14
++#define WCH_PRT			0x18
++#define WCH_CMD_CNT		0x1c
++#define WCH_ADDR_LOW		0x20
++#define WCH_ADDR_HIGH		0x24
++/* if work on 64, it work with RCH_PRT */
++#define WCH_PTR_HIGH		0x28
++
++/* DMA controller reg */
++#define RCH_INT_MASK		0x1000
++#define WCH_INT_MASK		0x1004
++#define CLEAR_W_BATCH		0x1014
++#define CLEAR_RCH		0x1024
++#define CLEAR_WCH		0x1028
++#define RCH_ACTIVE		0x1038
++#define WCH_ACTIVE		0x103c
++#define RCH_DONE		0x104c
++#define WCH_DONE		0x1050
++#define RCH_ERR			0x1060
++#define RCH_LEN_ERR		0x1064
++#define WCH_ERR			0x1068
++#define DMA_BATCH_END		0x1078
++#define WCH_EOC_DONE		0x1088
++#define WDMA_RESP_ERR		0x1098
++#define UPT_PKT_SYNC		0x10a8
++#define RCHN_CFG		0x10ac
++#define WCHN_CFG		0x10b0
++#define MEM_PD_CFG		0x10b4
++#define MEM_BUS_CFG		0x10b8
++#define DMA_GMV_CFG		0x10bc
++#define DMA_GMR_CFG		0x10c0
++
++#define MAX_CHAN_ID		32
++#define SG_MAX_LEN		GENMASK(26, 0)
++
++struct aml_dma_sg_link {
++#define LINK_LEN		GENMASK(26, 0)
++#define LINK_IRQ		BIT(27)
++#define LINK_EOC		BIT(28)
++#define LINK_LOOP		BIT(29)
++#define LINK_ERR		BIT(30)
++#define LINK_OWNER		BIT(31)
++	u32 ctl;
++	u64 address;
++	u32 revered;
++} __packed;
++
++/* 1 page for link 256*16 */
++#define DMA_MAX_LINK		256
++/* sizeof(struct aml_dma_sg_link) */
++#define DMA_LINK_SIZE		16
++#define DMA_LINK_MAX_SIZE	(DMA_LINK_SIZE * DMA_MAX_LINK)
++
++struct aml_dma_desc {
++	struct virt_dma_desc		vd;
++	int				idx;
++	int				data_len;
++};
++
++struct aml_dma_chan {
++	struct virt_dma_chan		vchan;
++	struct aml_dma_dev		*aml_dma;
++	struct aml_dma_desc		*cur_desc;
++	struct aml_dma_sg_link		*sg_link;
++	dma_addr_t			sg_link_phys;
++	int				idx_next;
++	enum dma_status			pre_status;
++	enum dma_status			status;
++	enum dma_transfer_direction	direction;
++	int				chan_id;
++	/* reg_base (direction + chan_id) */
++	int				reg_offs;
++};
++
++struct aml_dma_dev {
++	struct dma_device		dma_device;
++	void __iomem			*base;
++	struct regmap			*regmap;
++	struct clk			*clk;
++	int				irq;
++	struct platform_device		*pdev;
++	struct aml_dma_chan		*aml_rch[MAX_CHAN_ID];
++	struct aml_dma_chan		*aml_wch[MAX_CHAN_ID];
++	unsigned int			chan_nr;
++	unsigned int			chan_used;
++	struct aml_dma_chan		aml_chans[]__counted_by(chan_nr);
++};
++
++static inline struct aml_dma_chan *to_aml_dma_chan(struct dma_chan *chan)
++{
++	return container_of(chan, struct aml_dma_chan, vchan.chan);
++}
++
++static inline struct aml_dma_desc *to_aml_dma_desc(struct virt_dma_desc *vd)
++{
++	return container_of(vd, struct aml_dma_desc, vd);
++}
++
++static void aml_dma_free_desc(struct virt_dma_desc *vd)
++{
++	struct aml_dma_desc *aml_desc = to_aml_dma_desc(vd);
++
++	kfree(aml_desc);
++}
++
++static int aml_dma_alloc_chan_resources(struct dma_chan *chan)
++{
++	struct aml_dma_chan *aml_chan = to_aml_dma_chan(chan);
++	struct aml_dma_dev *aml_dma = aml_chan->aml_dma;
++
++	/* offset is the same RCH_CFG and WCH_CFG */
++	regmap_set_bits(aml_dma->regmap, aml_chan->reg_offs + RCH_CFG, CFG_CLEAR);
++	regmap_clear_bits(aml_dma->regmap, aml_chan->reg_offs + RCH_CFG, CFG_PAUSE);
++	regmap_clear_bits(aml_dma->regmap, aml_chan->reg_offs + RCH_CFG, CFG_CLEAR);
++	aml_chan->sg_link = dma_alloc_coherent(aml_dma->dma_device.dev, DMA_LINK_MAX_SIZE,
++					       &aml_chan->sg_link_phys, GFP_KERNEL);
++	if (!aml_chan->sg_link)
++		return -ENOMEM;
++	aml_chan->idx_next = 0;
++	aml_chan->status = DMA_COMPLETE;
++	aml_chan->cur_desc = NULL;
++
++	return 0;
++}
++
++static void aml_dma_free_chan_resources(struct dma_chan *chan)
++{
++	struct aml_dma_chan *aml_chan = to_aml_dma_chan(chan);
++	struct aml_dma_dev *aml_dma = aml_chan->aml_dma;
++	struct virt_dma_desc *cur_vd = NULL;
++	unsigned long flags;
++
++	spin_lock_irqsave(&aml_chan->vchan.lock, flags);
++	regmap_set_bits(aml_dma->regmap, aml_chan->reg_offs + RCH_CFG, CFG_PAUSE);
++	regmap_set_bits(aml_dma->regmap, aml_chan->reg_offs + RCH_CFG, CFG_CLEAR);
++	if (aml_chan->cur_desc)
++		cur_vd = &aml_chan->cur_desc->vd;
++	aml_chan->cur_desc = NULL;
++	spin_unlock_irqrestore(&aml_chan->vchan.lock, flags);
++	if (cur_vd)
++		aml_dma_free_desc(cur_vd);
++
++	vchan_free_chan_resources(&aml_chan->vchan);
++
++	dma_free_coherent(aml_dma->dma_device.dev,
++			  DMA_LINK_MAX_SIZE, aml_chan->sg_link,
++			  aml_chan->sg_link_phys);
++}
++
++/* DMA transfer state  update how many data reside it */
++static enum dma_status aml_dma_tx_status(struct dma_chan *chan,
++					 dma_cookie_t cookie,
++					 struct dma_tx_state *txstate)
++{
++	struct aml_dma_chan *aml_chan = to_aml_dma_chan(chan);
++	struct aml_dma_dev *aml_dma = aml_chan->aml_dma;
++	struct aml_dma_desc *aml_desc = NULL;
++	struct virt_dma_desc *vd;
++	u32 residue = 0, done;
++	unsigned long flags;
++	enum dma_status ret;
++
++	ret = dma_cookie_status(chan, cookie, txstate);
++	if (ret == DMA_COMPLETE)
++		return ret;
++
++	if (aml_chan->status != DMA_COMPLETE)
++		ret = aml_chan->status;
++	if (!txstate)
++		return ret;
++
++	spin_lock_irqsave(&aml_chan->vchan.lock, flags);
++	vd = vchan_find_desc(&aml_chan->vchan, cookie);
++	if (vd) {
++		list_for_each_entry(vd, &aml_chan->vchan.desc_issued, node) {
++			aml_desc = to_aml_dma_desc(vd);
++			residue += aml_desc->data_len;
++			if (vd->tx.cookie == cookie)
++				break;
++		}
++		aml_desc = aml_chan->cur_desc;
++		if (aml_desc) {
++			regmap_read(aml_dma->regmap, aml_chan->reg_offs + RCH_RD_LEN, &done);
++			residue += aml_desc->data_len - done;
++		}
++	} else if (aml_chan->cur_desc && aml_chan->cur_desc->vd.tx.cookie == cookie) {
++		aml_desc = aml_chan->cur_desc;
++		regmap_read(aml_dma->regmap, aml_chan->reg_offs + RCH_RD_LEN, &done);
++		residue = aml_desc->data_len - done;
++
++	} else {
++		residue = 0;
++	}
++	spin_unlock_irqrestore(&aml_chan->vchan.lock, flags);
++	dma_set_residue(txstate, residue);
++
++	return ret;
++}
++
++static int find_dma_chan_link(struct aml_dma_chan *aml_chan, u32 num)
++{
++	int idx;
++	unsigned long flags;
++
++	spin_lock_irqsave(&aml_chan->vchan.lock, flags);
++	if ((aml_chan->idx_next + num) >= DMA_MAX_LINK)
++		idx = 0;
++	else
++		idx = aml_chan->idx_next;
++	aml_chan->idx_next = idx + num;
++	spin_unlock_irqrestore(&aml_chan->vchan.lock, flags);
++
++	return idx;
++}
++
++static struct dma_async_tx_descriptor *aml_dma_prep_slave_sg
++		(struct dma_chan *chan, struct scatterlist *sgl,
++		unsigned int sg_len, enum dma_transfer_direction direction,
++		unsigned long flags, void *context)
++{
++	struct aml_dma_chan *aml_chan = to_aml_dma_chan(chan);
++	struct aml_dma_dev *aml_dma = aml_chan->aml_dma;
++	struct aml_dma_desc *aml_desc = NULL;
++	struct aml_dma_sg_link *sg_link = NULL;
++	struct scatterlist *sg = NULL;
++	u64 paddr;
++	u32 link_count, avail;
++	u32 i;
++
++	if (aml_chan->direction != direction) {
++		dev_err(aml_dma->dma_device.dev, "direction not support\n");
++		return NULL;
++	}
++
++	aml_desc = kzalloc(sizeof(*aml_desc), GFP_KERNEL);
++	if (!aml_desc)
++		return NULL;
++	link_count = sg_nents_for_dma(sgl, sg_len, SG_MAX_LEN);
++	aml_desc->idx = find_dma_chan_link(aml_chan, link_count);
++	sg_link = aml_chan->sg_link + aml_desc->idx;
++	for_each_sg(sgl, sg, sg_len, i) {
++		avail = sg_dma_len(sg);
++		paddr = sg->dma_address;
++		while (avail > SG_MAX_LEN) {
++			/* set dma address and len to sglink*/
++			sg_link->address = paddr;
++			sg_link->ctl = FIELD_PREP(LINK_LEN, SG_MAX_LEN);
++			paddr = paddr + SG_MAX_LEN;
++			avail = avail - SG_MAX_LEN;
++			sg_link++;
++		}
++		/* set dma address and len to sglink*/
++		sg_link->address = paddr;
++		sg_link->ctl = FIELD_PREP(LINK_LEN, avail);
++
++		aml_desc->data_len += sg_dma_len(sg);
++		sg_link++;
++	}
++
++	/* the last sg set eoc flag */
++	sg_link--;
++	sg_link->ctl |= LINK_EOC;
++
++	return vchan_tx_prep(&aml_chan->vchan, &aml_desc->vd, flags);
++}
++
++static int aml_dma_chan_pause(struct dma_chan *chan)
++{
++	struct aml_dma_chan *aml_chan = to_aml_dma_chan(chan);
++	struct aml_dma_dev *aml_dma = aml_chan->aml_dma;
++
++	regmap_set_bits(aml_dma->regmap, aml_chan->reg_offs + RCH_CFG, CFG_PAUSE);
++	aml_chan->pre_status = aml_chan->status;
++	aml_chan->status = DMA_PAUSED;
++
++	return 0;
++}
++
++static int aml_dma_chan_resume(struct dma_chan *chan)
++{
++	struct aml_dma_chan *aml_chan = to_aml_dma_chan(chan);
++	struct aml_dma_dev *aml_dma = aml_chan->aml_dma;
++
++	regmap_clear_bits(aml_dma->regmap, aml_chan->reg_offs + RCH_CFG, CFG_PAUSE);
++	aml_chan->status = aml_chan->pre_status;
++
++	return 0;
++}
++
++static int aml_dma_terminate_all(struct dma_chan *chan)
++{
++	struct aml_dma_chan *aml_chan = to_aml_dma_chan(chan);
++	struct aml_dma_dev *aml_dma = aml_chan->aml_dma;
++	int chan_id = aml_chan->chan_id;
++	struct virt_dma_desc *cur_vd;
++	unsigned long flags;
++	LIST_HEAD(head);
++
++	spin_lock_irqsave(&aml_chan->vchan.lock, flags);
++	regmap_set_bits(aml_dma->regmap, aml_chan->reg_offs + RCH_CFG, CFG_PAUSE);
++	regmap_set_bits(aml_dma->regmap, aml_chan->reg_offs + RCH_CFG, CFG_CLEAR);
++
++	if (aml_chan->direction == DMA_MEM_TO_DEV)
++		regmap_set_bits(aml_dma->regmap, RCH_INT_MASK, BIT(chan_id));
++	else if (aml_chan->direction == DMA_DEV_TO_MEM)
++		regmap_set_bits(aml_dma->regmap, WCH_INT_MASK, BIT(chan_id));
++
++	vchan_get_all_descriptors(&aml_chan->vchan, &head);
++	cur_vd = &aml_chan->cur_desc->vd;
++	aml_chan->cur_desc = NULL;
++	spin_unlock_irqrestore(&aml_chan->vchan.lock, flags);
++	if (cur_vd)
++		aml_dma_free_desc(cur_vd);
++
++	vchan_dma_desc_free_list(&aml_chan->vchan, &head);
++
++	return 0;
++}
++
++static void aml_dma_start(struct aml_dma_chan *aml_chan)
++{
++	struct virt_dma_desc *vd = vchan_next_desc(&aml_chan->vchan);
++	struct aml_dma_dev *aml_dma = aml_chan->aml_dma;
++	struct aml_dma_desc *aml_desc = NULL;
++	int chan_id = aml_chan->chan_id;
++
++	if (!vd)
++		return;
++	if (aml_chan->status != DMA_COMPLETE)
++		return;
++
++	list_del(&vd->node);
++	aml_desc = to_aml_dma_desc(vd);
++	aml_chan->cur_desc = aml_desc;
++
++	if (aml_chan->direction == DMA_MEM_TO_DEV) {
++		regmap_write(aml_dma->regmap, aml_chan->reg_offs + RCH_ADDR,
++			     (aml_chan->sg_link_phys + aml_desc->idx * DMA_LINK_SIZE));
++		regmap_write(aml_dma->regmap, aml_chan->reg_offs + RCH_LEN, aml_desc->data_len);
++		regmap_clear_bits(aml_dma->regmap, RCH_INT_MASK, BIT(chan_id));
++		/* for rch (tx) need set cfg 0 to trigger start */
++		regmap_write(aml_dma->regmap, aml_chan->reg_offs + RCH_CFG, 0);
++	} else if (aml_chan->direction == DMA_DEV_TO_MEM) {
++		regmap_write(aml_dma->regmap, aml_chan->reg_offs + WCH_ADDR,
++			     (aml_chan->sg_link_phys + aml_desc->idx * DMA_LINK_SIZE));
++		regmap_write(aml_dma->regmap, aml_chan->reg_offs + WCH_LEN, aml_desc->data_len);
++		regmap_clear_bits(aml_dma->regmap, WCH_INT_MASK, BIT(chan_id));
++	}
++}
++
++static void aml_dma_issue_pending(struct dma_chan *chan)
++{
++	struct aml_dma_chan *aml_chan = to_aml_dma_chan(chan);
++	unsigned long flags;
++
++	spin_lock_irqsave(&aml_chan->vchan.lock, flags);
++	if (vchan_issue_pending(&aml_chan->vchan) && !aml_chan->cur_desc)
++		aml_dma_start(aml_chan);
++	spin_unlock_irqrestore(&aml_chan->vchan.lock, flags);
++}
++
++static irqreturn_t aml_dma_interrupt_handler(int irq, void *dev_id)
++{
++	struct aml_dma_dev *aml_dma = dev_id;
++	struct aml_dma_chan *aml_chan;
++	struct aml_dma_desc *aml_desc;
++	u32 done, eoc_done, err, err_l, end;
++	u32 cpl_data;
++	int i = 0;
++
++	/* deal with rch normal complete and error */
++	regmap_read(aml_dma->regmap, RCH_DONE, &done);
++	regmap_read(aml_dma->regmap, RCH_ERR, &err);
++	regmap_read(aml_dma->regmap, RCH_LEN_ERR, &err_l);
++	err = err | err_l;
++
++	done = done | err;
++
++	while (done) {
++		i = ffs(done) - 1;
++		regmap_write(aml_dma->regmap, CLEAR_RCH, BIT(i));
++		done &= ~BIT(i);
++		aml_chan = aml_dma->aml_rch[i];
++		if (!aml_chan) {
++			dev_err(aml_dma->dma_device.dev, "idx %d rch not initialized\n", i);
++			continue;
++		}
++		aml_chan->status = (err & (1 << i)) ? DMA_ERROR : DMA_COMPLETE;
++		spin_lock(&aml_chan->vchan.lock);
++		aml_desc = aml_chan->cur_desc;
++		if (aml_chan->status == DMA_ERROR) {
++			aml_desc->vd.tx_result.result = DMA_TRANS_READ_FAILED;
++			regmap_read(aml_dma->regmap, aml_chan->reg_offs + RCH_RD_LEN, &cpl_data);
++			aml_desc->vd.tx_result.residue = aml_desc->data_len - cpl_data;
++		}
++		vchan_cookie_complete(&aml_desc->vd);
++		aml_chan->cur_desc = NULL;
++		aml_dma_start(aml_chan);
++		spin_unlock(&aml_chan->vchan.lock);
++	}
++
++	/* deal with wch normal complete and error */
++	regmap_read(aml_dma->regmap, DMA_BATCH_END, &end);
++	if (end)
++		regmap_write(aml_dma->regmap, CLEAR_W_BATCH, end);
++
++	regmap_read(aml_dma->regmap, WCH_DONE, &done);
++	regmap_read(aml_dma->regmap, WCH_EOC_DONE, &eoc_done);
++	done = done | eoc_done;
++
++	regmap_read(aml_dma->regmap, WCH_ERR, &err);
++	regmap_read(aml_dma->regmap, WDMA_RESP_ERR, &err_l);
++	err = err | err_l;
++
++	done = done | err;
++	i = 0;
++	while (done) {
++		i = ffs(done) - 1;
++		done &= ~BIT(i);
++		regmap_write(aml_dma->regmap, CLEAR_WCH, BIT(i));
++		aml_chan = aml_dma->aml_wch[i];
++		if (!aml_chan) {
++			dev_err(aml_dma->dma_device.dev, "idx %d wch not initialized\n", i);
++			continue;
++		}
++		aml_chan->status = (err & (1 << i)) ? DMA_ERROR : DMA_COMPLETE;
++		spin_lock(&aml_chan->vchan.lock);
++		aml_desc = aml_chan->cur_desc;
++		if (aml_chan->status == DMA_ERROR) {
++			aml_desc->vd.tx_result.result = DMA_TRANS_WRITE_FAILED;
++			regmap_read(aml_dma->regmap, aml_chan->reg_offs + RCH_RD_LEN, &cpl_data);
++			aml_desc->vd.tx_result.residue = aml_desc->data_len - cpl_data;
++		}
++		vchan_cookie_complete(&aml_desc->vd);
++		aml_chan->cur_desc = NULL;
++		aml_dma_start(aml_chan);
++		spin_unlock(&aml_chan->vchan.lock);
++	}
++
++	return IRQ_HANDLED;
++}
++
++static struct dma_chan *aml_of_dma_xlate(struct of_phandle_args *dma_spec, struct of_dma *ofdma)
++{
++	struct aml_dma_dev *aml_dma = (struct aml_dma_dev *)ofdma->of_dma_data;
++	struct aml_dma_chan *aml_chan = NULL;
++	u32 type;
++	u32 phy_chan_id;
++
++	if (dma_spec->args_count != 2)
++		return NULL;
++
++	type = dma_spec->args[0];
++	phy_chan_id = dma_spec->args[1];
++
++	if (phy_chan_id >= MAX_CHAN_ID)
++		return NULL;
++
++	if (type == DMA_TX) {
++		aml_chan = aml_dma->aml_rch[phy_chan_id];
++		if (!aml_chan) {
++			if (aml_dma->chan_used >= aml_dma->chan_nr) {
++				dev_err(aml_dma->dma_device.dev, "some dma clients err used\n");
++				return NULL;
++			}
++			aml_chan = &aml_dma->aml_chans[aml_dma->chan_used];
++			aml_dma->chan_used++;
++			aml_chan->direction = DMA_MEM_TO_DEV;
++			aml_chan->chan_id = phy_chan_id;
++			aml_chan->reg_offs = RCH_REG_BASE + 0x40 * aml_chan->chan_id;
++			aml_dma->aml_rch[phy_chan_id] = aml_chan;
++		}
++	} else if (type == DMA_RX) {
++		aml_chan = aml_dma->aml_wch[phy_chan_id];
++		if (!aml_chan) {
++			if (aml_dma->chan_used >= aml_dma->chan_nr) {
++				dev_err(aml_dma->dma_device.dev, "some dma clients err used\n");
++				return NULL;
++			}
++			aml_chan = &aml_dma->aml_chans[aml_dma->chan_used];
++			aml_dma->chan_used++;
++			aml_chan->direction = DMA_DEV_TO_MEM;
++			aml_chan->chan_id = phy_chan_id;
++			aml_chan->reg_offs = WCH_REG_BASE + 0x40 * aml_chan->chan_id;
++			aml_dma->aml_wch[phy_chan_id] = aml_chan;
++		}
++	} else {
++		dev_err(aml_dma->dma_device.dev, "type %d not supported\n", type);
++		return NULL;
++	}
++
++	return dma_get_slave_channel(&aml_chan->vchan.chan);
++}
++
++static int aml_dma_probe(struct platform_device *pdev)
++{
++	struct device_node *np = pdev->dev.of_node;
++	struct dma_device *dma_dev;
++	struct aml_dma_dev *aml_dma;
++	int ret, i, len;
++	u32 chan_nr;
++
++	const struct regmap_config aml_regmap_config = {
++		.reg_bits = 32,
++		.val_bits = 32,
++		.reg_stride = 4,
++		.max_register = 0x3000,
++	};
++
++	ret = of_property_read_u32(np, "dma-channels", &chan_nr);
++	if (ret)
++		return dev_err_probe(&pdev->dev, ret, "failed to read dma-channels\n");
++
++	len = sizeof(struct aml_dma_dev) + sizeof(struct aml_dma_chan) * chan_nr;
++	aml_dma = devm_kzalloc(&pdev->dev, len, GFP_KERNEL);
++	if (!aml_dma)
++		return -ENOMEM;
++
++	aml_dma->chan_nr = chan_nr;
++
++	aml_dma->base = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(aml_dma->base))
++		return PTR_ERR(aml_dma->base);
++
++	aml_dma->regmap = devm_regmap_init_mmio(&pdev->dev, aml_dma->base,
++						&aml_regmap_config);
++	if (IS_ERR_OR_NULL(aml_dma->regmap))
++		return PTR_ERR(aml_dma->regmap);
++
++	aml_dma->clk = devm_clk_get_enabled(&pdev->dev, NULL);
++	if (IS_ERR(aml_dma->clk))
++		return PTR_ERR(aml_dma->clk);
++
++	aml_dma->irq = platform_get_irq(pdev, 0);
++
++	aml_dma->pdev = pdev;
++	aml_dma->dma_device.dev = &pdev->dev;
++
++	dma_dev = &aml_dma->dma_device;
++	INIT_LIST_HEAD(&dma_dev->channels);
++
++	/* Initialize channel parameters */
++	for (i = 0; i < chan_nr; i++) {
++		struct aml_dma_chan *aml_chan = &aml_dma->aml_chans[i];
++
++		aml_chan->aml_dma = aml_dma;
++		aml_chan->vchan.desc_free = aml_dma_free_desc;
++		vchan_init(&aml_chan->vchan, &aml_dma->dma_device);
++	}
++	aml_dma->chan_used = 0;
++
++	dma_set_max_seg_size(dma_dev->dev, SG_MAX_LEN);
++	dma_cap_set(DMA_SLAVE, dma_dev->cap_mask);
++	dma_dev->device_alloc_chan_resources = aml_dma_alloc_chan_resources;
++	dma_dev->device_free_chan_resources = aml_dma_free_chan_resources;
++	dma_dev->device_tx_status = aml_dma_tx_status;
++	dma_dev->device_prep_slave_sg = aml_dma_prep_slave_sg;
++	dma_dev->device_pause = aml_dma_chan_pause;
++	dma_dev->device_resume = aml_dma_chan_resume;
++	dma_dev->device_terminate_all = aml_dma_terminate_all;
++	dma_dev->device_issue_pending = aml_dma_issue_pending;
++	/* PIO 4 bytes and I2C 1 byte */
++	dma_dev->dst_addr_widths = BIT(DMA_SLAVE_BUSWIDTH_4_BYTES) | BIT(DMA_SLAVE_BUSWIDTH_1_BYTE);
++	dma_dev->directions = BIT(DMA_DEV_TO_MEM) | BIT(DMA_MEM_TO_DEV);
++	dma_dev->residue_granularity = DMA_RESIDUE_GRANULARITY_BURST;
++
++	ret = dmaenginem_async_device_register(dma_dev);
++	if (ret)
++		return dev_err_probe(&pdev->dev, ret, "failed to register dmaenginem\n");
++
++	ret = of_dma_controller_register(np, aml_of_dma_xlate, aml_dma);
++	if (ret)
++		goto err_dmaenginem_register;
++
++	regmap_write(aml_dma->regmap, RCH_INT_MASK, 0xffffffff);
++	regmap_write(aml_dma->regmap, WCH_INT_MASK, 0xffffffff);
++
++	ret = devm_request_irq(&pdev->dev, aml_dma->irq, aml_dma_interrupt_handler,
++			       IRQF_SHARED, dev_name(&pdev->dev), aml_dma);
++	if (ret) {
++		dev_err(&pdev->dev, "failed to request_irq\n");
++		goto err_of_dma_controller;
++	}
++
++	platform_set_drvdata(pdev, aml_dma);
++
++	return 0;
++
++err_of_dma_controller:
++	of_dma_controller_free(np);
++err_dmaenginem_register:
++	dma_async_device_unregister(dma_dev);
++
++	return ret;
++}
++
++static void aml_dma_remove(struct platform_device *pdev)
++{
++	struct aml_dma_dev *aml_dma = platform_get_drvdata(pdev);
++
++	of_dma_controller_free((&pdev->dev)->of_node);
++	dma_async_device_unregister(&aml_dma->dma_device);
++}
++
++static const struct of_device_id aml_dma_ids[] = {
++	{ .compatible = "amlogic,a9-dma", },
++	{},
++};
++MODULE_DEVICE_TABLE(of, aml_dma_ids);
++
++static struct platform_driver aml_dma_driver = {
++	.probe		= aml_dma_probe,
++	.remove		= aml_dma_remove,
++	.driver		= {
++		.name	= "aml-dma",
++		.of_match_table = aml_dma_ids,
++	},
++};
++
++module_platform_driver(aml_dma_driver);
++
++MODULE_DESCRIPTION("GENERAL DMA driver for Amlogic");
++MODULE_AUTHOR("Xianwei Zhao <xianwei.zhao@amlogic.com>");
++MODULE_LICENSE("GPL");
+
+-- 
+2.52.0
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
