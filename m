@@ -4,63 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3B19CD5BAB
-	for <linux-amlogic@archiver.kernel.org>; Thu, 21 May 2026 20:13:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81A1ECD5BAB
+	for <linux-amlogic@archiver.kernel.org>; Thu, 21 May 2026 23:13:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xrG0NDiKfcz+5JhWMIhUtjn5Woq2ztAwfc4h+YV+iNE=; b=UJePQGi34WZMJo
-	9oek21ecUkurgEPIbZCG3R5y2GVNOt347q0hSym4/JRUzkEmRgc1oJNrriBstWhyrZ7h5/ZER8IQI
-	/0lYMXmw4uZjuHJQ0N5A57KNSV6SfzXSTZKB3UUVvlWkiak68LRd/7U2BC+RT0ypSYi1QX4Pz+6he
-	p5vKXo7vMJjNsq9KMZNVgPkaWG9z0O721Amw5bk+c7MShBsKQG7D2PS384IWHKW9aPEMvXe0Zzb+S
-	NdxRxOC86RijKKjPpvdFLhzmixrw4r0CKl2Ysfc1NN+I1ZtxQJFtxUUxf+wdgkgbXeiM6Bv97dNB5
-	fnrkJf85CdCc4KPhV31A==;
+	List-Owner; bh=LxQUDIi5UXMSDaQ8cEzY9bEGNjJbdu3qkI1XasSRvCE=; b=g36K4AeOl/dk9r
+	udU7xbsslxhLl+o+AXAsP4lN1v5tFprpVE98qX3D9MHUqtmAfL2V5voGx4htPmqm4kJBSQKQR3wsi
+	MnvF1dwpmxR0dZ+EU1qDxw+234Nc8xUwpKSvu3j/DhZZm6c9K+w/PlC6JQUcLGct75fD2Nl+qM3cz
+	xC9dWI0q8+rYaqQ57y6UUwBN4WqL2W+ZY/p3wPhaiLu3c2bAPO4AK+CNd4IqoPcwaWjR3n+r8UpbX
+	VmCAqkGmHc8MqXT5Gm3tvTKX8S/Oa+qU9r+7+rP+F+iNKkb8RdlsNvCZo3xODORx4Zrh5dtfG+Hr8
+	IKMY5YU7yLszldcEzEQQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wQ9lt-00000008zd2-3j8m;
-	Thu, 21 May 2026 20:13:33 +0000
-Received: from smtp.forwardemail.net ([121.127.44.73])
+	id 1wQCZa-00000009I3Q-00SZ;
+	Thu, 21 May 2026 23:13:02 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wQ9lr-00000008zbU-0d5h
-	for linux-amlogic@lists.infradead.org;
-	Thu, 21 May 2026 20:13:32 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1779394409;
- bh=G6x1g9xJdqk+zdBPwW6rPVSmR2PUbPlPZx4/m/V3gy8=;
- b=zq65cyKtroOx5rq6cNvHw7bjYjKVvbGV6vrwO42FBDJ4ZtvzmoXnoPHtjXL96dfrUvD7TFquW
- Byud5VnbC2BthebBpzM/D4c3gO7IiujSAaKvc/etE+bAUvbsgoTim1KaPdexMkVIf1YfAuW5F+s
- lEdrrId01TWDbeA9tWFpx/j9dvVK/ZX7RWoj8cX3dmjUXnt/GDTPLz8MTut0HynjnKJuUcx3Mwj
- 7ZrQCYKQJyAnxYLh5FuDoEJWUIcN2zvu6R7m18zV+jzYTRq0y5C0Y4UCtaKpFiPUT1JvkgnYN4m
- sWvGYa0WQDetJikJADfikjAFO2MX9mzO4kSZg1cDSqOg==
-X-Forward-Email-ID: 6a0f67626fd0f8c2ba150eb6
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
-X-Forward-Email-Version: 2.8.15
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <310e7a75-62e2-463c-b471-fcaaa3acfef5@kwiboo.se>
-Date: Thu, 21 May 2026 22:13:15 +0200
+	id 1wQCZY-00000009I3B-21rK;
+	Thu, 21 May 2026 23:13:00 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 23789600FF;
+	Thu, 21 May 2026 23:12:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 139381F000E9;
+	Thu, 21 May 2026 23:12:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779405178;
+	bh=6u2hntw1Lr69V2xQYJN7KxqGRupMkIinljKiZkdvoc8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=VU+2Ql1ionlWfy/YF5AyB6k17GCNQuyheld0wx6rPU1iNnBjSzMz7R78rVq7m9mrs
+	 g3qHaCDq3F6r6m694PUTTpQU61ei9jQTXdQW6rmJEoFzqR4V+He6Irpvq/UWvX2Ah9
+	 3Aq2/HQzg2EH5Uibbn3KhedjtxYB43CUMTHS9BsXia1ciGg2KJWhvky49u9YherY9C
+	 NflksuPQCr6niHXH0nBdZM802PhWNh6ij1s7p0Jlc8xfB1yEwrZ9MMlZ3MJcRXTvmZ
+	 aLs0eigqY/dDX4UfnEBfbqBTuuCOpyiWxxQZN+DR10FNfOnrAA1wnUQx9jVw3NUxf7
+	 2ztCjpYDRACVg==
+Date: Thu, 21 May 2026 18:12:52 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Adrien Grassein <adrien.grassein@gmail.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
+	Rodrigo Vivi <rodrigo.vivi@intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+	Tvrtko Ursulin <tursulin@ursulin.net>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, 
+	Abhinav Kumar <abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>, 
+	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Pengyu Luo <mitltlatltl@gmail.com>, Nikita Travkin <nikita@trvn.ru>, 
+	Yongxing Mou <yongxing.mou@oss.qualcomm.com>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
+Subject: Re: [PATCH RESEND v3 2/6] drm/bridge: pass down IRQ_HPD to the
+ drivers
+Message-ID: <ag-QgNs4fC56GgUx@baldur>
+References: <20260513-hpd-irq-events-v3-0-086857017f16@oss.qualcomm.com>
+ <20260513-hpd-irq-events-v3-2-086857017f16@oss.qualcomm.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 19/23] drm: bridge: dw_hdmi: Use delayed_work to
- debounce hotplug event
-To: Neil Armstrong <neil.armstrong@linaro.org>
-References: <20260518180206.2480119-1-jonas@kwiboo.se>
- <20260518180206.2480119-20-jonas@kwiboo.se>
- <e584ab2b-677d-4893-95c9-7b68165633c6@linaro.org>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <e584ab2b-677d-4893-95c9-7b68165633c6@linaro.org>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260521_131331_379290_277A61E5 
-X-CRM114-Status: GOOD (  40.47  )
+Content-Disposition: inline
+In-Reply-To: <20260513-hpd-irq-events-v3-2-086857017f16@oss.qualcomm.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,362 +83,336 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: imx@lists.linux.dev, Heiko Stuebner <heiko@sntech.de>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Diederik de Haas <diederik@cknow-tech.com>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Andrzej Hajda <andrzej.hajda@intel.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Robert Foss <rfoss@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, linux-rockchip@lists.infradead.org, Luca Ceresoli <luca.ceresoli@bootlin.com>, linux-sunxi@lists.linux.dev, Liu Ying <victor.liu@nxp.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, linux-amlogic@lists.infradead.org, Chen-Yu Tsai <wens@kernel.org>, linux-arm-kernel@lists.infradead.org, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Sandy Huang <hjc@rock-chips.com>, Thomas Zimmermann <tzimmermann@suse.de>, Andy Yan <andy.yan@rock-chips.com>, Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
-
-On 5/20/2026 11:58 AM, Neil Armstrong wrote:
-> Hi,
+On Wed, May 13, 2026 at 09:23:22PM +0300, Dmitry Baryshkov wrote:
+> Pass down the notifications about the IRQ_HPD events down to the
+> individual drivers, letting them handle those as required.
 > 
-> On 5/18/26 20:01, Jonas Karlman wrote:
->> HDMI Specification Version 1.4b chapter 8.5 mentions:
->>
->>    An HDMI Sink shall not assert high voltage level on its Hot Plug
->>    Detect pin when the E-EDID is not available for reading.
->>
->>    A Source may use a high voltage level Hot Plug Detect signal to
->>    initiate the reading of E-EDID data.
->>
->>    An HDMI Sink shall indicate any change to the contents of the E-EDID
->>    by driving a low voltage level pulse on the Hot Plug Detect pin. This
->>    pulse shall be at least 100 msec.
->>
->> Use a delayed work to debounce reacting on HPD events to improve
->> handling of a HPD low voltage level pulse when a sink changes the EDID.
->>
->> The delayed work is only enabled between enable_hpd()/hpd_enable() and
->> disable_hpd()/hpd_disable() calls from core, i.e. enabled after
->> attach/bind/resume and disabled before detach/unbind/suspend.
->>
->> The 1100 msec hotplug debounce timeout was arbitrarily picked to match
->> other drivers using same const, and testing using a Raspberry Pi Monitor
->> seem to use a 200-300 msec pulse when going from standby to power on
->> state.
-> 
-> The logic looks ok, but I'm puzzled by the 1.1 sec debounce, which after
-> plugging in a monitor will only send an irq event after 1.1s which is very long.
-> 
-> Since the spec says 100ms and the real worls values are more like 200-300ms,
-> I would first reduce this to 500ms.
 
-You are correct, this value was picked based on existing values used by
-other drivers:
+I think patch 2 through 6 relies on patch 1's commit message to
+establish the motivation for each change, but they are scattered across
+a variety of drivers/files.
 
-  exynos/exynos_hdmi.c:#define HOTPLUG_DEBOUNCE_MS                1100
-  bridge/ti-tfp410.c:#define HOTPLUG_DEBOUNCE_MS          1100
-  amd/display/amdgpu_dm/amdgpu_dm.h:#define AMDGPU_DM_MAX_HDMI_HPD_DEBOUNCE_MS 5000
-  rockchip/dw_hdmi_qp-rockchip.c:#define HOTPLUG_DEBOUNCE_MS              150
-
-150 ms was too short for my test monitor (Raspberry Pi Monitor), it
-does a HPD low voltage level pulse when powering on of around 200+ ms.
-
-  [82.641903] dw_hdmi_hardirq: EVENT=plugout
-  [82.841939] dw_hdmi_hardirq: EVENT=plugin
-
-And on my LG OLED 4K TV there was typically a pulse of around 700-900 ms.
-So the 1.1 seconds used by other drivers seemed like a good candidate :-)
-
-> But as I understand the code right now, on the first HPD front the irq work
-> is programmed to run after the debounce time, but if it's a pulse the irq would
-> also trigger on the second HPD front and then delay again the work after the
-> debounce time.
-
-Your analysis is correct, any HPD event would keep debouncing adding 1.1
-timout from each HPD irq, both plugout and plugin.
-
-The intention was to allow for up to 1.1 seconds to pass between a
-plugout and a plugin, before we treated a plugout as a full disconnect
-event, and not to delay a possible connected event by 1.1 seconds.
-
-> My understanding of a debounce was that we "ignore" the pulse by only generating
-> a single irq event when the pulse is finished.
-
-Correct, as long as the pulse was less than 1.1 seconds.
-
-> The current code does that, we will only have a single irq event and the HPD
-> will return as connected state, good. But this delays the irq event 1.1s _after_
-> the end of the pulse, which I would expect the event to be send at tht debounce
-> time after the start of the pulse.
-
-Good catch and I agree, we should delay/timeout the disconnected state
-longer than plugin and react on plugin almost immediately.
-
-> Like, program the work at the beginning of the pulse, if somehow the pulse ends before
-> the debounce time, send the irq event immediately, otherwise let the debounce
-> work run after the debounce time which will trigger a disconnect event.
-> 
-> But the delay is too high, 1.1s could be a manual unplug/plug or bad connector
-> with false contact on the hpd pin.
-> 
-> I would rather reduce this to something more realistic like 500ms or less and
-> try to better handle the pulse somehow. But I don't have any idea if the scheme
-> I described is doable.
-
-We can configure different delays for plugout and plugin, I am currently
-testing something like following:
-
-  #define HOTPLUG_CONNECTED_DEBOUNCE_MS		150
-  #define HOTPLUG_DISCONNECTED_DEBOUNCE_MS	500
-
-  delay = status == connector_status_connected ?
-		    HOTPLUG_CONNECTED_DEBOUNCE_MS :
-		    HOTPLUG_DISCONNECTED_DEBOUNCE_MS;
-  mod_delayed_work(system_percpu_wq, &hdmi->hpd_work,
-		   msecs_to_jiffies(delay));
-
-That would mean:
-- at plugout we (re-)start the timer to trigger in 500ms
-- at plugin we (re-)start the timer to trigger in 150ms
-- whenever the timer triggers the hpd_work is started
-- the hpw_work trigger normal detect() handling to determin if
-  connector status (or EDID) has changed
-
-Example during power on of a Raspberry Pi Monitor:
-
-  [82.641903] dw_hdmi_hardirq: EVENT=plugout
-  [82.648276] dw_hdmi_schedule_hpd_work(status=2)
-  [82.841939] dw_hdmi_hardirq: EVENT=plugin
-  [82.848211] dw_hdmi_schedule_hpd_work(status=1)
-  [83.008573] dw_hdmi_hpd_work(): START
-  [83.020358] dw_hdmi_bridge_detect()
-  [83.034958] dw_hdmi_bridge_edid_read()
-  [83.187102] [drm:update_display_info.part.0] [CONNECTOR:55:HDMI-A-1] CEA VCDB 0x4a
-  [83.194471] [drm:update_display_info.part.0] [CONNECTOR:55:HDMI-A-1] HDMI: DVI dual 0, max TMDS clock 0 kHz
-  [83.201755] [drm:update_display_info.part.0] [CONNECTOR:55:HDMI-A-1] ELD monitor RPI MON156
-  [83.208968] [drm:update_display_info.part.0] [CONNECTOR:55:HDMI-A-1] HDMI: latency present 0 0, video latency 0 0, audio latency 0 0
-  [83.216588] [drm:update_display_info.part.0] [CONNECTOR:55:HDMI-A-1] ELD size 36, SAD count 1
-  [83.224445] [drm:check_connector_changed] [CONNECTOR:55:HDMI-A-1] Same epoch counter 2
-  [83.231553] dw_hdmi_hpd_work(): END
-
-Around 205ms between HPD=0 and HPD=1 and around 160ms from plugin until
-delayed hpd_work starts.
-
-And at full plugout the debounce time is around 497 ms:
-
-  [95.125105] dw_hdmi_hardirq: EVENT=plugout
-  [95.147586] dw_hdmi_schedule_hpd_work(status=2)
-  [95.645277] dw_hdmi_hpd_work(): START
-  [95.667741] dw_hdmi_bridge_detect()
-  [95.691523] [drm:drm_edid_connector_update] [CONNECTOR:55:HDMI-A-1] EDID changed, epoch counter 3
-  [95.709861] [drm:check_connector_changed] [CONNECTOR:55:HDMI-A-1] status updated from connected to disconnected
-  [95.722674] [drm:check_connector_changed] [CONNECTOR:55:HDMI-A-1] Changed epoch counter 2 => 4
-  [95.735173] [drm:drm_sysfs_connector_hotplug_event] [CONNECTOR:55:HDMI-A-1] generating connector hotplug event
-  [95.746326] [drm:drm_fb_helper_hotplug_event]
-  [95.754871] [drm:drm_client_modeset_probe]
-  [95.762429] [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:55:HDMI-A-1]
-  [95.769758] dw_hdmi_bridge_detect()
-  [95.776597] [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:55:HDMI-A-1] disconnected
-  [95.784389] [drm:drm_client_modeset_probe] No connectors reported connected with modes
-  [95.791865] [drm:drm_client_modeset_probe] [CONNECTOR:55:HDMI-A-1] enabled? no
-  [95.799426] [drm:drm_client_firmware_config.isra.0] Not using firmware configuration
-  [95.807140] [drm:drm_client_modeset_probe] picking CRTCs for 1920x1080 config
-  [95.818422] dw_hdmi_bridge_atomic_disable()
-  [95.826412] [drm:vop2_plane_atomic_disable] Smart0-win0 disable
-  [95.868341] [drm:drm_client_hotplug] fbdev: ret=0
-  [95.878206] dw_hdmi_hpd_work(): END
-
-With a much quicker reaction on plugin event maybe the 1.1 seconds could
-stay to avoid having to do a full teardown, disable() + enable() cycle,
-at slightly longer HPD pulses.
-
-Or maybe it is time to re-spin an old cec-adapter debounce series [1]
-that can allow for some additional time until the CEC phys addr is fully
-invalidated at a longer HPD low voltage level pulse.
-
-[1] https://lore.kernel.org/linux-media/HE1PR06MB40115700084D1D875673D60EAC9D0@HE1PR06MB4011.eurprd06.prod.outlook.com/
+It would be preferable to have the commit message of each patch stand on
+its own.
 
 Regards,
-Jonas
+Bjorn
 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
+>  drivers/gpu/drm/bridge/chrontel-ch7033.c       |  3 ++-
+>  drivers/gpu/drm/bridge/lontium-lt8912b.c       |  3 ++-
+>  drivers/gpu/drm/bridge/lontium-lt9611uxc.c     |  3 ++-
+>  drivers/gpu/drm/bridge/ti-tfp410.c             |  4 ++--
+>  drivers/gpu/drm/display/drm_bridge_connector.c | 22 +++++++++++++---------
+>  drivers/gpu/drm/drm_bridge.c                   |  5 +++--
+>  drivers/gpu/drm/drm_connector.c                |  2 +-
+>  drivers/gpu/drm/i915/display/intel_dp.c        |  3 ++-
+>  drivers/gpu/drm/meson/meson_encoder_hdmi.c     |  3 ++-
+>  drivers/gpu/drm/msm/dp/dp_display.c            |  3 ++-
+>  drivers/gpu/drm/msm/dp/dp_drm.h                |  3 ++-
+>  drivers/gpu/drm/omapdrm/dss/hdmi4.c            |  3 ++-
+>  include/drm/drm_bridge.h                       |  9 ++++++---
+>  include/drm/drm_connector.h                    |  3 ++-
+>  14 files changed, 43 insertions(+), 26 deletions(-)
 > 
-> Neil
+> diff --git a/drivers/gpu/drm/bridge/chrontel-ch7033.c b/drivers/gpu/drm/bridge/chrontel-ch7033.c
+> index 54d49d4882c8..04e6b4c00a28 100644
+> --- a/drivers/gpu/drm/bridge/chrontel-ch7033.c
+> +++ b/drivers/gpu/drm/bridge/chrontel-ch7033.c
+> @@ -259,7 +259,8 @@ static const struct drm_connector_helper_funcs ch7033_connector_helper_funcs = {
+>  	.best_encoder = ch7033_connector_best_encoder,
+>  };
+>  
+> -static void ch7033_hpd_event(void *arg, enum drm_connector_status status)
+> +static void ch7033_hpd_event(void *arg, enum drm_connector_status status,
+> +			     enum drm_connector_status_extra extra_status)
+>  {
+>  	struct ch7033_priv *priv = arg;
+>  
+> diff --git a/drivers/gpu/drm/bridge/lontium-lt8912b.c b/drivers/gpu/drm/bridge/lontium-lt8912b.c
+> index 8a0b48efca58..b404f0cbf60d 100644
+> --- a/drivers/gpu/drm/bridge/lontium-lt8912b.c
+> +++ b/drivers/gpu/drm/bridge/lontium-lt8912b.c
+> @@ -504,7 +504,8 @@ static int lt8912_attach_dsi(struct lt8912 *lt)
+>  	return 0;
+>  }
+>  
+> -static void lt8912_bridge_hpd_cb(void *data, enum drm_connector_status status)
+> +static void lt8912_bridge_hpd_cb(void *data, enum drm_connector_status status,
+> +				 enum drm_connector_status_extra extra_status)
+>  {
+>  	struct lt8912 *lt = data;
+>  
+> diff --git a/drivers/gpu/drm/bridge/lontium-lt9611uxc.c b/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
+> index 11aab07d88df..ca41ebe9f26f 100644
+> --- a/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
+> +++ b/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
+> @@ -430,7 +430,8 @@ static const struct drm_edid *lt9611uxc_bridge_edid_read(struct drm_bridge *brid
+>  
+>  static void lt9611uxc_bridge_hpd_notify(struct drm_bridge *bridge,
+>  					struct drm_connector *connector,
+> -					enum drm_connector_status status)
+> +					enum drm_connector_status status,
+> +					enum drm_connector_status_extra extra_status)
+>  {
+>  	const struct drm_edid *drm_edid;
+>  
+> diff --git a/drivers/gpu/drm/bridge/ti-tfp410.c b/drivers/gpu/drm/bridge/ti-tfp410.c
+> index 3b6b0e92cf89..199916662895 100644
+> --- a/drivers/gpu/drm/bridge/ti-tfp410.c
+> +++ b/drivers/gpu/drm/bridge/ti-tfp410.c
+> @@ -39,7 +39,6 @@ drm_bridge_to_tfp410(struct drm_bridge *bridge)
+>  {
+>  	return container_of(bridge, struct tfp410, bridge);
+>  }
+> -
+>  static inline struct tfp410 *
+>  drm_connector_to_tfp410(struct drm_connector *connector)
+>  {
+> @@ -110,7 +109,8 @@ static void tfp410_hpd_work_func(struct work_struct *work)
+>  		drm_helper_hpd_irq_event(dvi->bridge.dev);
+>  }
+>  
+> -static void tfp410_hpd_callback(void *arg, enum drm_connector_status status)
+> +static void tfp410_hpd_callback(void *arg, enum drm_connector_status status,
+> +				enum drm_connector_status_extra extra_status)
+>  {
+>  	struct tfp410 *dvi = arg;
+>  
+> diff --git a/drivers/gpu/drm/display/drm_bridge_connector.c b/drivers/gpu/drm/display/drm_bridge_connector.c
+> index 39cc18f78eda..5fdb1a231cec 100644
+> --- a/drivers/gpu/drm/display/drm_bridge_connector.c
+> +++ b/drivers/gpu/drm/display/drm_bridge_connector.c
+> @@ -141,7 +141,8 @@ struct drm_bridge_connector {
+>   */
+>  
+>  static void drm_bridge_connector_hpd_notify(struct drm_connector *connector,
+> -					    enum drm_connector_status status)
+> +					    enum drm_connector_status status,
+> +					    enum drm_connector_status_extra extra_status)
+>  {
+>  	struct drm_bridge_connector *bridge_connector =
+>  		to_drm_bridge_connector(connector);
+> @@ -149,12 +150,13 @@ static void drm_bridge_connector_hpd_notify(struct drm_connector *connector,
+>  	/* Notify all bridges in the pipeline of hotplug events. */
+>  	drm_for_each_bridge_in_chain_scoped(bridge_connector->encoder, bridge) {
+>  		if (bridge->funcs->hpd_notify)
+> -			bridge->funcs->hpd_notify(bridge, connector, status);
+> +			bridge->funcs->hpd_notify(bridge, connector, status, extra_status);
+>  	}
+>  }
+>  
+>  static void drm_bridge_connector_handle_hpd(struct drm_bridge_connector *drm_bridge_connector,
+> -					    enum drm_connector_status status)
+> +					    enum drm_connector_status status,
+> +					    enum drm_connector_status_extra extra_status)
+>  {
+>  	struct drm_connector *connector = &drm_bridge_connector->base;
+>  	struct drm_device *dev = connector->dev;
+> @@ -163,24 +165,26 @@ static void drm_bridge_connector_handle_hpd(struct drm_bridge_connector *drm_bri
+>  	connector->status = status;
+>  	mutex_unlock(&dev->mode_config.mutex);
+>  
+> -	drm_bridge_connector_hpd_notify(connector, status);
+> +	drm_bridge_connector_hpd_notify(connector, status, extra_status);
+>  
+>  	drm_kms_helper_connector_hotplug_event(connector);
+>  }
+>  
+>  static void drm_bridge_connector_hpd_cb(void *cb_data,
+> -					enum drm_connector_status status)
+> +					enum drm_connector_status status,
+> +					enum drm_connector_status_extra extra_status)
+>  {
+> -	drm_bridge_connector_handle_hpd(cb_data, status);
+> +	drm_bridge_connector_handle_hpd(cb_data, status, extra_status);
+>  }
+>  
+>  static void drm_bridge_connector_oob_hotplug_event(struct drm_connector *connector,
+> -						   enum drm_connector_status status)
+> +						   enum drm_connector_status status,
+> +						   enum drm_connector_status_extra extra_status)
+>  {
+>  	struct drm_bridge_connector *bridge_connector =
+>  		to_drm_bridge_connector(connector);
+>  
+> -	drm_bridge_connector_handle_hpd(bridge_connector, status);
+> +	drm_bridge_connector_handle_hpd(bridge_connector, status, extra_status);
+>  }
+>  
+>  static void drm_bridge_connector_enable_hpd(struct drm_connector *connector)
+> @@ -223,7 +227,7 @@ drm_bridge_connector_detect(struct drm_connector *connector, bool force)
+>  		if (hdmi)
+>  			drm_atomic_helper_connector_hdmi_hotplug(connector, status);
+>  
+> -		drm_bridge_connector_hpd_notify(connector, status);
+> +		drm_bridge_connector_hpd_notify(connector, status, DRM_CONNECTOR_NO_EXTRA_STATUS);
+>  	} else {
+>  		switch (connector->connector_type) {
+>  		case DRM_MODE_CONNECTOR_DPI:
+> diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
+> index d6f512b73389..c8c3301cd936 100644
+> --- a/drivers/gpu/drm/drm_bridge.c
+> +++ b/drivers/gpu/drm/drm_bridge.c
+> @@ -1444,7 +1444,8 @@ EXPORT_SYMBOL_GPL(drm_bridge_edid_read);
+>   */
+>  void drm_bridge_hpd_enable(struct drm_bridge *bridge,
+>  			   void (*cb)(void *data,
+> -				      enum drm_connector_status status),
+> +				      enum drm_connector_status status,
+> +				      enum drm_connector_status_extra extra_status),
+>  			   void *data)
+>  {
+>  	if (!(bridge->ops & DRM_BRIDGE_OP_HPD))
+> @@ -1509,7 +1510,7 @@ void drm_bridge_hpd_notify(struct drm_bridge *bridge,
+>  {
+>  	mutex_lock(&bridge->hpd_mutex);
+>  	if (bridge->hpd_cb)
+> -		bridge->hpd_cb(bridge->hpd_data, status);
+> +		bridge->hpd_cb(bridge->hpd_data, status, DRM_CONNECTOR_NO_EXTRA_STATUS);
+>  	mutex_unlock(&bridge->hpd_mutex);
+>  }
+>  EXPORT_SYMBOL_GPL(drm_bridge_hpd_notify);
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+> index edee9daccd51..415eb834808c 100644
+> --- a/drivers/gpu/drm/drm_connector.c
+> +++ b/drivers/gpu/drm/drm_connector.c
+> @@ -3532,7 +3532,7 @@ void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
+>  		return;
+>  
+>  	if (connector->funcs->oob_hotplug_event)
+> -		connector->funcs->oob_hotplug_event(connector, status);
+> +		connector->funcs->oob_hotplug_event(connector, status, extra_status);
+>  
+>  	drm_connector_put(connector);
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 4955bd8b11d7..98bbcab2067b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -6779,7 +6779,8 @@ static int intel_dp_connector_atomic_check(struct drm_connector *_connector,
+>  }
+>  
+>  static void intel_dp_oob_hotplug_event(struct drm_connector *_connector,
+> -				       enum drm_connector_status hpd_state)
+> +				       enum drm_connector_status hpd_state,
+> +				       enum drm_connector_status_extra extra_status)
+>  {
+>  	struct intel_connector *connector = to_intel_connector(_connector);
+>  	struct intel_display *display = to_intel_display(connector);
+> diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+> index 1abb0572bb5f..691b9996c8a4 100644
+> --- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+> +++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+> @@ -323,7 +323,8 @@ static int meson_encoder_hdmi_atomic_check(struct drm_bridge *bridge,
+>  
+>  static void meson_encoder_hdmi_hpd_notify(struct drm_bridge *bridge,
+>  					  struct drm_connector *connector,
+> -					  enum drm_connector_status status)
+> +					  enum drm_connector_status status,
+> +					  enum drm_connector_status_extra extra_status)
+>  {
+>  	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
+>  
+> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
+> index d2124d625485..7a0623fdbd8e 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_display.c
+> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
+> @@ -1785,7 +1785,8 @@ void msm_dp_bridge_hpd_disable(struct drm_bridge *bridge)
+>  
+>  void msm_dp_bridge_hpd_notify(struct drm_bridge *bridge,
+>  			      struct drm_connector *connector,
+> -			      enum drm_connector_status status)
+> +			      enum drm_connector_status status,
+> +			      enum drm_connector_status_extra extra_status)
+>  {
+>  	struct msm_dp_bridge *msm_dp_bridge = to_dp_bridge(bridge);
+>  	struct msm_dp *msm_dp_display = msm_dp_bridge->msm_dp_display;
+> diff --git a/drivers/gpu/drm/msm/dp/dp_drm.h b/drivers/gpu/drm/msm/dp/dp_drm.h
+> index 9eb3431dd93a..74da3ef6b625 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_drm.h
+> +++ b/drivers/gpu/drm/msm/dp/dp_drm.h
+> @@ -41,6 +41,7 @@ void msm_dp_bridge_hpd_enable(struct drm_bridge *bridge);
+>  void msm_dp_bridge_hpd_disable(struct drm_bridge *bridge);
+>  void msm_dp_bridge_hpd_notify(struct drm_bridge *bridge,
+>  			      struct drm_connector *connector,
+> -			      enum drm_connector_status status);
+> +			      enum drm_connector_status status,
+> +			      enum drm_connector_status_extra extra_status);
+>  
+>  #endif /* _DP_DRM_H_ */
+> diff --git a/drivers/gpu/drm/omapdrm/dss/hdmi4.c b/drivers/gpu/drm/omapdrm/dss/hdmi4.c
+> index 29b2dfb90b5f..a7288791b2a5 100644
+> --- a/drivers/gpu/drm/omapdrm/dss/hdmi4.c
+> +++ b/drivers/gpu/drm/omapdrm/dss/hdmi4.c
+> @@ -429,7 +429,8 @@ static void hdmi4_bridge_disable(struct drm_bridge *bridge,
+>  
+>  static void hdmi4_bridge_hpd_notify(struct drm_bridge *bridge,
+>  				    struct drm_connector *connector,
+> -				    enum drm_connector_status status)
+> +				    enum drm_connector_status status,
+> +				    enum drm_connector_status_extra extra_status)
+>  {
+>  	struct omap_hdmi *hdmi = drm_bridge_to_hdmi(bridge);
+>  
+> diff --git a/include/drm/drm_bridge.h b/include/drm/drm_bridge.h
+> index a8d67bd9ee50..3e4672fbd7a8 100644
+> --- a/include/drm/drm_bridge.h
+> +++ b/include/drm/drm_bridge.h
+> @@ -615,7 +615,8 @@ struct drm_bridge_funcs {
+>  	 */
+>  	void (*hpd_notify)(struct drm_bridge *bridge,
+>  			   struct drm_connector *connector,
+> -			   enum drm_connector_status status);
+> +			   enum drm_connector_status status,
+> +			   enum drm_connector_status_extra extra_status);
+>  
+>  	/**
+>  	 * @hpd_enable:
+> @@ -1260,7 +1261,8 @@ struct drm_bridge {
+>  	 * @hpd_cb: Hot plug detection callback, registered with
+>  	 * drm_bridge_hpd_enable().
+>  	 */
+> -	void (*hpd_cb)(void *data, enum drm_connector_status status);
+> +	void (*hpd_cb)(void *data, enum drm_connector_status status,
+> +		       enum drm_connector_status_extra extra_status);
+>  	/**
+>  	 * @hpd_data: Private data passed to the Hot plug detection callback
+>  	 * @hpd_cb.
+> @@ -1550,7 +1552,8 @@ const struct drm_edid *drm_bridge_edid_read(struct drm_bridge *bridge,
+>  					    struct drm_connector *connector);
+>  void drm_bridge_hpd_enable(struct drm_bridge *bridge,
+>  			   void (*cb)(void *data,
+> -				      enum drm_connector_status status),
+> +				      enum drm_connector_status status,
+> +				      enum drm_connector_status_extra extra_status),
+>  			   void *data);
+>  void drm_bridge_hpd_disable(struct drm_bridge *bridge);
+>  void drm_bridge_hpd_notify(struct drm_bridge *bridge,
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> index e05197e970d3..5ac5a64f83d9 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -1720,7 +1720,8 @@ struct drm_connector_funcs {
+>  	 * has been received from a source outside the display driver / device.
+>  	 */
+>  	void (*oob_hotplug_event)(struct drm_connector *connector,
+> -				  enum drm_connector_status status);
+> +				  enum drm_connector_status status,
+> +				  enum drm_connector_status_extra extra_status);
+>  
+>  	/**
+>  	 * @debugfs_init:
 > 
->>
->> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
->> ---
->> v7: Change to free irq before mute and clear using IH regs, also include
->>      clear of STAT0_RX_SENSE
->> v6: Change back to disable_delayed_work_sync() in hpd disable ops,
->>      Ensure HPD interrupt is masked and IRQ handler is disabled early
->>      in dw_hdmi_remove() to prevent any irq re-arming of delayed work,
->>      Drop use of suspend helper
->> v5: Change to none-sync disable_delayed_work() in hpd disable ops,
->>      Change to cancel_delayed_work_sync() in remove,
->>      Add cancel_delayed_work_sync() to new suspend helper
->> v4: Disable/mask delayed_work until enable_hpd()/hpd_enable(),
->>      Read connector status directly from HW regs in hpd_work
->> v3: New patch
->> ---
->>   drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 80 +++++++++++++++++++++--
->>   1 file changed, 75 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->> index 8afc9d240121..270db58a0e7c 100644
->> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->> @@ -50,6 +50,8 @@
->>   
->>   #define HDMI14_MAX_TMDSCLK	340000000
->>   
->> +#define HOTPLUG_DEBOUNCE_MS	1100
->> +
->>   static const u16 csc_coeff_default[3][4] = {
->>   	{ 0x2000, 0x0000, 0x0000, 0x0000 },
->>   	{ 0x0000, 0x2000, 0x0000, 0x0000 },
->> @@ -185,6 +187,7 @@ struct dw_hdmi {
->>   	hdmi_codec_plugged_cb plugged_cb;
->>   	struct device *codec_dev;
->>   	enum drm_connector_status last_connector_result;
->> +	struct delayed_work hpd_work;
->>   };
->>   
->>   const struct dw_hdmi_plat_data *dw_hdmi_to_plat_data(struct dw_hdmi *hdmi)
->> @@ -2517,6 +2520,20 @@ static void dw_hdmi_connector_force(struct drm_connector *connector)
->>   	dw_hdmi_connector_status_update(hdmi, connector, connector->status);
->>   }
->>   
->> +static void dw_hdmi_connector_enable_hpd(struct drm_connector *connector)
->> +{
->> +	struct dw_hdmi *hdmi = container_of(connector, struct dw_hdmi, connector);
->> +
->> +	enable_delayed_work(&hdmi->hpd_work);
->> +}
->> +
->> +static void dw_hdmi_connector_disable_hpd(struct drm_connector *connector)
->> +{
->> +	struct dw_hdmi *hdmi = container_of(connector, struct dw_hdmi, connector);
->> +
->> +	disable_delayed_work_sync(&hdmi->hpd_work);
->> +}
->> +
->>   static void dw_hdmi_connector_destroy(struct drm_connector *connector)
->>   {
->>   	struct dw_hdmi *hdmi = container_of(connector, struct dw_hdmi, connector);
->> @@ -2538,6 +2555,8 @@ static const struct drm_connector_funcs dw_hdmi_connector_funcs = {
->>   static const struct drm_connector_helper_funcs dw_hdmi_connector_helper_funcs = {
->>   	.get_modes = dw_hdmi_connector_get_modes,
->>   	.atomic_check = dw_hdmi_connector_atomic_check,
->> +	.enable_hpd = dw_hdmi_connector_enable_hpd,
->> +	.disable_hpd = dw_hdmi_connector_disable_hpd,
->>   };
->>   
->>   static int dw_hdmi_connector_create(struct dw_hdmi *hdmi)
->> @@ -2968,6 +2987,20 @@ static const struct drm_edid *dw_hdmi_bridge_edid_read(struct drm_bridge *bridge
->>   	return dw_hdmi_edid_read(hdmi, connector);
->>   }
->>   
->> +static void dw_hdmi_bridge_hpd_enable(struct drm_bridge *bridge)
->> +{
->> +	struct dw_hdmi *hdmi = bridge->driver_private;
->> +
->> +	enable_delayed_work(&hdmi->hpd_work);
->> +}
->> +
->> +static void dw_hdmi_bridge_hpd_disable(struct drm_bridge *bridge)
->> +{
->> +	struct dw_hdmi *hdmi = bridge->driver_private;
->> +
->> +	disable_delayed_work_sync(&hdmi->hpd_work);
->> +}
->> +
->>   static const struct drm_bridge_funcs dw_hdmi_bridge_funcs = {
->>   	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
->>   	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
->> @@ -2981,6 +3014,8 @@ static const struct drm_bridge_funcs dw_hdmi_bridge_funcs = {
->>   	.mode_valid = dw_hdmi_bridge_mode_valid,
->>   	.detect = dw_hdmi_bridge_detect,
->>   	.edid_read = dw_hdmi_bridge_edid_read,
->> +	.hpd_enable = dw_hdmi_bridge_hpd_enable,
->> +	.hpd_disable = dw_hdmi_bridge_hpd_disable,
->>   };
->>   
->>   /* -----------------------------------------------------------------------------
->> @@ -3101,8 +3136,8 @@ static irqreturn_t dw_hdmi_irq(int irq, void *dev_id)
->>   			status == connector_status_connected ?
->>   			"plugin" : "plugout");
->>   
->> -		if (hdmi->bridge.dev)
->> -			drm_helper_hpd_irq_event(hdmi->bridge.dev);
->> +		mod_delayed_work(system_percpu_wq, &hdmi->hpd_work,
->> +				 msecs_to_jiffies(HOTPLUG_DEBOUNCE_MS));
->>   	}
->>   
->>   	hdmi_writeb(hdmi, intr_stat, HDMI_IH_PHY_STAT0);
->> @@ -3112,6 +3147,29 @@ static irqreturn_t dw_hdmi_irq(int irq, void *dev_id)
->>   	return IRQ_HANDLED;
->>   }
->>   
->> +static void dw_hdmi_hpd_work(struct work_struct *work)
->> +{
->> +	struct dw_hdmi *hdmi = container_of(work, struct dw_hdmi, hpd_work.work);
->> +	struct drm_device *dev = hdmi->bridge.dev;
->> +
->> +	if (WARN_ON(!dev))
->> +		return;
->> +
->> +	/*
->> +	 * Notify the DRM core of the HPD event using drm_helper_hpd_irq_event()
->> +	 * instead of drm_bridge_hpd_notify(). This will cause the DRM function
->> +	 * check_connector_changed() to be called, which in turn calls the
->> +	 * connector detect()/force() funcs to detect any connection status or
->> +	 * epoch changes. The bridge connector detect() func also ensures that
->> +	 * any hpd_notify() funcs are called for all bridges in the chain.
->> +	 *
->> +	 * drm_bridge_hpd_notify() shares a mutex with drm_bridge_hpd_disable(),
->> +	 * and can result in a deadlock due to the disable_delayed_work_sync()
->> +	 * call to wait on work to complete in dw_hdmi_bridge_hpd_disable().
->> +	 */
->> +	drm_helper_hpd_irq_event(dev);
->> +}
->> +
->>   static const struct dw_hdmi_phy_data dw_hdmi_phys[] = {
->>   	{
->>   		.type = DW_HDMI_PHY_DWC_HDMI_TX_PHY,
->> @@ -3396,6 +3454,9 @@ struct dw_hdmi *dw_hdmi_probe(struct platform_device *pdev,
->>   		goto err_res;
->>   	}
->>   
->> +	INIT_DELAYED_WORK(&hdmi->hpd_work, dw_hdmi_hpd_work);
->> +	disable_delayed_work(&hdmi->hpd_work);
->> +
->>   	ret = devm_request_threaded_irq(dev, irq, dw_hdmi_hardirq,
->>   					dw_hdmi_irq, IRQF_SHARED,
->>   					dev_name(dev), hdmi);
->> @@ -3532,6 +3593,18 @@ EXPORT_SYMBOL_GPL(dw_hdmi_probe);
->>   
->>   void dw_hdmi_remove(struct dw_hdmi *hdmi)
->>   {
->> +	struct platform_device *pdev = to_platform_device(hdmi->dev);
->> +	int irq = platform_get_irq(pdev, 0);
->> +
->> +	/* Free, mute and clear phy interrupts */
->> +	devm_free_irq(hdmi->dev, irq, hdmi);
->> +	hdmi_writeb(hdmi, ~0, HDMI_IH_MUTE_PHY_STAT0);
->> +	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
->> +		    HDMI_IH_PHY_STAT0);
->> +
->> +	/* Cancel any pending hot plug work */
->> +	cancel_delayed_work_sync(&hdmi->hpd_work);
->> +
->>   	drm_bridge_remove(&hdmi->bridge);
->>   
->>   	if (hdmi->audio && !IS_ERR(hdmi->audio))
->> @@ -3539,9 +3612,6 @@ void dw_hdmi_remove(struct dw_hdmi *hdmi)
->>   	if (!IS_ERR(hdmi->cec))
->>   		platform_device_unregister(hdmi->cec);
->>   
->> -	/* Disable all interrupts */
->> -	hdmi_writeb(hdmi, ~0, HDMI_IH_MUTE_PHY_STAT0);
->> -
->>   	if (hdmi->i2c)
->>   		i2c_del_adapter(&hdmi->i2c->adap);
->>   	else
+> -- 
+> 2.47.3
 > 
-
 
 _______________________________________________
 linux-amlogic mailing list
