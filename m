@@ -4,113 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41BAECD5BAC
-	for <linux-amlogic@archiver.kernel.org>; Fri, 22 May 2026 09:16:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E6E8CD5BB0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 May 2026 10:22:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rWcAhdGYzr+wG5JvqlBs9Te9c/rwPc8AhG/zuG35sMs=; b=cJsPXoC2DF/roh
-	efBvKqfTritRVOh0HTvp0EgtVbVbskdjJHgHUwISnYSdABYceTW3WU4cPNwHpY8tfiGl56BCPSF7W
-	hKmqje1WuTHtdBiNJAgzEhq1ItzqQJJo8Z0LHhIovnN5SM2MXoUXDDQlQ/ATgl6hNxL2ZWfP+Ghkc
-	ok+FroAv3U0pp9MX0MJsbSHQ/R2QUsJS0r1qRlUAYXIn8veIOFlk2KJupZL5x2Ze5ot7QjfRVkiIr
-	z26QzGufTqYplWpwREHh002ExW8Y4Tul5Ia8PJnhGdbAH+Qtm0rZCgtmqcWF8yM7bATsEBi1u9LWr
-	2U5TCgayPx3Dr5t+YJ0A==;
+	List-Owner; bh=firl7VoWA+SOzHYXztibr0Zh6Y8D8Cox5/9cw4SxW8M=; b=iT6yrQtqrUo5cP
+	rTx692aTO1DDGYCgXNCOVzpLsRGNVClEdzCdZ3tbDfLb49GSDpLVpdESpYyGXVVEgRRbR1cOIk4Q0
+	+G61W6NqnSyS19X7jNgZjOCkr5jda01KFbtGyhmcbGKXvUgJSxigcLeEnB5dA3ilfqIXrbfMPC98f
+	EbDfvmIzWc/dSW1BnYvhlK9BAOIvN2jhALmhf/+LA3fr43HE2OI8rQnrXfKlbP+E60Kt9qy6aE1hl
+	9R5y76Tn0R4+zh1TgEiF3m/SNSjEh1iX3r/DmEE5/3LFKovNgvok+gD2HerYB7w8PGY0koAET+SUL
+	rTp9D/F3iCRt3GPIGUKg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wQLzu-0000000AIbb-3Lib;
-	Fri, 22 May 2026 09:16:50 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1wQN1C-0000000AVAR-1HMp;
+	Fri, 22 May 2026 10:22:14 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wQLzr-0000000AIaq-2Jg8;
-	Fri, 22 May 2026 09:16:49 +0000
+	id 1wQN1A-0000000AV9d-2D8K;
+	Fri, 22 May 2026 10:22:12 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id AA4FA43DE2;
-	Fri, 22 May 2026 09:16:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49BCD1F000E9;
-	Fri, 22 May 2026 09:16:43 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 018BF60136;
+	Fri, 22 May 2026 10:22:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F4141F000E9;
+	Fri, 22 May 2026 10:22:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779441406;
-	bh=WzBfufw4gsYrpdbP3F7fvJ8me51W/Y5BIcajdiRbGaA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=B/NJF9xZWYqY981BOl9XMhydNqyZ58WfjpUI7KVuJ2oFkq/D6D1d8b6jcfvQtVcEO
-	 M7d48rvU7scHsCE23bvqZOTWII3DNH8EwAo1V4TFzLEcRmTM+lgZILr/vJh0hdsuXc
-	 b/bNeCJlL0elNxZwc5z24JGRRcuf+fGnGTEzBLQLfpRV/AP2qyGB3osg1aELGpiw4F
-	 DLYZiufH3bfm7JrarPG2nQS75EZW+QIFtDzCh41Gsn8+hJle97IXohHI/J2znmbtTa
-	 DjOVxfxhdr0tXv50SXAm8yu0nkigbgzBN5FfyRg6bLDwjXH7T3Sz0RegKoQBt/3/hq
-	 eJ0zQO7YV79yg==
-Message-ID: <7c458070-a56a-4d49-89fc-efeb388beffc@kernel.org>
-Date: Fri, 22 May 2026 11:16:41 +0200
+	s=k20260515; t=1779445331;
+	bh=9Hs/lgWDFKj1AQ6Sx0xmJaBWVngeOt8sYXNKLfOmygA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=I1QqadFRJvu3SoQ8DTXwajbf7bu6/zBCeT02a1FGYR65Ny52gIB2g/vwxXnDlPFI7
+	 5qYMainQ6gFE/AsGETVodi7f6HYPFn6EUFzqkF6qHmBZAUXfUl0L0LRdbdNDvK41gO
+	 l+283jNvNJaJOnYVVdJfjC5Z6lhvn+nKyfJLeiJKY1erw/F3J9N2oeWD8CIh48QTwK
+	 7uuBoFfwbGVFFMTvwkKX5G0rlaSr4fDXNkhG5TR9qnOSBbmFFNau/slGWByx0bIfR1
+	 9xdeiG9EdA8m1o7SzVWK/GjSruN1TovrppXqr4Rq9+N7DgxaP93AgnUb/hoZV+8mHF
+	 ogFz8O1y8Yd6g==
+From: Mark Brown <broonie@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Valerio Setti <vsetti@baylibre.com>
+Cc: linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+In-Reply-To: <20260515-reshape-aiu-as-axg-v1-0-53b457784ff3@baylibre.com>
+References: <20260515-reshape-aiu-as-axg-v1-0-53b457784ff3@baylibre.com>
+Subject: Re: [PATCH 0/4] ASoC: meson: aiu: align I2S design to the AXG one
+Message-Id: <177936336749.58022.15311643425508742115.b4-ty@b4>
+Date: Thu, 21 May 2026 12:36:07 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/10] dt-bindings: clock: Add Amlogic A9 PLL clock
- controller
-To: Jian Hu <jian.hu@amlogic.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Jerome Brunet <jbrunet@baylibre.com>, Xianwei Zhao
- <xianwei.zhao@amlogic.com>, Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-References: <20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com>
- <20260511-b4-a9_clk-v1-2-41cb4071b7c9@amlogic.com>
- <20260515-subtle-sepia-tuatara-cfee3d@quoll>
- <40e83bed-e7a0-4c66-806c-c2988c5d0f33@amlogic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <40e83bed-e7a0-4c66-806c-c2988c5d0f33@amlogic.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260522_021647_640143_950E3753 
-X-CRM114-Status: GOOD (  15.69  )
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1797; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=ebbjq7a6Me00P6HJYA9wBoYwNTnmF9z6Nwz/Is0tWGg=;
+ b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqEC5QDdh25F8efTMW8DSO5nr2kjOL88DYkanVW
+ nA4ayETn2qJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCahAuUAAKCRAk1otyXVSH
+ 0C8xB/9sCgUlqx0uf9DMyJzHr/V511MqhHwb0rKH3r5PjP4QFs0hvDlCTfu19cBKtcGGG55MjtT
+ DfoxiIPr6e30pcpPF5ifHFRuspYEank2tlJqSJyaRGzV9YFZqriUw7FJVyOt6Ksbo3kX9KcKRx9
+ e6u7z+3NbgKQWQjDI3g/hbD1rkMUgqMgZAqvemXwvYmzWqtv9RefwDr23uumysJKeQBsftj1L1k
+ B6++YWFCITy3HeZYeFIxkNsow9v9U+OMJqIUudoNh9pX+5RifhMn0HDQzGMjA23OUUS0+21h6Yv
+ 85OezqwcqgpTJNEF3/lUHXAGx3gomW3I3ZEwri6rFlM9oM+D
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,80 +84,50 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 22/05/2026 08:20, Jian Hu wrote:
-> Hi Krzysztof,
+On Fri, 15 May 2026 17:10:36 +0200, Valerio Setti wrote:
+> ASoC: meson: aiu: align I2S design to the AXG one
 > 
-> Thanks for your review.
+> This is the first follow-up patch series based on RFC [1]. The goal here
+> is simply to reshape Amlogic GX's AIU implementation for I2S to follow
+> the same design as in AXG's TDM. Keeping the same design allows for
+> unifying the two platform implementations in the future.
 > 
-> On 5/15/2026 4:09 PM, Krzysztof Kozlowski wrote:
->> [ EXTERNAL EMAIL ]
->>
->> On Mon, May 11, 2026 at 08:47:24PM +0800, Jian Hu wrote:
->>> Add the PLL clock controller dt-bindings for the Amlogic A9 SoC family.
->>>
->>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
->>> ---
->>>   .../bindings/clock/amlogic,a9-pll-clkc.yaml        | 110 +++++++++++++++++++++
->>>   include/dt-bindings/clock/amlogic,a9-pll-clkc.h    |  55 +++++++++++
->>>   2 files changed, 165 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a9-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a9-pll-clkc.yaml
->>> new file mode 100644
->>> index 000000000000..4ee6013ba1a1
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/clock/amlogic,a9-pll-clkc.yaml
->>> @@ -0,0 +1,110 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +# Copyright (C) 2026 Amlogic, Inc. All rights reserved
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/clock/amlogic,a9-pll-clkc.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Amlogic A9 Series PLL Clock Controller
->>> +
->>> +maintainers:
->>> +  - Neil Armstrong <neil.armstrong@linaro.org>
->>> +  - Jerome Brunet <jbrunet@baylibre.com>
->>> +  - Jian Hu <jian.hu@amlogic.com>
->>> +  - Xianwei Zhao <xianwei.zhao@amlogic.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - amlogic,a9-gp0-pll
->>> +      - amlogic,a9-hifi0-pll
->>> +      - amlogic,a9-hifi1-pll
->>> +      - amlogic,a9-mclk0-pll
->>> +      - amlogic,a9-mclk1-pll
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  '#clock-cells':
->>> +    const: 1
->>> +
->>> +  clocks:
->>> +    items:
->>> +      - description: pll input oscillator gate
->>> +      - description: fixed input clock source for mclk_sel_0
->>> +      - description: u3p2pll input clock source for mclk_sel_0 (optional)
->> Second clock is also optional. Drop "(optional)" comment, just
->> confusing.
-> 
-> 
-> GP0 has only one parent clock, while MCLK has three.
-> 
-> The second and third parent entries of GP0 are vacant,
-> 
-> so they need to be marked optional.
-> 
-> I will add the optional property for the second clock in the next revision.
+> [...]
 
-How? Read the previous feedback...
+Applied to
 
-Best regards,
-Krzysztof
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.2
+
+Thanks!
+
+[1/4] ASoC: meson: gx: add gx-formatter and gx-interface
+      https://git.kernel.org/broonie/sound/c/4efe33e7a2f0
+[2/4] ASoC: meson: aiu-encoder-i2s: use gx_iface and gx_stream structures
+      https://git.kernel.org/broonie/sound/c/3383866c1b77
+[3/4] ASoC: meson: aiu: introduce I2S output formatter
+      https://git.kernel.org/broonie/sound/c/df6057a25c52
+[4/4] ASoC: meson: aiu: use aiu-formatter-i2s to format I2S output data
+      https://git.kernel.org/broonie/sound/c/ca3543cf247b
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
 _______________________________________________
 linux-amlogic mailing list
