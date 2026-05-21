@@ -4,71 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4100FCD4F3C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 21 May 2026 07:35:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34D14CD4F3C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 21 May 2026 07:35:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=a638UC4A/rRnraN/oPqQRpcWVi/pbOBii6wJ/sgYFAg=; b=1oQgWyS+piFrU1
-	WGrRZTTOWsGmImLiD5g48ivPYzlgavIoQCmu8QEJlTiVWt+isPXBzhqwAFCGlno0flwuz/qa9Pzd+
-	g1wEaskXw89WmiWkJUiAtLMq8yoAWNzJFdlUSpxjov7Riy47TiNSDXSwRgBpCzjITicZnm6BdpPD5
-	ZUhm6iznIdzFinX1yyidDngujpO7s9ESC8chqar0hSb2z2aOkIKua3dra1HTeHSnQYE+/7essNyrO
-	qGRiDQ2Vzc7T1aKLq2lXpbUM8NN7LDLPyVzHzFJTw6xqNFopmcBuewHdfAQT0IGzh0tv+CBaH3jom
-	1k4UbM1dVA5J0aUup5jA==;
+	List-Owner; bh=kyIBYqPtDLkKrL0O4THyJVnL8cwoiEdoVvcy4jKYJlI=; b=wyXgGgd1cZks6f
+	I/R6DEzbmkR9xfx6qRKUm4FbzZKY2pNThVZRZTFnGqn5VZ9IHfripgToB0Xf4TMfP1IOxc5Oy7wO+
+	YSJnPjcY1vYuJe77lKlZWCa2FnelWHb2JsnGxuN+CR5CL0UWJW9tvvEZAv4IBAW1Ybei/RkQQHcCG
+	qV3mO6e0qii5Tek7Uv15GQ18b+SvkDeB/G7yXemJm+aOmkzPb0PKHmJyUDm1LjEdi2SYrs5kB47w5
+	LI+Eh1uBIriccd01kbKx1d+zVlNDU7B1Onf0MYkFYdRp+TxJpQMnWCfEr4jPtu9TQ6xgRnaBxVssH
+	PAAH2dr3HyR7SEsXFTHQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wPxw8-00000006yaL-1Ost;
-	Thu, 21 May 2026 07:35:20 +0000
-Received: from mail-pj1-x1032.google.com ([2607:f8b0:4864:20::1032])
+	id 1wPxwO-00000006yfv-1k8v;
+	Thu, 21 May 2026 07:35:36 +0000
+Received: from mail-pj1-x102e.google.com ([2607:f8b0:4864:20::102e])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wPxw4-00000006yYe-2BFU
+	id 1wPxwK-00000006yeO-4B0x
 	for linux-amlogic@lists.infradead.org;
-	Thu, 21 May 2026 07:35:18 +0000
-Received: by mail-pj1-x1032.google.com with SMTP id 98e67ed59e1d1-3698e34a567so5060796a91.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 21 May 2026 00:35:16 -0700 (PDT)
+	Thu, 21 May 2026 07:35:34 +0000
+Received: by mail-pj1-x102e.google.com with SMTP id 98e67ed59e1d1-36a3dd2e66eso410821a91.0
+        for <linux-amlogic@lists.infradead.org>; Thu, 21 May 2026 00:35:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779348915; x=1779953715; darn=lists.infradead.org;
+        d=gmail.com; s=20251104; t=1779348932; x=1779953732; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=62v+VUjFmSMO7xe18HMoRAsN6xnzoeMa1iqyd56dOLs=;
-        b=ktzam2IDvhWIUrgcLTiidUgd3jrylevkH4hgPiXO4bzdshP2eP+h4rsudhfubEEs9Q
-         cYHPNTd33CgjLe3dXN4yHcs/qYOP9bNGRZaexL8vYcJoQsOoLqtODstkYWGmLNmFZJW3
-         WOCqViq5s7M9IX1yZ9tvW1nZChZTCobde9TuAu0SA84o/g5EgYUMSBz+4btQXFp+28qt
-         mlFr99Wv3TFVy0lYSOfsJ25iN8N9rOV5GUT78BDReAkXEwWHD9FQHGfb95GVejCXWmq0
-         ydmTvR8m/P2o0h383NrWh/a1+e/Nb0uXaNypGhjAIzOMGiBqVFLQpDMxCweNjUBPk2Fz
-         BkWw==
+        bh=3NPvLu4dxOkoKdNg46+oSXq3CipWU7w/mHnMaydoddU=;
+        b=BgX67+lsWX9y6QSM/Glnd9A48IA1AA10F44G0QkuLUzWKoX7iacX5pyT4eWGpUeUtI
+         ohnaWprfFgZtSCekRdCc/rPSrlBMMDpnTUA/Pb80znAD2l77Q9/MDnTOhLL8CTSNH86k
+         j13dnssXpo7uRKFxuKwolDp6xctvU8rBCucATZC3rmkKF8K4S6avllmd0ThUSlZzu0jG
+         5M1AJvjd9uTO2WodkmW7MOpcw8Jkr5S2t+SxYiCsSLI+hbVMm2fg8sRnn/PrIj0Uvv9Q
+         ndAe8mCwvJkLYo5/bZfpthEliFAfH4/06BT95jtnycPVs2fyLrIf3EWvKT3BalYzObfX
+         xlew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779348915; x=1779953715;
+        d=1e100.net; s=20251104; t=1779348932; x=1779953732;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=62v+VUjFmSMO7xe18HMoRAsN6xnzoeMa1iqyd56dOLs=;
-        b=bOJ2o5LJ0zw9QfsbRbbRR+L08JK1Bz4YClwLHuCyRt2iVvWUipH7Danme/FOROSAW3
-         89oBboHikpepgwtlbnElTkixYvlF9914wKixHRsJPdtL/RcG4SRLT4w697I8rJo0G+bI
-         9HeGrTqzFCOX6LkMtNrV9DfaBaukbBrjlxKTUrHSyUYQ+BnTLPyTcN3KwpnLRt1jYDuR
-         21bcPd04CmGtfgRVpT/LMSEvRAgGqd8UlRy7WWtM++bDhXkXvTemlK1/tC+ofCtpC7Gg
-         pXzkjtFSvgsWCWEm+tlSkx8/uudSvjkp5WSEBUJ95T8F/f4iTDtHtTYEyyj8ngD+vMBr
-         c6Uw==
-X-Forwarded-Encrypted: i=1; AFNElJ/fhAaojS6jqLoQjxC9iP4S9jpKoLYUO5pK/eeMkQjVGj8s9ytFM/CD+kV+iyJY0XGDL6LJGqzXzUvepBBA@lists.infradead.org
-X-Gm-Message-State: AOJu0Yzn6iMhnynUGu95//uR0NunY2FbtY74fxvNNLL6dSWLBer3aLH1
-	Xtgv+BEBFP2TVW2FL966zOowIrZ2SFgB3xGxQNMItmyarlZ1UMNwiK9X
-X-Gm-Gg: Acq92OEcnmDUeU/jOS/lOpiIrRSOKIRnPpxdzPREtDxktuX2irw3YU9tn9hnLQZJ8ai
-	UJG93ItoRgengmlOX9TIwzVh1DPfKxhAJ3UKDdB+t/4HzjZEiIOcgmscQ0xQOiiMdKQnQYCJujf
-	T+oMsOGknA9bcNfEzVisGVyrwyLMlPp20cLeiu0bFVJyNZgZ4OhHKyRs7NMJOaQQGrDjl53cXnr
-	x7QuHFoByH8Eki2rUAZxvjFv0Em96bZX1woaXjWJ95mzPXVAKSvadjbyXoJx0v9fLyqLI4qZ2iH
-	Tmkvtmq2shVcrfhX5JNR5LqX5QTuSN2YlB4iqVyxTHvb+dzya1lFJ7rwaoSNRdt6+EwFVuhSYVd
-	QMmFP7xl0Ce/iL7ECOKiU513rYxoydgbjIXKQDhUE1g+8OoRZdoaqd51gMkpuROTENVSppH54ly
-	LgQUW35IRlQd7cVr9Hk6wP
-X-Received: by 2002:a17:90b:2c8d:b0:36a:2a9b:3fb2 with SMTP id 98e67ed59e1d1-36a45600421mr1777569a91.16.1779348915390;
-        Thu, 21 May 2026 00:35:15 -0700 (PDT)
+        bh=3NPvLu4dxOkoKdNg46+oSXq3CipWU7w/mHnMaydoddU=;
+        b=b6WcOPf70lgA3gWsV3+Ui43mLJQxTqW7YBtEicTyooLZgF8DQIm6KdYPtFs18SDpsi
+         F6aUFe2+Hwyw1MwkAHVfios+blY4qbH9IoLFZaZUxABjFUB7JE2x/OqxQb1oqQEIn+7x
+         5+pbgXKxJD1UtV1hsS3thHxO4BWn2JZX+zIyo1IDki1L1jtQ2nsq2QcH9cQNeyDEwQWK
+         rF9QeEX+dT8Uf4hW64XxDifwgXAdKfiW45sApdCj/Lq/PmKNrIEUOcioJVstBFCGlzS2
+         3AHlCBDkHjs0eR/R33N6W8uIMtqeESopaNsLgnzJvuo21WXekDZiNXjLwx7M96ddai2Y
+         pxQg==
+X-Forwarded-Encrypted: i=1; AFNElJ/l95ZLHrgVnPuj5UgSlQn17HEHuwWuWG2FjNEC8rL5NeuGDI6inWvcN6Zj+dI3hQpUi/zP8C6WZyT4iFKV@lists.infradead.org
+X-Gm-Message-State: AOJu0YwMUkplStn8DMDWPrXCgL5UUiOX49r+UG2qftckGiktprp3ljpG
+	z6GUgz5DWYfW+ALhyrxWjeZ4Zpy4+z3FwyH/0bdzW0j+zbJGhODSV9iQ
+X-Gm-Gg: Acq92OE7e8h4RPAe01VCcu8FC49+KeheuLyaYJGymilbjGjhw8em90LS1CHbu/J3pWL
+	aMY8agpnfvdtOt9X8roPp8pX7AyJyWCtpoSw/xAaEfUXPPFDQ6H9kBtAoOOlFQ3iebOmD5/pmlZ
+	JfUw0zyfaCRiWwMpG/4urU0f/N4/JRKUJqUL8pEmXeVHLWSST9n8wE0Z4LTtnHHRR6i7nzvwgLj
+	/j0ti5uTQLfim32iRLAGI6g0H4L8D5SoMoLdyC/tS5w+ua9wdiNyitq/7L0KdlHQyeqBSv6qKBc
+	DQrAtJQZuEq5C1m41RiFqzVbR2mCisOUkFkiL2NYoEiv+Jve+CSJTQma8sic9SDkzGSePGNZn6b
+	KB02gjeCZG5maRJNi+ltR0A5NGW7QqQmUS30rJVn456xsjh+q4RQTML/SKYwqkaJgf9sTmc7DWJ
+	BmHaaSW8ZpgMnjedzduohe/pVafbGEHlk=
+X-Received: by 2002:a17:90b:3c08:b0:35d:a3b4:2f0d with SMTP id 98e67ed59e1d1-36a45137990mr1777189a91.6.1779348932255;
+        Thu, 21 May 2026 00:35:32 -0700 (PDT)
 Received: from rockpi-5b ([45.112.0.230])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-36a45c5decesm783833a91.1.2026.05.21.00.35.10
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-36a45c5decesm783833a91.1.2026.05.21.00.35.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 May 2026 00:35:14 -0700 (PDT)
+        Thu, 21 May 2026 00:35:31 -0700 (PDT)
 From: Anand Moon <linux.amoon@gmail.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Mauro Carvalho Chehab <mchehab@kernel.org>,
@@ -83,16 +83,16 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
 	linux-staging@lists.linux.dev (open list:STAGING SUBSYSTEM),
 	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
 	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v4 1/3] media: meson: vdec: Fix memory leak in error path of vdec_open
-Date: Thu, 21 May 2026 13:04:11 +0530
-Message-ID: <20260521073449.10057-2-linux.amoon@gmail.com>
+Subject: [PATCH v4 2/3] media: meson: vdec: Add error handling for recycle thread creation
+Date: Thu, 21 May 2026 13:04:12 +0530
+Message-ID: <20260521073449.10057-3-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260521073449.10057-1-linux.amoon@gmail.com>
 References: <20260521073449.10057-1-linux.amoon@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260521_003516_563080_CC3DFE6B 
-X-CRM114-Status: GOOD (  16.00  )
+X-CRM114-CacheID: sfid-20260521_003533_037660_1BBE97F2 
+X-CRM114-Status: GOOD (  16.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,37 +110,17 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The vdec_open() function previously jumped directly to err_m2m_release
-when vdec_init_ctrls() failed, skipping release of the m2m context.
-This caused a resource leak.
+Add proper error handling for kthread_run() in vdec_start_streaming().
+If thread creation fails and returns an ERR_PTR, record the error,
+reset sess->recycle_thread to NULL, and unwind resources via err_cleanup.
+This prevents later calls to kthread_stop() in vdec_stop_streaming() from
+dereferencing an ERR_PTR and causing a kernel panic. Fix this by adding the
+label and invoking vdec_poweroff() to prevent hardware power leaks.
 
-Fix it by introducing a proper err_m2m_ctx_release label that calls
-v4l2_m2m_ctx_release(sess->m2m_ctx) before releasing the m2m device.
-Also free the v4l2 control handler memory allocated by vdec_init_ctrls()
-in vdec_close().
-
-This was identified via kmemleak:
-unreferenced object 0xffff0000205d6878 (size 8):
-  comm "v4l_id", pid 5289, jiffies 4294938580
-  hex dump (first 8 bytes):
-    40 d2 49 18 00 00 ff ff                          @.I.....
-  backtrace (crc d3204599):
-    kmemleak_alloc+0xc8/0xf0
-    __kvmalloc_node_noprof+0x60c/0x850
-    v4l2_ctrl_handler_init_class+0x1b4/0x2e8 [videodev]
-    vdec_open+0x1f4/0x788 [meson_vdec]
-    v4l2_open+0x144/0x460 [videodev]
-    chrdev_open+0x1ac/0x500
-    do_dentry_open+0x3f0/0xfe8
-    vfs_open+0x68/0x320
-    do_open+0x2d8/0x9a8
-    path_openat+0x1d0/0x4f0
-    do_filp_open+0x190/0x380
-    do_sys_openat2+0xf8/0x1b0
-    __arm64_sys_openat+0x13c/0x1e8
-    invoke_syscall+0xdc/0x268
-    el0_svc_common.constprop.0+0x178/0x258
-    do_el0_svc+0x4c/0x70
+Additionally, reorder the error path to properly mirror the allocation
+sequence clear the streamon status flags before emptying the M2M buffers
+to avoid race conditions, and ensure DMA buffers are released gracefully
+relative to the hardware state lifecycle.
 
 Cc: Nicolas Dufresne <nicolas@ndufresne.ca>
 Reported-by: Sashiko <sashiko-bot@kernel.org>
@@ -148,54 +128,66 @@ Closes: https://lore.kernel.org/all/20260520045905.6ACBA1F000E9@smtp.kernel.org/
 Fixes: 3e7f51bd9607 ("media: meson: add v4l2 m2m video decoder driver")
 Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 ---
-v4: update the commit message to add v4l2_ctrl_handler_free() in vdec_close()
-to adderss the issue:
-  This isn't a bug introduced by this patch, but does vdec_close() properly
-  free the v4l2 control handler memory allocated by vdec_init_ctrls() here?
+v4: new patch
+[Severity: High]
+This isn't a bug introduced by this patch, but does the driver verify if
+kthread_run() returns an ERR_PTR when starting the recycle thread?
 
-v3: https://lore.kernel.org/all/20260520044046.7553-1-linux.amoon@gmail.com/
-  update the commit messagee.
-
-v2: https://lore.kernel.org/all/20260321065408.209723-1-linux.amoon@gmail.com/
-  updated the commit message, applied the suggestion from sashiko below.
-
-  [3] https://sashiko.dev/#/patchset/20260321065408.209723-1-linux.amoon%40gmail.com
-
-v1: https://lore.kernel.org/all/20260304100557.126488-1-linux.amoon@gmail.com/
-  tried to address the issue reported by Nicolas improve the commit message.
+If thread creation fails in vdec_start_streaming() and returns an ERR_PTR,
+could a later call to kthread_stop(sess->recycle_thread) in
+vdec_stop_streaming() attempt to dereference that ERR_PTR and cause a
+kernel panic?
 ---
- drivers/staging/media/meson/vdec/vdec.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/staging/media/meson/vdec/vdec.c | 20 ++++++++++++++------
+ 1 file changed, 14 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
-index 4b77ec1af5a7..9244fb09eb36 100644
+index 9244fb09eb36..8615a935e86d 100644
 --- a/drivers/staging/media/meson/vdec/vdec.c
 +++ b/drivers/staging/media/meson/vdec/vdec.c
-@@ -889,7 +889,7 @@ static int vdec_open(struct file *file)
+@@ -337,29 +337,37 @@ static int vdec_start_streaming(struct vb2_queue *q, unsigned int count)
  
- 	ret = vdec_init_ctrls(sess);
- 	if (ret)
--		goto err_m2m_release;
-+		goto err_m2m_ctx_release;
+ 	sess->sequence_cap = 0;
+ 	sess->sequence_out = 0;
+-	if (vdec_codec_needs_recycle(sess))
++	if (vdec_codec_needs_recycle(sess)) {
+ 		sess->recycle_thread = kthread_run(vdec_recycle_thread, sess,
+ 						   "vdec_recycle");
++		if (IS_ERR(sess->recycle_thread)) {
++			ret = PTR_ERR(sess->recycle_thread);
++			sess->recycle_thread = NULL;
++			goto err_cleanup;
++		}
++	}
  
- 	sess->pixfmt_cap = formats[0].pixfmts_cap[0];
- 	sess->fmt_out = &formats[0];
-@@ -913,6 +913,8 @@ static int vdec_open(struct file *file)
- 
+ 	sess->status = STATUS_INIT;
+ 	core->cur_sess = sess;
+ 	schedule_work(&sess->esparser_queue_work);
  	return 0;
  
-+err_m2m_ctx_release:
-+	v4l2_m2m_ctx_release(sess->m2m_ctx);
- err_m2m_release:
- 	v4l2_m2m_release(sess->m2m_dev);
- err_free_sess:
-@@ -926,6 +928,7 @@ static int vdec_close(struct file *file)
++err_cleanup:
++	vdec_poweroff(sess);
+ vififo_free:
+ 	dma_free_coherent(sess->core->dev, sess->vififo_size,
+ 			  sess->vififo_vaddr, sess->vififo_paddr);
+ bufs_done:
+-	while ((buf = v4l2_m2m_src_buf_remove(sess->m2m_ctx)))
+-		v4l2_m2m_buf_done(buf, VB2_BUF_STATE_QUEUED);
+-	while ((buf = v4l2_m2m_dst_buf_remove(sess->m2m_ctx)))
+-		v4l2_m2m_buf_done(buf, VB2_BUF_STATE_QUEUED);
+-
+ 	if (q->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
+ 		sess->streamon_out = 0;
+ 	else
+ 		sess->streamon_cap = 0;
  
- 	v4l2_m2m_ctx_release(sess->m2m_ctx);
- 	v4l2_m2m_release(sess->m2m_dev);
-+	v4l2_ctrl_handler_free(&sess->ctrl_handler);
- 	v4l2_fh_del(&sess->fh, file);
- 	v4l2_fh_exit(&sess->fh);
++	while ((buf = v4l2_m2m_src_buf_remove(sess->m2m_ctx)))
++		v4l2_m2m_buf_done(buf, VB2_BUF_STATE_QUEUED);
++	while ((buf = v4l2_m2m_dst_buf_remove(sess->m2m_ctx)))
++		v4l2_m2m_buf_done(buf, VB2_BUF_STATE_QUEUED);
++
+ 	return ret;
+ }
  
 -- 
 2.50.1
