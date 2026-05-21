@@ -4,95 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AB10CD343F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 21 May 2026 07:35:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF84ECD4F3C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 21 May 2026 07:47:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8Hc9fxonpq+ds9dQNrMC8uik+EZEQa5G5eg46Abc2BE=; b=AXy77LOionCOZs
-	62zR2EBzYPOUFuLqRLMGOzxKxPckIXckXLjnjpueGHEPI9WJZfi/PECSQa2IzUkOyeKUYcJ4bS8wB
-	73ISX9OEX80GI4ZPUF+bp8S2pEl6/E7qkIeQNrmlO0956mhSvAsVd98l2elF3v4sjd247qjpo5Xu/
-	WjFhY5tOy6s9XxZJ3kEiDHzOQzKoFa9mMuri0TsBO+jaTFZVCYiuYLjOstWHKBkU23OIPAeKGJkhw
-	VqxF5oXV9Sw2diSa8N4x1diP/ZE2t9daAMwsuv2Rvw7GmtnS4qI/vjRb0D23wtssJUiKJGvENpP0W
-	8/g7XtkzOhzEPV8WsFoQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=oeeV7IhtxefH1fRCtBAYTxmL+vue8o3Whascfov6pyg=; b=TH60OL2WkQy7Uz36bzgEcoft/5
+	4BD6vlhNEKOrkNDip6obFJ6+0/ysDxxktHNVGpmTU7ym46XLHif8w6JFK/LbeCnobGINLySHhXyli
+	F6ISGYUn411zIkVenj8k/1v4FYvMsEZocUjWv680IfxZFul5tvKkjcSzIr0NRXlCpoYkwUTP9ow2C
+	ZpZt640QyWzK/TYAycTovW/iLvJyLHkgvr3wmb4axCJjJ/38uUc+/eumN9pFafLZDQZwTGHxMkFyQ
+	f+1a9eXj+yiIFznxdfQnkfiZdBny1n/Lf/kj4wq0wKYy5drS1fMTG8yWCj4J5ovNQNxU2RaEg0pGS
+	F9WnmdBQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wPxwX-00000006ylX-2io1;
-	Thu, 21 May 2026 07:35:45 +0000
-Received: from mail-pj1-x1034.google.com ([2607:f8b0:4864:20::1034])
+	id 1wPy80-000000070On-1ToW;
+	Thu, 21 May 2026 07:47:36 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wPxwV-00000006yju-1nVU
-	for linux-amlogic@lists.infradead.org;
-	Thu, 21 May 2026 07:35:44 +0000
-Received: by mail-pj1-x1034.google.com with SMTP id 98e67ed59e1d1-367c2a39fcfso2700503a91.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 21 May 2026 00:35:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1779348943; x=1779953743; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Mklgo4SEnQFqu5UeBwzviEPZFhn2UwuL3rIfaoDrBUI=;
-        b=rgU1/da1ktDqBamY2YoMm05SErwLAId4huZV1DBXqgNbB47XpRMKOIt1wVRkRXSazX
-         2+dmWdBYeVKw6p0caexIooyi5LfszeZ4vrvx1fPjzRiMDZqQjhzPfSTjN9SwhR955Zlc
-         E7Lwy5HXT/J/v/8+MuXqYbMWqt/YNnleQDXGbFRPqQSPvnIu+WHkEXJ+lWuohjXhfgg3
-         ju+TTVNJ7dqDHsLquP/ifmG3oYFtGuMSEV8qjTuFUmuDxkQmYGwl8uBHrz18PN/vxcCY
-         j2/HtUI0wFGdqEE+j/wFahCMpgTeF3f9JRx2OCN+sQMXq0lWcy+eGm10J9xoIAbMMzMQ
-         rsHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779348943; x=1779953743;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Mklgo4SEnQFqu5UeBwzviEPZFhn2UwuL3rIfaoDrBUI=;
-        b=ATQ0omQ7/wSBgRI+NoP2n49lfTGFize3bE5SCUvuU2exzKKX9jWs7M7KWG/t9ST7aG
-         5O51EedgyYsYA1CTqVYW9MM4I6IKr+k5x4nKtzVduxtHvy6wNMgZtWJuaMwEk/yF1gQx
-         BqrhBRAsPShihMUEDFuaSUD3SqNv89ieBeTQ64mNNjzVewJNRizI8fvytlc4J6VKoO1z
-         9YZW2v3FFgBN4ZicwZdDwgBIFU9zU/nopwIDyvAOiE292cHHxzJ7htqZ0piyFkqcsaw9
-         +EWB2jl8Gq6LrxFzoWVOQhsSBnh92IC1QDLTWYCdY/s0vYp5iUuAAnOMb7E6sibVwlqw
-         2nEA==
-X-Forwarded-Encrypted: i=1; AFNElJ9iK3esFCBQbeT6nYJA8qUAvMUcfyrNZnimCCGegupo9GscA92Y6lXIwSMK5BNhAouB/pdMNg3goacNguET@lists.infradead.org
-X-Gm-Message-State: AOJu0YzW6MWNFpmQfD52cv03mZr1wHkWrEcW8iMh2/YwgVbck0r2KQ0E
-	FH92mAjUFqknIQRslWsgzctZCfZl1euLIqJyWrOCDf89P8mTM4QNYKtp
-X-Gm-Gg: Acq92OFVfbrLKFGq1D3qdAxBWPdmFJYdVwYW/A9DtpAGl48i2qQh7y36f9mphtJlmrM
-	/YyCoNsuU0EJRdeXdHKnF3dTEZHUVpRX9t/9z2yz/6K3795tWUMVo7H1xcpjY5IlAKz3Yy4v4ZB
-	OR3E34EarnTTgoK+e8XONQtldg+0/wjYDZmyzP57V5Qf+l1uf21zKUWYsyuS/VALE/ekmtRY9eB
-	wtiaOGGzLKbnUrpAUq474EEFnMeuK6Vjg8nLuDu24e9pn7GQpHDZhDW3SsxG9O0W1lPkRga10g0
-	yz+limOp+9yxS2gib0VQOWdKU7KpbRYDAS6VgeRD/K1JpRjDqwXiQYeKXvGslwefi4iomzd7YyQ
-	qPZa+sXo2wmF2WCiXHyVYSDTyjAFNPmrBDdsRi9omcTp41q/OYJAw0p2bu9FSAnjm/sT9W235yU
-	G+0LUijmIxtIVUpGFXhTGRSAy3vGEFTzE=
-X-Received: by 2002:a17:90b:540e:b0:369:223a:cb60 with SMTP id 98e67ed59e1d1-36a4514fbcdmr1729123a91.8.1779348942657;
-        Thu, 21 May 2026 00:35:42 -0700 (PDT)
-Received: from rockpi-5b ([45.112.0.230])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-36a45c5decesm783833a91.1.2026.05.21.00.35.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 May 2026 00:35:42 -0700 (PDT)
-From: Anand Moon <linux.amoon@gmail.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Maxime Jourdan <mjourdan@baylibre.com>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	linux-media@vger.kernel.org (open list:MESON VIDEO DECODER DRIVER FOR AMLOGIC SOCS),
-	linux-amlogic@lists.infradead.org (open list:MESON VIDEO DECODER DRIVER FOR AMLOGIC SOCS),
-	linux-staging@lists.linux.dev (open list:STAGING SUBSYSTEM),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v4 3/3] media: meson: vdec: Cancel esparser work in error and stop paths
-Date: Thu, 21 May 2026 13:04:13 +0530
-Message-ID: <20260521073449.10057-4-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260521073449.10057-1-linux.amoon@gmail.com>
-References: <20260521073449.10057-1-linux.amoon@gmail.com>
+	id 1wPy7y-000000070OM-0nm0;
+	Thu, 21 May 2026 07:47:34 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 07E6160172;
+	Thu, 21 May 2026 07:47:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16D8C1F00A3B;
+	Thu, 21 May 2026 07:47:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779349652;
+	bh=UczfSrk2FCod7H4rifpa1n/f+nsCfH/NDhquQgw9qmA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=lnVHFdnu4MxoKkNgwK7y8HGU3d4DYUs+ji4ZleQUFnc7lWrFEDHl1CvxyDjdXpvgT
+	 HlnlNlFw1CQJGU4CFlK9lKXlg2BKtXCogvJzTjYP7G3AAFoqpOzNAKV5fMtUdbFfBX
+	 nhAmOBBIl9WhjiX3HqlhL1J0mtoa1LPqB1stBsH9a1oNOXiK09uHryvqmCGyaZHGUp
+	 HxYt8eE2J1iTPLWK8onPq+B79CD00dCDAvTCQEsUzlmt28kAk9Tk82+RogLNXDjd1s
+	 BdKNotWIoG5SDfjfSx8/ZcBPmf/kArJ294dCiuHk4Z9UdDQdIRaH/dsTGUrYdG1RLG
+	 +ccFkeS4sY5Rg==
+Date: Thu, 21 May 2026 09:47:29 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Adrien Grassein <adrien.grassein@gmail.com>, 
+	Jani Nikula <jani.nikula@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+	Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Rob Clark <robin.clark@oss.qualcomm.com>, 
+	Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>, 
+	Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Pengyu Luo <mitltlatltl@gmail.com>, Nikita Travkin <nikita@trvn.ru>, 
+	Yongxing Mou <yongxing.mou@oss.qualcomm.com>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
+Subject: Re: [PATCH RESEND v3 1/6] drm/connector: report IRQ_HPD events to
+ drm_connector_oob_hotplug_event()
+Message-ID: <20260521-funny-astonishing-mackerel-cc5a01@penduick>
+References: <20260513-hpd-irq-events-v3-0-086857017f16@oss.qualcomm.com>
+ <20260513-hpd-irq-events-v3-1-086857017f16@oss.qualcomm.com>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260521_003543_470133_DCFDCEE7 
-X-CRM114-Status: GOOD (  11.66  )
+In-Reply-To: <20260513-hpd-irq-events-v3-1-086857017f16@oss.qualcomm.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,68 +82,124 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Sashiko <sashiko-bot@kernel.org>, Nicolas Dufresne <nicolas@ndufresne.ca>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============4398322180057623542=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Ensure that esparser_queue_work is canceled before freeing the
-session context. Add cancel_work_sync() in both the error path
-of vdec_close() and vdec_start_streaming() and in vdec_stop_streaming().
 
-This prevents background work from dereferencing a freed sess
-structure and triggering a use-after-free.
+--===============4398322180057623542==
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="uipgpe3pv2bnp7vq"
+Content-Disposition: inline
 
-Cc: Nicolas Dufresne <nicolas@ndufresne.ca>
-Reported-by: Sashiko <sashiko-bot@kernel.org>
-Closes: https://lore.kernel.org/all/20260520045905.6ACBA1F000E9@smtp.kernel.org/#t
-Fixes: 3e7f51bd9607 ("media: meson: add v4l2 m2m video decoder driver")
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-v4: new patch
- If vdec_close() calls kfree(sess) without first stopping or synchronizing
-with this background work via cancel_work_sync(), could a concurrently
-running esparser_queue_all_src() dereference the freed sess structure and
-trigger a use-after-free?
----
- drivers/staging/media/meson/vdec/vdec.c | 4 ++++
- 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
-index 8615a935e86d..a57bd4a8e33c 100644
---- a/drivers/staging/media/meson/vdec/vdec.c
-+++ b/drivers/staging/media/meson/vdec/vdec.c
-@@ -358,6 +358,8 @@ static int vdec_start_streaming(struct vb2_queue *q, unsigned int count)
- 	dma_free_coherent(sess->core->dev, sess->vififo_size,
- 			  sess->vififo_vaddr, sess->vififo_paddr);
- bufs_done:
-+	cancel_work_sync(&sess->esparser_queue_work);
-+
- 	if (q->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
- 		sess->streamon_out = 0;
- 	else
-@@ -415,6 +417,7 @@ static void vdec_stop_streaming(struct vb2_queue *q)
- 		if (vdec_codec_needs_recycle(sess))
- 			kthread_stop(sess->recycle_thread);
- 
-+		cancel_work_sync(&sess->esparser_queue_work);
- 		vdec_poweroff(sess);
- 		vdec_free_canvas(sess);
- 		dma_free_coherent(sess->core->dev, sess->vififo_size,
-@@ -937,6 +940,7 @@ static int vdec_close(struct file *file)
- 	v4l2_m2m_ctx_release(sess->m2m_ctx);
- 	v4l2_m2m_release(sess->m2m_dev);
- 	v4l2_ctrl_handler_free(&sess->ctrl_handler);
-+	cancel_work_sync(&sess->esparser_queue_work);
- 	v4l2_fh_del(&sess->fh, file);
- 	v4l2_fh_exit(&sess->fh);
- 
--- 
-2.50.1
+--uipgpe3pv2bnp7vq
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH RESEND v3 1/6] drm/connector: report IRQ_HPD events to
+ drm_connector_oob_hotplug_event()
+MIME-Version: 1.0
 
+On Wed, May 13, 2026 at 09:23:21PM +0300, Dmitry Baryshkov wrote:
+> The DisplayPort standard defines a special kind of events called IRQ.
+> These events are used to notify DP Source about the events on the Sink
+> side. It is extremely important for DP MST handling, where the MST
+> events are reported through this IRQ.
+>=20
+> In case of the USB-C DP AltMode there is no actual HPD pulse, but the
+> events are ported through the bits in the AltMode VDOs.
+>=20
+> Extend the drm_connector_oob_hotplug_event() interface and report IRQ
+> events to the DisplayPort Sink drivers.
+>=20
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
+>  drivers/gpu/drm/drm_connector.c          |  5 ++++-
+>  drivers/usb/typec/altmodes/displayport.c | 15 +++++++++++----
+>  include/drm/drm_connector.h              | 19 ++++++++++++++++++-
+>  3 files changed, 33 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connec=
+tor.c
+> index 47dc53c4a738..edee9daccd51 100644
+> --- a/drivers/gpu/drm/drm_connector.c
+> +++ b/drivers/gpu/drm/drm_connector.c
+> @@ -3510,6 +3510,8 @@ struct drm_connector *drm_connector_find_by_fwnode(=
+struct fwnode_handle *fwnode)
+>   * drm_connector_oob_hotplug_event - Report out-of-band hotplug event to=
+ connector
+>   * @connector_fwnode: fwnode_handle to report the event on
+>   * @status: hot plug detect logical state
+> + * @extra_status: additional information provided by the sink without ch=
+anging
+> + * the HPD state (or in addition to such a change).
+>   *
+>   * On some hardware a hotplug event notification may come from outside t=
+he display
+>   * driver / device. An example of this is some USB Type-C setups where t=
+he hardware
+> @@ -3520,7 +3522,8 @@ struct drm_connector *drm_connector_find_by_fwnode(=
+struct fwnode_handle *fwnode)
+>   * a drm_connector reference through calling drm_connector_find_by_fwnod=
+e().
+>   */
+>  void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwn=
+ode,
+> -				     enum drm_connector_status status)
+> +				     enum drm_connector_status status,
+> +				     enum drm_connector_status_extra extra_status)
+>  {
+>  	struct drm_connector *connector;
+> =20
+> diff --git a/drivers/usb/typec/altmodes/displayport.c b/drivers/usb/typec=
+/altmodes/displayport.c
+> index 35d9c3086990..7182a8e2e710 100644
+> --- a/drivers/usb/typec/altmodes/displayport.c
+> +++ b/drivers/usb/typec/altmodes/displayport.c
+> @@ -189,7 +189,9 @@ static int dp_altmode_status_update(struct dp_altmode=
+ *dp)
+>  	} else {
+>  		drm_connector_oob_hotplug_event(dp->connector_fwnode,
+>  						hpd ? connector_status_connected :
+> -						      connector_status_disconnected);
+> +						      connector_status_disconnected,
+> +						(hpd && irq_hpd) ? DRM_CONNECTOR_DP_IRQ_HPD :
+> +								   DRM_CONNECTOR_NO_EXTRA_STATUS);
+
+Since the extra status itself, and what the options mean, are DP specific, =
+do we really want to
+extend drm_connector_oob_hotplug_event()? I think I'd prefer to have a DP s=
+pecific variant, with its
+own set of parameters.
+
+Maxime
+
+--uipgpe3pv2bnp7vq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCag64iQAKCRAnX84Zoj2+
+dhJzAYClCMH5nftN7lNJDSZByXRPwo/xO31PTF3adTcKyfMtvVmon8CIoheOgyRx
+VwxpLvMBf0dr9uwFTrG2lPtQTFNmHOzXDF1ujEGuM3hWzigGtwt7xylrgcMlpE1b
+f9c6Uo1BbQ==
+=SGa3
+-----END PGP SIGNATURE-----
+
+--uipgpe3pv2bnp7vq--
+
+
+--===============4398322180057623542==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4398322180057623542==--
+
