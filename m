@@ -4,116 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCEF0CD5BB7
-	for <linux-amlogic@archiver.kernel.org>; Fri, 22 May 2026 12:35:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34F76CD5BB0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 May 2026 16:24:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
-	MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ZN8Xe0Z5N4rwtDQhKQS44uNizovm2v4a3a7SDb93DK4=; b=mVOpGXLPjOqhaN3Jm/wqP4lirJ
-	wlXVd+skvW39RE+LZT4/faWte1EYHDSN7+OPDjgxWJK3y4jYwQanJwOyc5FOgKaEMk7b8+d2k1qIc
-	nyRjS7TgR53ACNyBf1akvIuj+XiTRHG42Siz3dgIWFzuDgmuc7z5T5L44/v8bUWaKLt4eQKLrVY+b
-	6Y+S2DcM+9DAOK+z8I7i79Ou03jfonuBdD53deP2/J2JjpUUx2fD8jrsSmW93c4kFSypU+YdWdZzD
-	1aHf22aBEKySGg++ZrHqBNqmKuyPXeD1TWuXZjI+MvoVR4eCEKP10/y/gOcavpTc7BuujHDwM5arK
-	IP1k+RIQ==;
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Tfs7URB+FooOtBBSnblcGvwGhDDmiDAAvhDnHHxhmFE=; b=Ov8wGxS1Q1bWVp
+	cje2JrncZ+XgEyYWukKlWUB+LF1d8AumrVkHpLEfVgQgRh3KzzbJoJZumEtg8O+JZ2ZnPymC2Ydz1
+	+RFa+LPx1HKQw7cXa6Tgc/i0gz7n50YAP79QtVKIBKX5sN4t+S7dcecjfO17RzpNA/6zsqoRumlXo
+	ZL9wSBzNpjIlnG/3w2DBPDPUmSidktxoti0OadMUiqr+X6o8w8fIGEJTG0P6ZYSD5AXIAbhX8eYnq
+	MLWATgQ6bc1XB2VZayS2OM6XyKg5KcQZ0jd7aQDxQ1TkAdObpriB+sAHvM7LScT9RgBNM0eu26kXv
+	zMxWHva7wCUMz1WwGbSQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wQP6Q-0000000AomA-0Ceg;
-	Fri, 22 May 2026 12:35:46 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1wQSff-0000000BQ5P-25K7;
+	Fri, 22 May 2026 16:24:23 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wQP6N-0000000Aoi6-1C5R
+	id 1wQSfb-0000000BQ3M-1k1f
 	for linux-amlogic@lists.infradead.org;
-	Fri, 22 May 2026 12:35:45 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-49041e84237so6940135e9.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 22 May 2026 05:35:42 -0700 (PDT)
+	Fri, 22 May 2026 16:24:22 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-44dd5cb0f81so5795009f8f.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 22 May 2026 09:24:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1779453341; x=1780058141; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=12uOD2g5+Uq7VX0zJ9BqC6ntXG2MoPNgpSCweJOo224=;
-        b=nYOo97IPdPoDUO2uaY2Ku+WNdIuH4wk0XZHQwDbW90Fc1/s6uaf7/icY9IrGBgzGXd
-         TNUicpZ1F5OJY1pEUI4PlTzmIPWR2BYkYgrFKCRbA654d9lIya01wZMT1VyGfnmKx+c5
-         X8mOzdcRe8NiMSEY792E0IiOUSwXSpDfP41ECzsIH0vyP2J6v+/Z5DIQXCn8q+FXbHXZ
-         Y/hpYnjV6zBLf5k5Cwp10yOhGB5ydG3YSFzrbQbW9ukZxwjaGLK3IKCvgBbUdR8WqvF9
-         HgVKZXSS+OwTHbL0BPcRdnmGUAIZSEzjv3pdTc19KAQOqcMuNoePjGGiDNVZLLE9YvWu
-         10Pg==
+        d=baylibre.com; s=google; t=1779467057; x=1780071857; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TpTRVpTeX+hV9MNqRwUwe9uS8o/vhYTuVInOTNLeRpk=;
+        b=VMsbi8up8tU692iB8Apd7GK5tGzAGbtwSvrIHqnXQ1kxwKHuNr8AdF/ZNNd+VMVjHx
+         5Dc968QdRgQIJZ1f0/R4yHd05ZmSReErp9Y3jMSzofibNwggfIafW0MUf2VBpXZB/YO+
+         EcXHb89V6fNQYuxvu39XlJYOsW/yTBCjJu5K4bdmkg+VvBxozutx7nXPF/UhSerzMLyK
+         JydVcERxpfWl5wwK4P/LpHcZpdZUBLFWCfEzUJUCoolEg5/pTtC1uPcnYCGGXeEbfZeB
+         /LKriOyUPk9+2+8wkzYHd0PkbDLzYVVjvi99H2TIsbrL1570js0abGjzEexKX8byNlY1
+         sIsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779453341; x=1780058141;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=12uOD2g5+Uq7VX0zJ9BqC6ntXG2MoPNgpSCweJOo224=;
-        b=EZ8Br/CWaOV8A4wIjIZ63vsNzA6DiMaePps8NsSJo9/Op3DQMxAWVixamuIvNwzfYQ
-         MSwhTNEBW2ETQRSkAtnL8P44mLh/8132tXz3oafIFJYxNp97ATEaqScUgQeUXOwtBcTJ
-         6YhPwij7zJXeu8qozNKDC0XdM7xbUiu2v7WA0+kmvlS7CuYA5S0y0cNb35RCkvND6Pzl
-         n8idINqwXVY7zCRVSYNcy2dItMUKuZVFtP0fAW3VL6WJhYb7LUuYKwcQPUtWCmlbiGxX
-         T3MGXm0KCxJbD5nFFdP6OAeyTGKrWOttedSm9wnzm/t8sQB4g54TskreOCychEzS40WD
-         60UA==
-X-Forwarded-Encrypted: i=1; AFNElJ9WuwMU4fNnoMN3rB63tMOTvVeGpQW/nJfRFnl6uqthKHDBgJJolC+sQXX+tPSB1z2kiddfPehWTgn1bYl3@lists.infradead.org
-X-Gm-Message-State: AOJu0YwDrn2uJxv3o59Bxhw3YOgftCCQV6sQVkU7x0XieDc4B2n3/TQ+
-	KX+jlAMkMq97VDwNzBsF+MELLJOcHgkb3Ckkqk9w3WVgXJhLwtx6exNiwRy+Pv/POF0=
-X-Gm-Gg: Acq92OF3nLzTOc08pJTjwiAKYwX+7zEuMJExuoXWuoLT0v5N8cApxxu40Xq+jg3rHoB
-	OCSLFJSs1TLErChZD6w2c7L416ZZhnbDcinC/yV66bJLkuyh4wW91iw5sZo1kUoNeDpqcJ2hbjm
-	4O3yIsXbUVxQ5W/2HcJvmBwrnYx1fSNiyz5E0bOR+wZ9/4DzKYL3TAZGdyMCDeM3XMojX7wh0rN
-	3kz5loMidA35qczLf25l33NQqV+HegBO4jQWHX2PVZOCeSwuTC73jYyewwPuWWaLhazVuF60GGo
-	kGqIag9DCtmbTy32+3ixfHtUY5jPpKBW6dTOR1++dZ5XBSL/lPdTChRJavX4aa2DTbGbD/dpH38
-	9RWzCSjX6uT/zlwOxhGfPHTP9Kr6JTWwXqCt5rOeT1sLFUCS17sG0z/G3OrtD8YTuCdhFmP3nfF
-	LHHTU6I+w4MXZ2oLb/EdcVvWt1QJ7/Po22l4Z6K+27PNjxWxlnvqostf2zuAkiBJJZmorb4x7WJ
-	Qtv
-X-Received: by 2002:a05:600c:3e12:b0:48a:5339:a46 with SMTP id 5b1f17b1804b1-49042481066mr38418155e9.9.1779453340895;
-        Fri, 22 May 2026 05:35:40 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:106d:1080:e40:8f70:d414:3f93? ([2a01:e0a:106d:1080:e40:8f70:d414:3f93])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4904174a145sm24364915e9.0.2026.05.22.05.35.39
+        d=1e100.net; s=20251104; t=1779467057; x=1780071857;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TpTRVpTeX+hV9MNqRwUwe9uS8o/vhYTuVInOTNLeRpk=;
+        b=qZIkd9E2YKJv5C1cKT41M6acDzDmZcihWKp157rYDMwm5JDNWoO8sOgvwENOj/zJxF
+         CS2ueqUNXUZd/okVVo0uRIyWl2HEgVHVc7X31F6rikmOqR83WSYHQz9B3dCIyCWGxinI
+         O764K3JPncjKv319Gbrq/wAxbdY+462wtv+9DlTpSCgxhmPMiTsIhaF3GIoB6bR9Pv1O
+         8WP7D/Z0b8l1zlV2gUjX2DLytUI95Xjz6d+M6x5dgmDlPqZFlzdVSlP3aLkbiYWirO/E
+         K/8USag+a+UUeFhkXfJtJDQwFzzeYDyLIB3FSDVAMfhYHouZoJ5qqW6tCWK2L5HWmKrF
+         7BDA==
+X-Forwarded-Encrypted: i=1; AFNElJ9LY2ZjiQmBnVbcHmoDyEY0VUZB8062fWcHf6KkNBfcMuD6jL6X4P75tl0VBFYSV1ybx5Q6wBrKYNTPPWt2@lists.infradead.org
+X-Gm-Message-State: AOJu0YyAkN0yaq0BbOFKPnhRcb5u3EGy8Ysk8b5JO/Xpt8/Xw+NHGSx/
+	/ozmrBpNwaKLY72Xfmqlhxo7//AxA0hDkpovBVUQHM+9kwUkw/KqlfoB92IPinqhouM=
+X-Gm-Gg: Acq92OH5r8eQwY3NVG4RFy1VfmCzm/9J4Zm6RGUefZGxCr4EvlFI1UIzGLbAgl1BGr7
+	Nk/onTgNIz2AcofgXH4aW45WQnaQOJ8YYEqTDXhkty57TN9KnvlzhSIIJXAm7hy9gkUoCOgxJsq
+	qPewqxLWxzS6c7HlYb8rEUT8e8Dm81zftY9NuGtEJhxK7/ayNgmm8wldJicZKt4IdbUfloN2229
+	R1EV9ir3gNGvTnZBAaSckXF4CoRuCx9arv3kItAawqjoPfYyhHOfd8nA5+mnZTImWxMKLJ7thXh
+	hUOy7f3rFfGKYjAptEKlK67zYLDKPHdPQoFZl4WYYTmtoHYU2IsEuHeHbmdc28j8WwiRW60mdnh
+	+V+5W+Hq6AuV88elHlezbviMbps4466DHZXEkcnTdEOWGIPoCPtOnvGpY6Q8/f/aO9CRLGL5DTQ
+	KhkrBWZ8KPqVz+ttkpXSJ8PceOog==
+X-Received: by 2002:a05:6000:1889:b0:45e:8edc:dacc with SMTP id ffacd0b85a97d-45ea31ce398mr13404994f8f.27.1779467057126;
+        Fri, 22 May 2026 09:24:17 -0700 (PDT)
+Received: from [192.168.3.100] ([151.41.223.93])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45eb6c9dd03sm5868666f8f.7.2026.05.22.09.24.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 May 2026 05:35:40 -0700 (PDT)
-Message-ID: <4df67011-e3f1-4b0b-afee-5fe1c7583277@linaro.org>
-Date: Fri, 22 May 2026 14:35:38 +0200
+        Fri, 22 May 2026 09:24:16 -0700 (PDT)
+Message-ID: <891be10c-99f1-45b7-bd31-ec5080cfc780@baylibre.com>
+Date: Fri, 22 May 2026 18:24:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v7 19/23] drm: bridge: dw_hdmi: Use delayed_work to
- debounce hotplug event
-To: Jonas Karlman <jonas@kwiboo.se>
-References: <20260518180206.2480119-1-jonas@kwiboo.se>
- <20260518180206.2480119-20-jonas@kwiboo.se>
- <e584ab2b-677d-4893-95c9-7b68165633c6@linaro.org>
- <310e7a75-62e2-463c-b471-fcaaa3acfef5@kwiboo.se>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <310e7a75-62e2-463c-b471-fcaaa3acfef5@kwiboo.se>
+Subject: Re: [PATCH 4/4] ASoC: meson: aiu: use aiu-formatter-i2s to format I2S
+ output data
+Content-Language: en-US
+To: Mark Brown <broonie@kernel.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+References: <20260515-reshape-aiu-as-axg-v1-0-53b457784ff3@baylibre.com>
+ <20260515-reshape-aiu-as-axg-v1-4-53b457784ff3@baylibre.com>
+ <758a4ef9-1a3e-475a-ae1e-83523330d006@sirena.org.uk>
+From: Valerio Setti <vsetti@baylibre.com>
+In-Reply-To: <758a4ef9-1a3e-475a-ae1e-83523330d006@sirena.org.uk>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260522_053543_479579_EB28C468 
-X-CRM114-Status: GOOD (  37.29  )
+X-CRM114-CacheID: sfid-20260522_092419_912014_222FB835 
+X-CRM114-Status: GOOD (  12.65  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,373 +104,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: imx@lists.linux.dev, Heiko Stuebner <heiko@sntech.de>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Diederik de Haas <diederik@cknow-tech.com>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Andrzej Hajda <andrzej.hajda@intel.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Robert Foss <rfoss@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, linux-rockchip@lists.infradead.org, Luca Ceresoli <luca.ceresoli@bootlin.com>, linux-sunxi@lists.linux.dev, Liu Ying <victor.liu@nxp.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, linux-amlogic@lists.infradead.org, Chen-Yu Tsai <wens@kernel.org>, linux-arm-kernel@lists.infradead.org, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Sandy Huang <hjc@rock-chips.com>, Thomas Zimmermann <tzimmermann@suse.de>, Andy Yan <andy.yan@rock-chips.com>, Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 5/21/26 22:13, Jonas Karlman wrote:
-> Hi Neil,
-> 
-> On 5/20/2026 11:58 AM, Neil Armstrong wrote:
->> Hi,
->>
->> On 5/18/26 20:01, Jonas Karlman wrote:
->>> HDMI Specification Version 1.4b chapter 8.5 mentions:
->>>
->>>     An HDMI Sink shall not assert high voltage level on its Hot Plug
->>>     Detect pin when the E-EDID is not available for reading.
->>>
->>>     A Source may use a high voltage level Hot Plug Detect signal to
->>>     initiate the reading of E-EDID data.
->>>
->>>     An HDMI Sink shall indicate any change to the contents of the E-EDID
->>>     by driving a low voltage level pulse on the Hot Plug Detect pin. This
->>>     pulse shall be at least 100 msec.
->>>
->>> Use a delayed work to debounce reacting on HPD events to improve
->>> handling of a HPD low voltage level pulse when a sink changes the EDID.
->>>
->>> The delayed work is only enabled between enable_hpd()/hpd_enable() and
->>> disable_hpd()/hpd_disable() calls from core, i.e. enabled after
->>> attach/bind/resume and disabled before detach/unbind/suspend.
->>>
->>> The 1100 msec hotplug debounce timeout was arbitrarily picked to match
->>> other drivers using same const, and testing using a Raspberry Pi Monitor
->>> seem to use a 200-300 msec pulse when going from standby to power on
->>> state.
->>
->> The logic looks ok, but I'm puzzled by the 1.1 sec debounce, which after
->> plugging in a monitor will only send an irq event after 1.1s which is very long.
->>
->> Since the spec says 100ms and the real worls values are more like 200-300ms,
->> I would first reduce this to 500ms.
-> 
-> You are correct, this value was picked based on existing values used by
-> other drivers:
-> 
->    exynos/exynos_hdmi.c:#define HOTPLUG_DEBOUNCE_MS                1100
->    bridge/ti-tfp410.c:#define HOTPLUG_DEBOUNCE_MS          1100
->    amd/display/amdgpu_dm/amdgpu_dm.h:#define AMDGPU_DM_MAX_HDMI_HPD_DEBOUNCE_MS 5000
->    rockchip/dw_hdmi_qp-rockchip.c:#define HOTPLUG_DEBOUNCE_MS              150
-> 
-> 150 ms was too short for my test monitor (Raspberry Pi Monitor), it
-> does a HPD low voltage level pulse when powering on of around 200+ ms.
-> 
->    [82.641903] dw_hdmi_hardirq: EVENT=plugout
->    [82.841939] dw_hdmi_hardirq: EVENT=plugin
-> 
-> And on my LG OLED 4K TV there was typically a pulse of around 700-900 ms.
-> So the 1.1 seconds used by other drivers seemed like a good candidate :-)
-> 
->> But as I understand the code right now, on the first HPD front the irq work
->> is programmed to run after the debounce time, but if it's a pulse the irq would
->> also trigger on the second HPD front and then delay again the work after the
->> debounce time.
-> 
-> Your analysis is correct, any HPD event would keep debouncing adding 1.1
-> timout from each HPD irq, both plugout and plugin.
-> 
-> The intention was to allow for up to 1.1 seconds to pass between a
-> plugout and a plugin, before we treated a plugout as a full disconnect
-> event, and not to delay a possible connected event by 1.1 seconds.
-> 
->> My understanding of a debounce was that we "ignore" the pulse by only generating
->> a single irq event when the pulse is finished.
-> 
-> Correct, as long as the pulse was less than 1.1 seconds.
-> 
->> The current code does that, we will only have a single irq event and the HPD
->> will return as connected state, good. But this delays the irq event 1.1s _after_
->> the end of the pulse, which I would expect the event to be send at tht debounce
->> time after the start of the pulse.
-> 
-> Good catch and I agree, we should delay/timeout the disconnected state
-> longer than plugin and react on plugin almost immediately.
-> 
->> Like, program the work at the beginning of the pulse, if somehow the pulse ends before
->> the debounce time, send the irq event immediately, otherwise let the debounce
->> work run after the debounce time which will trigger a disconnect event.
->>
->> But the delay is too high, 1.1s could be a manual unplug/plug or bad connector
->> with false contact on the hpd pin.
->>
->> I would rather reduce this to something more realistic like 500ms or less and
->> try to better handle the pulse somehow. But I don't have any idea if the scheme
->> I described is doable.
-> 
-> We can configure different delays for plugout and plugin, I am currently
-> testing something like following:
-> 
->    #define HOTPLUG_CONNECTED_DEBOUNCE_MS		150
->    #define HOTPLUG_DISCONNECTED_DEBOUNCE_MS	500
-> 
->    delay = status == connector_status_connected ?
-> 		    HOTPLUG_CONNECTED_DEBOUNCE_MS :
-> 		    HOTPLUG_DISCONNECTED_DEBOUNCE_MS;
->    mod_delayed_work(system_percpu_wq, &hdmi->hpd_work,
-> 		   msecs_to_jiffies(delay));
-> 
-> That would mean:
-> - at plugout we (re-)start the timer to trigger in 500ms
-> - at plugin we (re-)start the timer to trigger in 150ms
-> - whenever the timer triggers the hpd_work is started
-> - the hpw_work trigger normal detect() handling to determin if
->    connector status (or EDID) has changed
-> 
-> Example during power on of a Raspberry Pi Monitor:
-> 
->    [82.641903] dw_hdmi_hardirq: EVENT=plugout
->    [82.648276] dw_hdmi_schedule_hpd_work(status=2)
->    [82.841939] dw_hdmi_hardirq: EVENT=plugin
->    [82.848211] dw_hdmi_schedule_hpd_work(status=1)
->    [83.008573] dw_hdmi_hpd_work(): START
->    [83.020358] dw_hdmi_bridge_detect()
->    [83.034958] dw_hdmi_bridge_edid_read()
->    [83.187102] [drm:update_display_info.part.0] [CONNECTOR:55:HDMI-A-1] CEA VCDB 0x4a
->    [83.194471] [drm:update_display_info.part.0] [CONNECTOR:55:HDMI-A-1] HDMI: DVI dual 0, max TMDS clock 0 kHz
->    [83.201755] [drm:update_display_info.part.0] [CONNECTOR:55:HDMI-A-1] ELD monitor RPI MON156
->    [83.208968] [drm:update_display_info.part.0] [CONNECTOR:55:HDMI-A-1] HDMI: latency present 0 0, video latency 0 0, audio latency 0 0
->    [83.216588] [drm:update_display_info.part.0] [CONNECTOR:55:HDMI-A-1] ELD size 36, SAD count 1
->    [83.224445] [drm:check_connector_changed] [CONNECTOR:55:HDMI-A-1] Same epoch counter 2
->    [83.231553] dw_hdmi_hpd_work(): END
-> 
-> Around 205ms between HPD=0 and HPD=1 and around 160ms from plugin until
-> delayed hpd_work starts.
-> 
-> And at full plugout the debounce time is around 497 ms:
-> 
->    [95.125105] dw_hdmi_hardirq: EVENT=plugout
->    [95.147586] dw_hdmi_schedule_hpd_work(status=2)
->    [95.645277] dw_hdmi_hpd_work(): START
->    [95.667741] dw_hdmi_bridge_detect()
->    [95.691523] [drm:drm_edid_connector_update] [CONNECTOR:55:HDMI-A-1] EDID changed, epoch counter 3
->    [95.709861] [drm:check_connector_changed] [CONNECTOR:55:HDMI-A-1] status updated from connected to disconnected
->    [95.722674] [drm:check_connector_changed] [CONNECTOR:55:HDMI-A-1] Changed epoch counter 2 => 4
->    [95.735173] [drm:drm_sysfs_connector_hotplug_event] [CONNECTOR:55:HDMI-A-1] generating connector hotplug event
->    [95.746326] [drm:drm_fb_helper_hotplug_event]
->    [95.754871] [drm:drm_client_modeset_probe]
->    [95.762429] [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:55:HDMI-A-1]
->    [95.769758] dw_hdmi_bridge_detect()
->    [95.776597] [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:55:HDMI-A-1] disconnected
->    [95.784389] [drm:drm_client_modeset_probe] No connectors reported connected with modes
->    [95.791865] [drm:drm_client_modeset_probe] [CONNECTOR:55:HDMI-A-1] enabled? no
->    [95.799426] [drm:drm_client_firmware_config.isra.0] Not using firmware configuration
->    [95.807140] [drm:drm_client_modeset_probe] picking CRTCs for 1920x1080 config
->    [95.818422] dw_hdmi_bridge_atomic_disable()
->    [95.826412] [drm:vop2_plane_atomic_disable] Smart0-win0 disable
->    [95.868341] [drm:drm_client_hotplug] fbdev: ret=0
->    [95.878206] dw_hdmi_hpd_work(): END
-> 
-> With a much quicker reaction on plugin event maybe the 1.1 seconds could
-> stay to avoid having to do a full teardown, disable() + enable() cycle,
-> at slightly longer HPD pulses.
 
-Yes those traces a good
+On 5/22/26 01:15, Mark Brown wrote:
+> On Fri, May 15, 2026 at 05:10:40PM +0200, Valerio Setti wrote:
+>> Create a new DAPM widget for "I2S formatter" and place it on the path
+>> between FIFO and output DAI interface. Remove I2S output formatting code
+>> from aiu-encoder-i2s since it's now implemented from aiu-formatter-i2s.
+> 
+> This series, it looks like this specific patch, is breaking pcm-test on
+> my libretech Le Potato board, the clocking looks to be seriously messed
+> up.  I'm getting:
+> 
+> [...]
+> 
+> Full log:
+> 
+>     https://lava.sirena.org.uk/scheduler/job/2786342#L1934
+> 
+> The prior patches seem to test fine, it's this one that seems to
+> introduce the issue.
 
-> 
-> Or maybe it is time to re-spin an old cec-adapter debounce series [1]
-> that can allow for some additional time until the CEC phys addr is fully
-> invalidated at a longer HPD low voltage level pulse.
+Thanks a lot for the heads up and please apologize for the problem.
+I wasn't aware of these testing tools so I based my testing on playing 
+with userspace alsa tools on the physical board that I have.
 
-Either one are good, the cec-adapt one looks simpler but still effective.
+I will take a look at it ASAP and send a properly tested v2.
 
-Thanks,
-Neil
-
-> 
-> [1] https://lore.kernel.org/linux-media/HE1PR06MB40115700084D1D875673D60EAC9D0@HE1PR06MB4011.eurprd06.prod.outlook.com/
-> 
-> Regards,
-> Jonas
-> 
->>
->> Neil
->>
->>>
->>> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
->>> ---
->>> v7: Change to free irq before mute and clear using IH regs, also include
->>>       clear of STAT0_RX_SENSE
->>> v6: Change back to disable_delayed_work_sync() in hpd disable ops,
->>>       Ensure HPD interrupt is masked and IRQ handler is disabled early
->>>       in dw_hdmi_remove() to prevent any irq re-arming of delayed work,
->>>       Drop use of suspend helper
->>> v5: Change to none-sync disable_delayed_work() in hpd disable ops,
->>>       Change to cancel_delayed_work_sync() in remove,
->>>       Add cancel_delayed_work_sync() to new suspend helper
->>> v4: Disable/mask delayed_work until enable_hpd()/hpd_enable(),
->>>       Read connector status directly from HW regs in hpd_work
->>> v3: New patch
->>> ---
->>>    drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 80 +++++++++++++++++++++--
->>>    1 file changed, 75 insertions(+), 5 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->>> index 8afc9d240121..270db58a0e7c 100644
->>> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->>> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->>> @@ -50,6 +50,8 @@
->>>    
->>>    #define HDMI14_MAX_TMDSCLK	340000000
->>>    
->>> +#define HOTPLUG_DEBOUNCE_MS	1100
->>> +
->>>    static const u16 csc_coeff_default[3][4] = {
->>>    	{ 0x2000, 0x0000, 0x0000, 0x0000 },
->>>    	{ 0x0000, 0x2000, 0x0000, 0x0000 },
->>> @@ -185,6 +187,7 @@ struct dw_hdmi {
->>>    	hdmi_codec_plugged_cb plugged_cb;
->>>    	struct device *codec_dev;
->>>    	enum drm_connector_status last_connector_result;
->>> +	struct delayed_work hpd_work;
->>>    };
->>>    
->>>    const struct dw_hdmi_plat_data *dw_hdmi_to_plat_data(struct dw_hdmi *hdmi)
->>> @@ -2517,6 +2520,20 @@ static void dw_hdmi_connector_force(struct drm_connector *connector)
->>>    	dw_hdmi_connector_status_update(hdmi, connector, connector->status);
->>>    }
->>>    
->>> +static void dw_hdmi_connector_enable_hpd(struct drm_connector *connector)
->>> +{
->>> +	struct dw_hdmi *hdmi = container_of(connector, struct dw_hdmi, connector);
->>> +
->>> +	enable_delayed_work(&hdmi->hpd_work);
->>> +}
->>> +
->>> +static void dw_hdmi_connector_disable_hpd(struct drm_connector *connector)
->>> +{
->>> +	struct dw_hdmi *hdmi = container_of(connector, struct dw_hdmi, connector);
->>> +
->>> +	disable_delayed_work_sync(&hdmi->hpd_work);
->>> +}
->>> +
->>>    static void dw_hdmi_connector_destroy(struct drm_connector *connector)
->>>    {
->>>    	struct dw_hdmi *hdmi = container_of(connector, struct dw_hdmi, connector);
->>> @@ -2538,6 +2555,8 @@ static const struct drm_connector_funcs dw_hdmi_connector_funcs = {
->>>    static const struct drm_connector_helper_funcs dw_hdmi_connector_helper_funcs = {
->>>    	.get_modes = dw_hdmi_connector_get_modes,
->>>    	.atomic_check = dw_hdmi_connector_atomic_check,
->>> +	.enable_hpd = dw_hdmi_connector_enable_hpd,
->>> +	.disable_hpd = dw_hdmi_connector_disable_hpd,
->>>    };
->>>    
->>>    static int dw_hdmi_connector_create(struct dw_hdmi *hdmi)
->>> @@ -2968,6 +2987,20 @@ static const struct drm_edid *dw_hdmi_bridge_edid_read(struct drm_bridge *bridge
->>>    	return dw_hdmi_edid_read(hdmi, connector);
->>>    }
->>>    
->>> +static void dw_hdmi_bridge_hpd_enable(struct drm_bridge *bridge)
->>> +{
->>> +	struct dw_hdmi *hdmi = bridge->driver_private;
->>> +
->>> +	enable_delayed_work(&hdmi->hpd_work);
->>> +}
->>> +
->>> +static void dw_hdmi_bridge_hpd_disable(struct drm_bridge *bridge)
->>> +{
->>> +	struct dw_hdmi *hdmi = bridge->driver_private;
->>> +
->>> +	disable_delayed_work_sync(&hdmi->hpd_work);
->>> +}
->>> +
->>>    static const struct drm_bridge_funcs dw_hdmi_bridge_funcs = {
->>>    	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
->>>    	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
->>> @@ -2981,6 +3014,8 @@ static const struct drm_bridge_funcs dw_hdmi_bridge_funcs = {
->>>    	.mode_valid = dw_hdmi_bridge_mode_valid,
->>>    	.detect = dw_hdmi_bridge_detect,
->>>    	.edid_read = dw_hdmi_bridge_edid_read,
->>> +	.hpd_enable = dw_hdmi_bridge_hpd_enable,
->>> +	.hpd_disable = dw_hdmi_bridge_hpd_disable,
->>>    };
->>>    
->>>    /* -----------------------------------------------------------------------------
->>> @@ -3101,8 +3136,8 @@ static irqreturn_t dw_hdmi_irq(int irq, void *dev_id)
->>>    			status == connector_status_connected ?
->>>    			"plugin" : "plugout");
->>>    
->>> -		if (hdmi->bridge.dev)
->>> -			drm_helper_hpd_irq_event(hdmi->bridge.dev);
->>> +		mod_delayed_work(system_percpu_wq, &hdmi->hpd_work,
->>> +				 msecs_to_jiffies(HOTPLUG_DEBOUNCE_MS));
->>>    	}
->>>    
->>>    	hdmi_writeb(hdmi, intr_stat, HDMI_IH_PHY_STAT0);
->>> @@ -3112,6 +3147,29 @@ static irqreturn_t dw_hdmi_irq(int irq, void *dev_id)
->>>    	return IRQ_HANDLED;
->>>    }
->>>    
->>> +static void dw_hdmi_hpd_work(struct work_struct *work)
->>> +{
->>> +	struct dw_hdmi *hdmi = container_of(work, struct dw_hdmi, hpd_work.work);
->>> +	struct drm_device *dev = hdmi->bridge.dev;
->>> +
->>> +	if (WARN_ON(!dev))
->>> +		return;
->>> +
->>> +	/*
->>> +	 * Notify the DRM core of the HPD event using drm_helper_hpd_irq_event()
->>> +	 * instead of drm_bridge_hpd_notify(). This will cause the DRM function
->>> +	 * check_connector_changed() to be called, which in turn calls the
->>> +	 * connector detect()/force() funcs to detect any connection status or
->>> +	 * epoch changes. The bridge connector detect() func also ensures that
->>> +	 * any hpd_notify() funcs are called for all bridges in the chain.
->>> +	 *
->>> +	 * drm_bridge_hpd_notify() shares a mutex with drm_bridge_hpd_disable(),
->>> +	 * and can result in a deadlock due to the disable_delayed_work_sync()
->>> +	 * call to wait on work to complete in dw_hdmi_bridge_hpd_disable().
->>> +	 */
->>> +	drm_helper_hpd_irq_event(dev);
->>> +}
->>> +
->>>    static const struct dw_hdmi_phy_data dw_hdmi_phys[] = {
->>>    	{
->>>    		.type = DW_HDMI_PHY_DWC_HDMI_TX_PHY,
->>> @@ -3396,6 +3454,9 @@ struct dw_hdmi *dw_hdmi_probe(struct platform_device *pdev,
->>>    		goto err_res;
->>>    	}
->>>    
->>> +	INIT_DELAYED_WORK(&hdmi->hpd_work, dw_hdmi_hpd_work);
->>> +	disable_delayed_work(&hdmi->hpd_work);
->>> +
->>>    	ret = devm_request_threaded_irq(dev, irq, dw_hdmi_hardirq,
->>>    					dw_hdmi_irq, IRQF_SHARED,
->>>    					dev_name(dev), hdmi);
->>> @@ -3532,6 +3593,18 @@ EXPORT_SYMBOL_GPL(dw_hdmi_probe);
->>>    
->>>    void dw_hdmi_remove(struct dw_hdmi *hdmi)
->>>    {
->>> +	struct platform_device *pdev = to_platform_device(hdmi->dev);
->>> +	int irq = platform_get_irq(pdev, 0);
->>> +
->>> +	/* Free, mute and clear phy interrupts */
->>> +	devm_free_irq(hdmi->dev, irq, hdmi);
->>> +	hdmi_writeb(hdmi, ~0, HDMI_IH_MUTE_PHY_STAT0);
->>> +	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
->>> +		    HDMI_IH_PHY_STAT0);
->>> +
->>> +	/* Cancel any pending hot plug work */
->>> +	cancel_delayed_work_sync(&hdmi->hpd_work);
->>> +
->>>    	drm_bridge_remove(&hdmi->bridge);
->>>    
->>>    	if (hdmi->audio && !IS_ERR(hdmi->audio))
->>> @@ -3539,9 +3612,6 @@ void dw_hdmi_remove(struct dw_hdmi *hdmi)
->>>    	if (!IS_ERR(hdmi->cec))
->>>    		platform_device_unregister(hdmi->cec);
->>>    
->>> -	/* Disable all interrupts */
->>> -	hdmi_writeb(hdmi, ~0, HDMI_IH_MUTE_PHY_STAT0);
->>> -
->>>    	if (hdmi->i2c)
->>>    		i2c_del_adapter(&hdmi->i2c->adap);
->>>    	else
->>
-> 
+-- 
+Valerio
 
 
 _______________________________________________
