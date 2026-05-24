@@ -4,95 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34F76CD5BB0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 22 May 2026 16:24:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FFAACD5BB1
+	for <linux-amlogic@archiver.kernel.org>; Sun, 24 May 2026 15:50:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Tfs7URB+FooOtBBSnblcGvwGhDDmiDAAvhDnHHxhmFE=; b=Ov8wGxS1Q1bWVp
-	cje2JrncZ+XgEyYWukKlWUB+LF1d8AumrVkHpLEfVgQgRh3KzzbJoJZumEtg8O+JZ2ZnPymC2Ydz1
-	+RFa+LPx1HKQw7cXa6Tgc/i0gz7n50YAP79QtVKIBKX5sN4t+S7dcecjfO17RzpNA/6zsqoRumlXo
-	ZL9wSBzNpjIlnG/3w2DBPDPUmSidktxoti0OadMUiqr+X6o8w8fIGEJTG0P6ZYSD5AXIAbhX8eYnq
-	MLWATgQ6bc1XB2VZayS2OM6XyKg5KcQZ0jd7aQDxQ1TkAdObpriB+sAHvM7LScT9RgBNM0eu26kXv
-	zMxWHva7wCUMz1WwGbSQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=kYuRMTtff1wfvi2sN5dFe7YZS1oDl+EJKGFLrqA+w8A=; b=M3zbBYxmb+TiUM
+	Z/xawuKXHsf/ehX5hlnLQTUWvlH6TXCeqzjcRuVPu34whorNG5HXqhwU3JxO8i8NDHr2BPJh1FrSF
+	Mt2c5LqU0AuV9E72I8mkHoRVM1z6GdAl5049huG/3n8Nfi97BjsoL4dFuaoEk6B6yw+f/cO7Kqjzz
+	sY+2B03JGv7jUAEjLMrxhEJWoRrr6eldy5Zq+b5qn5qMNwlYCKPi2blqz4Prga7ogz5yTx8UvUfTu
+	KjQLz6HJGN4vO/OjaHEbCnKTDrxnw/+TdzzrKFpCixt8wmWoi4pmf/buvSE9vk+dvQ0uTSdeaHB3e
+	26KzzUVft8+sG7iQWmXA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wQSff-0000000BQ5P-25K7;
-	Fri, 22 May 2026 16:24:23 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+	id 1wRB5n-0000000FDDU-0OF4;
+	Sun, 24 May 2026 15:50:19 +0000
+Received: from mail-pf1-x42b.google.com ([2607:f8b0:4864:20::42b])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wQSfb-0000000BQ3M-1k1f
+	id 1wRB5k-0000000FDCa-21Z1
 	for linux-amlogic@lists.infradead.org;
-	Fri, 22 May 2026 16:24:22 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-44dd5cb0f81so5795009f8f.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 22 May 2026 09:24:18 -0700 (PDT)
+	Sun, 24 May 2026 15:50:17 +0000
+Received: by mail-pf1-x42b.google.com with SMTP id d2e1a72fcca58-82fbf5d4dc2so6297019b3a.1
+        for <linux-amlogic@lists.infradead.org>; Sun, 24 May 2026 08:50:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1779467057; x=1780071857; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TpTRVpTeX+hV9MNqRwUwe9uS8o/vhYTuVInOTNLeRpk=;
-        b=VMsbi8up8tU692iB8Apd7GK5tGzAGbtwSvrIHqnXQ1kxwKHuNr8AdF/ZNNd+VMVjHx
-         5Dc968QdRgQIJZ1f0/R4yHd05ZmSReErp9Y3jMSzofibNwggfIafW0MUf2VBpXZB/YO+
-         EcXHb89V6fNQYuxvu39XlJYOsW/yTBCjJu5K4bdmkg+VvBxozutx7nXPF/UhSerzMLyK
-         JydVcERxpfWl5wwK4P/LpHcZpdZUBLFWCfEzUJUCoolEg5/pTtC1uPcnYCGGXeEbfZeB
-         /LKriOyUPk9+2+8wkzYHd0PkbDLzYVVjvi99H2TIsbrL1570js0abGjzEexKX8byNlY1
-         sIsQ==
+        d=gmail.com; s=20251104; t=1779637815; x=1780242615; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ReOkgoPLdCaHd6CcEsCAqea7Z9/lGvf+pkF1enOHLhw=;
+        b=ZeQrNKR6GNqrfUXxWy/yUQnJAK2Dm0wqxCQvonmZ7oLntuAc8KESrGVvInPfiPOYDE
+         TEAlldSIPbXRpG1XvBcyv2sNmU24yPP8J0YiikmjC+TiVDrcKho46v7cRbAtlD1FMMr/
+         mBjBd6x2KKKR/tgx4+scQAfvU20fCdHaKp1kdLAbD1ZRCawV4Kjibm8JydpF5J24A6c1
+         VOxUqm2t3vB/QTXfRGkpq6wdHf8/iXwI8XK/ILs/nCq2Ys3Rpu0MkCuen6gGPvKfojdO
+         BQFP2KoxUreMHzoZxYzvs634Y0WU+36y4tnD+4N1sSght/oun7kz24b8paW0MMDdsS1U
+         JhSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779467057; x=1780071857;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TpTRVpTeX+hV9MNqRwUwe9uS8o/vhYTuVInOTNLeRpk=;
-        b=qZIkd9E2YKJv5C1cKT41M6acDzDmZcihWKp157rYDMwm5JDNWoO8sOgvwENOj/zJxF
-         CS2ueqUNXUZd/okVVo0uRIyWl2HEgVHVc7X31F6rikmOqR83WSYHQz9B3dCIyCWGxinI
-         O764K3JPncjKv319Gbrq/wAxbdY+462wtv+9DlTpSCgxhmPMiTsIhaF3GIoB6bR9Pv1O
-         8WP7D/Z0b8l1zlV2gUjX2DLytUI95Xjz6d+M6x5dgmDlPqZFlzdVSlP3aLkbiYWirO/E
-         K/8USag+a+UUeFhkXfJtJDQwFzzeYDyLIB3FSDVAMfhYHouZoJ5qqW6tCWK2L5HWmKrF
-         7BDA==
-X-Forwarded-Encrypted: i=1; AFNElJ9LY2ZjiQmBnVbcHmoDyEY0VUZB8062fWcHf6KkNBfcMuD6jL6X4P75tl0VBFYSV1ybx5Q6wBrKYNTPPWt2@lists.infradead.org
-X-Gm-Message-State: AOJu0YyAkN0yaq0BbOFKPnhRcb5u3EGy8Ysk8b5JO/Xpt8/Xw+NHGSx/
-	/ozmrBpNwaKLY72Xfmqlhxo7//AxA0hDkpovBVUQHM+9kwUkw/KqlfoB92IPinqhouM=
-X-Gm-Gg: Acq92OH5r8eQwY3NVG4RFy1VfmCzm/9J4Zm6RGUefZGxCr4EvlFI1UIzGLbAgl1BGr7
-	Nk/onTgNIz2AcofgXH4aW45WQnaQOJ8YYEqTDXhkty57TN9KnvlzhSIIJXAm7hy9gkUoCOgxJsq
-	qPewqxLWxzS6c7HlYb8rEUT8e8Dm81zftY9NuGtEJhxK7/ayNgmm8wldJicZKt4IdbUfloN2229
-	R1EV9ir3gNGvTnZBAaSckXF4CoRuCx9arv3kItAawqjoPfYyhHOfd8nA5+mnZTImWxMKLJ7thXh
-	hUOy7f3rFfGKYjAptEKlK67zYLDKPHdPQoFZl4WYYTmtoHYU2IsEuHeHbmdc28j8WwiRW60mdnh
-	+V+5W+Hq6AuV88elHlezbviMbps4466DHZXEkcnTdEOWGIPoCPtOnvGpY6Q8/f/aO9CRLGL5DTQ
-	KhkrBWZ8KPqVz+ttkpXSJ8PceOog==
-X-Received: by 2002:a05:6000:1889:b0:45e:8edc:dacc with SMTP id ffacd0b85a97d-45ea31ce398mr13404994f8f.27.1779467057126;
-        Fri, 22 May 2026 09:24:17 -0700 (PDT)
-Received: from [192.168.3.100] ([151.41.223.93])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45eb6c9dd03sm5868666f8f.7.2026.05.22.09.24.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 May 2026 09:24:16 -0700 (PDT)
-Message-ID: <891be10c-99f1-45b7-bd31-ec5080cfc780@baylibre.com>
-Date: Fri, 22 May 2026 18:24:16 +0200
+        d=1e100.net; s=20251104; t=1779637815; x=1780242615;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ReOkgoPLdCaHd6CcEsCAqea7Z9/lGvf+pkF1enOHLhw=;
+        b=d9w9BuqA/1VS6WHMYQnAe5ChhCY5XHhwDNfHS21RfDb6ecSKxOItSe/+4Q7E+iPdRd
+         foKbiat1i4ULOEm3VMw0alcCH3xEZJcEQECDs5fIgB03DxlVbqCk0KZsWA30kR5mWdIq
+         fZyjGRHeX10LPjbs/jA2nr2ALFUaN+76KktPmszPEqmJDLZOx4DDDDXMeJ1Q66HfUBhh
+         J2AkP+6Kt4OWV1zCpPxdBpZqTlraEYxxL3IDg7F1/dnAgC24JVX5eKoYDORPtTwhxS6n
+         MK7V2vcp/7iX7TnHpganZKYY5mpMkUzY6LcbKPthCHke3zqZ3A0CXPkiPIDJcYvOm9s/
+         FTDQ==
+X-Forwarded-Encrypted: i=1; AFNElJ8WSBSRI/qg48j+gTH706s/N4UhAOk1rriovknIStekC8Y9L9A+szTq25BIW3N4YrQkUNh9X34e36PAv5cZ@lists.infradead.org
+X-Gm-Message-State: AOJu0YzBB1rIe92LnCtIuJIwoEbQ8YNgtiQLkK3rQOV1zOEfvU0n/khj
+	670UeLlnw00V2WUYjc7N85ZbXKZVBfHDpYqIprECSzveRNnPTcJJ8jkj
+X-Gm-Gg: Acq92OGfR83AmGwi1kwnLv3hwW4YBP17c5jqNYV/JJx0Klan4CpmsrPMHZFUvE1PB+k
+	C38tKdh9p0hSA1rbZKH00pNVFcjU0eIhA7f/4dfgVp0Fyl555dP+LvRZgEd9dXadDyOi9sU1Xcr
+	Rqj5JNO+DWUA7HfyAtYAWQZPcmmluk634P4JPDV+ISkkuLhkF99TaZD6PeQdmC093KK+VUoK8mU
+	qQIGukgLDjUYHv4AMfkbcKi6xt9QTSWztfUjWUSav+TonNh1UAOCP8le5mBGglwZoRLrGsJBhKk
+	f6AGBnDh1Xadxo/XCyeVig/V+BF2cym+tKnkaw37N/7BrXdW/sKE2TzNZ8N6nHf7C4hkXyEmSfT
+	HD08kH+PfhZcMxqP7BcCDqA+IoZCMaKy2W4RilWfcnlmKpP17mWiPesQZf3TcNfOoO4O0HIFzDi
+	6VMXKsQ/J6W19ccpYjorKxmomAT7EU5w0YFSeyA071Iax61foaog==
+X-Received: by 2002:a05:6a00:2d25:b0:82f:5051:f024 with SMTP id d2e1a72fcca58-8415f5dcc6fmr10442376b3a.27.1779637814974;
+        Sun, 24 May 2026 08:50:14 -0700 (PDT)
+Received: from arch.localdomain ([2409:8a28:a5f:4fa1:cc65:18c0:209b:38a4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84164ac9b74sm6997716b3a.3.2026.05.24.08.50.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 24 May 2026 08:50:14 -0700 (PDT)
+From: Jun Yan <jerrysteve1101@gmail.com>
+To: Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Jun Yan <jerrysteve1101@gmail.com>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: gpio: meson-axg: Fix whitespace issue
+Date: Sun, 24 May 2026 23:49:53 +0800
+Message-ID: <20260524154954.385778-1-jerrysteve1101@gmail.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] ASoC: meson: aiu: use aiu-formatter-i2s to format I2S
- output data
-Content-Language: en-US
-To: Mark Brown <broonie@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-References: <20260515-reshape-aiu-as-axg-v1-0-53b457784ff3@baylibre.com>
- <20260515-reshape-aiu-as-axg-v1-4-53b457784ff3@baylibre.com>
- <758a4ef9-1a3e-475a-ae1e-83523330d006@sirena.org.uk>
-From: Valerio Setti <vsetti@baylibre.com>
-In-Reply-To: <758a4ef9-1a3e-475a-ae1e-83523330d006@sirena.org.uk>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260522_092419_912014_222FB835 
-X-CRM114-Status: GOOD (  12.65  )
+X-CRM114-CacheID: sfid-20260524_085016_525268_B6096BF2 
+X-CRM114-Status: UNSURE (   9.42  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,39 +104,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Clean up whitespace misalignment in meson-axg-gpio.h
 
-On 5/22/26 01:15, Mark Brown wrote:
-> On Fri, May 15, 2026 at 05:10:40PM +0200, Valerio Setti wrote:
->> Create a new DAPM widget for "I2S formatter" and place it on the path
->> between FIFO and output DAI interface. Remove I2S output formatting code
->> from aiu-encoder-i2s since it's now implemented from aiu-formatter-i2s.
-> 
-> This series, it looks like this specific patch, is breaking pcm-test on
-> my libretech Le Potato board, the clocking looks to be seriously messed
-> up.  I'm getting:
-> 
-> [...]
-> 
-> Full log:
-> 
->     https://lava.sirena.org.uk/scheduler/job/2786342#L1934
-> 
-> The prior patches seem to test fine, it's this one that seems to
-> introduce the issue.
+Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
+---
+ include/dt-bindings/gpio/meson-axg-gpio.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Thanks a lot for the heads up and please apologize for the problem.
-I wasn't aware of these testing tools so I based my testing on playing 
-with userspace alsa tools on the physical board that I have.
-
-I will take a look at it ASAP and send a properly tested v2.
-
+diff --git a/include/dt-bindings/gpio/meson-axg-gpio.h b/include/dt-bindings/gpio/meson-axg-gpio.h
+index 25bb1fffa97a..a0d42bcd9bd3 100644
+--- a/include/dt-bindings/gpio/meson-axg-gpio.h
++++ b/include/dt-bindings/gpio/meson-axg-gpio.h
+@@ -23,7 +23,7 @@
+ #define GPIOAO_11	11
+ #define GPIOAO_12	12
+ #define GPIOAO_13	13
+-#define GPIO_TEST_N 14
++#define GPIO_TEST_N	14
+ 
+ /* Second GPIO chip */
+ #define GPIOZ_0		0
+@@ -52,7 +52,7 @@
+ #define BOOT_12		23
+ #define BOOT_13		24
+ #define BOOT_14		25
+-#define GPIOA_0	    26
++#define GPIOA_0		26
+ #define GPIOA_1		27
+ #define GPIOA_2		28
+ #define GPIOA_3		29
 -- 
-Valerio
+2.54.0
 
 
 _______________________________________________
