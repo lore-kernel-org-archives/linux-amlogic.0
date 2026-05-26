@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AA37CD5BC8
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 May 2026 08:40:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A01FCCD5BD1
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 May 2026 08:40:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=r5/KIMzVyJ1ol79T8wac7pvRD4LIwOvk/P3QwlSbU8Y=; b=cdPoQs+W2Ob9q3
-	ghhf80J6+ooAVQhXzK3/qTfSUgyDzCpCPaWPnhi0IsFiKZfo2fAtn5YXZYAvUk5Lp0Bhu/5wYQLKC
-	2CrImZHRrZNXVmGH7s0+BUOHK6SXxd0iPfVO9lOw01wwczrCYyl8V+s3yLokSw8MgXdQ+PxxfsaD9
-	fMKfxrvpK/Kt/v/vE4bgC/PIRwqSbz+5c6fg9TYzRoghX3tLNjtB9wZXFrqHUiTQjHutTXWJkKVh0
-	yTtwLZYzeOOBh3Sp4EnIeawegduiO/hzurVubBQTVo0WOel1Bb8yYfZwPEs2DeSGsXlS+GnjVqJLW
-	U0431QKmfPtb8TQh9+wg==;
+	List-Owner; bh=D9sPJ2lNbtQ+qFaOK0I2nHFQVQA+XH9tsHqSVx0Z0ZM=; b=IUwRS7Kg61y6gP
+	BzEio+2ujkUWWlfkC/UAV5tUrTHhI3nMXdtL9Y/xi3rYgj/ifJYTBDtvKy/QCkRMeuNAW+1yQIyUA
+	4CpEq/zV68kvpXSZ1gX2u7hBZjxvgHCqDD9zZ0bal4K5+wYgKkT6rzcc4ZvyzLMpxgFGeiBE1nmxF
+	26H9GkHG5Mo/hryFn0M4rOZoDiuDY8pOF86av4PNohf8WftQbJ9Bmg0RA3MLOf/Wm1+N34d7VqUGQ
+	O3GrJvZYgj7Uy3NONvZH2CFnnEVXn9JmmnG/bVUfzCsG0mvGSuLxOSv6OuvHEuTrvwEtRuXiNSQub
+	w+u4IHDZwdNAJefRcQYw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wRnLG-00000001OVu-089M;
+	id 1wRnLG-00000001OX2-2yqs;
 	Tue, 26 May 2026 08:40:50 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wRnKz-00000001OK4-2ztW;
-	Tue, 26 May 2026 08:40:35 +0000
+	id 1wRnKz-00000001OK2-2zjU;
+	Tue, 26 May 2026 08:40:36 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3546F40E88;
+	by sea.source.kernel.org (Postfix) with ESMTP id 46CC2400B5;
 	Tue, 26 May 2026 08:40:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id EBB34C2BCC9;
-	Tue, 26 May 2026 08:40:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 05EA8C2BCC6;
+	Tue, 26 May 2026 08:40:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1779784832;
-	bh=dK6d6cYoqFc3ZfUKf9JNJjrgbE7x6z5aNRmfsd9a828=;
+	bh=RgNF0F2HN9p73iF+SqdKXpsHir3w80ckwMighuSI7Ps=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=NkB8NsjcnV73TcMgKtM5K7PZYJCymRuRmuMxVskgVAZM8r0WiOfQqWbVGazBgjmtX
-	 twsGmuXMD3jkvQBiNptHEzJlBYVYVWsDOg0w8v8T1YJn+4hyKaTZalkk3ZM4pLjPIw
-	 epk8NdfTE7MLaeoGh2DZJoZ79q4PthIT3geepOHMaB/k7keg7ubhazX4jg55iFKtt8
-	 yiEwPbEePlXAtBgBmITm6IXW/ooP5rqo1W026GeD6dk85OZImTlI2mscayw/iNsSWn
-	 ywLydZl9LW0aVYQzKa/3eWfa6pEw5NieEGFr6abJXJsYSAX+j+voOw5QSqWDpLwaxn
-	 HwP+5gHUMmVGw==
+	b=HosGgryBKSuIZy3Ii9CqPdt6jq6yYAWdE1sL35mQe7O6OtVtfFiK4iaputkp7JHhZ
+	 n01GGs8S3J6XRmA/GmARxdwG9385IHfgFvZCj8qgFcg1/mf7sP+TvNqPh3n1fS/Jgp
+	 T+Rz3MG/cJM26S6ag9fbonbVHpetvW+HZaQpbHs8+V9YIH7MuC1JRWbJ9sdNJ1Hop9
+	 Z2/I7YHHk4SPRfg5JCuFfh2InGLRuKTOFz/+Ft4fGkTDAy5c/Zfg1V/afw7eCzxLjy
+	 3p/nXw8StCt+c9Jdmhz0BGpxAK9ZSqxu80yU+YNJ3S9hYoeOTv8M2o/M7ZmYn52NvQ
+	 ksVVND3JLbXwg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E3134CD5BDD;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EFCADCD5BDE;
 	Tue, 26 May 2026 08:40:31 +0000 (UTC)
 From: Zhentao Guo via B4 Relay <devnull+zhentao.guo.amlogic.com@kernel.org>
-Date: Tue, 26 May 2026 16:40:18 +0800
-Subject: [PATCH RFC RESEND v5 2/6] firmware: meson: sm: video firmware
- loading via secure monitor
+Date: Tue, 26 May 2026 16:40:19 +0800
+Subject: [PATCH RFC RESEND v5 3/6] media: dt-bindings: Add Amlogic V4L2
+ video decoder
 MIME-Version: 1.0
-Message-Id: <20260526-b4-s4-vdec-upstream-v5-2-33bc817f93f4@amlogic.com>
+Message-Id: <20260526-b4-s4-vdec-upstream-v5-3-33bc817f93f4@amlogic.com>
 References: <20260526-b4-s4-vdec-upstream-v5-0-33bc817f93f4@amlogic.com>
 In-Reply-To: <20260526-b4-s4-vdec-upstream-v5-0-33bc817f93f4@amlogic.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -62,20 +62,19 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
  devicetree@vger.kernel.org, Zhentao Guo <zhentao.guo@amlogic.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1779784828; l=663;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1779784828; l=3277;
  i=zhentao.guo@amlogic.com; s=20251024; h=from:subject:message-id;
- bh=2+l4DUwLwWn2GDHI6LoxkCkn7TDYkl4Sv8Q4p9SlS/E=;
- b=K7DQ71fqbh3rYm2IuWeVYzvl26czXaJUk8ABXFSly1FA93FtCy5MvdN+V97ol5CT3L/Ne6gVs
- uiXU0OZRZ+nAqzEtvPQxyrRgdqJ+VgAZoNl41CZfQc9FQaxaTCVp9fZ
+ bh=Y6NOz9RdMoIgnHY7/7xm2UZW9WOOh5UFL6VA7UOlVrU=;
+ b=zAjbkqPDqkQWsZVoRyWAd3krxEC9oX9Ex8DbDR1s4u9SYSUrl2LowpYbUgnx9bFyiIgGSN4WU
+ QKBaBtxKH/CD9DcjHBrFPYdtAZ9L1hDPN3vP3nNq9bZZf+V0BUBznFs
 X-Developer-Key: i=zhentao.guo@amlogic.com; a=ed25519;
  pk=5yfDKrjreXwcAoEUsdtWafy6YN500upXp/CgtnXjLVU=
 X-Endpoint-Received: by B4 Relay for zhentao.guo@amlogic.com/20251024 with
  auth_id=555
 X-Original-From: Zhentao Guo <zhentao.guo@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260526_014033_835172_514F8108 
-X-CRM114-Status: UNSURE (   7.57  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260526_014033_863756_C124C345 
+X-CRM114-Status: GOOD (  11.65  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,27 +94,123 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Zhentao Guo <zhentao.guo@amlogic.com>
 
-Add SM_LOAD_VIDEO_FW to the secure monitor command enum
-to allow decoder drivers to load firmware through the meson_sm
-interface.
+Describe the initial support for the V4L2 stateless video decoder
+driver used with the Amlogic S4 (S805X2) platform.
 
 Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
 ---
- include/linux/firmware/meson/meson_sm.h | 1 +
- 1 file changed, 1 insertion(+)
+ .../devicetree/bindings/media/amlogic,s4-vdec.yaml | 103 +++++++++++++++++++++
+ 1 file changed, 103 insertions(+)
 
-diff --git a/include/linux/firmware/meson/meson_sm.h b/include/linux/firmware/meson/meson_sm.h
-index 8eaf8922ab02..f40867a000f1 100644
---- a/include/linux/firmware/meson/meson_sm.h
-+++ b/include/linux/firmware/meson/meson_sm.h
-@@ -14,6 +14,7 @@ enum {
- 	SM_GET_CHIP_ID,
- 	SM_A1_PWRC_SET,
- 	SM_A1_PWRC_GET,
-+	SM_LOAD_VIDEO_FW,
- };
- 
- struct meson_sm_firmware;
+diff --git a/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml b/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml
+new file mode 100644
+index 000000000000..a0f33f6c35a1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml
+@@ -0,0 +1,103 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2025 Amlogic, Inc. All rights reserved
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/amlogic,s4-vdec.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic Video Decode Accelerator
++
++maintainers:
++  - Zhentao Guo <zhentao.guo@amlogic.com>
++
++description:
++  The Video Decoder Accelerator present on Amlogic SOCs.
++  It supports stateless h264 decoding.
++
++properties:
++  compatible:
++    const: amlogic,s4-vdec
++
++  reg:
++    maxItems: 2
++
++  reg-names:
++    items:
++      - const: dos
++      - const: dmc
++
++  interrupts:
++    maxItems: 3
++
++  clocks:
++    maxItems: 3
++
++  clock-names:
++    items:
++      - const: dos
++      - const: vdec
++      - const: hevcf
++
++  power-domains:
++    maxItems: 2
++
++  power-domain-names:
++    items:
++      - const: vdec
++      - const: hevc
++
++  resets:
++    maxItems: 1
++
++  amlogic,canvas:
++    description: should point to a canvas provider node
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++  secure-monitor:
++    description: phandle to the secure-monitor node
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - interrupts
++  - clocks
++  - clock-names
++  - power-domains
++  - power-domain-names
++  - amlogic,canvas
++  - secure-monitor
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
++    #include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
++    #include <dt-bindings/power/meson-s4-power.h>
++    #include <dt-bindings/reset/amlogic,meson-s4-reset.h>
++    video-codec@fe320000 {
++      compatible = "amlogic,s4-vdec";
++      reg = <0xfe320000 0x10000>,
++            <0xfe036000 0x20>;
++      amlogic,canvas = <&canvas>;
++      reg-names = "dos",
++                  "dmc";
++      interrupts = <GIC_SPI 91 IRQ_TYPE_EDGE_RISING>,
++                   <GIC_SPI 92 IRQ_TYPE_EDGE_RISING>,
++                   <GIC_SPI 93 IRQ_TYPE_EDGE_RISING>;
++      clocks = <&clkc_periphs CLKID_DOS>,
++               <&clkc_periphs CLKID_VDEC_SEL>,
++               <&clkc_periphs CLKID_HEVCF_SEL>;
++      clock-names = "dos",
++                    "vdec",
++                    "hevcf";
++      power-domains = <&pwrc PWRC_S4_DOS_VDEC_ID>,
++                      <&pwrc PWRC_S4_DOS_HEVC_ID>;
++      power-domain-names = "vdec",
++                           "hevc";
++      resets = <&reset RESET_DOS>;
++      secure-monitor = <&sm>;
++    };
 
 -- 
 2.42.0
