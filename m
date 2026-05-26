@@ -4,90 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56CD9CD5BD1
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 May 2026 07:15:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 412D4CD5BD1
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 May 2026 07:16:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=kCgF5CehOOFiU0ED56ULGL9ywe/7py9jTgPb0iUkuD8=; b=KRCN2bL5KOrmy3BFWijsfSjNVE
-	WlRBxnm7DY5JPDNkfRGsO0vYf+cHraGMim9Yna4wjV8C8QyV83BewHrh5murGrWnjb4SpWJgWNt49
-	FAm/w7hkBbGLivXjULGl1RxwccBKlOOE4Twjm/FoJOwIjTYSdo3NNYF50cniFktbgRy5uH8c5XRZA
-	WBVwRkFjOVZIcckJXVLa7bdTcz6fM2n7/xDFc/WJUXA2wJCwPe8hfab328RxnjAWzdZhEPmaU454L
-	kq/tg5T0IQYcdAcmjaR7qBy1gnWAOytRMcbxu0Zniq0l2d6IUtuMpNW+sSTCLVUkxSTGsY4ao0qYT
-	Y9WEGAuQ==;
+	bh=NkVUsvK5mKvysq7+vu2b0D3TZF/CODXVFiIaSNrkpYs=; b=d2xpkHwFjZclv+f0NtQoyxqHjS
+	sa7Nie6m3nwz+8FQMQERBA9lxG8IqkYTRObob6IvVLYFKnVmAaC5au0YIH2oSbRaOsmiB0/Ynoc6F
+	E1Sy8w5X1cM+akXjdiUVzyIyoXGkSBGAoT5yoLszuAUKwN0i7KTgeFOyaA9kKUJxfkd0o7BEu9dUn
+	feNTq9SOBm8ifDEc+jLxo0PLdhDnzhLjzMgNTgQHqmxg7VyQDeyNVWb+kdUkKpfCE9GGKaq1EDmTn
+	gVVXraPSWKWLVX4IUZQhlvFPAoZAIeEXD8dF02o2ZuhRL1eNlC/XfOwNZMqbghC4BqKlyEjqzp/cB
+	aqKMBEBA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wRm01-00000001F3l-228L;
-	Tue, 26 May 2026 07:14:49 +0000
-Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	id 1wRm1l-00000001FGb-3vFJ;
+	Tue, 26 May 2026 07:16:37 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wRlzy-00000001F2U-0ajL
+	id 1wRm1i-00000001FFN-46Yi
 	for linux-amlogic@lists.infradead.org;
-	Tue, 26 May 2026 07:14:47 +0000
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-444826c16ffso8706341f8f.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 26 May 2026 00:14:45 -0700 (PDT)
+	Tue, 26 May 2026 07:16:36 +0000
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4903974854dso40387905e9.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 26 May 2026 00:16:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1779779684; x=1780384484; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1779779793; x=1780384593; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=eCUC1w8o3SPo/dQIjvTcR6pWtcHK4WC6Ve79t1hbi2E=;
-        b=MtE7VYFlUS6wM49a9QhuEXWM7ehze6jKfKjmVYSemAmMQqmC82VuXNNF2QfCHcrS+I
-         imykjG192ph7IYujX7YtzYE/nVaYOVEqs+4r9VYHGYNWgTq0JCbM3RdQXmwMFTz2xb0g
-         UkfTfaEVjAaIDNGjnCV8jjQoHBB49HyfYx7ClhMfepjoZny3+2yVrbwAWtRNfEKAplsa
-         UiB0dUch77RHpsAyMaTxc/sHbgpOVhk/hyKR4Vw3YCHxaVtq+YTHQDTIzZX5FPj28r5b
-         +Ha7fHn6OpqFxQA+C980CquMwMDGPvGTMI1Bhf5lb06I2zh7ABshfzfWc7WD9Qd6hOsM
-         SgXg==
+        bh=6qT/bMdEBMK/k6bRtXEjwywoU6w4KQoZt190nLYNxOs=;
+        b=fVUj+TxNL58AxV8TgP3u/+3o0Kj3WqjV8Vt1DK2OpkR4+ZqHKxRp8j2+c2vqEb0HHn
+         GtO/Q5qXrq8hrEfPNYH8gJZ0AwU9jg44J7FFbOGthb8eSbSiqxXSnzIKXxRij/RuW71g
+         at6sKN5EFJufaZy4niK35UiAGYDjcuFFvS89+AgvPHgjv3iKuggUWCiY4PgSvKQiLDy+
+         GNeEBB6JFO/DkatopTdKnVfu7a9bw4XEvwY4RqlhD/RfWtw8BAyoEkrxSWp/tBF7SuYB
+         9bLnwFYJ06ikdIqJvpJOmB/VHz9QhwGtf5XcRjXpZNvmyA7XvnLn28M0l3f1UnKFq1fr
+         33ig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779779684; x=1780384484;
+        d=1e100.net; s=20251104; t=1779779793; x=1780384593;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=eCUC1w8o3SPo/dQIjvTcR6pWtcHK4WC6Ve79t1hbi2E=;
-        b=ZfwB3bRSJfHDeSFqnDfTl/RgP2NZ0LJXMtA48G8orBpyrRBlSiY6rG91SKyBD7ES2b
-         MB+Pf4qDXMUs64nvFBqngnoWqnEsRVbGwyzcqQAUl0GIQva3E/ZlxPU34zuzdoccxNXV
-         HegydD40qBg9nmxybNzp9j/EQAQ1RneHI3EEdubCfDbUOQGVxM+t5pqGUh44dZfVda3B
-         Zol0QR8XMnoMlQaKYLPZaTZ6YTwzTogj/VsOGIS0wNbEyP+YgUEN1lYiIhGGbAMHb/aG
-         fxAdf6BUgCjnFdgAeMI3sDqyMuj/x/ZyTC5CyN8yaFouRet+LxxISZJW4tYjRBxCbYRL
-         3YAQ==
-X-Forwarded-Encrypted: i=1; AFNElJ+K6rgoMEPWNJ2RxB/lqUxLceTehLPlqkCJ2wsTFlvPrgt1+VOeuO5ziZX72CObGyomY7CBjl9PjeSJ7OpC@lists.infradead.org
-X-Gm-Message-State: AOJu0Yx+ZT00VS7r1kWSPbh0vP+JAEIymhyK56ERFfesaEqGVcS8cqCj
-	+Y0KOv6XSzabCYBdMDt+CMYn52hOCQdBXCKcepOLUQ7kcm4eP8uKMZQVkcMG5YbH0C8=
-X-Gm-Gg: Acq92OEZIaE/yWzWwxzxnea57ToUa8kTeHKk/ftb1xKPfW2TWrVq531zkPAqEPEzF9V
-	JmKtLmp4hgkPXdiV2xxXl4QKmi1mbonExDKeSe2lG9B5lnxdDJHn27RMoJTjkmAURHqiQofdMJx
-	uDBcckHZxgj6rjXlMlLq9/Hiu3CE9bjrTzLbiIqiplSs3fFv4OoTtX2VCb9sbmD2D8zoRmEnezF
-	GK9Fs6npzRFvwx02gIDzP0J+839XGpscJTdN2BkwU+QFdzvFBfCbkRkkfBQTpFcHll57Wtl5mSN
-	1Vf28lu1NJ69CdT8C1qU1VPx84jcbRq9gAA1duzWpFE7QvTADeELUNKZeWUNVCYQM5c6vdkGqJ6
-	O9hG69mR3lPTPYHa+sEA4RnOfPrEnGAuRTrnC94vPqW7OTys9hLKMIOtQ+m+VORU6kLVW/gw+0q
-	aCECpgKgUWNrIASuGSPskvNeHuio7/dduC0vuyhGCDqzoG6LnAry6LpwdIEikZonnOmpToNbn6K
-	dzJa3g=
-X-Received: by 2002:a05:6000:4283:b0:45e:633e:a7cc with SMTP id ffacd0b85a97d-45eb38bade1mr29186012f8f.24.1779779683519;
-        Tue, 26 May 2026 00:14:43 -0700 (PDT)
+        bh=6qT/bMdEBMK/k6bRtXEjwywoU6w4KQoZt190nLYNxOs=;
+        b=QHb8cYWM14PL01Vzbdt/Psnx1at9W+lafdVWq93PUYfvGgrxbCwjwBQ32c4ptFTXyC
+         TKyYNDvU4iaZZtAm939WodLYWyKIfadqN4URi16VvrDZSqvTeIfRwIeMCQjAe10L6BFw
+         XOYsu9uqmFjnWJv+Fe58lwr9sDEDjy14QBu5czoDvjqA3wxGdW0S/actfsFqJ5XSBiN+
+         B9hCqyUT3zpVcTw2VCLmX2wVlBwGkeUKnvgT8lYZ54PJvIAoU21rq/+0TrJJFmZ6ck00
+         7vhtjKk5COKQvvlPmP3Q9Sx/Gcant7VjNt9W71FSCPhsr801tZS2ZkKUgNF7NF9GEmr1
+         wVqA==
+X-Forwarded-Encrypted: i=1; AFNElJ8qK1xTwQilsT2mITPel4IGe3XdGyWB0R4PazfTnmEO2hwjnr2lwFO/s4g5jakrmLpfLcSh5Qr0dyZ7DGEj@lists.infradead.org
+X-Gm-Message-State: AOJu0YzbY/YJTG7biCybMQ6TZpjfzsgNtHPnqpJ8fQTruQH6cZ/+a/dv
+	ME8aNzxmn3vbve1QWnm5Q8JkQSpkDALJElT2hN3uK3pgaEZ2HUl0RfwHIrKwJe0P6As=
+X-Gm-Gg: Acq92OEf54kz6ejPaWlH3aY8tBaOlIYSyzR3I1Yri2FU1LSzfWY0upYMhsUYYjg4xwP
+	4YObPv1gwieKzsFjPHRHzll/mn6jwRrjJwPI/bslLmo8pujzQg1t5St20lvtK4kZo36eZI8i2Ts
+	SlU13r2fX7KWbnAIk9bHQVKuspG5Yfi4KzzK5Ejshd2gXCdOC/zTX8Y9N0L5YIkdU9DMcyrzTwm
+	E2UvXGl++piIssOxcG+qMFSzvZLOdkLJOik7UcDgAfCFQufopvKSKXOvzBSFKqNTqb8hjJSKITR
+	lYCNJ7FNVeI1VQ61rWfXilcKdHuIkT80i/7RE9W+qImH17yXaqDTat0hhGA9Sm6j7UaRJwrX6c+
+	l2TEZFB4Jc2K8neJOHZK9jiHIlMh03Ea0wlW/Dbp4tUZjwb+TxQw1XEHlninGp/HYeno8D/TPDC
+	C3ZDw7uIu7tPkIJFM8eb4O4oIXgqwHEY3gk3EBaffPqxKmO//g9YSOJ5y5Rfgz3jK9P0dkeVP+G
+	EuspCokCKP7XHpbOw==
+X-Received: by 2002:a05:600c:4591:b0:490:6869:46c6 with SMTP id 5b1f17b1804b1-490686947a8mr90737495e9.31.1779779792774;
+        Tue, 26 May 2026 00:16:32 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:106d:1080:aba9:2be3:1465:636a? ([2a01:e0a:106d:1080:aba9:2be3:1465:636a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45eb6cce01asm34146772f8f.11.2026.05.26.00.14.42
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4904526ca21sm299610585e9.3.2026.05.26.00.16.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 May 2026 00:14:43 -0700 (PDT)
-Message-ID: <45081b91-7b49-44f0-998c-af9927deadf0@linaro.org>
-Date: Tue, 26 May 2026 09:14:41 +0200
+        Tue, 26 May 2026 00:16:32 -0700 (PDT)
+Message-ID: <147bb128-a77c-49e4-897d-ba6ee1b1449d@linaro.org>
+Date: Tue, 26 May 2026 09:16:31 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] dt-bindings: gpio: meson-axg: Fix whitespace issue
-To: Jun Yan <jerrysteve1101@gmail.com>, Linus Walleij <linusw@kernel.org>,
- Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20260524154954.385778-1-jerrysteve1101@gmail.com>
+Subject: Re: [PATCH] drm/meson: clean up KMS polling on register failure
+To: Myeonghun Pak <mhun512@gmail.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org, Ijae Kim <ae878000@gmail.com>
+References: <20260524160657.17802-1-mhun512@gmail.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -114,10 +114,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20260524154954.385778-1-jerrysteve1101@gmail.com>
+In-Reply-To: <20260524160657.17802-1-mhun512@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260526_001446_210728_AEF1CE2F 
-X-CRM114-Status: GOOD (  11.50  )
+X-CRM114-CacheID: sfid-20260526_001635_134108_61B04FCD 
+X-CRM114-Status: GOOD (  14.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -135,36 +135,46 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 5/24/26 17:49, Jun Yan wrote:
-> Clean up whitespace misalignment in meson-axg-gpio.h
+On 5/24/26 18:01, Myeonghun Pak wrote:
+> meson_drv_bind_master() starts the KMS polling helper before registering
+> the DRM device. If drm_dev_register() fails, probe unwinds the IRQ and
+> DRM device without stopping the polling helper.
 > 
-> Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
+> Call drm_kms_helper_poll_fini() on that failure path before freeing the
+> IRQ.
+> 
+> This issue was identified during our ongoing static-analysis research while
+> reviewing kernel code.
+> 
+> Fixes: bbbe775ec5b5 ("drm: Add support for Amlogic Meson Graphic Controller")
+> Cc: stable@vger.kernel.org
+> Co-developed-by: Ijae Kim <ae878000@gmail.com>
+> Signed-off-by: Ijae Kim <ae878000@gmail.com>
+> Signed-off-by: Myeonghun Pak <mhun512@gmail.com>
 > ---
->   include/dt-bindings/gpio/meson-axg-gpio.h | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
+>   drivers/gpu/drm/meson/meson_drv.c | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> diff --git a/include/dt-bindings/gpio/meson-axg-gpio.h b/include/dt-bindings/gpio/meson-axg-gpio.h
-> index 25bb1fffa97a..a0d42bcd9bd3 100644
-> --- a/include/dt-bindings/gpio/meson-axg-gpio.h
-> +++ b/include/dt-bindings/gpio/meson-axg-gpio.h
-> @@ -23,7 +23,7 @@
->   #define GPIOAO_11	11
->   #define GPIOAO_12	12
->   #define GPIOAO_13	13
-> -#define GPIO_TEST_N 14
-> +#define GPIO_TEST_N	14
+> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+> index 49ff9f1f16..e49de5df73 100644
+> --- a/drivers/gpu/drm/meson/meson_drv.c
+> +++ b/drivers/gpu/drm/meson/meson_drv.c
+> @@ -352,12 +352,14 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
 >   
->   /* Second GPIO chip */
->   #define GPIOZ_0		0
-> @@ -52,7 +52,7 @@
->   #define BOOT_12		23
->   #define BOOT_13		24
->   #define BOOT_14		25
-> -#define GPIOA_0	    26
-> +#define GPIOA_0		26
->   #define GPIOA_1		27
->   #define GPIOA_2		28
->   #define GPIOA_3		29
+>   	ret = drm_dev_register(drm, 0);
+>   	if (ret)
+> -		goto uninstall_irq;
+> +		goto uninstall_poll;
+>   
+>   	drm_client_setup(drm, NULL);
+>   
+>   	return 0;
+>   
+> +uninstall_poll:
+> +	drm_kms_helper_poll_fini(drm);
+>   uninstall_irq:
+>   	free_irq(priv->vsync_irq, drm);
+>   exit_afbcd:
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
