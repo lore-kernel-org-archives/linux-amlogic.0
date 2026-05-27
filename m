@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56B4FCD5BD0
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 May 2026 14:53:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E81A1CD5BD0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 May 2026 14:54:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=h27E+iQMxZpNg0Uc8IOVlFDZG0BGED72G2eYxAC/b8s=; b=JlGju+Tnb+X77S
-	gBD23oXkeneckJZjmCpCxiZeHatLSaCY7yUfzUQqOJwg/nTYmquhzZJ5G3buIRM5tk1KaaP9f3doY
-	SAPPncr0OgVr4BSHps0dDeaHlhhhlQdm3FCmbdrJe2mYW7bJNQuXbLLIv21cnHWimZFJl1uACvH10
-	kkLZyDmYXanSKfXFnksRKgOCqLL/guGMgmfgwCyM5ET0z3N2FafjaCRSJIXyE315K+N7+UFUFLlc0
-	oB1JspfYKVoADnX40kyupQfaoq3W8sylDE91I4Ev3AtoCcOtK7QnI1tQmS8I6NqJEB9v50t0eqxW5
-	2b9/+GpdRgqba3ZwA5JA==;
+	List-Owner; bh=ngWxkYfC2Wtz2+ThgtjChjJLq5Ru0I03WiLwFVuIIy4=; b=CG1VB1tvD+l9wN
+	EGoejE3FO0FRwd+qplsQEX37V5qIKUJO+VvUdktO2FiCOCCdB6rzJtI0Q0CZJvBPPFJbyj4NxaGWE
+	GWed7kP8Pie7lBZldYqdxMqSnBZn8KVccgo5+QN4+H1HOVCWRMg/JgYkKUjzhZw0savQj/GNBsAXY
+	ewgc70eEGH7ffYtwrNW2VheyW5dbKkIZWdINKUbf5a3tnVtlIrc3fuXXrOo4irKq5m29pxzzZ0elK
+	IWYXfKOzV1LHZtuyRxBo4l42pPceY8PG8DzPZo1lq1c5Vxkz0N5vYviP3vvJJ6p4+FBfiEhpZmYrt
+	+8J2IV/6D9b2GKcNEMcA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wSFdU-00000004KjO-2Ic2;
-	Wed, 27 May 2026 14:53:32 +0000
+	id 1wSFeT-00000004Kxg-03Lu;
+	Wed, 27 May 2026 14:54:33 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wSFdR-00000004Kin-3poZ;
-	Wed, 27 May 2026 14:53:31 +0000
+	id 1wSFeQ-00000004Kwj-3YBY;
+	Wed, 27 May 2026 14:54:32 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id BC0EE4139A;
-	Wed, 27 May 2026 14:53:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F3C91F000E9;
-	Wed, 27 May 2026 14:53:24 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 899314344B;
+	Wed, 27 May 2026 14:54:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 304871F000E9;
+	Wed, 27 May 2026 14:54:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779893608;
-	bh=pyf2NIpQI//sA77LnOBsyuhGhNwx3LA0tHEq3fc0Cnw=;
+	s=k20260515; t=1779893670;
+	bh=E6Q8XCy0zXe1xOArUqxZeTNT47K+djAyAvzM5weh5ag=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=VoIEw7RD3XzhIH6CMzyv/4bAiKKqttFdvHyvdPiNZ0XkyrOXT+9Ut7v0DYrKUDIZg
-	 aGIMCpZrnzU0AZ3GLCOtd1YTcFqxWmnSMc+pe3lta0BO+PdA4uZ0VNaJidzUS1t+z2
-	 yDa86/jmSP5R7mGXnTWa5uByMrwyvmrxHT83fafDJLE6yDACXiXOpA8UvHBy+tYJkm
-	 MdJMUgpr7I4NEA/Cph01WFoxTig42ryn2ezkpx2JZLVneAo+eLyDcyvaU/oIjARMzJ
-	 MKg4ZWLOB5V06IYewhhM4QBlRhy8rf8stprH11ulOXV79MO+r925AZ1GttQ2jXfkUo
-	 /CfTaiX8vpPJQ==
-Date: Wed, 27 May 2026 15:53:22 +0100
+	b=HsfaJKEqK2zij9eVrAg/H0mCdwW7f+jPa6VPlEi/OgY18/ICbhaP0TvYh02P8723q
+	 d05/6fhwusJiiPJCqgehDfzasMA+Enbu3dco5olHjA4LRWS0ScqZg6ScRCEOg6NfSX
+	 wlkVeTSJTa6r40HbORDCamwiQ3gsl3jYZvDbcmQCXGETQosWLBuASMMaEvuVjRTWZR
+	 K9syJsgAM43De46p3pd5dp4mgwVBVihbXgRbLDFLuc4PtLOFmk6MuouWeBcjK2A8V+
+	 /QNs9aec1herrWcN95kTc3CezqNwxaCA/ZvmxtZF7NrGEv2brgIxuqmW6Hzttnlm2A
+	 VLP/U1zlNDH7Q==
+Date: Wed, 27 May 2026 15:54:23 +0100
 From: Lee Jones <lee@kernel.org>
 To: linux-kernel-dev@aliel.fr
 Cc: Neil Armstrong <neil.armstrong@linaro.org>,
@@ -61,16 +61,17 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	linux-pm@vger.kernel.org
-Subject: Re: [PATCH v6 4/8] mfd: khadas-mcu: Add support for VIM4 MCU variant
-Message-ID: <20260527145322.GB671544@google.com>
+Subject: Re: [PATCH v6 3/8] mfd: khadas-mcu: Add per-variant configuration
+ infrastructure and VIM4 support
+Message-ID: <20260527145423.GC671544@google.com>
 References: <20260516-add-mcu-fan-khadas-vim4-v6-0-cccc9b61f465@aliel.fr>
- <20260516-add-mcu-fan-khadas-vim4-v6-4-cccc9b61f465@aliel.fr>
+ <20260516-add-mcu-fan-khadas-vim4-v6-3-cccc9b61f465@aliel.fr>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20260516-add-mcu-fan-khadas-vim4-v6-4-cccc9b61f465@aliel.fr>
+In-Reply-To: <20260516-add-mcu-fan-khadas-vim4-v6-3-cccc9b61f465@aliel.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260527_075329_998679_F38BB858 
-X-CRM114-Status: GOOD (  23.35  )
+X-CRM114-CacheID: sfid-20260527_075430_940262_BE3BAB51 
+X-CRM114-Status: GOOD (  20.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,117 +83,107 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gU2F0LCAxNiBNYXkgMjAyNiwgUm9uYWxkIENsYXZlYXUgdmlhIEI0IFJlbGF5IHdyb3RlOgoK
-PiBGcm9tOiBSb25hbGQgQ2xhdmVhdSA8bGludXgta2VybmVsLWRldkBhbGllbC5mcj4KPiAKPiBS
-ZWZhY3RvciBwcm9iZSgpIHRvIHVzZSBwZXItdmFyaWFudCBraGFkYXNfbWN1X2RhdGEKPiBpbnN0
-ZWFkIG9mIGhhcmRjb2RlZCBnbG9iYWxzLgo+IAo+IEFkZCBkZWRpY2F0ZWQgcmVnbWFwIGNvbmZp
-Z3VyYXRpb24gYW5kIGRldmljZSBkYXRhIGZvciB0aGUgVklNNCBNQ1UsCj4gd2l0aCBpdHMgb3du
-IHZvbGF0aWxlL3dyaXRlYWJsZSByZWdpc3RlcnMuCj4gCj4gQWRkIHRoZSBmYW4gY29udHJvbCBy
-ZWdpc3Rlcgo+ICgw4oCTMTAwIGxldmVscyB2cyAw4oCTMyBmb3IgcHJldmlvdXMgc3VwcG9ydGVk
-IGJvYXJkcykuCj4gCj4gQWRkIGEgbmV3IGNvbXBhdGlibGUgc3RyaW5nICJraGFkYXMsdmltNC1t
-Y3UiLgo+IAo+IFJldmlld2VkLWJ5OiBOZWlsIEFybXN0cm9uZyA8bmVpbC5hcm1zdHJvbmdAbGlu
-YXJvLm9yZz4KPiBTaWduZWQtb2ZmLWJ5OiBSb25hbGQgQ2xhdmVhdSA8bGludXgta2VybmVsLWRl
-dkBhbGllbC5mcj4KPiAtLS0KPiAgZHJpdmVycy9tZmQva2hhZGFzLW1jdS5jIHwgMTE5ICsrKysr
-KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrLS0tLS0tCj4gIDEgZmlsZSBjaGFu
-Z2VkLCAxMDQgaW5zZXJ0aW9ucygrKSwgMTUgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvbWZkL2toYWRhcy1tY3UuYyBiL2RyaXZlcnMvbWZkL2toYWRhcy1tY3UuYwo+IGlu
-ZGV4IGJhOTgxYTc4ODY5MjEuLjdiYzUzODIzMmE0NDUgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9t
-ZmQva2hhZGFzLW1jdS5jCj4gKysrIGIvZHJpdmVycy9tZmQva2hhZGFzLW1jdS5jCj4gQEAgLTc1
-LDE1ICs3NSw5MSBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IHJlZ21hcF9jb25maWcga2hhZGFzX21j
-dV9yZWdtYXBfY29uZmlnID0gewo+ICAJLmNhY2hlX3R5cGUJPSBSRUdDQUNIRV9NQVBMRSwKPiAg
-fTsKPiAgCj4gLXN0YXRpYyBzdHJ1Y3QgbWZkX2NlbGwga2hhZGFzX21jdV9mYW5fY2VsbHNbXSA9
-IHsKPiArc3RhdGljIGNvbnN0IHN0cnVjdCBraGFkYXNfbWN1X2Zhbl9wZGF0YSBraGFkYXNfbWN1
-X2Zhbl9wZGF0YSA9IHsKPiArCS5mYW5fcmVnCT0gS0hBREFTX01DVV9DTURfRkFOX1NUQVRVU19D
-VFJMX1JFRywKPiArCS5tYXhfbGV2ZWwJPSAzLCAvKiBGYW4gc3BlZWQ6IDAgPSBvZmYsIDEgPSBs
-b3csIDIgPSBtZWRpdW0sIDMgPSBoaWdoICovCj4gK307Cj4gKwo+ICtzdGF0aWMgY29uc3Qgc3Ry
-dWN0IG1mZF9jZWxsIGtoYWRhc19tY3VfZmFuX2NlbGxzW10gPSB7Cj4gIAkvKiBWSU0xLzIgUmV2
-MTMrIGFuZCBWSU0zIG9ubHkgKi8KPiAtCXsgLm5hbWUgPSAia2hhZGFzLW1jdS1mYW4tY3RybCIs
-IH0sCj4gKwl7Cj4gKwkJLm5hbWUgPSAia2hhZGFzLW1jdS1mYW4tY3RybCIsCj4gKwkJLnBsYXRm
-b3JtX2RhdGEgPSAma2hhZGFzX21jdV9mYW5fcGRhdGEsCj4gKwkJLnBkYXRhX3NpemUgICAgPSBz
-aXplb2Yoa2hhZGFzX21jdV9mYW5fcGRhdGEpLAo+ICsJfSwKPiAgfTsKPiAgCj4gLXN0YXRpYyBz
-dHJ1Y3QgbWZkX2NlbGwga2hhZGFzX21jdV9jZWxsc1tdID0gewo+ICtzdGF0aWMgY29uc3Qgc3Ry
-dWN0IG1mZF9jZWxsIGtoYWRhc19tY3VfY2VsbHNbXSA9IHsKPiAgCXsgLm5hbWUgPSAia2hhZGFz
-LW1jdS11c2VyLW1lbSIsIH0sCj4gIH07Cj4gIAo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGtoYWRh
-c19tY3VfZGF0YSBraGFkYXNfbWN1X2RhdGEgPSB7Cj4gKwkucmVnbWFwX2NvbmZpZwk9ICZraGFk
-YXNfbWN1X3JlZ21hcF9jb25maWcsCj4gKwkuY2VsbHMJCT0ga2hhZGFzX21jdV9jZWxscywKPiAr
-CS5uY2VsbHMJCT0gQVJSQVlfU0laRShraGFkYXNfbWN1X2NlbGxzKSwKPiArCS5mYW5fY2VsbHMJ
-PSBraGFkYXNfbWN1X2Zhbl9jZWxscywKPiArCS5uZmFuX2NlbGxzCT0gQVJSQVlfU0laRShraGFk
-YXNfbWN1X2Zhbl9jZWxscyksCj4gK307CgpMZXQncyBub3Qgb3Zlci1jb21wbGljYXRlIHRoaW5n
-cyBwbGVhc2UuCgpZb3UgY2FuIGRvIGFsbCBvZiB0aGlzIHdpdGggbG9jYWwgdmFyaWFibGVzIGlu
-c2lkZSBraGFkYXNfbWN1X3Byb2JlKCkKYW5kIG9taXQgdGhlIHRlcnJpYmx5IG5hbWVkIGtoYWRh
-c19tY3VfZGF0YSBzdHJ1Y3R1cmUgZW50aXJlbHkuCgo+ICtzdGF0aWMgYm9vbCBraGFkYXNfbWN1
-X3ZpbTRfcmVnX3ZvbGF0aWxlKHN0cnVjdCBkZXZpY2UgKmRldiwgdW5zaWduZWQgaW50IHJlZykK
-PiArewo+ICsJc3dpdGNoIChyZWcpIHsKPiArCWNhc2UgS0hBREFTX01DVV9QV1JfT0ZGX0NNRF9S
-RUc6Cj4gKwljYXNlIEtIQURBU19NQ1VfVklNNF9SRVNUX0NPTkZfUkVHOgo+ICsJY2FzZSBLSEFE
-QVNfTUNVX1dPTF9JTklUX1NUQVJUX1JFRzoKPiArCWNhc2UgS0hBREFTX01DVV9WSU00X0xFRF9P
-Tl9SQU1fUkVHOgo+ICsJY2FzZSBLSEFEQVNfTUNVX1ZJTTRfRkFOX0NUUkxfUkVHOgo+ICsJY2Fz
-ZSBLSEFEQVNfTUNVX1ZJTTRfV0RUX0VOX1JFRzoKPiArCWNhc2UgS0hBREFTX01DVV9WSU00X1NZ
-U19SU1RfUkVHOgo+ICsJCXJldHVybiB0cnVlOwo+ICsJZGVmYXVsdDoKPiArCQlyZXR1cm4gZmFs
-c2U7Cj4gKwl9Cj4gK30KPiArCj4gK3N0YXRpYyBib29sIGtoYWRhc19tY3VfdmltNF9yZWdfd3Jp
-dGVhYmxlKHN0cnVjdCBkZXZpY2UgKmRldiwgdW5zaWduZWQgaW50IHJlZykKPiArewo+ICsJc3dp
-dGNoIChyZWcpIHsKPiArCWNhc2UgS0hBREFTX01DVV9WRVJTSU9OXzBfUkVHOgo+ICsJY2FzZSBL
-SEFEQVNfTUNVX1ZFUlNJT05fMV9SRUc6Cj4gKwljYXNlIEtIQURBU19NQ1VfU0hVVERPV05fTk9S
-TUFMX1NUQVRVU19SRUc6Cj4gKwkJcmV0dXJuIGZhbHNlOwo+ICsJZGVmYXVsdDoKPiArCQlyZXR1
-cm4gdHJ1ZTsKPiArCX0KPiArfQo+ICsKPiArc3RhdGljIGNvbnN0IHN0cnVjdCByZWdtYXBfY29u
-ZmlnIGtoYWRhc19tY3VfdmltNF9yZWdtYXBfY29uZmlnID0gewo+ICsJLnJlZ19iaXRzCT0gOCwK
-PiArCS5yZWdfc3RyaWRlCT0gMSwKPiArCS52YWxfYml0cwk9IDgsCj4gKwkubWF4X3JlZ2lzdGVy
-CT0gS0hBREFTX01DVV9WSU00X1NZU19SU1RfUkVHLAo+ICsJLnZvbGF0aWxlX3JlZwk9IGtoYWRh
-c19tY3VfdmltNF9yZWdfdm9sYXRpbGUsCj4gKwkud3JpdGVhYmxlX3JlZwk9IGtoYWRhc19tY3Vf
-dmltNF9yZWdfd3JpdGVhYmxlLAo+ICsJLmNhY2hlX3R5cGUJPSBSRUdDQUNIRV9NQVBMRSwKPiAr
-fTsKPiArCj4gK3N0YXRpYyBjb25zdCBzdHJ1Y3Qga2hhZGFzX21jdV9mYW5fcGRhdGEga2hhZGFz
-X3ZpbTRfZmFuX3BkYXRhID0gewo+ICsJLmZhbl9yZWcJPSBLSEFEQVNfTUNVX1ZJTTRfRkFOX0NU
-UkxfUkVHLAo+ICsJLm1heF9sZXZlbAk9IDB4NjQsCj4gK307Cj4gKwo+ICtzdGF0aWMgY29uc3Qg
-c3RydWN0IG1mZF9jZWxsIGtoYWRhc19tY3VfdmltNF9jZWxsc1tdID0gewo+ICsJewo+ICsJCS5u
-YW1lCQk9ICJraGFkYXMtbWN1LWZhbi1jdHJsIiwKPiArCQkucGxhdGZvcm1fZGF0YQk9ICZraGFk
-YXNfdmltNF9mYW5fcGRhdGEsCj4gKwkJLnBkYXRhX3NpemUJPSBzaXplb2Yoa2hhZGFzX3ZpbTRf
-ZmFuX3BkYXRhKSwKPiArCX0sCj4gK307Cj4gKwo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGtoYWRh
-c19tY3VfZGF0YSBraGFkYXNfdmltNF9tY3VfZGF0YSA9IHsKPiArCS5yZWdtYXBfY29uZmlnCT0g
-JmtoYWRhc19tY3VfdmltNF9yZWdtYXBfY29uZmlnLAo+ICsJLmNlbGxzCQk9IE5VTEwsCj4gKwku
-bmNlbGxzCQk9IDAsCj4gKwkuZmFuX2NlbGxzCT0ga2hhZGFzX21jdV92aW00X2NlbGxzLAo+ICsJ
-Lm5mYW5fY2VsbHMJPSBBUlJBWV9TSVpFKGtoYWRhc19tY3VfdmltNF9jZWxscyksCj4gK307Cj4g
-Kwo+ICBzdGF0aWMgaW50IGtoYWRhc19tY3VfcHJvYmUoc3RydWN0IGkyY19jbGllbnQgKmNsaWVu
-dCkKPiAgewo+ICAJc3RydWN0IGRldmljZSAqZGV2ID0gJmNsaWVudC0+ZGV2Owo+IEBAIC05NCwy
-OCArMTcwLDQwIEBAIHN0YXRpYyBpbnQga2hhZGFzX21jdV9wcm9iZShzdHJ1Y3QgaTJjX2NsaWVu
-dCAqY2xpZW50KQo+ICAJaWYgKCFkZGF0YSkKPiAgCQlyZXR1cm4gLUVOT01FTTsKPiAgCj4gKwlz
-d2l0Y2ggKCh1aW50cHRyX3QpaTJjX2dldF9tYXRjaF9kYXRhKGNsaWVudCkpIHsKPiArCWNhc2Ug
-S0hBREFTX01DVV9HRU5FUklDOgo+ICsJCWRkYXRhLT5kYXRhID0gJmtoYWRhc19tY3VfZGF0YTsK
-PiArCQlicmVhazsKPiArCWNhc2UgS0hBREFTX01DVV9WSU00Ogo+ICsJCWRkYXRhLT5kYXRhID0g
-JmtoYWRhc192aW00X21jdV9kYXRhOwo+ICsJCWJyZWFrOwo+ICsJZGVmYXVsdDoKPiArCQlyZXR1
-cm4gLUVOT0RFVjsKPiArCX0KPiArCj4gIAlpMmNfc2V0X2NsaWVudGRhdGEoY2xpZW50LCBkZGF0
-YSk7Cj4gIAo+ICAJZGRhdGEtPmRldiA9IGRldjsKPiAgCj4gLQlkZGF0YS0+cmVnbWFwID0gZGV2
-bV9yZWdtYXBfaW5pdF9pMmMoY2xpZW50LCAma2hhZGFzX21jdV9yZWdtYXBfY29uZmlnKTsKPiAr
-CWRkYXRhLT5yZWdtYXAgPSBkZXZtX3JlZ21hcF9pbml0X2kyYyhjbGllbnQsIGRkYXRhLT5kYXRh
-LT5yZWdtYXBfY29uZmlnKTsKPiAgCWlmIChJU19FUlIoZGRhdGEtPnJlZ21hcCkpIHsKPiAgCQly
-ZXQgPSBQVFJfRVJSKGRkYXRhLT5yZWdtYXApOwo+IC0JCWRldl9lcnIoZGV2LCAiRmFpbGVkIHRv
-IGFsbG9jYXRlIHJlZ2lzdGVyIG1hcDogJWRcbiIsIHJldCk7Cj4gLQkJcmV0dXJuIHJldDsKPiAr
-CQlyZXR1cm4gZGV2X2Vycl9wcm9iZShkZXYsIHJldCwgIkZhaWxlZCB0byBhbGxvY2F0ZSByZWdp
-c3RlciBtYXBcbiIpOwo+ICAJfQo+ICAKPiAtCXJldCA9IGRldm1fbWZkX2FkZF9kZXZpY2VzKGRl
-diwgUExBVEZPUk1fREVWSURfTk9ORSwKPiAtCQkJCSAgIGtoYWRhc19tY3VfY2VsbHMsCj4gLQkJ
-CQkgICBBUlJBWV9TSVpFKGtoYWRhc19tY3VfY2VsbHMpLAo+IC0JCQkJICAgTlVMTCwgMCwgTlVM
-TCk7Cj4gLQlpZiAocmV0KQo+IC0JCXJldHVybiByZXQ7Cj4gKwlpZiAoZGRhdGEtPmRhdGEtPmNl
-bGxzICYmIGRkYXRhLT5kYXRhLT5uY2VsbHMpIHsKPiArCQlyZXQgPSBkZXZtX21mZF9hZGRfZGV2
-aWNlcyhkZXYsIFBMQVRGT1JNX0RFVklEX05PTkUsCj4gKwkJCQkJICAgZGRhdGEtPmRhdGEtPmNl
-bGxzLAo+ICsJCQkJCSAgIGRkYXRhLT5kYXRhLT5uY2VsbHMsCj4gKwkJCQkJICAgTlVMTCwgMCwg
-TlVMTCk7Cj4gKwkJaWYgKHJldCkKPiArCQkJcmV0dXJuIHJldDsKPiArCX0KPiAgCj4gIAlpZiAo
-b2ZfcHJvcGVydHlfcHJlc2VudChkZXYtPm9mX25vZGUsICIjY29vbGluZy1jZWxscyIpKQo+ICAJ
-CXJldHVybiBkZXZtX21mZF9hZGRfZGV2aWNlcyhkZXYsIFBMQVRGT1JNX0RFVklEX05PTkUsCj4g
-LQkJCQkJICAgIGtoYWRhc19tY3VfZmFuX2NlbGxzLAo+IC0JCQkJCSAgICBBUlJBWV9TSVpFKGto
-YWRhc19tY3VfZmFuX2NlbGxzKSwKPiArCQkJCQkgICAgZGRhdGEtPmRhdGEtPmZhbl9jZWxscywK
-PiArCQkJCQkgICAgZGRhdGEtPmRhdGEtPm5mYW5fY2VsbHMsCj4gIAkJCQkJICAgIE5VTEwsIDAs
-IE5VTEwpOwo+ICAKPiAgCXJldHVybiAwOwo+IEBAIC0xMjMsNyArMjExLDggQEAgc3RhdGljIGlu
-dCBraGFkYXNfbWN1X3Byb2JlKHN0cnVjdCBpMmNfY2xpZW50ICpjbGllbnQpCj4gIAo+ICAjaWZk
-ZWYgQ09ORklHX09GCj4gIHN0YXRpYyBjb25zdCBzdHJ1Y3Qgb2ZfZGV2aWNlX2lkIGtoYWRhc19t
-Y3Vfb2ZfbWF0Y2hbXSA9IHsKPiAtCXsgLmNvbXBhdGlibGUgPSAia2hhZGFzLG1jdSIsIH0sCj4g
-Kwl7IC5jb21wYXRpYmxlID0gImtoYWRhcyxtY3UiLCAuZGF0YSA9ICh2b2lkICopS0hBREFTX01D
-VV9HRU5FUklDIH0sCj4gKwl7IC5jb21wYXRpYmxlID0gImtoYWRhcyx2aW00LW1jdSIsIC5kYXRh
-ID0gKHZvaWQgKilLSEFEQVNfTUNVX1ZJTTQgfSwKPiAgCXt9LAo+ICB9Owo+ICBNT0RVTEVfREVW
-SUNFX1RBQkxFKG9mLCBraGFkYXNfbWN1X29mX21hdGNoKTsKPiAKPiAtLSAKPiAyLjQ5LjAKPiAK
-PiAKCi0tIApMZWUgSm9uZXMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMu
-aW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2xpbnV4LWFtbG9naWMK
+On Sat, 16 May 2026, Ronald Claveau via B4 Relay wrote:
+
+> From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+> 
+> Introduce a per-variant configuration structure (khadas_mcu_data)
+> holding the regmap config and MFD cells,
+> selected at probe time via the of_device_id match data.
+> This makes adding other variants straightforward.
+> 
+> Add an enum khadas_mcu_type used as value to match.
+> 
+> Also introduce khadas_mcu_fan_pdata to pass fan register address and
+> maximum level to the fan sub-driver, removing the hardcoded constants.
+> 
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+> ---
+>  include/linux/mfd/khadas-mcu.h | 44 ++++++++++++++++++++++++++++++++++++++++--
+>  1 file changed, 42 insertions(+), 2 deletions(-)
+> 
+> diff --git a/include/linux/mfd/khadas-mcu.h b/include/linux/mfd/khadas-mcu.h
+> index a99ba2ed0e4e0..88de49b78f5e6 100644
+> --- a/include/linux/mfd/khadas-mcu.h
+> +++ b/include/linux/mfd/khadas-mcu.h
+> @@ -70,6 +70,13 @@
+>  #define KHADAS_MCU_WOL_INIT_START_REG		0x87 /* WO */
+>  #define KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG	0x88 /* WO */
+>  
+> +/* VIM4 specific registers */
+> +#define KHADAS_MCU_VIM4_REST_CONF_REG		0x2c /* WO - reset EEPROM */
+> +#define KHADAS_MCU_VIM4_LED_ON_RAM_REG		0x89 /* WO - LED volatile */
+> +#define KHADAS_MCU_VIM4_FAN_CTRL_REG		0x8a /* WO */
+> +#define KHADAS_MCU_VIM4_WDT_EN_REG		0x8b /* WO */
+> +#define KHADAS_MCU_VIM4_SYS_RST_REG		0x91 /* WO */
+> +
+>  enum {
+>  	KHADAS_BOARD_VIM1 = 0x1,
+>  	KHADAS_BOARD_VIM2,
+> @@ -82,10 +89,43 @@ enum {
+>   * struct khadas_mcu - Khadas MCU structure
+>   * @device:		device reference used for logs
+>   * @regmap:		register map
+> + * @data:		pointer to variant-specific config
+>   */
+>  struct khadas_mcu {
+> -	struct device *dev;
+> -	struct regmap *regmap;
+> +	struct device			*dev;
+> +	struct regmap			*regmap;
+> +	const struct khadas_mcu_data	*data;
+> +};
+> +
+> +/**
+> + * struct khadas_mcu_data - per-variant configuration
+> + * @regmap_config:	regmap configuration
+> + * @cells:		MFD sub-devices
+> + * @ncells:		number of sub-devices
+> + * @fan_cells:		MFD fan sub-devices
+> + * @nfan_cells:		number of fan sub-devices
+> + */
+> +struct khadas_mcu_data {
+> +	const struct regmap_config	*regmap_config;
+> +	const struct mfd_cell		*cells;
+> +	int				ncells;
+> +	const struct mfd_cell		*fan_cells;
+> +	int				nfan_cells;
+> +};
+
+My alarm bells started ringing as soon as I saw this!
+
+> +/**
+> + * struct khadas_mcu_fan_pdata - fan sub-driver configuration
+> + * @fan_reg: register address to write the fan level
+> + * @max_level: maximum fan level
+> + */
+> +struct khadas_mcu_fan_pdata {
+> +	unsigned int fan_reg;
+> +	unsigned int max_level;
+> +};
+> +
+> +enum khadas_mcu_type {
+> +	KHADAS_MCU_GENERIC, /* VIM1/2/3, Edge, Edge-V */
+> +	KHADAS_MCU_VIM4,
+>  };
+>  
+>  #endif /* MFD_KHADAS_MCU_H */
+> 
+> -- 
+> 2.49.0
+> 
+> 
+
+-- 
+Lee Jones
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
