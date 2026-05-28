@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21D39CD6E45
-	for <linux-amlogic@archiver.kernel.org>; Thu, 28 May 2026 18:37:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74CC1CD6E4A
+	for <linux-amlogic@archiver.kernel.org>; Thu, 28 May 2026 18:37:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mLkFyQ+u3P2wx5CsxMbAe++FCINWs8vFS1RoobPPrTw=; b=z30mVvqsq3kHNC
-	CedGtOz1w2AB821zRPaQ1kr5iO5Zh2sHVNw0ib0g3CdjcYT3le19YrS5JEnKSqBarnHmsaCK20elW
-	z/R7NNcLB0aQ7A6DaPj96OkuEJFVewmP0iBWW8Cs7MHnGnCI04tq3bYTZ5MPm7v+LqufASuyHdko3
-	MnP6oH7XXO91QU/MhDDzIISJzBHhfTdT/0iYr+Wy8EVAuAMGaUudoe85DVE0yOadk9zC5EqMQxrZN
-	a3BYFFFeOIohAbvUNRm9XAsTEVCsIyQQV19v9B7fmdlKwNCH8OZgptCAu2TleFZ7Tlb2//xfOLl3e
-	GBK6ZLzvVt5H3+WZvzIg==;
+	List-Owner; bh=OtVwaUAUxh/7qm2PKqMkE6YLES2f514mhzEpxD5Mldk=; b=PSTZec2ttoI4/J
+	7Ce7W7b+/ZSgbLWUJK0kE52YMfxmZHmJ3wJ2nF5l5NdYeCP9OsE9fPARFJvX2sKOOMGH58J5Nm7pR
+	fPfAbMg4yeu79xlLDxhfCaj+RMrKDxNDYsM6/DlzEM6JQgdq3RnwfsUauisVKA8Gsa6H/ntQ/w76r
+	l+Dl4F7G5hAChXMSsJ6Fr910pjzdMMaehNyv3PZe/vOBpjgewHHpdNqUQN4FXCmxYzqj0UmZmdjtS
+	gDXt3QAGU3bAv2gl6Du1yOBMoLjumCKXLj0F4x2jSm/wDvojWrnFsHT4QiHHohl020e5lbcuEaryx
+	3W+MtnM5pJG+lolw5yNg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wSfbG-00000006C1d-2jd9;
-	Thu, 28 May 2026 18:36:58 +0000
+	id 1wSfbH-00000006C3A-3Lqu;
+	Thu, 28 May 2026 18:36:59 +0000
 Received: from mail-centralusazlp170110009.outbound.protection.outlook.com ([2a01:111:f403:c111::9] helo=DM5PR21CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wSfbD-00000006BwX-1Vrg;
-	Thu, 28 May 2026 18:36:57 +0000
+	id 1wSfbF-00000006BwX-48Me;
+	Thu, 28 May 2026 18:36:59 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eQLCjqthzJNcHqQFjd1y5cR8nTYZCHjKZcKTmN5BUoHjIJ2mw7qSF3GTLz+BoYP15ildVu0+XIl6Z8X3WJSnK7EdH4pI/7O6Gb/eJ45EnFg7db3tQRiuxegLt/MFh6GrAFpyfYa7LLQG8OOEGF0U4VV2HS3fUOerDCTnVrO4b4FCDf65hus204vaWjsf/cjI7k3CeR/j4omlNjJmd48UaYCt7mSFJiqKL6zUDSXvM4XPR3uSliuFOwaysp8Ykv88a/5Kl5ayokDVAPG8ARumnJ97RlbHRCjRzXTXgXVR8JOgTvOtLx1XXJhFosaCi4q6lyPlOnFvz7rvMU/KE33M6Q==
+ b=T0UhZ1EDwL4d7Mo9ZZlZEVX49KN9KnROxwtg0PDpyyLCqv/KwHIFHSJWoL6Wua+QcuJvvjf8oaMM1aUuwUmkCvBa0QD7m9VNlvhbNu8kZBKhkoY6vS+0pWBFr4aSGA/JqeNOwVtBSY0gds9SJpqcWoBp97IuUcZ2uRyxj+bEdwZb3FfcCyW7MgOTkefZiqf/C3V1LKHzLjCon90fj93hhqT0w5qNxNKS21kDDBq7cE2fmzsgHr9K0VsduySD7kOWtd3pROBg+2woMHiKqFRB6o+qRJVFK2e5ut3IBt/xjKQ1I6ClqDHn4An1Kcy3hvuGPSXUFF3KEA+kPbtgwduEqQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fFYOhf3yrZ5mFQicsem9zKtC9ZQYKIqd+PP4zhekpis=;
- b=cEIsDW0/ItQyz0tqwwfuYI1pnQZn8ivVDC04wJhnpJrAskqLs9vObwELRD7R3I0XVOwREuFpX70lctw7sQ3aE4834ZZ1xmUedqRUKfHm4xrqrqtgbxWwx1YXb4T3O22bmt4olYBdy97pxt+P4iJeDCvveJW88x+FnBl0z115FG5BXo/+g6FjqaS52z6KYbZRQck0RyqRL8dsXY0rnVNbtU+aq+kjXiCwFW0Zh+Tl6G+yYjQRg9xukw3J76Nv4wFAZCmoe8gZjZr5wPOrz//2rGMTlWh4dVaVEWREtbbR5u8R7dvXhSj0HGUPqajqNBJ7xlN7GbtTLN7Fpaz/U30TwA==
+ bh=T4PThCApWlGRAc9p0JG18Fzn71NtyAZyXhVGvfC9KzU=;
+ b=GjzCUn6WhXn1RjNrVc9xUfsD4Ir7YXMwZZqBIf8ZaSEqlLr+jWQj9ydI8TEg42+C9TyJdJxG78ljqClF+vvIfVIixYNKIlkdd8IriLZMBGrYfNygYjCbGPrf07cdoC5zW5gRbV1DRufhvXv6iipbh8gMgETbADEKFDvcCo8hy2lcZCfGqG/xCKGeBsDnY4UXsKyoi7Ozd1jSyn1pmUjwCtc6Nt6brDhtFTXdZgvViE4IufNdb40u030E7znYMulvrtNobazKhtxCDEn9JKsyE02P5Igy3s+oj2uzEQJB2FVCj48AULWnk6YoA1wXQ26H751VvYYo0Z+1mW7Od+7Wvg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fFYOhf3yrZ5mFQicsem9zKtC9ZQYKIqd+PP4zhekpis=;
- b=XQiBuqIvobhhJdEGRPO7Tuh9XuVc1oDeaoYMWq7TIPoSoFt3pC2gdrVxUibe4QlYmSMjCipEYh0121OSBK0Y+LeDnQdbf9Lk0oOxXP5HN/L5BrnpKuBnl9Pqlt0deOAMZMJr7BwIV0MLSrqMOeREBUYkOISxA57ravLBdRLPy2YvpvDzZul4ubIAoe0U/J+yh2CVnjhoP3eOSwhoEGM+QtzWfsBaaezmLzvggtFp+sOo7CzkuO4N48safNRZa/HfVd2qohnsK+Z04Ojkr7kLgNRoKX910YNeuW5AxkWYuWW4FznLB1fnshmIaEhg4FTUNVFo+EFh9cX9NbNEP6PDwA==
+ bh=T4PThCApWlGRAc9p0JG18Fzn71NtyAZyXhVGvfC9KzU=;
+ b=aCpYXHhjDYQq2T25h1204Mi5UI5QZlp3IkCyG3Wt8VhZ1saAu+39eOdcuDwYJPHErI7XeIXNWizsXLMLPAhyq+YwdJJZyLDa2ua2YgyT9qq0mlwoue6//KyYXBvSQf13/sNv+6MybrDT4N+JN+YNxiBWDTFep7b6qxvssQT8LSpmaDyFi8NYDHZdXz3tAcP4Mnmm6V95cdx7LOln1vyZBCIH7H8njH7rng2pR/QF9FVfZrRq5ZWtUPAzEs5l4XtnkoI3b7d9ilvG0wl9H5VkY3ZS+kL+fVwL5eGwtyq+afQHWgt4J3IZn8lqD5nbZJuFnqQo4xQH3krzEp4cyNcflQ==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from LV3PR12MB9356.namprd12.prod.outlook.com (2603:10b6:408:20c::21)
  by SA3PR12MB9228.namprd12.prod.outlook.com (2603:10b6:806:39c::5) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.13; Thu, 28 May
- 2026 18:36:40 +0000
+ 2026 18:36:43 +0000
 Received: from LV3PR12MB9356.namprd12.prod.outlook.com
  ([fe80::1c36:31b4:c420:6286]) by LV3PR12MB9356.namprd12.prod.outlook.com
  ([fe80::1c36:31b4:c420:6286%5]) with mapi id 15.21.0071.011; Thu, 28 May 2026
- 18:36:40 +0000
+ 18:36:43 +0000
 From: Yury Norov <ynorov@nvidia.com>
 To: Andrew Morton <akpm@linux-foundation.org>,
 	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
@@ -143,69 +143,69 @@ Cc: Russell King <linux@armlinux.org.uk>,
 	linux-amlogic@lists.infradead.org,
 	linux-cxl@vger.kernel.org,
 	linux-arm-msm@vger.kernel.org
-Subject: [PATCH 03/16] powerpc: Use sysfs_emit() for cpumask show callbacks
-Date: Thu, 28 May 2026 14:36:10 -0400
-Message-ID: <20260528183625.870813-4-ynorov@nvidia.com>
+Subject: [PATCH 04/16] x86/events: Use sysfs_emit() for cpumask show callbacks
+Date: Thu, 28 May 2026 14:36:11 -0400
+Message-ID: <20260528183625.870813-5-ynorov@nvidia.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260528183625.870813-1-ynorov@nvidia.com>
 References: <20260528183625.870813-1-ynorov@nvidia.com>
-X-ClientProxiedBy: SJ0PR13CA0193.namprd13.prod.outlook.com
- (2603:10b6:a03:2c3::18) To LV3PR12MB9356.namprd12.prod.outlook.com
+X-ClientProxiedBy: SJ0PR03CA0349.namprd03.prod.outlook.com
+ (2603:10b6:a03:39c::24) To LV3PR12MB9356.namprd12.prod.outlook.com
  (2603:10b6:408:20c::21)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: LV3PR12MB9356:EE_|SA3PR12MB9228:EE_
-X-MS-Office365-Filtering-Correlation-Id: acc64247-9e24-4a4a-4829-08debce80ee8
+X-MS-Office365-Filtering-Correlation-Id: c47e824f-2d33-4259-6b1e-08debce8108c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|376014|10070799003|366016|18002099003|11063799006|6133799003|56012099006|22082099003;
-X-Microsoft-Antispam-Message-Info: u2+xeHnY9zYVmVOV3Dy6b4aiUd/W58SlYu1sEnl/LwcnJCv9rxPBa4msus+VH0kYcCJbypj6Guj5uueiwq2NkPVeV+G/QzXvNZG2iz1zvDHm0kisjkANaG4+w+KskeeeQUzCAAe6VgCWw6gOflakcGM85fBojgviSrRMU5I99RB/q5qFUZC8DSCc7cRsvO1TB2HXyNQMxU1hC0hdQIoyKWCUwovIFRV0rC4tdT4Jk8e+lHFWcAk1+9kHwNwkiAy2OQYhL14FMK+plZc3z0fuS9sWCnSo1G3xL5URHufNCruF389/WS7zlgLerCuKyej9mEGhOHAYdywxOO1VspbkIPjdb4HLqyx4+DTzp7F/Fcz37ytUiVeUxWNy7zTisM2ZNueAMvAoTWuEUW0TuYaJd6CTrARUXs94Oz4n9s56JAMvMnl1Kc4pxNRrWI7eBEFM9dhJg+2ycM7ahNb0eVtYjODoyMJQSqM6g76i5IwTEP5fKS1LVxEq5FNsJ9VOKUTTO/qbcDJRh4ZgPATMImtL05IpsUuAXLezacXO1kWFTyJpF2UrW+rZyHLAIE4mu3hviWbaAGYXptGaGLuT6iuRZ6xc6V8DOJdi+JDJ2wnUD7+4jn4ti+hP3kbyC7lO6A6tpIqCK7XAAK9HKVMD6hFA4XWyv3ius/lotswjFBtKtaPB84Ny4h4+kHhKQuyIVI01
+X-Microsoft-Antispam-Message-Info: duf7c2xyjFoCSMe3KjLB1yPKbsuZwc6Vn9O0GiOJR9sFG9KAsJFYh1JhaYF1xWnv6XA4aXUBTBwoJZ2NcauWmCS47skiBgzGX52uqMv4WNVsgDHFMvIxo//Ik+vj0/WJRePO/J5YQF671glQzzs10JpYAjVzSZ4gnfaawXLOGri/8SjuSPJcUq6LNkYJncTCQ29396mykPOXgG0VzSyU69LdkP3yYjcvR21KcvZZA0exdTHsdWjDBOvI0ruc/YCl2tyrnAVSW+3c2BbklPqgQsbTYlyc+WtESQrAvJayPrtqqZ1Q1BARMn+lMHSKvUELhrMJdEVzKkXxKuMSeRCCtuCs4c+oPO3VwtDDnO5cTFBUztBtn2qukGgPzAhfV75Kfcp4U9IH0EIoPvlmmw/xXWy6G5Fgd/vf3GU/t5ZXYFU10+vttzIHTR04P2F7lzl0WmebqZCJFEfkIWh8l+ei3nQJZDElaVQ0UqNo0t7LDIWNMtKu2Wgl5YTBZu1/Jp+za54+tdKDnQ2C/eaW8J0otYKmTu4RATWMwHvuxaZcEOSSoqYbZUkbISV6cttMZ4B0ePg/1uloxOLuoiY0fr8ysbYUhO/su0sBBxTTGdHe79TXz0yxOaanV6yA8psLpyqET/aoQYsAPXqT7nSfGRAvqWX7TfsbK5WVXBffflTlXuXio+vEVmF50eKL5AyyfDeF
 X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV3PR12MB9356.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(10070799003)(366016)(18002099003)(11063799006)(6133799003)(56012099006)(22082099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8Vy6KRHAYEWhmpazg0FlToutQb5wjVUKOcOH4kqPw0aptuWJMRK2qy+w9fA4?=
- =?us-ascii?Q?ZIg30rt5DCYxBvCwAVpzNPJxBouz1u3Rg19RgtOgSdN9sH86e12+IRbQaE5Q?=
- =?us-ascii?Q?RfWQjxEDM0F5dSWkqU7qYLGQ1nlLGYamCm1xwOeBBNgq2DCU+DismTpEaIJ8?=
- =?us-ascii?Q?Abd5CnOrKioOCoX5FO4Y4Ze9x353YOTvlvzwret0+Bf+UjcVV8mYKfXIdlfh?=
- =?us-ascii?Q?roCWwTNyLrWRIwx3GaoMYW6s6ZljUsTg525/AyXKBAwaKvozeBX2paMq+QrE?=
- =?us-ascii?Q?M6Is+U60/XAuH1d7UfTTQxJvBtGHZ0StWHK0Hlwb9rl2mSjgz1UjD3V+x2nK?=
- =?us-ascii?Q?F8kot2a2hXcM6UZuHgvwLwTUTIEHQyaUQ70X9l43M7srHHVyhFCIqyJV7uXY?=
- =?us-ascii?Q?O2jDxu0UyyYQMKqrDvRVmj/XOpQSVhuErg9sTe3xDvO/rH1LLyJAcrHjSERT?=
- =?us-ascii?Q?bdzCrlKzSp/GncDal8EbQmSmTU1qtVKOub9bO0jkSg3txWDDJF9nlHMZzlU1?=
- =?us-ascii?Q?mhB3kXPCd4hm30y/yj8nMV8dNBfQbOmA5hxRljJHDecYPvTArhu15zcQxazd?=
- =?us-ascii?Q?cY08hFB+xw8C8Oc+JmxDjgwx9kSqWzjI3hFLDAR4zTYnEMYsnOTCoclEP9uU?=
- =?us-ascii?Q?cEdlbD4zUJFqVgXE/gqvCdvnx22JCW3zMAYmN/h6wJwNaqrBf34LWwdRiS1/?=
- =?us-ascii?Q?KWPhHu6cR/MJOM/LX1JNpwzrH2DbS8OUwD+fDyhmiTB7kjOaDGewOyxE7duS?=
- =?us-ascii?Q?xkZM6f6d1jELgd+knQTd92huEoQbDoshgpFsNRdlnwyKT/2JfFx197pWoQib?=
- =?us-ascii?Q?HgGgcoEHVdUXB3REuGcxZ3LVBApxScj5ZdWIsfZ9kUnsyn+LAUmoOvRdYb3p?=
- =?us-ascii?Q?T7ZNOZMSI/JG845mGZFuceXIrQT8xrn/6YH0efdy149noGC2ZzAxjUdeT7ap?=
- =?us-ascii?Q?RExJayz248f4azkG9o+wxz6NU9QT5AUYZXegSUNWpJBx8PFi+OIuS3WfaWKa?=
- =?us-ascii?Q?WfGsV3uj/eZSh3OgZu/I7e9H+VbHBj/px5l0H7Q1sgRd9ynkNZmimA6w+EYm?=
- =?us-ascii?Q?qa/vwHvZ+N9vKku+KixI+bQHHRyVs6jMKSNKCwCEafzzY90uOlrvliG/nAqQ?=
- =?us-ascii?Q?EX+ogQf5QFjw7DDm/hoEBH1ouHzPRKEklNNJXc063++AAp2xwm7nwZFnEIQh?=
- =?us-ascii?Q?chjlqSHKMT2MCwzQaYFWXoBgGysHYlkj+AbcaZw1deM5Gk1jU4QEHjY+veAW?=
- =?us-ascii?Q?u37ACl3KvKmSAyYFMyhCAmkIgn+1hD1cYixJGsMkx23yjbV9cTuwrhHMlU05?=
- =?us-ascii?Q?TDIEwBNpoCzIR5smQAEXPxKZKY2op2tmEEpSWC8MyITfFSSF/jtsrfthrVNb?=
- =?us-ascii?Q?AJ5ZJYStDPocHMw3bq2CgrDvnhFLOfwq6WFPd8aCYBY1/kQ7ffDRZnP7IgDU?=
- =?us-ascii?Q?yY0UIY7HJtsfGkHj4VXqvQquYcBKbN/nGP4VHuVcEV5m2OBtKIytQKGnNH4y?=
- =?us-ascii?Q?9y7naMui68IjSxk4WiPK4VMQZOfTqsMXtCtQpLG14LRddKlCJKUtQPn4r22T?=
- =?us-ascii?Q?kXR4JYJlUX0oQ3nKH0rJJViU93sbrsY8Np4cU2e+8F0/CfF+5yN1ZivPZF9d?=
- =?us-ascii?Q?jKM2mt+zxxDALH85uQgXi2cl7JAuLgyZMwn0Tu1HBAg9lXMZBZDD4TQCnwFl?=
- =?us-ascii?Q?MUql61CKF/S+OU0D23dH7eX9sTFwU0fgOtBQfdKHGXMX5Tz+bgvqDbQotDrU?=
- =?us-ascii?Q?Am986vlELF9ysQ9wk2EF+0sKXe41HvC+RBIYHROYAALZAXULPN4+?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?FM6hcIktJ0DeJG2jkAhK4f2k/748Dj9E1U2YL3QO9MmIivgBeLwtpuY6EdWJ?=
+ =?us-ascii?Q?xrPCt1L5JQ1LZJmhlLUs8MYboNCcp2HekTgqxLwqhu8M5GVf5GUh3IRDlYKY?=
+ =?us-ascii?Q?T+mA7XsyQ3Pa7juscThrAwlRJLytu+I4VQU/IOnoeM/QR9ZWqKNQVWup/0he?=
+ =?us-ascii?Q?O+Dq8dtNyyuqNSXAtuD5ptQPhrFN+zgaJthHnErviTs4sn9O9LAE7KRlKM3B?=
+ =?us-ascii?Q?PwujN0cnqwFM963QVUdaPcN28nsv0DmUag5J7/xMsWS7KZAPwfFQq0ngZSqS?=
+ =?us-ascii?Q?fQf2FNfZqGlr9hn6IbUEYy2wLYVP+7DdhAwgnjlp0YqIWwIW/CcK906kJ5KB?=
+ =?us-ascii?Q?wCXjuVbAKeddlXRdJFkg9K3khrAaBxo1nZo6CgXm+0SxxbpDc7VcCh5sjeDP?=
+ =?us-ascii?Q?5Wub0HZVF2h5oE6h/wsboMR4bWnGabAMd5YJVI+O4CvHzaV+sCO9Stou/o/G?=
+ =?us-ascii?Q?yVyFzHqgdh5O52OryF1BUu8VFBvqC0I2J+p9teF5+EzEwXeP50dpl2PPwO7B?=
+ =?us-ascii?Q?xZiKeJjzmTre411LzQAT3rcA0Qi9ZfuYY6UXOqNKYLXnlOppnfelYlL6G9y9?=
+ =?us-ascii?Q?H2vfSqf4xY1DQ4HMKxhyRMySOLMFLV7gzF2du/RCSr+nXVFGY0T4zcvspGcD?=
+ =?us-ascii?Q?SY3TbyHI+daztgb12V0588KRCQtY9j7YQLHZ4yTNg6gRm0f8cxfyk+cSUHBs?=
+ =?us-ascii?Q?yikx9rQbzj4k36sZ1KNFV4lWpAxYDcvPaQ5OzZ+0PwWL4i/dkZ0zwP0a7hN8?=
+ =?us-ascii?Q?Vgk+bH/MIV9XEiScOt2etcRfPdLCLoz9hAf8W7xNSZ8K4s1xsMLbu4BD3SFF?=
+ =?us-ascii?Q?Km5/auhfJyDRSqoD2FxEDFiFgFZLtjl1+64dt71RWK08eVZ4de8GOvWwa+bc?=
+ =?us-ascii?Q?mkMwi8ci5fJNzpOenRyKM/fR31qencIU7xdZojDDg9FFq5Yg2EHQzpbmBcUl?=
+ =?us-ascii?Q?sHoKTQtRmsXWuYhwn/Y2ThWaDsKbWkJNqMUKrH3/1SAND6RAINNyLPDZEfUC?=
+ =?us-ascii?Q?lpzfGF2tTcsFUTRIV1GEiHYJRYyU/NyomreKdY1zFaJeCCg1aDbboRtEhC6g?=
+ =?us-ascii?Q?aSJZImDfiGie/yvguYACgz1dcfJigQfJoyK2xeRCEJ7Y+sBbW3CnZvtr1kK9?=
+ =?us-ascii?Q?+ih1h4WjZ/36kvOEXtAE09lIXpi0Aw2SwjNYgaOn2a5t2qtqzlKoO8MPHBPK?=
+ =?us-ascii?Q?jd/4X7n3IWKbzUSX/UOzbJ2e1XcWFHHNAJRphIeyW1ENPnjuKFzRQTRrTvoj?=
+ =?us-ascii?Q?WaMMR1UMGSjZMjJpl3TDhOjJbAOjjHwS+eRfaIH56lguvd6QXm75/u/H+ZrZ?=
+ =?us-ascii?Q?PE+XRPBtFdIq5Zr4GOX4Svx4TE+2ooQKCp2FBVRBPWYdJLfCwpb+FzFScfr8?=
+ =?us-ascii?Q?vw7OCsMQ2lvOyh3BKMXInFJgRodyvWJNrMnBRVfqpt8scgCeN3CPBc26/Y8w?=
+ =?us-ascii?Q?xfsr776mNNECNBoG4efMT63jQJafOkHppqCt3VZvUhXZdZnmdQbva+iM4dzU?=
+ =?us-ascii?Q?k7IkoCY86vuTAUtd8W/hNZRTg9Lyahue12jiXWsaWngvgNve3VF2+/AeJ20+?=
+ =?us-ascii?Q?r1lBKflIl2iCMfqtMa2WO9k71JgI7OIOZ6z3H5ry4YdK7GbkEYN8Ie4QQ/FN?=
+ =?us-ascii?Q?P0+ViuR0O+1P87r51cgN+2Z2dSEOgsn8rOnhwAH4fqRymsIe4gZXPcB9Rp2v?=
+ =?us-ascii?Q?3sSwDZ3kiHaUs2guv0Y3RfglyV8zNYQi3Ew9MEBjqv772rhE9hGEnbETCE15?=
+ =?us-ascii?Q?z6D7BBNNDVFfJOOXK+aoTXM36DjS8lNxCP8mK9YWMvndc4mXmfcV?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: acc64247-9e24-4a4a-4829-08debce80ee8
+X-MS-Exchange-CrossTenant-Network-Message-Id: c47e824f-2d33-4259-6b1e-08debce8108c
 X-MS-Exchange-CrossTenant-AuthSource: LV3PR12MB9356.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2026 18:36:40.3179
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2026 18:36:43.1094
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rD5SbnFyqTym8GlzKo+axptgWbc5wBlZ3+wiKOEjWErlwFxgFDQw8zORll/7FAMycJMFDfjx6EjPRsqoWN+tRw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: vmJkTAlihcDGmbV7ROwnXfyZX1PUvU9u/IiA255rgZyRZFsJOcPssrn1orugI43hlGCI38b1fphOG5cRXRQo3Q==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB9228
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260528_113655_407152_3381B266 
-X-CRM114-Status: GOOD (  13.78  )
+X-CRM114-CacheID: sfid-20260528_113658_035142_54211AEC 
+X-CRM114-Status: GOOD (  13.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -230,65 +230,78 @@ This prepares for removing cpumap_print_to_pagebuf().
 
 Signed-off-by: Yury Norov <ynorov@nvidia.com>
 ---
- arch/powerpc/kernel/cacheinfo.c | 3 ++-
- arch/powerpc/perf/hv-24x7.c     | 2 +-
- arch/powerpc/perf/hv-gpci.c     | 2 +-
- arch/powerpc/perf/imc-pmu.c     | 2 +-
- 4 files changed, 5 insertions(+), 4 deletions(-)
+ arch/x86/events/amd/iommu.c    | 2 +-
+ arch/x86/events/amd/power.c    | 2 +-
+ arch/x86/events/amd/uncore.c   | 2 +-
+ arch/x86/events/intel/core.c   | 2 +-
+ arch/x86/events/intel/uncore.c | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/arch/powerpc/kernel/cacheinfo.c b/arch/powerpc/kernel/cacheinfo.c
-index 90d51d9b3ed2..be415d2bb697 100644
---- a/arch/powerpc/kernel/cacheinfo.c
-+++ b/arch/powerpc/kernel/cacheinfo.c
-@@ -689,7 +689,8 @@ show_shared_cpumap(struct kobject *k, struct kobj_attribute *attr, char *buf, bo
- 
- 	mask = &cache->shared_cpu_map;
- 
--	return cpumap_print_to_pagebuf(list, buf, mask);
-+	return sysfs_emit(buf, list ? "%*pbl\n" : "%*pb\n",
-+			  cpumask_pr_args(mask));
- }
- 
- static ssize_t shared_cpu_map_show(struct kobject *k, struct kobj_attribute *attr, char *buf)
-diff --git a/arch/powerpc/perf/hv-24x7.c b/arch/powerpc/perf/hv-24x7.c
-index 243c0a1c8cda..d661fc972c92 100644
---- a/arch/powerpc/perf/hv-24x7.c
-+++ b/arch/powerpc/perf/hv-24x7.c
-@@ -428,7 +428,7 @@ static char *memdup_to_str(char *maybe_str, int max_len, gfp_t gfp)
- static ssize_t cpumask_show(struct device *dev,
- 			    struct device_attribute *attr, char *buf)
+diff --git a/arch/x86/events/amd/iommu.c b/arch/x86/events/amd/iommu.c
+index 07b110e8418a..f332c7089bd5 100644
+--- a/arch/x86/events/amd/iommu.c
++++ b/arch/x86/events/amd/iommu.c
+@@ -137,7 +137,7 @@ static ssize_t _iommu_cpumask_show(struct device *dev,
+ 				   struct device_attribute *attr,
+ 				   char *buf)
  {
--	return cpumap_print_to_pagebuf(true, buf, &hv_24x7_cpumask);
-+	return sysfs_emit(buf, "%*pbl\n", cpumask_pr_args(&hv_24x7_cpumask));
+-	return cpumap_print_to_pagebuf(true, buf, &iommu_cpumask);
++	return sysfs_emit(buf, "%*pbl\n", cpumask_pr_args(&iommu_cpumask));
  }
+ static DEVICE_ATTR(cpumask, S_IRUGO, _iommu_cpumask_show, NULL);
  
- static ssize_t sockets_show(struct device *dev,
-diff --git a/arch/powerpc/perf/hv-gpci.c b/arch/powerpc/perf/hv-gpci.c
-index 10c82cf8f5b3..655b9553ca54 100644
---- a/arch/powerpc/perf/hv-gpci.c
-+++ b/arch/powerpc/perf/hv-gpci.c
-@@ -99,7 +99,7 @@ static ssize_t kernel_version_show(struct device *dev,
- static ssize_t cpumask_show(struct device *dev,
- 			    struct device_attribute *attr, char *buf)
+diff --git a/arch/x86/events/amd/power.c b/arch/x86/events/amd/power.c
+index dad42790cf7d..890609961a6f 100644
+--- a/arch/x86/events/amd/power.c
++++ b/arch/x86/events/amd/power.c
+@@ -147,7 +147,7 @@ static void pmu_event_read(struct perf_event *event)
+ static ssize_t
+ get_attr_cpumask(struct device *dev, struct device_attribute *attr, char *buf)
  {
--	return cpumap_print_to_pagebuf(true, buf, &hv_gpci_cpumask);
-+	return sysfs_emit(buf, "%*pbl\n", cpumask_pr_args(&hv_gpci_cpumask));
+-	return cpumap_print_to_pagebuf(true, buf, &cpu_mask);
++	return sysfs_emit(buf, "%*pbl\n", cpumask_pr_args(&cpu_mask));
  }
  
- /* Interface attribute array index to store system information */
-diff --git a/arch/powerpc/perf/imc-pmu.c b/arch/powerpc/perf/imc-pmu.c
-index c1563b4eaa94..7cb909c47889 100644
---- a/arch/powerpc/perf/imc-pmu.c
-+++ b/arch/powerpc/perf/imc-pmu.c
-@@ -117,7 +117,7 @@ static ssize_t imc_pmu_cpumask_get_attr(struct device *dev,
- 		return 0;
- 	}
+ static DEVICE_ATTR(cpumask, S_IRUGO, get_attr_cpumask, NULL);
+diff --git a/arch/x86/events/amd/uncore.c b/arch/x86/events/amd/uncore.c
+index dd956cfcadef..797dcce8bd89 100644
+--- a/arch/x86/events/amd/uncore.c
++++ b/arch/x86/events/amd/uncore.c
+@@ -321,7 +321,7 @@ static ssize_t amd_uncore_attr_show_cpumask(struct device *dev,
+ 	struct pmu *ptr = dev_get_drvdata(dev);
+ 	struct amd_uncore_pmu *pmu = container_of(ptr, struct amd_uncore_pmu, pmu);
  
--	return cpumap_print_to_pagebuf(true, buf, active_mask);
-+	return sysfs_emit(buf, "%*pbl\n", cpumask_pr_args(active_mask));
+-	return cpumap_print_to_pagebuf(true, buf, &pmu->active_mask);
++	return sysfs_emit(buf, "%*pbl\n", cpumask_pr_args(&pmu->active_mask));
+ }
+ static DEVICE_ATTR(cpumask, S_IRUGO, amd_uncore_attr_show_cpumask, NULL);
+ 
+diff --git a/arch/x86/events/intel/core.c b/arch/x86/events/intel/core.c
+index dd1e3aa75ee9..5e9b65b2d1c1 100644
+--- a/arch/x86/events/intel/core.c
++++ b/arch/x86/events/intel/core.c
+@@ -7311,7 +7311,7 @@ static ssize_t intel_hybrid_get_attr_cpus(struct device *dev,
+ 	struct x86_hybrid_pmu *pmu =
+ 		container_of(dev_get_drvdata(dev), struct x86_hybrid_pmu, pmu);
+ 
+-	return cpumap_print_to_pagebuf(true, buf, &pmu->supported_cpus);
++	return sysfs_emit(buf, "%*pbl\n", cpumask_pr_args(&pmu->supported_cpus));
  }
  
- static DEVICE_ATTR(cpumask, S_IRUGO, imc_pmu_cpumask_get_attr, NULL);
+ static DEVICE_ATTR(cpus, S_IRUGO, intel_hybrid_get_attr_cpus, NULL);
+diff --git a/arch/x86/events/intel/uncore.c b/arch/x86/events/intel/uncore.c
+index e9cc1ba921c5..746d0d526f1d 100644
+--- a/arch/x86/events/intel/uncore.c
++++ b/arch/x86/events/intel/uncore.c
+@@ -842,7 +842,7 @@ static ssize_t uncore_get_attr_cpumask(struct device *dev,
+ {
+ 	struct intel_uncore_pmu *pmu = container_of(dev_get_drvdata(dev), struct intel_uncore_pmu, pmu);
+ 
+-	return cpumap_print_to_pagebuf(true, buf, &pmu->cpu_mask);
++	return sysfs_emit(buf, "%*pbl\n", cpumask_pr_args(&pmu->cpu_mask));
+ }
+ 
+ static DEVICE_ATTR(cpumask, S_IRUGO, uncore_get_attr_cpumask, NULL);
 -- 
 2.51.0
 
