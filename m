@@ -4,66 +4,206 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67DC2CD5BD5
-	for <linux-amlogic@archiver.kernel.org>; Thu, 28 May 2026 15:53:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80212CD5BD5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 28 May 2026 18:36:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=H+l25qzGhyxFSps8GsNm9hqkDH2wCZhIMsow/klwnkE=; b=zse++lqFcnDUd6ONvhpfTa4tl3
-	JuJB2D98a3bBgSW2kgtMQjRtpGdo9GVSdUW6tK4XW3ghh885olqIuWqmVBCLx2vCeq/5zEcJEoyh6
-	0OkZFDCRA/QNlMcqXhO11AX3z8chyQOUp8cVfZHgATWzZTLc5xloO/UM/xxwhbNXUPiKvt8SxSVLx
-	13MHmjt1f1H0VS8g90C2IDXFUxI2HcX8YITz0QItFLOPy4c3uGGHedj7WmGrfXgMBNLKGlHFBdJvR
-	Yvm5QDI4N+1a4j87dUoAIm2oJOG723+wNkyNX6eYtW7ddArU2WuPhreXkSJGtxo9UCUuldiWN19rT
-	ooY+lYnA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=GLZt1ulIIMo1ZW030czlKHx2j4diZgLJApDdnMD9WQE=; b=przWVaMArcE4H/
+	V1GtMP8C5/YKZr7sYL/kcX5fYumQT5NGKBxbZSUmgZliawwznLFRdNGIUnY0tKIWaD+85PzRnHKxi
+	Cv22V4whEQEMaPrM+hl/W9PbcQ2pVUpD5mkp/hJROxHeQYVSVIBYU64eMqD+LfqnoEp0tu7pVkHFF
+	ZYmAmBan7+86ZAzmlHw0MRjT1DljrQ9Rnx6wE4S+yLCFv3YgmdTvvRKobuPpaSpQeRYo1fd529VNS
+	8oggN0lDiFIreIkhlRREPl/gmEuDR5js2Va/aDop82o9gpeO8aQEt2U+vlh1ffjMqvcYs/CnLMssM
+	pXTw97sjGlHEaCXhKxNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wSd3G-00000005wfQ-2bxA;
-	Thu, 28 May 2026 15:53:42 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1wSfb4-00000006Bvm-2gBM;
+	Thu, 28 May 2026 18:36:46 +0000
+Received: from mail-eastusazlp17011000f.outbound.protection.outlook.com ([2a01:111:f403:c100::f] helo=BL2PR02CU003.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wSd3F-00000005wfG-2tDi;
-	Thu, 28 May 2026 15:53:41 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id D2CCD6014B;
-	Thu, 28 May 2026 15:53:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 319881F000E9;
-	Thu, 28 May 2026 15:53:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779983620;
-	bh=aqOl4KJ+POyxHhW5KeMjbKtaqry36nNsOelFZ1HL0ac=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=DxhI0M0P7/GNtmHmDIp57e9c+ffTuUabCpKnKORQeXlGYCrvUPbtd0sq5ZKyWkIKw
-	 JKm3mnIuOvfB/cJfuoakhBuVwcEeijXIXT9HIDU098Oa1SkMa9/HCIXmTNWqI4NR6G
-	 uKW9UahepMUSIa6o4qRB1uHttXj066AWRLnpFxZJY/+hqUnd1PM4ec11Uc97p/PWWm
-	 +A7vaNixHBu54Www1A+iO3KWM3APVdM8CTFyc6Of3fIqJ2cOIcBkjyCkvwaEHOgLqS
-	 U0M/g4vJ1rDXRvFZUH7d5ZVtVsmE6Z9kU/meOODWz0N1ufbGB+yevcI0sA/GOkT0TG
-	 58CcjYxmPgmsw==
-Date: Thu, 28 May 2026 16:53:35 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Valerio Setti <vsetti@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	id 1wSfb1-00000006Bun-3nqY;
+	Thu, 28 May 2026 18:36:45 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=W4rc1G8PRNEF63wnNNLGvJE16l8KgrKiwAeEz3bPzrqxfSAQrxkGURK0u6ar9hg6HAPQqDQTXnFE4ACzSIonGYHazhC4B4DleEbmCQWDo82KPtQvfwlPUntMvSVI7t/Ca7Eq2oKUFiVvldfUyOlWhR9rqe86HmpErjt1zqIssEn77WBGbNVigeikAnlwMqTCNOGGZZZens/OTGIyTTi34FMpw2DMQjzAKS5csTIVFf7WS3AKaup8xA4FnpMhnNvu0lrj/KO5SZ32v351BGZaiZ2nXEoyXY/c4C4NMGzz3Buzs/P7Mt+h32hT/1ISNZzwIP9knOt33hexviFKXlbQxQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Pm3RxOlUziMIipQdyQHT2pcKu2ESuFD9ZeBKDhFFqu8=;
+ b=m5RB8GrzCcx8H0fKPhUE613qwJk7kZSuxiAsh5leLQQoD7xBr4GHWcXAPlHT3dCBvTk7TdKoWIhp7SJAlEvs2r3q7zGvq29smyj/i3mCzx+pKwCcKOfkpkLhTOPAt2QboMXBYbdzTJlvpy1d2agc8ABH47tX3ebWXbofEaTc9pmo6OArI8YzHHeHd+0+IthDzJBW1d7CL1XLRtLp9eB8TgKLJOGurUU/hJ/Wc3gmp1viPBDaUbzNr/bqrdglTeesxFxWE9xKYSgG2jK6MNOHM5ExSh9EkrGUM2Rj5hJgyBSWvy3Fa2ZJv47ixO0ToU/JqHWJOU1X3ZkKmj6KKSC7ZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Pm3RxOlUziMIipQdyQHT2pcKu2ESuFD9ZeBKDhFFqu8=;
+ b=h922R/VYYBrfQii2qD3ohQUoRXHoYuXC/tMwX4kGaSDBTjuwG6p4kQvU1DmzY4DgEh3wBrYoN1iZNtv+0s+8PFbTjMFhiOnYzxsOR7xnHGfqeCPyb/dI+boOmgU749k2WpC0577xYdTBC0Ojvsc7JHElGTx4XeTL4xjmgovFttijlMr4LvErTumd+o4Iamz0fp8JmAzE+/5qDjqBqynvu6jAGjr8fofKbqhW8dfrboM7/WRDpIZqx5iSjmc2SWVIbCNORItLYhnTi8Ih4jMirKSSk15e60dKQrbb0GJO/5Q+KPnhxDANU4V9xIrF8V8krSq6fM3QxRJ6pVXQrCIeDQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV3PR12MB9356.namprd12.prod.outlook.com (2603:10b6:408:20c::21)
+ by SA3PR12MB9228.namprd12.prod.outlook.com (2603:10b6:806:39c::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.13; Thu, 28 May
+ 2026 18:36:30 +0000
+Received: from LV3PR12MB9356.namprd12.prod.outlook.com
+ ([fe80::1c36:31b4:c420:6286]) by LV3PR12MB9356.namprd12.prod.outlook.com
+ ([fe80::1c36:31b4:c420:6286%5]) with mapi id 15.21.0071.011; Thu, 28 May 2026
+ 18:36:29 +0000
+From: Yury Norov <ynorov@nvidia.com>
+To: Andrew Morton <akpm@linux-foundation.org>,
+	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+	Yury Norov <ynorov@nvidia.com>
+Cc: Russell King <linux@armlinux.org.uk>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>,
+	Arnaldo Carvalho de Melo <acme@kernel.org>,
+	Namhyung Kim <namhyung@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Jiri Olsa <jolsa@kernel.org>,
+	Ian Rogers <irogers@google.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	James Clark <james.clark@linaro.org>,
+	Thomas Gleixner <tglx@kernel.org>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Len Brown <lenb@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	MyungJoo Ham <myungjoo.ham@samsung.com>,
+	Kyungmin Park <kyungmin.park@samsung.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Xu Yilun <yilun.xu@intel.com>,
+	Tom Rix <trix@redhat.com>,
+	Moritz Fischer <mdf@kernel.org>,
+	Yicong Yang <yangyicong@hisilicon.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
+	Jason Gunthorpe <jgg@ziepe.ca>,
+	Leon Romanovsky <leon@kernel.org>,
+	Dan Williams <djbw@kernel.org>,
+	Vishal Verma <vishal.l.verma@intel.com>,
+	Dave Jiang <dave.jiang@intel.com>,
+	Ira Weiny <ira.weiny@intel.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Shuai Xue <xueshuai@linux.alibaba.com>,
+	Will Deacon <will@kernel.org>,
+	Jiucheng Xu <jiucheng.xu@amlogic.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
+	Robin Murphy <robin.murphy@arm.com>,
+	Jing Zhang <renyu.zj@linux.alibaba.com>,
+	Xu Yang <xu.yang_2@nxp.com>,
+	Linu Cherian <lcherian@marvell.com>,
+	Gowthami Thiagarajan <gthiagarajan@marvell.com>,
+	Ji Sheng Teoh <jisheng.teoh@starfivetech.com>,
+	Khuong Dinh <khuong@os.amperecomputing.com>,
+	Daniel Lezcano <daniel.lezcano@kernel.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Yury Norov <yury.norov@gmail.com>,
+	Kees Cook <kees@kernel.org>,
+	=?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>,
+	Aboorva Devarajan <aboorvad@linux.ibm.com>,
+	"Ritesh Harjani (IBM)" <ritesh.list@gmail.com>,
+	Ilkka Koskinen <ilkka@os.amperecomputing.com>,
+	Besar Wicaksono <bwicaksono@nvidia.com>,
+	Ma Ke <make24@iscas.ac.cn>,
+	Chengwen Feng <fengchengwen@huawei.com>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 4/4] ASoC: meson: aiu: use aiu-formatter-i2s to format
- I2S output data
-Message-ID: <512b2bb6-620f-428f-9724-73972e589c46@sirena.org.uk>
-References: <20260515-reshape-aiu-as-axg-v1-0-53b457784ff3@baylibre.com>
- <20260515-reshape-aiu-as-axg-v1-4-53b457784ff3@baylibre.com>
- <758a4ef9-1a3e-475a-ae1e-83523330d006@sirena.org.uk>
- <891be10c-99f1-45b7-bd31-ec5080cfc780@baylibre.com>
- <a5aa2965-3651-4927-acff-51eee2e4ab4a@baylibre.com>
+	imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org,
+	linux-perf-users@vger.kernel.org,
+	linux-acpi@vger.kernel.org,
+	driver-core@lists.linux.dev,
+	linux-pm@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-fpga@vger.kernel.org,
+	linux-rdma@vger.kernel.org,
+	nvdimm@lists.linux.dev,
+	linux-pci@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-cxl@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Subject: [PATCH 00/16] lib/cpumask: get rid of cpumap_print_to_pagebuf()
+Date: Thu, 28 May 2026 14:36:07 -0400
+Message-ID: <20260528183625.870813-1-ynorov@nvidia.com>
+X-Mailer: git-send-email 2.51.0
+X-ClientProxiedBy: SJ0PR03CA0077.namprd03.prod.outlook.com
+ (2603:10b6:a03:331::22) To LV3PR12MB9356.namprd12.prod.outlook.com
+ (2603:10b6:408:20c::21)
 MIME-Version: 1.0
-In-Reply-To: <a5aa2965-3651-4927-acff-51eee2e4ab4a@baylibre.com>
-X-Cookie: Someone is speaking well of you.
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV3PR12MB9356:EE_|SA3PR12MB9228:EE_
+X-MS-Office365-Filtering-Correlation-Id: 19749e33-0ed2-4e6e-5dfa-08debce80877
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|376014|10070799003|366016|18002099003|11063799006|6133799003|56012099006;
+X-Microsoft-Antispam-Message-Info: vUVY3uUYl2ZVcZRHFt1uUn0nw6d4ieHKXH/HFZHDcNyi+nyEY3JWsme1sfsPs/mo4L5wojaKHKkLm6i9jZd37fgEOchKCZjvVTPXs7H4+XchbPQ7IjHXVLLf0it0Dxzb0uqYwO8oTBxiF6QtifK3qfeyZ5YDTkl6r7LuwIM1ep19fQaUygG+jixUgouokBSdvnZwBCxDZIYRfNtyxosgZxBQxgsdpG92HvzZEA6lYYqB/x8Z+ShgH8f4SE5ozE9tU+ZJlUx+Dw9UvbpXvam6rt7WjJ1x7x2WldP2ijm6fSAmvPAPEBJGcOKGL5ns9f3ofAK2wHejW7hmd9KctxBbrK8nNeo+7f2Zfz+O+/4IX3eEKowaGO6kpkGOFiXvvuvRpOVs1aB7qfUef0Z0CaI74+hVxrZAM8h2mHXiXNUeTgI8fMoWNuU0u2hpNw43P4bC2JBur76cI3EfaSaIsoKxjPIlvmo2mv8qyWV8gMbPATH5ghs2c6E9TNFX4dxEyPu7D01eqevnJAb3J9Kocs6tM1J9jgRYMzJzxyY6ke9ae/6ta/NHHppfwZVQEnc3HVn/45w7/HQjBG2TIKOIkLo/RtN5Dya+P9VWaukhmKFkcHs1S7JBjhEGhLCTaCKOBVeTd0uRIQUS8pkpMaRKgbuT6FYYognFaBxGhIt0Yef9qn5BiUSBcYy2G6HWIuswNBdf
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV3PR12MB9356.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(10070799003)(366016)(18002099003)(11063799006)(6133799003)(56012099006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+HRz9lewdEfK9kpquRoYwbH1o6nEJdTpOVIrWceCHDdXJw+rIVJYAtbW9fpm?=
+ =?us-ascii?Q?pep5r+3N/cL1LNM7IsQeX1u/4M9ga28u25o4PZp9drsrxv0EFABK3/uv9LjJ?=
+ =?us-ascii?Q?PDinK5HONprFSfiQeEv0OhA3N3aKjTkeSEhK+F0zdbaDeZtDKS+PFAcHwcXy?=
+ =?us-ascii?Q?07fd6FV5IsDS4f65wzKl6LTi/kbLhTHmQC64sIyfnuRP0uMGlhcYPua+QKX+?=
+ =?us-ascii?Q?SW1ys5X6fHpRIUqVqwCySqR7l2jFNNaNNgI2n3KRiUwBTxPUYs7p4l677Xx8?=
+ =?us-ascii?Q?rZhRoXNmv1vJpMlD3WhpsC3KeG6UTtM8O2xqYXAvYTJ48r68QUD9d7OwnF9G?=
+ =?us-ascii?Q?WlcDoI96GtAsXHd8HGfYTx/yuze4W/AUOsevJx+BH14UDB0RL57tDWuqO1UE?=
+ =?us-ascii?Q?DNzu0Qelq5XVTaLK82e0DDy5+Cclzo+H4ZPzAPO2kfyk79Qdc/ZJET7MlPs0?=
+ =?us-ascii?Q?1qGuzPUfTGfccUFzSm0mCV54GtHvyV23vXJf8uOjgMCmYpwPEQBFxLZbxRd9?=
+ =?us-ascii?Q?+T9zKCoAgKGZjz8WP5LUBNtSfizXXN4BmzeTidi6m5YwEE8NBmZhBgJ92EXD?=
+ =?us-ascii?Q?GXQE2apDmHJzh5UqoNjFrFymljw7bLiBZVicHdXeFMzpWt8aRje1CFDhumL6?=
+ =?us-ascii?Q?QuNWzgjP1dr4V6a9gS+t5V9Z6YSdOtgQ8+pd9PEzduurpzK5vRGhRqrxK05i?=
+ =?us-ascii?Q?r9Hnx9blmNX9iSf+XMvy09yM9/M0zB3RpxNjjUWSgnVgP+lka9e8nbW65Wj8?=
+ =?us-ascii?Q?WTyBRssTzReZWiHvlt1YYpwv3a4WsVF145fOPIqSR13Zh6ooJRrA5sEdCTbA?=
+ =?us-ascii?Q?8xREizGwWocXScjgjSyKoF7nQNtY3qB997G+7NAc76J5puv8TVnIYKIEh+z2?=
+ =?us-ascii?Q?zQL2cvAxSDlThv10Lo6/UHsQV7SxKzdi3GNzixhjbWQQmV9tPAymRMPin2vB?=
+ =?us-ascii?Q?YVYh2cp6SPuiltlksxK0+pCE9+ZevFKuvsiijEvhxTnc8r874YXIiHTlByhJ?=
+ =?us-ascii?Q?qvB430xktTYisRP17Y36mUlta7o5ghDghBnn4v/piKxiW2PhpYuDqBSEpKXC?=
+ =?us-ascii?Q?Nl1VyviwA1C+e2s81rpsnkjslzRWYZRyUAK+z75+Wx5dqnLYxM8bVQFvSJ8z?=
+ =?us-ascii?Q?iVQtYQH/Kd0JyKSEki0dvMW3LP6aK6OCWzLZFHXQfYZ4MrPxS9oK0gj7w8Vr?=
+ =?us-ascii?Q?Ty3Kugvk3qDzf07xgP0MVoW/fUHPpBU0QDk9spsmJX5ZfbMBQol6G7BeGslH?=
+ =?us-ascii?Q?IfggJMss6ucFIRDnaRTPVpKPe+05bTDAnxy0mm2ZGhO054tZ7kK/5IfaRlec?=
+ =?us-ascii?Q?Js0Umh0Ogbsf2a8Grcxz1jdQsKAYREmWHPqonMnEuAIUF+jBVi5V/BnehoFM?=
+ =?us-ascii?Q?jOd2Yw1XPhl2YLMRw+BqANd9ZrGUwLPKpc32TFbROVWlGPYbm9b5pIM2bFR5?=
+ =?us-ascii?Q?8AQMmf/RMhTjuDq5co1uWiEBeNGTT4N2dn6VObhphUm/ardD+9wVCWCGHwo1?=
+ =?us-ascii?Q?TPtBtot8XTZkFTat8T9ps7FGHPtfs8BkRxgYXZKi7VpPdENosbSIFlA0oJEn?=
+ =?us-ascii?Q?RbB0K8vl1tKSfNCxRx0m4z9EnISN1bLVAmwYiA+VlHtQvW3HLxkEXuRmTfDP?=
+ =?us-ascii?Q?ATzAYV0Gay2/xzLeX2WROMBt3VBw05qqINQjZsgti55xlz2voB3YYCK+vfxY?=
+ =?us-ascii?Q?Ce6JvZj1cstRum7uN9hfUOdwBQbe3FxT1O3dxCGMyr8eNRcwrPp8LjX9mQ10?=
+ =?us-ascii?Q?njuLgRKiJWhPPZA59OfRzUBXiqbQZA4MCoHY/0GRQo66nRi+Ic4k?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 19749e33-0ed2-4e6e-5dfa-08debce80877
+X-MS-Exchange-CrossTenant-AuthSource: LV3PR12MB9356.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2026 18:36:29.7574
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Tc2GFQcS1qEMQ+1rOuwfNOGwp/zyCZQCEGjU4f399Zyt8Q/60ZuB32VMy2PiEPOG/h/szipm3VhUxO9zg2CODw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB9228
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260528_113644_038023_4DECEFCE 
+X-CRM114-Status: GOOD (  11.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,65 +215,105 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7374721914859330001=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+cpumap_print_to_pagebuf() is the equivalent for the "&*pb[l]" notation
+in printk-like functions. In some cases, it makes people to create
+temporary buffers for the printed cpumasks, where it can be avoided.
 
---===============7374721914859330001==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="19pjvJBHzpq/adui"
-Content-Disposition: inline
+Get rid of it in a favor of more standard printing API.
 
+Each patch, except for the last one, is independent and may be moved with
+the corresponding subsystem. Or I can take it in bitmap-for-next, at
+maintainers' discretion.
 
---19pjvJBHzpq/adui
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On top of bitmap-for-next.
 
-On Thu, May 28, 2026 at 05:01:59PM +0200, Valerio Setti wrote:
+(Apologize for the bulky CC list. Feel free to review only relevant
+patches.)
 
-> I have 2 alternative proposals for this:
+Yury Norov (16):
+  psci: simplify hotplug_tests()
+  arm: Use sysfs_emit() for cpumask show callbacks
+  powerpc: Use sysfs_emit() for cpumask show callbacks
+  x86/events: Use sysfs_emit() for cpumask show callbacks
+  ACPI: pad: Use sysfs_emit() for idlecpus show
+  cpu: Use sysfs_emit() for cpumask show callback
+  devfreq: Use sysfs_emit() for cpumask show callbacks
+  fpga: dfl-fme-perf: Use sysfs_emit() for cpumask show
+  hwtracing: hisi_ptt: Use sysfs_emit() for cpumask show
+  RDMA/hfi1: Use sysfs_emit() for cpumask show helper
+  nvdimm: Use sysfs_emit() for cpumask show callback
+  PCI/sysfs: Use sysfs_emit() for cpumask show callbacks
+  perf: Use sysfs_emit() for cpumask show callbacks
+  powercap: intel_rapl: Use sysfs_emit() for cpumask show
+  thermal: intel: Use sysfs_emit() for powerclamp cpumask
+  lib/bitmap-str: get rid of cpumap_print_to_pagebuf()
 
-> - Change the default value of "HDMI CTRL SRC" so that at boot it's set to
-> some working configuration (ex: "I2S"). This should be done somewhere in
-> "aiu-codec-ctrl" I think.
-> - Run the 'amixer' command above before running ALSA tests.
+ arch/arm/mach-imx/mmdc.c                    |  2 +-
+ arch/arm/mm/cache-l2x0-pmu.c                |  2 +-
+ arch/powerpc/kernel/cacheinfo.c             |  3 ++-
+ arch/powerpc/perf/hv-24x7.c                 |  2 +-
+ arch/powerpc/perf/hv-gpci.c                 |  2 +-
+ arch/powerpc/perf/imc-pmu.c                 |  2 +-
+ arch/x86/events/amd/iommu.c                 |  2 +-
+ arch/x86/events/amd/power.c                 |  2 +-
+ arch/x86/events/amd/uncore.c                |  2 +-
+ arch/x86/events/intel/core.c                |  2 +-
+ arch/x86/events/intel/uncore.c              |  2 +-
+ drivers/acpi/acpi_pad.c                     |  4 ++--
+ drivers/base/cpu.c                          |  2 +-
+ drivers/devfreq/event/rockchip-dfi.c        |  2 +-
+ drivers/devfreq/hisi_uncore_freq.c          |  2 +-
+ drivers/firmware/psci/psci_checker.c        | 14 ++------------
+ drivers/fpga/dfl-fme-perf.c                 |  2 +-
+ drivers/hwtracing/ptt/hisi_ptt.c            |  2 +-
+ drivers/infiniband/hw/hfi1/sdma.c           |  3 ++-
+ drivers/nvdimm/nd_perf.c                    |  2 +-
+ drivers/pci/pci-sysfs.c                     |  7 ++++---
+ drivers/perf/alibaba_uncore_drw_pmu.c       |  2 +-
+ drivers/perf/amlogic/meson_ddr_pmu_core.c   |  2 +-
+ drivers/perf/arm-cci.c                      |  2 +-
+ drivers/perf/arm-ccn.c                      |  2 +-
+ drivers/perf/arm-cmn.c                      |  2 +-
+ drivers/perf/arm-ni.c                       |  2 +-
+ drivers/perf/arm_cspmu/arm_cspmu.c          |  2 +-
+ drivers/perf/arm_dmc620_pmu.c               |  4 ++--
+ drivers/perf/arm_dsu_pmu.c                  |  2 +-
+ drivers/perf/arm_pmu.c                      |  2 +-
+ drivers/perf/arm_smmuv3_pmu.c               |  2 +-
+ drivers/perf/arm_spe_pmu.c                  |  2 +-
+ drivers/perf/cxl_pmu.c                      |  2 +-
+ drivers/perf/dwc_pcie_pmu.c                 |  2 +-
+ drivers/perf/fsl_imx8_ddr_perf.c            |  2 +-
+ drivers/perf/fsl_imx9_ddr_perf.c            |  2 +-
+ drivers/perf/fujitsu_uncore_pmu.c           |  2 +-
+ drivers/perf/hisilicon/hisi_pcie_pmu.c      |  2 +-
+ drivers/perf/hisilicon/hisi_uncore_pmu.c    |  2 +-
+ drivers/perf/marvell_cn10k_ddr_pmu.c        |  2 +-
+ drivers/perf/marvell_cn10k_tad_pmu.c        |  2 +-
+ drivers/perf/marvell_pem_pmu.c              |  2 +-
+ drivers/perf/nvidia_t410_c2c_pmu.c          |  2 +-
+ drivers/perf/nvidia_t410_cmem_latency_pmu.c |  2 +-
+ drivers/perf/qcom_l2_pmu.c                  |  2 +-
+ drivers/perf/qcom_l3_pmu.c                  |  2 +-
+ drivers/perf/starfive_starlink_pmu.c        |  2 +-
+ drivers/perf/thunderx2_pmu.c                |  2 +-
+ drivers/perf/xgene_pmu.c                    |  2 +-
+ drivers/powercap/intel_rapl_common.c        |  2 +-
+ drivers/thermal/intel/intel_powerclamp.c    |  2 +-
+ include/linux/cpumask.h                     | 19 -------------------
+ kernel/events/core.c                        |  2 +-
+ lib/bitmap-str.c                            |  9 ++++-----
+ 55 files changed, 65 insertions(+), 92 deletions(-)
 
-> Any suggestion on what's the best approach?
-
-Having to set routing is usually fine, I do that for a bunch of my
-boards but not Potato.  The only issue with this is that if people
-upgrade the kernel they'll see audio break so ideally we'd have the same
-default behaviour as we had before.
-
---19pjvJBHzpq/adui
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmoYZP4ACgkQJNaLcl1U
-h9Djiwf8DPaQRmX/EbpoL63XEFpABecPfcnnkx3fq7lRA3ljGP15t7UDi1OBbLKp
-qsBm1nynYHc6+rmSYN9WiEaVD02YDD8vQE2bz8gEwqsskC6fZKBM8t4ru/+epCqa
-PF9AWcGXca3zx6kTenw+CgxpX2qufynlE/Os6+3XDNbHXUAVgSY2U0aALKB92uHZ
-pHDS7XPT2nuWpuPollt7JUrxF6rUxhInQryAl7wt0EC2BelQ/AB9ozIOn3kG73Xg
-01WpDT+ql4AP9M5+PHFL6UAQme0RYN2rS6kzSN/eZbzR/sJGcInsW8PvII+o93+O
-SxxdCbgl792e+6v5xuSoQEzlwBM0dQ==
-=qkk7
------END PGP SIGNATURE-----
-
---19pjvJBHzpq/adui--
-
-
---===============7374721914859330001==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+2.51.0
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============7374721914859330001==--
-
