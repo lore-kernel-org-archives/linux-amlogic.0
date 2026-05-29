@@ -4,53 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B1B5CD6E4A
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 May 2026 15:13:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 628C4CD6E50
+	for <linux-amlogic@archiver.kernel.org>; Fri, 29 May 2026 15:17:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zS+SbuPGI7EKBXrFtSfYimUlaRA+lVjj5e4FFiwxK9o=; b=T+ETlmqTPIqYps
-	8rIB1IQRwiZpGoyZOXHfN/NpABJ6Ayuv8K+7+vXTvtF+1ogwoOQuyPq3yLlLao7FNY0t/U3+nRnVO
-	fHjRsKZOE6rfo3isyY7Q5mEijE56Q3R1oms+imDR/MTGxW4KAClWkVBiKeCSBhKt0uim6K36gmngk
-	GwKP8MvBnW74o2rPPv+hvUkMCFNlILyc/27lHk4YFkEGBlIigRlxnp2WOGWmLL8vf7K5nG+Q0ZZiy
-	tKtaJ9K8JReCZHhSelcACHvVdU4s3HpugcErlcNC1hbiy53N59icmWF8ctTJWfkFl1yHtJfJ5ZRUW
-	TQ+LXaZRSyxzh6yI0jvQ==;
+	List-Owner; bh=7euSiwkmVA4W7ixL/7lNEVJoWgFAGVleYjxHXDQbNsA=; b=bJclrEK6/qO5BY
+	3M6hysS9XkGxT0ohzZ5AIR1/izn4Hoo2TlZoOsakshZzkMpqYaxyIwj1RzPUwbC+MHLBH9eqW84CU
+	flxVAw4cwOggxhFL7n5RJtAkG/dNW/Mu1e4t2Khw3Zo55sKm+i9kVG2xIc6+pf7kc30XtWATOpckm
+	zMLCDGV9daMyCbwOc1jh8E55TFSFo91OCJdb9X4FRSb6u7Bz2RR8CbrZonA1S3fi4PkstK0xtPEdR
+	wAIycPJ/AP3oX2oHb4rxcwzzQQs5JDEAo8bc5MJIsCpHe45YDM22oxPBsAfiGMD7XQYmt6WlBUK+v
+	mqmV/HwTvC41GnFdXD7A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wSyu9-00000007e5b-2jOC;
-	Fri, 29 May 2026 15:13:45 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
-	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wSyu8-00000007e5T-0i7R
-	for linux-amlogic@lists.infradead.org;
-	Fri, 29 May 2026 15:13:44 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 6B2DF605CF;
-	Fri, 29 May 2026 15:13:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E13DA1F00893;
-	Fri, 29 May 2026 15:13:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780067623;
-	bh=8kfEqScAplCk6ub4bmSQiLCAy4ZZ21YWmsaJSbrbIRI=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=B2+RcjW6HZWh9c35XgZLvqdQXEm7VIOkf/VcSLw0z4EHJnZBDUEn9RaJ4Lx+SyvxC
-	 bzUay1Q22MXFzcX0pPYhoBuvNSI+eog20/z4Zwxnw9Ynk18rmrRQtkV/hpTR9mW9E8
-	 DjkuOt4TpNTlIJE7AmNksTSLxw+wiyGQwTaVnlJQrzvwAGTS+OVWmWtGJQJnRq3Ft4
-	 2wBtAWFEhq+Oh7EOPfQkdZeHWBfXv+RNihWAA8UpMENL3kZ5EKkASdZ4Rc2Uoa5pB7
-	 qx0z4VUpFHtOOs9W7yNjAJ+tckS57EDAK/uYF021uhdtQwT7wqZZi1gXKqGDcXRdyg
-	 aWRoAzb+0SUiA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 3/3] arm64: dts: amlogic: meson-axg-s400: Enable
- pcie_phy
-To: "Jun Yan" <jerrysteve1101@gmail.com>
-Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260529140605.1070764-4-jerrysteve1101@gmail.com>
-References: <20260529140605.1070764-4-jerrysteve1101@gmail.com>
-Date: Fri, 29 May 2026 15:13:42 +0000
-Message-Id: <20260529151342.E13DA1F00893@smtp.kernel.org>
+	id 1wSyy8-00000007eYd-1EJo;
+	Fri, 29 May 2026 15:17:52 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
+	id 1wSyy5-00000007eYC-26L4;
+	Fri, 29 May 2026 15:17:50 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D29DD1C00;
+	Fri, 29 May 2026 08:17:41 -0700 (PDT)
+Received: from [10.57.26.238] (unknown [10.57.26.238])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8093B3F632;
+	Fri, 29 May 2026 08:17:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1780067866; bh=i14utAyWVag4qxanxiMOSsLoacp5PlK9awjdPrY0Lt0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=E/Y8OmFzjPPiFlVn4wlpigbZpVnBOLe/nvmQB9aWj85QNMT7/qwPvsbPCBXgoTSUY
+	 ILoZRm/Zx+YVmLnnnjl6SbY9FgvOkUu3spSzSN72QzgqEzBR85lxu8q43Fz/aKK1vx
+	 t17fO/GqqvBY0+f/5OA/Bl8CQBWaofzEEz9yntmI=
+Message-ID: <c99085e5-cf1f-479d-bef0-b6a4161482e5@arm.com>
+Date: Fri, 29 May 2026 16:17:33 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 06/10] thermal/of: Rename the
+ devm_thermal_of_cooling_device_register() function
+To: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>, rafael@kernel.org,
+ daniel.lezcano@kernel.org
+Cc: Zhang Rui <rui.zhang@intel.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Lucas Stach <l.stach@pengutronix.de>,
+ Russell King <linux+etnaviv@armlinux.org.uk>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Guenter Roeck <linux@roeck-us.net>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>,
+ =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+ Benson Leung <bleung@chromium.org>, =?UTF-8?Q?Pali_Roh=C3=A1r?=
+ <pali@kernel.org>, Avi Fishman <avifishman70@gmail.com>,
+ Tomer Maimon <tmaimon77@gmail.com>, Tali Perry <tali.perry1@gmail.com>,
+ Patrick Venture <venture@google.com>, Nancy Yuen <yuenn@google.com>,
+ Benjamin Fair <benjaminfair@google.com>, Heiko Stuebner <heiko@sntech.de>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Amit Daniel Kachhap <amit.kachhap@gmail.com>,
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Amit Kucheria
+ <amitk@kernel.org>, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
+ Thierry Reding <thierry.reding@kernel.org>,
+ Nathan Chancellor <nathan@kernel.org>,
+ Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
+ Ingo Molnar <mingo@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
+ "Jiri Slaby (SUSE)" <jirislaby@kernel.org>,
+ Mikko Perttunen <mperttunen@nvidia.com>,
+ Svyatoslav Ryhel <clamor95@gmail.com>,
+ "moderated list:ARM/ASPEED MACHINE SUPPORT"
+ <linux-arm-kernel@lists.infradead.org>,
+ "moderated list:ARM/ASPEED MACHINE SUPPORT" <linux-aspeed@lists.ozlabs.org>,
+ "moderated list:ARM/NUVOTON NPCM ARCHITECTURE" <openbmc@lists.ozlabs.org>,
+ "open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>,
+ "open list:ARM/QUALCOMM MAILING LIST" <linux-arm-msm@vger.kernel.org>,
+ "open list:KHADAS MCU MFD DRIVER" <linux-amlogic@lists.infradead.org>,
+ "open list:CLANG/LLVM BUILD SUPPORT" <llvm@lists.linux.dev>
+References: <20260526140802.1059293-12-daniel.lezcano@oss.qualcomm.com>
+ <20260526140802.1059293-18-daniel.lezcano@oss.qualcomm.com>
+Content-Language: en-US
+From: Lukasz Luba <lukasz.luba@arm.com>
+In-Reply-To: <20260526140802.1059293-18-daniel.lezcano@oss.qualcomm.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260529_081749_633524_B1185F18 
+X-CRM114-Status: GOOD (  13.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,43 +104,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0hpZ2hdIFRoZSBjb21taXQgZW5h
-YmxlcyBgJnBjaWVfcGh5YCB0byBzdXBwb3J0IFBDSWUgb24gdGhlIGBtZXNvbi1heGctczQwMGAg
-Ym9hcmQsIGJ1dCBmYWlscyB0byBlbmFibGUgaXRzIHJlcXVpcmVkIGFuYWxvZyBQSFkgZGVwZW5k
-ZW5jeSBgJm1pcGlfcGNpZV9hbmFsb2dfZHBoeWAsIGxlYXZpbmcgUENJZSBjb21wbGV0ZWx5IG5v
-bi1mdW5jdGlvbmFsLgotLQoKY29tbWl0IDY1NWYyNjEzNjJjMjlkYzU2YzE3MjNmMzQ2OWIzMjI4
-MWQ4ZmZmYjgKQXV0aG9yOiBKdW4gWWFuIDxqZXJyeXN0ZXZlMTEwMUBnbWFpbC5jb20+Cgphcm02
-NDogZHRzOiBhbWxvZ2ljOiBtZXNvbi1heGctczQwMDogRW5hYmxlIHBjaWVfcGh5CgpUaGlzIGNv
-bW1pdCBlbmFibGVzIHBjaWVfcGh5IG9uIHRoZSBtZXNvbi1heGctczQwMCBib2FyZCB0byBzdXBw
-b3J0IFBDSWUKZnVuY3Rpb25hbGl0eSwgYXMgaXQgaXMgbm93IGRpc2FibGVkIGJ5IGRlZmF1bHQg
-aW4gdGhlIG1lc29uLWF4ZyBkdHNpLgoKPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0
-cy9hbWxvZ2ljL21lc29uLWF4Zy1zNDAwLmR0cyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dp
-Yy9tZXNvbi1heGctczQwMC5kdHMKPiBpbmRleCAyODVjNmFjMWRkNjEzLi43YmEyNDljYzNkNTY5
-IDEwMDY0NAo+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1heGctczQw
-MC5kdHMKPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tYXhnLXM0MDAu
-ZHRzCj4gQEAgLTQ0OCw2ICs0NDgsMTAgQEAgJnBjaWVCIHsKPiAgCXN0YXR1cyA9ICJva2F5IjsK
-PiAgfTsKPiAgCj4gKyZwY2llX3BoeSB7Cj4gKwlzdGF0dXMgPSAib2theSI7Cj4gK307CgpbU2V2
-ZXJpdHk6IEhpZ2hdCkRvZXMgdGhpcyBub2RlIGFsc28gbmVlZCB0byBlbmFibGUgdGhlIG1pcGlf
-cGNpZV9hbmFsb2dfZHBoeSBkZXBlbmRlbmN5PwoKSW4gbWVzb24tYXhnLmR0c2ksIHRoZSBwY2ll
-X3BoeSBub2RlIGRlcGVuZHMgb24gbWlwaV9wY2llX2FuYWxvZ19kcGh5IHZpYQp0aGUgcHJvcGVy
-dHkgcGh5cyA9IDwmbWlwaV9wY2llX2FuYWxvZ19kcGh5Pi4gQmVjYXVzZSB0aGUgYW5hbG9nIFBI
-WSBpcwpkaXNhYmxlZCBieSBkZWZhdWx0LCB0aGUgY29yZSBkcml2ZXIgbW9kZWwgZG9lcyBub3Qg
-aW5zdGFudGlhdGUgaXRzIHBsYXRmb3JtCmRldmljZSBhbmQgbm8gUEhZIHByb3ZpZGVyIGlzIHJl
-Z2lzdGVyZWQuCgpUaGlzIGNhdXNlcyBkZXZtX3BoeV9nZXQoZGV2LCAiYW5hbG9nIikgdG8gcmV0
-dXJuIC1FUFJPQkVfREVGRVIgZHVyaW5nCnRoZSBwcm9iZSBvZiBwY2llX3BoeSwgd2hpY2ggaW4g
-dHVybiBjYXVzZXMgdGhlIFBDSWUgY29udHJvbGxlcnMgKHBjaWVBCmFuZCBwY2llQikgdG8gaW5m
-aW5pdGVseSBkZWZlciBwcm9iaW5nIGFzIHdlbGwuCgo+ICsKPiAgJnB3bV9hYiB7Cj4gIAlzdGF0
-dXMgPSAib2theSI7Cj4gIAlwaW5jdHJsLTAgPSA8JnB3bV9hX3gyMF9waW5zPjsKCi0tIApTYXNo
-aWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nhc2hpa28uZGV2LyMvcGF0Y2hzZXQvMjAyNjA1Mjkx
-NDA2MDUuMTA3MDc2NC0xLWplcnJ5c3RldmUxMTAxQGdtYWlsLmNvbT9wYXJ0PTMKCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFp
-bGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMu
-aW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+
+
+On 5/26/26 15:08, Daniel Lezcano wrote:
+> To clarify that the function operates on child nodes, rename:
+> 
+>            devm_thermal_of_cooling_device_register()
+> 	                     |
+> 			     v
+>         devm_thermal_of_child_cooling_device_register()
+> 
+> Used the command:
+> 
+>       	 find . -type f -name '*.[ch]' -exec \
+> 	 sed -i 's/devm_thermal_of_cooling_device_register/\
+> 	 devm_thermal_of_child_cooling_device_register/g' {} \;
+> 
+> Did not used clang-format-diff because it does not indent correctly
+> and checkpatch complained. Manually reindented to make checkpatch
+> happy
+> 
+> This prepares for upcoming support of cooling devices identified by
+> an ID rather than device tree child nodes.
+> 
+> No functional change.
+> 
+> Signed-off-by: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
+> ---
+>   drivers/hwmon/amc6821.c                  |  2 +-
+>   drivers/hwmon/aspeed-pwm-tacho.c         |  5 +++--
+>   drivers/hwmon/emc2305.c                  |  6 +++---
+>   drivers/hwmon/gpio-fan.c                 |  6 ++++--
+>   drivers/hwmon/max6650.c                  |  6 +++---
+>   drivers/hwmon/npcm750-pwm-fan.c          |  6 ++++--
+>   drivers/hwmon/pwm-fan.c                  |  5 +++--
+>   drivers/hwmon/qnap-mcu-hwmon.c           |  6 +++---
+>   drivers/hwmon/tc654.c                    |  5 +++--
+>   drivers/memory/tegra/tegra210-emc-core.c |  4 ++--
+>   drivers/soc/qcom/qcom_aoss.c             |  2 +-
+>   drivers/thermal/khadas_mcu_fan.c         |  7 ++++---
+>   drivers/thermal/tegra/soctherm.c         |  6 +++---
+>   drivers/thermal/thermal_of.c             | 15 +++++++++------
+>   include/linux/thermal.h                  | 16 ++++++++--------
+>   15 files changed, 54 insertions(+), 43 deletions(-)
+> 
+
+Reviewed-by: Lukasz Luba <lukasz.luba@arm.com>
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
