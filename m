@@ -4,110 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 893BDCD6E4A
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 May 2026 12:24:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8ABACD6E4A
+	for <linux-amlogic@archiver.kernel.org>; Fri, 29 May 2026 13:52:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pOn37mlhX+jjNs4ghs2arLYQcFyizmEnoRcl88CHZ/o=; b=KRroUOXPnAFnS5
-	SNsvyfZCaJ9+65+iXdFS5efHIdczDE9eWR9468yD0wUASNB0fH/CflLcbtxAdwDaGbwjm6HJx5n5J
-	kvbJieKZBrqBOv16BoCGqg3UWU+T2oTD4wcJXjp9Rp8miL72S1CnmNkMi6hL97Kocsi3yCk7XuNoZ
-	aPJaMPJN3DOZogIvFUHiefCZYgCzqZbBs319+n1gA9N1ryMZMzLCKrHqxi6IyjJOxmPTgJnBTqhnG
-	wkPLhKZktVcV4kpVSGF7pnMioVcPRJzRE4QSEcv10jC0yAmajfagaGQJ+XQarzZBcyPaVrNMlrChe
-	QF3V9lict4oaPlB/8NCw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=s5v3PGDOhm4ttbZwcICo5sdnIq/+Rm2Hd8zKFXfgZXE=; b=q3DyXlpjfEg7hC
+	GpRtwcwaB20ZT239UFNfqqOp7dnG/GFzeHrSoYQecvfwuFlfzmZe50lyZxS2LmKdQ1XSUUhrCIfxn
+	zPQb2QDUG/p6GKghmaTB2sY4DD161brScTwIdbkPQs/NxP7vgpQWzkkOEWOWVdDkocCOtdoCyThfJ
+	F5ZgiB/I0KYXzHa+HjUcbjP/yNRnkd9b2IS1j3e66/zctq3FNohwpNTYNnYaRCts+cQ0Ck1ZEgnF7
+	5D9wKP5b/st7rHyj4TSTKW1+HXcjlyk9PfQzjrCy2lKF0iTNN0tzMCH3rkgC/c4jZabqtluc7dzTd
+	L9u0VCe8VeyTjhxK3kaQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wSwGM-00000007NJO-2YZZ;
-	Fri, 29 May 2026 12:24:30 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wSwGJ-00000007NIn-3jmV;
-	Fri, 29 May 2026 12:24:29 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 45FEC204C;
-	Fri, 29 May 2026 05:24:20 -0700 (PDT)
-Received: from [10.57.37.50] (unknown [10.57.37.50])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 16BE13F632;
-	Fri, 29 May 2026 05:24:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1780057465; bh=fjbO4t8XdyU8NOb41mG4ChhG+m/bzPP3BywWNtdYqoA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aPrsjUKCk50s149VeWZk4F2Llmjdo90qP4DWtdM9ATKguxbUU6gRebVq07f2uJFK0
-	 YVnIN2oOqMRDRFm11YWBgDWM/xTptKipB8Q9REDRnovKPHG2ooZaALp7Zti/C2KUQ+
-	 b4qPfWs6v4eF/TgyfabaRYMbwAxOu8OUsO69761s=
-Message-ID: <3a4e22fe-b8ce-4e62-9139-113e0cd4f16b@arm.com>
-Date: Fri, 29 May 2026 13:24:02 +0100
+	id 1wSxcu-00000007TdZ-17dr;
+	Fri, 29 May 2026 13:51:52 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
+	id 1wSxcr-00000007TdH-3rmV
+	for linux-amlogic@lists.infradead.org;
+	Fri, 29 May 2026 13:51:51 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-49039a8851fso83475895e9.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 29 May 2026 06:51:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1780062707; x=1780667507; darn=lists.infradead.org;
+        h=mime-version:message-id:date:user-agent:subject:cc:to:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=aYIwFhBI2N6gKbEPX+JrvkgFgN0qr5qebRCw1iE5Tt0=;
+        b=aKxJpHSEsLezDNM/9B6uShjMEY6RGRE03X1dN4WE45VvIq29e5G0JVzfWc+aq72BqV
+         mociiWGLghJn0A9gMad6+ybwb0pesijJXunweVERxjwQl94XeNiu++/2x5XDxbPvtL2x
+         UoRXQMCSAg6aiVri9r+9ZaIRpnLv4jncO46iZZK5rjTMdUf1HRWrImflsdF5Klz/ZQn/
+         izJ+Q1iFZdHyxfbFPMUVlipnnZrW9p3PFDret4ukXXTMQGSSslITGWnWbuPyWiYXBYTm
+         ZzLfnUrdvP+nIxRGH/89WbGKRQFolO+r7CUpGm5uUrP0Qn9pUhWAKITygXajlVvCeMXS
+         DZHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780062707; x=1780667507;
+        h=mime-version:message-id:date:user-agent:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aYIwFhBI2N6gKbEPX+JrvkgFgN0qr5qebRCw1iE5Tt0=;
+        b=b9DGAwoFg0RzmyyAy0cIbeD1yQGuE74t2fpdCHY1QE91mkcjFad2ooPSYMGLdjQHOR
+         TOuZAsNNBb6jnm8c+5GXA6SGN/obARLfRney9NmJejPz3ELAqLqzk5QJRE/7sQ4O04ky
+         tU1PfnttVSmwdFO3Rm7StJjVh0J3dUKF2kKCodPUOn6D5NbUjV7DQ3sTJXmGNNowKdkO
+         YQ5XTSHjh59j3azaBF71CnQarU5ql2gqg9FHWBlgiL4rrf1BFcbzG9cMwii1uLleM1fZ
+         ortrMztZvkhWa1CXUa8oXuDE3la15jj1Z17qui5wV+Wm1/KENJacyiskLhg/gFSEx6P9
+         +ZOg==
+X-Forwarded-Encrypted: i=1; AFNElJ+MdQCmgMG8RaoQkASU8CF0KbzoAZB49PbgruwL6p7WN5i4+8YgSOttdyjsVW6zckAuoX29NJUWHd70mWrV@lists.infradead.org
+X-Gm-Message-State: AOJu0YxuQqxfmUNG8AU4mqOYn5C5R044r11urtXEMYrvqViX5SR8liwL
+	MvVwlOeqo20BL0yS813GopAd7q1jD2ulGoT0Rl3rAzeO/9q+dFONvK7jSVoetJPLIk8=
+X-Gm-Gg: Acq92OH+bnBIuSdI/giAfbHp+u31Mpemg1EKEarkccCUxUJj3cCToef76DA5zT/SsI0
+	aS4467DD/8nF7e39hcShWds5ecOKsT3OEy4T+VSNJpg12J8/EAx3Npa0sMEV3frrQ0EfBO1FG5w
+	mxzTuLF7tTz7ZJ7cgr+JfOOhKIgVs2IuMCl4fETYXQ7Fn6o1OFmblJAEzGXOwrDGeh5sVCz7Vdy
+	4uFafydFppUAj5FCPX718x5s3B+sKWD0sMYj1rNyAHGlmgr0b8zitGe1JJxVzIS9rTxHsQPDDuy
+	+jzdmWvrAh5lb9l6MUzu9gS+DXavy7mlPVbni1CFQ9PZwx3G00htCba1ozb15jGRkB6I/SpWFGl
+	3tUTPr30i3gqAZIxwkrfZc+YDXZi/BT8xkoX8IfBGxGcVlsLcuvczDYANYf8Q1wORQ2mCoM2l4m
+	aZGMwONkJRnhe00pR0OeplpCV5n3kqu9+U
+X-Received: by 2002:a05:600c:4a11:b0:489:e696:8362 with SMTP id 5b1f17b1804b1-4909c08b0bfmr32628635e9.13.1780062707516;
+        Fri, 29 May 2026 06:51:47 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:79fe:7869:93f0:a6ea])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-4909d68b853sm43813175e9.3.2026.05.29.06.51.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 May 2026 06:51:46 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-clk <linux-clk@vger.kernel.org>, linux-amlogic
+ <linux-amlogic@lists.infradead.org>
+Subject: [GIT PULL] clk: meson: Amlogic clock changes for v7.2
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Fri, 29 May 2026 15:51:45 +0200
+Message-ID: <1j1peu5nny.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/16] psci: simplify hotplug_tests()
-To: Yury Norov <ynorov@nvidia.com>, Andrew Morton
- <akpm@linux-foundation.org>, Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Cc: Russell King <linux@armlinux.org.uk>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Madhavan Srinivasan
- <maddy@linux.ibm.com>, Michael Ellerman <mpe@ellerman.id.au>,
- Nicholas Piggin <npiggin@gmail.com>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
- Arnaldo Carvalho de Melo <acme@kernel.org>,
- Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
- Adrian Hunter <adrian.hunter@intel.com>, James Clark
- <james.clark@linaro.org>, Thomas Gleixner <tglx@kernel.org>,
- Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>,
- "H. Peter Anvin" <hpa@zytor.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Len Brown <lenb@kernel.org>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Danilo Krummrich <dakr@kernel.org>,
- Chanwoo Choi <cw00.choi@samsung.com>, MyungJoo Ham
- <myungjoo.ham@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>,
- Heiko Stuebner <heiko@sntech.de>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
- Moritz Fischer <mdf@kernel.org>, Yicong Yang <yangyicong@hisilicon.com>,
- Jonathan Cameron <jic23@kernel.org>,
- Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
- Dan Williams <djbw@kernel.org>, Vishal Verma <vishal.l.verma@intel.com>,
- Dave Jiang <dave.jiang@intel.com>, Ira Weiny <ira.weiny@intel.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Shuai Xue <xueshuai@linux.alibaba.com>,
- Will Deacon <will@kernel.org>, Jiucheng Xu <jiucheng.xu@amlogic.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jing Zhang <renyu.zj@linux.alibaba.com>, Xu Yang <xu.yang_2@nxp.com>,
- Linu Cherian <lcherian@marvell.com>,
- Gowthami Thiagarajan <gthiagarajan@marvell.com>,
- Ji Sheng Teoh <jisheng.teoh@starfivetech.com>,
- Khuong Dinh <khuong@os.amperecomputing.com>,
- Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Yury Norov <yury.norov@gmail.com>,
- Kees Cook <kees@kernel.org>,
- =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>,
- Aboorva Devarajan <aboorvad@linux.ibm.com>,
- "Ritesh Harjani (IBM)" <ritesh.list@gmail.com>,
- Ilkka Koskinen <ilkka@os.amperecomputing.com>,
- Besar Wicaksono <bwicaksono@nvidia.com>, Ma Ke <make24@iscas.ac.cn>,
- Chengwen Feng <fengchengwen@huawei.com>,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
- linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-perf-users@vger.kernel.org, linux-acpi@vger.kernel.org,
- driver-core@lists.linux.dev, linux-pm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-fpga@vger.kernel.org,
- linux-rdma@vger.kernel.org, nvdimm@lists.linux.dev,
- linux-pci@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20260528183625.870813-1-ynorov@nvidia.com>
- <20260528183625.870813-2-ynorov@nvidia.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20260528183625.870813-2-ynorov@nvidia.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260529_052428_097263_AA6238A7 
-X-CRM114-Status: GOOD (  19.60  )
+X-CRM114-CacheID: sfid-20260529_065149_984047_2FB0AE47 
+X-CRM114-Status: UNSURE (   6.64  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,70 +91,47 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 2026-05-28 7:36 pm, Yury Norov wrote:
-> Switch to pr_info("... %pbl"), and drop the temporary buffer allocation.
 
-I would say this is simply an improvement in its own right, regardless 
-of whether cpumap_print_to_pagebuf() deserves to be removed or not. For 
-the change itself, FWIW,
+Hi Stephen,
 
-Reviewed-by: Robin Murphy <robin.murphy@arm.com>
+Here are the Amlogic clock changes for v7.2.
+There is just a couple of minor DT bindings fixups. Nothing major.
 
-> This prepares for removing cpumap_print_to_pagebuf().
-> 
-> Signed-off-by: Yury Norov <ynorov@nvidia.com>
-> ---
->   drivers/firmware/psci/psci_checker.c | 14 ++------------
->   1 file changed, 2 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/firmware/psci/psci_checker.c b/drivers/firmware/psci/psci_checker.c
-> index e67ba9891082..ecd745bb90bf 100644
-> --- a/drivers/firmware/psci/psci_checker.c
-> +++ b/drivers/firmware/psci/psci_checker.c
-> @@ -186,7 +186,6 @@ static int hotplug_tests(void)
->   {
->   	int i, nb_cpu_group, err = -ENOMEM;
->   	cpumask_var_t offlined_cpus, *cpu_groups;
-> -	char *page_buf;
->   
->   	if (!alloc_cpumask_var(&offlined_cpus, GFP_KERNEL))
->   		return err;
-> @@ -194,10 +193,6 @@ static int hotplug_tests(void)
->   	nb_cpu_group = alloc_init_cpu_groups(&cpu_groups);
->   	if (nb_cpu_group < 0)
->   		goto out_free_cpus;
-> -	page_buf = (char *)__get_free_page(GFP_KERNEL);
-> -	if (!page_buf)
-> -		goto out_free_cpu_groups;
-> -
->   	/*
->   	 * Of course the last CPU cannot be powered down and cpu_down() should
->   	 * refuse doing that.
-> @@ -210,16 +205,11 @@ static int hotplug_tests(void)
->   	 * off, the cpu group itself should shut down.
->   	 */
->   	for (i = 0; i < nb_cpu_group; ++i) {
-> -		ssize_t len = cpumap_print_to_pagebuf(true, page_buf,
-> -						      cpu_groups[i]);
-> -		/* Remove trailing newline. */
-> -		page_buf[len - 1] = '\0';
-> -		pr_info("Trying to turn off and on again group %d (CPUs %s)\n",
-> -			i, page_buf);
-> +		pr_info("Trying to turn off and on again group %d (CPUs %*pbl)\n",
-> +			i, cpumask_pr_args(cpu_groups[i]));
->   		err += down_and_up_cpus(cpu_groups[i], offlined_cpus);
->   	}
->   
-> -	free_page((unsigned long)page_buf);
->   out_free_cpu_groups:
->   	free_cpu_groups(nb_cpu_group, &cpu_groups);
->   out_free_cpus:
+Please Pull.
 
+Cheers
+Jerome
+
+The following changes since commit 254f49634ee16a731174d2ae34bc50bd5f45e731:
+
+  Linux 7.1-rc1 (2026-04-26 14:19:00 -0700)
+
+are available in the Git repository at:
+
+  https://github.com/BayLibre/clk-meson.git tags/clk-meson-v7.2-1
+
+for you to fetch changes up to ca89c88bcf69daca829044c638a8163d5ce47af0:
+
+  dt-bindings: clock: amlogic: t7: Add missing mpll3 parent clock (2026-04-28 10:42:47 +0200)
+
+----------------------------------------------------------------
+Amlogic clock changes for v7.2
+
+* Minor DT bindings fixes for the T7 clock controllers
+
+----------------------------------------------------------------
+Jian Hu (2):
+      dt-bindings: clock: amlogic: Fix redundant hyphen in "amlogic,t7-gp1--pll" string.
+      dt-bindings: clock: amlogic: t7: Add missing mpll3 parent clock
+
+ .../bindings/clock/amlogic,t7-peripherals-clkc.yaml          | 12 ++++++++----
+ .../devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml       |  2 +-
+ 2 files changed, 9 insertions(+), 5 deletions(-)
 
 _______________________________________________
 linux-amlogic mailing list
