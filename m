@@ -4,71 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00367CD5BD0
-	for <linux-amlogic@archiver.kernel.org>; Sat, 30 May 2026 09:44:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A027CD6E4A
+	for <linux-amlogic@archiver.kernel.org>; Sat, 30 May 2026 09:44:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=59dhBJ5MMZNHK83UCVjHZUrCEMhra4cBBsJ0wN+PWCE=; b=N8aOYwhwoyCFxZ
-	v62n+B/dDkAPRZZQrSro4S/QuqxipgRaK5YvTkHRvKHJEEjcXv1NIVy60q8rhxJq+NmRA5KnnbYzB
-	/VhUkOkN7MdYroTEEhVkZqmrdW553V+luPhzZCggohOZqME2M19CChl0vKCpAmNkNbXdNH7hJIrLk
-	0FaHQj44o0E+pE+xXI/NaQ3pLUmwLW2h9l8cC3YMJj7Dwa0ze6rZILM9YFBpATcO17CCKpCQ/61HJ
-	kRo3sSLeLlWPJ7AR/3GjcRlDeO5h/Bd0Rip/CPiZQNUGyMwFnb8qKR8WXUoLWk2C3G0FI0BM139nA
-	eZojXfGrjEjgng9gzDjw==;
+	List-Owner; bh=764rxtD8xG2eqfQ8csf6Jun+dzDXG4sipzZkLYvUxoo=; b=B0IbVvkX0Roq6G
+	YBwoOsjcWXPbKAk0laIV/4RlkTdMj3cEyLFrtMLaKinPsjgljk8SBXG3adyJmaeGDMD7Jo00/yDe/
+	OXhJZCG+dFSjN0tqAuqijv3q2fpYgacKpqK+damyFNd2RnZuKk9B46w+5H+eQDzduIvv5s66/+rp2
+	9xXrH3oVViInlHhJBZJhp78qrog3habwj13njR+4J1zHhavLyu5D3wBZJMaCtXas6vqyz2/8ef/Fl
+	09hrPyMGUBe7NIUuQdHGp9ag3l0e8Zwo2PAcsW7OAww4YOmHJ5sL8D6XRRHQ0pC569mUOqbwSLhDa
+	0nVvLPKPTmR77y0jZOsw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wTGEo-00000008aUx-15LV;
-	Sat, 30 May 2026 09:44:14 +0000
-Received: from mail-pj1-x102a.google.com ([2607:f8b0:4864:20::102a])
+	id 1wTGF0-00000008aaW-2fnF;
+	Sat, 30 May 2026 09:44:26 +0000
+Received: from mail-pl1-x632.google.com ([2607:f8b0:4864:20::632])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wTGEl-00000008aTu-1qvw
+	id 1wTGEx-00000008aYj-2yCe
 	for linux-amlogic@lists.infradead.org;
-	Sat, 30 May 2026 09:44:12 +0000
-Received: by mail-pj1-x102a.google.com with SMTP id 98e67ed59e1d1-36d5b11201aso214155a91.2
-        for <linux-amlogic@lists.infradead.org>; Sat, 30 May 2026 02:44:11 -0700 (PDT)
+	Sat, 30 May 2026 09:44:24 +0000
+Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-2bc763e2ba8so74092055ad.3
+        for <linux-amlogic@lists.infradead.org>; Sat, 30 May 2026 02:44:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780134250; x=1780739050; darn=lists.infradead.org;
+        d=gmail.com; s=20251104; t=1780134263; x=1780739063; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=MOGv5iwSngrj41XE+piVh0d8DY2B1AD5Rx86ecpnAxY=;
-        b=kvlCjEUnnv7c+RI8zOa281TbP47SzbPqs7NIQcADvxmrzV3uIF1hS2XDs19idkmk6n
-         sNLJ1q6Rao5YBnv8nExuNVbGTHtl0Ey4KnjxpxlrkDnRqHATZ9xMxiTTCMGDq8fPyOmm
-         bHKoFUqGKPWM9uINUOdrcj46YngzENsnnpEp4vLBRtvicrKc1aXFoMLXRl3Lr+BYkY7n
-         s3H19KJaq+TfdtSCM4QPFfZFZ5xHnJ3d3ElbGaimsVIvrb6Odf+sYg4oJOvlzZmmKmVE
-         jNLkSXAN6ZxVIZE7kdrIrcJ845Geb2szXNGzQuL1DvXmeIfNiv9jiRkfpEgRQ8rT6mXg
-         y0jg==
+        bh=YD6axKKp8wDht90VyqGQ3zjwLyfLDF+g7zoFDStjFGA=;
+        b=Q5zmGMY1a2/UydhlI//gP+tSnX9d/FYfo3MeAxqLvUukCpKUjVJ7woWQOOw2gZe4qM
+         bSEOaFrPyVO7D161YBczYCsvaxZ5VGFjiKqKiic7uqF0JobLE3ynKFxPbbWN7zXJrALs
+         Eij6dK+xrW4QzckFnBcLNKqxGqvf0vxKYgAFN5xkKoA9Y6kuU9IBIDYF3WG39+4Zi2fa
+         pjfpT6thdup9zrUW0LAPlo2ljwBGOfg9SHTh5pDSt1EwQWIry0w9JEiE0bM85/aoGzSw
+         ZP4nPIw8S2Y1Ah0fefkwJGTu1nykTow2hiJfrVrbJjjblFZwku1dGMH+ZwjNM+4GYLCb
+         FQQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780134250; x=1780739050;
+        d=1e100.net; s=20251104; t=1780134263; x=1780739063;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=MOGv5iwSngrj41XE+piVh0d8DY2B1AD5Rx86ecpnAxY=;
-        b=MjHS7q3mDZGShQfLXrJHTo/O1rmVthTv0OwoAdz0HrB67Wnq3mTG/r9nHoIEcOfic8
-         sFg1a3Kr5jwwI9/23dmwYEAQ/Tn0d4ufWYtCZgYBL4lyiqeGfjXYXpN/8EJRF92U8jGZ
-         iYez1P5IynmHDR+qdXMXNN7gQyNNnN0VoH4fyzqb5fs2daLIfsVf1B+XZCFlv+YsIl97
-         cJrgcKZkjv9lZCViSQ19q5lvpxe90fJBGp0Z6WM0C9noEH6yMOC9EqrevQuiLTXg2qxa
-         ZM6DEdXStjv5aGbr0yelRdNVoXkqNqdW9iFMaNAsQgN2S3wxH3XraAYbnfkKWxtet3Fs
-         if8Q==
-X-Forwarded-Encrypted: i=1; AFNElJ+IGLOZQV/3GTtOrWU+u/ptAuhgi4pK8Z2EyimPD0WES2kR698gR7AjITAwEKObEpiGYw1ZvN5IX3bZ147b@lists.infradead.org
-X-Gm-Message-State: AOJu0YxZ7VAGxr42TfEFbFSI3Cjc4rTmglN8IZIp7kuVrh9kFH1E47VZ
-	A8ZuULfvz2t136SqS6lr6KMUOSUMyNd4X49VIIp+cpFJSM1+UKHKtQv8
-X-Gm-Gg: Acq92OFImHJbmhvfIX4W3nQ9hlfLeP4FKZv7iFn6ggxw3Q3v8m5MAYdGqG2P1Kwnu7b
-	9sTtbnI7Ef+F/PrAn9bn+7gOrmXB3bFyy22rY+8FmB5662jwphBa4FedqEgxTITBxDcA2zYPnLZ
-	/N0iqQTXEdo08q09PjcJmt0Fv+/cMjd7dPlHliBMiBotN01K+6EfKvrYdyjW//CnrHq1OhyGAsT
-	wxpIx7QQtI4dbx2ZCziGS9ujMDEqA+TQEZxd5KWSXAogNrczkkxwCITXy6mtrwSQckX0sEynTze
-	AUuj4bD7u8QaQO4psxg+1AfGOFZu5S0gTN9QyrywVXUDIfYN5A/hbNNtayw0HhLcsjXjJIyn3bf
-	bZJex/Q7Do9g/C2Pw74vZjNjHcYZi50ql4mOxU2v/wk9NwdouNdXxBYz4KipbZhXoONWDL6lEfO
-	dELJDGwbWJlbOT5Bwy4Xm0t7gk7zgM+CM=
-X-Received: by 2002:a17:903:a8f:b0:2b0:7531:b61e with SMTP id d9443c01a7336-2bf36889991mr42155535ad.41.1780134250482;
-        Sat, 30 May 2026 02:44:10 -0700 (PDT)
+        bh=YD6axKKp8wDht90VyqGQ3zjwLyfLDF+g7zoFDStjFGA=;
+        b=CYE+ZhEAJlqliOIDSNJ+fYKbDS1uD7YjYebjdNG72X+AfVd21WvJIBgbbm0ifd3pip
+         qxcak2/eysCtTUUL13ZGKEFDk/wovfDnVOrfVYQE/u5B+0wjXc4ngj1UPfOFjeoKsakX
+         gtD/miIBBwHHbmARsde3bzlVWx5ieOR2L77SBjzC7Wt3Z5yjQnactLje0Fu4yrenfdxp
+         LLom5+jchPYZ53NMpobn7QABIcvLIBedt0wpGHJVkzGfmdycklNvw+Gi+YGTGR1sCezi
+         kDSE9zVbWWTGS6Nusu+JjhPll7dfSceKlJZOjV/PU2v95/xODKQu9jmjOPwX2s6rOAQE
+         H3Mw==
+X-Forwarded-Encrypted: i=1; AFNElJ9XCoQhr0iriyqYSDkxjdQC+j2ukx7/c9O+ED8PLoM3/YAkHK8wElZ+Rj54Kq2Ya5btdWftkFsv5i3qhrsF@lists.infradead.org
+X-Gm-Message-State: AOJu0YwCuER0IP6B+HVGm/dl4xz+ghaLc2icUt1aKpis7C2iacyeZw38
+	Nfg+Sv4lYA+vCC+czqgp1F1xfVrWdY8ltcJVTTLuD6fyfx23YCs/de5HOOUh5A==
+X-Gm-Gg: Acq92OFtpyO2YagclAhOfH5Wmqe7TsaynkB7UR6xO+7tuQtHDhfyTxmL7wEF1jyXjlQ
+	tIRp/3NuT4S2RLLdhh4SVkMgFR+LgodKTzcuCVsozKGZGvjrBWVtGJAFZoDt+nN6+xtBFseLOMw
+	9OKKsGy5kOH1IXip7M14iVRHbxHEDlEU++QhvW3tLyxNVarP8wVlECf8zz7kfyTaLn/YgxE4Wex
+	eX0bu7v6yEjLA35FlVFN2cgd8dnmQfquvhH43/CirfgMLQimER2sMyznd7FTIs30czcRTn4rXGe
+	lWRdQykh/q4mxOULBz6hkztYi3bKL7AJ1rx/RYaL0/ZIMLWJ+klRVW4eKcseSpmbtXTs2jcalKb
+	Pz+/QqacLqy3RHzmA5AX57YVShj9tNI99VmGcwFRp7K9CHNkwNZaFokDuhuYXyzW/iK3MWwsfph
+	mm2ZvTycfFgNr1laQGY7WwQQY8+BUqCEs=
+X-Received: by 2002:a17:903:2305:b0:2ba:7881:948d with SMTP id d9443c01a7336-2bf367b214fmr38817185ad.1.1780134262731;
+        Sat, 30 May 2026 02:44:22 -0700 (PDT)
 Received: from rockpi-5b ([45.112.0.191])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2bf239e700csm61529945ad.10.2026.05.30.02.44.03
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2bf239e700csm61529945ad.10.2026.05.30.02.44.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 May 2026 02:44:09 -0700 (PDT)
+        Sat, 30 May 2026 02:44:22 -0700 (PDT)
 From: Anand Moon <linux.amoon@gmail.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -81,24 +81,24 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
 	Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Maxime Jourdan <mjourdan@baylibre.com>,
 	Hans Verkuil <hverkuil@kernel.org>,
+	Maxime Jourdan <mjourdan@baylibre.com>,
 	dri-devel@lists.freedesktop.org (open list:DRM DRIVERS FOR AMLOGIC SOCS),
 	linux-amlogic@lists.infradead.org (open list:DRM DRIVERS FOR AMLOGIC SOCS),
 	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
 	linux-kernel@vger.kernel.org (open list),
 	linux-media@vger.kernel.org (open list:MESON VIDEO DECODER DRIVER FOR AMLOGIC SOCS),
 	linux-staging@lists.linux.dev (open list:STAGING SUBSYSTEM)
-Subject: [PATCH v6 1/8] media: meson: vdec: Fix memory leaks and lifetime of m2m device
-Date: Sat, 30 May 2026 15:12:47 +0530
-Message-ID: <20260530094326.11892-2-linux.amoon@gmail.com>
+Subject: [PATCH v6 2/8] media: meson: vdec: Fix concurrent STREAMON / STREAMOFF race conditions
+Date: Sat, 30 May 2026 15:12:48 +0530
+Message-ID: <20260530094326.11892-3-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260530094326.11892-1-linux.amoon@gmail.com>
 References: <20260530094326.11892-1-linux.amoon@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260530_024411_485969_DC0457C1 
-X-CRM114-Status: GOOD (  19.90  )
+X-CRM114-CacheID: sfid-20260530_024423_744224_B7B6258C 
+X-CRM114-Status: GOOD (  19.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,199 +111,101 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Sashiko <sashiko-bot@kernel.org>, Nicolas Dufresne <nicolas@ndufresne.ca>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The driver was initializing the v4l2 m2m device instance per-session
-within vdec_open() and releasing it inside vdec_close(). This approach
-is faulty because the m2m device represents the hardware context and
-should persist across multiple open sessions.
-
-Fix this design flaw by shifting v4l2_m2m_init() to vdec_probe() and
-v4l2_m2m_release() to vdec_remove(). Correspondingly, move the m2m_dev
-pointer from struct amvdec_session to struct amvdec_core.
-
-Additionally, this patch addresses two critical resource leaks:
-1. Adds a missing v4l2_ctrl_handler_free() in vdec_close() to clean up
-   allocated control handlers upon session closure.
-2. Introduces proper unwinding logic via a new 'err_fh_del' label in
-   vdec_open() to ensure that file handles (v4l2_fh) are fully deregistered
-   if subsequent session resource allocations fail.
-
-This was identified via kmemleak:
-unreferenced object 0xffff0000205d6878 (size 8):
-  comm "v4l_id", pid 5289, jiffies 4294938580
-  hex dump (first 8 bytes):
-    40 d2 49 18 00 00 ff ff                          @.I.....
-  backtrace (crc d3204599):
-    kmemleak_alloc+0xc8/0xf0
-    __kvmalloc_node_noprof+0x60c/0x850
-    v4l2_ctrl_handler_init_class+0x1b4/0x2e8 [videodev]
-    vdec_open+0x1f4/0x788 [meson_vdec]
-    v4l2_open+0x144/0x460 [videodev]
-    chrdev_open+0x1ac/0x500
-    do_dentry_open+0x3f0/0xfe8
-    vfs_open+0x68/0x320
-    do_open+0x2d8/0x9a8
-    path_openat+0x1d0/0x4f0
-    do_filp_open+0x190/0x380
-    do_sys_openat2+0xf8/0x1b0
-    __arm64_sys_openat+0x13c/0x1e8
-    invoke_syscall+0xdc/0x268
-    el0_svc_common.constprop.0+0x178/0x258
-    do_el0_svc+0x4c/0x70
-
-Cc: Nicolas Dufresne <nicolas@ndufresne.ca>
-Reported-by: Sashiko <sashiko-bot@kernel.org>
-Closes: https://lore.kernel.org/all/20260520045905.6ACBA1F000E9@smtp.kernel.org/#t
-Fixes: 3e7f51bd9607 ("media: meson: add v4l2 m2m video decoder driver")
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
- drivers/staging/media/meson/vdec/vdec.c | 33 ++++++++++++++-----------
- drivers/staging/media/meson/vdec/vdec.h |  4 +--
- 2 files changed, 20 insertions(+), 17 deletions(-)
-
-diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
-index 4b77ec1af5a7..4ffebba2341d 100644
---- a/drivers/staging/media/meson/vdec/vdec.c
-+++ b/drivers/staging/media/meson/vdec/vdec.c
-@@ -153,7 +153,7 @@ static void vdec_m2m_job_abort(void *priv)
- {
- 	struct amvdec_session *sess = priv;
- 
--	v4l2_m2m_job_finish(sess->m2m_dev, sess->m2m_ctx);
-+	v4l2_m2m_job_finish(sess->core->m2m_dev, sess->m2m_ctx);
- }
- 
- static const struct v4l2_m2m_ops vdec_m2m_ops = {
-@@ -873,23 +873,16 @@ static int vdec_open(struct file *file)
- 
- 	sess->core = core;
- 
--	sess->m2m_dev = v4l2_m2m_init(&vdec_m2m_ops);
--	if (IS_ERR(sess->m2m_dev)) {
--		dev_err(dev, "Fail to v4l2_m2m_init\n");
--		ret = PTR_ERR(sess->m2m_dev);
--		goto err_free_sess;
--	}
--
--	sess->m2m_ctx = v4l2_m2m_ctx_init(sess->m2m_dev, sess, m2m_queue_init);
-+	sess->m2m_ctx = v4l2_m2m_ctx_init(core->m2m_dev, sess, m2m_queue_init);
- 	if (IS_ERR(sess->m2m_ctx)) {
- 		dev_err(dev, "Fail to v4l2_m2m_ctx_init\n");
- 		ret = PTR_ERR(sess->m2m_ctx);
--		goto err_m2m_release;
-+		goto err_fh_del;
- 	}
- 
- 	ret = vdec_init_ctrls(sess);
- 	if (ret)
--		goto err_m2m_release;
-+		goto err_free_sess;
- 
- 	sess->pixfmt_cap = formats[0].pixfmts_cap[0];
- 	sess->fmt_out = &formats[0];
-@@ -913,8 +906,8 @@ static int vdec_open(struct file *file)
- 
- 	return 0;
- 
--err_m2m_release:
--	v4l2_m2m_release(sess->m2m_dev);
-+err_fh_del:
-+	v4l2_fh_exit(&sess->fh);
- err_free_sess:
- 	kfree(sess);
- 	return ret;
-@@ -925,9 +918,9 @@ static int vdec_close(struct file *file)
- 	struct amvdec_session *sess = file_to_amvdec_session(file);
- 
- 	v4l2_m2m_ctx_release(sess->m2m_ctx);
--	v4l2_m2m_release(sess->m2m_dev);
- 	v4l2_fh_del(&sess->fh, file);
- 	v4l2_fh_exit(&sess->fh);
-+	v4l2_ctrl_handler_free(&sess->ctrl_handler);
- 
- 	mutex_destroy(&sess->lock);
- 	mutex_destroy(&sess->bufs_recycle_lock);
-@@ -1057,10 +1050,17 @@ static int vdec_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
-+	core->m2m_dev = v4l2_m2m_init(&vdec_m2m_ops);
-+	if (IS_ERR(core->m2m_dev)) {
-+		dev_err(dev, "Failed to initialize v4l2 m2m device\n");
-+		return PTR_ERR(core->m2m_dev);
-+	}
-+
- 	ret = v4l2_device_register(dev, &core->v4l2_dev);
- 	if (ret) {
- 		dev_err(dev, "Couldn't register v4l2 device\n");
--		return -ENOMEM;
-+		ret = -ENOMEM;
-+		goto err_m2m_release;
- 	}
- 
- 	vdev = video_device_alloc();
-@@ -1095,6 +1095,8 @@ static int vdec_probe(struct platform_device *pdev)
- err_vdev_release:
- 	video_device_release(vdev);
- 	v4l2_device_unregister(&core->v4l2_dev);
-+err_m2m_release:
-+	v4l2_m2m_release(core->m2m_dev);
- 	return ret;
- }
- 
-@@ -1104,6 +1106,7 @@ static void vdec_remove(struct platform_device *pdev)
- 
- 	video_unregister_device(core->vdev_dec);
- 	v4l2_device_unregister(&core->v4l2_dev);
-+	v4l2_m2m_release(core->m2m_dev);
- }
- 
- static struct platform_driver meson_vdec_driver = {
-diff --git a/drivers/staging/media/meson/vdec/vdec.h b/drivers/staging/media/meson/vdec/vdec.h
-index 7a5d8e871d70..cc0cfafb8a95 100644
---- a/drivers/staging/media/meson/vdec/vdec.h
-+++ b/drivers/staging/media/meson/vdec/vdec.h
-@@ -63,6 +63,7 @@ struct amvdec_session;
-  * @vdec_hevcf_clk: VDEC_HEVCF clock
-  * @esparser_reset: RESET for the PARSER
-  * @vdev_dec: video device for the decoder
-+ * @m2m_dev: v4l2 m2m device
-  * @v4l2_dev: v4l2 device
-  * @cur_sess: current decoding session
-  * @lock: video device lock
-@@ -87,6 +88,7 @@ struct amvdec_core {
- 	struct reset_control *esparser_reset;
- 
- 	struct video_device *vdev_dec;
-+	struct v4l2_m2m_dev *m2m_dev;
- 	struct v4l2_device v4l2_dev;
- 
- 	struct amvdec_session *cur_sess;
-@@ -183,7 +185,6 @@ enum amvdec_status {
-  *
-  * @core: reference to the vdec core struct
-  * @fh: v4l2 file handle
-- * @m2m_dev: v4l2 m2m device
-  * @m2m_ctx: v4l2 m2m context
-  * @ctrl_handler: V4L2 control handler
-  * @ctrl_min_buf_capture: V4L2 control V4L2_CID_MIN_BUFFERS_FOR_CAPTURE
-@@ -230,7 +231,6 @@ struct amvdec_session {
- 	struct amvdec_core *core;
- 
- 	struct v4l2_fh fh;
--	struct v4l2_m2m_dev *m2m_dev;
- 	struct v4l2_m2m_ctx *m2m_ctx;
- 	struct v4l2_ctrl_handler ctrl_handler;
- 	struct v4l2_ctrl *ctrl_min_buf_capture;
--- 
-2.50.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhlIE1lc29uIFZERUMgZHJpdmVy4oCZcyBzdGFydC9zdG9wIHN0cmVhbWluZyBwYXRocyBwcmV2
+aW91c2x5CnVwZGF0ZWQgY29yZS0+Y3VyX3Nlc3MgYW5kIHNlc3MtPnN0YXR1cyB3aXRob3V0IHN5
+bmNocm9uaXphdGlvbiwKbGVhdmluZyBhIHJhY2Ugd2luZG93IGJldHdlZW4gY29uY3VycmVudCBT
+VFJFQU1PTi9TVFJFQU1PRkYgY2FsbHMuCgpGb2xsb3dpbmcgY2hhbmdlIGludHJvZHVjZXMgcHJv
+cGVyIGxvY2tpbmcgZGlzY2lwbGluZToKCi0gSG9sZCBjb3JlLT5sb2NrIHdoZW4gY2hlY2tpbmcg
+b3IgdXBkYXRpbmcgY29yZS0+Y3VyX3Nlc3MgYW5kCiAgc2Vzcy0+c3RhdHVzIGluIHZkZWNfc3Rh
+cnRfc3RyZWFtaW5nKCkuCi0gU25hcHNob3Qgc2Vzcy0+c3RhdHVzIHVuZGVyIHRoZSBsb2NrIGlu
+IHZkZWNfc3RvcF9zdHJlYW1pbmcoKQogIHRvIHNhZmVseSBldmFsdWF0ZSBoYXJkd2FyZSBzdGF0
+ZSBhZnRlciByZWxlYXNpbmcgdGhlIG11dGV4LgotIEVuc3VyZSBlcnJvciB1bndpbmQgcGF0aHMg
+Y2xlYXIgY29yZS0+Y3VyX3Nlc3MgYW5kIHJlc2V0CiAgc2Vzcy0+c3RhdHVzIGluc2lkZSB0aGUg
+bG9jay4KClRoaXMgcHJldmVudHMgVE9DVE9VIHJhY2VzLCBhdm9pZHMgZGF0YSBjb3JydXB0aW9u
+IHdoZW4gbXVsdGlwbGUKc2Vzc2lvbnMgY29udGVuZCBmb3IgdGhlIGhhcmR3YXJlLCBhbmQgZW5z
+dXJlcyBjb25zaXN0ZW50IHNlc3Npb24KbGlmZWN5Y2xlIG1hbmFnZW1lbnQuCgpDYzogTmljb2xh
+cyBEdWZyZXNuZSA8bmljb2xhc0BuZHVmcmVzbmUuY2E+ClJlcG9ydGVkLWJ5OiBTYXNoaWtvIDxz
+YXNoaWtvLWJvdEBrZXJuZWwub3JnPgpDbG9zZXM6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2Fs
+bC8yMDI2MDUyNTEwNDM0NS5DOEQ1MDFGMDBBM0NAc210cC5rZXJuZWwub3JnLwpGaXhlczogM2U3
+ZjUxYmQ5NjA3ICgibWVkaWE6IG1lc29uOiBhZGQgdjRsMiBtMm0gdmlkZW8gZGVjb2RlciBkcml2
+ZXIiKQpTaWduZWQtb2ZmLWJ5OiBBbmFuZCBNb29uIDxsaW51eC5hbW9vbkBnbWFpbC5jb20+Ci0t
+LQogZHJpdmVycy9zdGFnaW5nL21lZGlhL21lc29uL3ZkZWMvdmRlYy5jIHwgNjIgKysrKysrKysr
+KysrKysrKysrLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDQ2IGluc2VydGlvbnMoKyksIDE2IGRl
+bGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvc3RhZ2luZy9tZWRpYS9tZXNvbi92ZGVj
+L3ZkZWMuYyBiL2RyaXZlcnMvc3RhZ2luZy9tZWRpYS9tZXNvbi92ZGVjL3ZkZWMuYwppbmRleCA0
+ZmZlYmJhMjM0MWQuLjcyMzMwMDBlMjIzMiAxMDA2NDQKLS0tIGEvZHJpdmVycy9zdGFnaW5nL21l
+ZGlhL21lc29uL3ZkZWMvdmRlYy5jCisrKyBiL2RyaXZlcnMvc3RhZ2luZy9tZWRpYS9tZXNvbi92
+ZGVjL3ZkZWMuYwpAQCAtMjg2LDExICsyODYsNiBAQCBzdGF0aWMgaW50IHZkZWNfc3RhcnRfc3Ry
+ZWFtaW5nKHN0cnVjdCB2YjJfcXVldWUgKnEsIHVuc2lnbmVkIGludCBjb3VudCkKIAlzdHJ1Y3Qg
+dmIyX3Y0bDJfYnVmZmVyICpidWY7CiAJaW50IHJldDsKIAotCWlmIChjb3JlLT5jdXJfc2VzcyAm
+JiBjb3JlLT5jdXJfc2VzcyAhPSBzZXNzKSB7Ci0JCXJldCA9IC1FQlVTWTsKLQkJZ290byBidWZz
+X2RvbmU7Ci0JfQotCiAJaWYgKHEtPnR5cGUgPT0gVjRMMl9CVUZfVFlQRV9WSURFT19PVVRQVVRf
+TVBMQU5FKQogCQlzZXNzLT5zdHJlYW1vbl9vdXQgPSAxOwogCWVsc2UKQEAgLTMwOCw5ICszMDMs
+MjkgQEAgc3RhdGljIGludCB2ZGVjX3N0YXJ0X3N0cmVhbWluZyhzdHJ1Y3QgdmIyX3F1ZXVlICpx
+LCB1bnNpZ25lZCBpbnQgY291bnQpCiAJfQogCiAJaWYgKHNlc3MtPnN0YXR1cyA9PSBTVEFUVVNf
+UlVOTklORyB8fAotCSAgICBzZXNzLT5zdGF0dXMgPT0gU1RBVFVTX05FRURTX1JFU1VNRSB8fAot
+CSAgICBzZXNzLT5zdGF0dXMgPT0gU1RBVFVTX0lOSVQpCisJICAgIHNlc3MtPnN0YXR1cyA9PSBT
+VEFUVVNfTkVFRFNfUkVTVU1FKQorCQlyZXR1cm4gMDsKKworCS8qCisJICogU2VjdXJlIHRoZSBj
+b3JlIGhhcmR3YXJlIGxvY2sgYmVmb3JlIGNoZWNraW5nIGF2YWlsYWJpbGl0eQorCSAqIGFuZCB1
+cGRhdGluZyBzZXNzaW9uIHN0YXRlcyB0byBwcmV2ZW50IFNUUkVBTU9OIHJhY2UgY29uZGl0aW9u
+cy4KKwkgKi8KKwltdXRleF9sb2NrKCZjb3JlLT5sb2NrKTsKKwlpZiAoY29yZS0+Y3VyX3Nlc3Mg
+JiYgY29yZS0+Y3VyX3Nlc3MgIT0gc2VzcykgeworCQltdXRleF91bmxvY2soJmNvcmUtPmxvY2sp
+OworCQlyZXQgPSAtRUJVU1k7CisJCWdvdG8gYnVmc19kb25lOworCX0KKworCS8qIElmIGFscmVh
+ZHkgaGFsZi1pbml0aWFsaXplZCwgZG8gbm90IHJlLWluaXRpYWxpemUgKi8KKwlpZiAoc2Vzcy0+
+c3RhdHVzID09IFNUQVRVU19JTklUKSB7CisJCW11dGV4X3VubG9jaygmY29yZS0+bG9jayk7CiAJ
+CXJldHVybiAwOworCX0KKworCXNlc3MtPnN0YXR1cyA9IFNUQVRVU19JTklUOworCWNvcmUtPmN1
+cl9zZXNzID0gc2VzczsKKwltdXRleF91bmxvY2soJmNvcmUtPmxvY2spOwogCiAJc2Vzcy0+dmlm
+aWZvX3NpemUgPSBTSVpFX1ZJRklGTzsKIAlzZXNzLT52aWZpZm9fdmFkZHIgPQpAQCAtMzQxLDgg
+KzM1Niw2IEBAIHN0YXRpYyBpbnQgdmRlY19zdGFydF9zdHJlYW1pbmcoc3RydWN0IHZiMl9xdWV1
+ZSAqcSwgdW5zaWduZWQgaW50IGNvdW50KQogCQlzZXNzLT5yZWN5Y2xlX3RocmVhZCA9IGt0aHJl
+YWRfcnVuKHZkZWNfcmVjeWNsZV90aHJlYWQsIHNlc3MsCiAJCQkJCQkgICAidmRlY19yZWN5Y2xl
+Iik7CiAKLQlzZXNzLT5zdGF0dXMgPSBTVEFUVVNfSU5JVDsKLQljb3JlLT5jdXJfc2VzcyA9IHNl
+c3M7CiAJc2NoZWR1bGVfd29yaygmc2Vzcy0+ZXNwYXJzZXJfcXVldWVfd29yayk7CiAJcmV0dXJu
+IDA7CiAKQEAgLTM1MCw2ICszNjMsMTIgQEAgc3RhdGljIGludCB2ZGVjX3N0YXJ0X3N0cmVhbWlu
+ZyhzdHJ1Y3QgdmIyX3F1ZXVlICpxLCB1bnNpZ25lZCBpbnQgY291bnQpCiAJZG1hX2ZyZWVfY29o
+ZXJlbnQoc2Vzcy0+Y29yZS0+ZGV2LCBzZXNzLT52aWZpZm9fc2l6ZSwKIAkJCSAgc2Vzcy0+dmlm
+aWZvX3ZhZGRyLCBzZXNzLT52aWZpZm9fcGFkZHIpOwogYnVmc19kb25lOgorCW11dGV4X2xvY2so
+JmNvcmUtPmxvY2spOworCWlmIChjb3JlLT5jdXJfc2VzcyA9PSBzZXNzKQorCQljb3JlLT5jdXJf
+c2VzcyA9IE5VTEw7CisJc2Vzcy0+c3RhdHVzID0gU1RBVFVTX1NUT1BQRUQ7CisJbXV0ZXhfdW5s
+b2NrKCZjb3JlLT5sb2NrKTsKKwogCXdoaWxlICgoYnVmID0gdjRsMl9tMm1fc3JjX2J1Zl9yZW1v
+dmUoc2Vzcy0+bTJtX2N0eCkpKQogCQl2NGwyX20ybV9idWZfZG9uZShidWYsIFZCMl9CVUZfU1RB
+VEVfUVVFVUVEKTsKIAl3aGlsZSAoKGJ1ZiA9IHY0bDJfbTJtX2RzdF9idWZfcmVtb3ZlKHNlc3Mt
+Pm0ybV9jdHgpKSkKQEAgLTM5OSwxMCArNDE4LDIzIEBAIHN0YXRpYyB2b2lkIHZkZWNfc3RvcF9z
+dHJlYW1pbmcoc3RydWN0IHZiMl9xdWV1ZSAqcSkKIAlzdHJ1Y3QgYW12ZGVjX2NvZGVjX29wcyAq
+Y29kZWNfb3BzID0gc2Vzcy0+Zm10X291dC0+Y29kZWNfb3BzOwogCXN0cnVjdCBhbXZkZWNfY29y
+ZSAqY29yZSA9IHNlc3MtPmNvcmU7CiAJc3RydWN0IHZiMl92NGwyX2J1ZmZlciAqYnVmOworCWVu
+dW0gYW12ZGVjX3N0YXR1cyBvbGRfc3RhdHVzOwogCi0JaWYgKHNlc3MtPnN0YXR1cyA9PSBTVEFU
+VVNfUlVOTklORyB8fAotCSAgICBzZXNzLT5zdGF0dXMgPT0gU1RBVFVTX0lOSVQgfHwKLQkgICAg
+KHNlc3MtPnN0YXR1cyA9PSBTVEFUVVNfTkVFRFNfUkVTVU1FICYmCisJLyoKKwkgKiBTYWZlbHkg
+c25hcHNob3QgdGhlIHN0YXR1cyBhbmQgY2xlYXIgdGhlIGhhcmR3YXJlIG93bmVyIGluc2lkZQor
+CSAqIHRoZSBtdXRleCB0byBwcmV2ZW50IGRhdGEgcmFjZXMgd2l0aCBjb25jdXJyZW50IFNUUkVB
+TU9OIHJlcXVlc3RzLgorCSAqLworCW11dGV4X2xvY2soJmNvcmUtPmxvY2spOworCW9sZF9zdGF0
+dXMgPSBzZXNzLT5zdGF0dXM7CisJaWYgKGNvcmUtPmN1cl9zZXNzID09IHNlc3MpCisJCWNvcmUt
+PmN1cl9zZXNzID0gTlVMTDsKKwlzZXNzLT5zdGF0dXMgPSBTVEFUVVNfU1RPUFBFRDsKKwltdXRl
+eF91bmxvY2soJmNvcmUtPmxvY2spOworCisJLyogRXZhbHVhdGUgdGhlIGhhcmR3YXJlIHN0YXRl
+IHVzaW5nIG91ciBzbmFwc2hvdCAqLworCWlmIChvbGRfc3RhdHVzID09IFNUQVRVU19SVU5OSU5H
+IHx8CisJICAgIG9sZF9zdGF0dXMgPT0gU1RBVFVTX0lOSVQgfHwKKwkgICAgKG9sZF9zdGF0dXMg
+PT0gU1RBVFVTX05FRURTX1JFU1VNRSAmJgogCSAgICAgKCFzZXNzLT5zdHJlYW1vbl9vdXQgfHwg
+IXNlc3MtPnN0cmVhbW9uX2NhcCkpKSB7CiAJCWlmICh2ZGVjX2NvZGVjX25lZWRzX3JlY3ljbGUo
+c2VzcykpCiAJCQlrdGhyZWFkX3N0b3Aoc2Vzcy0+cmVjeWNsZV90aHJlYWQpOwpAQCAtNDE1LDgg
+KzQ0Nyw2IEBAIHN0YXRpYyB2b2lkIHZkZWNfc3RvcF9zdHJlYW1pbmcoc3RydWN0IHZiMl9xdWV1
+ZSAqcSkKIAkJdmRlY19yZXNldF9idWZzX3JlY3ljbGUoc2Vzcyk7CiAJCWtmcmVlKHNlc3MtPnBy
+aXYpOwogCQlzZXNzLT5wcml2ID0gTlVMTDsKLQkJY29yZS0+Y3VyX3Nlc3MgPSBOVUxMOwotCQlz
+ZXNzLT5zdGF0dXMgPSBTVEFUVVNfU1RPUFBFRDsKIAl9CiAKIAlpZiAocS0+dHlwZSA9PSBWNEwy
+X0JVRl9UWVBFX1ZJREVPX09VVFBVVF9NUExBTkUpIHsKQEAgLTQyNSw4ICs0NTUsOCBAQCBzdGF0
+aWMgdm9pZCB2ZGVjX3N0b3Bfc3RyZWFtaW5nKHN0cnVjdCB2YjJfcXVldWUgKnEpCiAKIAkJc2Vz
+cy0+c3RyZWFtb25fb3V0ID0gMDsKIAl9IGVsc2UgewotCQkvKiBEcmFpbiByZW1haW5pbmcgcmVm
+cyBpZiB3YXMgc3RpbGwgcnVubmluZyAqLwotCQlpZiAoc2Vzcy0+c3RhdHVzID49IFNUQVRVU19S
+VU5OSU5HICYmIGNvZGVjX29wcy0+ZHJhaW4pCisJCS8qIERyYWluIHJlbWFpbmluZyByZWZzIGlm
+IHdhcyBzdGlsbCBydW5uaW5nIHVzaW5nIHRoZSBzbmFwc2hvdCAqLworCQlpZiAob2xkX3N0YXR1
+cyA+PSBTVEFUVVNfUlVOTklORyAmJiBjb2RlY19vcHMtPmRyYWluKQogCQkJY29kZWNfb3BzLT5k
+cmFpbihzZXNzKTsKIAogCQl3aGlsZSAoKGJ1ZiA9IHY0bDJfbTJtX2RzdF9idWZfcmVtb3ZlKHNl
+c3MtPm0ybV9jdHgpKSkKLS0gCjIuNTAuMQoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9n
+aWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
