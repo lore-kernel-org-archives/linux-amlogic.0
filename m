@@ -4,83 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9624CD5BD1
-	for <linux-amlogic@archiver.kernel.org>; Sun, 31 May 2026 07:52:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF630CD6E55
+	for <linux-amlogic@archiver.kernel.org>; Sun, 31 May 2026 07:57:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
-	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Hvh86G4NBKdt3HP82PkU61H2z/0WBau3ncGKpy10IBw=; b=a3s8dOvQZrPMmB
-	3SO2LW3tu2XQBxxdcJbQksfeLwfhoF1TtvmiDlVfMyy9agP5sEqX5wdnJCGVpCTLV2X1GLRx0YNKC
-	Y/BysTiOI7LORPx9RNplFJuQcDadr32RXQ+uvTtBzxJ4LE6O7pM4KA/ZL4j/JPgCZ/VUdoVmQSOKp
-	ym7cNxZkYI59zvb3eXl91hTR+COv3ysEK+IzsCzGZdN1UPvmuRKl6Pc+4Nf1PxNvv1MU0i2WwylVV
-	B7hkpKqZjlX3i3Xvro670+F+sAlcwW5wi2Qnhu/ofRNRkqgW1ADgsgnWveZ7qvmaWpuSn7UyV2N5O
-	IEjwlg/XGq5WFaw1Y4YA==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Qk8EXm7/Dxfnveufw8brOFIRyj7qnDf1zoi6PL4dzEU=; b=01FLYTTL7lDO7b
+	2UN4zveSEeVqvEB3U1XgmEQVHyVDUXQXrXC6BVZ1zemH6kNdxvkvB9pxpTD9yTwRb0rbGL93ftmxq
+	g3813zMpcHlL3QYOiVrBGmdRO8lFrNIEqZCjdDOR76jwqDeopZ2JYaGpn0QXnHkgdMmOAqtxqR5xR
+	1YBjWNh199kzMIEfI+rFCdOFDcsRLPWqV+okuxAB9Pu+WSL9RDZrTEf3/Cw4APRNaIz/S4G8++QdU
+	Y5dqk5H+yt8YriwrFNICJL4xxvGsBRcR0Tmin3kQ89r93O9wYBGXYyiqlYKnrQ5DoIzBojqg4pS9q
+	5/d7SucVopQ5MOycVETQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wTay4-00000009LdG-47jN;
-	Sun, 31 May 2026 07:52:21 +0000
+	id 1wTb2f-00000009M22-2jZ4;
+	Sun, 31 May 2026 07:57:05 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wTay2-00000009Lct-3Qbr;
-	Sun, 31 May 2026 07:52:20 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8341643998;
-	Sun, 31 May 2026 07:52:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 5BD54C2BCB4;
-	Sun, 31 May 2026 07:52:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1780213937;
-	bh=I/w0HozSi+XyRg6QSq/WH39lvvn/3zkRceEeEY8qGWE=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=I4NGTqC24tbh1Dub8fdfuCFmVKwmre6wfPk2Q+DPE104P5kXh6yz5Rfjpq3RQJZF1
-	 eOdpL+xljRusBMVfDh3D/wWxHpBu5ApoqYsyvaglxsMTPV+kOWOIhIrNrF0SO7UQjU
-	 JPG4kpgVvp9bNeQhdByr9EOcXTrxy4rIXEXghFfTUFNSObOZCMop1ytfuWI4lzejnA
-	 nlHmYv5R9GpM9eSnZI/eeSLcdciZWKBcefWbmHS1hFWAXqwUx1N7KgnGyBdydCiizk
-	 JCVL5af5PCzSiA0iEBkF2nkyLmpHUd6MDVFYhVxdR2H7zEOVA6M64WfAOv4XI2TWqv
-	 EfcG2IXnzmUKg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 43867CD6E55;
-	Sun, 31 May 2026 07:52:17 +0000 (UTC)
-From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Sun, 31 May 2026 09:51:37 +0200
-Subject: [PATCH v2] firmware: meson: sm: add stub functions when
- CONFIG_MESON_SM is disabled
-MIME-Version: 1.0
-Message-Id: <20260531-fix-missing-meson_sm-symbol-v2-1-1def8c3c169f@aliel.fr>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/33NQQ6CMBCF4auQrh1TiraWlfcwxIAdYBLamo4hE
- sLdrcS1y/9l8s0qGBMhi7pYRcKZmGLIoQ6FeIxtGBDI5RZKKi3PykJPb/DETGEAjxzDnT3w4rs
- 4gTFGO+msM1qKLDwT5vNdvzW5R+JXTMv+bC6/68+t5F93LqGEqu+0UZ29WHe6thPhdOyTaLZt+
- wCBrsjqxQAAAA==
-X-Change-ID: 20260529-fix-missing-meson_sm-symbol-7776d0d9d760
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Lukasz Luba <lukasz.luba@arm.com>
-Cc: Guillaume La Roque <glaroque@baylibre.com>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
- Mark Brown <broonie@kernel.org>, kernel test robot <lkp@intel.com>, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2615;
- i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=hEwMqxJxqL8pmXwuK2Rbg6Zwob3G2YZuQoVdSnhBZ2c=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ5b0i3XB5h02Cw6Y3pgkHHfyzGFhl3fztiUxBPeWH5r30
- CLKPetCRykLgxgXg6yYIkv/XMsT7y4fPfN1j3oKzBxWJpAhDFycAjCRrqcMfzgrHT9ffPPcmu/H
- hmld96/JJZh8u2HYyzx5ncaLE1/XaCsw/DMTqImcw1hssnHSpd3n5F7NYTM9H8dle0Vka0DmhTZ
- ZQ04A
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
- fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
-X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
- auth_id=744
-X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+	id 1wTb2d-00000009M1g-0C6p
+	for linux-amlogic@lists.infradead.org;
+	Sun, 31 May 2026 07:57:04 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 4363640AF5;
+	Sun, 31 May 2026 07:57:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECC9B1F00893;
+	Sun, 31 May 2026 07:57:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780214222;
+	bh=fdNtpbLd9EbFb23aihrGBP/wx61yrLU/BbGsNeSCf1U=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=meFlhPJMziLQtdDxTZfNqAH38H2dRkf/tcr4ulJcb851hyXupxuxw9VD8f4mv1Izp
+	 aOtaA2swHFdBMT0uu8MuUxRahhGeeHzefLMfoIjmaDzoDGjOy/Qkt9j7XZH/WFji/y
+	 P9VcWEYdTcaa5L/hV/fDAE1H2DZ94JkBUxeZ8reIBrX3Mq6/1hSjD+9JOi6NPQOoMH
+	 TzmOXiLPSp+T+KP5oJJr3OviJXsJSrIRze2SNCr3gR/jYKUKjb8zua1f7TlYLzg/a5
+	 n3KM0SXwYkMc3Ir3C9ZCgiqXSdhglKSrQhF1/XG63iCtf1/PiyrVhNj+PiIC2lJQyV
+	 KsHeFHFCT/N6g==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 2/6] drm/tidss: Open-code drm_simple_encoder_init()
+To: "Naman Arora" <namanarora029@gmail.com>
+Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
+In-Reply-To: <20260531073532.8609-3-namanarora029@gmail.com>
+References: <20260531073532.8609-3-namanarora029@gmail.com>
+Date: Sun, 31 May 2026 07:57:01 +0000
+Message-Id: <20260531075701.ECC9B1F00893@smtp.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260531_005218_906324_CB1FF716 
-X-CRM114-Status: UNSURE (   9.90  )
+X-CRM114-CacheID: sfid-20260531_005703_112494_7B7C22A5 
+X-CRM114-Status: UNSURE (   9.86  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -93,82 +65,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: linux-kernel-dev@aliel.fr
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-
-After merging the thermal tree, linux-next build (arm_multi_v7
-defconfig) failed like this:
-
-arm-linux-gnueabihf-ld: drivers/thermal/amlogic_thermal.o: in function `amlogic_thermal_probe_sm':
-/tmp/next/build/drivers/thermal/amlogic_thermal.c:196:(.text+0x2f4): undefined reference to `meson_sm_get'
-arm-linux-gnueabihf-ld: /tmp/next/build/drivers/thermal/amlogic_thermal.c:205:(.text+0x320): undefined reference to `meson_sm_get_thermal_calib'
-
-Add inline stub implementations of meson_sm_get() and
-meson_sm_get_thermal_calib() behind an #else guard so that drivers
-including this header can be compiled without CONFIG_MESON_SM .
-
-Fixes: b21d88de6918 ("thermal/drivers/amlogic: Add support for secure monitor calibration readout")
-Closes: https://lore.kernel.org/oe-kbuild-all/202605291530.en7aGn7w-lkp@intel.com/
-Reported-by: Mark Brown <broonie@kernel.org>
-Reported-by: kernel test robot <lkp@intel.com>
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
-Changes in v2:
-- Replace #ifdef CONFIG_MESON_SM by #if IS_ENABLED(CONFIG_MESON_SM)
-  to cover builtin and module in config.
-- Add missing trailers for kernel test robot.
-- Link to v1: https://lore.kernel.org/r/20260530-fix-missing-meson_sm-symbol-v1-1-3fb672b989d4@aliel.fr
----
- include/linux/firmware/meson/meson_sm.h | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
-
-diff --git a/include/linux/firmware/meson/meson_sm.h b/include/linux/firmware/meson/meson_sm.h
-index 3ebc2bd9a9760..baecdaf263f41 100644
---- a/include/linux/firmware/meson/meson_sm.h
-+++ b/include/linux/firmware/meson/meson_sm.h
-@@ -27,8 +27,25 @@ int meson_sm_call_write(struct meson_sm_firmware *fw, void *buffer,
- int meson_sm_call_read(struct meson_sm_firmware *fw, void *buffer,
- 		       unsigned int bsize, unsigned int cmd_index, u32 arg0,
- 		       u32 arg1, u32 arg2, u32 arg3, u32 arg4);
-+
-+#if IS_ENABLED(CONFIG_MESON_SM)
-+
- struct meson_sm_firmware *meson_sm_get(struct device_node *firmware_node);
- int meson_sm_get_thermal_calib(struct meson_sm_firmware *fw, u32 *trim_info,
- 			       u32 tsensor_id);
- 
-+#else
-+
-+static inline struct meson_sm_firmware *meson_sm_get(struct device_node *firmware_node)
-+{
-+	return NULL;
-+}
-+static inline int meson_sm_get_thermal_calib(struct meson_sm_firmware *fw,
-+					     u32 *trim_info, u32 tsensor_id)
-+{
-+	return -EINVAL;
-+}
-+
-+#endif
-+
- #endif /* _MESON_SM_FW_H_ */
-
----
-base-commit: 3929405c64376a8a54c794e8a4485023b108a97e
-change-id: 20260529-fix-missing-meson_sm-symbol-7776d0d9d760
-
-Best regards,
--- 
-Ronald Claveau <linux-kernel-dev@aliel.fr>
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpQcmUtZXhpc3RpbmcgaXNzdWVzOgot
+IFtIaWdoXSBVc2UtQWZ0ZXItRnJlZSBvbiBkcml2ZXIgdW5iaW5kIG9yIHByb2JlIGZhaWx1cmUg
+ZHVlIHRvIG1peGVkIGRldm0vZHJtbSBsaWZlY3ljbGVzIGZvciB0aGUgY29tYmluZWQgZW5jb2Rl
+ci9icmlkZ2Ugc3RydWN0dXJlLgotLQoKY29tbWl0IGI3NDIxZjJhMDYzNGQ0YTY0ODg0NzhjYjE2
+NTEzOWI5MWY5YWZjN2QKQXV0aG9yOiBOYW1hbiBBcm9yYSA8bmFtYW5hcm9yYTAyOUBnbWFpbC5j
+b20+Cgpkcm0vdGlkc3M6IE9wZW4tY29kZSBkcm1fc2ltcGxlX2VuY29kZXJfaW5pdCgpCgpUaGUg
+aGVscGVyIGRybV9zaW1wbGVfZW5jb2Rlcl9pbml0KCkgaXMgYSB0aGluIHdyYXBwZXIgYXJvdW5k
+CmRybV9lbmNvZGVyX2luaXQoKSB3aXRoIGEgc2ltcGxlIGRlc3Ryb3ktb25seSBlbmNvZGVyIGZ1
+bmNzIHN0cnVjdC4KUmVtb3ZlIHRoZSBkZXBlbmRlbmN5IG9uIGRybV9zaW1wbGVfa21zX2hlbHBl
+ciBieSBvcGVuLWNvZGluZyB0aGUKZW5jb2RlciBpbml0aWFsaXphdGlvbiBkaXJlY3RseSBpbiB0
+aGUgZHJpdmVyLgoKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3RpZHNzL3RpZHNzX2Vu
+Y29kZXIuYyBiL2RyaXZlcnMvZ3B1L2RybS90aWRzcy90aWRzc19lbmNvZGVyLmMKPiBpbmRleCAz
+NGRiOGQyYTM3OTJlLi4xODQxZGMxNGM3MzliIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS90aWRzcy90aWRzc19lbmNvZGVyLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vdGlkc3MvdGlk
+c3NfZW5jb2Rlci5jCgpbIC4uLiBdCgo+IEBAIC05NSw4ICs5OCw5IEBAIGludCB0aWRzc19lbmNv
+ZGVyX2NyZWF0ZShzdHJ1Y3QgdGlkc3NfZGV2aWNlICp0aWRzcywKPiAgCWlmIChJU19FUlIodF9l
+bmMpKQo+ICAJCXJldHVybiBQVFJfRVJSKHRfZW5jKTsKPiAgCj4gLQlyZXQgPSBkcm1fc2ltcGxl
+X2VuY29kZXJfaW5pdCgmdGlkc3MtPmRkZXYsICZ0X2VuYy0+ZW5jb2RlciwKPiAtCQkJCSAgICAg
+IGVuY29kZXJfdHlwZSk7Cj4gKwlyZXQgPSBkcm1fZW5jb2Rlcl9pbml0KCZ0aWRzcy0+ZGRldiwg
+JnRfZW5jLT5lbmNvZGVyLAo+ICsJCQkgICAgICAgJnRpZHNzX2RybV9lbmNvZGVyX2Z1bmNzLAo+
+ICsJCQkgICAgICAgZW5jb2Rlcl90eXBlLCBOVUxMKTsKCltTZXZlcml0eTogSGlnaF0KVGhpcyBp
+cyBhIHByZS1leGlzdGluZyBpc3N1ZSwgYnV0IGNvdWxkIHRoaXMgbWl4IG9mIGRldm0gYW5kIGRy
+bSBsaWZlY3ljbGVzCmxlYWQgdG8gYSB1c2UtYWZ0ZXItZnJlZSBkdXJpbmcgZHJpdmVyIHVuYmlu
+ZCBvciBwcm9iZSBmYWlsdXJlPwoKVGhlIHRfZW5jIHN0cnVjdCBpcyBhbGxvY2F0ZWQgdXNpbmcg
+ZGV2bV9kcm1fYnJpZGdlX2FsbG9jKCksIGdpdmluZyBpdCBhbgppbml0aWFsIHJlZmNvdW50IG9m
+IDEuIEhlcmUsIGRybV9lbmNvZGVyX2luaXQoKSByZWdpc3RlcnMgdGhlIGVtYmVkZGVkCnRfZW5j
+LT5lbmNvZGVyLiBMYXRlciBpbiB0aGlzIGZ1bmN0aW9uLCBkcm1fYnJpZGdlX2F0dGFjaCgpIHdp
+bGwgaW5jcmVhc2UKdGhlIHJlZmNvdW50IHRvIDIuCgpEdXJpbmcgZHJpdmVyIHVuYmluZCwgZGV2
+cmVzIExJRk8gY2xlYW51cCBleGVjdXRlcyB0aGUgYnJpZGdlIHJlbGVhc2UgYWN0aW9uLApjYWxs
+aW5nIGRybV9icmlkZ2VfcHV0KCkgYW5kIGRyb3BwaW5nIHRoZSByZWZjb3VudCB0byAxLiBOZXh0
+LCB0aGUgZHJtX2RldmljZQpyZWxlYXNlIGFjdGlvbiB0cmlnZ2VycyBkcm1fbW9kZV9jb25maWdf
+Y2xlYW51cCgpLCB3aGljaCBjYWxscwpkcm1fZW5jb2Rlcl9jbGVhbnVwKCkuCgpJbnNpZGUgZHJt
+X2VuY29kZXJfY2xlYW51cCgpLCBjYWxsaW5nIGRybV9icmlkZ2VfZGV0YWNoKCkgZHJvcHMgdGhl
+IGZpbmFsCnJlZmNvdW50IHRvIDAsIGNhdXNpbmcgdF9lbmMgdG8gYmUgZnJlZWQuIEltbWVkaWF0
+ZWx5IGFmdGVyIHRoYXQsCmRybV9lbmNvZGVyX2NsZWFudXAoKSBhY2Nlc3NlcyB0aGUgbm93LWZy
+ZWVkIGVuY29kZXIgc3RydWN0dXJlLgoKQSBzaW1pbGFyIGlzc3VlIGFwcGVhcnMgdG8gaGFwcGVu
+IGlmIGRybV9icmlkZ2VfYXR0YWNoKCkgZmFpbHMgZHVyaW5nIHByb2JlLAphcyBkZXZyZXMgd291
+bGQgZnJlZSB0X2VuYywgbGVhdmluZyBhIGRhbmdsaW5nIHBvaW50ZXIgZm9yCmRybV9tb2RlX2Nv
+bmZpZ19jbGVhbnVwKCkgdG8gdHJpcCBvdmVyLgoKPiAgCWlmIChyZXQpCj4gIAkJcmV0dXJuIHJl
+dDsKPgoKLS0gClNhc2hpa28gQUkgcmV2aWV3IMK3IGh0dHBzOi8vc2FzaGlrby5kZXYvIy9wYXRj
+aHNldC8yMDI2MDUzMTA3NDYyNy44OTM2LTEtbmFtYW5hcm9yYTAyOUBnbWFpbC5jb20/cGFydD0y
+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1h
+bWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0
+cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
