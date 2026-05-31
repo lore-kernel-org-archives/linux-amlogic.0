@@ -4,86 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81C0ACD6E53
-	for <linux-amlogic@archiver.kernel.org>; Sat, 30 May 2026 18:05:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3557BCD5BD1
+	for <linux-amlogic@archiver.kernel.org>; Sun, 31 May 2026 07:36:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GNO2BkGCYSsxmUBj4r5qN1UA2ZjbdR558RCPAZyCpZM=; b=AdFiaAh53AuG0h
-	WxaHs3NMjcTEXXrJpZWooJ1vbmoxLkgU37L744YJGr5n2IS/WLMPmDORIFNYZPg74eJhmiraSo/fb
-	JLIsjbdqhfwImFr0wAcMZdlOk/pmq7S8OtId89jv84g8Oei4SZYKETWFoClN8nnEbKdIurNg/ycDL
-	7Rd8sBSu1wicVuoL52TZg5A+F9F7tD4zJYlqKx0uBYpRgJZ24ihZmH/GgNYP9dJr9saVavQWUkkCu
-	EJ6sQxv8GLAwzC1+j+BRbezcH9O6jkuNMM9k8gfExIDNPCQjgEAIOx+flp0jMfcQO6EIe0l7i0tm2
-	8TrImTOQfBdRyJHHf0XQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=VRffj3IzsrwRktEgXcmPoOs8RggaTdGAQ1Ebxu6xQkM=; b=UWSm4EUaGDkH7Y
+	VQPQ8bEm2IoaWJ1MJ6oe6Q/Amt90eWJPeM5u+DA7KbQIbjkknMf39Jw9rdO/g1pMYJrHM/Fv1J71r
+	HtavO9Lv/3/mbuKlB8cV0gh1lkQRVoEApBbvAzvZvrEfkmfO98DxLxArx5u1amBdH2Cz1tQIqA+8Q
+	DWFxyXrsJ4UYh/FwnnfwQ2oEkjo1DB0G0M/0NA8xxJLQ8VT72bhnoDk3mxgFcy0w6t0tSrLFl8ylR
+	nKZsoHTTVURS7cwMbeHaH/olIPryLwrK7zFzwiM7407K4zIoMfEzSlm8Jeh6asMfgirb5lJwoLQJa
+	QmgbEhfRQB77O9z0VLWQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wTO3p-00000008zW2-0pr2;
-	Sat, 30 May 2026 18:05:25 +0000
-Received: from mgamail.intel.com ([198.175.65.9])
+	id 1wTaig-00000009KOT-1pqu;
+	Sun, 31 May 2026 07:36:26 +0000
+Received: from mail-pf1-x42f.google.com ([2607:f8b0:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wTO3j-00000008zVO-2K0b;
-	Sat, 30 May 2026 18:05:21 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1780164320; x=1811700320;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=CmIOsDhzmaoHfGl24Cswm9/46h1EqKgKFEAM5HlR5l8=;
-  b=hBo4JH33Ge79SrsNdBn2aJes2LEOcri5GiR1k7UcorOGvKecOFXdoXnq
-   i1OlcQEQpy/0mLQdg/kROt9KvWo1NWW6xHfMgZpx2zWpbDXZEuDvAEoa8
-   lBCNtg+05xr11EVvFBrXe1dyKSnQ3o3aKkMguPq7EXOe/7jjKcYQJuJx9
-   4JDWO5RuZY1GGbTYIjwTc1aG5lSgHw5C49khkIejCjE4AJQJTZZT3AXvg
-   F1x8iLjf7la/bXHz1XTPK0lbukehyLAaRz7rS+ABH72fWo2Ry5xc1hxBh
-   TkkLDaAfzUHiQMn2AHQxyOJ/f1ImWth6I2fQF/hq3iv4spKA7uzSiCo87
-   g==;
-X-CSE-ConnectionGUID: 5xMu6DZKSfGf75nVPRecgg==
-X-CSE-MsgGUID: HzFXs6dNQ0qIPymGs8c68A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11802"; a="103655847"
-X-IronPort-AV: E=Sophos;i="6.24,177,1774335600"; 
-   d="scan'208";a="103655847"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 May 2026 11:05:19 -0700
-X-CSE-ConnectionGUID: VCmEDFrQTAinCjDCAOl9rw==
-X-CSE-MsgGUID: 1EOOZkKNQ1u+i7ncO+8olQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,177,1774335600"; 
-   d="scan'208";a="281261019"
-Received: from lkp-server01.sh.intel.com (HELO f0d55cb201f0) ([10.239.97.150])
-  by orviesa001.jf.intel.com with ESMTP; 30 May 2026 11:05:14 -0700
-Received: from kbuild by f0d55cb201f0 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1wTO3b-000000008m2-1KnD;
-	Sat, 30 May 2026 18:05:11 +0000
-Date: Sun, 31 May 2026 02:04:16 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Daniel Lezcano <daniel.lezcano@kernel.org>,
-	Zhang Rui <rui.zhang@intel.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Lukasz Luba <lukasz.luba@arm.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Guillaume La Roque <glaroque@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	id 1wTaid-00000009KNX-3Sa5
+	for linux-amlogic@lists.infradead.org;
+	Sun, 31 May 2026 07:36:25 +0000
+Received: by mail-pf1-x42f.google.com with SMTP id d2e1a72fcca58-84229481d44so305615b3a.0
+        for <linux-amlogic@lists.infradead.org>; Sun, 31 May 2026 00:36:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780212982; x=1780817782; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=n4UPEtYv85DDTxdGxZ3GOa4tyKg7+fMqKk+6YoXF2Fw=;
+        b=JenlJnCQ7tRsugnbFQEDF+v7bJGFRsAeBbWb4KTWRqHfm3dNUhTUwVmYVmYaQnpsbJ
+         wN+NW+gzLl+9M0/BK03363dXWWSHAnzcgu/XcWTdpnPdX0PHznlCj429KDFd6C5MfRSI
+         gRTo/Al9zaGj8FeOjA57zLT0TlkmDFlAEbTnWpxQRlJAwE6Tz4g6kjKkoG1GWlX4aFiD
+         CmbfeJh0QUkH/YeMNPzO/ArGXd6TkjMTvouHWWeW+2mOEGxwJs4vFhQCwNhwlz2FdKUr
+         kZWv+PY6BVP6tu063Mj33IsW4eoT25Fsx9wORXQgABvfkgbFi4tDlo0yo4Oi1pVMYTDa
+         53+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780212982; x=1780817782;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=n4UPEtYv85DDTxdGxZ3GOa4tyKg7+fMqKk+6YoXF2Fw=;
+        b=QfPUe5jiIQCg1GLHoyNVQb19IqQmYWg61WpVdPQ0P4EPvWtxhSscNxZvGAfC604SPE
+         X1EemjPGcRugAsVRLMm3tEDyLVbqw8uVrSxyFZaStN1sBQSifcMcFwDXWyvN//UZW8wf
+         KVF952cpAltAwiyImsUBsCVTXVILoZ9672EtXTRaRRKC6R6vLQ4/50RkLpFwIF5QQYj5
+         l9X/qX/96iKtWYgvB70cqye3pk4jBkk+uPvTrxDYakn2m4Q03hQXFSK3D2yKbVOXct4q
+         WfzpAQ+PUSfk6jsGhMe0835JntwfD4Y83PH4yTJPHYsuzgpKx9UDuAy3zuTWcdbMDRkC
+         FcPw==
+X-Forwarded-Encrypted: i=1; AFNElJ9VWZTSWl+fE7FSahJjaTxAvaOYvCcYV2CW4nI5D2pubLALUpXM/+UI9tTIXGqorN71x7w8O4gsB16Mbmp/@lists.infradead.org
+X-Gm-Message-State: AOJu0YxSSntraRTZ1YdzuMCFiuNBX3PWbDZe457WCVcgcg4YGCZN6Y64
+	UVBv6lWR3/+LTInYFDCThFpIIxjpGp4JPiRQjcFFENHrdYh1+EMvxEu3
+X-Gm-Gg: Acq92OGXUOwm+fUcgwFzvVi6QcjUdVQRs0vtLqRWgvvnY7eO7Q/SQYvBWRhFMF6IQ9v
+	ZXIomhNzYyNXy5Gfg+Q4rJRUz05tdzC9+CroA1FgyeXzxKIuWq61lVjgVzWj9lSwC6PXq1cD2wx
+	o0iuVBS5ZfaMOU0DWR11s2IfBG4S0P3w/w3qHQSscPIp/cS+utB7IVEyfg3qLhEFNXTWIEKAOrw
+	glnvpQIOidgbIkY8mpXGnyAj9btd2qop0ucOr8/EaS8OdHtKtu8lVXlQxJ/u+DGsGowz6sUT3N8
+	ZD0hWrKOC00DzhBgZy9+lrAq21fwwFNYSUWCmtDRkNP2OhukTIpMAuifO+96YPwHgXp8BQpeIfV
+	xHWrItU39IBLPcCNYOVlAyzldiFwx9hh7ypHMRdGcZreG7XaNCvRpxANHln57LcNlCdTjHY97qI
+	sibmNo+/2Klxz8du9ztNVpF3JiqjlR42rNlAenNoUw4g==
+X-Received: by 2002:a05:6a00:1d15:b0:835:3d5e:1dd3 with SMTP id d2e1a72fcca58-8422579f2c6mr6160781b3a.42.1780212982185;
+        Sun, 31 May 2026 00:36:22 -0700 (PDT)
+Received: from Naman.Naman ([2401:4900:1f39:4c4a:1e56:d301:ce43:ac25])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8422e712309sm3760709b3a.59.2026.05.31.00.36.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 31 May 2026 00:36:21 -0700 (PDT)
+From: Naman Arora <namanarora029@gmail.com>
+To: dri-devel@lists.freedesktop.org
+Cc: tzimmermann@suse.de,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	stefan@agner.ch,
+	alison.wang@nxp.com,
+	jyri.sarha@iki.fi,
+	tomi.valkeinen@ideasonboard.com,
+	kraxel@redhat.com,
+	dmitry.osipenko@collabora.com,
+	neil.armstrong@linaro.org,
+	khilman@baylibre.com,
+	linux-kernel@vger.kernel.org,
+	virtualization@lists.linux.dev,
+	linux-amlogic@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-	Ronald Claveau <linux-kernel-dev@aliel.fr>
-Subject: Re: [PATCH] firmware: meson: sm: add stub functions when
- CONFIG_MESON_SM is disabled
-Message-ID: <202605310154.bmdMBZHJ-lkp@intel.com>
-References: <20260530-fix-missing-meson_sm-symbol-v1-1-3fb672b989d4@aliel.fr>
+	Naman Arora <namanarora029@gmail.com>
+Subject: [PATCH 0/6] drm: Open-code drm_simple_encoder_init() in several drivers
+Date: Sun, 31 May 2026 13:05:26 +0530
+Message-Id: <20260531073532.8609-1-namanarora029@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20260530-fix-missing-meson_sm-symbol-v1-1-3fb672b989d4@aliel.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260530_110519_699620_AF12BC1F 
-X-CRM114-Status: GOOD (  10.96  )
+X-CRM114-CacheID: sfid-20260531_003623_865632_9FBA7E79 
+X-CRM114-Status: UNSURE (   6.27  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,89 +113,41 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Ronald,
+drm_simple_encoder_init() is a thin wrapper around drm_encoder_init()
+that provides a simple destroy-only encoder funcs struct. This series
+removes the dependency on drm_simple_kms_helper in six drivers by
+open-coding the encoder initialization directly.
 
-kernel test robot noticed the following build errors:
+Each patch adds a static drm_encoder_funcs struct with a destroy
+callback and replaces drm_simple_encoder_init() with drm_encoder_init().
+The drm_simple_kms_helper.h include is removed where it is no longer
+needed.
 
-[auto build test ERROR on 3929405c64376a8a54c794e8a4485023b108a97e]
+Drivers converted in this series:
+- fsl-dcu
+- tidss
+- virtio
+- meson (encoder_cvbs, encoder_hdmi, encoder_dsi)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ronald-Claveau-via-B4-Relay/firmware-meson-sm-add-stub-functions-when-CONFIG_MESON_SM-is-disabled/20260530-150837
-base:   3929405c64376a8a54c794e8a4485023b108a97e
-patch link:    https://lore.kernel.org/r/20260530-fix-missing-meson_sm-symbol-v1-1-3fb672b989d4%40aliel.fr
-patch subject: [PATCH] firmware: meson: sm: add stub functions when CONFIG_MESON_SM is disabled
-config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20260531/202605310154.bmdMBZHJ-lkp@intel.com/config)
-compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260531/202605310154.bmdMBZHJ-lkp@intel.com/reproduce)
+Naman Arora (6):
+  drm/fsl-dcu: Open-code drm_simple_encoder_init()
+  drm/tidss: Open-code drm_simple_encoder_init()
+  drm/virtio: Open-code drm_simple_encoder_init()
+  drm/meson: Open-code drm_simple_encoder_init() in encoder_cvbs
+  drm/meson: Open-code drm_simple_encoder_init() in encoder_hdmi
+  drm/meson: Open-code drm_simple_encoder_init() in encoder_dsi
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202605310154.bmdMBZHJ-lkp@intel.com/
+ drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_rgb.c  | 10 +++++++---
+ drivers/gpu/drm/meson/meson_encoder_cvbs.c | 10 +++++++---
+ drivers/gpu/drm/meson/meson_encoder_dsi.c  | 10 +++++++---
+ drivers/gpu/drm/meson/meson_encoder_hdmi.c | 10 +++++++---
+ drivers/gpu/drm/tidss/tidss_encoder.c      | 10 +++++++---
+ drivers/gpu/drm/virtio/virtgpu_display.c   |  8 ++++++--
+ 6 files changed, 41 insertions(+), 17 deletions(-)
 
-All errors (new ones prefixed by >>):
+-- 
+2.20.1
 
->> drivers/firmware/meson/meson_sm.c:233:27: error: redefinition of 'meson_sm_get'
-     233 | struct meson_sm_firmware *meson_sm_get(struct device_node *sm_node)
-         |                           ^
-   include/linux/firmware/meson/meson_sm.h:39:41: note: previous definition is here
-      39 | static inline struct meson_sm_firmware *meson_sm_get(struct device_node *firmware_node)
-         |                                         ^
->> drivers/firmware/meson/meson_sm.c:258:5: error: redefinition of 'meson_sm_get_thermal_calib'
-     258 | int meson_sm_get_thermal_calib(struct meson_sm_firmware *fw, u32 *trim_info,
-         |     ^
-   include/linux/firmware/meson/meson_sm.h:43:19: note: previous definition is here
-      43 | static inline int meson_sm_get_thermal_calib(struct meson_sm_firmware *fw,
-         |                   ^
-   2 errors generated.
-
-
-vim +/meson_sm_get +233 drivers/firmware/meson/meson_sm.c
-
-2c4ddb215521d5 Carlo Caione   2016-08-27  225  
-8cde3c2153e8f5 Carlo Caione   2019-07-31  226  /**
-8cde3c2153e8f5 Carlo Caione   2019-07-31  227   * meson_sm_get - get pointer to meson_sm_firmware structure.
-8cde3c2153e8f5 Carlo Caione   2019-07-31  228   *
-8cde3c2153e8f5 Carlo Caione   2019-07-31  229   * @sm_node:		Pointer to the secure-monitor Device Tree node.
-8cde3c2153e8f5 Carlo Caione   2019-07-31  230   *
-8cde3c2153e8f5 Carlo Caione   2019-07-31  231   * Return:		NULL is the secure-monitor device is not ready.
-8cde3c2153e8f5 Carlo Caione   2019-07-31  232   */
-8cde3c2153e8f5 Carlo Caione   2019-07-31 @233  struct meson_sm_firmware *meson_sm_get(struct device_node *sm_node)
-8cde3c2153e8f5 Carlo Caione   2019-07-31  234  {
-8cde3c2153e8f5 Carlo Caione   2019-07-31  235  	struct platform_device *pdev = of_find_device_by_node(sm_node);
-8ece3173f87df0 Johan Hovold   2025-07-25  236  	struct meson_sm_firmware *fw;
-8cde3c2153e8f5 Carlo Caione   2019-07-31  237  
-8cde3c2153e8f5 Carlo Caione   2019-07-31  238  	if (!pdev)
-8cde3c2153e8f5 Carlo Caione   2019-07-31  239  		return NULL;
-8cde3c2153e8f5 Carlo Caione   2019-07-31  240  
-8ece3173f87df0 Johan Hovold   2025-07-25  241  	fw = platform_get_drvdata(pdev);
-8ece3173f87df0 Johan Hovold   2025-07-25  242  
-8ece3173f87df0 Johan Hovold   2025-07-25  243  	put_device(&pdev->dev);
-8ece3173f87df0 Johan Hovold   2025-07-25  244  
-8ece3173f87df0 Johan Hovold   2025-07-25  245  	return fw;
-8cde3c2153e8f5 Carlo Caione   2019-07-31  246  }
-8cde3c2153e8f5 Carlo Caione   2019-07-31  247  EXPORT_SYMBOL_GPL(meson_sm_get);
-8cde3c2153e8f5 Carlo Caione   2019-07-31  248  
-1c5cb7391ef5f8 Ronald Claveau 2026-04-24  249  /**
-1c5cb7391ef5f8 Ronald Claveau 2026-04-24  250   * meson_sm_get_thermal_calib - Read thermal sensor calibration data.
-1c5cb7391ef5f8 Ronald Claveau 2026-04-24  251   * @fw:		Pointer to secure-monitor firmware.
-1c5cb7391ef5f8 Ronald Claveau 2026-04-24  252   * @trim_info:	Pointer to store the returned calibration data.
-1c5cb7391ef5f8 Ronald Claveau 2026-04-24  253   * @tsensor_id:	Sensor index to identify which sensor's calibration data
-1c5cb7391ef5f8 Ronald Claveau 2026-04-24  254   *		to retrieve
-1c5cb7391ef5f8 Ronald Claveau 2026-04-24  255   *
-1c5cb7391ef5f8 Ronald Claveau 2026-04-24  256   * Return: 0 on success, negative error code on failure.
-1c5cb7391ef5f8 Ronald Claveau 2026-04-24  257   */
-1c5cb7391ef5f8 Ronald Claveau 2026-04-24 @258  int meson_sm_get_thermal_calib(struct meson_sm_firmware *fw, u32 *trim_info,
-1c5cb7391ef5f8 Ronald Claveau 2026-04-24  259  			       u32 tsensor_id)
-1c5cb7391ef5f8 Ronald Claveau 2026-04-24  260  {
-1c5cb7391ef5f8 Ronald Claveau 2026-04-24  261  	return meson_sm_call(fw, SM_THERMAL_CALIB_READ, trim_info, tsensor_id,
-1c5cb7391ef5f8 Ronald Claveau 2026-04-24  262  			     0, 0, 0, 0);
-1c5cb7391ef5f8 Ronald Claveau 2026-04-24  263  }
-1c5cb7391ef5f8 Ronald Claveau 2026-04-24  264  EXPORT_SYMBOL_GPL(meson_sm_get_thermal_calib);
-1c5cb7391ef5f8 Ronald Claveau 2026-04-24  265  
-
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
 _______________________________________________
 linux-amlogic mailing list
