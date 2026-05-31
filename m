@@ -4,53 +4,143 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74FEACD6E55
-	for <linux-amlogic@archiver.kernel.org>; Sun, 31 May 2026 08:25:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86B59CD5BD1
+	for <linux-amlogic@archiver.kernel.org>; Sun, 31 May 2026 08:41:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nu9E5lwZtqsay2TsiQPw6VauMoheVj3RMQihazzw4kc=; b=Le6mnArSVLDdQc
-	Pl5v1TowEp5HOpg6RJ3Vky+0OOsCl/gapZ+monMFcWC4ZwEh6lGdSYWkgx3HMB+6N1erhLN1JZ3pE
-	PesuQRhjVPfzfARYRm/4LD6b9ZvmiLf+2exlmeTlc5Qh3mBj9WG7rY7uqP5KyDzYXBnSOANbYo+f3
-	UXLM7s4DYW7WLqJpYFlvE+X/qOcTzBcieq2X4jgporTdeAZuMe7LYx8I/odatVC0GcQR9gghfO8oB
-	K/AvY9ag6yxEV/lcY1RWDsYm0n9k0mF0wRN2NXPuCZgXNr/pTg/ppdf5d7TfrhbXrgiXIqX2rX3/z
-	d6HInR6N7ht9q6ISTWCQ==;
+	List-Owner; bh=9w1/E8WHgQ1N2Y6STlECddCvHB3PphQ5EbFqg/vxaOY=; b=XlkUNtQbn7hs8P
+	hpPIL8m5OzQ49fvBmt0EMti1VULBQWBo+zM7GkvjY9POMiTlzS9hqsqF4UYlQ7sbiP1GMqh8ZouUj
+	A+GxGK/LJ4DB14BlAUW+imcB1CEJw1t2YBDr6smpLdAM6ofrP6Yo8yrzlgNpSJINyhTJwAsgVzblJ
+	HeftbfIL7z1Ea/ksnSdVAVhR/SynOg6Sw6HLUYBG6rNHbiHIFDxoKajLhjjWR8OrDPyCaQ2+ETamL
+	OXBBNDBcHQ8TXK2kNL2LzY7XPgShfXayzBp0M6AU9M1QRuP+f6LmshGeTTVJ6haSnwGGzFRfdHJWr
+	j/AhqeC74Un3zlpF/rzA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wTbUV-00000009NLS-1zFw;
-	Sun, 31 May 2026 08:25:51 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1wTbjx-00000009O1h-3R4x;
+	Sun, 31 May 2026 08:41:49 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wTbUT-00000009NLF-3TCd
+	id 1wTbju-00000009O0t-1yml
 	for linux-amlogic@lists.infradead.org;
-	Sun, 31 May 2026 08:25:49 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id D3BBB60220;
-	Sun, 31 May 2026 08:25:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D98F81F00893;
-	Sun, 31 May 2026 08:25:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780215947;
-	bh=XU/2vv1g14VpA84ZpXCUHR0wUln8A+2pZwXwb3xawBA=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=IV54rJKfj/g7FG79qClTbAtB3V17serAEciOY480+9ibtCstcl8bvi7tRtt0JvM25
-	 CYCXZ+iW/rVDypJkcnK1PSZpu0ihzD+rwj3X0nv1hhitaZ8GNPMItUqd5sF9FtBfxY
-	 qwFmjzHcmJI3+ntZbNoaUZx5zZl8dGo+8LHGHf+GDSg5JGFHes/s56chJcx2hY+25c
-	 AwWgGLQDsqgeGnIz1LoTYwNJl7aG9PZxvCWb17bws/L65PUaCtv5ltWMgO7m/Q7xW0
-	 SQBfQ+MzINl4LT+ra5mqesA3kBYCNrD7KejZnOMdhufNy0cs8GPDzujaiUMyNdZXHP
-	 t3A+pvCq4l17g==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 6/6] drm/meson: Open-code drm_simple_encoder_init() in
- encoder_dsi
-To: "Naman Arora" <namanarora029@gmail.com>
-Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
-In-Reply-To: <20260531074627.8936-3-namanarora029@gmail.com>
-References: <20260531074627.8936-3-namanarora029@gmail.com>
-Date: Sun, 31 May 2026 08:25:46 +0000
-Message-Id: <20260531082546.D98F81F00893@smtp.kernel.org>
+	Sun, 31 May 2026 08:41:48 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64V3eMfW1850478
+	for <linux-amlogic@lists.infradead.org>; Sun, 31 May 2026 08:41:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	LSSHczkNGcyBGltE9n3/Qlzx5H59gm8hjXNQO9LCZb8=; b=cZ4EEOxo0R0xP1cU
+	uqEA0gxK3qJB1dGa68+Nwb6j4ak5fuDQlS+mSQwNHLxzaWQugt7N/jSHX7xGjQHU
+	/Wx7Biv29sb+3uEqCwmeL/3HlvBvd7Ez9cXTqGkIyr7H9GzeA1vrscAzIxVlcQTz
+	QKPhnJiszl/4ncCOB0uKTz2mvSS+s8D1QTjL7TCYZe373Pf2EweWbOmho5rKUzlt
+	iWmuHqsHfVwtdjZmdEqtxeCeGfm1drRIff/3atjIOM84xaQftodrJRA190q8/nup
+	ezmg/o/mi5XtNKReiCHe7kjKMgR/E4o7FGHPRtGaqMmCHaIuIHdyZEd592EaJDY+
+	2CMboQ==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4efux52q1g-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-amlogic@lists.infradead.org>; Sun, 31 May 2026 08:41:44 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-516d19f68acso184775901cf.2
+        for <linux-amlogic@lists.infradead.org>; Sun, 31 May 2026 01:41:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1780216904; x=1780821704; darn=lists.infradead.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LSSHczkNGcyBGltE9n3/Qlzx5H59gm8hjXNQO9LCZb8=;
+        b=CRPqd0ty7tbpn7jMBx9cDMNVAoIvgkcIetyxscXDCsuKMtWwC7CF4qC+DDQ3gH6Pbz
+         iCKp9XkNYZQCenNoIjq/OGxh5NYd2PPEEXR/NyfGxbjmai2ly5JE5UdDmAhvX7LhZEEy
+         uRjPn9Gb708WbsV7RghKmODZNQc5xFhFHQWUzKzluaSuKpUmw2D7mFm01CuIe8dOp4g0
+         IS5QdmtnmuuVoa6ske/ue03tdpvas1Isya4exUz4j8YZ00KJZJC0wPHWDg1cWNS3eUTZ
+         1uLSJ0TSYCI6h5gWXNqA9R2vf+FWQfh/jZs9oMBJCJAdrznqbGCZJZ4yEN6jXYw6nQz4
+         Z9pQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780216904; x=1780821704;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LSSHczkNGcyBGltE9n3/Qlzx5H59gm8hjXNQO9LCZb8=;
+        b=IyA0/UrHXN7lDlcJLEjq4NERC3sS2ezkhJn2Ov0fGV/horkijF4hlnoGv31rs0tRSG
+         ftc3LEeLX2+B7EtFvvat+jlwKOSv+M4KOF03tPHYVJRm9rVKobjdpqfurJ+b3qILvLg1
+         YkTb/9Zq4bjvR8N8PdOu8M5yqtsMjY/36pvp/o8HFDWioQfui0dsw+1WoMhBfN6Uevkn
+         AgJT1w2ID/YwjLXEqBAKGGBVkszZAFSxZc0hZZRKkkb+FgGrFD5wH7VMjjoV9yXrYGCJ
+         Z4Y4Q2Asfl46MP6bmi0bnK/ULeqXwt7Qt4mKoVz9beuZJZ8TnNTtxTmOhrkuZA7gnzf9
+         bd2Q==
+X-Forwarded-Encrypted: i=1; AFNElJ9WjvxvHYuIG6ouaQc2rntOz39X47g40y3ufCuhUmXkZ9khQRLP0QCGTx63YR1F8yR238TVqcb+EopZYpLA@lists.infradead.org
+X-Gm-Message-State: AOJu0YwgHbf9RDaHSYgV/0GZjmXtM5WsO1hOeNxzo6pnGpjoWcxxGGcf
+	fevloiX0nKBT0IOQGMa+mNUV9EwrqFlfZ6kmoLYu/YXQoEpbDjMiHN47PmFvMhy8pH0E80SwQ7Q
+	f44EwlhrOalT3pWaEOmV3RoTYM6RresiaGKTLk6Zq/guMB1YlFBW8Fuh7zBtM8DqAAMmspbyMIg
+	==
+X-Gm-Gg: Acq92OG31SG0y1htB6rIZkK7zWJF7rlEbuFaKcj2MW6UzNJJ72kxe28tyb+h9XBY8XN
+	MuuNYfZj+YdY3EwZRO4Llpemkf5oRgD0ftTznME+9E58F7JZDdxF5YO8PaNhtWXWiPEd95WhDXj
+	u5TJ987iaiMq+VY568O6VL4A51R/cwwzeKYU+L3IOYzVW+N0Sii+tDKCawxnRxLA0MoTnf811if
+	m6ioKoV3ulPW/4Bch/R+p+rKoQFqrwoXlkgluSPdfs7bj3BFMBwcxP2TT2+8Mya/gFYli/3GvYM
+	4g2fFrHO30JzC5EOBJvbAVr4wgINPOWvbf5qT5fTNDGwHeHaqoA52wujgsKnCfDsYWuslY5+Jy7
+	ngg0/D8XtTdkuX9aeSORlvC3LUwJWhJx8gwGeEGCZhBamI1XCXg6NF8ovDZTdquHDltBQkEFohD
+	l1
+X-Received: by 2002:a05:622a:4d43:b0:516:e031:9321 with SMTP id d75a77b69052e-5173a6ce03amr101633771cf.11.1780216903602;
+        Sun, 31 May 2026 01:41:43 -0700 (PDT)
+X-Received: by 2002:a05:622a:4d43:b0:516:e031:9321 with SMTP id d75a77b69052e-5173a6ce03amr101633501cf.11.1780216903167;
+        Sun, 31 May 2026 01:41:43 -0700 (PDT)
+Received: from [192.168.2.1] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4909cabfd6esm166065495e9.15.2026.05.31.01.41.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 31 May 2026 01:41:42 -0700 (PDT)
+Message-ID: <8c11a91b-cfbf-4b9c-a46f-907989bf8305@oss.qualcomm.com>
+Date: Sun, 31 May 2026 10:41:33 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] firmware: meson: sm: add stub functions when
+ CONFIG_MESON_SM is disabled
+To: linux-kernel-dev@aliel.fr, Neil Armstrong <neil.armstrong@linaro.org>,
+        Daniel Lezcano <daniel.lezcano@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Lukasz Luba <lukasz.luba@arm.com>
+Cc: Guillaume La Roque <glaroque@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        kernel test robot <lkp@intel.com>
+References: <20260531-fix-missing-meson_sm-symbol-v2-1-1def8c3c169f@aliel.fr>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
+In-Reply-To: <20260531-fix-missing-meson_sm-symbol-v2-1-1def8c3c169f@aliel.fr>
+X-Proofpoint-GUID: u3yM8NJwr5qIqk9-i5p8qfiP_W5oW2mL
+X-Proofpoint-ORIG-GUID: u3yM8NJwr5qIqk9-i5p8qfiP_W5oW2mL
+X-Authority-Analysis: v=2.4 cv=BdnoFLt2 c=1 sm=1 tr=0 ts=6a1bf448 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=uw/3876vWhRnNVL35W6mqQ==:17
+ a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
+ a=VwQbUJbxAAAA:8 a=QyXUC8HyAAAA:8 a=QjikovrxREX5USwBPxUA:9 a=QEXdDO2ut3YA:10
+ a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTMxMDA5NSBTYWx0ZWRfX3R95fjnSVQ87
+ Q4i1S64T9ks04utUbZNk5LPBjpIgTE8d8rwLpcsG/4H735CkFq4QtWeNwvBWYnWJJoZkztJSu9y
+ XRVeG8SRYoIvrVuHdLfUqVgk6OM9DHjMB4h+PMvGFlSeCB6RM61yFiMXFpU+aNMU992P7FqyrKL
+ rnq3btMjcEnBhQv1nfqx0wZQ59pidX8LIbdnYrLRw8/XpDQ4vj7nYIGn+owHwjgb3MIGZ1WD996
+ DkJYoblOSp34ktgEEuss2tqwsjLTPShDDT9Zx5MMeh8kOCFv1gxUkvP18F06SBNGBUC0GOCOeaD
+ mmWrtQevxUPydeAe0tTVIY+UXh1o7PEEUg6eZA3H7vBUCErQnpAatiYyxO/T2omadfU4D1nd8CE
+ D/kXKBohUQ/wjWnGx9UP7OH8N4twh0FOCWX4H0/5yBaaoEWSU0NU2OYCvaJ5Sjw93148eIGYels
+ /iUg37eQDpACvPNKIlQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-05-31_03,2026-05-28_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 priorityscore=1501 spamscore=0 phishscore=0 bulkscore=0
+ clxscore=1015 malwarescore=0 adultscore=0 impostorscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2605310095
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260531_014146_508981_433B28D0 
+X-CRM114-Status: GOOD (  17.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,52 +152,61 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpQcmUtZXhpc3RpbmcgaXNzdWVzOgot
-IFtIaWdoXSBUaGUgZW5jb2RlciBhdG9taWMgZW5hYmxlIGNhbGxiYWNrIHVzZXMgYSBzbGVlcGlu
-ZyBwb2xsaW5nIGZ1bmN0aW9uLCB3aGljaCB2aW9sYXRlcyBEUk0gYXRvbWljIGNvbnRleHQgcnVs
-ZXMuCi0tCgpjb21taXQgNzkwNWIyNTllMGZmZjk3YjY4MDNjMjM2MGJmOTdmZjBkYzc0ZGFlMgpB
-dXRob3I6IE5hbWFuIEFyb3JhIDxuYW1hbmFyb3JhMDI5QGdtYWlsLmNvbT4KCmRybS9tZXNvbjog
-T3Blbi1jb2RlIGRybV9zaW1wbGVfZW5jb2Rlcl9pbml0KCkgaW4gZW5jb2Rlcl9kc2kKClRoZSBo
-ZWxwZXIgZHJtX3NpbXBsZV9lbmNvZGVyX2luaXQoKSBpcyBhIHRoaW4gd3JhcHBlciBhcm91bmQK
-ZHJtX2VuY29kZXJfaW5pdCgpIHdpdGggYSBzaW1wbGUgZGVzdHJveS1vbmx5IGVuY29kZXIgZnVu
-Y3Mgc3RydWN0LgpSZW1vdmUgdGhlIGRlcGVuZGVuY3kgb24gZHJtX3NpbXBsZV9rbXNfaGVscGVy
-IGJ5IG9wZW4tY29kaW5nIHRoZQplbmNvZGVyIGluaXRpYWxpemF0aW9uIGRpcmVjdGx5IGluIHRo
-ZSBkcml2ZXIuCgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fZW5j
-b2Rlcl9kc2kuYyBiL2RyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl9lbmNvZGVyX2RzaS5jCj4g
-aW5kZXggYzFmNDY4NTA3M2JiYy4uYmJiNWI2NWNiMGQ5NCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vbWVzb24vbWVzb25fZW5jb2Rlcl9kc2kuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9tZXNvbi9tZXNvbl9lbmNvZGVyX2RzaS5jCgpbIC4uLiBdCgo+IEBAIC05OSw2ICs5OCwxMCBA
-QCBzdGF0aWMgY29uc3Qgc3RydWN0IGRybV9icmlkZ2VfZnVuY3MgbWVzb25fZW5jb2Rlcl9kc2lf
-YnJpZGdlX2Z1bmNzID0gewo+ICAJLmF0b21pY19yZXNldCA9IGRybV9hdG9taWNfaGVscGVyX2Jy
-aWRnZV9yZXNldCwKPiAgfTsKCltTZXZlcml0eTogSGlnaF0KVGhpcyBpcyBhIHByZS1leGlzdGlu
-ZyBpc3N1ZSwgYnV0IGRvZXMgdGhpcyBicmlkZ2UgY29uZmlndXJhdGlvbiBjYXVzZSBhCnNsZWVw
-IGluIGF0b21pYyBjb250ZXh0PwoKTG9va2luZyBhdCB0aGUgYXRvbWljX2VuYWJsZSBwYXRoIGZv
-ciB0aGlzIGJyaWRnZSBpbgpkcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fZW5jb2Rlcl9kc2ku
-YzoKCm1lc29uX2VuY29kZXJfZHNpX2F0b21pY19lbmFibGUoKQogIG1lc29uX2VuY2xfbG9hZF9n
-YW1tYSgpCiAgICBtZXNvbl9lbmNsX3NldF9nYW1tYV90YWJsZSgpCgpJbiBkcml2ZXJzL2dwdS9k
-cm0vbWVzb24vbWVzb25fdmVuYy5jLCBtZXNvbl9lbmNsX3NldF9nYW1tYV90YWJsZSgpIGNhbGxz
-OgpyZWFkbF9yZWxheGVkX3BvbGxfdGltZW91dCguLi4sIDEwLCAxMDAwMCkKClRoZSByZWFkbF9y
-ZWxheGVkX3BvbGxfdGltZW91dCBtYWNybyBleHBhbmRzIHRvIHVzbGVlcF9yYW5nZSB3aGVuIGEg
-bm9uLXplcm8KZGVsYXkgaXMgcHJvdmlkZWQgKGxpa2UgMTAgaGVyZSksIHdoaWNoIHdpbGwgY2F1
-c2UgdGhlIHRocmVhZCB0byBzbGVlcC4KClNpbmNlIGJyaWRnZSBhdG9taWNfZW5hYmxlIGNhbGxi
-YWNrcyBleGVjdXRlIGluIGFuIGF0b21pYyBjb250ZXh0IHdoZXJlCnNsZWVwaW5nIGlzIHN0cmlj
-dGx5IGZvcmJpZGRlbiwgY291bGQgdGhpcyBjYXVzZSBrZXJuZWwgd2FybmluZ3MgKG1pZ2h0X3Ns
-ZWVwKQpvciBwb3RlbnRpYWwgZGVhZGxvY2tzIGlmIGxvY2tzIGFyZSBoZWxkPwoKU2hvdWxkIHRo
-aXMgY29kZSBwYXRoIHVzZSBhIG5vbi1zbGVlcGluZyBwb2xsaW5nIG1lY2hhbmlzbSBzdWNoIGFz
-CnJlYWRsX3JlbGF4ZWRfcG9sbF90aW1lb3V0X2F0b21pYyBpbnN0ZWFkPwoKPiArc3RhdGljIGNv
-bnN0IHN0cnVjdCBkcm1fZW5jb2Rlcl9mdW5jcyBtZXNvbl9lbmNvZGVyX2RzaV9kcm1fZW5jb2Rl
-cl9mdW5jcyA9IHsKPiArCS5kZXN0cm95ID0gZHJtX2VuY29kZXJfY2xlYW51cCwKPiArfTsKPiAr
-Cj4gIGludCBtZXNvbl9lbmNvZGVyX2RzaV9wcm9iZShzdHJ1Y3QgbWVzb25fZHJtICpwcml2KQo+
-ICB7CgotLSAKU2FzaGlrbyBBSSByZXZpZXcgwrcgaHR0cHM6Ly9zYXNoaWtvLmRldi8jL3BhdGNo
-c2V0LzIwMjYwNTMxMDc0NjI3Ljg5MzYtMS1uYW1hbmFyb3JhMDI5QGdtYWlsLmNvbT9wYXJ0PTYK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFt
-bG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRw
-Oi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On 5/31/26 09:51, Ronald Claveau via B4 Relay wrote:
+> From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+>
+> After merging the thermal tree, linux-next build (arm_multi_v7
+> defconfig) failed like this:
+>
+> arm-linux-gnueabihf-ld: drivers/thermal/amlogic_thermal.o: in function `amlogic_thermal_probe_sm':
+> /tmp/next/build/drivers/thermal/amlogic_thermal.c:196:(.text+0x2f4): undefined reference to `meson_sm_get'
+> arm-linux-gnueabihf-ld: /tmp/next/build/drivers/thermal/amlogic_thermal.c:205:(.text+0x320): undefined reference to `meson_sm_get_thermal_calib'
+>
+> Add inline stub implementations of meson_sm_get() and
+> meson_sm_get_thermal_calib() behind an #else guard so that drivers
+> including this header can be compiled without CONFIG_MESON_SM .
+>
+> Fixes: b21d88de6918 ("thermal/drivers/amlogic: Add support for secure monitor calibration readout")
+> Closes: https://lore.kernel.org/oe-kbuild-all/202605291530.en7aGn7w-lkp@intel.com/
+> Reported-by: Mark Brown <broonie@kernel.org>
+> Reported-by: kernel test robot <lkp@intel.com>
+> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+> ---
+> Changes in v2:
+> - Replace #ifdef CONFIG_MESON_SM by #if IS_ENABLED(CONFIG_MESON_SM)
+>    to cover builtin and module in config.
+> - Add missing trailers for kernel test robot.
+> - Link to v1: https://lore.kernel.org/r/20260530-fix-missing-meson_sm-symbol-v1-1-3fb672b989d4@aliel.fr
+> ---
+>   include/linux/firmware/meson/meson_sm.h | 17 +++++++++++++++++
+>   1 file changed, 17 insertions(+)
+>
+> diff --git a/include/linux/firmware/meson/meson_sm.h b/include/linux/firmware/meson/meson_sm.h
+> index 3ebc2bd9a9760..baecdaf263f41 100644
+> --- a/include/linux/firmware/meson/meson_sm.h
+> +++ b/include/linux/firmware/meson/meson_sm.h
+> @@ -27,8 +27,25 @@ int meson_sm_call_write(struct meson_sm_firmware *fw, void *buffer,
+>   int meson_sm_call_read(struct meson_sm_firmware *fw, void *buffer,
+>   		       unsigned int bsize, unsigned int cmd_index, u32 arg0,
+>   		       u32 arg1, u32 arg2, u32 arg3, u32 arg4);
+> +
+> +#if IS_ENABLED(CONFIG_MESON_SM)
+> +
+>   struct meson_sm_firmware *meson_sm_get(struct device_node *firmware_node);
+>   int meson_sm_get_thermal_calib(struct meson_sm_firmware *fw, u32 *trim_info,
+>   			       u32 tsensor_id);
+
+Do you really want to compile meson_sm as a module ?
+
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
