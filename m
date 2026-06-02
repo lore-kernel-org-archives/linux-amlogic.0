@@ -4,79 +4,155 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20182CD6E57
-	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Jun 2026 14:24:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EE19CD6E60
+	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Jun 2026 14:29:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
-	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=gBoSkoQfb2BrWh19zmh3XISGb8JNfubZfzf9HiGHwfc=; b=NaPT455ab7MYf9
-	7QlAi9Rg74d3tQxfzHpGzmiWxANRyiOuRQe9uyEa8blNn//5iteqtLunMiJQNqbKmFMvamZzdELH4
-	bu3hsk2qa2xpa0JYRw19VmigimyIrBr0unUcr8o7t27hW1pohCDhdhiCyVqG7+yucpSDltlHtlYIY
-	j3ps53F5wpK3PKJILW4Cb0Fl4/jXTsTFZogf5t7oZSl+wmNk0F2CWDEQ8fqkx/AK99ZI48YfoOr4B
-	+LRc7lPPea+LihZRUo6gjRU6WMpErSH0F8avlFoYnLIfAueCZQyC/Zaj2z7uXGAljyiDA6cf04Np7
-	AvRxIUa8S5BmZ2gKfKQg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=lHquWOK0/4dgdaG0hcaHzG3hz3A3AGZlx1Tze0SogR0=; b=nVhp5K32NQIiD4
+	eEVWlVZ7MdSzoCrl8clVHezDLetsG4Ts2aHEhNs5FdYk8lU8nqIxyTvqySmaYCIj0wTr6UZ/2VYhp
+	lxX1mtv7ChimIMDJL45RclpiocK9g9bBS89klUwIyHAdgQ4trXys1fTfmyanjFQXIShnBdzl+pBZq
+	ryjXHXmiIGYa53QlwtOGM/ANpU1twBy2G2Qn/7io6LRnXrhhFGFaIyGCDuxftysXT9LwwZsZijJbR
+	dUpuunGuE3lQBjfNHQvvzbL+h1OVL9QSviaPQjjz/ZOGIMVWyuWnD0kuV8q8VVma/illSn9y15EyP
+	g/9uJjQ+ZAgpopmQq51A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wUQ2K-0000000DAxn-2FH6;
-	Tue, 02 Jun 2026 14:24:08 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1wUQ7o-0000000DBjs-3qbF;
+	Tue, 02 Jun 2026 14:29:48 +0000
+Received: from mail-westeuropeazon11013037.outbound.protection.outlook.com ([52.101.72.37] helo=AM0PR02CU008.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wUQ2J-0000000DAxY-1X95;
-	Tue, 02 Jun 2026 14:24:07 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9851060120;
-	Tue,  2 Jun 2026 14:24:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3EF18C2BCB4;
-	Tue,  2 Jun 2026 14:24:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1780410246;
-	bh=vaUgDr1RsviakGOYzlCjQ60oKkDSx69btm1l/dxlknk=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=eNxuXUsri6tijJ8q/ycYLYL0UUGj/L2NEO0UwBzXWuSHMKHc/Gw1p6EneoCK7c8Nw
-	 a4pBeVrAJ4Tk0fGE+KI+iO/KKuvbY5SbdVskol9Fzdj8vMfFLAiPmi2W3d/dYqcubE
-	 nsyKrHNx8zOoeksWqVVMy6q0AWRS13P+25XOHzjqygArEFYI8X9vHsmye48rPRUHSW
-	 oJFYEs6LCXuLOJaSQk4uB4HlQNHmkZXLkvf3iSklEzxzGHy0WjZo7GC1q6xNCyyokw
-	 N9ItNto9XKvptJX/auWVhVOCY8d706erm85jK4VQX5PUV2PUNL0+1M8kWDJCBoK1nU
-	 fYyvOQikNZPxA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1FBC1CD6E60;
-	Tue,  2 Jun 2026 14:24:06 +0000 (UTC)
-From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Tue, 02 Jun 2026 16:19:20 +0200
-Subject: [PATCH v3] thermal: amlogic: add missing dependency on MESON_SM
+	id 1wUQ7l-0000000DBjB-3WvS;
+	Tue, 02 Jun 2026 14:29:47 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nAjC7cViLDG/A+FtzEsWD40JzJhWGHc24dS8Nfaez/jCMKtoN7Vo+Fiqn4tmuhHV+hUAEWv6z2C8gog/8uBoujgU8xnw7VSZv7sXf9UY3e8FmuLJdenO9mRgjlPEFHlrd6ukfsaCH6QL5yVzoZs6RVCNnjFUw5BYxp5thd374zmNDjZ5RP9VGHbI84DvcqEbFma80NBluH4BtDRRWNvaDDcyPAFSZE8+uw/0InWtwzfLawNW9m1AKWkWNC1FzELiIqfXGOYXkE5lm0pwJ79dMYDf1HXQOUKX9GaLlnHrFUNfBgEPBFeyQfWAZaQ5DshBCumvkPsZkpCkEMx9OmNhuA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/DFoeL/DBkSdNltDI2+oyIzqYORaDpNnOZX+SZizLn0=;
+ b=VI0FGGtZwdSN6Kogp6RRIOi7G/aMwOVvOxWZO5dBoI9mwUT3+Rf1tyyS7iEBnzo43q7BH2doEMOPsa7RiZ/QelWC192paHuVb0U/dnqnRU+xePK//9x3W/BSpU8stNl62FImUlCJdOoH1eo329BRBy5KujjcNZH86U84EFhX+KLtTozPF+lFNCCEKCLmSjVIbyIZURfYAKjYco7/QU6VDZyin88v1NwcR1yWyCcYSfdIJ6BqiZts4PwXlDiPamJesGw1G6tiD0unb0py3GVvcUClPkNj1hoJ1Uu22y/upCberkjKOGE7/sis5DjfESQIk7i8VE7JjxMXsMfKPyYF3w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.59) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/DFoeL/DBkSdNltDI2+oyIzqYORaDpNnOZX+SZizLn0=;
+ b=eUA1AposxWT75qtkT6GUYvdB+9Ir3YCiWqk2qPr7TMy/FsxkiHdB48k8+dsi3J2popcWyNJOk5vaq46g1BgKzgvtEYqt+Xu3npQcB9VfBRiOlThzGtE7XeFUscikNqL2Hb2yqFbHBVo48AResFP0SGvw9t/WtfnGizvzYALXTSCPsomOaQUhhLJUe3yaDLQJ1rJLfZihUe1+UEhbmLK7LSPVNxtWXpjmmbPmHDxSOPN5N85lqPdj8WzEEAo2C2xK2VgbA1kRDOwRuUXLoQd8p0qbv6fi8yAi0iDZCkhYKlyo56CFr6FV28ccjXryDSB68kFS4qRI/+j2CWqp791DwQ==
+Received: from DU2PR04CA0246.eurprd04.prod.outlook.com (2603:10a6:10:28e::11)
+ by AMBPR10MB9320.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:6a9::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.7; Tue, 2 Jun 2026
+ 14:29:38 +0000
+Received: from DB1PEPF000509F5.eurprd02.prod.outlook.com
+ (2603:10a6:10:28e:cafe::5c) by DU2PR04CA0246.outlook.office365.com
+ (2603:10a6:10:28e::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.71.16 via Frontend Transport; Tue, 2
+ Jun 2026 14:29:38 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.59)
+ smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ DB1PEPF000509F5.mail.protection.outlook.com (10.167.242.151) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.92.5 via Frontend Transport; Tue, 2 Jun 2026 14:29:37 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Tue, 2 Jun
+ 2026 16:33:46 +0200
+Received: from [10.48.87.71] (10.48.87.71) by STKDAG1NODE2.st.com
+ (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Tue, 2 Jun
+ 2026 16:29:33 +0200
+Message-ID: <14358d35-2ce1-4d7d-8bc6-e40da4d9b75f@foss.st.com>
+Date: Tue, 2 Jun 2026 16:29:32 +0200
 MIME-Version: 1.0
-Message-Id: <20260602-fix-missing-meson_sm-symbol-v3-1-6f7f69cd7d6c@aliel.fr>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/33NQQ6DIBCF4asY1qUBbEG66j2aplEBnUSwYRpSY
- 7x70XThyuX/MvlmJmgjWCS3YibRJkAYQ47yVJC2r0NnKZjcRDAh2VVo6uBLPSBC6Ki3OIYXeoq
- Tb8aBKqWkYUYbJRnJwjvafL7pj2fuHvAzxml7lvi6/t2SHbqJU05L10glGl1pc7nXA9jh7CJZ2
- ST2FD+mRKa4sa5qy5ZL7XbUsiw/nGGjcxABAAA=
-X-Change-ID: 20260529-fix-missing-meson_sm-symbol-7776d0d9d760
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Lukasz Luba <lukasz.luba@arm.com>
-Cc: Guillaume La Roque <glaroque@baylibre.com>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
- Mark Brown <broonie@kernel.org>, kernel test robot <lkp@intel.com>, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1769;
- i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=Ugj/bC+OamV3jyF8WcVc9eTJZxuCATwhl48WC6wVttE=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ5bc88YZf93YKuZbvUs0urjHhjFyltZXW8tXjJrH173aH
- 8wqovmqo5SFQYyLQVZMkaV/ruWJd5ePnvm6Rz0FZg4rE8gQBi5OAZhIhRHDP7upL/kyYjSthN9t
- V4/k/yC493zz9qe5b7r2HD1fMOP35k0Mf7gjVVZsajNQ618UsM587vaA6X9u7Qxb6mX9+nMz04t
- 9v/gA
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
- fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
-X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
- auth_id=744
-X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [Linux-stm32] [PATCH] dt-bindings: Consolidate "sram" property
+ definition
+To: "Rob Herring (Arm)" <robh@kernel.org>
+CC: <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
+	<linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+	<linux-spi@vger.kernel.org>, <linux-rockchip@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, <netdev@vger.kernel.org>,
+	<dmaengine@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-media@vger.kernel.org>, <freedreno@lists.freedesktop.org>,
+	<linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, Roger Quadros <rogerq@ti.com>, "Liu
+ Ying" <victor.liu@nxp.com>, Philipp Zabel <p.zabel@pengutronix.de>, "Maarten
+ Lankhorst" <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+	<mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank Li
+	<Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, "Pengutronix
+ Kernel Team" <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Rob
+ Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>, Konrad
+ Dybcio <konradybcio@kernel.org>, Akhil P Oommen <akhilpo@oss.qualcomm.com>,
+	"Dmitry Baryshkov" <lumag@kernel.org>, Abhinav Kumar
+	<abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>, Marijn
+ Suijten <marijn.suijten@somainline.org>, Vinod Koul <vkoul@kernel.org>, Nas
+ Chung <nas.chung@chipsnmedia.com>, Jackson Lee <jackson.lee@chipsnmedia.com>,
+	"Mauro Carvalho Chehab" <mchehab@kernel.org>, Mirela Rabulea
+	<mirela.rabulea@nxp.com>, Detlev Casanova <detlev.casanova@collabora.com>,
+	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, Heiko Stuebner
+	<heiko@sntech.de>, Hugues Fruchet <hugues.fruchet@foss.st.com>, Alain Volmat
+	<alain.volmat@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Andrew Lunn
+	<andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, "Eric
+ Dumazet" <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, MD Danish Anwar <danishanwar@ti.com>, Roger Quadros
+	<rogerq@kernel.org>, Parvathi Pudi <parvathi@couthit.com>, "Mohan Reddy
+ Putluru" <pmohan@couthit.com>, Bjorn Andersson <andersson@kernel.org>,
+	"Mathieu Poirier" <mathieu.poirier@linaro.org>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, "Jerome
+ Brunet" <jbrunet@baylibre.com>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Michal Simek <michal.simek@amd.com>,
+	Mark Brown <broonie@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, "Linus
+ Walleij" <linusw@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>, "Felix
+ Fietkau" <nbd@nbd.name>, "Andrew F. Davis" <afd@ti.com>, Hussain Khaja
+	<basharath@couthit.com>, Suman Anna <s-anna@ti.com>, Ben Levinsky
+	<ben.levinsky@amd.com>, Tanmay Shah <tanmay.shah@amd.com>, Erwan Leray
+	<erwan.leray@foss.st.com>, Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+References: <20260511165942.2774868-1-robh@kernel.org>
+Content-Language: en-US
+From: Amelie Delaunay <amelie.delaunay@foss.st.com>
+In-Reply-To: <20260511165942.2774868-1-robh@kernel.org>
+X-Originating-IP: [10.48.87.71]
+X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB1PEPF000509F5:EE_|AMBPR10MB9320:EE_
+X-MS-Office365-Filtering-Correlation-Id: b0cde00e-6949-49f5-f185-08dec0b3601e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|36860700016|82310400026|376014|18002099003|3023799007|11063799006|22082099003|56012099006;
+X-Microsoft-Antispam-Message-Info: WoiZQnXY9lhhRT/z5Y5Rj899Io6tIuOZN55x3x58LjDRWY5RlNk9AQa4IA7TQ3NNzyyqW9LngKLlE+LfMfTR0dRgMVizKHQ67jyGzVEcx1nK+HmDoUMgFal0lIpnGix/1zOLQG5Y8vcnY/IH0SQRqUYNJ7ebfq4dm+PhftmCxOZZAdzPOFF0GdcT6LdnuiDTNYoNenB7QbBDKtB197gnjxCIt7RbxZ/YTygbe1CURVoiPGdoc6uzGaV9GtRYNdWWyEhXnbhu4DEmlKpVxjYR4r+M4stbcGWUnMdog+DiyPsuYWvIKRf9gPkGVUzVnZvoffUKFrGLQrTFk+3xOogq+KxJUenHqYlUqjRQPVM3Bt7DD3+3ZCArV3uxqIz1WX1z6pGmUIdSqDIDt8SrHg8lwgxcwKko/GQWlrCdmDc0RZhTgXAMNRFxTbGi2QcLg8azQAjeRhrKy1fkncIz/cfRhsHUh+LyvJPUmc7raaI6pypyuw9lflSGzFMvk5DLYD+scxdW5Uvm2vPdFsameWpCLSK3hEC3mgzZWjlXtZs3mtrYwg59ey8PL51pn0R24iw5sJif1caCl82GdS8VVBKugGJYgbOTE8RBNrglBvUedmb9ueDS79yHFNNPLIwS++lnmo1DAlJgXLutRxnGGwkC+o/2PjcDyt6Xc//Iz2pANUTFtX/h6JzYhg4oHr1qDuvrfoEwxls8HoqElVmqXbDoUnL2666hSnS+XP1FYqU+tZY=
+X-Forefront-Antispam-Report: CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(36860700016)(82310400026)(376014)(18002099003)(3023799007)(11063799006)(22082099003)(56012099006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: jagGbSISWk6WVljYbqvzNZeMQmXF8wnwolT1poC4IPw+kZnaJWOAvae+By8ALFkwZX3ScvkRDexX+MC/qfuFMgZCeNiCBhpQNcNK5wR+JpMVswGDWFPorUXjO+JGL+08nUJuRwfjG+Od8WcO/J1GzR+70eGjwwmAQYajjOni8eY72yCWfs3LtMwQptyN+8b3YfsncxwDsZHV5F6M+6+Gavs1T6oCEacPSj3XuKq0QIu/zBvVpZSpaLUVOCeu3EYYGUV/vT9VAtzdiHSMUAhWJXzKRE26xqOT0WXe6QkuS/U+A8fSLo8e3jViDM/StnOJcbR4rNhh/tKgU3zmTiWbnhYcXE61cRDTKGsLGOKauXdsZ6JkozjOta7d+c0Wo/RJX4bxubydVeIG27LcE2Xe/yHiWw0YXCWaKo9/8iANXE7tJFn+kIM27xOO9u5cQx5e
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2026 14:29:37.6730
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b0cde00e-6949-49f5-f185-08dec0b3601e
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: DB1PEPF000509F5.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AMBPR10MB9320
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260602_072945_915723_3FA3BE91 
+X-CRM114-Status: UNSURE (   6.18  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,63 +164,22 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: linux-kernel-dev@aliel.fr
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-
-The amlogic thermal driver calls meson_sm_get() and
-meson_sm_get_thermal_calib() which are exported by the meson_sm
-driver. Without CONFIG_MESON_SM enabled, the build fails with
-undefined references to these symbols.
-
-Add a proper Kconfig dependency on MESON_SM instead of relying on
-stub functions, which makes the dependency explicit and prevents
-invalid configurations.
-
-Closes: https://lore.kernel.org/oe-kbuild-all/202605291530.en7aGn7w-lkp@intel.com/
-Reported-by: Mark Brown <broonie@kernel.org>
-Reported-by: kernel test robot <lkp@intel.com>
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
-Changes in v3:
-- Add a dependency on MESON_SM instead of stub functions.
-- Link to v2: https://lore.kernel.org/r/20260531-fix-missing-meson_sm-symbol-v2-1-1def8c3c169f@aliel.fr
-
-Changes in v2:
-- Replace #ifdef CONFIG_MESON_SM by #if IS_ENABLED(CONFIG_MESON_SM)
-  to cover builtin and module in config.
-- Add missing trailers for kernel test robot.
-- Link to v1: https://lore.kernel.org/r/20260530-fix-missing-meson_sm-symbol-v1-1-3fb672b989d4@aliel.fr
----
- drivers/thermal/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
-index 1c4a5cd5a23ee..810eeccedfbab 100644
---- a/drivers/thermal/Kconfig
-+++ b/drivers/thermal/Kconfig
-@@ -436,6 +436,7 @@ config AMLOGIC_THERMAL
- 	tristate "Amlogic Thermal Support"
- 	default ARCH_MESON
- 	depends on OF && ARCH_MESON
-+	depends on MESON_SM
- 	help
- 	  If you say yes here you get support for Amlogic Thermal
- 	  for G12 SoC Family.
-
----
-base-commit: 3929405c64376a8a54c794e8a4485023b108a97e
-change-id: 20260529-fix-missing-meson_sm-symbol-7776d0d9d760
-
-Best regards,
--- 
-Ronald Claveau <linux-kernel-dev@aliel.fr>
 
 
+On 5/11/26 18:59, Rob Herring (Arm) wrote:
+> The "sram" property has become a de facto standard property, so create a
+> common schema for it and drop all the duplicated definitions.
+> 
+> Signed-off-by: Rob Herring (Arm)<robh@kernel.org>
+> ---
+>   .../devicetree/bindings/spi/st,stm32-spi.yaml | 10 +++----
+
+Acked-by: Amelie Delaunay <amelie.delaunay@foss.st.com> #st,stm32-spi.yaml
 
 _______________________________________________
 linux-amlogic mailing list
