@@ -4,58 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80D32CD6E55
-	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Jun 2026 05:37:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A05DCD6E6D
+	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Jun 2026 12:04:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+9ReMoIhFPtg3Cv7YCYSZEyDs6kA0vuNSFrj4y7Y0m8=; b=1opTZeEq5V3xUA
-	rKB6+/a/y3oloZ4XejSpfqzJs6Ti1y2dSW2TI6CUW+ZvEnyKIWwsWF7vCz3C25YDoYn1a/v5sed3t
-	C4+5ZFHHwgqD0Y1z7LIAqdFlVTu8qO8C5MzITzw5S3qsWqA8iARNDsaQ1tqNl8BkDChrXZ/dscOp9
-	blsU1xfvWBRcRoTuo8ivLhfIFhH+w3FnMNaieUgoiHAU8eR2zmGyIclT+InEdQfUu8ArdKWBKylaa
-	Q+MKm01Key9QB+9YB9ws0ep5Uzfjt31d68+SKxyw0esSzK2u5YGNbnMDxtn76l+VkJcA1NhjuswMj
-	v25YRInQomDv5bbDDJlA==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=hqcntXYWhLFU1Xc3A+D+w5dvi3iADs7MWrpc5Q8ZQ/o=; b=B8hHWbPJ5x0+WZ
+	EaKr2gzdHFVjxzIHprk19mpSHq2ABA9VdP5aYjHeB78WFnx9+aG5wFze6jNjh+YytHKqug1PoeiYG
+	+03ovYk941OSVmHN+13GEhgodzfuchouJugvgykR+6OAILDXqXwasDa+O2upjjg/TjXbIF9zhXY7j
+	EyZSbezTtG2AkrLY3C1RSOZ+/F4ofzv3BDSua9ftFNXx1Eh8bTZwuUoLDDjIa5ebeclUY249/mDJx
+	64D0ud+J8xJ37bF3FGJHR8n1UguN+PL7s1uY75aCjSl+XXGqGj8Pil9JTQkFwCJDNkGWXvhN2pdvr
+	qrN2Wcoi1NaJGn+EM+4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wUeHn-0000000EIJx-0OMq;
-	Wed, 03 Jun 2026 05:37:03 +0000
-Received: from courrier.aliel.fr ([65.21.61.41])
+	id 1wUkKN-0000000F1RL-2hdl;
+	Wed, 03 Jun 2026 12:04:07 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wUeHk-0000000EIJb-1HHu;
-	Wed, 03 Jun 2026 05:37:02 +0000
-Message-ID: <3f94dc8c-82fc-4941-bb16-408d01da5280@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1780465013;
-	bh=hi6gNubcDNseMOAElaWu/w1hNneeIoZV+WFrRdpCF9s=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To;
-	b=qtoo+ItVSgx3QVaOmiMHqXPvOKNpzvlJ0ZuCigrvHBUv1h+AZMT853NV33ZVXw2vw
-	 AcVvpEKC0aPhU+PlxtixDUbN1/gTPRoS9WAWgoez+tm/pFDFRS9iwtxOgD2y7NT11E
-	 2ceszJZ7Uqs4w/amue08R5U29pZjO2nhRU49+ThA=
-Date: Wed, 3 Jun 2026 07:36:52 +0200
+	id 1wUkKL-0000000F1Q9-29XQ;
+	Wed, 03 Jun 2026 12:04:06 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 36BB24038F;
+	Wed,  3 Jun 2026 12:04:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0E2D7C2BCC4;
+	Wed,  3 Jun 2026 12:04:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1780488244;
+	bh=JkDzMQd2L4L6r0Yr9fg6b/1lXleiCN8jZ/P5N4eWY4I=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=odbLhLXlpLtSuhUtJ9DKV+ldHHwJAbutDD0pK4WJTlMzx/LY5wEKpGSmXrg1qrlVc
+	 8MIXLRgimKC62P2XdV/VbHhavnQUpBJdvLQsH7xZ1f/cDoiBQmPRrkOZROPh+LwzuP
+	 T0d/PjVk8ZT16iiNlzYmwgVZ4ISKvufWHVaDwwD4aDbdUQJPwgy2fjqToxgqPU/BIK
+	 BMPUE4jZvopaTLo2F3nOOo/3AIfuX29yjpE31utnsFtHMC/fB6NHS7KDaEEoft1BN4
+	 bUM4L4+tIzYMU151B8SB4wig4MYS6DM0AUAhuIixXa/3qeKQm6EsjpWKUlc8Ft+/T3
+	 bxJg4DA1j4eSQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F2821CD6E56;
+	Wed,  3 Jun 2026 12:04:03 +0000 (UTC)
+From: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
+Subject: [PATCH v2 0/2] clk: amlogic: Add A9 peripherals clock controller
+Date: Wed, 03 Jun 2026 20:03:55 +0800
+Message-Id: <20260603-a9_peripherals-v2-0-ee1b8c0a1e6c@amlogic.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-From: linux-kernel-dev@aliel.fr
-Subject: Re: [PATCH v3] thermal: amlogic: add missing dependency on MESON_SM
-To: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
-Cc: Guillaume La Roque <glaroque@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- Mark Brown <broonie@kernel.org>, kernel test robot <lkp@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Lukasz Luba <lukasz.luba@arm.com>
-References: <20260602-fix-missing-meson_sm-symbol-v3-1-6f7f69cd7d6c@aliel.fr>
- <f5118303-d7ea-402e-84d6-794d6860f992@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <f5118303-d7ea-402e-84d6-794d6860f992@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIACsYIGoC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHQUlJIzE
+ vPSU3UzU4B8JSMDIzMDMwNj3UTL+AKgloKM1KLEnGJdEyNDk1RzS3MD05RkJaCmgqLUtMwKsIH
+ RsbW1AFtuaQ9gAAAA
+X-Change-ID: 20260603-a9_peripherals-4214e79705dc
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Jian Hu <jian.hu@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1780488242; l=1319;
+ i=jian.hu@amlogic.com; s=20260415; h=from:subject:message-id;
+ bh=JkDzMQd2L4L6r0Yr9fg6b/1lXleiCN8jZ/P5N4eWY4I=;
+ b=2JsWtytZuobV0Qw7gQcvTiZipvvm8BxQ3CILqhIjANBz/nZlWHk/xmAvem9fl9NgLWkkR6afE
+ 2kBATLbGq//C7SIfDiCVJ8u+nqhQSKOYN8Ft7jW7WhUXbJFOFsHccgg
+X-Developer-Key: i=jian.hu@amlogic.com; a=ed25519;
+ pk=zHUE+rNtH9z+Sb8au1/elWknjFQmy5QDVkBoxleuOIA=
+X-Endpoint-Received: by B4 Relay for jian.hu@amlogic.com/20260415 with
+ auth_id=735
+X-Original-From: Jian Hu <jian.hu@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260602_223700_807481_BBEE8090 
-X-CRM114-Status: UNSURE (   8.05  )
+X-CRM114-CacheID: sfid-20260603_050405_626995_F81CB6F6 
+X-CRM114-Status: UNSURE (   8.17  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -68,41 +90,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: jian.hu@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 6/2/26 11:08 PM, Daniel Lezcano wrote:
-> On 6/2/26 16:19, Ronald Claveau via B4 Relay wrote:
->> From: Ronald Claveau <linux-kernel-dev@aliel.fr>
->>
->> The amlogic thermal driver calls meson_sm_get() and
->> meson_sm_get_thermal_calib() which are exported by the meson_sm
->> driver. Without CONFIG_MESON_SM enabled, the build fails with
->> undefined references to these symbols.
->>
->> Add a proper Kconfig dependency on MESON_SM instead of relying on
->> stub functions, which makes the dependency explicit and prevents
->> invalid configurations.
->>
->> Closes: https://lore.kernel.org/oe-kbuild-all/202605291530.en7aGn7w-
->> lkp@intel.com/
->> Reported-by: Mark Brown <broonie@kernel.org>
->> Reported-by: kernel test robot <lkp@intel.com>
->> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
->> ---
-> 
-> Applied, thanks
+This series adds Amlogic A9 peripherals clock support,
+including dt-binding and peripherals clock driver.
 
-Thank you.
-I think it will need a reorder for bisect to be ok btw.
-It needs to come before b21d88de6918 ("thermal/drivers/amlogic: Add
-support for secure monitor calibration readout")
+Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+---
+Changes in v2:
+- Split the A9 clock driver and send the peripherals clock separately.
+- Add COMPILE_TEST in Kconfig
+- Drop the 'optional'
+- Rename apb4 to soc
+- Sort the header file
+- Rename hifi to hifi0
+- Use CLK_HW_INIT_PARENTS_DATA to describe clk_init_data
+- Use CLK_HW_INIT_HW to describe clk_init_data
+- Use CLK_HW_INIT_PARENTS_HW to describe clk_init_data
+- Link to v1: https://lore.kernel.org/all/20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com/
 
--- 
+---
+Jian Hu (2):
+      dt-bindings: clock: Add Amlogic A9 peripherals clock controller
+      clk: amlogic: Add A9 peripherals clock controller driver
+
+ .../clock/amlogic,a9-peripherals-clkc.yaml         |  160 ++
+ drivers/clk/meson/Kconfig                          |   15 +
+ drivers/clk/meson/Makefile                         |    1 +
+ drivers/clk/meson/a9-peripherals.c                 | 1927 ++++++++++++++++++++
+ .../clock/amlogic,a9-peripherals-clkc.h            |  352 ++++
+ 5 files changed, 2455 insertions(+)
+---
+base-commit: ca89c88bcf69daca829044c638a8163d5ce47af0
+change-id: 20260603-a9_peripherals-4214e79705dc
+
 Best regards,
-Ronald
+-- 
+Jian Hu <jian.hu@amlogic.com>
+
+
 
 _______________________________________________
 linux-amlogic mailing list
