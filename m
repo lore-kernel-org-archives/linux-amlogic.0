@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BE65CD6E60
-	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Jun 2026 15:52:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98E8ECD6E57
+	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Jun 2026 15:52:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
 	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
 	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
 	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=9z7q4BSZZC1iU7IDJgImtU5hV5YG4yUqs8CuL35vIVM=; b=veyu8l7ChfB/BfAT1JPeaHdgkw
-	exMkp1MnTMi81Yel7Kk66injxojrfrNUjkzQQVwuovtAuJh5vLWCZDYG498GuiQ44M8G5NOiNt4a5
-	JryrAHooi2t8Bn52TqW16iqFfV0g8U/TurNHKZSy42bWcYp0jKPAazZILFMBGbqNX4CXrKU/Q+8z3
-	TVBn7w9XuSVwY2KrwyZhLhBkcGAMEYmFlZkHhD65Bt+5i6XP9ePsW9CbTFQcUta2lc5kq04vkatV9
-	iGHSJJcDAKX/NoYCleV+Z/t+agzxk4qwkfbF/M0X3J/o/+sD0xDyFmfY6FTRi05vpOBu83G7EyNo7
-	El4OfDNA==;
+	bh=Pom8TpAGCJAHTHHu6LHuf6PhtcDihpie3b3cgL1MxM8=; b=tTYc6kO0Kif0eMnUlYao5tZLrt
+	fEqWNGI5sgHLaXX+UQ7MYxojIVD8WSHl9EELMACM51+RdpCSTB2ASvJT0P17Dq52fo/mSzXOey8+t
+	TxQtdet4IJV2QerTiMnLWzkvFyby/Uo/phDIeSPJrUpUrePCamRxkFSTr6REnE339MuNm/KW9MWuG
+	bpxRrKupGPOzOaq4U05UVronMQ93jAVeER5FelHFFb0VMxXuXKn8x8Svttmr3Dw1hWt05EdjWVoVW
+	MAsnwp1UFJJYTbEyjtPWd303p9CLR5mYB7MgiogrGE/6wFuV//0uhYB2UsYaKXfWucYAI+moYoMc+
+	SbWQYSKA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wUnsz-0000000FT6U-0WV7;
-	Wed, 03 Jun 2026 15:52:05 +0000
+	id 1wUnth-0000000FTBS-1CFP;
+	Wed, 03 Jun 2026 15:52:49 +0000
 Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wUnst-0000000FT68-3720;
-	Wed, 03 Jun 2026 15:52:04 +0000
+	id 1wUntZ-0000000FTAe-09e6;
+	Wed, 03 Jun 2026 15:52:47 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 0E7BC60126;
-	Wed,  3 Jun 2026 15:51:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8D931F00893;
-	Wed,  3 Jun 2026 15:51:55 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 7B88360098;
+	Wed,  3 Jun 2026 15:52:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FC521F00893;
+	Wed,  3 Jun 2026 15:52:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780501918;
-	bh=UYQCy62/XeJkjWEE4NKpocL+cxTPaphso0jv+Gl4KNM=;
+	s=k20260515; t=1780501960;
+	bh=fG3MUMFCV92OWWB77GGml+hp8tZmw/pgA+W3l3I1k20=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=aO2DyS6qeNl6/06jRhz8Wq2s1LSS+9qyKwJqenZxXwgnc4l3YA+XYr33pEd7YyPcS
-	 BjbHLYhf2TuAmNdeVWob7jx+YDinP1ZYZhHupOM+sqvN8r9ogtoBkY11hKkvQ19la0
-	 Fh0icfuoU+c2H507oQt91EYpQIq1nmRsAk+dVu+bDTHNrAWVYFdx3zlEqj0rWH30nF
-	 i4aKIXRaUa92Y83AVJOrWlG8I0cTSHCnaOFAB/LKoPtUwwl/8IahxXT+ZvIr2iIRKi
-	 49Q20KJikmvmNzvzL7ffj8YdFXVc+qB9zqthuESLYkm9L/8GaLSNwj93y9biUmqnBI
-	 xaxP2CfWWYggA==
-Date: Wed, 3 Jun 2026 16:51:53 +0100
+	b=jO5Vh1Z2cCH53eKrog4JC9WgTp6qjuIxSww1UqENset/sIpIhNuxmzZqwF972/eqM
+	 sgLPIBkT0nLpPNTrQvYH/PL13eY0XdNwPtA9FuXlucIZQxZzfc27eZBSYbp1bRn4Id
+	 YRz1RhdLDJUdi4/uBcUiu6lmt6IG5lU9xlerGYflKg8EXAqSgkEOgmhBa0eza4cqT4
+	 j/oHfkClM0tUxVklQ2F8AXGzSrOx/5jmIo5jOZ5Ji9Fud+O3ryZ2VTv4KN4iWq9iIf
+	 CNjVs+Rt/xpSNxhgGhZ3wv1usGh/QTiXNGigpw0eQPg0hlL7dPOpzHXZfyT1n6iz0Z
+	 hRQDpK9llKWzQ==
+Date: Wed, 3 Jun 2026 16:52:35 +0100
 From: Conor Dooley <conor@kernel.org>
 To: jian.hu@amlogic.com
 Cc: Neil Armstrong <neil.armstrong@linaro.org>,
@@ -56,13 +56,13 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,
 	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: Add Amlogic A9 AO clock
- controller
-Message-ID: <20260603-battle-cofounder-e61dbe47d738@spud>
-References: <20260603-a9_aoclk-v2-0-f47ea616ee78@amlogic.com>
- <20260603-a9_aoclk-v2-1-f47ea616ee78@amlogic.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: Add Amlogic A9 peripherals
+ clock controller
+Message-ID: <20260603-banshee-reshape-7183ef9cde25@spud>
+References: <20260603-a9_peripherals-v2-0-ee1b8c0a1e6c@amlogic.com>
+ <20260603-a9_peripherals-v2-1-ee1b8c0a1e6c@amlogic.com>
 MIME-Version: 1.0
-In-Reply-To: <20260603-a9_aoclk-v2-1-f47ea616ee78@amlogic.com>
+In-Reply-To: <20260603-a9_peripherals-v2-1-ee1b8c0a1e6c@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,39 +74,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============8415402987446113461=="
+Content-Type: multipart/mixed; boundary="===============6105821443640327458=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
---===============8415402987446113461==
+--===============6105821443640327458==
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="KH2UgLPfdPMIqcoS"
+	protocol="application/pgp-signature"; boundary="DCCmq9+7sUVqL8ML"
 Content-Disposition: inline
 
 
---KH2UgLPfdPMIqcoS
+--DCCmq9+7sUVqL8ML
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 pw-bot: not-applicable
 
---KH2UgLPfdPMIqcoS
+--DCCmq9+7sUVqL8ML
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaiBNmQAKCRB4tDGHoIJi
-0rzTAP96xbvAsmSRrQkjabFTx14yBLGyTdPq6O1/rx3e3lLp2QD+Ju+r2qcHP4mh
-0EqjKT+MOMru1z0FBEQj1fzd8pDrIAs=
-=ozLc
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaiBNwwAKCRB4tDGHoIJi
+0sghAQDd2PkqviQwhNqJEYhIzE3HGz8asHPFKg41uBAnYMt5TgD/RAOvvy7LgVTT
+XtUTQPnCXjUUQTlu5zvj2P6MgNPjEgA=
+=L+fy
 -----END PGP SIGNATURE-----
 
---KH2UgLPfdPMIqcoS--
+--DCCmq9+7sUVqL8ML--
 
 
---===============8415402987446113461==
+--===============6105821443640327458==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -117,5 +117,5 @@ linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
---===============8415402987446113461==--
+--===============6105821443640327458==--
 
