@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6953CD6E57
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC87CCD6E6E
 	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Jun 2026 18:06:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,43 +12,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GFTmRDs61+AWor1CNQ/bW1pr1C4ounRMI6QzHdE2jX8=; b=h9Bh9beJrGUAxk
-	7n+5lmlxvElAmcqVFemX6MjYSTBG64W3Oehmklds7gvWQ4BYxx5jOGwniKQu7I8qFVXTVON6fx6Yf
-	KQJ9IDh22lg+0lkPZpW8IiA08UPrOLw0c88M0n1zv4ZmJtl3PeOi5YL9xAro+1a+R781zBZ1FUIQQ
-	Q8VQVaV7qL8No+XhpfbrqVSX7EEFNupOVB9BuuVTubtCAGCa4yK7OZjdN/6vCc53/9e0D1wfURnbC
-	wwMifkz33sof42OyU2CZFXkrN2n2SBZxnz/8BeEe0jfivCaMx/RFT8m43QRYcrrnhV99NiLQcFXj7
-	Yo1YbfmnW4JTiBT4UvLw==;
+	List-Owner; bh=T8/Uho0Xy54paWwYd9zgGtXkTmguEIdWThQ1pqVnxY0=; b=QrKpZQYnTAOvzS
+	Mh4bnLoyTTX0mVLYBhly8wYQUa9zU149W2XeRuyss+UoM0KjsFqbu0JoIcQDZ68t87m2wwfPpqIQ6
+	ZRzAoK9/8irViFRD+HgIfjXqPwSrJoPM/jgFQ8INwdePCh8aDQHoh7v9i/Z42RNgPPzuW1a2oJyHZ
+	kTi6BYmCcS11HvrbVQIBwG/Wzum4B0sfgN3nOqqJ12zWc+es0NXQah5eaCqO4y4mfWgRfe4zSOov8
+	+M4QYBGOGAP5XEy0vMN4w4BAJVMrXdX/z3iRCtUDSMlGVdNl3FittH5q959Jsr0O6UXnZic+bAuuK
+	61ZiJqCPyeiS+deCBhtA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wUpym-0000000FdMD-3nmn;
-	Wed, 03 Jun 2026 18:06:12 +0000
+	id 1wUpyk-0000000FdId-1YgO;
+	Wed, 03 Jun 2026 18:06:10 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wUpyi-0000000FdGk-22W0;
-	Wed, 03 Jun 2026 18:06:11 +0000
+	id 1wUpyi-0000000FdGj-1bIh;
+	Wed, 03 Jun 2026 18:06:09 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7C70F446B6;
+	by sea.source.kernel.org (Postfix) with ESMTP id 7050B4469A;
 	Wed,  3 Jun 2026 18:06:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 4BC9BC2BCF5;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 346AEC2BCC6;
 	Wed,  3 Jun 2026 18:06:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1780509967;
-	bh=VN/DBSuD9mZkIFCk7YdJ1TtQBUrJ0jCl1G3CK51+LfY=;
+	bh=s+oHyWDZzLbBnj8OuFd9lF7Ytt8JqU1hi9/yv03fVKE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=DkT1r6mMo0PA0MU1YYCLG3oRigCdhQYM1d8c0zxtvqmNSG6x1EYuOuSj8/SVkL2jh
-	 MKEWilczTYIGnhVqPbZGYmNWtcJ/ZrqpqJxiAXSpZUPe7yRadUR+1+fF4XDuvSAhdj
-	 SS/Ao9tUqJ5sPl2bE99RVHXR1wKxGZxOrGQJBYMjmAE2XCviywWZCQ/EPXsdGw+Sqt
-	 INMN/fv8Z+Aub1i6Fl4egMeCUG0F7YBpwbUBOxy/l81njIEvcJ4IwmG8osFe+r12Eq
-	 itOByZlSiUss/efK9RxcHNxN5TDjC1G7fxppUam3dGYauBjoyYE86thrwBcBr7DOMK
-	 72El34xY6q1Sg==
+	b=QGlow3I5jbY1g938+oluN3CxmulaGm3ArFTNGzD4J/CVPoPnzBxxl6GR+nACqsKlQ
+	 FxnnjbhaRVq4H47WDzkLIb8z1tS3zv/gW7YFZ7p/cMQnCSGJnZn830Uifyv4PAGoPV
+	 bi9Tr07bM3oMeu0igWvQN1sB0q4Yf6cNQVqV+AGbuGswyOornIX/BGnh6w8/FfLuo6
+	 tH4U+E/nm2I28+E8W1r0Vb+KZZoKXC4NTxtzwpYKudZHAdeihCoV+A+pX0MZ2VnNa3
+	 wO3cx4/rlEJ05M8khn6LwcpuwOREhkvi+s6ehmXSnJhUkwNUGo3S/WxhzeXj54He/Z
+	 cn2lpnSXf3heg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 42048CD6E55;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 282E0CD6E6D;
 	Wed,  3 Jun 2026 18:06:07 +0000 (UTC)
 From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Wed, 03 Jun 2026 20:05:26 +0200
-Subject: [PATCH v7 4/8] mfd: khadas-mcu: Add support for VIM4 MCU variant
+Date: Wed, 03 Jun 2026 20:05:25 +0200
+Subject: [PATCH v7 3/8] mfd: khadas-mcu: Add per-variant configuration
+ infrastructure and VIM4 support
 MIME-Version: 1.0
-Message-Id: <20260603-add-mcu-fan-khadas-vim4-v7-4-594ba8a965d8@aliel.fr>
+Message-Id: <20260603-add-mcu-fan-khadas-vim4-v7-3-594ba8a965d8@aliel.fr>
 References: <20260603-add-mcu-fan-khadas-vim4-v7-0-594ba8a965d8@aliel.fr>
 In-Reply-To: <20260603-add-mcu-fan-khadas-vim4-v7-0-594ba8a965d8@aliel.fr>
 To: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>, 
@@ -66,21 +67,21 @@ Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5322;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1697;
  i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=LymTegcHEv//8DPFWEx4uXWKzb7ITVj0UFHAs4lH89A=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ5ZCLhtn5MMHqk6dAR4yahc1y1h9zF8rsE75q2a/lFumZ
- /5cn+COUhYGMS4GWTFFlv65lifeXT565use9RSYOaxMIEMYuDgFYCIdNYwM1z6Y+0+s1ni643HG
- yv5E1Rt6X78X/Gh7xRd/26rqX/OObwz/TDqPP5ryPtBX6ljh9k3GufELQmL0VlzSFE5+WNG4efc
- +BgA=
+ bh=V4o6dWy7ikMDkJA0YYsEmYbq9MismeNwAHAJSdqrVEU=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ5ZCLuvPh7m2MVvS5usndXemTXmlVK7BMyXg2qzHLUf/l
+ 1e8aDjaUcrCIMbFICumyNI/1/LEu8tHz3zdo54CM4eVCWQIAxenAEwkiJeRYV2NzsLn5iJhW/ku
+ xh9qZv32OuHy4oMHjz1/9tGpRs0wcS3DL6YizbCoN/aH8zbfqKu7ETlNYKdyYyA355QA8/+rp8n
+ /ZgQA
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
  fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
 X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
  auth_id=744
 X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260603_110608_596690_FAA1CB71 
-X-CRM114-Status: GOOD (  14.60  )
+X-CRM114-CacheID: sfid-20260603_110608_471785_265D7852 
+X-CRM114-Status: GOOD (  11.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,103 +94,71 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Reply-To: linux-kernel-dev@aliel.fr
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-RnJvbTogUm9uYWxkIENsYXZlYXUgPGxpbnV4LWtlcm5lbC1kZXZAYWxpZWwuZnI+CgpSZWZhY3Rv
-ciBwcm9iZSgpIHRvIHVzZSBwZXItdmFyaWFudCB2YWx1ZXMKaW5zdGVhZCBvZiBoYXJkY29kZWQg
-Z2xvYmFscy4KCkFkZCBkZWRpY2F0ZWQgcmVnbWFwIGNvbmZpZ3VyYXRpb24gZm9yIHRoZSBWSU00
-IE1DVSwKd2l0aCBpdHMgb3duIHZvbGF0aWxlL3dyaXRlYWJsZSByZWdpc3RlcnMuCgpBZGQgdGhl
-IGZhbiBjb250cm9sIHJlZ2lzdGVyCigw4oCTMTAwIGxldmVscyB2cyAw4oCTMyBmb3IgcHJldmlv
-dXMgc3VwcG9ydGVkIGJvYXJkcykuCgpBZGQgYSBuZXcgY29tcGF0aWJsZSBzdHJpbmcgImtoYWRh
-cyx2aW00LW1jdSIuCgpSZXZpZXdlZC1ieTogTmVpbCBBcm1zdHJvbmcgPG5laWwuYXJtc3Ryb25n
-QGxpbmFyby5vcmc+ClNpZ25lZC1vZmYtYnk6IFJvbmFsZCBDbGF2ZWF1IDxsaW51eC1rZXJuZWwt
-ZGV2QGFsaWVsLmZyPgotLS0KIGRyaXZlcnMvbWZkL2toYWRhcy1tY3UuYyB8IDExNSArKysrKysr
-KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQs
-IDk5IGluc2VydGlvbnMoKyksIDE2IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-bWZkL2toYWRhcy1tY3UuYyBiL2RyaXZlcnMvbWZkL2toYWRhcy1tY3UuYwppbmRleCBiYTk4MWE3
-ODg2OTIxLi4xYmYyNjA3MjlkNzNiIDEwMDY0NAotLS0gYS9kcml2ZXJzL21mZC9raGFkYXMtbWN1
-LmMKKysrIGIvZHJpdmVycy9tZmQva2hhZGFzLW1jdS5jCkBAIC03NSw0NyArNzUsMTI5IEBAIHN0
-YXRpYyBjb25zdCBzdHJ1Y3QgcmVnbWFwX2NvbmZpZyBraGFkYXNfbWN1X3JlZ21hcF9jb25maWcg
-PSB7CiAJLmNhY2hlX3R5cGUJPSBSRUdDQUNIRV9NQVBMRSwKIH07CiAKLXN0YXRpYyBzdHJ1Y3Qg
-bWZkX2NlbGwga2hhZGFzX21jdV9mYW5fY2VsbHNbXSA9IHsKK3N0YXRpYyBjb25zdCBzdHJ1Y3Qg
-a2hhZGFzX21jdV9mYW5fcGRhdGEga2hhZGFzX21jdV9mYW5fcGRhdGEgPSB7CisJLmZhbl9yZWcJ
-PSBLSEFEQVNfTUNVX0NNRF9GQU5fU1RBVFVTX0NUUkxfUkVHLAorCS5tYXhfbGV2ZWwJPSAzLCAv
-KiBGYW4gc3BlZWQ6IDAgPSBvZmYsIDEgPSBsb3csIDIgPSBtZWRpdW0sIDMgPSBoaWdoICovCit9
-OworCitzdGF0aWMgY29uc3Qgc3RydWN0IG1mZF9jZWxsIGtoYWRhc19tY3VfZmFuX2NlbGxzW10g
-PSB7CiAJLyogVklNMS8yIFJldjEzKyBhbmQgVklNMyBvbmx5ICovCi0JeyAubmFtZSA9ICJraGFk
-YXMtbWN1LWZhbi1jdHJsIiwgfSwKKwl7CisJCS5uYW1lID0gImtoYWRhcy1tY3UtZmFuLWN0cmwi
-LAorCQkucGxhdGZvcm1fZGF0YSA9ICZraGFkYXNfbWN1X2Zhbl9wZGF0YSwKKwkJLnBkYXRhX3Np
-emUgICAgPSBzaXplb2Yoa2hhZGFzX21jdV9mYW5fcGRhdGEpLAorCX0sCiB9OwogCi1zdGF0aWMg
-c3RydWN0IG1mZF9jZWxsIGtoYWRhc19tY3VfY2VsbHNbXSA9IHsKK3N0YXRpYyBjb25zdCBzdHJ1
-Y3QgbWZkX2NlbGwga2hhZGFzX21jdV9jZWxsc1tdID0gewogCXsgLm5hbWUgPSAia2hhZGFzLW1j
-dS11c2VyLW1lbSIsIH0sCiB9OwogCitzdGF0aWMgYm9vbCBraGFkYXNfbWN1X3ZpbTRfcmVnX3Zv
-bGF0aWxlKHN0cnVjdCBkZXZpY2UgKmRldiwgdW5zaWduZWQgaW50IHJlZykKK3sKKwlzd2l0Y2gg
-KHJlZykgeworCWNhc2UgS0hBREFTX01DVV9QV1JfT0ZGX0NNRF9SRUc6CisJY2FzZSBLSEFEQVNf
-TUNVX1ZJTTRfUkVTVF9DT05GX1JFRzoKKwljYXNlIEtIQURBU19NQ1VfV09MX0lOSVRfU1RBUlRf
-UkVHOgorCWNhc2UgS0hBREFTX01DVV9WSU00X0xFRF9PTl9SQU1fUkVHOgorCWNhc2UgS0hBREFT
-X01DVV9WSU00X0ZBTl9DVFJMX1JFRzoKKwljYXNlIEtIQURBU19NQ1VfVklNNF9XRFRfRU5fUkVH
-OgorCWNhc2UgS0hBREFTX01DVV9WSU00X1NZU19SU1RfUkVHOgorCQlyZXR1cm4gdHJ1ZTsKKwlk
-ZWZhdWx0OgorCQlyZXR1cm4gZmFsc2U7CisJfQorfQorCitzdGF0aWMgYm9vbCBraGFkYXNfbWN1
-X3ZpbTRfcmVnX3dyaXRlYWJsZShzdHJ1Y3QgZGV2aWNlICpkZXYsIHVuc2lnbmVkIGludCByZWcp
-Cit7CisJc3dpdGNoIChyZWcpIHsKKwljYXNlIEtIQURBU19NQ1VfVkVSU0lPTl8wX1JFRzoKKwlj
-YXNlIEtIQURBU19NQ1VfVkVSU0lPTl8xX1JFRzoKKwljYXNlIEtIQURBU19NQ1VfU0hVVERPV05f
-Tk9STUFMX1NUQVRVU19SRUc6CisJCXJldHVybiBmYWxzZTsKKwlkZWZhdWx0OgorCQlyZXR1cm4g
-dHJ1ZTsKKwl9Cit9CisKK3N0YXRpYyBjb25zdCBzdHJ1Y3QgcmVnbWFwX2NvbmZpZyBraGFkYXNf
-bWN1X3ZpbTRfcmVnbWFwX2NvbmZpZyA9IHsKKwkucmVnX2JpdHMJPSA4LAorCS5yZWdfc3RyaWRl
-CT0gMSwKKwkudmFsX2JpdHMJPSA4LAorCS5tYXhfcmVnaXN0ZXIJPSBLSEFEQVNfTUNVX1ZJTTRf
-U1lTX1JTVF9SRUcsCisJLnZvbGF0aWxlX3JlZwk9IGtoYWRhc19tY3VfdmltNF9yZWdfdm9sYXRp
-bGUsCisJLndyaXRlYWJsZV9yZWcJPSBraGFkYXNfbWN1X3ZpbTRfcmVnX3dyaXRlYWJsZSwKKwku
-Y2FjaGVfdHlwZQk9IFJFR0NBQ0hFX01BUExFLAorfTsKKworc3RhdGljIGNvbnN0IHN0cnVjdCBr
-aGFkYXNfbWN1X2Zhbl9wZGF0YSBraGFkYXNfdmltNF9mYW5fcGRhdGEgPSB7CisJLmZhbl9yZWcJ
-PSBLSEFEQVNfTUNVX1ZJTTRfRkFOX0NUUkxfUkVHLAorCS5tYXhfbGV2ZWwJPSAweDY0LAorfTsK
-Kworc3RhdGljIGNvbnN0IHN0cnVjdCBtZmRfY2VsbCBraGFkYXNfbWN1X3ZpbTRfY2VsbHNbXSA9
-IHsKKwl7CisJCS5uYW1lCQk9ICJraGFkYXMtbWN1LWZhbi1jdHJsIiwKKwkJLnBsYXRmb3JtX2Rh
-dGEJPSAma2hhZGFzX3ZpbTRfZmFuX3BkYXRhLAorCQkucGRhdGFfc2l6ZQk9IHNpemVvZihraGFk
-YXNfdmltNF9mYW5fcGRhdGEpLAorCX0sCit9OworCiBzdGF0aWMgaW50IGtoYWRhc19tY3VfcHJv
-YmUoc3RydWN0IGkyY19jbGllbnQgKmNsaWVudCkKIHsKKwljb25zdCBzdHJ1Y3QgbWZkX2NlbGwg
-KmNlbGxzLCAqZmFuX2NlbGxzOworCWNvbnN0IHN0cnVjdCByZWdtYXBfY29uZmlnICpyZWdtYXBf
-Y2ZnOwogCXN0cnVjdCBkZXZpY2UgKmRldiA9ICZjbGllbnQtPmRldjsKKwlpbnQgbmNlbGxzLCBu
-ZmFuX2NlbGxzLCByZXQ7CiAJc3RydWN0IGtoYWRhc19tY3UgKmRkYXRhOwotCWludCByZXQ7CiAK
-IAlkZGF0YSA9IGRldm1fa3phbGxvYyhkZXYsIHNpemVvZigqZGRhdGEpLCBHRlBfS0VSTkVMKTsK
-IAlpZiAoIWRkYXRhKQogCQlyZXR1cm4gLUVOT01FTTsKIAorCXN3aXRjaCAoKHVpbnRwdHJfdClp
-MmNfZ2V0X21hdGNoX2RhdGEoY2xpZW50KSkgeworCWNhc2UgS0hBREFTX01DVV9HRU5FUklDOgor
-CQlyZWdtYXBfY2ZnCT0gJmtoYWRhc19tY3VfcmVnbWFwX2NvbmZpZzsKKwkJY2VsbHMJCT0ga2hh
-ZGFzX21jdV9jZWxsczsKKwkJbmNlbGxzCQk9IEFSUkFZX1NJWkUoa2hhZGFzX21jdV9jZWxscyk7
-CisJCWZhbl9jZWxscwk9IGtoYWRhc19tY3VfZmFuX2NlbGxzOworCQluZmFuX2NlbGxzCT0gQVJS
-QVlfU0laRShraGFkYXNfbWN1X2Zhbl9jZWxscyk7CisJCWJyZWFrOworCWNhc2UgS0hBREFTX01D
-VV9WSU00OgorCQlyZWdtYXBfY2ZnCT0gJmtoYWRhc19tY3VfdmltNF9yZWdtYXBfY29uZmlnOwor
-CQljZWxscwkJPSBOVUxMOworCQluY2VsbHMJCT0gMDsKKwkJZmFuX2NlbGxzCT0ga2hhZGFzX21j
-dV92aW00X2NlbGxzOworCQluZmFuX2NlbGxzCT0gQVJSQVlfU0laRShraGFkYXNfbWN1X3ZpbTRf
-Y2VsbHMpOworCQlicmVhazsKKwlkZWZhdWx0OgorCQlyZXR1cm4gLUVOT0RFVjsKKwl9CisKIAlp
-MmNfc2V0X2NsaWVudGRhdGEoY2xpZW50LCBkZGF0YSk7CiAKIAlkZGF0YS0+ZGV2ID0gZGV2Owog
-Ci0JZGRhdGEtPnJlZ21hcCA9IGRldm1fcmVnbWFwX2luaXRfaTJjKGNsaWVudCwgJmtoYWRhc19t
-Y3VfcmVnbWFwX2NvbmZpZyk7CisJZGRhdGEtPnJlZ21hcCA9IGRldm1fcmVnbWFwX2luaXRfaTJj
-KGNsaWVudCwgcmVnbWFwX2NmZyk7CiAJaWYgKElTX0VSUihkZGF0YS0+cmVnbWFwKSkgewogCQly
-ZXQgPSBQVFJfRVJSKGRkYXRhLT5yZWdtYXApOwotCQlkZXZfZXJyKGRldiwgIkZhaWxlZCB0byBh
-bGxvY2F0ZSByZWdpc3RlciBtYXA6ICVkXG4iLCByZXQpOwotCQlyZXR1cm4gcmV0OworCQlyZXR1
-cm4gZGV2X2Vycl9wcm9iZShkZXYsIHJldCwgIkZhaWxlZCB0byBhbGxvY2F0ZSByZWdpc3RlciBt
-YXBcbiIpOwogCX0KIAotCXJldCA9IGRldm1fbWZkX2FkZF9kZXZpY2VzKGRldiwgUExBVEZPUk1f
-REVWSURfTk9ORSwKLQkJCQkgICBraGFkYXNfbWN1X2NlbGxzLAotCQkJCSAgIEFSUkFZX1NJWkUo
-a2hhZGFzX21jdV9jZWxscyksCi0JCQkJICAgTlVMTCwgMCwgTlVMTCk7Ci0JaWYgKHJldCkKLQkJ
-cmV0dXJuIHJldDsKKwlpZiAoY2VsbHMgJiYgbmNlbGxzKSB7CisJCXJldCA9IGRldm1fbWZkX2Fk
-ZF9kZXZpY2VzKGRldiwgUExBVEZPUk1fREVWSURfTk9ORSwKKwkJCQkJICAgY2VsbHMsCisJCQkJ
-CSAgIG5jZWxscywKKwkJCQkJICAgTlVMTCwgMCwgTlVMTCk7CisJCWlmIChyZXQpCisJCQlyZXR1
-cm4gcmV0OworCX0KIAogCWlmIChvZl9wcm9wZXJ0eV9wcmVzZW50KGRldi0+b2Zfbm9kZSwgIiNj
-b29saW5nLWNlbGxzIikpCiAJCXJldHVybiBkZXZtX21mZF9hZGRfZGV2aWNlcyhkZXYsIFBMQVRG
-T1JNX0RFVklEX05PTkUsCi0JCQkJCSAgICBraGFkYXNfbWN1X2Zhbl9jZWxscywKLQkJCQkJICAg
-IEFSUkFZX1NJWkUoa2hhZGFzX21jdV9mYW5fY2VsbHMpLAorCQkJCQkgICAgZmFuX2NlbGxzLAor
-CQkJCQkgICAgbmZhbl9jZWxscywKIAkJCQkJICAgIE5VTEwsIDAsIE5VTEwpOwogCiAJcmV0dXJu
-IDA7CkBAIC0xMjMsNyArMjA1LDggQEAgc3RhdGljIGludCBraGFkYXNfbWN1X3Byb2JlKHN0cnVj
-dCBpMmNfY2xpZW50ICpjbGllbnQpCiAKICNpZmRlZiBDT05GSUdfT0YKIHN0YXRpYyBjb25zdCBz
-dHJ1Y3Qgb2ZfZGV2aWNlX2lkIGtoYWRhc19tY3Vfb2ZfbWF0Y2hbXSA9IHsKLQl7IC5jb21wYXRp
-YmxlID0gImtoYWRhcyxtY3UiLCB9LAorCXsgLmNvbXBhdGlibGUgPSAia2hhZGFzLG1jdSIsIC5k
-YXRhID0gKHZvaWQgKilLSEFEQVNfTUNVX0dFTkVSSUMgfSwKKwl7IC5jb21wYXRpYmxlID0gImto
-YWRhcyx2aW00LW1jdSIsIC5kYXRhID0gKHZvaWQgKilLSEFEQVNfTUNVX1ZJTTQgfSwKIAl7fSwK
-IH07CiBNT0RVTEVfREVWSUNFX1RBQkxFKG9mLCBraGFkYXNfbWN1X29mX21hdGNoKTsKCi0tIAoy
-LjQ5LjAKCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-bGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQu
-b3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1s
-b2dpYwo=
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+
+Some values change per variant, add the structure to manage it.
+
+Add an enum khadas_mcu_type used as value to match.
+
+Also introduce khadas_mcu_fan_pdata to pass fan register address and
+maximum level to the fan sub-driver, removing the hardcoded constants.
+
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+---
+ include/linux/mfd/khadas-mcu.h | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+diff --git a/include/linux/mfd/khadas-mcu.h b/include/linux/mfd/khadas-mcu.h
+index a99ba2ed0e4e0..471a31787cce2 100644
+--- a/include/linux/mfd/khadas-mcu.h
++++ b/include/linux/mfd/khadas-mcu.h
+@@ -70,6 +70,13 @@
+ #define KHADAS_MCU_WOL_INIT_START_REG		0x87 /* WO */
+ #define KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG	0x88 /* WO */
+ 
++/* VIM4 specific registers */
++#define KHADAS_MCU_VIM4_REST_CONF_REG		0x2c /* WO - reset EEPROM */
++#define KHADAS_MCU_VIM4_LED_ON_RAM_REG		0x89 /* WO - LED volatile */
++#define KHADAS_MCU_VIM4_FAN_CTRL_REG		0x8a /* WO */
++#define KHADAS_MCU_VIM4_WDT_EN_REG		0x8b /* WO */
++#define KHADAS_MCU_VIM4_SYS_RST_REG		0x91 /* WO */
++
+ enum {
+ 	KHADAS_BOARD_VIM1 = 0x1,
+ 	KHADAS_BOARD_VIM2,
+@@ -88,4 +95,19 @@ struct khadas_mcu {
+ 	struct regmap *regmap;
+ };
+ 
++/**
++ * struct khadas_mcu_fan_pdata - fan sub-driver configuration
++ * @fan_reg: register address to write the fan level
++ * @max_level: maximum fan level
++ */
++struct khadas_mcu_fan_pdata {
++	unsigned int fan_reg;
++	unsigned int max_level;
++};
++
++enum khadas_mcu_type {
++	KHADAS_MCU_GENERIC, /* VIM1/2/3, Edge, Edge-V */
++	KHADAS_MCU_VIM4,
++};
++
+ #endif /* MFD_KHADAS_MCU_H */
+
+-- 
+2.49.0
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
