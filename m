@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92422CD8C9F
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jun 2026 14:39:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37D5BCD8C92
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jun 2026 14:39:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OvOIExM+aOIBVm1oILA8FAXHUQuUy4shZIzviqGiQrw=; b=Fitg9b1xhYeRPu
-	LIeerf9pOvNX/+0kxlFl8CFEDccSjYErdQaqQ7N1YK91e8q97RfMMFV+B6INYj+Qam93fgDizkSWG
-	65zZ5uHFdr67zzeDd1vaIBo2MgWE9HFMXcNLCZGA7n+zQ+k9/fBIHhkMNFIWy3qIGX8Ze2JKaU2y1
-	oHFoj6HKUI8Sj49CRxq/uZDEDMo3GtiAVILzpUEsDzNNId7GyJ73Ig3Zu467GgloBPPUp3SOYD5rl
-	OYHVZRxcu+56mnUasmtEOBtAmb6D6FZY7UZYdS22JiBcbHQz5QWQs8CKvi2QxgrHNPRCah4KSJyw3
-	TfB3OJSmEwGg7bceVT2A==;
+	List-Owner; bh=ByyiyRWxyEtQQkPBbaLqcKYKBuZ2+FqzP1JF1cAE36E=; b=av+uhTPAR5poCX
+	6dXMeWm1NgjDfsClUAg/bY/tTVpHTv6Zlu38dVlUNhu7CHe9Pc7+D4LzcZQ4bZaRrIvtlzamWZtJw
+	GcsHaK4SD9dmLQlrYtrjdneUzK09M0b4UJ5Pg0hGkAlf8fvbLPXv6aVxzYFp0ksgtVTjL+CtIEtQ3
+	kZzPULx4yUXPpavQT0EWJCh1xGJC/Je3T4eIbnQ2ehL77tchWt6sVdkTDD/8X3BjmrWTns2o6pAIK
+	ynze/lWOfgplF6CrvkUAI+jb2Q6WG762c/TLTF+2o4HeRoF5mHojQIjgdnqaIh8SMOG7qVIheByLT
+	HODRKOyqdCiBRq9W0V2g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wWb7x-00000003mxu-45hc;
-	Mon, 08 Jun 2026 14:38:57 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1wWb7v-00000003muL-2ctT;
+	Mon, 08 Jun 2026 14:38:55 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wWb7x-00000003mwg-16Pg;
-	Mon, 08 Jun 2026 14:38:57 +0000
+	id 1wWb7v-00000003mss-0VGg;
+	Mon, 08 Jun 2026 14:38:55 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 07F2B43DFB;
-	Mon,  8 Jun 2026 14:38:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DFD51F00893;
-	Mon,  8 Jun 2026 14:38:56 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 8E84B601FA;
+	Mon,  8 Jun 2026 14:38:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C69081F00893;
+	Mon,  8 Jun 2026 14:38:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780929536;
-	bh=rJjZc0IhgnYrKyF82EVcvBptKZA3RjfKUz5eV2PYOaU=;
+	s=k20260515; t=1780929534;
+	bh=+JMMUJnOZpTITDM6oIihe3vGgCV3w7ccCufoOcsZaU4=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=Gg7oxSJTu7KB6SaKvH/aeTB1CttGbOtCvTqSKHQFArQJkGc3uTJx9my9rR+VFbjse
-	 AIjZ16FBuAeKMng5FU+7lCXyRJyYprdUbP6zLxYJD7JonoCRrS4+CZLTND0IhuPr70
-	 bCrPcNZGVw33QVjrVRkf8Eu//ZN0bLrVjBX788JUcMnI+TLiXAAx/+W0ZLDYFQhUKx
-	 E8UfZnmRfX5rd8zRHUBfOiZRkIGSJ1jNmBzEKXCFFMVNv+41v4AvEcH8sXmxqEtvZZ
-	 wNac3GE5d+s9gbihgCSBK/hoKnXYuHP/p8Ns83RDFh45CvxCy+Y6YLg1wd97wmv9t5
-	 NNKELSjUUkDBA==
+	b=W82K9nIIBfmsZIah33myIT995pYdjp5fTFRdWcR2sWcOtKlJDoFVnEkVi8UKgjXtl
+	 GYB5t4nCF26pBSd/H0jIjEmoX4lTfIZs0ZjvqWSYQ7iyIsCA9Zq28elP9V68eq6vCT
+	 F6kg9B9gZDiWuZvJs0T864z57KDEktXN/v5x/UvD1XTVipu31fHQJd9q6m6dvnzZkO
+	 vxX2JQGL16hR7pb4bcSqEaJT0COcTDSb7Jw2uJxMcZcQSBy0jNqo7utVT2jyfPGvwh
+	 rTzKn307sKgqR8tWpUmeOOgFWGCbShg3KRllxZ1Qr82oEFcsCB62+vC4lYFwfUXHN4
+	 c6j9UCuuD86/w==
 From: Maxime Ripard <mripard@kernel.org>
-Date: Mon, 08 Jun 2026 16:36:38 +0200
-Subject: [PATCH v2 56/78] drm/meson: encoder_hdmi: Switch to
+Date: Mon, 08 Jun 2026 16:36:37 +0200
+Subject: [PATCH v2 55/78] drm/meson: encoder_dsi: Switch to
  atomic_create_state
 MIME-Version: 1.0
-Message-Id: <20260608-drm-no-more-bridge-reset-v2-56-0a91018bf886@kernel.org>
+Message-Id: <20260608-drm-no-more-bridge-reset-v2-55-0a91018bf886@kernel.org>
 References: <20260608-drm-no-more-bridge-reset-v2-0-0a91018bf886@kernel.org>
 In-Reply-To: <20260608-drm-no-more-bridge-reset-v2-0-0a91018bf886@kernel.org>
 To: Andrzej Hajda <andrzej.hajda@intel.com>, 
@@ -63,12 +63,12 @@ Cc: Dmitry Baryshkov <lumag@kernel.org>, dri-devel@lists.freedesktop.org,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
  linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1649; i=mripard@kernel.org;
- h=from:subject:message-id; bh=gtmH4lt8SDlqOlNBQJ9TmUX1oA8MT9jRtDBh19zvA/8=;
- b=owGbwMvMwCmsHn9OcpHtvjLG02pJDFlql2P16nemHpWY4aBZHmYhtO+zNK/k1ymBPk3ato7vJ
- 01MldjcMZWFQZiTQVZMkeWJTNjp5e2LqxzsV/6AmcPKBDKEgYtTACZitISxYZeXVGbGCvtLuxYG
- H5y89tyfittJC0Mmf3/7X/PNjFPTZmz/09OdnPj51b23b389fBpxvo+xvsosbA+LYK3bWt4jdxx
- 4i3hmWHx1Z/Q5GBj4SMNl/YSJj/K7Fs52Fft175D7nG6rzSn7AA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1608; i=mripard@kernel.org;
+ h=from:subject:message-id; bh=sXx0wMZeYzHhXbB0JWwNwadgHy4wy9yVO5hFwPLtWHk=;
+ b=owGbwMvMwCmsHn9OcpHtvjLG02pJDFlql2Pfs7Uout4RTeHdo1pd7FZmZM6rMvOow9FrEltWT
+ +GpfyvWMZWFQZiTQVZMkeWJTNjp5e2LqxzsV/6AmcPKBDKEgYtTACaiLcRYKxx2ad/LW5MV5zo3
+ Tu+4rmohH7Xiq/ssBdPHGX8198f8mZo4463b3037I6tfO8ZFnr7jyVhfFlaq4D4pgk1wEYPP04+
+ OPDEbJnxgNAgR1vp9dJqSb8dktzuX9uz1P/by1GnPS9M/+vQCAA==
 X-Developer-Key: i=mripard@kernel.org; a=openpgp;
  fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -104,26 +104,26 @@ Cc: dri-devel@lists.freedesktop.org
 Cc: linux-amlogic@lists.infradead.org
 Cc: linux-arm-kernel@lists.infradead.org
 ---
- drivers/gpu/drm/meson/meson_encoder_hdmi.c | 2 +-
+ drivers/gpu/drm/meson/meson_encoder_dsi.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-index 55c0601df3c6..0c7a72cb514a 100644
---- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-@@ -364,11 +364,11 @@ static const struct drm_bridge_funcs meson_encoder_hdmi_bridge_funcs = {
- 	.atomic_disable = meson_encoder_hdmi_atomic_disable,
- 	.atomic_get_input_bus_fmts = meson_encoder_hdmi_get_inp_bus_fmts,
- 	.atomic_check = meson_encoder_hdmi_atomic_check,
+diff --git a/drivers/gpu/drm/meson/meson_encoder_dsi.c b/drivers/gpu/drm/meson/meson_encoder_dsi.c
+index c1f4685073bb..3e422b612f74 100644
+--- a/drivers/gpu/drm/meson/meson_encoder_dsi.c
++++ b/drivers/gpu/drm/meson/meson_encoder_dsi.c
+@@ -94,11 +94,11 @@ static const struct drm_bridge_funcs meson_encoder_dsi_bridge_funcs = {
+ 	.attach	= meson_encoder_dsi_attach,
+ 	.atomic_enable = meson_encoder_dsi_atomic_enable,
+ 	.atomic_disable	= meson_encoder_dsi_atomic_disable,
  	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
  	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
 -	.atomic_reset = drm_atomic_helper_bridge_reset,
 +	.atomic_create_state = drm_atomic_helper_bridge_create_state,
  };
  
- int meson_encoder_hdmi_probe(struct meson_drm *priv)
+ int meson_encoder_dsi_probe(struct meson_drm *priv)
  {
- 	struct meson_encoder_hdmi *meson_encoder_hdmi;
+ 	struct meson_encoder_dsi *meson_encoder_dsi;
 
 -- 
 2.54.0
