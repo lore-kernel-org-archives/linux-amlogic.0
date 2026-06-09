@@ -4,92 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2AFBCD98C7
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jun 2026 10:22:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 304B7CD98C7
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jun 2026 10:23:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=DphzteYP8EGQqT2jNU63BXokHB8fwXv0WJROqi0uyW0=; b=jzTqncsVy/DFhn
-	t4lb+O2m5LtzI3xxEp9T1Tf6vOtEpE/lWpjHM07K5ohQy3OP22IDbiD5PSjXMgg2JNLZPwKHa0Cno
-	93r+al3bastKmsEBPP7KBrTvwKB3Sla0WDRKW7dvGjy+B2/GaClmNB1eZ9998nsszxx6aC9Hijl4O
-	SUwVB4AbWLMnjvc/kW8GbjFXDe9LjFK3B7y6qm1TMyMphunqGSQc3kTtmziIlCRgyfdC3A/0z316k
-	KYRoeFKAYEgGr/u2cpD0hF3/9eLxSobGufAvRO89unnnIwRpOlY6YktdpBlSYHwih/ogt3LvhHnjk
-	wNo8OAuNrLXjyruC3CEg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=HJiCu+KvS85O1sx2NLMAUASqI5SnF03iPYnkW5/rcFE=; b=i7KjrTFg6N+bUN
+	lACC5BW/P6eT/zmlJadMx1rkiAVWo05IGvLtnF8zwd9dIsfJ9TfctSU3IXh5QrBKPK3RSm2hSO0Pm
+	t3vb/HkG8KSd6eHR2TWoLEKUOozKaWwZnrBpitb8JLBBcQMG4SDzI/oO2S0w9b4lhcblexo7H845O
+	czRbZOuefNrtpyMTldF2HlqyU0M0njuE9dUnwUUDyPFT1AU8hNGC05IlgWeOPopoPc7wuGmarR0Fy
+	ph4mer52pis1QeAj6UUYnli70TdA+oKbyOuVfYpXXaN7nkGz4EMqh5WqHLjUUtjYJj9tmPMnXkWxB
+	BBf5xcUeySFynH22J5Wg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXG4Z-00000007NvM-1jFd;
-	Wed, 10 Jun 2026 10:22:11 +0000
-Received: from mail-pl1-x630.google.com ([2607:f8b0:4864:20::630])
+	id 1wXG5w-00000007O99-3vvz;
+	Wed, 10 Jun 2026 10:23:36 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXG4W-00000007Nta-1vsC
-	for linux-amlogic@lists.infradead.org;
-	Wed, 10 Jun 2026 10:22:10 +0000
-Received: by mail-pl1-x630.google.com with SMTP id d9443c01a7336-2c0c3315c5dso68735085ad.3
-        for <linux-amlogic@lists.infradead.org>; Wed, 10 Jun 2026 03:22:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781086928; x=1781691728; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=7rPTGNjskcRtQTw6mA5VpAqBzsjh0SlCyTZZ3Fz9+0M=;
-        b=XqUUctFdGx56syC92sbAmUyO/phPqzcnTJr/qgwU4GdcQ7oVRGkWO6L2NAvxYklSfB
-         KYliBFiSSxupoLEmKE4alCoSX3SQNJEttrjpljmSEnmHp+WHRzKZWJAkDtAq6pHjKIIn
-         VpFj88tqOkrTph9pAuw6soaw+JAD23Mw7aiPPFFrOet63Ay8ecnVQD0hrlsArAn7a23l
-         fC0xd5sU13CUUlRNfJ3+G8Xpqf9kE5ceGggO84GOB7ihWu54FfLvhI+rteK7xB3FhPCr
-         9a/9IF4EgpmgDCe3r+0ALfTd+snTRSgWkkU8tG87x0d4H1ST6VezECCOVjALdmszIldw
-         F04w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781086928; x=1781691728;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7rPTGNjskcRtQTw6mA5VpAqBzsjh0SlCyTZZ3Fz9+0M=;
-        b=bY0pssdfjvLUqVCZFAWLTF34Esqa9TXBdYYZTy8sAzzhlnENfIarGIouuK09sDj6ZK
-         +m5yqZugaAsfpi5bPvDVZr1dz9TPPMiMijTRIWHEyJeba3LOwfO+36TnqEi7jxLZdEnr
-         QlQZR5OzPq6OhUnKV0/fv9psV6DnhDtU66PGaf+4BtVcjX9nXVENgWy+OhnHi9YafrQ6
-         vidBY1hASrJnLzCHs7GpdwkHKZazY5ZhWtU6HGAwuZuDgq4G8m7su8mufasb9hPPDpGZ
-         Yz5pSkDqSyEqHp3enJgJM3bDIJIk0JGE7f4uZp6dvDoLqTHjUVNBfJn+rTtcnmXDOawx
-         9ysw==
-X-Forwarded-Encrypted: i=1; AFNElJ9CniGnzvFRUpp+Vy9zr8jEI61S4ZGcEZHPwHj3agzWItM3Y8x7BAZoKkruQ89E1/NZMSmkbt7ODHqmHuPh@lists.infradead.org
-X-Gm-Message-State: AOJu0Ywd1xMuqAs/F11RBkNEB/WuB/T+NMvfjKaQAwRZps9yvzPJL/6Z
-	Pl6zsC7v7Jg3dFXoY3jmac93ckckEkowqMvbKE70OiQXYM6fHZQrGFM0
-X-Gm-Gg: Acq92OEjQzUG4BWPXPMQ9nohASoge8zFl1venPJ9YxHS/VqgronqVTDSPyRqstdtlSm
-	M2nxUGlFO7qBTt/Om8ErWDygvjSs95Lj6k9UqVM//pDPQcknJ1HJkGsNSLA9GqOe9iLoT1iSVOu
-	DAVK9SG/+F5sZU2XhrpniqtN86FBZvZHeO+Hme16PcJ11AtmRVhaAq5NREGc9ReSEiWqWEmzhAE
-	ObAI0sF6DpcRPu/xi6mwIbX422O9mYTdToB3yp1H9sIVJllSxm52fR7onD/qd+yM0CrbCV6YrBD
-	8URnQy/C6QLaUW9TvQrUTSm+G+9yr0yP75/z8HfbOV4tajdaPqAJs5j0GecAgFqxe39AcKpNjyB
-	JfwtJM7DFTIfdlUErOiMv8aqJdz+gDdXA9PezbAwyIU94xW60Zs7CXWrPM2vUBzUzNvCIrj+4ky
-	KBqht/0b5dQ/txsNLo+fVcnumjx2voC0lsgK/b7qWrhtmVN68jh///s5Ds7uDqAhEEEX7e
-X-Received: by 2002:a17:902:f711:b0:2c0:ab82:6ba7 with SMTP id d9443c01a7336-2c1e85ad8d7mr289553825ad.33.1781086927749;
-        Wed, 10 Jun 2026 03:22:07 -0700 (PDT)
-Received: from phuc-desktop.. ([183.91.15.56])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c1663981basm239924075ad.67.2026.06.10.03.22.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jun 2026 03:22:07 -0700 (PDT)
-From: phucduc.bui@gmail.com
-To: Mark Brown <broonie@kernel.org>,
-	Jerome Brunet <jbrunet@baylibre.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	linux-sound@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	bui duc phuc <phucduc.bui@gmail.com>
-Subject: [PATCH] ASoC: meson: axg-tdm-formatter: Use guard() for mutex locks
-Date: Wed, 10 Jun 2026 17:21:53 +0700
-Message-ID: <20260610102153.83367-1-phucduc.bui@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	id 1wXG5v-00000007O8e-18MM;
+	Wed, 10 Jun 2026 10:23:35 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id A52C343F78;
+	Wed, 10 Jun 2026 10:23:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23CA21F00893;
+	Wed, 10 Jun 2026 10:23:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781087014;
+	bh=b952kGpEMvRiit9FTFHTz6P7HfXCrJpbJbKuJYF3T8s=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=SnqPRjW8N2AK3UIZlbRblqGrklySyh7TGWdMw+XrdGXogaIqJdMEBovqwtnfVK6rc
+	 xVlENf/nhxE7Z89+A0qBE8fkFV57IYZeRD9b44H3X66ILN5gAsHUK8pgWehRzrvNT5
+	 UhrnGLW0pajIpTigHI78JrPFQQ9M8AphGXo85xAGY6+NiYldlq+VCezAME1lX5POOZ
+	 nKHqU10FPtT9m4LQPphCANBYRFD1PlcLi1iHbqD0BqVgNiCl55ekmMj7nV/0qv+Jmf
+	 29gjF/cHrDnSkeCGLPfECNzjzmn+06f0dTPN7D0rAXfNgAiBFBvg2DUOPJgRuBRVoA
+	 5g1r6DB0U4RWw==
+From: Mark Brown <broonie@kernel.org>
+To: linux-spi@vger.kernel.org, Ruoyu Wang <ruoyuw560@gmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Beniamino Galvani <b.galvani@gmail.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20260609052647.5-1-ruoyuw560@gmail.com>
+References: <20260609052647.5-1-ruoyuw560@gmail.com>
+Subject: Re: [PATCH] spi: meson-spifc: fix runtime PM leak on remove
+Message-Id: <178104640986.212106.12502273738645325347.b4-ty@b4>
+Date: Wed, 10 Jun 2026 00:06:49 +0100
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260610_032208_499566_90D81B1C 
-X-CRM114-Status: GOOD (  11.11  )
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1106; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=C/czuiP9grpMZXO7aleQvnc9q8khXKOwwS2Z1kdf4dM=;
+ b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqKTsjUnvIDFUOx+gx/OS+/TdsHBQ/1dxwRtkt4
+ eRn7TEiCPiJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCaik7IwAKCRAk1otyXVSH
+ 0A+iB/0WiyEFVlvDGYdaAGsoWZEnfDSyFifJuz2TPP9E6pBgh64emn3QWgwcBQPgGWvXqn0fbQ/
+ v2oH4KY+wkat0DQTiFDDVC57bN+dder0Fo48vQKpkmloMIsUxEScrVtRQw6J9IHC8wygFeI5/+d
+ zwaqmFNKIIPHLSe3BmtG8M0VCwvAgvSCqmEHFsVwjPLDEbTPMn9OX2JqPU3ivsW3Nwuat0lmK8V
+ CF/GmHrxQnewc12i7OZAjq5Hhs156ip0RLXS7IFJC4QDn3c0/zLa7S+8nreSIm86Up3XXiUk6oP
+ BAtOduaWpapGNvH3rEGh6scqCbX8O67Z6xYcIpJbt2pNLBCZ
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,98 +83,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: bui duc phuc <phucduc.bui@gmail.com>
+On Tue, 09 Jun 2026 13:26:47 +0800, Ruoyu Wang wrote:
+> spi: meson-spifc: fix runtime PM leak on remove
 
-Clean up the code using guard() for mutex locks.
-Merely code refactoring, and no behavior change.
+Applied to
 
-Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
----
- sound/soc/meson/axg-tdm-formatter.c | 22 ++++++++--------------
- 1 file changed, 8 insertions(+), 14 deletions(-)
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-7.2
 
-diff --git a/sound/soc/meson/axg-tdm-formatter.c b/sound/soc/meson/axg-tdm-formatter.c
-index f451e4dce442..a6ba401104d5 100644
---- a/sound/soc/meson/axg-tdm-formatter.c
-+++ b/sound/soc/meson/axg-tdm-formatter.c
-@@ -157,20 +157,19 @@ static int axg_tdm_formatter_attach(struct axg_tdm_formatter *formatter)
- 	struct axg_tdm_stream *ts = formatter->stream;
- 	int ret = 0;
- 
--	mutex_lock(&ts->lock);
-+	guard(mutex)(&ts->lock);
- 
- 	/* Catch up if the stream is already running when we attach */
- 	if (ts->ready) {
- 		ret = axg_tdm_formatter_enable(formatter);
- 		if (ret) {
- 			pr_err("failed to enable formatter\n");
--			goto out;
-+			return ret;
- 		}
- 	}
- 
- 	list_add_tail(&formatter->list, &ts->formatter_list);
--out:
--	mutex_unlock(&ts->lock);
-+
- 	return ret;
- }
- 
-@@ -178,9 +177,8 @@ static void axg_tdm_formatter_dettach(struct axg_tdm_formatter *formatter)
- {
- 	struct axg_tdm_stream *ts = formatter->stream;
- 
--	mutex_lock(&ts->lock);
--	list_del(&formatter->list);
--	mutex_unlock(&ts->lock);
-+	scoped_guard(mutex, &ts->lock)
-+		list_del(&formatter->list);
- 
- 	axg_tdm_formatter_disable(formatter);
- }
-@@ -330,7 +328,7 @@ int axg_tdm_stream_start(struct axg_tdm_stream *ts)
- 	struct axg_tdm_formatter *formatter;
- 	int ret = 0;
- 
--	mutex_lock(&ts->lock);
-+	guard(mutex)(&ts->lock);
- 	ts->ready = true;
- 
- 	/* Start all the formatters attached to the stream */
-@@ -338,12 +336,10 @@ int axg_tdm_stream_start(struct axg_tdm_stream *ts)
- 		ret = axg_tdm_formatter_enable(formatter);
- 		if (ret) {
- 			pr_err("failed to start tdm stream\n");
--			goto out;
-+			return ret;
- 		}
- 	}
- 
--out:
--	mutex_unlock(&ts->lock);
- 	return ret;
- }
- EXPORT_SYMBOL_GPL(axg_tdm_stream_start);
-@@ -352,15 +348,13 @@ void axg_tdm_stream_stop(struct axg_tdm_stream *ts)
- {
- 	struct axg_tdm_formatter *formatter;
- 
--	mutex_lock(&ts->lock);
-+	guard(mutex)(&ts->lock);
- 	ts->ready = false;
- 
- 	/* Stop all the formatters attached to the stream */
- 	list_for_each_entry(formatter, &ts->formatter_list, list) {
- 		axg_tdm_formatter_disable(formatter);
- 	}
--
--	mutex_unlock(&ts->lock);
- }
- EXPORT_SYMBOL_GPL(axg_tdm_stream_stop);
- 
--- 
-2.43.0
+Thanks!
+
+[1/1] spi: meson-spifc: fix runtime PM leak on remove
+      https://git.kernel.org/broonie/spi/c/606c0826bd90
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
 _______________________________________________
