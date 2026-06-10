@@ -4,64 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B87DCD8CB2
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jun 2026 15:34:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9702CD8CB2
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jun 2026 15:46:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ARntNE8ndqNTK36UjyOgO3INfnXx+BmiH2h/qyIhRfo=; b=G7X7TimUSr8wf8
-	DYOrkaio8qL0KFRuN0hJViNFn0k9vS/Zl6/xyqhKyTkUpnQQORH3TRz+cGTX3HEVLpxGxq9SSc0aa
-	YlZZt6cVRm+hzypMGiRMr1cQbjVJcKbqJqpwsFKe+uLX8wiwN3pJisgbYObvE1JN9K8Nzp6xH0Uyv
-	TFTncLoIXQAbh7vvE0Fcxk4/wLjRQGgQL6u7jB7gMe4JcnESihfVkN7bFbgMWgB11RRHizOp/4V9U
-	TsVQ+giL/+VNQupB04ZVopq3YY1tb/kwr+8k9AU45DHOBxKHkmgqw6T4x/SL05zHlGONPDiV8v+s1
-	XgezsqUuwTE+fpWhuEPA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=FB6Xtdl2V5ioScxNLgD1NRtPPkTcVrQQXdi7K20csa0=; b=1ySCxx3MzA/onPPJJNlOyUSLAv
+	mpatYPO86a1Vc4kc+VfdzhEE3n/M2WriK0ub+KFKWQtZYLOi2Rn2Hogsg3uTjF14dfIYFcHugUjuJ
+	unb2/Mo66+WBUXdcQyrjm5r/09/tqKCfA0wRIKYPWIOeRYdAP+yo1+Kne9tzA6sHsVULE432JFBB8
+	NI/KTxXpB65x1ljdQJlCsvIwVId6I/MIrnV3GNMOBEO3erYs+V/LmdQP08FQHCeltkj5j2CIPx9Bq
+	irOaFNc+jA1Dr/0FMkihCRUwtCM/v8pOhrWbDglhBVjeg3APdSAQbKW3CsTr8MbVuvNZ2P3IJK93X
+	4zZjMhQA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXKwx-000000081z3-3uPG;
-	Wed, 10 Jun 2026 15:34:39 +0000
-Received: from mx.adeep.su ([185.250.0.168])
+	id 1wXL8c-000000083dk-3hCm;
+	Wed, 10 Jun 2026 15:46:42 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXKwv-000000081xo-3C23;
-	Wed, 10 Jun 2026 15:34:39 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2FA14176A4E;
-	Wed, 10 Jun 2026 18:34:27 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=baodeep.com; s=dkim;
-	t=1781105675; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=LaXsQyCAP4gFiFFUxqAjDQuXyDetzIk5A6HbOjXl79U=;
-	b=rPBrzQAhI7sIJSm/VbEUy8m4NQdwlKi4aq7hGmcYTc1ZAoY7gJyQT7dZ8X4HjbB5HBh0Zb
-	RzFsB3X/fTHt7McYqV3r9dHKeR562E2AUpCREJSNrL+vzsD2w249st0gRiMk2hQVb1p9ul
-	Gk9CouqxPtNGjennSKUy8l5K2OFVbNXjO8ZtXZg7E8fMz+vds8so53bE+Sg+X02QmsZz+2
-	YXU5MRCavCERdNRU2FGPFs3dHiZmnFyWy1GufZb9msYl583o1UI63K6txkNP09eYsGo+aZ
-	PY0ZC6hi3CqJMaytDOYTqJibqOfnHwKa5aXRXoE3fMaVNIdyJAFfSQbFNZlQIA==
-From: Viacheslav Bocharov <v@baodeep.com>
-To: Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	id 1wXL8c-000000083dV-0Lgi;
+	Wed, 10 Jun 2026 15:46:42 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 339B460172;
+	Wed, 10 Jun 2026 15:46:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC2411F00893;
+	Wed, 10 Jun 2026 15:46:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781106400;
+	bh=KfdWJVUy1kU0Nhcuk2I/MmIfNfdAKh+0EByci0W5Szg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=flSmuyQVfR6Qzzj4264uL/3WKO4fpcjjZ4Jpe9LCYf8w3yyzBkv8J82QVqjrkmzVT
+	 f3l9nEUh+vtSycuEhKgKkyJbWjprL/xSDxyAFXi6dOjZfQ0rcmCcqRFBm2BgjCSU21
+	 txjRwsPP3m5KjRCREpBfcg+aHnfP7JKdtnE3YdXLBfg1oC117BM6h+1l4eBsdCO2RV
+	 JLA/NvN/HDKG9Kq6SdG9LDOVGP3RRZ4W7tN2KyW6lAf4sQWIIzKpXPsQywVQjX/X7V
+	 9ie4s2b02YYvDDh0WtIhos8Dror3uQHv1HNL0PZ2xdXYrduO2nJ4MSmPBzBybB56Ec
+	 DmWapuh2XIRzA==
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+	id 5CE5E1AC56C5; Wed, 10 Jun 2026 16:46:38 +0100 (BST)
+Date: Wed, 10 Jun 2026 16:46:38 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: phucduc.bui@gmail.com, Liam Girdwood <lgirdwood@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Diederik de Haas <diederik@cknow-tech.com>,
-	linux-gpio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] pinctrl: meson: restore non-sleeping GPIO access
-Date: Wed, 10 Jun 2026 18:32:11 +0300
-Message-ID: <20260610153329.937833-3-v@baodeep.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260610153329.937833-1-v@baodeep.com>
-References: <20260610153329.937833-1-v@baodeep.com>
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ASoC: meson: axg-tdm-formatter: Use guard() for mutex
+ locks
+Message-ID: <aimG3hIK6HUWyc2Q@sirena.co.uk>
+References: <20260610102153.83367-1-phucduc.bui@gmail.com>
+ <1j8q8mfte7.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-X-Last-TLS-Session-Version: TLSv1.3
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260610_083437_969098_CD6102B0 
-X-CRM114-Status: GOOD (  12.05  )
+In-Reply-To: <1j8q8mfte7.fsf@starbuckisacylon.baylibre.com>
+X-Cookie: Leave no stone unturned.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,68 +72,65 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============4423334776288598612=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Commit 28f240683871 ("pinctrl: meson: mark the GPIO controller as
-sleeping") set gpio_chip.can_sleep = true to work around
-gpio-shared-proxy holding a spinlock across a sleeping pinctrl config
-path. That locking bug is now fixed in the shared-proxy itself ("gpio:
-shared-proxy: always serialize with a sleeping mutex"), so the
-controller-wide workaround is no longer needed; the meson GPIO
-controller does not sleep.
 
-meson_gpio_get/set/direction_* access MMIO through regmap. The
-regmap_mmio bus uses fast I/O (spinlock) locking, so these value
-callbacks do not contain sleeping operations. Since gpio_chip.can_sleep
-describes the get/set value path, restore can_sleep = false.
-
-Marking the controller sleeping also broke atomic value consumers such
-as w1-gpio (1-Wire bitbang): w1_io.c runs its read time slot under
-local_irq_save() and uses the non-cansleep gpiod_set_value() /
-gpiod_get_value(), which with can_sleep=true trigger WARN_ON(can_sleep)
-in gpiolib on every transferred bit (from w1_gpio_write_bit() /
-w1_gpio_read_bit() via w1_reset_bus() and w1_search()). The printk and
-stack dump inside the IRQs-off, microsecond-scale time slot destroy the
-bit timing, so reset/presence detection and ROM search fail: the bus
-master registers but w1_master_slave_count stays at 0 and no devices
-are found. Verified on an Amlogic A113X board (DS18B20 on GPIOA_14):
-with can_sleep restored to false the warnings are gone and the sensor
-is detected and read again.
-
-This must not be applied or backported without the shared-proxy locking
-fix above; otherwise the original Khadas VIM3 splat returns on boards
-that genuinely share a meson GPIO.
-
-Fixes: 28f240683871 ("pinctrl: meson: mark the GPIO controller as sleeping")
-Link: https://lore.kernel.org/all/20260105150509.56537-1-bartosz.golaszewski@oss.qualcomm.com/
-Signed-off-by: Viacheslav Bocharov <v@baodeep.com>
----
+--===============4423334776288598612==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="PxyZ8U/rEKlTlGqo"
+Content-Disposition: inline
 
 
- drivers/pinctrl/meson/pinctrl-meson.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--PxyZ8U/rEKlTlGqo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-index 4507dc8b5563..18295b15ecd9 100644
---- a/drivers/pinctrl/meson/pinctrl-meson.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson.c
-@@ -619,7 +619,7 @@ static int meson_gpiolib_register(struct meson_pinctrl *pc)
- 	pc->chip.set = meson_gpio_set;
- 	pc->chip.base = -1;
- 	pc->chip.ngpio = pc->data->num_pins;
--	pc->chip.can_sleep = true;
-+	pc->chip.can_sleep = false;
- 
- 	ret = gpiochip_add_data(&pc->chip, pc);
- 	if (ret) {
--- 
-2.54.0
+On Wed, Jun 10, 2026 at 02:54:08PM +0200, Jerome Brunet wrote:
+> On mer. 10 juin 2026 at 17:21, phucduc.bui@gmail.com wrote:
 
+> > Clean up the code using guard() for mutex locks.
+> > Merely code refactoring, and no behavior change.
+
+> I suppose it is OK but it does not seem to really clean anything and
+> make the code easier to follow in that instance, from my perspective at
+> least.
+
+> If there is policy to systematically use guard() whenever
+> possible then OK, otherwise it seems unnecessary.
+
+I don't know about policy but there's definitely people who are keen on
+converting things to this pattern.
+
+--PxyZ8U/rEKlTlGqo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmopht0ACgkQJNaLcl1U
+h9CzRwgAgDswQDXFyzP5z4rETNyEf3MQAZYJYQ3LTNsRsjBW0i3YBsbEwiJoeDF5
+jfTgd6UguAKKbHKzgkWe6qbYY2bUjMVI3xANcR4Uyd6SbyS92RpWyDH729+mDbLK
+bP3l4yAWtiGfSsDqDASxflSVpkWJmSFcImDX9QxoEc8L94Xynh4V6Ju3g4U5mo1t
+Z1sZmpt5uktyvYaTqt8KISlILUGBNzd3XGsmCZYLD+BhPprmyuPKpvDLPho+zXkP
++Uop8nWZpZGNNo2iJN5szX8ZEO3XVKsaXLcsbc4PeKNhqf02cu2S5aZm1N9az+Rq
+1L7IGgsO7TnmOy1C6O6pK/6Hd9d31Q==
+=eN3r
+-----END PGP SIGNATURE-----
+
+--PxyZ8U/rEKlTlGqo--
+
+
+--===============4423334776288598612==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4423334776288598612==--
+
