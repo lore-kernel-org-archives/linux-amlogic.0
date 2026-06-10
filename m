@@ -4,96 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B591CD8CB2
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jun 2026 12:27:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D07E4CD8CB9
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jun 2026 12:30:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=J2PFIcQYs1hEvo+6M8+HPv62dDk/GP8a/gTka3CO+XM=; b=e7DhfBihgIpn77
-	ycBrbGwHF/c6I5aEM3e/XKtujaF3fhRbe2aMCBhAYJNncRLtxtea/+QduhaJu9K0XyQ3rP/2oG2fU
-	CtRiS7o4ITX9xXyU3KtAXW+1gK4nhI9sBYDbP73mUfeolrr66Xp/JhlR4MgkQ1s19SnUsxwhFQUvI
-	6ggA5vQ+r0WS48lA0bq+71bFjJFZFsX85F15wCwVHMKdIzJ87/tbUTyrxVT/0PqTvh5XdU8+Fa1Cw
-	6bTbUScwFF60V8/+CVp2dFjupp1othZyNXgRezPmpbJ13eqjATB1J2cLxTycXAOn0hmh7BiSYHkuS
-	xXd1a1ZU3ivpId6LNkoA==;
+	List-Owner; bh=TIopvGdHnOtAOr4N2chZsJVg/fauB9wuRXvllWhlkRs=; b=CT7po2EVZanURs
+	bxHbA7CFO/Mqbyp7NMTRm5pPHsKulmodk2N7t55WN8bFKrhV7AWJDFMwm8rJ7bCpltkCA1UjDcc+k
+	fXQ7PLxH1JGA+COfDQTYZLorkv5OGQQebWMG2a0tbLPx6/l9/gwk56HI0cQpje0F2r9Y0zeplHkkP
+	WeQaeQR7cKxoPPId21ufRPgAFykmsxeopo2sd3TIml5e30t0vB9HfMlWNYYpP1YZVP3OUTW04sYJt
+	YAszamy99xawHMKUco6jYlLTt7C1djbfLVqhSIHlR2XhyyTiPIE0AXy6I9aSXH961nXQmotAsM+vb
+	kPe9Mx++HfP8/lalGrUg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXI1F-00000007dXW-0wIb;
-	Wed, 10 Jun 2026 12:26:53 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1wXI4f-00000007dm4-09AJ;
+	Wed, 10 Jun 2026 12:30:25 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXI1C-00000007dWp-22qx
+	id 1wXI4b-00000007dkJ-0WcK
 	for linux-amlogic@lists.infradead.org;
-	Wed, 10 Jun 2026 12:26:52 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-490b3e03939so55601515e9.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 10 Jun 2026 05:26:49 -0700 (PDT)
+	Wed, 10 Jun 2026 12:30:23 +0000
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-490b2b037d2so58733955e9.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 10 Jun 2026 05:30:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1781094408; x=1781699208; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:user-agent
-         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fw2wxypqiSq6JjCrHtFlLbVO37xmRZdL4EKtYtLIJ4I=;
-        b=M7JJ2bpdWC4TtYoRVaDboMwPu0md9Nny3XwiYBDJo5lk+d2RIc3wONMbAW0uc7LeT1
-         JkRP8Kvd2+kq+jmm+IpY+Pc2FFdLi1ajZhsr/LfEiKOJcC9H9PD1GMp1VVEp1v6/JV4P
-         FV+3UfQ2FhCVAPKHgpx3EVirRmsIImy7M8f1raK3QyamS7vUC5cH0uVCwF48qHXf6eXo
-         vjI3dKFeg9nHnzSarz8MVHZrAxl1g2444pwtfynHi5vOxkq7mh2x/hsz3jH3ofGYN8zB
-         9jH80Qm25fl4Biw3Eayv6RSJwfck/T5nq2Oie2hQHeRbAlKrhDTctDMTX6QMUlXLMaxb
-         EZ9w==
+        d=baylibre.com; s=google; t=1781094619; x=1781699419; darn=lists.infradead.org;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/y04M2qmVQkR0LyVOwCMc/iKFLArVo6s1Y/cXml3j7I=;
+        b=RJVLR+Bo1vzpynSaiMsCIHJLhTmuBuO/Fx68d8faaAROQ99G6Ngbo5M6h4pTJPYHKW
+         1v2QpMWnNufR1+KiYnGvbmg3cJhMJWAMTo3IB6k7hOyVJ7rBfQ87dY9eDbO+jLQI0Qdo
+         8FwhbZ2GT6X6BaopKKbOUsHFLhNPafbZr7qzHWiVViw7VvrfORGbo7krdMbD0r59sbip
+         tQAZ8K5MHDgUcCFOTCxtpEL1UTYgNjefSo0QVKQNSf/7vS5b3HRTJinTCCj4qUQwwqB3
+         kK7chsVxexkervG0gpW/KhObvTVY5ECbWF/a4OP7SMhKSzVMfVmvZG/FSzSCrvwQCB0b
+         4VNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781094408; x=1781699208;
-        h=content-transfer-encoding:mime-version:message-id:date:user-agent
-         :references:in-reply-to:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fw2wxypqiSq6JjCrHtFlLbVO37xmRZdL4EKtYtLIJ4I=;
-        b=XdxYBv6lISovU6CFUTz9mcu8brZciqv9zPjj5scdUfGG7lLXhwFUgrUQUWr6b+Tr3+
-         CAH6cu/qcRrEXHY5BVDNKrGoaaaE/uQ/oDlEeCzY3hsWy72GQH7RdzWNriA8kybRXFD1
-         5YOsor/twxmF2LszxtRpSbGuWBZPgbWjF2kfyCjBR4QBrVodvqyHwaxEcUgFOjhF6CqT
-         1VFVj42m1Fqx92jFJK8Upt0auG40sfHWxVKyW2T6N9jvDNFQVWz87mRv+qgO0YhV9yLQ
-         LAiYcfa05FU78+vsfZe3sGt/48MZxIHbBItK8eQ3feQev+vnX1n8LQr2G2h5rD5CiwfE
-         NGUA==
-X-Forwarded-Encrypted: i=1; AFNElJ9x0/laPpBqDZQyIQiElEQp0rzw61+yg7bkNi8tzzPViMO7IbpfWGBEaH4DWYDjlhXq732go2GxVwnWTfuZ@lists.infradead.org
-X-Gm-Message-State: AOJu0YwTIKHpX1xUYR4QCuNWWgjEcT3fIEGw95L6z9tNzH7uEE4OLKYg
-	BlDyD7XDeXzJqaq6GOeirSD05vNOTfbLrP09KJ7I01guH6coZ/XPFgnUAUBFwUEzs+g=
-X-Gm-Gg: Acq92OE43nY1CoI6Y9/M9SjjxRGv+PPe8BV/CtT3rvKk9ZsKs71+kWZUqnD9n2mvw+s
-	iZKhsJ88nAI7fhZ1s6USvqv41RxSx1ZES2a9KZSMGMeT8xRhymfbAv4YiGf1mdD9K1guEyr1sme
-	ic5sASG9/YHzfD2smdaM4L77sDbZOdLeUS8LBl+euk4jXlm6QXfxH6gWtveZxPUTkp6g/2yyOmo
-	EUMzPXP7sIgZahgCR4vxjqPRjc0+NMjo6i+CjATofurrO/DzSD8eHE8FlCx1JOXW9yRY3OUpaHW
-	a/u750uAy3b1Iia6nmDM/rnBqQBtybzjx4B+ET0qAgqVedBH9JRE5DYDQvKJP7aqKhuZv9YBXmA
-	MCXhiHpcl+QDhULQR36rgyJDDxZcdGW6rwMTvfyf5SkkTytbnMpqCf/NO/ZCYeKuiJC8u74K+qx
-	55QrG117GlGkffSXpO9r7m1mSuS5LZ2BkY
-X-Received: by 2002:a05:600c:4ed1:b0:490:b4cb:3866 with SMTP id 5b1f17b1804b1-490c2cf67f7mr331756785e9.10.1781094408066;
-        Wed, 10 Jun 2026 05:26:48 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1781094619; x=1781699419;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=/y04M2qmVQkR0LyVOwCMc/iKFLArVo6s1Y/cXml3j7I=;
+        b=etprQM59JYJpNOm846YlP/1SBv+9otCyNrlG+L7xkSTOZ7VVWQWfa/6jStJHt98jWq
+         a4rPOMqF4CgJ3MuBJewDgDAQoHt5BCTdriISUOHoak71GsnRtveI07TiNHOmifh1Pn3o
+         mmsuOCBlj1z0udjLCXrsY0VIHirpBEzlDx0MyY0G8DKSn6Qf6busVTcHX8yddjEsPi9i
+         NqQUjV+8USnjzfITpzRxElroNdNWmOK3Z6c0+J1LIwywnmy+2mH1SQE67OMVjjCn5lMT
+         Wb9DOWYjmWJZhuTlAgRBrljN9oLaGbd7kx6U+J9V5hYJIazbRqAVkAeMSmIdoVRA/SdO
+         mXLg==
+X-Forwarded-Encrypted: i=1; AFNElJ9etpH37AmskSweUDu3InnkIxtGLW80bzeFd1LI8AYsMkyhJLhmymqoj4Pcwj6KEGgIimxmX8Dg52UHB0fz@lists.infradead.org
+X-Gm-Message-State: AOJu0YxmMoVX8IJacBkIwQjl0ffSQKlhplosv7fNQz2wEGEDJQHLoc0Q
+	HahVncBnl+pi47dXSXXDKc+rsEBexCZ22Bgh8gzT9v6rjPlhItOX8QEkyWRkLxjuQvw=
+X-Gm-Gg: Acq92OFUpIKtgv3tEEQaXTxw3brpvPBciZuBC9Z0yaYIjHeI0rUzak3Xc60HJ/acqYL
+	Yg5X9lLKeN67TbgsqZ6AqatBGd0ig+2WwPJ4pSy0Snfz30pgVYZYyjIjkewczKc3+PAiYjvcjne
+	bWBWaOdkdiuUZOa3+dFDM2VLoqgLXMtXT9Ak8TOUUGvUy87Nx0csawYKkquuVq1X8HqhxdZx+cg
+	735IFFAV9qokDaYGQSKsT57hCAabx5o3/2pkEvADgUbiPKzOnz/FH9c06THeAM3FBiP057v1T9r
+	QklzLKDEwhXqNht+h7l+KzBj2Fokdu0IKBgpJGGH5vp4Ol9ebQOz9FGbUis8jyqnQARR1HkN50L
+	i1TqeUA5OUZfSsnN4fTHsbhsIcZEw5krtY5dmADM3OAPANYZI8Aym9rV6NmwYfmU+Ky4PiqY6LT
+	d9ziFaH54IRF7NUpgEsHimZThhln+rMuIeeXEmw43gcdY=
+X-Received: by 2002:a05:600c:5246:b0:490:bad8:329c with SMTP id 5b1f17b1804b1-490c25c8197mr382286315e9.12.1781094618902;
+        Wed, 10 Jun 2026 05:30:18 -0700 (PDT)
 Received: from localhost ([2a01:e0a:3c5:5fb1:c371:18ed:9599:7f5f])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-490bc39def5sm547623695e9.5.2026.06.10.05.26.47
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-490bc3e59f5sm592218965e9.14.2026.06.10.05.30.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jun 2026 05:26:47 -0700 (PDT)
+        Wed, 10 Jun 2026 05:30:18 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Jian Hu <jian.hu@amlogic.com>
-Cc: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>,  Neil
- Armstrong <neil.armstrong@linaro.org>,  Michael Turquette
+To: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Michael Turquette
  <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>,  Rob Herring
  <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
  Dooley <conor+dt@kernel.org>,  Xianwei Zhao <xianwei.zhao@amlogic.com>,
   Kevin Hilman <khilman@baylibre.com>,  Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>,  linux-amlogic@lists.infradead.org,
-  linux-clk@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] clk: amlogic: Add A9 AO clock controller driver
-In-Reply-To: <67fcf9bc-0ac7-4812-aa7c-4d42d8f1c162@amlogic.com> (Jian Hu's
-	message of "Wed, 10 Jun 2026 12:18:54 +0800")
-References: <20260603-a9_aoclk-v2-0-f47ea616ee78@amlogic.com>
-	<20260603-a9_aoclk-v2-2-f47ea616ee78@amlogic.com>
-	<1j7bofd7dr.fsf@starbuckisacylon.baylibre.com>
-	<67fcf9bc-0ac7-4812-aa7c-4d42d8f1c162@amlogic.com>
+ <martin.blumenstingl@googlemail.com>,  jian.hu@amlogic.com,
+  linux-amlogic@lists.infradead.org,  linux-clk@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+  linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 2/2] clk: amlogic: Add A9 AO clock controller driver
+In-Reply-To: <20260610-a9_aoclk-v3-2-b7592d6c31e2@amlogic.com> (Jian Hu via's
+	message of "Wed, 10 Jun 2026 16:23:48 +0800")
+References: <20260610-a9_aoclk-v3-0-b7592d6c31e2@amlogic.com>
+	<20260610-a9_aoclk-v3-2-b7592d6c31e2@amlogic.com>
 User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Wed, 10 Jun 2026 14:26:45 +0200
-Message-ID: <1jpl1yfunu.fsf@starbuckisacylon.baylibre.com>
+Date: Wed, 10 Jun 2026 14:30:16 +0200
+Message-ID: <1jjys6fuhz.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260610_052650_860320_CCAACEC8 
-X-CRM114-Status: GOOD (  27.99  )
+X-CRM114-CacheID: sfid-20260610_053021_340476_9F1814E2 
+X-CRM114-Status: GOOD (  24.83  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,121 +102,512 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gbWVyLiAxMCBqdWluIDIwMjYgYXQgMTI6MTgsIEppYW4gSHUgPGppYW4uaHVAYW1sb2dpYy5j
-b20+IHdyb3RlOgoKPiBIaSBKZXJvbWUsCj4KPiBUaGFua3MgZm9yIHlvdXIgcmV2aWV3Cj4KPiBP
-biA2LzMvMjAyNiAxMDoyOSBQTSwgSmVyb21lIEJydW5ldCB3cm90ZToKPj4gWyBFWFRFUk5BTCBF
-TUFJTCBdCj4+Cj4+IE9uIFdlZCAwMyBKdW4gMjAyNiBhdCAyMDoxNywgSmlhbiBIdSB2aWEgQjQg
-UmVsYXkgPGRldm51bGwramlhbi5odS5hbWxvZ2ljLmNvbUBrZXJuZWwub3JnPiB3cm90ZToKPj4K
-Pj4+IEZyb206IEppYW4gSHUgPGppYW4uaHVAYW1sb2dpYy5jb20+Cj4+Pgo+Pj4gQWRkIHRoZSBB
-bHdheXMtb24gY2xvY2sgY29udHJvbGxlciBkcml2ZXIgZm9yIHRoZSBBbWxvZ2ljIEE5IFNvQyBm
-YW1pbHkuCj4+Pgo+Pj4gU2lnbmVkLW9mZi1ieTogSmlhbiBIdSA8amlhbi5odUBhbWxvZ2ljLmNv
-bT4KPj4+IC0tLQo+Pj4gICBkcml2ZXJzL2Nsay9tZXNvbi9LY29uZmlnICAgIHwgIDEzICsrCj4+
-PiAgIGRyaXZlcnMvY2xrL21lc29uL01ha2VmaWxlICAgfCAgIDEgKwo+Pj4gICBkcml2ZXJzL2Ns
-ay9tZXNvbi9hOS1hb2Nsay5jIHwgNDE5ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysKPj4+ICAgMyBmaWxlcyBjaGFuZ2VkLCA0MzMgaW5zZXJ0aW9ucygrKQo+Pj4K
-Pj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2Nsay9tZXNvbi9LY29uZmlnIGIvZHJpdmVycy9jbGsv
-bWVzb24vS2NvbmZpZwo+Pj4gaW5kZXggY2Y4Y2YzZjllNGVlLi42MjVlNjc4OGI5NDAgMTAwNjQ0
-Cj4+PiAtLS0gYS9kcml2ZXJzL2Nsay9tZXNvbi9LY29uZmlnCj4+PiArKysgYi9kcml2ZXJzL2Ns
-ay9tZXNvbi9LY29uZmlnCj4+PiBAQCAtMTMyLDYgKzEzMiwxOSBAQCBjb25maWcgQ09NTU9OX0NM
-S19BMV9QRVJJUEhFUkFMUwo+Pj4gICAgICAgICAgZGV2aWNlLCBBMSBTb0MgRmFtaWx5LiBTYXkg
-WSBpZiB5b3Ugd2FudCBBMSBQZXJpcGhlcmFscyBjbG9jawo+Pj4gICAgICAgICAgY29udHJvbGxl
-ciB0byB3b3JrLgo+Pj4KPj4+ICtjb25maWcgQ09NTU9OX0NMS19BOV9BTwo+Pj4gKyAgICAgdHJp
-c3RhdGUgIkFtbG9naWMgQTkgU29DIEFPIGNsb2NrIGNvbnRyb2xsZXIgc3VwcG9ydCIKPj4+ICsg
-ICAgIGRlcGVuZHMgb24gQVJNNjQKPj4+ICsgICAgIGRlZmF1bHQgQVJDSF9NRVNPTiB8fCBDT01Q
-SUxFX1RFU1QKPj4+ICsgICAgIHNlbGVjdCBDT01NT05fQ0xLX01FU09OX1JFR01BUAo+Pj4gKyAg
-ICAgc2VsZWN0IENPTU1PTl9DTEtfTUVTT05fQ0xLQ19VVElMUwo+Pj4gKyAgICAgc2VsZWN0IENP
-TU1PTl9DTEtfTUVTT05fRFVBTERJVgo+Pj4gKyAgICAgaW1wbHkgQ09NTU9OX0NMS19TQ01JCj4+
-PiArICAgICBoZWxwCj4+PiArICAgICAgIFN1cHBvcnQgZm9yIHRoZSBBTyBjbG9jayBjb250cm9s
-bGVyIG9uIEFtbG9naWMgQTMxMVkzIGJhc2VkCj4+PiArICAgICAgIGRldmljZSwgQUtBIEE5Lgo+
-Pj4gKyAgICAgICBTYXkgWSBpZiB5b3Ugd2FudCBBOSBBTyBjbG9jayBjb250cm9sbGVyIHRvIHdv
-cmsuCj4+PiArCj4+PiAgIGNvbmZpZyBDT01NT05fQ0xLX0MzX1BMTAo+Pj4gICAgICAgIHRyaXN0
-YXRlICJBbWxvZ2ljIEMzIFBMTCBjbG9jayBjb250cm9sbGVyIgo+Pj4gICAgICAgIGRlcGVuZHMg
-b24gQVJNNjQKPj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2Nsay9tZXNvbi9NYWtlZmlsZSBiL2Ry
-aXZlcnMvY2xrL21lc29uL01ha2VmaWxlCj4+PiBpbmRleCBjNjcxOTY5NGEyNDIuLmY4OWQwMjdj
-MjgyYyAxMDA2NDQKPj4+IC0tLSBhL2RyaXZlcnMvY2xrL21lc29uL01ha2VmaWxlCj4+PiArKysg
-Yi9kcml2ZXJzL2Nsay9tZXNvbi9NYWtlZmlsZQo+Pj4gQEAgLTE5LDYgKzE5LDcgQEAgb2JqLSQo
-Q09ORklHX0NPTU1PTl9DTEtfQVhHKSArPSBheGcubyBheGctYW9jbGsubwo+Pj4gICBvYmotJChD
-T05GSUdfQ09NTU9OX0NMS19BWEdfQVVESU8pICs9IGF4Zy1hdWRpby5vCj4+PiAgIG9iai0kKENP
-TkZJR19DT01NT05fQ0xLX0ExX1BMTCkgKz0gYTEtcGxsLm8KPj4+ICAgb2JqLSQoQ09ORklHX0NP
-TU1PTl9DTEtfQTFfUEVSSVBIRVJBTFMpICs9IGExLXBlcmlwaGVyYWxzLm8KPj4+ICtvYmotJChD
-T05GSUdfQ09NTU9OX0NMS19BOV9BTykgKz0gYTktYW9jbGsubwo+Pj4gICBvYmotJChDT05GSUdf
-Q09NTU9OX0NMS19DM19QTEwpICs9IGMzLXBsbC5vCj4+PiAgIG9iai0kKENPTkZJR19DT01NT05f
-Q0xLX0MzX1BFUklQSEVSQUxTKSArPSBjMy1wZXJpcGhlcmFscy5vCj4+PiAgIG9iai0kKENPTkZJ
-R19DT01NT05fQ0xLX0dYQkIpICs9IGd4YmIubyBneGJiLWFvY2xrLm8KPj4+IGRpZmYgLS1naXQg
-YS9kcml2ZXJzL2Nsay9tZXNvbi9hOS1hb2Nsay5jIGIvZHJpdmVycy9jbGsvbWVzb24vYTktYW9j
-bGsuYwo+Pj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQKPj4+IGluZGV4IDAwMDAwMDAwMDAwMC4uYjdi
-M2NhMjMxYTQyCj4+PiAtLS0gL2Rldi9udWxsCj4+PiArKysgYi9kcml2ZXJzL2Nsay9tZXNvbi9h
-OS1hb2Nsay5jCj4+PiBAQCAtMCwwICsxLDQxOSBAQAo+Pj4gKy8vIFNQRFgtTGljZW5zZS1JZGVu
-dGlmaWVyOiAoR1BMLTIuMC1vbmx5IE9SIE1JVCkKPj4+ICsvKgo+Pj4gKyAqIENvcHlyaWdodCAo
-QykgMjAyNiBBbWxvZ2ljLCBJbmMuIEFsbCByaWdodHMgcmVzZXJ2ZWQKPj4+ICsgKi8KPj4+ICsK
-Pj4+ICsjaW5jbHVkZSA8ZHQtYmluZGluZ3MvY2xvY2svYW1sb2dpYyxhOS1hb2Nsa2MuaD4KPj4+
-ICsjaW5jbHVkZSA8bGludXgvY2xrLXByb3ZpZGVyLmg+Cj4+PiArI2luY2x1ZGUgPGxpbnV4L3Bs
-YXRmb3JtX2RldmljZS5oPgo+Pj4gKyNpbmNsdWRlICJjbGstcmVnbWFwLmgiCj4+PiArI2luY2x1
-ZGUgImNsay1kdWFsZGl2LmgiCj4+PiArI2luY2x1ZGUgIm1lc29uLWNsa2MtdXRpbHMuaCIKPj4+
-ICsKPj4+ICsjZGVmaW5lIEFPX09TQ0lOX0NUUkwgICAgICAgICAgICAgICAgICAgICAgICAweDAw
-Cj4+PiArI2RlZmluZSBBT19TWVNfQ0xLMCAgICAgICAgICAgICAgICAgIDB4MDQKPj4+ICsjZGVm
-aW5lIEFPX1BXTV9DTEtfQV9DVFJMICAgICAgICAgICAgMHgxYwo+Pj4gKyNkZWZpbmUgQU9fUFdN
-X0NMS19CX0NUUkwgICAgICAgICAgICAweDIwCj4+PiArI2RlZmluZSBBT19QV01fQ0xLX0NfQ1RS
-TCAgICAgICAgICAgIDB4MjQKPj4+ICsjZGVmaW5lIEFPX1BXTV9DTEtfRF9DVFJMICAgICAgICAg
-ICAgMHgyOAo+Pj4gKyNkZWZpbmUgQU9fUFdNX0NMS19FX0NUUkwgICAgICAgICAgICAweDJjCj4+
-PiArI2RlZmluZSBBT19QV01fQ0xLX0ZfQ1RSTCAgICAgICAgICAgIDB4MzAKPj4+ICsjZGVmaW5l
-IEFPX1BXTV9DTEtfR19DVFJMICAgICAgICAgICAgMHgzNAo+Pj4gKyNkZWZpbmUgQU9fQ0VDX0NU
-UkwwICAgICAgICAgICAgICAgICAweDM4Cj4+PiArI2RlZmluZSBBT19DRUNfQ1RSTDEgICAgICAg
-ICAgICAgICAgIDB4M2MKPj4+ICsjZGVmaW5lIEFPX1JUQ19CWV9PU0NJTl9DVFJMMCAgICAgICAg
-ICAgICAgICAweDUwCj4+PiArI2RlZmluZSBBT19SVENfQllfT1NDSU5fQ1RSTDEgICAgICAgICAg
-ICAgICAgMHg1NAo+Pj4gKwo+Pj4gKyNkZWZpbmUgQTlfQ09NUF9TRUwoX25hbWUsIF9yZWcsIF9z
-aGlmdCwgX21hc2ssIF9wZGF0YSkgXAo+Pj4gKyAgICAgTUVTT05fQ09NUF9TRUwoYTlfYW9fLCBf
-bmFtZSwgX3JlZywgX3NoaWZ0LCBfbWFzaywgX3BkYXRhLCBOVUxMLCAwLCAwKQo+Pj4gKwo+Pj4g
-KyNkZWZpbmUgQTlfQ09NUF9ESVYoX25hbWUsIF9yZWcsIF9zaGlmdCwgX3dpZHRoKSBcCj4+PiAr
-ICAgICBNRVNPTl9DT01QX0RJVihhOV9hb18sIF9uYW1lLCBfcmVnLCBfc2hpZnQsIF93aWR0aCwg
-MCwgQ0xLX1NFVF9SQVRFX1BBUkVOVCkKPj4+ICsKPj4+ICsjZGVmaW5lIEE5X0NPTVBfR0FURShf
-bmFtZSwgX3JlZywgX2JpdCkgXAo+Pj4gKyAgICAgTUVTT05fQ09NUF9HQVRFKGE5X2FvXywgX25h
-bWUsIF9yZWcsIF9iaXQsIENMS19TRVRfUkFURV9QQVJFTlQpCj4+PiArCj4+PiArc3RhdGljIHN0
-cnVjdCBjbGtfcmVnbWFwIGE5X2FvX3h0YWxfaW4gPSB7Cj4+PiArICAgICAuZGF0YSA9ICYoc3Ry
-dWN0IGNsa19yZWdtYXBfZ2F0ZV9kYXRhKXsKPj4+ICsgICAgICAgICAgICAgLm9mZnNldCA9IEFP
-X09TQ0lOX0NUUkwsCj4+PiArICAgICAgICAgICAgIC5iaXRfaWR4ID0gMywKPj4+ICsgICAgIH0s
-Cj4+PiArICAgICAvKgo+Pj4gKyAgICAgICogSXQgbWF5IGJlIGFvX3N5cydzIHBhcmVudCBjbG9j
-aywgaXRzIGNoaWxkIGNsb2NrcyBtYXJrCj4+PiArICAgICAgKiBDTEtfSVNfQ1JJVElDQUwsIFNv
-IG1hcmsgQ0xLX0lTX0NSSVRJQ0FMIGZvciBpdC4KPj4+ICsgICAgICAqLwo+PiBJIGRvbid0IHJl
-YWxseSBnZXQgd2hhdCB5b3UgbWVhbiAuLi4gQ291bGQgeW91IHJlcGhyYXNlID8KPgo+Cj4gVGhl
-IEFPIHN5cyBnYXRlIGNsb2NrIGNoYWluIG1heSBiZToKPgo+IGFvX3h0YWxfaW4tPmFvX3h0YWwt
-PmFvX3N5cy0+IEFPIHN5cyBnYXRlIGNsb2Nrcwo+Cj4gImFvX3h0YWxfaW4iIGlzIHBhcnQgb2Yg
-dGhlIHBhcmVudCBjaGFpbiBvZiB0aGUgQU8gc3lzIGdhdGUgY2xvY2tzLgo+Cj4gU29tZSBvZiBp
-dHMgZG93bnN0cmVhbSBjbG9ja3MgYXJlIG1hcmtlZCB3aXRoIENMS19JU19DUklUSUNBTC4gVG8g
-ZW5zdXJlCj4gdGhvc2UgY2xvY2tzIHJlbWFpbiBmdW5jdGlvbmFsLCBhb194dGFsX2luIG11c3Qg
-bm90IGJlIGRpc2FibGVkIGFuZCBpcwo+IHRoZXJlZm9yZSBtYXJrZWQgYXMgQ0xLX0lTX0NSSVRJ
-Q0FMIGFzIHdlbGwuCgpJZiBhbnkgb2YgdGhlIGRvd25zdHJlYW0gY2xvY2tzIGFyZSBjcml0aWNh
-bCBhbmQgbWFya2VkIGFzIHN1Y2gsIHRoZXJlIGlzIG5vdApuZWVkIHRvIG1hcmsgdGhpcyBvbmUg
-YXMgd2VsbC4KCllvdSBzaG91bGQgb25seSBtYXJrIHRoZSBjbG9ja3MgdGhhdCBhcmUgYWN0dWFs
-bHkgY3JpdGljYWwgd2l0aCB0aGUgZmxhZwphbmQgbGV0IENDRiBmaWd1cmUgb3V0IHRoZSBkZXBl
-bmRlbmNpZXMuCgo+Cj4KPiBJIHdpbGwgcmVwaHJhc2UgaXQgbGlrZSB0aGlzIGluIHRoZSBuZXh0
-IHZlcnNpb246Cj4KPiDCoCDCoCDCoCDCoCAvKgo+IMKgIMKgIMKgIMKgIMKgKiBhb19zeXMgY2Fu
-IHNlbGVjdCBkaWZmZXJlbnQgY2xvY2sgc291cmNlcy4gT25lIHBvc3NpYmxlIGNsb2NrCj4gcGF0
-aCBpczoKPiDCoCDCoCDCoCDCoCDCoCrCoCDCoCDCoCBhb194dGFsX2luLT5hb194dGFsLT5hb19z
-eXMtPiBhbyBzeXMgZ2F0ZSBjbG9ja3MKPiDCoCDCoCDCoCDCoCDCoCoKPiDCoCDCoCDCoCDCoCDC
-oCogYW9feHRhbF9pbiBpcyBpbiB0aGUgcGFyZW50IGNoYWluIG9mIEFPIHN5cyBnYXRlIGNsb2Nr
-cy4KPiDCoCDCoCDCoCDCoCDCoCogU2luY2Ugc29tZSBkb3duc3RyZWFtIGNsb2NrcyBhcmUgbWFy
-a2VkIENMS19JU19DUklUSUNBTCwKPiDCoCDCoCDCoCDCoCDCoCogYW9feHRhbF9pbiBtdXN0IHJl
-bWFpbiBlbmFibGVkIGFuZCBpcyB0aGVyZWZvcmUgbWFya2VkCj4gwqAgwqAgwqAgwqAgwqAqIENM
-S19JU19DUklUSUNBTCBhcyB3ZWxsLgo+IMKgIMKgIMKgIMKgIMKgKi8KPgo+Pj4gKyAgICAgLmh3
-LmluaXQgPSBDTEtfSFdfSU5JVF9GV19OQU1FKCJhb194dGFsX2luIiwgInh0YWwiLAo+Pj4gKyAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICZjbGtfcmVnbWFwX2dhdGVfb3BzLCBD
-TEtfSVNfQ1JJVElDQUwpLAo+PiBJJ20gaG9uZXN0bHkgbm90IHN1cmUgYWJvdXQgdGhpcy4gSXQg
-aXMgY29ycmVjdCwgc3VyZSBhbmQgdGhlIG1hY3JvIGV4aXN0IHRvIGJlCj4+IHVzZWQgYnV0IC4u
-LiBJdCBkb2VzIG5vdCByZWFsbHkgaGVscCByZWFkYWJpbGl0eSBoZXJlLCBkb2VzIGl0ID8KPj4K
-Pj4gKEkga25vdyB0aGF0IHdhcyBhIGZlZWRiYWNrIHlvdSd2ZSBnb3Qgb24gdjEpCj4+Cj4+IE90
-aGVyIHRoYW4gdGhhdCwgdGhpcyBsb29rcyBnb29kIHRvIG1lLgo+Pgo+IE9rLCBJIHdpbGwgdXNl
-IHRoZSBvcmlnaW5hbCBjbGtfaW5pdF9kYXRhIGZvciB0aGlzIG9uZS4KCldlbGwgbXkgY29tbWVu
-dCBhcHBsaWVzIHRvIHdob2xlIHRoaW5nIHJlYWxseS4KClRoZXJlIGFyZSBzdXJlbHkgd2F5cyBp
-biB3aGljaCB0aGUgbWFjcm8gYnV0IHRoZSB3YXkgd2Ugc3RhdGljYWxseQpkZWNsYXJlIHRoaW5n
-cywgaXQgYWRkcyBhIGxldmVsIG9mIGluZGlyZWN0aW9uIHRoYXQgbWFrZXMgdGhpbmdzIGhhcmRl
-cgp0byByZXZpZXcgSU1PLgoKPgo+Cj4gWyAuLi4gXQo+Cj4+IC0tCj4+IEplcm9tZQoKLS0gCkpl
-cm9tZQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGlu
-dXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3Jn
-Cmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dp
-Ywo=
+On mer. 10 juin 2026 at 16:23, Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org> wrote:
+
+> From: Jian Hu <jian.hu@amlogic.com>
+>
+> Add the Always-on clock controller driver for the Amlogic A9 SoC family.
+>
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> ---
+>  drivers/clk/meson/Kconfig    |  13 ++
+>  drivers/clk/meson/Makefile   |   1 +
+>  drivers/clk/meson/a9-aoclk.c | 431 +++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 445 insertions(+)
+>
+> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> index cf8cf3f9e4ee..b71299898197 100644
+> --- a/drivers/clk/meson/Kconfig
+> +++ b/drivers/clk/meson/Kconfig
+> @@ -132,6 +132,19 @@ config COMMON_CLK_A1_PERIPHERALS
+>  	  device, A1 SoC Family. Say Y if you want A1 Peripherals clock
+>  	  controller to work.
+>  
+> +config COMMON_CLK_A9_AO
+> +	tristate "Amlogic A9 SoC AO clock controller support"
+> +	depends on ARM64 || COMPILE_TEST
+> +	default ARCH_MESON
+> +	select COMMON_CLK_MESON_REGMAP
+> +	select COMMON_CLK_MESON_CLKC_UTILS
+> +	select COMMON_CLK_MESON_DUALDIV
+> +	imply COMMON_CLK_SCMI
+> +	help
+> +	  Support for the AO clock controller on Amlogic A311Y3 based
+> +	  device, AKA A9.
+> +	  Say Y if you want A9 AO clock controller to work.
+> +
+>  config COMMON_CLK_C3_PLL
+>  	tristate "Amlogic C3 PLL clock controller"
+>  	depends on ARM64
+> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+> index c6719694a242..f89d027c282c 100644
+> --- a/drivers/clk/meson/Makefile
+> +++ b/drivers/clk/meson/Makefile
+> @@ -19,6 +19,7 @@ obj-$(CONFIG_COMMON_CLK_AXG) += axg.o axg-aoclk.o
+>  obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
+>  obj-$(CONFIG_COMMON_CLK_A1_PLL) += a1-pll.o
+>  obj-$(CONFIG_COMMON_CLK_A1_PERIPHERALS) += a1-peripherals.o
+> +obj-$(CONFIG_COMMON_CLK_A9_AO) += a9-aoclk.o
+>  obj-$(CONFIG_COMMON_CLK_C3_PLL) += c3-pll.o
+>  obj-$(CONFIG_COMMON_CLK_C3_PERIPHERALS) += c3-peripherals.o
+>  obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
+> diff --git a/drivers/clk/meson/a9-aoclk.c b/drivers/clk/meson/a9-aoclk.c
+> new file mode 100644
+> index 000000000000..dd9fd8d24702
+> --- /dev/null
+> +++ b/drivers/clk/meson/a9-aoclk.c
+> @@ -0,0 +1,431 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+> +/*
+> + * Copyright (C) 2026 Amlogic, Inc. All rights reserved
+> + */
+> +
+> +#include <dt-bindings/clock/amlogic,a9-aoclkc.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/platform_device.h>
+> +#include "clk-regmap.h"
+> +#include "clk-dualdiv.h"
+> +#include "meson-clkc-utils.h"
+> +
+> +#define AO_OSCIN_CTRL			0x00
+> +#define AO_SYS_CLK0			0x04
+> +#define AO_PWM_CLK_A_CTRL		0x1c
+> +#define AO_PWM_CLK_B_CTRL		0x20
+> +#define AO_PWM_CLK_C_CTRL		0x24
+> +#define AO_PWM_CLK_D_CTRL		0x28
+> +#define AO_PWM_CLK_E_CTRL		0x2c
+> +#define AO_PWM_CLK_F_CTRL		0x30
+> +#define AO_PWM_CLK_G_CTRL		0x34
+> +#define AO_CEC_CTRL0			0x38
+> +#define AO_CEC_CTRL1			0x3c
+> +#define AO_RTC_BY_OSCIN_CTRL0		0x50
+> +#define AO_RTC_BY_OSCIN_CTRL1		0x54
+> +
+> +#define A9_COMP_SEL(_name, _reg, _shift, _mask, _pdata) \
+> +	MESON_COMP_SEL(a9_ao_, _name, _reg, _shift, _mask, _pdata, NULL, 0, 0)
+> +
+> +#define A9_COMP_DIV(_name, _reg, _shift, _width) \
+> +	MESON_COMP_DIV(a9_ao_, _name, _reg, _shift, _width, 0, CLK_SET_RATE_PARENT)
+> +
+> +#define A9_COMP_GATE(_name, _reg, _bit) \
+> +	MESON_COMP_GATE(a9_ao_, _name, _reg, _bit, CLK_SET_RATE_PARENT)
+> +
+> +static struct clk_regmap a9_ao_xtal_in = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = AO_OSCIN_CTRL,
+> +		.bit_idx = 3,
+> +	},
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "ao_xtal_in",
+> +		.ops = &clk_regmap_gate_ops,
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.fw_name = "xtal",
+> +		},
+> +		.num_parents = 1,
+> +		/*
+> +		 * ao_sys can select different clock sources. One possible clock path is:
+> +		 *   ao_xtal_in->ao_xtal->ao_sys-> ao sys gate clocks
+> +		 *
+> +		 * ao_xtal_in is in the parent chain of AO sys gate clocks.
+> +		 * Since some downstream clocks are marked CLK_IS_CRITICAL,
+> +		 * ao_xtal_in must remain enabled and is therefore marked
+> +		 * CLK_IS_CRITICAL as well.
+> +		 */
+> +		.flags = CLK_IS_CRITICAL,
+
+Please allow some time for me to reply before reposting.
+See my answer on v2.
+
+
+> +	},
+> +};
+> +
+> +static struct clk_regmap a9_ao_xtal = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = AO_OSCIN_CTRL,
+> +		.mask = 0x1,
+> +		.shift = 0,
+> +	},
+> +	/* ext_32k is from external PAD, do not automatically reparent */
+> +	.hw.init = CLK_HW_INIT_PARENTS_DATA("ao_xtal",
+> +			((const struct clk_parent_data []) {
+> +				{ .hw = &a9_ao_xtal_in.hw },
+> +				{ .fw_name = "ext_32k" }
+> +			}), &clk_regmap_mux_ops, CLK_SET_RATE_NO_REPARENT),
+
+I hope my view on this is clear as well.
+Let me know if it isn't 
+
+
+> +};
+> +
+> +static struct clk_regmap a9_ao_sys = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = AO_OSCIN_CTRL,
+> +		.mask = 0x1,
+> +		.shift = 1,
+> +	},
+> +	.hw.init = CLK_HW_INIT_PARENTS_DATA("ao_sys",
+> +			((const struct clk_parent_data []) {
+> +				{ .hw = &a9_ao_xtal.hw },
+> +				{ .fw_name = "sys" }
+> +			}), &clk_regmap_mux_ops, 0),
+> +};
+> +
+> +static const struct clk_parent_data a9_ao_pclk_parents = { .hw = &a9_ao_sys.hw };
+> +
+> +#define A9_AO_PCLK(_name, _bit, _flags)		       \
+> +	MESON_PCLK(a9_ao_sys_##_name, AO_SYS_CLK0, _bit, \
+> +		   &a9_ao_pclk_parents, _flags)
+> +
+> +/*
+> + * A9 integrates a low-power microprocessor (Always-on CPU: AOCPU). Some AO sys
+> + * clocks control the AOCPU modules. Mark the AOCPU-related clocks with
+> + * CLK_IS_CRITICAL to avoid them being disabled and impacting AOCPU functionality.
+> + * AOCPU-related clocks list:
+> + * - clktree
+> + * - rst_ctrl
+> + * - pad
+> + * - irq
+> + * - pwrctrl
+> + * - aocpu
+> + * - sram
+> + */
+> +static A9_AO_PCLK(i3c,		0,	0);
+> +static A9_AO_PCLK(rtc_reg,	1,	0);
+> +static A9_AO_PCLK(clktree,	2,	CLK_IS_CRITICAL);
+> +static A9_AO_PCLK(rst_ctrl,	3,	CLK_IS_CRITICAL);
+> +static A9_AO_PCLK(pad,		4,	CLK_IS_CRITICAL);
+> +static A9_AO_PCLK(rtc_dig,	5,	0);
+> +static A9_AO_PCLK(irq,		6,	CLK_IS_CRITICAL);
+> +static A9_AO_PCLK(pwrctrl,	7,	CLK_IS_CRITICAL);
+> +static A9_AO_PCLK(pwm_a,	8,	0);
+> +static A9_AO_PCLK(pwm_b,	9,	0);
+> +static A9_AO_PCLK(pwm_c,	10,	0);
+> +static A9_AO_PCLK(pwm_d,	11,	0);
+> +static A9_AO_PCLK(pwm_e,	12,	0);
+> +static A9_AO_PCLK(pwm_f,	13,	0);
+> +static A9_AO_PCLK(pwm_g,	14,	0);
+> +static A9_AO_PCLK(i2c_a,	15,	0);
+> +static A9_AO_PCLK(i2c_b,	16,	0);
+> +static A9_AO_PCLK(i2c_c,	17,	0);
+> +static A9_AO_PCLK(i2c_d,	18,	0);
+> +static A9_AO_PCLK(sed,		19,	0);
+> +static A9_AO_PCLK(ir_ctrl,	20,	0);
+> +static A9_AO_PCLK(uart_b,	21,	0);
+> +static A9_AO_PCLK(uart_c,	22,	0);
+> +static A9_AO_PCLK(uart_d,	23,	0);
+> +static A9_AO_PCLK(uart_e,	24,	0);
+> +static A9_AO_PCLK(spisg_0,	25,	0);
+> +static A9_AO_PCLK(rtc_secure,	26,	0);
+> +static A9_AO_PCLK(cec,		27,	0);
+> +static A9_AO_PCLK(aocpu,	28,	CLK_IS_CRITICAL);
+> +static A9_AO_PCLK(sram,		29,	CLK_IS_CRITICAL);
+> +static A9_AO_PCLK(spisg_1,	30,	0);
+> +static A9_AO_PCLK(spisg_2,	31,	0);
+> +
+> +static const struct clk_parent_data a9_ao_pwm_parents[] = {
+> +	{ .hw = &a9_ao_xtal.hw },
+> +	{ .fw_name = "fdiv5", },
+> +	{ .fw_name = "fdiv4", },
+> +	{ .fw_name = "fdiv3", }
+> +};
+> +
+> +static A9_COMP_SEL(pwm_a, AO_PWM_CLK_A_CTRL, 9, 0x7, a9_ao_pwm_parents);
+> +static A9_COMP_DIV(pwm_a, AO_PWM_CLK_A_CTRL, 0, 8);
+> +static A9_COMP_GATE(pwm_a, AO_PWM_CLK_A_CTRL, 8);
+> +
+> +static A9_COMP_SEL(pwm_b, AO_PWM_CLK_B_CTRL, 9, 0x7, a9_ao_pwm_parents);
+> +static A9_COMP_DIV(pwm_b, AO_PWM_CLK_B_CTRL, 0, 8);
+> +static A9_COMP_GATE(pwm_b, AO_PWM_CLK_B_CTRL, 8);
+> +
+> +static A9_COMP_SEL(pwm_c, AO_PWM_CLK_C_CTRL, 9, 0x7, a9_ao_pwm_parents);
+> +static A9_COMP_DIV(pwm_c, AO_PWM_CLK_C_CTRL, 0, 8);
+> +static A9_COMP_GATE(pwm_c, AO_PWM_CLK_C_CTRL, 8);
+> +
+> +static A9_COMP_SEL(pwm_d, AO_PWM_CLK_D_CTRL, 9, 0x7, a9_ao_pwm_parents);
+> +static A9_COMP_DIV(pwm_d, AO_PWM_CLK_D_CTRL, 0, 8);
+> +static A9_COMP_GATE(pwm_d, AO_PWM_CLK_D_CTRL, 8);
+> +
+> +static A9_COMP_SEL(pwm_e, AO_PWM_CLK_E_CTRL, 9, 0x7, a9_ao_pwm_parents);
+> +static A9_COMP_DIV(pwm_e, AO_PWM_CLK_E_CTRL, 0, 8);
+> +static A9_COMP_GATE(pwm_e, AO_PWM_CLK_E_CTRL, 8);
+> +
+> +static A9_COMP_SEL(pwm_f, AO_PWM_CLK_F_CTRL, 9, 0x7, a9_ao_pwm_parents);
+> +static A9_COMP_DIV(pwm_f, AO_PWM_CLK_F_CTRL, 0, 8);
+> +static A9_COMP_GATE(pwm_f, AO_PWM_CLK_F_CTRL, 8);
+> +
+> +static A9_COMP_SEL(pwm_g, AO_PWM_CLK_G_CTRL, 9, 0x7, a9_ao_pwm_parents);
+> +static A9_COMP_DIV(pwm_g, AO_PWM_CLK_G_CTRL, 0, 8);
+> +static A9_COMP_GATE(pwm_g, AO_PWM_CLK_G_CTRL, 8);
+> +
+> +static struct clk_regmap a9_ao_rtc_dualdiv_in = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = AO_RTC_BY_OSCIN_CTRL0,
+> +		.bit_idx = 31,
+> +	},
+> +	.hw.init = CLK_HW_INIT_HW("ao_rtc_dualdiv_in", &a9_ao_xtal.hw,
+> +				   &clk_regmap_gate_ops, 0),
+> +};
+> +
+> +static const struct meson_clk_dualdiv_param a9_ao_dualdiv_table[] = {
+> +	{ 733, 732, 8, 11, 1 },
+> +	{ /* sentinel */ }
+> +};
+> +
+> +static struct clk_regmap a9_ao_rtc_dualdiv_div = {
+> +	.data = &(struct meson_clk_dualdiv_data){
+> +		.n1 = {
+> +			.reg_off = AO_RTC_BY_OSCIN_CTRL0,
+> +			.shift   = 0,
+> +			.width   = 12,
+> +		},
+> +		.n2 = {
+> +			.reg_off = AO_RTC_BY_OSCIN_CTRL0,
+> +			.shift   = 12,
+> +			.width   = 12,
+> +		},
+> +		.m1 = {
+> +			.reg_off = AO_RTC_BY_OSCIN_CTRL1,
+> +			.shift   = 0,
+> +			.width   = 12,
+> +		},
+> +		.m2 = {
+> +			.reg_off = AO_RTC_BY_OSCIN_CTRL1,
+> +			.shift   = 12,
+> +			.width   = 12,
+> +		},
+> +		.dual = {
+> +			.reg_off = AO_RTC_BY_OSCIN_CTRL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.table = a9_ao_dualdiv_table,
+> +	},
+> +	.hw.init = CLK_HW_INIT_HW("a9_ao_rtc_dualdiv_div", &a9_ao_rtc_dualdiv_in.hw,
+> +				   &meson_clk_dualdiv_ops, 0),
+> +};
+> +
+> +static struct clk_regmap a9_ao_rtc_dualdiv_sel = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = AO_RTC_BY_OSCIN_CTRL1,
+> +		.mask = 0x1,
+> +		.shift = 24,
+> +	},
+> +	.hw.init = CLK_HW_INIT_PARENTS_HW("ao_rtc_dualdiv_sel",
+> +			((const struct clk_hw *[]) {
+> +				&a9_ao_rtc_dualdiv_div.hw,
+> +				&a9_ao_rtc_dualdiv_in.hw,
+> +			}), &clk_regmap_mux_ops, CLK_SET_RATE_PARENT),
+> +};
+> +
+> +static struct clk_regmap a9_ao_rtc_dualdiv = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = AO_RTC_BY_OSCIN_CTRL0,
+> +		.bit_idx = 30,
+> +	},
+> +	.hw.init = CLK_HW_INIT_HW("ao_rtc_dualdiv", &a9_ao_rtc_dualdiv_sel.hw,
+> +				   &clk_regmap_gate_ops, CLK_SET_RATE_PARENT),
+> +};
+> +
+> +static struct clk_regmap a9_ao_rtc = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = AO_RTC_BY_OSCIN_CTRL1,
+> +		.mask = 0x1,
+> +		.shift = 30,
+> +	},
+> +	.hw.init = CLK_HW_INIT_PARENTS_HW("ao_rtc",
+> +			((const struct clk_hw *[]) {
+> +				&a9_ao_xtal.hw,
+> +				&a9_ao_rtc_dualdiv.hw,
+> +			}), &clk_regmap_mux_ops, CLK_SET_RATE_PARENT),
+> +};
+> +
+> +static struct clk_regmap a9_ao_cec_dualdiv_in = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = AO_CEC_CTRL0,
+> +		.bit_idx = 31,
+> +	},
+> +	.hw.init = CLK_HW_INIT_HW("ao_cec_dualdiv_in", &a9_ao_xtal.hw,
+> +				   &clk_regmap_gate_ops, 0),
+> +};
+> +
+> +static struct clk_regmap a9_ao_cec_dualdiv_div = {
+> +	.data = &(struct meson_clk_dualdiv_data){
+> +		.n1 = {
+> +			.reg_off = AO_CEC_CTRL0,
+> +			.shift   = 0,
+> +			.width   = 12,
+> +		},
+> +		.n2 = {
+> +			.reg_off = AO_CEC_CTRL0,
+> +			.shift   = 12,
+> +			.width   = 12,
+> +		},
+> +		.m1 = {
+> +			.reg_off = AO_CEC_CTRL1,
+> +			.shift   = 0,
+> +			.width   = 12,
+> +		},
+> +		.m2 = {
+> +			.reg_off = AO_CEC_CTRL1,
+> +			.shift   = 12,
+> +			.width   = 12,
+> +		},
+> +		.dual = {
+> +			.reg_off = AO_CEC_CTRL0,
+> +			.shift   = 28,
+> +			.width   = 1,
+> +		},
+> +		.table = a9_ao_dualdiv_table,
+> +	},
+> +	.hw.init = CLK_HW_INIT_HW("ao_cec_dualdiv_div", &a9_ao_cec_dualdiv_in.hw,
+> +				   &meson_clk_dualdiv_ops, 0),
+> +};
+> +
+> +static struct clk_regmap a9_ao_cec_dualdiv_sel = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = AO_CEC_CTRL1,
+> +		.mask = 0x1,
+> +		.shift = 24,
+> +	},
+> +	.hw.init = CLK_HW_INIT_PARENTS_HW("ao_cec_dualdiv_sel",
+> +			((const struct clk_hw *[]) {
+> +				&a9_ao_cec_dualdiv_div.hw,
+> +				&a9_ao_cec_dualdiv_in.hw,
+> +			}), &clk_regmap_mux_ops, CLK_SET_RATE_PARENT),
+> +};
+> +
+> +static struct clk_regmap a9_ao_cec_dualdiv = {
+> +	.data = &(struct clk_regmap_gate_data){
+> +		.offset = AO_CEC_CTRL0,
+> +		.bit_idx = 30,
+> +	},
+> +	.hw.init = CLK_HW_INIT_HW("ao_cec_dualdiv", &a9_ao_cec_dualdiv_sel.hw,
+> +				   &clk_regmap_gate_ops, CLK_SET_RATE_PARENT),
+> +};
+> +
+> +static struct clk_regmap a9_ao_cec = {
+> +	.data = &(struct clk_regmap_mux_data) {
+> +		.offset = AO_CEC_CTRL1,
+> +		.mask = 0x1,
+> +		.shift = 30,
+> +	},
+> +	.hw.init = CLK_HW_INIT_PARENTS_HW("ao_cec",
+> +			((const struct clk_hw *[]) {
+> +				&a9_ao_cec_dualdiv.hw,
+> +				&a9_ao_rtc.hw,
+> +			}), &clk_regmap_mux_ops, CLK_SET_RATE_PARENT),
+> +};
+> +
+> +static struct clk_hw *a9_ao_hw_clks[] = {
+> +	[CLKID_AO_XTAL_IN]		= &a9_ao_xtal_in.hw,
+> +	[CLKID_AO_XTAL]			= &a9_ao_xtal.hw,
+> +	[CLKID_AO_SYS]			= &a9_ao_sys.hw,
+> +	[CLKID_AO_SYS_I3C]		= &a9_ao_sys_i3c.hw,
+> +	[CLKID_AO_SYS_RTC_REG]		= &a9_ao_sys_rtc_reg.hw,
+> +	[CLKID_AO_SYS_CLKTREE]		= &a9_ao_sys_clktree.hw,
+> +	[CLKID_AO_SYS_RST_CTRL]		= &a9_ao_sys_rst_ctrl.hw,
+> +	[CLKID_AO_SYS_PAD]		= &a9_ao_sys_pad.hw,
+> +	[CLKID_AO_SYS_RTC_DIG]		= &a9_ao_sys_rtc_dig.hw,
+> +	[CLKID_AO_SYS_IRQ]		= &a9_ao_sys_irq.hw,
+> +	[CLKID_AO_SYS_PWRCTRL]		= &a9_ao_sys_pwrctrl.hw,
+> +	[CLKID_AO_SYS_PWM_A]		= &a9_ao_sys_pwm_a.hw,
+> +	[CLKID_AO_SYS_PWM_B]		= &a9_ao_sys_pwm_b.hw,
+> +	[CLKID_AO_SYS_PWM_C]		= &a9_ao_sys_pwm_c.hw,
+> +	[CLKID_AO_SYS_PWM_D]		= &a9_ao_sys_pwm_d.hw,
+> +	[CLKID_AO_SYS_PWM_E]		= &a9_ao_sys_pwm_e.hw,
+> +	[CLKID_AO_SYS_PWM_F]		= &a9_ao_sys_pwm_f.hw,
+> +	[CLKID_AO_SYS_PWM_G]		= &a9_ao_sys_pwm_g.hw,
+> +	[CLKID_AO_SYS_I2C_A]		= &a9_ao_sys_i2c_a.hw,
+> +	[CLKID_AO_SYS_I2C_B]		= &a9_ao_sys_i2c_b.hw,
+> +	[CLKID_AO_SYS_I2C_C]		= &a9_ao_sys_i2c_c.hw,
+> +	[CLKID_AO_SYS_I2C_D]		= &a9_ao_sys_i2c_d.hw,
+> +	[CLKID_AO_SYS_SED]		= &a9_ao_sys_sed.hw,
+> +	[CLKID_AO_SYS_IR_CTRL]		= &a9_ao_sys_ir_ctrl.hw,
+> +	[CLKID_AO_SYS_UART_B]		= &a9_ao_sys_uart_b.hw,
+> +	[CLKID_AO_SYS_UART_C]		= &a9_ao_sys_uart_c.hw,
+> +	[CLKID_AO_SYS_UART_D]		= &a9_ao_sys_uart_d.hw,
+> +	[CLKID_AO_SYS_UART_E]		= &a9_ao_sys_uart_e.hw,
+> +	[CLKID_AO_SYS_SPISG_0]		= &a9_ao_sys_spisg_0.hw,
+> +	[CLKID_AO_SYS_RTC_SECURE]	= &a9_ao_sys_rtc_secure.hw,
+> +	[CLKID_AO_SYS_CEC]		= &a9_ao_sys_cec.hw,
+> +	[CLKID_AO_SYS_AOCPU]		= &a9_ao_sys_aocpu.hw,
+> +	[CLKID_AO_SYS_SRAM]		= &a9_ao_sys_sram.hw,
+> +	[CLKID_AO_SYS_SPISG_1]		= &a9_ao_sys_spisg_1.hw,
+> +	[CLKID_AO_SYS_SPISG_2]		= &a9_ao_sys_spisg_2.hw,
+> +	[CLKID_AO_PWM_A_SEL]		= &a9_ao_pwm_a_sel.hw,
+> +	[CLKID_AO_PWM_A_DIV]		= &a9_ao_pwm_a_div.hw,
+> +	[CLKID_AO_PWM_A]		= &a9_ao_pwm_a.hw,
+> +	[CLKID_AO_PWM_B_SEL]		= &a9_ao_pwm_b_sel.hw,
+> +	[CLKID_AO_PWM_B_DIV]		= &a9_ao_pwm_b_div.hw,
+> +	[CLKID_AO_PWM_B]		= &a9_ao_pwm_b.hw,
+> +	[CLKID_AO_PWM_C_SEL]		= &a9_ao_pwm_c_sel.hw,
+> +	[CLKID_AO_PWM_C_DIV]		= &a9_ao_pwm_c_div.hw,
+> +	[CLKID_AO_PWM_C]		= &a9_ao_pwm_c.hw,
+> +	[CLKID_AO_PWM_D_SEL]		= &a9_ao_pwm_d_sel.hw,
+> +	[CLKID_AO_PWM_D_DIV]		= &a9_ao_pwm_d_div.hw,
+> +	[CLKID_AO_PWM_D]		= &a9_ao_pwm_d.hw,
+> +	[CLKID_AO_PWM_E_SEL]		= &a9_ao_pwm_e_sel.hw,
+> +	[CLKID_AO_PWM_E_DIV]		= &a9_ao_pwm_e_div.hw,
+> +	[CLKID_AO_PWM_E]		= &a9_ao_pwm_e.hw,
+> +	[CLKID_AO_PWM_F_SEL]		= &a9_ao_pwm_f_sel.hw,
+> +	[CLKID_AO_PWM_F_DIV]		= &a9_ao_pwm_f_div.hw,
+> +	[CLKID_AO_PWM_F]		= &a9_ao_pwm_f.hw,
+> +	[CLKID_AO_PWM_G_SEL]		= &a9_ao_pwm_g_sel.hw,
+> +	[CLKID_AO_PWM_G_DIV]		= &a9_ao_pwm_g_div.hw,
+> +	[CLKID_AO_PWM_G]		= &a9_ao_pwm_g.hw,
+> +	[CLKID_AO_RTC_DUALDIV_IN]	= &a9_ao_rtc_dualdiv_in.hw,
+> +	[CLKID_AO_RTC_DUALDIV_DIV]	= &a9_ao_rtc_dualdiv_div.hw,
+> +	[CLKID_AO_RTC_DUALDIV_SEL]	= &a9_ao_rtc_dualdiv_sel.hw,
+> +	[CLKID_AO_RTC_DUALDIV]		= &a9_ao_rtc_dualdiv.hw,
+> +	[CLKID_AO_RTC]			= &a9_ao_rtc.hw,
+> +	[CLKID_AO_CEC_DUALDIV_IN]	= &a9_ao_cec_dualdiv_in.hw,
+> +	[CLKID_AO_CEC_DUALDIV_DIV]	= &a9_ao_cec_dualdiv_div.hw,
+> +	[CLKID_AO_CEC_DUALDIV_SEL]	= &a9_ao_cec_dualdiv_sel.hw,
+> +	[CLKID_AO_CEC_DUALDIV]		= &a9_ao_cec_dualdiv.hw,
+> +	[CLKID_AO_CEC]			= &a9_ao_cec.hw,
+> +};
+> +
+> +static const struct meson_clkc_data a9_ao_clkc_data = {
+> +	.hw_clks = {
+> +		.hws = a9_ao_hw_clks,
+> +		.num = ARRAY_SIZE(a9_ao_hw_clks),
+> +	},
+> +};
+> +
+> +static const struct of_device_id a9_ao_clkc_match_table[] = {
+> +	{
+> +		.compatible	= "amlogic,a9-aoclkc",
+> +		.data		= &a9_ao_clkc_data,
+> +	},
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, a9_ao_clkc_match_table);
+> +
+> +static struct platform_driver a9_ao_clkc_driver = {
+> +	.probe		= meson_clkc_mmio_probe,
+> +	.driver		= {
+> +		.name	= "a9-aoclkc",
+> +		.of_match_table = a9_ao_clkc_match_table,
+> +	},
+> +};
+> +module_platform_driver(a9_ao_clkc_driver);
+> +
+> +MODULE_DESCRIPTION("Amlogic A9 Always-ON Clock Controller driver");
+> +MODULE_AUTHOR("Jian Hu <jian.hu@amlogic.com>");
+> +MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS("CLK_MESON");
+
+-- 
+Jerome
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
