@@ -4,52 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60835CD8CB9
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jun 2026 15:49:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABB06CD98C6
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jun 2026 16:12:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=SPnMu80kdjkhZUPo8GgON740CB6WHpumzkpa7STTn08=; b=uMPJSbcrZoqoYE
-	3KY/LHJ/jE9vVg6UHy/OC+xbg9ztgJBcM/if/bpkU2qSw3WaP9hrzxvePhikECJHQksLYZwidWc8g
-	rcv2n1BuohvPCITqIpO8saRydFX+ITjQQEPCix6ltdwYD07g4BRT6475jeoHXkMXPppiBgTe7FYyw
-	zEtotB9vHte9I5fwThiV+iScR6yd+xDRkTsS4duGOX8rc+GoPuTpowO2/W7nhm/JsqpazacyaYdCm
-	iJM2mSg7qUKjKofdZzk5wr7bCAqKjtSzPnBsrj4CmvtY63UQl9HQB2brToE+c1CgzMkERo5t6fuIF
-	ssTRTsdei/z/mLa6JLUw==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=xwuszU4SDSenbfZyWjvfE7ZenQFoa9CsdihgiuTajdY=; b=shYuLTtvtWjPjy
+	VXNoNGlCbiyjNjyBebshRptJRQqcI1nABHALsRoiWaXKfO49HkljgR+3xxU1u+z7P2ieXnUDgTCeA
+	5byQ+0kwqUnXQgNGHv621KnVr9bG7pq4hA37mN7nX4XlZA/eVhC4GHpQMWTsPQG2ZyTAIQsf7GE9t
+	GMYVsHPpb9h/lwihHnbcx8CywocmjFNe/VbAGcmpR570cOBpV/8W+hup9oII8Vo8CVJ7gts3+R4Ap
+	k57P4hhUsFRlcTgNbrTBYrfefNqtAqRXj5roeYQTvZXbt6YxxQFDwoPYLliWckoadF2KCLQ7N+LMq
+	VZyaHr1P0K0OveyrnBUQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXLAo-000000083p3-0luP;
-	Wed, 10 Jun 2026 15:48:58 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1wXLX5-000000085Zt-35lB;
+	Wed, 10 Jun 2026 16:11:59 +0000
+Received: from mail-gw02.astralinux.ru ([93.188.205.243])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXLAm-000000083ow-45L5
-	for linux-amlogic@lists.infradead.org;
-	Wed, 10 Jun 2026 15:48:57 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id ACFC943B20;
-	Wed, 10 Jun 2026 15:48:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 691B21F00893;
-	Wed, 10 Jun 2026 15:48:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781106536;
-	bh=AOGY713HdPrOTdVAGyHnjV3dAIrK6Bv3GMOutik6mZ4=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=JQS1Ypl87nBDQi/HcvqhBG0Lsl/Nf7Sv6pJIAIezJ/inpRiWhhiyzLAffdw+VXeea
-	 e7rSzp6VO2hICL1Gx7wWp7/jfO6bJ4kyswH65HwNnGi98qLCqIvl37cWJFwJA1ust7
-	 WEjfEkAS1HzZHrbrn2rs+h0UCMehBKzR25G5HYB/qigQEJI6NyZJU5heV0v0ev+I1R
-	 UNyfQBuwBAGD69j24oqWKFjyq/OvhKaDxD7c6PJ40h8uCemi2pd/kkEEflM/4LivLa
-	 mxSeWaSiKoKglPq3jcOgn0BimVCpSqZAyDRk6O9GXW4Z7ZHmFUZBKghlT5HY6kO2bc
-	 LG3GoNyyKRDtA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/2] pinctrl: meson: restore non-sleeping GPIO access
-To: "Viacheslav Bocharov" <v@baodeep.com>
-Cc: linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org
-In-Reply-To: <20260610153329.937833-3-v@baodeep.com>
-References: <20260610153329.937833-3-v@baodeep.com>
-Date: Wed, 10 Jun 2026 15:48:56 +0000
-Message-Id: <20260610154856.691B21F00893@smtp.kernel.org>
+	id 1wXLX1-000000085XU-1CmZ;
+	Wed, 10 Jun 2026 16:11:58 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=astralinux.ru;
+	s=mail; t=1781107905;
+	bh=g7BZo8ONelciFNcARnK87kA3zf9NSxNSUp1iCmZQtVQ=;
+	h=From:To:Cc:Subject:Date:From;
+	b=ma44tvA+NM5cHhIt1pBHaxRO88MNmtYScqat8SnVdYCUN1ymXX9lHpB7m5JDfSsLT
+	 +ixHyDKbZnI/KZCc2Sto77QTaMVMRMz9WrHYgkBEisTyPtBFKxydnn6iA1qvOr41X1
+	 BfhT/GyI8gthjohkokqof5CdmD5ehOmTb1Ezl/qjtatZgxtjrth/NQQ0qywKmJzuch
+	 zDZpi7fnqJXHCIY7bNB1aiso57JTkXRHN4QsnOjpOgD7wfFwFavGZqEcl+/UkmvLlf
+	 OVuF90C/UDzlR4lua1Dz5bO3OU+l8/qxLIDFn0RWhykHe0UjWDP4NpCPGDaLT7OFUC
+	 FLkLqXBe2YVUQ==
+Received: from gca-msk-a-srv-ksmg01.astralinux.ru (localhost [127.0.0.1])
+	by mail-gw02.astralinux.ru (Postfix) with ESMTP id 059541FA2D;
+	Wed, 10 Jun 2026 19:11:45 +0300 (MSK)
+Received: from new-mail.astralinux.ru (unknown [10.205.207.8])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail-gw02.astralinux.ru (Postfix) with ESMTPS;
+	Wed, 10 Jun 2026 19:11:41 +0300 (MSK)
+Received: from rbta-msk-lt-156703.astralinux.ru (unknown [10.198.54.246])
+	by new-mail.astralinux.ru (Postfix) with ESMTPA id 4gb9l06wmyzZd74;
+	Wed, 10 Jun 2026 19:11:40 +0300 (MSK)
+From: Alexey Panov <apanov@astralinux.ru>
+To: stable@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Alexey Panov <apanov@astralinux.ru>,
+	Mark Brown <broonie@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Neil Armstrong <narmstrong@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Dongliang Mu <mudongliangabcd@gmail.com>,
+	linux-spi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	lvc-project@linuxtesting.org,
+	Felix Gu <ustc.gu@gmail.com>,
+	Johan Hovold <johan@kernel.org>
+Subject: [PATCH 5.10] spi: meson-spicc: Fix double-put in remove path
+Date: Wed, 10 Jun 2026 19:11:29 +0300
+Message-Id: <20260610161129.7612-1-apanov@astralinux.ru>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+X-KSMG-AntiPhishing: NotDetected, bases: 2026/06/10 14:25:00
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Envelope-From: apanov@astralinux.ru
+X-KSMG-AntiSpam-Info: LuaCore: 107 0.3.107 575e75fe8e3b9d45c142d144823c5de38605099e, {Tracking_one_susp_tld}, {Tracking_uf_ne_domains}, {Tracking_internal2}, {Tracking_from_domain_doesnt_match_to}, patch.msgid.link:7.1.1;new-mail.astralinux.ru:7.1.1;astralinux.ru:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiSpam-Lua-Profiles: 203793 [Jun 10 2026]
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Version: 6.1.1.22
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.1.0.7854, bases: 2026/06/10 13:12:00 #28226830
+X-KSMG-AntiVirus-Status: NotDetected, skipped
+X-KSMG-LinksScanning: NotDetected, bases: 2026/06/10 14:25:00
+X-KSMG-Message-Action: skipped
+X-KSMG-Rule-ID: 1
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260610_091155_899412_CE63DE46 
+X-CRM114-Status: UNSURE (   8.94  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,81 +101,52 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MyBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpOZXcgaXNzdWVzOgotIFtIaWdoXSBT
-ZXR0aW5nIGBjYW5fc2xlZXAgPSBmYWxzZWAgd2l0aG91dCBjb25maWd1cmluZyByZWdtYXAgdG8g
-dXNlIGEgcmF3IHNwaW5sb2NrIGNhdXNlcyBhIHNsZWVwLWluLWF0b21pYyBidWcgb24gUFJFRU1Q
-VF9SVC4KClByZS1leGlzdGluZyBpc3N1ZXM6Ci0gW0hpZ2hdIFRoZSBHUElPIGNoaXAgaXMgcmVn
-aXN0ZXJlZCB3aXRob3V0IGRldnJlcyBtYW5hZ2VtZW50LCByZXN1bHRpbmcgaW4gYSBVc2UtQWZ0
-ZXItRnJlZSBpZiB0aGUgZHJpdmVyIGlzIHVuYm91bmQuCi0gW0hpZ2hdIENvbmN1cnJlbnRseSBt
-dXRhdGluZyB0aGUgZ2xvYmFsIHN0YXRpYyBgbWVzb25fcmVnbWFwX2NvbmZpZ2AgZHVyaW5nIHBy
-b2JlIGNhdXNlcyBhIGRhdGEgcmFjZSBhbmQgcG90ZW50aWFsIFVzZS1BZnRlci1GcmVlLgotLQoK
-Y29tbWl0IDZlN2QxYTJjYTRiM2ZiNTFiZWYwYzEzZWQwZjdhMDVkMGZmZjQzNjUKQXV0aG9yOiBW
-aWFjaGVzbGF2IEJvY2hhcm92IDx2QGJhb2RlZXAuY29tPgoKcGluY3RybDogbWVzb246IHJlc3Rv
-cmUgbm9uLXNsZWVwaW5nIEdQSU8gYWNjZXNzCgpUaGlzIGNvbW1pdCBzZXRzIHRoZSBtZXNvbiBn
-cGlvIGNoaXAncyBjYW5fc2xlZXAgZmxhZyB0byBmYWxzZSwgcmVzdG9yaW5nCm5vbi1zbGVlcGlu
-ZyBhY2Nlc3MuIFRoaXMgcmV2ZXJ0cyBhIHByZXZpb3VzIHdvcmthcm91bmQgc2luY2UgdGhlIHVu
-ZGVybHlpbmcKZ3Bpby1zaGFyZWQtcHJveHkgbG9ja2luZyBpc3N1ZSBoYXMgYmVlbiByZXNvbHZl
-ZC4gQXRvbWljIGNvbnN1bWVycyBsaWtlCncxLWdwaW8gY2FuIG5vdyBvcGVyYXRlIHdpdGhvdXQg
-dHJpZ2dlcmluZyBzbGVlcCB3YXJuaW5ncy4KCkxpbms6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3Jn
-L2FsbC8yMDI2MDEwNTE1MDUwOS41NjUzNy0xLWJhcnRvc3ouZ29sYXN6ZXdza2lAb3NzLnF1YWxj
-b21tLmNvbS8KCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcGluY3RybC9tZXNvbi9waW5jdHJsLW1l
-c29uLmMgYi9kcml2ZXJzL3BpbmN0cmwvbWVzb24vcGluY3RybC1tZXNvbi5jCj4gaW5kZXggNDUw
-N2RjOGI1NTYzYy4uMTgyOTViMTVlY2Q5ZCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL3BpbmN0cmwv
-bWVzb24vcGluY3RybC1tZXNvbi5jCj4gKysrIGIvZHJpdmVycy9waW5jdHJsL21lc29uL3BpbmN0
-cmwtbWVzb24uYwo+IEBAIC02MTksNyArNjE5LDcgQEAgc3RhdGljIGludCBtZXNvbl9ncGlvbGli
-X3JlZ2lzdGVyKHN0cnVjdCBtZXNvbl9waW5jdHJsICpwYykKPiAgCXBjLT5jaGlwLnNldCA9IG1l
-c29uX2dwaW9fc2V0Owo+ICAJcGMtPmNoaXAuYmFzZSA9IC0xOwo+ICAJcGMtPmNoaXAubmdwaW8g
-PSBwYy0+ZGF0YS0+bnVtX3BpbnM7Cj4gLQlwYy0+Y2hpcC5jYW5fc2xlZXAgPSB0cnVlOwo+ICsJ
-cGMtPmNoaXAuY2FuX3NsZWVwID0gZmFsc2U7CgpbU2V2ZXJpdHk6IEhpZ2hdCkRvZXMgdGhpcyBj
-aGFuZ2Ugc2FmZWx5IHN1cHBvcnQgcHJlZW1wdC1ydCBrZXJuZWxzPwoKU2luY2UgdGhpcyBwYXRj
-aCBkZWNsYXJlcyBjYW5fc2xlZXAgPSBmYWxzZSwgdGhlIGdwaW8gZ2V0L3NldCBmdW5jdGlvbnMK
-Y2FuIGJlIGNhbGxlZCBmcm9tIGF0b21pYyBjb250ZXh0cy4gSG93ZXZlciwgdGhlIG1taW8gcmVn
-bWFwIGNvbmZpZ3VyYXRpb24KbGFja3MgLnVzZV9yYXdfc3BpbmxvY2sgPSB0cnVlOgoKZHJpdmVy
-cy9waW5jdHJsL21lc29uL3BpbmN0cmwtbWVzb24uYzoKc3RhdGljIHN0cnVjdCByZWdtYXBfY29u
-ZmlnIG1lc29uX3JlZ21hcF9jb25maWcgPSB7CgkucmVnX2JpdHMgPSAzMiwKCS52YWxfYml0cyA9
-IDMyLAoJLnJlZ19zdHJpZGUgPSA0LAp9OwoKT24gcHJlZW1wdC1ydCwgc3RhbmRhcmQgc3Bpbmxv
-Y2tzIGJlY29tZSBzbGVlcGFibGUgcnRfbXV0ZXhlcy4gV2l0aG91dAoudXNlX3Jhd19zcGlubG9j
-ayA9IHRydWUsIGFueSBhdG9taWMgY2FsbGVyIG9mIHRoZXNlIGdwaW8gZnVuY3Rpb25zCndpbGwg
-YXR0ZW1wdCB0byBhY3F1aXJlIGEgc2xlZXBhYmxlIGxvY2sgd2l0aCBpbnRlcnJ1cHRzIGRpc2Fi
-bGVkLCBsZWFkaW5nIHRvCmEgbG9ja2RlcCB3YXJuaW5nIGFuZCBwb3RlbnRpYWwgZGVhZGxvY2su
-IFNob3VsZCAudXNlX3Jhd19zcGlubG9jayA9IHRydWUgYmUKYWRkZWQgdG8gbWVzb25fcmVnbWFw
-X2NvbmZpZyB0byBob25vciB0aGUgbm9uLXNsZWVwaW5nIGNvbnRyYWN0PwoKPiAgCj4gIAlyZXQg
-PSBncGlvY2hpcF9hZGRfZGF0YSgmcGMtPmNoaXAsIHBjKTsKCltTZXZlcml0eTogSGlnaF0KVGhp
-cyBpcyBhIHByZS1leGlzdGluZyBpc3N1ZSwgYW5kIHdhcyBub3QgaW50cm9kdWNlZCBieSB0aGUg
-cGF0Y2ggdW5kZXIKcmV2aWV3LCBidXQgY291bGQgdGhlIHVzZSBvZiBncGlvY2hpcF9hZGRfZGF0
-YSgpIGxlYWQgdG8gYSB1c2UtYWZ0ZXItZnJlZQp3aGVuIHRoZSBkcml2ZXIgdW5iaW5kcz8KClRo
-ZSBwYXJlbnQgc3RydWN0dXJlIHBjIGlzIGFsbG9jYXRlZCB3aXRoIGRldm1fa3phbGxvYygpLCBi
-dXQgdGhlIGdwaW8gY2hpcAppcyBub3QgcmVnaXN0ZXJlZCB1c2luZyB0aGUgbWFuYWdlZCBkZXZt
-X2dwaW9jaGlwX2FkZF9kYXRhKCkuIFNpbmNlIHRoZXJlIGlzCm5vIC5yZW1vdmUgY2FsbGJhY2sg
-b3IgZGV2cmVzIGFjdGlvbiB0byB1bnJlZ2lzdGVyIHRoZSBjaGlwLCBpZiB0aGUgZHJpdmVyCmlz
-IHVuYm91bmQsIGRldnJlcyB3aWxsIGZyZWUgcGMgd2hpbGUgdGhlIGdwaW8gY2hpcCByZW1haW5z
-IHJlZ2lzdGVyZWQKaW4gZ3Bpb2xpYi4gU3Vic2VxdWVudCBhY2Nlc3MgdG8gdGhlIGdwaW8gZGV2
-aWNlIHdvdWxkIGRlcmVmZXJlbmNlIHRoZSBmcmVlZAptZW1vcnkuCgpbU2V2ZXJpdHk6IEhpZ2hd
-ClRoaXMgaXMgYWxzbyBhIHByZS1leGlzdGluZyBpc3N1ZSwgYW5kIHdhcyBub3QgaW50cm9kdWNl
-ZCBieSB0aGUgcGF0Y2gKdW5kZXIgcmV2aWV3LCBidXQgaXMgdGhlcmUgYSBkYXRhIHJhY2Ugd2hl
-biBtb2RpZnlpbmcgdGhlIGdsb2JhbAptZXNvbl9yZWdtYXBfY29uZmlnIHN0cnVjdHVyZSBkdXJp
-bmcgcHJvYmU/CgpJbiBtZXNvbl9tYXBfcmVzb3VyY2UoKSwgdGhlIGdsb2JhbCBzdGF0aWMgY29u
-ZmlndXJhdGlvbiBpcyBtdXRhdGVkIGRpcmVjdGx5OgoKZHJpdmVycy9waW5jdHJsL21lc29uL3Bp
-bmN0cmwtbWVzb24uYzptZXNvbl9tYXBfcmVzb3VyY2UoKSB7Ci4uLgoJbWVzb25fcmVnbWFwX2Nv
-bmZpZy5tYXhfcmVnaXN0ZXIgPSByZXNvdXJjZV9zaXplKCZyZXMpIC0gNDsKCW1lc29uX3JlZ21h
-cF9jb25maWcubmFtZSA9IGRldm1fa2FzcHJpbnRmKHBjLT5kZXYsIEdGUF9LRVJORUwsCgkJCQkJ
-CSAgIiVwT0ZuLSVzIiwgbm9kZSwKCQkJCQkJICBuYW1lKTsKLi4uCn0KClNpbmNlIEFtbG9naWMg
-U29DcyBoYXZlIG11bHRpcGxlIHBpbmN0cmwgZG9tYWlucyB0aGF0IGNhbiBwcm9iZSBjb25jdXJy
-ZW50bHksCm9uZSB0aHJlYWQgY291bGQgb3ZlcndyaXRlIHRoZSAubmFtZSBwb2ludGVyIHdoaWxl
-IGFub3RoZXIgaXMgdXNpbmcgaXQuCkJlY2F1c2UgLm5hbWUgaXMgYm91bmQgdG8gdGhlIGRldmlj
-ZSdzIGxpZmVjeWNsZSB2aWEgZGV2bV9rYXNwcmludGYoKSwKaWYgdGhlIGZpcnN0IGRldmljZSB1
-bmJpbmRzLCBpdHMgZGV2cmVzIGZyZWVzIHRoZSBzdHJpbmcsIGxlYXZpbmcgdGhlIHNlY29uZApy
-ZWdtYXAgd2l0aCBhIGRhbmdsaW5nIHBvaW50ZXIgZm9yIGl0cyBuYW1lLgoKLS0gClNhc2hpa28g
-QUkgcmV2aWV3IMK3IGh0dHBzOi8vc2FzaGlrby5kZXYvIy9wYXRjaHNldC8yMDI2MDYxMDE1MzMy
-OS45Mzc4MzMtMS12QGJhb2RlZXAuY29tP3BhcnQ9MgoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgt
-YW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21h
-aWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+From: Felix Gu <ustc.gu@gmail.com>
+
+commit 63542bb402b7013171c9f621c28b609eda4dbf1f upstream.
+
+meson_spicc_probe() registers the controller with
+devm_spi_register_controller(), so teardown already drops the
+controller reference via devm cleanup.
+
+Calling spi_controller_put() again in meson_spicc_remove()
+causes a double-put.
+
+Fixes: 8311ee2164c5 ("spi: meson-spicc: fix memory leak in meson_spicc_remove")
+Signed-off-by: Felix Gu <ustc.gu@gmail.com>
+Reviewed-by: Johan Hovold <johan@kernel.org>
+Link: https://patch.msgid.link/20260322-rockchip-v1-1-fac3f0c6dad8@gmail.com
+Signed-off-by: Mark Brown <broonie@kernel.org>
+[ Alexey: Remove the equivalent legacy spi_master_put() call used in
+  linux-5.10.y. ]
+Signed-off-by: Alexey Panov <apanov@astralinux.ru>
+---
+Backport fix for CVE-2026-31489
+ drivers/spi/spi-meson-spicc.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
+index 6974a1c947aa..ae818e7df791 100644
+--- a/drivers/spi/spi-meson-spicc.c
++++ b/drivers/spi/spi-meson-spicc.c
+@@ -863,8 +863,6 @@ static int meson_spicc_remove(struct platform_device *pdev)
+ 	clk_disable_unprepare(spicc->core);
+ 	clk_disable_unprepare(spicc->pclk);
+ 
+-	spi_master_put(spicc->master);
+-
+ 	return 0;
+ }
+ 
+-- 
+2.47.3
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
