@@ -4,100 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEF9CCD98D3
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jun 2026 21:29:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 860ACCD98C7
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jun 2026 21:40:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mM4ElZM5hyBRNjsD8KKlhte3hUuqqk8l5/soiyGrF78=; b=lw4pZ4tBBdXr3Z
-	I4XaI2lk3Vlsx/XkRASlLdje98TLRfXpM1ZiCart9nwnCKitZPzQFVvZsOBRp98vphpfmdL7fHMJT
-	Qodqb77yNgd9Q1FNUMmKPMtqG4AS5hZQd1cDazIND9C52ZN0YKTUpi4AHM6gyFFYitb1qVIO52GSB
-	WiEczRY5e1HOSpdP/f2JAFwkpDFNfW0Rb3Rie5CKbJB5Bl5WaeKCGUSQa3vnPGtNCS9dPwJTASF3H
-	nCV4/ZE4undpC5Dk/MMjlpLRirKx71SlSVhQ8hzVI5ivEArXpekGpWJJqwhmOv1xDdducxm9rRZDT
-	wYKt3bbQ+2sNmOkAARhA==;
+	List-Owner; bh=saUakyZACqdiQEAsp2yTa91/kus5lJleMVDNS0aaBc8=; b=UIxqKxGAdRmQnU
+	cQnx2PFa3OsHQh5m6Ldflwwhus+bf4AHjNiu+rwThcuqPOaofkEajBpphhUO2pKCXxaHf31MPLGyP
+	1zEpKg5pgY4pUFbYZjMgz0JpONXYkpBbQYEEgJuZuiSaA/Jb8+fOvcv1ZPpbTNMbiT2JgKmlDT0oI
+	LtFltnNT/W9jYxzT9pEsglusd0lvI9mqa5QrKzpbyGnvt7A81XNfG9QOgP9CSTbWu0lndnQB105YB
+	a+DIh6AvMlUHWXZvPbSFnscB0gRvTPE5MnJHmP26SAVH1sVbfHo4dun9yaQaGIlhyoFJ6XzSkREG9
+	9/z8eajAR9hHAOBXo/tg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXQUe-00000008NU1-0BFr;
-	Wed, 10 Jun 2026 21:29:48 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1wXQeY-00000008OJ9-1rXZ;
+	Wed, 10 Jun 2026 21:40:02 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXQUZ-00000008NQJ-3fwr
+	id 1wXQeX-00000008OIy-1mcu
 	for linux-amlogic@lists.infradead.org;
-	Wed, 10 Jun 2026 21:29:45 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-490b7866869so79025025e9.2
-        for <linux-amlogic@lists.infradead.org>; Wed, 10 Jun 2026 14:29:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1781126982; x=1781731782; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HdSvP4OsE7eHoTjId0UaG2CyxblqVBvzSM5Fo0qLTpA=;
-        b=WEJRbpBXcuu8ikS9w4KCtU4kDlSRpZtzIjO+oHXVDIuSZyZbj/spauZGgUOyrdCkJP
-         crZRcX1c2YlzwXl0UF4TuroFmugP4IbYGvTlwET9baijelkNKkjKi7aex6gbJXX0ZJ6H
-         Cqf7K5lhfUS9cHsE+54oIMoVcVpDATsrzNknn5iGtYwL8qj3HPFmxtNB5uXuLefMKc/L
-         Cc96vZQPG/E1cT8FyZ+6KaBC1Qu2aQod3/aHNkmXamrdQqgF7jgsthvCumgXazkXaqMV
-         z48ZRl0bmFvSMDM45pbNT9qgPnfYusL26lEluCbKWvBqHJCiDtsxnmsXhNGSDV+OUn7A
-         OauA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781126982; x=1781731782;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=HdSvP4OsE7eHoTjId0UaG2CyxblqVBvzSM5Fo0qLTpA=;
-        b=Shq6Oywc3MA4nWmCGGTkSa5TQN6Tbixm2hm+ZIEaPeRAH03BDNMqLp2bKCfbW7KKvD
-         Uwjm8T+Lq3qni6BpdSvnG0cSRk1xSHyJx11wvVvfuokfcWS9XZZ4YklNMvkLDvx9Hl4L
-         OEApA/hgtbAJpKDq48g+D5ANBtopRouyfsNTDUVb/IH58fsLbuvgbLiAEAwMVoamTA9C
-         OU6MldSvUtV+0Od98g7nSkixBckSSHFA7E1PXaaKcWyoDd5z5+kt7FUKgVo/ayrtPPN8
-         MW8EtZk2f3Hj2q9faC6/abs1vkQnl3tMMe6ekdytRq72Ti496rEVHPputoK9CnlaPnYK
-         uVfg==
-X-Forwarded-Encrypted: i=1; AFNElJ9YzJS0AZkHEWb35MqGuVTm++ZrLLaKG2OhwFEvfjKqttW/QZHQNDPos2WUeofczbGdW0PjZf0iknkBDvyd@lists.infradead.org
-X-Gm-Message-State: AOJu0YzFMNak69mAGi1FqTk8H0oz+UfDe5qFGMKTbEx+kSPv1p0VVHcY
-	+Pb25XFCh2ceYKpeiuVw0kE1OCTaHDvCz+3rIf59PAOM4bv3j3ll1k7hyIWggV3V7OQ=
-X-Gm-Gg: Acq92OFDihY97/2ACfFD1RsZUdKcTLSYGC5aUkxBNVRWlT9u5CVQPmmRQTzOkrxXLRD
-	N07ahgu9HTHXrMPNCNwq/T+3hdV8L7GzEBZQu5VdOKytmdg4aaEa9VXhW7EzT7eon1eaX+Fxm+n
-	kD5BuVQqeqybS6kAGgL0Xmia48eDZRvBvgbF/3z860n06SYzUphGVXMYQIvYCwOc+vDFbbzKPwE
-	uiCU47+XVARdgjU62GdNwmsvobsffGTZs3qssE4/T/3hnm00ADBEtQ9f7RTko3nz61mAcsOuQQK
-	IZ0kvSY8WBR6k71vVZA34GOwn7jimDSYMKSLeOnhfEDbpZ85QRLGkHlvrtcXwUxH7kzdobj/uyn
-	aT7wz7StbZdJKg95MhwqWo7JV9wHY0PM+MSB9bD+xHOTbfTvEwAGktyy2/b2AyjWTm12CvNyjOf
-	VRRmckc2PPw+CBIMXgiSyzt2C51Q+oUuwcuzp8hkm4nQ==
-X-Received: by 2002:a05:600d:6446:10b0:490:bccf:2bd6 with SMTP id 5b1f17b1804b1-490e2e29494mr5787235e9.15.1781126982292;
-        Wed, 10 Jun 2026 14:29:42 -0700 (PDT)
-Received: from [127.0.1.1] ([151.61.238.34])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490e4228768sm970965e9.0.2026.06.10.14.29.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jun 2026 14:29:42 -0700 (PDT)
-From: Valerio Setti <vsetti@baylibre.com>
-Date: Wed, 10 Jun 2026 23:29:28 +0200
-Subject: [PATCH v2 4/4] ASoC: meson: aiu: use aiu-formatter-i2s to format
- I2S output data
-MIME-Version: 1.0
-Message-Id: <20260610-reshape-aiu-as-axg-v2-4-cac3663a8b51@baylibre.com>
-References: <20260610-reshape-aiu-as-axg-v2-0-cac3663a8b51@baylibre.com>
-In-Reply-To: <20260610-reshape-aiu-as-axg-v2-0-cac3663a8b51@baylibre.com>
-To: Jerome Brunet <jbrunet@baylibre.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- Valerio Setti <vsetti@baylibre.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7991; i=vsetti@baylibre.com;
- h=from:subject:message-id; bh=/h2Td7mUr6sv6XUhWr9Xcq7WvMFZwzP575T2baPy/Ds=;
- b=owGbwMvMwCF2z3ty7kUrRgbG02pJDFma1x2COF5w1rWmPDvsyMu7KsxGbZuhj/f+yfwLelrq7
- h1c9EW/o5SFQYyDQVZMkYVl+r3fBaVqD40TThbAzGFlAhnCwMUpABNpiWZkOLL1F/sOzeA12y7O
- z9z7PX6yvM9SM9bah3v5/Trsz2qfKGP4yfj1WP1cjlLvYotjP4/t5ZmXwx95fHka1zPrNy1bWA4
- ZMAMA
-X-Developer-Key: i=vsetti@baylibre.com; a=openpgp;
- fpr=0497DEFB707526E13360C970DE4B936DD13A0100
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260610_142944_035365_0E21FFDB 
-X-CRM114-Status: GOOD (  22.40  )
+	Wed, 10 Jun 2026 21:40:01 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id C7D4B40865;
+	Wed, 10 Jun 2026 21:40:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7794F1F00893;
+	Wed, 10 Jun 2026 21:40:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781127600;
+	bh=kICtybC0VpwGAn6k21okIvWinYkri/FpsyRBR2PkBnU=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=fFYT0OAsXwCGF430XmAEIXBtHffBngoxNAXnXcbcSXqPdbrYwFj90cirm7ehnHmVv
+	 Z4tXS4eJXlhwSvqa7Prq8w/dh1rk+nJGKtI49QSwcAxei2RCtlyTiGuCHcX+sHIH2O
+	 Fv9lBjf1Q0Qa42x+vT+absaO/ZZtOZAAOC7N5MptIQQItJuMrGMsXt2j8pQcw84yzq
+	 F6WTexn3NRR9wRur9t7tS6fFEw44oj4iiHkJ45563oU8IWhROoICrZBs0du3VJoNBI
+	 6dst2GRSajlw69ZmXg7H+lE3zb6Re9KUk4sAYsUbLVuxMZ8YE6Q69ghBMBHhK+Jam5
+	 5pixP+SyLyvhw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 4/4] ASoC: meson: aiu: use aiu-formatter-i2s to
+ format I2S output data
+To: "Valerio Setti" <vsetti@baylibre.com>
+Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
+In-Reply-To: <20260610-reshape-aiu-as-axg-v2-4-cac3663a8b51@baylibre.com>
+References: <20260610-reshape-aiu-as-axg-v2-4-cac3663a8b51@baylibre.com>
+Date: Wed, 10 Jun 2026 21:39:59 +0000
+Message-Id: <20260610214000.7794F1F00893@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,232 +62,72 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Create a new DAPM widget for "I2S formatter" and place it on the path
-between FIFO and output DAI interface. Remove I2S output formatting code
-from aiu-encoder-i2s since it's now implemented from aiu-formatter-i2s.
-
-Signed-off-by: Valerio Setti <vsetti@baylibre.com>
----
- sound/soc/meson/aiu-encoder-i2s.c | 78 ++++++++++-----------------------------
- sound/soc/meson/aiu.c             | 32 ++++++++++++++--
- sound/soc/meson/aiu.h             |  1 +
- 3 files changed, 48 insertions(+), 63 deletions(-)
-
-diff --git a/sound/soc/meson/aiu-encoder-i2s.c b/sound/soc/meson/aiu-encoder-i2s.c
-index f50b03824ad280afabb31eecc20ccb855defa11e..83b579e98f1c75ce03fea1c6ff4e99b2fedebe0c 100644
---- a/sound/soc/meson/aiu-encoder-i2s.c
-+++ b/sound/soc/meson/aiu-encoder-i2s.c
-@@ -13,13 +13,8 @@
- #include "gx-formatter.h"
- #include "gx-interface.h"
- 
--#define AIU_I2S_SOURCE_DESC_MODE_8CH	BIT(0)
--#define AIU_I2S_SOURCE_DESC_MODE_24BIT	BIT(5)
--#define AIU_I2S_SOURCE_DESC_MODE_32BIT	BIT(9)
- #define AIU_I2S_SOURCE_DESC_MODE_SPLIT	BIT(11)
--#define AIU_RST_SOFT_I2S_FAST		BIT(0)
- 
--#define AIU_I2S_DAC_CFG_MSB_FIRST	BIT(2)
- #define AIU_CLK_CTRL_I2S_DIV_EN		BIT(0)
- #define AIU_CLK_CTRL_I2S_DIV		GENMASK(3, 2)
- #define AIU_CLK_CTRL_AOCLK_INVERT	BIT(6)
-@@ -37,49 +32,6 @@ static void aiu_encoder_i2s_divider_enable(struct snd_soc_component *component,
- 				      enable ? AIU_CLK_CTRL_I2S_DIV_EN : 0);
- }
- 
--static int aiu_encoder_i2s_setup_desc(struct snd_soc_component *component,
--				      struct snd_pcm_hw_params *params)
--{
--	/* Always operate in split (classic interleaved) mode */
--	unsigned int desc = AIU_I2S_SOURCE_DESC_MODE_SPLIT;
--
--	/* Reset required to update the pipeline */
--	snd_soc_component_write(component, AIU_RST_SOFT, AIU_RST_SOFT_I2S_FAST);
--	snd_soc_component_read(component, AIU_I2S_SYNC);
--
--	switch (params_physical_width(params)) {
--	case 16: /* Nothing to do */
--		break;
--
--	case 32:
--		desc |= (AIU_I2S_SOURCE_DESC_MODE_24BIT |
--			 AIU_I2S_SOURCE_DESC_MODE_32BIT);
--		break;
--
--	default:
--		return -EINVAL;
--	}
--
--	switch (params_channels(params)) {
--	case 2: /* Nothing to do */
--		break;
--	case 8:
--		desc |= AIU_I2S_SOURCE_DESC_MODE_8CH;
--		break;
--	default:
--		return -EINVAL;
--	}
--
--	snd_soc_component_update_bits(component, AIU_I2S_SOURCE_DESC,
--				      AIU_I2S_SOURCE_DESC_MODE_8CH |
--				      AIU_I2S_SOURCE_DESC_MODE_24BIT |
--				      AIU_I2S_SOURCE_DESC_MODE_32BIT |
--				      AIU_I2S_SOURCE_DESC_MODE_SPLIT,
--				      desc);
--
--	return 0;
--}
--
- static int aiu_encoder_i2s_set_legacy_div(struct snd_soc_component *component,
- 					  struct snd_pcm_hw_params *params,
- 					  unsigned int bs)
-@@ -173,11 +125,6 @@ static int aiu_encoder_i2s_set_clocks(struct snd_soc_component *component,
- 	if ((fs % 64) || (fs == 0))
- 		return -EINVAL;
- 
--	/* Send data MSB first */
--	snd_soc_component_update_bits(component, AIU_I2S_DAC_CFG,
--				      AIU_I2S_DAC_CFG_MSB_FIRST,
--				      AIU_I2S_DAC_CFG_MSB_FIRST);
--
- 	/* Set bclk to lrlck ratio */
- 	snd_soc_component_update_bits(component, AIU_CODEC_DAC_LRCLK_CTRL,
- 				      AIU_CODEC_DAC_LRCLK_CTRL_DIV,
-@@ -223,12 +170,6 @@ static int aiu_encoder_i2s_hw_params(struct snd_pcm_substream *substream,
- 		}
- 	}
- 
--	ret = aiu_encoder_i2s_setup_desc(component, params);
--	if (ret) {
--		dev_err(dai->dev, "setting i2s desc failed: %d\n", ret);
--		return ret;
--	}
--
- 	ret = aiu_encoder_i2s_set_clocks(component, params);
- 	if (ret) {
- 		dev_err(dai->dev, "setting i2s clocks failed: %d\n", ret);
-@@ -411,6 +352,25 @@ static int aiu_encoder_i2s_startup(struct snd_pcm_substream *substream,
- 		return ret;
- 	}
- 
-+	/*
-+	 * We're always operating in split mode for the playback stream.
-+	 *
-+	 * This setting arguably belong to the 'aiu-formatter', but it's kept
-+	 * here for backward compatibility reason. At reset the I2S encoder
-+	 * operates in normal mode which would only support 8ch, but by default
-+	 * only 2ch are enabled. If a playback stream is started without
-+	 * changing to split mode, then the I2S encoder doesn't consume audio
-+	 * samples and the playback fails.
-+	 * Moving this to 'aiu-formatter' would cause the split mode to be set
-+	 * only when the formatter is enabled, which doesn't happen at boot as
-+	 * the default value for "HDMI CTRL SRC" is "DISABLED".
-+	 */
-+	ret = snd_soc_component_update_bits(dai->component, AIU_I2S_SOURCE_DESC,
-+					    AIU_I2S_SOURCE_DESC_MODE_SPLIT,
-+					    AIU_I2S_SOURCE_DESC_MODE_SPLIT);
-+	if (ret < 0)
-+		dev_err(dai->dev, "failed to update AIU_I2S_SOURCE_DESC: %d", ret);
-+
- 	return 0;
- }
- 
-diff --git a/sound/soc/meson/aiu.c b/sound/soc/meson/aiu.c
-index f2890111c1d2cfa2213bf01849957a796744b9ae..64ace4d25d92cbe137066359a839e1b11bf140f8 100644
---- a/sound/soc/meson/aiu.c
-+++ b/sound/soc/meson/aiu.c
-@@ -29,13 +29,22 @@ static SOC_ENUM_SINGLE_DECL(aiu_spdif_encode_sel_enum, AIU_I2S_MISC,
- static const struct snd_kcontrol_new aiu_spdif_encode_mux =
- 	SOC_DAPM_ENUM("SPDIF Buffer Src", aiu_spdif_encode_sel_enum);
- 
--static const struct snd_soc_dapm_widget aiu_cpu_dapm_widgets[] = {
--	SND_SOC_DAPM_MUX("SPDIF SRC SEL", SND_SOC_NOPM, 0, 0,
--			 &aiu_spdif_encode_mux),
-+#define AIU_WIDGET_SPDIF_SRC_SEL	0
-+#define AIU_WIDGET_I2S_FORMATTER	1
-+
-+static struct snd_soc_dapm_widget aiu_cpu_dapm_widgets[] = {
-+	[AIU_WIDGET_SPDIF_SRC_SEL] =
-+		SND_SOC_DAPM_MUX("SPDIF SRC SEL", SND_SOC_NOPM, 0, 0,
-+				 &aiu_spdif_encode_mux),
-+	[AIU_WIDGET_I2S_FORMATTER] =
-+		SND_SOC_DAPM_PGA_E("I2S Formatter", SND_SOC_NOPM, 0, 0, NULL, 0,
-+				   gx_formatter_event,
-+				   (SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_PRE_PMD)),
- };
- 
- static const struct snd_soc_dapm_route aiu_cpu_dapm_routes[] = {
--	{ "I2S Encoder Playback", NULL, "I2S FIFO Playback" },
-+	{ "I2S Formatter", NULL, "I2S FIFO Playback" },
-+	{ "I2S Encoder Playback", NULL, "I2S Formatter" },
- 	{ "SPDIF SRC SEL", "SPDIF", "SPDIF FIFO Playback" },
- 	{ "SPDIF SRC SEL", "I2S", "I2S FIFO Playback" },
- 	{ "SPDIF Encoder Playback", NULL, "SPDIF SRC SEL" },
-@@ -172,6 +181,11 @@ static const struct regmap_config aiu_regmap_cfg = {
- 	.max_register	= 0x2ac,
- };
- 
-+const struct gx_formatter_driver aiu_formatter_i2s_drv = {
-+	.regmap_cfg	= &aiu_regmap_cfg,
-+	.ops		= &aiu_formatter_i2s_ops,
-+};
-+
- static int aiu_clk_bulk_get(struct device *dev,
- 			    const char * const *ids,
- 			    unsigned int num,
-@@ -282,6 +296,14 @@ static int aiu_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
-+	/* Allocate the aiu-formatter into its widget */
-+	ret = gx_formatter_create(dev, &aiu_cpu_dapm_widgets[AIU_WIDGET_I2S_FORMATTER],
-+				  &aiu_formatter_i2s_drv, map);
-+	if (ret) {
-+		dev_err(dev, "Failed to allocate aiu formatter\n");
-+		goto err;
-+	}
-+
- 	/* Register the cpu component of the aiu */
- 	ret = snd_soc_register_component(dev, &aiu_cpu_component,
- 					 aiu_cpu_dai_drv,
-@@ -310,12 +332,14 @@ static int aiu_probe(struct platform_device *pdev)
- 
- 	return 0;
- err:
-+	gx_formatter_free(&aiu_cpu_dapm_widgets[AIU_WIDGET_I2S_FORMATTER]);
- 	snd_soc_unregister_component(dev);
- 	return ret;
- }
- 
- static void aiu_remove(struct platform_device *pdev)
- {
-+	gx_formatter_free(&aiu_cpu_dapm_widgets[AIU_WIDGET_I2S_FORMATTER]);
- 	snd_soc_unregister_component(&pdev->dev);
- }
- 
-diff --git a/sound/soc/meson/aiu.h b/sound/soc/meson/aiu.h
-index 68310de0bdf7a97d8de2ff306c159248ee9b0ede..7d0b98c1f351b3c526ca06c43a4c04ee5f4b6dfa 100644
---- a/sound/soc/meson/aiu.h
-+++ b/sound/soc/meson/aiu.h
-@@ -61,6 +61,7 @@ extern const struct snd_soc_dai_ops aiu_fifo_i2s_dai_ops;
- extern const struct snd_soc_dai_ops aiu_fifo_spdif_dai_ops;
- extern const struct snd_soc_dai_ops aiu_encoder_i2s_dai_ops;
- extern const struct snd_soc_dai_ops aiu_encoder_spdif_dai_ops;
-+extern const struct gx_formatter_ops aiu_formatter_i2s_ops;
- 
- #define AIU_IEC958_BPF			0x000
- #define AIU_958_MISC			0x010
-
--- 
-2.39.5
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MiBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0hpZ2hdIE11dGF0aW9uIG9mIGEg
+Z2xvYmFsIHN0YXRpYyB0ZW1wbGF0ZSBhcnJheSB3aXRoIGluc3RhbmNlLXNwZWNpZmljIGRhdGEg
+YnJlYWtzIHRoZSBkZXZpY2UgZHJpdmVyIG1vZGVsIGFuZCBlbmFibGVzIGRhdGEgcmFjZXMuCi0g
+W01lZGl1bV0gTWlzc2luZyBjbGVhbnVwIG9mIGdsb2JhbCB0ZW1wbGF0ZSBhcnJheSBvbiBlcnJv
+ciBwYXRoLCBjYXVzaW5nIGEgZGFuZ2xpbmcgcG9pbnRlci4KLS0KCmNvbW1pdCAwYWE2ZTRiMzE3
+ZGQ3MjI3Y2IxZTFlNThlZDQ1NjczNTc3MjQ4NWNjCkF1dGhvcjogVmFsZXJpbyBTZXR0aSA8dnNl
+dHRpQGJheWxpYnJlLmNvbT4KCkFTb0M6IG1lc29uOiBhaXU6IHVzZSBhaXUtZm9ybWF0dGVyLWky
+cyB0byBmb3JtYXQgSTJTIG91dHB1dCBkYXRhCgpDcmVhdGUgYSBuZXcgREFQTSB3aWRnZXQgZm9y
+IHRoZSAiSTJTIGZvcm1hdHRlciIgYW5kIHBsYWNlIGl0IG9uIHRoZSBwYXRoCmJldHdlZW4gdGhl
+IEZJRk8gYW5kIG91dHB1dCBEQUkgaW50ZXJmYWNlLiBUaGlzIGFsc28gcmVtb3ZlcyB0aGUgSTJT
+IG91dHB1dApmb3JtYXR0aW5nIGNvZGUgZnJvbSBhaXUtZW5jb2Rlci1pMnMgc2luY2UgaXQncyBu
+b3cgaGFuZGxlZCBieSB0aGUgbmV3CmFpdS1mb3JtYXR0ZXItaTJzIHdpZGdldC4KCj4gZGlmZiAt
+LWdpdCBhL3NvdW5kL3NvYy9tZXNvbi9haXUuYyBiL3NvdW5kL3NvYy9tZXNvbi9haXUuYwo+IGlu
+ZGV4IGYyODkwMTExYzFkMmMuLjY0YWNlNGQyNWQ5MmMgMTAwNjQ0Cj4gLS0tIGEvc291bmQvc29j
+L21lc29uL2FpdS5jCj4gKysrIGIvc291bmQvc29jL21lc29uL2FpdS5jCj4gQEAgLTI5LDEzICsy
+OSwyMiBAQCBzdGF0aWMgU09DX0VOVU1fU0lOR0xFX0RFQ0woYWl1X3NwZGlmX2VuY29kZV9zZWxf
+ZW51bSwgQUlVX0kyU19NSVNDLAo+ICBzdGF0aWMgY29uc3Qgc3RydWN0IHNuZF9rY29udHJvbF9u
+ZXcgYWl1X3NwZGlmX2VuY29kZV9tdXggPQo+ICAJU09DX0RBUE1fRU5VTSgiU1BESUYgQnVmZmVy
+IFNyYyIsIGFpdV9zcGRpZl9lbmNvZGVfc2VsX2VudW0pOwo+ICAKPiAtc3RhdGljIGNvbnN0IHN0
+cnVjdCBzbmRfc29jX2RhcG1fd2lkZ2V0IGFpdV9jcHVfZGFwbV93aWRnZXRzW10gPSB7Cj4gLQlT
+TkRfU09DX0RBUE1fTVVYKCJTUERJRiBTUkMgU0VMIiwgU05EX1NPQ19OT1BNLCAwLCAwLAo+IC0J
+CQkgJmFpdV9zcGRpZl9lbmNvZGVfbXV4KSwKPiArI2RlZmluZSBBSVVfV0lER0VUX1NQRElGX1NS
+Q19TRUwJMAo+ICsjZGVmaW5lIEFJVV9XSURHRVRfSTJTX0ZPUk1BVFRFUgkxCj4gKwo+ICtzdGF0
+aWMgc3RydWN0IHNuZF9zb2NfZGFwbV93aWRnZXQgYWl1X2NwdV9kYXBtX3dpZGdldHNbXSA9IHsK
+CltTZXZlcml0eTogSGlnaF0KRG9lcyByZW1vdmluZyB0aGUgY29uc3QgcXVhbGlmaWVyIGhlcmUg
+YW5kIG1vZGlmeWluZyB0aGUgZ2xvYmFsIHRlbXBsYXRlIGFycmF5CmR1cmluZyBhaXVfcHJvYmUo
+KSBicmVhayB0aGUgZGV2aWNlIGRyaXZlciBtb2RlbD8KCklmIG11bHRpcGxlIGluc3RhbmNlcyBv
+ZiB0aGlzIGRldmljZSBhcmUgcHJvYmVkLCB3b24ndCB0aGV5IG92ZXJ3cml0ZSBlYWNoCm90aGVy
+J3MgaW5zdGFuY2UgcG9pbnRlcnMgaW4gdGhpcyBzaGFyZWQgYXJyYXksIHBvdGVudGlhbGx5IGNh
+dXNpbmcgZGF0YSByYWNlcwpvciBhIHVzZS1hZnRlci1mcmVlPwoKPiArCVtBSVVfV0lER0VUX1NQ
+RElGX1NSQ19TRUxdID0KPiArCQlTTkRfU09DX0RBUE1fTVVYKCJTUERJRiBTUkMgU0VMIiwgU05E
+X1NPQ19OT1BNLCAwLCAwLAo+ICsJCQkJICZhaXVfc3BkaWZfZW5jb2RlX211eCksCj4gKwlbQUlV
+X1dJREdFVF9JMlNfRk9STUFUVEVSXSA9Cj4gKwkJU05EX1NPQ19EQVBNX1BHQV9FKCJJMlMgRm9y
+bWF0dGVyIiwgU05EX1NPQ19OT1BNLCAwLCAwLCBOVUxMLCAwLAo+ICsJCQkJICAgZ3hfZm9ybWF0
+dGVyX2V2ZW50LAo+ICsJCQkJICAgKFNORF9TT0NfREFQTV9QUkVfUE1VIHwgU05EX1NPQ19EQVBN
+X1BSRV9QTUQpKSwKPiAgfTsKClsgLi4uIF0KCj4gQEAgLTI4Miw2ICsyOTYsMTQgQEAgc3RhdGlj
+IGludCBhaXVfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikKPiAgCWlmIChyZXQp
+Cj4gIAkJcmV0dXJuIHJldDsKPiAgCj4gKwkvKiBBbGxvY2F0ZSB0aGUgYWl1LWZvcm1hdHRlciBp
+bnRvIGl0cyB3aWRnZXQgKi8KPiArCXJldCA9IGd4X2Zvcm1hdHRlcl9jcmVhdGUoZGV2LCAmYWl1
+X2NwdV9kYXBtX3dpZGdldHNbQUlVX1dJREdFVF9JMlNfRk9STUFUVEVSXSwKPiArCQkJCSAgJmFp
+dV9mb3JtYXR0ZXJfaTJzX2RydiwgbWFwKTsKPiArCWlmIChyZXQpIHsKPiArCQlkZXZfZXJyKGRl
+diwgIkZhaWxlZCB0byBhbGxvY2F0ZSBhaXUgZm9ybWF0dGVyXG4iKTsKPiArCQlnb3RvIGVycjsK
+PiArCX0KPiArCj4gIAkvKiBSZWdpc3RlciB0aGUgY3B1IGNvbXBvbmVudCBvZiB0aGUgYWl1ICov
+Cj4gIAlyZXQgPSBzbmRfc29jX3JlZ2lzdGVyX2NvbXBvbmVudChkZXYsICZhaXVfY3B1X2NvbXBv
+bmVudCwKPiAgCQkJCQkgYWl1X2NwdV9kYWlfZHJ2LAoKW1NldmVyaXR5OiBNZWRpdW1dCklmIHNu
+ZF9zb2NfcmVnaXN0ZXJfY29tcG9uZW50KCkgZmFpbHMsIHNob3VsZCB0aGlzIHBhdGggdXNlICJn
+b3RvIGVyciIgaW5zdGVhZApvZiByZXR1cm5pbmcgZGlyZWN0bHk/CgpMb29raW5nIGF0IHRoZSBy
+ZXN0IG9mIGFpdV9wcm9iZSgpOgoKCXJldCA9IHNuZF9zb2NfcmVnaXN0ZXJfY29tcG9uZW50KGRl
+diwgJmFpdV9jcHVfY29tcG9uZW50LAoJCQkJCSBhaXVfY3B1X2RhaV9kcnYsCgkJCQkJIEFSUkFZ
+X1NJWkUoYWl1X2NwdV9kYWlfZHJ2KSk7CglpZiAocmV0KSB7CgkJZGV2X2VycihkZXYsICJGYWls
+ZWQgdG8gcmVnaXN0ZXIgY3B1IGNvbXBvbmVudFxuIik7CgkJcmV0dXJuIHJldDsKCX0KClNpbmNl
+IGd4X2Zvcm1hdHRlcl9jcmVhdGUoKSBhbGxvY2F0ZXMgbWVtb3J5IGFuZCBhc3NpZ25zIGl0IHRv
+IHRoZSBnbG9iYWwKYXJyYXksIHJldHVybmluZyBkaXJlY3RseSBza2lwcyB0aGUgZ3hfZm9ybWF0
+dGVyX2ZyZWUoKSBjYWxsIGF0IHRoZSBlcnIgbGFiZWwuClRoZSBkZXZyZXMgZnJhbWV3b3JrIHdp
+bGwgZnJlZSB0aGUgbWVtb3J5LCBidXQgd291bGRuJ3QgdGhpcyBsZWF2ZSBhIGRhbmdsaW5nCnBv
+aW50ZXIgaW4gdGhlIGdsb2JhbCBhaXVfY3B1X2RhcG1fd2lkZ2V0cyBhcnJheT8KCi0tIApTYXNo
+aWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nhc2hpa28uZGV2LyMvcGF0Y2hzZXQvMjAyNjA2MTAt
+cmVzaGFwZS1haXUtYXMtYXhnLXYyLTAtY2FjMzY2M2E4YjUxQGJheWxpYnJlLmNvbT9wYXJ0PTQK
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFt
+bG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRw
+Oi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
