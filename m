@@ -4,76 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F253DCD98D4
-	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jun 2026 08:26:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 135B0CD98C7
+	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jun 2026 08:29:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:From:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QIizbLnehMjIucuhkDuxpdlSXhCZmMvAFjgYOe0c5kI=; b=UFCqeLwiRG9YbO
-	A9Zj2h1IaNM8vatmTf6fszCEwKqWbbGTDSkDZzeAc9/pp17XPmRulb39PvpsEn4iGuzZjnU4BDYCz
-	1lN1si0fB0eJ8BFC9AODv08WGyqa2CeYvK7KLeraeuaqpC05fWB4NS1lHTgGA/ERQuQhGH1ft6CPo
-	eBIL6FyaQbcUXJXencxI0Odq2Ywuh1jl+Tks4mbCcG7BKgykPDiKwmJZY99Kk0BFm7fO+GSrcqiUH
-	6WqdS9oARvjRD9ydYDzUWLeqMwQ9ZFMcgZXYkwSsjOpn0tiIJW7vcwF1aAKjjtPIu59/6JzlNYZNv
-	/XPP4BVg8cNqOamuWe9g==;
+	List-Owner; bh=6+sWvUlKrwFelU4FI9WnmCi4QI7NBaMFqYk2SKjiJ4E=; b=x1mrtd5Mq7Y/1q
+	MIBdk46dUT6ENS6MhWt+ny+QAcL+q9d4kukCCY6DFuLQK9sZTUZOii4TWyg1b/hxOxte0UcF1GKZ0
+	SK56A6jWL6qAGMBr/RliGKc0ALywMxLypFYBEE+bLY2U1ooAZf0nmenu8HChGsnIddjYlA8GtY5QE
+	MBlTtwV/zPuGBkAY2EVwCIxuFjzvT62urgGmFdLTIPRkjqN6GnHkyN0PtN44RIaT8jQpeWfJ2zBl4
+	LQOc5w0xTs3byQWs5tMxCi59i+YMinIO097D1YqVAkb4mr2OWGxfTx1yf+opRUSR86w6XjRAt5lxu
+	2O8+hz3XIgaAjj8o3w6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXak9-000000090TI-2Iqn;
-	Thu, 11 Jun 2026 08:26:29 +0000
-Received: from mailout1.w1.samsung.com ([210.118.77.11])
+	id 1wXama-000000090t3-0uyw;
+	Thu, 11 Jun 2026 08:29:00 +0000
+Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXak4-000000090QQ-08Au
+	id 1wXamX-000000090sK-1TQ2
 	for linux-amlogic@lists.infradead.org;
-	Thu, 11 Jun 2026 08:26:27 +0000
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20260611082616euoutp01e71d950baf69afcb650d0755f6408b23~3_WHLwvcV2456124561euoutp01j
-	for <linux-amlogic@lists.infradead.org>; Thu, 11 Jun 2026 08:26:16 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20260611082616euoutp01e71d950baf69afcb650d0755f6408b23~3_WHLwvcV2456124561euoutp01j
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1781166376;
-	bh=DhwGhRTjppBgNw8HHFKEmC3YfseR6UOeLF4WLAZNcaw=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=WP5fVf7bqkbo4VdgHWn8qqtBKF+RHRqV6LI00ZwUCFzhaBP9Eq70e7Py9u09YikTW
-	 Fm6zSKjRTYXbF6SnqgLbnVCAvgIU09OXFAIR8ifTes5554DpJgawudUQOPqaZxhgZJ
-	 BjdWLYKrK2SjvkVRm9a5LiwWmJee0pVSsXSXo/Mo=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20260611082615eucas1p2e0d075707c644743cc2b745ed838d646~3_WGwPZ402819828198eucas1p2c;
-	Thu, 11 Jun 2026 08:26:15 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20260611082614eusmtip15addb285747362b715188d44fa381fda~3_WGD3M962800828008eusmtip1H;
-	Thu, 11 Jun 2026 08:26:14 +0000 (GMT)
-Message-ID: <184d315b-a0a1-4792-8a40-1b4967025916@samsung.com>
-Date: Thu, 11 Jun 2026 10:26:14 +0200
+	Thu, 11 Jun 2026 08:28:59 +0000
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-460166910e6so4048205f8f.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 11 Jun 2026 01:28:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1781166535; x=1781771335; darn=lists.infradead.org;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=q+GZxQR0zVGYyc7t6dGL8c2RABIohdt9U+GPG+DCKw4=;
+        b=Y1Xv+SaJ+nHtHpAVwu9s3AlGb4ludH3gsHZ3LMJzBja8qJGs+m8vXUdR1OZ6+3Pt9e
+         7smCMcxXU6gSGNypibXl1yB1jGVswJMSYNIN+aCm/qYjWB1G0jHym/rRxWIiOcQEC4VI
+         QpOCYUu4qoVGAbrmMHVx+X8oLDFcnIV/SZoZK69LHoh7aFQHY3llc1Ii2rhj8yWyBThA
+         AKrPRkDI1oAvZ53QgVuY+rFZ/VSMtk+XMTTyLiasdiWPStAmcveyCfbFLswlWHMjxBit
+         A4FsoIpuvM4scYXYt/HOJrRgcaqb0Fm1P+MH4BgjqSdYCGicOchRsmvyJc6zn0pP1CXw
+         xbHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781166535; x=1781771335;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=q+GZxQR0zVGYyc7t6dGL8c2RABIohdt9U+GPG+DCKw4=;
+        b=U+p2wdMlPdFJ79PPmZWHX/GYJQfRTNyBONcK/Ti/AOcAsnhlJghDgM8Y8kN06La22N
+         IanHZA9s0j8aLvC3NiGwL/jRT0BvmeABT9pbCOGgwn1C322WnuTawSTbZ19R9kwRm+Pd
+         uxkEj9PT3trxLOfBtBvB1HDl9/cWQdVUNd49G+aSbhOcltOFGbUdkUYXEYmyMRcwLIki
+         nOmIMElgTk/T4y17VIfFmzz18W04OY3pADB6hc+TQI23RoEASyu0PFtPKdOlNY3xiV2J
+         otyKXxl7GsTtLuTpGLt3iEmxs3ALIQ9WzGDhcndO4JV7AhJSjUbMIznFQZLRyVbTnOQ+
+         i9kw==
+X-Forwarded-Encrypted: i=1; AFNElJ/8AutnQt5e/WisqueJbudbhnN/TAAPqfqNxr4QWtMTxyVie8FLNw8RU9FZuGYoeNWT09twR3Ox2l+PJIGi@lists.infradead.org
+X-Gm-Message-State: AOJu0YxFjjLQ1YVHQuqme56ylU2dBpJQNMDuHE5IIkoLyFsGOes1VzeM
+	/WOZHjJnX+qNlMv1dil53LCW86W6AQX1w/bFtpt/iHFal55uBePZlsZr20Ttar3pEVg=
+X-Gm-Gg: Acq92OG5Ze+M0U8nYTWnMk+yv7iQXs5JZyr2jmeiic/1IHxs9p0JXFxLhclhzeG9aea
+	5zrLwu1QgDEfphadxleOCXIj9eiVNjluif1cLuQzasQsNIh+ihmVflfkQSZJ7NPanRKQDgp5/uP
+	MPAWhxCqcNQpbZzX6zAHdkvjOop8nJsRVXOyn3mrvQVE4f4wqg+eYC8+KbnALu8zLaS0hFjE5Gd
+	BZUvf2+leZwLiZosD2TmfZWfuXn30kH/jH0Yb7aC3xcyaY6b7TevqJXqPC9PVAUSel0k2CPApWs
+	jNp72LrXOYNy9G0UhmVSvRACzf9/L75VFebIpDzU3gDNU7JhabC25dbl/i8ytA/7tZElv9Fd3FF
+	3R2o/uIdjf0DjFeseOUhGSs3G2cMmQsPh0Dc5fewW8g7w8+mE4W1WQhieZd1ql1F5u+/GoReSEA
+	3Y60/vAl5y33YyO5B69C+CrwCTY7z/gKll
+X-Received: by 2002:a05:600d:8450:10b0:48e:6db3:ff2e with SMTP id 5b1f17b1804b1-490e55dd891mr14395135e9.15.1781166535248;
+        Thu, 11 Jun 2026 01:28:55 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:1d1b:88ba:5161:3581])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-4601f35133csm75931032f8f.25.2026.06.11.01.28.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Jun 2026 01:28:54 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Valerio Setti <vsetti@baylibre.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>,  Mark Brown <broonie@kernel.org>,
+  Jaroslav Kysela <perex@perex.cz>,  Takashi Iwai <tiwai@suse.com>,  Neil
+ Armstrong <neil.armstrong@linaro.org>,  Kevin Hilman
+ <khilman@baylibre.com>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  linux-kernel@vger.kernel.org,
+  linux-sound@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
+  linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v2 0/4] ASoC: meson: aiu: align I2S design to the AXG one
+In-Reply-To: <20260610-reshape-aiu-as-axg-v2-0-cac3663a8b51@baylibre.com>
+	(Valerio Setti's message of "Wed, 10 Jun 2026 23:29:24 +0200")
+References: <20260610-reshape-aiu-as-axg-v2-0-cac3663a8b51@baylibre.com>
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Thu, 11 Jun 2026 10:28:53 +0200
+Message-ID: <1jcxxxeb0a.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Betterbird (Windows)
-Subject: Re: [PATCH 0/2] gpio: fix sleeping-in-atomic in shared-proxy;
- restore meson non-sleeping
-To: Viacheslav Bocharov <v@baodeep.com>, Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
-	<khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
-	Blumenstingl <martin.blumenstingl@googlemail.com>, Robin Murphy
-	<robin.murphy@arm.com>, Diederik de Haas <diederik@cknow-tech.com>,
-	linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, Heiko Stuebner <heiko@sntech.de>
-Content-Language: en-US
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <20260610153329.937833-1-v@baodeep.com>
-X-CMS-MailID: 20260611082615eucas1p2e0d075707c644743cc2b745ed838d646
-X-Msg-Generator: CA
-X-RootMTR: 20260610153425eucas1p29d20a835114a28b15cb12ea00534e074
-X-EPHeader: CA
-X-CMS-RootMailID: 20260610153425eucas1p29d20a835114a28b15cb12ea00534e074
-References: <CGME20260610153425eucas1p29d20a835114a28b15cb12ea00534e074@eucas1p2.samsung.com>
-	<20260610153329.937833-1-v@baodeep.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260611_012625_471632_08D273FB 
-X-CRM114-Status: GOOD (  16.43  )
+X-CRM114-CacheID: sfid-20260611_012857_432661_B93B86B0 
+X-CRM114-Status: GOOD (  20.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,64 +104,75 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Viachesla,
+On mer. 10 juin 2026 at 23:29, Valerio Setti <vsetti@baylibre.com> wrote:
 
-On 10.06.2026 17:32, Viacheslav Bocharov wrote:
-> gpio-shared-proxy chooses its descriptor lock (mutex vs spinlock) from
-> the underlying chip's can_sleep, but under that lock it calls config and
-> direction ops that reach sleeping pinctrl paths. On a controller with
-> non-sleeping MMIO value ops the lock is a spinlock, so a sleeping call
-> runs from atomic context:
+> The goal of this series is to reshape Amlogic GX's AIU implementation for
+> I2S to let it follow the same design as in AXG's TDM. Keeping the same
+> design allows for unifying the two platform implementations in the future
+> and it also allows for an easy addition of I2S input.
 >
->   BUG: sleeping function called from invalid context
->     ... pinctrl_gpio_set_config <- gpiochip_generic_config
->     <- gpio_shared_proxy_set_config (voting spinlock held)
->     <- ... <- mmc_pwrseq_simple_probe
+> The first commit introduces gx-formatter as the basic block which takes
+> care of properly formatting audio data. Formatters are DAPM widgets
+> (c.f. axg-tdm-formatter in AXG) which are dynamically attached/detached
+> to the streams when the latters starts/stop, respectively.
+> aiu-formatter-i2s is introduced as formatter implementation for the i2s
+> output.
 >
-> This was reported on Khadas VIM3 and worked around for Amlogic by
-> commit 28f240683871 ("pinctrl: meson: mark the GPIO controller as
-> sleeping"), which marked the whole meson controller sleeping. That
-> workaround broke atomic value-path consumers: w1-gpio (1-Wire bitbang)
-> no longer detects devices, because its IRQ-disabled read slot calls the
-> non-cansleep gpiod_*_value() and now hits WARN_ON(can_sleep) per bit.
+> By the end aiu-encoder-i2s will only need to handle interface clocks and
+> enforce interface wide rate symmetry (c.f axg-tdm-interface on the AXG
+> platform). Right now rate symmetry is not relevant because only i2s output
+> is supported, but it will become useful when following patch series will
+> introduce the i2s input part.
 >
-> Patch 1 fixes the proxy locking generically (always a sleeping mutex).
-> Patch 2 then restores meson can_sleep=false, fixing 1-Wire.
+> This series was tested on an OdroidC2 board (Amlogic S905 SOC) both with
+> HDMI output and with NXP SGTL5000 codec connected to the I2S pins.
+> This series was also verified using "pcm-test" test tool and all tests
+> are passing.
 >
-> Patch 1 has a trade-off: a proxied GPIO becomes sleeping, so consumers
-> gating on gpiod_cansleep() change behaviour. No current device needs
-> atomic (non-cansleep) value access on a shared GPIO -- every report
-> (Khadas VIM3, ODROID-M1, my test on JetHub D1+) is a shared reset line
-> (eMMC/SDIO pwrseq or PCIe reset) driven through the cansleep accessors,
-> which is what the proxy exists to vote on. An alternative that keeps
-> atomic value access (split locking) is possible but adds a second lock
-> and new race windows. I went with the simpler, verified approach and
-> would appreciate guidance on whether the atomic value path must be
-> preserved.
+> Changes in v2:
+> - Fixed most of the weaknesses found by Sashiko review tool [1].
+> - Resolved testing failures with "pcm-test" as reported by Mark Brown
+>   (thanks for the heads up!). I left a comment in
+>   "aiu_encoder_i2s_startup" to explain the fix.
 >
-> The two are a unit: patch 2 must not be applied without patch 1,
-> otherwise the original VIM3 splat returns on boards that share a meson
-> GPIO -- please keep the order. I have not Cc'd stable; I will request
-> stable backports separately once both patches have landed.
+> Link to v1: https://lore.kernel.org/r/20260515-reshape-aiu-as-axg-v1-0-53b457784ff3@baylibre.com
 >
-> Viacheslav Bocharov (2):
->   gpio: shared-proxy: always serialize with a sleeping mutex
->   pinctrl: meson: restore non-sleeping GPIO access
+> [1]: https://sashiko.dev/#/patchset/20260515-reshape-aiu-as-axg-v1-0-53b457784ff3%40baylibre.com
+>
+> Signed-off-by: Valerio Setti <vsetti@baylibre.com>
 
-Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+Nice work. Thanks for taking the time to understand the existing drivers
+and build upon them !
 
-This probably also affects the similar changes in Rockchip GPIO driver done
-by the following commits:
-20cf2aed89ac ("gpio: rockchip: mark the GPIO controller as sleeping")
-7ca497be0016 ("gpio: rockchip: Stop calling pinctrl for set_direction")
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 
-I've checked this patchset with these two reverted and no warning was reported.
+Feel free to add yourself as maintainer of the Amlogic audio drivers, if
+you fancy doing so ;)
 
-Best regards
+> ---
+> Valerio Setti (4):
+>       ASoC: meson: gx: add gx-formatter and gx-interface
+>       ASoC: meson: aiu-encoder-i2s: prepare for multiple streams
+>       ASoC: meson: aiu: introduce I2S output formatter
+>       ASoC: meson: aiu: use aiu-formatter-i2s to format I2S output data
+>
+>  sound/soc/meson/Makefile            |   2 +
+>  sound/soc/meson/aiu-encoder-i2s.c   | 281 +++++++++++++++++++++++++----------
+>  sound/soc/meson/aiu-formatter-i2s.c | 104 +++++++++++++
+>  sound/soc/meson/aiu.c               |  32 +++-
+>  sound/soc/meson/aiu.h               |   4 +
+>  sound/soc/meson/gx-formatter.c      | 282 ++++++++++++++++++++++++++++++++++++
+>  sound/soc/meson/gx-formatter.h      |  56 +++++++
+>  sound/soc/meson/gx-interface.h      |  48 ++++++
+>  8 files changed, 731 insertions(+), 78 deletions(-)
+> ---
+> base-commit: 254f49634ee16a731174d2ae34bc50bd5f45e731
+> change-id: 20260515-reshape-aiu-as-axg-1dac9037cad3
+>
+> Best regards,
+
 -- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
-
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
