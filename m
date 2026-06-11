@@ -4,69 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4926FCD98C5
-	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jun 2026 00:45:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BE45CD98CE
+	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jun 2026 03:41:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hWbVRK9N0uPDS+reWOoEo89xehdAYZ85/Oiv+yjulKk=; b=1Um12Egyc1JCRR
-	ghdiusaYTw7RXdqg1wGGv6+49XphEQsKf7MUU/AGlOmwd2jZ69OpQInld5+jSAHchhfRmbhvjlDSU
-	U4tcNRV8JGcg50rjkFK491XB3YiOlYLFOT3HtMoR7HZDvuw6ofm00CNHWw6um5/TKJcmOP8/2Gk0h
-	6GXD/HUYqxAHjWiD/bnZ6JY/xxUUcJ0fDGPvAtXGS/Hqtl0sPcRvZcGUHp8Sri36JM7/HyvVmvBXk
-	BZ0B7rZsqWVrmM1942pWusn+bE+9Il7fhZen42kcCU2qqgkId6FGq9lq/0GeFmICCEjf7l9ZZGJZ6
-	MIO3b/+X1RSBvBVx1DoA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=FlwuASKQbZrdQF4wIlLcuGJePIcYviySRTZR8APaSRA=; b=cO4g4Pjsmb5vMK
+	9ScVnOUpAmve9O033ifQeqg8V4hp2fu+1ZeV0wqDWxYiwJQlBBdUX/qiwoAo3ML/5nvOKGcIDNS3U
+	P7vlrEnU5eZWr29jImEkOu2oHPaFzmfoP2Y1VyPxhMquZyAtPS3Pwgil0DQ3OUAwHl3SSCTgpEr5X
+	r5NPBiS1z5pBiT5Aq1hxiufuue9Hjy8Vw+vu30mgegqOIjFhbbGeDau3lbVIDbnrxLDmJOrXJTku7
+	QQhMh6kqSkGgEoiyrNt403fspWFFFwlCqiIaS8Nife9XNxdM75Icfhw6WZexIeGkTfFW5rfBvu+zo
+	JjdeyP5Dfci+Anelw49Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXTYH-00000008V8O-2Bik;
-	Thu, 11 Jun 2026 00:45:45 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1wXWI7-00000008dJa-3qk7;
+	Thu, 11 Jun 2026 03:41:15 +0000
+Received: from smtp25.cstnet.cn ([159.226.251.25] helo=cstnet.cn)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXTYG-00000008V7y-0AH9;
-	Thu, 11 Jun 2026 00:45:44 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5BAD640ADC;
-	Thu, 11 Jun 2026 00:45:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 805811F00893;
-	Thu, 11 Jun 2026 00:45:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781138743;
-	bh=9uZbnvCSonpXGXR9vVuWodMYLgOTp+M2HsRiZcKEBSQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=kvnQoi7XFldjN2BdBn0zt4ODPTH0Rziyc+P/OqBnV5fubj/PIn/MW96wZ1XZ+33iq
-	 UJABwOpTLlgPcAux0C319hfvOJEhVks0l+CoOxSRnfhEIIoipa8ABb7DGQ3lHDrk5X
-	 52wsqSD1JeyRcRk5WRFB5HIrvYCkkd0Xk87q5ph5KCuduNCe8NwvKsRvxZQtShLl0t
-	 mX8yXPS1yZhl/bCm7Q5SfpEAUY1YBBNBDKTN7gEMXQYo3tNrvult/UVwwCfNgmxPqh
-	 W13hzPkgteSo2H25Q8iZ2oSmRqbdJ/1/4AyyTIkujL7MfmMoUfpO/YADyWSoySokOu
-	 vCgvknRSsOrXw==
-From: Sasha Levin <sashal@kernel.org>
-To: stable@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Sasha Levin <sashal@kernel.org>,
-	Alexey Panov <apanov@astralinux.ru>,
-	Mark Brown <broonie@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Neil Armstrong <narmstrong@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Dongliang Mu <mudongliangabcd@gmail.com>,
-	linux-spi@vger.kernel.org,
+	id 1wXWI3-00000008dJ6-2nh0;
+	Thu, 11 Jun 2026 03:41:14 +0000
+Received: from localhost.localdomain (unknown [117.182.75.76])
+	by APP-05 (Coremail) with SMTP id zQCowABHkcRFLipqY2YLEw--.20162S2;
+	Thu, 11 Jun 2026 11:40:56 +0800 (CST)
+From: WenTao Liang <vulab@iscas.ac.cn>
+To: alexandre.belloni@bootlin.com
+Cc: neil.armstrong@linaro.org,
+	khilman@baylibre.com,
+	jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com,
+	p.zabel@pengutronix.de,
+	ben.dooks@codethink.co.uk,
+	linux-rtc@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	lvc-project@linuxtesting.org,
-	Felix Gu <ustc.gu@gmail.com>,
-	Johan Hovold <johan@kernel.org>
-Subject: Re: [PATCH 5.10] spi: meson-spicc: Fix double-put in remove path
-Date: Wed, 10 Jun 2026 20:45:24 -0400
-Message-ID: <20260610-stable-reply-0008@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260610161129.7612-1-apanov@astralinux.ru>
-References: <20260610161129.7612-1-apanov@astralinux.ru>
+	WenTao Liang <vulab@iscas.ac.cn>,
+	stable@vger.kernel.org
+Subject: [PATCH] rtc: meson: fix refcount leak in meson_rtc_get_bus
+Date: Thu, 11 Jun 2026 11:40:40 +0800
+Message-ID: <20260611034040.59682-1-vulab@iscas.ac.cn>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
+X-CM-TRANSID: zQCowABHkcRFLipqY2YLEw--.20162S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Ar43JFWxWw1rJw17Zw1kKrg_yoW8Gryfpr
+	43KFy7tryDtr4fJanrGw4ruFW3ZFnIqFWUGrsFyw1S9w1fJa1UJry2kF4rJayUWr1kG3y5
+	XFsrGF1F9F1DKF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9F14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr
+	1j6rxdM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj
+	6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr
+	0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E
+	8cxan2IY04v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFV
+	Cjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWl
+	x4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r
+	1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_
+	JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcS
+	sGvfC2KfnxnUUI43ZEXa7VUbGQ6JUUUUU==
+X-Originating-IP: [117.182.75.76]
+X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiCRAPA2op-rvB+gAAso
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260610_204112_068629_F4E7D116 
+X-CRM114-Status: GOOD (  10.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,14 +86,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Jun 10, 2026 at 07:11:29PM +0300, Alexey Panov wrote:
-> [PATCH 5.10] spi: meson-spicc: Fix double-put in remove path
+In meson_rtc_get_bus(), reset_control_reset() is called to trigger
+a hardware reset when the serial bus is not ready. The function may
+retry up to three times, but neither the successful nor the failure
+path calls reset_control_rearm() to balance the reference count,
+leaking the triggered_count on shared reset controls.
 
-Queued for 5.10, thanks.
+Fix this by adding reset_control_rearm() after reset_control_reset()
+on both the error return path and the success path within the retry
+loop, ensuring the reset control can be re-triggered on subsequent
+bus acquisition attempts.
 
---
-Thanks,
-Sasha
+Cc: stable@vger.kernel.org
+Fixes: d8fe6009aa3e ("rtc: support for the Amlogic Meson RTC")
+Signed-off-by: WenTao Liang <vulab@iscas.ac.cn>
+---
+ drivers/rtc/rtc-meson.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/rtc/rtc-meson.c b/drivers/rtc/rtc-meson.c
+index 21eceb9e2e13..729384dceb12 100644
+--- a/drivers/rtc/rtc-meson.c
++++ b/drivers/rtc/rtc-meson.c
+@@ -146,8 +146,12 @@ static int meson_rtc_get_bus(struct meson_rtc *rtc)
+ 		dev_warn(rtc->dev, "failed to get bus, resetting RTC\n");
+ 
+ 		ret = reset_control_reset(rtc->reset);
+-		if (ret)
++		if (ret) {
++			reset_control_rearm(rtc->reset);
+ 			return ret;
++		}
++
++		reset_control_rearm(rtc->reset);
+ 	}
+ 
+ 	dev_err(rtc->dev, "bus is not ready\n");
+-- 
+2.50.1 (Apple Git-155)
+
 
 _______________________________________________
 linux-amlogic mailing list
