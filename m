@@ -4,141 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F5EFCD98D7
-	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jun 2026 13:01:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC28FCD98CE
+	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jun 2026 13:11:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=OS3bFZV/UaKvYtR+tcLbVc0nKqFXcQVJfL0/vckaMCw=; b=i6TJFdvMjZNoS6fBXW8VLKblMD
-	ULFSkLzRsQYdDBPVppV68OWoC9+V48ntXZEmzU9PcXO9pog8lmysl68B+LIGxvnJ/qFlIoym7lCvx
-	7SWgr/+2nXMUA4Dyjn6rkp8VYcD/xUlOowDO1GgAagMyBp+knx8bTKlu50hab/PN9z+ROHAYEUkUc
-	Ria4kVShahCxe/EPebe0uZhaQhf3M8ieqls5RTSDnivm+6ZcljXmN9sTL6KYYpDWfmodMx+YgyNgN
-	YNY6YmIr6oTK/iJnvONccBs9XT9ooVog03sVYDsPFbHB3Uv/dmkzq//VBFINrprdkgRREhX6lq1D5
-	IcYHnNQQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=7HSDswRMlDzZQobm955GMAJBP07EjmCZmEkyhj/lfAQ=; b=hoYJIT9zmwzWiN
+	Xpu+OxMvmNu/zlQHvJQqrDeo9ij8kKKq+LDOOLIi9AWs2J0mPNkur6SisRmXYOj4OXx8jK+zUy7pl
+	hwgsUk6yZlU3mTMybKO4XYCMcAXpdm8Fx4hc10+qsIzZAu/tKQ/f19q7u+SVJkALppyoDkS+GG7GJ
+	zdHg8sz6mSEzP8cyzhIgoFoPouttOJHqTQr6FierO4c338V84pk1kZENfh1bJovXzFHHVsVfR+DrS
+	ehT1qRIysx7QAJU8pILiO0g66MNidDU59tzDvg2PXAmcLn8KjB8ubuUWq1Ub0JBlkGolewd3Yi9t7
+	9dPXhQMCMOmt9hmc9C+w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXf2W-00000009SQf-2ztT;
-	Thu, 11 Jun 2026 13:01:44 +0000
-Received: from mail-japaneastazon11022103.outbound.protection.outlook.com ([52.101.126.103] helo=TYPPR03CU001.outbound.protection.outlook.com)
+	id 1wXfC5-00000009V4l-0slh;
+	Thu, 11 Jun 2026 13:11:37 +0000
+Received: from smtp25.cstnet.cn ([159.226.251.25] helo=cstnet.cn)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXf2T-00000009SPv-2PFl;
-	Thu, 11 Jun 2026 13:01:43 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mn1xvC9rnZwQ4ygOT4KZTPfotkwJTNmkjfvpOlaTyEPII41zAwDPIHhFf71Zn/hlRuum+Go55iST5qSHxQRilnrn8dydb9OPMKAFgPiuyjGc7SOnY/5BsiwaqPUV18i3ZZEg5DP1JBVAPP2CSK3g3oj5XrHiYpkIDPvBSOPNLXOGHOI4vPLlV1a2WVJddwaWHaUiZy8vADL/VX8e4QYtC8c5as3FRvCILjbz+836AMuJon5A85IEUTqAMZlDFFo9WzJeZK3kCn8pUT3s5dDJ87mtmC4I1kseitjbIKGiZBTFpVAjZyjjJ2ScB6NuBtLct6HTE0MGVYL9rgK7vPIv8Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bpNtlxvQGODKLu9j5qUP0DZZNGnBdgnZlbYhhWyo8WE=;
- b=bMcUHdJafY90TjXaeCv6ybHcwWv26EC+neU9aOP6Sz/EidOlkld7nmFcHSaz8sJrTOwSzMigPnalg2+PTPrnMGq4CGCQoFgelmw+VyDFPyiy07Tk9Mo5LM+Xs6A109PlCkZvquIvImUl0jwb0Z7NSjBUgtigm/vWfwT0zYcHJORlCvVJZL0E/Rj6GisRYvOcKBrYS5WLI+Sn3ar4Za398MSIyi1I2/Jp0gBqfsO71huXsN3XIBT0A16yJTCcdG046U/CcH+Mj08NUt/j1lKmt2tQQtR5cUiEW51xvboFDJoxBf/Z7Z93NbrwvWx1g5seSCDOxT4x5lFwY4j/OC086Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bpNtlxvQGODKLu9j5qUP0DZZNGnBdgnZlbYhhWyo8WE=;
- b=TgKlWuNl/On/ZGiHdH8nIXeMbTzmHhzwa0lZYh0xSDv3oQAx1/laCD7Edc1JFNkyovcKQ1JA8BEvF2WKzs3+l1gBP1787IxpmiFb6hHiSouNwL5Jd7bPGucAM2td4rZbv2IW/ZIT96HGUHI4etBOGixWJLa/g38ie014FD9ihIzXRaVSi4wt+TETZD/4SF50G3hBQEw3K1KTg0AJaihgHe8tJoqq4T4KABYIshj7vnNq7k0Efwh0jsbUjgs1ccho6SQw2ovRFuILpAnRFPNlF5L3mEbenutucSrY2Ey7gmXO1FrrEKnazcjITm+NhlHSzc7oBHKic7ycQIOj1AE3mA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB7149.apcprd03.prod.outlook.com (2603:1096:820:ca::7)
- by SEYPR03MB8429.apcprd03.prod.outlook.com (2603:1096:101:20c::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.13; Thu, 11 Jun
- 2026 13:01:24 +0000
-Received: from KL1PR03MB7149.apcprd03.prod.outlook.com
- ([fe80::2f06:12a:fff0:6506]) by KL1PR03MB7149.apcprd03.prod.outlook.com
- ([fe80::2f06:12a:fff0:6506%5]) with mapi id 15.21.0113.013; Thu, 11 Jun 2026
- 13:01:24 +0000
-Message-ID: <01324552-3de7-4e0d-8fcb-eafd974a1d71@amlogic.com>
-Date: Thu, 11 Jun 2026 21:01:22 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] clk: amlogic: Add A9 AO clock controller driver
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20260610-a9_aoclk-v3-0-b7592d6c31e2@amlogic.com>
- <20260610-a9_aoclk-v3-2-b7592d6c31e2@amlogic.com>
- <1jjys6fuhz.fsf@starbuckisacylon.baylibre.com>
-From: Jian Hu <jian.hu@amlogic.com>
-In-Reply-To: <1jjys6fuhz.fsf@starbuckisacylon.baylibre.com>
-X-ClientProxiedBy: SI1PR02CA0059.apcprd02.prod.outlook.com
- (2603:1096:4:1f5::19) To KL1PR03MB7149.apcprd03.prod.outlook.com
- (2603:1096:820:ca::7)
+	id 1wXfC1-00000009V3y-0hjP;
+	Thu, 11 Jun 2026 13:11:35 +0000
+Received: from localhost.localdomain (unknown [117.182.75.76])
+	by APP-05 (Coremail) with SMTP id zQCowABnvhH7sypqjEwWEw--.24501S2;
+	Thu, 11 Jun 2026 21:11:25 +0800 (CST)
+From: WenTao Liang <vulab@iscas.ac.cn>
+To: Thinh.Nguyen@synopsys.com,
+	gregkh@linuxfoundation.org,
+	neil.armstrong@linaro.org,
+	khilman@baylibre.com
+Cc: jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com,
+	linux-usb@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	WenTao Liang <vulab@iscas.ac.cn>,
+	stable@vger.kernel.org
+Subject: [PATCH] usb: dwc3: meson-g12a: fix refcount leak in dwc3_meson_g12a_resume()
+Date: Thu, 11 Jun 2026 21:11:21 +0800
+Message-ID: <20260611131121.81784-1-vulab@iscas.ac.cn>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB7149:EE_|SEYPR03MB8429:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2b7aabb7-7b62-403b-aa9d-08dec7b98ac1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|23010399003|366016|18002099003|22082099003|6133799003|56012099006|4143699003|11063799006;
-X-Microsoft-Antispam-Message-Info: RDjzcMd9lFHehlDq151XeLnOW7qlSR41fBWGzgyHDSyWL2TOmScqXpdM9lfcdl7R35kM0u8XBCjYZWhlnxB8CnhcYhMzJG0kcTjhf/9q7jTu083lLul8qFTFpzABRY07mjAw5UesFb8fqHYwue0bHprdfegjTy4LBhzHN6s+bg92qanPxrAaKI2nwnQxnrXeNgIal+aJ0HH30ejpT09rA6RKGO6pxDHgHhEfU6AD3hzHScYEQp7uuB3gIuEDgMy6aJlLSkKU0dkyvNgaoSJeM9Ti+HHeGThaJ5WEyqgSRnHiLjDC7ZtLdlfXBohoOlWU8zoCB0JSXuimoQfbPLH0+2r8YioipFqy22PUXyzIuGD400ZioZ5hi3uAPgNfO9jXQ9k+2X60+N1fojVtg/w6jDuWFJDIH+8SkQTRKcMdNI43AfaiHnQvmD0sOZHVSYMJ8LNn4VbsuvVOnzFuel45CBFTfKZPivO/oXzi0v6Xnz7JvpigeFyHzOfOItGPIhrc/V1+MrsOfqgpB7/+EktxnN92JmjIoXChF4IqKoCCJUiE25TRZg6g97vFwr6Wm7L1ZciRYyLgPT7VXUDoyCOV/wPamjeIrjFHR4jZQ68jMHYZILOaFoEY+S3oCQ3sxOM3SFwpo34HpJTLGvcpDx9pQWM2jduJOO7OVDnXAxGGf5Qn0wnhynDU6s+kEM4gFGI0
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB7149.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(23010399003)(366016)(18002099003)(22082099003)(6133799003)(56012099006)(4143699003)(11063799006);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NWcyd3d4WGpsTHpUUldvSTZlcnZlZDFIcThzbWcrNThIYlkwL2lRUXgxQTcz?=
- =?utf-8?B?akNxSmppRkVmLzAxcmhIRURpbmNoZFRDWmdsUUFkK2xTYmJ4aHpiOVpTMVNr?=
- =?utf-8?B?R3RoVTVOY1RSSlVLeDJKeWNST2dHMEtpcVk5OEVISEk3OG10ejBJbEV0eWVT?=
- =?utf-8?B?NW1uWEF1VCtRT29HQjROd0dkaG5LcGlLNGJCVGVib0dqZzBkVGhrZitaeU1s?=
- =?utf-8?B?SWdBVFZGaEtLZCtGNFF5a1gvV0dIM0NrYnJYcTVPN3MzYzM5cDRjMlgxTFR5?=
- =?utf-8?B?VklNSExZbnFZQmVnaWJveXEyTmpBK000Rzc2SVZrQnJQTW5sRjZ6ZTIwK1Qx?=
- =?utf-8?B?TGcrUlpBcC9pSHMzTVZSQ2pMdWVybTdYUDg5ZWR3Z2tSYmsrVDc2bWZGNkMr?=
- =?utf-8?B?QTBCTzhrYlVTQlBUaWY5OXZDTWRRMXdENmdQNHFBWGp5R1ZWUEhlSE5UbWZ0?=
- =?utf-8?B?YldNVjV1UzhYVUh0R2cxdWI5cDJzUDd2U0dKVlJENmI1M1NSWGlOMG96L0lJ?=
- =?utf-8?B?T2poR2RPMVk2Y3hBZXZ0cGNET0NRYjhlaElYSldPVVVQb0tuZ21rZ3JiMzM0?=
- =?utf-8?B?SDc0R3N1Qk00UmZPNFhqMlM3ZVpvVkxlbzlCeGFaTm14bSsvN0c3SUJ0Mzg4?=
- =?utf-8?B?YVUva2VYa0pTWU82OFNJRm9NMlhXaGR6V1FJUlhMVklvUkw5cnlVQ0Y0a0Z1?=
- =?utf-8?B?bndzRHgzTXBQbVEyOEhCb2wwSXdxY1BnK0VwVTRSOU5jNmt5VkovL290cSsy?=
- =?utf-8?B?YVorZ3hSeExMaWRaYWI0amE3NVlBNmg2aGdRL0xLa25WMitqZFF2cFFkVzNZ?=
- =?utf-8?B?VExGR3FxdG9kaHRmeE5jZENXczdVQ0c3TzVXZjJzTWZTRC9xOVdWSjJ1a1Vz?=
- =?utf-8?B?VkJzNlFtUVJ3RzMxZDZTUVBFekltTmJmcmROZUNQbHlNa2xKZFVEY0dzOFJX?=
- =?utf-8?B?V2hubm1YSFZRVUJtWHpRVVlYRWZUYzZIMTVNSUZhUllWa0VmTjBmaWNPbisr?=
- =?utf-8?B?ODZRWnF5dGJCY2hBOWxKLzk1dXM3VFdING5iWXZmNHRhWkxNYWZpZCtsTW9a?=
- =?utf-8?B?U1J1YlBhWHJoRjYrT2YxbU9hSTJqUWxhclRpbHpCNVpCRGRheFZ6Z2tMQVIx?=
- =?utf-8?B?UVdwdjQ3cWF2RStCTHdScU9UNUhQekpVdEp5dVlyeWZKeVQrano4ekVqc0VD?=
- =?utf-8?B?dGMvaXQ4aHd1ZFgvWmN0K2pwbnJYRHVWbzQ0NWFicEo0b2t1bXVHVnJPb1Iw?=
- =?utf-8?B?bXRGTUxKbENCbldObnFtMlg0dFRkN3NpanBVVExZNFRVYWV5WEloM2JXdVhE?=
- =?utf-8?B?a3NMcFdCU3gvRjV0Tm9qdVF2M1RzYTZyTXc5d3RGbXlOTUF5V1FpVGsrS2E4?=
- =?utf-8?B?Tnk1d1hiRis2YUxlVkJTQS9peEp5YUl0eFZNSXl1TjEwaEFtYVJZaVVEemJN?=
- =?utf-8?B?VWVhYkVkYjNOMWJRa1lVenVZTkZxc1I3NklEN0x0b2Nhd2lIdHV1ckw3d3Vp?=
- =?utf-8?B?S0MreFhkQjNrSzBxMUVLckNEVit6cjZRU0ZVSWg5MXRNeXQ1RW4wcktVaER1?=
- =?utf-8?B?WFJ2K0hiN294cmxDMUVXbUVVaHZnY2diOEJyNUltSDFOUUJteXFOWlVzZk9K?=
- =?utf-8?B?NDMwa0xPaHRCSDhCOHlWU3J5SVQ1Q2NCWFJjSUtqbFkvOGs5L0RjUmg1L0d1?=
- =?utf-8?B?azY5bXlSYm5tS1k0cGkzTEd5QU0wZFdkNGVhUVVoMURFenRaYjZHeDRXMUNj?=
- =?utf-8?B?bFR3TjVDVE8reGxUem40UVQrNy9PS2N1SlR6WG5lOUFkTm5ScTlTUzBBZTYz?=
- =?utf-8?B?SDYvT1h3elk5dE92YUV4Zld0dlBReFZRRlJuUXI0VFZhSmlSbHoyY0xrd2s2?=
- =?utf-8?B?SitSb2dsUk42cU9rZ3ZyUy9menI1N1BlOEhjOTBHcDhXN0FFT2J1T1pKYU45?=
- =?utf-8?B?bjYyMk5La3hJRTViSU1hM280UVBqYUZqWXBDSFk4MGo1V1l5NnRyNmVWOUg3?=
- =?utf-8?B?TjFvQU8zV1dMa2pzQnRYaWhVdGRRR2R6Q0F4Snl4VHdZS2RjSUtnZWhhdnp0?=
- =?utf-8?B?eXZPRUdyS05lZUI0eGRtYTlJaFNveXU1YzRNak5Fb0NOUUtoeGtwVHdGVzV0?=
- =?utf-8?B?SDdXMTIzaStSZS9EU0R1WkhvR25temRycCt0TVBDekdLOFk1SWJhYkNDR1lD?=
- =?utf-8?B?bXRHWWVYZ1JzTDA2MW1BTjJOSTliaVBmaU1wMnFWd3lTSW9Xb1VTOEJvZ05w?=
- =?utf-8?B?ZjlBTE9XYUg5NEtUdkMwQi8rZkp2QUh5REdBVEoyMXFwaFJSS0t1ZERjcVlr?=
- =?utf-8?B?TEtiaktOdnhtRlNCMlVFQjhpN1VvNkhYZExWbENiSXd3NVR4R3ZKdz09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2b7aabb7-7b62-403b-aa9d-08dec7b98ac1
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB7149.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2026 13:01:24.5293
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Ca5xgnAA00D2V6qujyYjPB8beI3yhnT47sO2rKEtUEf+KmD8PQfbXGZJjHQ+UdQEGUwvYMeOYBB1Y+dEdEtfkA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB8429
+X-CM-TRANSID: zQCowABnvhH7sypqjEwWEw--.24501S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7CFW8KrWDtr45GF4DCFW7Jwb_yoW8Zry7pa
+	1Uu343AF18Ar4ftF4UAF45u3Z3A39FkFW5GFWIkwn3Zw1Syw45Xry7KFyrWFsYkFZ5tFyF
+	kr47W3WrZF4DGaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
+	0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
+	jxv20xvE14v26r106r15McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr
+	1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxa
+	n2IY04v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4
+	AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE
+	17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMI
+	IF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4l
+	IxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIda
+	VFxhVjvjDU0xZFpf9x0JUQZ2fUUUUU=
+X-Originating-IP: [117.182.75.76]
+X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiBwkPA2oqhtGFfAABst
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260611_060141_737098_AFC7495D 
-X-CRM114-Status: GOOD (  21.56  )
+X-CRM114-CacheID: sfid-20260611_061133_583006_3C3B973B 
+X-CRM114-Status: UNSURE (   9.65  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -150,168 +81,81 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 6/10/2026 8:30 PM, Jerome Brunet wrote:
-> [ EXTERNAL EMAIL ]
->
-> On mer. 10 juin 2026 at 16:23, Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org> wrote:
->
->> From: Jian Hu <jian.hu@amlogic.com>
->>
->> Add the Always-on clock controller driver for the Amlogic A9 SoC family.
->>
->> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
->> ---
->>   drivers/clk/meson/Kconfig    |  13 ++
->>   drivers/clk/meson/Makefile   |   1 +
->>   drivers/clk/meson/a9-aoclk.c | 431 +++++++++++++++++++++++++++++++++++++++++++
->>   3 files changed, 445 insertions(+)
->>
->> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
->> index cf8cf3f9e4ee..b71299898197 100644
->> --- a/drivers/clk/meson/Kconfig
->> +++ b/drivers/clk/meson/Kconfig
->> @@ -132,6 +132,19 @@ config COMMON_CLK_A1_PERIPHERALS
->>          device, A1 SoC Family. Say Y if you want A1 Peripherals clock
->>          controller to work.
->>
->> +config COMMON_CLK_A9_AO
->> +     tristate "Amlogic A9 SoC AO clock controller support"
->> +     depends on ARM64 || COMPILE_TEST
->> +     default ARCH_MESON
->> +     select COMMON_CLK_MESON_REGMAP
->> +     select COMMON_CLK_MESON_CLKC_UTILS
->> +     select COMMON_CLK_MESON_DUALDIV
->> +     imply COMMON_CLK_SCMI
->> +     help
->> +       Support for the AO clock controller on Amlogic A311Y3 based
->> +       device, AKA A9.
->> +       Say Y if you want A9 AO clock controller to work.
->> +
->>   config COMMON_CLK_C3_PLL
->>        tristate "Amlogic C3 PLL clock controller"
->>        depends on ARM64
->> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
->> index c6719694a242..f89d027c282c 100644
->> --- a/drivers/clk/meson/Makefile
->> +++ b/drivers/clk/meson/Makefile
->> @@ -19,6 +19,7 @@ obj-$(CONFIG_COMMON_CLK_AXG) += axg.o axg-aoclk.o
->>   obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
->>   obj-$(CONFIG_COMMON_CLK_A1_PLL) += a1-pll.o
->>   obj-$(CONFIG_COMMON_CLK_A1_PERIPHERALS) += a1-peripherals.o
->> +obj-$(CONFIG_COMMON_CLK_A9_AO) += a9-aoclk.o
->>   obj-$(CONFIG_COMMON_CLK_C3_PLL) += c3-pll.o
->>   obj-$(CONFIG_COMMON_CLK_C3_PERIPHERALS) += c3-peripherals.o
->>   obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
->> diff --git a/drivers/clk/meson/a9-aoclk.c b/drivers/clk/meson/a9-aoclk.c
->> new file mode 100644
->> index 000000000000..dd9fd8d24702
->> --- /dev/null
->> +++ b/drivers/clk/meson/a9-aoclk.c
->> @@ -0,0 +1,431 @@
->> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
->> +/*
->> + * Copyright (C) 2026 Amlogic, Inc. All rights reserved
->> + */
->> +
->> +#include <dt-bindings/clock/amlogic,a9-aoclkc.h>
->> +#include <linux/clk-provider.h>
->> +#include <linux/platform_device.h>
->> +#include "clk-regmap.h"
->> +#include "clk-dualdiv.h"
->> +#include "meson-clkc-utils.h"
->> +
->> +#define AO_OSCIN_CTRL                        0x00
->> +#define AO_SYS_CLK0                  0x04
->> +#define AO_PWM_CLK_A_CTRL            0x1c
->> +#define AO_PWM_CLK_B_CTRL            0x20
->> +#define AO_PWM_CLK_C_CTRL            0x24
->> +#define AO_PWM_CLK_D_CTRL            0x28
->> +#define AO_PWM_CLK_E_CTRL            0x2c
->> +#define AO_PWM_CLK_F_CTRL            0x30
->> +#define AO_PWM_CLK_G_CTRL            0x34
->> +#define AO_CEC_CTRL0                 0x38
->> +#define AO_CEC_CTRL1                 0x3c
->> +#define AO_RTC_BY_OSCIN_CTRL0                0x50
->> +#define AO_RTC_BY_OSCIN_CTRL1                0x54
->> +
->> +#define A9_COMP_SEL(_name, _reg, _shift, _mask, _pdata) \
->> +     MESON_COMP_SEL(a9_ao_, _name, _reg, _shift, _mask, _pdata, NULL, 0, 0)
->> +
->> +#define A9_COMP_DIV(_name, _reg, _shift, _width) \
->> +     MESON_COMP_DIV(a9_ao_, _name, _reg, _shift, _width, 0, CLK_SET_RATE_PARENT)
->> +
->> +#define A9_COMP_GATE(_name, _reg, _bit) \
->> +     MESON_COMP_GATE(a9_ao_, _name, _reg, _bit, CLK_SET_RATE_PARENT)
->> +
->> +static struct clk_regmap a9_ao_xtal_in = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = AO_OSCIN_CTRL,
->> +             .bit_idx = 3,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "ao_xtal_in",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_data = &(const struct clk_parent_data) {
->> +                     .fw_name = "xtal",
->> +             },
->> +             .num_parents = 1,
->> +             /*
->> +              * ao_sys can select different clock sources. One possible clock path is:
->> +              *   ao_xtal_in->ao_xtal->ao_sys-> ao sys gate clocks
->> +              *
->> +              * ao_xtal_in is in the parent chain of AO sys gate clocks.
->> +              * Since some downstream clocks are marked CLK_IS_CRITICAL,
->> +              * ao_xtal_in must remain enabled and is therefore marked
->> +              * CLK_IS_CRITICAL as well.
->> +              */
->> +             .flags = CLK_IS_CRITICAL,
-> Please allow some time for me to reply before reposting.
-> See my answer on v2.
->
+If dwc3_meson_g12a_resume() succeeds in calling
+reset_control_reset(), an internal triggered_count reference is
+acquired. If any later step fails (usb_init, phy_init,
+phy_power_on, regulator_enable, or usb_post_init), the function
+returns the error without rearming the reset control. This leaks
+the reference and leaves the reset control in a triggered state,
+causing future reset_control_reset() calls to incorrectly return
+early as if already reset.
 
-Sorry for reposting too quickly.
+Add an error path that calls reset_control_rearm() to balance
+the reference before returning the error.
 
-I'll allow more time for review feedback before sending the next revision.
+Cc: stable@vger.kernel.org
+Fixes: 5b0ba0caaf3a ("usb: dwc3: meson-g12a: refactor usb init")
+Signed-off-by: WenTao Liang <vulab@iscas.ac.cn>
+---
+ drivers/usb/dwc3/dwc3-meson-g12a.c | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
 
-I've seen your reply on v2 and will drop this flag in the next revision.
-
->> +     },
->> +};
->> +
->> +static struct clk_regmap a9_ao_xtal = {
->> +     .data = &(struct clk_regmap_mux_data) {
->> +             .offset = AO_OSCIN_CTRL,
->> +             .mask = 0x1,
->> +             .shift = 0,
->> +     },
->> +     /* ext_32k is from external PAD, do not automatically reparent */
->> +     .hw.init = CLK_HW_INIT_PARENTS_DATA("ao_xtal",
->> +                     ((const struct clk_parent_data []) {
->> +                             { .hw = &a9_ao_xtal_in.hw },
->> +                             { .fw_name = "ext_32k" }
->> +                     }), &clk_regmap_mux_ops, CLK_SET_RATE_NO_REPARENT),
-> I hope my view on this is clear as well.
-> Let me know if it isn't
->
-
-Understood. I will drop all CLK_HW_INIT* macros and revert to explicit
-struct clk_init_data initializers for the A9 clock controllers.
-
-
-[ ... ]
-
-> --
-> Jerome
-
-
---
-
-Jian
+diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
+index 55e144ba8cfc..4d611c08e8a4 100644
+--- a/drivers/usb/dwc3/dwc3-meson-g12a.c
++++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
+@@ -907,35 +907,39 @@ static int __maybe_unused dwc3_meson_g12a_resume(struct device *dev)
+ 
+ 	ret = priv->drvdata->usb_init(priv);
+ 	if (ret)
+-		return ret;
++		goto err_rearm;
+ 
+ 	/* Init PHYs */
+ 	for (i = 0 ; i < PHY_COUNT ; ++i) {
+ 		ret = phy_init(priv->phys[i]);
+ 		if (ret)
+-			return ret;
++			goto err_rearm;
+ 	}
+ 
+ 	/* Set PHY Power */
+ 	for (i = 0 ; i < PHY_COUNT ; ++i) {
+ 		ret = phy_power_on(priv->phys[i]);
+ 		if (ret)
+-			return ret;
++			goto err_rearm;
+ 	}
+ 
+ 	if (priv->vbus && priv->otg_phy_mode == PHY_MODE_USB_HOST) {
+ 		ret = regulator_enable(priv->vbus);
+ 		if (ret)
+-			return ret;
++			goto err_rearm;
+ 	}
+ 
+ 	if (priv->drvdata->usb_post_init) {
+ 		ret = priv->drvdata->usb_post_init(priv);
+ 		if (ret)
+-			return ret;
++			goto err_rearm;
+ 	}
+ 
+ 	return 0;
++
++err_rearm:
++	reset_control_rearm(priv->reset);
++	return ret;
+ }
+ 
+ static const struct dev_pm_ops dwc3_meson_g12a_dev_pm_ops = {
+-- 
+2.50.1 (Apple Git-155)
 
 
 _______________________________________________
