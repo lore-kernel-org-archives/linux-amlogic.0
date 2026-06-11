@@ -4,53 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB89FCD98C7
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jun 2026 21:41:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4926FCD98C5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jun 2026 00:45:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ay8iQeSN+aQ6eAiCPakTgMOnP22vwc4FaKqjSA04pCY=; b=Pr/PdoaHMuoJMw
-	KVBBLcxUyUTD3a8HHjY62yfI50P9bDoF1m2ywq5ARx3tivWwu5xSqw6tvdgbvAtzAnh7GID9BKCst
-	fyMxo1Omt7AZ7CWatDnTxtPicjf8lvxCAFp7Z/NRt0/7Oc6K9sHu21ap4+vasxBDmYHeAQq5ie+cZ
-	t6nDtBwMRVHM7pO33OOeVht1hETn/PUIttCyBvufmJinibLvfSNB5VhBERQnbxzowNiGSxz4WkYAO
-	9f/euS6j7kx9pRhURzjgy9uSBlACWOWBLsYPLv3DIhuOYsfQoOB7TPk29Drq0k4xUaWVvpU2x1hn1
-	BjRc+FdStvcZMgBzkzuw==;
+	List-Owner; bh=hWbVRK9N0uPDS+reWOoEo89xehdAYZ85/Oiv+yjulKk=; b=1Um12Egyc1JCRR
+	ghdiusaYTw7RXdqg1wGGv6+49XphEQsKf7MUU/AGlOmwd2jZ69OpQInld5+jSAHchhfRmbhvjlDSU
+	U4tcNRV8JGcg50rjkFK491XB3YiOlYLFOT3HtMoR7HZDvuw6ofm00CNHWw6um5/TKJcmOP8/2Gk0h
+	6GXD/HUYqxAHjWiD/bnZ6JY/xxUUcJ0fDGPvAtXGS/Hqtl0sPcRvZcGUHp8Sri36JM7/HyvVmvBXk
+	BZ0B7rZsqWVrmM1942pWusn+bE+9Il7fhZen42kcCU2qqgkId6FGq9lq/0GeFmICCEjf7l9ZZGJZ6
+	MIO3b/+X1RSBvBVx1DoA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXQgC-00000008OMw-2vT0;
-	Wed, 10 Jun 2026 21:41:44 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1wXTYH-00000008V8O-2Bik;
+	Thu, 11 Jun 2026 00:45:45 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXQgC-00000008OMq-03OW
-	for linux-amlogic@lists.infradead.org;
-	Wed, 10 Jun 2026 21:41:44 +0000
+	id 1wXTYG-00000008V7y-0AH9;
+	Thu, 11 Jun 2026 00:45:44 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 159A2601FC;
-	Wed, 10 Jun 2026 21:41:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BAE61F00893;
-	Wed, 10 Jun 2026 21:41:42 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 5BAD640ADC;
+	Thu, 11 Jun 2026 00:45:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 805811F00893;
+	Thu, 11 Jun 2026 00:45:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781127702;
-	bh=/BJiDfUeRuI4lPzEB1dwh8/CQrW5UCYwoeFxtBH1iAo=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=XhuDVhrdyclMnDHsJLCTCzJN73BYt51QSkLZ0CPumaX08rDlYkoHZkLNsI28cxWls
-	 5w7Yp8vZz38fQE6olRHqZBMA8xW/THM4GqD86Nyo1WZHTuFeZSCkYwOdgV55aRYVNM
-	 SpbG9uvfy99uASGCUVpAXFDEnvBR+ESPHhrppxMIXDN4vdY3aIQSLWEbFBdmbBlmO3
-	 F3k2EBEDsXtjofQASyokGMmvDibwTX19Bj0X96A+JxiaKFdNGkYpQl3Dt5E2Gieop2
-	 qgsoxQ9JM9VM3hmBN4dF+C4MjNG8USNmhm6PmTEu1Pitp4AjObVifVWCTMRWzSoWv6
-	 OD5fAjUHS8BEg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 2/4] ASoC: meson: aiu-encoder-i2s: prepare for
- multiple streams
-To: "Valerio Setti" <vsetti@baylibre.com>
-Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
-In-Reply-To: <20260610-reshape-aiu-as-axg-v2-2-cac3663a8b51@baylibre.com>
-References: <20260610-reshape-aiu-as-axg-v2-2-cac3663a8b51@baylibre.com>
-Date: Wed, 10 Jun 2026 21:41:42 +0000
-Message-Id: <20260610214142.9BAE61F00893@smtp.kernel.org>
+	s=k20260515; t=1781138743;
+	bh=9uZbnvCSonpXGXR9vVuWodMYLgOTp+M2HsRiZcKEBSQ=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=kvnQoi7XFldjN2BdBn0zt4ODPTH0Rziyc+P/OqBnV5fubj/PIn/MW96wZ1XZ+33iq
+	 UJABwOpTLlgPcAux0C319hfvOJEhVks0l+CoOxSRnfhEIIoipa8ABb7DGQ3lHDrk5X
+	 52wsqSD1JeyRcRk5WRFB5HIrvYCkkd0Xk87q5ph5KCuduNCe8NwvKsRvxZQtShLl0t
+	 mX8yXPS1yZhl/bCm7Q5SfpEAUY1YBBNBDKTN7gEMXQYo3tNrvult/UVwwCfNgmxPqh
+	 W13hzPkgteSo2H25Q8iZ2oSmRqbdJ/1/4AyyTIkujL7MfmMoUfpO/YADyWSoySokOu
+	 vCgvknRSsOrXw==
+From: Sasha Levin <sashal@kernel.org>
+To: stable@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Sasha Levin <sashal@kernel.org>,
+	Alexey Panov <apanov@astralinux.ru>,
+	Mark Brown <broonie@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Neil Armstrong <narmstrong@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Dongliang Mu <mudongliangabcd@gmail.com>,
+	linux-spi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	lvc-project@linuxtesting.org,
+	Felix Gu <ustc.gu@gmail.com>,
+	Johan Hovold <johan@kernel.org>
+Subject: Re: [PATCH 5.10] spi: meson-spicc: Fix double-put in remove path
+Date: Wed, 10 Jun 2026 20:45:24 -0400
+Message-ID: <20260610-stable-reply-0008@kernel.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260610161129.7612-1-apanov@astralinux.ru>
+References: <20260610161129.7612-1-apanov@astralinux.ru>
+MIME-Version: 1.0
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,95 +78,21 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MiBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0hpZ2hdIEFzeW1tZXRyaWMgYGJz
-X3F1aXJrYCB2YWxpZGF0aW9uIGFsbG93cyBhIG5ldyBzdHJlYW0gdG8gY29ycnVwdCB0aGUgQkNM
-SyBkaXZpZGVyIG9mIGFuIGFscmVhZHkgYWN0aXZlIG5vbi1xdWlyayBzdHJlYW0uCi0gW01lZGl1
-bV0gSW1wcm9wZXIgc3RhdGUgdHJhY2tpbmcgdXNpbmcgYHNuZF9zb2NfZGFpX2FjdGl2ZShkYWkp
-YCBpbiBgaHdfZnJlZWAgbGVha3Mgc2hhcmVkIGludGVyZmFjZSBzdGF0ZSwgbG9ja2luZyB0aGUg
-REFJJ3MgcGFyYW1ldGVycy4KLS0KCmNvbW1pdCBiODJkNWNlNTBjOGZiMWE3Y2ZjOTYwMzY3Mzg4
-ZjBmMDk2ZmJhYTA1CkF1dGhvcjogVmFsZXJpbyBTZXR0aSA8dnNldHRpQGJheWxpYnJlLmNvbT4K
-CkFTb0M6IG1lc29uOiBhaXUtZW5jb2Rlci1pMnM6IHByZXBhcmUgZm9yIG11bHRpcGxlIHN0cmVh
-bXMKClRoaXMgY29tbWl0IHByZXBhcmVzIHRoZSBhaXUtZW5jb2Rlci1pMnMgaW50ZXJmYWNlIHRv
-IGhhbmRsZSBib3RoIHBsYXliYWNrCmFuZCBjYXB0dXJlIHN0cmVhbXMuIEl0IGludHJvZHVjZXMg
-cGVyLXN0cmVhbSBkYXRhIGFsbG9jYXRpb24sIGVuZm9yY2VzCmludGVyZmFjZS13aWRlIHJhdGUg
-c3ltbWV0cnksIGFuZCBtb2RpZmllcyBjbG9jayBoYW5kbGluZyB0byBlbmFibGUKaW50ZXJuYWwg
-Y2xvY2tzIG9uIHN0YXJ0dXAgd2hpbGUgZGVmZXJyaW5nIE1DTEsgYW5kIEkyUyBjbG9jayBkaXZp
-ZGVycyB0bwpwcmVwYXJlL2h3X2ZyZWUuCgo+IGRpZmYgLS1naXQgYS9zb3VuZC9zb2MvbWVzb24v
-YWl1LWVuY29kZXItaTJzLmMgYi9zb3VuZC9zb2MvbWVzb24vYWl1LWVuY29kZXItaTJzLmMKPiBp
-bmRleCAzYjQwNjE1MDhjMTgwLi5mNTBiMDM4MjRhZDI4IDEwMDY0NAo+IC0tLSBhL3NvdW5kL3Nv
-Yy9tZXNvbi9haXUtZW5jb2Rlci1pMnMuYwo+ICsrKyBiL3NvdW5kL3NvYy9tZXNvbi9haXUtZW5j
-b2Rlci1pMnMuYwoKWyAuLi4gXQoKPiBAQCAtMTI2LDYgKzEzMSwxOCBAQCBzdGF0aWMgaW50IGFp
-dV9lbmNvZGVyX2kyc19zZXRfbW9yZV9kaXYoc3RydWN0IHNuZF9zb2NfY29tcG9uZW50ICpjb21w
-b25lbnQsCj4gIAkJCXJldHVybiAtRUlOVkFMOwo+ICAJCX0KPiAgCQlicyArPSBicyAvIDI7Cj4g
-KwkJaWZhY2UtPmJzX3F1aXJrID0gdHJ1ZTsKPiArCX0gZWxzZSB7CgpbU2V2ZXJpdHk6IEhpZ2hd
-CkRvZXMgdGhpcyBicmFuY2ggYWxsb3cgYSBuZXcgc3RyZWFtIHRvIGNvcnJ1cHQgdGhlIGNsb2Nr
-IGRpdmlkZXIgb2YgYW4KYWxyZWFkeSBhY3RpdmUgbm9uLXF1aXJrIHN0cmVhbT8KClRoZSBlbHNl
-IGJyYW5jaCBjb3JyZWN0bHkgcHJldmVudHMgYSBuZXcgbm9uLXF1aXJrIHN0cmVhbSBmcm9tIGNv
-bmZpZ3VyaW5nCmlmIGlmYWNlLT5ic19xdWlyayBpcyBhbHJlYWR5IHRydWUuIEhvd2V2ZXIsIHRo
-ZSBpZiBicmFuY2ggc2VlbXMgdG8gbWlzcwp0aGUgcmV2ZXJzZSBjaGVjay4KCklmIGEgbm9ybWFs
-IHN0cmVhbSAobGlrZSAyLWNoYW5uZWwgYXVkaW8pIGlzIGFscmVhZHkgYWN0aXZlLCBpZmFjZS0+
-YnNfcXVpcmsKcmVtYWlucyBmYWxzZS4gSWYgYSBzZWNvbmQgc3RyZWFtIGlzIHRoZW4gY29uZmln
-dXJlZCB3aXRoIDE2LWJpdCA4LWNoYW5uZWxzLAppdCBhcHBlYXJzIHRoaXMgY29kZSB3aWxsIGNh
-bGN1bGF0ZSB0aGUgNTAlIGluY3JlYXNlLCBzZXQKaWZhY2UtPmJzX3F1aXJrID0gdHJ1ZSwgYW5k
-IHVuY29uZGl0aW9uYWxseSBvdmVyd3JpdGUgdGhlIHNoYXJlZCByZWdpc3RlciwKd2hpY2ggbWln
-aHQgY29ycnVwdCB0aGUgYml0Y2xvY2sgZnJlcXVlbmN5IG9mIHRoZSBhbHJlYWR5IHJ1bm5pbmcg
-Zmlyc3QKc3RyZWFtLgoKPiArCQkvKgo+ICsJCSAqIElmIHRoZSBicyBxdWlyayBpcyBjdXJyZW50
-bHkgYXBwbGllZCBmb3Igb25lIHN0cmVhbSBhbmQgYW5vdGhlcgo+ICsJCSAqIG9uZXMgdHJpZXMg
-dG8gc2V0dXAgYSBjb25maWd1cmF0aW9uIGZvciB3aGljaCB0aGUgcXVpcmsgaXMKPiArCQkgKiBu
-b3QgcmVxdWlyZWQsIHRoZW4gZmFpbC4KPiArCQkgKi8KPiArCQlpZiAoaWZhY2UtPmJzX3F1aXJr
-KSB7Cj4gKwkJCWRldl9lcnIoY29tcG9uZW50LT5kZXYsCj4gKwkJCQkiYmNsayByZXF1aXJlbWVu
-dHMgYXJlIGluY29tcGF0aWJsZSB3aXRoIGFjdGl2ZSBzdHJlYW1cbiIpOwo+ICsJCQlyZXR1cm4g
-LUVJTlZBTDsKPiArCQl9Cj4gIAl9CgpbIC4uLiBdCgo+IEBAIC0xODgsMjQgKzIwNiw1OSBAQCBz
-dGF0aWMgaW50IGFpdV9lbmNvZGVyX2kyc19od19wYXJhbXMoc3RydWN0IHNuZF9wY21fc3Vic3Ry
-ZWFtICpzdWJzdHJlYW0sCj4gIAkJCQkgICAgIHN0cnVjdCBzbmRfcGNtX2h3X3BhcmFtcyAqcGFy
-YW1zLAo+ICAJCQkJICAgICBzdHJ1Y3Qgc25kX3NvY19kYWkgKmRhaSkKPiAgewo+ICsJc3RydWN0
-IGd4X3N0cmVhbSAqdHMgPSBzbmRfc29jX2RhaV9nZXRfZG1hX2RhdGEoZGFpLCBzdWJzdHJlYW0p
-Owo+ICsJc3RydWN0IGd4X2lmYWNlICppZmFjZSA9IHRzLT5pZmFjZTsKPiAgCXN0cnVjdCBzbmRf
-c29jX2NvbXBvbmVudCAqY29tcG9uZW50ID0gZGFpLT5jb21wb25lbnQ7Cj4gIAlpbnQgcmV0Owo+
-ICAKPiAtCS8qIERpc2FibGUgdGhlIGNsb2NrIHdoaWxlIGNoYW5naW5nIHRoZSBzZXR0aW5ncyAq
-Lwo+IC0JYWl1X2VuY29kZXJfaTJzX2RpdmlkZXJfZW5hYmxlKGNvbXBvbmVudCwgZmFsc2UpOwo+
-ICsJLyoKPiArCSAqIEVuZm9yY2UgaW50ZXJmYWNlIHdpZGUgcmF0ZSBzeW1tZXRyeSBvbmx5IGlm
-IHRoZXJlIGlzIG1vcmUgdGhhbgo+ICsJICogMSBzdHJlYW0gYWN0aXZlLgo+ICsJICovCj4gKwlp
-ZiAoc25kX3NvY19kYWlfYWN0aXZlKGRhaSkgPiAxKSB7Cj4gKwkJaWYgKGlmYWNlLT5yYXRlICYm
-IGlmYWNlLT5yYXRlICE9IHBhcmFtc19yYXRlKHBhcmFtcykpIHsKPiArCQkJZGV2X2VycihkYWkt
-PmRldiwgImNhbid0IHNldCBpZmFjZSByYXRlICglZCAhPSAlZClcbiIsCj4gKwkJCQlpZmFjZS0+
-cmF0ZSwgcGFyYW1zX3JhdGUocGFyYW1zKSk7Cj4gKwkJCXJldHVybiAtRUlOVkFMOwo+ICsJCX0K
-PiArCX0KClsgLi4uIF0KCj4gQEAgLTIxNCw5ICsyNjcsMjQgQEAgc3RhdGljIGludCBhaXVfZW5j
-b2Rlcl9pMnNfaHdfcGFyYW1zKHN0cnVjdCBzbmRfcGNtX3N1YnN0cmVhbSAqc3Vic3RyZWFtLAo+
-ICBzdGF0aWMgaW50IGFpdV9lbmNvZGVyX2kyc19od19mcmVlKHN0cnVjdCBzbmRfcGNtX3N1YnN0
-cmVhbSAqc3Vic3RyZWFtLAo+ICAJCQkJICAgc3RydWN0IHNuZF9zb2NfZGFpICpkYWkpCj4gIHsK
-PiArCXN0cnVjdCBneF9zdHJlYW0gKnRzID0gc25kX3NvY19kYWlfZ2V0X2RtYV9kYXRhKGRhaSwg
-c3Vic3RyZWFtKTsKPiArCXN0cnVjdCBneF9pZmFjZSAqaWZhY2UgPSB0cy0+aWZhY2U7Cj4gIAlz
-dHJ1Y3Qgc25kX3NvY19jb21wb25lbnQgKmNvbXBvbmVudCA9IGRhaS0+Y29tcG9uZW50Owo+ICAK
-PiAtCWFpdV9lbmNvZGVyX2kyc19kaXZpZGVyX2VuYWJsZShjb21wb25lbnQsIGZhbHNlKTsKPiAr
-CS8qCj4gKwkgKiBJZiB0aGlzIGlzIHRoZSBsYXN0IHN1YnN0cmVhbSBiZWluZyBjbG9zZWQgdGhl
-biBkaXNhYmxlIHRoZSBpMnMKPiArCSAqIGNsb2NrIGRpdmlkZXIgYW5kIGNsZWFyICdpZmFjZS0+
-cmF0ZScuCj4gKwkgKi8KPiArCWlmIChzbmRfc29jX2RhaV9hY3RpdmUoZGFpKSA8PSAxKSB7Cj4g
-KwkJYWl1X2VuY29kZXJfaTJzX2RpdmlkZXJfZW5hYmxlKGNvbXBvbmVudCwgMCk7Cj4gKwkJaWZh
-Y2UtPnJhdGUgPSAwOwo+ICsJCWlmYWNlLT5ic19xdWlyayA9IGZhbHNlOwo+ICsJfQoKW1NldmVy
-aXR5OiBNZWRpdW1dCkNhbiB0aGlzIGxlYWsgdGhlIHNoYXJlZCBpbnRlcmZhY2Ugc3RhdGUgYW5k
-IGxvY2sgdGhlIERBSSdzIHBhcmFtZXRlcnM/CgpzbmRfc29jX2RhaV9hY3RpdmUoKSB0cmFja3Mg
-dGhlIG51bWJlciBvZiBvcGVuIGZpbGUgZGVzY3JpcHRvcnMsIG5vdCB0aGUKbnVtYmVyIG9mIHN0
-cmVhbXMgd2l0aCBhY3RpdmUgaGFyZHdhcmUgcGFyYW1ldGVycy4KCklmIGFuIGFwcGxpY2F0aW9u
-IG9wZW5zIGJvdGggcGxheWJhY2sgYW5kIGNhcHR1cmUgKG1ha2luZyBhY3RpdmUgPT0gMiksCmNv
-bmZpZ3VyZXMgdGhlIHBsYXliYWNrIHN0cmVhbSwgYW5kIHRoZW4gZnJlZXMgdGhlIGhhcmR3YXJl
-IHBhcmFtZXRlcnMgdmlhClNORFJWX1BDTV9JT0NUTF9IV19GUkVFIHdpdGhvdXQgY2xvc2luZyB0
-aGUgZmlsZSBkZXNjcmlwdG9ycywgdGhpcyBod19mcmVlCmNhbGxiYWNrIHdpbGwgc2VlIGFjdGl2
-ZSA9PSAyLgoKQ291bGQgdGhpcyBjYXVzZSBpZmFjZS0+cmF0ZSB0byBiZSBsZWFrZWQgaW50byBh
-IHpvbWJpZSBzdGF0ZSwgcHJldmVudGluZwp2YWxpZCBmb3JtYXQgcmVjb25maWd1cmF0aW9ucyB3
-aXRob3V0IGZ1bGx5IGNsb3NpbmcgdGhlIGRldmljZXMsIGFuZCBjYXVzaW5nCnN1YnNlcXVlbnQg
-aHdfcGFyYW1zIGF0dGVtcHRzIHRvIGZhaWwgdGhlIHN5bW1ldHJ5IGNoZWNrIGFib3ZlPwoKLS0g
-ClNhc2hpa28gQUkgcmV2aWV3IMK3IGh0dHBzOi8vc2FzaGlrby5kZXYvIy9wYXRjaHNldC8yMDI2
-MDYxMC1yZXNoYXBlLWFpdS1hcy1heGctdjItMC1jYWMzNjYzYThiNTFAYmF5bGlicmUuY29tP3Bh
-cnQ9MgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGlu
-dXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3Jn
-Cmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dp
-Ywo=
+On Tue, Jun 10, 2026 at 07:11:29PM +0300, Alexey Panov wrote:
+> [PATCH 5.10] spi: meson-spicc: Fix double-put in remove path
+
+Queued for 5.10, thanks.
+
+--
+Thanks,
+Sasha
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
