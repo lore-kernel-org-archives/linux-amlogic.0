@@ -4,72 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9876DCD98C6
-	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jun 2026 03:56:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 958A9CD8C9D
+	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Jun 2026 04:03:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=FlwuASKQbZrdQF4wIlLcuGJePIcYviySRTZR8APaSRA=; b=lNtHj+HUg40Cy+
-	ciLMTD22bcRRwT64gRGzgpxeWD3UooHqdIxgUAJtmdegNBXFQR9iKMzgvIXQtOmzT8n8F+zq5Q1wE
-	6FC2xNoAA/OZfj1oyx2QUGxR9R/ZS2p/SJo5GV/5mENrdHVBFqGcQym7FIzUEUi7RffIURbD1it6n
-	zwfDDwJGH5DJ2xGgHvYNqltwpUq20Ejb5KjOzp0ApFUL4pgmkoRO78FhjVQJe+DnOGeBm84hSrNnD
-	71MeTBKIB9mycyts2GeMNxRYl1urq/29gnLctmfEPcL9VadeJSavR8v/qaZbIiHc77k1qtwV2l7GM
-	Tr70qGtk0xY9zAOBZO5w==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=VcPWzJIzd3EDw9cjAp21CC/0XCujkmGYFSOtZM+5lmY=; b=pkUkt3jJeI+e3E
+	m5Fa2f/jtBrs8MzBdMKMcvh+HOInnQ2+etTwq2matS3R5OnHiCpBYVr/2/x03nTjp0LOJ4fdrrOAb
+	+401GLjfgQxVU6OM6UZKEsadNVdMChEBPI7uWqB5HnfvmYEhogJyZM4CPdjfgxeNKfyDgETdEi26T
+	Hkp27RxrdETTXMBQDwpU0xhYrMt5744dIHKYZSDStq3iBCeMoDxFqAYUd5/zBUiqjUKK2GdHaGpm0
+	9REtIF0T9Q9t+ZUpbUbhsmnbpgrg76CjTd/H715G29e7mQ4fZup7FvBISCURnXBGOPwdAq2bLFMCu
+	0n0DWbIVSGmgt64Bmv+A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXWWo-00000008eBc-28OQ;
-	Thu, 11 Jun 2026 03:56:26 +0000
-Received: from smtp25.cstnet.cn ([159.226.251.25] helo=cstnet.cn)
+	id 1wXWdW-00000008eji-1xPu;
+	Thu, 11 Jun 2026 04:03:22 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXWWl-00000008eAy-1GSy;
-	Thu, 11 Jun 2026 03:56:24 +0000
-Received: from localhost.localdomain (unknown [117.182.75.76])
-	by APP-05 (Coremail) with SMTP id zQCowACnAdXcMSpqxrALEw--.28779S2;
-	Thu, 11 Jun 2026 11:56:14 +0800 (CST)
-From: WenTao Liang <vulab@iscas.ac.cn>
-To: alexandre.belloni@bootlin.com,
-	neil.armstrong@linaro.org,
-	khilman@baylibre.com,
-	p.zabel@pengutronix.de
-Cc: jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com,
-	ben.dooks@codethink.co.uk,
-	linux-rtc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	WenTao Liang <vulab@iscas.ac.cn>,
-	stable@vger.kernel.org
-Subject: [PATCH] rtc: meson: fix refcount leak in meson_rtc_get_bus
-Date: Thu, 11 Jun 2026 11:56:05 +0800
-Message-ID: <20260611035605.59906-1-vulab@iscas.ac.cn>
-X-Mailer: git-send-email 2.50.1
-MIME-Version: 1.0
-X-CM-TRANSID: zQCowACnAdXcMSpqxrALEw--.28779S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7Ar43JFWxWw1rJw17Zw1kKrg_yoW8Gryfpr
-	43KFy7tryDtr4fJanrGw4ruFW3ZFnIqFWUGrsFyw1S9w1fJa1UJry2kF4rJayUWr1kG3y5
-	XFsrGF1F9F1DKF7anT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUU9F14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
-	6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr
-	1j6rxdM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj
-	6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr
-	0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E
-	8cxan2IY04v7MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFV
-	Cjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWl
-	x4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r
-	1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_
-	JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcS
-	sGvfC2KfnxnUUI43ZEXa7sRi_HU3UUUUU==
-X-Originating-IP: [117.182.75.76]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiBwkPA2op-r7IegABsy
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260610_205623_716252_EB1B663A 
-X-CRM114-Status: GOOD (  10.85  )
+	id 1wXWdU-00000008ejZ-2TRy
+	for linux-amlogic@lists.infradead.org;
+	Thu, 11 Jun 2026 04:03:20 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 65579407AF;
+	Thu, 11 Jun 2026 04:03:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 239AE1F00893;
+	Thu, 11 Jun 2026 04:03:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781150598;
+	bh=0POMQgjyxdXVN95s7YalNpvhcQv3/Hf6da9293fARXc=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=Gj9N/9/MgjOR2UwmHLzM75G3esyJkcz/2vIG9kqr6RIv6LeQK/aE+/NWzaYsfqqQc
+	 x+8ah4JhgNZhb+qMEF0YAa7tA5dQbJBIbvQb3HhAnJWBVuV0mY2axPhkffOSLcVOHJ
+	 UJDTNn24qPDo0Iq6tk+gaJxp/FXeWu7iQJnIvmnlsv5qdsC/YdixYeWviDHos0J/Rb
+	 TpumKvJoG/IgjhSUjzalOK/MkkrhgRp7Cykp/Ojvl/N54FMnTIKOjhMh4RyeI/eeN+
+	 BpmQc1zY7dzkVzh19Ack2wgtZHdL9x9WHkDZ8yxaX5FC90Rd7tD9pTE0rz/blbB7cR
+	 l/DAZBC77WD/w==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] rtc: meson: fix refcount leak in meson_rtc_get_bus
+To: "WenTao Liang" <vulab@iscas.ac.cn>
+Cc: linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org
+In-Reply-To: <20260611035605.59906-1-vulab@iscas.ac.cn>
+References: <20260611035605.59906-1-vulab@iscas.ac.cn>
+Date: Thu, 11 Jun 2026 04:03:17 +0000
+Message-Id: <20260611040318.239AE1F00893@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,52 +61,47 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-In meson_rtc_get_bus(), reset_control_reset() is called to trigger
-a hardware reset when the serial bus is not ready. The function may
-retry up to three times, but neither the successful nor the failure
-path calls reset_control_rearm() to balance the reference count,
-leaking the triggered_count on shared reset controls.
-
-Fix this by adding reset_control_rearm() after reset_control_reset()
-on both the error return path and the success path within the retry
-loop, ensuring the reset control can be re-triggered on subsequent
-bus acquisition attempts.
-
-Cc: stable@vger.kernel.org
-Fixes: d8fe6009aa3e ("rtc: support for the Amlogic Meson RTC")
-Signed-off-by: WenTao Liang <vulab@iscas.ac.cn>
----
- drivers/rtc/rtc-meson.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/rtc/rtc-meson.c b/drivers/rtc/rtc-meson.c
-index 21eceb9e2e13..729384dceb12 100644
---- a/drivers/rtc/rtc-meson.c
-+++ b/drivers/rtc/rtc-meson.c
-@@ -146,8 +146,12 @@ static int meson_rtc_get_bus(struct meson_rtc *rtc)
- 		dev_warn(rtc->dev, "failed to get bus, resetting RTC\n");
- 
- 		ret = reset_control_reset(rtc->reset);
--		if (ret)
-+		if (ret) {
-+			reset_control_rearm(rtc->reset);
- 			return ret;
-+		}
-+
-+		reset_control_rearm(rtc->reset);
- 	}
- 
- 	dev_err(rtc->dev, "bus is not ready\n");
--- 
-2.50.1 (Apple Git-155)
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW01lZGl1bV0gVGhlIHBhdGNoIGF0
+dGVtcHRzIHRvIGZpeCBhIG5vbi1leGlzdGVudCByZWZjb3VudCBsZWFrIGJ5IGFkZGluZyByZXNl
+dF9jb250cm9sX3JlYXJtKCkgdG8gYW4gZXhjbHVzaXZlIHJlc2V0IGNvbnRyb2wgKHdoZXJlIGl0
+IGlzIGEgbm8tb3ApLiBGdXJ0aGVybW9yZSwgaWYgdGhlIHJlc2V0IGNvbnRyb2wgd2VyZSBhY3R1
+YWxseSBzaGFyZWQsIGFkZGluZyByZXNldF9jb250cm9sX3JlYXJtKCkgdG8gdGhlIGVycm9yIHBh
+dGggd291bGQgY2F1c2UgYSBkb3VibGUtZGVjcmVtZW50IHVuZGVyZmxvdyBidWcuCi0tCgpjb21t
+aXQgYzUyZGQ5OTE0MmZkOTc2NzA0YjY4MGYwNWQ1YmE5YzM1MzcwM2Q5MQpBdXRob3I6IFdlblRh
+byBMaWFuZyA8dnVsYWJAaXNjYXMuYWMuY24+CgpydGM6IG1lc29uOiBmaXggcmVmY291bnQgbGVh
+ayBpbiBtZXNvbl9ydGNfZ2V0X2J1cwoKVGhpcyBjb21taXQgYXR0ZW1wdHMgdG8gZml4IGEgcmVm
+Y291bnQgbGVhayBieSBhZGRpbmcgcmVzZXRfY29udHJvbF9yZWFybSgpCnRvIGJvdGggdGhlIGVy
+cm9yIGFuZCBzdWNjZXNzIHBhdGhzIG9mIHJlc2V0X2NvbnRyb2xfcmVzZXQoKSBpbgptZXNvbl9y
+dGNfZ2V0X2J1cygpLgoKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ydGMvcnRjLW1lc29uLmMgYi9k
+cml2ZXJzL3J0Yy9ydGMtbWVzb24uYwo+IGluZGV4IDIxZWNlYjllMmUxMzQuLjNjNDVjZDc2MWEx
+NWEgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ydGMvcnRjLW1lc29uLmMKPiArKysgYi9kcml2ZXJz
+L3J0Yy9ydGMtbWVzb24uYwpbIC4uLiBdCj4gQEAgLTE0Niw4ICsxNDYsMTIgQEAgc3RhdGljIGlu
+dCBtZXNvbl9ydGNfZ2V0X2J1cyhzdHJ1Y3QgbWVzb25fcnRjICpydGMpCj4gIAkJZGV2X3dhcm4o
+cnRjLT5kZXYsICJmYWlsZWQgdG8gZ2V0IGJ1cywgcmVzZXR0aW5nIFJUQ1xuIik7Cj4gIAo+ICAJ
+CXJldCA9IHJlc2V0X2NvbnRyb2xfcmVzZXQocnRjLT5yZXNldCk7Cj4gLQkJaWYgKHJldCkKPiAr
+CQlpZiAocmV0KSB7Cj4gKwkJCXJlc2V0X2NvbnRyb2xfcmVhcm0ocnRjLT5yZXNldCk7CgpbU2V2
+ZXJpdHk6IE1lZGl1bV0KSXMgdGhpcyByZXNldCBjb250cm9sIGFjdHVhbGx5IHNoYXJlZD8gVGhl
+IHJ0Yy0+cmVzZXQgYXBwZWFycyB0byBiZSBhY3F1aXJlZAphcyBhbiBleGNsdXNpdmUgcmVzZXQg
+Y29udHJvbCwgd2hlcmUgcmVzZXRfY29udHJvbF9yZWFybSgpIGlzIGRvY3VtZW50ZWQgdG8KYmUg
+YSBuby1vcCBhbmQgdHJpZ2dlcmVkX2NvdW50IGlzIG5vdCB1c2VkLgoKQWxzbywgaWYgdGhpcyB3
+ZXJlIGEgc2hhcmVkIHJlc2V0IGNvbnRyb2wsIHdvdWxkIGNhbGxpbmcKcmVzZXRfY29udHJvbF9y
+ZWFybSgpIG9uIHRoZSBlcnJvciBwYXRoIGNhdXNlIGEgZG91YmxlLWRlY3JlbWVudCB1bmRlcmZs
+b3c/CgpUaGUgcmVzZXQgY29yZSBmcmFtZXdvcmsgYXV0b21hdGljYWxseSByb2xscyBiYWNrIHRo
+ZSB0cmlnZ2VyZWRfY291bnQKaW5jcmVtZW50IGlmIHRoZSB1bmRlcmx5aW5nIGhhcmR3YXJlIHJl
+c2V0IGZhaWxzLiBNYW51YWxseSBjYWxsaW5nCnJlc2V0X2NvbnRyb2xfcmVhcm0oKSBhZnRlciBh
+IGZhaWx1cmUgbWlnaHQgZHJvcCB0aGUgY291bnRlciBiZWxvdyB6ZXJvCmFuZCB0cmlnZ2VyIGEg
+d2FybmluZy4KCj4gIAkJCXJldHVybiByZXQ7Cj4gKwkJfQo+ICsKPiArCQlyZXNldF9jb250cm9s
+X3JlYXJtKHJ0Yy0+cmVzZXQpOwo+ICAJfQoKLS0gClNhc2hpa28gQUkgcmV2aWV3IMK3IGh0dHBz
+Oi8vc2FzaGlrby5kZXYvIy9wYXRjaHNldC8yMDI2MDYxMTAzNTYwNS41OTkwNi0xLXZ1bGFiQGlz
+Y2FzLmFjLmNuP3BhcnQ9MQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5p
+bmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8v
+bGludXgtYW1sb2dpYwo=
