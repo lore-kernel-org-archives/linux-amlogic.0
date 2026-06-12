@@ -4,106 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 876CECD98C7
-	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Jun 2026 02:37:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29ED9CD98CE
+	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Jun 2026 13:20:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rn3kTd2S//WrUshU65wAWBCyZd6ZJzLkY+yvME6DIPU=; b=4+xuufsv+SSJSX
-	q4+Q2fAG0A54TOTlXf/7BZdv3/5dRleFTo3yH4B6u21Cw0Zr3WQstBcEzXeqNcxTRtwDlhSWweIBe
-	8LMEum0XChb247VoCKJu3In3RxJUVkXQki5gmxKvUYNyaO9AretRWNVLMHlZVJtZcDKmu5oa8BqEJ
-	eJvyhhgmG6lhPMKTb5WaUoNBmouJ798hBPD6Rs3DC340cJhHXbBdrny3Trc4EhFi20v2xemZZKvwh
-	E/Mi8lbb8WeFHysVOLn2n7JMuDwqBlkkKc8Vd4MNwctThRCA1hcBp4x6YechM0bRSWaGqSTHUfpfP
-	7aubsCdBEJZrIN1wZ5Uw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=fRYrjO1M/FRTYEMAzKUidF8qfThap/7JCsSxGZeiskc=; b=mIRNnT+iXwYmnFabu639+gaANZ
+	1y1zJhhmL7+/YrFAmXyIosqNe7PKhBtcn9r4HBoQW0/OqhwM4awn6Knus4HQYaIPcQj0241tDu0GT
+	MuzZktpYddHq+ewHgN4yUBXuna3HroXCl8sD46/l3bZUQhNDmGSo1QHyY/OsREE7k2SNlmbr4Q5j4
+	G0fSPmCOdDgngHpD6gCbVyFJ7WrYJp95RWMNcRewe+4VjEqDE71TNmVbJykQjxG7CYwT8iniDHsyp
+	wHK9VZPBZJbtxktVCsOolptYfi57sQFVSpgjMC9xlikDKiusUcyzqOskwCMHeWaZkAc5QP8QVInZA
+	Ktj5RUXQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXrlh-0000000AIEm-1pzh;
-	Fri, 12 Jun 2026 02:37:13 +0000
-Received: from mail-pj1-x1036.google.com ([2607:f8b0:4864:20::1036])
+	id 1wY1ne-0000000AwfL-2MFS;
+	Fri, 12 Jun 2026 13:19:54 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wXrlf-0000000AIEC-236F
-	for linux-amlogic@lists.infradead.org;
-	Fri, 12 Jun 2026 02:37:12 +0000
-Received: by mail-pj1-x1036.google.com with SMTP id 98e67ed59e1d1-36b7b7b7a80so761830a91.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 11 Jun 2026 19:37:11 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1781231830; cv=none;
-        d=google.com; s=arc-20240605;
-        b=j/BZhlsO/Mg/6f7PqlStAT39s2X0ppwyo7EIvlPU0DRlAlEQgOpAqSR2O33rvS3NkN
-         P78MFtasXwn3pFM7r10irUO7bZ7Gxy3SbukTNojQn1QJC1b93w5IK9pxHL4318vjsw8b
-         LGvVKCdaX6cdGNDO6nj/VHex3sPR/Ho+zXT8adPvsgGzzUDI34WJr0x7yUQwYdxhKcC4
-         NuBlao0XKiS1nmU2rbNwqu81qXrTNSnySQU3lhV6FAPTraDspzsODcln1LIqenfbAqyr
-         rEg915dsiMWu+GnqgRDINHUZSAfGfSyq/7D+bkO5U1mrbJGKmd9RZ/e1jNKiNDOAw8wq
-         hRZA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=k7TWkPnU2ZFv4c9L/lpJaAzpAHYUyg4vWnHX2LiMAfg=;
-        fh=QaDNiNlGpPPczrJVkbvxaaWUOSMRaWmoEpzUCGJ1GVk=;
-        b=CNt3Byl2twt0dBxXIqXxP9xjq+DYjYaL6lYiPr1TYQohca8d5S94tiGyw/P90Wl3kr
-         4RGzSsrYH2F/UaagrGfc1rdkpTjdKfV1a5iWR9WgAf4ZBDHD7EpQ0fiUP/TwPVKEFjsC
-         AI0TgqkA/IfMQCPU/n4y1A3Fo5l1PtO766vj/kiZLnqIj6fbnSAuf/KPAUxFB7HFPDyf
-         Ue8vd15I7PcM9DOJWi2f8BtpkrIWrGNVXPeY/WQ9kna0IgPz6kxoi7InDf3gwuD6LYfE
-         BLQw4JeEtyFnArsYwlvz30QyI4pILkfTyurb0hJw4vMOgGJSplg9jv9loo077DbIdonJ
-         EMng==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781231830; x=1781836630; darn=lists.infradead.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=k7TWkPnU2ZFv4c9L/lpJaAzpAHYUyg4vWnHX2LiMAfg=;
-        b=Df/Hswh+TXuLqrTyloYfEuQLGo+Mxkjn1KP9lXW7fdBMbgFuwPt6EdrI2bWyNLlQ1y
-         6O55Py1WRVdiFlMHTAKSIem8y6YuwA9QXyBTtcko5d6xrTxlrHr/iAeDjKRvkrmBhbgl
-         zaanfK+/hjuSUMgyI7KYT4juJx8nXA3ofiVHqmv1mkMPbpSZCtswbmXpgfXG40vt7R3z
-         i5SAsGu0Xo7pjkLOylgAUscwXPyAcViA8FGAfhBFfeQsz8GctIXnd9a7nzGwYn8iTYXz
-         dxlPWWCblx1kjjodzrKP+wZ1ntHP6NH8c5MiTaIVezq9/AuBVr64d1mRwbDq/eHVePc2
-         ObTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781231830; x=1781836630;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=k7TWkPnU2ZFv4c9L/lpJaAzpAHYUyg4vWnHX2LiMAfg=;
-        b=EIDXh/PTPwuLGaBn/N9BPeKkLxM2lNCvYNfESxbnQ0psLH1rimkgRDoQBNXJOKYicG
-         UY5R21m92/x5MpL5TZ1Jmb0s+6AP3ZBFiTtcaoI+KoaazwHXFPT75JqDK/3+MpUtAobF
-         +UQ0jAzoKh0FNoH9pu0+to879mkFlkpyO5g9rhPuZP3pwqqHFug7a1y/gpPhQsYJr2/h
-         bzEXcQDIy9vwvaPkhOD3UFORIbqIYXlttmxAHr04Cz3WItb5r7q5wy+dEpLHse8bK8ps
-         heEsj8kLhn2thyuUc6MUCjhxHyc2JgrBDPHPMPbEacFDdlnIQl13SuW1+ZXj0vWf8d3C
-         l5Gg==
-X-Forwarded-Encrypted: i=1; AFNElJ93IBS8kk3gRpC4pyymZxG9UqV9WkMXUosFMpfcjNJb3NQRsHI++PnKUepnz0Nv8+8/v8so2Dp3R2nuwDyu@lists.infradead.org
-X-Gm-Message-State: AOJu0YyhSl7eaD83XVJNi/mLXoHtTqawPyezNj7J8qgKtuOd/eTrKDXT
-	xM/3vYa0NEE9kNqYrOikRom6eVZVXzUE0WZIX9jxcWUNwopTzh+SWIwAaRYltDcJhmtkYprg8Ez
-	Qm9T0yvduYnoWPWuRsGZClNRnuo0wd6c=
-X-Gm-Gg: Acq92OEnlnViLr3ekNBCJwoAIKtUvz0CjhjiVAsNpSyMQ4MUI344cOcNdkzHoBJvV2a
-	3d+l+RlLQaG+UtWyPNPIsZW9iVUjJ/hQEb0xVLXl/ch5creJQhiz7sCbelMjnq6Bz1nDpXzZKDP
-	9nVPEzAYKFdH95ozc7dboPm7D2FrGWI7WV1V95XRaI/XSPwTf/Ja+ZtzVXwFHTWcwrUgTCbIoVK
-	ZY20tNuk++ll15cY8rUzcK+MrHuWJUbvsYDp+GqbJBrFryEFIQoldNIfliHlni74MNd4qKBKPLb
-	Qvj4chB+1lVBkaa2DSxkrMMTnszkQWTqoV4bUA==
-X-Received: by 2002:a17:90b:1dce:b0:369:7491:7b24 with SMTP id
- 98e67ed59e1d1-379ed8e27d2mr1063022a91.6.1781231830513; Thu, 11 Jun 2026
- 19:37:10 -0700 (PDT)
-MIME-Version: 1.0
-References: <20260610102153.83367-1-phucduc.bui@gmail.com> <1j8q8mfte7.fsf@starbuckisacylon.baylibre.com>
- <CAABR9nGC=f_hO7FX2RnRHLb5D2Tt9=qT_yv-Fv2y32AAoQy+sw@mail.gmail.com> <1jo6hhebus.fsf@starbuckisacylon.baylibre.com>
-In-Reply-To: <1jo6hhebus.fsf@starbuckisacylon.baylibre.com>
-From: Bui Duc Phuc <phucduc.bui@gmail.com>
-Date: Fri, 12 Jun 2026 09:36:58 +0700
-X-Gm-Features: AVVi8CcLu5Ty5I6ab3mqIKLS740KgAX1K7YLQYr3jFBVdQ6AaZKqSuuk1kFJF9c
-Message-ID: <CAABR9nGQt0zsH2McjOFO91tS-CHsudzioxCkPvbkgmTyfKVo=Q@mail.gmail.com>
-Subject: Re: [PATCH] ASoC: meson: axg-tdm-formatter: Use guard() for mutex locks
+	id 1wY1ne-0000000AwfA-0wh0;
+	Fri, 12 Jun 2026 13:19:54 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 966A5403A2;
+	Fri, 12 Jun 2026 13:19:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8BDB1F000E9;
+	Fri, 12 Jun 2026 13:19:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781270393;
+	bh=taNgp4KGsZ3KiXZSZvUQMLkfqRwbGhzPbNLDn7Y5E3o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=gRWaSvc697+zpk8A7FOUkBv+zrymR3irREfWIgwvAlNE/BxppA4V648OReKSQc8fp
+	 J3R3YL8sEiSOnsEdKj6XwmuaOpQ6ta9vePgHXJBEmqcwbxjJYiHwGZu6b9QyRWTGUC
+	 vAVXTrOmyt0akvDpkYpk4JJp9IhEemH2e4+/vwYU0vTWKnmj5OhS1YC5CLaruu+xqi
+	 VKQKaRtjZUBcKE3N7wD28JcsM0zWdZowDDK1fYjLLRInkQDGK9nhOeP3civb+CAn2H
+	 S3SAiAzenl7h12DoE1ntDoUH80lttvHmEVfh2ff4AtaQtsRn3yAm9VQTAenFSnxpoj
+	 IeWk2wxbZjcLg==
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+	id 2A3061AC58C5; Fri, 12 Jun 2026 14:19:40 +0100 (BST)
+Date: Fri, 12 Jun 2026 14:19:40 +0100
+From: Mark Brown <broonie@kernel.org>
 To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jaroslav Kysela <perex@perex.cz>, 
-	Takashi Iwai <tiwai@suse.com>, linux-sound@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260611_193711_556665_56B49FF6 
-X-CRM114-Status: GOOD (  13.63  )
+Cc: Valerio Setti <vsetti@baylibre.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v2 2/4] ASoC: meson: aiu-encoder-i2s: prepare for
+ multiple streams
+Message-ID: <aiwHbBM8UAYRKnvO@sirena.co.uk>
+References: <20260610-reshape-aiu-as-axg-v2-0-cac3663a8b51@baylibre.com>
+ <20260610-reshape-aiu-as-axg-v2-2-cac3663a8b51@baylibre.com>
+ <1jik7pebk7.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
+In-Reply-To: <1jik7pebk7.fsf@starbuckisacylon.baylibre.com>
+X-Cookie: Nice guys get sick.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,61 +75,64 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============4776064859864551302=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jerome,
 
-Thank you for the review and for the Reviewed-by tag.
+--===============4776064859864551302==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="DTWiBsS0PG7p6gAP"
+Content-Disposition: inline
 
->
-> The code is not better or worse with the change but you went through the
-> trouble of doing so, if Mark is fine with it, let's have it
->
-> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
->
 
-Regarding the point about whether the change makes the code better or worse,
-I have sent an additional patch to address related cleanup in the same area:
+--DTWiBsS0PG7p6gAP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-https://lore.kernel.org/all/20260612020113.9557-1-phucduc.bui@gmail.com/
+On Thu, Jun 11, 2026 at 10:16:56AM +0200, Jerome Brunet wrote:
+> On mer. 10 juin 2026 at 23:29, Valerio Setti <vsetti@baylibre.com> wrote:
+>=20
+> > aiu-encoder-i2s is going to be the interface that handles both playback
+> > and capture, so this commit does all the required changes to prepare
+> > for that since so far it only handled playback:
+> > - probe/remove functions are added to allocate/free per stream data,
+> >   respectively.
 
-Would appreciate your review on that as well.
+Please delete unneeded context from mails when replying.  Doing this
+makes it much easier to find your reply in the message, helping ensure
+it won't be missed by people scrolling through the irrelevant quoted
+material.
 
-While looking into the Meson ASoC probe paths,
-I noticed a few consistency issues that seem to appear across multiple drivers:
+--DTWiBsS0PG7p6gAP
+Content-Type: application/pgp-signature; name="signature.asc"
 
-1. Mixed usage of dev_err_probe() and dev_err() in probe error paths.
+-----BEGIN PGP SIGNATURE-----
 
-2. Inconsistent error message formatting: some messages start with lowercase
-   ("failed to init..."), while others start with uppercase ("Failed
-to register...").
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmosB2sACgkQJNaLcl1U
+h9BePAf/YY4oU9BYnoYM1az7OlkzIVHobdSBXPdAMqYYrlPj/WIZuTEDI1cdo/22
+hoqllO3JKTLGy44Zy5I1P7ijkgOEkx2mZeJ7AZYOgZPlIXPH6AKbscA/xYjzfYP4
+2CwyerLXM7UAy8RJv2Kimqj24HF6mzVVgYRbghHGqDWnLSGWj6BQLSlgaUYhwIcM
+xdrydiGGZz2vkC/HOmwFqpGSyk4XQAm3HFkW5OwsK3R6CmVSwcFxa2fhjcTw8CXc
+3gcvi70GBGQi8+9nMiAyGmnqxT4aONevk4cF8sVxLOxH1Gg0hwgMmsllFORiBdap
+sDGZbqCPoyuQ/1hjHLvs3sqbo32+3Q==
+=PhOT
+-----END PGP SIGNATURE-----
 
-3. In aiu_probe(), error paths for IRQ retrieval do not provide
-additional context,
-    making it harder to identify which resource failed:
+--DTWiBsS0PG7p6gAP--
 
-   aiu->i2s.irq = platform_get_irq_byname(pdev, "i2s");
-   if (aiu->i2s.irq < 0)
-           return aiu->i2s.irq;
 
-   aiu->spdif.irq = platform_get_irq_byname(pdev, "spdif");
-   if (aiu->spdif.irq < 0)
-           return aiu->spdif.irq;
-
-4 ......
-
-Do you think addressing these issues would improve readability and
-maintainability of the Meson codebase over time?
-Or is it generally preferred to leave these kinds of consistency
-improvements untouched unless a functional bug is being fixed?
-
-Best regards,
-Phuc
+--===============4776064859864551302==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4776064859864551302==--
+
