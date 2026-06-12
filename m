@@ -4,110 +4,167 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEFCFCD98CE
-	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Jun 2026 14:54:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8BB7CD98CF
+	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Jun 2026 18:53:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aKmoplgB3YuDSdCrWW01qlZPxlaawvDyRO+EPP7IQF4=; b=fEm12URwN72aE3
-	hWtcTZ70fTXueK7fRN9r/Zf3wOuHw1TVXJxzp5+jusCDFYzEQsZHkCWyfmcAnGokUpvmwp06wYsdb
-	jT5stDtAok0JqIvf7vSDz4jIkuBxJWq+EyVgEjuqayKwEq+CXc0qABIxwj7aIqO6HWDsVDzHA7qVi
-	ePM1bVSIBkeh8iJcHkUeKBWN8gJZdDNI5HK4nEUgDhkslm4ISnjMInEPBb2pyEyN5sTWghwI1z4n+
-	m43ZK40jks+B7HBrp7scyvWmxlVrVYKKXS/GdIbWPa5t7kQBIHjvB8CpHVfhNAErKtINrhX+Zd2yd
-	+8uOCCsXXwL9YIH9DCtw==;
+	List-Owner; bh=dvB3GLU3a9tHna+oIHK9Ld9jiq9DhtAPW3YxtJq9xpw=; b=kunvAHfu0vBwUd
+	tjo7eQy/cGs732g8BaXgR18ZSo6bG+wFpWb2l0Z5RTlcpBYm/nBKQN847SOzfQ9sSS6KY1F72Aeoa
+	v/WLJKHlcT2FREecHMwVMSUgmDHORoTGRldk9c0u6ByfbRwVkkzD3r+7To0ojn7pGqXKtpB/LmOrf
+	ZXzH3IPi9I1S4Zpo0b1NUSUAY1MHuzyx8QH91Kd/6Zv5Zsq3oMSOxvTbzviIxtwnk7tXwWo+kZDtm
+	MD98PnA/iw/yscT2Rzioh1HB14CWvfINNYC9SQspz71HavGQIB0w51aoWCrMZ4ZgZJgbkVYC+BJwH
+	y9FjTwHhNNONzJ8LwaZw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wY3Ge-0000000B7Cl-47Ux;
-	Fri, 12 Jun 2026 14:53:56 +0000
-Received: from mail-vk1-xa32.google.com ([2607:f8b0:4864:20::a32])
+	id 1wY70f-0000000BQKD-2Vfr;
+	Fri, 12 Jun 2026 18:53:41 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wY3Gc-0000000B7Bz-09R7
+	id 1wY70d-0000000BQJ8-1wMA
 	for linux-amlogic@lists.infradead.org;
-	Fri, 12 Jun 2026 14:53:55 +0000
-Received: by mail-vk1-xa32.google.com with SMTP id 71dfb90a1353d-59ecd51117dso849240e0c.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 12 Jun 2026 07:53:53 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1781276032; cv=none;
-        d=google.com; s=arc-20240605;
-        b=GGDY/55CkUO1QlOM+A1Rd7YzMANte8tTr0KMM9cagOi6OZSzPEYCJrQH6qg6q0UAYf
-         wJFe2DQHINX+OxFOCIOsawRGwNHwBW8U/4b0M6V4GVceWG/g67t4JTpgdvpzPwdfLzt4
-         e2VM4aCODBJQiGtvQXg8kMYZquaY0RjoKiJrzJZAtXKxQtaDI+JBQYUAhg0eKY6PZ2ZW
-         xi3Zg0Kj1L0AeEQ0K0jdAZLsmeEa/kcXvw0F3VKLsfeHmbWaDBK76jXRpeqsFmoJPRyT
-         2BnXuSB41Q7TCduOqTJ1HSDjWmxccf0Qb4k9r/2ETQaYKKichdDh0MFPZW6ZW2t7GMaX
-         THfQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=jg/jG1GQgNRKAE3i2ndG5Nw/kqSFIlVSs+wnbwQYTuk=;
-        fh=5gGHkI310nET9gnFfIKSCS2ZUL5Dj2mJIbeAlOq9sDo=;
-        b=Tbvwjby9uFx52mmUvUZPL4BY+xFvnjSm8C+emCMGC+p9VPXyLwzSWBxdRqXBXFa4hq
-         J97Wblkut+uq3SZDF5fob9DQ/DBUadnZiaVaePd3W9C8/PLUsBjHHW/FiWERJiaI5bU6
-         b0CTcRE3v12MeZKzMIknOLG3lJXhYx/mrhwPWp0n1/Pj0BAUh3k1iWoxmwugihAByNpM
-         DngPJSEZSaPFhZpYDHJHY5P8zYw573h2FA5Esa2itONauAHheSlm4ivDEZmbq6oIXxOs
-         q/1acPSoy+mVWeANNdQkSJ8ZzdgX//SjLoorfmdeVKFsQQQ193O2vF1VGSTbxohvDN/p
-         Umjw==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	Fri, 12 Jun 2026 18:53:40 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65CGUg144152996
+	for <linux-amlogic@lists.infradead.org>; Fri, 12 Jun 2026 18:53:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=v3/Hm6Xq7WCrgTyuR+mYm99o
+	byQyGcdOpmpb0F6ke1c=; b=QyzaGnikY7lvP+gYNtF5B5gsq2WmUJGU6b/iEyc8
+	SM60hoYQ877RExS0N7DGLbXtTL5/6KRJJw7ZeGH5x87tjPexRkoTotluUY0BnFoF
+	HkMji3P7vnUoJFsacAa7h3IxAfTGy3w+v0t6lhiq0m2CPW7jNKXBP9dy8oZQAYes
+	/x7yvsuAm61BlmQgJFdUBuRG9rWEKgjMq6Ve3gPdCoUfGxiYeVrB/2byyKH95qPH
+	2lgtErJZxVrg9WL1eI0Tx9nasXDLeiH+aWXhjUscB+gmB6mXz9YnPbeuLzbPtaHi
+	OJTYOJiWMIh/LNLvFxLza8JV0OnU+OYW/dSj20tJKJptdQ==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4er1xcmcjd-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-amlogic@lists.infradead.org>; Fri, 12 Jun 2026 18:53:38 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-9157f1be083so220243485a.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 12 Jun 2026 11:53:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781276032; x=1781880832; darn=lists.infradead.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=jg/jG1GQgNRKAE3i2ndG5Nw/kqSFIlVSs+wnbwQYTuk=;
-        b=TcYHAQhp6BRGMNcoOXv0aZ7k8+BCTnxpK0B7f0O1CU9HWXQ5Y9PePEoKIhgdh2uAtC
-         bqenmNCqcX97MatVMhFqZ82dr5LJ3g9Sxu4txRmx9nAtD7pbRxWxESkUhrTCIJroE8TL
-         RTMhr0GJl9by+F0xq/47PetZ6vIiNiOOl09ywSEiKe3tF0yuEbfavYgLsDtTPAbpZR8V
-         hJq9WC0kHWjysmds0UdosH/dQ56YOG/AjpvHTly8qBbxPwp9t+9raQ2qSQ6kP0aTRijO
-         qaHuTXCzpipA7A6eiT6wokaCV/PnHwYbVnPJhr+ime0ByYuyYZrLYtPY8GC/NhnSoNTO
-         PPKg==
+        d=oss.qualcomm.com; s=google; t=1781290417; x=1781895217; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=v3/Hm6Xq7WCrgTyuR+mYm99obyQyGcdOpmpb0F6ke1c=;
+        b=WcP1YbVNP8fINlmseY1haHM8iHrDQFn9wenTh2eU6/2kRii3WB75yWtXX5BnmzzrXz
+         3iLbPxFJXb3/x50b0yUODVwibhrghjNXa7Kx6drPvBjsjKkTsvZUFpR1FGd0R3zobg1q
+         Z2INiWPQIEBvPcXI9zg9YYFZGKLjpzHIaVdL6EyujBpdlox8p0/OSvuvrmNFdyPwS+Yf
+         EtmFzSF2xwBR9tTSbkVwjBqURnY21jrzJ+DBbvX9mTYzV+Ua/h8rUnVyylnz3uw9vtOo
+         r7EkaDUCemueTuSwcXrF4ePaaO56wePi12Q3bheymwPnbKUWzNQOktuon1gv+MX995QB
+         G9ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781276032; x=1781880832;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jg/jG1GQgNRKAE3i2ndG5Nw/kqSFIlVSs+wnbwQYTuk=;
-        b=VBNtnyfqCaUewnYUJaPB95YwrwIZueL2SriwlbJt6594yGzb8mfaw6sF+MP4n595SH
-         VSZv7xev3X9MY8sxz5/u5eWuZSUmRwnJg7B57J0wdkmIxDgogZt+Q6Gv17fEumsX45TV
-         QuhJ3igCNdiWRIudY34mAXQWEg5p1cgriu7cjPVUgyD5MC3ndx1hXfHb1nlxHR8dQfME
-         lVxQnHXTLcAe+PJMMtKMkKxf58Wr6cmeiyDKzKF9RwUKU/VHG3q3yfhoSTbZYATmzn/I
-         eHQDuSbdSds9Xa9NsYOlx6MYJJsd1mKtwCWoqrC6Rx7COhSpJiUmo3kB/CmwMIBfG+we
-         gKBg==
-X-Forwarded-Encrypted: i=1; AFNElJ+voppE0SOvT0mNVDAB9WDR/flcFcAYODgeRTCzbcjAfbWqh4OuF+47VZpzwOeioubb+n4HOiH8vQEeZE62@lists.infradead.org
-X-Gm-Message-State: AOJu0Yzu7Hl0e1/fdWf+Jo6p/+OCQ2AkusheCVYcm1uA1pljQd9SUiPx
-	mc6R+aAIaYxo0Yqn3+QS9nny8ImEJXqEulqo4SwQ2k5JQISaEwsgLz/Ve8js321VOfq65qKB/5l
-	3ri2QDLl06lytLjkYdrTerZn92YbG8NE=
-X-Gm-Gg: Acq92OFUEKlTPs0LtIKDNluMCi+tfgszKT5F6KiQfiMJ9z9lbOIHAivdWcmVXnA42RB
-	hvUcOADnlf10bNB/pMLdvyG2iAROn7rGysxXXXs2YtsvcrseS292OiVxROGCWIwo+JSsB0pXJ2m
-	MBb7NzbmG69oi/dX5glhJp7sARWVBoMxOQoysWZZe8NWN8QddEdDiGiFBIjsSyjmbACQ+5Y6OpC
-	qXXYwguIkRFRFerrDIcBlv1jJ+srabV5Fh9pwx3yEP4wEhaUk+XAigXoe2rUmHMCcBc0iQb6Xa0
-	OfryOGameAJjyRvtIJuVNSWPQtdNmdkX2YF6yZxBXREKSIzHJg==
-X-Received: by 2002:a05:6122:6503:b0:59b:f9b4:8748 with SMTP id
- 71dfb90a1353d-5bb69fa3ff1mr1022262e0c.4.1781276032418; Fri, 12 Jun 2026
- 07:53:52 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1781290417; x=1781895217;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=v3/Hm6Xq7WCrgTyuR+mYm99obyQyGcdOpmpb0F6ke1c=;
+        b=VJzn2n2Zt+EWhg5i0YoihsqL7/RMLitkIm0rKIBe0Pg/gHkaYaYgu37XlXRUnWsSuZ
+         czsX8jlnz9G/xrUI5Oe8y4LrQMEs17DP9rWtZQ/ZHCV6CKZ6saFf/gRgqW7dqxsNSgQv
+         g5CA3NEjoTOVgkrEuc8QlaWQxK48EYUGT3W5wsLZQQ1Ivuu27fyjPliA6CEyfCZLFFrQ
+         XzR6aMJE8lmIm6WQ1qWqNA++P7XRSFfwL6AdCssLhkYgDS2PHVsCxIj7QykprYrnrIGW
+         /iczF/E9Dy+1856eHYRVRFkcxX3lOeRd4ICsD+FAg2fhkYXoynlOyR+TVXcqjAn7QSsa
+         bRWg==
+X-Forwarded-Encrypted: i=1; AFNElJ+rXKAHUtZUAdGguDOKzytiszQuHcstZ0AV+LKvu3tEaBGvwZVikb0ty5qEtBLLpiry1Emn/Uin/nphnr4m@lists.infradead.org
+X-Gm-Message-State: AOJu0Ywe2BntNqghHsd21wQ4rF6uf7xMkXDn4T0vtlD1hyT8N0A1eudk
+	EoPfWCqR6lzwwU1AtcIm8Ujz7QYX8ruVZpEivPHwsCn4HlOGbjCBPoUigcX++JmkEficRi4N9QN
+	Aozu5fvi6mtH55E9b9frGKbpJ1/2EKmHiw47f0Vpcu47fSyE5WKSleh36QS7oKvppB7rUZ4ozpw
+	==
+X-Gm-Gg: Acq92OHtfIR5pDnABximza3Uw2ixY5WY+lyPvDkkBxSmOt8G+xieMxsGEhNEoXBoq3L
+	rfbX0jPf1g75abNy4ZgdYlNyOLAFsI03xRepqhRoGcjqQVVSPoLj1rQpYT4qtq1tVM3djt4zJ6F
+	dAXGopcNeExLPnva9Rat/LEE4mRNm4Dx3ifPXjq3d207bxAT1yEp62XL03UBzVRc0zFu+tnbOQ1
+	Tx52ltOpy8OSVo/EbOZII2aY5TbO4RysATdHQpZQvBl2g072SQlTl9PdyeJT9BOLwLYTzDUmYaS
+	8yAbDVZg9P1/+2HO+E/enUc9A1mIVHlZv/n6M60wjUrKlDlRjWE2D502PO7t5XU437i+6BAlAMg
+	hvqY/+5IFBNyr7Ojaaz/T6lQpW8FhWAs5t04ONMEjZ7QZ8sTpq15qjq5uXAJ55DYEo/7Og6q6z9
+	dodLa0YqPcinW26kllOOUSLAOWiVi367vU4OE=
+X-Received: by 2002:a05:620a:17a8:b0:910:db3a:7bdb with SMTP id af79cd13be357-9161bc8d778mr559909385a.32.1781290417465;
+        Fri, 12 Jun 2026 11:53:37 -0700 (PDT)
+X-Received: by 2002:a05:620a:17a8:b0:910:db3a:7bdb with SMTP id af79cd13be357-9161bc8d778mr559899485a.32.1781290416844;
+        Fri, 12 Jun 2026 11:53:36 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5ad2e1ae1absm726479e87.59.2026.06.12.11.53.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Jun 2026 11:53:34 -0700 (PDT)
+Date: Fri, 12 Jun 2026 21:53:32 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Adrien Grassein <adrien.grassein@gmail.com>,
+        Jani Nikula <jani.nikula@linux.intel.com>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+        Tvrtko Ursulin <tursulin@ursulin.net>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Pengyu Luo <mitltlatltl@gmail.com>, Nikita Travkin <nikita@trvn.ru>,
+        Yongxing Mou <yongxing.mou@oss.qualcomm.com>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Francesco Dolcini <francesco@dolcini.it>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+        intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org
+Subject: Re: [PATCH v4 1/8] drm/connector: report out-of-band IRQ_HPD events
+Message-ID: <hxto2g32oyfy2tlihdgpjy7bwkhxp2cdw7qnf2rvpl7g7jczen@5js56gor3z6t>
+References: <20260608-hpd-irq-events-v4-0-30b62b335487@oss.qualcomm.com>
+ <20260608-hpd-irq-events-v4-1-30b62b335487@oss.qualcomm.com>
+ <20260609-bouncy-tomato-dalmatian-70ccee@houat>
 MIME-Version: 1.0
-References: <0f97352506d8d813f70f441de4d63fcd5b7d1c3e.1779123847.git.shuvampandey1@gmail.com>
- <20260611221000.GA524832@bhelgaas>
-In-Reply-To: <20260611221000.GA524832@bhelgaas>
-From: Shuvam Pandey <shuvampandey1@gmail.com>
-Date: Fri, 12 Jun 2026 20:38:41 +0545
-X-Gm-Features: AVVi8CeSnuFKBXw07pnZfggT3zcPEONqkcJp-rRWL-FHYqitFjSsHZlw-QFmmE4
-Message-ID: <CANAAWHKBFmgQfqUNaiUrPxBk4bPoBpRbhJs9YqszKvBUbUrMXg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] PCI: dwc: Guard RAS DES debugfs deinit
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Jingoo Han <jingoohan1@gmail.com>, Manivannan Sadhasivam <mani@kernel.org>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Yue Wang <yue.wang@amlogic.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Fan Ni <fan.ni@samsung.com>, 
-	Shradha Todi <shradha.t@samsung.com>, Hanjie Lin <hanjie.lin@amlogic.com>, 
-	linux-pci@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Disposition: inline
+In-Reply-To: <20260609-bouncy-tomato-dalmatian-70ccee@houat>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjEyMDE3NiBTYWx0ZWRfX+wOGhtoM0uOi
+ NugZqumkKtmo4kDQly/gLj58XqWRwQbh3ymoxDTZzkvaOxhxW7XyrPjSn/lSELSgIsvQaniwLGg
+ Px2W7KDx0+JCpHmlxXmVKRWg73xmg4nAWjl/k15h47qykQi6zg4xeeS+Ms/W9dYfb5tZO0M5P9j
+ 9vhLF791oVrBhMsqtEZ4Eyu7sbo1Rn5aMS0XzJvDpuEjDZCtWx/qFJ5HioNDEnDcryJm8znH4gt
+ 6Wa0oCVqNyCUFb5aEk0zZofwjiyqKNRNxWA1aWSS+zeZ4UL/vuuEl1rza3zc/Z32UUEEjmqKGDr
+ QQg4G6OeVQrJD5dIqZ/qRWU0DNKC0asa0gtxtW0tr5IbokgAGyIzymHlVvm3kLxQ5O/5Tq5ChAq
+ iX227HEnt5+0sAjKX/xDY/7qko4pDENyOA9n4cuoKHnCQ5Wl9I+qzZv0C+GqRA6GVkCPjoKazG5
+ rX8zNx1nzkNFMMmhuzQ==
+X-Proofpoint-GUID: WwcNDqFMxhHgF8DwSDh6Tt3V_BMl3iVf
+X-Proofpoint-ORIG-GUID: WwcNDqFMxhHgF8DwSDh6Tt3V_BMl3iVf
+X-Authority-Analysis: v=2.4 cv=NZPWEWD4 c=1 sm=1 tr=0 ts=6a2c55b2 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22 a=QyXUC8HyAAAA:8
+ a=EUspDBNiAAAA:8 a=Qs5g3gW-Ea0FhcstOt0A:9 a=CjuIK1q_8ugA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjEyMDE3NiBTYWx0ZWRfX2zTMIP4WCDl9
+ glVxectvBs5n6lxQV5xAON/0R3fQ3Cm10uEohbfsO22bWNBJJANW0Y2w+Hqd1+Fo1EpzsAJWoO0
+ INRP/koKKdqm84YEYngMhY4Era3mH4Y=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-12_02,2026-06-12_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 suspectscore=0 adultscore=0 lowpriorityscore=0 clxscore=1015
+ priorityscore=1501 malwarescore=0 bulkscore=0 spamscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606040000 definitions=main-2606120176
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260612_075354_103728_DF8215EE 
-X-CRM114-Status: UNSURE (   7.15  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260612_115339_627437_D27B66D0 
+X-CRM114-Status: GOOD (  32.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,28 +181,75 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Bjorn,
+On Tue, Jun 09, 2026 at 03:20:01PM +0200, Maxime Ripard wrote:
+> Hi,
+> 
+> On Mon, Jun 08, 2026 at 12:33:02AM +0300, Dmitry Baryshkov wrote:
+> > The DisplayPort standard defines a special kind of events called IRQ.
+> > These events are used to notify DP Source about the events on the Sink
+> > side. It is extremely important for DP MST handling, where the MST
+> > events are reported through this IRQ.
+> > 
+> > In case of the USB-C DP AltMode there is no actual HPD pulse, but the
+> > events are reported through the bits in the AltMode VDOs.
+> > 
+> > Rename drm_connector_oob_hotplug_event() to drm_connector_dp_oob_status()
+> > and extend its interface to report IRQ events to the DisplayPort Sink
+> > drivers.
+> > 
+> > Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> > ---
+> >  drivers/gpu/drm/drm_connector.c          | 20 ++++++++++++--------
+> >  drivers/usb/typec/altmodes/displayport.c | 23 +++++++++++++++--------
+> >  include/drm/drm_connector.h              | 21 +++++++++++++++++++--
+> >  3 files changed, 46 insertions(+), 18 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+> > index 3fa4d2082cd7..bb128dd0263a 100644
+> > --- a/drivers/gpu/drm/drm_connector.c
+> > +++ b/drivers/gpu/drm/drm_connector.c
+> > @@ -3502,20 +3502,24 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
+> >  }
+> >  
+> >  /**
+> > - * drm_connector_oob_hotplug_event - Report out-of-band hotplug event to connector
+> > + * drm_connector_dp_oob_status - Report out-of-band hotplug event to DisplayPort connector
+> >   * @connector_fwnode: fwnode_handle to report the event on
+> >   * @status: hot plug detect logical state
+> > + * @extra_status: additional information provided by the sink without changing
+> > + * the HPD state (or in addition to such a change).
+> >   *
+> > - * On some hardware a hotplug event notification may come from outside the display
+> > - * driver / device. An example of this is some USB Type-C setups where the hardware
+> > - * muxes the DisplayPort data and aux-lines but does not pass the altmode HPD
+> > - * status bit to the GPU's DP HPD pin.
+> > + * In some cases when DisplayPort signals are being routed through the USB
+> > + * Type-C port the hotplug event notifications come from outside of the display
+> > + * driver / device. In this case hardware muxes the DisplayPort data and
+> > + * AUX-lines but does not pass the altmode HPD status bit to the GPU's DP HPD
+> > + * pin.
+> >   *
+> >   * This function can be used to report these out-of-band events after obtaining
+> >   * a drm_connector reference through calling drm_connector_find_by_fwnode().
+> >   */
+> > -void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
+> > -				     enum drm_connector_status status)
+> > +void drm_connector_dp_oob_status(struct fwnode_handle *connector_fwnode,
+> > +				 enum drm_connector_status status,
+> > +				 enum drm_connector_status_extra extra_status)
+> 
+> Thanks for the renaming, but I think we can also rename
+> drm_connector_status_extra to something a bit more descriptive now?
+> drm_connector_dp_oob_event? status?
 
-> I guess this prevents a NULL pointer dereference, right?
+I did not want to introduce a DP-specific interface, keeping the HDMI
+eARC HPD in mind. But... Let's get it nice for DP first and handle eARC
+if the need arives.
 
-Yes. This is in the CONFIG_PCIE_DW_DEBUGFS teardown path when the
-controller does not advertise the RAS DES capability.
-
-In that case dwc_pcie_rasdes_debugfs_init() returns 0 before allocating
-pci->debugfs->rasdes_info or initializing reg_event_lock. Later,
-dwc_pcie_debugfs_deinit() still calls dwc_pcie_rasdes_debugfs_deinit()
-unconditionally.
-
-With CONFIG_DEBUG_MUTEXES, mutex_destroy() dereferences the mutex, so
-calling it via &rinfo->reg_event_lock when rinfo is NULL would
-dereference NULL. Without CONFIG_DEBUG_MUTEXES, mutex_destroy() is a
-no-op, but there is still no RAS DES state to tear down.
-
-So the patch makes the deinit path match the init path: if no
-rasdes_info was allocated, skip the RAS DES mutex teardown.
-
-Thanks,
-Shuvam
+-- 
+With best wishes
+Dmitry
 
 _______________________________________________
 linux-amlogic mailing list
