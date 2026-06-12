@@ -4,66 +4,109 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29ED9CD98CE
-	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Jun 2026 13:20:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83765CD8CA8
+	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Jun 2026 14:40:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=fRYrjO1M/FRTYEMAzKUidF8qfThap/7JCsSxGZeiskc=; b=mIRNnT+iXwYmnFabu639+gaANZ
-	1y1zJhhmL7+/YrFAmXyIosqNe7PKhBtcn9r4HBoQW0/OqhwM4awn6Knus4HQYaIPcQj0241tDu0GT
-	MuzZktpYddHq+ewHgN4yUBXuna3HroXCl8sD46/l3bZUQhNDmGSo1QHyY/OsREE7k2SNlmbr4Q5j4
-	G0fSPmCOdDgngHpD6gCbVyFJ7WrYJp95RWMNcRewe+4VjEqDE71TNmVbJykQjxG7CYwT8iniDHsyp
-	wHK9VZPBZJbtxktVCsOolptYfi57sQFVSpgjMC9xlikDKiusUcyzqOskwCMHeWaZkAc5QP8QVInZA
-	Ktj5RUXQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=IHGO9yLm8gtsVTI0lWpAAxc3zbfy0pepGb9005FV6t0=; b=F7SuzJjgalk+HM
+	pY6/IpbAEwoO6dkITOtQE3u3l0RxS57eM3auYxiv6nUZi+j8nJHPljWGJOz97w8SMJf1OcJhGenZJ
+	GuVBpqyw/NSRPeGBsVJR9JWQ+lRKQxHhlbCNOVZWRbOtUcFIA3zDSWM6t68+b7EUMbcYmtNhTgJC7
+	W0BZ8gt0XUAgMkEzc5N6Zz+fg3Y/PaZDX3jxlVsWHQZxn8bfh2u0ssM5dRqPipP/sJI4U9/TQl85g
+	Y3NgcQ7hCLXdg56GgYKhAaDFGuHG2c+8rdJGvzozInm6QDQ7wsDp0r9nA6m0wIYO4TbIqVDjFwFNq
+	t8g1KrwcuZcoQyNUVW5Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wY1ne-0000000AwfL-2MFS;
-	Fri, 12 Jun 2026 13:19:54 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1wY33Y-0000000B5ax-3yad;
+	Fri, 12 Jun 2026 14:40:24 +0000
+Received: from mail-ua1-x935.google.com ([2607:f8b0:4864:20::935])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wY1ne-0000000AwfA-0wh0;
-	Fri, 12 Jun 2026 13:19:54 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 966A5403A2;
-	Fri, 12 Jun 2026 13:19:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8BDB1F000E9;
-	Fri, 12 Jun 2026 13:19:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781270393;
-	bh=taNgp4KGsZ3KiXZSZvUQMLkfqRwbGhzPbNLDn7Y5E3o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=gRWaSvc697+zpk8A7FOUkBv+zrymR3irREfWIgwvAlNE/BxppA4V648OReKSQc8fp
-	 J3R3YL8sEiSOnsEdKj6XwmuaOpQ6ta9vePgHXJBEmqcwbxjJYiHwGZu6b9QyRWTGUC
-	 vAVXTrOmyt0akvDpkYpk4JJp9IhEemH2e4+/vwYU0vTWKnmj5OhS1YC5CLaruu+xqi
-	 VKQKaRtjZUBcKE3N7wD28JcsM0zWdZowDDK1fYjLLRInkQDGK9nhOeP3civb+CAn2H
-	 S3SAiAzenl7h12DoE1ntDoUH80lttvHmEVfh2ff4AtaQtsRn3yAm9VQTAenFSnxpoj
-	 IeWk2wxbZjcLg==
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-	id 2A3061AC58C5; Fri, 12 Jun 2026 14:19:40 +0100 (BST)
-Date: Fri, 12 Jun 2026 14:19:40 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Valerio Setti <vsetti@baylibre.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v2 2/4] ASoC: meson: aiu-encoder-i2s: prepare for
- multiple streams
-Message-ID: <aiwHbBM8UAYRKnvO@sirena.co.uk>
-References: <20260610-reshape-aiu-as-axg-v2-0-cac3663a8b51@baylibre.com>
- <20260610-reshape-aiu-as-axg-v2-2-cac3663a8b51@baylibre.com>
- <1jik7pebk7.fsf@starbuckisacylon.baylibre.com>
+	id 1wY33V-0000000B5Zu-48Jp
+	for linux-amlogic@lists.infradead.org;
+	Fri, 12 Jun 2026 14:40:23 +0000
+Received: by mail-ua1-x935.google.com with SMTP id a1e0cc1a2514c-9667fe10d29so75115241.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 12 Jun 2026 07:40:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1781275220; cv=none;
+        d=google.com; s=arc-20240605;
+        b=dXOsZKs5gPrxwjVs90vbcSBrQqh7r9x6ShkjbBLUsjMzcnh/8HJ0le5jlet6FAUmQV
+         gNCoTdUeg/Lj4krp4Ag5IFisgUui/IlEps35UflcBip8WghP+Nst0xl3vJ0SKobgzBWd
+         uQjNl7nJRLi/d2y7ZSHIB1SjllBMOEbM41OzLDJICNDaAE5lQBvyGMeke/fzJwybuqDC
+         7pIHTARDcmDVQwYKhCCFT1xQGD39hMuVqK5BDMo9iQOcR7YnZFPPp5DIHz8Typyo95Vq
+         mrWK6gBidogpC0EYop5cY+6EVVkow1Ype5W833F4wyfRzNzeVZY0nLcj7We6mJo9pyO+
+         1Stw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=jws4kc/6HCJln3nPYNLHurE61VFKguu58eheUohgKlM=;
+        fh=tqCqOx0sPaA8uSPGY9TdVWKPaHDiuHLYKb/mok0jlLc=;
+        b=S8ffefrlpXFhDHXfDiSGbv+yZOXwG60pbzoKX6ftZZ2wO5K5SrgS1+RACicJ+C8qVX
+         S94R/ZjZyDg/L9/jfHg+Spa6HYieG6DImwpC+Epwol+E8NRfZahaVjUQq8tfZ94/6Gb1
+         KERsW7CerjKJRE1CWFUx7P2ClMipewWvN+rjETTkipVLNRPW5VsKQTgDoLy2iaRiEOk1
+         yn3pho0C1T6wEiGxR8660HRanuPYcL5zDlmWbZZieTJXysyhgGc+nOuKPV7CjdoCGaD9
+         n6DMofobVcSDe8BTZF7k15H0HYBVkKlfwRYi6+fHUCRutLzwDzjV2fPo5P6e4jkxljwF
+         JEUg==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781275220; x=1781880020; darn=lists.infradead.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=jws4kc/6HCJln3nPYNLHurE61VFKguu58eheUohgKlM=;
+        b=rk2pVvXxOUIUcPsW89xgvnt+F7/UnmjRgdNLEsbZezns4/5B96mbo97VGZMJT9z/B1
+         67Z1IhQI513uWO5iq0tRCJh8ez6j7ioGlob66DGbPVVspLivhUVQylUV8XXvBcW94IfD
+         NsznLuIx5htwmvKQ8I4CWIJUVOoHxx7Bbdy+jFO95j1e/MDJqkyF7xk9PgG33MdsYNEc
+         Pb1ep3M+YYxb9MfYM+cCJjQKTdO2TshgUNduug00SIMYt2eZWqeHEdDui3uZg13V1A3l
+         gOerkLFpCa21XlrB5yWUFPN69I6nTXsoNLjlCWMpzlAofEuiiW02XxoP/hCqm32bb4sd
+         V6lQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781275220; x=1781880020;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jws4kc/6HCJln3nPYNLHurE61VFKguu58eheUohgKlM=;
+        b=eW8IrUevhhwoZf66PmSpGe9SkvPoeQQfHZvI8Ttm8+shniayFDurUJ7bqQEDPQuGPm
+         MT7TiE6LOlZUmKTb/AkWEhuhFE/bGREbQ3CuukyGRiXMS8Yn5HuNx71Oe7LFnKhgxJnS
+         XU6W/Qo0hXtN+tEle7gNzzIIz9eNkMtKd7DvHoTJi59EmiG9xE0fvMMYiTAHpF99CFgy
+         BEuD+QzcKAwYrqoUwvACKDANlr3SmMqOFjKT6FXXTPu/tGtDCNALnPYyBqpPSzHeIDOx
+         uWZltvXq1icTphfTO/Ia/vXDS5vYrQ2lFf1TzYflGnHDR3FeKBrTXP/13zUkcA7LXMg0
+         dE2Q==
+X-Forwarded-Encrypted: i=1; AFNElJ/x0N+vHUsX22sib9jabQIF/Er5HeVfPgBJboACGsRwygVf/8iFpL1fsE4PGb5Wfsy9Zsk0Swea614adYr/@lists.infradead.org
+X-Gm-Message-State: AOJu0YwjD/3QyAQJjFS7ZD3fWP6zA74eLhjbzTdlABAUHrTf2XKrI4uA
+	KM2ZWH+nAJ5ZbHvc5P8fTuI8oIHIqA/bQcU2sqvJbhwsLcFrdNsw4TBbsTDqHiqNq9j0sLmynPT
+	wv6LrQzJ6P3gH75TS3vHWB93gbjA6SLI=
+X-Gm-Gg: Acq92OEDZM0YBPyt4n60HDGw4RCNEGH5Cau3LlRSpEVsC95xvIclh4Xd6NUSEE3sv39
+	re/XamNkw4Dcfldb5NGWwTiYYKUvC/QgyJt/bsodFuy10B59Rv53jjrPTJTiZnEjR7GyH6VLbaE
+	NHKCmvqDZMD6A6zP+nJchCbCRPjo/EEOphnC/1oscMV4u/9ZSsTkfaOKIEWEzJAULSRSp5mP120
+	7gcKOFv8J4huJR+cFWOgNhE+diFUS2ix0W2a9NEcmQuR5gx1wRbLcNUF6h1wBqpGpPEkosxrDe8
+	q8elmXnw84bCNFULq5saTBZGwS6oHTVTop81VIg=
+X-Received: by 2002:a05:6102:3e8a:b0:633:f2bf:7de4 with SMTP id
+ ada2fe7eead31-71e88b250c7mr1959385137.10.1781275220197; Fri, 12 Jun 2026
+ 07:40:20 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1jik7pebk7.fsf@starbuckisacylon.baylibre.com>
-X-Cookie: Nice guys get sick.
+References: <1a0c86ab264cdc1c79c917e984b90991af51d827.1779123847.git.shuvampandey1@gmail.com>
+ <20260611222653.GA527114@bhelgaas>
+In-Reply-To: <20260611222653.GA527114@bhelgaas>
+From: Shuvam Pandey <shuvampandey1@gmail.com>
+Date: Fri, 12 Jun 2026 20:24:56 +0545
+X-Gm-Features: AVVi8CdKAP86TtMoO599NkYV98Yvwx6Qva5SIn9Z5VQSeP_4V_va59YftVroKA4
+Message-ID: <CANAAWH+qT8T4_OBwu0WxU6o0FTT7xqwpLTOFrWiV1dZbXHk+fw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] PCI: meson: Add missing remove callback
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Jingoo Han <jingoohan1@gmail.com>, Manivannan Sadhasivam <mani@kernel.org>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Yue Wang <yue.wang@amlogic.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Fan Ni <fan.ni@samsung.com>, 
+	Shradha Todi <shradha.t@samsung.com>, Hanjie Lin <hanjie.lin@amlogic.com>, 
+	linux-pci@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260612_074022_030101_4A90900D 
+X-CRM114-Status: GOOD (  10.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,64 +118,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============4776064859864551302=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Bjorn,
 
---===============4776064859864551302==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="DTWiBsS0PG7p6gAP"
-Content-Disposition: inline
+> What's the user-visible effect of this?  Does it avoid an oops?
+> Reduce power usage?
 
+I don't have hardware with this controller, so I have not observed an
+oops from this.
 
---DTWiBsS0PG7p6gAP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The concrete effect is that driver unbind/module unload gets the
+matching teardown for the successful probe path: the DesignWare host
+bridge is unregistered with dw_pcie_host_deinit(), and the PHY is
+powered off with meson_pcie_power_off() before devres releases the
+driver's resources.
 
-On Thu, Jun 11, 2026 at 10:16:56AM +0200, Jerome Brunet wrote:
-> On mer. 10 juin 2026 at 23:29, Valerio Setti <vsetti@baylibre.com> wrote:
->=20
-> > aiu-encoder-i2s is going to be the interface that handles both playback
-> > and capture, so this commit does all the required changes to prepare
-> > for that since so far it only handled playback:
-> > - probe/remove functions are added to allocate/free per stream data,
-> >   respectively.
+So yes, it should reduce power usage after unbind. The host bridge
+teardown is also the matching cleanup for dw_pcie_host_init(), but I
+don't have hardware evidence of an oops on unbind.
 
-Please delete unneeded context from mails when replying.  Doing this
-makes it much easier to find your reply in the message, helping ensure
-it won't be missed by people scrolling through the irrelevant quoted
-material.
+> Of the 34 instances of .probe() in drivers/pci/controller/dwc/, on 12
+> implement .remove(), so if this fixes a problem, I'm wondering whether
+> other drivers have the same problem.
 
---DTWiBsS0PG7p6gAP
-Content-Type: application/pgp-signature; name="signature.asc"
+Yes, that may deserve a broader driver-by-driver audit. I only checked
+Meson for this patch. Some DWC drivers implement .remove(), and several
+others set .suppress_bind_attrs, which affects the manual sysfs
+bind/unbind path. Before this patch, the Meson driver had neither, while
+meson_pcie_probe() calls meson_pcie_power_on() and registers the host
+bridge with dw_pcie_host_init().
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmosB2sACgkQJNaLcl1U
-h9BePAf/YY4oU9BYnoYM1az7OlkzIVHobdSBXPdAMqYYrlPj/WIZuTEDI1cdo/22
-hoqllO3JKTLGy44Zy5I1P7ijkgOEkx2mZeJ7AZYOgZPlIXPH6AKbscA/xYjzfYP4
-2CwyerLXM7UAy8RJv2Kimqj24HF6mzVVgYRbghHGqDWnLSGWj6BQLSlgaUYhwIcM
-xdrydiGGZz2vkC/HOmwFqpGSyk4XQAm3HFkW5OwsK3R6CmVSwcFxa2fhjcTw8CXc
-3gcvi70GBGQi8+9nMiAyGmnqxT4aONevk4cF8sVxLOxH1Gg0hwgMmsllFORiBdap
-sDGZbqCPoyuQ/1hjHLvs3sqbo32+3Q==
-=PhOT
------END PGP SIGNATURE-----
-
---DTWiBsS0PG7p6gAP--
-
-
---===============4776064859864551302==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Thanks,
+Shuvam
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============4776064859864551302==--
-
