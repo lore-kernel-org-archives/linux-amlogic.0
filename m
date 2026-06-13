@@ -4,71 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0742CD98D8
-	for <linux-amlogic@archiver.kernel.org>; Fri, 12 Jun 2026 22:19:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68A80CD8CA8
+	for <linux-amlogic@archiver.kernel.org>; Sat, 13 Jun 2026 22:55:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Message-ID:Date:To:Cc:From:Subject:
+	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8oyDYPYXKVKT7Psd4CGD3itugMGU7TdN2HEgb4SwQU8=; b=N9OmOysUVfh0/V
-	flTlGebSylTo1HiYTtOJA4GzUsSk1yQnvygBFJmr1eCHkYzRuo4pqG1uSFlFhfw1+nCgOikm6ftfG
-	mTqgZWNeMZRtRAeiU1N6Z3HmTCzWbPxnGzI/SEpac0i1wMQx3TX5izU5bbIf+71kxIw6kzZHwq8Bf
-	Uu+q4oEuls5Ay7B2r9TK3XriyQQzwUT/MkAQhaRA7GYhZxqv3g4yQ2YbnPiZhTl8OYHEBdpeKMKOF
-	ptTqpnP98kLmWJfCD+Q2V1gNsaU1ZefU5L55wcpjb01o8jzvk92FgvkR/EHOfV8ZvmBKIK+zeeVmw
-	XcsX087DUdctBzUHJF4g==;
+	List-Owner; bh=VP0e1/xFcrnPpy/d7ISxMVtTlY4eljmvgUDbH8CV1Cg=; b=AcZXFtQz4u+RhP
+	u9t8atT2xhKrrQiqJE4ZNqxs0wkisDPNGcCeHnJKQrcBznl3IfVMOw33j5YOgwyaq5y3ZvcX3otaR
+	vLIXW5E9BLPfUjZ85/sAJFRZ7+hQtH3FoJdrzBEvuNoGg+DRFWKxc/XP7LTkAX9FrAF8TcILpksM6
+	rOByE1DO43zQTgD03XkNDJ3Ua5oU4L3me9r6UvMz7OcbZFgWGK2nveKPI3oDMxSE44qMORVtbcN0y
+	8FkPOcC9/O7pXZ0ikgWYqWSFiVD++VLd1CA1VmmKPzEKSI+i83iJogrt7Z3ZeMsRQQ1F2l2zrOnLF
+	Fmd0dl94+gkiKwCgMN7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wYADe-0000000BenR-1XQK;
-	Fri, 12 Jun 2026 22:19:18 +0000
+	id 1wYXFn-0000000CakU-3jnK;
+	Sat, 13 Jun 2026 22:55:03 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wYADc-0000000BemS-2xhu;
-	Fri, 12 Jun 2026 22:19:16 +0000
+	id 1wYXFm-0000000CakE-14ea
+	for linux-amlogic@lists.infradead.org;
+	Sat, 13 Jun 2026 22:55:02 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 2487A60008;
-	Fri, 12 Jun 2026 22:19:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 388891F00A3D;
-	Fri, 12 Jun 2026 22:19:12 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 02783600AB;
+	Sat, 13 Jun 2026 22:55:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D46F1F000E9;
+	Sat, 13 Jun 2026 22:55:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781302755;
-	bh=raD0DV9Bl5ViipDNB5LAvSIjSFwwXj88qPYZmqyqjq4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=WswevIXRn/FEU/DWqFdMMd9Y+16KNZtVFclRhEjHm4yFRZXPRyNEg19Y0rTSVWZ0U
-	 +dcNxIBbI4NiXRWVqhtNt3ogbY2wJ7lGSW9X4Rwz2yhRFOmn8vqrKhMifPider3OQv
-	 xgKX5Gs1IFjbfAUKuKXP9bun0XzGRpcfT6/jNam/ekyTC4L+A1TKOLYbXCR10qmPVZ
-	 TvezH3AYeWHzfqZbKLKWH3QxjW6O0/22TMnqnPdJuOPLGUYJqa/dsGotGoNxSm4FMK
-	 mxPUnfwzJibskb5Fbio1I25k9YxEqSLuEZ84ugPk9t6nw6OaGiaPUiKjstE3nL54GD
-	 TqkVWE+SceHFA==
-From: Mark Brown <broonie@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>, phucduc.bui@gmail.com
-Cc: Liam Girdwood <lgirdwood@gmail.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20260610102153.83367-1-phucduc.bui@gmail.com>
-References: <20260610102153.83367-1-phucduc.bui@gmail.com>
-Subject: Re: [PATCH] ASoC: meson: axg-tdm-formatter: Use guard() for mutex
- locks
-Message-Id: <178120696227.484538.4270206978478924014.b4-ty@b4>
-Date: Thu, 11 Jun 2026 20:42:42 +0100
+	s=k20260515; t=1781391300;
+	bh=zM54oc2YQKLJooiixhUvIE9F7hA5LAA6bb7CaMov7/s=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date;
+	b=JuoEU+pFBTG3I5jQxbPP0PcF6jPibfwTDoBVk0Ea8M+wgQBJvUgm7GvYd/3bT/ROk
+	 LTE/UZ6b+RbvfFPHUufH0wP+cQZFy8+RhPrXf98Lc1Oy1Y3CjjvjFAk2BVKlFe0Dbm
+	 e8BYPbLxpIW0D84uATTPu4wDFQ9HhGggzAERhzDGMQxx8j38OZPaLA1MrEt8mYvgiv
+	 zt4d+cvYnjwtZqwva0tsjjWe6IQJku/XIXS11o/OOCpds/GpBL26dQyZb14saL9x+9
+	 Y6rd9Vhtu6SfHe5qlcautl+0q9HzVgYrX4zCAnlrlOY0ukDCx9wi9jSHDjX+V2ow0K
+	 TIuSBPBnhNg2Q==
 MIME-Version: 1.0
-X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1145; i=broonie@kernel.org;
- h=from:subject:message-id; bh=q/ePDLbuq221yKIMcn/uM9R4k7o9ZqIFjOkpq4bDfX0=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqLIXes3vMx5VTSrzq+Bi0bcUY3ANrcFqllZ+0B
- kA/bI7yUymJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCaiyF3gAKCRAk1otyXVSH
- 0CfbB/wKgwKnTeGoDFLJd4ux2i4QSIdaSdF0wZdVFkFvgFvu5/MaUqyYU3jnveIKpsQTZ4v9Z7w
- yo4Q6ZI/8n3jjbfwkKNWgJq+oqEHB15qiZecTWFqa4LhCidHIPSks4W2d04F17/R86JS1ZESn2T
- q/GgTyBP8zvYGDBnSFr7hmHNGl3/XjF6TMbc6VN1Jva3q6jdxXBA3yE0qLtCm3XnSKpJ9igK2JM
- zsN1dq4a2okuV+xiAW3Hfm9LXDMeEn174EUAKaKxNZqWnK4F4Wkj10cOW81hxhkzSjUKlcMm2n4
- LdVug+WkHhDG0aBnpgei7RARaEMzQwkZHwVTsZnGQQtkSb27
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+In-Reply-To: <1j1peu5nny.fsf@starbuckisacylon.baylibre.com>
+References: <1j1peu5nny.fsf@starbuckisacylon.baylibre.com>
+Subject: Re: [GIT PULL] clk: meson: Amlogic clock changes for v7.2
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-clk <linux-clk@vger.kernel.org>, linux-amlogic <linux-amlogic@lists.infradead.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Date: Sat, 13 Jun 2026 14:21:26 -0700
+Message-ID: <178138568669.819343.12989878200172062964@localhost.localdomain>
+User-Agent: alot/0.12
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,37 +68,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 10 Jun 2026 17:21:53 +0700, phucduc.bui@gmail.com wrote:
-> ASoC: meson: axg-tdm-formatter: Use guard() for mutex locks
+Quoting Jerome Brunet (2026-05-29 06:51:45)
+> 
+> Hi Stephen,
+> 
+> Here are the Amlogic clock changes for v7.2.
+> There is just a couple of minor DT bindings fixups. Nothing major.
+> 
+> Please Pull.
+> 
+> Cheers
+> Jerome
+> 
+> The following changes since commit 254f49634ee16a731174d2ae34bc50bd5f45e731:
+> 
+>   Linux 7.1-rc1 (2026-04-26 14:19:00 -0700)
+> 
+> are available in the Git repository at:
+> 
+>   https://github.com/BayLibre/clk-meson.git tags/clk-meson-v7.2-1
+> 
+> for you to fetch changes up to ca89c88bcf69daca829044c638a8163d5ce47af0:
+> 
+>   dt-bindings: clock: amlogic: t7: Add missing mpll3 parent clock (2026-04-28 10:42:47 +0200)
+> 
+> ----------------------------------------------------------------
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.2
-
-Thanks!
-
-[1/1] ASoC: meson: axg-tdm-formatter: Use guard() for mutex locks
-      https://git.kernel.org/broonie/sound/c/a68bbd4ac1b1
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Thanks. Pulled into clk-next
 
 _______________________________________________
 linux-amlogic mailing list
