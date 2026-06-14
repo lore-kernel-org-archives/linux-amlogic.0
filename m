@@ -4,54 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68A80CD8CA8
-	for <linux-amlogic@archiver.kernel.org>; Sat, 13 Jun 2026 22:55:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17F6ECD98C5
+	for <linux-amlogic@archiver.kernel.org>; Sun, 14 Jun 2026 02:22:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-ID:Date:To:Cc:From:Subject:
-	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VP0e1/xFcrnPpy/d7ISxMVtTlY4eljmvgUDbH8CV1Cg=; b=AcZXFtQz4u+RhP
-	u9t8atT2xhKrrQiqJE4ZNqxs0wkisDPNGcCeHnJKQrcBznl3IfVMOw33j5YOgwyaq5y3ZvcX3otaR
-	vLIXW5E9BLPfUjZ85/sAJFRZ7+hQtH3FoJdrzBEvuNoGg+DRFWKxc/XP7LTkAX9FrAF8TcILpksM6
-	rOByE1DO43zQTgD03XkNDJ3Ua5oU4L3me9r6UvMz7OcbZFgWGK2nveKPI3oDMxSE44qMORVtbcN0y
-	8FkPOcC9/O7pXZ0ikgWYqWSFiVD++VLd1CA1VmmKPzEKSI+i83iJogrt7Z3ZeMsRQQ1F2l2zrOnLF
-	Fmd0dl94+gkiKwCgMN7g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=zsVqjTuNGvqag0GNzVh+JzNzjskITXjXcZvL5gQIvxY=; b=nY5MSEJdqkzed0
+	mdoY65zn4NuWmE3H+KKlTd4t/uViCZh2FZzFEBH/nsfWib1+2ozy9Mw4lg7P7j1FT8JadTTIvAKJa
+	EtAhjyAkkCbI5VIafEuFLBlYyJuIB+g+IsLWhWSXlMopjmusaUchNxJt98y9o/KydM/RKqC3EdKmX
+	x0hcqTdw+RmoHLoaalOVmtFQ/rhRxJdE7eG2Dx/ABYettswc+AZKuG2ha73oMZbtDYeiVta5wQb6x
+	PsaH700EFgpnL63gTnev1VbLaMyWU+CHf4df2qb++EqOlebreHU1ouLkwA7LNZLHjkz9bqqZ6qWK3
+	ZJSZW6KAePXfO/pZkmxg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wYXFn-0000000CakU-3jnK;
-	Sat, 13 Jun 2026 22:55:03 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1wYaUW-0000000CgIf-01EI;
+	Sun, 14 Jun 2026 02:22:28 +0000
+Received: from ferryfair.com ([103.227.96.30])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wYXFm-0000000CakE-14ea
-	for linux-amlogic@lists.infradead.org;
-	Sat, 13 Jun 2026 22:55:02 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 02783600AB;
-	Sat, 13 Jun 2026 22:55:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D46F1F000E9;
-	Sat, 13 Jun 2026 22:55:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781391300;
-	bh=zM54oc2YQKLJooiixhUvIE9F7hA5LAA6bb7CaMov7/s=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date;
-	b=JuoEU+pFBTG3I5jQxbPP0PcF6jPibfwTDoBVk0Ea8M+wgQBJvUgm7GvYd/3bT/ROk
-	 LTE/UZ6b+RbvfFPHUufH0wP+cQZFy8+RhPrXf98Lc1Oy1Y3CjjvjFAk2BVKlFe0Dbm
-	 e8BYPbLxpIW0D84uATTPu4wDFQ9HhGggzAERhzDGMQxx8j38OZPaLA1MrEt8mYvgiv
-	 zt4d+cvYnjwtZqwva0tsjjWe6IQJku/XIXS11o/OOCpds/GpBL26dQyZb14saL9x+9
-	 Y6rd9Vhtu6SfHe5qlcautl+0q9HzVgYrX4zCAnlrlOY0ukDCx9wi9jSHDjX+V2ow0K
-	 TIuSBPBnhNg2Q==
+	id 1wYaUT-0000000CgIH-0P2b;
+	Sun, 14 Jun 2026 02:22:26 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=ferryfair.com; s=s1; h=Content-Transfer-Encoding:MIME-Version:Message-ID:
+	Date:Subject:Cc:To:From:Content-Type:Sender:Reply-To:Resent-From:Resent-To:
+	Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=A+FxAlvu+74WmZK0ANpEi4u2g+JsLZf/9T/GHqq354c=; b=wQ0Xrke+mswiU+47Dtt52p3n0D
+	oqHwKFCxOd0VKnMXD17qYfuRKeaGkVfaaRUDwGFjLeqXisfGbZiso2F4iJtdqRAfPUp84GS24c5Pk
+	j+1sVQpjxikOIdhQD2ayYB3sSnIyHabg/9BToofR2tmJdDAbJ4TgCtWmN+iBZ8CWrNvmbxqEpFlsD
+	pQm807ViVcKF3YEpx52Q9tCWfQ8QkyX1lTGORvqD4GCFHkIHnCq3J1mVxKDo+fR3jy13JO/XpbLzE
+	JlMavtCIQZWuSfC3n5zMpyOSHS5zA/kH+HjlBWkX6dOZpwrhrZyPsaAte4/334SUCdUU1DXz3VID3
+	Ls5zSm6w==;
+Received: from gowtham by ferryfair.com with local (Exim 4.99.3)
+	(envelope-from <gowtham@ferryfair.com>)
+	id 1wYa5x-000000005KI-3Bfp;
+	Sun, 14 Jun 2026 07:27:05 +0530
+From: Gowtham Kudupudi <gowtham@ferryfair.com>
+To: yue.wang@Amlogic.com,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	mani@kernel.org
+Cc: robh@kernel.org,
+	bhelgaas@google.com,
+	neil.armstrong@linaro.org,
+	khilman@baylibre.com,
+	jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com,
+	linux-pci@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Gowtham Kudupudi <gowtham@ferryfair.com>
+Subject: [PATCH] PCI: meson: Fix PERST# timing by asserting reset before LTSSM enable
+Date: Sun, 14 Jun 2026 07:26:20 +0530
+Message-ID: <20260614015620.20432-1-gowtham@ferryfair.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-In-Reply-To: <1j1peu5nny.fsf@starbuckisacylon.baylibre.com>
-References: <1j1peu5nny.fsf@starbuckisacylon.baylibre.com>
-Subject: Re: [GIT PULL] clk: meson: Amlogic clock changes for v7.2
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-clk <linux-clk@vger.kernel.org>, linux-amlogic <linux-amlogic@lists.infradead.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Date: Sat, 13 Jun 2026 14:21:26 -0700
-Message-ID: <178138568669.819343.12989878200172062964@localhost.localdomain>
-User-Agent: alot/0.12
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260613_192225_271025_B3BBEC70 
+X-CRM114-Status: GOOD (  10.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -68,33 +81,39 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Jerome Brunet (2026-05-29 06:51:45)
-> 
-> Hi Stephen,
-> 
-> Here are the Amlogic clock changes for v7.2.
-> There is just a couple of minor DT bindings fixups. Nothing major.
-> 
-> Please Pull.
-> 
-> Cheers
-> Jerome
-> 
-> The following changes since commit 254f49634ee16a731174d2ae34bc50bd5f45e731:
-> 
->   Linux 7.1-rc1 (2026-04-26 14:19:00 -0700)
-> 
-> are available in the Git repository at:
-> 
->   https://github.com/BayLibre/clk-meson.git tags/clk-meson-v7.2-1
-> 
-> for you to fetch changes up to ca89c88bcf69daca829044c638a8163d5ce47af0:
-> 
->   dt-bindings: clock: amlogic: t7: Add missing mpll3 parent clock (2026-04-28 10:42:47 +0200)
-> 
-> ----------------------------------------------------------------
+On warm reboot, the PCIe controller's LTSSM starts link training
+immediately if PERST# is already deasserted from the previous boot.
+The driver then pulses PERST# for only 500us, which is too short to
+properly reset the endpoint device that has already started training.
 
-Thanks. Pulled into clk-next
+Fix by moving the PERST# assert/deassert pulse BEFORE enabling LTSSM,
+so the endpoint gets a clean reset cycle before link training begins.
+
+This was found on Amlogic G12B (A311D) with NVMe on an M.2 slot.
+Cold boot worked because POR held PERST# low; warm reboot did not.
+The fix was confirmed on a Banana Pi CM4 with Waveshare IO base board.
+
+Signed-off-by: Gowtham Kudupudi <gowtham@ferryfair.com>
+---
+ drivers/pci/controller/dwc/pci-meson.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+index 5f8e2f4b3c12..3a7e9f1d5b8c 100644
+--- a/drivers/pci/controller/dwc/pci-meson.c
++++ b/drivers/pci/controller/dwc/pci-meson.c
+@@ -310,8 +310,8 @@ static int meson_pcie_start_link(struct dw_pcie *pci)
+ {
+ 	struct meson_pcie *mp = to_meson_pcie(pci);
+ 
++	meson_pcie_assert_reset(mp);
+ 	meson_pcie_ltssm_enable(mp);
+-	meson_pcie_assert_reset(mp);
+ 
+ 	return 0;
+ }
+-- 
+2.49.0
 
 _______________________________________________
 linux-amlogic mailing list
