@@ -4,64 +4,139 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3746FCD98C5
-	for <linux-amlogic@archiver.kernel.org>; Sun, 14 Jun 2026 22:25:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FDA3CD8CA8
+	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Jun 2026 02:47:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bU+g/3u7euWE65nMCSBSR86myZrjy5Fpg/5mh9UgUJM=; b=wnrA99A6MOMp5J
-	iVvFjIoO/WcJwHShjx7Eq/6SKd3kWPbV92kpUAekBxHAQI9JFJc8M8XXHbggZIkyMQ5tx7yqTpyue
-	6YkrRAIElwirFK3G/Og/CwpZfcp0VCI5i5eHQfC1lrOBI1+T/+dkL+RcUJ1ctdCzGXvcbTvTYHyEr
-	SUqFQotW3JVnafFZsMysOnGp8m4qMJdDd300itrujwd8zUIaID6f9e777mchIWLrD9qbEmWQRazXA
-	+VDydRuBQgE4b+OkRilDQjYfyeNt/TfIAktKLf1cM2x4nuandyAyrEZUw587/kFbsBcHp3LEiSDt6
-	z1NApl3L638+KMtPLwOg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=/3S0a4wj2XWi+9G1dROMHJi+s1qnsnkUwkMrufClKFs=; b=ipOvmj1ItXL3beSJFvV91t+SWv
+	ysYeEFW4eBExYigMrJbZf78fg+UsJGc1/3ZQKPUhTlzRtqXtBcKdQwdzjRwSX/F6uj5HzujmKh6Wr
+	aiyN+nfSbZzxrI8aq4ndnxcv1ZzVnVtR4NFyQjhFKms6Y1BzHjBL+lOowF8Y7TQ9zdnfQRxB42S69
+	54hani3QBmnUYdvZtZRU5TFuuP/xBRqlgI/ly9eL/u/GhNYxv/T0RtKDF40CcHDCPnN/L67izwzN0
+	CE6wopHhs9IuhRZFC9OrCWD1zBb6lG4XizRmxg3bGVFxhyohIllQEgYwyXFzU71Hvigm/yJe+PWMy
+	FVselDqw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wYtG9-0000000DKsP-2e5D;
-	Sun, 14 Jun 2026 22:24:53 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1wYxMZ-0000000DUSB-3g5X;
+	Mon, 15 Jun 2026 02:47:47 +0000
+Received: from mail-japaneastazon11023132.outbound.protection.outlook.com ([52.101.127.132] helo=TYDPR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wYtG7-0000000DKsF-3Ryl;
-	Sun, 14 Jun 2026 22:24:51 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0EE99442F8;
-	Sun, 14 Jun 2026 22:24:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C1201F000E9;
-	Sun, 14 Jun 2026 22:24:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781475890;
-	bh=4JM9nQpWmXqoX/eAkM6+OEne4H6FBJgDy7rxA2wS4HM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=CtEtALnfbZB8tN1Te+X2hEQnPLousvOYpOZBX4AjGSYcYcjWVGeeS82pomOC4+dQT
-	 2qv3QHRkPkYxU+Wh7T0kMIL0AKTiCYlutlmONQi7kH0oQ7LDp+jyWEf/BFWjp41Tk8
-	 Eqvn13Q8w8j6C49OjbDcjG7KhNDa2SED6O7+JAopyX+b6UpiIPa21GKT7DRg6bYHcP
-	 hiEWADS8aM2wR6j7/A+56eJLXuPsegheCZcZH3GRs8Fyc0ivRd9rOk+WZI0GPqcPxF
-	 icROupolpxboqBAL8XVZpM/AJ2zduVBzMf3cAX3WiyFN3hOSIQaQKjXtF67PwVo4bk
-	 RnJDUjc973C8w==
-Date: Mon, 15 Jun 2026 00:24:47 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: linux-kernel-dev@aliel.fr
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Beniamino Galvani <b.galvani@gmail.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Lukasz Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH v7 2/8] dt-bindings: i2c: amlogic: Add compatible for T7
- SOC
-Message-ID: <ai8qCJ89VzH7YaNL@zenone.zhora.eu>
-References: <20260603-add-mcu-fan-khadas-vim4-v7-0-594ba8a965d8@aliel.fr>
- <20260603-add-mcu-fan-khadas-vim4-v7-2-594ba8a965d8@aliel.fr>
+	id 1wYxMW-0000000DURW-3NUk;
+	Mon, 15 Jun 2026 02:47:46 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QQl58d4hdChqHe3JIRyB2lnK/h0hD+E/H3t0jzAwHHMyCAzdrXRVvwxCorWajHVB33eSsk8iui664zgDLuWdQEjh/gwn6jcuHR34F2X+aLjW3i3QHCDYqKD29D2OrpbaDmaffiAw8/e7770FIRD/YlAUTVkJtohPfVOVtjqpnVjM9SarLEHGBsb8JXE/B0XwmHq1uJ7Bw42lL6wjgpMw1zJnCaXC3b7CuHr4VJ9pzXdHsde8zoP5xUHgUmUzTsgTObdmhRj5P07wDUiX9KXxsdL6xpa3o4NIFFwuAiT2JkUywK5YUf/IOJ4Qqu4qMXt/Cu7ZQObAOEKZCH39DO6eDQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xKz+fEQXy5AR+daBX5bEguEk2Znl7BH+JvY1VqX4VGw=;
+ b=ffgcx+uBIaC5f1K8iNddKSKXjAeygiUGG3UFZrES4KY3k1ABFFccsu5SmE50ajHX5rYQiJDM2B40mBHJCZ4AB7xzpSTvHuvNJ7Lr4A1id9r6HZfxvxUO7AS3Cx5dChrPptjq559Zavu7Xzk/xFGhpMfm6r5DyOTQzGYRNFY+G5iEr7PbkEpt+03KIdcKLGui4o7v/maf26ihiFkJBiDHFoFH3t+t1L3rNczS+CW6GLvh4yQD5dYuB2VhuZfQeC6QC5W1+UbhFGmVO9hoc06cP6KqUCaCvLi8anw2zkQklv4Q8oHiUx3vVIeCfVrcK9XdRJykAyGGMO15qWdJpTYD/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xKz+fEQXy5AR+daBX5bEguEk2Znl7BH+JvY1VqX4VGw=;
+ b=p2L3glStNdgmmcdtoGWxGq8ephNWNKOJBHT9q3F7iTR2Fb1Fn5w2TsNSTbpcxCy1LUQg6mTRbzhxo4bg48jpMRuzs8MC/E+p8SRcU2jQRQnkRFyNYaFyqMD9D2jAk41vbwBdcyNF9ehpiXZPGGDcoh/68co4B2b+Cj/NUbeKYzpoPsf65MWBaoSet5cKoZKMwDnwxfPq1SAGB2YIw5cg2U50NEo3fpTy1cCUbzaaH7RN0JTIugCcFlx/t+5P5Fb4LFuOCYogF42Genp/dw0b6U4z7W1Sh86umCCQXzE9wUAHLhOtY00UVnkyaT64AAwt2GctO5CPwss7I/mmrTNUmA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+ by KL1PR03MB8217.apcprd03.prod.outlook.com (2603:1096:820:10b::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.11; Mon, 15 Jun
+ 2026 02:47:17 +0000
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::78d4:9dee:2e32:d1e4]) by TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::78d4:9dee:2e32:d1e4%3]) with mapi id 15.21.0139.009; Mon, 15 Jun 2026
+ 02:47:17 +0000
+Message-ID: <a79e58b5-3a11-4593-847d-ba92527549bf@amlogic.com>
+Date: Mon, 15 Jun 2026 10:47:12 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 1/2] dt-bindings: pinctl: amlogic,pinctrl-a4: Add gpio
+ irq property
+To: Conor Dooley <conor@kernel.org>
+Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20260611-gpio-to-irq-v1-0-12201716f23f@amlogic.com>
+ <20260611-gpio-to-irq-v1-1-12201716f23f@amlogic.com>
+ <20260611-ungloved-snowplow-522e7c0b7a51@spud>
+Content-Language: en-US
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <20260611-ungloved-snowplow-522e7c0b7a51@spud>
+X-ClientProxiedBy: TPYP295CA0035.TWNP295.PROD.OUTLOOK.COM (2603:1096:7d0:7::7)
+ To TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20260603-add-mcu-fan-khadas-vim4-v7-2-594ba8a965d8@aliel.fr>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|KL1PR03MB8217:EE_
+X-MS-Office365-Filtering-Correlation-Id: ebf27357-d1a6-4cd7-07d8-08deca8869d1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|376014|23010399003|366016|56012099006|11063799006|22082099003|18002099003|4143699003|3023799007|6133799003;
+X-Microsoft-Antispam-Message-Info: ZM2cAWM6XnxqO8iBSR1/UEmpbbK2vbtW70sM+P8K/Lykk21Rr0cWzUBs1bQJcs4nF+VroZNuzVE3cC6qCu/sHTdoFwJK+43nGdSiVlSbQaC3k0qXHNcdbl/f1N7+AIwcthq7DZtoFx2V7AKM3W6UAZP3ivltewDdYiJcgXvWdmEC8yGDvcReqDTFVssDB4D5VJy/WGrz9j4wDoRI7Z6Kucc1Q3Wx0HaDOciddSF3qlMn4ZLP0eR0b6gnMGmJ1ZJMYlu6C4JAeGP7ia1jDNYhfgtKPAKrmH8YDW38IqP9veumm3fSe9+ZS0zMaqI9HpnN3ttVfPjF0xpdtvtBaUB+4am9UR8ftlnIJpPGkAKF0FYdSBoEJ9QUG417Q4G8RSil2PWkMHvls+GW8K09je40003+T2arUW2WZUZEe8QTuLnaVJu9L0ktbyesO9KmQfrzkHgI8TPwh3mThLYbSfaU6WhzrBX+87Vx560DsQfRTAOCHZCIBz7NPfQGfVV6NvunKeUeRlFbMvuhLDtHt9ZqUDd5U1r2NtZSZ9fjmbG1FgMZnsTKGzyoGnO8RxQ9LFViM8aY7lY+XGprp2VMjZrjIPeopHXERGFtmSsnoJ1LU4hk7g3672FdtG2txrp1/X4eaM5jSES6/AzO3hHV5ojiUyPlP8+PInYMXiduFVtidfHCNeFxng7UITFrm6hZfkZNtFKT/e4qU5ldy0xi14C7QA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(23010399003)(366016)(56012099006)(11063799006)(22082099003)(18002099003)(4143699003)(3023799007)(6133799003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dnhlSFpDYTlBbXErVUEyT1Q5eGh5Vzk2cnR3M0E0cU5NV3dabFJudFdXdC91?=
+ =?utf-8?B?QUsvVytaaFoxMnNvcEZMRkJsNUdybkIwMUxKdmgwVm96SSt5RzcraWRxZDhs?=
+ =?utf-8?B?a29uK2lENXFsL3pkcWNlQ2QwR2lZRDR3V2V2bWJWTi9iTnZPazkvSHRVbTVF?=
+ =?utf-8?B?T00xWkV0d1BkQmRKR2RUOGdZK0N0bHhHMDlXMWZMSkFEWFpMQWZZOUJlMVE4?=
+ =?utf-8?B?S1UwWDFMbWR4YlJjaU5GU25xY0dPTXV0YU9HeVNHLzVsZUFKS2FnVGM3N2tj?=
+ =?utf-8?B?Vi8yZU1hb1hvWU5DQ1ZKWGRPRWJlME5aTXNHeG5FQytuRnNySmhTWndqRFJ6?=
+ =?utf-8?B?cDU5a3J0ZkhjTkd3SlFSRW80YTlrQ3Y5YTdqTmhJSVJ4ZzVkV0pJeEdUNVNm?=
+ =?utf-8?B?QSs4bnZ0SkJCekFwUjVOMDlZTXZmNFp5SGZ6L3V6OW93VzBMcEVPdDJVTHlT?=
+ =?utf-8?B?cGRLcUJqaHphSzRHcFQ1aTNNQXRnV1dmWEwyemFpMCtmd05YREluRk1mRlhh?=
+ =?utf-8?B?SmdONjljVnV0UGRBaGFNMGNBNW5lQzZXVVVyYmcwbkgreWhuS003MC9zc08w?=
+ =?utf-8?B?bDkwTlVtTVhIQTNzWjVDMzdzMHZxdk5GNkZ6WkZ0eXdpQm9ENHVkbVU3SzJK?=
+ =?utf-8?B?cEpmd2p0U1BId1cyUnNkNkQxNkVCeWE3cHpqeDAwTzhJdXZCK0NKSkc4Yk5y?=
+ =?utf-8?B?N2lPZlJvNjQwUUIrTDhJZkNmenpmdGRUeS8zRVZhR1A0ZWVGdm4ybWVpaHpX?=
+ =?utf-8?B?czdyYjdnSlJlb0puOWVMRUhBK0dvc1BpTXVNUktHb2p6aWpnQjgwVXFObnVm?=
+ =?utf-8?B?cmo3dTkzUitoaldSaTZBYkFjSVB1VWRuaE5UejNJaVRpV0JEeS9YMlE5U3hp?=
+ =?utf-8?B?bFM5TkQvaTVkRkltdVRhWi9sMnU5cytqWTJFaHM2UWxwZlhQYVIrNGhJWXF1?=
+ =?utf-8?B?MnJYT0JzZ1BObkdnaGRQbUFxSFBQaUJTWmE2MXBLNVVBRFdYSjJDSG1DVXBh?=
+ =?utf-8?B?L2lmcDNqWGhzOWZEZDFmMnJmSnhSNlB2cmRsNnRySHQweTZnU2tNSFV3WDVm?=
+ =?utf-8?B?T01RclFXWGc1bnFYWUwrb1d1K2pWVEdNOUJCL2h1cVlWTHFUR0I3R1M4Qzg1?=
+ =?utf-8?B?cGptaFozOGd0Q25UemIyWmtNaThhK2VIdnYwYTg3NmZNZzJjZ0djYnZQOUk1?=
+ =?utf-8?B?dHFmdVdLWlZ6aWloZmVaTUxEdFNXVUNuREtuNThjUWZ4RFNodlN4cENOa3Q5?=
+ =?utf-8?B?WWtSRm1NblgxWG9yUG83YTgxd1VMamVibG9VREF3cDZ2SE5KeHZIeDE3dlR0?=
+ =?utf-8?B?MzVKM1ZUUE1BbnZtSjZLVlh4WWc0Q3p5OEN4OUZjT1JMRDUwSXhmcjlOazZQ?=
+ =?utf-8?B?Q1ZNVDV2R1EydVlwUzlIMmRMYy9zZkU4NGw3MUFpR2poS1AwL3pQZWpqYldh?=
+ =?utf-8?B?em5kK3JBUVFKZnNsanV5YnZNMEZlN01sNzY4K2JhTjVpN3Y5L3NteWdJdHRt?=
+ =?utf-8?B?QmgzK2VHNGM1eVp2NXh1cW8wSHFFNXhERkVBcmtGMHQxRktJbkMwL3oxRlg0?=
+ =?utf-8?B?OVpFZEhXQkVWNUJ4NXFsNWxxcmFNM1MyVEJ2aWRmcWhvdEFqNmdNNjlpVXRP?=
+ =?utf-8?B?NURSQkY1UlYwNlZhYk1iK0RWWmNEbjNxL2NEM3ZQUm5LNlYrWnFXTHhaejlT?=
+ =?utf-8?B?UDZpVkJHejlqb1dlVUI2Q3c0d251L2ZoRUJ0VUl6Qm9SOVAxUmthZXlLdTJK?=
+ =?utf-8?B?eitQTlY5NHhBeGNvOXczNmZGS1RYV3lIUzdOMEI2VmVQYnpIaXd1U1liaGRE?=
+ =?utf-8?B?MnV2b0s3bzJuT0JZbmNuUEpwbmhxR1I0anA4dUtmQ1BlN1ZtWURXS2E3eUVS?=
+ =?utf-8?B?dVpnQWppbHNaZ2k0TEgvV0NFV1lPYUluWk9MMDhHdXE2Y3NML2xvZDhTTkVG?=
+ =?utf-8?B?akJ1NC9jRVJmYm0wWWEzNGZiaHc4eHlWRVIycW5EZW1xRWJ0ZEp5OFhHRUQw?=
+ =?utf-8?B?MzlaazB4ckkvaFdaVFRkK3d2aXk3VVhYZFFyeDJBUjQwY1lTTVNPclZkZG1r?=
+ =?utf-8?B?aGZ0V01mNXNDQzZpU3NHS1NmR1ArOXZRZGhFUTlTTVRnK0RXbVlTcHJSYkFL?=
+ =?utf-8?B?MWp3UWNxTDdPYWlsSEs0Uk1HaDB2Ync5T1J3RXZsKzh4NG9Mazh3M1VCZWpa?=
+ =?utf-8?B?VXBKeEZJUHd3M3BLVDJ3eU9wa1ArWTErZGd1ZnFUbS9PVGp2b2tTSVFSblAr?=
+ =?utf-8?B?T3RUQ2l2cGJYdGdwK3c0a0xnRGtEbHYxSy8yd3RnbVVVOUlodTFBbHFsUk41?=
+ =?utf-8?B?T1RZcXRueTJVcDgzY1hJWG0wWUNYV2xSVHJvWUtEam9wWWFGTy9rZz09?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ebf27357-d1a6-4cd7-07d8-08deca8869d1
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2026 02:47:17.5716
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: mgrVLgytZs1aLsWEXIwodusZC5ocNUC9xvsKx6/ncXGhPH6JmualO4NQT4/Ys/e2q0kGsAckq1ea9fd7j0CdMBiX7AvNKB4TDrkoGCIxvNI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR03MB8217
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260614_194744_867943_4E56507C 
+X-CRM114-Status: GOOD (  16.28  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,25 +148,103 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Ronald,
+Hi Conor,
+    Thanks for your review.
 
-On Wed, Jun 03, 2026 at 08:05:24PM +0200, Ronald Claveau via B4 Relay wrote:
-> From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+On 2026/6/12 01:39, Conor Dooley wrote:
+> Subject:
+> Re: [PATCH RFC 1/2] dt-bindings: pinctl: amlogic,pinctrl-a4: Add gpio 
+> irq property
+> From:
+> Conor Dooley <conor@kernel.org>
+> Date:
+> 2026/6/12 01:39
 > 
-> Add the T7 SOC compatible which fallback to AXG compatible.
+> To:
+> xianwei.zhao@amlogic.com
+> CC:
+> Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+> Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley 
+> <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin 
+> Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+> Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+> linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org, 
+> devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+> linux-arm-kernel@lists.infradead.org
 > 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+> 
+> 
+> On Thu, Jun 11, 2026 at 07:54:33AM +0000, Xianwei Zhao via B4 Relay wrote:
+>> From: Xianwei Zhao<xianwei.zhao@amlogic.com>
+>>
+>> Add the hw-irq property for each GPIO bank and enable interrupt-parent
+>> for pinctrl so that gpiod_to_irq() can translate GPIO lines to IRQs.
+> Uhhhhh, what? Why can't you just use the normal interrupts property?
+> 
 
-Acked-by: Andi Shyti <andi.shyti@kernel.org>
+The interrupt cannot be used directly because the GPIO bank only 
+provides an IRQ base, which does not have a one-to-one mapping with the 
+actual hardware interrupts.
 
-Thanks,
-Andi
+On Amlogic SoCs, GPIO interrupts are handled through a mux. Multiple 
+GPIO pins are mapped to a limited number of real interrupt sources. The 
+implementation can be found here:
+
+https://github.com/torvalds/linux/blob/master/drivers/irqchip/irq-meson-gpio.c
+
+To use a GPIO interrupt, an unused hardware interrupt must first be 
+allocated, and then the corresponding mux register must be configured. 
+This allocation and mapping are already implemented in the existing driver.
+
+In that driver, the mapping is performed dynamically rather than simply 
+calculating:
+
+irq = irq_start + gpio_offset
+
+If the interrupt is used directly, only the GPIO index can be obtained. 
+The real interrupt number cannot be derived by simply adding an offset, 
+because the hardware interrupt must be allocated first. Pre-allocating 
+all interrupts during initialization would prevent later GPIOs from 
+obtaining available interrupt sources.
+
+Perhaps other names would be more appropriate here, such as "irq_start".
+
+>> Signed-off-by: Xianwei Zhao<xianwei.zhao@amlogic.com>
+>> ---
+>>   Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml | 5 +++++
+>>   1 file changed, 5 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
+>> index b69db1b95345..65ec9121300e 100644
+>> --- a/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
+>> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
+>> @@ -37,6 +37,8 @@ properties:
+>>   
+>>     ranges: true
+>>   
+>> +  interrupt-parent: true
+>> +
+>>   patternProperties:
+>>     "^gpio@[0-9a-f]+$":
+>>       type: object
+>> @@ -65,6 +67,9 @@ patternProperties:
+>>         gpio-ranges:
+>>           maxItems: 1
+>>   
+>> +      hw-irq:
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +
+>>       required:
+>>         - reg
+>>         - reg-names
+>>
+>> -- 
+>> 2.52.0
 
 _______________________________________________
 linux-amlogic mailing list
