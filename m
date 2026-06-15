@@ -4,52 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE417CD98C5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Jun 2026 09:24:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2201BCD98C7
+	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Jun 2026 10:35:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BjHQRX30Q8TghGkyupEEatOBTY686HRZP3igI883KLI=; b=M1GyJko+f4VKVE
-	Odlhp6Q7fi//HBT+Hs046UYYhqN0gqac52ms2Q/o6ckwRN+V3ISGWDu2wgupm867KpNR/d4OTP870
-	DGAMq+/xXZMXtWqsuA+4soez7hPQEm6afNfd/h3yVqoRmwX5yPrcEcVw+urnWRegjuJi3lUZijz8S
-	LmFlAWiswXqzHylvwWA/jV8TXjz6kq/1rDuBfj/yxneqztwEF1RNroPoEBmBxY5B/TV2EpPJxhrI7
-	h9vfQ10jJNsGUGT+YX0hRPmBnO437OrrycMi2Pr4M6Eyr6bXXbENWaLyjgWELxdwb+2kGf1kci2eK
-	Cwxv55317zIUgTok0GKQ==;
+	List-Owner; bh=vIvwpl0aW/mqaJAf1ut3/B9hUBgiUET9mFzH/nNJnCQ=; b=z5jFIT1IyV67bE
+	4ajOYvU1z13KQKHSJricB70CnHfapPQkINkGGatpbZvgtsbf4RVE0ONONDwojbw6rio5vPY+Inch2
+	6i0bTc2Whg/HApwDQQkTKNJ4x8GbUoqM5oEe4P3MLp7Iw9RrROHJ7midMC+T1XPKacxZKunvt09LY
+	1h4M+sNKzAsU+0/bFMQujbIyLn8ZdRHyl4NjXrS7IrycX840eBnCItf3pboOoLEXDXasi4TGpb2xx
+	GMVUdjIg5hfyyrqx/eUsbqrXprMUoCvBBT24Yt3S2DvSe/n4nGOuxZX8y1rQ1T3NziIdDoiSNdKnz
+	yDA/+61bf6OGYW91+0cQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wZ3Ye-0000000Dxyr-0yAA;
-	Mon, 15 Jun 2026 09:24:40 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1wZ4fT-0000000E3YI-0Byd;
+	Mon, 15 Jun 2026 10:35:47 +0000
+Received: from courrier.aliel.fr ([65.21.61.41])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wZ3Yc-0000000Dxyj-3la2
-	for linux-amlogic@lists.infradead.org;
-	Mon, 15 Jun 2026 09:24:38 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id D576060154;
-	Mon, 15 Jun 2026 09:24:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 671C31F000E9;
-	Mon, 15 Jun 2026 09:24:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781515477;
-	bh=0TUcVvQpEVXhLLql5qMpE0hm6UALvnl6qUvy4C4qs00=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=nRovPa1qqz08UA1UMhMswiq3r7unlLT4WoZPApldKVyG+dWlhmIgiSMwd5a7r3EpJ
-	 TZmy1x8AdMaMCTKVvg2G6TqCaDJDlbyoOcxc1uoBaMrPPzwfz0S9T1Hhy3LVm2lZD9
-	 OeVqXtAU8YEyvG9aXMq14Sfwrb0QYuoNUmpafJHxr9E7zwTL4TrbwTngXcc6cm9HSL
-	 ENa7XTHl7sxYDq6JmTl4ZGdqnqZLFBsVtrS5NAyFPfwVZpYWWpgXW2mShXmiA4i1O4
-	 WECierwGxzlwEtv1TbWzkjgFlTqeewM/hkmKN9fQ/FYq2+qdry1IuBKOxz8irde/P1
-	 VMWifTztq5+6A==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] soc: amlogic: meson-clk-measure: remove debugfs tree
-To: "Pengpeng Hou" <pengpeng@iscas.ac.cn>
-Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
-In-Reply-To: <20260615091531.21964-1-pengpeng@iscas.ac.cn>
-References: <20260615091531.21964-1-pengpeng@iscas.ac.cn>
-Date: Mon, 15 Jun 2026 09:24:36 +0000
-Message-Id: <20260615092437.671C31F000E9@smtp.kernel.org>
+	id 1wZ4fO-0000000E3Vk-0L3e;
+	Mon, 15 Jun 2026 10:35:44 +0000
+Message-ID: <84cc8b0c-da06-4d01-a076-9743c29c91f6@aliel.fr>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1781519734;
+	bh=/Q7NtayrvVRmyxiIVTsRX0sWVVQM4Ve6hFR6FbOnq+s=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=VxhYHQ8j5sJm4bQZT3JjTsjWDKRMqJqeEzxK3IRtHlmTkQH7+KewdQjRf5JtjZRqk
+	 W8kiFSJVljSzuPtR7mY1TWnkfibFxaRGC0aCxVp1z0hdEL8nO0/k4phqhNiW18BYBX
+	 qXQWkllFMIjwg2F/R4tYgUP2KfKIs6zZpk9U+fB4=
+Date: Mon, 15 Jun 2026 12:34:11 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH] PCI: meson: Fix PERST# timing by asserting reset before
+ LTSSM enable
+To: Gowtham Kudupudi <gowtham@ferryfair.com>
+Cc: robh@kernel.org, bhelgaas@google.com, neil.armstrong@linaro.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, linux-pci@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, yue.wang@Amlogic.com, lpieralisi@kernel.org,
+ kwilczynski@kernel.org, mani@kernel.org
+References: <20260614015620.20432-1-gowtham@ferryfair.com>
+Content-Language: en-US
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+In-Reply-To: <20260614015620.20432-1-gowtham@ferryfair.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260615_033542_568343_BD163996 
+X-CRM114-Status: GOOD (  17.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,55 +64,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpQcmUtZXhpc3RpbmcgaXNzdWVzOgot
-IFtIaWdoXSBFeHBvc2luZyB0aGUgYG1lYXN1cmVfc3VtbWFyeWAgZGVidWdmcyBmaWxlIGJlZm9y
-ZSBpbml0aWFsaXppbmcgdGhlIGBwcml2YCBwb2ludGVycyBpbiB0aGUgYG1zcl90YWJsZWAgbGVh
-ZHMgdG8gYSBwb3RlbnRpYWwgTlVMTCBwb2ludGVyIGRlcmVmZXJlbmNlLgotLQoKY29tbWl0IGNm
-NjZhZWJjYTYyOGRlYzkxMzkzMDI4YmM4NDMxMzBhMjFkYTY2YWQKQXV0aG9yOiBQZW5ncGVuZyBI
-b3UgPHBlbmdwZW5nQGlzY2FzLmFjLmNuPgpTdWJqZWN0OiBzb2M6IGFtbG9naWM6IG1lc29uLWNs
-ay1tZWFzdXJlOiByZW1vdmUgZGVidWdmcyB0cmVlCgpUaGlzIGNvbW1pdCBhZGRzIGEgcmVtb3Zl
-IGNhbGxiYWNrIHRvIHRoZSBkcml2ZXIgdG8gcHJvcGVybHkgY2xlYW4gdXAgdGhlCmRlYnVnZnMg
-dHJlZSBjcmVhdGVkIGR1cmluZyBwcm9iZS4gQnkgc3RvcmluZyB0aGUgZGVidWdmcyByb290IGFu
-ZCByZW1vdmluZwppdCBvbiBkcml2ZXIgdW5iaW5kLCBpdCBwcmV2ZW50cyBsZWZ0b3ZlciBlbnRy
-aWVzIGZyb20gcmVmZXJlbmNpbmcgZnJlZWQKcHJpdmF0ZSBkYXRhLgoKPiBkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9zb2MvYW1sb2dpYy9tZXNvbi1jbGstbWVhc3VyZS5jIGIvZHJpdmVycy9zb2MvYW1s
-b2dpYy9tZXNvbi1jbGstbWVhc3VyZS5jCj4gaW5kZXggZDg2MmUzMGEyNDRlZC4uN2NhNDNiY2I2
-MjJhMiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL3NvYy9hbWxvZ2ljL21lc29uLWNsay1tZWFzdXJl
-LmMKPiArKysgYi9kcml2ZXJzL3NvYy9hbWxvZ2ljL21lc29uLWNsay1tZWFzdXJlLmMKWyAuLi4g
-XQo+IEBAIC05NTIsNiArOTU0LDcgQEAgc3RhdGljIGludCBtZXNvbl9tc3JfcHJvYmUoc3RydWN0
-IHBsYXRmb3JtX2RldmljZSAqcGRldikKPiAgCSAgICAgICBzaXplb2Yoc3RydWN0IG1zcl9yZWdf
-b2Zmc2V0KSk7Cj4gIAo+ICAJcm9vdCA9IGRlYnVnZnNfY3JlYXRlX2RpcigibWVzb24tY2xrLW1z
-ciIsIE5VTEwpOwo+ICsJcHJpdi0+ZGVidWdmc19yb290ID0gcm9vdDsKPiAgCWNsa3MgPSBkZWJ1
-Z2ZzX2NyZWF0ZV9kaXIoImNsa3MiLCByb290KTsKPiAgCj4gIAlkZWJ1Z2ZzX2NyZWF0ZV9maWxl
-KCJtZWFzdXJlX3N1bW1hcnkiLCAwNDQ0LCByb290LAo+ICAJCQkgICAgcHJpdi0+ZGF0YS5tc3Jf
-dGFibGUsICZjbGtfbXNyX3N1bW1hcnlfZm9wcyk7Cj4gIAo+ICAJZm9yIChpID0gMCA7IGkgPCBw
-cml2LT5kYXRhLm1zcl9jb3VudCA7ICsraSkgewo+ICAJCWlmICghcHJpdi0+ZGF0YS5tc3JfdGFi
-bGVbaV0ubmFtZSkKPiAgCQkJY29udGludWU7Cj4gIAo+ICAJCXByaXYtPmRhdGEubXNyX3RhYmxl
-W2ldLnByaXYgPSBwcml2OwoKW1NldmVyaXR5OiBIaWdoXQpUaGlzIGlzIGEgcHJlLWV4aXN0aW5n
-IGlzc3VlLCBidXQgZG9lcyBjcmVhdGluZyB0aGUgbWVhc3VyZV9zdW1tYXJ5IGRlYnVnZnMKZmls
-ZSBoZXJlIGV4cG9zZSBpdCB0byB1c2Vyc3BhY2UgYmVmb3JlIHRoZSBwcml2IHBvaW50ZXJzIGlu
-IG1zcl90YWJsZSBhcmUKaW5pdGlhbGl6ZWQ/CgpJZiBhIHVzZXItc3BhY2UgcHJvY2VzcyByZWFk
-cyBtZWFzdXJlX3N1bW1hcnkgY29uY3VycmVudGx5IHdoaWxlIHRoZSBsb29wCmJlbG93IGlzIHN0
-aWxsIGV4ZWN1dGluZywgY2xrX21zcl9zdW1tYXJ5X3Nob3coKSBjb3VsZCBkZXJlZmVyZW5jZSBh
-IE5VTEwKcG9pbnRlciB2aWEgbXNyX3RhYmxlLT5wcml2OgoKY2xrX21zcl9zdW1tYXJ5X3Nob3co
-KSB7CiAgICBzdHJ1Y3QgbWVzb25fbXNyX2lkICptc3JfdGFibGUgPSBzLT5wcml2YXRlOwogICAg
-dW5zaWduZWQgaW50IG1zcl9jb3VudCA9IG1zcl90YWJsZS0+cHJpdi0+ZGF0YS5tc3JfY291bnQ7
-CiAgICAuLi4KfQoKQ291bGQgdGhlIG1lYXN1cmVfc3VtbWFyeSBkZWJ1Z2ZzIGZpbGUgYmUgY3Jl
-YXRlZCBhZnRlciB0aGUgcHJpdiBmaWVsZHMgYXJlCmZ1bGx5IGluaXRpYWxpemVkIGluIHRoZSBs
-b29wIHRvIGF2b2lkIHRoaXMgcmFjZT8KCj4gIAkJZGVidWdmc19jcmVhdGVfZmlsZShwcml2LT5k
-YXRhLm1zcl90YWJsZVtpXS5uYW1lLCAwNDQ0LCBjbGtzLAo+ICAJCQkJICAgICZwcml2LT5kYXRh
-Lm1zcl90YWJsZVtpXSwgJmNsa19tc3JfZm9wcyk7Cj4gIAl9Cj4gIAo+ICsJcGxhdGZvcm1fc2V0
-X2RydmRhdGEocGRldiwgcHJpdik7Cj4gKwo+ICAJcmV0dXJuIDA7Cj4gIH0KCi0tIApTYXNoaWtv
-IEFJIHJldmlldyDCtyBodHRwczovL3Nhc2hpa28uZGV2LyMvcGF0Y2hzZXQvMjAyNjA2MTUwOTE1
-MzEuMjE5NjQtMS1wZW5ncGVuZ0Bpc2Nhcy5hYy5jbj9wYXJ0PTEKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0
-CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFk
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On 6/14/26 3:56 AM, Gowtham Kudupudi wrote:
+> On warm reboot, the PCIe controller's LTSSM starts link training
+> immediately if PERST# is already deasserted from the previous boot.
+> The driver then pulses PERST# for only 500us, which is too short to
+> properly reset the endpoint device that has already started training.
+> 
+> Fix by moving the PERST# assert/deassert pulse BEFORE enabling LTSSM,
+> so the endpoint gets a clean reset cycle before link training begins.
+> 
+> This was found on Amlogic G12B (A311D) with NVMe on an M.2 slot.
+> Cold boot worked because POR held PERST# low; warm reboot did not.
+> The fix was confirmed on a Banana Pi CM4 with Waveshare IO base board.
+> 
+> Signed-off-by: Gowtham Kudupudi <gowtham@ferryfair.com>
+> ---
+>  drivers/pci/controller/dwc/pci-meson.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+> index 5f8e2f4b3c12..3a7e9f1d5b8c 100644
+> --- a/drivers/pci/controller/dwc/pci-meson.c
+> +++ b/drivers/pci/controller/dwc/pci-meson.c
+> @@ -310,8 +310,8 @@ static int meson_pcie_start_link(struct dw_pcie *pci)
+>  {
+>  	struct meson_pcie *mp = to_meson_pcie(pci);
+>  
+> +	meson_pcie_assert_reset(mp);
+>  	meson_pcie_ltssm_enable(mp);
+> -	meson_pcie_assert_reset(mp);
+>  
+>  	return 0;
+>  }
+
+Hi Gowtham,
+
+I have a patch [1] that I haven't submitted yet.
+This might be related to your issue, what do you think ?
+
+[1] https://github.com/rclaveau-tech/linux-khadas/commit/bee0a02d9756
+
+-- 
+Best regards,
+Ronald
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
