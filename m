@@ -4,53 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 922CCCD98DA
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jun 2026 08:10:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39003CD98E1
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jun 2026 12:54:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Qpk/frd0a4gBn5MfgqNKd31fkYbVVV9H1EJOINF0lyA=; b=wXTVOEanJPZQOK
-	3J/A7N8vZu4oBcSWrHZyDba5k4Ct9hT+nX3JvpVNt2OMlQPug7zQgS4PUN1awAafoz1jCL4hzanRN
-	1094x6cGhP+nUKRT5tHGqJMRg5g4vy8z9SvYVF0H0e9wsNz0OAe/dFZ9E8/gnjnAh5pEM3HrFFcBT
-	p3PBFsNUiJjakRVZ7iLQ3nkZwkshYrEzDQn6MQxSG0LIVDMKcQXw94yycF2Kjh5/8L5aMUJXwJpUX
-	OIACpTlchLyZoGBfMngqogqVzlWPUZzvdI604NAtPWCFYc2bXsJ7HsNhbpVCfExN7N3YIZYpj6OZH
-	zPO2DH9s5kzRIyeFWmhg==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:
+	References:MIME-Version:In-Reply-To:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=/DWQdq33PUy85iu95hjcgnPx/ztLub7o60wugjV1API=; b=V8Gnv9ejsaoNoga7QkWZsrGJvw
+	Vk7sSVDIe5FuPu3rsVvrVS5UTewKTuwvhUPwLWwFT8HgOX3+S6bFPypd9fu3xNzS6azZGJfuqQ3gC
+	KSlvg4qykTYZORBgp1ijm3Lmo0YuiqZxPfmeJprBpJYoi1LXav4ag9obCmGMgGJ5nh1K08H0Q8rof
+	yXjPDigOlTnO98c3LNRfPZbHPyNyyQ9YSRrSDLbKHYZoksWNwR/nZbNeS4yJFQy8K3DQebkTyxQID
+	o4cZ57STN9xCYlDOaHOfolwpMSdlGG4vIIMWeuq1xvVFNfPY8M0aKT+444iI1bghWh9CbJ0uvvwcR
+	M9mCLAGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wZOsk-0000000FQDU-2yAz;
-	Tue, 16 Jun 2026 08:10:50 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1wZTIj-0000000FnaU-06R6;
+	Tue, 16 Jun 2026 12:53:57 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wZOsj-0000000FQDG-0DPl
+	id 1wZTIh-0000000Fna3-0RLE
 	for linux-amlogic@lists.infradead.org;
-	Tue, 16 Jun 2026 08:10:49 +0000
+	Tue, 16 Jun 2026 12:53:55 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 28B1C60132;
-	Tue, 16 Jun 2026 08:10:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A37571F000E9;
-	Tue, 16 Jun 2026 08:10:47 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id ACE9D4458D
+	for <linux-amlogic@lists.infradead.org>; Tue, 16 Jun 2026 12:53:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F0151F00ACA
+	for <linux-amlogic@lists.infradead.org>; Tue, 16 Jun 2026 12:53:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781597447;
-	bh=YvIIUoqw/BHvEOYWPLscHjcS30W0INre6rtlMYlpe+0=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=SNYwYxQ9QQydxfgIUFNmgp+q58iTrPrJmmr7rylKveIVdafAV6RTjPLf3JGovdyux
-	 WYO5GS1hC0Wfck2gWl3u6qyj6p7yj9znkfmWJzPeBKXx+UX8M68Q+oaxVgfTk/2cmj
-	 TlD1hM5157ca8I5XLCPbF43UwnlAcduEiWBCS50POgyqE8rwMZmSpIwzoU5eFkpGGz
-	 +Wg2u42ISkCNmw0l4vb35YJ86XoYj+G7sXdU7CRWT+q9jZR9SVMoExlk4ZyqpveLK3
-	 THwVanpGMd+OodenG3wf08UvZiLBQn7O+wiSPHeb6qSKu8eBY/e8XY+5Qj53FvnwKW
-	 gbHs9VoHhUY7A==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2] media: meson: vdec: fix use-after-free of decode
- work in stop/close path
-To: "Doruk Tan Ozturk" <doruk@0sec.ai>
-Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
-In-Reply-To: <20260616074952.93076-1-doruk@0sec.ai>
-References: <20260616074952.93076-1-doruk@0sec.ai>
-Date: Tue, 16 Jun 2026 08:10:47 +0000
-Message-Id: <20260616081047.A37571F000E9@smtp.kernel.org>
+	s=k20260515; t=1781614434;
+	bh=kp1syzW1srOQcyb+eZQpIHaaqzeGgItPN+sOMv5L2Hg=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc;
+	b=JUrsC+XKP0qscMP7HnDfrjRQ5ozuE9hbzBs0+iQMt0fT6UdRzpvOOtTYmVgwiQgo3
+	 tl2PGkkWyGntRfGI47/vPqdpoKco0OMvD34hr7l5spnoO7bPndkY4IEu/XilC2eNnI
+	 H9u2U7NpDdw5zdnWMcAx1ZThsxbefVoJN4ROv+nxQArO3IPIRGkf5hufb4ojt9SRgY
+	 KyG0NvdvuQG7T1wBhhUfV/7A07FLTVvmyHUR6vZOpbBIg0ddZMDkGGYyGgKf7SGNMr
+	 6uBVXZMLwgqVlT08MaZh5cM/DhT7JaR/sEh3tELaBROfyOPbrSSqSO7sTkHsksxhwA
+	 8X9FwEViiLwVg==
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5aa68cf03bfso5276416e87.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 16 Jun 2026 05:53:54 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ821Szh8USryNor9ncrtg+QhGyjHuupHdMbkGMT4GTLGGDcALNQT7WjpCtHSZgBuiqOA7lRvEsXqQRLkDiW@lists.infradead.org
+X-Gm-Message-State: AOJu0YzXeacOIbL4n09r0NM6UZUElAORHYke9fcyfyhLvDYmK+eutB//
+	BqBHU4dBLg6FVrF1a1MnS3U2QANeeYSJg5wW2EoXOQUfateZIgqRi2CaGP6yjNONzzSkb//ARm/
+	xWFblO6S2T80i/8rHFt2YdjApoStPM+yFXeryBXLuHw==
+X-Received: by 2002:ac2:5df3:0:b0:5ad:3035:c2c2 with SMTP id
+ 2adb3069b0e04-5ad428bdd78mr855785e87.51.1781614433226; Tue, 16 Jun 2026
+ 05:53:53 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 16 Jun 2026 12:53:51 +0000
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 16 Jun 2026 12:53:51 +0000
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <20260610153329.937833-2-v@baodeep.com>
+MIME-Version: 1.0
+References: <20260610153329.937833-1-v@baodeep.com> <20260610153329.937833-2-v@baodeep.com>
+Date: Tue, 16 Jun 2026 12:53:51 +0000
+X-Gmail-Original-Message-ID: <CAMRc=Mf-nMWzTiP3vZQSBW_NQQ6OFPmMGGG0-VE_iWs-B-Q4_A@mail.gmail.com>
+X-Gm-Features: AVVi8CfI5Xcsmf9X5ZMB8tIz5JfgYHEL15SP9-TSKbR6tUfKWWLJo7jfpnDNBRA
+Message-ID: <CAMRc=Mf-nMWzTiP3vZQSBW_NQQ6OFPmMGGG0-VE_iWs-B-Q4_A@mail.gmail.com>
+Subject: Re: [PATCH 1/2] gpio: shared-proxy: always serialize with a sleeping mutex
+To: Viacheslav Bocharov <v@baodeep.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Robin Murphy <robin.murphy@arm.com>, 
+	Diederik de Haas <diederik@cknow-tech.com>, linux-gpio@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Linus Walleij <linusw@kernel.org>, 
+	Bartosz Golaszewski <brgl@kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,110 +85,269 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-NSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpOZXcgaXNzdWVzOgotIFtDcml0aWNh
-bF0gUGxhY2luZyBgY2FuY2VsX3dvcmtfc3luYygpYCBhZnRlciBgdmRlY19vcHMtPnN0b3AoKWAg
-cG93ZXJzIGRvd24gdGhlIFZERUMgaGFyZHdhcmUgYmVmb3JlIHdhaXRpbmcgZm9yIHRoZSB3b3Jr
-ZXIsIGxlYWRpbmcgdG8gYSBzeW5jaHJvbm91cyBleHRlcm5hbCBhYm9ydCAoa2VybmVsIHBhbmlj
-KS4KLSBbSGlnaF0gQ2FsbGluZyBgY2FuY2VsX3dvcmtfc3luYygmc2Vzcy0+ZXNwYXJzZXJfcXVl
-dWVfd29yaylgIGluc2lkZSBgdmRlY19wb3dlcm9mZigpYCBjYXVzZXMgYW4gQUItQkEgZGVhZGxv
-Y2sgZHVyaW5nIGBWSURJT0NfU1RSRUFNT0ZGYC4KClByZS1leGlzdGluZyBpc3N1ZXM6Ci0gW0Ny
-aXRpY2FsXSBgdmRlY19wb3dlcm9mZigpYCBkaXNhYmxlcyBgZG9zX3BhcnNlcl9jbGtgIHdpdGhv
-dXQgZGlzYWJsaW5nIG9yIHN5bmNocm9uaXppbmcgdGhlIEVTUEFSU0VSIGludGVycnVwdCwgd2hp
-Y2ggY2FuIGxlYWQgdG8gYSBidXMgZmF1bHQgaWYgdGhlIElTUiBydW5zLgotIFtDcml0aWNhbF0g
-QnlwYXNzZWQgd29ya2VyIGNhbmNlbGxhdGlvbiBkdXJpbmcgVkRFQyB0ZWFyZG93biBsZWFkcyB0
-byBVc2UtQWZ0ZXItRnJlZSBvZiB0aGUgc2Vzc2lvbiBzdHJ1Y3R1cmUgYmVjYXVzZSB0aGUgd29y
-a2VyIGNhbiBiZSByZS1hcm1lZCBhZnRlciBgdmRlY19wb3dlcm9mZmAgaXMgY2FsbGVkLgotIFtI
-aWdoXSBgdmRlY19kZWNvZGVyX2NtZCgpYCBjYWxscyBgZXNwYXJzZXJfcXVldWVfZW9zKClgIHdp
-dGhvdXQgaG9sZGluZyBgc2Vzcy0+bG9ja2Agb3Igd2FpdGluZyBmb3IgdGhlIHdvcmtlciB0byBm
-aW5pc2gsIGxlYWRpbmcgdG8gY29uY3VycmVudCBoYXJkd2FyZSByZWdpc3RlciB3cml0ZXMuCi0t
-Cgpjb21taXQgOGQwYTljNTNjMTg5YWFjNzY1NzdhYjhiZmNlMDhhZjYwOTg1N2RjNApBdXRob3I6
-IERvcnVrIFRhbiBPenR1cmsgPGRvcnVrQDBzZWMuYWk+CgptZWRpYTogbWVzb246IHZkZWM6IGZp
-eCB1c2UtYWZ0ZXItZnJlZSBvZiBkZWNvZGUgd29yayBpbiBzdG9wL2Nsb3NlIHBhdGgKClRoaXMg
-cGF0Y2ggYXR0ZW1wdHMgdG8gZml4IGEgdXNlLWFmdGVyLWZyZWUgaW4gdGhlIG1lc29uIHZkZWMg
-ZHJpdmVyIGJ5CnN5bmNocm9uaXppbmcgdGhlIHZkZWMgaW50ZXJydXB0IGFuZCBjYW5jZWxpbmcg
-dGhlIGVzcGFyc2VyIHdvcmtlciBkdXJpbmcKcG93ZXJvZmYuIEl0IGFsc28gcmVjb3JkcyB0aGUg
-dmRlYyBpcnEgaW4gdGhlIGFtdmRlY19jb3JlIHN0cnVjdCB0bwpmYWNpbGl0YXRlIHN5bmNocm9u
-aXphdGlvbi4KCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvc3RhZ2luZy9tZWRpYS9tZXNvbi92ZGVj
-L3ZkZWMuYyBiL2RyaXZlcnMvc3RhZ2luZy9tZWRpYS9tZXNvbi92ZGVjL3ZkZWMuYwo+IGluZGV4
-IGEwMzlkOTI1YzBmZTUuLmY1NDlhZWRkZTI4OGMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9zdGFn
-aW5nL21lZGlhL21lc29uL3ZkZWMvdmRlYy5jCj4gKysrIGIvZHJpdmVycy9zdGFnaW5nL21lZGlh
-L21lc29uL3ZkZWMvdmRlYy5jCj4gQEAgLTEyMyw2ICsxMjMsMjUgQEAgc3RhdGljIHZvaWQgdmRl
-Y19wb3dlcm9mZihzdHJ1Y3QgYW12ZGVjX3Nlc3Npb24gKnNlc3MpCj4gIAkJY29kZWNfb3BzLT5k
-cmFpbihzZXNzKTsKPiAgCj4gIAl2ZGVjX29wcy0+c3RvcChzZXNzKTsKCltTZXZlcml0eTogQ3Jp
-dGljYWxdCklzIGl0IHNhZmUgdG8gcGxhY2UgY2FuY2VsX3dvcmtfc3luYygpIGFmdGVyIHZkZWNf
-b3BzLT5zdG9wKCkgaGVyZT8KCnZkZWNfb3BzLT5zdG9wKCkgaXNvbGF0ZXMgdGhlIGhhcmR3YXJl
-IHBvd2VyIGRvbWFpbiBhbmQgZGlzYWJsZXMgaXRzIGNsb2Nrcy4KCklmIHRoZSB3b3JrZXIgaXMg
-Y29uY3VycmVudGx5IGV4ZWN1dGluZyBlc3BhcnNlcl92aWZpZm9fZ2V0X2ZyZWVfc3BhY2UoKSwg
-aXQKd2lsbCByZWFkIGhhcmR3YXJlIHJlZ2lzdGVycy4KCkNvdWxkIGFjY2Vzc2luZyB0aGVzZSBt
-ZW1vcmllcyBhZnRlciB0aGV5IGFyZSBwb3dlcmVkIGRvd24gdHJpZ2dlciBhCnN5bmNocm9ub3Vz
-IGV4dGVybmFsIGFib3J0PyBTaG91bGQgdGhlIHdvcmtlciBiZSBjYW5jZWxlZCBiZWZvcmUgdGVh
-cmluZwpkb3duIHRoZSBoYXJkd2FyZT8KCj4gKwo+ICsJLyoKPiArCSAqIHZkZWNfb3BzLT5zdG9w
-KCkgbWFza3MgdGhlIFZERUMgaW50ZXJydXB0IGF0IHRoZSBoYXJkd2FyZSBsZXZlbCwgc28KPiAr
-CSAqIG5vIG5ldyBJUlEgY2FuIGJlIHJhaXNlZCBwYXN0IHRoaXMgcG9pbnQuIFRoZSB0aHJlYWRl
-ZCBJU1IgcmUtYXJtcwo+ICsJICogdGhlIEVTUEFSU0VSIHdvcmtlciB2aWEgYW12ZGVjX2RzdF9i
-dWZfZG9uZSgpIChzY2hlZHVsZV93b3JrKCkpLCBzbwo+ICsJICogZHJhaW4gYW55IGluLWZsaWdo
-dCBoYW5kbGVyIGJlZm9yZSBjYW5jZWxsaW5nIHRoZSB3b3JrZXIsIG90aGVyd2lzZQo+ICsJICog
-YSBsYXRlIHRocmVhZGVkIElSUSBjb3VsZCBzY2hlZHVsZSBpdCBhZ2FpbiBhZnRlciB0aGUgY2Fu
-Y2VsLgo+ICsJICoKPiArCSAqIFRoZSB3b3JrZXIgZGVyZWZlcmVuY2VzIHNlc3MtPm0ybV9jdHgg
-YW5kIHRvdWNoZXMgdGhlIEVTUEFSU0VSL0RPUwo+ICsJICogcmVnaXN0ZXJzLCBzbyBpdCBtdXN0
-IGJlIGNhbmNlbGxlZCB3aGlsZSBtMm1fY3R4IGlzIHN0aWxsIHZhbGlkIGFuZAo+ICsJICogdGhl
-IGNsb2NrcyBhcmUgc3RpbGwgZW5hYmxlZCwgaS5lLiBiZWZvcmUgdGhlIGNsa19kaXNhYmxlIGJl
-bG93Lgo+ICsJICoKPiArCSAqIFRoaXMgcnVucyBmcm9tIHRoZSBzdG9wX3N0cmVhbWluZygpL3Jl
-bGVhc2UoKSBwYXRocywgd2hpY2ggYXJlCj4gKwkgKiBzZXJpYWxpemVkIGJ5IHRoZSB2aWRlbyBk
-ZXZpY2UgbG9jaywgbm90IGJ5IHNlc3MtPmxvY2sgKHRoZSBsb2NrIHRoZQo+ICsJICogd29ya2Vy
-IHRha2VzKSwgc28gY2FuY2VsX3dvcmtfc3luYygpIGNhbm5vdCBkZWFkbG9jayBoZXJlLgo+ICsJ
-ICovCj4gKwlzeW5jaHJvbml6ZV9pcnEoc2Vzcy0+Y29yZS0+dmRlY19pcnEpOwo+ICsJY2FuY2Vs
-X3dvcmtfc3luYygmc2Vzcy0+ZXNwYXJzZXJfcXVldWVfd29yayk7CgpbU2V2ZXJpdHk6IEhpZ2hd
-ClRoZSBjb21taXQgbWVzc2FnZSBzdGF0ZXMgc3RvcF9zdHJlYW1pbmcoKSBydW5zIHVuZGVyIHRo
-ZSB2aWRlbyBkZXZpY2UgbG9jaywKbm90IHNlc3MtPmxvY2suIElzIHRoYXQgYWNjdXJhdGUgZm9y
-IHY0bDIgcXVldWUgaW9jdGxzPwoKV2hlbiB1c2Vyc3BhY2UgaXNzdWVzIFZJRElPQ19TVFJFQU1P
-RkYsIHRoZSB2NGwyIGNvcmUgYWNxdWlyZXMgdGhlIHF1ZXVlCmxvY2ssIHdoaWNoIGlzIG1hcHBl
-ZCB0byBzZXNzLT5sb2NrLiBJdCB0aGVuIGNhbGxzIHZkZWNfc3RvcF9zdHJlYW1pbmcoKSwKd2hp
-Y2ggY2FsbHMgdmRlY19wb3dlcm9mZigpIGFuZCBibG9ja3MgaGVyZSBvbiBjYW5jZWxfd29ya19z
-eW5jKCkuCgpJZiB0aGUgd29ya2VyIGlzIHJ1bm5pbmcgYW5kIHRyaWVzIHRvIGFjcXVpcmUgc2Vz
-cy0+bG9jazoKCmVzcGFyc2VyLmM6ZXNwYXJzZXJfcXVldWVfYWxsX3NyYygpIHsKICAgIC4uLgog
-ICAgbXV0ZXhfbG9jaygmc2Vzcy0+bG9jayk7CiAgICAuLi4KfQoKd29uJ3QgdGhpcyByZXN1bHQg
-aW4gYW4gQUItQkEgZGVhZGxvY2sgc2luY2UgdGhlIGlvY3RsIGhhbmRsZXIgYWxyZWFkeQpob2xk
-cyBzZXNzLT5sb2NrPwoKW1NldmVyaXR5OiBIaWdoXQpUaGlzIGlzbid0IGEgYnVnIGludHJvZHVj
-ZWQgYnkgdGhpcyBwYXRjaCwgYnV0IGhvdyBkb2VzIHZkZWNfZGVjb2Rlcl9jbWQoKQpzeW5jaHJv
-bml6ZSB3aXRoIHRoZSBwYXJzZXIgd2hpbGUgdGhpcyB3b3JrZXIgbWlnaHQgYmUgcnVubmluZz8K
-CldoZW4gdXNlcnNwYWNlIGlzc3VlcyBWSURJT0NfREVDT0RFUl9DTUQoVjRMMl9ERUNfQ01EX1NU
-T1ApLCBpdCBjYWxscwplc3BhcnNlcl9xdWV1ZV9lb3MoKSB3aXRob3V0IGhvbGRpbmcgc2Vzcy0+
-bG9jay4gVGhlIHY0bDIgY29yZSBhY3F1aXJlcyB0aGUKdmlkZW8gZGV2aWNlIGxvY2sgZm9yIHRo
-aXMgaW9jdGwsIGJ1dCBub3QgdGhlIHF1ZXVlIGxvY2suCgpDb3VsZCB0aGlzIGNvbmN1cnJlbnRs
-eSBjbG9iYmVyIHBhcnNlciByZWdpc3RlcnMgb3IgdGhlIHNlYXJjaF9kb25lIHdhaXRxdWV1ZQpz
-dGF0ZSBpZiB0aGUgd29ya2VyIGlzIGFjdGl2ZWx5IHJ1bm5pbmcgZXNwYXJzZXJfd3JpdGVfZGF0
-YSgpPwoKW1NldmVyaXR5OiBDcml0aWNhbF0KVGhpcyBpcyBhIHByZS1leGlzdGluZyBpc3N1ZSwg
-YnV0IGNvdWxkIHRoZSB3b3JrZXIgc3RpbGwgYmUgcmUtYXJtZWQgYW5kCmNhdXNlIGEgdXNlLWFm
-dGVyLWZyZWUgZHVyaW5nIGRldmljZSBjbG9zZT8KCklmIFZJRElPQ19TVFJFQU1PRkYgaXMgY2Fs
-bGVkIG9uIHRoZSBjYXB0dXJlIHF1ZXVlLCB2ZGVjX3N0b3Bfc3RyZWFtaW5nKCkKY2FsbHMgdmRl
-Y19wb3dlcm9mZigpIGFuZCBzZXRzIHNlc3MtPnN0YXR1cyB0byBTVEFUVVNfU1RPUFBFRC4KCkhv
-d2V2ZXIsIGlmIHRoZSBvdXRwdXQgcXVldWUgaXMgc3RpbGwgc3RyZWFtaW5nLCBhIHN1YnNlcXVl
-bnQgVklESU9DX1FCVUYKYnlwYXNzZXMgc3RhdHVzIGNoZWNrcyBhbmQgcmUtYXJtcyB0aGUgd29y
-a2VyLgoKV2hlbiB0aGUgZGV2aWNlIGlzIGxhdGVyIGNsb3NlZCwgdmRlY19zdG9wX3N0cmVhbWlu
-ZygpIHNraXBzIHZkZWNfcG93ZXJvZmYoKQplbnRpcmVseSBiZWNhdXNlIHRoZSBzdGF0dXMgaXMg
-YWxyZWFkeSBTVEFUVVNfU1RPUFBFRC4KCldpbGwgdmRlY19jbG9zZSgpIHRoZW4gZnJlZSB0aGUg
-c2Vzc2lvbiBzdHJ1Y3R1cmUgdmlhIGtmcmVlKHNlc3MpIHdoaWxlIHRoZQp3b3JrZXIgaXMgc3Rp
-bGwgc2NoZWR1bGVkPwoKPiArCj4gIAljbGtfZGlzYWJsZV91bnByZXBhcmUoc2Vzcy0+Y29yZS0+
-ZG9zX2Nsayk7Cj4gIAljbGtfZGlzYWJsZV91bnByZXBhcmUoc2Vzcy0+Y29yZS0+ZG9zX3BhcnNl
-cl9jbGspOwoKW1NldmVyaXR5OiBDcml0aWNhbF0KVGhpcyBpcyBhIHByZS1leGlzdGluZyBpc3N1
-ZSwgYnV0IGlzbid0IHRoZSBzeXN0ZW0gdnVsbmVyYWJsZSB0byBhIGJ1cyBmYXVsdAppZiBkb3Nf
-cGFyc2VyX2NsayBpcyBkaXNhYmxlZCB3aXRob3V0IHN5bmNocm9uaXppbmcgdGhlIHBhcnNlciBp
-bnRlcnJ1cHQ/CgpUaGUgaGFyZGlycSBoYW5kbGVyIGVzcGFyc2VyX2lzcigpIHVuY29uZGl0aW9u
-YWxseSByZWFkcyB0aGUKUEFSU0VSX0lOVF9TVEFUVVMgbW1pbyByZWdpc3Rlci4KCklmIHRoZSBo
-YXJkd2FyZSBhc3NlcnRzIHRoZSBpbnRlcnJ1cHQgcmlnaHQgYmVmb3JlIG9yIGR1cmluZyB0aGlz
-IGNsb2NrCmRpc2FibGUsIGFuZCB0aGUgaXNyIHJ1bnMgYWZ0ZXIgdGhlIGNsb2NrIGlzIG9mZiwg
-Y291bGQgdGhpcyB0cmlnZ2VyIGEKc3luY2hyb25vdXMgZXh0ZXJuYWwgYWJvcnQ/Cgo+ICB9Clsg
-Li4uIF0KCi0tIApTYXNoaWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nhc2hpa28uZGV2LyMvcGF0
-Y2hzZXQvMjAyNjA2MTYwNzQ5NTIuOTMwNzYtMS1kb3J1a0Awc2VjLmFpP3BhcnQ9MQoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBt
-YWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0
-cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On Wed, 10 Jun 2026 17:32:10 +0200, Viacheslav Bocharov <v@baodeep.com> said:
+> The shared GPIO descriptor used either a mutex or a spinlock, chosen at
+> runtime from the underlying chip's can_sleep:
+>
+> 	shared_desc->can_sleep = gpiod_cansleep(shared_desc->desc);
+> 	... if (can_sleep) mutex_lock(); else spin_lock_irqsave();
+>
+> can_sleep describes only the value path (->get/->set). Under the same
+> lock, however, the proxy may call gpiod_set_config() and
+> gpiod_direction_*(), which can reach pinctrl paths that take a mutex
+> (e.g. gpiod_set_config() -> gpiochip_generic_config() ->
+> pinctrl_gpio_set_config()), independent of can_sleep. On a controller
+> with non-sleeping MMIO value ops the descriptor lock was a spinlock, so
+> the sleeping pinctrl call ran from atomic context. Reproduced on an
+> Amlogic A113X board with the workaround from commit 28f240683871
+> ("pinctrl: meson: mark the GPIO controller as sleeping") reverted; the
+> original Khadas VIM3 report hit the same path:
+>
+> 	BUG: sleeping function called from invalid context
+> 	  __mutex_lock
+> 	  pinctrl_get_device_gpio_range
+> 	  pinctrl_gpio_set_config
+> 	  gpiochip_generic_config
+> 	  gpiod_set_config
+> 	  gpio_shared_proxy_set_config   <- voting spinlock held
+> 	  ...
+> 	  mmc_pwrseq_simple_probe
+>
+> The spinlock existed to take the value vote from atomic context, but the
+> vote and the (possibly sleeping) control operations share the same state
+> and lock, so this scheme cannot serialize config under a mutex and still
+> offer atomic value access. Always serialize the shared descriptor with a
+> mutex instead and mark the proxy a sleeping gpiochip, driving the
+> underlying GPIO through the cansleep value accessors: those are valid
+> for both sleeping and non-sleeping chips, so value access keeps working
+> on fast controllers, at the cost of no longer being atomic.
+>
+> This is observable: consumers gating on gpiod_cansleep() take their
+> sleeping branch on a proxied GPIO (mmc-pwrseq-emmc skips its
+> emergency-restart reset handler; its normal reset is unaffected), and
+> consumers that reject sleeping GPIOs (pwm-gpio, ps2-gpio, ...) would
+> fail to probe. Such atomic users do not share a pin through the proxy,
+> whose purpose is voting on shared reset/enable lines. The same narrowing
+> already applies on Amlogic since that workaround, and rockchip
+> addressed the identical splat per-driver in commit 7ca497be0016 ("gpio:
+> rockchip: Stop calling pinctrl for set_direction"); fixing the proxy
+> addresses the locking error once, for every controller.
+>
+> The lock type was added by commit a060b8c511ab ("gpiolib: implement
+> low-level, shared GPIO support"); the sleeping call under it arrived with
+> the proxy driver.
+>
+> Fixes: e992d54c6f97 ("gpio: shared-proxy: implement the shared GPIO proxy driver")
+> Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> Closes: https://lore.kernel.org/all/00107523-7737-4b92-a785-14ce4e93b8cb@samsung.com/
+> Signed-off-by: Viacheslav Bocharov <v@baodeep.com>
+> ---
+
+Sigh... Ok let's try this. This limits users of shared pins to using them from
+process context exclusively but maybe there is in fact no need to do it from
+atomic context. After all: bit-banging can't work if we're using the voting
+mechanism.
+
+>
+>  drivers/gpio/gpio-shared-proxy.c | 43 +++++++-------------------------
+>  drivers/gpio/gpiolib-shared.c    |  9 ++-----
+>  drivers/gpio/gpiolib-shared.h    | 31 +++++++++--------------
+>  3 files changed, 23 insertions(+), 60 deletions(-)
+>
+> diff --git a/drivers/gpio/gpio-shared-proxy.c b/drivers/gpio/gpio-shared-proxy.c
+> index 6941e4be6cf1..856e5b9d6163 100644
+> --- a/drivers/gpio/gpio-shared-proxy.c
+> +++ b/drivers/gpio/gpio-shared-proxy.c
+> @@ -109,7 +109,7 @@ static void gpio_shared_proxy_free(struct gpio_chip *gc, unsigned int offset)
+>
+>  	if (proxy->voted_high) {
+>  		ret = gpio_shared_proxy_set_unlocked(proxy,
+> -			shared_desc->can_sleep ? gpiod_set_value_cansleep : gpiod_set_value, 0);
+> +			gpiod_set_value_cansleep, 0);
+>  		if (ret)
+>  			dev_err(proxy->dev,
+>  				"Failed to unset the shared GPIO value on release: %d\n", ret);
+> @@ -222,13 +222,6 @@ static int gpio_shared_proxy_direction_output(struct gpio_chip *gc,
+>  	return gpio_shared_proxy_set_unlocked(proxy, gpiod_direction_output, value);
+>  }
+>
+> -static int gpio_shared_proxy_get(struct gpio_chip *gc, unsigned int offset)
+> -{
+> -	struct gpio_shared_proxy_data *proxy = gpiochip_get_data(gc);
+> -
+> -	return gpiod_get_value(proxy->shared_desc->desc);
+> -}
+> -
+>  static int gpio_shared_proxy_get_cansleep(struct gpio_chip *gc,
+>  					  unsigned int offset)
+>  {
+> @@ -237,29 +230,15 @@ static int gpio_shared_proxy_get_cansleep(struct gpio_chip *gc,
+>  	return gpiod_get_value_cansleep(proxy->shared_desc->desc);
+>  }
+>
+> -static int gpio_shared_proxy_do_set(struct gpio_shared_proxy_data *proxy,
+> -				    int (*set_func)(struct gpio_desc *desc, int value),
+> -				    int value)
+> -{
+> -	guard(gpio_shared_desc_lock)(proxy->shared_desc);
+> -
+> -	return gpio_shared_proxy_set_unlocked(proxy, set_func, value);
+> -}
+> -
+> -static int gpio_shared_proxy_set(struct gpio_chip *gc, unsigned int offset,
+> -				 int value)
+> -{
+> -	struct gpio_shared_proxy_data *proxy = gpiochip_get_data(gc);
+> -
+> -	return gpio_shared_proxy_do_set(proxy, gpiod_set_value, value);
+> -}
+> -
+>  static int gpio_shared_proxy_set_cansleep(struct gpio_chip *gc,
+>  					  unsigned int offset, int value)
+>  {
+>  	struct gpio_shared_proxy_data *proxy = gpiochip_get_data(gc);
+>
+> -	return gpio_shared_proxy_do_set(proxy, gpiod_set_value_cansleep, value);
+> +	guard(gpio_shared_desc_lock)(proxy->shared_desc);
+> +
+> +	return gpio_shared_proxy_set_unlocked(proxy, gpiod_set_value_cansleep,
+> +					      value);
+>  }
+>
+>  static int gpio_shared_proxy_get_direction(struct gpio_chip *gc,
+> @@ -302,20 +281,16 @@ static int gpio_shared_proxy_probe(struct auxiliary_device *adev,
+>  	gc->label = dev_name(dev);
+>  	gc->parent = dev;
+>  	gc->owner = THIS_MODULE;
+> -	gc->can_sleep = shared_desc->can_sleep;
+> +	/* Always a sleeping gpiochip: see the lock comment in gpiolib-shared.h. */
+> +	gc->can_sleep = true;
+>
+>  	gc->request = gpio_shared_proxy_request;
+>  	gc->free = gpio_shared_proxy_free;
+>  	gc->set_config = gpio_shared_proxy_set_config;
+>  	gc->direction_input = gpio_shared_proxy_direction_input;
+>  	gc->direction_output = gpio_shared_proxy_direction_output;
+> -	if (gc->can_sleep) {
+> -		gc->set = gpio_shared_proxy_set_cansleep;
+> -		gc->get = gpio_shared_proxy_get_cansleep;
+> -	} else {
+> -		gc->set = gpio_shared_proxy_set;
+> -		gc->get = gpio_shared_proxy_get;
+> -	}
+> +	gc->set = gpio_shared_proxy_set_cansleep;
+> +	gc->get = gpio_shared_proxy_get_cansleep;
+>  	gc->get_direction = gpio_shared_proxy_get_direction;
+>  	gc->to_irq = gpio_shared_proxy_to_irq;
+>
+> diff --git a/drivers/gpio/gpiolib-shared.c b/drivers/gpio/gpiolib-shared.c
+> index de72776fb154..495bd3d0ddf0 100644
+> --- a/drivers/gpio/gpiolib-shared.c
+> +++ b/drivers/gpio/gpiolib-shared.c
+> @@ -627,8 +627,7 @@ static void gpio_shared_release(struct kref *kref)
+>
+>  	shared_desc = entry->shared_desc;
+>  	gpio_device_put(shared_desc->desc->gdev);
+> -	if (shared_desc->can_sleep)
+> -		mutex_destroy(&shared_desc->mutex);
+> +	mutex_destroy(&shared_desc->mutex);
+>  	kfree(shared_desc);
+>  	entry->shared_desc = NULL;
+>  }
+> @@ -659,11 +658,7 @@ gpiod_shared_desc_create(struct gpio_shared_entry *entry)
+>  	}
+>
+>  	shared_desc->desc = &gdev->descs[entry->offset];
+> -	shared_desc->can_sleep = gpiod_cansleep(shared_desc->desc);
+> -	if (shared_desc->can_sleep)
+> -		mutex_init(&shared_desc->mutex);
+> -	else
+> -		spin_lock_init(&shared_desc->spinlock);
+> +	mutex_init(&shared_desc->mutex);
+>
+>  	return shared_desc;
+>  }
+> diff --git a/drivers/gpio/gpiolib-shared.h b/drivers/gpio/gpiolib-shared.h
+> index 15e72a8dcdb1..5c725118b1af 100644
+> --- a/drivers/gpio/gpiolib-shared.h
+> +++ b/drivers/gpio/gpiolib-shared.h
+> @@ -6,7 +6,6 @@
+>  #include <linux/cleanup.h>
+>  #include <linux/lockdep.h>
+>  #include <linux/mutex.h>
+> -#include <linux/spinlock.h>
+>
+>  struct gpio_device;
+>  struct gpio_desc;
+> @@ -42,35 +41,29 @@ static inline int gpio_shared_add_proxy_lookup(struct device *consumer,
+>
+>  struct gpio_shared_desc {
+>  	struct gpio_desc *desc;
+> -	bool can_sleep;
+>  	unsigned long cfg;
+>  	unsigned int usecnt;
+>  	unsigned int highcnt;
+> -	union {
+> -		struct mutex mutex;
+> -		spinlock_t spinlock;
+> -	};
+> +	struct mutex mutex; /* serializes all proxy operations on this descriptor */
+>  };
+>
+>  struct gpio_shared_desc *devm_gpiod_shared_get(struct device *dev);
+>
+> +/*
+> + * Under this lock the proxy may call gpiod_set_config()/gpiod_direction_*(),
+> + * which can reach pinctrl paths that take a mutex (e.g. gpiod_set_config() ->
+> + * gpiochip_generic_config() -> pinctrl_gpio_set_config()), independent of the
+> + * underlying chip's can_sleep. A spinlock would run that sleeping call from
+> + * atomic context, so the descriptor lock must be a mutex and the proxy
+> + * gpiochip is therefore sleeping (can_sleep=true).
+> + */
+>  DEFINE_LOCK_GUARD_1(gpio_shared_desc_lock, struct gpio_shared_desc,
+> -	if (_T->lock->can_sleep)
+> -		mutex_lock(&_T->lock->mutex);
+> -	else
+> -		spin_lock_irqsave(&_T->lock->spinlock, _T->flags),
+> -	if (_T->lock->can_sleep)
+> -		mutex_unlock(&_T->lock->mutex);
+> -	else
+> -		spin_unlock_irqrestore(&_T->lock->spinlock, _T->flags),
+> -	unsigned long flags)
+> +	mutex_lock(&_T->lock->mutex),
+> +	mutex_unlock(&_T->lock->mutex))
+
+Just drop these wrappers altogether then, let's open-code mutex locking in
+the proxy.
+
+>
+>  static inline void gpio_shared_lockdep_assert(struct gpio_shared_desc *shared_desc)
+>  {
+> -	if (shared_desc->can_sleep)
+> -		lockdep_assert_held(&shared_desc->mutex);
+> -	else
+> -		lockdep_assert_held(&shared_desc->spinlock);
+> +	lockdep_assert_held(&shared_desc->mutex);
+
+Same here, move it to the proxy.
+
+>  }
+>
+>  #endif /* __LINUX_GPIO_SHARED_H */
+> --
+> 2.54.0
+>
+>
+>
+
+Bart
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
