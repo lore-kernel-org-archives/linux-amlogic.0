@@ -4,82 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83C91CD8CA8
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jun 2026 06:07:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E696BCD8CA8
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jun 2026 06:08:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
+	MIME-Version:Date:Message-ID:Cc:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ekpoF2nKg9CBUE0MLN8TV5csn87UbHRgR9dfXQezv/0=; b=sS7a8qtqEA/SvPYDlPuViV+vJw
-	iBYp0wqmOjnaIV1KPwoCv7SHOoiq6kTOqtHVrI8+WzQsojxlI59omnmhSg5tagvbtpbeut26E6TUd
-	Qi1vnjYxWWYZjXXUekQ71l+B74l15qWFJWKfFBK8NmV6liasfoImn1U0yxNDHTNY8++jg2UtMQCcL
-	yrsujr7eulOggtMiGBcvuzHhrtVGM6/T75rn4UvIYL8U7lj4nSux4VlS+I6VfB/nTC4gh24bDAxrF
-	lBUp5dRv7Nek54AJywO739jbvhPXouv8LiK1/uUWOAhB/LvEQp80hmRXIruKc2KTO3pI9+wdFQZJJ
-	G3lEd+UQ==;
+	bh=Pb8tRboxIii2hUTDguseUgu5k+TqgtXzfpcco9/cM7s=; b=nCxVizkkorxzvT27uTZmXsqIdr
+	1OwkIe3pykbkcN6c2Z1qCQKbN5tm8oE4qIwsHqWjhJIqKMUPHcvUGDW/c8aURm6jJY2FUfuLjxFc7
+	53qFyhffkkUx6xJZnujk6iZDPrsxqwcG/Ppa1bgsNLEXKG0fBNUAQl6kfEBPwXVopmIijuF9FUVDv
+	mfIO4IUtFPd+iVIklnAl6Jo7Zt9c/rT81Mwoi0z/8bCpDIWm+ZhlD1CMQC0OIA1Ez2vxAfHv5uRSG
+	OjPoOMIahwecZt7KdTSAs/I4qrqD8nH5JnNxlf2XIvI2KddHRzzCbXhE3r1dwAa9Qywtg88boEz6e
+	EMrmXgXg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wZMxM-0000000FHsm-32K3;
-	Tue, 16 Jun 2026 06:07:28 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1wZMxt-0000000FHyr-3aBb;
+	Tue, 16 Jun 2026 06:08:01 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wZMxK-0000000FHsA-1Vdi
+	id 1wZMxr-0000000FHxy-10cr
 	for linux-amlogic@lists.infradead.org;
-	Tue, 16 Jun 2026 06:07:27 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-490b4a8e28bso29577825e9.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 15 Jun 2026 23:07:25 -0700 (PDT)
+	Tue, 16 Jun 2026 06:08:00 +0000
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4908b92904fso50800955e9.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 15 Jun 2026 23:07:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1781590044; x=1782194844; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1781590077; x=1782194877; darn=lists.infradead.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :content-language:references:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=xoHHKRKukzaKnREbzwd66CB8l6NREbEWNDgRAiNx0fE=;
-        b=AWQt8jZ5HFoxBK7WFitxPKPN1/gaIVeH/41VdT6/d1lD9RT0WAboeeRVN6wPLQf/cq
-         xzSHZdx00db4Hd0fXQa1wDiI6qWjUhBwrX0/5m6OrMn/2JUtIq+XDEGL7dW0CExmveNc
-         At4KO53u023RolfxkSIb88L2+kqj/c347JgKXZt5tsbveLKnYqDrMnTls6KFBmNLYEM7
-         gqCFucSuEogp1Bd2M1R3mtrnewB1K1V6WUnjkwY8H/Ka47mEgU11PhBQsVt5Ri+3qB27
-         JA/fmyoe5OseXw9p0YG8A9XQclIwFIfSFPd7GK4P1I7mjDX2g65OTkRf/2Ds1nQGZvWe
-         nyKA==
+        bh=Fg7/Bt2hoSMHwuHZLh5Xj5ceyiuOjajftOMuvqKGx0E=;
+        b=l71X16e3PnlNsF9zN5UFezrQG5Sn2CyXlZsrckGTSDZhRzHIf4BT2ixox89U1lu3tY
+         PwIlobPxLW8CWagQwR5wRhTgQb8lrZvTxN6t79WNJUDSTFu5z4c71UfMOP1ne5BSTCdk
+         5z0zOMf4VJCd1fq86t2FIeUQELMdNf38pleKoEEoPVExxXqkNiK12lPKPCOFaFMZpZ9W
+         E9AJt8dOmx4U1DZ2cK6KLL0QyLlD/z6zviqC0egV1DmuBmdRi/j6PFKFhO5S1sN7gXQ5
+         iyyE3qJua6VcQ664J60yJM/w696l7cZsvOHzL8qTH43TQy1w51HNEKlW16I0SziyVy8K
+         ZVJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781590044; x=1782194844;
+        d=1e100.net; s=20251104; t=1781590077; x=1782194877;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :content-language:references:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xoHHKRKukzaKnREbzwd66CB8l6NREbEWNDgRAiNx0fE=;
-        b=TgdnIKxzZHZzHEdiqbGf12MWUKtP2zW/yjQvmSCnQohZi0M7xc24/7CnIMABSuHfcE
-         oPEiARFfEJP+YZp/7BJlqycalINL5uNMA65xs1xIoNCyFWq8Ph3OC3LtYVot3dXn+XfR
-         /q+7WvOK0Ef2Z1hze2Tl0Nz8dk3fHL9DxOhpQiaGUMbMMWfZqJcXi6c3nHqJe7lxJIRa
-         JKOaIlS7h7rchp44aZnNGBVxivISg6AwjoT4JGn9CxUFg7THg9o2AFi8b4+PUneUmN6W
-         uwcW652wgJLfy5nWvDiu31rG+urHDbRIVCuwOwvOYB0gUL8TKSb7XaIs6sLBqJLh1XTB
-         /C3A==
-X-Gm-Message-State: AOJu0Yz/8NJWbJoz31x+luJPD2gP73Dj1B9dWTg7uZeGE0MzpVjbaHej
-	tGiSh2E4TpYY1Vwpo3mbMjRf+Td18iPa0Ycv1lgMubpg/SXy3P9GK22g1KJLZHcNEDI=
-X-Gm-Gg: Acq92OHHBshz4NZpK1rDpAX9Xv5K7baRoUmR2Q9/3e0Gsu1iN5weVrshxfSFXPYm6d/
-	+g/gYYonjt6FhD2tXJB4NkASyg+UTO4qXat5kZ0vB/z7r1nKcOStaYam5SAc6T+vEZkf/RKnnd0
-	kaDIsMctazTYg4aD/zogCay6sBboDOb9ptDFF0vyBYt+VKhbn0gPSjUYycw6S/RCM++qoolaOvb
-	V/X2CIvPvZ/XGTYtA48aQaanzCfhdL5YmK5EoUkbOMYgao4yP/mS0+scjXsswuG4qJC0tI2G37b
-	JSZerS3EEyEawc1zXBayrzLWZ7UVZYlevJXdafpdMczHfPLPvD6x+tYEoKEq8tXSayc+Ekm1LMW
-	njX5Y5w/K63HKRHiXcSvkA7V0adJoGFtdYcVRL4dXxVn57MN/wovKO6p7CB5cFnuAGpgwlcwDPn
-	uQ5D1Cw7GYdtCf1lubohykYF9bVNgqL60ZQuJc43IUpqU=
-X-Received: by 2002:a05:600d:640f:20b0:490:e180:2ed with SMTP id 5b1f17b1804b1-4922ff92614mr21627735e9.4.1781590043973;
-        Mon, 15 Jun 2026 23:07:23 -0700 (PDT)
+        bh=Fg7/Bt2hoSMHwuHZLh5Xj5ceyiuOjajftOMuvqKGx0E=;
+        b=sonJ2alSIySD/kJKqkz7/46BHc0z2ZMNIxKgaohop0a/Yt4e6oY60QJZ+EQUxM1lqr
+         p1HhTpMHGT2Kz+vMI32DboSf/v7uf43B0ACRHS7TLyegUwmclpaOrfOSi5XkETq/E6du
+         joTQDxaxvz6YbDcRWkJhSA+zrHzhLKLlpP6W/mcsUmIY7LiD+pcZgnKkV33nIrmYpt/w
+         e1IkvnhvZoYpCRw+pL6r7MimIli6lrNfoc8FQR/8ongbv1V2++Yg6Qyj6jvBeQMK9MSa
+         f5X6u923EGQ8VdZT4dVdFEfiP9RnBwgYumCstvHjF5YHiRDgqRH6XDH/8nGGaf+Z1z73
+         cjPw==
+X-Forwarded-Encrypted: i=1; AFNElJ8R6Cmf0OXTlEIdpDbvm0RVQrSdNWI7sNOI2vsV7nX+Ox4KVRsSqDzB2nz7GXnuiimW/5M1XU56DqlyDZ5d@lists.infradead.org
+X-Gm-Message-State: AOJu0Yx0eVtPd27+LSnbFyYsjbCpUc9KGJ3ZIX0pc7jMEe23M03QkvQC
+	tbxeucwj3XZ79KoRA6yzHk8ZrWUDVU3UnEAH+rI3jmsrink9iYeQwl6esmFI5kyIxxMOdQW9spp
+	VP+Sq69A=
+X-Gm-Gg: Acq92OH6NsCqGyRaJ/lBv52Ya4UWEmH7jZGXkmujmBZZ2g1/4Phr0RyNcU9MNGCJsr5
+	5bd/W+XChZIE1eEUmC3qc0EwG3UgnvuNqVSnR2jTn8wlsf8BQPttao+jQ2DHOCmEiZ5XnXUwccz
+	l2OQImm9zfnSWZ+c/bMGwCi9uwOYPtKrq5lCh4W+8y48WlDgEz/UnX2bNpyNvv1jY3J278lQlXM
+	rSw1xL/EddGvUixBQMD41UM2V3BlicJ8we3fhKpiFbjvM0QHsQruI5cjPF9svQxCO/H1MgwLllg
+	+uXUp74D0PbBIrrAt6GTEkD6V101uwhmhYvsyXHbsSQKa9Zu3XG/I8QSjbHAST01ixHZvNDX5eM
+	4jlPrOgTUHOopxxOQnBWJ++tOwDzp7SnNzN3s9UaOC4rIKnCLE7VEPEB3KuKuyH8sPEQbMFor4y
+	KfZ+Q/agdnOW3LO0401vbaQppMXnYoHBKmaQNMKBAE9qc=
+X-Received: by 2002:a5d:64e3:0:b0:461:a5d6:704c with SMTP id ffacd0b85a97d-461a5d673fcmr202253f8f.27.1781590077340;
+        Mon, 15 Jun 2026 23:07:57 -0700 (PDT)
 Received: from [172.20.10.3] ([37.167.117.98])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4922fa96f0esm53085415e9.12.2026.06.15.23.07.23
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4606f26f4f6sm45062575f8f.16.2026.06.15.23.07.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Jun 2026 23:07:23 -0700 (PDT)
-Message-ID: <1539e5d5-7c58-4def-ad07-4c29b58ccb62@linaro.org>
-Date: Tue, 16 Jun 2026 08:07:22 +0200
+        Mon, 15 Jun 2026 23:07:57 -0700 (PDT)
+Message-ID: <1922bb19-78a1-456a-ade8-417290068e3f@linaro.org>
+Date: Tue, 16 Jun 2026 08:07:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
+From: Neil Armstrong <neil.armstrong@linaro.org>
 Subject: Re: [PATCH] soc: amlogic: meson-clk-measure: remove debugfs tree
-To: sashiko-reviews@lists.linux.dev, Pengpeng Hou <pengpeng@iscas.ac.cn>
-Cc: linux-amlogic@lists.infradead.org
+To: Pengpeng Hou <pengpeng@iscas.ac.cn>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
 References: <20260615091531.21964-1-pengpeng@iscas.ac.cn>
- <20260615092437.671C31F000E9@smtp.kernel.org>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -106,10 +110,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20260615092437.671C31F000E9@smtp.kernel.org>
+In-Reply-To: <20260615091531.21964-1-pengpeng@iscas.ac.cn>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260615_230726_443722_3DF03711 
-X-CRM114-Status: GOOD (  17.28  )
+X-CRM114-CacheID: sfid-20260615_230759_302761_157857DA 
+X-CRM114-Status: GOOD (  19.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,74 +131,80 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 6/15/26 11:24, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+On 6/15/26 11:15, Pengpeng Hou wrote:
+> meson_msr_probe() creates a debugfs tree with entries that reference
+> devm-managed measurement table entries and the driver's private regmap
+> state. The driver has no remove callback, so unbinding the device can
+> leave those debugfs entries behind after the private data is released.
 > 
-> Pre-existing issues:
-> - [High] Exposing the `measure_summary` debugfs file before initializing the `priv` pointers in the `msr_table` leads to a potential NULL pointer dereference.
-> --
+> Store the debugfs root and remove the subtree from a new remove callback.
 > 
-> commit cf66aebca628dec91393028bc843130a21da66ad
-> Author: Pengpeng Hou <pengpeng@iscas.ac.cn>
-> Subject: soc: amlogic: meson-clk-measure: remove debugfs tree
+> Signed-off-by: Pengpeng Hou <pengpeng@iscas.ac.cn>
+> ---
+>   drivers/soc/amlogic/meson-clk-measure.c | 14 ++++++++++++++
+>   1 file changed, 14 insertions(+)
 > 
-> This commit adds a remove callback to the driver to properly clean up the
-> debugfs tree created during probe. By storing the debugfs root and removing
-> it on driver unbind, it prevents leftover entries from referencing freed
-> private data.
-> 
->> diff --git a/drivers/soc/amlogic/meson-clk-measure.c b/drivers/soc/amlogic/meson-clk-measure.c
->> index d862e30a244ed..7ca43bcb622a2 100644
->> --- a/drivers/soc/amlogic/meson-clk-measure.c
->> +++ b/drivers/soc/amlogic/meson-clk-measure.c
-> [ ... ]
->> @@ -952,6 +954,7 @@ static int meson_msr_probe(struct platform_device *pdev)
->>   	       sizeof(struct msr_reg_offset));
->>   
->>   	root = debugfs_create_dir("meson-clk-msr", NULL);
->> +	priv->debugfs_root = root;
->>   	clks = debugfs_create_dir("clks", root);
->>   
->>   	debugfs_create_file("measure_summary", 0444, root,
->>   			    priv->data.msr_table, &clk_msr_summary_fops);
->>   
->>   	for (i = 0 ; i < priv->data.msr_count ; ++i) {
->>   		if (!priv->data.msr_table[i].name)
->>   			continue;
->>   
->>   		priv->data.msr_table[i].priv = priv;
-> 
-> [Severity: High]
-> This is a pre-existing issue, but does creating the measure_summary debugfs
-> file here expose it to userspace before the priv pointers in msr_table are
-> initialized?
-> 
-> If a user-space process reads measure_summary concurrently while the loop
-> below is still executing, clk_msr_summary_show() could dereference a NULL
-> pointer via msr_table->priv:
-> 
-> clk_msr_summary_show() {
->      struct meson_msr_id *msr_table = s->private;
->      unsigned int msr_count = msr_table->priv->data.msr_count;
->      ...
-> }
-> 
-> Could the measure_summary debugfs file be created after the priv fields are
-> fully initialized in the loop to avoid this race?
+> diff --git a/drivers/soc/amlogic/meson-clk-measure.c b/drivers/soc/amlogic/meson-clk-measure.c
+> index d862e30a244e..7ca43bcb622a 100644
+> --- a/drivers/soc/amlogic/meson-clk-measure.c
+> +++ b/drivers/soc/amlogic/meson-clk-measure.c
+> @@ -7,6 +7,7 @@
+>   #include <linux/of_address.h>
+>   #include <linux/platform_device.h>
+>   #include <linux/bitfield.h>
+> +#include <linux/err.h>
+>   #include <linux/seq_file.h>
+>   #include <linux/debugfs.h>
+>   #include <linux/regmap.h>
+> @@ -50,6 +51,7 @@ struct meson_msr_data {
+>   struct meson_msr {
+>   	struct regmap *regmap;
+>   	struct meson_msr_data data;
+> +	struct dentry *debugfs_root;
+>   };
+>   
+>   #define CLK_MSR_ID(__id, __name) \
+> @@ -952,6 +954,7 @@ static int meson_msr_probe(struct platform_device *pdev)
+>   	       sizeof(struct msr_reg_offset));
+>   
+>   	root = debugfs_create_dir("meson-clk-msr", NULL);
+> +	priv->debugfs_root = root;
+>   	clks = debugfs_create_dir("clks", root);
+>   
+>   	debugfs_create_file("measure_summary", 0444, root,
+> @@ -967,9 +970,19 @@ static int meson_msr_probe(struct platform_device *pdev)
+>   				    &priv->data.msr_table[i], &clk_msr_fops);
+>   	}
+>   
+> +	platform_set_drvdata(pdev, priv);
+> +
+>   	return 0;
+>   }
+>   
+> +static void meson_msr_remove(struct platform_device *pdev)
+> +{
+> +	struct meson_msr *priv = platform_get_drvdata(pdev);
+> +
+> +	if (!IS_ERR_OR_NULL(priv->debugfs_root))
+> +		debugfs_remove_recursive(priv->debugfs_root);
+> +}
+> +
+>   static const struct msr_reg_offset msr_reg_offset = {
+>   	.duty_val = 0x0,
+>   	.freq_ctrl = 0x4,
+> @@ -1065,6 +1078,7 @@ MODULE_DEVICE_TABLE(of, meson_msr_match_table);
+>   
+>   static struct platform_driver meson_msr_driver = {
+>   	.probe	= meson_msr_probe,
+> +	.remove = meson_msr_remove,
+>   	.driver = {
+>   		.name		= "meson_msr",
+>   		.of_match_table	= meson_msr_match_table,
 
-Impossible the driver is initialized way before userspace starts.
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-> 
->>   		debugfs_create_file(priv->data.msr_table[i].name, 0444, clks,
->>   				    &priv->data.msr_table[i], &clk_msr_fops);
->>   	}
->>   
->> +	platform_set_drvdata(pdev, priv);
->> +
->>   	return 0;
->>   }
-> 
-
+Thanks,
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
