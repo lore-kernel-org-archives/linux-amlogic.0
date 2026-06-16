@@ -4,120 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D1AACD98DA
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jun 2026 07:11:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1981FCD98DA
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jun 2026 07:19:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=uvvmzv/APJVIms1retnMdWQpyWke5XrtdpwSWm+J6q4=; b=PFSQ8UMuYYQe8rLPMY1+kd5JGe
-	aene59HN6Dnu1b6kwKlT33RRCQJ0xqNC1DSo7X0sKH/bHwBMRs1eU8ETxADAV6dDFCeWzDfE7fZep
-	IR8O12iGEMM8P6LirEHV6Q5uEaSb8GrPx3NTKcWHkUgdkVowNgctEyKuteFUiIqnFxz+zbfi3bm29
-	xah28gI04DLhoqTHQp4Zdp+oi9wEf6bPIXiYxMnSV8b4VL7Gq8iNZFbfc/UYuNaJePkgFMYEBLFo5
-	nu2O+nSky2FR6qLaB9LHmU2M4sGD6HoVlH9bMGlEs2Dk5TliPQCxR9hP+4DrXSLP7ZPMtvHQJAlBx
-	aN0K4BJw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=yBLKeyIHQ01AcUSHK3ivqseEKC7IsQ5LcqTOsyK6x54=; b=qoPFn2dLvdidnm
+	UGTX9P1akj+jXXlAi6t+AGlRvoD0H8u03V+iffrcXWrcfuP7AiCx3f4ZNzYEdh9rk+gBCNIFAXbo9
+	eMwN8aElgmQMkNotw3W4YqGnSaom+efUZ7Okhr4HU9ZouSdAEUwijIuxMveIAXvfTS5ZWUUKQipX6
+	5x7td8kFzaOeBp8DAkniH+SSvzhat3bk9CujZZcQAwFfQrMWgUuUwJFMl3yb5fRFHVzBw/v4WVXUy
+	2FuN7FmQeLD55/+gOchcpTauIg/sW9oR73sv043LrCQDqQr6b+Q5na5aDmQ8/IgBWBBuiQ0aceCB+
+	wZqbr2g4tNmPajCDhLow==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wZNww-0000000FLq8-2zox;
-	Tue, 16 Jun 2026 07:11:06 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
+	id 1wZO4h-0000000FN0a-0ZRt;
+	Tue, 16 Jun 2026 07:19:07 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wZNwt-0000000FLow-2t2y
+	id 1wZO4g-0000000FN0L-0J1Z
 	for linux-amlogic@lists.infradead.org;
-	Tue, 16 Jun 2026 07:11:05 +0000
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-46019edc13dso1921822f8f.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 16 Jun 2026 00:11:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1781593862; x=1782198662; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RpWtGQUMO6w+AqepPhMZrIYR/+GHp+ISWGwYizWvLWs=;
-        b=jH6FJQ8LRwssaemFByrrn14ILbvp5Mdzbx0GNa0Qy6fgVRrDBC/6o7/LOGcBAjaMYJ
-         6Hb2BDCoHjGyXSkJdMkFrkJ/EILbW7iBeWUt1RAiN0gE1k6/t5eD0R7JbsJUpg1gAo2B
-         p0Tb+b3RIRtORoarZOCEHNxjsThiJPegmydxZx+wPGmelmWHBDDnRDdBnJBvL15fO6Nc
-         +XNsyQsBX2CkJRvtnrXhK66CIFHs3sTEMmLAx946ASmT7PQWUP0QRaqmAse285BoYpR8
-         CBUfaTkjXk89YRIHf5xLp6bHyNJ2SKdVuHuq84It96nKM0Im70JIyHqpq2DqrlffAnFb
-         /Xaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781593862; x=1782198662;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RpWtGQUMO6w+AqepPhMZrIYR/+GHp+ISWGwYizWvLWs=;
-        b=fGSQKvL6jXQ85oCehDNvs/hYHWjGqenoGxgPSbHAQva/SDbtD5TE+qHWBfHXmU0RGr
-         d7FmHSz2Y+tryrHT9RqW7sHmYCHjQyOa6Bj5zfwns6iiwj3Hm0Cu8SYjBjNr0i5TlCFy
-         tyFA5BAD6kLsUp5MZ/C4p/wJy8VZekbtvlvTA+hYQcTTXG7MnLd1SvlJz9q0hbRPQlBQ
-         Ze824T79LnkZWJ296IyqGu/hoKwP6Bf0OBIa0YCD2J27A4ULd6AS+itHWcbJPiLVoaRl
-         IsdBK7IR8II8L0Z0Wyf8hG8YF2uAxZMGAQO77IyjhsxUHAm9aIbjQXRE+ZmP/TtRWCg4
-         mRzA==
-X-Forwarded-Encrypted: i=1; AFNElJ+5SjP3rJ9A1u753I0t9+o4CMO9mqhqqqofL/qlPPXMDg2UHa7l1cDSBPQUeY64AKa0gF6HduaLlx94GvZ1@lists.infradead.org
-X-Gm-Message-State: AOJu0Yw9MpxZYGNOyEroopL6zdIfaamqmsY4pKO2dHqddc1rss4N7toW
-	BYbayFXRmZYtvUrtroPbXc+MHVxA3BwBI7pdctcQN+dg1Ba6ggxs7KDYbXFgeg3WYoc=
-X-Gm-Gg: Acq92OH4zEtLGTCSMW1wpAvQxPULOCO7eX5sbqYCiXt/sP0sn8jJLul+OJNh4Y6Ccrv
-	ncW2Oyj9O0srrJOBS3+BHOLGnkzqi9zuq7KDe4kpukorjwPiXelf9DcOHSmuznJJSOfMEee6Wsx
-	jKsbC7AKDC+UKOvHGxuZ69vQkLWWm0DGMXUXst9ZmOevFcFjShKz1upJW2ofnu6m/RWn+lomhl4
-	lQk8RyIWsRZX/EALZlADh0eUyX2frLHwUang+yEKe4imia4sKETdJyNnG/Qrn7MbP4/NQXcs+L3
-	+pTwXlWnInbAZjzuHKo1mUwdSgdx1s9lqL4YALq0uxll14WBDu1lgpo1r9Kg6Wv4qrhD2H+lHjp
-	GTn9o60rnd3Aw0gXTkrQoUVogE1cYJ1VMd6ajUkdRDWPtY1+OEILWzVXGAnS2bu0weNxWD6Uapb
-	ckt7VM85DdM4Ys5FVfori6bHkEcfpD2w==
-X-Received: by 2002:a5d:5d01:0:b0:45e:ec18:f20a with SMTP id ffacd0b85a97d-4606dbeff08mr26112789f8f.32.1781593861537;
-        Tue, 16 Jun 2026 00:11:01 -0700 (PDT)
-Received: from [10.3.4.22] ([212.133.41.77])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4606f2c4240sm38392203f8f.27.2026.06.16.00.11.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Jun 2026 00:11:01 -0700 (PDT)
-Message-ID: <870a2721-5fad-42fc-b8f7-40a87d5a277e@linaro.org>
-Date: Tue, 16 Jun 2026 09:10:59 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
+	Tue, 16 Jun 2026 07:19:06 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 8824F40242;
+	Tue, 16 Jun 2026 07:19:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 311411F00A3D;
+	Tue, 16 Jun 2026 07:19:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781594345;
+	bh=HrXKZBSa4XfWGRUZ7aaZverlmkzMxQjwm29CfJP2Rx0=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=Ou6CA3A0Qf8h60/PqJJQwVGpXQ0aLOPi8sIL4x5/Cj9t5frsw5+7CbLnb5lTuj4YC
+	 wWe77Rp/zY/RoOybp+M/Lf5BzJtN9NoqRmG8WvBuXTrRnKHY+WghAc01XYyYblKcbf
+	 jcCQk7/UBxJ/CGaM/GFRYmvKlTlvHev60yGcMF798h5yBGicQFw50V7iZE3Ow7Rn3M
+	 M68jwl9Regkd6wcGGHlisg7cKhF6XDo11oX+7L0Lcruw+aGlDmeJOlkjqFTk8SsEAJ
+	 FzdOYvOY/iSycHEGBDY11CKtW200UphSTWcDFbjgs/JI1iRKfewfjLCT/u/9XuuZLE
+	 ZQgMEotAfC9bQ==
+From: sashiko-bot@kernel.org
 Subject: Re: [PATCH] PCI: dwc: meson: Fix reset GPIO initial state
-To: linux-kernel-dev@aliel.fr, Yue Wang <yue.wang@Amlogic.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Remi Pommarel <repk@triplefau.lt>
-Cc: linux-pci@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260616-fix-meson-pcie-reset-gpio-v1-1-fca404b4c8be@aliel.fr>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
+To: "Ronald Claveau via B4 Relay" <devnull+linux-kernel-dev.aliel.fr@kernel.org>
+Cc: neil.armstrong@linaro.org, linux-pci@vger.kernel.org, linux-amlogic@lists.infradead.org
 In-Reply-To: <20260616-fix-meson-pcie-reset-gpio-v1-1-fca404b4c8be@aliel.fr>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260616_001103_777826_2B38F0B3 
-X-CRM114-Status: GOOD (  17.12  )
+References: <20260616-fix-meson-pcie-reset-gpio-v1-1-fca404b4c8be@aliel.fr>
+Date: Tue, 16 Jun 2026 07:19:04 +0000
+Message-Id: <20260616071905.311411F00A3D@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,70 +61,53 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 6/16/26 09:07, Ronald Claveau via B4 Relay wrote:
-> From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-> 
-> Commit 4d3186a525b3 ("PCI: amlogic: Fix reset assertion via gpio
-> descriptor") inverted the reset assertion logic to use proper gpio
-> descriptor semantics, and moved the polarity configuration to the
-> device tree as GPIO_ACTIVE_LOW. However, the initial GPIO state
-> "GPIOD_OUT_LOW" was not updated accordingly.
-> 
-> Change GPIOD_OUT_LOW to GPIOD_OUT_HIGH to get the right behaviour.
-> 
-> With GPIOD_OUT_LOW:
-> 
->      ahci 0000:01:00.0: enabling device (0000 -> 0002)
->      ahci 0000:01:00.0: SSS flag set, parallel bus scan disabled
->      ahci 0000:01:00.0: Controller reset failed (0xffffffff)
->      ahci 0000:01:00.0: probe with driver ahci failed with error -5
-> 
-> With this fix:
-> 
->      ahci 0000:01:00.0: enabling device (0000 -> 0002)
->      ahci 0000:01:00.0: AHCI vers 0001.0300, 32 command slots, 6 Gbps,
->                         SATA mode
->      ahci 0000:01:00.0: 1/1 ports implemented (port mask 0x1)
->      ahci 0000:01:00.0: flags: 64bit ncq led clo only pio ccc
-> 
-> Fixes: 4d3186a525b3 ("PCI: amlogic: Fix reset assertion via gpio descriptor")
-> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
-> ---
->   drivers/pci/controller/dwc/pci-meson.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-> index 0694084f612b7..15ed59b8764fb 100644
-> --- a/drivers/pci/controller/dwc/pci-meson.c
-> +++ b/drivers/pci/controller/dwc/pci-meson.c
-> @@ -400,7 +400,7 @@ static int meson_pcie_probe(struct platform_device *pdev)
->   		return PTR_ERR(mp->phy);
->   	}
->   
-> -	mp->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-> +	mp->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
->   	if (IS_ERR(mp->reset_gpio)) {
->   		dev_err(dev, "get reset gpio failed\n");
->   		return PTR_ERR(mp->reset_gpio);
-> 
-> ---
-> base-commit: abe651837cb394f76d738a7a747322fca3bf17ba
-> change-id: 20260616-fix-meson-pcie-reset-gpio-2b9e188668c5
-> 
-> Best regards,
-
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-
-Thanks,
-Neil
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpQcmUtZXhpc3RpbmcgaXNzdWVzOgot
+IFtIaWdoXSBNaXNzaW5nIC5yZW1vdmUgY2FsbGJhY2sgbGVhZHMgdG8gVXNlLUFmdGVyLUZyZWUg
+YW5kIHJlc291cmNlIGxlYWsgb24gdW5iaW5kL21vZHVsZSB1bmxvYWQuCi0tCgpjb21taXQgNmYz
+NGIzNzE5ODA5NDJlZTc2Y2E1MzgzODI1ZGQ4ZWNhZmYyY2JmYgpBdXRob3I6IFJvbmFsZCBDbGF2
+ZWF1IDxsaW51eC1rZXJuZWwtZGV2QGFsaWVsLmZyPgoKUENJOiBkd2M6IG1lc29uOiBGaXggcmVz
+ZXQgR1BJTyBpbml0aWFsIHN0YXRlCgpUaGlzIGNvbW1pdCBjaGFuZ2VzIHRoZSBpbml0aWFsIHN0
+YXRlIG9mIHRoZSByZXNldCBHUElPIGZyb20gR1BJT0RfT1VUX0xPVwp0byBHUElPRF9PVVRfSElH
+SC4gVGhpcyBmaXhlcyB0aGUgcmVzZXQgYXNzZXJ0aW9uIGxvZ2ljIHRoYXQgd2FzIGludmVydGVk
+CmJ5IGEgcHJldmlvdXMgY29tbWl0LgoKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9wY2kvY29udHJv
+bGxlci9kd2MvcGNpLW1lc29uLmMgYi9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2ktbWVz
+b24uYwo+IGluZGV4IDA2OTQwODRmNjEyYjcuLjE1ZWQ1OWI4NzY0ZmIgMTAwNjQ0Cj4gLS0tIGEv
+ZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNpLW1lc29uLmMKPiArKysgYi9kcml2ZXJzL3Bj
+aS9jb250cm9sbGVyL2R3Yy9wY2ktbWVzb24uYwo+IEBAIC00MDAsNyArNDAwLDcgQEAgc3RhdGlj
+IGludCBtZXNvbl9wY2llX3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpCj4gIAkJ
+cmV0dXJuIFBUUl9FUlIobXAtPnBoeSk7Cj4gIAl9Cj4gIAo+IC0JbXAtPnJlc2V0X2dwaW8gPSBk
+ZXZtX2dwaW9kX2dldChkZXYsICJyZXNldCIsIEdQSU9EX09VVF9MT1cpOwo+ICsJbXAtPnJlc2V0
+X2dwaW8gPSBkZXZtX2dwaW9kX2dldChkZXYsICJyZXNldCIsIEdQSU9EX09VVF9ISUdIKTsKCltT
+ZXZlcml0eTogSGlnaF0KVGhpcyBpcyBhIHByZS1leGlzdGluZyBpc3N1ZSwgYnV0IGRvZXMgdGhp
+cyBkcml2ZXIgbGFjayBhIC5yZW1vdmUgY2FsbGJhY2sKdG8gY2xlYW4gdXAgdGhlIFBDSWUgaG9z
+dD8KCkxvb2tpbmcgYXQgbWVzb25fcGNpZV9wcm9iZSgpLCBpdCBpbml0aWFsaXplcyB0aGUgRFdD
+IFBDSWUgaG9zdCBhbmQKcmVnaXN0ZXJzIHRoZSBQQ0kgcm9vdCBidXM6Cgpkcml2ZXJzL3BjaS9j
+b250cm9sbGVyL2R3Yy9wY2ktbWVzb24uYzptZXNvbl9wY2llX3Byb2JlKCkgewogICAgLi4uCiAg
+ICByZXQgPSBkd19wY2llX2hvc3RfaW5pdCgmcGNpLT5wcCk7CiAgICBpZiAocmV0IDwgMCkgewog
+ICAgLi4uCn0KCkhvd2V2ZXIsIG1lc29uX3BjaWVfZHJpdmVyIGRvZXMgbm90IGltcGxlbWVudCBh
+IC5yZW1vdmUgY2FsbGJhY2sgdG8gY2FsbApkd19wY2llX2hvc3RfZGVpbml0KCksIG5vciBkb2Vz
+IGl0IHNldCAuc3VwcHJlc3NfYmluZF9hdHRycyA9IHRydWUuCgpXaGVuIHRoZSBkcml2ZXIgaXMg
+dW5ib3VuZCB2aWEgc3lzZnMgb3IgdW5sb2FkZWQsIGRldnJlcyBhdXRvbWF0aWNhbGx5IGZyZWVz
+CnRoZSBtZW1vcnkgZm9yIHN0cnVjdCBtZXNvbl9wY2llIChhbmQgaXRzIGVtYmVkZGVkIHN0cnVj
+dCBkd19wY2llKSBhbmQKZGlzYWJsZXMgY2xvY2tzIGFuZCByZXNldHMuCgpCZWNhdXNlIGR3X3Bj
+aWVfaG9zdF9kZWluaXQoKSBpcyBuZXZlciBjYWxsZWQsIHRoZSBQQ0llIHJvb3QgYnVzIGFuZCBp
+dHMgY2hpbGQKZGV2aWNlcyBhcHBlYXIgdG8gcmVtYWluIHJlZ2lzdGVyZWQgaW4gdGhlIFBDSSBj
+b3JlLgoKQ291bGQgdGhpcyBsZWFkIHRvIGEgdXNlLWFmdGVyLWZyZWUgYW5kIHBhbmljIGlmIHN1
+YnNlcXVlbnQgaW50ZXJhY3Rpb25zCndpdGggdGhlc2UgbGVha2VkIFBDSSBkZXZpY2VzIG9jY3Vy
+IChmb3IgZXhhbXBsZSwgdmlhIHN5c2ZzIG9yIGxzcGNpKSBhZnRlcgp0aGUgbWVtb3J5IGhhcyBi
+ZWVuIGZyZWVkPwoKPiAgCWlmIChJU19FUlIobXAtPnJlc2V0X2dwaW8pKSB7Cj4gIAkJZGV2X2Vy
+cihkZXYsICJnZXQgcmVzZXQgZ3BpbyBmYWlsZWRcbiIpOwo+ICAJCXJldHVybiBQVFJfRVJSKG1w
+LT5yZXNldF9ncGlvKTsKCi0tIApTYXNoaWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nhc2hpa28u
+ZGV2LyMvcGF0Y2hzZXQvMjAyNjA2MTYtZml4LW1lc29uLXBjaWUtcmVzZXQtZ3Bpby12MS0xLWZj
+YTQwNGI0YzhiZUBhbGllbC5mcj9wYXJ0PTEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9n
+aWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
