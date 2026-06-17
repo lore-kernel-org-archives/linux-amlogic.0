@@ -4,54 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C555DCD98E2
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2026 08:34:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1B9FCD98F0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2026 20:31:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Uxw58Eri+S4cqCeGH3RcyTUatKKtH+IIGMZAwwZh/qg=; b=b3nsd3T4qIhOOa
-	Y7gBdgvEZv2YvS7td3VIQQhMoK0gj/AwTS/sm/7QEG8XVQ056Qw1hKpj46kIU9SLwLB/IKclI7px7
-	2XqMGKV3+kOhThpyH8h5LRA54rtYRWTtL9hpUrLXjRvitYFj8fG1DhjsW/T89Fm4+TFEsY9xuD7as
-	FJzVcVFJTzQwz0H+izljMfIvuwaKWmD4M+bW73f0Kq49HqYKmHr8gPdQqJDrQS3LVXct64OG+zwNX
-	ZyWBWEWdGAh/Lq/k0HpC5aDcLuXJGQ/e14eOQBa599WbO43K8JxVYgsBJk3hHIrJuI/Xn7hw+e5D/
-	fBXahCevNNdP4Jq4G4CQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=abDARZjdMzKOUc8Bus0yL2jqiICvmQE5QkelxGgme5I=; b=0E5wI3N+ZJmxDfu/UqkAJ9lrZ9
+	kx/kswIOd+m924Lyt6rjYpZUblim6UCV7254Mty81pFdWqmAgZTbq6I+LZTBYkl8/TSTLqFksZm6v
+	5eNJrFr6hTSnC+PhA4ntnaxMDZ15QdS0urO4jRCfoeXr+T3lvnd2AXRAZRvlh5cYSR1yyT5+1RMbO
+	2WkecP81DrvgOxCW8Wx4VpCe6QeKoMCVeRV7CG/kV8Pl9baRTE9WFPFOZxJrzE5q5J0cT8+acj4tb
+	Vch4aY33D9O8cfngBO8wkLSEJG5K6o5s6rhfrRJWjX7WqdjiHmL/d5cbRJBZtLT1LsUdlA5EQ5PbR
+	k+PLxHFg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wZlim-0000000GtI5-1Z4F;
-	Wed, 17 Jun 2026 08:34:04 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1wZwuW-00000000JkS-1TVS;
+	Wed, 17 Jun 2026 20:30:56 +0000
+Received: from ferryfair.com ([103.227.96.30])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wZlik-0000000GtHy-2TET
-	for linux-amlogic@lists.infradead.org;
-	Wed, 17 Jun 2026 08:34:02 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id DD01541B2F;
-	Wed, 17 Jun 2026 08:34:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8777A1F000E9;
-	Wed, 17 Jun 2026 08:34:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781685241;
-	bh=tNMwyhx1Twibc9O3/WU7J/9P3UrJtpBu+ItQtrbxyyw=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=UNqZDD9ws74UyAKdwiW1djrzWUBbd4j4A01HhIZXEx7Yuaus/FZOfTQ3Jrycv2CLP
-	 9XeYX0u2smST+8kEIxJWTjbz8TxXAhwXPALV69YxSakZDc0/9KgSBpaKhEC88doeDi
-	 nPV17bEDXTXcN9TuLbcJ5BxVAzawKTYhbFvrCVjB1gPbBtYpWIElCTKllFGuG9Z1Ow
-	 XWtrWTpesLiUysYhzU/eNTpaRMzILNjxJ4EdpGScTmV0xPIUM9SuaCQW10wib8M2on
-	 tECvAXW2XGR3oIkgJfCOiGubyVcme1QdhuAeKEOt6AzE85YONGmd46LhQKxqZtDUXL
-	 PjUQlNxcu4dIQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 3/3] arm64: dts: amlogic: meson-axg: Disable pcie_phy
- node by default
-To: "Jun Yan" <jerrysteve1101@gmail.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, linux-amlogic@lists.infradead.org, robh@kernel.org, neil.armstrong@linaro.org
-In-Reply-To: <20260617082239.645562-4-jerrysteve1101@gmail.com>
-References: <20260617082239.645562-1-jerrysteve1101@gmail.com>
- <20260617082239.645562-4-jerrysteve1101@gmail.com>
-Date: Wed, 17 Jun 2026 08:34:00 +0000
-Message-Id: <20260617083401.8777A1F000E9@smtp.kernel.org>
+	id 1wZwuT-00000000Jjv-1z7q;
+	Wed, 17 Jun 2026 20:30:55 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=ferryfair.com; s=s1; h=Content-Type:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:Sender:Reply-To:
+	Resent-From:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=in6v/D5VjOzgXD0ii8FaFVUqT/tjHQnth/1Ddc5jt18=; b=cCW+gpnRN8wByqDmLtBwriTtmD
+	5ND0NQHms/y2miLe1wn01ntL7WHiTyqFI+50RGRMcC0nuZBXTdx+BG8OyjVggSlfwFTqfygtfd/IR
+	kaFba6jKpSDg7lXPJPFgAjHnSVhQ/vGwAIRqU98kah1ZhqTtukNAXpzqnIV6ddkUkY9qwgT4qzI6g
+	ONJztK/vpZWHy3Jr+dXlndDCcI6p7IQ+yKS4mYmQ9Z3ZPut02lXuhOM3+RK5jlCb6se5liMSy03Wq
+	fvgwY3fcJKBjribsp1xGKZyNFu+sOWC5KetLxVQN9TbLwqNlu4h28hMbn/eeYmLQYNTo4I3HVjlc/
+	7IJTKZ9g==;
+Received: from console.gl-inet.com ([192.168.0.1] helo=slick.ferryfair.com)
+	by ferryfair.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.99.4)
+	(envelope-from <gowtham@ferryfair.com>)
+	id 1wZwu2-000000007Jp-27RB;
+	Thu, 18 Jun 2026 02:00:26 +0530
+Date: Thu, 18 Jun 2026 02:00:25 +0530
+From: gowtham <gowtham@ferryfair.com>
+To: neil.armstrong@linaro.org
+Cc: Ronald Claveau <linux-kernel-dev@aliel.fr>, robh@kernel.org,
+ bhelgaas@google.com, khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, linux-pci@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, yue.wang@Amlogic.com, lpieralisi@kernel.org,
+ kwilczynski@kernel.org, mani@kernel.org
+Subject: Re: [PATCH] PCI: meson: Fix PERST# timing by asserting reset before
+ LTSSM enable
+Message-ID: <20260618020025.2739cb96@slick.ferryfair.com>
+In-Reply-To: <20260617050627.4d01ed54@slick.ferryfair.com>
+References: <20260614015620.20432-1-gowtham@ferryfair.com>
+	<84cc8b0c-da06-4d01-a076-9743c29c91f6@aliel.fr>
+	<b2d8cb85-5529-4a4c-a233-64ca7a436f0b@linaro.org>
+	<20260617050627.4d01ed54@slick.ferryfair.com>
+Organization: FerryFair
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="MP_/RqLM/5A=AsV1+l9kUQ52pza"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260617_133053_828107_7E11FD6C 
+X-CRM114-Status: GOOD (  40.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,47 +78,256 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpQcmUtZXhpc3RpbmcgaXNzdWVzOgot
-IFtIaWdoXSBFbmFibGluZyBgcGNpZV9waHlgIG9uIGBtZXNvbi1heGctczQwMC5kdHNgIGlzIGlu
-c3VmZmljaWVudCB0byBzdXBwb3J0IFBDSWUgZnVuY3Rpb25hbGl0eSBiZWNhdXNlIGl0cyBoYXJk
-d2FyZSBkZXBlbmRlbmN5IGBtaXBpX3BjaWVfYW5hbG9nX2RwaHlgIHJlbWFpbnMgZGlzYWJsZWQu
-Ci0tCgpjb21taXQgY2Q5NGQwNjk2OWU5ZjlhMjNlYTMxOWY0MDZiOGU4NmU4ZWQ5ZWM0NApBdXRo
-b3I6IEp1biBZYW4gPGplcnJ5c3RldmUxMTAxQGdtYWlsLmNvbT4KCmFybTY0OiBkdHM6IGFtbG9n
-aWM6IG1lc29uLWF4ZzogRGlzYWJsZSBwY2llX3BoeSBub2RlIGJ5IGRlZmF1bHQKClRoaXMgcGF0
-Y2ggZGlzYWJsZXMgdGhlIHBjaWVfcGh5IG5vZGUgYnkgZGVmYXVsdCBpbiB0aGUgbWVzb24tYXhn
-IGR0c2kgZmlsZQp0byBzdXBwcmVzcyBkZWZlcnJlZCBwcm9iZSB3YXJuaW5ncyBvbiBib2FyZHMg
-dGhhdCBkbyBub3QgdXNlIGl0LiBJdCB0aGVuCmV4cGxpY2l0bHkgZW5hYmxlcyBwY2llX3BoeSBp
-biB0aGUgbWVzb24tYXhnLXM0MDAgYm9hcmQgZGV2aWNlIHRyZWUgdG8KcHJlc2VydmUgaXRzIFBD
-SWUgZnVuY3Rpb25hbGl0eS4KCj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1s
-b2dpYy9tZXNvbi1heGctczQwMC5kdHMgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVz
-b24tYXhnLXM0MDAuZHRzCj4gaW5kZXggMjg1YzZhYzFkZDYxMy4uN2JhMjQ5Y2MzZDU2OSAxMDA2
-NDQKPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tYXhnLXM0MDAuZHRz
-Cj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWF4Zy1zNDAwLmR0cwoK
-WyAuLi4gXQoKPiBAQCAtNDQ4LDYgKzQ0OCwxMCBAQCAmcGNpZUIgewo+ICAJc3RhdHVzID0gIm9r
-YXkiOwo+ICB9Owo+ICAKPiArJnBjaWVfcGh5IHsKPiArCXN0YXR1cyA9ICJva2F5IjsKPiArfTsK
-CltTZXZlcml0eTogSGlnaF0KVGhpcyBpcyBhIHByZS1leGlzdGluZyBpc3N1ZSwgYnV0IGlzIGl0
-IHN1ZmZpY2llbnQgdG8gb25seSBlbmFibGUgcGNpZV9waHkKdG8gcmVzdG9yZSBQQ0llIGZ1bmN0
-aW9uYWxpdHkgb24gdGhlIHM0MDAgYm9hcmQ/CgpUaGUgcGNpZV9waHkgbm9kZSBkZXBlbmRzIG9u
-IHRoZSBtaXBpX3BjaWVfYW5hbG9nX2RwaHkgYW5hbG9nIFBIWSB2aWEgaXRzCnBoeXMgcHJvcGVy
-dHkuIExvb2tpbmcgYXQgbWVzb24tYXhnLmR0c2ksIG1pcGlfcGNpZV9hbmFsb2dfZHBoeSBpcyBk
-aXNhYmxlZApieSBkZWZhdWx0OgoKYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWF4
-Zy5kdHNpOgogICAgbWlwaV9wY2llX2FuYWxvZ19kcGh5OiBwaHkgewogICAgICAgIGNvbXBhdGli
-bGUgPSAiYW1sb2dpYyxheGctbWlwaS1wY2llLWFuYWxvZy1waHkiOwogICAgICAgICNwaHktY2Vs
-bHMgPSA8MD47CiAgICAgICAgc3RhdHVzID0gImRpc2FibGVkIjsKICAgIH07CgpJZiB0aGUgYW5h
-bG9nIFBIWSBpcyBub3QgYWxzbyBvdmVycmlkZGVuIHRvICJva2F5IiBoZXJlIGluIG1lc29uLWF4
-Zy1zNDAwLmR0cywKd2lsbCB0aGUgYW5hbG9nIFBIWSBkcml2ZXIgZmFpbCB0byBwcm9iZSwgY2F1
-c2luZyBkZXZtX3BoeV9nZXQoZGV2LCAiYW5hbG9nIikKaW4gdGhlIHBjaWVfcGh5IGRyaXZlciB0
-byBjb250aW51YWxseSByZXR1cm4gLUVQUk9CRV9ERUZFUj8KCi0tIApTYXNoaWtvIEFJIHJldmll
-dyDCtyBodHRwczovL3Nhc2hpa28uZGV2LyMvcGF0Y2hzZXQvMjAyNjA2MTcwODIyMzkuNjQ1NTYy
-LTEtamVycnlzdGV2ZTExMDFAZ21haWwuY29tP3BhcnQ9MwoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGlu
-dXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3Jn
-L21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+--MP_/RqLM/5A=AsV1+l9kUQ52pza
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+Hi Ronald,
+I see you submitted the patch. Last couple of days I've been fixing the
+etherenet of my BPiCM4+Waveshare-io-base-b due to which I couldn't test
+your patch any sooner. Now I got my ethernet working but now I couldn't
+reproduce the issue *without* either of our patches!!!
+
+Anyway it's proper to initialize PCIe with RESET Active but I think
+meson_pcie_assert_reset(mp) will give sufficient time to PCIe devices
+to complete the reset cycle.
+
+---
+ drivers/pci/controller/dwc/pci-meson.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/pci/controller/dwc/pci-meson.c
+b/drivers/pci/controller/dwc/pci-meson.c index 0694084f612..c28ab40c9ff
+100644 --- a/drivers/pci/controller/dwc/pci-meson.c
++++ b/drivers/pci/controller/dwc/pci-meson.c
+@@ -308,8 +308,8 @@ static int meson_pcie_start_link(struct dw_pcie
+*pci) {
+ 	struct meson_pcie *mp = to_meson_pcie(pci);
+ 
+-	meson_pcie_ltssm_enable(mp);
+ 	meson_pcie_assert_reset(mp);
++	meson_pcie_ltssm_enable(mp);
+ 
+ 	return 0;
+ }
+-- 
+---
+ drivers/pci/controller/dwc/pci-meson.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/pci/controller/dwc/pci-meson.c
+b/drivers/pci/controller/dwc/pci-meson.c index c28ab40c9ff..2ef75157530
+100644 --- a/drivers/pci/controller/dwc/pci-meson.c
++++ b/drivers/pci/controller/dwc/pci-meson.c
+@@ -308,7 +308,6 @@ static int meson_pcie_start_link(struct dw_pcie
+*pci) {
+ 	struct meson_pcie *mp = to_meson_pcie(pci);
+ 
+-	meson_pcie_assert_reset(mp);
+ 	meson_pcie_ltssm_enable(mp);
+ 
+ 	return 0;
+@@ -362,6 +361,8 @@ static int meson_pcie_host_init(struct dw_pcie_rp
+*pp) 
+ 	pp->bridge->ops = &meson_pci_ops;
+ 
++	meson_pcie_assert_reset(mp);
++
+ 	meson_set_max_payload(mp, MAX_PAYLOAD_SIZE);
+ 	meson_set_max_rd_req_size(mp, MAX_READ_REQ_SIZE);
+ 
+-- 
+
+...Gowtham
+
+
+On Wed, 17 Jun 2026 05:06:27 +0530
+gowtham <gowtham@ferryfair.com> wrote:
+
+> Hi,
+> 
+> As Neil suggested I moved the PCIe reset to init; I've updated the tag
+> at
+> https://github.com/GowthamKudupudi/linux/tree/meson-pcie-warm-reset-linux-7.0.y
+> 
+> Ronald, yes, I do think its proper to initialize PCIe with RESET
+> Active. Anyway we need the reset *cycle*. Please submit your patch as
+> well.
+> 
+> Thank you!
+> 
+> ...Gowtham
+> 
+> On Tue, 16 Jun 2026 08:06:02 +0200
+> neil.armstrong@linaro.org wrote:
+> 
+> > On 6/15/26 12:34, Ronald Claveau wrote:  
+> > > On 6/14/26 3:56 AM, Gowtham Kudupudi wrote:    
+> > >> On warm reboot, the PCIe controller's LTSSM starts link training
+> > >> immediately if PERST# is already deasserted from the previous
+> > >> boot. The driver then pulses PERST# for only 500us, which is too
+> > >> short to properly reset the endpoint device that has already
+> > >> started training.
+> > >>
+> > >> Fix by moving the PERST# assert/deassert pulse BEFORE enabling
+> > >> LTSSM, so the endpoint gets a clean reset cycle before link
+> > >> training begins.
+> > >>
+> > >> This was found on Amlogic G12B (A311D) with NVMe on an M.2 slot.
+> > >> Cold boot worked because POR held PERST# low; warm reboot did
+> > >> not. The fix was confirmed on a Banana Pi CM4 with Waveshare IO
+> > >> base board.
+> > >>
+> > >> Signed-off-by: Gowtham Kudupudi <gowtham@ferryfair.com>
+> > >> ---
+> > >>   drivers/pci/controller/dwc/pci-meson.c | 2 +-
+> > >>   1 file changed, 1 insertion(+), 1 deletion(-)
+> > >>
+> > >> diff --git a/drivers/pci/controller/dwc/pci-meson.c
+> > >> b/drivers/pci/controller/dwc/pci-meson.c index
+> > >> 5f8e2f4b3c12..3a7e9f1d5b8c 100644 ---
+> > >> a/drivers/pci/controller/dwc/pci-meson.c +++
+> > >> b/drivers/pci/controller/dwc/pci-meson.c @@ -310,8 +310,8 @@
+> > >> static int meson_pcie_start_link(struct dw_pcie *pci) {
+> > >>   	struct meson_pcie *mp = to_meson_pcie(pci);
+> > >>   
+> > >> +	meson_pcie_assert_reset(mp);
+> > >>   	meson_pcie_ltssm_enable(mp);
+> > >> -	meson_pcie_assert_reset(mp);    
+> > 
+> > I think this change is valid, other controllers resets PERST
+> > in the host init callback, so either this or move to the
+> > init callback.
+> > 
+> > Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> >   
+> > >>   
+> > >>   	return 0;
+> > >>   }    
+> > > 
+> > > Hi Gowtham,
+> > > 
+> > > I have a patch [1] that I haven't submitted yet.
+> > > This might be related to your issue, what do you think ?    
+> > 
+> > Ronald, This fix is valid, it's definitely better to probe the
+> > driver with PERST asserted, please send it.
+> > 
+> > Neil
+> >   
+> > > 
+> > > [1]
+> > > https://github.com/rclaveau-tech/linux-khadas/commit/bee0a02d9756
+> > >   
+> >   
+> 
+
+
+--MP_/RqLM/5A=AsV1+l9kUQ52pza
+Content-Type: text/x-patch
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename=0001-PCI-meson-Fix-PERST-timing-by-asserting-reset-before.patch
+
+From 852811b11795ee389ea6a953ed0db69b76722469 Mon Sep 17 00:00:00 2001
+From: Gowtham Kudupudi <gowtham@ferryfair.com>
+Date: Sun, 14 Jun 2026 09:41:01 +0530
+Subject: [PATCH 1/2] PCI: meson: Fix PERST# timing by asserting reset before
+ LTSSM enable
+
+On warm reboot, the PCIe controller's LTSSM starts link training
+immediately if PERST# is already deasserted from the previous boot.
+The driver then pulses PERST# for only 500us, which is too short to
+properly reset the endpoint device that has already started training.
+
+Fix by moving the PERST# assert/deassert pulse BEFORE enabling LTSSM,
+so the endpoint gets a clean reset cycle before link training begins.
+
+This was found on Amlogic G12B (A311D) with NVMe on an M.2 slot.
+Cold boot worked because POR held PERST# low; warm reboot did not.
+The fix was confirmed on a Banana Pi CM4 with Waveshare IO base board.
+
+Signed-off-by: Gowtham Kudupudi <gowtham@ferryfair.com>
+---
+ drivers/pci/controller/dwc/pci-meson.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+index 0694084f612..c28ab40c9ff 100644
+--- a/drivers/pci/controller/dwc/pci-meson.c
++++ b/drivers/pci/controller/dwc/pci-meson.c
+@@ -308,8 +308,8 @@ static int meson_pcie_start_link(struct dw_pcie *pci)
+ {
+ 	struct meson_pcie *mp = to_meson_pcie(pci);
+ 
+-	meson_pcie_ltssm_enable(mp);
+ 	meson_pcie_assert_reset(mp);
++	meson_pcie_ltssm_enable(mp);
+ 
+ 	return 0;
+ }
+-- 
+2.54.0
+
+
+--MP_/RqLM/5A=AsV1+l9kUQ52pza
+Content-Type: text/x-patch
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename=0002-PCI-meson-pcie-reset-moved-to-meson_pcie_host_init.patch
+
+From 1bcf2c787d72b2c25852cc598b1201510b4132b0 Mon Sep 17 00:00:00 2001
+From: Gowtham Kudupudi <gowtham@ferryfair.com>
+Date: Wed, 17 Jun 2026 04:29:45 +0530
+Subject: [PATCH 2/2] PCI: meson: pcie reset moved to meson_pcie_host_init
+
+As per the Neil's suggestion, inititial PCIe reset is moved to init
+to make it proper.
+
+Signed-off-by: Gowtham Kudupudi <gowtham@ferryfair.com>
+---
+ drivers/pci/controller/dwc/pci-meson.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+index c28ab40c9ff..2ef75157530 100644
+--- a/drivers/pci/controller/dwc/pci-meson.c
++++ b/drivers/pci/controller/dwc/pci-meson.c
+@@ -308,7 +308,6 @@ static int meson_pcie_start_link(struct dw_pcie *pci)
+ {
+ 	struct meson_pcie *mp = to_meson_pcie(pci);
+ 
+-	meson_pcie_assert_reset(mp);
+ 	meson_pcie_ltssm_enable(mp);
+ 
+ 	return 0;
+@@ -362,6 +361,8 @@ static int meson_pcie_host_init(struct dw_pcie_rp *pp)
+ 
+ 	pp->bridge->ops = &meson_pci_ops;
+ 
++	meson_pcie_assert_reset(mp);
++
+ 	meson_set_max_payload(mp, MAX_PAYLOAD_SIZE);
+ 	meson_set_max_rd_req_size(mp, MAX_READ_REQ_SIZE);
+ 
+-- 
+2.54.0
+
+
+--MP_/RqLM/5A=AsV1+l9kUQ52pza
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--MP_/RqLM/5A=AsV1+l9kUQ52pza--
+
