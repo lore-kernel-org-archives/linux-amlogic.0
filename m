@@ -4,69 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1B9FCD98F0
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jun 2026 20:31:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E9A6CD98F5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jun 2026 09:49:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=abDARZjdMzKOUc8Bus0yL2jqiICvmQE5QkelxGgme5I=; b=0E5wI3N+ZJmxDfu/UqkAJ9lrZ9
-	kx/kswIOd+m924Lyt6rjYpZUblim6UCV7254Mty81pFdWqmAgZTbq6I+LZTBYkl8/TSTLqFksZm6v
-	5eNJrFr6hTSnC+PhA4ntnaxMDZ15QdS0urO4jRCfoeXr+T3lvnd2AXRAZRvlh5cYSR1yyT5+1RMbO
-	2WkecP81DrvgOxCW8Wx4VpCe6QeKoMCVeRV7CG/kV8Pl9baRTE9WFPFOZxJrzE5q5J0cT8+acj4tb
-	Vch4aY33D9O8cfngBO8wkLSEJG5K6o5s6rhfrRJWjX7WqdjiHmL/d5cbRJBZtLT1LsUdlA5EQ5PbR
-	k+PLxHFg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=aUhaHCB++EXBUHgpHoOtqgkJLKFD+g3Q1VSMgVG8CNw=; b=klyPJXHyvYCigL
+	8VSRGRQLsaJueEqWzxxgC1cTOM9Qkana8HipRIzmv6ocYeONTD84VRg4JwXOgRdruccdduoewjkbq
+	35G7KBiQsYGVGvg3VqWgnisaY4LVwfa7MJFQMFfQVcFrGoWoUtZqaMGLBkcVmHrfpdCapN74mT2Ve
+	5bRFYyQZoTqWH5Kf0VxBQ0O/Obx4X3xXgc7dmBKatBz276xZbuwyMw8NzMy3YhVNmas7QLYo/RmJi
+	0WQlQitPoTYfZZJMSTVEiMwS+DgtCPzV/mU+FKYYGSRqCfv7PJeEew19sZR4GUyJ+U0FIsyla31VP
+	J8FECfRdH4junYulwJPw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wZwuW-00000000JkS-1TVS;
-	Wed, 17 Jun 2026 20:30:56 +0000
-Received: from ferryfair.com ([103.227.96.30])
+	id 1wa9NA-000000010TY-1pfH;
+	Thu, 18 Jun 2026 09:49:20 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wZwuT-00000000Jjv-1z7q;
-	Wed, 17 Jun 2026 20:30:55 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=ferryfair.com; s=s1; h=Content-Type:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:Sender:Reply-To:
-	Resent-From:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=in6v/D5VjOzgXD0ii8FaFVUqT/tjHQnth/1Ddc5jt18=; b=cCW+gpnRN8wByqDmLtBwriTtmD
-	5ND0NQHms/y2miLe1wn01ntL7WHiTyqFI+50RGRMcC0nuZBXTdx+BG8OyjVggSlfwFTqfygtfd/IR
-	kaFba6jKpSDg7lXPJPFgAjHnSVhQ/vGwAIRqU98kah1ZhqTtukNAXpzqnIV6ddkUkY9qwgT4qzI6g
-	ONJztK/vpZWHy3Jr+dXlndDCcI6p7IQ+yKS4mYmQ9Z3ZPut02lXuhOM3+RK5jlCb6se5liMSy03Wq
-	fvgwY3fcJKBjribsp1xGKZyNFu+sOWC5KetLxVQN9TbLwqNlu4h28hMbn/eeYmLQYNTo4I3HVjlc/
-	7IJTKZ9g==;
-Received: from console.gl-inet.com ([192.168.0.1] helo=slick.ferryfair.com)
-	by ferryfair.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.99.4)
-	(envelope-from <gowtham@ferryfair.com>)
-	id 1wZwu2-000000007Jp-27RB;
-	Thu, 18 Jun 2026 02:00:26 +0530
-Date: Thu, 18 Jun 2026 02:00:25 +0530
-From: gowtham <gowtham@ferryfair.com>
-To: neil.armstrong@linaro.org
-Cc: Ronald Claveau <linux-kernel-dev@aliel.fr>, robh@kernel.org,
- bhelgaas@google.com, khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, linux-pci@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, yue.wang@Amlogic.com, lpieralisi@kernel.org,
- kwilczynski@kernel.org, mani@kernel.org
-Subject: Re: [PATCH] PCI: meson: Fix PERST# timing by asserting reset before
- LTSSM enable
-Message-ID: <20260618020025.2739cb96@slick.ferryfair.com>
-In-Reply-To: <20260617050627.4d01ed54@slick.ferryfair.com>
-References: <20260614015620.20432-1-gowtham@ferryfair.com>
-	<84cc8b0c-da06-4d01-a076-9743c29c91f6@aliel.fr>
-	<b2d8cb85-5529-4a4c-a233-64ca7a436f0b@linaro.org>
-	<20260617050627.4d01ed54@slick.ferryfair.com>
-Organization: FerryFair
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	id 1wa9N7-000000010Rs-0eIy;
+	Thu, 18 Jun 2026 09:49:17 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 2E445601FD;
+	Thu, 18 Jun 2026 09:49:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C9C9BC2BCF5;
+	Thu, 18 Jun 2026 09:49:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1781776155;
+	bh=NuY8O2IqRQE61M1abMdjWGK6rCEZPWKvjWWEW9TDJ2o=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=I9ZPR8fhsijqnMJJvIPbZqm/l5civFLkDi2s2LTsmIsmMaGgsIbRGU0rW4r8PQAhp
+	 DG46qBavGm2INrre9RUyhO6hXpiUi0t69fVDm+vlr9DqbhWgERpRq0XrHNaNOgOUw6
+	 ag89rN6+GMWG5XorO/dslzqOfNli7uATesqHP8mDUdmLGhqoW4EKWwVt0qi79/IEz9
+	 PhyQnyzuEXunp24Un9VD2czlFmEgR9u1IoezQYEOgmaik2mgxtNQMLnqExmRDnwit2
+	 M3lBgE/vPsBMgcVKzNpWyYRkZvb/ToEOL/Pp6MqH5/knd556gWm2bbU771ascKtMai
+	 VIcbEsrVqKadw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A8D8ECD98F5;
+	Thu, 18 Jun 2026 09:49:15 +0000 (UTC)
+From: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
+Subject: [PATCH v4 0/2] clk: amlogic: Add A9 AO clock controller
+Date: Thu, 18 Jun 2026 17:49:10 +0800
+Message-Id: <20260618-a9_aoclk-v4-0-569d0425e50c@amlogic.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="MP_/RqLM/5A=AsV1+l9kUQ52pza"
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260617_133053_828107_7E11FD6C 
-X-CRM114-Status: GOOD (  40.24  )
+X-B4-Tracking: v=1; b=H4sIABa/M2oC/22Myw6CMBQFf4V0bU0fUMSV/2GMacsFbgRqWtNoS
+ P/dwgoTl3NyZhYSwCMEci4W4iFiQDdnKA8FsYOee6DYZiaCCcUUk1Q3d+3s+KDGdJXkRrdWSZL
+ vTw8dvrfU9ZZ5wPBy/rOVo1jXP5EoKKNdWYNWXAHUp4ueRtejPVo3kTUT5U7lbKfKrJq6akSrr
+ OQgftWU0hc/244P3QAAAA==
+X-Change-ID: 20260603-a9_aoclk-bbf531badc63
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Jian Hu <jian.hu@amlogic.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1781776153; l=1755;
+ i=jian.hu@amlogic.com; s=20260415; h=from:subject:message-id;
+ bh=NuY8O2IqRQE61M1abMdjWGK6rCEZPWKvjWWEW9TDJ2o=;
+ b=Bfb8JABqNzm9/UBrYWasHh19P9TmDIDa+q7JuflrTMmikeS4rtp77FgEmXhDeGm4AkNL2Ff5H
+ suqKcTN6TjDDr4uZUZXlvhi+dsBaBA4UrsGhEP7FuKxDdFh2ArEn+WE
+X-Developer-Key: i=jian.hu@amlogic.com; a=ed25519;
+ pk=zHUE+rNtH9z+Sb8au1/elWknjFQmy5QDVkBoxleuOIA=
+X-Endpoint-Received: by B4 Relay for jian.hu@amlogic.com/20260415 with
+ auth_id=735
+X-Original-From: Jian Hu <jian.hu@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,256 +88,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: jian.hu@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
---MP_/RqLM/5A=AsV1+l9kUQ52pza
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+This series adds Amlogic A9 AO clock support, including dt-binding and AO clock driver.
 
-Hi Ronald,
-I see you submitted the patch. Last couple of days I've been fixing the
-etherenet of my BPiCM4+Waveshare-io-base-b due to which I couldn't test
-your patch any sooner. Now I got my ethernet working but now I couldn't
-reproduce the issue *without* either of our patches!!!
+Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+---
+Changes in v4:
+- Drop CLK_IS_CRITICAL for ao_xtal_in clock.
+- Drop CLK_HW_INIT* and revert to explicit clock declarations.
+- Link to v3: https://lore.kernel.org/r/20260610-a9_aoclk-v3-0-b7592d6c31e2@amlogic.com
 
-Anyway it's proper to initialize PCIe with RESET Active but I think
-meson_pcie_assert_reset(mp) will give sufficient time to PCIe devices
-to complete the reset cycle.
+Changes in v3:
+- Move COMPILE_TEST after 'depends on ARM64' reported by sashiko-bot.
+- Rename i2c3 to i3c reported by sashiko-bot.
+- Reword the comment describing ao_xtal_in's flags.
+- Use struct clk_init_data to describe ao_xtal_in's hw.init.
+- Link to v2: https://lore.kernel.org/r/20260603-a9_aoclk-v2-0-f47ea616ee78@amlogic.com
+
+Changes in v2:
+- Split the A9 clock driver and send the AO clock separately.
+- Rename aobus to soc.
+- Use CLK_HW_INIT_FW_NAME to describe clk_init_data.
+- Use CLK_HW_INIT_PARENTS_DATA to describe clk_init_data.
+- Use a9_ao prefix for MESON_COMP_SEL.
+- Correct duandiv name.
+- Fix pwm b reg.
+- Link to v1: https://lore.kernel.org/all/20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com/
 
 ---
- drivers/pci/controller/dwc/pci-meson.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Jian Hu (2):
+      dt-bindings: clock: Add Amlogic A9 AO clock controller
+      clk: amlogic: Add A9 AO clock controller driver
 
-diff --git a/drivers/pci/controller/dwc/pci-meson.c
-b/drivers/pci/controller/dwc/pci-meson.c index 0694084f612..c28ab40c9ff
-100644 --- a/drivers/pci/controller/dwc/pci-meson.c
-+++ b/drivers/pci/controller/dwc/pci-meson.c
-@@ -308,8 +308,8 @@ static int meson_pcie_start_link(struct dw_pcie
-*pci) {
- 	struct meson_pcie *mp = to_meson_pcie(pci);
- 
--	meson_pcie_ltssm_enable(mp);
- 	meson_pcie_assert_reset(mp);
-+	meson_pcie_ltssm_enable(mp);
- 
- 	return 0;
- }
--- 
+ .../bindings/clock/amlogic,a9-aoclkc.yaml          |  76 ++++
+ drivers/clk/meson/Kconfig                          |  13 +
+ drivers/clk/meson/Makefile                         |   1 +
+ drivers/clk/meson/a9-aoclk.c                       | 488 +++++++++++++++++++++
+ include/dt-bindings/clock/amlogic,a9-aoclkc.h      |  76 ++++
+ 5 files changed, 654 insertions(+)
 ---
- drivers/pci/controller/dwc/pci-meson.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+base-commit: ca89c88bcf69daca829044c638a8163d5ce47af0
+change-id: 20260603-a9_aoclk-bbf531badc63
 
-diff --git a/drivers/pci/controller/dwc/pci-meson.c
-b/drivers/pci/controller/dwc/pci-meson.c index c28ab40c9ff..2ef75157530
-100644 --- a/drivers/pci/controller/dwc/pci-meson.c
-+++ b/drivers/pci/controller/dwc/pci-meson.c
-@@ -308,7 +308,6 @@ static int meson_pcie_start_link(struct dw_pcie
-*pci) {
- 	struct meson_pcie *mp = to_meson_pcie(pci);
- 
--	meson_pcie_assert_reset(mp);
- 	meson_pcie_ltssm_enable(mp);
- 
- 	return 0;
-@@ -362,6 +361,8 @@ static int meson_pcie_host_init(struct dw_pcie_rp
-*pp) 
- 	pp->bridge->ops = &meson_pci_ops;
- 
-+	meson_pcie_assert_reset(mp);
-+
- 	meson_set_max_payload(mp, MAX_PAYLOAD_SIZE);
- 	meson_set_max_rd_req_size(mp, MAX_READ_REQ_SIZE);
- 
+Best regards,
 -- 
-
-...Gowtham
-
-
-On Wed, 17 Jun 2026 05:06:27 +0530
-gowtham <gowtham@ferryfair.com> wrote:
-
-> Hi,
-> 
-> As Neil suggested I moved the PCIe reset to init; I've updated the tag
-> at
-> https://github.com/GowthamKudupudi/linux/tree/meson-pcie-warm-reset-linux-7.0.y
-> 
-> Ronald, yes, I do think its proper to initialize PCIe with RESET
-> Active. Anyway we need the reset *cycle*. Please submit your patch as
-> well.
-> 
-> Thank you!
-> 
-> ...Gowtham
-> 
-> On Tue, 16 Jun 2026 08:06:02 +0200
-> neil.armstrong@linaro.org wrote:
-> 
-> > On 6/15/26 12:34, Ronald Claveau wrote:  
-> > > On 6/14/26 3:56 AM, Gowtham Kudupudi wrote:    
-> > >> On warm reboot, the PCIe controller's LTSSM starts link training
-> > >> immediately if PERST# is already deasserted from the previous
-> > >> boot. The driver then pulses PERST# for only 500us, which is too
-> > >> short to properly reset the endpoint device that has already
-> > >> started training.
-> > >>
-> > >> Fix by moving the PERST# assert/deassert pulse BEFORE enabling
-> > >> LTSSM, so the endpoint gets a clean reset cycle before link
-> > >> training begins.
-> > >>
-> > >> This was found on Amlogic G12B (A311D) with NVMe on an M.2 slot.
-> > >> Cold boot worked because POR held PERST# low; warm reboot did
-> > >> not. The fix was confirmed on a Banana Pi CM4 with Waveshare IO
-> > >> base board.
-> > >>
-> > >> Signed-off-by: Gowtham Kudupudi <gowtham@ferryfair.com>
-> > >> ---
-> > >>   drivers/pci/controller/dwc/pci-meson.c | 2 +-
-> > >>   1 file changed, 1 insertion(+), 1 deletion(-)
-> > >>
-> > >> diff --git a/drivers/pci/controller/dwc/pci-meson.c
-> > >> b/drivers/pci/controller/dwc/pci-meson.c index
-> > >> 5f8e2f4b3c12..3a7e9f1d5b8c 100644 ---
-> > >> a/drivers/pci/controller/dwc/pci-meson.c +++
-> > >> b/drivers/pci/controller/dwc/pci-meson.c @@ -310,8 +310,8 @@
-> > >> static int meson_pcie_start_link(struct dw_pcie *pci) {
-> > >>   	struct meson_pcie *mp = to_meson_pcie(pci);
-> > >>   
-> > >> +	meson_pcie_assert_reset(mp);
-> > >>   	meson_pcie_ltssm_enable(mp);
-> > >> -	meson_pcie_assert_reset(mp);    
-> > 
-> > I think this change is valid, other controllers resets PERST
-> > in the host init callback, so either this or move to the
-> > init callback.
-> > 
-> > Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> >   
-> > >>   
-> > >>   	return 0;
-> > >>   }    
-> > > 
-> > > Hi Gowtham,
-> > > 
-> > > I have a patch [1] that I haven't submitted yet.
-> > > This might be related to your issue, what do you think ?    
-> > 
-> > Ronald, This fix is valid, it's definitely better to probe the
-> > driver with PERST asserted, please send it.
-> > 
-> > Neil
-> >   
-> > > 
-> > > [1]
-> > > https://github.com/rclaveau-tech/linux-khadas/commit/bee0a02d9756
-> > >   
-> >   
-> 
+Jian Hu <jian.hu@amlogic.com>
 
 
---MP_/RqLM/5A=AsV1+l9kUQ52pza
-Content-Type: text/x-patch
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
- filename=0001-PCI-meson-Fix-PERST-timing-by-asserting-reset-before.patch
-
-From 852811b11795ee389ea6a953ed0db69b76722469 Mon Sep 17 00:00:00 2001
-From: Gowtham Kudupudi <gowtham@ferryfair.com>
-Date: Sun, 14 Jun 2026 09:41:01 +0530
-Subject: [PATCH 1/2] PCI: meson: Fix PERST# timing by asserting reset before
- LTSSM enable
-
-On warm reboot, the PCIe controller's LTSSM starts link training
-immediately if PERST# is already deasserted from the previous boot.
-The driver then pulses PERST# for only 500us, which is too short to
-properly reset the endpoint device that has already started training.
-
-Fix by moving the PERST# assert/deassert pulse BEFORE enabling LTSSM,
-so the endpoint gets a clean reset cycle before link training begins.
-
-This was found on Amlogic G12B (A311D) with NVMe on an M.2 slot.
-Cold boot worked because POR held PERST# low; warm reboot did not.
-The fix was confirmed on a Banana Pi CM4 with Waveshare IO base board.
-
-Signed-off-by: Gowtham Kudupudi <gowtham@ferryfair.com>
----
- drivers/pci/controller/dwc/pci-meson.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-index 0694084f612..c28ab40c9ff 100644
---- a/drivers/pci/controller/dwc/pci-meson.c
-+++ b/drivers/pci/controller/dwc/pci-meson.c
-@@ -308,8 +308,8 @@ static int meson_pcie_start_link(struct dw_pcie *pci)
- {
- 	struct meson_pcie *mp = to_meson_pcie(pci);
- 
--	meson_pcie_ltssm_enable(mp);
- 	meson_pcie_assert_reset(mp);
-+	meson_pcie_ltssm_enable(mp);
- 
- 	return 0;
- }
--- 
-2.54.0
-
-
---MP_/RqLM/5A=AsV1+l9kUQ52pza
-Content-Type: text/x-patch
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
- filename=0002-PCI-meson-pcie-reset-moved-to-meson_pcie_host_init.patch
-
-From 1bcf2c787d72b2c25852cc598b1201510b4132b0 Mon Sep 17 00:00:00 2001
-From: Gowtham Kudupudi <gowtham@ferryfair.com>
-Date: Wed, 17 Jun 2026 04:29:45 +0530
-Subject: [PATCH 2/2] PCI: meson: pcie reset moved to meson_pcie_host_init
-
-As per the Neil's suggestion, inititial PCIe reset is moved to init
-to make it proper.
-
-Signed-off-by: Gowtham Kudupudi <gowtham@ferryfair.com>
----
- drivers/pci/controller/dwc/pci-meson.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-index c28ab40c9ff..2ef75157530 100644
---- a/drivers/pci/controller/dwc/pci-meson.c
-+++ b/drivers/pci/controller/dwc/pci-meson.c
-@@ -308,7 +308,6 @@ static int meson_pcie_start_link(struct dw_pcie *pci)
- {
- 	struct meson_pcie *mp = to_meson_pcie(pci);
- 
--	meson_pcie_assert_reset(mp);
- 	meson_pcie_ltssm_enable(mp);
- 
- 	return 0;
-@@ -362,6 +361,8 @@ static int meson_pcie_host_init(struct dw_pcie_rp *pp)
- 
- 	pp->bridge->ops = &meson_pci_ops;
- 
-+	meson_pcie_assert_reset(mp);
-+
- 	meson_set_max_payload(mp, MAX_PAYLOAD_SIZE);
- 	meson_set_max_rd_req_size(mp, MAX_READ_REQ_SIZE);
- 
--- 
-2.54.0
-
-
---MP_/RqLM/5A=AsV1+l9kUQ52pza
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---MP_/RqLM/5A=AsV1+l9kUQ52pza--
-
