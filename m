@@ -4,81 +4,104 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF7AFCD98F3
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jun 2026 11:21:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 192BDCD98ED
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jun 2026 13:39:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=rTFE2nXzzkhS3zdNogHh1N4L/VM2igTAZHfrQSKuHco=; b=3G53kLAoCdNv68RnbHllcBIMm0
-	VqD8nVE8wnqRXjaAVyw7uirla5aBrQ1EgzXU1KUi1u0BIACFgzU5ZavO5AFl21HNCZSi+m/NMFZfC
-	Ai2WfEWpWq2SFpTs6ebTaGD91UUqqbrHphknaJcXf7PmDr8qXezirV9oMPGqotiKvfWVDBS4cn9dw
-	rJ5w1gccUif2Rya2QQkdtHqqgegZfEYDGHByr/L1FvXb1CryY0sLkOK3Bu7N9YFkSdOyPeoHgHSUS
-	P6I0Iq1Nr0yCSreloWkxqkaym73Q1ZDxi9asZpF4LYFfRksqgW7BFCj18moZfApD+Zbi4+PgDNA/N
-	Bi6Xo3OQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:From:To:Cc:
+	Subject:Message-Id:Date:Mime-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=GMiQzvJF671b/RJ+3XY49XaVHr9ETXjHA51ot2rkI28=; b=jfIJ8dmvEdpOmZ
+	GR+cGCHNTSRYCpV/5RIPUCepw9ZVKT8C51/eCm3QHMdavg4mGAXztZU60wHgG7zm3moJHznpzr7LM
+	8ASYBe/edWQFDpiCP0TEvojFVr4eDkEKThIvfcGURkOcNSvaYXRFP+asdnphSgcd1BTV7Yz5EpJ6a
+	l15FJ9cp27vchYuV5efOw3hPgNjbzhWSJJ3bzQDy9QxnZnRSBWjSth7vN6G6PqwaY7UFqzjsmH/d8
+	bfWxZn9urW5M56PcV31YyiI5Hp4R8UZhOTUqMlaCBJnvgQlDCP9n+jtqr8jzOSEisalLkYcu8BJyX
+	BQoi+LoteNGzVHKe3Gxg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1waAnk-00000001C02-38zO;
-	Thu, 18 Jun 2026 11:20:52 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1waCxV-00000001NNv-0Ehc;
+	Thu, 18 Jun 2026 13:39:05 +0000
+Received: from smtpout-03.galae.net ([185.246.85.4])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1waAnj-00000001Bzk-1hxn;
-	Thu, 18 Jun 2026 11:20:51 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 599E74450C;
-	Thu, 18 Jun 2026 11:20:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A7D51F000E9;
-	Thu, 18 Jun 2026 11:20:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781781650;
-	bh=on2p7v01JMLQEd/mSi9ZWJJJ8bOMuh6PkCqEPxyESE4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=lDJjZJYJ44Uudg+UUCLEZ5y/sv+9qsCPzXEK/SlWqYFGHdqWrKYDhJ4GlvtafSPeG
-	 BkI9mR7gXaoUCd4fEyAkAOCIb6hs7ZVVEZxps+vtBfvMuGWrZ+g8P46pmqYV9yzIX7
-	 lDScLN3sjh5PcMVWfKktO2MLuQTjps9HxV3GWvOMA69qTMUNK+3zZ6+0hv4oo/XNzL
-	 DYxycW66o0SD0Q/+o9gPry+0FHF0e5kJQCNDSyN1ihKq5/tmrs+qsvdpnHSogWO5sP
-	 2rL8P9jMCTf9/vdXIynUS0O3GRdllKsChiOnpuT+MC4LBV5F17k1ryXsmIVt8EmV58
-	 ERuEDJonnxdFw==
-Date: Thu, 18 Jun 2026 13:20:47 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-Cc: Dmitry Baryshkov <lumag@kernel.org>, dri-devel@lists.freedesktop.org, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, Jagan Teki <jagan@amarulasolutions.com>, 
-	Liu Ying <victor.liu@nxp.com>, Frank Li <Frank.Li@nxp.com>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	Andy Yan <andy.yan@rock-chips.com>, Phong LE <ple@baylibre.com>, 
-	Douglas Anderson <dianders@chromium.org>, Inki Dae <inki.dae@samsung.com>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Paul Cercueil <paul@crapouillou.net>, linux-mips@vger.kernel.org, 
-	Chun-Kuang Hu <chunkuang.hu@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org, 
-	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
-	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>, 
-	linux-rockchip@lists.infradead.org, Yannick Fertre <yannick.fertre@foss.st.com>, 
-	Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>, Philippe Cornu <philippe.cornu@foss.st.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	linux-stm32@st-md-mailman.stormreply.com, Jyri Sarha <jyri.sarha@iki.fi>, 
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>, 
-	=?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>, Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
-	Icenowy Zheng <zhengxingda@iscas.ac.cn>, Michal Simek <michal.simek@amd.com>
+	id 1waCxS-00000001NMZ-15oz;
+	Thu, 18 Jun 2026 13:39:03 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 075174E42FA3;
+	Thu, 18 Jun 2026 13:38:57 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id C21505FF03;
+	Thu, 18 Jun 2026 13:38:56 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E90E5106C8181;
+	Thu, 18 Jun 2026 15:38:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1781789933; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=q17Yakrk0jyin/K7MigNcOnMz+6gtRbwepNdHP9jFKM=;
+	b=PUOZ5Di9LG9HfrQqQCFFBVq94tgu/N/628JI3wjlG+04IUEZ/TDfwfWPiCYIYoY01Ml/zT
+	u6fzfs/sOXhZCzpGZcGWKrttnj2hg362abIuU+SlEEsUQGe8DjkMXc8FOQFe+vm08MjMCD
+	q4ik5cK5VDldEGCZCpBmhx07jaHCoG868HTUDceg1cGMzWrhvEOeO+nri9uBQ9XxJlsEEd
+	kFcTWnviop36LYp6WwxAMULWvuPB1A6oFC1kNXA6jr27XI08XezUNwOxPYoBipe1i/JzdI
+	5yYVYBawm+zEtwTD77BtUYcO3v4DG3A1Zq8nGdrWLS8BS2P5ZVV6JJvam6Mhog==
+Mime-Version: 1.0
+Date: Thu, 18 Jun 2026 15:38:33 +0200
+Message-Id: <DJC7T6B6DCZI.3F29YF2M1ZCAF@bootlin.com>
 Subject: Re: [PATCH v2 00/78] drm/bridge: Convert all reset users to
  create_state
-Message-ID: <20260618-terrestrial-abiding-tamarin-01befc@houat>
+Cc: "Dmitry Baryshkov" <lumag@kernel.org>,
+ <dri-devel@lists.freedesktop.org>, "Laurent Pinchart"
+ <laurent.pinchart+renesas@ideasonboard.com>, "Jagan Teki"
+ <jagan@amarulasolutions.com>, "Liu Ying" <victor.liu@nxp.com>, "Frank Li"
+ <Frank.Li@nxp.com>, "Sascha Hauer" <s.hauer@pengutronix.de>, "Pengutronix
+ Kernel Team" <kernel@pengutronix.de>, "Fabio Estevam" <festevam@gmail.com>,
+ <imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>, "Andy Yan"
+ <andy.yan@rock-chips.com>, "Phong LE" <ple@baylibre.com>, "Douglas
+ Anderson" <dianders@chromium.org>, "Inki Dae" <inki.dae@samsung.com>,
+ "Marek Szyprowski" <m.szyprowski@samsung.com>, "Philipp Zabel"
+ <p.zabel@pengutronix.de>, "Paul Cercueil" <paul@crapouillou.net>,
+ <linux-mips@vger.kernel.org>, "Chun-Kuang Hu" <chunkuang.hu@kernel.org>,
+ "Matthias Brugger" <matthias.bgg@gmail.com>, "AngeloGioacchino Del Regno"
+ <angelogioacchino.delregno@collabora.com>,
+ <linux-mediatek@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ "Kevin Hilman" <khilman@baylibre.com>, "Jerome Brunet"
+ <jbrunet@baylibre.com>, "Martin Blumenstingl"
+ <martin.blumenstingl@googlemail.com>, <linux-amlogic@lists.infradead.org>,
+ "Tomi Valkeinen" <tomi.valkeinen+renesas@ideasonboard.com>, "Geert
+ Uytterhoeven" <geert+renesas@glider.be>, "Magnus Damm"
+ <magnus.damm@gmail.com>, "Kieran Bingham"
+ <kieran.bingham+renesas@ideasonboard.com>,
+ <linux-renesas-soc@vger.kernel.org>, "Biju Das"
+ <biju.das.jz@bp.renesas.com>, "Heiko Stuebner" <heiko@sntech.de>, "Sandy
+ Huang" <hjc@rock-chips.com>, <linux-rockchip@lists.infradead.org>, "Yannick
+ Fertre" <yannick.fertre@foss.st.com>, "Raphael Gallais-Pou"
+ <raphael.gallais-pou@foss.st.com>, "Philippe Cornu"
+ <philippe.cornu@foss.st.com>, "Maxime Coquelin"
+ <mcoquelin.stm32@gmail.com>, "Alexandre Torgue"
+ <alexandre.torgue@foss.st.com>, <linux-stm32@st-md-mailman.stormreply.com>,
+ "Jyri Sarha" <jyri.sarha@iki.fi>, "Tomi Valkeinen"
+ <tomi.valkeinen@ideasonboard.com>, "Dave Stevenson"
+ <dave.stevenson@raspberrypi.com>, =?utf-8?q?Ma=C3=ADra_Canal?=
+ <mcanal@igalia.com>, "Raspberry Pi Kernel Maintenance"
+ <kernel-list@raspberrypi.com>, "Icenowy Zheng" <zhengxingda@iscas.ac.cn>,
+ "Michal Simek" <michal.simek@amd.com>
+To: "Maxime Ripard" <mripard@kernel.org>, "Andrzej Hajda"
+ <andrzej.hajda@intel.com>, "Neil Armstrong" <neil.armstrong@linaro.org>,
+ "Robert Foss" <rfoss@kernel.org>, "Laurent Pinchart"
+ <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman" <jonas@kwiboo.se>,
+ "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Luca Ceresoli"
+ <luca.ceresoli@bootlin.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Thomas Zimmermann"
+ <tzimmermann@suse.de>, "David Airlie" <airlied@gmail.com>, "Simona Vetter"
+ <simona@ffwll.ch>
+From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+X-Mailer: aerc 0.21.0
 References: <20260608-drm-no-more-bridge-reset-v2-0-0a91018bf886@kernel.org>
-MIME-Version: 1.0
-In-Reply-To: <20260608-drm-no-more-bridge-reset-v2-0-0a91018bf886@kernel.org>
+ <20260618-terrestrial-abiding-tamarin-01befc@houat>
+In-Reply-To: <20260618-terrestrial-abiding-tamarin-01befc@houat>
+X-Last-TLS-Session-Version: TLSv1.3
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260618_063902_427739_5E913675 
+X-CRM114-Status: GOOD (  11.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,74 +113,47 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============2522650148878827518=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Maxime,
 
---===============2522650148878827518==
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="ozjpmz32viqzzrdv"
-Content-Disposition: inline
+On Thu Jun 18, 2026 at 1:20 PM CEST, Maxime Ripard wrote:
+> Hi,
+>
+> On Mon, Jun 08, 2026 at 04:35:42PM +0200, Maxime Ripard wrote:
+>> Hi,
+>>
+>> All the bridges use reset to create a blank state only and don't use it
+>> to reset the hardware at all. This is what the new atomic_create_state
+>> is exactly supposed to be doing, so we can convert all existing bridge
+>> users to it, and remove the reset hook and helpers.
+>>
+>> Let me know what you think,
+>> Maxime
+>>
+>> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+>
+> FTR, Thomas on IRC yesterday[1] added
+> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+>
+> Unless another review shows up, I intend to merge this tomorrow
 
+Did you have a look at my questions for patches 7 and 8?
 
---ozjpmz32viqzzrdv
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 00/78] drm/bridge: Convert all reset users to
- create_state
-MIME-Version: 1.0
+I was planning to review the following patches but that would be based on
+what I asked there.
 
-Hi,
+Luca
 
-On Mon, Jun 08, 2026 at 04:35:42PM +0200, Maxime Ripard wrote:
-> Hi,=20
->=20
-> All the bridges use reset to create a blank state only and don't use it
-> to reset the hardware at all. This is what the new atomic_create_state
-> is exactly supposed to be doing, so we can convert all existing bridge
-> users to it, and remove the reset hook and helpers.
->=20
-> Let me know what you think,
-> Maxime=20
->=20
-> Signed-off-by: Maxime Ripard <mripard@kernel.org>
-
-FTR, Thomas on IRC yesterday[1] added
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-
-Unless another review shows up, I intend to merge this tomorrow
-
-Maxime
-
-1: https://oftc.catirclogs.org/dri-devel/2026-06-17#35422999;
-
---ozjpmz32viqzzrdv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCajPUigAKCRAnX84Zoj2+
-dk0JAX0RbkGWPGoPi2IhEx+Ot7RE2mv5pF2NW5NdvgyvbZjvKNkWJ3WWtN4N+yZb
-Ll4R1c0BgNqzNQmnFhM4Nh5uf+0aPC7FMvJmkSeQcUNUGNIKHOukmjyX3PgrtUcT
-RE+nxMSDvw==
-=eAVV
------END PGP SIGNATURE-----
-
---ozjpmz32viqzzrdv--
-
-
---===============2522650148878827518==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+--
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============2522650148878827518==--
-
