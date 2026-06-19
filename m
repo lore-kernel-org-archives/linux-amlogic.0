@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36571CDB46F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98DE7CDB473
 	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Jun 2026 12:27:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,41 +12,41 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ByyiyRWxyEtQQkPBbaLqcKYKBuZ2+FqzP1JF1cAE36E=; b=r0zTntwu4LrAWD
-	wBwHw7WjZ2PkxESsMwG2vtUXuPRvSQt16CO/9rWBVeOJrVz4hbH4yME2Mg6MlmS6V5m61NJxT13WO
-	aQbiHCbcJLT/Agc40F56Y/99Em7yxpu2OXUa5+HFvvmFg7JvM4JlTsEOPYogxk9fUbl2vgL22kaQI
-	E6SXJze+cKLnuJtMVkqyPTYO8VGcUowwX9gXV0L4Cnv1Tdzu4Bh+D0TiZZ7DvQpkZZPGgxD44hAzY
-	E/gKJBYpuLRhCU/nizVjx56QXg6aT5bWfy3M19riG8x9dWCIUHk62fmVLvYq0VeP3Gv3DNp9Cy9FH
-	4ciEa0gCg8BXGx2wWMLw==;
+	List-Owner; bh=NMfPY0qIp/nmE8C0n9aXyGVutaLuD/k0gUKefxWrfec=; b=nVtTN2Uv/7eGD5
+	S9Zz6ZrWgIR7IPJwxEXiNMpZ3XuBKE7J9U5b56+Hamc8JiS07i/RMuWYn8Ur3Z98BUUW7wil2ldqP
+	3PNheJ3RAp1slCOTKyq6qSW9pE96SGAgG3s0H7qslw/4Um/5IaEHbfJwiB0IQIRb/8CHNYbHpAT70
+	L6EOxTGrvwKh0Y44/FrltgF5XsH2wSpDM3jcHUSmWgAyauReVxcAsKMxRsbGKjmmQ2OSaGNLG7zFB
+	S9QEkBXGkBp/91NZ4tyD6jrVG+dDyi6hRqxxYd1lIua63bu6iCOLnZokY0tm3oga7OIH6KKJ1FqVc
+	ysPz5KYgojpPtUP/urDg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1waYJa-00000002Oi5-0sio;
-	Fri, 19 Jun 2026 12:27:18 +0000
+	id 1waYJZ-00000002OhY-3umi;
+	Fri, 19 Jun 2026 12:27:17 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1waYJX-00000002OfV-4C3V;
-	Fri, 19 Jun 2026 12:27:16 +0000
+	id 1waYJV-00000002Od1-1WMc;
+	Fri, 19 Jun 2026 12:27:13 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 70B93601E1;
-	Fri, 19 Jun 2026 12:27:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA2D21F00A3D;
-	Fri, 19 Jun 2026 12:27:14 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id C81C8601F4;
+	Fri, 19 Jun 2026 12:27:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C9071F00A3A;
+	Fri, 19 Jun 2026 12:27:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781872035;
-	bh=+JMMUJnOZpTITDM6oIihe3vGgCV3w7ccCufoOcsZaU4=;
+	s=k20260515; t=1781872032;
+	bh=gSHYTCxNGQXoIfDiS1eh7juHdjxY5jSddRLoKCl8XoQ=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=bVY78EMLIWwV2el30svT582BNPF2NO/zatc3iZbE7EWjCC8IxuWd5veLS4Doa5T82
-	 unelp5yiDsesXdQQOsAhE60/MQRX6m5oLGGZ0QqKH8b+PNTU20w4qwaSKQFnSZDsqF
-	 +MTymy83U0fNku71dcTEdHpe7tn/waBEdd38sMDZoKZeA1c0dTTtSAWz0A2ZfsfdFD
-	 qOlUynjWxMyKjSHdqEJ/0Oj3F4m7RTnxfhB3TwLng4Noa0RgG9pZh5dWorWHSndpIF
-	 IAS3ZSEFxzFlS1D+GQqVthYU0ZAAH//9zojQSg2VrumYDkyk/Cp/fLyHuMbcZzlwjC
-	 odINjw9Gzh8MA==
+	b=f1b6jLmzdW8XCCYdLvK2dZ271w+4z9fu9mNa61fRe79Jw5dxsQwS5/zPHam6mIyb1
+	 OmBWv8rBctj5GBJeD253qkThlsstHJQVRxCbL+qdFC0JXAynJO9kW8cavoI3YsDMVo
+	 8QkQsKTP8VDHlbusSgZA71BPJL3l0atfr9n8HNBZwrQaydw4LohMwvUy5pwTBNuc5a
+	 5YlCxmp/9Bpf/7Nm1u/bs3/HmpkZTVeYWNSw6RMq7Zq3RuwpgTHO/3TRahSZQLPG10
+	 //2K4xqzy3XLviFQHzjXcx+om4nW6dKVZrA8LA2N4N7ftP3gS4Tp6jrd1I7WlhMyrj
+	 u2cC1r0YgVS2g==
 From: Maxime Ripard <mripard@kernel.org>
-Date: Fri, 19 Jun 2026 14:25:00 +0200
-Subject: [PATCH v3 55/78] drm/meson: encoder_dsi: Switch to
+Date: Fri, 19 Jun 2026 14:24:59 +0200
+Subject: [PATCH v3 54/78] drm/meson: encoder_cvbs: Switch to
  atomic_create_state
 MIME-Version: 1.0
-Message-Id: <20260619-drm-no-more-bridge-reset-v3-55-ff399263111b@kernel.org>
+Message-Id: <20260619-drm-no-more-bridge-reset-v3-54-ff399263111b@kernel.org>
 References: <20260619-drm-no-more-bridge-reset-v3-0-ff399263111b@kernel.org>
 In-Reply-To: <20260619-drm-no-more-bridge-reset-v3-0-ff399263111b@kernel.org>
 To: Andrzej Hajda <andrzej.hajda@intel.com>, 
@@ -63,12 +63,12 @@ Cc: Dmitry Baryshkov <lumag@kernel.org>, dri-devel@lists.freedesktop.org,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
  linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1608; i=mripard@kernel.org;
- h=from:subject:message-id; bh=sXx0wMZeYzHhXbB0JWwNwadgHy4wy9yVO5hFwPLtWHk=;
- b=owGbwMvMwCmsHn9OcpHtvjLG02pJDFmmpkzvuXb/Shb+3vLfvJJnzbwlq7juaG3dHXRL3VDYM
- 6VVS6+2YyoLgzAng6yYIssTmbDTy9sXVznYr/wBM4eVCWQIAxenAExk6mvGegfX03801pv5bVy1
- 7fRXt1kKZ5ex5IlcWfZ8xg3/+XIlU91OGtr3C4iynLv2atlcwaWNuxkbJne8l5Oskp7Ld1Hqlnv
- pnFvf+bRd+YtmtNS++qkVqn3OwvGKqdUs1/Zd34p7T0kWyG0HAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1623; i=mripard@kernel.org;
+ h=from:subject:message-id; bh=DCoZa+Vvybc1lvdBT65sYK+38dJUcwAPmYuROujwyq0=;
+ b=owGbwMvMwCmsHn9OcpHtvjLG02pJDFmmpozqJvMmHBdWmRhyZ173/WW1q2cYSu8ucDixK/ChV
+ tUsWaHyjqksDMKcDLJiiixPZMJOL29fXOVgv/IHzBxWJpAhDFycAjCRn5WM9QFBvw691L3C815P
+ bH5T0ST5VdudS0zTmVlEltZYqLx+sNOsw2g27/YrqyU89y5esWpyG2M1y/ZrK2+ZOc4x3hHfm+O
+ 86HpyhoJe/YlDPXzqvPM+akg9+22j8MRiwtRLp6IfLg1v3K0FAA==
 X-Developer-Key: i=mripard@kernel.org; a=openpgp;
  fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -104,26 +104,26 @@ Cc: dri-devel@lists.freedesktop.org
 Cc: linux-amlogic@lists.infradead.org
 Cc: linux-arm-kernel@lists.infradead.org
 ---
- drivers/gpu/drm/meson/meson_encoder_dsi.c | 2 +-
+ drivers/gpu/drm/meson/meson_encoder_cvbs.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/meson/meson_encoder_dsi.c b/drivers/gpu/drm/meson/meson_encoder_dsi.c
-index c1f4685073bb..3e422b612f74 100644
---- a/drivers/gpu/drm/meson/meson_encoder_dsi.c
-+++ b/drivers/gpu/drm/meson/meson_encoder_dsi.c
-@@ -94,11 +94,11 @@ static const struct drm_bridge_funcs meson_encoder_dsi_bridge_funcs = {
- 	.attach	= meson_encoder_dsi_attach,
- 	.atomic_enable = meson_encoder_dsi_atomic_enable,
- 	.atomic_disable	= meson_encoder_dsi_atomic_disable,
+diff --git a/drivers/gpu/drm/meson/meson_encoder_cvbs.c b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
+index 8b26a0031cde..22cacb1660c4 100644
+--- a/drivers/gpu/drm/meson/meson_encoder_cvbs.c
++++ b/drivers/gpu/drm/meson/meson_encoder_cvbs.c
+@@ -213,11 +213,11 @@ static const struct drm_bridge_funcs meson_encoder_cvbs_bridge_funcs = {
+ 	.atomic_enable = meson_encoder_cvbs_atomic_enable,
+ 	.atomic_disable = meson_encoder_cvbs_atomic_disable,
+ 	.atomic_check = meson_encoder_cvbs_atomic_check,
  	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
  	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
 -	.atomic_reset = drm_atomic_helper_bridge_reset,
 +	.atomic_create_state = drm_atomic_helper_bridge_create_state,
  };
  
- int meson_encoder_dsi_probe(struct meson_drm *priv)
+ int meson_encoder_cvbs_probe(struct meson_drm *priv)
  {
- 	struct meson_encoder_dsi *meson_encoder_dsi;
+ 	struct drm_device *drm = priv->drm;
 
 -- 
 2.54.0
