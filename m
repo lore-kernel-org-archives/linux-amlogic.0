@@ -4,80 +4,105 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DE26CDB466
-	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Jun 2026 15:30:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD385CD4F26
+	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Jun 2026 17:09:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:Subject:From:
+	To:Message-Id:Date:Mime-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=R8fwJe+CdxpHc+M/qOjpv7MgW3qpADuX064EAndMPFo=; b=Fo9oK7pIp6Agbg
-	n+NiEUDyjuai+nPNxOEuqUyuQbjjwouQDXOBt+6nhrSzq/WX9wtMl5SFubVQFjwDN4b7f2Y8TiR+S
-	gR9/sJXEQDhVIpB/a8kmCrF6HpkrKJtRJNAkCsqcuRfT1D2U66P9gcCY/28gBoXNayJ+a/P5Ekq/E
-	kAABu98vKvtIOpNE2WQ1GBk49I268hz2e++XVzG7teIovuJB9cEi/oMyWOvjigy2Ctyci6F3NT+kP
-	hKJI3744whUU+ECtZv1gY32hVMFsUmmID36XYkOq2gV1oo6QPGIKGBM1OWsC9EdHMait77ny+LBnx
-	b3DJPBfgtRTSbeFMKMxw==;
+	List-Owner; bh=uJIPKNQZ6d65iVIempitcH8n3sIOVb52eI3HIdoVnYM=; b=nRhNIbZmimKpqk
+	m8euZvDqesX9Ie+u7mbod8rUsJGUqSOhAmaQo6JmZuGPp/Bu9IePyEXmTYwZX9y1YvTyGDk57pt/m
+	lYOPGDGjG6TVI3TmtXRpZ3qbHmLvb2Kl3K8M5CyBaRRM8JakHyZk/G6fcdNGA/8l62zLbTyO8BFeN
+	9Swt0SdRidY8TtXKVuNnYwuSHf4rNdLV3lqw1OhPGTAZTd9BF/EhACxGauENRrwZ9DRW5+tT4bWM9
+	1AGiKsNKPi+0CLC6yPfZNDyHJFpJUfMYCKnNdzGCmzqYFti0YLURCR8GfbymbFGmAOApfRbRN7Xh3
+	oQQu2jp7qqTJhRKyb6Ug==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wabAx-00000002fql-3ItX;
-	Fri, 19 Jun 2026 15:30:35 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1waciF-00000002oG3-0J4o;
+	Fri, 19 Jun 2026 17:09:03 +0000
+Received: from smtpout-03.galae.net ([185.246.85.4])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wabAw-00000002fox-2Y76;
-	Fri, 19 Jun 2026 15:30:34 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=mLjNq3xGexi6hHuje2pZSSEVpO87sjjlxI3YsPJaXJs=; b=AqWpTud5BjRUS92qPwk7YAOr1R
-	szVIaX3PaBCUuiHCASwj2HxTwYnnZyhjhL6Wy7UjSUHTfQ0TugGHSPp0Wxn6fbOxPbY0OtqVYMtgo
-	i7xh3Y5eCFmJ1QEaXZUo6bl1FcGM73cJS4xPPUWRy5MuoZbdfeYfvlGL/eNz6z8HYvRj2sT9AeeCD
-	JwZic95Iu7dfi5Tnut+G+tDLmhm5ZHk1vpEi+pZknLDYcIcsVcozt3bQA/7QWbl7SkCXIVbm2M0Mo
-	9AC9mAHlwm+9o2Sv/ppESVKRwj6mFCrvC4fhUs6VLo+B2ZUhqB06i7EOPnT8P/AXc7yWNU01D1bK2
-	Etkctj7g==;
-Received: from m16.mail.163.com ([117.135.210.4])
-	by desiato.infradead.org with esmtps (Exim 4.99.2 #2 (Red Hat Linux))
-	id 1wabAs-0000000Egaw-2uLI;
-	Fri, 19 Jun 2026 15:30:33 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=mLjNq3xGexi6hHuje2pZSSEVpO87sjjlxI3YsPJaXJs=;
-	b=WWZwTY0t6sGMtDRzCftyLiJoSnbU3TkUe4NHi7ZG3KIrX8KolrdkPh0UAL3K1W
-	lW6AQf0LMkjP0peGCZyAjFljpOTBkWy1sIO8MNWwQM7fezWKNvRZu7Dk2lDOUa2i
-	nFwBqidIOU2kkgDrAYeEUIh4YY6siwKDDGEwz2iBMqgA0=
-Received: from [IPV6:240e:b8f:91b3:d000:a264:4237:512f:7b1] (unknown [])
-	by gzga-smtp-mtada-g0-0 (Coremail) with SMTP id _____wD317VjYDVqjyOoEA--.54216S2;
-	Fri, 19 Jun 2026 23:29:40 +0800 (CST)
-Message-ID: <dae17d36-c7d2-467b-a621-3c55e08a67a8@163.com>
-Date: Fri, 19 Jun 2026 23:29:39 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 0/2] PCI: Configure Root Port MPS during host probing
-To: bhelgaas@google.com, Manivannan Sadhasivam <mani@kernel.org>,
- Bjorn Helgaas <helgaas@kernel.org>
-Cc: lpieralisi@kernel.org, kwilczynski@kernel.org, heiko@sntech.de,
- yue.wang@amlogic.com, pali@kernel.org, neil.armstrong@linaro.org,
- robh@kernel.org, jingoohan1@gmail.com, khilman@baylibre.com,
- jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, cassel@kernel.org,
- linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-rockchip@lists.infradead.org
-References: <20251127170908.14850-1-18255117159@163.com>
- <vpuzlzry7uulctur7kwtlogniuhogd5ybmrwjtos2v7yryf47v@yj2ocobbog6s>
-Content-Language: en-US
-From: Hans Zhang <18255117159@163.com>
-In-Reply-To: <vpuzlzry7uulctur7kwtlogniuhogd5ybmrwjtos2v7yryf47v@yj2ocobbog6s>
-X-CM-TRANSID: _____wD317VjYDVqjyOoEA--.54216S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxZFWxurWrZw1xCrWrXF4DXFb_yoWrGw4rpF
-	WFganakF4xGr1fCa9Fgw1jkFyYqas7GF47JrW5GwnxZanxZF15XFZ29w1rZr9rXrWfC3WS
-	vFy2qa4xW3Wqva7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UIjgsUUUUU=
-X-Originating-IP: [240e:b8f:91b3:d000:a264:4237:512f:7b1]
-X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbCwwUZvGo1YGWHawAA3V
+	id 1waciB-00000002oF5-1NZL;
+	Fri, 19 Jun 2026 17:09:01 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id E85244E42FD0;
+	Fri, 19 Jun 2026 17:08:55 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id AB24A601B7;
+	Fri, 19 Jun 2026 17:08:55 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id ABDCB106C81BC;
+	Fri, 19 Jun 2026 19:08:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1781888933; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=mRl+p8NKZ4Uqi2DbJxfA0N/bImQMn69IfQP2gWfdIn0=;
+	b=GtrXlAr82THdxC+x0ULzqK2LukzejYV/HHoWOhy0rnLT9OCpYYx7DI0Ca2otXI9MC6rt/O
+	PsvsTGMeYR1QQyMhXODXb0bsnVpo8b1AJ5+BgWuRE1TXpWDRyaaCCbnZP5H1KaZxDHKOq8
+	LO9lu7HAld9YGGFAMtt1mZ3JVL+4nqR9ev+P20IAsV/TdprJ6Y3Ojqy3AdzA+jesc0ToOp
+	juIU32H7fFGeN2OVgc7cbk8rehCcARkdf3oE9Mh7qI0ISz6SprChxJjgB103aMMhEs3RCn
+	air8p6ZpJxAcff89Au6uOVPjVLW7KZvMw6SPD2Zm3W+p1HNv5XsA8iGWnatxuQ==
+Mime-Version: 1.0
+Date: Fri, 19 Jun 2026 19:08:35 +0200
+Message-Id: <DJD6WITJWQHS.1XR1LK4S8N5H5@bootlin.com>
+To: "Luca Ceresoli" <luca.ceresoli@bootlin.com>, "Maxime Ripard"
+ <mripard@kernel.org>, "Andrzej Hajda" <andrzej.hajda@intel.com>, "Neil
+ Armstrong" <neil.armstrong@linaro.org>, "Robert Foss" <rfoss@kernel.org>,
+ "Laurent Pinchart" <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman"
+ <jonas@kwiboo.se>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Maarten
+ Lankhorst" <maarten.lankhorst@linux.intel.com>, "Thomas Zimmermann"
+ <tzimmermann@suse.de>, "David Airlie" <airlied@gmail.com>, "Simona Vetter"
+ <simona@ffwll.ch>
+From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+Subject: Re: [PATCH v3 00/78] drm/bridge: Convert all reset users to
+ create_state
+Cc: "Dmitry Baryshkov" <lumag@kernel.org>,
+ <dri-devel@lists.freedesktop.org>, "Laurent Pinchart"
+ <laurent.pinchart+renesas@ideasonboard.com>, "Jagan Teki"
+ <jagan@amarulasolutions.com>, "Liu Ying" <victor.liu@nxp.com>, "Frank Li"
+ <Frank.Li@nxp.com>, "Sascha Hauer" <s.hauer@pengutronix.de>, "Pengutronix
+ Kernel Team" <kernel@pengutronix.de>, "Fabio Estevam" <festevam@gmail.com>,
+ <imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>, "Andy Yan"
+ <andy.yan@rock-chips.com>, "Phong LE" <ple@baylibre.com>, "Douglas
+ Anderson" <dianders@chromium.org>, "Inki Dae" <inki.dae@samsung.com>,
+ "Marek Szyprowski" <m.szyprowski@samsung.com>, "Philipp Zabel"
+ <p.zabel@pengutronix.de>, "Paul Cercueil" <paul@crapouillou.net>,
+ <linux-mips@vger.kernel.org>, "AngeloGioacchino Del Regno"
+ <angelogioacchino.delregno@collabora.com>, "Chun-Kuang Hu"
+ <chunkuang.hu@kernel.org>, "Matthias Brugger" <matthias.bgg@gmail.com>,
+ <linux-mediatek@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ "Kevin Hilman" <khilman@baylibre.com>, "Jerome Brunet"
+ <jbrunet@baylibre.com>, "Martin Blumenstingl"
+ <martin.blumenstingl@googlemail.com>, <linux-amlogic@lists.infradead.org>,
+ "Tomi Valkeinen" <tomi.valkeinen+renesas@ideasonboard.com>, "Geert
+ Uytterhoeven" <geert+renesas@glider.be>, "Magnus Damm"
+ <magnus.damm@gmail.com>, "Kieran Bingham"
+ <kieran.bingham+renesas@ideasonboard.com>,
+ <linux-renesas-soc@vger.kernel.org>, "Biju Das"
+ <biju.das.jz@bp.renesas.com>, "Heiko Stuebner" <heiko@sntech.de>, "Sandy
+ Huang" <hjc@rock-chips.com>, <linux-rockchip@lists.infradead.org>, "Yannick
+ Fertre" <yannick.fertre@foss.st.com>, "Raphael Gallais-Pou"
+ <raphael.gallais-pou@foss.st.com>, "Philippe Cornu"
+ <philippe.cornu@foss.st.com>, "Maxime Coquelin"
+ <mcoquelin.stm32@gmail.com>, "Alexandre Torgue"
+ <alexandre.torgue@foss.st.com>, <linux-stm32@st-md-mailman.stormreply.com>,
+ "Jyri Sarha" <jyri.sarha@iki.fi>, "Tomi Valkeinen"
+ <tomi.valkeinen@ideasonboard.com>, "Dave Stevenson"
+ <dave.stevenson@raspberrypi.com>, =?utf-8?q?Ma=C3=ADra_Canal?=
+ <mcanal@igalia.com>, "Raspberry Pi Kernel Maintenance"
+ <kernel-list@raspberrypi.com>, "Icenowy Zheng" <zhengxingda@iscas.ac.cn>,
+ "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>, "Michal Simek"
+ <michal.simek@amd.com>
+X-Mailer: aerc 0.21.0
+References: <20260619-drm-no-more-bridge-reset-v3-0-ff399263111b@kernel.org>
+ <DJD2IQSFENH4.337VSFOU7OJ29@bootlin.com>
+In-Reply-To: <DJD2IQSFENH4.337VSFOU7OJ29@bootlin.com>
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260619_163031_349360_9AE8E8D5 
-X-CRM114-Status: GOOD (  17.73  )
+X-CRM114-CacheID: sfid-20260619_100859_495775_62C3B7EB 
+X-CRM114-Status: UNSURE (   6.70  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,115 +114,35 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Fri Jun 19, 2026 at 3:42 PM CEST, Luca Ceresoli wrote:
+> On Fri Jun 19, 2026 at 2:24 PM CEST, Maxime Ripard wrote:
+>> Hi,
+>>
+>> All the bridges use reset to create a blank state only and don't use it
+>> to reset the hardware at all. This is what the new atomic_create_state
+>> is exactly supposed to be doing, so we can convert all existing bridge
+>> users to it, and remove the reset hook and helpers.
+>>
+>> Let me know what you think,
+>> Maxime
+>>
+>> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+>
+> Whole series:
+> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
+And now also:
+Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com> # imx8mp + sn65dsi84 + bridge hotplug
 
-On 5/6/26 22:00, Manivannan Sadhasivam wrote:
-> On Fri, Nov 28, 2025 at 01:09:06AM +0800, Hans Zhang wrote:
->> Current PCIe initialization exhibits a key optimization gap: Root Ports
->> may operate with non-optimal Maximum Payload Size (MPS) settings. While
->> downstream device configuration is handled during bus enumeration, Root
->> Port MPS values inherited from firmware or hardware defaults often fail
->> to utilize the full capabilities supported by controller hardware. This
->> results in suboptimal data transfer efficiency throughout the PCIe
->> hierarchy.
->>
->> This patch series addresses this by:
->>
->> 1. Core PCI enhancement (Patch 1):
->> - Proactively configures Root Port MPS during host controller probing
->> - Sets initial MPS to hardware maximum (128 << dev->pcie_mpss)
->> - Conditional on PCIe bus tuning being enabled (PCIE_BUS_TUNE_OFF unset)
->>    and not in PCIE_BUS_PEER2PEER mode (which requires default 128 bytes)
->> - Maintains backward compatibility via PCIE_BUS_TUNE_OFF check
->> - Preserves standard MPS negotiation during downstream enumeration
->>
->> 2. Driver cleanup (Patch 2):
->> - Removes redundant MPS configuration from Meson PCIe controller driver
->> - Functionality is now centralized in PCI core
->> - Simplifies driver maintenance long-term
->>
-> 
-> For the series,
-> 
-> Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
-> 
-> Bjorn: Could you please take a look? This series has been floating for a
-> while...
-
-Hello Bjorn,
-
-Any chance for this series to be applied?
-
-Best regards,
-Hans
-
-
-> 
-> - Mani
-> 
->> ---
->> Changes in v7:
->> - Exclude PCIE_BUS_PEER2PEER mode from Root Port MPS configuration
->> - Remove redundant check for upstream bridge (Root Ports don't have one)
->> - Improve commit message and code comments as per Bjorn.
->>
->> Changes for v6:
->> https://patchwork.kernel.org/project/linux-pci/patch/20251104165125.174168-1-18255117159@163.com/
->>
->> - Modify the commit message and comments. (Bjorn)
->> - Patch 1/2 code logic: Add !bridge check to configure MPS only for Root Ports
->>    without an upstream bridge (root bridges), avoiding incorrect handling of
->>    non-root-bridge Root Ports (Niklas).
->>
->> Changes for v5:
->> https://patchwork.kernel.org/project/linux-pci/patch/20250620155507.1022099-1-18255117159@163.com/
->>
->> - Use pcie_set_mps directly instead of pcie_write_mps.
->> - The patch 1 commit message were modified.
->>
->> Changes for v4:
->> https://patchwork.kernel.org/project/linux-pci/patch/20250510155607.390687-1-18255117159@163.com/
->>
->> - The patch [v4 1/2] add a comment to explain why it was done this way.
->> - The patch [v4 2/2] have not been modified.
->> - Drop patch [v3 3/3]. The Maintainer of the pci-aardvark.c file suggests
->>    that this patch cannot be submitted. In addition, Mani also suggests
->>    dropping this patch until this series of issues is resolved.
->>
->> Changes for v3:
->> https://patchwork.kernel.org/project/linux-pci/patch/20250506173439.292460-1-18255117159@163.com/
->>
->> - The new split is patch 2/3 and 3/3.
->> - Modify the patch 1/3 according to Niklas' suggestion.
->>
->> Changes for v2:
->> https://patchwork.kernel.org/project/linux-pci/patch/20250425095708.32662-1-18255117159@163.com/
->>
->> - According to the Maintainer's suggestion, limit the setting of MPS
->>    changes to platforms with controller drivers.
->> - Delete the MPS code set by the SOC manufacturer.
->> ---
->>
->> Hans Zhang (2):
->>    PCI: Configure Root Port MPS during host probing
->>    PCI: dwc: Remove redundant MPS configuration
->>
->>   drivers/pci/controller/dwc/pci-meson.c | 17 -----------------
->>   drivers/pci/probe.c                    | 12 ++++++++++++
->>   2 files changed, 12 insertions(+), 17 deletions(-)
->>
->>
->> base-commit: 765e56e41a5af2d456ddda6cbd617b9d3295ab4e
->> -- 
->> 2.34.1
->>
-> 
-
+--
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 _______________________________________________
 linux-amlogic mailing list
