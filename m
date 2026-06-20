@@ -4,60 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22EB9CD4F26
-	for <linux-amlogic@archiver.kernel.org>; Sat, 20 Jun 2026 15:11:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEDC9CD98F2
+	for <linux-amlogic@archiver.kernel.org>; Sat, 20 Jun 2026 16:41:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3Iw8UOjvt3faE/0OTe33wEk2/4BwbQ0u35sPLiWAZLw=; b=Y0SvF40VrEsTsD
-	SN49z48KhiQzl/52Ez8rDIhT9BTGH0l0ZRLJLCOXRm9lfP+eoEkLtL8oZioc9u24Fm/MDWXR5bAq0
-	bRwY/iZdLMyWlP9xm04xPltFxiXGNVeYm5mRwZZu6tCPwyoU1l9AWfIX/8vOT164Q+4j4JGUd+vt6
-	XUNzwMJzKkgBuULR6bTJ+5eupZC/w3wzsNf6UdhEyZ6XKppcP0BkwNZTsowut496JnGMA9wy0RcYA
-	9xuDmD7WIV14Bmoe9hKW2pK0M7JSu08LXgDfcHgJzjMVhEbs4UbYfHeCtZRG4aSJXZG2oVYpFxKh0
-	uV9dLcV2K8WrYvv+/D9g==;
+	List-Owner; bh=ThkV1SIY/Tzp2J/xE9O6OgpSz6/JVlYtnek2eK7sgCo=; b=HYNl+abdnhSwZr
+	vX3EN6DaaWJarMwI18mJycCz9qe2FDNvliV3UdVbc6j0DYwh4RA2ksn9j9GBBqjkiC2fOdG/Gru2a
+	WCRiH1+h2jMyF7tHOuYT0tySeH7CQkMfxXk/SEjRInuje9IGYN1Gg5dpMt7IALVUbe4WtvmWRcU9y
+	yZceNNxf5SXBaIqhoexSZC5bv5mXfksJWNxlwE/5p4LvHS9gB3eMGmM6bOfUAtqRNYHlffcpJLMYa
+	N0lNmlf4L9ww2VmUUmjWEPP9IrqotvR9jTFCYfuKaq71KTtDSdus9hqbN2g8fBo1aC/Ffnbiko5eV
+	EO24UO9HaRTtx91mdWVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1waxLu-00000003QiB-3ZeM;
-	Sat, 20 Jun 2026 15:11:22 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1waykw-00000003ShL-36Lv;
+	Sat, 20 Jun 2026 16:41:18 +0000
+Received: from courrier.aliel.fr ([65.21.61.41])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1waxLt-00000003Qhz-24Yt;
-	Sat, 20 Jun 2026 15:11:21 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 99F32433BF;
-	Sat, 20 Jun 2026 15:11:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 911451F000E9;
-	Sat, 20 Jun 2026 15:11:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781968280;
-	bh=lIzVTXv8g8JnhDCGT+xWyfC+8ohfboGZ2syiLUj/bP0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=VUOK5Rm/rfi1wA5O5FpPL+PMqg3/iiAY7S654kzd/xwP4OaH2dbPrFwjF/NLGeSEy
-	 1arXfmKnr+pQhziePbA11lPXHwnpR107J2eTRm2qvMXgxMT8kkTKbEaovHsxFveHmE
-	 DxAgwQZD3Ip3kKQutOWHZYX55/fkyqm7gwIS4hd008/4AvjIgkpZxlIbnUDuBnrKRR
-	 EB0fp+Yn0QW7aKxQJjSD0s1O2bbH8QJ55Cm8YN4Z/Ub1sPaI+7TMPKBGCxMYEdwyTM
-	 hoxfYrExcyjjyQUwzhmLAH+sROFRGD2MB0hvySTwxcSDr5ii1Sm8mA1asBeizXjvFA
-	 T0BI9tEC3V5oA==
-Date: Sat, 20 Jun 2026 20:41:11 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Cc: Gowtham Kudupudi <gowtham@ferryfair.com>, robh@kernel.org, 
-	bhelgaas@google.com, neil.armstrong@linaro.org, khilman@baylibre.com, 
-	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, linux-pci@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, yue.wang@amlogic.com, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org
+	id 1wayks-00000003Sgr-3Xgc;
+	Sat, 20 Jun 2026 16:41:17 +0000
+Message-ID: <89c11806-54c3-4c16-b2c0-2558b05d6821@aliel.fr>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1781973667;
+	bh=h5z1xRTsT/ov0spmQE+ezGKUtaYB2Ro6pU8tBcQKID4=;
+	h=Date:From:Subject:To:Cc:References:In-Reply-To;
+	b=qUWsHhY96shaBTpVX75Yi/UTQb1Z7+SwdgWswmOxoqqOa3SsGt//AlumCRKWSNo6b
+	 RMprXWwSbwVTDmzCzmMYdLejJb9RLALPQnhKVWhpaF6Mcj064Q+X33cD1nGBPG+zhQ
+	 qIfwngPaUG5josX6NLfx0LiY5Kl1TeKN1+zepMZY=
+Date: Sat, 20 Jun 2026 18:40:53 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird Beta
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 Subject: Re: [PATCH] PCI: meson: Fix PERST# timing by asserting reset before
  LTSSM enable
-Message-ID: <qq4dum3xqs2stcrd6ula75snrxy34elhodrtp3gftjgzqhs3ir@ykl54gvrfwxs>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Gowtham Kudupudi <gowtham@ferryfair.com>, robh@kernel.org,
+ bhelgaas@google.com, neil.armstrong@linaro.org, khilman@baylibre.com,
+ jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+ linux-pci@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ yue.wang@amlogic.com, lpieralisi@kernel.org, kwilczynski@kernel.org
 References: <20260614015620.20432-1-gowtham@ferryfair.com>
  <84cc8b0c-da06-4d01-a076-9743c29c91f6@aliel.fr>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <84cc8b0c-da06-4d01-a076-9743c29c91f6@aliel.fr>
+ <qq4dum3xqs2stcrd6ula75snrxy34elhodrtp3gftjgzqhs3ir@ykl54gvrfwxs>
+Content-Language: en-US
+In-Reply-To: <qq4dum3xqs2stcrd6ula75snrxy34elhodrtp3gftjgzqhs3ir@ykl54gvrfwxs>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260620_094115_363673_F1EC0239 
+X-CRM114-Status: GOOD (  18.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,52 +66,85 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gTW9uLCBKdW4gMTUsIDIwMjYgYXQgMTI6MzQ6MTFQTSArMDIwMCwgUm9uYWxkIENsYXZlYXUg
-d3JvdGU6Cj4gT24gNi8xNC8yNiAzOjU2IEFNLCBHb3d0aGFtIEt1ZHVwdWRpIHdyb3RlOgo+ID4g
-T24gd2FybSByZWJvb3QsIHRoZSBQQ0llIGNvbnRyb2xsZXIncyBMVFNTTSBzdGFydHMgbGluayB0
-cmFpbmluZwo+ID4gaW1tZWRpYXRlbHkgaWYgUEVSU1QjIGlzIGFscmVhZHkgZGVhc3NlcnRlZCBm
-cm9tIHRoZSBwcmV2aW91cyBib290Lgo+ID4gVGhlIGRyaXZlciB0aGVuIHB1bHNlcyBQRVJTVCMg
-Zm9yIG9ubHkgNTAwdXMsIHdoaWNoIGlzIHRvbyBzaG9ydCB0bwo+ID4gcHJvcGVybHkgcmVzZXQg
-dGhlIGVuZHBvaW50IGRldmljZSB0aGF0IGhhcyBhbHJlYWR5IHN0YXJ0ZWQgdHJhaW5pbmcuCj4g
-PiAKPiA+IEZpeCBieSBtb3ZpbmcgdGhlIFBFUlNUIyBhc3NlcnQvZGVhc3NlcnQgcHVsc2UgQkVG
-T1JFIGVuYWJsaW5nIExUU1NNLAo+ID4gc28gdGhlIGVuZHBvaW50IGdldHMgYSBjbGVhbiByZXNl
-dCBjeWNsZSBiZWZvcmUgbGluayB0cmFpbmluZyBiZWdpbnMuCj4gPiAKPiA+IFRoaXMgd2FzIGZv
-dW5kIG9uIEFtbG9naWMgRzEyQiAoQTMxMUQpIHdpdGggTlZNZSBvbiBhbiBNLjIgc2xvdC4KPiA+
-IENvbGQgYm9vdCB3b3JrZWQgYmVjYXVzZSBQT1IgaGVsZCBQRVJTVCMgbG93OyB3YXJtIHJlYm9v
-dCBkaWQgbm90Lgo+ID4gVGhlIGZpeCB3YXMgY29uZmlybWVkIG9uIGEgQmFuYW5hIFBpIENNNCB3
-aXRoIFdhdmVzaGFyZSBJTyBiYXNlIGJvYXJkLgo+ID4gCj4gPiBTaWduZWQtb2ZmLWJ5OiBHb3d0
-aGFtIEt1ZHVwdWRpIDxnb3d0aGFtQGZlcnJ5ZmFpci5jb20+Cj4gPiAtLS0KPiA+ICBkcml2ZXJz
-L3BjaS9jb250cm9sbGVyL2R3Yy9wY2ktbWVzb24uYyB8IDIgKy0KPiA+ICAxIGZpbGUgY2hhbmdl
-ZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKPiA+IAo+ID4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaS1tZXNvbi5jIGIvZHJpdmVycy9wY2kvY29udHJv
-bGxlci9kd2MvcGNpLW1lc29uLmMKPiA+IGluZGV4IDVmOGUyZjRiM2MxMi4uM2E3ZTlmMWQ1Yjhj
-IDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNpLW1lc29uLmMK
-PiA+ICsrKyBiL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaS1tZXNvbi5jCj4gPiBAQCAt
-MzEwLDggKzMxMCw4IEBAIHN0YXRpYyBpbnQgbWVzb25fcGNpZV9zdGFydF9saW5rKHN0cnVjdCBk
-d19wY2llICpwY2kpCj4gPiAgewo+ID4gIAlzdHJ1Y3QgbWVzb25fcGNpZSAqbXAgPSB0b19tZXNv
-bl9wY2llKHBjaSk7Cj4gPiAgCj4gPiArCW1lc29uX3BjaWVfYXNzZXJ0X3Jlc2V0KG1wKTsKPiA+
-ICAJbWVzb25fcGNpZV9sdHNzbV9lbmFibGUobXApOwo+ID4gLQltZXNvbl9wY2llX2Fzc2VydF9y
-ZXNldChtcCk7CgptZXNvbl9wY2llX2Fzc2VydF9yZXNldCgpIGl0c2VsZiBpcyB3cm9uZyBhcyBp
-dCB0b2dnbGVzIFBFUlNUIy4gWW91J2QganVzdCBuZWVkOgoKbXNsZWVwKFBDSUVfVF9QRVJTVF9D
-TEtfVVMpOwpncGlvZF9zZXRfdmFsdWVfY2Fuc2xlZXAobXAtPnJlc2V0X2dwaW8sIEdQSU9EX09V
-VF9MT1cpCgpidXQgaW4gcHJvYmUoKSwgYWZ0ZXIgbWVzb25fcGNpZV9wcm9iZV9jbG9ja3MoKSBh
-cyB0aGF0J3Mgd2hlbiBib3RoIHBvd2VyIGFuZApSRUZDTEsgYmVjb21lcyBzdGFibGUuCgo+ID4g
-IAo+ID4gIAlyZXR1cm4gMDsKPiA+ICB9Cj4gCj4gSGkgR293dGhhbSwKPiAKPiBJIGhhdmUgYSBw
-YXRjaCBbMV0gdGhhdCBJIGhhdmVuJ3Qgc3VibWl0dGVkIHlldC4KPiBUaGlzIG1pZ2h0IGJlIHJl
-bGF0ZWQgdG8geW91ciBpc3N1ZSwgd2hhdCBkbyB5b3UgdGhpbmsgPwo+IAo+IFsxXSBodHRwczov
-L2dpdGh1Yi5jb20vcmNsYXZlYXUtdGVjaC9saW51eC1raGFkYXMvY29tbWl0L2JlZTBhMDJkOTc1
-Ngo+IAoKVGhpcyBwYXRjaCBpcyBhbHNvIG5lZWRlZCBhcyBpdCBjb3JyZWN0bHkgZml4ZXMgdGhl
-IFBFUlNUIyBwb2xhcml0eSB3aGVuCnJlcXVlc3RpbmcgdGhlIEdQSU8uIFNpbmNlIHRoZSBkZXZp
-Y2V0cmVlIGlzIGRlZmluaW5nIHRoZSBQRVJTVCMgR1BJTyBhcwpBQ0lWRV9MT1csIHRoZSBkcml2
-ZXIgc2hvdWxkIHJlcXVlc3QgaXQgYXMgR1BJT0RfT1VUX0hJR0ggdG8gbWFrZSBzdXJlIHRoYXQK
-UEVSU1QjIGlzIGFzc2VydGVkLgoKU28gcGxlYXNlIHN1Ym1pdCB0aGUgcmVmZXJlbmNlZCBwYXRj
-aC4KCi0gTWFuaQoKLS0gCuCuruCuo+Cuv+CuteCuo+CvjeCuo+CuqeCvjSDgrprgrqTgrr7grprg
-rr/grrXgrq7gr40KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFk
-ZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4
-LWFtbG9naWMK
+On 6/20/26 5:11 PM, Manivannan Sadhasivam wrote:
+> On Mon, Jun 15, 2026 at 12:34:11PM +0200, Ronald Claveau wrote:
+>> On 6/14/26 3:56 AM, Gowtham Kudupudi wrote:
+>>> On warm reboot, the PCIe controller's LTSSM starts link training
+>>> immediately if PERST# is already deasserted from the previous boot.
+>>> The driver then pulses PERST# for only 500us, which is too short to
+>>> properly reset the endpoint device that has already started training.
+>>>
+>>> Fix by moving the PERST# assert/deassert pulse BEFORE enabling LTSSM,
+>>> so the endpoint gets a clean reset cycle before link training begins.
+>>>
+>>> This was found on Amlogic G12B (A311D) with NVMe on an M.2 slot.
+>>> Cold boot worked because POR held PERST# low; warm reboot did not.
+>>> The fix was confirmed on a Banana Pi CM4 with Waveshare IO base board.
+>>>
+>>> Signed-off-by: Gowtham Kudupudi <gowtham@ferryfair.com>
+>>> ---
+>>>  drivers/pci/controller/dwc/pci-meson.c | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+>>> index 5f8e2f4b3c12..3a7e9f1d5b8c 100644
+>>> --- a/drivers/pci/controller/dwc/pci-meson.c
+>>> +++ b/drivers/pci/controller/dwc/pci-meson.c
+>>> @@ -310,8 +310,8 @@ static int meson_pcie_start_link(struct dw_pcie *pci)
+>>>  {
+>>>  	struct meson_pcie *mp = to_meson_pcie(pci);
+>>>  
+>>> +	meson_pcie_assert_reset(mp);
+>>>  	meson_pcie_ltssm_enable(mp);
+>>> -	meson_pcie_assert_reset(mp);
+> 
+> meson_pcie_assert_reset() itself is wrong as it toggles PERST#. You'd just need:
+> 
+> msleep(PCIE_T_PERST_CLK_US);
+> gpiod_set_value_cansleep(mp->reset_gpio, GPIOD_OUT_LOW)
+> 
+> but in probe(), after meson_pcie_probe_clocks() as that's when both power and
+> REFCLK becomes stable.
+> 
+>>>  
+>>>  	return 0;
+>>>  }
+>>
+>> Hi Gowtham,
+>>
+>> I have a patch [1] that I haven't submitted yet.
+>> This might be related to your issue, what do you think ?
+>>
+>> [1] https://github.com/rclaveau-tech/linux-khadas/commit/bee0a02d9756
+>>
+> 
+> This patch is also needed as it correctly fixes the PERST# polarity when
+> requesting the GPIO. Since the devicetree is defining the PERST# GPIO as
+> ACIVE_LOW, the driver should request it as GPIOD_OUT_HIGH to make sure that
+> PERST# is asserted.
+> 
+> So please submit the referenced patch.
+> 
+> - Mani
+> 
+
+Hi Mani,
+
+I sent it here:
+
+https://lore.kernel.org/all/20260616-fix-meson-pcie-reset-gpio-v1-1-fca404b4c8be@aliel.fr/
+
+
+-- 
+Best regards,
+Ronald
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
