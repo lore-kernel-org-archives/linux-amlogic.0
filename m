@@ -4,64 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03C9CCD98F2
-	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Jun 2026 16:45:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9F18CDB46F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Jun 2026 17:14:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=89BN0jGIGL2pF7XEotj+eyaaLBD1BUHTQlShQS/wCtI=; b=JCs8QYAMjsAHNZSzzjJJPrA9vu
-	6WXNMLsieW06ya7kr1hh5mvuHyaj3EHmHDpPUZzInztVEIVD8gW/8k+J2OriMVMYRuTz8APH+9Oil
-	PAf4MQlDCmRDEjKtmWvi1n1E+/Ka5NKTnu94rquq6ZdngmQrOm9PEdo02vBMlW1QM27UvNnYOkWG6
-	nwbWwzvnhZz//r9O2E+lJwt/wwU4nhEyiRuFjSMREG2lmSsdmjrbxrlPnnrUgqVPs5N886EZEFiGN
-	MmNTyxNwl2IuibqpuB9ocfyfRYGuGNWGEGz5GAAn3dy5Q58mOwoqkaFcMDPWxh4huBqQRxyLFI/Kr
-	8nBa9fAQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+	List-Owner; bh=wQxdtQYFa1901YbYk0iZigfcSW3bqFNKVBM/t1ejIq0=; b=u6yj52YamKYoIW
+	8B4j1KXl6SaQawe/rwBKPBfhjqlJ7TCSwYu4XXbuDVlZSK4nJwUfsrgtMAc0IHCFctxFFMdkyZ5Lr
+	GzABqoabRESoxpidrrz4K8Ybj6bVch+A53+BxsdXPeaZ+GD5ZnMjs1lI1XPdk3lgr9FxwNQRH5oAp
+	/qMN2bPA/h+wzdSoKxp8/a4FKOtV8JHoDdDuhTJ/BKDzra2JvX4P4p/Z7ie3ZTPQTiyVHKC4aAnke
+	8wz3MnRusIjE6t/gxBN7deRV+l0G8wpywGkYXCKbHHvne30fcm6VoSsfUfs4/I7HAuPdfLWpsLkE0
+	OcHHylRe101z3F1VHIVg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wbhm0-00000005Ckw-2HHK;
-	Mon, 22 Jun 2026 16:45:24 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1wbiEW-00000005FQa-05O7;
+	Mon, 22 Jun 2026 17:14:52 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wbhlz-00000005Ckl-3tBs
-	for linux-amlogic@lists.infradead.org;
-	Mon, 22 Jun 2026 16:45:23 +0000
+	id 1wbiEU-00000005FQN-2PF0;
+	Mon, 22 Jun 2026 17:14:50 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id AC160406B3;
-	Mon, 22 Jun 2026 16:45:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1F521F000E9;
-	Mon, 22 Jun 2026 16:45:20 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id E147B601F3;
+	Mon, 22 Jun 2026 17:14:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C7771F000E9;
+	Mon, 22 Jun 2026 17:14:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782146723;
-	bh=Xqk2PHK3QCcWR0jjFn371IClVpNTBYwDv1jn3DNcUe4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=AVKaku24GCYD0nsAW1vZxZNtgMsHsrm+c73K7AuXemZwpiQO9iNpfup9UXM5t0jk0
-	 /vlizguXb05465Sg1/NmG6OZ7v4yrp8T3es4NTdmMV50mTBnFGAR5tQ0/4q7fhlU3G
-	 F9Uk2OJopCOIUSkIJRlAipr7r2+cSjm2Foohgj34szBtTGuAs1OOyiXb5f+qC6lKXC
-	 iSOV4Ltl7h18n7JYVmpGqpyZxWE5NehTCqqKfsEyUnyZK6L+shScDUZvWdLdtjSZPb
-	 WOkexDPObYafzBfZPrZUFjeB6Q9M/yQErD9lmgCpeU+Eew90c5YbkAiOr8SugerzmM
-	 xMNJiaTdPV/Eg==
-Date: Mon, 22 Jun 2026 17:45:19 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: Guillaume La Roque <glaroque@baylibre.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@kernel.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ronald Claveau <linux-kernel-dev@aliel.fr>,
-	linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: thermal: amlogic: Correct 'reg' in the
- example
-Message-ID: <20260622-lance-handset-56a9a04b21a2@spud>
-References: <20260622100231.438435-3-krzysztof.kozlowski@oss.qualcomm.com>
- <20260622100231.438435-4-krzysztof.kozlowski@oss.qualcomm.com>
+	s=k20260515; t=1782148489;
+	bh=qjzQ4WwEP4S9tC3oy8nVsiVMsWH0bk2/jHATvq8YN7g=;
+	h=Date:From:To:Cc:Subject:In-Reply-To;
+	b=T3jVb1nMf3BVbMVzJIa3+l8FyxOasvux+i+g5elRWyUJ3tKyCOVRbENnhNuQwA6G0
+	 FaCXRZLUMsP7g3wqBRZyeXRqk4SRnQygKqCA44f5/gxdv+1xK/Vck+IP3MsWtA25OA
+	 rJp/w7XbBoo+T8vxg2tIJ/F/KWFVM+RSjRSNvMv9kIk9a2jTGK7P3KIo9sqfSu+6FN
+	 ZFyN+bVCG2aKNadAlcX+gXiN1ZMIjucS486ERjyxJIA0O5BmVKvcVF018PKmYwbOHi
+	 39raliXBg05jeLL/fiXWcGJYzFqGfnepGprhNMbAwiue7GLqLTOuQUERN18GpEWh2Z
+	 WiLWFooYByexQ==
+Date: Mon, 22 Jun 2026 12:14:48 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Hans Zhang <18255117159@163.com>
+Cc: bhelgaas@google.com, Manivannan Sadhasivam <mani@kernel.org>,
+	lpieralisi@kernel.org, kwilczynski@kernel.org, heiko@sntech.de,
+	yue.wang@amlogic.com, pali@kernel.org, neil.armstrong@linaro.org,
+	robh@kernel.org, jingoohan1@gmail.com, khilman@baylibre.com,
+	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+	cassel@kernel.org, linux-pci@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v7 0/2] PCI: Configure Root Port MPS during host probing
+Message-ID: <20260622171448.GA678675@bhelgaas>
 MIME-Version: 1.0
-In-Reply-To: <20260622100231.438435-4-krzysztof.kozlowski@oss.qualcomm.com>
+Content-Disposition: inline
+In-Reply-To: <dae17d36-c7d2-467b-a621-3c55e08a67a8@163.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,48 +69,53 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============3320757652040831121=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Fri, Jun 19, 2026 at 11:29:39PM +0800, Hans Zhang wrote:
+> On 5/6/26 22:00, Manivannan Sadhasivam wrote:
+> > On Fri, Nov 28, 2025 at 01:09:06AM +0800, Hans Zhang wrote:
+> > > Current PCIe initialization exhibits a key optimization gap: Root Ports
+> > > may operate with non-optimal Maximum Payload Size (MPS) settings. While
+> > > downstream device configuration is handled during bus enumeration, Root
+> > > Port MPS values inherited from firmware or hardware defaults often fail
+> > > to utilize the full capabilities supported by controller hardware. This
+> > > results in suboptimal data transfer efficiency throughout the PCIe
+> > > hierarchy.
+> > > 
+> > > This patch series addresses this by:
+> > > 
+> > > 1. Core PCI enhancement (Patch 1):
+> > > - Proactively configures Root Port MPS during host controller probing
+> > > - Sets initial MPS to hardware maximum (128 << dev->pcie_mpss)
+> > > - Conditional on PCIe bus tuning being enabled (PCIE_BUS_TUNE_OFF unset)
+> > >    and not in PCIE_BUS_PEER2PEER mode (which requires default 128 bytes)
+> > > - Maintains backward compatibility via PCIE_BUS_TUNE_OFF check
+> > > - Preserves standard MPS negotiation during downstream enumeration
+> > > 
+> > > 2. Driver cleanup (Patch 2):
+> > > - Removes redundant MPS configuration from Meson PCIe controller driver
+> > > - Functionality is now centralized in PCI core
+> > > - Simplifies driver maintenance long-term
+> > > 
+> > 
+> > For the series,
+> > 
+> > Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
+> > 
+> > Bjorn: Could you please take a look? This series has been floating for a
+> > while...
+> 
+> Hello Bjorn,
+> 
+> Any chance for this series to be applied?
 
---===============3320757652040831121==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="VxYsUdreCsY5xfN/"
-Content-Disposition: inline
-
-
---VxYsUdreCsY5xfN/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-
---VxYsUdreCsY5xfN/
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCajlmngAKCRB4tDGHoIJi
-0nnnAQCxwPKlfC+6wk698cBtgGy7NFD5m7eCQqgTcIXn4ktJNwD/SkCKrgG+s3Z1
-Hi/BvoQbiP07o27QsROG7/bcxrfXqAs=
-=JdwR
------END PGP SIGNATURE-----
-
---VxYsUdreCsY5xfN/--
-
-
---===============3320757652040831121==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+It's too late for v7.2; we're already more than halfway through the
+merge window.  We can look again for v7.3 after v7.2-rc1.
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============3320757652040831121==--
-
