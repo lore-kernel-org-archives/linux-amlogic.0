@@ -4,57 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEDC9CD98F2
-	for <linux-amlogic@archiver.kernel.org>; Sat, 20 Jun 2026 16:41:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A8EDCD98F6
+	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Jun 2026 06:20:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ThkV1SIY/Tzp2J/xE9O6OgpSz6/JVlYtnek2eK7sgCo=; b=HYNl+abdnhSwZr
-	vX3EN6DaaWJarMwI18mJycCz9qe2FDNvliV3UdVbc6j0DYwh4RA2ksn9j9GBBqjkiC2fOdG/Gru2a
-	WCRiH1+h2jMyF7tHOuYT0tySeH7CQkMfxXk/SEjRInuje9IGYN1Gg5dpMt7IALVUbe4WtvmWRcU9y
-	yZceNNxf5SXBaIqhoexSZC5bv5mXfksJWNxlwE/5p4LvHS9gB3eMGmM6bOfUAtqRNYHlffcpJLMYa
-	N0lNmlf4L9ww2VmUUmjWEPP9IrqotvR9jTFCYfuKaq71KTtDSdus9hqbN2g8fBo1aC/Ffnbiko5eV
-	EO24UO9HaRTtx91mdWVw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=QCK3RSVrnNe3z+ErGSEeQDTpVhSKj3CLccUYY65ujvU=; b=EgpVoJEJ5egE2SuM4GMOCjcQOj
+	r/b6wxmTpPGP0G9uktCMZ0xKk+RMr2xBvya5TEjcbJPDlBmalX8egK42gwYC4A4nfA0QBSLjgy+PA
+	6m3EHcFfa+fkv2TqAvqMpFU4tML1+1GIwjP3m+0WAA8/b3NvrSFveXRHfx8xpf5xIdxOXrfRQIF+B
+	79L0n5qzJk++oTd3HUuU02YFnrqvx62cIylrr2Tl6ouirQQejCD2rpxsdHi2/Lw5NcGSxsUntuYlD
+	QQuIaCM+XTPqEpfJCMxxzN+8uhv/d+tw0Jxbsud+1fGaEReQ04mzgboKvmpjhO60KpI1DvPyLS9T8
+	wwM9t1Hw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1waykw-00000003ShL-36Lv;
-	Sat, 20 Jun 2026 16:41:18 +0000
-Received: from courrier.aliel.fr ([65.21.61.41])
+	id 1wbY1C-00000004TMp-2a59;
+	Mon, 22 Jun 2026 06:20:26 +0000
+Received: from mail-koreacentralazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c40f::6] helo=SEYPR02CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wayks-00000003Sgr-3Xgc;
-	Sat, 20 Jun 2026 16:41:17 +0000
-Message-ID: <89c11806-54c3-4c16-b2c0-2558b05d6821@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1781973667;
-	bh=h5z1xRTsT/ov0spmQE+ezGKUtaYB2Ro6pU8tBcQKID4=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To;
-	b=qUWsHhY96shaBTpVX75Yi/UTQb1Z7+SwdgWswmOxoqqOa3SsGt//AlumCRKWSNo6b
-	 RMprXWwSbwVTDmzCzmMYdLejJb9RLALPQnhKVWhpaF6Mcj064Q+X33cD1nGBPG+zhQ
-	 qIfwngPaUG5josX6NLfx0LiY5Kl1TeKN1+zepMZY=
-Date: Sat, 20 Jun 2026 18:40:53 +0200
+	id 1wbY1A-00000004TLi-0P5h
+	for linux-amlogic@lists.infradead.org;
+	Mon, 22 Jun 2026 06:20:25 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=fbD3OvefVeDb6iBsz11fop91fwju4b2w3FbSkOqlcfJVEqDu2h4ajk4+o7uH5DHBdzRCi/GToZioEbN6HbfAy/TFSGHZvuE4xGlt+ls/eiHtSULxd+HFttfHtV1z9wSH1dfLTj22luGVK9ANRez/uaI82Jsc38gIQZA1OY/pnDiduusoJhhYX+y38ctOrm63fAnwiDNA5ngg1hyhc/82RsaCGUkx934YfdYVGyD5VNLITA5yxVDvx7sUhUbC/Pa7VDAEHBxC8wM3KYa5zq7asuA8uX1XRD85dp6PJpzkjEnr5Ee5VHGyrdmEpUSF2s1OgHX8ZVbdB0Xe2FnuFL+BXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=v0WQs1J82XrgCVLeRm5Euo1rqVjIttoGQvQGGRH9GV0=;
+ b=hycft32HvMMp7oDzTP6FW8Cu5Vd2MhVnOvBIxIy5H6KEI7dHEomsFc3S6Qx6mtcrzTFKO3W+2hKsj7sh3vgTFoaqyJmEDnBxikGKRFtVFYFJDQxeWfD27wmHR1yTgNt6HKflBBEGRtUWns5mGWrwXxafJcpdqXp/dRE8KMu9YES5tfUwm/VuGqtxkBjHedhkm4cdlKfespDuooDny4Wk0vhWZSIaj5hq9u+y98tTAB/tege2eFjaNfaNcn9HVji8vfReUyOI3bAvMyKJmk1ZwneH0KlHRfCc8d8+4Yc0LX0oo3Ej3lfopBDUpK8CuqFcOsG9fbDlpqL8Ouh2JH72vw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=v0WQs1J82XrgCVLeRm5Euo1rqVjIttoGQvQGGRH9GV0=;
+ b=j6sjG9x6WedRTnJaxYc2r471Z7I4H3kWjY48jTDI7HGVStjmLOzruoFV9xjfovP1hb75nvmDPoxv1UUYe3TQRJJ1AKudOwcXcxSOfYI/1U39CWAzc/tBuhRjKlcZD503+zwNGwnKpNtRTQAiLTu0dLsnlL3FqMBxGFVfz8Bw44EBZWB8VjFmlxCAxEgVrGwl2r13OvdC/YdypAh12REr2yrex702dQDxo8e0uGPoJYHmxzl/LxPkcXmYGUs79nvAjUORaqqwEnY7Djrty7t+IJgK/tAVZpDzpb8qahsYguZRfHc4k26HXHoC0e+E+PrlWaegqC0H/jP3ImGG1GQUQw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from KL1PR03MB7149.apcprd03.prod.outlook.com (2603:1096:820:ca::7)
+ by SE1PPF73DA7E6F9.apcprd03.prod.outlook.com (2603:1096:108:1::854) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.7; Mon, 22 Jun
+ 2026 06:20:02 +0000
+Received: from KL1PR03MB7149.apcprd03.prod.outlook.com
+ ([fe80::2f06:12a:fff0:6506]) by KL1PR03MB7149.apcprd03.prod.outlook.com
+ ([fe80::2f06:12a:fff0:6506%5]) with mapi id 15.21.0159.007; Mon, 22 Jun 2026
+ 06:20:01 +0000
+Message-ID: <167ab529-1588-4f8a-9297-cecdb16fa0c9@amlogic.com>
+Date: Mon, 22 Jun 2026 14:19:59 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] clk: amlogic: Add A9 AO clock controller driver
+To: Jerome Brunet <jbrunet@baylibre.com>, sashiko-bot@kernel.org
+Cc: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>,
+ sashiko-reviews@lists.linux.dev, linux-amlogic@lists.infradead.org,
+ neil.armstrong@linaro.org, robh@kernel.org, devicetree@vger.kernel.org,
+ conor+dt@kernel.org
+References: <20260618-a9_aoclk-v4-0-569d0425e50c@amlogic.com>
+ <20260618-a9_aoclk-v4-2-569d0425e50c@amlogic.com>
+ <20260618100341.0A42F1F00A3A@smtp.kernel.org>
+ <1j33yjc7b9.fsf@starbuckisacylon.baylibre.com>
+From: Jian Hu <jian.hu@amlogic.com>
+In-Reply-To: <1j33yjc7b9.fsf@starbuckisacylon.baylibre.com>
+X-ClientProxiedBy: SI2P153CA0011.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:4:140::14) To KL1PR03MB7149.apcprd03.prod.outlook.com
+ (2603:1096:820:ca::7)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Subject: Re: [PATCH] PCI: meson: Fix PERST# timing by asserting reset before
- LTSSM enable
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Gowtham Kudupudi <gowtham@ferryfair.com>, robh@kernel.org,
- bhelgaas@google.com, neil.armstrong@linaro.org, khilman@baylibre.com,
- jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
- linux-pci@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- yue.wang@amlogic.com, lpieralisi@kernel.org, kwilczynski@kernel.org
-References: <20260614015620.20432-1-gowtham@ferryfair.com>
- <84cc8b0c-da06-4d01-a076-9743c29c91f6@aliel.fr>
- <qq4dum3xqs2stcrd6ula75snrxy34elhodrtp3gftjgzqhs3ir@ykl54gvrfwxs>
-Content-Language: en-US
-In-Reply-To: <qq4dum3xqs2stcrd6ula75snrxy34elhodrtp3gftjgzqhs3ir@ykl54gvrfwxs>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: KL1PR03MB7149:EE_|SE1PPF73DA7E6F9:EE_
+X-MS-Office365-Filtering-Correlation-Id: 485f5dc8-4a66-4b77-85ff-08ded0264ae0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|1800799024|376014|366016|22082099003|56012099006|5023799004|11063799006|4143699003|18002099003;
+X-Microsoft-Antispam-Message-Info: luGxcplGPWdpEWWCUZgVBas4aE7DWju2D2jXeASRLlvYDstrF+FON3WIwTNvNzhL3AuaA/x4qNDq4LNsxd9JFnSmegGm4QpuvJxr/WkLiKLLEH2SdeHpqH5ZQvmoGGrgFL5rRBoI+sTgWKSuu99v4PRTDNNMh187Mb0w66jyaBn9jq6GVLk6WbmP3Bq5Adhzcjb1C9EWI/NjlLX/3qPPkLifIeZwXdoeQ8PrY1ju1puM33LUGZvPwhLFNwABs2ZUOh2UZKikSA4eRs3HEpCge/N16QNNFkLRKALeYJbTVIjGyx4bI7cEiWb9Uk4A7QWydm6rdyyYoGjieK1qCvhPcM5I7ZL6tnOvH5c0Hislyke73O5h8rajQVL15McqcLQZJzZT+WWHMznhCDNjZj4jiGf64z38XkXcn3R5E+OIEVTzEL3X1u4zkdzjKTpv2G1UjLE9jpIu0MU8QtWZ5oy9gaX2cLe13bF4zqO2pJdRCVpMX9Y7UPPHUnBrMI7CU4+CJpV6t344nzKhOpev03a06aFgbftkxtnkfSAWFuGqIhqC1x9wxNNg4/M/QICddlenBMSAiWc1razpAGxm6cWEITV2ZphABp2bfzuTPQieEBjtnL+gzUqdkuHZ7pLRYGqfLvQJijO7E1redmQ4dS/REd30rIviCh4QP/NVHuWKqWY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB7149.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(22082099003)(56012099006)(5023799004)(11063799006)(4143699003)(18002099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NmFucXp4Y1BkK3JLWFhVOEtpZWR1RW9XZVlzTHgvbGpKTE0zY3NWS1dvbEVW?=
+ =?utf-8?B?WWlzZVhGK1ZNSUxFb1J5azg1QlFZMmlCa1FzTkJscll0YlJyMmpaSTA5Rmg4?=
+ =?utf-8?B?WDFHdmFHVnlWRmQvdDhtTkpNamlCYU44b2ppdzNFQ1B6NDNXL3N5aEQzdTBk?=
+ =?utf-8?B?NEFTL0ltYWNxZGdXU044QTVDbmRJNWxmeXdLSUY5V214aFBnbXFGOHBaZWxt?=
+ =?utf-8?B?Z3VoUmVtRHhISlVyWEQrd3g4S05nRWtJbllkSThRYzdQY3ROcWxsbVprdTBs?=
+ =?utf-8?B?cVhLUUhhWEhZeGxFL0ZVSzlLWHRyWFBteVBVd2ZGUTN5QXNKYjVEN2RvVzdV?=
+ =?utf-8?B?Nkozc1o3NTBqRDNLWUIvQ0pIcENFcFkwR1pQWnd0KzdNUWh3WFVoV09HbmpL?=
+ =?utf-8?B?L1FxNmorc1dxdEFXQkttTkpNMlVkTWhZNlF5NDhhcndzMk5VVkFmT1FUNzVY?=
+ =?utf-8?B?SE13alYzczU1NVkyNTU4dk03dStsaVpjMHN0VHFPdWJ1bXQ2bllXOGJFb1ZM?=
+ =?utf-8?B?aElJcUh1KzY3L1cvRlFsUEQ2aTdRQlFNZUg0STAyYWNZOVJMYy9NenE5MjJ0?=
+ =?utf-8?B?SWJDTjgzeE9PUjg5TEVVRDdCT3ViL2p6SnB3a1FJN2NLUUlFQW5xMmVJYkpy?=
+ =?utf-8?B?YzZhZS9selBwb3d2V3k3ZDdVQnBRdTMxcXpVTjFXcFRkQ2lCTXZvMEhhcktC?=
+ =?utf-8?B?RHM0MHl2Z0pBMzgwOTV4c1pZcVdKSk02UmFtTEtIckNhc1RRc2pCenFpMkc0?=
+ =?utf-8?B?TnVxbmVCUXp3SHlUZzNSWFlHcWRjelVJNEszdldjK01vMGo1c1JyMEdmOGNI?=
+ =?utf-8?B?L2w5SzhBSnVENUxqOWsvUnpsYWFxVVB2UTlBQVQ0MDhYcFVYWGpEY3VEQkxW?=
+ =?utf-8?B?YUlnd1JneFVkVGs3Z29saytKckJvV3FMYklZbGo5TG82TFR4aHNzajUvT3pj?=
+ =?utf-8?B?ZS94WHQxZDJMVWNraGgyY0JpMW9td3FOUUg2dXJnc1QwaXB5aGlFY0JpZXVx?=
+ =?utf-8?B?RDgwODBrWFE2OVZqOTNwcnRrZjFtblN3b082bFFqNzlHRWVsa2lnaDZwUFk2?=
+ =?utf-8?B?OXpNWmk1eXQ0REFwaWhPeGplNHpvN2tjekhuMWZlam5Ba1BFMUNvOElCdzVF?=
+ =?utf-8?B?a2l1MWpwSUdzZHM0YmRMVlFFTzUrL0kwOGx0Y3JTME5kVk5YeGg5VXhweURM?=
+ =?utf-8?B?WEJscm1wVUs1T3NEUTRpOEplM21RYmIrdCthZ3FOdVE2VnBxRklaTkpMNjJN?=
+ =?utf-8?B?MXJndHJTNzRGZVpJS2R2alBIWmd4S3VsRVRqZll4SkMrT0JtY1dpTlA2TndB?=
+ =?utf-8?B?NDRHNTZXUHMxaGE5R1EyY1JqcDZ3UzJkZXVkd1RsVitJYnFKdHBwWGl0ZkZW?=
+ =?utf-8?B?TG5sM0hoWU40eTdpeVF3S05NaGN6dE5GYW5zb0RLYXo4ckc1aEZCc29UWWZs?=
+ =?utf-8?B?c1FabUZQNHRCOENKNEFGY2pTL1diVkRVTktpeTdyTjNYRGpyekNzWjY0WmJR?=
+ =?utf-8?B?Zkk0ZlhIYm1PNEkyQWQxQ2dZQnVWUmRsQms3WXlvbzMzMzRHT2V0RE1RcUxu?=
+ =?utf-8?B?L0x6SmUwNXhnTTZsdkVvTkV4TzFoMTNQRWNxN05ZQUFTWXZmZnk4WHZYclFp?=
+ =?utf-8?B?SkFWRnBHWUhraEtwQVEzZ3NTeG5GN1Z1TktxS0Jkall6MmdDcHFkYmVqQ2dG?=
+ =?utf-8?B?Mkc2ZmJid2VSNng2RGtaQ3R0RUNNVWthazF0RU9EbmxmcWlncDlSYUdna2dV?=
+ =?utf-8?B?RnRIYk1ham1PSHFrMk4wa2xHOFBZdWJOcmpHZ2JJelo3TktPOEx4cG56UkRT?=
+ =?utf-8?B?SWVpT2JXZ1NjbDN2WTBqN0wvOXFaUStHaTBpS1BWY3o4eU50ZGZKVE9XclNX?=
+ =?utf-8?B?L2dhVmZySzhtWCtIZnlxSWd2RVYwUlU2UU8xWEtpMXNkUE1TQnlqams5RXBm?=
+ =?utf-8?B?UEQwckRVNGdnUUwyTnRlOFZZZUpkYmVDaVNaZHlPa1dPR3k5YXYrQjVJaE14?=
+ =?utf-8?B?MVZNSXlhbSszNm9qTnRXWnhQTHN3bGVaY0wzUDBtRlBqbEV5dk4wNEtZQXpt?=
+ =?utf-8?B?dDJaWkxHSWxnNHVVK201cVgrQ25KQWkvRHkwQ0Z0VnFDcDZyTXJ2cjFHYUNY?=
+ =?utf-8?B?cDRjbDhBVHRNSnN1aFEzeXUxRS9xdHloOW83THhvUHhIVHdRY0t2NUtqcW5Q?=
+ =?utf-8?B?YVN5aS9mRmlTN3JHTmpLdmNhZHhDZEdSQTBPNHFOMmZJa0RmVnZXOW9mT2JF?=
+ =?utf-8?B?RGc2Z2pNTys2SlZHaU9MSlphdkZiS3ZEdHRuVjF1S0poOW1yRjdORGUrc3l5?=
+ =?utf-8?B?czlsMTFXVWUrdlJXVC9pNDVuYWZ0SldpWXZCeHNhNEZWZ1F6OHJiUT09?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 485f5dc8-4a66-4b77-85ff-08ded0264ae0
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB7149.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2026 06:20:01.8139
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: pTh9vaqBbpdjQ0mXggKIwNkCjTNC2yzaoyl4ikyMqP/lvEvrcyr5W27Pcz0WGROBW5NTo8CAlMEEwu1hX2X1ag==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SE1PPF73DA7E6F9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260620_094115_363673_F1EC0239 
-X-CRM114-Status: GOOD (  18.57  )
+X-CRM114-CacheID: sfid-20260621_232024_162478_EA2AE8F1 
+X-CRM114-Status: GOOD (  19.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -66,83 +145,124 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 6/20/26 5:11 PM, Manivannan Sadhasivam wrote:
-> On Mon, Jun 15, 2026 at 12:34:11PM +0200, Ronald Claveau wrote:
->> On 6/14/26 3:56 AM, Gowtham Kudupudi wrote:
->>> On warm reboot, the PCIe controller's LTSSM starts link training
->>> immediately if PERST# is already deasserted from the previous boot.
->>> The driver then pulses PERST# for only 500us, which is too short to
->>> properly reset the endpoint device that has already started training.
->>>
->>> Fix by moving the PERST# assert/deassert pulse BEFORE enabling LTSSM,
->>> so the endpoint gets a clean reset cycle before link training begins.
->>>
->>> This was found on Amlogic G12B (A311D) with NVMe on an M.2 slot.
->>> Cold boot worked because POR held PERST# low; warm reboot did not.
->>> The fix was confirmed on a Banana Pi CM4 with Waveshare IO base board.
->>>
->>> Signed-off-by: Gowtham Kudupudi <gowtham@ferryfair.com>
->>> ---
->>>  drivers/pci/controller/dwc/pci-meson.c | 2 +-
->>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
->>> index 5f8e2f4b3c12..3a7e9f1d5b8c 100644
->>> --- a/drivers/pci/controller/dwc/pci-meson.c
->>> +++ b/drivers/pci/controller/dwc/pci-meson.c
->>> @@ -310,8 +310,8 @@ static int meson_pcie_start_link(struct dw_pcie *pci)
->>>  {
->>>  	struct meson_pcie *mp = to_meson_pcie(pci);
->>>  
->>> +	meson_pcie_assert_reset(mp);
->>>  	meson_pcie_ltssm_enable(mp);
->>> -	meson_pcie_assert_reset(mp);
-> 
-> meson_pcie_assert_reset() itself is wrong as it toggles PERST#. You'd just need:
-> 
-> msleep(PCIE_T_PERST_CLK_US);
-> gpiod_set_value_cansleep(mp->reset_gpio, GPIOD_OUT_LOW)
-> 
-> but in probe(), after meson_pcie_probe_clocks() as that's when both power and
-> REFCLK becomes stable.
-> 
->>>  
->>>  	return 0;
->>>  }
+Hi Jerome,
+
+
+Thanks for your review.
+
+On 6/19/2026 3:34 PM, Jerome Brunet wrote:
+> [ EXTERNAL EMAIL ]
+>
+> On jeu. 18 juin 2026 at 10:03, sashiko-bot@kernel.org wrote:
+>
+>> Thank you for your contribution! Sashiko AI review found 3 potential issue(s) to consider:
+>> - [Medium] The AO PWM clocks are registered without an `ao_` or `a9_ao_`
+>> prefix, which will cause global namespace collisions with the main clock
+>> controller.
+>> - [Low] Typographical error in the clock name string literal for the RTC
+>> dualdiv input gate: `ao_rtc_duandiv_in` instead of `ao_rtc_dualdiv_in`.
+>> - [Low] Missing `#include <linux/module.h>` for `MODULE_*` macros.
+>> --
 >>
->> Hi Gowtham,
+>> commit ef5998ff087b6faed09d9eed4f59078d2b2f0a60
+>> Author: Jian Hu <jian.hu@amlogic.com>
 >>
->> I have a patch [1] that I haven't submitted yet.
->> This might be related to your issue, what do you think ?
+>> clk: amlogic: Add A9 AO clock controller driver
 >>
->> [1] https://github.com/rclaveau-tech/linux-khadas/commit/bee0a02d9756
+>> Add the Always-on clock controller driver for the Amlogic A9 SoC family.
 >>
-> 
-> This patch is also needed as it correctly fixes the PERST# polarity when
-> requesting the GPIO. Since the devicetree is defining the PERST# GPIO as
-> ACIVE_LOW, the driver should request it as GPIOD_OUT_HIGH to make sure that
-> PERST# is asserted.
-> 
-> So please submit the referenced patch.
-> 
-> - Mani
-> 
+>>> diff --git a/drivers/clk/meson/a9-aoclk.c b/drivers/clk/meson/a9-aoclk.c
+>>> new file mode 100644
+>>> index 0000000000000..88aa8cf3f5d00
+>>> --- /dev/null
+>>> +++ b/drivers/clk/meson/a9-aoclk.c
+>>> @@ -0,0 +1,488 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+>>> +/*
+>>> + * Copyright (C) 2026 Amlogic, Inc. All rights reserved
+>>> + */
+>>> +
+>>> +#include <dt-bindings/clock/amlogic,a9-aoclkc.h>
+>>> +#include <linux/clk-provider.h>
+>>> +#include <linux/platform_device.h>
+>> [Severity: Low]
+>> Should this file explicitly include <linux/module.h>?
+>>
+>> The file relies on several module macros at the end (such as MODULE_DESCRIPTION,
+>> MODULE_AUTHOR, and MODULE_LICENSE). Although it currently compiles successfully
+>> due to transitive includes from <linux/platform_device.h>, standard kernel
+>> practice is to include the header explicitly.
+> Yes please fix this
 
-Hi Mani,
 
-I sent it here:
+Ok, I will fix it in the next version.
 
-https://lore.kernel.org/all/20260616-fix-meson-pcie-reset-gpio-v1-1-fca404b4c8be@aliel.fr/
+>> [ ... ]
+>>
+>>> +static const struct clk_parent_data a9_ao_pwm_parents[] = {
+>>> +    { .hw = &a9_ao_xtal.hw },
+>>> +    { .fw_name = "fdiv5", },
+>>> +    { .fw_name = "fdiv4", },
+>>> +    { .fw_name = "fdiv3", }
+>>> +};
+>>> +
+>>> +static A9_COMP_SEL(pwm_a, AO_PWM_CLK_A_CTRL, 9, 0x7, a9_ao_pwm_parents);
+>> [Severity: Medium]
+>> Will this cause a clock name collision with the main clock controller?
+>>
+>> Because the A9_COMP_SEL macro uses the #_name stringification operator inside
+>> MESON_COMP_SEL, this will generate the clock name as exactly "pwm_a_sel"
+>> (and similarly "pwm_a_div" and "pwm_a" for the others), without any "ao_" or
+>> "a9_ao_" prefix.
+> I think AI got it wrong and missed the prefix addition. Unless I missed
+> something my self, I think you are fine here
 
 
--- 
-Best regards,
-Ronald
+Thanks for confirming. That was my understanding as well,
+so I'll keep the current implementation unchanged.
+
+>> If the main clock controller conventionally registers a "pwm_a" clock, failing
+>> to prefix the Always-On clocks will lead to global namespace collisions in the
+>> Common Clock Framework and debugfs.
+>>
+>>> +static A9_COMP_DIV(pwm_a, AO_PWM_CLK_A_CTRL, 0, 8);
+>>> +static A9_COMP_GATE(pwm_a, AO_PWM_CLK_A_CTRL, 8);
+>>> +
+>>> +static A9_COMP_SEL(pwm_b, AO_PWM_CLK_B_CTRL, 9, 0x7, a9_ao_pwm_parents);
+>> [ ... ]
+>>
+>>> +static struct clk_regmap a9_ao_rtc_dualdiv_in = {
+>>> +    .data = &(struct clk_regmap_gate_data){
+>>> +            .offset = AO_RTC_BY_OSCIN_CTRL0,
+>>> +            .bit_idx = 31,
+>>> +    },
+>>> +    .hw.init = &(struct clk_init_data) {
+>>> +            .name = "ao_rtc_duandiv_in",
+>> [Severity: Low]
+>> This isn't a bug, but there's a typo in the clock name literal. Should
+>> "ao_rtc_duandiv_in" be "ao_rtc_dualdiv_in"?
+> Yes
+
+
+Ok, I will fix it in the next version.
+
+>>> +            .ops = &clk_regmap_gate_ops,
+>>> +            .parent_hws = (const struct clk_hw *[]) {
+>>> +                    &a9_ao_xtal.hw
+>>> +            },
+> --
+> Jerome
+
+
+--
+
+Jian
+
 
 _______________________________________________
 linux-amlogic mailing list
