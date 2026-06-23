@@ -4,110 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 936DFCDB471
-	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Jun 2026 20:12:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B659ECDB470
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Jun 2026 20:15:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=h7EBzlfcQ8A1x0oIduoK7Gkkcr2cB3y3Cml0dWu80nA=; b=ffvBFGUjJRY5Sw
-	giwlK70TRnDghu0zLgui7jEY5ffAMwScRPT5LLQeKR1lkW4idquvvht1Hlja/SzUhxVMx1+N/fRW+
-	RuseBuDHCJ2a99YKKuQzI0xHs+Oy2uBeTRHONG+MB/XKUKEuQjBaeTsi0lXBcwNh7s7BuWmepMqtg
-	guNxTG5JzoLsJ8rBQsQ1sG7Ga5fb4gdp5U2FlXwYmwKE9toTLqx+aQvdrPS2MV3IL5pKuymdGKH7m
-	RO3y2GqsLqIVE17yPKM9PYDMsJd8rzv7M8AcckZnua1leL8l/1IV4uO8z3F9f0g7N5Ls+5vJxsGtx
-	A9KDIH/7CCjx7A2P4Q0w==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=TEmRwG3gNdBbjfkGXcYBJr+k9YDtV3L1kQ9Ca/tegB8=; b=iBV76Xy38+Udu6
+	z2TCl/oHV2ZwBkmPIDOxCsV7xdIHWOb3UPZhQnVAWL47bNcPpvfbObeQY3e4tIuNBakyY7inRSF7Q
+	0ek9T6RxZX0Qj/Y6wuJmHu+VHZnwRofl+77XN+Yp3Ez7K3dVwR3Jcjjp2XrTfFhylj4N/XlrPhqXP
+	ROVVlki0dQymjOT5yVKU225JRHqj7YNUmbm3WIk1UN+q6YlaJa3Kl9y1n8Y9Ha64m7VUT87pMD3o2
+	1x1ecADsybRSGppwka/ICvyzEjajmQufBgJ4okjtB906YMKp1B2NPzanQ/5ToeP1tU0SscZZSZFTa
+	r/ai5ZV7s+bJALmFW8Lw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wc7Te-00000006pOM-2K5V;
-	Tue, 23 Jun 2026 20:12:10 +0000
-Received: from mail-pl1-x62b.google.com ([2607:f8b0:4864:20::62b])
+	id 1wc7X9-00000006pqY-2JNA;
+	Tue, 23 Jun 2026 20:15:47 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wc7Tb-00000006pMs-2meE
+	id 1wc7X7-00000006ppc-1uTB
 	for linux-amlogic@lists.infradead.org;
-	Tue, 23 Jun 2026 20:12:08 +0000
-Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-2c6c57c5bcfso2410985ad.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 23 Jun 2026 13:12:07 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1782245527; cv=none;
-        d=google.com; s=arc-20240605;
-        b=Nup6LcMmN6zUcBcCLQLkOBSCHp0BfiUmJfxbeM6bQgsN+ZgMIANQtovj16Lp6Tw5+r
-         5KRiSR6U6Rdgt58z98mb4/6FkFdDIbOAa57sWahKIruy/94F0oLcRMlxkfiH64O2u9sH
-         cKCzv4BnRZK/5TJvyVmQdbkO5u8m8pmrpY5Nw0u5xgCHTRebDXoboE8Lh3G5XF80JIHw
-         GHFfPrjIz8hn0Rdp7yQDC9E7eSR2eq2A2Qrua5Ttih+EzoirpDsuuQDs5sZqupZW+C3J
-         RbrljqoFWKZs+tv+O/0Qzsp5/XiUYWVyeSFHQuV2KEDneGxVwyH+RqikzSXze9HqAK02
-         Q6lQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=t9AA00HARo6TTOGKX0Hmf8exd0jNlIDDEh7Vt3olSGA=;
-        fh=P0vd7JcIbbUxks80yW9J/FZMb+L9x/VY8w/LLaOMFY4=;
-        b=CfKmKLVtwJ91XEIP1jHlBD301slhSV6T0ZSMWJWWWLhm6JgbY5pjW3JMiHp5eNLsdQ
-         YZuYHZGSVlkKalTew+U6RN0jhWcxT4BUiKnl0pzoy7Yhqil5cKZNumTOQ0YqO9rKcU+H
-         NH2Ghs9W48zgOuf1ly/9I/ouQaxEZXJo2y5XuYQa2Tko31q+8+wvh60Ny3HWb1gEyfsP
-         LD5bFVacySsEnvHQ/FQIQ3ob4/hkrimpZTkFGXFFRqyJcd/+XIXjY0dDPKqZ6zY4JdNP
-         F2I0f9QcFhJNNCXfhkaxyt1+AdrKSfjTmn+h6fJ9Zi7QrQiUyNlbYIIR/XRUznSI/Xnl
-         yhCA==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	Tue, 23 Jun 2026 20:15:46 +0000
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-490b3637b90so1766385e9.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 23 Jun 2026 13:15:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20251104; t=1782245527; x=1782850327; darn=lists.infradead.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=t9AA00HARo6TTOGKX0Hmf8exd0jNlIDDEh7Vt3olSGA=;
-        b=NIBbTwvniq3sWyqrGUqBfljYNG1RpzaHzL9YjSdrW5I+PMXyW0GWHfhmkldSPJGxlX
-         oeD9d1gxEDtV45wMIKPtKSsvJzJ7j5SnO53cer8FV3+8naETcoOasHu7Mz0X7Va0Ze6Q
-         jjMVU5zucv3hms1Lb9Hdpn5NfNpl0uW+xyVvjMpBiovTkhOhEt8oInNP9FPGXbc/W7Jm
-         Yw9FFfeIlPXTklictxxrhsOKOWL/dXGnWPc2Q2TXmPeCEoe8x9k9PECZR9rBku1MRAQk
-         A7h5Tba3ZrGVyXSoZewzt0TLebyF3F6kjmtiG6Ei53BZxtT4K+o4PAbV9zKKvxTWo6ax
-         g3oQ==
+        d=googlemail.com; s=20251104; t=1782245743; x=1782850543; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PApkcFbTCnyRYxUfeFOnQfHUO+BQWYgzQ1hqLVaTxfY=;
+        b=SCgSt63zEqECDmhFC46iu0SVJXjGMpRntiBSn9mOg+4yfw0dj3PKGolEmJpkRaL3d7
+         ZhChx6l0IUa6nQafgPTzCoOrEGjOQiJZhAmgq1aQ5jDE9ps0wMHqk/ldeS0rJ6oTTdLV
+         IdBf9/sn2XKI0aVJWlVznfVJDOPm1VLm3GDPE5Pgp1vrR953G9oJVddS4Vt01QPIH5N0
+         3mtxz/8wkFkvxS0eqd7+JS7Ausq7L616CiiQq9Z/60PAlclp1gTMBCXBrYh+s5o2zCNk
+         fHtpH4vadg3+N4YMq/hezQIip40Hk68KF7ZQT+dCirpAHrTydhVLyOUhdA+CZ7ZQ4R0j
+         /Ilg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782245527; x=1782850327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=t9AA00HARo6TTOGKX0Hmf8exd0jNlIDDEh7Vt3olSGA=;
-        b=NRKyNAaOoiRKiZWUYEnS4SWz4b1TYPGd3HKURT8mIktK3axR/h1sZcvEkAAv2b/IZt
-         t1/7hD9vCx35kE8oYqXm9JV4ydEJHrLHVSe6+E7bBw9/SM4NpjpZzeyR5a+aoyJQeV+w
-         PdPkQigdItfmM0fhhFYoxp5hhdnqWq9Gpq0LYLN5DjEF89V1m3DdBFD2RrjizZE79Y1l
-         DJPO4e7aP0rtRxt4RlhRyvjhAKtlHJGT5s58RfLXJ9Fspf2HjLu6qJ7UCC2Q1jUWOD6H
-         jU7ep4kvGSpd/PMFdxGN5mShfqEmG+Zd1L5n5ZdADKp/bSMx4V32D5xEXU3WQF9tAZTF
-         Ga3A==
-X-Forwarded-Encrypted: i=1; AHgh+RoKk7lQ5Ih5g1wy4CB1TE6TFhADyoHSPo91Aq8VJZVU2XIHNFDPSxbsu6bgwH/gJbDcrkdSoPD6NeBNGsyT@lists.infradead.org
-X-Gm-Message-State: AOJu0YzuEnNvKnyqfIJu/zxPshFl+WoFrlwwXargeQQknxP8HvgH0Atz
-	ERrQPxyGkZDtHcC96HpE2T07G1UamyCr4Qg/3IborIYxPc3xhH6ssrOqaSZhhMilHoiXcSkMFxc
-	aRtQv32xRlOdxmDguMXoNUpjmyXn1MSI=
-X-Gm-Gg: AfdE7cmUiG5c77NlgCtFu6cpG+ODSbsOR/bIa0W5wnKeJCzRxorl8l6IR8AOuKE0ydH
-	CcwCFV4xbGkG5c+Zwz1lizIIrgLQ/PJyyO44QvwD9Pz67psNkQ0uoFlZ7FsssM/8GoQnjpysSvt
-	DYsnpyuYrRqcOA9dWjjPtWxuc8civvF1gHPwmD7uCT13hAiHVlxN18k6OP2AN3xBv/O+wpBdx1B
-	GOqt89umxGKYwQYE/Gzb5zCoiSI0jisglsp6C77x+awMEUX2UbDh5bzbnmOdGp53pQ5KaNUQQAc
-	7SVtTte7wlUXswTohOrPfnXy9kwVWS9mRGqlqN+l
-X-Received: by 2002:a17:903:240b:b0:2b0:608d:d8a8 with SMTP id
- d9443c01a7336-2c7e13bad7amr4514775ad.1.1782245526813; Tue, 23 Jun 2026
- 13:12:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <20260619-drm-no-more-bridge-reset-v3-0-ff399263111b@kernel.org> <20260619-drm-no-more-bridge-reset-v3-56-ff399263111b@kernel.org>
-In-Reply-To: <20260619-drm-no-more-bridge-reset-v3-56-ff399263111b@kernel.org>
+        d=1e100.net; s=20251104; t=1782245743; x=1782850543;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PApkcFbTCnyRYxUfeFOnQfHUO+BQWYgzQ1hqLVaTxfY=;
+        b=FkqmyjJG9V2br38vPV3FKfPzRsFsjOOuZnL+tyiZ89o62u0dnkj60qeAohOLdlhkd2
+         UjlaFFaqF1XPwU1K6gi26X5yMfVyce1UFvc3UH+dIQ37VDaVcY8G4r7FzQb8128WrZ5H
+         q55YUC3s+SB8GwykoFAECeSSGlaJoggrmv1jWa49Ie1NHMRX/AZq5Ec52b5fiOmQlg07
+         OLoi+sr6lh+7rUCbTsqb9VblD+qtzXxprMjnn120jddkBkLuFpeE/Wcc7KvoEOfq6d/m
+         m7JTc6I2uFI3DWYDD7zyBY/iXSQ5J6363xC6n0HOwjG+cRG6wYTUPZYStJSnwOKT9jOl
+         AaEA==
+X-Forwarded-Encrypted: i=1; AFNElJ8Yb5nzFoh5Dduz8KqhcmEmshRpehLdA9B0Yn0omt2XJW6ZlD+hihVhQOKtBnGyQ4kTbzmu8IOA5BNQtiQ3@lists.infradead.org
+X-Gm-Message-State: AOJu0Yx+LRYYZLEHXQjkA3BHj7dDrQdv3FBb8Wb7plT+kIsdVBWGN5U7
+	CDQ23MXbL8QTpSIkNeKYoSbqVZFLRXs61CwYdXJ25lFJiWXrOPUUrb3Y
+X-Gm-Gg: AfdE7ckm5Qq9t+ouLNP731/4eyF13KFclW4GBm7gz3GZA1qNrs4QGL9jiCwJJYdsg/e
+	CkyIzUF/IyXCRJd8YzPCdohs0zGiE9PHGlKH1V7K7FmVzyeBb5VRU6z5M9ksEClf4qOtTHfVdEr
+	CDcl0mZdVH8ZbPCCXPXUPjc/O5BKBgctUZJyipzdkyhhCXv6+E709SImpYgDNWmRN0FSVhGIJJi
+	WgrrAoIhlLquLbjmSFJjeTmIEV3kMt+VHjHXKlxSRztghjz4cfz7bu2S2XdvTofrx7PNpTazMx3
+	K5z2fjOX/zIsDS0kWW2mhpgkVRbf5lLf6Xl1PN7Vuzflt6R9Y0Y31coVeUD/enkYBUPtf9CITWE
+	9YYDcroejEd6v7sZrXXG+Je4o6x2EaMQWRzrktVEZ8atu3R5jeZ6LrN4BMtSDv5IbFLEn2VfCLf
+	NH1OEfgg31kZZVNvEMZ8qCYHZVF9iXrVkdySuJUL5HiWjayolKZspfkq8ikjgIE/11gvZ0dlnQ0
+	3GSV4Vr3BpF901RTQ2Sbj02qWxpEdIasql19ReBc7I=
+X-Received: by 2002:a05:600c:820e:b0:491:7325:39c4 with SMTP id 5b1f17b1804b1-4926087f7f8mr1421665e9.34.1782245743299;
+        Tue, 23 Jun 2026 13:15:43 -0700 (PDT)
+Received: from blackbox (dynamic-2a02-3100-a9b8-8b00-f22f-74ff-fe21-0725.310.pool.telefonica.de. [2a02:3100:a9b8:8b00:f22f:74ff:fe21:725])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4923fd1f886sm374378335e9.4.2026.06.23.13.15.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Jun 2026 13:15:42 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 23 Jun 2026 22:11:54 +0200
-X-Gm-Features: AVVi8Ce2NYfA8Y-QDZ6Qs0nmK98DH-xBcBFK3tKliqc_-TAchO1N47N6NmPkuP0
-Message-ID: <CAFBinCC7S2N0yKj=ayYf6FyzssLmF0z7JsokKQ=w7pucPxfZ8w@mail.gmail.com>
-Subject: Re: [PATCH v3 56/78] drm/meson: encoder_hdmi: Switch to atomic_create_state
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Dmitry Baryshkov <lumag@kernel.org>, 
-	dri-devel@lists.freedesktop.org, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org
+To: jbrunet@baylibre.com,
+	linux-amlogic@lists.infradead.org
+Subject: [PATCH] clk: meson: align gxbb_32k_clk_sel number of parents with actual count
+Date: Tue, 23 Jun 2026 22:15:22 +0200
+Message-ID: <20260623201522.1322463-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.54.0
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260623_131207_700675_B4BEB0F6 
-X-CRM114-Status: UNSURE (   8.64  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260623_131545_501791_D966AD7E 
+X-CRM114-Status: GOOD (  13.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,20 +91,96 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: sboyd@kernel.org, mturquette@baylibre.com, bmasney@redhat.com, linux-kernel@vger.kernel.org, stable@vger.kernel.org, Martin Blumenstingl <martin.blumentstingl@googlemail.com>, linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gRnJpLCBKdW4gMTksIDIwMjYgYXQgMjoyN+KAr1BNIE1heGltZSBSaXBhcmQgPG1yaXBhcmRA
-a2VybmVsLm9yZz4gd3JvdGU6Cj4KPiBUaGUgZHJtX2JyaWRnZV9mdW5jcy5hdG9taWNfcmVzZXQg
-Y2FsbGJhY2sgYW5kIGl0cwo+IGRybV9hdG9taWNfaGVscGVyX2JyaWRnZV9yZXNldCgpIGhlbHBl
-ciBhcmUgZGVwcmVjYXRlZC4KPgo+IFN3aXRjaCB0byB0aGUgYXRvbWljX2NyZWF0ZV9zdGF0ZSBj
-YWxsYmFjayBhbmQgaXRzCj4gZHJtX2F0b21pY19oZWxwZXJfYnJpZGdlX2NyZWF0ZV9zdGF0ZSgp
-IGNvdW50ZXJwYXJ0Lgo+Cj4gUmV2aWV3ZWQtYnk6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVy
-bWFubkBzdXNlLmRlPgo+IFNpZ25lZC1vZmYtYnk6IE1heGltZSBSaXBhcmQgPG1yaXBhcmRAa2Vy
-bmVsLm9yZz4KUmV2aWV3ZWQtYnk6IE1hcnRpbiBCbHVtZW5zdGluZ2wgPG1hcnRpbi5ibHVtZW5z
-dGluZ2xAZ29vZ2xlbWFpbC5jb20+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxp
-c3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9saW51eC1hbWxvZ2ljCg==
+From: Martin Blumenstingl <martin.blumentstingl@googlemail.com>
+
+The following out-of-bounds read has been observed by Christian on a
+GXBB WeTek Hub:
+==================================================================
+BUG: KASAN: global-out-of-bounds in __clk_register+0x1b70/0x2418
+Read of size 8 at addr ffffd66320cf88e0 by task swapper/0/1
+
+CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Not tainted 7.0.0-rc5 #1 PREEMPT
+Hardware name: WeTek Hub (DT)
+Call trace:
+ show_stack+0x14/0x20 (C)
+ dump_stack_lvl+0x74/0x94
+ print_report+0x164/0x4b0
+ kasan_report+0x98/0xd8
+ __asan_report_load8_noabort+0x1c/0x24
+ __clk_register+0x1b70/0x2418
+ devm_clk_hw_register+0x74/0x15c
+ meson_clkc_init+0xd4/0x20c
+ meson_clkc_syscon_probe+0x5c/0x94
+ platform_probe+0xbc/0x17c
+ really_probe+0x184/0x844
+ __driver_probe_device+0x154/0x35c
+ driver_probe_device+0x60/0x188
+ __driver_attach+0x168/0x4a0
+ bus_for_each_dev+0xec/0x180
+ driver_attach+0x38/0x58
+ bus_add_driver+0x238/0x4c0
+ driver_register+0x150/0x388
+ __platform_driver_register+0x54/0x7c
+ gxbb_clkc_driver_init+0x18/0x20
+ do_one_initcall+0xb8/0x340
+ kernel_init_freeable+0x49c/0x52c
+ kernel_init+0x24/0x148
+ ret_from_fork+0x10/0x20
+
+The buggy address belongs to the variable:
+ gxbb_32k_clk_parents+0x60/0x400
+
+The buggy address belongs to a vmalloc virtual mapping
+The buggy address belongs to the physical page:
+
+Memory state around the buggy address:
+ ffffd66320cf8780: 00 00 00 00 f9 f9 f9 f9 00 f9 f9 f9 f9 f9 f9 f9
+ ffffd66320cf8800: 00 04 f9 f9 f9 f9 f9 f9 00 04 f9 f9 f9 f9 f9 f9
+>ffffd66320cf8880: 00 00 00 00 00 00 00 00 00 00 00 00 f9 f9 f9 f9
+                                                       ^
+ ffffd66320cf8900: 00 01 f9 f9 f9 f9 f9 f9 00 06 f9 f9 f9 f9 f9 f9
+ ffffd66320cf8980: 00 00 02 f9 f9 f9 f9 f9 00 00 02 f9 f9 f9 f9 f9
+==================================================================
+
+Commit 7915d7d5407c ("clk: amlogic: gxbb: drop non existing 32k clock
+parent") dropped a non-existing clock parent from the gxbb_32k_clk_sel
+mux but didn't adjust the hard-coded num_parents field. Fix the actual
+number of parents of that mux by using ARRAY_SIZE instead (avoiding
+similar problems in future).
+
+Fixes: 7915d7d5407c ("clk: amlogic: gxbb: drop non existing 32k clock parent")
+Reported-by: Christian Hewitt <christianshewitt@gmail.com>
+Cc: stable@vger.kernel.org
+Tested-by: Christian Hewitt <christianshewitt@gmail.com>
+Signed-off-by: Martin Blumenstingl <martin.blumentstingl@googlemail.com>
+---
+ drivers/clk/meson/gxbb.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index f9131d014ef4..d432e08d1777 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -1394,7 +1394,7 @@ static struct clk_regmap gxbb_32k_clk_sel = {
+ 		.name = "32k_clk_sel",
+ 		.ops = &clk_regmap_mux_ops,
+ 		.parent_data = gxbb_32k_clk_parents,
+-		.num_parents = 4,
++		.num_parents = ARRAY_SIZE(gxbb_32k_clk_parents),
+ 		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
+-- 
+2.54.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
