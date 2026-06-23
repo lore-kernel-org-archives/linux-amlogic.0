@@ -4,60 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9F18CDB46F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Jun 2026 17:14:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D105CDB471
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Jun 2026 02:56:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-	List-Owner; bh=wQxdtQYFa1901YbYk0iZigfcSW3bqFNKVBM/t1ejIq0=; b=u6yj52YamKYoIW
-	8B4j1KXl6SaQawe/rwBKPBfhjqlJ7TCSwYu4XXbuDVlZSK4nJwUfsrgtMAc0IHCFctxFFMdkyZ5Lr
-	GzABqoabRESoxpidrrz4K8Ybj6bVch+A53+BxsdXPeaZ+GD5ZnMjs1lI1XPdk3lgr9FxwNQRH5oAp
-	/qMN2bPA/h+wzdSoKxp8/a4FKOtV8JHoDdDuhTJ/BKDzra2JvX4P4p/Z7ie3ZTPQTiyVHKC4aAnke
-	8wz3MnRusIjE6t/gxBN7deRV+l0G8wpywGkYXCKbHHvne30fcm6VoSsfUfs4/I7HAuPdfLWpsLkE0
-	OcHHylRe101z3F1VHIVg==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=SwfrmJ9hM2/SKaucfHnIU3aUocymq/VJB7sy2vuY+uk=; b=rPUDCcrMOtE6d3
+	u8kWvPkluXQkHCkWVW5Mxd5S4b/S0+P1r7RINLFe2y20knAMLo4aN4k722mhhCOlgI/NIu89qXwtD
+	zKeIshIrH84pDh6HTsqzCV8XTH8pl11Sm5D3Vqxozy3LpMqpkkJZ4hok6A/aTeBUoddYa8RH9yR8Q
+	0LJh7tHbSW5n09GTIsR9baaa5PXhQ/aZlSk1x4p3gWpgY8+FEC2zEz7aqSfFf/FGUB+bhq/sZL1OD
+	fWRoQf7qCpMtkZ7V8zkqKfiKy6KH5Iv48AEJdXk4GUiTRT40eV8rTVkQzwvzYoTWJ4NLtoM3zycW8
+	bAeYlQl/jeo8cwIWPbnw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wbiEW-00000005FQa-05O7;
-	Mon, 22 Jun 2026 17:14:52 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1wbrIp-00000005c5l-3zbz;
+	Tue, 23 Jun 2026 02:55:55 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wbiEU-00000005FQN-2PF0;
-	Mon, 22 Jun 2026 17:14:50 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id E147B601F3;
-	Mon, 22 Jun 2026 17:14:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C7771F000E9;
-	Mon, 22 Jun 2026 17:14:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782148489;
-	bh=qjzQ4WwEP4S9tC3oy8nVsiVMsWH0bk2/jHATvq8YN7g=;
-	h=Date:From:To:Cc:Subject:In-Reply-To;
-	b=T3jVb1nMf3BVbMVzJIa3+l8FyxOasvux+i+g5elRWyUJ3tKyCOVRbENnhNuQwA6G0
-	 FaCXRZLUMsP7g3wqBRZyeXRqk4SRnQygKqCA44f5/gxdv+1xK/Vck+IP3MsWtA25OA
-	 rJp/w7XbBoo+T8vxg2tIJ/F/KWFVM+RSjRSNvMv9kIk9a2jTGK7P3KIo9sqfSu+6FN
-	 ZFyN+bVCG2aKNadAlcX+gXiN1ZMIjucS486ERjyxJIA0O5BmVKvcVF018PKmYwbOHi
-	 39raliXBg05jeLL/fiXWcGJYzFqGfnepGprhNMbAwiue7GLqLTOuQUERN18GpEWh2Z
-	 WiLWFooYByexQ==
-Date: Mon, 22 Jun 2026 12:14:48 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Hans Zhang <18255117159@163.com>
-Cc: bhelgaas@google.com, Manivannan Sadhasivam <mani@kernel.org>,
-	lpieralisi@kernel.org, kwilczynski@kernel.org, heiko@sntech.de,
-	yue.wang@amlogic.com, pali@kernel.org, neil.armstrong@linaro.org,
-	robh@kernel.org, jingoohan1@gmail.com, khilman@baylibre.com,
-	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
-	cassel@kernel.org, linux-pci@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v7 0/2] PCI: Configure Root Port MPS during host probing
-Message-ID: <20260622171448.GA678675@bhelgaas>
+	id 1wbrIo-00000005c5D-1h9x;
+	Tue, 23 Jun 2026 02:55:54 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 2434B6001D;
+	Tue, 23 Jun 2026 02:55:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C22EDC2BCB4;
+	Tue, 23 Jun 2026 02:55:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1782183352;
+	bh=hTKmrhhlidg806logJAbmCAaNns/K6kFJIOELIiijRg=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=KX1DkqKldKKZsZ1Pcf/UW+N0hV2g6bMrTfHbwcSuUtA9Gaf4R1rMul8sDA6nFDNWA
+	 AbaCMTbahK3D7nNzL3FXm8fMFFyhYtQ2UIcduS6mHtbpQcXNC8IGKtDzIZQn3rA4Ob
+	 p9pbcz890Eru/NR8CKPsDYBq8moar32n6/QbAQYyxulKSFNbYbToBsB5IE+1ctBYeN
+	 YPEEvC0TJ3Cm/LeoKlrmy+7NIrKeUTYrwoSKqMPVfa8ouB12YT/afcpuCqavtfki8e
+	 j1dnOZ8nqXABB1erSrw0grgCIitW1Snl9/0u13DVOAtgNrmjvSeppOFVNtt25twUsF
+	 l9z3TQuyVETZA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A7286CDB46F;
+	Tue, 23 Jun 2026 02:55:52 +0000 (UTC)
+From: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
+Subject: [PATCH v5 0/2] clk: amlogic: Add A9 AO clock controller
+Date: Tue, 23 Jun 2026 10:55:32 +0800
+Message-Id: <20260623-a9_aoclk-v5-0-c7cb1ff9ebf1@amlogic.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <dae17d36-c7d2-467b-a621-3c55e08a67a8@163.com>
+X-B4-Tracking: v=1; b=H4sIAKT1OWoC/23MSw6CMBSF4a2Qjq3pG3DkPowxfVygEagB02gIe
+ 7cwqtHhubnfv6AZJg8zOhULmiD62YcxDXkokO302AL2Lm3ECFNEEY51fdPB9ndsTCM5NdpZxVF
+ 6f0zQ+NeeulzT7vz8DNN7L0e2Xf9EIsMEN6IEragCKKuzHvrQenu0YUBbJvKMUpJRnqgpZc2cs
+ pwC+6Uip1VGRaJS1Y4IJkES+03Xdf0A4g99gxgBAAA=
+X-Change-ID: 20260603-a9_aoclk-bbf531badc63
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Jian Hu <jian.hu@amlogic.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1782183350; l=1916;
+ i=jian.hu@amlogic.com; s=20260415; h=from:subject:message-id;
+ bh=hTKmrhhlidg806logJAbmCAaNns/K6kFJIOELIiijRg=;
+ b=jJjPS3zddbBehGs303rgybAFS1kns9gRA3zFjqikT3LQs3XwlfXMxlleEnKZhtltGN3udEO1x
+ ZvvCnYqKb+KC2U8DgTRXShEt3aIH59ZwT5ONiYh64Z78msRD1vfa8+y
+X-Developer-Key: i=jian.hu@amlogic.com; a=ed25519;
+ pk=zHUE+rNtH9z+Sb8au1/elWknjFQmy5QDVkBoxleuOIA=
+X-Endpoint-Received: by B4 Relay for jian.hu@amlogic.com/20260415 with
+ auth_id=735
+X-Original-From: Jian Hu <jian.hu@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,51 +88,63 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: jian.hu@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Jun 19, 2026 at 11:29:39PM +0800, Hans Zhang wrote:
-> On 5/6/26 22:00, Manivannan Sadhasivam wrote:
-> > On Fri, Nov 28, 2025 at 01:09:06AM +0800, Hans Zhang wrote:
-> > > Current PCIe initialization exhibits a key optimization gap: Root Ports
-> > > may operate with non-optimal Maximum Payload Size (MPS) settings. While
-> > > downstream device configuration is handled during bus enumeration, Root
-> > > Port MPS values inherited from firmware or hardware defaults often fail
-> > > to utilize the full capabilities supported by controller hardware. This
-> > > results in suboptimal data transfer efficiency throughout the PCIe
-> > > hierarchy.
-> > > 
-> > > This patch series addresses this by:
-> > > 
-> > > 1. Core PCI enhancement (Patch 1):
-> > > - Proactively configures Root Port MPS during host controller probing
-> > > - Sets initial MPS to hardware maximum (128 << dev->pcie_mpss)
-> > > - Conditional on PCIe bus tuning being enabled (PCIE_BUS_TUNE_OFF unset)
-> > >    and not in PCIE_BUS_PEER2PEER mode (which requires default 128 bytes)
-> > > - Maintains backward compatibility via PCIE_BUS_TUNE_OFF check
-> > > - Preserves standard MPS negotiation during downstream enumeration
-> > > 
-> > > 2. Driver cleanup (Patch 2):
-> > > - Removes redundant MPS configuration from Meson PCIe controller driver
-> > > - Functionality is now centralized in PCI core
-> > > - Simplifies driver maintenance long-term
-> > > 
-> > 
-> > For the series,
-> > 
-> > Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
-> > 
-> > Bjorn: Could you please take a look? This series has been floating for a
-> > while...
-> 
-> Hello Bjorn,
-> 
-> Any chance for this series to be applied?
+This series adds Amlogic A9 AO clock support, including dt-binding and AO clock driver.
 
-It's too late for v7.2; we're already more than halfway through the
-merge window.  We can look again for v7.3 after v7.2-rc1.
+Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+---
+Changes in v5:
+- Include <linux/module.h>.
+- Correct duandiv name.
+- Link to v4: https://lore.kernel.org/r/20260618-a9_aoclk-v4-0-569d0425e50c@amlogic.com
+
+Changes in v4:
+- Drop CLK_IS_CRITICAL for ao_xtal_in clock.
+- Drop CLK_HW_INIT* and revert to explicit clock declarations.
+- Link to v3: https://lore.kernel.org/r/20260610-a9_aoclk-v3-0-b7592d6c31e2@amlogic.com
+
+Changes in v3:
+- Move COMPILE_TEST after 'depends on ARM64' reported by sashiko-bot.
+- Rename i2c3 to i3c reported by sashiko-bot.
+- Reword the comment describing ao_xtal_in's flags.
+- Use struct clk_init_data to describe ao_xtal_in's hw.init.
+- Link to v2: https://lore.kernel.org/r/20260603-a9_aoclk-v2-0-f47ea616ee78@amlogic.com
+
+Changes in v2:
+- Split the A9 clock driver and send the AO clock separately.
+- Rename aobus to soc.
+- Use CLK_HW_INIT_FW_NAME to describe clk_init_data.
+- Use CLK_HW_INIT_PARENTS_DATA to describe clk_init_data.
+- Use a9_ao prefix for MESON_COMP_SEL.
+- Correct duandiv name.
+- Fix pwm b reg.
+- Link to v1: https://lore.kernel.org/all/20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com/
+
+---
+Jian Hu (2):
+      dt-bindings: clock: Add Amlogic A9 AO clock controller
+      clk: amlogic: Add A9 AO clock controller driver
+
+ .../bindings/clock/amlogic,a9-aoclkc.yaml          |  76 ++++
+ drivers/clk/meson/Kconfig                          |  13 +
+ drivers/clk/meson/Makefile                         |   1 +
+ drivers/clk/meson/a9-aoclk.c                       | 489 +++++++++++++++++++++
+ include/dt-bindings/clock/amlogic,a9-aoclkc.h      |  76 ++++
+ 5 files changed, 655 insertions(+)
+---
+base-commit: ca89c88bcf69daca829044c638a8163d5ce47af0
+change-id: 20260603-a9_aoclk-bbf531badc63
+
+Best regards,
+-- 
+Jian Hu <jian.hu@amlogic.com>
+
+
 
 _______________________________________________
 linux-amlogic mailing list
