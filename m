@@ -4,65 +4,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26305CDB471
-	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Jun 2026 15:17:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8375CDB471
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Jun 2026 20:12:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=F6oIYbcPscgaT3ieRDOfljpq7dvUvrSCtguU5nRo1BY=; b=QJweiHgbc9u6h/
-	tDre6D9qD1UsKQB7lTqPuj+HbSyKeML4NXkq1uo6Ns1yVZbf9kCN1Hp3qYKf1VrOCoHyeuGfYlpsB
-	N9xQMxbZNfK9bRU+88nfE2Vxvh6h8r96Jie1Rpwnc1e77xS8ekNM01GbkLm/SwrcJvILKIUhkbFJV
-	zNEIITiyD5u7d0w3xYLA2bgTYl6Uhe/KEHVEV5cgKl2Ut9HNSlR+mndhF5SA3NP/ChyVnCy4lOXJi
-	izm945rF6W7kU7b/wLNWgyMfeqQufeJYVtnKF86OS1LXaeOMHdHEus1glXNL8tq2W2N7BfkQ8Pf7a
-	ioYcGlDKvrrdXZuhhNhA==;
+	List-Owner; bh=h7EBzlfcQ8A1x0oIduoK7Gkkcr2cB3y3Cml0dWu80nA=; b=RGpa/Bm0HvoAhH
+	mVFcZIeiHUZFa9mPis44TFjGDQYRpvyt8kmJtlH9UTITvrakOscAOYbazT6wBV+ZfktUyo0BAkt4F
+	0PllE/FHAWVHG9V9nBSytfiGAuyr1AL3pwtItOfQWr9k/eftk3aVMTS3zDvUxBTCQvLRzvArcf0Sk
+	AdbjAkQvwpKpTpHzFHuKO4hA8xUYtxkRGoUuLSv7ahDg0Ac8zGJRBZSYuGL+r1BQduXxX6LMvOnth
+	EXaRd2xl2xv6sMFIKM7g/M81OaMthJFx2fA8LtvEWY84/ScBqhPq4t85H5+hIVBuStCAkaQMNCIJe
+	J7dV31oWEi9jDg65h1Fg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wc2sC-00000006WS5-2JbZ;
-	Tue, 23 Jun 2026 15:17:12 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wc2s9-00000006WQs-17dF;
-	Tue, 23 Jun 2026 15:17:10 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 00D041A00;
-	Tue, 23 Jun 2026 08:17:00 -0700 (PDT)
-Received: from [10.2.212.23] (e121345-lin.cambridge.arm.com [10.2.212.23])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1C5383F62B;
-	Tue, 23 Jun 2026 08:17:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1782227824; bh=95oYhnwJjow7KcN3v08zC/1DlUFrdeFuCxK1iUP8SJU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JUvMZgGlP4HRty3ryEVXkuOhRN9ySLzZNcIXnxPZvcV05cwAHn/EBq9aWDFdc96Oe
-	 p3njUnNRxo6cjMwkCYAQhYYjgL8IWLfycVFDuwvOjRZ8kdq+JxpgD6ovDmRH/3GjU1
-	 k7Saym62kS/LxX/5nZy4jEiPkjOx+K2V1+J2ETRA=
-Message-ID: <112d2563-e650-4881-bba0-335f6a3fcb8a@arm.com>
-Date: Tue, 23 Jun 2026 16:16:44 +0100
+	id 1wc7TS-00000006pJq-1Ozj;
+	Tue, 23 Jun 2026 20:11:58 +0000
+Received: from mail-pl1-x630.google.com ([2607:f8b0:4864:20::630])
+	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
+	id 1wc7TP-00000006pIV-1xCV
+	for linux-amlogic@lists.infradead.org;
+	Tue, 23 Jun 2026 20:11:56 +0000
+Received: by mail-pl1-x630.google.com with SMTP id d9443c01a7336-2c74383c93cso2107435ad.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 23 Jun 2026 13:11:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1782245515; cv=none;
+        d=google.com; s=arc-20240605;
+        b=B0CtJe0MruKwZVwdp0hQLZIs+EaqL4hIYsT/5xx6o197RBBgK6v1LAvcIRoNmP/H3+
+         GO/n4JxU2IhPpmS3gNzeH/hykdgy7OhTCak01E8K0oT7fcUc6clZZzBHXMOyw+/6r6c0
+         GbRfRuZ6QMhnU5K8219Xei1LvEo5XXKWb13KdRSP/HMnF6J/odx5AeRWlGtZ2IUfHjw2
+         ifixEDI8/GlF6XOMjO7lm0FGi2BEgGinDG8OOoL8AO4iWIyCYwcvurtjj0EFpBgOHDzW
+         av6xiGTQRgT5yMyBk4X9TjAxU0XSzvDAUH1FoFK9jtTwigzd8CJClnPDXfeBTrVow2ZB
+         9rhQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=t9AA00HARo6TTOGKX0Hmf8exd0jNlIDDEh7Vt3olSGA=;
+        fh=PpWWC4lSr2rkniUAUwbnyIvHAmxYUp1bC7NLuOMeaIo=;
+        b=gLQdZZC2Myr6rHu8+5u+T+YdGCfH+Dlc1a/jM2lfJu7a8ljX8GD3vjhOxs0Eas+H+I
+         tUYEnXkLFBGt0QtMs2P7I9lhDzBnGRCuY5yPLxYv5v4JBjpJdAyfVDaBWUJWv3gGsTFY
+         lK1kIRYBXGYEvg3SrP0pebS1mY7rG4udFaX8lQci1x5GkHPpATDcqendLyjBdKIAXzsD
+         R53UDTsJgUxTpdvaqvgRcGzD8Wn90X1FLBK0ZS9tSK0iE683tS+dn7hMXnm9a16b+GM+
+         SV09NCFtCxuowbIqQfFDpdFhCBis6vj+7e+9tQ8CPyxn2HTdHsieVRbjpvSve1nPG6oH
+         vT+w==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20251104; t=1782245515; x=1782850315; darn=lists.infradead.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=t9AA00HARo6TTOGKX0Hmf8exd0jNlIDDEh7Vt3olSGA=;
+        b=OBJ33mahA732IOiO3vrKJNPcTTz+wV5kpvcYNxqMmpCX2tK7YgJjvJfRsIcLE8qbmd
+         wgqNBQLuY4psLtdug0mLBBnctPQz/L9axExj77SgzPP1I5qaC/4vvtVzrJw+KsQT+tlm
+         AsT4ZL9PDTlivtSI8l8h7p4ZzUiURKqsmihudbxugLA0RtOciBUQBgryhIHn8hQanfm0
+         h1UnkFRvzh5s3RWrWAoFvu350bOyixD1OHPzIyZPZZtZmGjMp1krMKxP064QJfcjJUgO
+         jkFmsWYr8feE18yHosmy1MaULddlwC+WeLPGl8ZE2opOBd8tKN6mzjuJcwFzOO5R4Bfi
+         KUaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782245515; x=1782850315;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=t9AA00HARo6TTOGKX0Hmf8exd0jNlIDDEh7Vt3olSGA=;
+        b=qMDeyreS58+sHLPrb9k+oL6CneB/wIq0j4K6eWYmzJaJoY4xX3s38SsC3Q8C25WlRT
+         ST+ZFWK/WljNOLKJEtruZssxnX6ISHk4RaqybN7quar63Up36hPUZKw3y1HUW50McamG
+         EsGAM50EtFO6OF2mvCVvLrHC8yopeVklHvGRRMoI37AK/2zUeMWyLUHpkifPCcFrjC/N
+         hAx7r87s58wpslify2Q0Ncf5vmDmmEnn+xRWFkFPDmXGUHtCzA8IqcOLZgF8bsNyGUig
+         S5bZnKTZsfQjRspATtrdgmsuCvclE4I6j3Lrx0N2uKFllBmi9KBcXVTzWdhob/VGIsyR
+         Iuzg==
+X-Forwarded-Encrypted: i=1; AHgh+RoScBb7tVkj5PeXL+nqgXlQdlJCjRrHO0S79iMfwK5+A+yXlJgc0qAJgaxCNbsoP0GC15Qwip/aI2n7R0GJ@lists.infradead.org
+X-Gm-Message-State: AOJu0YwEeEA+UVhZjF2Nx+W3RGTLXg8tdhY3h6g4pGmfNHdfYXJiM1cf
+	ofkiS+PzSqkRz1+hMLPzxqu19ullM2JlxyokdBmKlv7KJ0BU5tBjjxQh2NDuT22ssiFzIk9b6Jx
+	8lTGFx5DtQMsd854FCSD1wANTClCDet8=
+X-Gm-Gg: AfdE7cnjFAXDzuNKqMRu/P+jkf6e/TI4xYxEQvQMMfnHvhEqEsCbLt6WWOnXFtZDyL9
+	8CxXwpc2DCvm9sCf+JlEZlwvcJV4CGWWu/V21PMxgh2iuSrFFjCYOdYbNphPqutd/w8blvFATli
+	SBLB0yLWW1uweo3UtJoAup1N7rMYZfTPgJH4i4st0A5dB0ZKIii5C8oVWvWAoQx1oYBLC7MbbRA
+	IGqN4Vef7J4/yt/sZYv4y2JLlUrmHGZA+ZvrdjmZYb5FjhC9SydEcvqXOb6uCgZz6liSHwE5Lsg
+	M6C2Pw35bytLrVbfQknu0Pjv5LTSRw==
+X-Received: by 2002:a17:902:c40d:b0:2bf:160f:7043 with SMTP id
+ d9443c01a7336-2c7e16f52ebmr3796575ad.34.1782245514637; Tue, 23 Jun 2026
+ 13:11:54 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] gpio: fix sleeping-in-atomic in shared-proxy; restore
- meson non-sleeping
-To: Marek Szyprowski <m.szyprowski@samsung.com>,
- Viacheslav Bocharov <v@baodeep.com>, Linus Walleij <linusw@kernel.org>,
- Bartosz Golaszewski <brgl@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Diederik de Haas <diederik@cknow-tech.com>, linux-gpio@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- Heiko Stuebner <heiko@sntech.de>
-References: <CGME20260610153425eucas1p29d20a835114a28b15cb12ea00534e074@eucas1p2.samsung.com>
- <20260610153329.937833-1-v@baodeep.com>
- <184d315b-a0a1-4792-8a40-1b4967025916@samsung.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <184d315b-a0a1-4792-8a40-1b4967025916@samsung.com>
+References: <20260619-drm-no-more-bridge-reset-v3-0-ff399263111b@kernel.org> <20260619-drm-no-more-bridge-reset-v3-55-ff399263111b@kernel.org>
+In-Reply-To: <20260619-drm-no-more-bridge-reset-v3-55-ff399263111b@kernel.org>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 23 Jun 2026 22:11:42 +0200
+X-Gm-Features: AVVi8CclP812_MCc2l3_hynpLrJPPYN9UiQ3ld_pgUPdTcXAwwfZrBnBsjf6dHk
+Message-ID: <CAFBinCD3suLGY4ZVK6bH_F4O2-OAtVAD81HSped+LkYUaEeNxA@mail.gmail.com>
+Subject: Re: [PATCH v3 55/78] drm/meson: encoder_dsi: Switch to atomic_create_state
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Dmitry Baryshkov <lumag@kernel.org>, 
+	dri-devel@lists.freedesktop.org, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260623_081709_518698_0C58EA01 
-X-CRM114-Status: GOOD (  16.52  )
+X-CRM114-CacheID: sfid-20260623_131155_502303_F0A7F29A 
+X-CRM114-Status: UNSURE (   8.64  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,75 +119,20 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 11/06/2026 9:26 am, Marek Szyprowski wrote:
-> Hi Viachesla,
-> 
-> On 10.06.2026 17:32, Viacheslav Bocharov wrote:
->> gpio-shared-proxy chooses its descriptor lock (mutex vs spinlock) from
->> the underlying chip's can_sleep, but under that lock it calls config and
->> direction ops that reach sleeping pinctrl paths. On a controller with
->> non-sleeping MMIO value ops the lock is a spinlock, so a sleeping call
->> runs from atomic context:
->>
->>    BUG: sleeping function called from invalid context
->>      ... pinctrl_gpio_set_config <- gpiochip_generic_config
->>      <- gpio_shared_proxy_set_config (voting spinlock held)
->>      <- ... <- mmc_pwrseq_simple_probe
->>
->> This was reported on Khadas VIM3 and worked around for Amlogic by
->> commit 28f240683871 ("pinctrl: meson: mark the GPIO controller as
->> sleeping"), which marked the whole meson controller sleeping. That
->> workaround broke atomic value-path consumers: w1-gpio (1-Wire bitbang)
->> no longer detects devices, because its IRQ-disabled read slot calls the
->> non-cansleep gpiod_*_value() and now hits WARN_ON(can_sleep) per bit.
->>
->> Patch 1 fixes the proxy locking generically (always a sleeping mutex).
->> Patch 2 then restores meson can_sleep=false, fixing 1-Wire.
->>
->> Patch 1 has a trade-off: a proxied GPIO becomes sleeping, so consumers
->> gating on gpiod_cansleep() change behaviour. No current device needs
->> atomic (non-cansleep) value access on a shared GPIO -- every report
->> (Khadas VIM3, ODROID-M1, my test on JetHub D1+) is a shared reset line
->> (eMMC/SDIO pwrseq or PCIe reset) driven through the cansleep accessors,
->> which is what the proxy exists to vote on. An alternative that keeps
->> atomic value access (split locking) is possible but adds a second lock
->> and new race windows. I went with the simpler, verified approach and
->> would appreciate guidance on whether the atomic value path must be
->> preserved.
->>
->> The two are a unit: patch 2 must not be applied without patch 1,
->> otherwise the original VIM3 splat returns on boards that share a meson
->> GPIO -- please keep the order. I have not Cc'd stable; I will request
->> stable backports separately once both patches have landed.
->>
->> Viacheslav Bocharov (2):
->>    gpio: shared-proxy: always serialize with a sleeping mutex
->>    pinctrl: meson: restore non-sleeping GPIO access
-> 
-> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> 
-> This probably also affects the similar changes in Rockchip GPIO driver done
-> by the following commits:
-> 20cf2aed89ac ("gpio: rockchip: mark the GPIO controller as sleeping")
-> 7ca497be0016 ("gpio: rockchip: Stop calling pinctrl for set_direction")
-> 
-> I've checked this patchset with these two reverted and no warning was reported.
-
-If it hadn't already been fixed, then indeed I guess this might make 
-20cf2aed89ac redundant. However, 7ca497be0016 is still an objective 
-improvement either way, since that driver never needed to call pinctrl 
-at all (it was seemingly just an artefact of how the GPIO code was 
-originally implemented within the pinctrl driver itself).
-
-Thanks,
-Robin.
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gRnJpLCBKdW4gMTksIDIwMjYgYXQgMjoyN+KAr1BNIE1heGltZSBSaXBhcmQgPG1yaXBhcmRA
+a2VybmVsLm9yZz4gd3JvdGU6Cj4KPiBUaGUgZHJtX2JyaWRnZV9mdW5jcy5hdG9taWNfcmVzZXQg
+Y2FsbGJhY2sgYW5kIGl0cwo+IGRybV9hdG9taWNfaGVscGVyX2JyaWRnZV9yZXNldCgpIGhlbHBl
+ciBhcmUgZGVwcmVjYXRlZC4KPgo+IFN3aXRjaCB0byB0aGUgYXRvbWljX2NyZWF0ZV9zdGF0ZSBj
+YWxsYmFjayBhbmQgaXRzCj4gZHJtX2F0b21pY19oZWxwZXJfYnJpZGdlX2NyZWF0ZV9zdGF0ZSgp
+IGNvdW50ZXJwYXJ0Lgo+Cj4gUmV2aWV3ZWQtYnk6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVy
+bWFubkBzdXNlLmRlPgo+IFNpZ25lZC1vZmYtYnk6IE1heGltZSBSaXBhcmQgPG1yaXBhcmRAa2Vy
+bmVsLm9yZz4KUmV2aWV3ZWQtYnk6IE1hcnRpbiBCbHVtZW5zdGluZ2wgPG1hcnRpbi5ibHVtZW5z
+dGluZ2xAZ29vZ2xlbWFpbC5jb20+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxp
+c3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9saW51eC1hbWxvZ2ljCg==
