@@ -4,95 +4,132 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7ACABCDB481
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Jun 2026 13:58:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F70DCDB479
+	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Jun 2026 21:36:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4HPglrp8tmxBTvaRjr/EieQ5/egOplCChNkA6vTtBRI=; b=wFFydNTJtRIL/9
-	lN43+0X01RpP7hGpdhWe7bS3wQbRE457UPRAo8PPJCviKjcu4sZSZWo7agYV6LuHL5GRU8tzangJz
-	SZYl8Tk85sDMyB7MRMUnvOCaMqYPcuP4LGe1J+4KtUPtz06pkKy60THQY/KDK9EUO6Xxr+HTzci2y
-	a67cWiZ+eu+7L7iMznsv+e29MxtYCSy8EAB7RzKwWUJ7cV9elWrlNnPsPMv+n2nbT3Tu6J93a1yEu
-	5RRnCGAYYNcn4Cz/Y2X5Bja+NlbhCs6kqWlBJPk9swAObbYUMC2hLPTaWxSb4SLpOJZ1vvF3Bm5Cn
-	zLn55QvCxoDJ3eRtIguw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=RozWIEIqBBgscHgHIuiRcVlPYC0GJxuqkiuGgDxehXA=; b=geC2UwzaoQ9ub3
+	MRscA8WzhU9UoB7C3JW6a+EXxT8GBZOMCB4VaSPXc924lifujSNlj9pTYXAVgPPtXR8/tDV6Ir04P
+	rDaEXSmrPpZunQRFIqKhjBFgpB5onGbPnCBPMx8LnxpMU3vbjCh/LVNvaxwVYmLgJzxGqTXnzpVxR
+	qbSCwxa9wdfBFgapKY/WhlRk6vNoRyfP/iLdoBt7yLozXzl9WNVsYV9fRTVAH82ZxYTCKUZe+S3hw
+	M/PZ9NOeQQQGZZQy7TX8tdeEQGym8H5TmiuqOD9HuWvGIWZJxlKLnGJvkb6mmetzD2/KyOfIWjssh
+	kPY0PuPNGplDnTznMncA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wcO7T-00000007sCU-0uCU;
-	Wed, 24 Jun 2026 13:58:23 +0000
-Received: from mail-vs1-xe31.google.com ([2607:f8b0:4864:20::e31])
+	id 1wcVGT-00000008N5l-19w7;
+	Wed, 24 Jun 2026 21:36:09 +0000
+Received: from mail-francecentralazolkn19013087.outbound.protection.outlook.com ([52.103.46.87] helo=PA4PR04CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wcO7P-00000007sA8-3csy
+	id 1wcVGQ-00000008N5Q-45LU
 	for linux-amlogic@lists.infradead.org;
-	Wed, 24 Jun 2026 13:58:21 +0000
-Received: by mail-vs1-xe31.google.com with SMTP id ada2fe7eead31-725cf9a923aso771373137.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 24 Jun 2026 06:58:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782309498; x=1782914298; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WPJvPBqHRLtbAIAX38K/sq/Rtd1BSFIp6Jl6pM1DOLQ=;
-        b=GMSNmIIIKGSnrbTEsYvJ8zHjypQZ7WyCcPvo0306WRV357aKi3QN0dr6a8Ou6I1Gx4
-         bE5poLRJLDfIAIcbXfGFT+QAYib5UO3c170RFpYBlC+TWS5PUZyFK+xdTQ8GCckgKtAS
-         Bgviny+zA26FdVfaHeWGsS/GVvm8i5sWKgBdO5fkntBSsPFIh/ZCVYr5CsI28akj6nb2
-         2+8CO2IEQw35E2VAF/L3Uco5wIkqTeeFQ1krdRIw63VxvTF07CFoUsZxbaQHkZWb72VY
-         Jc6y0Xo4M2x2NhDRF8j3CNRcsUL0Zdbji5z60lnm4bS57mICbSogGhbuBK21q+x3vvc0
-         R93w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782309498; x=1782914298;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=WPJvPBqHRLtbAIAX38K/sq/Rtd1BSFIp6Jl6pM1DOLQ=;
-        b=ke27tLw2uvib+qy75C6CwFB7cpcGRwZilNbtd6PrduD0zswVINYKQa9xfvDIvNQKT/
-         ZhkY+YA+rjIks2o5wjEKuoG5+yhZW4JALT7NR3AyT0WYWcpCjdkYoiQ6eaMqdCbE9Nxm
-         EE/ndG5b/WaKGQ/LWpLFS+/+mO3Tv3IqQqV0Bau9Maouj620gCYBaUG7f7b9zQQUKdwe
-         4K1H+v8nIqSgIbkhhHTyiJpoZGWeqCtk+vCgambq8dMtrM/SRStY8Le8H+taqVd2N8qU
-         8HHfxrZGjzNqfeXKx2xEOjrW621YQnRi4L2AoFTnt4PevVwbQgL+1SWKKCTPNiHIY3ZW
-         IivQ==
-X-Forwarded-Encrypted: i=1; AHgh+Ro2SKC7gGSy+0ZPf1jbRq2cEyd95Mr2mg2rxo8t9MmLYSBd7Hc2+F7tpdiTCN+ZaWJolyb2ZTQgZHIEHOmM@lists.infradead.org
-X-Gm-Message-State: AOJu0YxmbomhhjKYQGI5Yzl6oC7+eFE78ZB2HGFL2nmlVuqcXcFG1cdW
-	8MJijrUs6i1H/IDKIIsk1ucx0Kd8RTK94HZTiN/xlSzMJQFKfT0EeZXW
-X-Gm-Gg: AfdE7ckblm14UuqbtrwcLQYL2sary49TU1M249vAuGVVDH0U4CybtXDQJIdai3g6UEq
-	2qU4M9ATD4Q67KE4y0gjiIx8aSEFcXwzQUFtXygqBDdNPYjb6ZW6CEgxQnRYlDknqVJnIveOngX
-	rlYs2PNfMwn+DIY5oPGUKrCsGJxpJUy5GQt2Aug+7TmxKIA2gXh+txAoahcTO7qyRPav0bobFLU
-	tRQaPBwgVSd22PUBQjMbwn2N98p+eOxZ99OsQMUHn0MlJjxO0sYWqCCbzRYWN1h2u+TBdLJxngx
-	a4gcbyrVWN9hI9t3Y12PcH+y/fLwuKLcT2aMrtbb49Isi0VSA/EQUlklJ6FZxF1CaBtdh0OpUbm
-	00m734qtEzrv9CoqMAJ+Ogh29wN8G5mFCLPZkPaakeNbgLlDCU+ds04JH1NFUPRYhzvZdo8SFkH
-	ejU+uEF9S2ZZaKv7JkAH1eydGchp5TWpnbSIA=
-X-Received: by 2002:a05:6102:4408:b0:631:28c1:154e with SMTP id ada2fe7eead31-73114f0f269mr1737232137.16.1782309498658;
-        Wed, 24 Jun 2026 06:58:18 -0700 (PDT)
-Received: from arch.localdomain ([160.250.247.70])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-72ba2dbc17bsm9805730137.6.2026.06.24.06.58.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Jun 2026 06:58:18 -0700 (PDT)
-From: Jun Yan <jerrysteve1101@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
+	Wed, 24 Jun 2026 21:36:08 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=fRPBL/1ogUEt/SL05sA/hDTC6doJyTnl3bArENb9vzYy6jPgMo2d1pEil+Wh1LefAF9RxSxK+DCt28eRelVkcHNsEeIs7SohFm6pOXzF30ZgX/JG70u5j3jaIC91aecATY8+thPtqQkvdEeR0st/cpMS+bJCtn8vOMLdY8NHtqvJ1jnBFT4IcKDcIyq3Gj0e2sSgNKpO8Tkf8fsgb70+zEaa/Q+SVUg+RehJWaaIPKOnRqgEIpTCKiHEyagPJTKMoIiUROvZVr1IS41xSF3hGZoNp4IKdefgSqHV/diK681YO8TgKcGSc4wBlqOqpviJjw9t3tFW6t5W3h9LgLDXEQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wAe5ZE+nKgNN81K1MHBgU8UNFmICNMYwBivEJpghyV0=;
+ b=OJVgvsudIkC37Cc5fZKtQR67CjqN01LrSx/gNdG5ZpTT0PVP9VwUUrFcxSb6VpxbyQ4QdLIjjWM1EE79/eKyDV4erQl8OUbqjiGWs0HwZCN22g8Q/GV5k89cwi3PcYyFs9zGUae0Ynyav7lqEhiUefIQohfyQaJepPOw3ISR1AvpWTUbMZ0Fcjeg5EJYtZTZUpkkpsn2JyNDaKNTkUcscQQjHGSOvqoGrDeK9cSU3MFKCW7sJINo5oTufPJOdBh06G1BhoeUn6fZ0D431C5kgdy1g1JMSihW9Jh9jLRLPgq4I152XCqGQwRJbPsaxiBG5LnnC3L5QYUGxC9ZCh8hbw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wAe5ZE+nKgNN81K1MHBgU8UNFmICNMYwBivEJpghyV0=;
+ b=WPjih2wncdhoIjXvwBh/qgP8BvLrbZATHrVXTOj+xiV9ovOdrWVRJAuwUBSVGUwwCimKSHqYmj769dSeTHkD2xwgsCGfxLe/qs2woX3bP585k9XxUzJWTt0E1OB+CU3is9H51q6NxFgCNv+kgNmPk5KXlgiIYToQFdZePbnUkAPWvE45qhOaFfdZ7+Hr0XyQaD8Ga5vsjQUgf5gNbaMV7VrGHEJj709QwTI1KbO3/gIbxQ4DodsMLXg+Lu10oHlgZW2hyotIjYgkd6BaN1zV4EiIwBIMbEN+5JqlrcupRf+cVDIkZl0UIkMTw4kEXOUd5Lphvi0r6mCwKyRLTM4nNQ==
+Received: from VI1PR05MB6992.eurprd05.prod.outlook.com (2603:10a6:800:188::10)
+ by PAVPR05MB10428.eurprd05.prod.outlook.com (2603:10a6:102:2fb::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.15; Wed, 24 Jun
+ 2026 21:36:02 +0000
+Received: from VI1PR05MB6992.eurprd05.prod.outlook.com
+ ([fe80::aded:1de5:5441:2313]) by VI1PR05MB6992.eurprd05.prod.outlook.com
+ ([fe80::aded:1de5:5441:2313%6]) with mapi id 15.21.0139.018; Wed, 24 Jun 2026
+ 21:36:01 +0000
+From: Gabriel Carvalho <gabriel-n-carvalho@outlook.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Julian Braha <julianbraha@gmail.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Arseniy Krasnov <avkrasnov@salutedevices.com>
-Cc: Jun Yan <jerrysteve1101@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
+	dri-devel@lists.freedesktop.org,
 	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 4/4] arm64: dts: amlogic: meson-axg-s400: enable mipi_pcie_analog_dphy for PCIe
-Date: Wed, 24 Jun 2026 21:56:44 +0800
-Message-ID: <20260624135650.727077-5-jerrysteve1101@gmail.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260624135650.727077-1-jerrysteve1101@gmail.com>
-References: <20260624135650.727077-1-jerrysteve1101@gmail.com>
+	linux-kernel@vger.kernel.org,
+	Gabriel Carvalho <gabriel-n-carvalho@outlook.com>
+Subject: [PATCH] drm/meson: cleanup unnecessary condition in kconfig
+Date: Wed, 24 Jun 2026 22:35:33 +0100
+Message-ID: <VI1PR05MB699278F5D7FD140310C6EED9C8ED2@VI1PR05MB6992.eurprd05.prod.outlook.com>
+X-Mailer: git-send-email 2.53.0
+X-ClientProxiedBy: PR1P264CA0020.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:102:19f::7) To VI1PR05MB6992.eurprd05.prod.outlook.com
+ (2603:10a6:800:188::10)
+X-Microsoft-Original-Message-ID: <20260624213533.148075-1-gabriel-n-carvalho@outlook.com>
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI1PR05MB6992:EE_|PAVPR05MB10428:EE_
+X-MS-Office365-Filtering-Correlation-Id: e209ea60-ff20-409e-c672-08ded2389612
+X-Microsoft-Antispam: BCL:0;ARA:14566002|22121099003|19110799012|5062599005|37011999003|23021999003|25010399006|15080799012|8060799015|39105399006|4140399003|19101099003|5072599009|40105399003|3412199025|440099028|1710799026;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?/iPz9kYzVfwIDHY4Pny9lg+E3Uw9nTfQRSX+2ebMY2yJbL0s75xTVX33l7CM?=
+ =?us-ascii?Q?vVpX4x+oNkY08BtbfoXor15B/lsF9OpFXKpMDcxU9re6Xr39Jq+SW4cyFgnC?=
+ =?us-ascii?Q?kvSz7ccCiPR1MTnB0rWD6VFHdGaRuixFJQL+WZz+1FMVJ5bWwhsamn11j0lX?=
+ =?us-ascii?Q?Hbr+Tvz+QRqlgYP0o6QiNqN7/TJUBTGSQeMpcKnoNlHE2hE9qwAyZ/Z0kkv9?=
+ =?us-ascii?Q?dB3amT0oF/gdino/rdt2xRVtERhnV45AYaig9GAx476KJuhpK2M6FY7Ac7r+?=
+ =?us-ascii?Q?Qzu4ivUV0xPmLH8XwJO22qO6V7wvFSbjWdxC1loXebVx5yiQYIJU3MAezw/V?=
+ =?us-ascii?Q?PdXBGcbve7jRlmKQIxGjHVIJHKJ6UEE1Xhu91Ge8T2wmerzOdSlWOnJ3K+4a?=
+ =?us-ascii?Q?q1jZHSkC04pJH6aVwzhqpAkYZue7FKy5XEd5a7qJ5mZ5Bt6c1ZX7nKgVKva9?=
+ =?us-ascii?Q?98Jb3GTXEpa290qvYOAbkVamRxRIwAHYk2UMXrIQaLrCOeOy7X4y97nKnWFh?=
+ =?us-ascii?Q?cgqdakJKsQkOR8ij6Cnp0y9cv8aTxDgXaU2A7J/fhfSeqem3G7KGo+Yg72bX?=
+ =?us-ascii?Q?J9RBhW0XRDqLNlMClEYjEPW9zWwNs1wB9e6UdK6m1XyfA3kOQ0HS6w2YV1M1?=
+ =?us-ascii?Q?vrCGvC9ozc4BRSnQUGiet9RCyWAFhqNFsre/OqD+8J/XNnNFbQnjiIRvee3I?=
+ =?us-ascii?Q?5lMR6OpNfmbGvXrUh1oAXfJ2fjM+KlNZFRPbpl4oUEqiRHFQi6meYUSzbXYy?=
+ =?us-ascii?Q?LprGeK5nIGZzeKR8UdUPI3jSiQSXn0OpQfNs2dZFoWypQTkM7yupSXBccJqV?=
+ =?us-ascii?Q?io8xJe16Aspvb3iZsZ2pK457perMAIGhIOeN3nL/r8PTwtdUQ5Q3fjMAypnU?=
+ =?us-ascii?Q?u9Jzs/9FZ7lrnAA1pJb0wba06PJowHuh4+22F5dtMETEgggXipTadcDa9xe5?=
+ =?us-ascii?Q?U4PD8pAxDQm47JOBdN69rx1OG9rqBbhcEE7eVwU//j45z4K07tn9XdDZ9Iek?=
+ =?us-ascii?Q?YrMRqPJr49eG5/u93qNRjjOemjBuazRr6aciy9bhyhXnPbJf7l78+j1T5EY8?=
+ =?us-ascii?Q?iZd0GdXq?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?XN+l1zC96d3LErD509jxubVGvFIMERQ6ab+Rd4tV8fje0cvLgSYcrgxJALNg?=
+ =?us-ascii?Q?r/HILOKaBV0C7Tf87IiGufEJLF9EOcXJdetd1No27/5OVNE6ZfHZ9ebBO0p7?=
+ =?us-ascii?Q?B65dQcAC3Fjz5BbCwurWkOuZEUEjVN0dYLG5Zo1HJarHCs3cuY9N+cXt/0Dc?=
+ =?us-ascii?Q?i90DxVGFVNkm+Y1eR/0G+lm0RWAhWJFe0bNiPnGJoHiJddT++NZTxkJro5hy?=
+ =?us-ascii?Q?n9bsJTM9ifMBJfZZkPpMHSnlRjJx6SbGf/+aZvQfIQX8OEFDmxk9r7Qa8fSv?=
+ =?us-ascii?Q?KOFFxumU2TMyUBuFiKJzsiIF8u0WVRdVE6TMV3N6dPjBA07mD0FtR3xN4pfF?=
+ =?us-ascii?Q?aS7WXkmLhZQeDcXswJnNnfas3ggRftk5zWXO68wjtd+sIX2BzhryHyEavJD4?=
+ =?us-ascii?Q?WFfXfGLj+CpnNcJ+OOuYrn4m8PkyQB1+CjQHaeF6UmbmIz7UUHWurAgWwIqq?=
+ =?us-ascii?Q?SmR89G1WvF0fkrBBQ23XIAuhbCrcfdw5DHiomV3WZnhEMJihDXGV8OrMAOb9?=
+ =?us-ascii?Q?lPV9JKj0lzC9cbGExJlwxzr4V9yLPDx2jJR0Z4FtWEWbV3yZZfN/KToee9Qf?=
+ =?us-ascii?Q?nQAnqsYMif0mxlXQupA3JvGqgbUOhA6tc908io0vHZatTPpsOSN68xvczA2B?=
+ =?us-ascii?Q?vsyF7O93h1gNzE4TXVC8NpRRhWkclxe0AXeuFz1mDWH6NHFfsBOGxj56tAUo?=
+ =?us-ascii?Q?ff6yi4JCctIvEtg9nFU9KXtKAl2vs/Aq5alvVVqNEM5c83sIEOskIFhk18mw?=
+ =?us-ascii?Q?xUKTDQJaujtWUTyh04iHfT/bBdYVCD4QyPlz1szYIEFHfwgVHZYn5EMTVh4+?=
+ =?us-ascii?Q?UW3hHXmcbAUiv/xRPzz2OrsafquibbJM/mhJ5HHZxM/Iq6hTdKDhWUvwgomQ?=
+ =?us-ascii?Q?pGaqj23TzoXZS6RFutTduchdPySzjfSCKvVJtUGyI0rjHTriEMpTnsGAlfVu?=
+ =?us-ascii?Q?3ZTEDKc3/6/VKMrRlUODu/MlUPXb6tNdDJ+fzHyC9/2ldqrwyzrtxKA2vuZH?=
+ =?us-ascii?Q?bo4a6haT+h916InYCu3bawBmZJxmvw7/RxrRdaefWoNfJYfGPRS8H/UpIV9J?=
+ =?us-ascii?Q?VLpm3OsX5rJsnv3KxDPFfm1cl8QD0YAnDuPlPjx1bXg5AhCCqMQO3Z8ZiWLX?=
+ =?us-ascii?Q?/uYDkx43sp0QpO1UgeYcO85cEJJ3VUFRdZ4CftwXxpkCj5lHnZRHyPVkR42w?=
+ =?us-ascii?Q?aJKe3ihwY/zP1qBVyASOCoaIPy1q35JN+J26NqRLcjtpaBoj2mrAOc6wQPum?=
+ =?us-ascii?Q?s+COp7JRPB0jynBH6msJRTddfEjj71+CtLUvOEBycykE0Bpg2XQo7RS1Z6P8?=
+ =?us-ascii?Q?078kpAEuzLfaJbf4FtDK3wj4nS5A6RUn5sdtAhuXkF2zOjkm3K9v3o9JClZJ?=
+ =?us-ascii?Q?qE7RuZpuO29sC6X8MKKX47rjPBHOKoAJb+wxcgV+m/lU0fE4gg=3D=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e209ea60-ff20-409e-c672-08ded2389612
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR05MB6992.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2026 21:36:01.9159
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAVPR05MB10428
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260624_065819_910769_AEBE2EBC 
-X-CRM114-Status: UNSURE (   7.48  )
+X-CRM114-CacheID: sfid-20260624_143607_026146_87D4DDA4 
+X-CRM114-Status: UNSURE (   7.89  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -110,32 +147,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The PCIe PHY node references mipi_pcie_analog_dphy via its phys property.
-Enable this analog PHY node to make PCIe functionally viable.
+DRM_MESON_DW_HDMI and DRM_MESON_DW_MIPI_DSI both already depend on
+DRM_MESON, so the "if DRM_MESON" on their "default y" lines is
+redundant.
 
-Fixes: 9715b01da6cf ("arm64: dts: meson-axg-s400: enable PCIe M.2 Key E slots")
-Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
+This redundant condition was found by kconfirm, a static analysis tool
+for Kconfig.
+
+Signed-off-by: Gabriel Carvalho <gabriel-n-carvalho@outlook.com>
+Reviewed-by: Julian Braha <julianbraha@gmail.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-axg-s400.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/meson/Kconfig | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-index 7ba249cc3d56..4f13e2b041e1 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-@@ -431,6 +431,10 @@ gpio_speaker: gpio-controller@1f {
- 	};
- };
+diff --git a/drivers/gpu/drm/meson/Kconfig b/drivers/gpu/drm/meson/Kconfig
+index 417f79829cf8..c3800825ac15 100644
+--- a/drivers/gpu/drm/meson/Kconfig
++++ b/drivers/gpu/drm/meson/Kconfig
+@@ -17,13 +17,13 @@ config DRM_MESON
+ config DRM_MESON_DW_HDMI
+ 	tristate "HDMI Synopsys Controller support for Amlogic Meson Display"
+ 	depends on DRM_MESON
+-	default y if DRM_MESON
++	default y
+ 	select DRM_DW_HDMI
+ 	imply DRM_DW_HDMI_I2S_AUDIO
  
-+&mipi_pcie_analog_dphy {
-+	status = "okay";
-+};
-+
- &pdm {
- 	pinctrl-0 = <&pdm_dclk_a14_pins>, <&pdm_din0_pins>,
- 		    <&pdm_din1_pins>, <&pdm_din2_pins>, <&pdm_din3_pins>;
+ config DRM_MESON_DW_MIPI_DSI
+ 	tristate "MIPI DSI Synopsys Controller support for Amlogic Meson Display"
+ 	depends on DRM_MESON
+-	default y if DRM_MESON
++	default y
+ 	select DRM_DW_MIPI_DSI
+ 	select GENERIC_PHY_MIPI_DPHY
+
+base-commit: cdeb2ccd993ed8647adbbda2c3b103aa717fd6f7
 -- 
-2.54.0
+2.53.0
 
 
 _______________________________________________
