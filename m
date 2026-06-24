@@ -4,92 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48500C43458
-	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jul 2026 07:59:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B3B5C43458
+	for <linux-amlogic@archiver.kernel.org>; Fri,  3 Jul 2026 09:41:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oBpw3vCUnCKbXOoDhytX3eHU7XB1zGqw1Lujdu9OwS4=; b=sVg54GBN7wMJEZ
-	Zz4GJFlLZX0DMU1JcPPtHsD5F0fDJHhcSY/B3+U6J23tfCns/UVnbjrerYgxVuimRAM55E4tFBkoG
-	HEn6yj6S7D/2I5M6eEtOXaIRoOFNOzypaSiAvrsGdZHRbzRUWqXBmknZZCV+/xu6S8/3edRxUZrm3
-	s785jIOcdX2jWmWEm2Q5VWaopcMUx0oRhsnjh2VZtaNJegISzWTlmL3OJtirtDtL0OtPIhw2LvgOh
-	xGnrUxmkjuUBuyQFeYq/JlKDcwwPPedJ21Y2v7zw20YzGbCzNahfeQZl56bCg7TvEry8c3EYKIjpF
-	QXd/F6oC6nwHwi+p5mKA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=QAeLnBphuT5KAA18LRMKBAc6r2URRkVtlS18tWEpPJQ=; b=UsSXf5ikXKnToY
+	tRMnW1bMdGO0BIULsCxMsDM5ajxSY95isc1jE7t1Mdpe5E0p0NuiBnXu6SqaHSH2eY7tVX0uthBVT
+	x5FynVyH1pQttbInACCVYNAj8QfMLo/pW4GHiDQV1qLGrJMIsnDHjV5TtwK0h/0XJqyZxKfK0qSJf
+	+tqZujkNEScafN4A++h6aBzLfom3HDShIFfZGWTP7aQbPZ/eSk81ecoYfPbixErTK0nPTB/4jxuaE
+	M0B7cjXvdsfv6clDD10h1wxbOuRZvExqGeoFkR5aSjz6e03YwcO931DNrK0+gAf979S+VcSkTophg
+	3+vxGbT6uk0Zzc5tnCTg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wfYnj-00000006Jax-0Eea;
-	Fri, 03 Jul 2026 07:59:07 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1wfaOl-00000006V7y-2xT4;
+	Fri, 03 Jul 2026 09:41:27 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wfYnf-00000006JZt-1dHb
+	id 1wcILO-00000007LgB-3nzT
 	for linux-amlogic@lists.infradead.org;
-	Fri, 03 Jul 2026 07:59:05 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-475417f010dso151885f8f.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 03 Jul 2026 00:59:02 -0700 (PDT)
+	Wed, 24 Jun 2026 07:48:24 +0000
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-45ee5cdbd28so852608f8f.1
+        for <linux-amlogic@lists.infradead.org>; Wed, 24 Jun 2026 00:48:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1783065541; x=1783670341; darn=lists.infradead.org;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zqjm78soCzOZsah5k4plTO+J9DTAjqlcZkOG5zlqAcQ=;
-        b=ib1ojA3Zq3p1kCf6DhsmsWgBg7mltB4hHpgRL+M+gbmVv81isHbn2ul/BOLqUofy2+
-         4S+iSjXcP2X/lk4ZSs/jFOhOfT2uXkzS9icJ5V7zgc1hIefuUo1LKjzGB+GirsiuCKhz
-         4LmMH7QosWrT6/eRLkNltS/LpkKyM86665ub28h59d5tTKawi3F/KtY2KpqEf2J7JjPj
-         T+HLe5pnxoX18yjp9A1VV4FhH0XLNNjt8WxPJ9+17ZTlBckmKJ4gXr3q8FRowNs6g+01
-         b40hKw2dYCIzDAozgHapxu+lVxWU/ArsjUYxvv5Qey3g4m8TcNqUqHqtatRM+B0MytWu
-         wOUw==
+        d=0sec.ai; s=google; t=1782287300; x=1782892100; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VuSzdW2MJov1ocYqkr6jypibzL/jxZdpgTXoZ4Ka2DA=;
+        b=Gyc8ppcGfPYKxXwrqMEABcHU6LfAGwBu1slVOg3cIwdviAwHAF27GYlgSH4Q5hzVrH
+         Ie6oyZCxPCfYzwJebW8WgJT8mxYIfvs9kH2Hmc07xq9TPBNz7e51qm+4ANoQnh18PVS8
+         m2pJxH7H5DVB0i5ilYzY95Ld3hM9neQIbapTEfzA6JSeUByVsYKaufFJaKqpHi2TUdWH
+         Y5b3bU/7ARjm+6LX6vY2wle8+nSDuCNbcoAoVKeBetoV0YSEfxMgnd+PShtty9QayTgZ
+         we4bZ0get7fY//BZ0F0IURZad3FgZteV7BwduGPeRlsfSooqsbHmOEDGLrcxvvAeTDQr
+         ZOww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783065541; x=1783670341;
-        h=mime-version:message-id:date:user-agent:references:in-reply-to
-         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Zqjm78soCzOZsah5k4plTO+J9DTAjqlcZkOG5zlqAcQ=;
-        b=lLaRRJTfbC9YQHc+Nfy5ybmlkoKKjGoc6I9Dqt4Npj+ZauQJRq+y/zywtlI5dkm66G
-         NuW/bYL3ue859suxW+aBcPVd5ybjQi6Q18M9XLNDlRlUAxvJNYH3NxM0ETWYBAO1hKY/
-         mr2BNzN5FRuVVmw7H3RDxtZADIinrdB9kMKlj7XrLJFS2sXA8OAbmYecQOAVW9FPPiMh
-         G5rBwLMJsyxYZkKm7PpynXCKQIKX3q9NIku30wSK2IN3pYpY1KowSPKYBy5C2ZATgkoE
-         bV6RpuQRus35HBiWufJXiTkFGHc+Lo1fidI/6Bwiy+7nAktykTGISqQPVCJOhjHTj0C1
-         nw6Q==
-X-Forwarded-Encrypted: i=1; AHgh+RoBqGs3fcEdV5KDUPBP0vVi+qZH058klP7ACj3pta07x0zt876G4rCXkNWxFjjWjuubThRYKj+o0NohKhYk@lists.infradead.org
-X-Gm-Message-State: AOJu0YxTKTkPmHStsf7wfwBvhCLVG34u4Bk9O16yJaBMJjbz0jrVma+W
-	hey3pEGbFz/n1QOYTwn/naRb4ieslAMb7w4VS4gnlzX1rwu0Mkbq2uDRRFH30cZt3r8=
-X-Gm-Gg: AfdE7ckmK6HrIx4wkL2n9WQHG14bBc7q7KW+INQ4ck/NwYLo3aEErZAGw2mk7slruVz
-	YUIIfqT/SdTUEqe6HVGAl+hRL3EUlpZVh/sbYQyKGT0DuHtbwriWHwtlHr9ASAH8Zo3WcfHjnnI
-	3gXcdEseb/eTZ4tMSYxp52CSAXhgXOdtojsbn7F9sJnXn3TUryFmcLXEQkePTKMwNgxQ3si0H6e
-	uX1c/QZfkMGGMDaNYfH3JdOSkUs/Ze2X5xPxGDX3ni9Esg+fQZPIx8RI8/eOP59uh1P85c4cMOu
-	VQCaLBQI6AQvqO2FRNi5pPgKoOAlYXCV9ZAk1VGzZ7lbFazdNoFnIjzgKOu0jXmd6VAnNZfnTPL
-	NaDQb/Su8hpX43Eyy5eOM3C4DnEedISvK/WhOHFu7lCw2U3cnT2WeBMTLGHI9OTAjxIjIRdwJJA
-	VkUw+dE6MYZzpqSCCQFsq81g==
-X-Received: by 2002:a05:6000:2310:b0:46f:e796:c3fc with SMTP id ffacd0b85a97d-47757c6d1e4mr14250190f8f.25.1783065541604;
-        Fri, 03 Jul 2026 00:59:01 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:fb6a:cb8b:b7f7:bb42])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-477dde19fd3sm16565369f8f.25.2026.07.03.00.59.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jul 2026 00:59:00 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Valerio Setti <vsetti@baylibre.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>,  Mark Brown <broonie@kernel.org>,
-  Jaroslav Kysela <perex@perex.cz>,  Takashi Iwai <tiwai@suse.com>,  Neil
- Armstrong <neil.armstrong@linaro.org>,  Kevin Hilman
- <khilman@baylibre.com>,  Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>,  linux-sound@vger.kernel.org,
-  linux-arm-kernel@lists.infradead.org,  linux-amlogic@lists.infradead.org,
-  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] ASoC: meson: aiu-formatter: remove pipeline reset
- from prepare
-In-Reply-To: <20260702-fix-24-bit-i2s-playback-v1-2-bcd3a43fe32a@baylibre.com>
-	(Valerio Setti's message of "Thu, 02 Jul 2026 12:56:41 +0200")
-References: <20260702-fix-24-bit-i2s-playback-v1-0-bcd3a43fe32a@baylibre.com>
-	<20260702-fix-24-bit-i2s-playback-v1-2-bcd3a43fe32a@baylibre.com>
-User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Fri, 03 Jul 2026 09:58:59 +0200
-Message-ID: <1jfr20ijwc.fsf@starbuckisacylon.baylibre.com>
+        d=1e100.net; s=20251104; t=1782287300; x=1782892100;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VuSzdW2MJov1ocYqkr6jypibzL/jxZdpgTXoZ4Ka2DA=;
+        b=i2oOisPN/A4YO2sRVEF3JZ/LJsZ3RksHW+NXNkprgatuO+koU08NXKlt7/XNBnzel0
+         b9fO7acDUhOSXweiqdhtexHwfCZyGhqPV4x1XGgojQhxCTvj3nT6PFu9ez7x7V9b3Ndm
+         uL0D8I5vEUza7yHB4+ZBILiVr9kRAaF+uxnGn3HqO5rGbm9KMuD5aBBMwaOFwApiCt04
+         GhnMeJh+/VB9hMB8UeQ6fOqtU4ZbyuuTc8HujZTxx61dQCJOYcsnTqft4bUT/vIlwWbu
+         dy906ZOFdBKbyZtD1WmqOFi8N3DIpH/oUyRJchV+CqtMhEOjnQT3oBFpQjzieYQ6WUe9
+         GNww==
+X-Forwarded-Encrypted: i=1; AHgh+Rr6HBcDSltYa9v0493tZh9+UEeKLWRd8tDp0ufQfr3HcxDV9sUJeh3drNsQVddTH3hBUWNwcQEobjM7Z/PD@lists.infradead.org
+X-Gm-Message-State: AOJu0YzR0ny9Rdk1P5LnIs1Xu0Qj0lz/5bSQdH81hbU4sqZ7Rqpv6W2t
+	/j/fa0aFuD8ZkX+wR2E8NPTFcAfTMkaJd32q42hPdgdUZjeFkeOOHtvrxhM8etk56pKX
+X-Gm-Gg: AfdE7cmci0zTvVugmygEXCLi92TRkLcSaQTlETy+OLWbY4fszo7iNy4kunsAPBREzpi
+	Z0ilXdnSDe1H/TuTuGkhQ83qjhpngHJRzoGWdg24Ok6zsgMlMew2uUcgcMUbHOJMrJ0yQwuHYZG
+	vaE8q/RZad78OBXvQMdTH+U//+9qi3tClxRVDMNBUgVo3DKvGbhRE01Hj9EPXnANDn/e1m5pvXx
+	Opdez/vRqV3Bm3lnKSgLa6nPwWoqk/ft/zCG0mR0dviQwGdlscfRB6kjMEWNS8Jn8trD0JsLFVe
+	HUtuN8g74CkAXVVO2+R1/+0woVuMO8CwbVkxUmNUIYe0DzwRwPuuccQ2jPCRFjL1ZSytTehY6fD
+	huj2P+XycFsNo4uDJXhUaq/sjH5BrkwehvynOWq1w63+M3+X12j5iWj9rnFkHbOYkI85nLoA/q4
+	FtY4eFnpkGICX7ZZCoG5j5DWQYpV4O3dYtiD/BrrLUA6Ee2QkbrZ2+oxIyc/PcUzfweKjAlu+43
+	xnMvv3dKEFWpZgTXf5NwOWWqEJBnFyXSdI=
+X-Received: by 2002:a05:6000:46cf:b0:461:a15f:7aa5 with SMTP id ffacd0b85a97d-46a806bd4e0mr6838960f8f.21.1782287299681;
+        Wed, 24 Jun 2026 00:48:19 -0700 (PDT)
+Received: from PeakBook-Mini.tail8e484.ts.net ([178.197.218.209])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-46c1ee01c6csm4737620f8f.14.2026.06.24.00.48.18
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Wed, 24 Jun 2026 00:48:19 -0700 (PDT)
+From: Doruk Tan Ozturk <doruk@0sec.ai>
+To: linux.amoon@gmail.com,
+	neil.armstrong@linaro.org
+Cc: mchehab@kernel.org,
+	gregkh@linuxfoundation.org,
+	hverkuil@kernel.org,
+	jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com,
+	linux-media@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-staging@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] media: meson: vdec: fix use-after-free of decode work in stop/close path
+Date: Wed, 24 Jun 2026 09:48:17 +0200
+Message-ID: <20260624074817.27801-1-doruk@0sec.ai>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
+X-Bad-Reply: 'Re:' in Subject but no References or In-Reply-To headers
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260703_005903_442381_1AEF411E 
-X-CRM114-Status: GOOD (  15.42  )
+X-CRM114-CacheID: sfid-20260624_004822_956282_EEA7B166 
+X-CRM114-Status: UNSURE (   3.99  )
+X-CRM114-Notice: Please train this message.
+X-Mailman-Approved-At: Fri, 03 Jul 2026 02:41:26 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,51 +109,13 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On jeu. 02 juil. 2026 at 12:56, Valerio Setti <vsetti@baylibre.com> wrote:
+Hi Anand,
 
-> 'aiu-formatter-i2s' already performs the very same reset in
-> 'aiu_fifo_i2s_trigger' for all relevant trigger scenarios. There is no
-> need to duplicate the operation in the formatter.
->
-> Signed-off-by: Valerio Setti <vsetti@baylibre.com>
+Sounds great -- please carry it in your series. Glad it helps, and happy
+to review when you post it.
 
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
-
-> ---
->  sound/soc/meson/aiu-formatter-i2s.c | 9 ++++-----
->  1 file changed, 4 insertions(+), 5 deletions(-)
->
-> diff --git a/sound/soc/meson/aiu-formatter-i2s.c b/sound/soc/meson/aiu-formatter-i2s.c
-> index b4604734fe88..cb554c2e7ce4 100644
-> --- a/sound/soc/meson/aiu-formatter-i2s.c
-> +++ b/sound/soc/meson/aiu-formatter-i2s.c
-> @@ -13,7 +13,6 @@
->  #define AIU_I2S_SOURCE_DESC_MODE_8CH	BIT(0)
->  #define AIU_I2S_SOURCE_DESC_MODE_24BIT	BIT(5)
->  #define AIU_I2S_SOURCE_DESC_MODE_32BIT	BIT(9)
-> -#define AIU_RST_SOFT_I2S_FAST		BIT(0)
->  
->  #define AIU_I2S_DAC_CFG_MSB_FIRST	BIT(2)
->  
-> @@ -55,11 +54,11 @@ static int aiu_formatter_i2s_prepare(struct regmap *map,
->  {
->  	/* Always operate in split (classic interleaved) mode */
->  	unsigned int desc = 0;
-> -	unsigned int tmp;
->  
-> -	/* Reset required to update the pipeline */
-> -	regmap_write(map, AIU_RST_SOFT, AIU_RST_SOFT_I2S_FAST);
-> -	regmap_read(map, AIU_I2S_SYNC, &tmp);
-> +	/*
-> +	 * Pipeline reset is already implemented in aiu_fifo_i2s_trigger() at
-> +	 * trigger time.
-> +	 */
->  
->  	switch (ts->physical_width) {
->  	case 16: /* Nothing to do */
-
--- 
-Jerome
+Cheers,
+Doruk
 
 _______________________________________________
 linux-amlogic mailing list
