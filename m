@@ -4,79 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12188CDE000
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Jun 2026 07:25:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C632CDB471
+	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Jun 2026 12:53:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:
-	References:MIME-Version:In-Reply-To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=BcsyNyejCFJkNFiW+It3towLE2DK3tuv9x9w5E3tdMA=; b=SEkNCyKwQWGbqmJwr690z4bmIu
-	3XDGK3eyoHBgnZ2fAASg+OgQV3ZXvkgldx8LTFccrtiku2jiUo0pTBig3NdbUbjWvTDKRuZCmMTSl
-	VDj2+rHT3VyUizxti8d1CZez4gVnHCRUSH3hdXNhQwcVp+8CWhz9K0dJ22OIHqLqwrGhZ03uSFbN5
-	mEihDhZ1Tb6pW+P4tKZSQUFRlCcSS+OLmA9XxuQD1V1Q1bvOZzT3h9luxFD99MnK+0Ur08HYXtfqk
-	44ld6JUvaN1orC0xVxpbXPxYv/YJW675vKeoXM/UEcHnpn5+63NcG9E/3bqOScvjJO3jpQ6Q9L37+
-	y4WHdPKw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=l8/bn11y0s2JcdI9InTuZvWF2bVZVeVWP73gGqlVAWs=; b=Q+XYV+V9n0XOlE
+	TVQs83Rtk/ys0+cPLeXl/CpUi1XUSNkeicmfDlgqUHvmfurE12itZuGvVfijxxxg6JnYPAaJbzGLH
+	dcZe7YWQpLlqJw61gM6UlixyhIAlyo+G1amYDT5P4aqyZyd5K2KiosdcytSvGHMBc195Y9dpLFuwh
+	AAuhl6njAmB0bHFauKtQnIA+zSTtH4ZczTnxo+YOyxIvAt11vgKUi17x1omQ05RKB5vEvC4KKzALi
+	fKd/Oe/j3Tc31Y4aFq2CDUGs/qeA+EQ3Mr22hrdS4vnYw4sHNHh58hCRCKZXIMqAz+LWYYvKCKv2I
+	OZTeOhogHJLoMCyekumw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wcHz9-00000007JTg-0orp;
-	Wed, 24 Jun 2026 07:25:23 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1wcN6V-00000007mNw-3kQx;
+	Wed, 24 Jun 2026 12:53:20 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wcHz7-00000007JTA-3W6U
+	id 1wcN6U-00000007mNq-26SM
 	for linux-amlogic@lists.infradead.org;
-	Wed, 24 Jun 2026 07:25:21 +0000
+	Wed, 24 Jun 2026 12:53:18 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id E6D15601FA
-	for <linux-amlogic@lists.infradead.org>; Wed, 24 Jun 2026 07:25:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9758F1F00AC4
-	for <linux-amlogic@lists.infradead.org>; Wed, 24 Jun 2026 07:25:20 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 9427760018;
+	Wed, 24 Jun 2026 12:53:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22B211F000E9;
+	Wed, 24 Jun 2026 12:53:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782285920;
-	bh=nvnhHh47CXixoylXWGOHPJF5vecV8c8rpU9eHVVg6DY=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc;
-	b=BWFXAxX/us4DQUK1idO2Ki9uFSo0MO6O6YaIQa8wMrk29Wvl4H/TKJzoVttGSCeLA
-	 Fw+NxnPqoQRwnUpQE5C6BudZxSheDVaqnhvWjhUiJPxF+3wV5/YG1rGryzMmQwahlU
-	 g9NjlbTZ/7YQdivSYRp7S3AqRIGL90jlIxUVNUJRZFFW6ArNOWjHRg7PiqY/NAdfX8
-	 HQf7v9geddz5Kk9Q9Q7J7bBCr2nzd7GKcRobXl10AH10XMpw6KbfBhMixhNlYGlcjz
-	 r/5CGXIkZS62mPOoWQs5i5Jr3QhztcfMPaFZuaO2xAcwwVIRpl8hkSLwfX5eKwLyCf
-	 ol3EpNlVKoRCA==
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-3997a6196c5so5497081fa.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 24 Jun 2026 00:25:20 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ+6lfG9sa2O5C6nlHbjQTM2Dkr8xjmdDhhBgHfjAaNazxJEpwcysEnvShjUOAw5KZtC5jFr4Obi6J6VPPta@lists.infradead.org
-X-Gm-Message-State: AOJu0Yw1UxAeEJDcfTdTzEJdszxwI2SFhoNrI8DOVo0hyATxb6uQwFvT
-	LLJlQHqBbbNFVtt9rfSCulj/pfmBAWqvNpj4FI5DXcMSMkWzHmDag7DdM+xIaNkaPFVyl+PaXbN
-	HVSsCWbVv0XHhS+Whq0VpcqZKPe0G/awtDarhjIo9Uw==
-X-Received: by 2002:a05:651c:897:b0:396:b398:5956 with SMTP id
- 38308e7fff4ca-39aba22f713mr5033881fa.16.1782285919374; Wed, 24 Jun 2026
- 00:25:19 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 24 Jun 2026 00:25:16 -0700
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 24 Jun 2026 00:25:16 -0700
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <112d2563-e650-4881-bba0-335f6a3fcb8a@arm.com>
+	s=k20260515; t=1782305597;
+	bh=HJKPKyjooasBtuw7pvPpV0lDfiXrWt987kFsIu3bzBw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=FqZe9GhHzOTTWP54ShlMDrtjxg67FtUO8+DOBweU09ATTsnzg65sr+eaybs1z8tZr
+	 VGCHRpOaqd4kdSw3pNVpRUD2M8HyW/A0FQCcNYdp8C2avSfPntdSGU2igZ2Bj43QZR
+	 DzbTwUm4IkI7jJNbzNuPwerbyVEJ4NS9j3k70OjqVq3dD8Bu7TAqKA/5hNztaLUrkh
+	 fUrZ3at5KyDSTFAEhhSLHkS+mzmtNp1jxvLO5HehPR22q9bp8fWLtMzF3TFc24oREA
+	 kvpaHvQxg/ZRPXIVGOXUi+VXKn/J0IuKxJ6V3Lzu6RiPctu4sp6MftN5mTT0ERUOSq
+	 706522OnAGF8A==
+Date: Wed, 24 Jun 2026 07:53:16 -0500
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Guillaume La Roque <glaroque@baylibre.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@kernel.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ronald Claveau <linux-kernel-dev@aliel.fr>,
+	linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: thermal: amlogic: Fix missing header in
+ the example
+Message-ID: <20260624125316.GA4032772-robh@kernel.org>
+References: <20260622100231.438435-3-krzysztof.kozlowski@oss.qualcomm.com>
 MIME-Version: 1.0
-References: <CGME20260610153425eucas1p29d20a835114a28b15cb12ea00534e074@eucas1p2.samsung.com>
- <20260610153329.937833-1-v@baodeep.com> <184d315b-a0a1-4792-8a40-1b4967025916@samsung.com>
- <112d2563-e650-4881-bba0-335f6a3fcb8a@arm.com>
-Date: Wed, 24 Jun 2026 00:25:16 -0700
-X-Gmail-Original-Message-ID: <CAMRc=MdP8Wf6QRXGHpb3KJW2KMidSe-0LeyKKTYix=wYKZcPuA@mail.gmail.com>
-X-Gm-Features: AVVi8CfWZEwy0Hj6hsY9nADi3QPZuC2gya2F8U2aO77pZ-fX6Cr7FXVhzwvDF28
-Message-ID: <CAMRc=MdP8Wf6QRXGHpb3KJW2KMidSe-0LeyKKTYix=wYKZcPuA@mail.gmail.com>
-Subject: Re: [PATCH 0/2] gpio: fix sleeping-in-atomic in shared-proxy; restore
- meson non-sleeping
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Diederik de Haas <diederik@cknow-tech.com>, linux-gpio@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	Heiko Stuebner <heiko@sntech.de>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Viacheslav Bocharov <v@baodeep.com>, Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20260622100231.438435-3-krzysztof.kozlowski@oss.qualcomm.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,29 +77,26 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 23 Jun 2026 17:16:44 +0200, Robin Murphy <robin.murphy@arm.com> said:
-> On 11/06/2026 9:26 am, Marek Szyprowski wrote:
->> Hi Viachesla,
->>
->> On 10.06.2026 17:32, Viacheslav Bocharov wrote:
->>> gpio-shared-proxy chooses its descriptor lock (mutex vs spinlock) from
->>> the underlying chip's can_sleep, but under that lock it calls config and
->>> direction ops that reach sleeping pinctrl paths. On a controller with
->>> non-sleeping MMIO value ops the lock is a spinlock, so a sleeping call
->>> runs from atomic context:
->>>
+On Mon, Jun 22, 2026 at 12:02:32PM +0200, Krzysztof Kozlowski wrote:
+> Usage of defines from headers requires including relevant header,
+> otherwise dt_binding_check fails:
+> 
+>   Lexical error: Documentation/devicetree/bindings/thermal/amlogic,thermal.example.dts:59.27-34 Unexpected 'GIC_SPI'
+>   Lexical error: Documentation/devicetree/bindings/thermal/amlogic,thermal.example.dts:59.38-57 Unexpected 'IRQ_TYPE_LEVEL_HIGH'
+>   Lexical error: Documentation/devicetree/bindings/thermal/amlogic,thermal.example.dts:60.37-45 Unexpected 'CLKID_TS'
+> 
+> Fixes: b1c8ccdbd4e9 ("dt-bindings: thermal: amlogic: Add support for T7")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> 
+> ---
+> 
+> Fix for current RC - commit already pulled in merge window.
+> 
+> This should be applied fast to fix current RC, thus maybe Rob?
 
-...
+Both applied.
 
->>
->> I've checked this patchset with these two reverted and no warning was reported.
->
-> If it hadn't already been fixed (...)
->
-
-About that - Viacheslav, do you still plan to submit v2 of this?
-
-Bart
+Rob
 
 _______________________________________________
 linux-amlogic mailing list
