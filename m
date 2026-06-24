@@ -4,72 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A20E8CDB470
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Jun 2026 07:24:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12188CDE000
+	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Jun 2026 07:25:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
-	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=07t6o7+XzHUxtQTU9bIwqRlhKR/Cu0+/xAWEZdZUFcI=; b=rdirz4+mNasnNr
-	jeRyLgdv+NhL2bXZrbyyvqWWGamPTEJgmZ+BTg1RLynqucfpPL9gAGnuEYWqkADXJwELpOuuVoA+g
-	AvvNyjQAEMMouO3Pa3IDrzoyu73ObpcQlPAGZSqMJBFqJb7rFzKOtZNfjmc6+HKfaRhIAvpN1VumT
-	9KTrzkSjBufsgsPoxhGGtnZLzY7dAYWtXK6Ziby2FIMiaUiEOiW6TryQxPZtSKUlLuhHOoo7Q7vt1
-	iN4+laR+ou3a5iChZeNNj4NofPXrgEQYTWpuYInkrSbLIFNkQNdOrx+70Z1tLth4l5AG9veCQS3TA
-	LOtmzE+uSFef6KcNE2qg==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:
+	References:MIME-Version:In-Reply-To:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=BcsyNyejCFJkNFiW+It3towLE2DK3tuv9x9w5E3tdMA=; b=SEkNCyKwQWGbqmJwr690z4bmIu
+	3XDGK3eyoHBgnZ2fAASg+OgQV3ZXvkgldx8LTFccrtiku2jiUo0pTBig3NdbUbjWvTDKRuZCmMTSl
+	VDj2+rHT3VyUizxti8d1CZez4gVnHCRUSH3hdXNhQwcVp+8CWhz9K0dJ22OIHqLqwrGhZ03uSFbN5
+	mEihDhZ1Tb6pW+P4tKZSQUFRlCcSS+OLmA9XxuQD1V1Q1bvOZzT3h9luxFD99MnK+0Ur08HYXtfqk
+	44ld6JUvaN1orC0xVxpbXPxYv/YJW675vKeoXM/UEcHnpn5+63NcG9E/3bqOScvjJO3jpQ6Q9L37+
+	y4WHdPKw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wcHyS-00000007JNj-2wHq;
-	Wed, 24 Jun 2026 07:24:40 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1wcHz9-00000007JTg-0orp;
+	Wed, 24 Jun 2026 07:25:23 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wcHyR-00000007JNW-1Ua7
+	id 1wcHz7-00000007JTA-3W6U
 	for linux-amlogic@lists.infradead.org;
-	Wed, 24 Jun 2026 07:24:39 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 75C30601F6;
-	Wed, 24 Jun 2026 07:24:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2B638C2BCB4;
-	Wed, 24 Jun 2026 07:24:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1782285878;
-	bh=QojzKA+AL9yufTBuhEvjrEAhb+khx3/xRIV8QBdLzG8=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=NeTVbvGFlvNeKvstEQtBfIyYGoJnm7ajizM/Lp9dOFDZ0h+vIgcWB3uDx7zEpMmfh
-	 o6UAI4ESmvpaSiMJEUkI7Yr5WFr2K9LUVIKMsDRNN+XNuI2utxOKNutQi1Ye3Xi4nX
-	 hVXYcQ5alfZz57dKEdgn0HT4ns1Az70rrsmli1u69iWmI2WtN0CovChJHeCoWVzWUo
-	 8o1KPiS6SVvaRWGZAV0hUmvg2jHtk79nH8r3F+0zbYgKIMatz1BwWGiI+9cvC7HtU2
-	 4oiMZXUexp5fIVFXd6p1wOMYKilSd5ChPQ+WTSKjYxCKx8IWWWtq8GRuq7oLNZtZVM
-	 VTW+waKQ8eM7A==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 026BCCDB47F;
-	Wed, 24 Jun 2026 07:24:38 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Wed, 24 Jun 2026 07:24:34 +0000
-Subject: [PATCH] rtc: amlogic-a4: clear unsupported update interrupt
- feature
+	Wed, 24 Jun 2026 07:25:21 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id E6D15601FA
+	for <linux-amlogic@lists.infradead.org>; Wed, 24 Jun 2026 07:25:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9758F1F00AC4
+	for <linux-amlogic@lists.infradead.org>; Wed, 24 Jun 2026 07:25:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782285920;
+	bh=nvnhHh47CXixoylXWGOHPJF5vecV8c8rpU9eHVVg6DY=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc;
+	b=BWFXAxX/us4DQUK1idO2Ki9uFSo0MO6O6YaIQa8wMrk29Wvl4H/TKJzoVttGSCeLA
+	 Fw+NxnPqoQRwnUpQE5C6BudZxSheDVaqnhvWjhUiJPxF+3wV5/YG1rGryzMmQwahlU
+	 g9NjlbTZ/7YQdivSYRp7S3AqRIGL90jlIxUVNUJRZFFW6ArNOWjHRg7PiqY/NAdfX8
+	 HQf7v9geddz5Kk9Q9Q7J7bBCr2nzd7GKcRobXl10AH10XMpw6KbfBhMixhNlYGlcjz
+	 r/5CGXIkZS62mPOoWQs5i5Jr3QhztcfMPaFZuaO2xAcwwVIRpl8hkSLwfX5eKwLyCf
+	 ol3EpNlVKoRCA==
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-3997a6196c5so5497081fa.0
+        for <linux-amlogic@lists.infradead.org>; Wed, 24 Jun 2026 00:25:20 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ+6lfG9sa2O5C6nlHbjQTM2Dkr8xjmdDhhBgHfjAaNazxJEpwcysEnvShjUOAw5KZtC5jFr4Obi6J6VPPta@lists.infradead.org
+X-Gm-Message-State: AOJu0Yw1UxAeEJDcfTdTzEJdszxwI2SFhoNrI8DOVo0hyATxb6uQwFvT
+	LLJlQHqBbbNFVtt9rfSCulj/pfmBAWqvNpj4FI5DXcMSMkWzHmDag7DdM+xIaNkaPFVyl+PaXbN
+	HVSsCWbVv0XHhS+Whq0VpcqZKPe0G/awtDarhjIo9Uw==
+X-Received: by 2002:a05:651c:897:b0:396:b398:5956 with SMTP id
+ 38308e7fff4ca-39aba22f713mr5033881fa.16.1782285919374; Wed, 24 Jun 2026
+ 00:25:19 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 24 Jun 2026 00:25:16 -0700
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 24 Jun 2026 00:25:16 -0700
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <112d2563-e650-4881-bba0-335f6a3fcb8a@arm.com>
 MIME-Version: 1.0
-Message-Id: <20260624-rtc-feature-v1-1-42dccd22c0ee@amlogic.com>
-X-B4-Tracking: v=1; b=H4sIADKGO2oC/x3MQQqAIBBA0avIrBNMRaqrRAuxsWZjMVoE4d2Tl
- m/x/wsZmTDDJF5gvCnTkRr6TkDYfdpQ0toMWmmnnLaSS5ARfbkYpTIBTTSDNX6EVpyMkZ7/Ni+
- 1fiM27XxdAAAA
-X-Change-ID: 20260624-rtc-feature-03ce3f3843a9
-To: Yiting Deng <yiting.deng@amlogic.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1782285876; l=1071;
- i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=pJ5eX/skfag9z0pkWfC/zXmkphBv9K7+CU5zNogQX00=;
- b=K8SW8U312kCtLZRTKBb2MmA6n7lo6AJUWoPjwyFhymEluNvfnNr7RierO1ahP2OjvK8nQydOZ
- 6+CcbiIlZ2AAj4mU+kcubK5ai8aeDsJBtdjFjvMwX5V1IViaFKEHLN5
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
- auth_id=578
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+References: <CGME20260610153425eucas1p29d20a835114a28b15cb12ea00534e074@eucas1p2.samsung.com>
+ <20260610153329.937833-1-v@baodeep.com> <184d315b-a0a1-4792-8a40-1b4967025916@samsung.com>
+ <112d2563-e650-4881-bba0-335f6a3fcb8a@arm.com>
+Date: Wed, 24 Jun 2026 00:25:16 -0700
+X-Gmail-Original-Message-ID: <CAMRc=MdP8Wf6QRXGHpb3KJW2KMidSe-0LeyKKTYix=wYKZcPuA@mail.gmail.com>
+X-Gm-Features: AVVi8CfWZEwy0Hj6hsY9nADi3QPZuC2gya2F8U2aO77pZ-fX6Cr7FXVhzwvDF28
+Message-ID: <CAMRc=MdP8Wf6QRXGHpb3KJW2KMidSe-0LeyKKTYix=wYKZcPuA@mail.gmail.com>
+Subject: Re: [PATCH 0/2] gpio: fix sleeping-in-atomic in shared-proxy; restore
+ meson non-sleeping
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Diederik de Haas <diederik@cknow-tech.com>, linux-gpio@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	Heiko Stuebner <heiko@sntech.de>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Viacheslav Bocharov <v@baodeep.com>, Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,47 +88,34 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On Tue, 23 Jun 2026 17:16:44 +0200, Robin Murphy <robin.murphy@arm.com> said:
+> On 11/06/2026 9:26 am, Marek Szyprowski wrote:
+>> Hi Viachesla,
+>>
+>> On 10.06.2026 17:32, Viacheslav Bocharov wrote:
+>>> gpio-shared-proxy chooses its descriptor lock (mutex vs spinlock) from
+>>> the underlying chip's can_sleep, but under that lock it calls config and
+>>> direction ops that reach sleeping pinctrl paths. On a controller with
+>>> non-sleeping MMIO value ops the lock is a spinlock, so a sleeping call
+>>> runs from atomic context:
+>>>
 
-The Amlogic A4 RTC does not support update interrupt. Clear
-RTC_FEATURE_UPDATE_INTERRUPT before registering the RTC device to
-prevent userspace from enabling an unsupported RTC UIE function.
+...
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
-Clear RTC_FEATURE_UPDATE_INTERRUPT before registering the RTC device.
----
- drivers/rtc/rtc-amlogic-a4.c | 1 +
- 1 file changed, 1 insertion(+)
+>>
+>> I've checked this patchset with these two reverted and no warning was reported.
+>
+> If it hadn't already been fixed (...)
+>
 
-diff --git a/drivers/rtc/rtc-amlogic-a4.c b/drivers/rtc/rtc-amlogic-a4.c
-index 50938c35af36..116cf095a9e9 100644
---- a/drivers/rtc/rtc-amlogic-a4.c
-+++ b/drivers/rtc/rtc-amlogic-a4.c
-@@ -379,6 +379,7 @@ static int aml_rtc_probe(struct platform_device *pdev)
- 	rtc->rtc_dev->ops = &aml_rtc_ops;
- 	rtc->rtc_dev->range_min = 0;
- 	rtc->rtc_dev->range_max = U32_MAX;
-+	clear_bit(RTC_FEATURE_UPDATE_INTERRUPT, rtc->rtc_dev->features);
- 
- 	return devm_rtc_register_device(rtc->rtc_dev);
- }
+About that - Viacheslav, do you still plan to submit v2 of this?
 
----
-base-commit: 851d961ff248218f681c53cf0f7f08cf8201a117
-change-id: 20260624-rtc-feature-03ce3f3843a9
-
-Best regards,
--- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
-
-
+Bart
 
 _______________________________________________
 linux-amlogic mailing list
