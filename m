@@ -4,89 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD033CDE001
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Jun 2026 06:58:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 736A0CDB470
+	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Jun 2026 07:09:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
-	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=mVpbWm0x5q12VPFJNE7urZLBcZJQOTzG7QWRyA7KZZU=; b=vXkUM8rNzxUTDL
-	V2RxKfhGow++4GlJCWZj61zyFuMAloYt1IbV5GZDkyQXEVM1SX4JHzq/J6c4fpcg/49HVBXp4BeI7
-	qSmcN6ktVh7y5GvHiXdHVf/FLOhkYsqU0hTS/1VmU0PNSda5MLArS68X9Wv5FDGA5SKezS1znHsc6
-	iP4ldUBN+DDKt2Xon9gLdPIUg7USC0uv0Gf+Q0s7slKpoQwmEbpD+bu3jxFwaf5/HGke0IL8QLKo4
-	dYja+M41+GdPRSW4jQiaOiEVcZ0Lk1BxEF0nqZybpQ2EHU++LoXIm4YgA812aL9Bo09JMu7X/ay00
-	q+xV7JDpBqSkFx+6yWFw==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=DYUlLW3g2gFR1d9m58NnumAfe2w9lLmqqB+zNheAnVk=; b=jrF8FaqFtK7eTC
+	nJpISPDYErVKsBslPuBGIAHCcduKL7QE2SK7uvOJM9RcMpACZ8cfJ9GekskV+D8Hq5To4/xlslpW/
+	aos9nhythtDP4G2zywD3jfdYnfU/kN602JP2XTTDE7sygOp9rQ8bJaeJJV6AJKOfAyCFraSYrRLJD
+	ilX1YcSXcz8UZhWMYIp5+doG9SdI6gX6xRPRxbQNU3/lx+LxeQLe4b2IOb7bFb0EuOZu19B6k6FiK
+	wDknqmekeeg41xq2qKZ36AOi2IYBruGHeXOqAPKaSwQ78fI2QiXCeua86LO0o4Nb+lt1mhM017yAB
+	LWOBsW77XIa58g+/E9Wg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wcHYz-00000007GHv-0cV7;
-	Wed, 24 Jun 2026 06:58:21 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1wcHjt-00000007HEs-2Lce;
+	Wed, 24 Jun 2026 07:09:37 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wcHYu-00000007GGt-44V7
+	id 1wcHjr-00000007HEU-1jaR
 	for linux-amlogic@lists.infradead.org;
-	Wed, 24 Jun 2026 06:58:18 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-490ace40f4bso6637905e9.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 23 Jun 2026 23:58:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782284294; x=1782889094; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=lHjTaNhWGw4oT+1H9Ma8AJEBTl6gVGKQowJPh+3SQpo=;
-        b=ctVUHL9TuBRdYy+RplqmPsPT2gSQG/mT3EFH4blmkNuzCPCz928KM25l07c1GzmFKE
-         lYci9+th6f6L//wFxkO5vXU8D8coa0imNeyG7DYcWysq0MXVUiQMiHbIfAvQK7tSrtUh
-         12RVWgk4wOMdqsutKl3JFp9Gactrfi9pL6TEImPXXPatjsy4awE5lSuzFfrUcf+jmlCE
-         Jk2MCMBHQNTcL2UlEEpsJSKSGI+Y55As4WxEvXJkheippQjw7oZxDVsaADK2pL6SV9y6
-         mcqFj0lKgkeGaxuPJu8GAxXKBhmkVRHfazMCSpIqMD17TO/zeMpQ4o624f8CrPS24TqO
-         7Dzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782284294; x=1782889094;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lHjTaNhWGw4oT+1H9Ma8AJEBTl6gVGKQowJPh+3SQpo=;
-        b=jiZ/4/OMSaRNOomqIqJjfos2hOHmrD8w28NvKS7BIWXy/RumE9K6P/0/+1oyF9RNuM
-         YkuBJmVCbcRCEXjVdeDGrtbfSzECP70yycTgDcgUnFyz4pSJAcBFG/m8K9UeBSZAB8m1
-         BTnj5I6IQRZ1L88cexj2YGJppeWluASv4xKGY4SazsWvJUaUb4qSmcVyI3ly7HvehRx/
-         MZXBzlm/hh/5+ZEH5z9vEK0CRq5jIQGIlLJN58Tj7LpI8l4oqlZ/UlOhUuQXSbD6ZWKE
-         aQVgioZwHwZDJ0XCCr42uMfsI38F8Vf1vmANe6WYQZbUngK9XzqVALXwsCAOsL9YDguf
-         2mBw==
-X-Forwarded-Encrypted: i=1; AFNElJ/ZMpqGXJFYL8HLDLONajDghS1qjZWDhdFOeL9I68x+1iCnMkHh3s2OYZkN7u7NYU6TqCv8qgrbtQr3+Vme@lists.infradead.org
-X-Gm-Message-State: AOJu0YxtZWAZ2EdA9aRJ9PMccndazQxUj2deI7T0XAuPnuuuHXrUaMbp
-	cgqW15sHezJkXJRMVYSlyU0domPgHaev0dpYCDzelVL9kbdBnW/2I7br
-X-Gm-Gg: AfdE7cmTL+8vcXEy6+fP1EukvA1l24ckoy/ctY1yFSi6zf1QC3Ph8vKYO3scbMRsdBK
-	z/mfNnHGxJOGXGR+VxotruXCeb12uiAtaZ3Z1me8AY9xqDM5Qs+LEIZPu1IXUlULQmejY+LUeJ1
-	+SGNIJcwBdlQhSE9KSDCflFFyTtXz6fXDPjLOaPeyeINXAGfsQruQco03k5LnhcoO1cOwwUWWEf
-	VLaVDt9/D9m1rfZAsThGXQZVtBeN+1aO5Q4mZZMWPYrI5/GKKoX0u6snta9y5iS7nikjri9GfEH
-	05TcFwOnMJdos5Tfzt89UurysHrsGa8gVDEEEfHfG2AuCgUpnS7oE8wykRGCAvKBcrYEdFvL4PE
-	ac0L6N1aL4uBt7CM9ywUeJpHN49BWreL36srTdIhGeCLTFuRFLoAOYXh7MyWIUgYKS2YsOZapPg
-	n5BQ4FGXG1i3u3u0Zj
-X-Received: by 2002:a05:600c:a49:b0:492:4b68:c80b with SMTP id 5b1f17b1804b1-4926084aac6mr23722445e9.1.1782284293970;
-        Tue, 23 Jun 2026 23:58:13 -0700 (PDT)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-49260d77e8asm20013925e9.1.2026.06.23.23.58.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Jun 2026 23:58:12 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-media@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-staging@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] media: meson: vdec: fix NULL pointer deref in vdec_try_fmt_common
-Date: Wed, 24 Jun 2026 06:58:08 +0000
-Message-ID: <20260624065809.2460720-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.43.0
-MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260623_235817_045190_50909D36 
-X-CRM114-Status: GOOD (  12.77  )
+	Wed, 24 Jun 2026 07:09:35 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 8D48960138;
+	Wed, 24 Jun 2026 07:09:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F75A1F000E9;
+	Wed, 24 Jun 2026 07:09:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782284973;
+	bh=iRBgFXC8y1c+3eK1Su5r67FrWr+bFF0OclIlLB/SUWY=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=RUIeR9u5ryv9pLY3r+F7aaH52pBMQHBjYBKWu+H4UxzCkjruEJYQtIy9WKYmgF5cJ
+	 4pNfd6b1hI/ePB4W48x2JMfYB475FD4RqWCYxJ9yb9nyy7rWrbGEG+L2JwCshgyhyF
+	 gsMd3lnKuSvEW79xYzz3WaPnnOJEE63ebOZd3W8ARxbnVgsiSckjul9FTY6h2S1qPn
+	 a+jGWciXG8b7NS0d+2NUx3z1RZZPQk89ZH5cpaIgCeA1rQPzCYYGKZKPVFSSxhSYop
+	 x0oF+lfkn1czPymlV9EJwQG6faK58DQ+P7iuoarxkF6aW7TZ5lFvELcSJcGh/Uq1wF
+	 AB57sYR+iv1jw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] media: meson: vdec: fix NULL pointer deref in
+ vdec_try_fmt_common
+To: "Christian Hewitt" <christianshewitt@gmail.com>
+Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
+In-Reply-To: <20260624065809.2460720-1-christianshewitt@gmail.com>
+References: <20260624065809.2460720-1-christianshewitt@gmail.com>
+Date: Wed, 24 Jun 2026 07:09:32 +0000
+Message-Id: <20260624070933.1F75A1F000E9@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,54 +62,52 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-When VIDIOC_TRY_FMT is called with an unsupported pixel format on the
-OUTPUT queue, vdec_try_fmt_common() falls back to V4L2_PIX_FMT_MPEG2.
-However, if a distro has locally patched MPEG2 support out (as it has
-been broken for some time) the platform format table does not contain
-MPEG2 so find_format() returns NULL and the subsequent dereference of
-fmt_out->max_width triggers a NULL pointer dereference.
-
-Fix this by falling back to the first format in the platform's format
-array instead of hardcoding V4L2_PIX_FMT_MPEG2. This is always valid
-since every platform defines at least one format.
-
-Fixes: 3e7f51bd9607 ("media: meson: add v4l2 m2m video decoder driver")
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-
----
-This fixes use of v4l2-ctl and v4l2-compliance tools when MPEG2 support
-has been disabled via vdec_platform.c - NB: although this is a fix it's
-also a rather niche scenario so there's no need to backport it to older
-stable kernels.
-
- drivers/staging/media/meson/vdec/vdec.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
-index 4b77ec1af5a7..f3e7072f221a 100644
---- a/drivers/staging/media/meson/vdec/vdec.c
-+++ b/drivers/staging/media/meson/vdec/vdec.c
-@@ -504,8 +504,8 @@ vdec_try_fmt_common(struct amvdec_session *sess, u32 size,
- 	case V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE:
- 		fmt_out = find_format(fmts, size, pixmp->pixelformat);
- 		if (!fmt_out) {
--			pixmp->pixelformat = V4L2_PIX_FMT_MPEG2;
--			fmt_out = find_format(fmts, size, pixmp->pixelformat);
-+			pixmp->pixelformat = fmts[0].pixfmt;
-+			fmt_out = &fmts[0];
- 		}
- 		break;
- 	case V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE:
--- 
-2.43.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpQcmUtZXhpc3RpbmcgaXNzdWVzOgot
+IFtIaWdoXSBNaXNzaW5nIFY0TDIgcXVldWUgYnVzeSBjaGVjayBpbiB2ZGVjX3NfZm10IGFsbG93
+cyBmb3JtYXQgY2hhbmdlcyBkdXJpbmcgYWN0aXZlIHN0cmVhbWluZywgbGVhZGluZyB0byB0eXBl
+IGNvbmZ1c2lvbiBhbmQgbWVtb3J5IGNvcnJ1cHRpb24gaW4gdGhlIElTUi4KLS0KCmNvbW1pdCA4
+YWEzM2FkYjliNzQ1YWQ3YjFhMjY3MjFjY2FmZGJlYjVmMDc2OGJiCkF1dGhvcjogQ2hyaXN0aWFu
+IEhld2l0dCA8Y2hyaXN0aWFuc2hld2l0dEBnbWFpbC5jb20+CgptZWRpYTogbWVzb246IHZkZWM6
+IGZpeCBOVUxMIHBvaW50ZXIgZGVyZWYgaW4gdmRlY190cnlfZm10X2NvbW1vbgoKVGhpcyBjb21t
+aXQgZml4ZXMgYSBOVUxMIHBvaW50ZXIgZGVyZWZlcmVuY2UgaW4gdmRlY190cnlfZm10X2NvbW1v
+bigpIGJ5CmZhbGxpbmcgYmFjayB0byB0aGUgZmlyc3QgZm9ybWF0IGluIHRoZSBwbGF0Zm9ybSdz
+IGZvcm1hdCBhcnJheSBpbnN0ZWFkIG9mCmhhcmRjb2RpbmcgTVBFRzIuIFRoaXMgcHJldmVudHMg
+Y3Jhc2hlcyBvbiBzeXN0ZW1zIHdoZXJlIE1QRUcyIHN1cHBvcnQgaGFzCmJlZW4gbG9jYWxseSBw
+YXRjaGVkIG91dC4KCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvc3RhZ2luZy9tZWRpYS9tZXNvbi92
+ZGVjL3ZkZWMuYyBiL2RyaXZlcnMvc3RhZ2luZy9tZWRpYS9tZXNvbi92ZGVjL3ZkZWMuYwo+IGlu
+ZGV4IGEwMzlkOTI1YzBmZTUuLmMxOGJmMzUyYjE5OTYgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9z
+dGFnaW5nL21lZGlhL21lc29uL3ZkZWMvdmRlYy5jCj4gKysrIGIvZHJpdmVycy9zdGFnaW5nL21l
+ZGlhL21lc29uL3ZkZWMvdmRlYy5jCgpbIC4uLiBdCgpbU2V2ZXJpdHk6IEhpZ2hdClRoaXMgaXMg
+YSBwcmUtZXhpc3RpbmcgaXNzdWUsIGJ1dCB3aGlsZSBsb29raW5nIGF0IHRoZSBmb3JtYXQgaGFu
+ZGxpbmcgaW4KdGhpcyBkcml2ZXIsIEkgbm90aWNlZCBhIHBvdGVudGlhbCByYWNlIGNvbmRpdGlv
+bi4KCkRvZXMgdmRlY19zX2ZtdCgpIGFsbG93IGZvcm1hdCBjaGFuZ2VzIGR1cmluZyBhY3RpdmUg
+c3RyZWFtaW5nPwoKZHJpdmVycy9zdGFnaW5nL21lZGlhL21lc29uL3ZkZWMvdmRlYy5jOnZkZWNf
+c19mbXQoKSB7CiAgICAgICAgLi4uCglpZiAoZi0+dHlwZSA9PSBWNEwyX0JVRl9UWVBFX1ZJREVP
+X09VVFBVVF9NUExBTkUpCgkJc2Vzcy0+Zm10X291dCA9IGZtdF9vdXQ7CgllbHNlIGlmIChmLT50
+eXBlID09IFY0TDJfQlVGX1RZUEVfVklERU9fQ0FQVFVSRV9NUExBTkUpCgkJc2Vzcy0+cGl4Zm10
+X2NhcCA9IGZvcm1hdC5mbXQucGl4X21wLnBpeGVsZm9ybWF0OwogICAgICAgIC4uLgp9CgpJdCBh
+cHBlYXJzIHRoZXJlIGlzIG5vIGNoZWNrIHRvIGVuc3VyZSB0aGUgVjRMMiBxdWV1ZXMgYXJlIGlk
+bGUgKGUuZy4sCnZpYSB2YjJfaXNfYnVzeSgpKSBiZWZvcmUgb3ZlcndyaXRpbmcgdGhlIHNlc3Np
+b24gZm9ybWF0IHBhcmFtZXRlcnMuCgpJZiBhIHVzZXJzcGFjZSBhcHBsaWNhdGlvbiBpcyBhY3Rp
+dmVseSBzdHJlYW1pbmcgYW5kIGNvbmN1cnJlbnRseSBjYWxscwpWSURJT0NfU19GTVQgd2l0aCBh
+IGRpZmZlcmVudCBmb3JtYXQsIGNvdWxkIHRoaXMgbGVhZCB0byB0eXBlIGNvbmZ1c2lvbgphbmQg
+bWVtb3J5IGNvcnJ1cHRpb24gaW4gdGhlIGhhcmRpcnEgaGFuZGxlcj8KCmRyaXZlcnMvc3RhZ2lu
+Zy9tZWRpYS9tZXNvbi92ZGVjL3ZkZWMuYzp2ZGVjX2lzcigpIHsKICAgICAgICAuLi4KCXJldHVy
+biBzZXNzLT5mbXRfb3V0LT5jb2RlY19vcHMtPmlzcihzZXNzKTsKfQoKQmVjYXVzZSB0aGUgaGFy
+ZGlycSBoYW5kbGVyIGRlcmVmZXJlbmNlcyBzZXNzLT5mbXRfb3V0IHdpdGhvdXQgbG9ja3MsCmEg
+bWlkLXN0cmVhbSBmb3JtYXQgY2hhbmdlIG1pZ2h0IGNhdXNlIHRoZSBJU1Igb2YgdGhlIG5ld2x5
+IHNlbGVjdGVkIGNvZGVjCnRvIGV4ZWN1dGUgb24gYSBzZXNzaW9uIHN0YXRlIChzZXNzLT5wcml2
+KSBpbml0aWFsaXplZCBmb3IgdGhlIHByZXZpb3VzCmNvZGVjLgoKLS0gClNhc2hpa28gQUkgcmV2
+aWV3IMK3IGh0dHBzOi8vc2FzaGlrby5kZXYvIy9wYXRjaHNldC8yMDI2MDYyNDA2NTgwOS4yNDYw
+NzIwLTEtY2hyaXN0aWFuc2hld2l0dEBnbWFpbC5jb20/cGFydD0xCgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlz
+dApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVh
+ZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
