@@ -4,62 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7C70CDE001
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Jun 2026 12:05:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEF98CDB479
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Jun 2026 12:14:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pqqkmqVQJDNKByEF3mwTC/p/B/qNLZUKkXi9EY8Mqks=; b=E6KPtXqvAwvh/N
-	vrlmcuqaoA11UU4Yr5TKnTDl5TZhA+KWn4ozQuNFWX7XxFLj5vH1FRAm7J5pKnrM9xTe2jeXykTaT
-	uP4MNs+NNRyHFWaKBSJsMHTUsriu8pqAKGOiyrk/vskBg11P1JBomi8yNYbIkOlZ75/1mK3/OHmLd
-	PX5UQtK7drYhv9p7+SDyJibdhxfkRUNlwhaGmAE/5GfqHV35VnCb3W47W+M8YC34D3N9NiuoMCCSI
-	8h92Wb61wyPTxgqTPaqEjKdGgBnMV4iwtlWM6LE8TBNLtZCK50CGTVTBaTtQAUY1DnYhLFp/ila1p
-	grjKC9zzCDXie6DZAMWg==;
+	List-Owner; bh=0zA/Bq+cYW85Dm6aNyzZ0cdooleJCKWekOpjbTLsUc0=; b=Y2bB+aV4yr0lnl
+	ei/7kqPi4VI2Z4+EYjtPuaYrUORzynovxYCIn78VWV5X23+9Sv4UEZtKJL8d2tZSGzHvTQr9eVKgO
+	gah1apZ9ww/zkZsKg1/QQVd7LXS5nURrW4jAv7t1P9qZXUcHSu7/OMuVl39qCYHfnLGJHX5ktOQ+T
+	sy01irMao5HDD5ThZL/RYsr1Q8SW2Pd2l2PLHhpbWz3T6dD7qbSMvWpeztfMHSVAEjDiIr4kZnu+v
+	hfhyMK1D6k1a7gTjUWz4/GA0OzW6pGCW9guSzXx+gNw0mMl4/bLmasMzf+SK4SsDz9CE/w9bDxHh5
+	OPLfe//kWmgYrbh/+OBA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wciq3-000000099N3-2uQn;
-	Thu, 25 Jun 2026 12:05:47 +0000
-Received: from mx.adeep.su ([185.250.0.168])
+	id 1wciy3-00000009AXN-2wRf;
+	Thu, 25 Jun 2026 12:14:03 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wciq1-000000099MP-283W;
-	Thu, 25 Jun 2026 12:05:46 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8EF0D1A0C8A;
-	Thu, 25 Jun 2026 15:05:41 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=baodeep.com; s=dkim;
-	t=1782389141; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=9mXIj+mN0okDzD2iEIEK87JUucdAnGmmd68jsRDhCyI=;
-	b=iHUltsGXX/Iok1BcHLC8NxNAXZxiLB+f7d3VPaStvR6pB8Z9s3jDvPszknOwZwAJFsv/SJ
-	HFGmAa/Kypg57bgHOa4XwhwnZZie1Y9j7TsMAt0cP6PC+1G5EhxOZXsZQyqI0OFkbOGkUx
-	neQ857sOVo4ggIOzoT4h668BIdiHwrcauN7lTfDDXkbC8eGDCwCXGoEbk6z0f/1YjPO5zK
-	6zvUs+KbcYqJgZ9X9Rs9T+ThfEwVkeWwZ61fZDSBTVsVzBWALbKYy0KUeRaqCaZW5nvQzm
-	enUSEkzFyHe6r9+KCLS9ZHFgOYc6J0tepzgcTtxA9WkCJGejnRM4jfSZel/PVA==
-Message-ID: <49c2aeb0-39b9-4bbe-833e-b18e38167f8e@baodeep.com>
-Date: Thu, 25 Jun 2026 15:05:41 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] gpio: fix sleeping-in-atomic in shared-proxy; restore
- meson non-sleeping
-To: Bartosz Golaszewski <brgl@kernel.org>
-Cc: linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <CGME20260610153425eucas1p29d20a835114a28b15cb12ea00534e074@eucas1p2.samsung.com>
- <20260610153329.937833-1-v@baodeep.com>
- <184d315b-a0a1-4792-8a40-1b4967025916@samsung.com>
- <112d2563-e650-4881-bba0-335f6a3fcb8a@arm.com>
- <CAMRc=MdP8Wf6QRXGHpb3KJW2KMidSe-0LeyKKTYix=wYKZcPuA@mail.gmail.com>
-Content-Language: ru
-From: Viacheslav <v@baodeep.com>
-In-Reply-To: <CAMRc=MdP8Wf6QRXGHpb3KJW2KMidSe-0LeyKKTYix=wYKZcPuA@mail.gmail.com>
-X-Last-TLS-Session-Version: TLSv1.3
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260625_050545_722234_88BE75E3 
-X-CRM114-Status: UNSURE (   9.67  )
-X-CRM114-Notice: Please train this message.
+	id 1wciy2-00000009AWy-0udU
+	for linux-amlogic@lists.infradead.org;
+	Thu, 25 Jun 2026 12:14:02 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id F423C43F7C;
+	Thu, 25 Jun 2026 12:14:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0F851F000E9;
+	Thu, 25 Jun 2026 12:14:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782389641;
+	bh=n0FzTl2ClaFbOOn1X7rDYjPnsBJv5U5/RktgaLLfGPw=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=QPT6+TXEfDZDrJQ06ou6agTkfq8Z5F3jLBp06iYIoG8iI0sAbNkf7b0imXZJRjboh
+	 4jDffcGPK3ttTicGa9fBPOVdz3mr0GWl/bsS204No+M6xqCKNlF4byua2DJ6UFagfp
+	 Jb1O+1JvwCrpVrvuj0C7HCR7cgH0CPVjwTYBBEQn50hrZvRL5OmOMW1LuaKroqbSql
+	 1HVacLl4WNT3Wz6kdw+dtWuLtESwfZTMb0r4IMV5VxygEJ1a1iLqx5t1AUxL12R1QJ
+	 5dmunVkPaVe47pmQThBp+1ZykfZF/mNuyS699y/DqMSqViatUtL6RMzZKPAruNI9ct
+	 hPH7cmrS/tIIQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 2/2] pinctrl: meson: restore non-sleeping GPIO access
+To: "Viacheslav Bocharov" <v@baodeep.com>
+Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
+In-Reply-To: <20260625115718.1678991-3-v@baodeep.com>
+References: <20260625115718.1678991-1-v@baodeep.com>
+ <20260625115718.1678991-3-v@baodeep.com>
+Date: Thu, 25 Jun 2026 12:14:00 +0000
+Message-Id: <20260625121400.F0F851F000E9@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,48 +62,89 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi!
-
-24.06.2026 10:25, Bartosz Golaszewski wrote:
-> On Tue, 23 Jun 2026 17:16:44 +0200, Robin Murphy <robin.murphy@arm.com> said:
->> On 11/06/2026 9:26 am, Marek Szyprowski wrote:
->>> Hi Viachesla,
->>>
->>> On 10.06.2026 17:32, Viacheslav Bocharov wrote:
->>>> gpio-shared-proxy chooses its descriptor lock (mutex vs spinlock) from
->>>> the underlying chip's can_sleep, but under that lock it calls config and
->>>> direction ops that reach sleeping pinctrl paths. On a controller with
->>>> non-sleeping MMIO value ops the lock is a spinlock, so a sleeping call
->>>> runs from atomic context:
->>>>
-> 
-> ...
-> 
->>>
->>> I've checked this patchset with these two reverted and no warning was reported.
->>
->> If it hadn't already been fixed (...)
->>
-> 
-> About that - Viacheslav, do you still plan to submit v2 of this?
-
-Thanks for review. I prepared and sent the second version of the patch today
-
-> 
-> Bart
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+NCBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpQcmUtZXhpc3RpbmcgaXNzdWVzOgot
+IFtIaWdoXSBTZXR0aW5nIGBjYW5fc2xlZXAgPSBmYWxzZWAgd2l0aG91dCBjb25maWd1cmluZyBy
+ZWdtYXAgdG8gdXNlIHJhdyBzcGlubG9ja3MgY2F1c2VzIGEgJ3NsZWVwaW5nIHdoaWxlIGF0b21p
+YycgQlVHIG9uIFBSRUVNUFRfUlQuCi0gW01lZGl1bV0gRGF0YSByYWNlIG9uIGdsb2JhbCBgbWVz
+b25fcmVnbWFwX2NvbmZpZ2AgZHVyaW5nIGNvbmN1cnJlbnQgcGluY3RybCBwcm9iaW5nIGNhdXNl
+cyB1bnByZWRpY3RhYmxlIGRldmljZSBpbml0aWFsaXphdGlvbi4KLSBbTWVkaXVtXSBVbmNoZWNr
+ZWQgYHJlZ21hcF9yZWFkKClgIGluIGBtZXNvbl9ncGlvX2dldCgpYCBjYW4gZXhwb3NlIHVuaW5p
+dGlhbGl6ZWQgc3RhY2sgbWVtb3J5LgotIFtNZWRpdW1dIEhhcmR3YXJlIGdsaXRjaCBkdWUgdG8g
+Y29uZmlndXJpbmcgR1BJTyBkaXJlY3Rpb24gdG8gb3V0cHV0IGJlZm9yZSBzZXR0aW5nIHRoZSBk
+cml2ZSB2YWx1ZS4KLS0KCmNvbW1pdCA4MzE1ZmRiYjIwMWM5ZDE0Njg5MzY2YjNmYjE0M2U3MGZl
+ZjY2Yjc3CkF1dGhvcjogVmlhY2hlc2xhdiBCb2NoYXJvdiA8dkBiYW9kZWVwLmNvbT4KCiAgICBw
+aW5jdHJsOiBtZXNvbjogcmVzdG9yZSBub24tc2xlZXBpbmcgR1BJTyBhY2Nlc3MKClRoaXMgY29t
+bWl0IHJlc3RvcmVzIHRoZSBub24tc2xlZXBpbmcgYmVoYXZpb3Igb2YgdGhlIG1lc29uIEdQSU8g
+Y29udHJvbGxlciBieQpzZXR0aW5nIHRoZSBjYW5fc2xlZXAgZmxhZyB0byBmYWxzZS4gVGhlIHdv
+cmthcm91bmQgZm9yIHRoZSBzbGVlcGluZyBsb2NrIGluCnRoZSBzaGFyZWQtcHJveHkgaGFzIGJl
+ZW4gZml4ZWQgdXBzdHJlYW0sIG1lYW5pbmcgdGhlIGNvbnRyb2xsZXItd2lkZQp3b3JrYXJvdW5k
+IGlzIG5vIGxvbmdlciBuZWNlc3NhcnkuCgpMaW5rOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9h
+bGwvMjAyNjAxMDUxNTA1MDkuNTY1MzctMS1iYXJ0b3N6LmdvbGFzemV3c2tpQG9zcy5xdWFsY29t
+bS5jb20vCgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BpbmN0cmwvbWVzb24vcGluY3RybC1tZXNv
+bi5jIGIvZHJpdmVycy9waW5jdHJsL21lc29uL3BpbmN0cmwtbWVzb24uYwo+IGluZGV4IDQ1MDdk
+YzhiNTU2M2MuLjE4Mjk1YjE1ZWNkOWQgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9waW5jdHJsL21l
+c29uL3BpbmN0cmwtbWVzb24uYwo+ICsrKyBiL2RyaXZlcnMvcGluY3RybC9tZXNvbi9waW5jdHJs
+LW1lc29uLmMKPiBAQCAtNjE5LDcgKzYxOSw3IEBAIHN0YXRpYyBpbnQgbWVzb25fZ3Bpb2xpYl9y
+ZWdpc3RlcihzdHJ1Y3QgbWVzb25fcGluY3RybCAqcGMpCj4gIAlwYy0+Y2hpcC5zZXQgPSBtZXNv
+bl9ncGlvX3NldDsKPiAgCXBjLT5jaGlwLmJhc2UgPSAtMTsKPiAgCXBjLT5jaGlwLm5ncGlvID0g
+cGMtPmRhdGEtPm51bV9waW5zOwo+IC0JcGMtPmNoaXAuY2FuX3NsZWVwID0gdHJ1ZTsKPiArCXBj
+LT5jaGlwLmNhbl9zbGVlcCA9IGZhbHNlOwoKW1NldmVyaXR5OiBIaWdoXQpUaGlzIGlzbid0IGEg
+YnVnIGludHJvZHVjZWQgYnkgdGhpcyBwYXRjaCwgYnV0IHdpbGwgc2V0dGluZyB0aGUgY2FuX3Ns
+ZWVwIGZsYWcKdG8gZmFsc2UgdHJpZ2dlciBhICdzbGVlcGluZyB3aGlsZSBhdG9taWMnIGxvY2tk
+ZXAgc3BsYXQgb24gUFJFRU1QVF9SVCBrZXJuZWxzPwoKVGhlIHJlZ21hcCBjb25maWd1cmF0aW9u
+IGZvciB0aGlzIGRldmljZSBsYWNrcyAudXNlX3Jhd19zcGlubG9jayA9IHRydWU6Cgpkcml2ZXJz
+L3BpbmN0cmwvbWVzb24vcGluY3RybC1tZXNvbi5jOgpzdGF0aWMgc3RydWN0IHJlZ21hcF9jb25m
+aWcgbWVzb25fcmVnbWFwX2NvbmZpZyA9IHsKCS5yZWdfYml0cyA9IDMyLAoJLnZhbF9iaXRzID0g
+MzIsCgkucmVnX3N0cmlkZSA9IDQsCn07CgpXaXRob3V0IHRoZSByYXcgc3BpbmxvY2sgZmxhZywg
+cmVnbWFwIGRlZmF1bHRzIHRvIHN0YW5kYXJkIHNwaW5sb2NrcyB3aGljaApiZWNvbWUgc2xlZXBh
+YmxlIHJ0X211dGV4ZXMgb24gUFJFRU1QVF9SVC4gQ2FsbGVycyBsaWtlIHcxLWdwaW8gaW52b2tl
+IHRoZXNlCmNhbGxiYWNrcyB1bmRlciBsb2NhbF9pcnFfc2F2ZSgpLCBzbyB0cnlpbmcgdG8gYWNx
+dWlyZSB0aGUgc2xlZXBhYmxlIGxvY2sKd2l0aCBJUlFzIGRpc2FibGVkIGlzIGludmFsaWQuIENv
+dWxkIHRoZSByZWdtYXAgY29uZmlnIGJlIHVwZGF0ZWQgdG8gZW5zdXJlCnRoZSBoYXJkd2FyZSBh
+Y2Nlc3MgaXMgdHJ1bHkgbm9uLXNsZWVwaW5nPwoKW1NldmVyaXR5OiBNZWRpdW1dClRoaXMgaXMg
+YSBwcmUtZXhpc3RpbmcgaXNzdWUsIGJ1dCBpcyB0aGVyZSBhIGRhdGEgcmFjZSB3aGVuIGNvbmZp
+Z3VyaW5nIHRoZQpyZWdtYXAgaW4gbWVzb25fbWFwX3Jlc291cmNlKCk/Cgpkcml2ZXJzL3BpbmN0
+cmwvbWVzb24vcGluY3RybC1tZXNvbi5jOm1lc29uX21hcF9yZXNvdXJjZSgpIHsKICAgIC4uLgoJ
+bWVzb25fcmVnbWFwX2NvbmZpZy5tYXhfcmVnaXN0ZXIgPSByZXNvdXJjZV9zaXplKCZyZXMpIC0g
+NDsKCW1lc29uX3JlZ21hcF9jb25maWcubmFtZSA9IGRldm1fa2FzcHJpbnRmKHBjLT5kZXYsIEdG
+UF9LRVJORUwsCgkJCQkJCSAgIiVwT0ZuLSVzIiwgbm9kZSwKCQkJCQkJICBuYW1lKTsKICAgIC4u
+Lgp9CgpJZiBtdWx0aXBsZSBBbWxvZ2ljIHBpbmN0cmwgaW5zdGFuY2VzIChlLmcuIHN0YW5kYXJk
+IGFuZCBBTykgcHJvYmUKY29uY3VycmVudGx5IG9yIHZpYSBkZWZlcnJlZCBwcm9iaW5nLCB0aGV5
+IGNvdWxkIG92ZXJ3cml0ZSB0aGUgc3RhdGljCm1lc29uX3JlZ21hcF9jb25maWcgYmVmb3JlIGRl
+dm1fcmVnbWFwX2luaXRfbW1pbygpIGlzIGNhbGxlZC4gTWlnaHQgdGhpcwpyZXN1bHQgaW4gb25l
+IGNvbnRyb2xsZXIgcmVjZWl2aW5nIGFub3RoZXIncyBjb25maWd1cmF0aW9uLCBvciBjYXVzZQpv
+dXQtb2YtYm91bmRzIE1NSU8gYWNjZXNzZXM/CgpbU2V2ZXJpdHk6IE1lZGl1bV0KVGhpcyBpc24n
+dCBhIGJ1ZyBpbnRyb2R1Y2VkIGJ5IHRoaXMgcGF0Y2gsIGJ1dCBpcyB1bmluaXRpYWxpemVkIHN0
+YWNrIG1lbW9yeQpsZWFrZWQgaWYgdGhlIE1NSU8gcmVhZCBmYWlscz8KCmRyaXZlcnMvcGluY3Ry
+bC9tZXNvbi9waW5jdHJsLW1lc29uLmM6bWVzb25fZ3Bpb19nZXQoKSB7CiAgICAuLi4KCXJlZ21h
+cF9yZWFkKHBjLT5yZWdfZ3BpbywgcmVnLCAmdmFsKTsKCglyZXR1cm4gISEodmFsICYgQklUKGJp
+dCkpOwp9CgpTaW5jZSB0aGUgcmV0dXJuIHZhbHVlIG9mIHJlZ21hcF9yZWFkKCkgaXMgaWdub3Jl
+ZCwgYSBmYWlsZWQgcmVhZCAoZS5nLiBkdWUKdG8gYW4gb3V0LW9mLWJvdW5kcyByZWdpc3RlciBm
+cm9tIHRoZSBtYXhfcmVnaXN0ZXIgZGF0YSByYWNlKSBsZWF2ZXMgdmFsCnVuaW5pdGlhbGl6ZWQu
+IEV2YWx1YXRpbmcgYW5kIHJldHVybmluZyB2YWwgdW5jb25kaXRpb25hbGx5IGNvdWxkIGxlYWsg
+YSBiaXQKb2Yga2VybmVsIHN0YWNrIG1lbW9yeS4KCltTZXZlcml0eTogTWVkaXVtXQpUaGlzIGlz
+IGEgcHJlLWV4aXN0aW5nIGlzc3VlLCBidXQgY291bGQgbWVzb25fcGluY29uZl9zZXRfb3V0cHV0
+X2RyaXZlKCkKY2F1c2UgYW4gb2JzZXJ2YWJsZSBoYXJkd2FyZSBnbGl0Y2g/Cgpkcml2ZXJzL3Bp
+bmN0cmwvbWVzb24vcGluY3RybC1tZXNvbi5jOm1lc29uX3BpbmNvbmZfc2V0X291dHB1dF9kcml2
+ZSgpIHsKICAgIC4uLgoJcmV0ID0gbWVzb25fcGluY29uZl9zZXRfb3V0cHV0KHBjLCBwaW4sIHRy
+dWUpOwoJaWYgKHJldCkKCQlyZXR1cm4gcmV0OwoKCXJldHVybiBtZXNvbl9waW5jb25mX3NldF9k
+cml2ZShwYywgcGluLCBoaWdoKTsKfQoKQnkgY29uZmlndXJpbmcgdGhlIHBpbiBkaXJlY3Rpb24g
+dG8gb3V0cHV0IGJlZm9yZSBzZXR0aW5nIHRoZSBjb3JyZWN0IGRyaXZlCnZhbHVlLCB0aGUgbGlu
+ZSBpcyBkcml2ZW4gdXNpbmcgd2hhdGV2ZXIgc3RhbGUgYml0IGlzIHByZXNlbnQgaW4gdGhlCk1F
+U09OX1JFR19PVVQgcmVnaXN0ZXIuIENhbiB0aGlzIGRyaXZlIGFuIGluY29ycmVjdCBsZXZlbCBv
+bnRvIHRoZSBsaW5lIGZvciBhCmJyaWVmIGludGVydmFsLCBwb3RlbnRpYWxseSBmYWxzZS10cmln
+Z2VyaW5nIGVkZ2Utc2Vuc2l0aXZlIGV4dGVybmFsCnBlcmlwaGVyYWxzPwoKPiAgCj4gIAlyZXQg
+PSBncGlvY2hpcF9hZGRfZGF0YSgmcGMtPmNoaXAsIHBjKTsKPiAgCWlmIChyZXQpIHsKCi0tIApT
+YXNoaWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nhc2hpa28uZGV2LyMvcGF0Y2hzZXQvMjAyNjA2
+MjUxMTU3MTguMTY3ODk5MS0xLXZAYmFvZGVlcC5jb20/cGFydD0yCgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlz
+dApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVh
+ZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
