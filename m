@@ -4,132 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F70DCDB479
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Jun 2026 21:36:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 365BBCDE007
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Jun 2026 11:58:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=RozWIEIqBBgscHgHIuiRcVlPYC0GJxuqkiuGgDxehXA=; b=geC2UwzaoQ9ub3
-	MRscA8WzhU9UoB7C3JW6a+EXxT8GBZOMCB4VaSPXc924lifujSNlj9pTYXAVgPPtXR8/tDV6Ir04P
-	rDaEXSmrPpZunQRFIqKhjBFgpB5onGbPnCBPMx8LnxpMU3vbjCh/LVNvaxwVYmLgJzxGqTXnzpVxR
-	qbSCwxa9wdfBFgapKY/WhlRk6vNoRyfP/iLdoBt7yLozXzl9WNVsYV9fRTVAH82ZxYTCKUZe+S3hw
-	M/PZ9NOeQQQGZZQy7TX8tdeEQGym8H5TmiuqOD9HuWvGIWZJxlKLnGJvkb6mmetzD2/KyOfIWjssh
-	kPY0PuPNGplDnTznMncA==;
+	List-Owner; bh=DlppgxtzOJmAQtFbrKH6aS1sId/fOhV99/5/g31bI4M=; b=hfbK57Ljl/uN3c
+	fK/8gKNudtjBi3/OYmao7Jm/r8ijfj7+mLTnwOG822NfbKgGFG7tpc0D8uNY5atrviLWsPMjiUPaM
+	AIC2wG7h96ksPnA+1hdsv1K+xiL3fbjQYsg7kP0wcpxovVs29ao4ekWbF172u6EBVW/VyQ2xTR1r8
+	0qzMvgbkaSnQULFhHwQGh4LlVnGEcSN4D1r5LzCsclHuXeztvLzCSOwefEaCJE+mawhu2xpnRYmnH
+	m6//A0Fw9ctzt2bTb+7bZ8UHNIW4rv7G8SnEYdHuA+K0YY7PNNLSV10xjrsCY/v4MbFsRttQndtb0
+	gsmim51KjFqni4ayCRTg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wcVGT-00000008N5l-19w7;
-	Wed, 24 Jun 2026 21:36:09 +0000
-Received: from mail-francecentralazolkn19013087.outbound.protection.outlook.com ([52.103.46.87] helo=PA4PR04CU001.outbound.protection.outlook.com)
+	id 1wciii-000000098MS-0ZSr;
+	Thu, 25 Jun 2026 11:58:12 +0000
+Received: from mx.adeep.su ([185.250.0.168])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wcVGQ-00000008N5Q-45LU
-	for linux-amlogic@lists.infradead.org;
-	Wed, 24 Jun 2026 21:36:08 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fRPBL/1ogUEt/SL05sA/hDTC6doJyTnl3bArENb9vzYy6jPgMo2d1pEil+Wh1LefAF9RxSxK+DCt28eRelVkcHNsEeIs7SohFm6pOXzF30ZgX/JG70u5j3jaIC91aecATY8+thPtqQkvdEeR0st/cpMS+bJCtn8vOMLdY8NHtqvJ1jnBFT4IcKDcIyq3Gj0e2sSgNKpO8Tkf8fsgb70+zEaa/Q+SVUg+RehJWaaIPKOnRqgEIpTCKiHEyagPJTKMoIiUROvZVr1IS41xSF3hGZoNp4IKdefgSqHV/diK681YO8TgKcGSc4wBlqOqpviJjw9t3tFW6t5W3h9LgLDXEQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wAe5ZE+nKgNN81K1MHBgU8UNFmICNMYwBivEJpghyV0=;
- b=OJVgvsudIkC37Cc5fZKtQR67CjqN01LrSx/gNdG5ZpTT0PVP9VwUUrFcxSb6VpxbyQ4QdLIjjWM1EE79/eKyDV4erQl8OUbqjiGWs0HwZCN22g8Q/GV5k89cwi3PcYyFs9zGUae0Ynyav7lqEhiUefIQohfyQaJepPOw3ISR1AvpWTUbMZ0Fcjeg5EJYtZTZUpkkpsn2JyNDaKNTkUcscQQjHGSOvqoGrDeK9cSU3MFKCW7sJINo5oTufPJOdBh06G1BhoeUn6fZ0D431C5kgdy1g1JMSihW9Jh9jLRLPgq4I152XCqGQwRJbPsaxiBG5LnnC3L5QYUGxC9ZCh8hbw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wAe5ZE+nKgNN81K1MHBgU8UNFmICNMYwBivEJpghyV0=;
- b=WPjih2wncdhoIjXvwBh/qgP8BvLrbZATHrVXTOj+xiV9ovOdrWVRJAuwUBSVGUwwCimKSHqYmj769dSeTHkD2xwgsCGfxLe/qs2woX3bP585k9XxUzJWTt0E1OB+CU3is9H51q6NxFgCNv+kgNmPk5KXlgiIYToQFdZePbnUkAPWvE45qhOaFfdZ7+Hr0XyQaD8Ga5vsjQUgf5gNbaMV7VrGHEJj709QwTI1KbO3/gIbxQ4DodsMLXg+Lu10oHlgZW2hyotIjYgkd6BaN1zV4EiIwBIMbEN+5JqlrcupRf+cVDIkZl0UIkMTw4kEXOUd5Lphvi0r6mCwKyRLTM4nNQ==
-Received: from VI1PR05MB6992.eurprd05.prod.outlook.com (2603:10a6:800:188::10)
- by PAVPR05MB10428.eurprd05.prod.outlook.com (2603:10a6:102:2fb::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.15; Wed, 24 Jun
- 2026 21:36:02 +0000
-Received: from VI1PR05MB6992.eurprd05.prod.outlook.com
- ([fe80::aded:1de5:5441:2313]) by VI1PR05MB6992.eurprd05.prod.outlook.com
- ([fe80::aded:1de5:5441:2313%6]) with mapi id 15.21.0139.018; Wed, 24 Jun 2026
- 21:36:01 +0000
-From: Gabriel Carvalho <gabriel-n-carvalho@outlook.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Julian Braha <julianbraha@gmail.com>,
+	id 1wciie-000000098LR-3CHR;
+	Thu, 25 Jun 2026 11:58:11 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E8734170204;
+	Thu, 25 Jun 2026 14:57:48 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=baodeep.com; s=dkim;
+	t=1782388682; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=00CUa1hLOxEqnOirfYovjxZeJiCqa/8wDLtlYF68e/4=;
+	b=FVwLDUQg38OHClWg9cUHgYBGktXMqDZPZCwwoJ9oX7Qt88x+OESMSiKIn7T/LMKJhdmMoG
+	dfaJgroBqEsxQ5NoRGrKXR7wvMyIh1PEpA00xDqGKI0NBfYSQCya4iw8TI9PS/BUeDWDpe
+	FJ9a5xU6+owdAoVcMT29AbK2vuY7rMA+xOcbpfxBbHrrvC85n0zfSplNogiTMs5SrnuVXo
+	47LbZadKDKaEZ409wu/jERSTth437wrdLdodtjYISi20O07ynWp6w488Rbxf9G8iVDvs0G
+	yAwUAeZnQxJ+MIPyebGomtI0WUxWBa3vPJQSTANN8qGdJwt/eXiTLJ5VXgnwdA==
+From: Viacheslav Bocharov <v@baodeep.com>
+To: Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	dri-devel@lists.freedesktop.org,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Diederik de Haas <diederik@cknow-tech.com>,
+	linux-gpio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Gabriel Carvalho <gabriel-n-carvalho@outlook.com>
-Subject: [PATCH] drm/meson: cleanup unnecessary condition in kconfig
-Date: Wed, 24 Jun 2026 22:35:33 +0100
-Message-ID: <VI1PR05MB699278F5D7FD140310C6EED9C8ED2@VI1PR05MB6992.eurprd05.prod.outlook.com>
-X-Mailer: git-send-email 2.53.0
-X-ClientProxiedBy: PR1P264CA0020.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:102:19f::7) To VI1PR05MB6992.eurprd05.prod.outlook.com
- (2603:10a6:800:188::10)
-X-Microsoft-Original-Message-ID: <20260624213533.148075-1-gabriel-n-carvalho@outlook.com>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] gpio: fix sleeping-in-atomic in shared-proxy; restore meson non-sleeping
+Date: Thu, 25 Jun 2026 14:57:16 +0300
+Message-ID: <20260625115718.1678991-1-v@baodeep.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI1PR05MB6992:EE_|PAVPR05MB10428:EE_
-X-MS-Office365-Filtering-Correlation-Id: e209ea60-ff20-409e-c672-08ded2389612
-X-Microsoft-Antispam: BCL:0;ARA:14566002|22121099003|19110799012|5062599005|37011999003|23021999003|25010399006|15080799012|8060799015|39105399006|4140399003|19101099003|5072599009|40105399003|3412199025|440099028|1710799026;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?/iPz9kYzVfwIDHY4Pny9lg+E3Uw9nTfQRSX+2ebMY2yJbL0s75xTVX33l7CM?=
- =?us-ascii?Q?vVpX4x+oNkY08BtbfoXor15B/lsF9OpFXKpMDcxU9re6Xr39Jq+SW4cyFgnC?=
- =?us-ascii?Q?kvSz7ccCiPR1MTnB0rWD6VFHdGaRuixFJQL+WZz+1FMVJ5bWwhsamn11j0lX?=
- =?us-ascii?Q?Hbr+Tvz+QRqlgYP0o6QiNqN7/TJUBTGSQeMpcKnoNlHE2hE9qwAyZ/Z0kkv9?=
- =?us-ascii?Q?dB3amT0oF/gdino/rdt2xRVtERhnV45AYaig9GAx476KJuhpK2M6FY7Ac7r+?=
- =?us-ascii?Q?Qzu4ivUV0xPmLH8XwJO22qO6V7wvFSbjWdxC1loXebVx5yiQYIJU3MAezw/V?=
- =?us-ascii?Q?PdXBGcbve7jRlmKQIxGjHVIJHKJ6UEE1Xhu91Ge8T2wmerzOdSlWOnJ3K+4a?=
- =?us-ascii?Q?q1jZHSkC04pJH6aVwzhqpAkYZue7FKy5XEd5a7qJ5mZ5Bt6c1ZX7nKgVKva9?=
- =?us-ascii?Q?98Jb3GTXEpa290qvYOAbkVamRxRIwAHYk2UMXrIQaLrCOeOy7X4y97nKnWFh?=
- =?us-ascii?Q?cgqdakJKsQkOR8ij6Cnp0y9cv8aTxDgXaU2A7J/fhfSeqem3G7KGo+Yg72bX?=
- =?us-ascii?Q?J9RBhW0XRDqLNlMClEYjEPW9zWwNs1wB9e6UdK6m1XyfA3kOQ0HS6w2YV1M1?=
- =?us-ascii?Q?vrCGvC9ozc4BRSnQUGiet9RCyWAFhqNFsre/OqD+8J/XNnNFbQnjiIRvee3I?=
- =?us-ascii?Q?5lMR6OpNfmbGvXrUh1oAXfJ2fjM+KlNZFRPbpl4oUEqiRHFQi6meYUSzbXYy?=
- =?us-ascii?Q?LprGeK5nIGZzeKR8UdUPI3jSiQSXn0OpQfNs2dZFoWypQTkM7yupSXBccJqV?=
- =?us-ascii?Q?io8xJe16Aspvb3iZsZ2pK457perMAIGhIOeN3nL/r8PTwtdUQ5Q3fjMAypnU?=
- =?us-ascii?Q?u9Jzs/9FZ7lrnAA1pJb0wba06PJowHuh4+22F5dtMETEgggXipTadcDa9xe5?=
- =?us-ascii?Q?U4PD8pAxDQm47JOBdN69rx1OG9rqBbhcEE7eVwU//j45z4K07tn9XdDZ9Iek?=
- =?us-ascii?Q?YrMRqPJr49eG5/u93qNRjjOemjBuazRr6aciy9bhyhXnPbJf7l78+j1T5EY8?=
- =?us-ascii?Q?iZd0GdXq?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?XN+l1zC96d3LErD509jxubVGvFIMERQ6ab+Rd4tV8fje0cvLgSYcrgxJALNg?=
- =?us-ascii?Q?r/HILOKaBV0C7Tf87IiGufEJLF9EOcXJdetd1No27/5OVNE6ZfHZ9ebBO0p7?=
- =?us-ascii?Q?B65dQcAC3Fjz5BbCwurWkOuZEUEjVN0dYLG5Zo1HJarHCs3cuY9N+cXt/0Dc?=
- =?us-ascii?Q?i90DxVGFVNkm+Y1eR/0G+lm0RWAhWJFe0bNiPnGJoHiJddT++NZTxkJro5hy?=
- =?us-ascii?Q?n9bsJTM9ifMBJfZZkPpMHSnlRjJx6SbGf/+aZvQfIQX8OEFDmxk9r7Qa8fSv?=
- =?us-ascii?Q?KOFFxumU2TMyUBuFiKJzsiIF8u0WVRdVE6TMV3N6dPjBA07mD0FtR3xN4pfF?=
- =?us-ascii?Q?aS7WXkmLhZQeDcXswJnNnfas3ggRftk5zWXO68wjtd+sIX2BzhryHyEavJD4?=
- =?us-ascii?Q?WFfXfGLj+CpnNcJ+OOuYrn4m8PkyQB1+CjQHaeF6UmbmIz7UUHWurAgWwIqq?=
- =?us-ascii?Q?SmR89G1WvF0fkrBBQ23XIAuhbCrcfdw5DHiomV3WZnhEMJihDXGV8OrMAOb9?=
- =?us-ascii?Q?lPV9JKj0lzC9cbGExJlwxzr4V9yLPDx2jJR0Z4FtWEWbV3yZZfN/KToee9Qf?=
- =?us-ascii?Q?nQAnqsYMif0mxlXQupA3JvGqgbUOhA6tc908io0vHZatTPpsOSN68xvczA2B?=
- =?us-ascii?Q?vsyF7O93h1gNzE4TXVC8NpRRhWkclxe0AXeuFz1mDWH6NHFfsBOGxj56tAUo?=
- =?us-ascii?Q?ff6yi4JCctIvEtg9nFU9KXtKAl2vs/Aq5alvVVqNEM5c83sIEOskIFhk18mw?=
- =?us-ascii?Q?xUKTDQJaujtWUTyh04iHfT/bBdYVCD4QyPlz1szYIEFHfwgVHZYn5EMTVh4+?=
- =?us-ascii?Q?UW3hHXmcbAUiv/xRPzz2OrsafquibbJM/mhJ5HHZxM/Iq6hTdKDhWUvwgomQ?=
- =?us-ascii?Q?pGaqj23TzoXZS6RFutTduchdPySzjfSCKvVJtUGyI0rjHTriEMpTnsGAlfVu?=
- =?us-ascii?Q?3ZTEDKc3/6/VKMrRlUODu/MlUPXb6tNdDJ+fzHyC9/2ldqrwyzrtxKA2vuZH?=
- =?us-ascii?Q?bo4a6haT+h916InYCu3bawBmZJxmvw7/RxrRdaefWoNfJYfGPRS8H/UpIV9J?=
- =?us-ascii?Q?VLpm3OsX5rJsnv3KxDPFfm1cl8QD0YAnDuPlPjx1bXg5AhCCqMQO3Z8ZiWLX?=
- =?us-ascii?Q?/uYDkx43sp0QpO1UgeYcO85cEJJ3VUFRdZ4CftwXxpkCj5lHnZRHyPVkR42w?=
- =?us-ascii?Q?aJKe3ihwY/zP1qBVyASOCoaIPy1q35JN+J26NqRLcjtpaBoj2mrAOc6wQPum?=
- =?us-ascii?Q?s+COp7JRPB0jynBH6msJRTddfEjj71+CtLUvOEBycykE0Bpg2XQo7RS1Z6P8?=
- =?us-ascii?Q?078kpAEuzLfaJbf4FtDK3wj4nS5A6RUn5sdtAhuXkF2zOjkm3K9v3o9JClZJ?=
- =?us-ascii?Q?qE7RuZpuO29sC6X8MKKX47rjPBHOKoAJb+wxcgV+m/lU0fE4gg=3D=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e209ea60-ff20-409e-c672-08ded2389612
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR05MB6992.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2026 21:36:01.9159
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAVPR05MB10428
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260624_143607_026146_87D4DDA4 
-X-CRM114-Status: UNSURE (   7.89  )
+X-CRM114-CacheID: sfid-20260625_045809_327332_2A841593 
+X-CRM114-Status: UNSURE (   9.71  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -147,43 +76,65 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-DRM_MESON_DW_HDMI and DRM_MESON_DW_MIPI_DSI both already depend on
-DRM_MESON, so the "if DRM_MESON" on their "default y" lines is
-redundant.
+gpio-shared-proxy chooses its descriptor lock (mutex vs spinlock) from
+the underlying chip's can_sleep, but under that lock it calls config and
+direction ops that reach sleeping pinctrl paths. On a controller with
+non-sleeping MMIO value ops the lock is a spinlock, so a sleeping call
+runs from atomic context:
 
-This redundant condition was found by kconfirm, a static analysis tool
-for Kconfig.
+  BUG: sleeping function called from invalid context
+    ... pinctrl_gpio_set_config <- gpiochip_generic_config
+    <- gpio_shared_proxy_set_config (voting spinlock held)
+    <- ... <- mmc_pwrseq_simple_probe
 
-Signed-off-by: Gabriel Carvalho <gabriel-n-carvalho@outlook.com>
-Reviewed-by: Julian Braha <julianbraha@gmail.com>
----
- drivers/gpu/drm/meson/Kconfig | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+This was reported on Khadas VIM3 and worked around for Amlogic by
+commit 28f240683871 ("pinctrl: meson: mark the GPIO controller as
+sleeping"), which marked the whole meson controller sleeping. That
+workaround broke atomic value-path consumers: w1-gpio (1-Wire bitbang)
+no longer detects devices, because its IRQ-disabled read slot calls the
+non-cansleep gpiod_*_value() and now hits WARN_ON(can_sleep) per bit.
 
-diff --git a/drivers/gpu/drm/meson/Kconfig b/drivers/gpu/drm/meson/Kconfig
-index 417f79829cf8..c3800825ac15 100644
---- a/drivers/gpu/drm/meson/Kconfig
-+++ b/drivers/gpu/drm/meson/Kconfig
-@@ -17,13 +17,13 @@ config DRM_MESON
- config DRM_MESON_DW_HDMI
- 	tristate "HDMI Synopsys Controller support for Amlogic Meson Display"
- 	depends on DRM_MESON
--	default y if DRM_MESON
-+	default y
- 	select DRM_DW_HDMI
- 	imply DRM_DW_HDMI_I2S_AUDIO
- 
- config DRM_MESON_DW_MIPI_DSI
- 	tristate "MIPI DSI Synopsys Controller support for Amlogic Meson Display"
- 	depends on DRM_MESON
--	default y if DRM_MESON
-+	default y
- 	select DRM_DW_MIPI_DSI
- 	select GENERIC_PHY_MIPI_DPHY
+Patch 1 fixes the proxy locking generically (always a sleeping mutex).
+Patch 2 then restores meson can_sleep=false, fixing 1-Wire.
 
-base-commit: cdeb2ccd993ed8647adbbda2c3b103aa717fd6f7
--- 
-2.53.0
+Patch 1 has a trade-off: a proxied GPIO becomes sleeping, so consumers
+gating on gpiod_cansleep() change behaviour. No current device needs
+atomic (non-cansleep) value access on a shared GPIO -- every report
+(Khadas VIM3, ODROID-M1, my test on JetHub D1+) is a shared reset line
+(eMMC/SDIO pwrseq or PCIe reset) driven through the cansleep accessors,
+which is what the proxy exists to vote on; bit-banging that needs atomic
+access cannot work through voting anyway. An alternative that keeps
+atomic value access (split locking) is possible but adds a second lock
+and new race windows, so this series takes the simpler mutex-only
+approach.
+
+The two are a unit: patch 2 must not be applied without patch 1,
+otherwise the original VIM3 splat returns on boards that share a meson
+GPIO -- please keep the order. I have not Cc'd stable; I will request
+stable backports separately once both patches have landed.
+
+Changes since v1:
+- gpio: shared-proxy: open-code the descriptor mutex; drop the
+  gpio_shared_desc_lock guard and the gpio_shared_lockdep_assert()
+  helper, move the mutex rationale to the can_sleep assignment. No
+  functional change.
+
+v1: https://lore.kernel.org/linux-gpio/20260610153329.937833-1-v@baodeep.com/
+
+Viacheslav Bocharov (2):
+  gpio: shared-proxy: always serialize with a sleeping mutex
+  pinctrl: meson: restore non-sleeping GPIO access
+
+ drivers/gpio/gpio-shared-proxy.c      | 66 +++++++++++----------------
+ drivers/gpio/gpiolib-shared.c         |  9 +---
+ drivers/gpio/gpiolib-shared.h         | 28 +-----------
+ drivers/pinctrl/meson/pinctrl-meson.c |  2 +-
+ 4 files changed, 30 insertions(+), 75 deletions(-)
+
+
+base-commit: 840ef6c78e6a2f694b578ecb9063241c992aaa9e
+--
+2.54.0
 
 
 _______________________________________________
