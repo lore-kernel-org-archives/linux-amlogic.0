@@ -4,60 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11D0CCD4F26
-	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Jun 2026 07:17:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3665CDE008
+	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Jun 2026 08:04:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ILzRX6UeK75wa/3pUeXxEJPqdzjNu56dGfKBwAJ4Dv8=; b=OOSy4KvnfM2IrP
-	Y/ws42BzzehBHzAyDFj1VcEMmgpiDyQp/Ji/yHMBQ/x8ags07+ra98h7pJMt5/jOEfVjZaA4Jz2k+
-	07CEDC7Z4CKAF7jP7ygoubtinM54ywqJluBTqWW/BT2zmDuROAQa9xGi/8wWcRxIj/Katr+ULjxAL
-	Fx6Js4RpsbcCmXIqxRFzrax6rPiwR8ACCsEo82BRJgVS+YEaH17n0c14UuAyXZJEGNsrbuvbfqn4I
-	fqLVCINPunURcMGSWHZ2QywEfdctGmGabNzU/ClkyI3rgcb8UWpIWZGQi5y/Ljmsg5oeqpylMXBgz
-	Tszd+x7VqHaxCQjx85YQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ZHIx4vpJ4l+95VogNZ2qfvNPppK+iyQtshFdw6pqw8M=; b=U8oDHLqQwG3BFN
+	intYLmgpM28/19LDuiGQramRcVLaNL8Crfal/obr+N+0e5XH6bejYmqtxlFSWVRU1zNo3szL1pHOV
+	JDgLdp1EIt3pGl6xgh0G3bA0OiW7v60C4m5WLaFXz0WpAbNt8v1Ks6AWtffrTycjuT70EC4+XXYHl
+	FHamzCMR1FGXKf1r6XzllVpX2+nGNFqVjCQbYNO24HE4QgcW/qhkX9ZXqwUOsrzhRvlwc74xRpb6B
+	u8t/CRiT9kALTmKZV+ksYcOXnMFJjUYKf5EVkpzAa2TOE7F3nQiBiFzOgdp/Hi3UQ0VwYfrvDOZeM
+	/kRAdpw8rJ+tfMyl4FGw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wd0o4-0000000AfAF-1sMs;
-	Fri, 26 Jun 2026 07:16:56 +0000
-Received: from mx.adeep.su ([185.250.0.168])
+	id 1wd1Y8-0000000Akap-24kb;
+	Fri, 26 Jun 2026 08:04:32 +0000
+Received: from mail-ed1-x531.google.com ([2a00:1450:4864:20::531])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wd0o0-0000000Af9q-0DNC;
-	Fri, 26 Jun 2026 07:16:55 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DF51B1BE7A2;
-	Fri, 26 Jun 2026 10:16:44 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=baodeep.com; s=dkim;
-	t=1782458207; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=LLwOaOrVN63ocBzK4TrquFSTvMxdhRBEVjhLSw06WEg=;
-	b=jyzEzToPHt0FZEmcxepLe+ZA6VMW2QaCJLe96oEhXXdQhSolX3SH2aWIN078Or7/guip9m
-	82ZEJ3DklV52hmqI5FJndHqn9PIWo4eumBRO7PBLUc72cWVkTz7o4dW4o6F7oqqoNRg6Ev
-	wIqMLPn0iDCNqC5LioVBHo/WriwYTTAwiBCvM2c5Pjl9wFs+/OQTMDkQXwpcD9MDj4m9oW
-	2cAxU05OE0rPKjDz5vAke6MfDIVXYPz8EGK7ENdztgc1A9/lzV/Q/FL0dRIrvZzlV5wPlu
-	UdwruCzDc8Kd7uWA1HZM2Wq5mNsK1N8M7a7jL4uXmIYQCljl3Uil0QPGYpgBqw==
-Message-ID: <0a9fee08-8945-4c7d-8bea-9efb7d921f10@baodeep.com>
-Date: Fri, 26 Jun 2026 10:16:27 +0300
+	id 1wd1Y5-0000000AkZT-3Bkz
+	for linux-amlogic@lists.infradead.org;
+	Fri, 26 Jun 2026 08:04:31 +0000
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-68bd9fce347so1249960a12.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 26 Jun 2026 01:04:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782461067; x=1783065867; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8BDlwFSAwx/VUcU/0Zc7YpwR/WtK9Ex0Sk5CLPSAtZY=;
+        b=DVmLz0AblE9RIFkt7P6Dnxno9a8IE6xobsa2JxkWsl4O6Qe9YTJhE+OBBHy3e6uN1j
+         D2JnRGkTTwGx8zzTaP/W/YU4DXVEdc5lDlMIbyL3j80iFLLu895YcPNyAnskmVCgE7U6
+         oqRzrAE51UdAwGdN0v4D/q+NC+hLh45m1G6cJHphPzH/nis76x87sjP7EArWCCzsWqKi
+         XD1exg0zdk/hYp4retB7VX0wPkaCyZAsUlSwOGRZWzF6n9EwRTtU0mdBkFXUljDONmKJ
+         5i/Mv/hmSlNvGB9kHw39eEeX00TSKoi9TLw5TCkXY5eGzmdj6/ShBba6QuTbM49lJoSE
+         5KRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782461067; x=1783065867;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8BDlwFSAwx/VUcU/0Zc7YpwR/WtK9Ex0Sk5CLPSAtZY=;
+        b=lDVTmXC0V5YQJ0m5cXJz7+qDjCdPiaRS3yH+hF2z+U28n2Q0qW4I1GXpAfNx7rCiOQ
+         mYXQf/EQzDMu82sd+woTTe/xuVB925OgmZBfOXOF58PGFtYocDub62KxdYqs5Hj6sYMP
+         oMdRte7nS01xVP2j5YwQHtSA55adx5h4LfttjJd2jlKnYMQmuA9i+mb0dfhHqq/nTKri
+         zkFAC5YWIurJR6ptCh0njrb/nHzUCyzsU43aZa3WvcHzkx49fcQdNc8Rk64p6pIxndEw
+         nGdKtXrsslnSRcxqaK05DNGMIiUzkaF69q5ICRHeREp+2SIyrzT72uyP/djHyqXUk8QP
+         lvbQ==
+X-Forwarded-Encrypted: i=1; AHgh+RpGLD80BaWRc3ZgFteHu8BRqPVn525IBpmmepcKc4vonDBBPvACZ/JHyfD8NzwrprKt5YJNoW1cBjVPOTKg@lists.infradead.org
+X-Gm-Message-State: AOJu0Yx3h6ppZWBrnGbNVkQP9UtYspf1PFSRv1Anp5D5/Ju/25EDVIvS
+	lWcfETJBPQIig+KOAzmMIzYNo3wS7y856uH/6AKvIQ44GPUhX/DC41LG
+X-Gm-Gg: AfdE7cl+vKAFuxDU23PdU96/C3omaFrBnQpot14kCWgXhViD4SRZdV5YOOp/CDE0Tpk
+	3Oby9xtB+3AoMYQvxRc4+SJkeQuiV+ghxogUOpdaJ2/2O5lNrkvjgPzGuvFgYMvGel3kELbq8tf
+	C/uOJSU8BK6l/BFZbhZiAlDvoJle+r/EfVpgg8c5jN5PhB3UJb4sVCobF4baB/U+JuBIQwys1hM
+	8D98SNEi+5cC5g9c6TMfAtczgXB6WZMruGgJujfra9H+p1LaWLjLa3S7kfpBhXCTXtx2lEZ2sxj
+	WFq2jmbd/4dJ2jCZI5DrfLgLYqBG3/AY5tnf4UzS7bbB/Tu+iuKkcoEfab3nWNFHSWnlz2Aecjn
+	zhO5ahGrRQDhNfxL+xIEYMXjkkt+YEZq9xXKEzmg3OwNXG3QwC/S0pzhjfB2Szdq00XL/WNCWAw
+	PjC1CGYAlfivim8CH6
+X-Received: by 2002:a05:6402:3553:b0:698:bbe:9c8 with SMTP id 4fb4d7f45d1cf-69810ae7ec2mr1477123a12.15.1782461066991;
+        Fri, 26 Jun 2026 01:04:26 -0700 (PDT)
+Received: from toolbox.. ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-46c1ee01c3bsm24027475f8f.10.2026.06.26.01.04.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Jun 2026 01:04:26 -0700 (PDT)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Jerome Brunet <jbrunet@baylibre.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-sound@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ASoC: meson: aiu: fifo-spdif: soft reset the S/PDIF datapath on start/stop
+Date: Fri, 26 Jun 2026 08:04:22 +0000
+Message-ID: <20260626080422.4191435-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] gpio: shared-proxy: always serialize with a
- sleeping mutex
-To: Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260625115718.1678991-1-v@baodeep.com>
- <CGME20260625115817eucas1p10bfe0898d6cb2f6f51cff36a031946f9@eucas1p1.samsung.com>
- <20260625115718.1678991-2-v@baodeep.com>
- <d8d407d5-ba6c-4197-9cf0-2fa7e6e17155@samsung.com>
-Content-Language: ru
-From: Viacheslav <v@baodeep.com>
-In-Reply-To: <d8d407d5-ba6c-4197-9cf0-2fa7e6e17155@samsung.com>
-X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260626_001652_603153_B9D7D6A4 
-X-CRM114-Status: UNSURE (   5.51  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260626_010429_809032_1DA2D83A 
+X-CRM114-Status: GOOD (  10.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,43 +100,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi!
+The I2S FIFO soft-resets its fast domain on start (AIU_RST_SOFT bit 0 +
+AIU_I2S_SYNC read in aiu_fifo_i2s_trigger), mirroring the downstream
+vendor driver's audio_out_i2s_enable(). The S/PDIF FIFO has no equivalent:
+it only toggles the IEC958 DCU, so a stale datapath FIFO can be replayed,
+producing the "machine gun noise" buffer underrun - on start when switching
+outputs, and on stop when playback ends. The latter is audible on devices
+with an always-on S/PDIF-fed DAC (e.g. the ES7144 on the WeTek Play2).
 
-26.06.2026 08:54, Marek Szyprowski wrote:
-> On 25.06.2026 13:57, Viacheslav Bocharov wrote:
->> The shared GPIO descriptor used either a mutex or a spinlock, chosen at
->> runtime from the underlying chip's can_sleep:
->>
->> 	shared_desc->can_sleep = gpiod_cansleep(shared_desc->desc);
->> 	... if (can_sleep) mutex_lock(); else spin_lock_irqsave();
+The vendor driver resets the IEC958 fast domain (AIU_RST_SOFT bit 2) on
+both enable and disable (audio_hw_958_enable), and when reconfiguring
+(audio_hw_958_reset clears AIU_958_DCU_FF_CTRL then resets). Do the same:
+reset before enabling the DCU on start, and after disabling it on stop.
 
-...
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ sound/soc/meson/aiu-fifo-spdif.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
->>
->> The lock type was added by commit a060b8c511ab ("gpiolib: implement
->> low-level, shared GPIO support"); the sleeping call under it arrived with
->> the proxy driver.
->>
->> Fixes: e992d54c6f97 ("gpio: shared-proxy: implement the shared GPIO proxy driver")
->> Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
->> Closes: https://lore.kernel.org/all/00107523-7737-4b92-a785-14ce4e93b8cb@samsung.com/
->> Signed-off-by: Viacheslav Bocharov <v@baodeep.com>
-> 
-> 
-> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> 
-
-Thanks!
-
-
-Best regards
+diff --git a/sound/soc/meson/aiu-fifo-spdif.c b/sound/soc/meson/aiu-fifo-spdif.c
+index e0e00ec026dc..826055a71421 100644
+--- a/sound/soc/meson/aiu-fifo-spdif.c
++++ b/sound/soc/meson/aiu-fifo-spdif.c
+@@ -24,6 +24,7 @@
+ #define AIU_MEM_IEC958_CONTROL_MODE_16BIT	BIT(7)
+ #define AIU_MEM_IEC958_CONTROL_MODE_LINEAR	BIT(8)
+ #define AIU_MEM_IEC958_BUF_CNTL_INIT		BIT(0)
++#define AIU_RST_SOFT_958_FAST			BIT(2)
+ 
+ #define AIU_FIFO_SPDIF_BLOCK			8
+ 
+@@ -68,12 +69,16 @@ static int fifo_spdif_trigger(struct snd_pcm_substream *substream, int cmd,
+ 	case SNDRV_PCM_TRIGGER_START:
+ 	case SNDRV_PCM_TRIGGER_RESUME:
+ 	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
++		snd_soc_component_write(component, AIU_RST_SOFT,
++					AIU_RST_SOFT_958_FAST);
+ 		fifo_spdif_dcu_enable(component, true);
+ 		break;
+ 	case SNDRV_PCM_TRIGGER_SUSPEND:
+ 	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
+ 	case SNDRV_PCM_TRIGGER_STOP:
+ 		fifo_spdif_dcu_enable(component, false);
++		snd_soc_component_write(component, AIU_RST_SOFT,
++					AIU_RST_SOFT_958_FAST);
+ 		break;
+ 	default:
+ 		return -EINVAL;
 -- 
-Viacheslav Bocharov
+2.43.0
 
 
 _______________________________________________
