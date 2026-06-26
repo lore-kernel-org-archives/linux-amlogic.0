@@ -4,53 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEF98CDB479
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Jun 2026 12:14:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86E8DCD4F26
+	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Jun 2026 05:39:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0zA/Bq+cYW85Dm6aNyzZ0cdooleJCKWekOpjbTLsUc0=; b=Y2bB+aV4yr0lnl
-	ei/7kqPi4VI2Z4+EYjtPuaYrUORzynovxYCIn78VWV5X23+9Sv4UEZtKJL8d2tZSGzHvTQr9eVKgO
-	gah1apZ9ww/zkZsKg1/QQVd7LXS5nURrW4jAv7t1P9qZXUcHSu7/OMuVl39qCYHfnLGJHX5ktOQ+T
-	sy01irMao5HDD5ThZL/RYsr1Q8SW2Pd2l2PLHhpbWz3T6dD7qbSMvWpeztfMHSVAEjDiIr4kZnu+v
-	hfhyMK1D6k1a7gTjUWz4/GA0OzW6pGCW9guSzXx+gNw0mMl4/bLmasMzf+SK4SsDz9CE/w9bDxHh5
-	OPLfe//kWmgYrbh/+OBA==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=fvPd0dPKJ2YMVVdIShOwIIxS/WgpPvUllbQddFTbYDI=; b=0KhPlL1J5G4a3Z
+	hX4dzTW9nZpZUwWYenLi/YoQAYfHSHcwFmqSrAuokyubS9xrPI/iSKhbOSwhv9MyUwiOCA7LNo62s
+	wSZ0pzM6BmdT1qwpz6hxCQkkou2fibO2mRgAgXwS4705b7gH+lvrbMnCTXT6qNOIt58RINI43ubSL
+	m0eML+S2LnLUvDaW0Ku3CTyY8oUEs01pojDubR+h92ptH6n/9fRK1eizeHOLWFJSSN0EOL7YALxxL
+	9iLomej86u4f8owW9aYQ2DGwvW4VXa6UXL0uRK08c2ql4Rp4D2n/1N/2a6XOQg5CX4iC04RpVgX0j
+	pg+AAEWw4g73Exn4LQIw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wciy3-00000009AXN-2wRf;
-	Thu, 25 Jun 2026 12:14:03 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1wczHv-0000000AWqc-3LYL;
+	Fri, 26 Jun 2026 05:39:39 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wciy2-00000009AWy-0udU
+	id 1wczHu-0000000AWqC-2uD8
 	for linux-amlogic@lists.infradead.org;
-	Thu, 25 Jun 2026 12:14:02 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id F423C43F7C;
-	Thu, 25 Jun 2026 12:14:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0F851F000E9;
-	Thu, 25 Jun 2026 12:14:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782389641;
-	bh=n0FzTl2ClaFbOOn1X7rDYjPnsBJv5U5/RktgaLLfGPw=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=QPT6+TXEfDZDrJQ06ou6agTkfq8Z5F3jLBp06iYIoG8iI0sAbNkf7b0imXZJRjboh
-	 4jDffcGPK3ttTicGa9fBPOVdz3mr0GWl/bsS204No+M6xqCKNlF4byua2DJ6UFagfp
-	 Jb1O+1JvwCrpVrvuj0C7HCR7cgH0CPVjwTYBBEQn50hrZvRL5OmOMW1LuaKroqbSql
-	 1HVacLl4WNT3Wz6kdw+dtWuLtESwfZTMb0r4IMV5VxygEJ1a1iLqx5t1AUxL12R1QJ
-	 5dmunVkPaVe47pmQThBp+1ZykfZF/mNuyS699y/DqMSqViatUtL6RMzZKPAruNI9ct
-	 hPH7cmrS/tIIQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 2/2] pinctrl: meson: restore non-sleeping GPIO access
-To: "Viacheslav Bocharov" <v@baodeep.com>
-Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
-In-Reply-To: <20260625115718.1678991-3-v@baodeep.com>
-References: <20260625115718.1678991-1-v@baodeep.com>
- <20260625115718.1678991-3-v@baodeep.com>
-Date: Thu, 25 Jun 2026 12:14:00 +0000
-Message-Id: <20260625121400.F0F851F000E9@smtp.kernel.org>
+	Fri, 26 Jun 2026 05:39:38 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 345DB43E23;
+	Fri, 26 Jun 2026 05:39:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0ACFFC2BCB8;
+	Fri, 26 Jun 2026 05:39:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1782452378;
+	bh=g+qv6yDnSKfM5Y35nL+/IDMuJ04Lv9xK2LZVXVlDSpQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=NBCXpoyEA1cDV2LrF8mxKCyfNXCbPWJINR9N0DnUsb70Bs3ByD1iuL375+SdScgNS
+	 f8xF1I56Tq4tvKDXK/eCFU6gWcEsx4c62+kxKfctlAe3TVBbpEcX6TN6hS4zAZoSJm
+	 zmZrw4n2K7QjQ5zufmgRwQxO4mVzkKsAgjzYoZl9ZRaDCk07o9WUtQXwHghApz3ACV
+	 GvDffGWlCGQraLRQFu24j5omOLP+UtmLmB44WCnzZCuU4wW6Z4Vb/xjUO6wgi085yc
+	 iw7gOnQziRuN/b2F31YmlgZy3IeVSJLjfBx9VMqEDduhEftsIFUrS0Uzcp1/q0nCHb
+	 rsbaZsKjD+vYQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E6659CD4F26;
+	Fri, 26 Jun 2026 05:39:37 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v9 0/3] Add Amlogic general DMA
+Date: Fri, 26 Jun 2026 05:39:32 +0000
+Message-Id: <20260626-amlogic-dma-v9-0-558d672c4a95@amlogic.com>
+MIME-Version: 1.0
+X-B4-Tracking: v=1; b=H4sIAJQQPmoC/23QTU7EMAwF4KuMsqaoduykYcU9EIs0cWci0SlqU
+ QUa9e6kI0b9Y/kSfc+Wb2qQPsmgXk431cuYhtRdc3BPJxUu/nqWIsWcFZbIgMCFbz+6cwpFbH1
+ hHVkbOUQ0pLL47KVJ3/e2t/ecL2n46vqfe/kI8+ujx2x6RijKQrBywlac8fb17/c5dK2am0Z8a
+ FMC2q3GrImRo0YbLcWj1ovGcjdbZ82mqV3DTiLiUdNK72dT1g2ykAESV/+zOS9al7TVnLX3xDo
+ CNZH0UZu1dlttsjZak4uo60j1UduVxt1sO29e1Q5EwGGAo64WzQhbXWVdmRAwiCOg3dWmafoFE
+ uGPSloCAAA=
+X-Change-ID: 20251215-amlogic-dma-79477d5cd264
+To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+ Frank Li <Frank.Li@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Frank Li <Frank.Li@nxp.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1782452375; l=2825;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=g+qv6yDnSKfM5Y35nL+/IDMuJ04Lv9xK2LZVXVlDSpQ=;
+ b=mDnEzc5cmYQ9D1pqlFBAkvAS8wOrutsoF7kY2et9MK1iAJabMWCZVNZIbjhzSpi3V8fp5/MLV
+ jKtI/Okrw1uAvN0i5dlShGgHVXY9ex4goTEgkU2w1tnPkjaRGLq1/2K
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,89 +89,83 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-NCBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpQcmUtZXhpc3RpbmcgaXNzdWVzOgot
-IFtIaWdoXSBTZXR0aW5nIGBjYW5fc2xlZXAgPSBmYWxzZWAgd2l0aG91dCBjb25maWd1cmluZyBy
-ZWdtYXAgdG8gdXNlIHJhdyBzcGlubG9ja3MgY2F1c2VzIGEgJ3NsZWVwaW5nIHdoaWxlIGF0b21p
-YycgQlVHIG9uIFBSRUVNUFRfUlQuCi0gW01lZGl1bV0gRGF0YSByYWNlIG9uIGdsb2JhbCBgbWVz
-b25fcmVnbWFwX2NvbmZpZ2AgZHVyaW5nIGNvbmN1cnJlbnQgcGluY3RybCBwcm9iaW5nIGNhdXNl
-cyB1bnByZWRpY3RhYmxlIGRldmljZSBpbml0aWFsaXphdGlvbi4KLSBbTWVkaXVtXSBVbmNoZWNr
-ZWQgYHJlZ21hcF9yZWFkKClgIGluIGBtZXNvbl9ncGlvX2dldCgpYCBjYW4gZXhwb3NlIHVuaW5p
-dGlhbGl6ZWQgc3RhY2sgbWVtb3J5LgotIFtNZWRpdW1dIEhhcmR3YXJlIGdsaXRjaCBkdWUgdG8g
-Y29uZmlndXJpbmcgR1BJTyBkaXJlY3Rpb24gdG8gb3V0cHV0IGJlZm9yZSBzZXR0aW5nIHRoZSBk
-cml2ZSB2YWx1ZS4KLS0KCmNvbW1pdCA4MzE1ZmRiYjIwMWM5ZDE0Njg5MzY2YjNmYjE0M2U3MGZl
-ZjY2Yjc3CkF1dGhvcjogVmlhY2hlc2xhdiBCb2NoYXJvdiA8dkBiYW9kZWVwLmNvbT4KCiAgICBw
-aW5jdHJsOiBtZXNvbjogcmVzdG9yZSBub24tc2xlZXBpbmcgR1BJTyBhY2Nlc3MKClRoaXMgY29t
-bWl0IHJlc3RvcmVzIHRoZSBub24tc2xlZXBpbmcgYmVoYXZpb3Igb2YgdGhlIG1lc29uIEdQSU8g
-Y29udHJvbGxlciBieQpzZXR0aW5nIHRoZSBjYW5fc2xlZXAgZmxhZyB0byBmYWxzZS4gVGhlIHdv
-cmthcm91bmQgZm9yIHRoZSBzbGVlcGluZyBsb2NrIGluCnRoZSBzaGFyZWQtcHJveHkgaGFzIGJl
-ZW4gZml4ZWQgdXBzdHJlYW0sIG1lYW5pbmcgdGhlIGNvbnRyb2xsZXItd2lkZQp3b3JrYXJvdW5k
-IGlzIG5vIGxvbmdlciBuZWNlc3NhcnkuCgpMaW5rOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9h
-bGwvMjAyNjAxMDUxNTA1MDkuNTY1MzctMS1iYXJ0b3N6LmdvbGFzemV3c2tpQG9zcy5xdWFsY29t
-bS5jb20vCgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BpbmN0cmwvbWVzb24vcGluY3RybC1tZXNv
-bi5jIGIvZHJpdmVycy9waW5jdHJsL21lc29uL3BpbmN0cmwtbWVzb24uYwo+IGluZGV4IDQ1MDdk
-YzhiNTU2M2MuLjE4Mjk1YjE1ZWNkOWQgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9waW5jdHJsL21l
-c29uL3BpbmN0cmwtbWVzb24uYwo+ICsrKyBiL2RyaXZlcnMvcGluY3RybC9tZXNvbi9waW5jdHJs
-LW1lc29uLmMKPiBAQCAtNjE5LDcgKzYxOSw3IEBAIHN0YXRpYyBpbnQgbWVzb25fZ3Bpb2xpYl9y
-ZWdpc3RlcihzdHJ1Y3QgbWVzb25fcGluY3RybCAqcGMpCj4gIAlwYy0+Y2hpcC5zZXQgPSBtZXNv
-bl9ncGlvX3NldDsKPiAgCXBjLT5jaGlwLmJhc2UgPSAtMTsKPiAgCXBjLT5jaGlwLm5ncGlvID0g
-cGMtPmRhdGEtPm51bV9waW5zOwo+IC0JcGMtPmNoaXAuY2FuX3NsZWVwID0gdHJ1ZTsKPiArCXBj
-LT5jaGlwLmNhbl9zbGVlcCA9IGZhbHNlOwoKW1NldmVyaXR5OiBIaWdoXQpUaGlzIGlzbid0IGEg
-YnVnIGludHJvZHVjZWQgYnkgdGhpcyBwYXRjaCwgYnV0IHdpbGwgc2V0dGluZyB0aGUgY2FuX3Ns
-ZWVwIGZsYWcKdG8gZmFsc2UgdHJpZ2dlciBhICdzbGVlcGluZyB3aGlsZSBhdG9taWMnIGxvY2tk
-ZXAgc3BsYXQgb24gUFJFRU1QVF9SVCBrZXJuZWxzPwoKVGhlIHJlZ21hcCBjb25maWd1cmF0aW9u
-IGZvciB0aGlzIGRldmljZSBsYWNrcyAudXNlX3Jhd19zcGlubG9jayA9IHRydWU6Cgpkcml2ZXJz
-L3BpbmN0cmwvbWVzb24vcGluY3RybC1tZXNvbi5jOgpzdGF0aWMgc3RydWN0IHJlZ21hcF9jb25m
-aWcgbWVzb25fcmVnbWFwX2NvbmZpZyA9IHsKCS5yZWdfYml0cyA9IDMyLAoJLnZhbF9iaXRzID0g
-MzIsCgkucmVnX3N0cmlkZSA9IDQsCn07CgpXaXRob3V0IHRoZSByYXcgc3BpbmxvY2sgZmxhZywg
-cmVnbWFwIGRlZmF1bHRzIHRvIHN0YW5kYXJkIHNwaW5sb2NrcyB3aGljaApiZWNvbWUgc2xlZXBh
-YmxlIHJ0X211dGV4ZXMgb24gUFJFRU1QVF9SVC4gQ2FsbGVycyBsaWtlIHcxLWdwaW8gaW52b2tl
-IHRoZXNlCmNhbGxiYWNrcyB1bmRlciBsb2NhbF9pcnFfc2F2ZSgpLCBzbyB0cnlpbmcgdG8gYWNx
-dWlyZSB0aGUgc2xlZXBhYmxlIGxvY2sKd2l0aCBJUlFzIGRpc2FibGVkIGlzIGludmFsaWQuIENv
-dWxkIHRoZSByZWdtYXAgY29uZmlnIGJlIHVwZGF0ZWQgdG8gZW5zdXJlCnRoZSBoYXJkd2FyZSBh
-Y2Nlc3MgaXMgdHJ1bHkgbm9uLXNsZWVwaW5nPwoKW1NldmVyaXR5OiBNZWRpdW1dClRoaXMgaXMg
-YSBwcmUtZXhpc3RpbmcgaXNzdWUsIGJ1dCBpcyB0aGVyZSBhIGRhdGEgcmFjZSB3aGVuIGNvbmZp
-Z3VyaW5nIHRoZQpyZWdtYXAgaW4gbWVzb25fbWFwX3Jlc291cmNlKCk/Cgpkcml2ZXJzL3BpbmN0
-cmwvbWVzb24vcGluY3RybC1tZXNvbi5jOm1lc29uX21hcF9yZXNvdXJjZSgpIHsKICAgIC4uLgoJ
-bWVzb25fcmVnbWFwX2NvbmZpZy5tYXhfcmVnaXN0ZXIgPSByZXNvdXJjZV9zaXplKCZyZXMpIC0g
-NDsKCW1lc29uX3JlZ21hcF9jb25maWcubmFtZSA9IGRldm1fa2FzcHJpbnRmKHBjLT5kZXYsIEdG
-UF9LRVJORUwsCgkJCQkJCSAgIiVwT0ZuLSVzIiwgbm9kZSwKCQkJCQkJICBuYW1lKTsKICAgIC4u
-Lgp9CgpJZiBtdWx0aXBsZSBBbWxvZ2ljIHBpbmN0cmwgaW5zdGFuY2VzIChlLmcuIHN0YW5kYXJk
-IGFuZCBBTykgcHJvYmUKY29uY3VycmVudGx5IG9yIHZpYSBkZWZlcnJlZCBwcm9iaW5nLCB0aGV5
-IGNvdWxkIG92ZXJ3cml0ZSB0aGUgc3RhdGljCm1lc29uX3JlZ21hcF9jb25maWcgYmVmb3JlIGRl
-dm1fcmVnbWFwX2luaXRfbW1pbygpIGlzIGNhbGxlZC4gTWlnaHQgdGhpcwpyZXN1bHQgaW4gb25l
-IGNvbnRyb2xsZXIgcmVjZWl2aW5nIGFub3RoZXIncyBjb25maWd1cmF0aW9uLCBvciBjYXVzZQpv
-dXQtb2YtYm91bmRzIE1NSU8gYWNjZXNzZXM/CgpbU2V2ZXJpdHk6IE1lZGl1bV0KVGhpcyBpc24n
-dCBhIGJ1ZyBpbnRyb2R1Y2VkIGJ5IHRoaXMgcGF0Y2gsIGJ1dCBpcyB1bmluaXRpYWxpemVkIHN0
-YWNrIG1lbW9yeQpsZWFrZWQgaWYgdGhlIE1NSU8gcmVhZCBmYWlscz8KCmRyaXZlcnMvcGluY3Ry
-bC9tZXNvbi9waW5jdHJsLW1lc29uLmM6bWVzb25fZ3Bpb19nZXQoKSB7CiAgICAuLi4KCXJlZ21h
-cF9yZWFkKHBjLT5yZWdfZ3BpbywgcmVnLCAmdmFsKTsKCglyZXR1cm4gISEodmFsICYgQklUKGJp
-dCkpOwp9CgpTaW5jZSB0aGUgcmV0dXJuIHZhbHVlIG9mIHJlZ21hcF9yZWFkKCkgaXMgaWdub3Jl
-ZCwgYSBmYWlsZWQgcmVhZCAoZS5nLiBkdWUKdG8gYW4gb3V0LW9mLWJvdW5kcyByZWdpc3RlciBm
-cm9tIHRoZSBtYXhfcmVnaXN0ZXIgZGF0YSByYWNlKSBsZWF2ZXMgdmFsCnVuaW5pdGlhbGl6ZWQu
-IEV2YWx1YXRpbmcgYW5kIHJldHVybmluZyB2YWwgdW5jb25kaXRpb25hbGx5IGNvdWxkIGxlYWsg
-YSBiaXQKb2Yga2VybmVsIHN0YWNrIG1lbW9yeS4KCltTZXZlcml0eTogTWVkaXVtXQpUaGlzIGlz
-IGEgcHJlLWV4aXN0aW5nIGlzc3VlLCBidXQgY291bGQgbWVzb25fcGluY29uZl9zZXRfb3V0cHV0
-X2RyaXZlKCkKY2F1c2UgYW4gb2JzZXJ2YWJsZSBoYXJkd2FyZSBnbGl0Y2g/Cgpkcml2ZXJzL3Bp
-bmN0cmwvbWVzb24vcGluY3RybC1tZXNvbi5jOm1lc29uX3BpbmNvbmZfc2V0X291dHB1dF9kcml2
-ZSgpIHsKICAgIC4uLgoJcmV0ID0gbWVzb25fcGluY29uZl9zZXRfb3V0cHV0KHBjLCBwaW4sIHRy
-dWUpOwoJaWYgKHJldCkKCQlyZXR1cm4gcmV0OwoKCXJldHVybiBtZXNvbl9waW5jb25mX3NldF9k
-cml2ZShwYywgcGluLCBoaWdoKTsKfQoKQnkgY29uZmlndXJpbmcgdGhlIHBpbiBkaXJlY3Rpb24g
-dG8gb3V0cHV0IGJlZm9yZSBzZXR0aW5nIHRoZSBjb3JyZWN0IGRyaXZlCnZhbHVlLCB0aGUgbGlu
-ZSBpcyBkcml2ZW4gdXNpbmcgd2hhdGV2ZXIgc3RhbGUgYml0IGlzIHByZXNlbnQgaW4gdGhlCk1F
-U09OX1JFR19PVVQgcmVnaXN0ZXIuIENhbiB0aGlzIGRyaXZlIGFuIGluY29ycmVjdCBsZXZlbCBv
-bnRvIHRoZSBsaW5lIGZvciBhCmJyaWVmIGludGVydmFsLCBwb3RlbnRpYWxseSBmYWxzZS10cmln
-Z2VyaW5nIGVkZ2Utc2Vuc2l0aXZlIGV4dGVybmFsCnBlcmlwaGVyYWxzPwoKPiAgCj4gIAlyZXQg
-PSBncGlvY2hpcF9hZGRfZGF0YSgmcGMtPmNoaXAsIHBjKTsKPiAgCWlmIChyZXQpIHsKCi0tIApT
-YXNoaWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nhc2hpa28uZGV2LyMvcGF0Y2hzZXQvMjAyNjA2
-MjUxMTU3MTguMTY3ODk5MS0xLXZAYmFvZGVlcC5jb20/cGFydD0yCgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlz
-dApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVh
-ZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+Add DMA driver and bindigns for the Amlogic SoCs.
+
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v9:
+- Use each transmission request sg_link mem instead of the loop mem get.
+- Fix some hidden issues which reviewed by ai robot.
+- Link to v8: https://lore.kernel.org/r/20260521-amlogic-dma-v8-0-86cc2ce94142@amlogic.com
+
+Changes in v8:
+- Use kzalloc instead of kmalloc.
+- Initialize the temporary variable and fix a spelling mistake.
+- Link to v7: https://lore.kernel.org/r/20260324-amlogic-dma-v7-0-f8b91ee192c1@amlogic.com
+
+Changes in v7:
+- Take use vchan to support mltiple txns.
+- Link to v6: https://lore.kernel.org/r/20260309-amlogic-dma-v6-0-63349d23bd4b@amlogic.com
+
+Changes in v6:
+- Some minor modifications according to Frank's suggestion.
+- Link to v5: https://lore.kernel.org/r/20260304-amlogic-dma-v5-0-aa453d14fd43@amlogic.com
+
+Changes in v5:
+- Rename head file and rename macro definition.
+- Rename the subject in [2/3] from "dma" to "dmaengine".
+- Link to v4: https://lore.kernel.org/r/20260227-amlogic-dma-v4-0-f25e4614e9b7@amlogic.com
+
+Changes in v4:
+- Support split transfer when data len > MAX_LEN.
+- When a module fails or exits, perform de-initialization.
+- Some other minor modifications.
+- Link to v3: https://lore.kernel.org/r/20260206-amlogic-dma-v3-0-56fb9f59ed22@amlogic.com
+
+Changes in v3:
+- Adjust the format of binding according to Frank's suggestion.
+- Some code format modified according to Frank's suggestion.
+- Support one prep_sg and one submit, drop multi prep_sg and one submit.
+- Keep pre state when resume from pause status.
+- Link to v2: https://lore.kernel.org/r/20260127-amlogic-dma-v2-0-4525d327d74d@amlogic.com
+
+Changes in v2:
+- Introduce what the DMA is used for in the A9 SoC.
+- Some minor modifications were made according to Krzysztof's suggestions.
+- Some modifications were made according to Neil's suggestions.
+- Fix a build error.
+- Link to v1: https://lore.kernel.org/r/20251216-amlogic-dma-v1-0-e289e57e96a7@amlogic.com
+
+---
+Xianwei Zhao (3):
+      dt-bindings: dma: Add Amlogic A9 SoC DMA
+      dmaengine: amlogic: Add general DMA driver for A9
+      MAINTAINERS: Add an entry for Amlogic DMA driver
+
+ .../devicetree/bindings/dma/amlogic,a9-dma.yaml    |  65 ++
+ MAINTAINERS                                        |   7 +
+ drivers/dma/Kconfig                                |  10 +
+ drivers/dma/Makefile                               |   1 +
+ drivers/dma/amlogic-dma.c                          | 708 +++++++++++++++++++++
+ include/dt-bindings/dma/amlogic,a9-dma.h           |   8 +
+ 6 files changed, 799 insertions(+)
+---
+base-commit: 4e01d2f7809240ed63a44889386635921c0627b1
+change-id: 20251215-amlogic-dma-79477d5cd264
+
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
