@@ -4,77 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92CA3C43211
-	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Jun 2026 15:02:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9FA9C43458
+	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Jun 2026 16:40:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:
-	References:MIME-Version:In-Reply-To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=m/plLMVG5FB7dS1VHSbkkRzjZmO3Qd9qn+nkhoPyF34=; b=CtjLzWF73xd18rME07FCawqWpU
-	aMkS4X+DwZMEbJUn5l171FgYSb+v9sPNHQusfaBDpg4STyiNqfoFu49idg2XEGtlyt5DeaPGTKCdJ
-	pcl871nJm7lGhr26p3nB33zTlfTJv8aRgFCNKAnfHiPzlkScadGVZ52BE+SkPpgwpBjeiJgW0Sb1F
-	371mon/XGI5C3JD1QVDS1WDHZNUhS/9+VnZvzLzumMXvogkLW5wMTnFMR9+k3wu8kScTIEVQg/+Zf
-	wtUh31Sem6iW0wiCjQ4TEKFjRRilZrzNUlPNJelV+rmgvzK8RcJ+GH/2wggI0UHCxbEXTRvV9odYn
-	lMJLiKmw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=yyiBF3SkzrosSW0sIpxJOqXu15vwfzJxF81fIhdcz1M=; b=yCJSbzuhWiMrqA
+	vfVyY/mUu+UgjyZPHYVaKAHxQTC8TKDgGt6OYCo1SKNgfJaNEDM/I6TDGMOpJQ+ziYllLD8o4bB25
+	zuowxurYtiIo+YOLrhg0Fbr0muUHTDa8wtZKcaCghpfvYOFWb6iN1CApznGuudy7yOYwN43i+GrPc
+	yf655JghDYGVlcSl4n7mk4fh8moYhQIfX1rswUZ5wnStTz7OHf52Lr0AUElL0PdEuKV/JFms6YD5W
+	c7mKXVuTHEm/l96InKKW56jIKC9lRyOh5jnlxO6H/xeIFK89MD5smfQ7u65NwzmPCMVuabyzm5fEw
+	+t23bTm/z34ciSSKMaKA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wd84A-0000000BWAV-1dNf;
-	Fri, 26 Jun 2026 15:02:02 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1wd9bW-0000000BdzG-2GjT;
+	Fri, 26 Jun 2026 16:40:34 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wd848-0000000BW9v-1v5G
+	id 1wd9bT-0000000BdyU-15jJ
 	for linux-amlogic@lists.infradead.org;
-	Fri, 26 Jun 2026 15:02:00 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id BF829406AF
-	for <linux-amlogic@lists.infradead.org>; Fri, 26 Jun 2026 15:01:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A39AF1F00A3E
-	for <linux-amlogic@lists.infradead.org>; Fri, 26 Jun 2026 15:01:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782486119;
-	bh=2M3/dhcHypRoDMmOlgNYAmiMTmUReoTtADf6M6SzpP4=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc;
-	b=LGOxQI/OOYjyDQFJ2+bfO91MG6+ldr2pktHxTsGRAyA9V1zCq1Gj3KMYQLiOJCBuq
-	 qKYDc+WS4daRh7hU1Gx0dACBHprBNvw4HM+YSCV+qmqpfadTK/v7YvW6/e0vV2gX+g
-	 IfoQxno9I/oEF+iIG4jwrcif0X0JXbFH9vw8hQGtBlzpmwjZZVBvkyDRgVLSYktRgQ
-	 pwYY/savWCBNKc3H7tU1iMeiopasNQ9g5PLCPhZcKSelwsduHFLx8PRibFW17j2V+X
-	 oKcr30zquQYB7oWugAswMKvhvDNgK2XSkRxYiJmABhl/Rru8eD8HaCNtgHhmGu336d
-	 ZvOfq9OyEOdaQ==
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5ad4f39064bso665150e87.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 26 Jun 2026 08:01:59 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+RopGTysUCYkMR9wFq8mbXLLoZq8lfWgKx8La5KHvNLUgT3i1bhC+xcjNW9JcY0BLgvE4J+IUQnnMIBE9j4R@lists.infradead.org
-X-Gm-Message-State: AOJu0YwsmXRaLdi39jQR5N0cSI3JXQ08oBPzONz/hiOnHblZeuZHFSg4
-	cd9E88BVZj68m4Fk4c35gUWqc5WmE2XhKpR3ZJPYF4IEijlRt6IPHZGrDDXn6Evv94IpA2Fb5Tv
-	lvwwOlsTJqjOZV/2DnoFhJ675MjU4N6D6UQ7f3Fstuw==
-X-Received: by 2002:a05:6512:4408:b0:5aa:6d0e:9d2d with SMTP id
- 2adb3069b0e04-5aea1f3c218mr2391832e87.20.1782486118352; Fri, 26 Jun 2026
- 08:01:58 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 26 Jun 2026 15:01:57 +0000
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 26 Jun 2026 15:01:57 +0000
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <20260625115718.1678991-2-v@baodeep.com>
+	Fri, 26 Jun 2026 16:40:32 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4926bd21aa1so8188335e9.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 26 Jun 2026 09:40:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=0sec.ai; s=google; t=1782492029; x=1783096829; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=XFdrr1aj+JZ4LS4KDt4mRxZWjc/rOk51r42pgK7BZ1Y=;
+        b=uBD/e5LiE4YVhI0zOgrUiAgETDdvNbrn79RscwnjUQ5YsFzjI3KfHwYVDX4LweR6Fj
+         3J4MWMoOJ1D/aFMzoFdSmWPu2XR7+wP1mVSsEedAznpRzMnwKACjQ3eOe/GkuAY/IJiM
+         8p/Yeya/a6RmlXQurK6zJvGSkeZPCpqa9hdn0qkjUnwUCffPDDVvyK19KXtFi1pjudvO
+         UlIhOdXDfcaVfQGZAgy0V4KfgHgByA+QsTX1J5GVvDqBWiatCbzWWTzOlVZiDX/Wcnj5
+         YulcgvnruDwbZL1XRoY7/hBGu1zByxWEUNvvg7PUDNZhefnxJUKzqLFiP5Hji/B7WhkV
+         eULg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782492029; x=1783096829;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XFdrr1aj+JZ4LS4KDt4mRxZWjc/rOk51r42pgK7BZ1Y=;
+        b=pKi2Ta1F6U/t1O/8zjcI7iBabrjcm/+WQhzJjw3pT2AeTFfwuIzByn8EPX3AM2V5zR
+         W/+xKWtqf8sxzsrbonzog/D4OfR6YuJVVY9vtVlR+nkFn1fJu2wZ3GztGg9IVS8vbknQ
+         OKkuXWkTlUN+0dbmkLTqPWIN9fMoJaxKLTGZcTrExQitrX8VNZtGoiED+SfJgv3wrZGV
+         Ke6q/Lyr+V2wfSDXaRxhY3qjgm9cn7cZoSA9M3d1Rg9FqTbYdJD/WJsDiAO8QnbjSG/+
+         ZBtRh2vrHoue9mCvO4PXWB7zGDHDAi2IFTWbo3+oPasxU9Iix7bkMDx8F2Uo8/AYgIow
+         W16A==
+X-Forwarded-Encrypted: i=1; AFNElJ/VH0XRUCamTEpDFnP+Ya6AZFq9RQGgnoZZ6XVMttEudk2K4F7CBhPpMRILfNl51EHvatMC0gdF3yuvDmSM@lists.infradead.org
+X-Gm-Message-State: AOJu0YyxCamWZeYbSxuePA3YYfHnShHPENBpiR9tOpWPje/ZxIziRyf9
+	iUs5q3KgtdVJ9kkpaOr8BkRq/nXLjviwpCa5N6oZhM66rKCpVaUAUS9X+O0jSToYPw0A
+X-Gm-Gg: AfdE7cns6uMlmXqbXqI1RaCpXN+ana6eaiLphhAEJgIFgOEv/PlvTSvQI2vZWe3WWDa
+	SvufBZW7U8yHgP7TNwgSNXd32tK4arwkCQb6Biy4DSZH8bYbbsuIUYSPks8bwYSzRnkOVFO0Qcl
+	gmdexl0iKQuTp0Rg5NaC4jRAc6AZqbiAD+CDK6HUAjdzK8/qcwF2igeGmA8rH8QDljv2bHMkH3m
+	LNams2ucPyANbha/DKTfIYXNpncRx838IJmP884XJlrpttb7hL/3keHEdri3cK5Hr0c+S6d/K3K
+	OpEj7bZT0X3zqa2aBqJXL9Q4uLsuR0P26O/jbITb2pBnf5RUL17rpLUytKNAh2yXthCWc5ZESMj
+	IXSnjx6L4G6R6YnbsZ8c7LHfUb4G0d6b+tpdgO35LlAaoHNjRTxIJpRKx0IYdguLDbdL6q817LQ
+	kJtTFnjuuboDroqR9BaVa/IwmF7ixG6cmJBzbhX6VJS37mMamHlQ545EoKvE6NgWCHqTCSyV31y
+	oRboItM4iCvJylajKblv50ZCg39NGckGMY=
+X-Received: by 2002:a05:600c:8109:b0:490:bad9:de43 with SMTP id 5b1f17b1804b1-492667ca5fbmr116117235e9.0.1782492028118;
+        Fri, 26 Jun 2026 09:40:28 -0700 (PDT)
+Received: from PeakBook-Mini.tail8e484.ts.net ([178.197.218.209])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4926f94f213sm30866825e9.12.2026.06.26.09.40.26
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Fri, 26 Jun 2026 09:40:27 -0700 (PDT)
+From: Doruk Tan Ozturk <doruk@0sec.ai>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-media@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-staging@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Doruk Tan Ozturk <doruk@0sec.ai>
+Subject: [PATCH] media: meson: vdec: fix use-after-free of prev_frame in codec_vp9_rm_noshow_frame()
+Date: Fri, 26 Jun 2026 18:40:25 +0200
+Message-ID: <20260626164025.52694-1-doruk@0sec.ai>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-References: <20260625115718.1678991-1-v@baodeep.com> <20260625115718.1678991-2-v@baodeep.com>
-Date: Fri, 26 Jun 2026 15:01:57 +0000
-X-Gmail-Original-Message-ID: <CAMRc=MfpXEFreGynUtAJfvW+27OgKiTOEZvkddt5U0+QG4cYeQ@mail.gmail.com>
-X-Gm-Features: AVVi8Cc1Kq0gtYMEzpnufw-hx30ivYWpESekEJWXahuAc8z4aeEAOf2sx5m3ETc
-Message-ID: <CAMRc=MfpXEFreGynUtAJfvW+27OgKiTOEZvkddt5U0+QG4cYeQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] gpio: shared-proxy: always serialize with a
- sleeping mutex
-To: Viacheslav Bocharov <v@baodeep.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Robin Murphy <robin.murphy@arm.com>, 
-	Diederik de Haas <diederik@cknow-tech.com>, linux-gpio@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Linus Walleij <linusw@kernel.org>, 
-	Bartosz Golaszewski <brgl@kernel.org>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260626_094031_351431_BCFCAF14 
+X-CRM114-Status: GOOD (  10.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,68 +107,54 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, 25 Jun 2026 13:57:17 +0200, Viacheslav Bocharov <v@baodeep.com> said:
-> The shared GPIO descriptor used either a mutex or a spinlock, chosen at
-> runtime from the underlying chip's can_sleep:
->
-> 	shared_desc->can_sleep = gpiod_cansleep(shared_desc->desc);
-> 	... if (can_sleep) mutex_lock(); else spin_lock_irqsave();
->
-> can_sleep describes only the value path (->get/->set). Under the same
-> lock, however, the proxy may call gpiod_set_config() and
-> gpiod_direction_*(), which can reach pinctrl paths that take a mutex
-> (e.g. gpiod_set_config() -> gpiochip_generic_config() ->
-> pinctrl_gpio_set_config()), independent of can_sleep. On a controller
-> with non-sleeping MMIO value ops the descriptor lock was a spinlock, so
-> the sleeping pinctrl call ran from atomic context. Reproduced on an
-> Amlogic A113X board with the workaround from commit 28f240683871
-> ("pinctrl: meson: mark the GPIO controller as sleeping") reverted; the
-> original Khadas VIM3 report hit the same path:
->
-> 	BUG: sleeping function called from invalid context
-> 	  __mutex_lock
-> 	  pinctrl_get_device_gpio_range
-> 	  pinctrl_gpio_set_config
-> 	  gpiochip_generic_config
-> 	  gpiod_set_config
-> 	  gpio_shared_proxy_set_config   <- voting spinlock held
-> 	  ...
-> 	  mmc_pwrseq_simple_probe
->
-> The spinlock existed to take the value vote from atomic context, but the
-> vote and the (possibly sleeping) control operations share the same state
-> and lock, so this scheme cannot serialize config under a mutex and still
-> offer atomic value access. Always serialize the shared descriptor with a
-> mutex instead and mark the proxy a sleeping gpiochip, driving the
-> underlying GPIO through the cansleep value accessors: those are valid
-> for both sleeping and non-sleeping chips, so value access keeps working
-> on fast controllers, at the cost of no longer being atomic.
->
-> This is observable: consumers gating on gpiod_cansleep() take their
-> sleeping branch on a proxied GPIO (mmc-pwrseq-emmc skips its
-> emergency-restart reset handler; its normal reset is unaffected), and
-> consumers that reject sleeping GPIOs (pwm-gpio, ps2-gpio, ...) would
-> fail to probe. Such atomic users do not share a pin through the proxy,
-> whose purpose is voting on shared reset/enable lines. The same narrowing
-> already applies on Amlogic since that workaround, and rockchip
-> addressed the identical splat per-driver in commit 7ca497be0016 ("gpio:
-> rockchip: Stop calling pinctrl for set_direction"); fixing the proxy
-> addresses the locking error once, for every controller.
->
-> The lock type was added by commit a060b8c511ab ("gpiolib: implement
-> low-level, shared GPIO support"); the sleeping call under it arrived with
-> the proxy driver.
->
-> Fixes: e992d54c6f97 ("gpio: shared-proxy: implement the shared GPIO proxy driver")
-> Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> Closes: https://lore.kernel.org/all/00107523-7737-4b92-a785-14ce4e93b8cb@samsung.com/
-> Signed-off-by: Viacheslav Bocharov <v@baodeep.com>
-> ---
+codec_vp9_rm_noshow_frame() frees the first non-shown reference frame on
+ref_frames_list without excluding vp9->prev_frame. When the previously
+decoded frame was a non-show (alt-ref) frame and the current frame is a
+non-show inter frame, the freed object is the one vp9->prev_frame still
+points to; codec_vp9_set_mpred_mv() then dereferences the stale pointer
+(use_prev_frame_mvs and codec_vp9_get_frame_mv_paddr()), a use-after-free.
 
-This looks good to me. Linus: do you want me to take patch 2/2 as well? I'll
-send it for v7.2-rc2.
+The sibling cleanup codec_vp9_show_frame() already guards this pointer
+(tmp == vp9->prev_frame); rm_noshow_frame() simply omits the same check.
+Add it.
 
-Bart
+The fields that drive this path (show_frame, frame_type, intra_only) are
+parsed from the VP9 bitstream, so a crafted stream fed to the stateless
+decoder can trigger the free-then-use.
+
+Found by static analysis; not yet runtime-reproduced (Amlogic Meson
+hardware required).
+
+Found by 0sec's autonomous vulnerability analysis (https://0sec.ai).
+
+Signed-off-by: Doruk Tan Ozturk <doruk@0sec.ai>
+---
+ drivers/staging/media/meson/vdec/codec_vp9.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/drivers/staging/media/meson/vdec/codec_vp9.c b/drivers/staging/media/meson/vdec/codec_vp9.c
+index 8e80ecf84..572f418c9 100644
+--- a/drivers/staging/media/meson/vdec/codec_vp9.c
++++ b/drivers/staging/media/meson/vdec/codec_vp9.c
+@@ -1247,6 +1247,15 @@ static void codec_vp9_rm_noshow_frame(struct amvdec_session *sess)
+ 		if (tmp->show)
+ 			continue;
+ 
++		/*
++		 * prev_frame is still referenced by the MV predictor in
++		 * codec_vp9_set_mpred_mv(); the sibling codec_vp9_show_frame()
++		 * already excludes it before freeing. Do the same here to avoid
++		 * a use-after-free of vp9->prev_frame.
++		 */
++		if (tmp == vp9->prev_frame)
++			continue;
++
+ 		pr_debug("rm noshow: %u\n", tmp->index);
+ 		v4l2_m2m_buf_queue(sess->m2m_ctx, tmp->vbuf);
+ 		list_del(&tmp->list);
+-- 
+2.43.0
+
 
 _______________________________________________
 linux-amlogic mailing list
