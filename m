@@ -4,76 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B86DCD4F26
-	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Jun 2026 05:54:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11D0CCD4F26
+	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Jun 2026 07:17:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:From:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GQB1TCLTXXHRVulaBGxKcKLPwWITqLpW7Mwmk6W+mgU=; b=Z0jtx9GRyE7LwP
-	PYXq+3aJZ/0t/RTLHYG8wCiii9na4LJSW0zkbCm5/RNSloQfqff4fwYvT1Rg08ieVLUYkU9L2C6qG
-	4G7b4YnOVdlurlHpI2IJXgcqT66YrUWdgX6+fTGrsH6XOpJPayj3pmhbFA4ipCGzNjP6WzTMWzr2y
-	m0GFt+Pdi3Hic7jfL26QwGXlTBvDNsbOseFlVsgUudotLfVp1RVtXT/zaCyceejQtdVhlWRJbxtLf
-	CmXPfYTf/vIb54hhpiIkUNQESU0pRTy2n9GWOFCld+3wo6qIYkwfihDMy3Q24szXZCYx8Ovd4qWw1
-	nm7v8V8atl5h7eIeEEVA==;
+	List-Owner; bh=ILzRX6UeK75wa/3pUeXxEJPqdzjNu56dGfKBwAJ4Dv8=; b=OOSy4KvnfM2IrP
+	Y/ws42BzzehBHzAyDFj1VcEMmgpiDyQp/Ji/yHMBQ/x8ags07+ra98h7pJMt5/jOEfVjZaA4Jz2k+
+	07CEDC7Z4CKAF7jP7ygoubtinM54ywqJluBTqWW/BT2zmDuROAQa9xGi/8wWcRxIj/Katr+ULjxAL
+	Fx6Js4RpsbcCmXIqxRFzrax6rPiwR8ACCsEo82BRJgVS+YEaH17n0c14UuAyXZJEGNsrbuvbfqn4I
+	fqLVCINPunURcMGSWHZ2QywEfdctGmGabNzU/ClkyI3rgcb8UWpIWZGQi5y/Ljmsg5oeqpylMXBgz
+	Tszd+x7VqHaxCQjx85YQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wczW8-0000000AYfx-1UjU;
-	Fri, 26 Jun 2026 05:54:20 +0000
-Received: from mailout2.w1.samsung.com ([210.118.77.12])
+	id 1wd0o4-0000000AfAF-1sMs;
+	Fri, 26 Jun 2026 07:16:56 +0000
+Received: from mx.adeep.su ([185.250.0.168])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wczW1-0000000AYdh-3asx
-	for linux-amlogic@lists.infradead.org;
-	Fri, 26 Jun 2026 05:54:19 +0000
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20260626055410euoutp028345b4a5bb1109f1f2987fb1f977253b~8i8mdkVxn0929409294euoutp02h
-	for <linux-amlogic@lists.infradead.org>; Fri, 26 Jun 2026 05:54:10 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20260626055410euoutp028345b4a5bb1109f1f2987fb1f977253b~8i8mdkVxn0929409294euoutp02h
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1782453250;
-	bh=QU9UUDIK6247cPDa+cwUVHsc1/gzZpOJAbSJDcml44I=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=INZlesZFR/mN0zqsAnxGcb3NEk3Ey+tnlNOqROxyE/ijWPN4jEtNXasZqAzr4yjRE
-	 UDqxXbutmBQUEHFWZNTBdus0TrvHh2P/OWQ2lU9eoM5GjQ8necsp/sWtlr4/TZ5a1X
-	 UBgtcR+pz0h7KZV0H5C2nlHo7CeKp17OZp6qZdmw=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20260626055409eucas1p160d74a47e1ee0d16a738f48c40f1e6de~8i8ltmpLI0513105131eucas1p1p;
-	Fri, 26 Jun 2026 05:54:09 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20260626055409eusmtip23fedbfd2064e4857e35e7ab5dbdb2184~8i8lEXEMB3229032290eusmtip2V;
-	Fri, 26 Jun 2026 05:54:09 +0000 (GMT)
-Message-ID: <d8d407d5-ba6c-4197-9cf0-2fa7e6e17155@samsung.com>
-Date: Fri, 26 Jun 2026 07:54:08 +0200
+	id 1wd0o0-0000000Af9q-0DNC;
+	Fri, 26 Jun 2026 07:16:55 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DF51B1BE7A2;
+	Fri, 26 Jun 2026 10:16:44 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=baodeep.com; s=dkim;
+	t=1782458207; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=LLwOaOrVN63ocBzK4TrquFSTvMxdhRBEVjhLSw06WEg=;
+	b=jyzEzToPHt0FZEmcxepLe+ZA6VMW2QaCJLe96oEhXXdQhSolX3SH2aWIN078Or7/guip9m
+	82ZEJ3DklV52hmqI5FJndHqn9PIWo4eumBRO7PBLUc72cWVkTz7o4dW4o6F7oqqoNRg6Ev
+	wIqMLPn0iDCNqC5LioVBHo/WriwYTTAwiBCvM2c5Pjl9wFs+/OQTMDkQXwpcD9MDj4m9oW
+	2cAxU05OE0rPKjDz5vAke6MfDIVXYPz8EGK7ENdztgc1A9/lzV/Q/FL0dRIrvZzlV5wPlu
+	UdwruCzDc8Kd7uWA1HZM2Wq5mNsK1N8M7a7jL4uXmIYQCljl3Uil0QPGYpgBqw==
+Message-ID: <0a9fee08-8945-4c7d-8bea-9efb7d921f10@baodeep.com>
+Date: Fri, 26 Jun 2026 10:16:27 +0300
 MIME-Version: 1.0
-User-Agent: Betterbird (Windows)
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2 1/2] gpio: shared-proxy: always serialize with a
  sleeping mutex
-To: Viacheslav Bocharov <v@baodeep.com>, Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
-	<khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin
-	Blumenstingl <martin.blumenstingl@googlemail.com>, Robin Murphy
-	<robin.murphy@arm.com>, Diederik de Haas <diederik@cknow-tech.com>,
-	linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Language: en-US
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <20260625115718.1678991-2-v@baodeep.com>
-X-CMS-MailID: 20260626055409eucas1p160d74a47e1ee0d16a738f48c40f1e6de
-X-Msg-Generator: CA
-X-RootMTR: 20260625115817eucas1p10bfe0898d6cb2f6f51cff36a031946f9
-X-EPHeader: CA
-X-CMS-RootMailID: 20260625115817eucas1p10bfe0898d6cb2f6f51cff36a031946f9
+To: Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20260625115718.1678991-1-v@baodeep.com>
-	<CGME20260625115817eucas1p10bfe0898d6cb2f6f51cff36a031946f9@eucas1p1.samsung.com>
-	<20260625115718.1678991-2-v@baodeep.com>
+ <CGME20260625115817eucas1p10bfe0898d6cb2f6f51cff36a031946f9@eucas1p1.samsung.com>
+ <20260625115718.1678991-2-v@baodeep.com>
+ <d8d407d5-ba6c-4197-9cf0-2fa7e6e17155@samsung.com>
+Content-Language: ru
+From: Viacheslav <v@baodeep.com>
+In-Reply-To: <d8d407d5-ba6c-4197-9cf0-2fa7e6e17155@samsung.com>
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260625_225414_500114_92832758 
-X-CRM114-Status: GOOD (  30.83  )
+X-CRM114-CacheID: sfid-20260626_001652_603153_B9D7D6A4 
+X-CRM114-Status: UNSURE (   5.51  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,326 +69,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 25.06.2026 13:57, Viacheslav Bocharov wrote:
-> The shared GPIO descriptor used either a mutex or a spinlock, chosen at
-> runtime from the underlying chip's can_sleep:
->
-> 	shared_desc->can_sleep = gpiod_cansleep(shared_desc->desc);
-> 	... if (can_sleep) mutex_lock(); else spin_lock_irqsave();
->
-> can_sleep describes only the value path (->get/->set). Under the same
-> lock, however, the proxy may call gpiod_set_config() and
-> gpiod_direction_*(), which can reach pinctrl paths that take a mutex
-> (e.g. gpiod_set_config() -> gpiochip_generic_config() ->
-> pinctrl_gpio_set_config()), independent of can_sleep. On a controller
-> with non-sleeping MMIO value ops the descriptor lock was a spinlock, so
-> the sleeping pinctrl call ran from atomic context. Reproduced on an
-> Amlogic A113X board with the workaround from commit 28f240683871
-> ("pinctrl: meson: mark the GPIO controller as sleeping") reverted; the
-> original Khadas VIM3 report hit the same path:
->
-> 	BUG: sleeping function called from invalid context
-> 	  __mutex_lock
-> 	  pinctrl_get_device_gpio_range
-> 	  pinctrl_gpio_set_config
-> 	  gpiochip_generic_config
-> 	  gpiod_set_config
-> 	  gpio_shared_proxy_set_config   <- voting spinlock held
-> 	  ...
-> 	  mmc_pwrseq_simple_probe
->
-> The spinlock existed to take the value vote from atomic context, but the
-> vote and the (possibly sleeping) control operations share the same state
-> and lock, so this scheme cannot serialize config under a mutex and still
-> offer atomic value access. Always serialize the shared descriptor with a
-> mutex instead and mark the proxy a sleeping gpiochip, driving the
-> underlying GPIO through the cansleep value accessors: those are valid
-> for both sleeping and non-sleeping chips, so value access keeps working
-> on fast controllers, at the cost of no longer being atomic.
->
-> This is observable: consumers gating on gpiod_cansleep() take their
-> sleeping branch on a proxied GPIO (mmc-pwrseq-emmc skips its
-> emergency-restart reset handler; its normal reset is unaffected), and
-> consumers that reject sleeping GPIOs (pwm-gpio, ps2-gpio, ...) would
-> fail to probe. Such atomic users do not share a pin through the proxy,
-> whose purpose is voting on shared reset/enable lines. The same narrowing
-> already applies on Amlogic since that workaround, and rockchip
-> addressed the identical splat per-driver in commit 7ca497be0016 ("gpio:
-> rockchip: Stop calling pinctrl for set_direction"); fixing the proxy
-> addresses the locking error once, for every controller.
->
-> The lock type was added by commit a060b8c511ab ("gpiolib: implement
-> low-level, shared GPIO support"); the sleeping call under it arrived with
-> the proxy driver.
->
-> Fixes: e992d54c6f97 ("gpio: shared-proxy: implement the shared GPIO proxy driver")
-> Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> Closes: https://lore.kernel.org/all/00107523-7737-4b92-a785-14ce4e93b8cb@samsung.com/
-> Signed-off-by: Viacheslav Bocharov <v@baodeep.com>
+Hi!
 
+26.06.2026 08:54, Marek Szyprowski wrote:
+> On 25.06.2026 13:57, Viacheslav Bocharov wrote:
+>> The shared GPIO descriptor used either a mutex or a spinlock, chosen at
+>> runtime from the underlying chip's can_sleep:
+>>
+>> 	shared_desc->can_sleep = gpiod_cansleep(shared_desc->desc);
+>> 	... if (can_sleep) mutex_lock(); else spin_lock_irqsave();
 
-Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+...
 
+>>
+>> The lock type was added by commit a060b8c511ab ("gpiolib: implement
+>> low-level, shared GPIO support"); the sleeping call under it arrived with
+>> the proxy driver.
+>>
+>> Fixes: e992d54c6f97 ("gpio: shared-proxy: implement the shared GPIO proxy driver")
+>> Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
+>> Closes: https://lore.kernel.org/all/00107523-7737-4b92-a785-14ce4e93b8cb@samsung.com/
+>> Signed-off-by: Viacheslav Bocharov <v@baodeep.com>
+> 
+> 
+> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> 
 
-> ---
-> v1 -> v2: open-code the descriptor mutex; drop the gpio_shared_desc_lock
->           guard and the gpio_shared_lockdep_assert() helper, use
->           guard(mutex) and lockdep_assert_held() directly; move the
->           mutex rationale from the header to the can_sleep assignment in
->           probe.
->
-> v1: https://lore.kernel.org/linux-gpio/20260610153329.937833-2-v@baodeep.com/
->
->  drivers/gpio/gpio-shared-proxy.c | 66 +++++++++++++-------------------
->  drivers/gpio/gpiolib-shared.c    |  9 +----
->  drivers/gpio/gpiolib-shared.h    | 28 +-------------
->  3 files changed, 29 insertions(+), 74 deletions(-)
->
-> diff --git a/drivers/gpio/gpio-shared-proxy.c b/drivers/gpio/gpio-shared-proxy.c
-> index 6941e4be6cf1..0cd52015b731 100644
-> --- a/drivers/gpio/gpio-shared-proxy.c
-> +++ b/drivers/gpio/gpio-shared-proxy.c
-> @@ -9,8 +9,10 @@
->  #include <linux/err.h>
->  #include <linux/gpio/consumer.h>
->  #include <linux/gpio/driver.h>
-> +#include <linux/lockdep.h>
->  #include <linux/mod_devicetable.h>
->  #include <linux/module.h>
-> +#include <linux/mutex.h>
->  #include <linux/string_choices.h>
->  #include <linux/types.h>
->  
-> @@ -32,7 +34,7 @@ gpio_shared_proxy_set_unlocked(struct gpio_shared_proxy_data *proxy,
->  	struct gpio_desc *desc = shared_desc->desc;
->  	int ret = 0;
->  
-> -	gpio_shared_lockdep_assert(shared_desc);
-> +	lockdep_assert_held(&shared_desc->mutex);
->  
->  	if (value) {
->  	       /* User wants to set value to high. */
-> @@ -89,7 +91,7 @@ static int gpio_shared_proxy_request(struct gpio_chip *gc, unsigned int offset)
->  	struct gpio_shared_proxy_data *proxy = gpiochip_get_data(gc);
->  	struct gpio_shared_desc *shared_desc = proxy->shared_desc;
->  
-> -	guard(gpio_shared_desc_lock)(shared_desc);
-> +	guard(mutex)(&shared_desc->mutex);
->  
->  	proxy->shared_desc->usecnt++;
->  
-> @@ -105,11 +107,11 @@ static void gpio_shared_proxy_free(struct gpio_chip *gc, unsigned int offset)
->  	struct gpio_shared_desc *shared_desc = proxy->shared_desc;
->  	int ret;
->  
-> -	guard(gpio_shared_desc_lock)(shared_desc);
-> +	guard(mutex)(&shared_desc->mutex);
->  
->  	if (proxy->voted_high) {
->  		ret = gpio_shared_proxy_set_unlocked(proxy,
-> -			shared_desc->can_sleep ? gpiod_set_value_cansleep : gpiod_set_value, 0);
-> +			gpiod_set_value_cansleep, 0);
->  		if (ret)
->  			dev_err(proxy->dev,
->  				"Failed to unset the shared GPIO value on release: %d\n", ret);
-> @@ -129,7 +131,7 @@ static int gpio_shared_proxy_set_config(struct gpio_chip *gc,
->  	struct gpio_desc *desc = shared_desc->desc;
->  	int ret;
->  
-> -	guard(gpio_shared_desc_lock)(shared_desc);
-> +	guard(mutex)(&shared_desc->mutex);
->  
->  	if (shared_desc->usecnt > 1) {
->  		if (shared_desc->cfg != cfg) {
-> @@ -157,7 +159,7 @@ static int gpio_shared_proxy_direction_input(struct gpio_chip *gc,
->  	struct gpio_desc *desc = shared_desc->desc;
->  	int dir;
->  
-> -	guard(gpio_shared_desc_lock)(shared_desc);
-> +	guard(mutex)(&shared_desc->mutex);
->  
->  	if (shared_desc->usecnt == 1) {
->  		dev_dbg(proxy->dev,
-> @@ -187,7 +189,7 @@ static int gpio_shared_proxy_direction_output(struct gpio_chip *gc,
->  	struct gpio_desc *desc = shared_desc->desc;
->  	int ret, dir;
->  
-> -	guard(gpio_shared_desc_lock)(shared_desc);
-> +	guard(mutex)(&shared_desc->mutex);
->  
->  	if (shared_desc->usecnt == 1) {
->  		dev_dbg(proxy->dev,
-> @@ -222,13 +224,6 @@ static int gpio_shared_proxy_direction_output(struct gpio_chip *gc,
->  	return gpio_shared_proxy_set_unlocked(proxy, gpiod_direction_output, value);
->  }
->  
-> -static int gpio_shared_proxy_get(struct gpio_chip *gc, unsigned int offset)
-> -{
-> -	struct gpio_shared_proxy_data *proxy = gpiochip_get_data(gc);
-> -
-> -	return gpiod_get_value(proxy->shared_desc->desc);
-> -}
-> -
->  static int gpio_shared_proxy_get_cansleep(struct gpio_chip *gc,
->  					  unsigned int offset)
->  {
-> @@ -237,29 +232,15 @@ static int gpio_shared_proxy_get_cansleep(struct gpio_chip *gc,
->  	return gpiod_get_value_cansleep(proxy->shared_desc->desc);
->  }
->  
-> -static int gpio_shared_proxy_do_set(struct gpio_shared_proxy_data *proxy,
-> -				    int (*set_func)(struct gpio_desc *desc, int value),
-> -				    int value)
-> -{
-> -	guard(gpio_shared_desc_lock)(proxy->shared_desc);
-> -
-> -	return gpio_shared_proxy_set_unlocked(proxy, set_func, value);
-> -}
-> -
-> -static int gpio_shared_proxy_set(struct gpio_chip *gc, unsigned int offset,
-> -				 int value)
-> -{
-> -	struct gpio_shared_proxy_data *proxy = gpiochip_get_data(gc);
-> -
-> -	return gpio_shared_proxy_do_set(proxy, gpiod_set_value, value);
-> -}
-> -
->  static int gpio_shared_proxy_set_cansleep(struct gpio_chip *gc,
->  					  unsigned int offset, int value)
->  {
->  	struct gpio_shared_proxy_data *proxy = gpiochip_get_data(gc);
->  
-> -	return gpio_shared_proxy_do_set(proxy, gpiod_set_value_cansleep, value);
-> +	guard(mutex)(&proxy->shared_desc->mutex);
-> +
-> +	return gpio_shared_proxy_set_unlocked(proxy, gpiod_set_value_cansleep,
-> +					      value);
->  }
->  
->  static int gpio_shared_proxy_get_direction(struct gpio_chip *gc,
-> @@ -302,20 +283,25 @@ static int gpio_shared_proxy_probe(struct auxiliary_device *adev,
->  	gc->label = dev_name(dev);
->  	gc->parent = dev;
->  	gc->owner = THIS_MODULE;
-> -	gc->can_sleep = shared_desc->can_sleep;
-> +	/*
-> +	 * Under the descriptor mutex the proxy may call
-> +	 * gpiod_set_config()/gpiod_direction_*(), which can reach pinctrl
-> +	 * paths that take a mutex (e.g. gpiod_set_config() ->
-> +	 * gpiochip_generic_config() -> pinctrl_gpio_set_config()), independent
-> +	 * of the underlying chip's can_sleep. So the descriptor lock must be a
-> +	 * mutex and the proxy gpiochip is therefore always sleeping; drive the
-> +	 * underlying GPIO through the cansleep value accessors, which are valid
-> +	 * for both sleeping and non-sleeping chips.
-> +	 */
-> +	gc->can_sleep = true;
->  
->  	gc->request = gpio_shared_proxy_request;
->  	gc->free = gpio_shared_proxy_free;
->  	gc->set_config = gpio_shared_proxy_set_config;
->  	gc->direction_input = gpio_shared_proxy_direction_input;
->  	gc->direction_output = gpio_shared_proxy_direction_output;
-> -	if (gc->can_sleep) {
-> -		gc->set = gpio_shared_proxy_set_cansleep;
-> -		gc->get = gpio_shared_proxy_get_cansleep;
-> -	} else {
-> -		gc->set = gpio_shared_proxy_set;
-> -		gc->get = gpio_shared_proxy_get;
-> -	}
-> +	gc->set = gpio_shared_proxy_set_cansleep;
-> +	gc->get = gpio_shared_proxy_get_cansleep;
->  	gc->get_direction = gpio_shared_proxy_get_direction;
->  	gc->to_irq = gpio_shared_proxy_to_irq;
->  
-> diff --git a/drivers/gpio/gpiolib-shared.c b/drivers/gpio/gpiolib-shared.c
-> index de72776fb154..495bd3d0ddf0 100644
-> --- a/drivers/gpio/gpiolib-shared.c
-> +++ b/drivers/gpio/gpiolib-shared.c
-> @@ -627,8 +627,7 @@ static void gpio_shared_release(struct kref *kref)
->  
->  	shared_desc = entry->shared_desc;
->  	gpio_device_put(shared_desc->desc->gdev);
-> -	if (shared_desc->can_sleep)
-> -		mutex_destroy(&shared_desc->mutex);
-> +	mutex_destroy(&shared_desc->mutex);
->  	kfree(shared_desc);
->  	entry->shared_desc = NULL;
->  }
-> @@ -659,11 +658,7 @@ gpiod_shared_desc_create(struct gpio_shared_entry *entry)
->  	}
->  
->  	shared_desc->desc = &gdev->descs[entry->offset];
-> -	shared_desc->can_sleep = gpiod_cansleep(shared_desc->desc);
-> -	if (shared_desc->can_sleep)
-> -		mutex_init(&shared_desc->mutex);
-> -	else
-> -		spin_lock_init(&shared_desc->spinlock);
-> +	mutex_init(&shared_desc->mutex);
->  
->  	return shared_desc;
->  }
-> diff --git a/drivers/gpio/gpiolib-shared.h b/drivers/gpio/gpiolib-shared.h
-> index 15e72a8dcdb1..bbdc0ab7b647 100644
-> --- a/drivers/gpio/gpiolib-shared.h
-> +++ b/drivers/gpio/gpiolib-shared.h
-> @@ -3,10 +3,7 @@
->  #ifndef __LINUX_GPIO_SHARED_H
->  #define __LINUX_GPIO_SHARED_H
->  
-> -#include <linux/cleanup.h>
-> -#include <linux/lockdep.h>
->  #include <linux/mutex.h>
-> -#include <linux/spinlock.h>
->  
->  struct gpio_device;
->  struct gpio_desc;
-> @@ -42,35 +39,12 @@ static inline int gpio_shared_add_proxy_lookup(struct device *consumer,
->  
->  struct gpio_shared_desc {
->  	struct gpio_desc *desc;
-> -	bool can_sleep;
->  	unsigned long cfg;
->  	unsigned int usecnt;
->  	unsigned int highcnt;
-> -	union {
-> -		struct mutex mutex;
-> -		spinlock_t spinlock;
-> -	};
-> +	struct mutex mutex; /* serializes all proxy operations on this descriptor */
->  };
->  
->  struct gpio_shared_desc *devm_gpiod_shared_get(struct device *dev);
->  
-> -DEFINE_LOCK_GUARD_1(gpio_shared_desc_lock, struct gpio_shared_desc,
-> -	if (_T->lock->can_sleep)
-> -		mutex_lock(&_T->lock->mutex);
-> -	else
-> -		spin_lock_irqsave(&_T->lock->spinlock, _T->flags),
-> -	if (_T->lock->can_sleep)
-> -		mutex_unlock(&_T->lock->mutex);
-> -	else
-> -		spin_unlock_irqrestore(&_T->lock->spinlock, _T->flags),
-> -	unsigned long flags)
-> -
-> -static inline void gpio_shared_lockdep_assert(struct gpio_shared_desc *shared_desc)
-> -{
-> -	if (shared_desc->can_sleep)
-> -		lockdep_assert_held(&shared_desc->mutex);
-> -	else
-> -		lockdep_assert_held(&shared_desc->spinlock);
-> -}
-> -
->  #endif /* __LINUX_GPIO_SHARED_H */
+Thanks!
+
 
 Best regards
 -- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+Viacheslav Bocharov
 
 
 _______________________________________________
