@@ -4,96 +4,157 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADAA2C43458
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jun 2026 14:21:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98CF8C43602
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jun 2026 17:49:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:Cc:Date:
-	In-Reply-To:From:Subject:Mime-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cc9PdoTi8pcEXHSlRuegST5JMLIupHVxMaYg7M078j4=; b=h67PahoOveU05A
-	WjEdERwXBCT/HnWz1Oa/nhHCgpku4DvjjCWG+R0o8hIdUMs2RcE+ZRiS/dGpaCF/uWC9JKAE8NhTc
-	/AcrVz4POazxuUlEWREgAy26YtkLE72mWa1f7wzZQH46F/8TLkm5n0W1kGCLc1+yR6vQgaYZVxkXp
-	eTSybTfe5ngSDCGkgcpU7fvP2a0dXiBwMw+zRhstkpWnmfynPh4jDI/e1HNOQNDaVHQJHEibzPxBQ
-	GrYvrLsoeZMjW9tBQDTywIgtywMbpYr9NO114dXzbEr59l4IPRiK4J08ZfAQIokBv4BdNNA391I11
-	fT2e/CoDVMU/SFZo/fjw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:Date:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=y4H5lJi8Fv4+TgS+lkwzpzMi/R/v5KnDJoLjIy9B8hM=; b=NHfWYXqicV3IuJ
+	xERt+h0CACT+IW3Cgi6XphZ3kRCbKQTvsRaakRDLCAmEBRyRTjcnO1gEFCFbmHPIwYPVqxqkaVyX2
+	x+sEwj2LCCENKNivrzY4M6412wcQ+Vne1K3E4Np8CMVgBGxpXHxhA72+g+fqYJGsLq3X+k2+qL2wO
+	TKpMKH2j2Vp76Ha5+BqJvv8WUZzXoSzClDb1O5mL+clv0WuzlVzU4IClKZ/+321mFCgS3qjqeEnS7
+	xoSXaiZU0Gj9HVu4YUAiaJFu1ez3XeMmOpfP3qO3IDOTNH0zOonhWKzcqZneMzIJwcn2AnPX/CTXM
+	DdpQnyorzHyRq7NK7akA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wdTu4-0000000CY4T-2UyH;
-	Sat, 27 Jun 2026 14:21:04 +0000
-Received: from mail-lj1-x22e.google.com ([2a00:1450:4864:20::22e])
+	id 1wdX9q-0000000Cg4w-0pjl;
+	Sat, 27 Jun 2026 17:49:34 +0000
+Received: from mail-vs1-xe35.google.com ([2607:f8b0:4864:20::e35])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wdTu1-0000000CY3d-24KS
+	id 1wdX9m-0000000Cg3i-3s5y
 	for linux-amlogic@lists.infradead.org;
-	Sat, 27 Jun 2026 14:21:02 +0000
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-39979f72d0cso8870591fa.2
-        for <linux-amlogic@lists.infradead.org>; Sat, 27 Jun 2026 07:21:00 -0700 (PDT)
+	Sat, 27 Jun 2026 17:49:32 +0000
+Received: by mail-vs1-xe35.google.com with SMTP id ada2fe7eead31-7353fc918d9so1497243137.2
+        for <linux-amlogic@lists.infradead.org>; Sat, 27 Jun 2026 10:49:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782570059; x=1783174859; darn=lists.infradead.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UjaUcqumMacUQ9KI5r4tiOS1vn4x2pFxKB8z2st3wU0=;
-        b=B5cuxV8ogooDD5XUc+X2Fu9fOqw9XB9Yasqm0cMPE95DkjkzYRD9XJfq5Mnn/+Rb80
-         xANioJdBKY0JWcp6e6zeSv/5xtODGoto4R8fLSXsTHp+mkFxf1iCYwvZi1OqU8WHPe7+
-         eLrctUY2wOzDZyUb37pILgCCDO4zCLFouQJxQGq70NZnlWF49WeML6f1sFGAa8OkQBRi
-         1KvYgsZfZuP8+7+/Y7ls+LD3FxGZi2OyAoskGeoFSWbkCaAJzl4W/p12tOteAYui4BX7
-         vUPvp8UIJ+fTkYOEboIeszRQHhUZtINKtPNZHKb71eh1FJGbQ5tCeEsRia9L6t70ZC6R
-         Q58Q==
+        d=gmail.com; s=20251104; t=1782582569; x=1783187369; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+uflCN5dEoFADXWjqBtV9JZXNhAeBkbLG/4dD0z7b4I=;
+        b=enbq5aJmBRgE9Dwx5N2J4LBd0rGu3SBnGF/8e8ZT0vzjDuc7N/nkirSWLPJUucVMaW
+         gT5+h+rqL/qkc8cakQxBnN9niJYs1A5+ln0eM24yy/BiKHjPwVjhF+a4BtVN9EYeDrMr
+         Cg1kpcOzXP7+9o0Ae8io9sV4YRW6hV1PSA2GHYGT8PAVNYuGbU3a3JPfEMThh5bz1Qdf
+         4LvgCsNlFd3toBQMfCoRNd+0NQuuLZn22qmE8BwarV3etA3GNp7QWfTYyN3Lq8MwKHnx
+         r1n7neInRdYHLPTmKTCXmqyQ766pLELIhGHV2ryG3Bj87WotgJN+c7yNtqNY8iz+3iNA
+         o6kg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782570059; x=1783174859;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UjaUcqumMacUQ9KI5r4tiOS1vn4x2pFxKB8z2st3wU0=;
-        b=phruWvLWX5afGi9EbRqhBC3LiPHRhCDzcON/xFggQ9QIeKuC4iGnLdTqUY3UzhqyUx
-         xAJGfnPafJNlCdH3C3a0gqhA+cnsoz2D2CSoXbL2XESggYaeXU7GHzYeh86CSpEWBDgk
-         3wJcKk/IsbwnNYwVmK12y/6WYO+bco70Yg29AsmA7FQttNEob7Gfv9AdIcJRHDgpB0mv
-         EJa4VWz0oV3Pwy44EZ7sPUA+n+ScKxCcx1JwC7vKRUECyQMfuZvHcUxdci9wy5x4/73P
-         RShoSgBCWtFp/qRgQSsJwRwiVq6fomuKH8l+VgpFZGf6L+ruLU9tCzNhM1AV9X7kjVEq
-         fp/A==
-X-Gm-Message-State: AOJu0Yxn0TPlz8uNkK/Tq3CBkpUWtuRK1bJIbYoIEH0WmYgUHRp7ncmL
-	NQbjXWRP0S1aE4k6JtxDn61Qw6qnnIOl33oE8qqYRGzhnFKNKeEumtGw
-X-Gm-Gg: AfdE7cmiu67hD/F/+43ImPEGC8YLkPcK/4YsiSQG3lbf5V8OgOyksRp54KFiTDzxRHu
-	qjjDsJB2di52dtul9ZStpUjfsPaYD2+0/6FvceUQyC5o0myZzgaYbCoO3z5HaLj2mfXEugWw8fk
-	YDs3zrnQRwNEvz5WgDdwClK09G4phO/2Nd4ZwOC8LuvRyqUE1/5M9Wn60dNKJoXw39VCPmoawym
-	+/JCeJAUWw2poAYgJS3MqlGwbtGS52qgFTd2KbtlCY/mSZ5wJ8q3ajEUsnukt/OyFfL9xRoaITV
-	LvoE9DhkCtbwUpjP3AaznkzmYhzc/XEInvfd5stGYRCF3b1wXGy/7U7OM6/bqxzHbe4GYufYV0h
-	09RYlWOtVhbyJjrflbi+D+s1inr2YBsWBIwVNErFM/lLJW3sM/AU0Ae5EkVjD/h8rEfx5dzojLS
-	+LCeKs46pkKdToHSRPoJz2ZECUtXOLYGruz7F3XsoG4A==
-X-Received: by 2002:a05:651c:435a:20b0:399:99f9:3a17 with SMTP id 38308e7fff4ca-39ae15d1919mr7629901fa.21.1782570058841;
-        Sat, 27 Jun 2026 07:20:58 -0700 (PDT)
-Received: from smtpclient.apple ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3999b1b1a7esm59752681fa.40.2026.06.27.07.20.55
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 27 Jun 2026 07:20:58 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3864.600.51.1.1\))
-Subject: Re: [PATCH v2] ASoC: meson: aiu: fifo-spdif: soft reset the S/PDIF
- datapath on start/stop
-From: Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <thanni.i9bbkrc1oza2@postmarketos.org>
-Date: Sat, 27 Jun 2026 18:20:43 +0400
-Cc: linux-amlogic@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>,
- Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-sound@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Message-Id: <D982B214-552D-4E21-AF98-4367C5ADC62D@gmail.com>
-References: <20260627125030.808058-1-christianshewitt@gmail.com>
- <thanni.i9bbkrc1oza2@postmarketos.org>
-To: Ferass El Hafidi <funderscore@postmarketos.org>
-X-Mailer: Apple Mail (2.3864.600.51.1.1)
+        d=1e100.net; s=20251104; t=1782582569; x=1783187369;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+uflCN5dEoFADXWjqBtV9JZXNhAeBkbLG/4dD0z7b4I=;
+        b=WYhVFE5Af5j2QnSCuXUHQ4def+8DUzXANB2ulue4oEjVv04ZMixO8flmcetaqXjP+Q
+         c74kEZhQsB+ee6IJAg277j/XGyD1mLb/LwZJ8YfmaS3XwrTfZDGE+HwpBbIlz0V4cHlY
+         ubTlydjxebx643WYMXaoNJhHF4da0V4xI6EBRDb+xLavT1xN8t7NcQB4NMc88XRiLYqX
+         5+dwUSleriXu3QEQS+x24BjJFEkCTtn+pfxkmQhCtE9NbbJuvYUDIls7EWQKvHAk9m9l
+         tk6A2XXHBFieUb+p49B0gJa5fg0+RGUFhoCBM3GHlf0khmk3Gy8Uuxr337Hs9PyrXrmM
+         65Jg==
+X-Forwarded-Encrypted: i=1; AHgh+Rq0fHt+E/k3BNt26ucHNA8DuACf6Dp3hnaLCkqtepg0cdVkC1wQg7kkgHeDiXip30hUZtxtnm7pAIY/hqM6@lists.infradead.org
+X-Gm-Message-State: AOJu0Yz2s1jc2M9YXOLwoVrIsDZF/EUSuGPRzg6tc7HuPrv0GIFo4hkR
+	enguxUJoLCgMbqaHfl9v9P8dxQzVxZIQc9Ry92Lerc/FT4Ju84rJpTGx
+X-Gm-Gg: AfdE7cmsbEEEgu3DKuuq0pD1XXL/aWyiXNm/cZCLVi//6GfKw1eNsQFJrGa3A8p2Sz1
+	icn5KRdWZ35bOdqYJwlUDVfKlPPIZWBlPThtXGkMGFKZGBF3m96DkXRSfoTIkpLRrN+UwDat7K6
+	lipt3QnJ768asPqvvnssAIqWl44Gr/RUzkCKcM4V9HS7WsZySNj02Of4dUJAUCMoAEQM41fHfXp
+	dqxl2S4zhM7azjHl+fur3QylsC4b8j3z4EiqEBwktED+UfY0aaBZYeHbyjnoiGpLacne5ybzPWJ
+	UrKFs4lTb7vwgdwnmRWDPSaljY0aKdsz2esa5S8WrND1E9cKZiHJWZ1k+kCDKKL1Rm+qnqRNmud
+	J/z6ShOPO8A0IS99gr4wfQAhmEq8eaIOq75Kue42c+ErUZgROUA8Xb26wukX7mFxIwYCzlYPaVD
+	0LuNZBd1+ir9sOmLl3MpKl+uSHrgU1PVllNKVX5PdWPttL
+X-Received: by 2002:a05:6102:440f:b0:730:db02:1d08 with SMTP id ada2fe7eead31-73434452fd5mr5471882137.10.1782582569056;
+        Sat, 27 Jun 2026 10:49:29 -0700 (PDT)
+Received: from localhost (d-24-145-72-22.fl.cpe.atlanticbb.net. [24.145.72.22])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-96916e5b10dsm2811280241.4.2026.06.27.10.49.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 27 Jun 2026 10:49:28 -0700 (PDT)
+From: Yury Norov <yury.norov@gmail.com>
+X-Google-Original-From: Yury Norov <ynorov@nvidia.com>
+Date: Sat, 27 Jun 2026 13:49:27 -0400
+To: David Laight <david.laight.linux@gmail.com>
+Cc: Robin Murphy <robin.murphy@arm.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+	Russell King <linux@armlinux.org.uk>, Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>,
+	Arnaldo Carvalho de Melo <acme@kernel.org>,
+	Namhyung Kim <namhyung@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	James Clark <james.clark@linaro.org>,
+	Thomas Gleixner <tglx@kernel.org>, Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Len Brown <lenb@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	MyungJoo Ham <myungjoo.ham@samsung.com>,
+	Kyungmin Park <kyungmin.park@samsung.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
+	Moritz Fischer <mdf@kernel.org>,
+	Yicong Yang <yangyicong@hisilicon.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
+	Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
+	Dan Williams <djbw@kernel.org>,
+	Vishal Verma <vishal.l.verma@intel.com>,
+	Dave Jiang <dave.jiang@intel.com>, Ira Weiny <ira.weiny@intel.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Shuai Xue <xueshuai@linux.alibaba.com>,
+	Will Deacon <will@kernel.org>,
+	Jiucheng Xu <jiucheng.xu@amlogic.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Jing Zhang <renyu.zj@linux.alibaba.com>,
+	Xu Yang <xu.yang_2@nxp.com>, Linu Cherian <lcherian@marvell.com>,
+	Gowthami Thiagarajan <gthiagarajan@marvell.com>,
+	Ji Sheng Teoh <jisheng.teoh@starfivetech.com>,
+	Khuong Dinh <khuong@os.amperecomputing.com>,
+	Daniel Lezcano <daniel.lezcano@kernel.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Yury Norov <yury.norov@gmail.com>, Kees Cook <kees@kernel.org>,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas.weissschuh@linutronix.de>,
+	Aboorva Devarajan <aboorvad@linux.ibm.com>,
+	"Ritesh Harjani (IBM)" <ritesh.list@gmail.com>,
+	Ilkka Koskinen <ilkka@os.amperecomputing.com>,
+	Besar Wicaksono <bwicaksono@nvidia.com>, Ma Ke <make24@iscas.ac.cn>,
+	Chengwen Feng <fengchengwen@huawei.com>,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+	linux-perf-users@vger.kernel.org, linux-acpi@vger.kernel.org,
+	driver-core@lists.linux.dev, linux-pm@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, linux-fpga@vger.kernel.org,
+	linux-rdma@vger.kernel.org, nvdimm@lists.linux.dev,
+	linux-pci@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 13/16] perf: Use sysfs_emit() for cpumask show callbacks
+Message-ID: <akANJ-AT7nHpRMq-@yury>
+References: <20260528183625.870813-1-ynorov@nvidia.com>
+ <20260528183625.870813-14-ynorov@nvidia.com>
+ <7e980b99-1e4e-408b-8ebd-4d28116e7ad5@arm.com>
+ <20260529130619.12f24264@pumpkin>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20260529130619.12f24264@pumpkin>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260627_072101_549074_C2D766DC 
-X-CRM114-Status: GOOD (  13.02  )
+X-CRM114-CacheID: sfid-20260627_104930_978773_A7C5966F 
+X-CRM114-Status: GOOD (  25.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,37 +166,88 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-PiBPbiAyNyBKdW4gMjAyNiwgYXQgNTowOOKAr3BtLCBGZXJhc3MgRWwgSGFmaWRpIDxmdW5kZXJz
-Y29yZUBwb3N0bWFya2V0b3Mub3JnPiB3cm90ZToKPiAKPiBIaSBDaHJpc3RpYW4sCj4gCj4gT24g
-U2F0LCAyNyBKdW4gMjAyNiAxMjo1MCwgQ2hyaXN0aWFuIEhld2l0dCA8Y2hyaXN0aWFuc2hld2l0
-dEBnbWFpbC5jb20+IHdyb3RlOgo+PiBUaGUgSTJTIEZJRk8gc29mdC1yZXNldHMgaXRzIGZhc3Qg
-ZG9tYWluIG9uIHN0YXJ0IChBSVVfUlNUX1NPRlQgYml0IDAgKwo+PiBBSVVfSTJTX1NZTkMgcmVh
-ZCBpbiBhaXVfZmlmb19pMnNfdHJpZ2dlciksIG1pcnJvcmluZyB0aGUgZG93bnN0cmVhbQo+PiB2
-ZW5kb3IgZHJpdmVyJ3MgYXVkaW9fb3V0X2kyc19lbmFibGUoKS4gVGhlIFMvUERJRiBGSUZPIGhh
-cyBubyBlcXVpdmFsZW50Ogo+PiBpdCBvbmx5IHRvZ2dsZXMgdGhlIElFQzk1OCBEQ1UsIHNvIGEg
-c3RhbGUgZGF0YXBhdGggRklGTyBjYW4gYmUgcmVwbGF5ZWQsCj4+IHByb2R1Y2luZyB0aGUgIm1h
-Y2hpbmUgZ3VuIG5vaXNlIiBidWZmZXIgdW5kZXJydW4gLSBvbiBzdGFydCB3aGVuIHN3aXRjaGlu
-Zwo+PiBvdXRwdXRzLCBhbmQgb24gc3RvcCB3aGVuIHBsYXliYWNrIGVuZHMuIFRoZSBsYXR0ZXIg
-aXMgYXVkaWJsZSBvbiBkZXZpY2VzCj4+IHdpdGggYW4gYWx3YXlzLW9uIFMvUERJRi1mZWQgREFD
-IChlLmcuIHRoZSBFUzcxNDQgb24gdGhlIFdlVGVrIFBsYXkyKS4KPj4gCj4+IFRoZSB2ZW5kb3Ig
-ZHJpdmVyIHJlc2V0cyB0aGUgSUVDOTU4IGZhc3QgZG9tYWluIChBSVVfUlNUX1NPRlQgYml0IDIp
-IG9uCj4+IGJvdGggZW5hYmxlIGFuZCBkaXNhYmxlIChhdWRpb19od185NThfZW5hYmxlKSwgYW5k
-IHdoZW4gcmVjb25maWd1cmluZwo+PiAoYXVkaW9faHdfOTU4X3Jlc2V0IGNsZWFycyBBSVVfOTU4
-X0RDVV9GRl9DVFJMIHRoZW4gcmVzZXRzKS4gRG8gdGhlIHNhbWU6Cj4+IHJlc2V0IGJlZm9yZSBl
-bmFibGluZyB0aGUgRENVIG9uIHN0YXJ0LCBhbmQgYWZ0ZXIgZGlzYWJsaW5nIGl0IG9uIHN0b3Au
-Cj4+IAo+PiBGaXhlczogNmFlOWNhOWNlOTg2YmYgKCJBU29DOiBtZXNvbjogYWl1OiBhZGQgaTJz
-IGFuZCBzcGRpZiBzdXBwb3J0IikKPj4gU2lnbmVkLW9mZi1ieTogQ2hyaXN0aWFuIEhld2l0dCA8
-Y2hyaXN0aWFuc2hld2l0dEBnbWFpbC5jb20+Cj4gCj4gWW91IG1heSBoYXZlIGZvcmdvdHRlbiB0
-byBhZGQgTWFydGluJ3MgUi1iIGhlcmUuCgoxMDAlLCBidXQgSSBhbHNvIG1pc3NlZCBhbWVuZGlu
-ZyB0aGUgY29tbWl0IGRlc2NyaXB0aW9uIGZvciB0aGUgdjIgY2hhbmdlIHNvCnRoZXJl4oCZcyBh
-IHYzIHdoZXJlIGl04oCZcyBiZWVuIGFkZGVkLiBTb3JyeSBmb3IgdGhlIG5vaXNlIGV2ZXJ5b25l
-LCBzZWVtcyBJIGFtCmEgbGl0dGxlIG91dCBvZiBwcmFjdGljZSBhdCBzdWJtaXR0aW5nIHRoaW5n
-cy4KCkNILgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwps
-aW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5v
-cmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxv
-Z2ljCg==
+On Fri, May 29, 2026 at 01:06:19PM +0100, David Laight wrote:
+> On Fri, 29 May 2026 12:05:08 +0100
+> Robin Murphy <robin.murphy@arm.com> wrote:
+> 
+> > On 2026-05-28 7:36 pm, Yury Norov wrote:
+> > > These callbacks are sysfs show paths.
+> > > 
+> > > Use sysfs_emit() and cpumask_pr_args() to emit the masks.
+> > > 
+> > > This prepares for removing cpumap_print_to_pagebuf().  
+> > 
+> > TBH, looking at this diff I think it only shows the value of having a 
+> > helper to abstract the boilerplate...
+> > 
+> > I'm not sure I agree with the argument of removing something entirely 
+> > just because it may occasionally be misused, but could we at least have 
+> > something like:
+> > 
+> > #define sysfs_emit_cpumask(buf, mask) \
+> > 	sysfs_emit((buf), "%*pbl\n", cpumask_pr_args(mask))
+> >
+> > to save the mess in all the many places where the current 
+> > cpumap_print_to_pagebuf() usage _is_ entirely appropriate?
+
+This way you have to add 2 wrappers:
+
+ #define sysfs_emit_cpulist(buf, mask) \
+ 	sysfs_emit((buf), "%*pbl\n", cpumask_pr_args(mask))
+
+ and
+
+ #define sysfs_emit_cpumask(buf, mask) \
+ 	sysfs_emit((buf), "%*pb\n", cpumask_pr_args(mask))
+
+There are people who complain even about DIV_ROUND_UP(), how hard it is
+to keep all that helpers in memory, and all that things.
+
+https://lore.kernel.org/all/20260304124805.GB2277644@noisy.programming.kicks-ass.net/
+
+Disagree about DIV_ROUND_UP() (because yeah, I'm bad in math), but
+this sysfs_emit_cpumask() is a complete syntax redundancy.
+
+Once we have it, people will do this type of things:
+
+        tmp = kmalloc(PAGE_SIZE);
+        sysfs_emit_cpumask(tmp, mask);
+        sysfs_emit(buf, "my prefix: %s\n", tmp);
+        kfree(tmp);
+
+Patch #1 in this series is one example. My series that removes
+bitmap_print_to_pagebuf() will give you more:
+
+https://lore.kernel.org/all/20260303200842.124996-2-ynorov@nvidia.com/
+
+It doesn't mean that *you* will misuse the API. It means that *I* will
+have to inspect the codebase for that type of bugs periodically.
+
+So, the overall state is simple: we've got well-established
+printf()-like functions that people know and understand, and we also
+have exotic APIs here and there with a non-standard interface and a
+clear potential to misuse. In this case, they have historical roots,
+but now we don't need them.
+
+> That has the advantage of letting you change how it is done (again)
+> without having to find all the callers.
+
+You mean things like silencing the prints or adding a prefix?
+
+If you believe that perf subsystem would benefit from it - that's
+OK. Just please keep it local. The kernel globally doesn't need to
+'change how it is done' beyond the lib/vsprintf.  The kernel really
+needs people to use something that the other people are familiar with.
+
+Thanks,
+Yury
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
