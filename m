@@ -4,53 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B482C43458
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jun 2026 13:02:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B681C43458
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jun 2026 13:12:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hESdGdHDGl3q3WpWB4j5c/MKrXsftXcaZUQB9bBHons=; b=NB1HtQQLiAgJwM
-	KOp7W36WleEEXyyT4v3sTabyTeS9aaVfuO34yfHouuYjujPyT+xGbdGA5Nry+CM24hlIPSS9Vw+Qf
-	wCO0Uh+ogPULcYyPBDIHstKIPZ0jptNFCPZwAwF+4BUoTjkhWljuTqdJpVnhHltkyY6snUO5yagB+
-	Fsu6fYwapvYX1zGKruEI+B3GFLVvlXVV4EPN5WzrxAr7cPhq+/rjcKS188FC00OWpqwRmiHzoaDHL
-	TtlyBT/FexfaD//TnFaZcUbKdG+Tm/mndex0byTUwP+HYCceu6FOYc00G99AKlYB63PgEEdfQmSSa
-	2bDLsgmyICb124B8rm1w==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=QCim1VZcvmW0TN8ORUd8otEu9rH8mAIpY30seJuPoLM=; b=OCrInGCwt/Ggm0
+	JHmMyL5H3vMTpdrmj/chxKah14/rAztFzyO2QCzJT5sx3/I1hS/LrFVwtJ5gMrGy8FOjSumRz+oD0
+	8ltYgyyfhw2jY7rmp94CSdrEgs1uiJ9yBf5FXZsTnHWMn5dOgXw+ydV1WQ/ATRXfC88eS7RQY60Y8
+	gXZA5XSzT8qBWKBcO4KpEnzmf6LsCV4U/ot7dWOVUgD4pQaNfDyZTCa0BXwmEVv4pQ9rUYxh3cd4c
+	Gu3ATVxlkTt6zMqZgaWb72KCkXqGJ8etCSLSLpNZsG3hILPnpi+1c4lAl3rG/MCujHVnuQ8oHaPr5
+	brR+FOY1l7aZciqwQdMQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wdSfr-0000000CUCx-0Hqq;
-	Sat, 27 Jun 2026 13:02:19 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1wdSpS-0000000CUvK-1JpM;
+	Sat, 27 Jun 2026 13:12:14 +0000
+Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wdSfp-0000000CUCi-237V
+	id 1wdSpP-0000000CUuY-43YI
 	for linux-amlogic@lists.infradead.org;
-	Sat, 27 Jun 2026 13:02:17 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id DFFE0424AC;
-	Sat, 27 Jun 2026 13:02:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82D161F000E9;
-	Sat, 27 Jun 2026 13:02:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782565336;
-	bh=KBNhnUGDEIvVgbxjQL1tq4oU+pIjRij/AAsP08Ct4Q0=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=oU2t+yhIjAZbBnJVDbGEISQlYkTOnIwcSikAKtUnqVjcHwu1dp8gayHQZ9XWQUjw/
-	 YmyRgI2O4jxR5/xWtMgbVU5VavnC6gbWzb03NG3XiRY7Cb1UXpKM373PWs6rv/ok1T
-	 7StcMyYkKCasgzDjYBFW0v+elS36mOBef2+hoIYu1nUqUsTCncMXlkGaRtLHpZ9NHM
-	 RLl8xsbWhnYjbJ0VrshppetgVhBAL71NxLTmrxYUdC9lnmvGe+Y+4OxlEv5mnwrTOW
-	 hI1xrNmjj74lqidd5TnVbDA9WfYkgMFifSIlwu674aj70DCfUnZ3o4iY8eac7yrg3I
-	 Bn86NjHpWYMBw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2] ASoC: meson: aiu: fifo-spdif: soft reset the S/PDIF
- datapath on start/stop
-To: "Christian Hewitt" <christianshewitt@gmail.com>
-Cc: linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org
-In-Reply-To: <20260627125030.808058-1-christianshewitt@gmail.com>
-References: <20260627125030.808058-1-christianshewitt@gmail.com>
-Date: Sat, 27 Jun 2026 13:02:15 +0000
-Message-Id: <20260627130216.82D161F000E9@smtp.kernel.org>
+	Sat, 27 Jun 2026 13:12:13 +0000
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-462342ac290so2025691f8f.2
+        for <linux-amlogic@lists.infradead.org>; Sat, 27 Jun 2026 06:12:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1782565930; x=1783170730; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mYYGf5y/FFyUp8Jk8dSfusP7o73GMsKAwMN8eV/HMTQ=;
+        b=eZ05Ov6XPT0hx8fI0f3WTQ0d1RQLBRsaXo0ZRBa+nv0DNdbU7pVzi123yOF1axU6Gx
+         5LE/d+AGPmoXcS3kD3wLL98++sbx4SHD0qjMZ4ezJJBgfPqkMbY0pWbrCT3Kv6btJkLO
+         fftclRtY16OOM0mtgXKjAcFBbVSu58nshJYpb+BdSIoxxvU1V4a1ziWAd0Okl2yvIs5C
+         eTBGXYDItovQmbfEJyD++jO1c/FZcyTwJPc4Z2omHH4361RpLB59mz3x7HLYubeyFiRr
+         I3Os6KXtFWjeoY2ISawZ0IEnugCdMOKAvlhCWk7gPC7EKZrM1SkGx3xcShRrlHql++5n
+         Ik0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1782565930; x=1783170730;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mYYGf5y/FFyUp8Jk8dSfusP7o73GMsKAwMN8eV/HMTQ=;
+        b=ei/afZheCYT/BAFKqTGmdfKlh+vIMOqQLJgDgh25CC76NLmCsLez3dA7JdRbNFj+Jr
+         l/htkLvmbnzoIgQ7KffxEf1vG/SI8Va5DTzifyPRC6G93YCF/xTkVN9dE2yI0MfxxDgt
+         ghujWU3n4ek7kw+rolDCIwalXhkTPg7Q7Tvn5UP2CqbhdX4ZcRYwiRWW2AvKv7iV84Y4
+         zgn+Ks7bAqyGxIbSCR6vN0M753jD0Sy+gzPn3aBZnbSyahf8ffoVDvpDcr5GgYOsfkkK
+         uT5J/Trb10xkeBcCCRZRXecFEAK+Qp1yNeV5a6auBwEav3xqcFloiEw9DDvERIYF9GiW
+         OGCA==
+X-Forwarded-Encrypted: i=1; AFNElJ/9Ah00mVff/qAFl6QSZMgK30mVp1sqOKcnh/8sTJDkkAbnqDq8VBL9kDayJT1/yWaTApLZWJ0FGLQuTbmx@lists.infradead.org
+X-Gm-Message-State: AOJu0Yz5omWIoOLB3JKfriphcWOfJIOq0msRCOwOAnfP3qWBMIU6D85p
+	JkwR2T1xFMSgPAr+bfXRk1N4kHZ4iuXgiYHk9YS0v4mRy+6OpWnujdDy
+X-Gm-Gg: AfdE7ckKl46hJfRBoUFfBG0xXKNhhWRO2dru1RU1/0eQHWS0MbB+NCQjGC8s3dYbHzU
+	qwE+5EVscNHjrh4wi0Sa/CQqkU92/2WuYwEJsRiDllDoCybXFA4U4vjEU7gz9G1qtEHW3sT/7ck
+	SWwegfWXJPKeLuztssLbQFK9ZLL9Bv0j9CiprYMpYRmwQJnNl+cmXSJpaYmhHH2KwdDOiCjRt1K
+	hBgIQ+wAYiv5kJwIkbZkOsp89rwwUkQgLXHUtU/IjHBgVtubJri/vT8SL3H7AfmSWoxMCSZNffz
+	n162P0Nkpnw84dgPxfpKQkhDroxKrhoSBjg3l98p5WGxn2KBunAjep6WbwBDFS6uH5ATrkYcSi3
+	KnRN03KmI6dFyjplpJqKQ165VqzEFjPveUQm3ZeeS0rOxsbEyKmphNSv8A+OiHzcPg/BoK4TPxn
+	w07ixF3A27leaEzK5C
+X-Received: by 2002:a05:600c:4e54:b0:492:523f:a3df with SMTP id 5b1f17b1804b1-4926685fccfmr158769025e9.5.1782565929840;
+        Sat, 27 Jun 2026 06:12:09 -0700 (PDT)
+Received: from toolbox.. ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-49268fde98csm171665075e9.6.2026.06.27.06.12.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 27 Jun 2026 06:12:09 -0700 (PDT)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Jerome Brunet <jbrunet@baylibre.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-sound@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3] ASoC: meson: aiu: fifo-spdif: soft reset the S/PDIF datapath on start/stop
+Date: Sat, 27 Jun 2026 13:12:05 +0000
+Message-ID: <20260627131205.808800-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.43.0
+MIME-Version: 1.0
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260627_061212_048273_CDE62302 
+X-CRM114-Status: GOOD (  10.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,71 +100,73 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MiBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0hpZ2hdIENhbGxpbmcgc25kX3Nv
-Y19jb21wb25lbnRfd3JpdGUoKSBpbnNpZGUgdGhlIEFMU0EgUENNIHRyaWdnZXIgY2FsbGJhY2sg
-Y2F1c2VzIGEgJ3NjaGVkdWxpbmcgd2hpbGUgYXRvbWljJyBCVUcuCi0gW0hpZ2hdIFRoZSBmYXN0
-IGRvbWFpbiBzb2Z0IHJlc2V0IGxvZ2ljIHVzZXMgYW4gaW5jb3JyZWN0IGV4ZWN1dGlvbiBzZXF1
-ZW5jZSB0aGF0IGNvbnRyYWRpY3RzIHRoZSBjb21taXQgbWVzc2FnZSwgcmlza2luZyBhdWRpbyBn
-bGl0Y2hlcy4KLS0KCmNvbW1pdCA3NWEyY2M3MGEzNTRmZDFmNDNhY2I1ZmI5NTE5MTJiODJkMTJl
-Y2E2CkF1dGhvcjogQ2hyaXN0aWFuIEhld2l0dCA8Y2hyaXN0aWFuc2hld2l0dEBnbWFpbC5jb20+
-CkRhdGU6ICAgU2F0IEp1biAyNyAxMjo1MDozMCAyMDI2ICswMDAwCgpBU29DOiBtZXNvbjogYWl1
-OiBmaWZvLXNwZGlmOiBzb2Z0IHJlc2V0IHRoZSBTL1BESUYgZGF0YXBhdGggb24gc3RhcnQvc3Rv
-cAoKVGhpcyBjb21taXQgaW50cm9kdWNlcyBhIHNvZnQgcmVzZXQgb2YgdGhlIFMvUERJRiBmYXN0
-IGRvbWFpbiBvbiBzdGFydCBhbmQKc3RvcCB0byBwcmV2ZW50IGEgYnVmZmVyIHVuZGVycnVuICJt
-YWNoaW5lIGd1biBub2lzZSIgaXNzdWUuIEl0IGFkZHMgY2FsbHMKdG8gcmVzZXQgdGhlIGRvbWFp
-biBiZWZvcmUgZW5hYmxpbmcgdGhlIERDVSBvbiBzdGFydCwgYW5kIGFmdGVyIGRpc2FibGluZwpp
-dCBvbiBzdG9wLgoKPiBUaGUgdmVuZG9yIGRyaXZlciByZXNldHMgdGhlIElFQzk1OCBmYXN0IGRv
-bWFpbiAoQUlVX1JTVF9TT0ZUIGJpdCAyKSBvbgo+IGJvdGggZW5hYmxlIGFuZCBkaXNhYmxlIChh
-dWRpb19od185NThfZW5hYmxlKSwgYW5kIHdoZW4gcmVjb25maWd1cmluZwo+IChhdWRpb19od185
-NThfcmVzZXQgY2xlYXJzIEFJVV85NThfRENVX0ZGX0NUUkwgdGhlbiByZXNldHMpLiBEbyB0aGUg
-c2FtZToKPiByZXNldCBiZWZvcmUgZW5hYmxpbmcgdGhlIERDVSBvbiBzdGFydCwgYW5kIGFmdGVy
-IGRpc2FibGluZyBpdCBvbiBzdG9wLgoKW1NldmVyaXR5OiBIaWdoXQpJcyB0aGUgc2VxdWVuY2Ug
-b2Ygb3BlcmF0aW9ucyBpbXBsZW1lbnRlZCBpbiB0aGUgc3RvcCBwYXRoIGludmVydGVkIGNvbXBh
-cmVkCnRvIHRoaXMgY29tbWl0IG1lc3NhZ2U/CgpUaGUgY29tbWl0IG1lc3NhZ2Ugc3RhdGVzIHRo
-ZSByZXNldCBzaG91bGQgaGFwcGVuIGFmdGVyIGRpc2FibGluZyB0aGUgRENVCm9uIHN0b3AsIGJ1
-dCB0aGUgY29kZSBleGVjdXRlcyB0aGUgcmVzZXQgYmVmb3JlIGRpc2FibGluZyB0aGUgRENVIGRh
-dGEgZmxvdy4KCj4gZGlmZiAtLWdpdCBhL3NvdW5kL3NvYy9tZXNvbi9haXUtZmlmby1zcGRpZi5j
-IGIvc291bmQvc29jL21lc29uL2FpdS1maWZvLXNwZGlmLmMKPiBpbmRleCBlMGUwMGVjMDI2ZGNj
-Li5hOTg2MWM1ZDY2Mzc0IDEwMDY0NAo+IC0tLSBhL3NvdW5kL3NvYy9tZXNvbi9haXUtZmlmby1z
-cGRpZi5jCj4gKysrIGIvc291bmQvc29jL21lc29uL2FpdS1maWZvLXNwZGlmLmMKWyAuLi4gXQo+
-IEBAIC02OCwxMSArNjksMTUgQEAgc3RhdGljIGludCBmaWZvX3NwZGlmX3RyaWdnZXIoc3RydWN0
-IHNuZF9wY21fc3Vic3RyZWFtICpzdWJzdHJlYW0sIGludCBjbWQsCj4gIAljYXNlIFNORFJWX1BD
-TV9UUklHR0VSX1NUQVJUOgo+ICAJY2FzZSBTTkRSVl9QQ01fVFJJR0dFUl9SRVNVTUU6Cj4gIAlj
-YXNlIFNORFJWX1BDTV9UUklHR0VSX1BBVVNFX1JFTEVBU0U6Cj4gKwkJc25kX3NvY19jb21wb25l
-bnRfd3JpdGUoY29tcG9uZW50LCBBSVVfUlNUX1NPRlQsCj4gKwkJCQkJQUlVX1JTVF9TT0ZUXzk1
-OF9GQVNUKTsKCltTZXZlcml0eTogSGlnaF0KRG9lcyB0aGlzIGNhdXNlIGEgJ3NjaGVkdWxpbmcg
-d2hpbGUgYXRvbWljJyBidWc/CgpUaGUgQUxTQSBQQ00gdHJpZ2dlciBjYWxsYmFjayBydW5zIGlu
-IGFuIGF0b21pYyBjb250ZXh0IHdpdGggc3BpbmxvY2tzIGhlbGQKYW5kIGludGVycnVwdHMgZGlz
-YWJsZWQsIGJ1dCBzbmRfc29jX2NvbXBvbmVudF93cml0ZSgpIHVuY29uZGl0aW9uYWxseSBhY3F1
-aXJlcwphIHNsZWVwaW5nIGxvY2s6CgpzbmRfc29jX2NvbXBvbmVudF93cml0ZSgpIHsKICAgIC4u
-LgogICAgbXV0ZXhfbG9jaygmY29tcG9uZW50LT5pb19tdXRleCk7CiAgICByZXQgPSBzb2NfY29t
-cG9uZW50X3dyaXRlX25vX2xvY2soY29tcG9uZW50LCByZWcsIHZhbCk7CiAgICAuLi4KfQoKQWxz
-bywgZG9lcyB0aGUgc29mdCByZXNldCBvbiB0aGUgc3RhcnQgcGF0aCBoYXBwZW4gdG9vIGxhdGU/
-CgpFYXJsaWVyIGluIGZpZm9fc3BkaWZfdHJpZ2dlcigpLCBhaXVfZmlmb190cmlnZ2VyKCkgaXMg
-Y2FsbGVkIHRvIHN0YXJ0IHRoZQptYWluIHVwc3RyZWFtIEZJRk8gYmVmb3JlIHRoaXMgc29mdCBy
-ZXNldCBpcyBleGVjdXRlZC4gV2lsbCBzdGFydGluZyB0aGUgRklGTwpiZWZvcmUgdGhlIHJlc2V0
-IHJlc3VsdCBpbiBkcm9wcGVkIGluaXRpYWwgYXVkaW8gc2FtcGxlcz8KCj4gIAkJZmlmb19zcGRp
-Zl9kY3VfZW5hYmxlKGNvbXBvbmVudCwgdHJ1ZSk7Cj4gIAkJYnJlYWs7Cj4gIAljYXNlIFNORFJW
-X1BDTV9UUklHR0VSX1NVU1BFTkQ6Cj4gIAljYXNlIFNORFJWX1BDTV9UUklHR0VSX1BBVVNFX1BV
-U0g6Cj4gIAljYXNlIFNORFJWX1BDTV9UUklHR0VSX1NUT1A6Cj4gKwkJc25kX3NvY19jb21wb25l
-bnRfd3JpdGUoY29tcG9uZW50LCBBSVVfUlNUX1NPRlQsCj4gKwkJCQkJQUlVX1JTVF9TT0ZUXzk1
-OF9GQVNUKTsKPiAgCQlmaWZvX3NwZGlmX2RjdV9lbmFibGUoY29tcG9uZW50LCBmYWxzZSk7Cgpb
-U2V2ZXJpdHk6IEhpZ2hdCldpbGwgcmVzZXR0aW5nIHRoZSBmYXN0IGRvbWFpbiB3aGlsZSB0aGUg
-RENVIGlzIHN0aWxsIGFjdGl2ZWx5IGZldGNoaW5nIGRhdGEKZm9yY2UgdGhlIERDVSB0byByZWFk
-IGZyb20gYW4gZW1wdHkgRklGTyBhbmQgdHJpZ2dlciBhbiB1bmRlcnJ1bj8KCkFzIG5vdGVkIGlu
-IHRoZSBjb21taXQgbWVzc2FnZSByZXZpZXcgYWJvdmUsIHRoZSBzb2Z0IHJlc2V0IGlzIGV4ZWN1
-dGVkIGhlcmUKYmVmb3JlIGZpZm9fc3BkaWZfZGN1X2VuYWJsZShjb21wb25lbnQsIGZhbHNlKSBk
-aXNhYmxlcyB0aGUgRENVIGRhdGEgZmxvdy4KCj4gIAkJYnJlYWs7Cj4gIAlkZWZhdWx0OgoKLS0g
-ClNhc2hpa28gQUkgcmV2aWV3IMK3IGh0dHBzOi8vc2FzaGlrby5kZXYvIy9wYXRjaHNldC8yMDI2
-MDYyNzEyNTAzMC44MDgwNTgtMS1jaHJpc3RpYW5zaGV3aXR0QGdtYWlsLmNvbT9wYXJ0PTEKCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9n
-aWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8v
-bGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+The I2S FIFO soft-resets its fast domain on start (AIU_RST_SOFT bit 0 +
+AIU_I2S_SYNC read in aiu_fifo_i2s_trigger), mirroring the downstream
+vendor driver's audio_out_i2s_enable(). The S/PDIF FIFO has no equivalent:
+it only toggles the IEC958 DCU, so a stale datapath FIFO can be replayed,
+producing the "machine gun noise" buffer underrun - on start when switching
+outputs, and on stop when playback ends. The latter is audible on devices
+with an always-on S/PDIF-fed DAC (e.g. the ES7144 on the WeTek Play2).
+
+The vendor driver resets the IEC958 fast domain (AIU_RST_SOFT bit 2) on
+both enable and disable (audio_hw_958_enable), and when reconfiguring
+(audio_hw_958_reset clears AIU_958_DCU_FF_CTRL then resets). Do the same:
+reset before enabling the DCU on start, and before disabling on stop.
+
+Fixes: 6ae9ca9ce986bf ("ASoC: meson: aiu: add i2s and spdif support")
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+---
+Changes from v2:
+- Ammend description to match the change in v2
+- Add Martin's reviewed-by
+Changes from v1:
+- Add missing fixes tag
+- Trigger AIU_RST_SOFT_958_FAST before disabling DCU matching the
+  stop flow in the vendor driver, as noted by Martin (tests ok)
+---
+ sound/soc/meson/aiu-fifo-spdif.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/sound/soc/meson/aiu-fifo-spdif.c b/sound/soc/meson/aiu-fifo-spdif.c
+index e0e00ec026dc..a9861c5d6637 100644
+--- a/sound/soc/meson/aiu-fifo-spdif.c
++++ b/sound/soc/meson/aiu-fifo-spdif.c
+@@ -24,6 +24,7 @@
+ #define AIU_MEM_IEC958_CONTROL_MODE_16BIT	BIT(7)
+ #define AIU_MEM_IEC958_CONTROL_MODE_LINEAR	BIT(8)
+ #define AIU_MEM_IEC958_BUF_CNTL_INIT		BIT(0)
++#define AIU_RST_SOFT_958_FAST			BIT(2)
+ 
+ #define AIU_FIFO_SPDIF_BLOCK			8
+ 
+@@ -68,11 +69,15 @@ static int fifo_spdif_trigger(struct snd_pcm_substream *substream, int cmd,
+ 	case SNDRV_PCM_TRIGGER_START:
+ 	case SNDRV_PCM_TRIGGER_RESUME:
+ 	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
++		snd_soc_component_write(component, AIU_RST_SOFT,
++					AIU_RST_SOFT_958_FAST);
+ 		fifo_spdif_dcu_enable(component, true);
+ 		break;
+ 	case SNDRV_PCM_TRIGGER_SUSPEND:
+ 	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
+ 	case SNDRV_PCM_TRIGGER_STOP:
++		snd_soc_component_write(component, AIU_RST_SOFT,
++					AIU_RST_SOFT_958_FAST);
+ 		fifo_spdif_dcu_enable(component, false);
+ 		break;
+ 	default:
+-- 
+2.43.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
