@@ -4,157 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98CF8C43602
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jun 2026 17:49:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0242C43458
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jun 2026 06:42:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=y4H5lJi8Fv4+TgS+lkwzpzMi/R/v5KnDJoLjIy9B8hM=; b=NHfWYXqicV3IuJ
-	xERt+h0CACT+IW3Cgi6XphZ3kRCbKQTvsRaakRDLCAmEBRyRTjcnO1gEFCFbmHPIwYPVqxqkaVyX2
-	x+sEwj2LCCENKNivrzY4M6412wcQ+Vne1K3E4Np8CMVgBGxpXHxhA72+g+fqYJGsLq3X+k2+qL2wO
-	TKpMKH2j2Vp76Ha5+BqJvv8WUZzXoSzClDb1O5mL+clv0WuzlVzU4IClKZ/+321mFCgS3qjqeEnS7
-	xoSXaiZU0Gj9HVu4YUAiaJFu1ez3XeMmOpfP3qO3IDOTNH0zOonhWKzcqZneMzIJwcn2AnPX/CTXM
-	DdpQnyorzHyRq7NK7akA==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=vOZEd3dtDsGvRMU9vDAM1P1pI0WWnZvf23erIaSchz4=; b=gtsxb2KzR1hFMO
+	NX0nzi/vAhAM0j9yTHVFvvuI2PBMJu6+KCD3fH/Qbc1BYnRISY7X/jVV1kXPTurC6EtQZGZam/Lmx
+	/+uypWTm8ssm+PegghR3GgougirafpuOdNaJrGmz4A9+DlTxLjM5B1kSMxmEASH1FL2P2KpKlrkfz
+	8IiMyTPeg9M0XurNO89Wp+4bCAd5kDkEfR/zxuwtmz8nYZBg55EtoZTvVyfzwAKtTzv+E1GWDZXob
+	hA6c/pjnKLN+RHkKKsyC9aFxM+QyHKfW1m1Jvz1PeZL7NsgxXwd5wsQSbvoTiLrM+ZuJvKAAvO05p
+	0JN8tXTypbRh6GrycM6A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wdX9q-0000000Cg4w-0pjl;
-	Sat, 27 Jun 2026 17:49:34 +0000
-Received: from mail-vs1-xe35.google.com ([2607:f8b0:4864:20::e35])
+	id 1we5gr-0000000Dm7E-04L4;
+	Mon, 29 Jun 2026 06:41:57 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wdX9m-0000000Cg3i-3s5y
-	for linux-amlogic@lists.infradead.org;
-	Sat, 27 Jun 2026 17:49:32 +0000
-Received: by mail-vs1-xe35.google.com with SMTP id ada2fe7eead31-7353fc918d9so1497243137.2
-        for <linux-amlogic@lists.infradead.org>; Sat, 27 Jun 2026 10:49:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1782582569; x=1783187369; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+uflCN5dEoFADXWjqBtV9JZXNhAeBkbLG/4dD0z7b4I=;
-        b=enbq5aJmBRgE9Dwx5N2J4LBd0rGu3SBnGF/8e8ZT0vzjDuc7N/nkirSWLPJUucVMaW
-         gT5+h+rqL/qkc8cakQxBnN9niJYs1A5+ln0eM24yy/BiKHjPwVjhF+a4BtVN9EYeDrMr
-         Cg1kpcOzXP7+9o0Ae8io9sV4YRW6hV1PSA2GHYGT8PAVNYuGbU3a3JPfEMThh5bz1Qdf
-         4LvgCsNlFd3toBQMfCoRNd+0NQuuLZn22qmE8BwarV3etA3GNp7QWfTYyN3Lq8MwKHnx
-         r1n7neInRdYHLPTmKTCXmqyQ766pLELIhGHV2ryG3Bj87WotgJN+c7yNtqNY8iz+3iNA
-         o6kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1782582569; x=1783187369;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+uflCN5dEoFADXWjqBtV9JZXNhAeBkbLG/4dD0z7b4I=;
-        b=WYhVFE5Af5j2QnSCuXUHQ4def+8DUzXANB2ulue4oEjVv04ZMixO8flmcetaqXjP+Q
-         c74kEZhQsB+ee6IJAg277j/XGyD1mLb/LwZJ8YfmaS3XwrTfZDGE+HwpBbIlz0V4cHlY
-         ubTlydjxebx643WYMXaoNJhHF4da0V4xI6EBRDb+xLavT1xN8t7NcQB4NMc88XRiLYqX
-         5+dwUSleriXu3QEQS+x24BjJFEkCTtn+pfxkmQhCtE9NbbJuvYUDIls7EWQKvHAk9m9l
-         tk6A2XXHBFieUb+p49B0gJa5fg0+RGUFhoCBM3GHlf0khmk3Gy8Uuxr337Hs9PyrXrmM
-         65Jg==
-X-Forwarded-Encrypted: i=1; AHgh+Rq0fHt+E/k3BNt26ucHNA8DuACf6Dp3hnaLCkqtepg0cdVkC1wQg7kkgHeDiXip30hUZtxtnm7pAIY/hqM6@lists.infradead.org
-X-Gm-Message-State: AOJu0Yz2s1jc2M9YXOLwoVrIsDZF/EUSuGPRzg6tc7HuPrv0GIFo4hkR
-	enguxUJoLCgMbqaHfl9v9P8dxQzVxZIQc9Ry92Lerc/FT4Ju84rJpTGx
-X-Gm-Gg: AfdE7cmsbEEEgu3DKuuq0pD1XXL/aWyiXNm/cZCLVi//6GfKw1eNsQFJrGa3A8p2Sz1
-	icn5KRdWZ35bOdqYJwlUDVfKlPPIZWBlPThtXGkMGFKZGBF3m96DkXRSfoTIkpLRrN+UwDat7K6
-	lipt3QnJ768asPqvvnssAIqWl44Gr/RUzkCKcM4V9HS7WsZySNj02Of4dUJAUCMoAEQM41fHfXp
-	dqxl2S4zhM7azjHl+fur3QylsC4b8j3z4EiqEBwktED+UfY0aaBZYeHbyjnoiGpLacne5ybzPWJ
-	UrKFs4lTb7vwgdwnmRWDPSaljY0aKdsz2esa5S8WrND1E9cKZiHJWZ1k+kCDKKL1Rm+qnqRNmud
-	J/z6ShOPO8A0IS99gr4wfQAhmEq8eaIOq75Kue42c+ErUZgROUA8Xb26wukX7mFxIwYCzlYPaVD
-	0LuNZBd1+ir9sOmLl3MpKl+uSHrgU1PVllNKVX5PdWPttL
-X-Received: by 2002:a05:6102:440f:b0:730:db02:1d08 with SMTP id ada2fe7eead31-73434452fd5mr5471882137.10.1782582569056;
-        Sat, 27 Jun 2026 10:49:29 -0700 (PDT)
-Received: from localhost (d-24-145-72-22.fl.cpe.atlanticbb.net. [24.145.72.22])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-96916e5b10dsm2811280241.4.2026.06.27.10.49.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Jun 2026 10:49:28 -0700 (PDT)
-From: Yury Norov <yury.norov@gmail.com>
-X-Google-Original-From: Yury Norov <ynorov@nvidia.com>
-Date: Sat, 27 Jun 2026 13:49:27 -0400
-To: David Laight <david.laight.linux@gmail.com>
-Cc: Robin Murphy <robin.murphy@arm.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-	Russell King <linux@armlinux.org.uk>, Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Ingo Molnar <mingo@redhat.com>,
-	Arnaldo Carvalho de Melo <acme@kernel.org>,
-	Namhyung Kim <namhyung@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	James Clark <james.clark@linaro.org>,
-	Thomas Gleixner <tglx@kernel.org>, Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	MyungJoo Ham <myungjoo.ham@samsung.com>,
-	Kyungmin Park <kyungmin.park@samsung.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
-	Moritz Fischer <mdf@kernel.org>,
-	Yicong Yang <yangyicong@hisilicon.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
-	Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
-	Dan Williams <djbw@kernel.org>,
-	Vishal Verma <vishal.l.verma@intel.com>,
-	Dave Jiang <dave.jiang@intel.com>, Ira Weiny <ira.weiny@intel.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Shuai Xue <xueshuai@linux.alibaba.com>,
-	Will Deacon <will@kernel.org>,
-	Jiucheng Xu <jiucheng.xu@amlogic.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Jing Zhang <renyu.zj@linux.alibaba.com>,
-	Xu Yang <xu.yang_2@nxp.com>, Linu Cherian <lcherian@marvell.com>,
-	Gowthami Thiagarajan <gthiagarajan@marvell.com>,
-	Ji Sheng Teoh <jisheng.teoh@starfivetech.com>,
-	Khuong Dinh <khuong@os.amperecomputing.com>,
-	Daniel Lezcano <daniel.lezcano@kernel.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Yury Norov <yury.norov@gmail.com>, Kees Cook <kees@kernel.org>,
-	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas.weissschuh@linutronix.de>,
-	Aboorva Devarajan <aboorvad@linux.ibm.com>,
-	"Ritesh Harjani (IBM)" <ritesh.list@gmail.com>,
-	Ilkka Koskinen <ilkka@os.amperecomputing.com>,
-	Besar Wicaksono <bwicaksono@nvidia.com>, Ma Ke <make24@iscas.ac.cn>,
-	Chengwen Feng <fengchengwen@huawei.com>,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	linux-perf-users@vger.kernel.org, linux-acpi@vger.kernel.org,
-	driver-core@lists.linux.dev, linux-pm@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, linux-fpga@vger.kernel.org,
-	linux-rdma@vger.kernel.org, nvdimm@lists.linux.dev,
-	linux-pci@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 13/16] perf: Use sysfs_emit() for cpumask show callbacks
-Message-ID: <akANJ-AT7nHpRMq-@yury>
-References: <20260528183625.870813-1-ynorov@nvidia.com>
- <20260528183625.870813-14-ynorov@nvidia.com>
- <7e980b99-1e4e-408b-8ebd-4d28116e7ad5@arm.com>
- <20260529130619.12f24264@pumpkin>
+	id 1we5gp-0000000Dm6F-1GFF;
+	Mon, 29 Jun 2026 06:41:55 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id AA19460054;
+	Mon, 29 Jun 2026 06:41:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 59D70C2BCB8;
+	Mon, 29 Jun 2026 06:41:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1782715314;
+	bh=NFuuFcb/ruJh3wvrl4TTnR1hgxROnRQip/VR2F/THy0=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=BWi51dZaDFBXTr5XrIKky5i25CHrbQToYpeLA72LEB+hyVegKpoIkhAA6RIvCOQhO
+	 IKXaP9U7b3MM7CC1iG3Bbr4BRchL3b1AnqNJ7jO6wDHacsCGwC/MhbnVY3CXE536mZ
+	 Y8HkOWFhDlyQQDHnhjvhOM8XLrg3BJMr3EsH/KgXvnGH4joqrBJG7i45oG0ESb3UmG
+	 aMd6HVbtTZxkEwFwKpuwzx7AAUJlxCptbMK713HjYZZianKaexN9tkQQW+KUe0W9+s
+	 QbTbE1ySTTFJbkSEKkNR7PzrDTn/PBzxFfFn/F6iAs2B6+cVwdQWuJG8LAegHbwjUV
+	 c5KaaKLcWp+ZA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4034EC43458;
+	Mon, 29 Jun 2026 06:41:54 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Mon, 29 Jun 2026 06:41:51 +0000
+Subject: [PATCH] arm64: dts: amlogic: add some device nodes for A9
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20260529130619.12f24264@pumpkin>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260627_104930_978773_A7C5966F 
-X-CRM114-Status: GOOD (  25.29  )
+Message-Id: <20260629-a9-node-v1-1-42ff6a0c16ab@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAK4TQmoC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDMyNL3URL3bz8lFRd41SztOTUpETzZEsDJaDqgqLUtMwKsEnRsbW1AAQ
+ 6oYpZAAAA
+X-Change-ID: 20260629-a9-node-3e6fceba7c90
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1782715311; l=5289;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=qsqMagQntUJk2+7nKd+Qfbf+tdW0g4n8khbu2y9iCho=;
+ b=38v+7CfaRd6EV/UMT6fu9MuQbrcIgyUeFJuxl0LYqrsoLtV/DjAjF56OEhN2PtvvEdaM63/yi
+ 3MKG7QMdJmpCYpV+E+ESfxUHLwaUcsBc5eB1zbSfnP3aa6ESTdb85vf
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -166,86 +83,198 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, May 29, 2026 at 01:06:19PM +0100, David Laight wrote:
-> On Fri, 29 May 2026 12:05:08 +0100
-> Robin Murphy <robin.murphy@arm.com> wrote:
-> 
-> > On 2026-05-28 7:36 pm, Yury Norov wrote:
-> > > These callbacks are sysfs show paths.
-> > > 
-> > > Use sysfs_emit() and cpumask_pr_args() to emit the masks.
-> > > 
-> > > This prepares for removing cpumap_print_to_pagebuf().  
-> > 
-> > TBH, looking at this diff I think it only shows the value of having a 
-> > helper to abstract the boilerplate...
-> > 
-> > I'm not sure I agree with the argument of removing something entirely 
-> > just because it may occasionally be misused, but could we at least have 
-> > something like:
-> > 
-> > #define sysfs_emit_cpumask(buf, mask) \
-> > 	sysfs_emit((buf), "%*pbl\n", cpumask_pr_args(mask))
-> >
-> > to save the mess in all the many places where the current 
-> > cpumap_print_to_pagebuf() usage _is_ entirely appropriate?
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-This way you have to add 2 wrappers:
+Add pinctrl and irqchip-gpio device nodes for A9 SoC.
 
- #define sysfs_emit_cpulist(buf, mask) \
- 	sysfs_emit((buf), "%*pbl\n", cpumask_pr_args(mask))
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Add pinctrl and irqchip-gpio device node for A9.
+---
+ arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi | 140 ++++++++++++++++++++++++++++
+ 1 file changed, 140 insertions(+)
 
- and
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
+index 660c8556a864..cdc57b685cc3 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
+@@ -6,6 +6,7 @@
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/pinctrl/amlogic,pinctrl.h>
+ 
+ / {
+ 	interrupt-parent = <&gic>;
+@@ -97,6 +98,95 @@ soc {
+ 		#size-cells = <2>;
+ 		ranges;
+ 
++		apb: bus@fe000000 {
++			compatible = "simple-bus";
++			reg = <0x0 0xfe000000 0x0 0x480000>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
++
++			periphs_pinctrl: pinctrl@4000 {
++				compatible = "amlogic,pinctrl-a9";
++				#address-cells = <2>;
++				#size-cells = <2>;
++				ranges = <0x0 0x0 0x0 0x4000 0x0 0x340>;
++
++				gpioz: gpio@c0 {
++					reg = <0 0xc0 0 0x20>, <0 0x18 0 0x8>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_Z<<8) 16>;
++				};
++
++				gpiox: gpio@100 {
++					reg = <0 0x100 0 0x24>, <0 0xc 0 0x8>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_X<<8) 18>;
++				};
++
++				gpioh: gpio@140 {
++					reg = <0 0x140 0 0x20>, <0 0x2c 0 0x4>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_H<<8) 8>;
++				};
++
++				gpiom: gpio@1a0 {
++					reg = <0 0x1a0 0 0x20>, <0 0x20 0 0x4>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_M<<8) 8>;
++				};
++
++				gpiob: gpio@240 {
++					reg = <0 0x240 0 0x20>, <0 0x0 0 0x8>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_B<<8) 14>;
++				};
++
++				gpioa: gpio@280 {
++					reg = <0 0x280 0 0x24>, <0 0x40 0 0xc>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_A<<8) 20>;
++				};
++
++				gpioy: gpio@2c0 {
++					reg = <0 0x2c0 0 0x20>, <0 0x30 0 0x8>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_Y<<8) 10>;
++				};
++
++				gpiocc: gpio@300 {
++					reg = <0 0x300 0 0x20>, <0 0x14 0 0x4>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_CC<<8) 2>;
++				};
++			};
++
++			gpio_intc: interrupt-controller@4080 {
++				compatible = "amlogic,a9-gpio-intc",
++					     "amlogic,meson-gpio-intc";
++				reg = <0x0 0x4080 0x0 0x20>;
++				interrupt-controller;
++				#interrupt-cells = <2>;
++				amlogic,channel-interrupts =
++					<10 11 12 13 14 15 16 17 18 19 20 21>;
++			};
++		};
++
+ 		gic: interrupt-controller@ff800000 {
+ 			compatible = "arm,gic-v3";
+ 			#interrupt-cells = <3>;
+@@ -123,6 +213,56 @@ uart_b: serial@1e000 {
+ 				clock-names = "xtal", "pclk", "baud";
+ 				status = "disabled";
+ 			};
++
++			aobus_pinctrl: pinctrl@4000 {
++				compatible = "amlogic,pinctrl-a9";
++				#address-cells = <2>;
++				#size-cells = <2>;
++				ranges = <0x0 0x0 0x0 0x4000 0x0 0x0e0>;
++
++				gpioao: gpio@1c {
++					reg = <0 0x1c 0 0x20>, <0 0x0 0 0x8>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&aobus_pinctrl 0 (AMLOGIC_GPIO_AO<<8) 13>;
++				};
++
++				gpioc: gpio@3c {
++					reg = <0 0x3c 0 0x20>, <0 0x10 0 0x4>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&aobus_pinctrl 0 (AMLOGIC_GPIO_C<<8) 7>;
++				};
++
++				gpiod: gpio@5c {
++					reg = <0 0x5c 0 0x24>, <0 0x8 0 0x8>;
++					reg-names = "gpio", "mux";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&aobus_pinctrl 0 (AMLOGIC_GPIO_D<<8) 18>;
++				};
++
++				test_n: gpio@c0 {
++					reg = <0 0xc0 0 0x20>;
++					reg-names = "gpio";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&aobus_pinctrl 0 (AMLOGIC_GPIO_TEST_N<<8) 1>;
++				};
++			};
++
++			gpio_ao_intc: interrupt-controller@4080 {
++				compatible = "amlogic,a9-gpio-ao-intc",
++					     "amlogic,meson-gpio-intc";
++				reg = <0x0 0x4080 0x0 0x34>;
++				interrupt-controller;
++				#interrupt-cells = <2>;
++				amlogic,channel-interrupts =
++					<384 385 386 387 388 389 390 391 392 393
++					394 395 396 397 398 399 400 401 402 403>;
++			};
+ 		};
+ 	};
+ };
 
- #define sysfs_emit_cpumask(buf, mask) \
- 	sysfs_emit((buf), "%*pb\n", cpumask_pr_args(mask))
+---
+base-commit: 3d5670d672ae08b8c534b7beed6f57c8b44e7b43
+change-id: 20260629-a9-node-3e6fceba7c90
 
-There are people who complain even about DIV_ROUND_UP(), how hard it is
-to keep all that helpers in memory, and all that things.
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-https://lore.kernel.org/all/20260304124805.GB2277644@noisy.programming.kicks-ass.net/
 
-Disagree about DIV_ROUND_UP() (because yeah, I'm bad in math), but
-this sysfs_emit_cpumask() is a complete syntax redundancy.
-
-Once we have it, people will do this type of things:
-
-        tmp = kmalloc(PAGE_SIZE);
-        sysfs_emit_cpumask(tmp, mask);
-        sysfs_emit(buf, "my prefix: %s\n", tmp);
-        kfree(tmp);
-
-Patch #1 in this series is one example. My series that removes
-bitmap_print_to_pagebuf() will give you more:
-
-https://lore.kernel.org/all/20260303200842.124996-2-ynorov@nvidia.com/
-
-It doesn't mean that *you* will misuse the API. It means that *I* will
-have to inspect the codebase for that type of bugs periodically.
-
-So, the overall state is simple: we've got well-established
-printf()-like functions that people know and understand, and we also
-have exotic APIs here and there with a non-standard interface and a
-clear potential to misuse. In this case, they have historical roots,
-but now we don't need them.
-
-> That has the advantage of letting you change how it is done (again)
-> without having to find all the callers.
-
-You mean things like silencing the prints or adding a prefix?
-
-If you believe that perf subsystem would benefit from it - that's
-OK. Just please keep it local. The kernel globally doesn't need to
-'change how it is done' beyond the lib/vsprintf.  The kernel really
-needs people to use something that the other people are familiar with.
-
-Thanks,
-Yury
 
 _______________________________________________
 linux-amlogic mailing list
