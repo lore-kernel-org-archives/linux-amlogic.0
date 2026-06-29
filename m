@@ -4,90 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48C6AC43602
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jun 2026 16:54:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6736DC43458
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jun 2026 17:07:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ucMFVIoARAm5wRDrhdmhkOC01xJPzu6SMkFM+DTtDs0=; b=dWgirNH+cheA8J
-	8HfpzFSLIdaValA1IQlivLXlpLdZeEvuld1mTJfBRsg9nOME/YK61DGyq8bMVr3Q19GahiOVexBeC
-	XSvXlT2Fu4tgJ36za0YJzG5dljKKRC8dPf2onjf5BpuSbt5x4E218g96trcwFDHlYICesb3QrAR8u
-	h2lv6jtDSVamCCCLplgsCcKHdQl8drhASj/2ibngpp9o9RgZfES1lShzH9po+tgIpMq+J29grhb4e
-	8iFuOu5LfLQ+vzW8OQbTTXHFaNMleTfriIOxZycFMnBKY7JYaKEGXtu8FBgT5Dxpyf00f590OzO0y
-	blQG7f1Ovt1c9RWz4mrg==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:
+	References:MIME-Version:In-Reply-To:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=Rdp0+6oNtI9rWO2A7MmCFMk3oJaKYlpX/MQLhYhIPq0=; b=IXiYtFvXuTtiQXn4LfzfMI409y
+	dJRVQN7UGuzpd0D41bVy8V64TOMPQju0bR8P+/WfdAry1lYG3sSNa8TaTvYDCuDJo4hEpmEAFMSgL
+	sS0xbeg08kiJN/Wn/bafHnXzcSgo956dCciOnWd0kaGH4PfoA4xnKBuDFy4zGY9fwtkx0smePqBAh
+	YRWyHqh0R7Gl75g6qDK6/jBMT5zuiYg1j6DWN3K3crGLNWi2uHxvOV5f4WyqhsTLweKi7sUTz5X6l
+	88wd1SCZLb3XN/PuTSJE4hWPZIrPE0Qj5PjHSwyyJyQrgGPnsBZjf/8TXTBqy0VfeSjJPTHv3eUlK
+	gwuQv6mw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1weFFT-0000000FG9z-2085;
-	Mon, 29 Jun 2026 16:54:19 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1weFRp-0000000FHVK-0Mwz;
+	Mon, 29 Jun 2026 17:07:05 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1weFFS-0000000FG9P-22PY
+	id 1weFRn-0000000FHV5-3D0q
 	for linux-amlogic@lists.infradead.org;
-	Mon, 29 Jun 2026 16:54:18 +0000
+	Mon, 29 Jun 2026 17:07:03 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 427B543E98
-	for <linux-amlogic@lists.infradead.org>; Mon, 29 Jun 2026 16:54:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1701A1F01565
-	for <linux-amlogic@lists.infradead.org>; Mon, 29 Jun 2026 16:54:18 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id E198A601ED
+	for <linux-amlogic@lists.infradead.org>; Mon, 29 Jun 2026 17:07:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E0961F0155B
+	for <linux-amlogic@lists.infradead.org>; Mon, 29 Jun 2026 17:07:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782752058;
-	bh=nrtvzAHL3u6/v5L5E9Co3P0QE5xowtwOQFIomSwMWjk=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=UtH5gwa+U1zvJ6MiDKihq7fz1abrI92vBGcYoq95X9rWwvz5W22oGlu4vG8sTBX+v
-	 lZvuZzP6DS79zjdwBazFvkl6XvoQbUodjizsh/Y5t56PyS2oiOkfYCx7wkLk7cdr+q
-	 2NhTOPmDU9hdWHEJWT+FaK8smDYBGn2B+2GOFurQSd53ujUwxlBKe0UjPhBCgGA3QX
-	 k22qz2Jmw2cBhPjOS+8yx0ottM8TY6XGd5Ka/4VbWDj5PV4d5a2kNIQXOJuCPPFOrx
-	 MdEVXZTxj/5NUCsyS7s46Ae8fQuMQf8DXRbIUUrciT9U9mcW4df21f2qy+RvS22A4/
-	 JmKSNxfAR6eag==
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5aeb2bc82ccso1930114e87.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 29 Jun 2026 09:54:18 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+Rqfbd2TsMhrkM1E0up5nKqVAZTUSgXc1ufTBe2V2cK4u+iUUZ4QYniE17B1kI7iGYRRGry0spT1TzQpR270@lists.infradead.org
-X-Gm-Message-State: AOJu0YxOGbaCXHxhXbCne+JBXkEShUuCIMgXBJFKYL56q+S3Gixg7ynp
-	IhAPE4lKfohnFZ9bfrqkvIRjo0DCVZ2+Pdhn+cQxbmOVoxrUxm59A1mkSx33iBX604kN0xRau51
-	TrqDt1hJP1y7GgMFLH5v+gk0PbWg/OXUVss0I70swlw==
-X-Received: by 2002:a05:6512:3d19:b0:5ae:b97b:f75a with SMTP id
- 2adb3069b0e04-5aebdbbc205mr24885e87.55.1782752056582; Mon, 29 Jun 2026
- 09:54:16 -0700 (PDT)
-MIME-Version: 1.0
-References: <20260629-qcom-sa8255p-emac-v11-0-1b7fb95b51f9@oss.qualcomm.com>
- <20260629-qcom-sa8255p-emac-v11-1-1b7fb95b51f9@oss.qualcomm.com>
- <CAMuHMdXen+E-Ai51aWBa_KV9W8Fz2cQPpT-FG_kQ7akhrrYa_A@mail.gmail.com>
- <CAMRc=Me3jaZXiXa1sFXr=8Do4sCd+XN1pKTcWC8-0j78SjCkKA@mail.gmail.com> <CAMuHMdVUBgG0EFB16OxHisbxx-sBvDKvBPNZdpyDnmBrnX4ptQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdVUBgG0EFB16OxHisbxx-sBvDKvBPNZdpyDnmBrnX4ptQ@mail.gmail.com>
+	s=k20260515; t=1782752822;
+	bh=CU8TMB46KVquqb6NZE+mjswOyduzrIxQL/Z45liuHG4=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc;
+	b=Yrxvbo4XVFc+tkKdK7ym6mYWtieEBKFP4ZF/LfZmsMd+Q2sbjIohStqMyffYbb58m
+	 fo2OjtDduxdHXaWy+Bev1CZcc8KNmm1GFXx+PhNrm7ZYumddHmBPQdHAbWbk70xjTA
+	 AYXXm5/9uFyV1BJu5nILEbmvwZ5k2KrYToZBRfhRAUKYhvDT1mIDIZ1Rgvh3Jyc3s6
+	 G6uFpkq84Tnqzhx50fgN0Zqmv+hftyHBlT9H1sVzLfpQXniz7880NHZEmkrJ2b9aL6
+	 GyNQ2WIkGDusVbegI6YLTwu73CQV2IVb4o4/cnaVVQxgbH1FGChiBRSv3jBYoTpVog
+	 MD9GRaLjSTOPA==
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-3996c9eeebeso28366171fa.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 29 Jun 2026 10:07:02 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+RoNRfr4hdY/riMZvk79Qq0crETQ6lisPPebOSPdR3TER60Xx7j+7YZh6/JfciMEYJj4uGSL5dIib8E67YKE@lists.infradead.org
+X-Gm-Message-State: AOJu0Yxr9X4b8ixp6y1e7J9VOeU5XvDuG0WdT/yrcu3o6L7JlMd6d6ca
+	yuahsn8SSgWu+EtlrHlEZK31ki2T51TmExQdjSHOvwRREe33N0/yVFn09eF5M/zrFn4HBZ0SbSd
+	JtYBVh3Gspo+DQNZ0G7pju7OPLqj/3+1GCPcenxUB5g==
+X-Received: by 2002:a05:651c:158c:b0:399:83a4:4f2c with SMTP id
+ 38308e7fff4ca-39b1daae071mr107701fa.18.1782752821184; Mon, 29 Jun 2026
+ 10:07:01 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 29 Jun 2026 10:06:59 -0700
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 29 Jun 2026 10:06:59 -0700
 From: Bartosz Golaszewski <brgl@kernel.org>
-Date: Mon, 29 Jun 2026 18:54:04 +0200
-X-Gmail-Original-Message-ID: <CAMRc=Meb58KCuLXkNSJwUq6KJUzZv0u49FBA2L4C8Vd3NVo8Cg@mail.gmail.com>
-X-Gm-Features: AVVi8CdXDDErrbJGCmrBnsO12t_UfV9Z0jI02dBWCQjihPCNNCZY7ROJGiFNTUI
-Message-ID: <CAMRc=Meb58KCuLXkNSJwUq6KJUzZv0u49FBA2L4C8Vd3NVo8Cg@mail.gmail.com>
-Subject: Re: [PATCH net-next v11 1/7] dt-bindings: phy: document the serdes
- PHY on sa8255p
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Vinod Koul <vkoul@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
-	Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Shawn Guo <shawnguo@kernel.org>, 
-	Fabio Estevam <festevam@gmail.com>, Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com, 
-	Mohd Ayaan Anwar <mohd.anwar@oss.qualcomm.com>, Romain Gantois <romain.gantois@bootlin.com>, 
-	Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>, 
-	Christophe Roullier <christophe.roullier@foss.st.com>, Radu Rendec <rrendec@redhat.com>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, Drew Fustini <dfustini@tenstorrent.com>, 
-	linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org, 
-	linux-mips@vger.kernel.org, imx@lists.linux.dev, 
-	linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+In-Reply-To: <20260625115718.1678991-2-v@baodeep.com>
+MIME-Version: 1.0
+References: <20260625115718.1678991-1-v@baodeep.com> <20260625115718.1678991-2-v@baodeep.com>
+Date: Mon, 29 Jun 2026 10:06:59 -0700
+X-Gmail-Original-Message-ID: <CAMRc=McgB0gYfvE1KMXkNFnMgx6ahKoMFb2pi0_AF03m4BDk_g@mail.gmail.com>
+X-Gm-Features: AVVi8Cex4Km60qsC3nmt5H_9iHFU4BjDrOYA0iDy91F4RstIOAhIA0emnN3RoSU
+Message-ID: <CAMRc=McgB0gYfvE1KMXkNFnMgx6ahKoMFb2pi0_AF03m4BDk_g@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] gpio: shared-proxy: always serialize with a
+ sleeping mutex
+To: Viacheslav Bocharov <v@baodeep.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Robin Murphy <robin.murphy@arm.com>, 
+	Diederik de Haas <diederik@cknow-tech.com>, linux-gpio@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Linus Walleij <linusw@kernel.org>, 
+	Bartosz Golaszewski <brgl@kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,48 +86,108 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gTW9uLCBKdW4gMjksIDIwMjYgYXQgNDo1OOKAr1BNIEdlZXJ0IFV5dHRlcmhvZXZlbiA8Z2Vl
-cnRAbGludXgtbTY4ay5vcmc+IHdyb3RlOgo+Cj4gSGkgQmFydG9zeiwKPgo+IE9uIE1vbiwgMjkg
-SnVuIDIwMjYgYXQgMTY6MDcsIEJhcnRvc3ogR29sYXN6ZXdza2kgPGJyZ2xAa2VybmVsLm9yZz4g
-d3JvdGU6Cj4gPiBPbiBNb24sIDI5IEp1biAyMDI2IDE1OjUxOjMxICswMjAwLCBHZWVydCBVeXR0
-ZXJob2V2ZW4KPiA+IDxnZWVydEBsaW51eC1tNjhrLm9yZz4gc2FpZDoKPiA+ID4gT24gTW9uLCAy
-OSBKdW4gMjAyNiBhdCAxMzoyOSwgQmFydG9zeiBHb2xhc3pld3NraQo+ID4gPiA8YmFydG9zei5n
-b2xhc3pld3NraUBvc3MucXVhbGNvbW0uY29tPiB3cm90ZToKPiA+ID4+IERlc2NyaWJlIHRoZSBT
-R01JSS9TZXJEZXMgUEhZIHByZXNlbnQgb24gdGhlIFF1YWxjb21tIHNhODI1NXAgcGxhdGZvcm1z
-Lgo+ID4gPj4gVGhpcyBpcyBlc3NlbnRpYWxseSB0aGUgc2FtZSBoYXJkd2FyZSBhcyBzYTg3NzVw
-IHJldjMgYnV0IHRoZSBQSFkgaXMKPiA+ID4+IG1hbmFnZWQgYnkgZmlybXdhcmUgb3ZlciBTQ01J
-Lgo+ID4gPgo+ID4gPiBTbyB3aHkgY2FuJ3QgaXQgYmUgcmV1c2UgdGhlIERUIGJpbmRpbmdzLCBh
-bmQgYmUgY29tcGF0aWJsZSB3aXRoCj4gPiA+IHFjb20sc2E4Nzc1cC1kd21hYy1zZ21paS1waHk/
-Cj4gPiA+Cj4gPiA+PiBTaWduZWQtb2ZmLWJ5OiBCYXJ0b3N6IEdvbGFzemV3c2tpIDxiYXJ0b3N6
-LmdvbGFzemV3c2tpQG9zcy5xdWFsY29tbS5jb20+Cj4gPiA+Cj4gPiA+PiAtLS0gL2Rldi9udWxs
-Cj4gPiA+PiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGh5L3Fjb20s
-c2E4MjU1cC1kd21hYy1zZ21paS1waHkueWFtbAo+ID4gPgo+ID4gPj4gKyAgcG93ZXItZG9tYWlu
-czoKPiA+ID4+ICsgICAgbWF4SXRlbXM6IDEKPiA+ID4+ICsKPiA+ID4+ICsgIHBvd2VyLWRvbWFp
-bi1uYW1lczoKPiA+ID4+ICsgICAgaXRlbXM6Cj4gPiA+PiArICAgICAgLSBjb25zdDogc2VyZGVz
-Cj4gPiA+Cj4gPiA+PiArZXhhbXBsZXM6Cj4gPiA+PiArICAtIHwKPiA+ID4+ICsgICAgcGh5QDg5
-MDEwMDAgewo+ID4gPj4gKyAgICAgICAgY29tcGF0aWJsZSA9ICJxY29tLHNhODI1NXAtZHdtYWMt
-c2dtaWktcGh5IjsKPiA+ID4+ICsgICAgICAgIHJlZyA9IDwweDA4OTAxMDAwIDB4ZTEwPjsKPiA+
-ID4+ICsgICAgICAgICNwaHktY2VsbHMgPSA8MD47Cj4gPiA+PiArICAgICAgICBwb3dlci1kb21h
-aW5zID0gPCZzY21pN19kdmZzIDA+Owo+ID4gPj4gKyAgICAgICAgcG93ZXItZG9tYWluLW5hbWVz
-ID0gInNlcmRlcyI7Cj4gPiA+Cj4gPiA+IEFoLCB0aGlzIHVzZXMgcG93ZXItZG9tYWlucywgd2hp
-bGUgdGhlIGV4aXN0aW5nIGJpbmRpbmdzIGZvcgo+ID4gPiBxY29tLHNhODc3NXAtZHdtYWMtc2dt
-aWktcGh5IHVzZSBhIGNsb2NrLgo+ID4gPiBJIGd1ZXNzIHRoZSBjbG9jayBpcyB0aGUgY29ycmVj
-dCBoYXJkd2FyZSBkZXNjcmlwdGlvbj8KPiA+ID4KPiA+ID4gQWRkaW5nIHRvIG15IGxpc3Qgb2Yg
-ZXhhbXBsZXMgZm9yIGJhY2tpbmcgYSBoYXJkd2FyZS10by1TQ01JIHJlbWFwcGluZwo+ID4gPiBk
-cml2ZXIuLi4KPiA+ID4KPiA+Cj4gPiBSdXNzZWxsIEtpbmcgYXNrZWQgbWUgdG8gcHV0IHRoZSBQ
-SFkgbG9naWMgZm9yIFNDTUkgcG0gZG9tYWlucyBpbnRvIHRoZSBQSFkKPiA+IGRyaXZlciBpbnN0
-ZWFkIG9mIHRoZSBNQUMgZHJpdmVyIHdoZXJlIGl0IHdhcyBwcmV2aW91c2x5LiBJbnN0ZWFkIG9m
-IGNyYW1taW5nCj4gPiBib3RoIEhMT1MgYW5kIGZpcm13YXJlIGhhbmRsaW5nIGludG8gdGhlIHNh
-bWUgZHJpdmVyLCBJIGZpZ3VyZWQgaXQgbWFrZXMgbW9yZQo+ID4gc2Vuc2UgdG8gaGF2ZSBhIGRl
-ZGljYXRlZCwgY2xlYW5lciBkcml2ZXIgYXMgdGhlIHR3byBzaGFyZSB2ZXJ5IGxpdHRsZSBjb2Rl
-IChpZgo+ID4gYW55KS4KPgo+IEkgdGhpbmsgeW91IGFyZSBtaXhpbmcgdXAgRFQgYmluZGluZ3Mg
-YW5kIGRyaXZlciBpbXBsZW1lbnRhdGlvbj8KPgoKQWggaW5kZWVkLCBidXQgdGhlIGJpbmRpbmdz
-IGRvbid0IHNoYXJlIGEgbG90IG9mIGNvbnRlbnQgZWl0aGVyLgoKQmFydG9zegoKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWls
-aW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5p
-bmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On Thu, 25 Jun 2026 13:57:17 +0200, Viacheslav Bocharov <v@baodeep.com> said:
+> The shared GPIO descriptor used either a mutex or a spinlock, chosen at
+> runtime from the underlying chip's can_sleep:
+>
+> 	shared_desc->can_sleep = gpiod_cansleep(shared_desc->desc);
+> 	... if (can_sleep) mutex_lock(); else spin_lock_irqsave();
+>
+> can_sleep describes only the value path (->get/->set). Under the same
+> lock, however, the proxy may call gpiod_set_config() and
+> gpiod_direction_*(), which can reach pinctrl paths that take a mutex
+> (e.g. gpiod_set_config() -> gpiochip_generic_config() ->
+> pinctrl_gpio_set_config()), independent of can_sleep. On a controller
+> with non-sleeping MMIO value ops the descriptor lock was a spinlock, so
+> the sleeping pinctrl call ran from atomic context. Reproduced on an
+> Amlogic A113X board with the workaround from commit 28f240683871
+> ("pinctrl: meson: mark the GPIO controller as sleeping") reverted; the
+> original Khadas VIM3 report hit the same path:
+>
+> 	BUG: sleeping function called from invalid context
+> 	  __mutex_lock
+> 	  pinctrl_get_device_gpio_range
+> 	  pinctrl_gpio_set_config
+> 	  gpiochip_generic_config
+> 	  gpiod_set_config
+> 	  gpio_shared_proxy_set_config   <- voting spinlock held
+> 	  ...
+> 	  mmc_pwrseq_simple_probe
+>
+> The spinlock existed to take the value vote from atomic context, but the
+> vote and the (possibly sleeping) control operations share the same state
+> and lock, so this scheme cannot serialize config under a mutex and still
+> offer atomic value access. Always serialize the shared descriptor with a
+> mutex instead and mark the proxy a sleeping gpiochip, driving the
+> underlying GPIO through the cansleep value accessors: those are valid
+> for both sleeping and non-sleeping chips, so value access keeps working
+> on fast controllers, at the cost of no longer being atomic.
+>
+> This is observable: consumers gating on gpiod_cansleep() take their
+> sleeping branch on a proxied GPIO (mmc-pwrseq-emmc skips its
+> emergency-restart reset handler; its normal reset is unaffected), and
+> consumers that reject sleeping GPIOs (pwm-gpio, ps2-gpio, ...) would
+> fail to probe. Such atomic users do not share a pin through the proxy,
+> whose purpose is voting on shared reset/enable lines. The same narrowing
+> already applies on Amlogic since that workaround, and rockchip
+> addressed the identical splat per-driver in commit 7ca497be0016 ("gpio:
+> rockchip: Stop calling pinctrl for set_direction"); fixing the proxy
+> addresses the locking error once, for every controller.
+>
+> The lock type was added by commit a060b8c511ab ("gpiolib: implement
+> low-level, shared GPIO support"); the sleeping call under it arrived with
+> the proxy driver.
+>
+> Fixes: e992d54c6f97 ("gpio: shared-proxy: implement the shared GPIO proxy driver")
+> Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> Closes: https://lore.kernel.org/all/00107523-7737-4b92-a785-14ce4e93b8cb@samsung.com/
+> Signed-off-by: Viacheslav Bocharov <v@baodeep.com>
+> ---
+> v1 -> v2: open-code the descriptor mutex; drop the gpio_shared_desc_lock
+>           guard and the gpio_shared_lockdep_assert() helper, use
+>           guard(mutex) and lockdep_assert_held() directly; move the
+>           mutex rationale from the header to the can_sleep assignment in
+>           probe.
+>
+> v1: https://lore.kernel.org/linux-gpio/20260610153329.937833-2-v@baodeep.com/
+>
+>  drivers/gpio/gpio-shared-proxy.c | 66 +++++++++++++-------------------
+>  drivers/gpio/gpiolib-shared.c    |  9 +----
+>  drivers/gpio/gpiolib-shared.h    | 28 +-------------
+>  3 files changed, 29 insertions(+), 74 deletions(-)
+>
+> diff --git a/drivers/gpio/gpio-shared-proxy.c b/drivers/gpio/gpio-shared-proxy.c
+> index 6941e4be6cf1..0cd52015b731 100644
+> --- a/drivers/gpio/gpio-shared-proxy.c
+> +++ b/drivers/gpio/gpio-shared-proxy.c
+> @@ -9,8 +9,10 @@
+>  #include <linux/err.h>
+>  #include <linux/gpio/consumer.h>
+>  #include <linux/gpio/driver.h>
+> +#include <linux/lockdep.h>
+>  #include <linux/mod_devicetable.h>
+>  #include <linux/module.h>
+> +#include <linux/mutex.h>
+>  #include <linux/string_choices.h>
+>  #include <linux/types.h>
+>
+> @@ -32,7 +34,7 @@ gpio_shared_proxy_set_unlocked(struct gpio_shared_proxy_data *proxy,
+
+I was about to apply it but then realized that it can be simplified further.
+The set_func() argument in gpio_shared_proxy_set_unlocked() is no longer
+needed and can be replaced with a direct call to gpiod_set_value_cansleep().
+
+Would you mind sending a v3 with that included?
+
+Thanks,
+Bartosz
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
