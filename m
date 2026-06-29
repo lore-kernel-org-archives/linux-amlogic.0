@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0242C43458
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jun 2026 06:42:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 901F8C43458
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jun 2026 07:53:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
 	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=vOZEd3dtDsGvRMU9vDAM1P1pI0WWnZvf23erIaSchz4=; b=gtsxb2KzR1hFMO
-	NX0nzi/vAhAM0j9yTHVFvvuI2PBMJu6+KCD3fH/Qbc1BYnRISY7X/jVV1kXPTurC6EtQZGZam/Lmx
-	/+uypWTm8ssm+PegghR3GgougirafpuOdNaJrGmz4A9+DlTxLjM5B1kSMxmEASH1FL2P2KpKlrkfz
-	8IiMyTPeg9M0XurNO89Wp+4bCAd5kDkEfR/zxuwtmz8nYZBg55EtoZTvVyfzwAKtTzv+E1GWDZXob
-	hA6c/pjnKLN+RHkKKsyC9aFxM+QyHKfW1m1Jvz1PeZL7NsgxXwd5wsQSbvoTiLrM+ZuJvKAAvO05p
-	0JN8tXTypbRh6GrycM6A==;
+	List-Owner; bh=BxZ9JA/mbaN6B3ekj9ENwty42Fwxdr0ikGBP0PfkkqI=; b=nG9U1+jJS2du2H
+	RM64/kWI4g9HW0xN4Ml6MP94KwXokGaoJ34zuHolucjii3tIeIU0jVao04Wo4RyIBGVsBb77WauHL
+	DZ0dLu9RiELYVZx0Ku9Yy+n4ZT1iyqa0peWrMHnzEzsmRDmTMWKJmhOzLxyY252Z/HpBqjBz+OuYk
+	mvtR7iS30BqNBR26+1RfHt2OGXiISPPefgmIpGX71fa/WAwT+H7Z/I+DvYHZN0P9zO2RZMskeR+v+
+	YG73lA8bB/Pv/eFetHg3rEcS3a7p4hrvYV2x4kdNcOIdZKFZ1XaPAAhD4so89CUxnke7xbRSRfr15
+	yD0SnKVgy9SsVJTJvnOQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1we5gr-0000000Dm7E-04L4;
-	Mon, 29 Jun 2026 06:41:57 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1we6nZ-0000000DxGc-2t46;
+	Mon, 29 Jun 2026 07:52:57 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1we5gp-0000000Dm6F-1GFF;
-	Mon, 29 Jun 2026 06:41:55 +0000
+	id 1we6nY-0000000DxFa-0x8n;
+	Mon, 29 Jun 2026 07:52:56 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id AA19460054;
-	Mon, 29 Jun 2026 06:41:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 59D70C2BCB8;
-	Mon, 29 Jun 2026 06:41:54 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id A7179600AA;
+	Mon, 29 Jun 2026 07:52:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4FD52C2BCB8;
+	Mon, 29 Jun 2026 07:52:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1782715314;
-	bh=NFuuFcb/ruJh3wvrl4TTnR1hgxROnRQip/VR2F/THy0=;
+	s=k20201202; t=1782719575;
+	bh=5km4NmuYF9DScyquNyhzgnIdcqYff1K4clJTIfXF2U8=;
 	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=BWi51dZaDFBXTr5XrIKky5i25CHrbQToYpeLA72LEB+hyVegKpoIkhAA6RIvCOQhO
-	 IKXaP9U7b3MM7CC1iG3Bbr4BRchL3b1AnqNJ7jO6wDHacsCGwC/MhbnVY3CXE536mZ
-	 Y8HkOWFhDlyQQDHnhjvhOM8XLrg3BJMr3EsH/KgXvnGH4joqrBJG7i45oG0ESb3UmG
-	 aMd6HVbtTZxkEwFwKpuwzx7AAUJlxCptbMK713HjYZZianKaexN9tkQQW+KUe0W9+s
-	 QbTbE1ySTTFJbkSEKkNR7PzrDTn/PBzxFfFn/F6iAs2B6+cVwdQWuJG8LAegHbwjUV
-	 c5KaaKLcWp+ZA==
+	b=h0FFBMOU/GYZC6i0PCy8lSk6gzKWJOKtVOZ33jhhz/hpd9ZX0U+6G/hjRagPP0Suz
+	 FuoPp7sqD1VgDH1tk3AVeb5mEMEELSMH2EjGqnNdJizLNeNI5DXrJ8hjhwuavFu3ZG
+	 IcPuxIg4P8zszmfG6v1H0VoUHa4rYM7gUmK6Gu8jAQFBOyCuxDLYGwjP7JGW4w5GRJ
+	 q8eO2HRQ8vUrwgrO3Tw6dAFRu5R3NJWc/0V5A3RoCgmGtqPn7ruREtB3R0rfaw1UML
+	 +TlBYL2P4N6k4dxAL/BthJHaf1vXZ88cp74LMGAUx4tSINsWB13ZZl8+3eJV3Wfkcu
+	 qUiJ0SKimZhwA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4034EC43458;
-	Mon, 29 Jun 2026 06:41:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3075EC43458;
+	Mon, 29 Jun 2026 07:52:55 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Mon, 29 Jun 2026 06:41:51 +0000
-Subject: [PATCH] arm64: dts: amlogic: add some device nodes for A9
+Date: Mon, 29 Jun 2026 07:52:53 +0000
+Subject: [PATCH v2] arm64: dts: amlogic: add some device nodes for A9
 MIME-Version: 1.0
-Message-Id: <20260629-a9-node-v1-1-42ff6a0c16ab@amlogic.com>
-X-B4-Tracking: v=1; b=H4sIAK4TQmoC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDMyNL3URL3bz8lFRd41SztOTUpETzZEsDJaDqgqLUtMwKsEnRsbW1AAQ
- 6oYpZAAAA
+Message-Id: <20260629-a9-node-v2-1-dadd3401fccb@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAFQkQmoC/2XMQQrCMBCF4auUWTuSRInElfeQLqbppB2wjSQSl
+ JK7G7t1+T8e3waZk3CGa7dB4iJZ4trCHDrwM60To4ytwShjlTUOyeEaR8YT2+B5oIt3Ctr7mTj
+ Ie5fufetZ8iumzw4X/Vv/jaJR49mEYEl5bWm40fKIk/ijjwv0tdYvVP6iHaAAAAA=
 X-Change-ID: 20260629-a9-node-3e6fceba7c90
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
@@ -62,11 +62,11 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1782715311; l=5289;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1782719573; l=5518;
  i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=qsqMagQntUJk2+7nKd+Qfbf+tdW0g4n8khbu2y9iCho=;
- b=38v+7CfaRd6EV/UMT6fu9MuQbrcIgyUeFJuxl0LYqrsoLtV/DjAjF56OEhN2PtvvEdaM63/yi
- 3MKG7QMdJmpCYpV+E+ESfxUHLwaUcsBc5eB1zbSfnP3aa6ESTdb85vf
+ bh=4hEc0Y3kJi0oLWhBei8MgVtCOquaYcl8dUAJU9UbQBo=;
+ b=DlbUk+TTjIUALWf5L5T56AOLfQA4dYtobtp6v0o1p/if76zO5DUT8ikuqbEEWI1i6OBSakAyI
+ /SelcFZcKfGAkrtrlAZ0doTeS2BxFk5/n5x+Z2zyzIqOc8UI7MlmARi
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
@@ -97,11 +97,15 @@ Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
 Add pinctrl and irqchip-gpio device node for A9.
 ---
+Changes in v2:
+- Reorder device node by address.
+- Link to v1: https://lore.kernel.org/r/20260629-a9-node-v1-1-42ff6a0c16ab@amlogic.com
+---
  arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi | 140 ++++++++++++++++++++++++++++
  1 file changed, 140 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
-index 660c8556a864..cdc57b685cc3 100644
+index 660c8556a864..b0e0fadeed82 100644
 --- a/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
 @@ -6,6 +6,7 @@
@@ -208,11 +212,10 @@ index 660c8556a864..cdc57b685cc3 100644
  		gic: interrupt-controller@ff800000 {
  			compatible = "arm,gic-v3";
  			#interrupt-cells = <3>;
-@@ -123,6 +213,56 @@ uart_b: serial@1e000 {
- 				clock-names = "xtal", "pclk", "baud";
- 				status = "disabled";
- 			};
-+
+@@ -114,6 +204,56 @@ aobus: bus@ffa00000 {
+ 			#size-cells = <2>;
+ 			ranges = <0x0 0x0 0x0 0xffa00000 0x0 0x100000>;
+ 
 +			aobus_pinctrl: pinctrl@4000 {
 +				compatible = "amlogic,pinctrl-a9";
 +				#address-cells = <2>;
@@ -262,9 +265,10 @@ index 660c8556a864..cdc57b685cc3 100644
 +					<384 385 386 387 388 389 390 391 392 393
 +					394 395 396 397 398 399 400 401 402 403>;
 +			};
- 		};
- 	};
- };
++
+ 			uart_b: serial@1e000 {
+ 				compatible = "amlogic,a9-uart",
+ 					     "amlogic,meson-s4-uart";
 
 ---
 base-commit: 3d5670d672ae08b8c534b7beed6f57c8b44e7b43
