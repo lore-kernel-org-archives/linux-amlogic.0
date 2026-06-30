@@ -4,77 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6736DC43458
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jun 2026 17:07:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D805BC43458
+	for <linux-amlogic@archiver.kernel.org>; Tue, 30 Jun 2026 02:37:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:
-	References:MIME-Version:In-Reply-To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=Rdp0+6oNtI9rWO2A7MmCFMk3oJaKYlpX/MQLhYhIPq0=; b=IXiYtFvXuTtiQXn4LfzfMI409y
-	dJRVQN7UGuzpd0D41bVy8V64TOMPQju0bR8P+/WfdAry1lYG3sSNa8TaTvYDCuDJo4hEpmEAFMSgL
-	sS0xbeg08kiJN/Wn/bafHnXzcSgo956dCciOnWd0kaGH4PfoA4xnKBuDFy4zGY9fwtkx0smePqBAh
-	YRWyHqh0R7Gl75g6qDK6/jBMT5zuiYg1j6DWN3K3crGLNWi2uHxvOV5f4WyqhsTLweKi7sUTz5X6l
-	88wd1SCZLb3XN/PuTSJE4hWPZIrPE0Qj5PjHSwyyJyQrgGPnsBZjf/8TXTBqy0VfeSjJPTHv3eUlK
-	gwuQv6mw==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=mXv74U9EJ30X/psD6RtCGe5T2HhKh8ZTLnfeGqVof+U=; b=XslN+aWhLp8/er
+	zxxbw19h2fu7iftAfWLH8hi6sSHaJ0P17wjUH2USqPqgqfsJuW6aetCdR9fFeO97t78+7TbjovqbJ
+	h4a0bebA0pYgZ6MkmMDNhRmWWBgXGM2kuCFDqus58TNZ/6+rcA5UoIYmzU3Laau5a7XMR8IdwP4l8
+	b7nWpndsPn1tqtDEGmYzuDgPFuNPJ1A109lo81yZ9sE9y7EodD2nDrmQUnZZNTJm/Kg9ik2x6g/Lm
+	Cyta67PhTh3j/iEDcM/bN6MiQRdTyEeqV/2tXezytGMWi2HcVoS4H+eoYq+G0ajE49tFLEn3ytHJH
+	GBiuuolkgYeLW2J1GcXg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1weFRp-0000000FHVK-0Mwz;
-	Mon, 29 Jun 2026 17:07:05 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1weOLH-0000000FiS5-0Oee;
+	Tue, 30 Jun 2026 02:36:55 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1weFRn-0000000FHV5-3D0q
-	for linux-amlogic@lists.infradead.org;
-	Mon, 29 Jun 2026 17:07:03 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id E198A601ED
-	for <linux-amlogic@lists.infradead.org>; Mon, 29 Jun 2026 17:07:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E0961F0155B
-	for <linux-amlogic@lists.infradead.org>; Mon, 29 Jun 2026 17:07:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1782752822;
-	bh=CU8TMB46KVquqb6NZE+mjswOyduzrIxQL/Z45liuHG4=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc;
-	b=Yrxvbo4XVFc+tkKdK7ym6mYWtieEBKFP4ZF/LfZmsMd+Q2sbjIohStqMyffYbb58m
-	 fo2OjtDduxdHXaWy+Bev1CZcc8KNmm1GFXx+PhNrm7ZYumddHmBPQdHAbWbk70xjTA
-	 AYXXm5/9uFyV1BJu5nILEbmvwZ5k2KrYToZBRfhRAUKYhvDT1mIDIZ1Rgvh3Jyc3s6
-	 G6uFpkq84Tnqzhx50fgN0Zqmv+hftyHBlT9H1sVzLfpQXniz7880NHZEmkrJ2b9aL6
-	 GyNQ2WIkGDusVbegI6YLTwu73CQV2IVb4o4/cnaVVQxgbH1FGChiBRSv3jBYoTpVog
-	 MD9GRaLjSTOPA==
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-3996c9eeebeso28366171fa.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 29 Jun 2026 10:07:02 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+RoNRfr4hdY/riMZvk79Qq0crETQ6lisPPebOSPdR3TER60Xx7j+7YZh6/JfciMEYJj4uGSL5dIib8E67YKE@lists.infradead.org
-X-Gm-Message-State: AOJu0Yxr9X4b8ixp6y1e7J9VOeU5XvDuG0WdT/yrcu3o6L7JlMd6d6ca
-	yuahsn8SSgWu+EtlrHlEZK31ki2T51TmExQdjSHOvwRREe33N0/yVFn09eF5M/zrFn4HBZ0SbSd
-	JtYBVh3Gspo+DQNZ0G7pju7OPLqj/3+1GCPcenxUB5g==
-X-Received: by 2002:a05:651c:158c:b0:399:83a4:4f2c with SMTP id
- 38308e7fff4ca-39b1daae071mr107701fa.18.1782752821184; Mon, 29 Jun 2026
- 10:07:01 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 29 Jun 2026 10:06:59 -0700
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 29 Jun 2026 10:06:59 -0700
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <20260625115718.1678991-2-v@baodeep.com>
+	id 1weOLF-0000000FiRc-2HBE;
+	Tue, 30 Jun 2026 02:36:53 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id A43E060008;
+	Tue, 30 Jun 2026 02:36:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4B9B9C19425;
+	Tue, 30 Jun 2026 02:36:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1782787012;
+	bh=zKhPqDASnTI0/BJz6iMX5RR+f5ilxmRBxE8PYsuk2Js=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=ml7Kem8CcP2yo2ycdlzBrFSXqZvUr/3+ZCRrAsCgO3b2rg189V5s0g71f6GcmMXl+
+	 ZlIkDhLXlAhAPMdCeycd/mHWjvPErx4VLaiUL+QTSyh6Wj8T3nBcSxMwUSJ1PTPUHg
+	 /8ZM4BuRwUCKsKGCNJ8geqF6VZ+IkTM/twdXGDH2QR0hmV4Qh7l7u6piech6g3s0ML
+	 zB2PZHrEbQSCrBIFVolIq64uBIWqBLzBlonTvSMAdKvGwKe0hBwTw9rxEKvsliMnnx
+	 wYWJK52U2u9iKqBA/ZXBSLATMHGW8aA/wBHMMRshWot9viQcqmv2Vtf85wRw11J701
+	 YPLI9p9E4k5nQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 32336C43458;
+	Tue, 30 Jun 2026 02:36:52 +0000 (UTC)
+From: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
+Subject: [PATCH v5 0/2] clk: amlogic: Add A9 peripherals clock controller
+Date: Tue, 30 Jun 2026 10:36:47 +0800
+Message-Id: <20260630-a9_peripherals-v5-0-bc4019730354@amlogic.com>
 MIME-Version: 1.0
-References: <20260625115718.1678991-1-v@baodeep.com> <20260625115718.1678991-2-v@baodeep.com>
-Date: Mon, 29 Jun 2026 10:06:59 -0700
-X-Gmail-Original-Message-ID: <CAMRc=McgB0gYfvE1KMXkNFnMgx6ahKoMFb2pi0_AF03m4BDk_g@mail.gmail.com>
-X-Gm-Features: AVVi8Cex4Km60qsC3nmt5H_9iHFU4BjDrOYA0iDy91F4RstIOAhIA0emnN3RoSU
-Message-ID: <CAMRc=McgB0gYfvE1KMXkNFnMgx6ahKoMFb2pi0_AF03m4BDk_g@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] gpio: shared-proxy: always serialize with a
- sleeping mutex
-To: Viacheslav Bocharov <v@baodeep.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Robin Murphy <robin.murphy@arm.com>, 
-	Diederik de Haas <diederik@cknow-tech.com>, linux-gpio@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Linus Walleij <linusw@kernel.org>, 
-	Bartosz Golaszewski <brgl@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAL8rQ2oC/3XP0QqDIBTG8VcJr+c4mmXtau8xxnB6KqEydMhG9
+ O6zrhqxy/+B7wdnJgG9xUAu2Uw8RhusG1MUp4zoTo0tUmtSEw68hBJyqurHlCZTh171gQrOBMp
+ aQmE0SaPJY2PfG3i7p+5seDn/2fzI1+tfKnIKFJE9Kw2KYamvauhda/VZu4GsWMx3AIMDkCfAg
+ FSygqpoJDsCYg9UB0AkoEHGwaBIb8lfYFmWL4HrEfswAQAA
+X-Change-ID: 20260603-a9_peripherals-4214e79705dc
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Jian Hu <jian.hu@amlogic.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1782787009; l=2655;
+ i=jian.hu@amlogic.com; s=20260415; h=from:subject:message-id;
+ bh=zKhPqDASnTI0/BJz6iMX5RR+f5ilxmRBxE8PYsuk2Js=;
+ b=XtN/aCd/urNFmmo7mfVr+3xALfNzvK2Gm1IYfdwvK3tcJeOrWxbPLk/eQ0gF4Sd0DuxhVVkE1
+ 2xmMundgxahBEW2P7rImFlTOX8dodGYINd+5q1IjjpJTeIT6GNkqw6s
+X-Developer-Key: i=jian.hu@amlogic.com; a=ed25519;
+ pk=zHUE+rNtH9z+Sb8au1/elWknjFQmy5QDVkBoxleuOIA=
+X-Endpoint-Received: by B4 Relay for jian.hu@amlogic.com/20260415 with
+ auth_id=735
+X-Original-From: Jian Hu <jian.hu@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,106 +88,79 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: jian.hu@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, 25 Jun 2026 13:57:17 +0200, Viacheslav Bocharov <v@baodeep.com> said:
-> The shared GPIO descriptor used either a mutex or a spinlock, chosen at
-> runtime from the underlying chip's can_sleep:
->
-> 	shared_desc->can_sleep = gpiod_cansleep(shared_desc->desc);
-> 	... if (can_sleep) mutex_lock(); else spin_lock_irqsave();
->
-> can_sleep describes only the value path (->get/->set). Under the same
-> lock, however, the proxy may call gpiod_set_config() and
-> gpiod_direction_*(), which can reach pinctrl paths that take a mutex
-> (e.g. gpiod_set_config() -> gpiochip_generic_config() ->
-> pinctrl_gpio_set_config()), independent of can_sleep. On a controller
-> with non-sleeping MMIO value ops the descriptor lock was a spinlock, so
-> the sleeping pinctrl call ran from atomic context. Reproduced on an
-> Amlogic A113X board with the workaround from commit 28f240683871
-> ("pinctrl: meson: mark the GPIO controller as sleeping") reverted; the
-> original Khadas VIM3 report hit the same path:
->
-> 	BUG: sleeping function called from invalid context
-> 	  __mutex_lock
-> 	  pinctrl_get_device_gpio_range
-> 	  pinctrl_gpio_set_config
-> 	  gpiochip_generic_config
-> 	  gpiod_set_config
-> 	  gpio_shared_proxy_set_config   <- voting spinlock held
-> 	  ...
-> 	  mmc_pwrseq_simple_probe
->
-> The spinlock existed to take the value vote from atomic context, but the
-> vote and the (possibly sleeping) control operations share the same state
-> and lock, so this scheme cannot serialize config under a mutex and still
-> offer atomic value access. Always serialize the shared descriptor with a
-> mutex instead and mark the proxy a sleeping gpiochip, driving the
-> underlying GPIO through the cansleep value accessors: those are valid
-> for both sleeping and non-sleeping chips, so value access keeps working
-> on fast controllers, at the cost of no longer being atomic.
->
-> This is observable: consumers gating on gpiod_cansleep() take their
-> sleeping branch on a proxied GPIO (mmc-pwrseq-emmc skips its
-> emergency-restart reset handler; its normal reset is unaffected), and
-> consumers that reject sleeping GPIOs (pwm-gpio, ps2-gpio, ...) would
-> fail to probe. Such atomic users do not share a pin through the proxy,
-> whose purpose is voting on shared reset/enable lines. The same narrowing
-> already applies on Amlogic since that workaround, and rockchip
-> addressed the identical splat per-driver in commit 7ca497be0016 ("gpio:
-> rockchip: Stop calling pinctrl for set_direction"); fixing the proxy
-> addresses the locking error once, for every controller.
->
-> The lock type was added by commit a060b8c511ab ("gpiolib: implement
-> low-level, shared GPIO support"); the sleeping call under it arrived with
-> the proxy driver.
->
-> Fixes: e992d54c6f97 ("gpio: shared-proxy: implement the shared GPIO proxy driver")
-> Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> Closes: https://lore.kernel.org/all/00107523-7737-4b92-a785-14ce4e93b8cb@samsung.com/
-> Signed-off-by: Viacheslav Bocharov <v@baodeep.com>
-> ---
-> v1 -> v2: open-code the descriptor mutex; drop the gpio_shared_desc_lock
->           guard and the gpio_shared_lockdep_assert() helper, use
->           guard(mutex) and lockdep_assert_held() directly; move the
->           mutex rationale from the header to the can_sleep assignment in
->           probe.
->
-> v1: https://lore.kernel.org/linux-gpio/20260610153329.937833-2-v@baodeep.com/
->
->  drivers/gpio/gpio-shared-proxy.c | 66 +++++++++++++-------------------
->  drivers/gpio/gpiolib-shared.c    |  9 +----
->  drivers/gpio/gpiolib-shared.h    | 28 +-------------
->  3 files changed, 29 insertions(+), 74 deletions(-)
->
-> diff --git a/drivers/gpio/gpio-shared-proxy.c b/drivers/gpio/gpio-shared-proxy.c
-> index 6941e4be6cf1..0cd52015b731 100644
-> --- a/drivers/gpio/gpio-shared-proxy.c
-> +++ b/drivers/gpio/gpio-shared-proxy.c
-> @@ -9,8 +9,10 @@
->  #include <linux/err.h>
->  #include <linux/gpio/consumer.h>
->  #include <linux/gpio/driver.h>
-> +#include <linux/lockdep.h>
->  #include <linux/mod_devicetable.h>
->  #include <linux/module.h>
-> +#include <linux/mutex.h>
->  #include <linux/string_choices.h>
->  #include <linux/types.h>
->
-> @@ -32,7 +34,7 @@ gpio_shared_proxy_set_unlocked(struct gpio_shared_proxy_data *proxy,
+This series adds Amlogic A9 peripherals clock support,
+including dt-binding and peripherals clock driver.
 
-I was about to apply it but then realized that it can be simplified further.
-The set_func() argument in gpio_shared_proxy_set_unlocked() is no longer
-needed and can be replaced with a direct call to gpiod_set_value_cansleep().
+Note that this driver depends on the A9 PLL driver, which is not yet
+upstream. The Meson PLL framework is currently undergoing refactoring,
+and the A9 PLL driver will be submitted as a follow-up series after
+that work has been completed.
 
-Would you mind sending a v3 with that included?
+Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+---
+Changes in v5:
+- Include <linux/module.h>.
+- Add missing '0' suffixes to some clocks.
+- Fix typo: "encorder1" -> "encoder1".
+- Fix the parent clock for a9_hdmitx1_pixel.
+- Link to v4: https://lore.kernel.org/r/20260618-a9_peripherals-v4-0-fe120de44e77@amlogic.com
 
-Thanks,
-Bartosz
+Changes in v4:
+- Expose channel 3 for gen_clk.
+- Add missing '0' suffixes to somes.
+- Use helper macro for vclk clocks definitions.
+- Drop forward declaration.
+- Drop CLK_HW_INIT* and revert to explicit clock declarations.
+- Fix can clock channel number comment.
+- Rename enc clocks to encoder0/encoder1.
+- Link to v3: https://lore.kernel.org/r/20260610-a9_peripherals-v3-0-d07a78085f71@amlogic.com
+
+Changes in v3:
+- Add "depend on A9 pll" instructions in the cover-letter.
+- Move COMPILE_TEST after 'depends on ARM64' reported by sashiko-bot.
+- Fix usb_48m_pre_sel's parent reported by sashiko-bot.
+- Fix gen_div width reported by sashiko-bot.
+- Fix hdmitx1_pixel's parent reported by sashiko-bot.
+- Link to v2: https://lore.kernel.org/r/20260603-a9_peripherals-v2-0-ee1b8c0a1e6c@amlogic.com
+
+Changes in v2:
+- Split the A9 clock driver and send the peripherals clock separately.
+- Add COMPILE_TEST in Kconfig.
+- Drop the 'optional'.
+- Rename apb4 to soc.
+- Sort the header file.
+- Rename hifi to hifi0.
+- Use CLK_HW_INIT_PARENTS_DATA to describe clk_init_data.
+- Use CLK_HW_INIT_HW to describe clk_init_data.
+- Use CLK_HW_INIT_PARENTS_HW to describe clk_init_data.
+- Link to v1: https://lore.kernel.org/all/20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com/
+
+---
+Jian Hu (2):
+      dt-bindings: clock: Add Amlogic A9 peripherals clock controller
+      clk: amlogic: Add A9 peripherals clock controller driver
+
+ .../clock/amlogic,a9-peripherals-clkc.yaml         |  164 ++
+ drivers/clk/meson/Kconfig                          |   15 +
+ drivers/clk/meson/Makefile                         |    1 +
+ drivers/clk/meson/a9-peripherals.c                 | 2095 ++++++++++++++++++++
+ .../clock/amlogic,a9-peripherals-clkc.h            |  351 ++++
+ 5 files changed, 2626 insertions(+)
+---
+base-commit: ca89c88bcf69daca829044c638a8163d5ce47af0
+change-id: 20260603-a9_peripherals-4214e79705dc
+
+Best regards,
+-- 
+Jian Hu <jian.hu@amlogic.com>
+
+
 
 _______________________________________________
 linux-amlogic mailing list
