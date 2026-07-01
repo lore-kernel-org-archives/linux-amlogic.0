@@ -4,78 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27D38C43458
-	for <linux-amlogic@archiver.kernel.org>; Wed,  1 Jul 2026 08:31:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19162C43458
+	for <linux-amlogic@archiver.kernel.org>; Wed,  1 Jul 2026 10:39:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hJeebLZGZgLwZgTvm3kP6y/DvSIQsT/bG/kVbKarCJo=; b=df39PzQHEfjbVJ
-	hONQhKeIPTjWhQKn5rnZNasyHhX68EuYV7Z94SDtCSJ9gP2lE0kAwfWRpxwsVCpqg5Dh6a/2t3fIK
-	RcavRTrhmH4S1amicKK+OTVim1VgnOePU82MI+F5LgT4P+JxKX6yjKsGlWKmz+HY02AxoJVkm3E40
-	2m92n94zUs9Igsi4PAeiyv3NbkBkkU5HL8HxOyZds2ZTjAEpmfSfg4ha7k3vhLZa/XY+M011fdqP8
-	+aqDokC1QnIiMIh98Sn1H3H3Mz8WHEa7c7gLANQZXsqQ55gE+xui2Bc5paUQ8NmAbpqzjlBpw5Uwu
-	PfoOQeyTbXwfwCTr5gSw==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:
+	References:MIME-Version:In-Reply-To:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=9fAaCzxOEF80quQ7voajrSEADSG3BcaO6nauCUX59Is=; b=AuUtujZUTt2vCu68MQEkJl68Jg
+	sCcn5w46p9cilEXjzPVdhhwFUlO43kjChBwPbSNP7mnsXEEf1MRy/ey88c6XSNFrSqFpwzz2dAlfd
+	tAvoXfCp6bxDur1rBisjug3BSESRsifhZbBw0Xl2EPjKmcnumzDUjBR/taXoSSqkD7v84Jh9qx3kU
+	aKPt5vjN9MyrUR9u1TUqZmXYPJBEu4PvzZrOz8dDUy6fc+r4Ax4NYAADQoyoX/rqSMedzmm3O277+
+	O9IISAtHRYt4QcZksrOlvRZOtSaoSu58/hlqvEA6DVTdMcsKu3GwXtlVPFdLUeIxyMoCefhWRiQOI
+	5E17xgHw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1weqLa-000000011Zo-0CaN;
-	Wed, 01 Jul 2026 08:31:06 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1wesLX-00000001KPn-1etn;
+	Wed, 01 Jul 2026 10:39:11 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1weqLX-000000011X0-1Yn7;
-	Wed, 01 Jul 2026 08:31:03 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 8E7E2601E0;
-	Wed,  1 Jul 2026 08:31:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 36929C2BCB8;
-	Wed,  1 Jul 2026 08:31:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1782894662;
-	bh=uoaaWsQrzZUiPEcZRQFHMP2i52CzrRgom4KUGszJ9h4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=D3oay+KDuzRRI1W5EvzzFGzbbRjPNm6O0pp7rBHX2V3lGJXBwl23FN35mNq9PX7WX
-	 2O8n+qiK4OtL+t6wNEMPzmqrjDv179mY7H5hwlDJy3rNTjopUyC0bLeBKYL1MWKVxN
-	 hjsxj4P8d9msdB93eYJcbxD89Wz+yNUM/bQG9ebEyQ8S4Y+5+uUe7g9WoiFZ9GKTlB
-	 KKP0X7rn9M2znZqKbOPDXEGyxgVbZkmHlWpA5yBjEyQuQoFhNwccmZeWI9YXQgkNwL
-	 iSAND6N1P4F2adDNv1eHojAsgGPl+u73ZNm090i28QzmyDB1x4xXU99B76DaepOQgS
-	 d9keCISenjjDA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 235B9C43327;
-	Wed,  1 Jul 2026 08:31:02 +0000 (UTC)
-From: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
-Date: Wed, 01 Jul 2026 16:30:02 +0800
-Subject: [PATCH v6 1/2] dt-bindings: clock: Add Amlogic A9 peripherals
- clock controller
+	id 1wesLU-00000001KOk-47UA
+	for linux-amlogic@lists.infradead.org;
+	Wed, 01 Jul 2026 10:39:09 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id ADA71440A1
+	for <linux-amlogic@lists.infradead.org>; Wed,  1 Jul 2026 10:39:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 743461F0156E
+	for <linux-amlogic@lists.infradead.org>; Wed,  1 Jul 2026 10:39:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1782902348;
+	bh=q4Mw1ewD/jb3yXkm243uxaRWKqoUXL01sdFnsTQHgvY=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc;
+	b=CvmIMQlpDPun8oKUF6snfTgD5R960tQ39+Ad7gri+Glzo8M3xcUmIR/X/ChVXo/NM
+	 LoBkt8GTKKxOJnKW8icgGzjR+KTlrxKeiu1OZOpzSQ9BahiOOvwcXZ6Uz2w8/KYIqt
+	 5VJj7HSvLi0ub+uEPGKsvoJQROh/cFbWhe+FazUqVutSc5DVw944YTwxbbd7aZB3z4
+	 2JWwgkQM538t/UZSdLP8CHDFRFmJw/hlH1T3TwFf1xJSvK8HsTtarZ2Y0umGA0QNZc
+	 v4REPnfaTuzUCQABmQV4nHd2lj6bZ8npdl9tiDVtlygmu9uuzv8Jy9bVpHCYrzBRSQ
+	 +5m7bRYHZ8lOA==
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5aeb2df5cc1so405240e87.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 01 Jul 2026 03:39:08 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+RrAikcs9ezjPftvnJaWyDmWJfGPN6KUrHirJUlLpAvzbwjIaKCjMxg3p7wjYZWKJ+ninvGpRsZQaweotRJ9@lists.infradead.org
+X-Gm-Message-State: AOJu0YzvtPEztRj84ShhT77d3TxIKPg/WLEFXVE1ABu9rL5ac1wXFqpV
+	hLdVsOlyzE3RywzhLFtKRdNX3l0AZ0hthupAfscTR50ziP3EcOrQ8RbMlw7Bw67Ab17j2Yi2uYm
+	VjFUuZAdnTEPBCmYBLWEiDUjFRuYGUjIQwo51Yps+sQ==
+X-Received: by 2002:ac2:568a:0:b0:5ae:9fb4:6740 with SMTP id
+ 2adb3069b0e04-5aec742dcbemr246886e87.46.1782902347033; Wed, 01 Jul 2026
+ 03:39:07 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 1 Jul 2026 05:39:04 -0500
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 1 Jul 2026 05:39:04 -0500
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <CAMRc=MfgAB8bc6PD-6jw_KR0uNBfH+PO2XtCeL1SUF2nCiT0xg@mail.gmail.com>
 MIME-Version: 1.0
-Message-Id: <20260701-a9_peripherals-v6-1-9630f39879e5@amlogic.com>
-References: <20260701-a9_peripherals-v6-0-9630f39879e5@amlogic.com>
-In-Reply-To: <20260701-a9_peripherals-v6-0-9630f39879e5@amlogic.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Brian Masney <bmasney@redhat.com>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Jian Hu <jian.hu@amlogic.com>, 
- Conor Dooley <conor.dooley@microchip.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1782894659; l=17601;
- i=jian.hu@amlogic.com; s=20260415; h=from:subject:message-id;
- bh=u9DPkC4aqLsylW49V3/GJZYb+ebFNgVy08C1RtKJSIU=;
- b=6wYa50WUeHXtUu9+kU8AeZ6FkStQFimc2dpH61PnTcOXeCQfdd6s+1g/p6mMgFTJZyIN3NoLe
- RsjlDEy4qUAAe9c/sHQqvCsvy3YUL0H1G6eyKZ0epbUbHFCaKBgH2Xw
-X-Developer-Key: i=jian.hu@amlogic.com; a=ed25519;
- pk=zHUE+rNtH9z+Sb8au1/elWknjFQmy5QDVkBoxleuOIA=
-X-Endpoint-Received: by B4 Relay for jian.hu@amlogic.com/20260415 with
- auth_id=735
-X-Original-From: Jian Hu <jian.hu@amlogic.com>
+References: <20260629-qcom-sa8255p-emac-v11-0-1b7fb95b51f9@oss.qualcomm.com>
+ <20260629-qcom-sa8255p-emac-v11-1-1b7fb95b51f9@oss.qualcomm.com>
+ <CAMuHMdXen+E-Ai51aWBa_KV9W8Fz2cQPpT-FG_kQ7akhrrYa_A@mail.gmail.com>
+ <CAMRc=Me3jaZXiXa1sFXr=8Do4sCd+XN1pKTcWC8-0j78SjCkKA@mail.gmail.com>
+ <CAMuHMdVUBgG0EFB16OxHisbxx-sBvDKvBPNZdpyDnmBrnX4ptQ@mail.gmail.com>
+ <akOZFIowVvprnAMf@vaman> <CAMRc=MfgAB8bc6PD-6jw_KR0uNBfH+PO2XtCeL1SUF2nCiT0xg@mail.gmail.com>
+Date: Wed, 1 Jul 2026 05:39:04 -0500
+X-Gmail-Original-Message-ID: <CAMRc=MfA3OuuUUb063hAaN-0Byt=ToEf+uLtcR2DoqED6dZ+Nw@mail.gmail.com>
+X-Gm-Features: AVVi8CdM4YB1YNAKK21RhumfGngKAr8KUFWynreeOPd7b_5_r_J6FsxJ2sTmC58
+Message-ID: <CAMRc=MfA3OuuUUb063hAaN-0Byt=ToEf+uLtcR2DoqED6dZ+Nw@mail.gmail.com>
+Subject: Re: [PATCH net-next v11 1/7] dt-bindings: phy: document the serdes
+ PHY on sa8255p
+To: Bartosz Golaszewski <brgl@kernel.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Chen-Yu Tsai <wens@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Shawn Guo <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
+	Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com, 
+	Mohd Ayaan Anwar <mohd.anwar@oss.qualcomm.com>, Romain Gantois <romain.gantois@bootlin.com>, 
+	Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>, 
+	Christophe Roullier <christophe.roullier@foss.st.com>, Radu Rendec <rrendec@redhat.com>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, Drew Fustini <dfustini@tenstorrent.com>, 
+	linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org, 
+	linux-mips@vger.kernel.org, imx@lists.linux.dev, 
+	linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, Vinod Koul <vkoul@kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,556 +107,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: jian.hu@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Jian Hu <jian.hu@amlogic.com>
+On Tue, 30 Jun 2026 15:44:16 +0200, Bartosz Golaszewski <brgl@kernel.org> said:
+> On Tue, 30 Jun 2026 12:23:16 +0200, Vinod Koul <vkoul@kernel.org> said:
+>> On 29-06-26, 16:51, Geert Uytterhoeven wrote:
+>>> > Russell King asked me to put the PHY logic for SCMI pm domains into the PHY
+>>> > driver instead of the MAC driver where it was previously. Instead of cramming
+>>> > both HLOS and firmware handling into the same driver, I figured it makes more
+>>> > sense to have a dedicated, cleaner driver as the two share very little code (if
+>>> > any).
+>>>
+>>> I think you are mixing up DT bindings and driver implementation?
+>>
+>> Should the bindings change if we have different driver and firmware
+>> implementations? Isn't binding supposed to be agnostic of
+>> implementations..?
+>>
+>
+> The way sa8255p implements SCMI is with SMC exclusively but - since even base
+> support is not yet upstream -  maybe it would be possible to expose SCMI clocks
+> like some platforms do and reuse the same binding.
+>
+> Would it make sense?
+>
+> Bart
+>
 
-Add the peripherals clock controller dt-bindings for the Amlogic A9
-SoC family.
+Scratch that. The firmware on sa8255p does not expose SCMI clock protocol, we
+can only use devfs with this PHY so it's either the same binding document with
+different properties depending on compatible or two separate bindings. I prefer
+the latter because it's cleaner.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Jian Hu <jian.hu@amlogic.com>
----
- .../clock/amlogic,a9-peripherals-clkc.yaml         | 164 ++++++++++
- .../clock/amlogic,a9-peripherals-clkc.h            | 351 +++++++++++++++++++++
- 2 files changed, 515 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/clock/amlogic,a9-peripherals-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a9-peripherals-clkc.yaml
-new file mode 100644
-index 000000000000..f0aef005ecf3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/amlogic,a9-peripherals-clkc.yaml
-@@ -0,0 +1,164 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2026 Amlogic, Inc. All rights reserved
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/amlogic,a9-peripherals-clkc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Amlogic A9 Series Peripherals Clock Controller
-+
-+maintainers:
-+  - Neil Armstrong <neil.armstrong@linaro.org>
-+  - Jerome Brunet <jbrunet@baylibre.com>
-+  - Jian Hu <jian.hu@amlogic.com>
-+  - Xianwei Zhao <xianwei.zhao@amlogic.com>
-+
-+properties:
-+  compatible:
-+    const: amlogic,a9-peripherals-clkc
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  clocks:
-+    minItems: 27
-+    items:
-+      - description: input oscillator
-+      - description: input fclk div 2
-+      - description: input fclk div 3
-+      - description: input fclk div 4
-+      - description: input fclk div 5
-+      - description: input fclk div 7
-+      - description: input fclk div 2p5
-+      - description: input sys clk
-+      - description: input gp1 pll
-+      - description: input gp2 pll
-+      - description: input sys pll div 16
-+      - description: input cpu clk div 16
-+      - description: input a78 clk div 16
-+      - description: input dsu clk div 16
-+      - description: input rtc clk
-+      - description: input gp0 pll
-+      - description: input hifi0 pll
-+      - description: input hifi1 pll
-+      - description: input mclk0 pll
-+      - description: input mclk1 pll
-+      - description: input video1 pll
-+      - description: input video2 pll
-+      - description: input hdmi out2 clk
-+      - description: input hdmi pixel clk
-+      - description: input pixel0 pll
-+      - description: input pixel1 pll
-+      - description: input ddr pll test clk
-+      - description: external input rmii oscillator (optional)
-+
-+  clock-names:
-+    minItems: 27
-+    items:
-+      - const: xtal
-+      - const: fdiv2
-+      - const: fdiv3
-+      - const: fdiv4
-+      - const: fdiv5
-+      - const: fdiv7
-+      - const: fdiv2p5
-+      - const: sys
-+      - const: gp1
-+      - const: gp2
-+      - const: sysplldiv16
-+      - const: cpudiv16
-+      - const: a78div16
-+      - const: dsudiv16
-+      - const: rtc
-+      - const: gp0
-+      - const: hifi0
-+      - const: hifi1
-+      - const: mclk0
-+      - const: mclk1
-+      - const: vid1
-+      - const: vid2
-+      - const: hdmiout2
-+      - const: hdmipix
-+      - const: pix0
-+      - const: pix1
-+      - const: ddr_test
-+      - const: ext_rmii
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#clock-cells'
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        clock-controller@200 {
-+            compatible = "amlogic,a9-peripherals-clkc";
-+            reg = <0x0 0x200 0x0 0x2f8>;
-+            #clock-cells = <1>;
-+            clocks = <&xtal>,
-+                     <&scmi_clk 10>,
-+                     <&scmi_clk 12>,
-+                     <&scmi_clk 14>,
-+                     <&scmi_clk 16>,
-+                     <&scmi_clk 18>,
-+                     <&scmi_clk 20>,
-+                     <&scmi_clk 21>,
-+                     <&scmi_clk 33>,
-+                     <&scmi_clk 34>,
-+                     <&scmi_clk 35>,
-+                     <&scmi_clk 36>,
-+                     <&scmi_clk 37>,
-+                     <&scmi_clk 38>,
-+                     <&scmi_clk 40>,
-+                     <&gp0 3>,
-+                     <&hifi0 3>,
-+                     <&hifi1 3>,
-+                     <&mclk0 3>,
-+                     <&mclk1 3>,
-+                     <&vid1>,
-+                     <&vid2>,
-+                     <&hdmitx 10>,
-+                     <&hdmitx 11>,
-+                     <&pix0>,
-+                     <&pix1>,
-+                     <&ddr 3>;
-+            clock-names = "xtal",
-+                          "fdiv2",
-+                          "fdiv3",
-+                          "fdiv4",
-+                          "fdiv5",
-+                          "fdiv7",
-+                          "fdiv2p5",
-+                          "sys",
-+                          "gp1",
-+                          "gp2",
-+                          "sysplldiv16",
-+                          "cpudiv16",
-+                          "a78div16",
-+                          "dsudiv16",
-+                          "rtc",
-+                          "gp0",
-+                          "hifi0",
-+                          "hifi1",
-+                          "mclk0",
-+                          "mclk1",
-+                          "vid1",
-+                          "vid2",
-+                          "hdmiout2",
-+                          "hdmipix",
-+                          "pix0",
-+                          "pix1",
-+                          "ddr_test";
-+        };
-+    };
-diff --git a/include/dt-bindings/clock/amlogic,a9-peripherals-clkc.h b/include/dt-bindings/clock/amlogic,a9-peripherals-clkc.h
-new file mode 100644
-index 000000000000..09487a414197
---- /dev/null
-+++ b/include/dt-bindings/clock/amlogic,a9-peripherals-clkc.h
-@@ -0,0 +1,351 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright (C) 2026 Amlogic, Inc. All rights reserved.
-+ */
-+
-+#ifndef __AMLOGIC_A9_PERIPHERALS_CLKC_H
-+#define __AMLOGIC_A9_PERIPHERALS_CLKC_H
-+
-+#define CLKID_SYS_AM_AXI			0
-+#define CLKID_SYS_DOS				1
-+#define CLKID_SYS_MIPI_DSI0			2
-+#define CLKID_SYS_ETH_PHY			3
-+#define CLKID_SYS_AMFC				4
-+#define CLKID_SYS_MALI				5
-+#define CLKID_SYS_NNA				6
-+#define CLKID_SYS_ETH_AXI			7
-+#define CLKID_SYS_DP_APB			8
-+#define CLKID_SYS_EDPTX_APB			9
-+#define CLKID_SYS_U3HSG				10
-+#define CLKID_SYS_AUCPU				11
-+#define CLKID_SYS_GLB				12
-+#define CLKID_SYS_COMBO_DPHY_APB		13
-+#define CLKID_SYS_HDMIRX_APB			14
-+#define CLKID_SYS_HDMIRX_PCLK			15
-+#define CLKID_SYS_MIPI_DSI0_PHY			16
-+#define CLKID_SYS_CAN0				17
-+#define CLKID_SYS_CAN1				18
-+#define CLKID_SYS_SD_EMMC_A			19
-+#define CLKID_SYS_SD_EMMC_B			20
-+#define CLKID_SYS_SD_EMMC_C			21
-+#define CLKID_SYS_SC				22
-+#define CLKID_SYS_ACODEC			23
-+#define CLKID_SYS_MIPI_ISP			24
-+#define CLKID_SYS_MSR				25
-+#define CLKID_SYS_AUDIO				26
-+#define CLKID_SYS_MIPI_DSI1			27
-+#define CLKID_SYS_MIPI_DSI1_PHY			28
-+#define CLKID_SYS_ETH				29
-+#define CLKID_SYS_ETH_1G_MAC			30
-+#define CLKID_SYS_UART_A			31
-+#define CLKID_SYS_UART_F			32
-+#define CLKID_SYS_TS_A55			33
-+#define CLKID_SYS_ETH_1G_AXI			34
-+#define CLKID_SYS_TS_DOS			35
-+#define CLKID_SYS_U3DRD_B			36
-+#define CLKID_SYS_TS_CORE			37
-+#define CLKID_SYS_TS_PLL			38
-+#define CLKID_SYS_CSI_DIG_CLKIN			39
-+#define CLKID_SYS_CVE				40
-+#define CLKID_SYS_GE2D				41
-+#define CLKID_SYS_SPISG				42
-+#define CLKID_SYS_U2H				43
-+#define CLKID_SYS_PCIE_MAC_A			44
-+#define CLKID_SYS_U3DRD_A			45
-+#define CLKID_SYS_U2DRD				46
-+#define CLKID_SYS_PCIE_PHY			47
-+#define CLKID_SYS_PCIE_MAC_B			48
-+#define CLKID_SYS_PERIPH			49
-+#define CLKID_SYS_PIO				50
-+#define CLKID_SYS_I3C				51
-+#define CLKID_SYS_I2C_M_E			52
-+#define CLKID_SYS_I2C_M_F			53
-+#define CLKID_SYS_HDMITX_APB			54
-+#define CLKID_SYS_I2C_M_I			55
-+#define CLKID_SYS_I2C_M_G			56
-+#define CLKID_SYS_I2C_M_H			57
-+#define CLKID_SYS_HDMI20_AES			58
-+#define CLKID_SYS_CSI2_HOST			59
-+#define CLKID_SYS_CSI2_ADAPT			60
-+#define CLKID_SYS_DSPA				61
-+#define CLKID_SYS_PP_DMA			62
-+#define CLKID_SYS_PP_WRAPPER			63
-+#define CLKID_SYS_VPU_INTR			64
-+#define CLKID_SYS_CSI2_PHY			65
-+#define CLKID_SYS_SARADC			66
-+#define CLKID_SYS_PWM_J				67
-+#define CLKID_SYS_PWM_I				68
-+#define CLKID_SYS_PWM_H				69
-+#define CLKID_SYS_PWM_N				70
-+#define CLKID_SYS_PWM_M				71
-+#define CLKID_SYS_PWM_L				72
-+#define CLKID_SYS_PWM_K				73
-+#define CLKID_SD_EMMC_A_SEL			74
-+#define CLKID_SD_EMMC_A_DIV			75
-+#define CLKID_SD_EMMC_A				76
-+#define CLKID_SD_EMMC_B_SEL			77
-+#define CLKID_SD_EMMC_B_DIV			78
-+#define CLKID_SD_EMMC_B				79
-+#define CLKID_SD_EMMC_C_SEL			80
-+#define CLKID_SD_EMMC_C_DIV			81
-+#define CLKID_SD_EMMC_C				82
-+#define CLKID_PWM_H_SEL				83
-+#define CLKID_PWM_H_DIV				84
-+#define CLKID_PWM_H				85
-+#define CLKID_PWM_I_SEL				86
-+#define CLKID_PWM_I_DIV				87
-+#define CLKID_PWM_I				88
-+#define CLKID_PWM_J_SEL				89
-+#define CLKID_PWM_J_DIV				90
-+#define CLKID_PWM_J				91
-+#define CLKID_PWM_K_SEL				92
-+#define CLKID_PWM_K_DIV				93
-+#define CLKID_PWM_K				94
-+#define CLKID_PWM_L_SEL				95
-+#define CLKID_PWM_L_DIV				96
-+#define CLKID_PWM_L				97
-+#define CLKID_PWM_M_SEL				98
-+#define CLKID_PWM_M_DIV				99
-+#define CLKID_PWM_M				100
-+#define CLKID_PWM_N_SEL				101
-+#define CLKID_PWM_N_DIV				102
-+#define CLKID_PWM_N				103
-+#define CLKID_SPISG0_SEL			104
-+#define CLKID_SPISG0_DIV			105
-+#define CLKID_SPISG0				106
-+#define CLKID_SPISG1_SEL			107
-+#define CLKID_SPISG1_DIV			108
-+#define CLKID_SPISG1				109
-+#define CLKID_SPISG2_SEL			110
-+#define CLKID_SPISG2_DIV			111
-+#define CLKID_SPISG2				112
-+#define CLKID_SARADC_SEL			113
-+#define CLKID_SARADC_DIV			114
-+#define CLKID_SARADC				115
-+#define CLKID_AMFC_SEL				116
-+#define CLKID_AMFC_DIV				117
-+#define CLKID_AMFC				118
-+#define CLKID_NNA_SEL				119
-+#define CLKID_NNA_DIV				120
-+#define CLKID_NNA				121
-+#define CLKID_USB_250M_SEL			122
-+#define CLKID_USB_250M_DIV			123
-+#define CLKID_USB_250M				124
-+#define CLKID_USB_48M_PRE_SEL			125
-+#define CLKID_USB_48M_PRE_DIV			126
-+#define CLKID_USB_48M_PRE			127
-+#define CLKID_PCIE0_TL_SEL			128
-+#define CLKID_PCIE0_TL_DIV			129
-+#define CLKID_PCIE0_TL				130
-+#define CLKID_PCIE1_TL_SEL			131
-+#define CLKID_PCIE1_TL_DIV			132
-+#define CLKID_PCIE1_TL				133
-+#define CLKID_CMPR_SEL				134
-+#define CLKID_CMPR_DIV				135
-+#define CLKID_CMPR				136
-+#define CLKID_DEWARPA_SEL			137
-+#define CLKID_DEWARPA_DIV			138
-+#define CLKID_DEWARPA				139
-+#define CLKID_SC_PRE_SEL			140
-+#define CLKID_SC_PRE_DIV			141
-+#define CLKID_SC_PRE				142
-+#define CLKID_SC				143
-+#define CLKID_DPTX_APB2_SEL			144
-+#define CLKID_DPTX_APB2_DIV			145
-+#define CLKID_DPTX_APB2				146
-+#define CLKID_DPTX_AUD_SEL			147
-+#define CLKID_DPTX_AUD_DIV			148
-+#define CLKID_DPTX_AUD				149
-+#define CLKID_ISP_SEL				150
-+#define CLKID_ISP_DIV				151
-+#define CLKID_ISP				152
-+#define CLKID_CVE_SEL				153
-+#define CLKID_CVE_DIV				154
-+#define CLKID_CVE				155
-+#define CLKID_VGE_SEL				156
-+#define CLKID_VGE_DIV				157
-+#define CLKID_VGE				158
-+#define CLKID_PP_SEL				159
-+#define CLKID_PP_DIV				160
-+#define CLKID_PP				161
-+#define CLKID_GLB_SEL				162
-+#define CLKID_GLB_DIV				163
-+#define CLKID_GLB				164
-+#define CLKID_USB_48M_DUALDIV_IN		165
-+#define CLKID_USB_48M_DUALDIV_DIV		166
-+#define CLKID_USB_48M_DUALDIV_SEL		167
-+#define CLKID_USB_48M_DUALDIV			168
-+#define CLKID_USB_48M				169
-+#define CLKID_CAN0_PE_SEL			170
-+#define CLKID_CAN0_PE_DIV			171
-+#define CLKID_CAN0_PE				172
-+#define CLKID_CAN1_PE_SEL			173
-+#define CLKID_CAN1_PE_DIV			174
-+#define CLKID_CAN1_PE				175
-+#define CLKID_CAN0_FILTER_SEL			176
-+#define CLKID_CAN0_FILTER_DIV			177
-+#define CLKID_CAN0_FILTER			178
-+#define CLKID_CAN1_FILTER_SEL			179
-+#define CLKID_CAN1_FILTER_DIV			180
-+#define CLKID_CAN1_FILTER			181
-+#define CLKID_I3C_SEL				182
-+#define CLKID_I3C_DIV				183
-+#define CLKID_I3C				184
-+#define CLKID_TS_DIV				185
-+#define CLKID_TS				186
-+#define CLKID_ETH_125M_DIV			187
-+#define CLKID_ETH_125M				188
-+#define CLKID_ETH_RMII_SEL			189
-+#define CLKID_ETH_RMII_DIV			190
-+#define CLKID_ETH_RMII				191
-+#define CLKID_GEN_SEL				192
-+#define CLKID_GEN_DIV				193
-+#define CLKID_GEN				194
-+#define CLKID_CLK24M_IN				195
-+#define CLKID_CLK12_24M				196
-+#define CLKID_MALI_0_SEL			197
-+#define CLKID_MALI_0_DIV			198
-+#define CLKID_MALI_0				199
-+#define CLKID_MALI_1_SEL			200
-+#define CLKID_MALI_1_DIV			201
-+#define CLKID_MALI_1				202
-+#define CLKID_MALI				203
-+#define CLKID_MALI_STACK_0_SEL			204
-+#define CLKID_MALI_STACK_0_DIV			205
-+#define CLKID_MALI_STACK_0			206
-+#define CLKID_MALI_STACK_1_SEL			207
-+#define CLKID_MALI_STACK_1_DIV			208
-+#define CLKID_MALI_STACK_1			209
-+#define CLKID_MALI_STACK			210
-+#define CLKID_DSPA_0_SEL			211
-+#define CLKID_DSPA_0_DIV			212
-+#define CLKID_DSPA_0				213
-+#define CLKID_DSPA_1_SEL			214
-+#define CLKID_DSPA_1_DIV			215
-+#define CLKID_DSPA_1				216
-+#define CLKID_DSPA				217
-+#define CLKID_HEVCF_0_SEL			218
-+#define CLKID_HEVCF_0_DIV			219
-+#define CLKID_HEVCF_0				220
-+#define CLKID_HEVCF_1_SEL			221
-+#define CLKID_HEVCF_1_DIV			222
-+#define CLKID_HEVCF_1				223
-+#define CLKID_HEVCF				224
-+#define CLKID_HCODEC_0_SEL			225
-+#define CLKID_HCODEC_0_DIV			226
-+#define CLKID_HCODEC_0				227
-+#define CLKID_HCODEC_1_SEL			228
-+#define CLKID_HCODEC_1_DIV			229
-+#define CLKID_HCODEC_1				230
-+#define CLKID_HCODEC				231
-+#define CLKID_VPU_0_SEL				232
-+#define CLKID_VPU_0_DIV				233
-+#define CLKID_VPU_0				234
-+#define CLKID_VPU_1_SEL				235
-+#define CLKID_VPU_1_DIV				236
-+#define CLKID_VPU_1				237
-+#define CLKID_VPU				238
-+#define CLKID_VAPB_0_SEL			239
-+#define CLKID_VAPB_0_DIV			240
-+#define CLKID_VAPB_0				241
-+#define CLKID_VAPB_1_SEL			242
-+#define CLKID_VAPB_1_DIV			243
-+#define CLKID_VAPB_1				244
-+#define CLKID_VAPB				245
-+#define CLKID_GE2D				246
-+#define CLKID_VPU_CLKB_TMP_SEL			247
-+#define CLKID_VPU_CLKB_TMP_DIV			248
-+#define CLKID_VPU_CLKB_TMP			249
-+#define CLKID_VPU_CLKB_DIV			250
-+#define CLKID_VPU_CLKB				251
-+#define CLKID_HDMITX_SYS_SEL			252
-+#define CLKID_HDMITX_SYS_DIV			253
-+#define CLKID_HDMITX_SYS			254
-+#define CLKID_HDMITX_PRIF_SEL			255
-+#define CLKID_HDMITX_PRIF_DIV			256
-+#define CLKID_HDMITX_PRIF			257
-+#define CLKID_HDMITX_200M_SEL			258
-+#define CLKID_HDMITX_200M_DIV			259
-+#define CLKID_HDMITX_200M			260
-+#define CLKID_HDMITX_AUD_SEL			261
-+#define CLKID_HDMITX_AUD_DIV			262
-+#define CLKID_HDMITX_AUD			263
-+#define CLKID_HDMIRX_5M_SEL			264
-+#define CLKID_HDMIRX_5M_DIV			265
-+#define CLKID_HDMIRX_5M				266
-+#define CLKID_HDMIRX_2M_SEL			267
-+#define CLKID_HDMIRX_2M_DIV			268
-+#define CLKID_HDMIRX_2M				269
-+#define CLKID_HDMIRX_CFG_SEL			270
-+#define CLKID_HDMIRX_CFG_DIV			271
-+#define CLKID_HDMIRX_CFG			272
-+#define CLKID_HDMIRX_HDCP2X_SEL			273
-+#define CLKID_HDMIRX_HDCP2X_DIV			274
-+#define CLKID_HDMIRX_HDCP2X			275
-+#define CLKID_HDMIRX_ACR_REF_SEL		276
-+#define CLKID_HDMIRX_ACR_REF_DIV		277
-+#define CLKID_HDMIRX_ACR_REF			278
-+#define CLKID_HDMIRX_METER_SEL			279
-+#define CLKID_HDMIRX_METER_DIV			280
-+#define CLKID_HDMIRX_METER			281
-+#define CLKID_VID_LOCK_SEL			282
-+#define CLKID_VID_LOCK_DIV			283
-+#define CLKID_VID_LOCK				284
-+#define CLKID_VDIN_MEAS_SEL			285
-+#define CLKID_VDIN_MEAS_DIV			286
-+#define CLKID_VDIN_MEAS				287
-+#define CLKID_VID_PLL_DIV			288
-+#define CLKID_VID_PLL_SEL			289
-+#define CLKID_VID_PLL				290
-+#define CLKID_VID_PLL_VCLK			291
-+#define CLKID_VCLK0_SEL				292
-+#define CLKID_VCLK0_IN				293
-+#define CLKID_VCLK0_DIV				294
-+#define CLKID_VCLK0				295
-+#define CLKID_VCLK0_DIV1_EN			296
-+#define CLKID_VCLK0_DIV2_EN			297
-+#define CLKID_VCLK0_DIV2			298
-+#define CLKID_VCLK0_DIV4_EN			299
-+#define CLKID_VCLK0_DIV4			300
-+#define CLKID_VCLK0_DIV6_EN			301
-+#define CLKID_VCLK0_DIV6			302
-+#define CLKID_VCLK0_DIV12_EN			303
-+#define CLKID_VCLK0_DIV12			304
-+#define CLKID_VCLK1_SEL				305
-+#define CLKID_VCLK1_IN				306
-+#define CLKID_VCLK1_DIV				307
-+#define CLKID_VCLK1				308
-+#define CLKID_VCLK1_DIV1_EN			309
-+#define CLKID_VCLK1_DIV2_EN			310
-+#define CLKID_VCLK1_DIV2			311
-+#define CLKID_VCLK1_DIV4_EN			312
-+#define CLKID_VCLK1_DIV4			313
-+#define CLKID_VCLK1_DIV6_EN			314
-+#define CLKID_VCLK1_DIV6			315
-+#define CLKID_VCLK1_DIV12_EN			316
-+#define CLKID_VCLK1_DIV12			317
-+#define CLKID_VDAC_SEL				318
-+#define CLKID_VDAC				319
-+#define CLKID_ENCODER0_SEL			320
-+#define CLKID_ENCODER0				321
-+#define CLKID_ENCODER1_SEL			322
-+#define CLKID_ENCODER1				323
-+#define CLKID_HDMITX0_PIXEL_SEL			324
-+#define CLKID_HDMITX0_PIXEL			325
-+#define CLKID_HDMITX0_FE_SEL			326
-+#define CLKID_HDMITX0_FE			327
-+#define CLKID_HDMITX1_PIXEL_SEL			328
-+#define CLKID_HDMITX1_PIXEL			329
-+#define CLKID_HDMITX1_FE_SEL			330
-+#define CLKID_HDMITX1_FE			331
-+#define CLKID_CSI_PHY_SEL			332
-+#define CLKID_CSI_PHY_DIV			333
-+#define CLKID_CSI_PHY				334
-+#define CLKID_DSI0_MEAS_SEL			335
-+#define CLKID_DSI0_MEAS_DIV			336
-+#define CLKID_DSI0_MEAS				337
-+#define CLKID_DSI1_MEAS_SEL			338
-+#define CLKID_DSI1_MEAS_DIV			339
-+#define CLKID_DSI1_MEAS				340
-+
-+#endif  /* __AMLOGIC_A9_PERIPHERALS_CLKC_H */
-
--- 
-2.47.1
-
-
+Bartosz
 
 _______________________________________________
 linux-amlogic mailing list
