@@ -4,54 +4,113 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E609C43458
-	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Jul 2026 15:56:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E292C43458
+	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Jul 2026 15:58:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uX6BohnNvF05Ic6V74k0hz1VMXJmnf3bexsp0GLcPj4=; b=245QhE6h4wd1xy
-	OgoHdYt9IMdIHrOplj0KfgmnBhPQg1JClxESbaTJYQa4wjVDDBnlvb0xvTnOYAhqg/IWsG6zTcQ+9
-	TV2mOkHxvf9WDCYuwGWnzhYtMz9CuceZSFmMMdNfZpCvC0/KEES4xEMWiY/7X3MRccr12Wey2Av8G
-	MRz6Y9aLC3i2m/KUuEEdDu3Z/f1zc+/b7IxYeyJlFt/fjh0muPV3JJFpPgA2pdekjOvjmD0waIdMZ
-	QAM2olcFxzL25qGYN/H1JcUPlMhZshDt8D+Gl1dCXHWI/KGbNIFLH3AzrPnIEzheFt6wrOz5Kh+lT
-	1O2sVndA7rHaTi5b7egg==;
+	List-Owner; bh=6bspkqJnvT/QE0WEvrk6TSh3evsk0/vgteoa0mX4dBY=; b=TvlN6LaC/NuBji
+	TipWkthXV8HSMPDVfDss0TTwOaAQzFP9z2ZxDoeBmkxhPLpan7hQJ1A6BjI4LEGYJ/n/YCoMVPP+S
+	BIoppuvtFGhBWGURkudT/nwy5DX0DsqDTtNcaXdriZMEU09ddqxbTS+buN2qbOky98FCAlAom04Mr
+	e/t3OMmh2sjGIqtWJzxwzL/9KvU6vlKjUNKb3LZwooCyz5O4cYqUkRz0h9so/TwmEx6desz3tfn73
+	wQQ8z8bdVUkEPCT9pAM5wozs/Nw9cWlXR+KNNvnrQB0iWnTB80cc5KgL4TQlWgw2bYVGABs2uCxFA
+	/uXkkUfZ0xZBvTmQa7bg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wfJlv-00000004tJd-0qOt;
-	Thu, 02 Jul 2026 15:56:15 +0000
+	id 1wfJng-00000004tTd-1viu;
+	Thu, 02 Jul 2026 15:58:04 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wfJlt-00000004tJW-0y7l
-	for linux-amlogic@lists.infradead.org;
-	Thu, 02 Jul 2026 15:56:13 +0000
+	id 1wfJne-00000004tTM-2kJP;
+	Thu, 02 Jul 2026 15:58:02 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id F30694374D;
-	Thu,  2 Jul 2026 15:56:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 658611F000E9;
-	Thu,  2 Jul 2026 15:56:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783007770;
-	bh=cIFnEIkKpjgp2EyaqZwVX9TRZDm6r8qWcsBcKP2yb+s=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=gEmMPFq2a7WvV/MOiUxFbnvBz6+8LmfxVtuPC0+FB/ImZW72Ntt+5IiHJDjEOdr19
-	 Ysl0xfx3/AL3poqWG+VSlVfYavvsarPh1223cv0E6SVcO10yoSYI0dcNrP1z/2FMUM
-	 1tMVUGOSXtjy4F1hkfqz10TSFF2jOFwKY/YKej0dEoEIz3H1LoHCj71xe8iONivSRK
-	 1/cwAGWfJRnRosfObfudTf+a+6KaodLnVYvybGYaEBaBsec/NNK/uUePfmIb5jKBDu
-	 fqMPTkYhY55/mVqYW8VrHk+Ktvc3YiFqyOYFqn0j/2H7/L0m7h8gOFfJ6nt3mZBeOB
-	 CNnSgsLBBYkQQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 10/11] perf: Use sysfs_emit() for cpumask show
- callbacks
-To: "Yury Norov" <ynorov@nvidia.com>
-Cc: linux-cxl@vger.kernel.org, linux-pci@vger.kernel.org, Frank.Li@kernel.org, neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org, imx@lists.linux.dev, linux-perf-users@vger.kernel.org
-In-Reply-To: <20260702154725.185376-11-ynorov@nvidia.com>
+	by sea.source.kernel.org (Postfix) with ESMTP id 009C143313;
+	Thu,  2 Jul 2026 15:58:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B03FE1F000E9;
+	Thu,  2 Jul 2026 15:58:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
+	s=korg; t=1783007881;
+	bh=2GojpbKbN4k2MdbuYx8HDDnbJJg9jcM6tSbyryOEvMk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=SJnNNRP+EGmmhh6KRiH7vrp7U5tcCQ4uUkk74aV3dBETWeDGJ2fYnPrhWEpA4mIVF
+	 a7YX2/PcQ1r9wtser/tab+01pWo35DpJF6WKp0qvZ0Uv0rU/X657DvwsQuIkVvEpqV
+	 TtOxbKTWJHUe4wOVptSf0WzHL3aO90+5UHJi4or4=
+Date: Thu, 2 Jul 2026 17:58:11 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Yury Norov <ynorov@nvidia.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>,
+	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+	Russell King <linux@armlinux.org.uk>, Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>,
+	Arnaldo Carvalho de Melo <acme@kernel.org>,
+	Namhyung Kim <namhyung@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	James Clark <james.clark@linaro.org>,
+	Thomas Gleixner <tglx@kernel.org>, Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	MyungJoo Ham <myungjoo.ham@samsung.com>,
+	Kyungmin Park <kyungmin.park@samsung.com>,
+	Heiko Stuebner <heiko@sntech.de>, Xu Yilun <yilun.xu@intel.com>,
+	Tom Rix <trix@redhat.com>, Moritz Fischer <mdf@kernel.org>,
+	Yicong Yang <yangyicong@hisilicon.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
+	Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Shuai Xue <xueshuai@linux.alibaba.com>,
+	Will Deacon <will@kernel.org>,
+	Jiucheng Xu <jiucheng.xu@amlogic.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Jing Zhang <renyu.zj@linux.alibaba.com>,
+	Xu Yang <xu.yang_2@nxp.com>, Linu Cherian <lcherian@marvell.com>,
+	Gowthami Thiagarajan <gthiagarajan@marvell.com>,
+	Ji Sheng Teoh <jisheng.teoh@starfivetech.com>,
+	Khuong Dinh <khuong@os.amperecomputing.com>,
+	Yury Norov <yury.norov@gmail.com>, Kees Cook <kees@kernel.org>,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas.weissschuh@linutronix.de>,
+	Aboorva Devarajan <aboorvad@linux.ibm.com>,
+	Ilkka Koskinen <ilkka@os.amperecomputing.com>,
+	Besar Wicaksono <bwicaksono@nvidia.com>, Ma Ke <make24@iscas.ac.cn>,
+	Chengwen Feng <fengchengwen@huawei.com>,
+	Ritesh Harjani <ritesh.list@gmail.com>,
+	Yushan Wang <wangyushan12@huawei.com>,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+	linux-perf-users@vger.kernel.org, x86@kernel.org,
+	driver-core@lists.linux.dev, linux-pm@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, linux-fpga@vger.kernel.org,
+	linux-rdma@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-amlogic@lists.infradead.org, linux-cxl@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 01/11] arm: Use sysfs_emit() for cpumask show callbacks
+Message-ID: <2026070244-flier-large-17d1@gregkh>
 References: <20260702154725.185376-1-ynorov@nvidia.com>
- <20260702154725.185376-11-ynorov@nvidia.com>
-Date: Thu, 02 Jul 2026 15:56:09 +0000
-Message-Id: <20260702155610.658611F000E9@smtp.kernel.org>
+ <20260702154725.185376-2-ynorov@nvidia.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20260702154725.185376-2-ynorov@nvidia.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,21 +122,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-PiBUaGVzZSBjYWxsYmFja3MgYXJlIHN5c2ZzIHNob3cgcGF0aHMuIFVzZSBzeXNmc19lbWl0KCkg
-YW5kCj4gY3B1bWFza19wcl9hcmdzKCkgdG8gZW1pdCB0aGUgbWFza3MuCj4gCj4gVGhpcyBwcmVw
-YXJlcyBmb3IgcmVtb3ZpbmcgY3B1bWFwX3ByaW50X3RvX3BhZ2VidWYoKS4KPiAKPiBMaW5rOiBo
-dHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvYWtBTkotQVQ3bkhwUk1xLUB5dXJ5Lwo+IFNpZ25l
-ZC1vZmYtYnk6IFl1cnkgTm9yb3YgPHlub3JvdkBudmlkaWEuY29tPgoKU2FzaGlrbyBoYXMgcmV2
-aWV3ZWQgdGhpcyBwYXRjaCBhbmQgZm91bmQgbm8gaXNzdWVzLiBJdCBsb29rcyBncmVhdCEKCi0t
-IApTYXNoaWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nhc2hpa28uZGV2LyMvcGF0Y2hzZXQvMjAy
-NjA3MDIxNTQ3MjUuMTg1Mzc2LTEteW5vcm92QG52aWRpYS5jb20/cGFydD0xMAoKCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFp
-bGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMu
-aW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On Thu, Jul 02, 2026 at 11:47:14AM -0400, Yury Norov wrote:
+> These callbacks are sysfs show paths.
+> 
+> Use sysfs_emit() and cpumask_pr_args() to emit the masks.
+> 
+> This prepares for removing cpumap_print_to_pagebuf().
+> 
+> Signed-off-by: Yury Norov <ynorov@nvidia.com>
+> ---
+>  arch/arm/mach-imx/mmdc.c     | 2 +-
+>  arch/arm/mm/cache-l2x0-pmu.c | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm/mach-imx/mmdc.c b/arch/arm/mach-imx/mmdc.c
+> index b71467c48b87..f6d993b9b1d4 100644
+> --- a/arch/arm/mach-imx/mmdc.c
+> +++ b/arch/arm/mach-imx/mmdc.c
+> @@ -127,7 +127,7 @@ static ssize_t mmdc_pmu_cpumask_show(struct device *dev,
+>  {
+>  	struct mmdc_pmu *pmu_mmdc = dev_get_drvdata(dev);
+>  
+> -	return cpumap_print_to_pagebuf(true, buf, &pmu_mmdc->cpu);
+> +	return sysfs_emit(buf, "%*pbl\n", cpumask_pr_args(&pmu_mmdc->cpu));
+
+Really?  Looks like the original is much simpler to understand, why must
+this function go away?
+
+thanks,
+
+greg k-h
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
