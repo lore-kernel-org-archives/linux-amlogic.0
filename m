@@ -4,89 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C68CC43458
-	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Jul 2026 20:45:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3104BC43458
+	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Jul 2026 21:32:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wmfiWMKhOZlQiZovRBqni2S4HNfbHnL4h8v8HJUTDBk=; b=GBvAh7lb0DAmvN
-	PxEypvJDVWoT4dWLuQnWWf457sAKx5pdTOEEBrPvr7qArgE+6unNrLPc8wyL+IFsY56UkEWclHmUj
-	zx05NyzSwEsS4GzkJESn7Gk8334+et7bk9awXLi9xDkfqVPOwOJO5q8MxPPldnALP/W8ZqvfpYcFU
-	ZHQCYcq7MwgYDg4IYDj1YWAGVAZk9PHOggVAKR3OoBlZiMPrUp1TyWsrDQYPCGCRCAnLtaaQ1Kcd+
-	4NCVg0I3iDxYCJlJ7n6orSXfwvFMnix9jEJy6j3beXY9u5pENGGuUfSatHToKs93+fO6cJGA+pIz+
-	l4QRPGurapgHMXDxDwfQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
+	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=kpCOPOe4ZH527WhgNmqvb2aWjZ67UxFJzKTPd27tUkg=; b=4oNBmCrfUcp63f
+	Z9w9dBdKDG7vMxAwkAK1SfQvPCATu5d004m43JW4hw09LMegLcdMXLsRyV8B+PcaVFHq7J3FkdSfN
+	0Ypa8+3ovhAIVk9KGyiSVmtU9Z3YXZHCIGY2Kl3hmLG22OKvfJ2F8al5QI1ROqgvwZSvt3BI0AfR2
+	oQIwRwFvGYJ4KZP6Cva4G9fAopxzWZ2PsxCHeCoFpQGgdbKLoQDAjuMNPDJ0ldQIVnU3JRp9sVjYI
+	//G7d0Le2WyktE7gPacyYAxC9HIUSPKACAvECygrs6bbkWpp4PyO3CLKXvHaTcQhLgZeZzxrVOCb1
+	MHKOP1WJjPBStnm8uhNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wfOHJ-00000005T3H-432n;
-	Thu, 02 Jul 2026 20:44:57 +0000
-Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	id 1wfP0s-00000005XfI-0IME;
+	Thu, 02 Jul 2026 21:32:02 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wfOHG-00000005T2q-3YHQ
+	id 1wfP0m-00000005Xdz-183M
 	for linux-amlogic@lists.infradead.org;
-	Thu, 02 Jul 2026 20:44:56 +0000
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-4759b4f0897so1464924f8f.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 02 Jul 2026 13:44:54 -0700 (PDT)
+	Thu, 02 Jul 2026 21:32:00 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-4921eed3fa2so15971055e9.0
+        for <linux-amlogic@lists.infradead.org>; Thu, 02 Jul 2026 14:31:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1783025093; x=1783629893; darn=lists.infradead.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aYSEb1fRPNK7jUZ0mBNdZrE9oqYSNcb+vjaKrLF66Eo=;
-        b=J0SQCmmADufuRtmACxcrdqK32YyyrFIl0CMcVApSN0h6qJbbFK3O79OnS3u8hOw2hG
-         HjhrZ4MMlEV5BPsZ08eTX755ctsZXeSiyenGuMPZovFDuPnj745+iliSatlcXxI6MqLO
-         qBiyhe5kXcyQWUrmASar5W4J4LJa+Z7TyEWgRyKyDEo5EKbMLj9xbSJI9q4Ta1/PW4I9
-         jkfk5YJ0oeEwKAtDJeb1kgUYMLhHWTpdQRiySR1L090oDJC4A45Ty3vIqaPvs8zn+D7B
-         hFKHyTWsIcfGYxljMxf+LLsg7KPfs+JU8epPrnX3tdgb1gFVhsrSH4Jh/otPmeHJAPg1
-         c5cg==
+        d=baylibre.com; s=google; t=1783027914; x=1783632714; darn=lists.infradead.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jw59bcdB/ltUoOpdZCepUeH14DCkJ+gtBAcNgz6Z6w8=;
+        b=LlWRmBfJteJ8eQnQ3X5ITU/yEd31c2Abm6Ar3P9fXJGllgN9XWAf1s7oNuGz89pUO3
+         ran8OIk89TslN7Y7jqfr/221NYBVyfRwD/zQWTnIep62XJgjtM+TvDPmcv6xXV6DYfKG
+         2TBme9w3HtJ7d/mDyg/bCOhnX8LGWoCgK4sHOLuK/jKRq7lTYKGG4WHPCcbkSrHEaoX6
+         2pccuJr3qURGaL/WdpyuDMHD8+2Yskz0TTGbBe/D/ix7DXYsp+9VGFrpFJeBzJoyAmrc
+         Ndo3WCuj8950wtlC2qFgkqi4+KEzrIGFZ/egqBysWaxQieax/nMOUEMgRWAcVaLwcY/B
+         1dUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783025093; x=1783629893;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aYSEb1fRPNK7jUZ0mBNdZrE9oqYSNcb+vjaKrLF66Eo=;
-        b=oQ64h62TIO5+Vtjg8IR8Ly0MRQGoMy0ZZOTSAG1kVtDpefIR0ssXVKhAdIORoaYqIU
-         RAEh90YmQYx+eqMy+B16b4ozV5OpmXg+jDV89sfZtbYm9tMBntoA5qpo0G6MgYqCE0HJ
-         UeUIPId9LIsHDoB3Dl4I2pCeibDwX4RUZmsPGPQHccVbmws/at2qtj6A2SYj+UBwF6cu
-         9FYQZjpU/7Dj+xtfdP677Wfti1ZrRpIrAexkXX6V3il3M0piPh+88IkjpycULs1lhr3q
-         7TTrXz2F00VOEp4h6c/UilEF1Vl2D5w1RKhEdkCvXKKXUqgKNt2boQ2ilWvq5bSPPPFY
-         sLOw==
-X-Forwarded-Encrypted: i=1; AHgh+RqhB9TamsCFjUdyxCuzunFagd8dlTJ6k9J8pD4DhWrXmBvs7oxWAa7Sw8CRpGCmymrdlDKKQl0OoXTOa6Ax@lists.infradead.org
-X-Gm-Message-State: AOJu0Yxn1iukF9DqtBQKI4MEAu7p/+3gjvy+CAXh89DJXu185HK5q5RB
-	ycCX+D7sCYp7oJCeVQ+MdZ+9zmGeoOu5EfKxW74QhcVCzqv6CBvc8LIWPxcF5sh77eY=
-X-Gm-Gg: AfdE7cmkRPb3LbAJuJnWRK32Iy9X4l77vFsommwXFzOWZ55FJvUdZVZNGTgr6oT77w3
-	oMeAiUhuTVb3zcTZTmGi1y8jeGXK0U0HQ0Is8sA7B5N6WLB6/JzEokugJ7GoGBcUaE+NSAIbLMP
-	FLHWA3eKLJPq7FmdLJJCLLcQRLF/wep4rb3qxtON1dxEO2dCSjbuzlYdr+a/1pxKB6XZF+ePkD4
-	tcEINxYXww9Udrv2TSUsfFvCvIxevCptJP2O+G2ZJjG0B2FYJxzmgLxNfdFL3a6UZ63yyrFviDU
-	UemLYff2zF2IF2jpfg0hbH4knWY+BxRBIkjshFSfDFuBk9UbcAnn5RFkxdS78bNw+u1ssQ3PCwq
-	bSORHtJS8T3GHUNacNjSvriASNf6HDiMVPerp/U8YvM1B+EfJl3VKkdUS2Q2DRZlj8L/pWlsZJe
-	oO1akPaes0ftHOi0k=
-X-Received: by 2002:a5d:5588:0:b0:473:1ccc:15bf with SMTP id ffacd0b85a97d-477b5488071mr8406342f8f.42.1783025092703;
-        Thu, 02 Jul 2026 13:44:52 -0700 (PDT)
-Received: from [192.168.3.100] ([151.41.178.17])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-477dd94c829sm11660249f8f.24.2026.07.02.13.44.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jul 2026 13:44:52 -0700 (PDT)
-Message-ID: <787586e0-f11a-48ec-8a07-8e56043b7da8@baylibre.com>
-Date: Thu, 2 Jul 2026 22:44:51 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] ASoC: meson: aiu-formatter: remove pipeline reset
- from prepare
-Content-Language: en-US
-To: sashiko-reviews@lists.linux.dev
-Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
-References: <20260702-fix-24-bit-i2s-playback-v1-0-bcd3a43fe32a@baylibre.com>
- <20260702-fix-24-bit-i2s-playback-v1-2-bcd3a43fe32a@baylibre.com>
- <20260702111422.42BA01F000E9@smtp.kernel.org>
+        d=1e100.net; s=20251104; t=1783027914; x=1783632714;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jw59bcdB/ltUoOpdZCepUeH14DCkJ+gtBAcNgz6Z6w8=;
+        b=LCwxtbiUcMhyLcXintH+cclF0hkKPRVFhQ0wu5ARlFJ6xW4lkK0o4DcCumKNzr45uK
+         GnsXxi8Xn02dltYVeIgRxiksSI0qSl9DDC2iQmgZZ3pwsE5fMhfTP79L1nOyP22MzrOs
+         t1bPEWf7a4EQzwZzhzwT46h5BJdmlZIdpkkepXTxsxwXZK8k5gtIG7qY7mIzKdZUjT/B
+         opuNi6Y9OAXXGORSEEOo3xsC3g/uiBdMV7w1woaFKfg730ko0fTx/5W8qaP/LdWtYAEO
+         4qRzOLuyauPmOWrVtmGXR0eMKHT0Vn+6/PQ4/OM7GxIEyjL7cDysQ53zYED3+J8zGH7M
+         0oNA==
+X-Forwarded-Encrypted: i=1; AFNElJ9xLjdvmxQVxALoGvatIEwBZF9XrThNeWjO61FpFN2hPnoWYCI04yLkxoYCza0SCx2dO0Iqbc7cPu8SXXD3@lists.infradead.org
+X-Gm-Message-State: AOJu0YwGHJt8/oFkIfhj/YrUTBksonio3YEJ6Zm2mpmaw+DUGCLeOO//
+	pGu6FlxrjL7488ggddFwRy15UhbMRkmMEbPpyZEsAwjFdWLgGIpsNt6W8jY960j5TluJyANJquu
+	dnZAGE1E=
+X-Gm-Gg: AfdE7ck5Uzd/lN03TQrvGaDq10JuUUtRrz1Qrn2VEgJ/IN/H3o5ND8aX4zS8hz2qP55
+	1yXzIIBT3+KZt0Qbb1UvuiLa93TT+Mvjt0ii5/g/mY/pefZ7wDj5F1WgK6svc2dnWcVvpGLRsMU
+	jLG2HreJaIMH/FHh7bXo1uPjXXjvN1W2HlwfLiWpxFC+Z53YeyTkpSoUXQ5eI3/UwffsG7cXB69
+	Gx7rd9XWNyoY3bNZGRp0cYkXVkDkTEw2MpRWTJ/4ay7Xrwe7artQiIVKdWEs90vlXBNjQlRyAR6
+	8pkMYxCSrCWEEl5YkO7k+iUwIfRwvozBZeIYXrHcEJDGtO61CAgmoi0Jp62Lt8c9sA732qwUf2K
+	BSL/tljkEN02+G1SDEd/ZeLt1rCXZvAoY2guzC3y5vkC+FfI0tLwwa+HsysaYpA/wU0nOLri3CO
+	6CTMNcBHbMRw==
+X-Received: by 2002:a05:600c:1594:b0:493:bcba:46a4 with SMTP id 5b1f17b1804b1-493c2b7dc45mr66870285e9.20.1783027914403;
+        Thu, 02 Jul 2026 14:31:54 -0700 (PDT)
+Received: from [127.0.1.1] ([151.41.178.17])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-493be4a343csm127608285e9.0.2026.07.02.14.31.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Jul 2026 14:31:54 -0700 (PDT)
 From: Valerio Setti <vsetti@baylibre.com>
-In-Reply-To: <20260702111422.42BA01F000E9@smtp.kernel.org>
+Date: Thu, 02 Jul 2026 23:31:46 +0200
+Subject: [PATCH v2] ASoC: meson: aiu-formatter-i2s: remove pipeline reset
+ from prepare
+MIME-Version: 1.0
+Message-Id: <20260702-fix-24-bit-i2s-playback-v2-1-9c008ff0b211@baylibre.com>
+X-B4-Tracking: v=1; b=H4sIAMHYRmoC/4WNQQ6CMBBFr0K6dkwZGpq48h6GRTsMMopAWiQSw
+ t0teACXL3n//VVFDsJRXbJVBZ4lytAnwFOmqHX9nUHqxAo1ltpqhEY+gAa8TCAYYezc4h09oTT
+ G5NaQpdqqtB4DJ/Uo36ofx7d/ME17bjdaidMQluN6znfv/8ucgwZPdeFM0XCB7urd0okPfKbhp
+ apt277iTV5f0wAAAA==
+X-Change-ID: 20260702-fix-24-bit-i2s-playback-6444174c7cd7
+To: Jerome Brunet <jbrunet@baylibre.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Valerio Setti <vsetti@baylibre.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4120; i=vsetti@baylibre.com;
+ h=from:subject:message-id; bh=uZsb8EusuxDA+iZq5vtuz8+Khov6nisW0HEkdxjZ8ps=;
+ b=owGbwMvMwCV2z3ty7kUrRgbG02pJDFluN06+yjvjnhd0k+e1smyS/1a35vqg2h97Bb7GRPx20
+ IqZsWh3RykLgxgXg6yYIgvL9Hu/C0rVHhonnCyAmcPKBDKEgYtTACbiPYeRYdWm/nssm5/c+xPz
+ 8PS/Za8L3130qMiPvTvruryfo7vYx+kMv9n+T+LdtfnH2zWN3OkXT7/pZ513yjvlcqikMuOU7r9
+ CeewA
+X-Developer-Key: i=vsetti@baylibre.com; a=openpgp;
+ fpr=0497DEFB707526E13360C970DE4B936DD13A0100
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260702_134454_931087_146859CE 
-X-CRM114-Status: GOOD (  18.54  )
+X-CRM114-CacheID: sfid-20260702_143156_506795_DAA0EFE9 
+X-CRM114-Status: GOOD (  20.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,62 +112,112 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+'aiu-fifo-i2s' (DAI FE) already resets the I2S pipeline in
+'aiu_fifo_i2s_trigger' for all relevant trigger scenarios, right
+before starting the FIFO. Since the DAI triggering order is the
+default one (FE before BE), the reset performed in
+'aiu_formatter_i2s_prepare' happens after the FIFO has already been
+reset and started, which corrupts playback in 24-bit mode. Remove
+the duplicated reset from the formatter.
 
+Signed-off-by: Valerio Setti <vsetti@baylibre.com>
+---
+A patch series has recently been merged in c7852d2dcf66
+("ASoC: meson: aiu: align I2S design to the AXG one") which unfortunately
+introduces a bug in 24 bit mode playback which this new series resolves.
 
-On 7/2/26 1:14 PM, sashiko-bot@kernel.org wrote:
+Among other things the previous series moved the content of what was once
+called 'aiu_encoder_i2s_setup_desc' from 'aiu-encoder-i2s' to
+'aiu-formatter-i2s'.
+'aiu_encoder_i2s_setup_desc' was basically accomplishing two tasks:
+- reset the i2s pipeline.
+- configure number of channels and physical samples width.
+Before being moved 'aiu_encoder_i2s_setup_desc' was called in the encoder
+DAI 'hw_params()', whereas after the move it is called at trigger time
+('aiu_encoder_i2s_trigger'->'gx_stream_start' -> 'gx_formatter_enable' ->
+'aiu_formatter_i2s_prepare').
 
->> diff --git a/sound/soc/meson/aiu-formatter-i2s.c b/sound/soc/meson/aiu-formatter-i2s.c
->> index b4604734fe88d..cb554c2e7ce4a 100644
->> --- a/sound/soc/meson/aiu-formatter-i2s.c
->> +++ b/sound/soc/meson/aiu-formatter-i2s.c
-> [ ... ]
->> @@ -55,11 +54,11 @@ static int aiu_formatter_i2s_prepare(struct regmap *map,
->>   {
->>   	/* Always operate in split (classic interleaved) mode */
->>   	unsigned int desc = 0;
->> -	unsigned int tmp;
->>   
->> -	/* Reset required to update the pipeline */
->> -	regmap_write(map, AIU_RST_SOFT, AIU_RST_SOFT_I2S_FAST);
->> -	regmap_read(map, AIU_I2S_SYNC, &tmp);
->> +	/*
->> +	 * Pipeline reset is already implemented in aiu_fifo_i2s_trigger() at
->> +	 * trigger time.
->> +	 */
-> 
-> [Severity: High]
-> Does removing this reset break dynamic DAPM routing (DPCM)?
-> 
-> When a backend is dynamically connected to an already-running frontend via
-> DPCM, the frontend's trigger() callback is not invoked again.
-> 
-> For example, if the I2S FIFO frontend is started (e.g., routed to the SPDIF
-> backend) and then the I2S backend is dynamically connected while the stream is
-> running, the "I2S Formatter" DAPM widget powers up and calls
-> aiu_formatter_i2s_prepare().
-> 
-> Without the reset pulse here, will the hardware fail to latch new
-> configurations (like AIU_I2S_SOURCE_DESC), potentially resulting in corrupted
-> or no audio output from the I2S backend?
-> 
+In parallel 'aiu-fifo-i2s' (DAI FE) already performs the very same reset
+of the pipeline at trigger time in 'aiu_fifo_i2s_trigger' and then it
+triggers the playback.
 
-I'm not sure about this. The reason I removed the pipeline reset was 
-that having it happening after the one on the FIFO side caused the 
-stream at 24-bits to be corrupted.
-In the scenario described by Sashiko we would have had the pipeline 
-reset again after the one from the FIFO (which is continuouly running). 
-Moreover I think that this would have happened also before my series 
-that was recently merged, i.e. c7852d2dcf66
-("ASoC: meson: aiu: align I2S design to the AXG one"), so I have some 
-doubt that this could have worked seamlessly also before recent changes.
+Since the DAI triggering order is the default one (FE before BE) this
+means that the pipeline reset in BE happens when the FE already did it and
+started the playback. This causes the 24-bit playback mode to be
+corrupted.
 
--- 
-Valerio
+This series removes pipeline reset from 'aiu_formatter_i2s_prepare' because
+the very same operation is done by 'aiu-fifo-i2s' on trigger.
+
+This series depends on c7852d2dcf66 ("ASoC: meson: aiu: align I2S design
+to the AXG one") which exists in 'broonie/sound.git#for-7.3', but which
+has not been mainlined yet.
+
+Apologies for the inconvenience.
+---
+Changes in v2:
+- Dropped the first commit of the series because, as found by Sashiko, it
+  could lead to other playback issues in case the sample width was changed
+  without closing the PCM stream (i.e. play->stop->reconfigure->play).
+- Link to v1: https://patch.msgid.link/20260702-fix-24-bit-i2s-playback-v1-0-bcd3a43fe32a@baylibre.com
+
+To: Jerome Brunet <jbrunet@baylibre.com>
+To: Liam Girdwood <lgirdwood@gmail.com>
+To: Mark Brown <broonie@kernel.org>
+To: Jaroslav Kysela <perex@perex.cz>
+To: Takashi Iwai <tiwai@suse.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+To: Kevin Hilman <khilman@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-sound@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+---
+ sound/soc/meson/aiu-formatter-i2s.c | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
+
+diff --git a/sound/soc/meson/aiu-formatter-i2s.c b/sound/soc/meson/aiu-formatter-i2s.c
+index b4604734fe88..cb554c2e7ce4 100644
+--- a/sound/soc/meson/aiu-formatter-i2s.c
++++ b/sound/soc/meson/aiu-formatter-i2s.c
+@@ -13,7 +13,6 @@
+ #define AIU_I2S_SOURCE_DESC_MODE_8CH	BIT(0)
+ #define AIU_I2S_SOURCE_DESC_MODE_24BIT	BIT(5)
+ #define AIU_I2S_SOURCE_DESC_MODE_32BIT	BIT(9)
+-#define AIU_RST_SOFT_I2S_FAST		BIT(0)
+ 
+ #define AIU_I2S_DAC_CFG_MSB_FIRST	BIT(2)
+ 
+@@ -55,11 +54,11 @@ static int aiu_formatter_i2s_prepare(struct regmap *map,
+ {
+ 	/* Always operate in split (classic interleaved) mode */
+ 	unsigned int desc = 0;
+-	unsigned int tmp;
+ 
+-	/* Reset required to update the pipeline */
+-	regmap_write(map, AIU_RST_SOFT, AIU_RST_SOFT_I2S_FAST);
+-	regmap_read(map, AIU_I2S_SYNC, &tmp);
++	/*
++	 * Pipeline reset is already implemented in aiu_fifo_i2s_trigger() at
++	 * trigger time.
++	 */
+ 
+ 	switch (ts->physical_width) {
+ 	case 16: /* Nothing to do */
+
+---
+base-commit: bff7fad1010eea6f183fb110b54171cf8700ef8e
+change-id: 20260702-fix-24-bit-i2s-playback-6444174c7cd7
+
+Best regards,
+--  
+Valerio Setti <vsetti@baylibre.com>
 
 
 _______________________________________________
