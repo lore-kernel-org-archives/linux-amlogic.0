@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CAEDC43458
-	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Jul 2026 15:54:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B30ADC43458
+	for <linux-amlogic@archiver.kernel.org>; Thu,  2 Jul 2026 15:55:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
 	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kRWEUHoxhUfl0Ez/C+ZGaxn7vkJaqoZH/NNfZ4Fz30w=; b=4/7R9g5m3wsN7k
-	3zRawHMnVN+x3xdFbdc/jenZHicbaVhcZhX4ZLgR7LWWViWVk1/kxH5FSpemFK2O/bXGXRSgWOyw3
-	Vak1WvJz/6GOshJhAkRZ7CGKKQdt4UNF2Alsv2F3XSi4PIoLI4gHgSxqjUmsPHZyEj5d57ZuuJkxp
-	jarHOfYjDEvz/Yd8vsB6XRkPxPToYFcFwgpHwJ/zPMZ35T3txbFYC04CivxU9xsfT41DqzpUnoHK+
-	tn84EkNsRk/FnjYG7oaTFMUvdBVlhiBcnQUqmUwM9fWgJ7OXb3ig/3KbSLCjHWLaHi5W2vBNrCUWL
-	DaFf8NViSSjRpZQHgunQ==;
+	List-Owner; bh=rIqD6MsR+qqB7H6BkAmMoCN8V0FnW+6M8UNcCs1BTYs=; b=yEows8OKBrS5oA
+	Qlfv+bmFYi57VWGeoNMwR/omu2Jsd8Vdd6ey7gyJ14U1MBGiAH8RM3eJfAJ7BpenMHYEe2NQizvsu
+	kpaWo8lm6iNoJSdqwVvZ/nAZiUWJTag4HkaKlo0IeKTwMZ5oZKRCJln7Zr7TpidPQM+m4lbA9zymw
+	98udFgOQkQD3bqI90K04nxxFax2Tod0WE1NiEFXRtQf1n3bkMN0q4BYg/hHVEMAMwcLtkojM2pX1a
+	BtsLciYdMBWF9eDzl+Z2D+HxZX1Q1ymzVVGeI07JKFFUaics4/v4fVKeY3eWIn3AASpWN/ZlXhQJO
+	GDxfqsH6xgV1OV6ragVg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wfJkP-00000004t1X-2EHv;
-	Thu, 02 Jul 2026 15:54:41 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1wfJkq-00000004t63-2Y3I;
+	Thu, 02 Jul 2026 15:55:08 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wfJkN-00000004t11-43vd
+	id 1wfJkp-00000004t5l-0qFP
 	for linux-amlogic@lists.infradead.org;
-	Thu, 02 Jul 2026 15:54:40 +0000
+	Thu, 02 Jul 2026 15:55:07 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 6AAF8601CA;
-	Thu,  2 Jul 2026 15:54:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 834611F000E9;
-	Thu,  2 Jul 2026 15:54:38 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id F04C043F01;
+	Thu,  2 Jul 2026 15:55:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61EB61F000E9;
+	Thu,  2 Jul 2026 15:55:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783007679;
-	bh=8DpRdJlKp0NLSVeG6yHqG2WxtfQ2nid5FhBc7YJdFuY=;
+	s=k20260515; t=1783007706;
+	bh=JeAFfreswiIRNdsHzJu8ZaO8Dqg3y5cjgk4NSRHdnHM=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=YgMJFmo0PARjRUpeuMqgsWtc84hOQjvENFt2QlgyRsbkRdlI49Q0NWvR6k6BVoILE
-	 j2j6zqTQq9wynsNK6REz5sM/HdSdvymbA6yQfSai9WEI333nUYoXduXcEsCLzl40X/
-	 JsL7kGklixV+YoTNE71etnaLv1+BvdUYwhhfzwhHFuttajMqYlj+xnKU66cl34mBX4
-	 ciXFSXBgXoqr2M92mofitAtR6RCyF1GDzcIFgh1prETw/UmDzVfKfoJxiP8AtwjQpI
-	 I1zuyx/E1kQzO1HpU2+pt9SnYbrbmN0FwjmuoftGdzuE+i1iOx5Nge/n6NpgxPspWo
-	 YQgJdx7YjBMVg==
+	b=ERuoE0HOa1K337emAcjfr6fEMFzBveFxYblQj9JtkXhRhIEibmhjnkf+8zrYlRbST
+	 mdl1qGH2jRHd/3SbHPPUliy8InrbI1zDE73gHjEYQZo+PpSHKAURqbhTwHG4xr83AK
+	 vTIzktfRyiCd4VAb4dspDWCMerBUY7LulFAs1J6YAgnWeYt0BsY+KM/V5T4bp2bXDN
+	 CpRtJj6HEKarL7z5862Jzz9zna1TD5H641Wn+ZVxvASACQceuUqJXNrqSqhCKnNoh+
+	 JiJaI4pl3tMZeF+T02C37JR7iLB7ynCQcgfv4ABRqrwyKRl2RPxpTBkygCA3H8udAl
+	 z6baFg0JuVgSQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 03/11] x86/events: Use sysfs_emit() for cpumask show
+Subject: Re: [PATCH v2 05/11] devfreq: Use sysfs_emit() for cpumask show
  callbacks
 To: "Yury Norov" <ynorov@nvidia.com>
-Cc: linux-amlogic@lists.infradead.org, linux-pci@vger.kernel.org, imx@lists.linux.dev, Frank.Li@kernel.org, neil.armstrong@linaro.org, linux-cxl@vger.kernel.org, linux-perf-users@vger.kernel.org
-In-Reply-To: <20260702154725.185376-4-ynorov@nvidia.com>
+Cc: linux-pci@vger.kernel.org, linux-cxl@vger.kernel.org, Frank.Li@kernel.org, neil.armstrong@linaro.org, linux-perf-users@vger.kernel.org, linux-amlogic@lists.infradead.org, imx@lists.linux.dev
+In-Reply-To: <20260702154725.185376-6-ynorov@nvidia.com>
 References: <20260702154725.185376-1-ynorov@nvidia.com>
- <20260702154725.185376-4-ynorov@nvidia.com>
-Date: Thu, 02 Jul 2026 15:54:37 +0000
-Message-Id: <20260702155438.834611F000E9@smtp.kernel.org>
+ <20260702154725.185376-6-ynorov@nvidia.com>
+Date: Thu, 02 Jul 2026 15:55:05 +0000
+Message-Id: <20260702155506.61EB61F000E9@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,13 +70,13 @@ Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-PiBUaGVzZSBjYWxsYmFja3MgYXJlIHN5c2ZzIHNob3cgcGF0aHMuCj4gCj4gVXNlIHN5c2ZzX2Vt
-aXQoKSBhbmQgY3B1bWFza19wcl9hcmdzKCkgdG8gZW1pdCB0aGUgbWFza3MuCj4gCj4gVGhpcyBw
-cmVwYXJlcyBmb3IgcmVtb3ZpbmcgY3B1bWFwX3ByaW50X3RvX3BhZ2VidWYoKS4KPiAKPiBTaWdu
-ZWQtb2ZmLWJ5OiBZdXJ5IE5vcm92IDx5bm9yb3ZAbnZpZGlhLmNvbT4KClNhc2hpa28gaGFzIHJl
-dmlld2VkIHRoaXMgcGF0Y2ggYW5kIGZvdW5kIG5vIGlzc3Vlcy4gSXQgbG9va3MgZ3JlYXQhCgot
-LSAKU2FzaGlrbyBBSSByZXZpZXcgwrcgaHR0cHM6Ly9zYXNoaWtvLmRldi8jL3BhdGNoc2V0LzIw
-MjYwNzAyMTU0NzI1LjE4NTM3Ni0xLXlub3JvdkBudmlkaWEuY29tP3BhcnQ9MwoKCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFp
-bGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMu
-aW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+PiBUaGVzZSBjYWxsYmFja3MgYXJlIHN5c2ZzIHNob3cgcGF0aHMuIFVzZSBzeXNmc19lbWl0KCkg
+YW5kCj4gY3B1bWFza19wcl9hcmdzKCkgdG8gZW1pdCB0aGUgbWFza3MuCj4gCj4gVGhpcyBwcmVw
+YXJlcyBmb3IgcmVtb3ZpbmcgY3B1bWFwX3ByaW50X3RvX3BhZ2VidWYoKS4KPiAKPiBTaWduZWQt
+b2ZmLWJ5OiBZdXJ5IE5vcm92IDx5bm9yb3ZAbnZpZGlhLmNvbT4KClNhc2hpa28gaGFzIHJldmll
+d2VkIHRoaXMgcGF0Y2ggYW5kIGZvdW5kIG5vIGlzc3Vlcy4gSXQgbG9va3MgZ3JlYXQhCgotLSAK
+U2FzaGlrbyBBSSByZXZpZXcgwrcgaHR0cHM6Ly9zYXNoaWtvLmRldi8jL3BhdGNoc2V0LzIwMjYw
+NzAyMTU0NzI1LjE4NTM3Ni0xLXlub3JvdkBudmlkaWEuY29tP3BhcnQ9NQoKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGlu
+ZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5m
+cmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
