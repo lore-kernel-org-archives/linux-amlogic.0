@@ -4,53 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 005A6C43458
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jul 2026 05:43:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F2B1C43458
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jul 2026 06:59:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WGnVSsWqB0EhtBd7mTFyVNKVQzGCrFs48VI1JeOJLkc=; b=WXhXva14cGhebO
-	ZuZ7SepuO2Rp83jCK9SwckQLDuPZFHeW33qk7YMWLthmugENLjfOmH+pltA3u6bQvleL0iogX/qnt
-	YZhv8fFFai3crg2wvnYdG0THaFnN0Ymq8223TUFep+XnaZm0SbeLLEjteASCO7Q9S1exTV8qqZWG3
-	NUH0F8Am3MXr7nUKzdG7btz8OubCbBISMFUhQK3de56gy+++NxXGJRO3Haoo7mhMXA2cLE8/7q2LW
-	b3YfKtA9q23T5toFcrZ1xzxPlZa81np6g9qDbNXUkNwGqFh8P7/58ckNhBjrIEUk//OpXyEvwioh5
-	c0yswraFb5Ity7KpuslQ==;
+	List-Owner; bh=H8ocv5AtYDrWusJOzeYcx9rkozTqW57oO4rA9kIyVVQ=; b=BGDiAhD8MvXarE
+	093vYxqXb6biAa9u1/M4ryVVy7HJCp61PY7ar5obuGtK7HLURJzutwcf00lBnifqWspTHulrTdwBz
+	KXxUQaoi8yEeWdPRvNyvnXLuRlKIri0hpAQ+FKZdhzMvdPwz26ZBUz2ytDkZKCqyjysRQRyUe8cBV
+	efgS4Bjf+MYLFaOtI44gUfdNhCJMvAf2/uk45I9MMFa8B9+VcyjJgFdYZeOPW1kn0sks2m5qXZlhc
+	NmeJKw5JAIEsQMEeeAY7rG1FSEHBebrVl53exSP3petwg99qSXfvKaVz6RcsUrmec4SmyECudA6kk
+	lp8kJABKNwTcnNq8AZFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wgc7N-0000000BYFy-246X;
-	Mon, 06 Jul 2026 05:43:45 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1wgdIW-0000000BgBS-3BHO;
+	Mon, 06 Jul 2026 06:59:20 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wgc7M-0000000BYFr-0Sv4
-	for linux-amlogic@lists.infradead.org;
-	Mon, 06 Jul 2026 05:43:44 +0000
+	id 1wgdIV-0000000BgBH-2N6f;
+	Mon, 06 Jul 2026 06:59:19 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 1B36841852;
-	Mon,  6 Jul 2026 05:43:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C738F1F000E9;
-	Mon,  6 Jul 2026 05:43:42 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 06BEE61832;
+	Mon,  6 Jul 2026 06:59:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E4BA1F000E9;
+	Mon,  6 Jul 2026 06:59:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1783316623;
-	bh=Ok2blG8YVelZqlSQZNn6Izop8zYB2khU2gYkamvPAFY=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=lO/rroWMnoM/Dsp9kNMRlBGE2/E9vTjq5iimThWFtcBK0xBeLpFavmvMNn/T5vPxX
-	 aroTEeqcmV3LLZ8Vp+rd/YYSNMPf7+h8nEAk+9JoAr53BLkVDckdyBdgIK+fQOjKC6
-	 6lfBD9OswFtERRy6u8oFCAzC2VCAsX4UtuOhYXpPCKSLcAbW6cCF9VfEBRb2MyJVWM
-	 YL3LtV0TYl8NQGQKLCZ8YHm3ykm89qtWYdGR/nsFCubWNe3Fbtsns9ndZGaBA3YT0N
-	 FNPTQzmt98xhOzWBvAQ6IhS60KFtSlPCxGA5d4fSmWxJswq697Kkb3UYDHZxL3b1Zo
-	 Q05+3TDl/hTQA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] soc: amlogic: clk-measure: Mark the clock measure table
- as __initconst
-To: "Jian Hu" <jian.hu@amlogic.com>
-Cc: linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org
-In-Reply-To: <20260706-clkmsr_optimization-v1-1-70f5aae6e60b@amlogic.com>
-References: <20260706-clkmsr_optimization-v1-1-70f5aae6e60b@amlogic.com>
-Date: Mon, 06 Jul 2026 05:43:42 +0000
-Message-Id: <20260706054342.C738F1F000E9@smtp.kernel.org>
+	s=k20260515; t=1783321158;
+	bh=y+lATJnRQ7o/rbZhmJ9nDyBRy1H+M8W2CRQDVnlKZxk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=oL0ztYX+YNmtoYG/oyXLUbewaxBWatkFUwLtGfQ86IxklFQhTfIx26NBKNAS+OrrX
+	 JP1c2umXnXGYQFDiE4fl9s5alDIRS0YuDD+GO/Op/k+MOoWQswTLgAvYD/vCkCkPri
+	 oB3nLJmWKBMxGBqVmUObu9kNh/r1AHQJD5g2quRDfhhjJEU5mzVr2a9rlj//nto0Eh
+	 RMxhojNjZ+hNQ1Wmo0lkcDxVIi3V7b/KxQUJmsE729kB8D98CCqJFwAf/Z1uiFXFB3
+	 9vRX7wE8ZxPWVIy/vvABsFwe1jBDjqMLDIWpygLllZzlfrfHK0k1eX4sUuUZwOhCV2
+	 97XS0lIkljExg==
+Date: Mon, 6 Jul 2026 08:59:13 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: media: meson6-ir: Add Amlogic A9 IR
+ compatible
+Message-ID: <20260706-quantum-celadon-tench-c2f28d@quoll>
+References: <20260706-a9-ir-v1-0-4f082ca8aaf1@amlogic.com>
+ <20260706-a9-ir-v1-1-4f082ca8aaf1@amlogic.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20260706-a9-ir-v1-1-4f082ca8aaf1@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,80 +69,29 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MyBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpOZXcgaXNzdWVzOgotIFtIaWdoXSBN
-YXJraW5nIGBjbGtfbXNyXypgIGFycmF5cyBhcyBgX19pbml0Y29uc3RgIGludHJvZHVjZXMgYSBz
-ZWN0aW9uIG1pc21hdGNoIGFuZCBhIHVzZS1hZnRlci1mcmVlIHZ1bG5lcmFiaWxpdHkuCgpQcmUt
-ZXhpc3RpbmcgaXNzdWVzOgotIFtIaWdoXSBUaGUgZHJpdmVyIGxhY2tzIGEgYC5yZW1vdmVgIGNh
-bGxiYWNrIHRvIGNsZWFuIHVwIGRlYnVnZnMgZmlsZXMsIGxlYWRpbmcgdG8gYSB1c2UtYWZ0ZXIt
-ZnJlZSB3aGVuIHRoZSBkZXZpY2UgaXMgdW5ib3VuZC4KLSBbTWVkaXVtXSBgY2xrX21zcl9zdW1t
-YXJ5X3Nob3dgIGJsaW5kbHkgYXNzdW1lcyB0aGF0IHRoZSBmaXJzdCBlbnRyeSAoaW5kZXggMCkg
-aW4gdGhlIGNsb2NrIG1lYXN1cmUgdGFibGUgaXMgcG9wdWxhdGVkLCB3aGljaCB3aWxsIGNhdXNl
-IGEgbnVsbCBwb2ludGVyIGRlcmVmZXJlbmNlIGlmIGEgdGFibGUgbGFja3MgYW4gZW50cnkgZm9y
-IElEIDAuCi0tCgpjb21taXQgYTgxN2EwNGFkZTIwYTAwNTE2ODA4Y2EwODRhNjBkZjE1MTNkNWIy
-MApBdXRob3I6IEppYW4gSHUgPGppYW4uaHVAYW1sb2dpYy5jb20+CnNvYzogYW1sb2dpYzogY2xr
-LW1lYXN1cmU6IE1hcmsgdGhlIGNsb2NrIG1lYXN1cmUgdGFibGUgYXMgX19pbml0Y29uc3QKClRo
-ZSBjbG9jayBtZWFzdXJlIHRhYmxlIGlzIG9ubHkgdXNlZCBkdXJpbmcgaW5pdGlhbGl6YXRpb24s
-IGFuZCB0aGUKdGFibGUgZGF0YSBpcyBjb3BpZWQgdG8gdGhlIG1zcl90YWJsZSBmaWVsZCBvZiBz
-dHJ1Y3QgbWVzb25fbXNyX2RhdGEuCk1hcmsgaXQgYXMgX19pbml0Y29uc3Qgc28gaXQgY2FuIGJl
-IGZyZWVkIGFmdGVyIGtlcm5lbCBpbml0aWFsaXphdGlvbi4KCj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvc29jL2FtbG9naWMvbWVzb24tY2xrLW1lYXN1cmUuYyBiL2RyaXZlcnMvc29jL2FtbG9naWMv
-bWVzb24tY2xrLW1lYXN1cmUuYwo+IGluZGV4IDhjNGYzY2M4YzhhYmYuLmUxY2Y2N2ZhZDgzY2Ig
-MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9zb2MvYW1sb2dpYy9tZXNvbi1jbGstbWVhc3VyZS5jCj4g
-KysrIGIvZHJpdmVycy9zb2MvYW1sb2dpYy9tZXNvbi1jbGstbWVhc3VyZS5jCj4gQEAgLTU1LDcg
-KzU1LDcgQEAgc3RydWN0IG1lc29uX21zciB7Cj4gICNkZWZpbmUgQ0xLX01TUl9JRChfX2lkLCBf
-X25hbWUpIFwKPiAgCVtfX2lkXSA9IHsuaWQgPSBfX2lkLCAubmFtZSA9IF9fbmFtZSx9Cj4gIAo+
-IC1zdGF0aWMgY29uc3Qgc3RydWN0IG1lc29uX21zcl9pZCBjbGtfbXNyX204W10gPSB7Cj4gK3N0
-YXRpYyBjb25zdCBzdHJ1Y3QgbWVzb25fbXNyX2lkIGNsa19tc3JfbThbXSBfX2luaXRjb25zdCA9
-IHsKCltTZXZlcml0eTogSGlnaF0KRG9lcyBtYXJraW5nIHRoaXMgYXJyYXkgYXMgX19pbml0Y29u
-c3QgY2F1c2UgYSB1c2UtYWZ0ZXItZnJlZSBhbmQgYSBzZWN0aW9uCm1pc21hdGNoPwoKQmVjYXVz
-ZSB0aGlzIGRyaXZlciBpcyBhIHJlZ3VsYXIgcGxhdGZvcm1fZHJpdmVyLCBpdCBjYW4gYmUgcHJv
-YmVkIGFmdGVyIGJvb3QKZHVlIHRvIGRlZmVycmVkIHByb2Jpbmcgb3IgbWFudWFsIHN5c2ZzIGJp
-bmQuIElmIHByb2JlZCBhZnRlciBpbml0aWFsaXphdGlvbiwKdGhlIG1lbWNweSgpIGluIG1lc29u
-X21zcl9wcm9iZSgpIHdpbGwgcmVhZCBmcm9tIGZyZWVkIGluaXQgbWVtb3J5OgoKCW1lbWNweShw
-cml2LT5kYXRhLm1zcl90YWJsZSwgbWF0Y2hfZGF0YS0+bXNyX3RhYmxlLAoJICAgICAgIG1hdGNo
-X2RhdGEtPm1zcl9jb3VudCAqIHNpemVvZihzdHJ1Y3QgbWVzb25fbXNyX2lkKSk7CgpBZGRpdGlv
-bmFsbHksIHRoaXMgYXJyYXkgaXMgcmVmZXJlbmNlZCBieSBjbGtfbXNyX204X2RhdGE6CgpzdGF0
-aWMgY29uc3Qgc3RydWN0IG1lc29uX21zcl9kYXRhIGNsa19tc3JfbThfZGF0YSA9IHsKCS5tc3Jf
-dGFibGUgPSAodm9pZCAqKWNsa19tc3JfbTgsCi4uLgoKU2luY2UgY2xrX21zcl9tOF9kYXRhIHJl
-c2lkZXMgaW4gLnJvZGF0YSwgd291bGRuJ3QgcG9pbnRpbmcgaXQgdG8gX19pbml0Y29uc3QKbWVt
-b3J5IGNhdXNlIGEgbGlua2VyIHNlY3Rpb24gbWlzbWF0Y2ggd2FybmluZz8KClsgLi4uIF0KCltT
-ZXZlcml0eTogSGlnaF0KVGhpcyBpcyBhIHByZS1leGlzdGluZyBpc3N1ZSwgYnV0IGRvZXMgdGhp
-cyBkcml2ZXIgbGFjayBhIC5yZW1vdmUgY2FsbGJhY2sgdG8KY2xlYW4gdXAgZGVidWdmcyBmaWxl
-cywgbGVhZGluZyB0byBhIHVzZS1hZnRlci1mcmVlIG9uIGRldmljZSB1bmJpbmQ/CgpJbiBtZXNv
-bl9tc3JfcHJvYmUoKSwgZGVidWdmcyBmaWxlcyBhcmUgY3JlYXRlZCBhbmQgYXNzb2NpYXRlZCB3
-aXRoIG1lbW9yeQphbGxvY2F0ZWQgdmlhIGRldm1fa2NhbGxvYygpOgoKCXJvb3QgPSBkZWJ1Z2Zz
-X2NyZWF0ZV9kaXIoIm1lc29uLWNsay1tc3IiLCBOVUxMKTsKCWNsa3MgPSBkZWJ1Z2ZzX2NyZWF0
-ZV9kaXIoImNsa3MiLCByb290KTsKCglkZWJ1Z2ZzX2NyZWF0ZV9maWxlKCJtZWFzdXJlX3N1bW1h
-cnkiLCAwNDQ0LCByb290LAoJCQkgICAgcHJpdi0+ZGF0YS5tc3JfdGFibGUsICZjbGtfbXNyX3N1
-bW1hcnlfZm9wcyk7CgpUaGUgZHJpdmVyIGxhY2tzIGEgLnJlbW92ZSBjYWxsYmFjayBhbmQgZG9l
-cyBub3QgdXNlCmRldm1fYWRkX2FjdGlvbl9vcl9yZXNldCgpIHRvIGNsZWFuIHVwIHRoZSBkZWJ1
-Z2ZzIGRpcmVjdG9yeToKCnN0YXRpYyBzdHJ1Y3QgcGxhdGZvcm1fZHJpdmVyIG1lc29uX21zcl9k
-cml2ZXIgPSB7CgkucHJvYmUJPSBtZXNvbl9tc3JfcHJvYmUsCgkuZHJpdmVyID0gewouLi4KCklm
-IHRoZSBkZXZpY2UgaXMgdW5ib3VuZCB2aWEgc3lzZnMsIGRldnJlcyB3aWxsIGF1dG9tYXRpY2Fs
-bHkgZnJlZQpwcml2LT5kYXRhLm1zcl90YWJsZS4gQW55IHN1YnNlcXVlbnQgcmVhZCBmcm9tIHRo
-ZSBwZXJzaXN0ZW50IGRlYnVnZnMgZmlsZXMKd2lsbCBkZXJlZmVyZW5jZSB0aGUgZnJlZWQgbWVt
-b3J5LiBTaG91bGQgYSBjbGVhbnVwIG1lY2hhbmlzbSBiZSBhZGRlZD8KCltTZXZlcml0eTogTWVk
-aXVtXQpUaGlzIGlzIGEgcHJlLWV4aXN0aW5nIGlzc3VlLCBidXQgZG9lcyBjbGtfbXNyX3N1bW1h
-cnlfc2hvdygpIGJsaW5kbHkgYXNzdW1lCnRoZSBmaXJzdCBlbnRyeSBpbiB0aGUgY2xvY2sgbWVh
-c3VyZSB0YWJsZSBpcyBwb3B1bGF0ZWQ/CgpMb29raW5nIGF0IGNsa19tc3Jfc3VtbWFyeV9zaG93
-KCk6CgoJc3RydWN0IG1lc29uX21zcl9pZCAqbXNyX3RhYmxlID0gcy0+cHJpdmF0ZTsKCXVuc2ln
-bmVkIGludCBtc3JfY291bnQgPSBtc3JfdGFibGUtPnByaXYtPmRhdGEubXNyX2NvdW50OwoKVGhp
-cyBpbW1lZGlhdGVseSBkZXJlZmVyZW5jZXMgbXNyX3RhYmxlLT5wcml2LiBJbiBtZXNvbl9tc3Jf
-cHJvYmUoKSwgdGhlIHByaXYKcG9pbnRlciBpcyBvbmx5IGFzc2lnbmVkIGlmIHRoZSBjbG9jayBJ
-RCBpcyBkZWZpbmVkIChpLmUuLCBuYW1lIGlzIG5vbi1OVUxMKS4KSWYgYSBmdXR1cmUgU29DIHRh
-YmxlIHdlcmUgdG8gb21pdCBhbiBlbnRyeSBmb3IgSUQgMCwgbXNyX3RhYmxlWzBdLnByaXYgd291
-bGQKYmUgTlVMTCwgY2F1c2luZyBhIGtlcm5lbCBwYW5pYyBoZXJlLiBDb3VsZCB0aGlzIGJlIG1h
-ZGUgbW9yZSByb2J1c3QgYWdhaW5zdAplbXB0eSBmaXJzdCBlbnRyaWVzPwoKLS0gClNhc2hpa28g
-QUkgcmV2aWV3IMK3IGh0dHBzOi8vc2FzaGlrby5kZXYvIy9wYXRjaHNldC8yMDI2MDcwNi1jbGtt
-c3Jfb3B0aW1pemF0aW9uLXYxLTEtNzBmNWFhZTZlNjBiQGFtbG9naWMuY29tP3BhcnQ9MQoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dp
-YyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9s
-aXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On Mon, Jul 06, 2026 at 02:43:27AM +0000, Xianwei Zhao wrote:
+> Document the Amlogic A9 IR controller compatible string. The A9 IR
+> controller shares the same implementation as the Meson S4 IR block,
+> so add "amlogic,a9-ir" with "amlogic,meson-s4-ir" as the fallback
+> compatible.
+> 
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  Documentation/devicetree/bindings/media/amlogic,meson6-ir.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+
+Best regards,
+Krzysztof
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
