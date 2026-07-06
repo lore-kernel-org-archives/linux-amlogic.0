@@ -4,72 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C655C43458
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jul 2026 05:36:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 005A6C43458
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jul 2026 05:43:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
-	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=S3r0ZPShlVnVdunrwv949wAVMuGY8+mJuW7k0p1xl38=; b=PIDpAbgyzdQqK1
-	+7PcZfxCwgvtrraeTDPw7PJTvHrr0t5Dr5TxP8tCE2o8i9I+0sYYoO6ts+82aWeyvgqHbWNYLjogY
-	TZ5oEb+Cv4m6b0LNXDxvLWH6a7/YqZ+e0k1YeGZoKtAyUV8+iJ9Brxw6AeceWgqr5+V1TQ0Fj96b7
-	4iHQQUvH6xKVSgSH7sifcao1p4gWQ7yOgCQQgRS4Bcnh9m1a0SnjmdKKRmzjk0cimX2l4riWJ1Y8S
-	dPtuxg9u4y5LGNPZ+trLhYpXl2u+EGKmR27GZ5W4GkozX8SUMlMa9QbLYLBAYMBuxw6MgQOTY8B65
-	hALT9pVwZN6JqA1ACMhg==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=WGnVSsWqB0EhtBd7mTFyVNKVQzGCrFs48VI1JeOJLkc=; b=WXhXva14cGhebO
+	ZuZ7SepuO2Rp83jCK9SwckQLDuPZFHeW33qk7YMWLthmugENLjfOmH+pltA3u6bQvleL0iogX/qnt
+	YZhv8fFFai3crg2wvnYdG0THaFnN0Ymq8223TUFep+XnaZm0SbeLLEjteASCO7Q9S1exTV8qqZWG3
+	NUH0F8Am3MXr7nUKzdG7btz8OubCbBISMFUhQK3de56gy+++NxXGJRO3Haoo7mhMXA2cLE8/7q2LW
+	b3YfKtA9q23T5toFcrZ1xzxPlZa81np6g9qDbNXUkNwGqFh8P7/58ckNhBjrIEUk//OpXyEvwioh5
+	c0yswraFb5Ity7KpuslQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wgc05-0000000BXQo-1k6p;
-	Mon, 06 Jul 2026 05:36:13 +0000
+	id 1wgc7N-0000000BYFy-246X;
+	Mon, 06 Jul 2026 05:43:45 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wgc04-0000000BXQf-3O7q;
-	Mon, 06 Jul 2026 05:36:12 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 4DF0141E89;
-	Mon,  6 Jul 2026 05:36:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2FD4AC2BCB8;
-	Mon,  6 Jul 2026 05:36:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1783316171;
-	bh=N7/MvJhYUGrKV9Q70bL4Q1CmZHVRIk+QiqHWcOh3IWY=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=mef8iKmMX/lACumsghUSCgFN6P0gtmJj6dNNaRx8Negkp65Fa2xEPXJkzOqWuU3rs
-	 OVIV8HcS3s6moeeKhdkvvlzcg1fHVrqYAKBOcUGAfnjQ0223Q7JXRRevqdRZJzU9O7
-	 Jb2K4+Zrg8r+o/gY9ZAPm2DalpYuJyLG0AJz5RfUyfyzgzGL4JmexszlAfjNB8Kq0y
-	 S1NMvIaZvdw7jHgbYDEsS2DFXHki8w1MUMMQ8tj11P2C67T5Os+3WQK8PdYcw6WdHH
-	 S+282MjZj2YGdUwMsb6wGUsFHhlZja7SldmlL6Xfbg7nU06ZF357uzX25aSBFDTokj
-	 /0T6f1vycBKaw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0E328C43458;
-	Mon,  6 Jul 2026 05:36:11 +0000 (UTC)
-From: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
-Date: Mon, 06 Jul 2026 13:36:03 +0800
-Subject: [PATCH] soc: amlogic: clk-measure: Mark the clock measure table as
- __initconst
-MIME-Version: 1.0
-Message-Id: <20260706-clkmsr_optimization-v1-1-70f5aae6e60b@amlogic.com>
-X-B4-Tracking: v=1; b=H4sIAMI+S2oC/x2MQQqAIBAAvxJ7Ttg6ZPSViFDbaiktVCIK/550H
- JiZFwJ5pgBd8YKniwMfLkNVFmBW5RYSPGWGGusGJTbC7JsNfjzOyJYfFbMvdEuVmSTqmQhyeXq
- a+f6v/ZDSB4ltrM1lAAAA
-X-Change-ID: 20260706-clkmsr_optimization-b8e1cd70bfee
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Jian Hu <jian.hu@amlogic.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783316169; l=3839;
- i=jian.hu@amlogic.com; s=20260415; h=from:subject:message-id;
- bh=n3+FWab2iM1pkmUi4HdCeGFTpcygj++bqfpdmrSHV1Q=;
- b=7PcHvkINB/VwMB1qf+9rKl1NuPq4ZemkkoFmBNTRfTGPIwr6Mi06cbHn4Drh0+fUK8c7OMovV
- Z+DCrLY0u8MBB3j34bpdU4H4xXZG+wFelO0nW9w7TTnQfhJ2e9rQeNT
-X-Developer-Key: i=jian.hu@amlogic.com; a=ed25519;
- pk=zHUE+rNtH9z+Sb8au1/elWknjFQmy5QDVkBoxleuOIA=
-X-Endpoint-Received: by B4 Relay for jian.hu@amlogic.com/20260415 with
- auth_id=735
-X-Original-From: Jian Hu <jian.hu@amlogic.com>
+	id 1wgc7M-0000000BYFr-0Sv4
+	for linux-amlogic@lists.infradead.org;
+	Mon, 06 Jul 2026 05:43:44 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 1B36841852;
+	Mon,  6 Jul 2026 05:43:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C738F1F000E9;
+	Mon,  6 Jul 2026 05:43:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783316623;
+	bh=Ok2blG8YVelZqlSQZNn6Izop8zYB2khU2gYkamvPAFY=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=lO/rroWMnoM/Dsp9kNMRlBGE2/E9vTjq5iimThWFtcBK0xBeLpFavmvMNn/T5vPxX
+	 aroTEeqcmV3LLZ8Vp+rd/YYSNMPf7+h8nEAk+9JoAr53BLkVDckdyBdgIK+fQOjKC6
+	 6lfBD9OswFtERRy6u8oFCAzC2VCAsX4UtuOhYXpPCKSLcAbW6cCF9VfEBRb2MyJVWM
+	 YL3LtV0TYl8NQGQKLCZ8YHm3ykm89qtWYdGR/nsFCubWNe3Fbtsns9ndZGaBA3YT0N
+	 FNPTQzmt98xhOzWBvAQ6IhS60KFtSlPCxGA5d4fSmWxJswq697Kkb3UYDHZxL3b1Zo
+	 Q05+3TDl/hTQA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] soc: amlogic: clk-measure: Mark the clock measure table
+ as __initconst
+To: "Jian Hu" <jian.hu@amlogic.com>
+Cc: linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org
+In-Reply-To: <20260706-clkmsr_optimization-v1-1-70f5aae6e60b@amlogic.com>
+References: <20260706-clkmsr_optimization-v1-1-70f5aae6e60b@amlogic.com>
+Date: Mon, 06 Jul 2026 05:43:42 +0000
+Message-Id: <20260706054342.C738F1F000E9@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,123 +62,80 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: jian.hu@amlogic.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Jian Hu <jian.hu@amlogic.com>
-
-The clock measure table is only used during initialization, and the
-table data is copied to the msr_table field of struct meson_msr_data.
-
-Mark it as __initconst so it can be freed after kernel initialization.
-Taking T7 as an example, this frees approximately 5 KB of memory,
-saving some runtime memory.
-
-Signed-off-by: Jian Hu <jian.hu@amlogic.com>
----
- drivers/soc/amlogic/meson-clk-measure.c | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/soc/amlogic/meson-clk-measure.c b/drivers/soc/amlogic/meson-clk-measure.c
-index 8c4f3cc8c8ab..e1cf67fad83c 100644
---- a/drivers/soc/amlogic/meson-clk-measure.c
-+++ b/drivers/soc/amlogic/meson-clk-measure.c
-@@ -55,7 +55,7 @@ struct meson_msr {
- #define CLK_MSR_ID(__id, __name) \
- 	[__id] = {.id = __id, .name = __name,}
- 
--static const struct meson_msr_id clk_msr_m8[] = {
-+static const struct meson_msr_id clk_msr_m8[] __initconst = {
- 	CLK_MSR_ID(0, "ring_osc_out_ee0"),
- 	CLK_MSR_ID(1, "ring_osc_out_ee1"),
- 	CLK_MSR_ID(2, "ring_osc_out_ee2"),
-@@ -104,7 +104,7 @@ static const struct meson_msr_id clk_msr_m8[] = {
- 	CLK_MSR_ID(63, "mipi_csi_cfg"),
- };
- 
--static const struct meson_msr_id clk_msr_gx[] = {
-+static const struct meson_msr_id clk_msr_gx[] __initconst = {
- 	CLK_MSR_ID(0, "ring_osc_out_ee_0"),
- 	CLK_MSR_ID(1, "ring_osc_out_ee_1"),
- 	CLK_MSR_ID(2, "ring_osc_out_ee_2"),
-@@ -174,7 +174,7 @@ static const struct meson_msr_id clk_msr_gx[] = {
- 	CLK_MSR_ID(82, "ge2d"),
- };
- 
--static const struct meson_msr_id clk_msr_axg[] = {
-+static const struct meson_msr_id clk_msr_axg[] __initconst = {
- 	CLK_MSR_ID(0, "ring_osc_out_ee_0"),
- 	CLK_MSR_ID(1, "ring_osc_out_ee_1"),
- 	CLK_MSR_ID(2, "ring_osc_out_ee_2"),
-@@ -248,7 +248,7 @@ static const struct meson_msr_id clk_msr_axg[] = {
- 	CLK_MSR_ID(109, "audio_locker_in"),
- };
- 
--static const struct meson_msr_id clk_msr_g12a[] = {
-+static const struct meson_msr_id clk_msr_g12a[] __initconst = {
- 	CLK_MSR_ID(0, "ring_osc_out_ee_0"),
- 	CLK_MSR_ID(1, "ring_osc_out_ee_1"),
- 	CLK_MSR_ID(2, "ring_osc_out_ee_2"),
-@@ -364,7 +364,7 @@ static const struct meson_msr_id clk_msr_g12a[] = {
- 	CLK_MSR_ID(122, "audio_pdm_dclk"),
- };
- 
--static const struct meson_msr_id clk_msr_sm1[] = {
-+static const struct meson_msr_id clk_msr_sm1[] __initconst = {
- 	CLK_MSR_ID(0, "ring_osc_out_ee_0"),
- 	CLK_MSR_ID(1, "ring_osc_out_ee_1"),
- 	CLK_MSR_ID(2, "ring_osc_out_ee_2"),
-@@ -494,7 +494,7 @@ static const struct meson_msr_id clk_msr_sm1[] = {
- 	CLK_MSR_ID(127, "csi2_data"),
- };
- 
--static const struct meson_msr_id clk_msr_c3[] = {
-+static const struct meson_msr_id clk_msr_c3[] __initconst = {
- 	CLK_MSR_ID(0,	"sys_clk"),
- 	CLK_MSR_ID(1,	"axi_clk"),
- 	CLK_MSR_ID(2,	"rtc_clk"),
-@@ -634,7 +634,7 @@ static const struct meson_msr_id clk_msr_c3[] = {
- 
- };
- 
--static const struct meson_msr_id clk_msr_s4[] = {
-+static const struct meson_msr_id clk_msr_s4[] __initconst = {
- 	CLK_MSR_ID(0, "sys_clk"),
- 	CLK_MSR_ID(1, "axi_clk"),
- 	CLK_MSR_ID(2, "rtc_clk"),
-@@ -787,7 +787,7 @@ static const struct meson_msr_id clk_msr_s4[] = {
- 
- };
- 
--static const struct meson_msr_id clk_msr_a1[] = {
-+static const struct meson_msr_id clk_msr_a1[] __initconst = {
- 	CLK_MSR_ID(0, "tdmout_b_sclk"),
- 	CLK_MSR_ID(1, "tdmout_a_sclk"),
- 	CLK_MSR_ID(2, "tdmin_lb_sclk"),
-@@ -843,7 +843,7 @@ static const struct meson_msr_id clk_msr_a1[] = {
- 	CLK_MSR_ID(61, "osc_ring_ramb"),
- };
- 
--static const struct meson_msr_id clk_msr_t7[] = {
-+static const struct meson_msr_id clk_msr_t7[] __initconst = {
- 	CLK_MSR_ID(0, "sys"),
- 	CLK_MSR_ID(1, "axi"),
- 	CLK_MSR_ID(2, "rtc"),
-
----
-base-commit: 4336e970ec6890fbd424128c352564a9c1dd514a
-change-id: 20260706-clkmsr_optimization-b8e1cd70bfee
-
-Best regards,
--- 
-Jian Hu <jian.hu@amlogic.com>
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MyBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpOZXcgaXNzdWVzOgotIFtIaWdoXSBN
+YXJraW5nIGBjbGtfbXNyXypgIGFycmF5cyBhcyBgX19pbml0Y29uc3RgIGludHJvZHVjZXMgYSBz
+ZWN0aW9uIG1pc21hdGNoIGFuZCBhIHVzZS1hZnRlci1mcmVlIHZ1bG5lcmFiaWxpdHkuCgpQcmUt
+ZXhpc3RpbmcgaXNzdWVzOgotIFtIaWdoXSBUaGUgZHJpdmVyIGxhY2tzIGEgYC5yZW1vdmVgIGNh
+bGxiYWNrIHRvIGNsZWFuIHVwIGRlYnVnZnMgZmlsZXMsIGxlYWRpbmcgdG8gYSB1c2UtYWZ0ZXIt
+ZnJlZSB3aGVuIHRoZSBkZXZpY2UgaXMgdW5ib3VuZC4KLSBbTWVkaXVtXSBgY2xrX21zcl9zdW1t
+YXJ5X3Nob3dgIGJsaW5kbHkgYXNzdW1lcyB0aGF0IHRoZSBmaXJzdCBlbnRyeSAoaW5kZXggMCkg
+aW4gdGhlIGNsb2NrIG1lYXN1cmUgdGFibGUgaXMgcG9wdWxhdGVkLCB3aGljaCB3aWxsIGNhdXNl
+IGEgbnVsbCBwb2ludGVyIGRlcmVmZXJlbmNlIGlmIGEgdGFibGUgbGFja3MgYW4gZW50cnkgZm9y
+IElEIDAuCi0tCgpjb21taXQgYTgxN2EwNGFkZTIwYTAwNTE2ODA4Y2EwODRhNjBkZjE1MTNkNWIy
+MApBdXRob3I6IEppYW4gSHUgPGppYW4uaHVAYW1sb2dpYy5jb20+CnNvYzogYW1sb2dpYzogY2xr
+LW1lYXN1cmU6IE1hcmsgdGhlIGNsb2NrIG1lYXN1cmUgdGFibGUgYXMgX19pbml0Y29uc3QKClRo
+ZSBjbG9jayBtZWFzdXJlIHRhYmxlIGlzIG9ubHkgdXNlZCBkdXJpbmcgaW5pdGlhbGl6YXRpb24s
+IGFuZCB0aGUKdGFibGUgZGF0YSBpcyBjb3BpZWQgdG8gdGhlIG1zcl90YWJsZSBmaWVsZCBvZiBz
+dHJ1Y3QgbWVzb25fbXNyX2RhdGEuCk1hcmsgaXQgYXMgX19pbml0Y29uc3Qgc28gaXQgY2FuIGJl
+IGZyZWVkIGFmdGVyIGtlcm5lbCBpbml0aWFsaXphdGlvbi4KCj4gZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvc29jL2FtbG9naWMvbWVzb24tY2xrLW1lYXN1cmUuYyBiL2RyaXZlcnMvc29jL2FtbG9naWMv
+bWVzb24tY2xrLW1lYXN1cmUuYwo+IGluZGV4IDhjNGYzY2M4YzhhYmYuLmUxY2Y2N2ZhZDgzY2Ig
+MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9zb2MvYW1sb2dpYy9tZXNvbi1jbGstbWVhc3VyZS5jCj4g
+KysrIGIvZHJpdmVycy9zb2MvYW1sb2dpYy9tZXNvbi1jbGstbWVhc3VyZS5jCj4gQEAgLTU1LDcg
+KzU1LDcgQEAgc3RydWN0IG1lc29uX21zciB7Cj4gICNkZWZpbmUgQ0xLX01TUl9JRChfX2lkLCBf
+X25hbWUpIFwKPiAgCVtfX2lkXSA9IHsuaWQgPSBfX2lkLCAubmFtZSA9IF9fbmFtZSx9Cj4gIAo+
+IC1zdGF0aWMgY29uc3Qgc3RydWN0IG1lc29uX21zcl9pZCBjbGtfbXNyX204W10gPSB7Cj4gK3N0
+YXRpYyBjb25zdCBzdHJ1Y3QgbWVzb25fbXNyX2lkIGNsa19tc3JfbThbXSBfX2luaXRjb25zdCA9
+IHsKCltTZXZlcml0eTogSGlnaF0KRG9lcyBtYXJraW5nIHRoaXMgYXJyYXkgYXMgX19pbml0Y29u
+c3QgY2F1c2UgYSB1c2UtYWZ0ZXItZnJlZSBhbmQgYSBzZWN0aW9uCm1pc21hdGNoPwoKQmVjYXVz
+ZSB0aGlzIGRyaXZlciBpcyBhIHJlZ3VsYXIgcGxhdGZvcm1fZHJpdmVyLCBpdCBjYW4gYmUgcHJv
+YmVkIGFmdGVyIGJvb3QKZHVlIHRvIGRlZmVycmVkIHByb2Jpbmcgb3IgbWFudWFsIHN5c2ZzIGJp
+bmQuIElmIHByb2JlZCBhZnRlciBpbml0aWFsaXphdGlvbiwKdGhlIG1lbWNweSgpIGluIG1lc29u
+X21zcl9wcm9iZSgpIHdpbGwgcmVhZCBmcm9tIGZyZWVkIGluaXQgbWVtb3J5OgoKCW1lbWNweShw
+cml2LT5kYXRhLm1zcl90YWJsZSwgbWF0Y2hfZGF0YS0+bXNyX3RhYmxlLAoJICAgICAgIG1hdGNo
+X2RhdGEtPm1zcl9jb3VudCAqIHNpemVvZihzdHJ1Y3QgbWVzb25fbXNyX2lkKSk7CgpBZGRpdGlv
+bmFsbHksIHRoaXMgYXJyYXkgaXMgcmVmZXJlbmNlZCBieSBjbGtfbXNyX204X2RhdGE6CgpzdGF0
+aWMgY29uc3Qgc3RydWN0IG1lc29uX21zcl9kYXRhIGNsa19tc3JfbThfZGF0YSA9IHsKCS5tc3Jf
+dGFibGUgPSAodm9pZCAqKWNsa19tc3JfbTgsCi4uLgoKU2luY2UgY2xrX21zcl9tOF9kYXRhIHJl
+c2lkZXMgaW4gLnJvZGF0YSwgd291bGRuJ3QgcG9pbnRpbmcgaXQgdG8gX19pbml0Y29uc3QKbWVt
+b3J5IGNhdXNlIGEgbGlua2VyIHNlY3Rpb24gbWlzbWF0Y2ggd2FybmluZz8KClsgLi4uIF0KCltT
+ZXZlcml0eTogSGlnaF0KVGhpcyBpcyBhIHByZS1leGlzdGluZyBpc3N1ZSwgYnV0IGRvZXMgdGhp
+cyBkcml2ZXIgbGFjayBhIC5yZW1vdmUgY2FsbGJhY2sgdG8KY2xlYW4gdXAgZGVidWdmcyBmaWxl
+cywgbGVhZGluZyB0byBhIHVzZS1hZnRlci1mcmVlIG9uIGRldmljZSB1bmJpbmQ/CgpJbiBtZXNv
+bl9tc3JfcHJvYmUoKSwgZGVidWdmcyBmaWxlcyBhcmUgY3JlYXRlZCBhbmQgYXNzb2NpYXRlZCB3
+aXRoIG1lbW9yeQphbGxvY2F0ZWQgdmlhIGRldm1fa2NhbGxvYygpOgoKCXJvb3QgPSBkZWJ1Z2Zz
+X2NyZWF0ZV9kaXIoIm1lc29uLWNsay1tc3IiLCBOVUxMKTsKCWNsa3MgPSBkZWJ1Z2ZzX2NyZWF0
+ZV9kaXIoImNsa3MiLCByb290KTsKCglkZWJ1Z2ZzX2NyZWF0ZV9maWxlKCJtZWFzdXJlX3N1bW1h
+cnkiLCAwNDQ0LCByb290LAoJCQkgICAgcHJpdi0+ZGF0YS5tc3JfdGFibGUsICZjbGtfbXNyX3N1
+bW1hcnlfZm9wcyk7CgpUaGUgZHJpdmVyIGxhY2tzIGEgLnJlbW92ZSBjYWxsYmFjayBhbmQgZG9l
+cyBub3QgdXNlCmRldm1fYWRkX2FjdGlvbl9vcl9yZXNldCgpIHRvIGNsZWFuIHVwIHRoZSBkZWJ1
+Z2ZzIGRpcmVjdG9yeToKCnN0YXRpYyBzdHJ1Y3QgcGxhdGZvcm1fZHJpdmVyIG1lc29uX21zcl9k
+cml2ZXIgPSB7CgkucHJvYmUJPSBtZXNvbl9tc3JfcHJvYmUsCgkuZHJpdmVyID0gewouLi4KCklm
+IHRoZSBkZXZpY2UgaXMgdW5ib3VuZCB2aWEgc3lzZnMsIGRldnJlcyB3aWxsIGF1dG9tYXRpY2Fs
+bHkgZnJlZQpwcml2LT5kYXRhLm1zcl90YWJsZS4gQW55IHN1YnNlcXVlbnQgcmVhZCBmcm9tIHRo
+ZSBwZXJzaXN0ZW50IGRlYnVnZnMgZmlsZXMKd2lsbCBkZXJlZmVyZW5jZSB0aGUgZnJlZWQgbWVt
+b3J5LiBTaG91bGQgYSBjbGVhbnVwIG1lY2hhbmlzbSBiZSBhZGRlZD8KCltTZXZlcml0eTogTWVk
+aXVtXQpUaGlzIGlzIGEgcHJlLWV4aXN0aW5nIGlzc3VlLCBidXQgZG9lcyBjbGtfbXNyX3N1bW1h
+cnlfc2hvdygpIGJsaW5kbHkgYXNzdW1lCnRoZSBmaXJzdCBlbnRyeSBpbiB0aGUgY2xvY2sgbWVh
+c3VyZSB0YWJsZSBpcyBwb3B1bGF0ZWQ/CgpMb29raW5nIGF0IGNsa19tc3Jfc3VtbWFyeV9zaG93
+KCk6CgoJc3RydWN0IG1lc29uX21zcl9pZCAqbXNyX3RhYmxlID0gcy0+cHJpdmF0ZTsKCXVuc2ln
+bmVkIGludCBtc3JfY291bnQgPSBtc3JfdGFibGUtPnByaXYtPmRhdGEubXNyX2NvdW50OwoKVGhp
+cyBpbW1lZGlhdGVseSBkZXJlZmVyZW5jZXMgbXNyX3RhYmxlLT5wcml2LiBJbiBtZXNvbl9tc3Jf
+cHJvYmUoKSwgdGhlIHByaXYKcG9pbnRlciBpcyBvbmx5IGFzc2lnbmVkIGlmIHRoZSBjbG9jayBJ
+RCBpcyBkZWZpbmVkIChpLmUuLCBuYW1lIGlzIG5vbi1OVUxMKS4KSWYgYSBmdXR1cmUgU29DIHRh
+YmxlIHdlcmUgdG8gb21pdCBhbiBlbnRyeSBmb3IgSUQgMCwgbXNyX3RhYmxlWzBdLnByaXYgd291
+bGQKYmUgTlVMTCwgY2F1c2luZyBhIGtlcm5lbCBwYW5pYyBoZXJlLiBDb3VsZCB0aGlzIGJlIG1h
+ZGUgbW9yZSByb2J1c3QgYWdhaW5zdAplbXB0eSBmaXJzdCBlbnRyaWVzPwoKLS0gClNhc2hpa28g
+QUkgcmV2aWV3IMK3IGh0dHBzOi8vc2FzaGlrby5kZXYvIy9wYXRjaHNldC8yMDI2MDcwNi1jbGtt
+c3Jfb3B0aW1pemF0aW9uLXYxLTEtNzBmNWFhZTZlNjBiQGFtbG9naWMuY29tP3BhcnQ9MQoKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dp
+YyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9s
+aXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
