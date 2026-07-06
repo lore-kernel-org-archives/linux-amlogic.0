@@ -4,92 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FA35C44500
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jul 2026 07:20:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C7F2C43458
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jul 2026 08:06:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=kAFmnXtSLDDlRssRWu9EyIaHJMwAeLiRAnUVI6lhtIo=; b=0i8NRxXYivUKG62GuGnSocQAhn
-	IolxWHdwIsnWiZMDtrfWkipuSmATpaYjsI/vpoDFOelZmuZGquu5XrHzo6+t21WhJqoQywWney1hL
-	kow+TBq945SEgAoIYueepdkiekpglul/ZgyNU5fZMPkXIVXKLAJehbx1aUsDh2uilj86dR6eDzKxb
-	rEePr9eH5eju10cztrqHuNk2Xr+XzMxhRXKDKbOjS1IcOCkJMm4ShQdAbseU65eywUV6peoChpXNn
-	B299l9Fd1PHt/lo4dfUmjYTv+qEZBi8SauBfaqI3n+CA7NhHLJA20XDtPJOS2yKDhlncLoDSc0hx6
-	PAiLMKSA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=xYlojgmJdzKU5D9tWPF11Z+hJpzSod02U6EfgJ1MfiM=; b=OnWmerbAOYuJ+0
+	hulqWuHT0NdmoRPJPeLgU3UPzUUE8HyZ2CZJviKSPge/PQE6+5Ur0yVMRSKu6bRghLHhN28Iflw8h
+	ZA8yARoBoWC1ULCr/euml1PtwR4VQgsaw/3btJcgGvTMegLnrSVeaKc7jTBQj8GPXNP75iveej2eN
+	v7OUbm9/pa+FhE97Ywkk/vzOr3rS3I8XvCIFYhF9PYUax3JjO0JUnNdQqHFkRQ5ylx8Jp4bzkx2oX
+	X3W7PTrJnWbVeRHyJPx1t/06njpJtXAUhYlkhYrGyJn1g5P4df3P3Y9FJDdvXvYZ5mDeAybMzzGNb
+	b3bnMzcUH6bFDrOua1gQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wgdcS-0000000BiNu-2GuL;
-	Mon, 06 Jul 2026 07:19:56 +0000
-Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	id 1wgeLs-0000000BmJ6-3oBo;
+	Mon, 06 Jul 2026 08:06:52 +0000
+Received: from mail-vk1-f171.google.com ([209.85.221.171])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wgdcO-0000000BiKz-1q1x
+	id 1wgeLq-0000000BmIk-2V3W
 	for linux-amlogic@lists.infradead.org;
-	Mon, 06 Jul 2026 07:19:55 +0000
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-4720d22c94aso2637504f8f.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 06 Jul 2026 00:19:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1783322390; x=1783927190; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=VIt88eh6zWv+oEhKK/Aw514C6mk0Vd1i5LusZK/Ssuc=;
-        b=m9ANpRyHkZO0DNPZ5tpdKb0G3H+1KfZJD+iijO0+3zVOCMeat9lBhEHGTgN3E7M8XZ
-         WXh7qCsaJBM+yO/5fkUF0Lu0pCcNCLbOWhCgrOszKtcULKYXcyc00lP3rZufIl7SwMrU
-         ykyCW0/4gevAjru7WnD5k76uK5Wq2JAgykYL7h0CviZ7+wSV+8R6vL3bD8D10u5dTFJv
-         173DwNZa8s64Wr116PGM3q+fo3wm8zefAgLyq0KnGcc2oRlTxgNbwFocN7ECat6AH0hH
-         lxeyz0kz3lsUWkeEISCGaAA/xVzvhTEhHXC44s0E0d27RjGEp7dGrPwUdFruXU2pV86A
-         SGew==
+	Mon, 06 Jul 2026 08:06:51 +0000
+Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-59c9b666822so2321564e0c.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 06 Jul 2026 01:06:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783322390; x=1783927190;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VIt88eh6zWv+oEhKK/Aw514C6mk0Vd1i5LusZK/Ssuc=;
-        b=degjqdVmwkqzrhSpmkKc33VllRDqGOlzFk6Sw8PNb9zrHg+lNa7aaAWIM+F7zp0rlV
-         PpDTTjaVMmukUkkGC2QZ+i1zch+bnND4a6zrMs37vgLgUsnnsozna4Ph2FzFPVRhOYas
-         O0skC2KCTSTJEWYv/X0B8s8Eu7PgfDVhJp8JPg0woTxB088y8ckLjGfCI004538vXM/Z
-         i7RDWWhDGpM+tTDuWUlHi6Q2nQ0QoH6uOcFBSMDGlU7hshb5XyzzNf+Q0WoQgNfirtMd
-         WL5YwX4QngRjpWsQ5N2u0CEnWkjw7ajbrDEqEDCorR+vK6IOqHLGDr8KGTcR6FONAizp
-         pTMw==
-X-Forwarded-Encrypted: i=1; AHgh+RrVHvvhMphk3DRzjmo1UpyDxf3M8I9Cu3DVXoTUgUzxW8lb+DvkeuNDihYBpAUAKO53FL2Nric9PVmvLFl+@lists.infradead.org
-X-Gm-Message-State: AOJu0YxUWDM3ff4KqIYkFJpPZmB0C7qMj3ekLqueoatECIZaLAY3GDHK
-	xT8+h8NibIFcqsi9sF8gOPPKcX00Xkf1NeRezMVBguWGOifMLILhCLW4LVwDpqm7m+w=
-X-Gm-Gg: AfdE7cnGXyQ4T1XZApwGRCXmV2Ryqh7VyfEeePOzvWRQpwcmUnEqUfxM66ICZ+4Y72m
-	nSqrRaxK8KFZM7WU9sWeP62VjfD1+gCODw5k+yiLxnVypUrHxaOeUw3hANhwgGPt/9uNpRrJUj9
-	NmzbIPxof7UaDXLEaIEDkh8joefQxZ7uPCfuTjMQNZW8Q0OrgMrLZlN6N731CHo6J4/06zXEqHQ
-	lpl2dczVwfymUTHykQfQJ5RbCe796SwJxae3BjBdUlIgpqTQMsaiPp2eAG6+Pj9zGSXOxnr7zLL
-	6Zzi0hIQujbTMp6y8kecqSXc3V6rh6tkPdlepBMmh4PwtfhSOb4PW25sBhbqXfHnkesf9yFksnx
-	6nUm9rOeh3E+Fw4q2NxFUnDj7AB/tamyz7VV0wOGEHzLLXRW6VIotBMC62H+cC7NA5Ndn0IIqNb
-	2/012+R0qSMKS6zxw9rnZDKDY4TM6U2SVsHXcV2xXvmG6obNRAV0MMojNdOqEWxNzwfJMhml8t8
-	RAy
-X-Received: by 2002:a05:6000:d4f:b0:478:4de8:9b91 with SMTP id ffacd0b85a97d-47aac7d018dmr7577860f8f.41.1783322390409;
-        Mon, 06 Jul 2026 00:19:50 -0700 (PDT)
-Received: from localhost (p200300f65f47db0426af56a07ec3b32d.dip0.t-ipconnect.de. [2003:f6:5f47:db04:26af:56a0:7ec3:b32d])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-47aa039bcdasm23183058f8f.21.2026.07.06.00.19.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jul 2026 00:19:49 -0700 (PDT)
-Date: Mon, 6 Jul 2026 09:19:47 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig_=28The_Capable_Hub=29?= <u.kleine-koenig@baylibre.com>
-To: Chen Wang <chen.wang@linux.dev>
-Cc: linux-pwm@vger.kernel.org, Sven Peter <sven@kernel.org>, 
-	Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>, 
-	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Benson Leung <bleung@chromium.org>, Guenter Roeck <groeck@chromium.org>, Frank Li <Frank.Li@nxp.com>, 
+        d=1e100.net; s=20251104; t=1783325209; x=1783930009;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=xlcdnSGCAGaaD3Qtz41jPpd7wkV1TEYjW94sOKYd3zY=;
+        b=k1lx/8jeF0LZ81RnmMriLaO7LSu5R5te12sZTEggl3HpiJr2y3AW2VNb13TVRlC5Zl
+         CyWwUv8hGfR9f2Fh42l9HMvpXa5PcVUTBvkaESG9C9PaS/zXn2JtBRdXiLSWjlPMdAvk
+         E43Lt5yz64SKGz3Eq0bnFZM9nu2WmlNkklHLrSy0Wo33VWU9MHE5BUUOBeR5pjwm4oZl
+         WCNWjcxR74jDmWReZDam7MkN1Q/lJQrOxX2D+mGPcodT0L5mii+HDu1UFNyN3v01cJKr
+         4mbNdDNXhI9bMWUzDWx9Lx0L5QCcKnxuB2sp31MFgiWYhzFpKMQnAbpFQBrHomYxpF0I
+         GStA==
+X-Forwarded-Encrypted: i=1; AHgh+Rq5kh2IMz1Qz68m3U/sVr7TEkYhjtCO8vt1Iqxh8on69SxYXZRihdqwt1/zfOg1wFCl38ykosl2JK0zgyjZ@lists.infradead.org
+X-Gm-Message-State: AOJu0YzYKcoW52kAVQ+TjCNJgpU0KiNw0lJ0861IvYD91TYxJT521xyd
+	EzofptfGBLshFfrbB0c1CtYjYuD8PjCTTOj/bGwcIGA5/NtAub6UnZ1dZ/aP+ayj
+X-Gm-Gg: AfdE7clm7fm1B+JaqGNi+H5ZnURuMfDjDEYmRApx7qtvIYCCaSOFTEFLFY2ZhpsmT+V
+	tHvTvLb1taXYjsRSDI7CrgWcP4Vl22HCNisjJaLp6yOu2uXPlBJzitjKlMIc5Cbyrmsy7x/iH3c
+	KqnhPVP4CkG/9l6uyKN3sJ4nhLs0mV/w4z+4BuBog/g0953Wn0bYHceiDzhV/XI/ZYdxdWo/aPL
+	BiCrxGbZMA2q1azc4oLpoRTvLFQeaa0+ae1kOfwiFLgLgjO1Lvnz+vO2nnsDk76tshxIqIlbqOr
+	L/T2qanHe8qjkzgyDjS7TSPrR+PPNCyEM6j3BAjBpui+86+2KkF29ZVbBMORlxToWlddJ3hoNKn
+	/h4a0Ure9op8rdA/eyJLGOnxRcIXQwaJqACq1TeTCaM6yEmwFhsiDfuj2Tx4aEqFmb5e0w7TvZA
+	agXz+T3oAJn1+OSvldr6EEBZ+358tGSg+XXvEURh6ssXnIgLxIrg==
+X-Received: by 2002:a05:6122:8b14:b0:5bd:9d27:1ded with SMTP id 71dfb90a1353d-5be10121472mr963029e0c.3.1783325209256;
+        Mon, 06 Jul 2026 01:06:49 -0700 (PDT)
+Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5be02c75ed0sm4373133e0c.16.2026.07.06.01.06.49
+        for <linux-amlogic@lists.infradead.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Jul 2026 01:06:49 -0700 (PDT)
+Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-738bd0b7960so2277988137.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 06 Jul 2026 01:06:49 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+RrS3ZpgADJyWEhzrxghsXFcDJ62syanbwHhVjEn/eyzyXOnK71uXr1buc0x/jrYWZatqCDZu42qRXN2jULg@lists.infradead.org
+X-Received: by 2002:a05:6102:800d:b0:722:826e:1423 with SMTP id
+ ada2fe7eead31-7427f0478a0mr3286706137.20.1783324855096; Mon, 06 Jul 2026
+ 01:00:55 -0700 (PDT)
+MIME-Version: 1.0
+References: <cover.1783263835.git.ukleinek@kernel.org> <20de6cd60c2938aad2d21397b92742849418ab1b.1783263835.git.ukleinek@kernel.org>
+In-Reply-To: <20de6cd60c2938aad2d21397b92742849418ab1b.1783263835.git.ukleinek@kernel.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 6 Jul 2026 10:00:43 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXKyFJ20N6qKafvMZ_0sVj5+XTxcod_6wGkwTsokn7dvw@mail.gmail.com>
+X-Gm-Features: AVVi8CfQACxAMot5VlqKHI6FXvkOZpEWhTZp1dlkgWSruFHOk1f-I-dS5kVo31s
+Message-ID: <CAMuHMdXKyFJ20N6qKafvMZ_0sVj5+XTxcod_6wGkwTsokn7dvw@mail.gmail.com>
+Subject: Re: [PATCH v1 4/5] pwm: Unify coding style of of_device_id arrays
+To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig_=28The_Capable_Hub=29?= <u.kleine-koenig@baylibre.com>
+Cc: linux-pwm@vger.kernel.org, Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
+	Neal Gompa <neal@gompa.dev>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, Benson Leung <bleung@chromium.org>, 
+	Guenter Roeck <groeck@chromium.org>, Frank Li <Frank.Li@nxp.com>, 
 	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
 	Fabio Estevam <festevam@gmail.com>, Paul Cercueil <paul@crapouillou.net>, 
 	Vladimir Zapolskiy <vz@mleia.com>, Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>, 
 	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
 	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, Heiko Stuebner <heiko@sntech.de>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Paul Walmsley <pjw@kernel.org>, 
-	Samuel Holland <samuel.holland@sifive.com>, Michael Walle <mwalle@kernel.org>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Heiko Stuebner <heiko@sntech.de>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Paul Walmsley <pjw@kernel.org>, Samuel Holland <samuel.holland@sifive.com>, 
+	Michael Walle <mwalle@kernel.org>, Chen Wang <chen.wang@linux.dev>, 
 	Inochi Amaoto <inochiama@gmail.com>, Orson Zhai <orsonzhai@gmail.com>, 
 	Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, 
 	Fabrice Gasnier <fabrice.gasnier@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
@@ -98,22 +102,16 @@ Cc: linux-pwm@vger.kernel.org, Sven Peter <sven@kernel.org>,
 	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>, Alexey Charkov <alchark@gmail.com>, 
 	Sean Anderson <sean.anderson@linux.dev>, Michal Simek <michal.simek@amd.com>, asahi@lists.linux.dev, 
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-rpi-kernel@lists.infradead.org, chrome-platform@lists.linux.dev, imx@lists.linux.dev, 
-	linux-mips@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-renesas-soc@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, sophgo@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-rpi-kernel@lists.infradead.org, chrome-platform@lists.linux.dev, 
+	imx@lists.linux.dev, linux-mips@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	sophgo@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com, 
 	linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v1 4/5] pwm: Unify coding style of of_device_id arrays
-Message-ID: <aktWoIfY_DdO6gb4@monoceros>
-References: <cover.1783263835.git.ukleinek@kernel.org>
- <20de6cd60c2938aad2d21397b92742849418ab1b.1783263835.git.ukleinek@kernel.org>
- <973f3d6f-6ff4-4685-9c9f-b07987f74d98@linux.dev>
-MIME-Version: 1.0
-In-Reply-To: <973f3d6f-6ff4-4685-9c9f-b07987f74d98@linux.dev>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260706_001952_541784_C7F11B4B 
-X-CRM114-Status: GOOD (  19.45  )
+X-CRM114-CacheID: sfid-20260706_010650_643217_94225584 
+X-CRM114-Status: GOOD (  16.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,103 +123,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============3766825496652221150=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
---===============3766825496652221150==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="64vjgbl764osolti"
-Content-Disposition: inline
-
-
---64vjgbl764osolti
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v1 4/5] pwm: Unify coding style of of_device_id arrays
-MIME-Version: 1.0
-
-Hello Chen,
-
-On Mon, Jul 06, 2026 at 08:33:47AM +0800, Chen Wang wrote:
-> On 7/5/2026 11:14 PM, Uwe Kleine-K=C3=B6nig (The Capable Hub) wrote:
-> >   - Use a single space in a of_device_id array terminator; A single spa=
-ce
-> >     after the opening { and before the closing } in non-empty
-> >     initializers;
-> >   - No comma after an array terminator;
-> >   - Also no trailing comma after a named initializer iff the
-> iff -> if
-
-This is actually intended. iff =3D "if and only if", see e.g.
-https://en.wikipedia.org/wiki/If_and_only_if .
-
-> >     closing } is on the same line;
-> >=20
-> > Signed-off-by: Uwe Kleine-K=C3=B6nig (The Capable Hub) <u.kleine-koenig=
-@baylibre.com>
->=20
-> [......]
->=20
-> > diff --git a/drivers/pwm/pwm-sophgo-sg2042.c b/drivers/pwm/pwm-sophgo-s=
-g2042.c
-> > index 7d07b0ca7d29..0b6461172e6a 100644
-> > --- a/drivers/pwm/pwm-sophgo-sg2042.c
-> > +++ b/drivers/pwm/pwm-sophgo-sg2042.c
-> > @@ -225,11 +225,10 @@ static const struct sg2042_chip_data sg2044_chip_=
-data =3D {
-> >   static const struct of_device_id sg2042_pwm_ids[] =3D {
-> >   	{
-> >   		.compatible =3D "sophgo,sg2042-pwm",
-> > -		.data =3D &sg2042_chip_data
-> > -	},
-> > -	{
-> > +		.data =3D &sg2042_chip_data,
-> > +	}, {
-> >   		.compatible =3D "sophgo,sg2044-pwm",
-> > -		.data =3D &sg2044_chip_data
-> > +		.data =3D &sg2044_chip_data,
-> >   	},
-> >   	{ }
-> >   };
->=20
-> Changes to sophgo related files=EF=BC=9A
->=20
-> Reviewed-by: Chen Wang <chen.wang@linux.dev>
-
-Thanks
-Uwe
-
---64vjgbl764osolti
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmpLVxEACgkQj4D7WH0S
-/k6otAf+MDN98V1OLHB7JSvapxuE4DwDpddJFumdMe3z/vu/P/VdI1oEao4PKhGo
-2fMsJUgJT4k/6wIfoB6C3asAQFoEg3UirigbTf0d26+LpcWXfr+MJ/e2tzlX/Yzn
-2dH88yKAhOR4HFj73YAi1FscS6vtyPmk7w2A84lWRMvteeY+zJan75O9xwgRC7FX
-gEMJExnAEBHY9tEW8dgB3EK07MFFQWLlVpGQll6BbLHxOcMIz17Pj/sI6+7Sv0xW
-cahUhiwZ1m+Y0EElAHIwQFoWyyyg7KINbFYsCsnyL1ev/EbUFyGCMRuR270OEIJW
-bKMoVE2keTYc8IQjmKqk7x/VPRLsTw==
-=LX/u
------END PGP SIGNATURE-----
-
---64vjgbl764osolti--
-
-
---===============3766825496652221150==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============3766825496652221150==--
-
+T24gU3VuLCA1IEp1bCAyMDI2IGF0IDE3OjE0LCBVd2UgS2xlaW5lLUvDtm5pZyAoVGhlIENhcGFi
+bGUgSHViKQo8dS5rbGVpbmUta29lbmlnQGJheWxpYnJlLmNvbT4gd3JvdGU6Cj4gIC0gVXNlIGEg
+c2luZ2xlIHNwYWNlIGluIGEgb2ZfZGV2aWNlX2lkIGFycmF5IHRlcm1pbmF0b3I7IEEgc2luZ2xl
+IHNwYWNlCj4gICAgYWZ0ZXIgdGhlIG9wZW5pbmcgeyBhbmQgYmVmb3JlIHRoZSBjbG9zaW5nIH0g
+aW4gbm9uLWVtcHR5Cj4gICAgaW5pdGlhbGl6ZXJzOwo+ICAtIE5vIGNvbW1hIGFmdGVyIGFuIGFy
+cmF5IHRlcm1pbmF0b3I7Cj4gIC0gQWxzbyBubyB0cmFpbGluZyBjb21tYSBhZnRlciBhIG5hbWVk
+IGluaXRpYWxpemVyIGlmZiB0aGUKPiAgICBjbG9zaW5nIH0gaXMgb24gdGhlIHNhbWUgbGluZTsK
+Pgo+IFNpZ25lZC1vZmYtYnk6IFV3ZSBLbGVpbmUtS8O2bmlnIChUaGUgQ2FwYWJsZSBIdWIpIDx1
+LmtsZWluZS1rb2VuaWdAYmF5bGlicmUuY29tPgoKPiAgZHJpdmVycy9wd20vcHdtLXJjYXIuYyAg
+ICAgICAgICAgIHwgIDQgKystLQo+ICBkcml2ZXJzL3B3bS9wd20tcmVuZXNhcy10cHUuYyAgICAg
+fCAxMCArKysrKy0tLS0tCj4gIGRyaXZlcnMvcHdtL3B3bS1yemcybC1ncHQuYyAgICAgICB8ICAy
+ICstCgpSZXZpZXdlZC1ieTogR2VlcnQgVXl0dGVyaG9ldmVuIDxnZWVydCtyZW5lc2FzQGdsaWRl
+ci5iZT4gIyByZW5lc2FzCgpHcntvZXRqZSxlZXRpbmd9cywKCiAgICAgICAgICAgICAgICAgICAg
+ICAgIEdlZXJ0CgotLSAKR2VlcnQgVXl0dGVyaG9ldmVuIC0tIFRoZXJlJ3MgbG90cyBvZiBMaW51
+eCBiZXlvbmQgaWEzMiAtLSBnZWVydEBsaW51eC1tNjhrLm9yZwoKSW4gcGVyc29uYWwgY29udmVy
+c2F0aW9ucyB3aXRoIHRlY2huaWNhbCBwZW9wbGUsIEkgY2FsbCBteXNlbGYgYSBoYWNrZXIuIEJ1
+dAp3aGVuIEknbSB0YWxraW5nIHRvIGpvdXJuYWxpc3RzIEkganVzdCBzYXkgInByb2dyYW1tZXIi
+IG9yIHNvbWV0aGluZyBsaWtlIHRoYXQuCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+LS0gTGludXMgVG9ydmFsZHMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMu
+aW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2xpbnV4LWFtbG9naWMK
