@@ -4,182 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E1D1C43458
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jul 2026 18:42:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F590C43602
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jul 2026 19:26:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=giJ66opyHz34qv8MtXYN1hegLShFxds+D6z66fOcB6E=; b=MEypHwLba1pE9V
-	/WHwPpMQLF9w6GYs/EzVatFj8xlDy1PD6K0DIh2msRqwwkRjBemBHUoewONnVrAjClo/7buD3Ew0D
-	2RnsV/CVIjgs2mjt8flBPivA6qeT6N/H5asH/MNudDNI2qB0vWhuHpPjbaQxape3UKDiUBjDrYRX3
-	hQsP7tKNsZ5U1+21IIsyMqI+dfvoNFi4pCksD9ImsCXlUZM1Ador+m+WLij6o/dD01XklGNwL62hK
-	b5A5q7gidb1N0FR7qUIP8zbI8Xw1dg1xPiVwKTxtvHiPw9JCGd/cklflJ7iyv1f+3zMDX1wrro6NC
-	97+0sBdmGFggI7wkQTkg==;
+	List-Owner; bh=KiZI8MVWermf54hSwvMv8dIsjMJW15c5Wc4howAP8W4=; b=JHtuXTLIi3Py/M
+	h9Dkq0iqHJmzBZqL9NJhAyX2wApCrfQXqLcOdLVDq401YFYNpDynQeWmBM1DsWc9B5J89ND2q6hWD
+	V6FtqQzl1EESi2YAajimg2MZPg9T9i/yOGuIBxaevUBgyLnhWoVyOtnZDPju7kjoSyfOL5+m/S66v
+	dO2rniIFpz9uFtDx6uaVRAaEHVRQA3Wcnkkn8DU4xCqIX6HQ/Az5e2oYopjdqSt2PjYgwo+0NUbZ9
+	+LTMUYc0CcZ/hTl2tKu0DmgBzV8cu8kfHfm49ENK5PBBthz261YfRVLv03DoQ1qJVI7zGDAVvFc49
+	pSeHeEAMp/SqNJ4WaZEw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1whAkt-0000000FehU-3cFy;
-	Tue, 07 Jul 2026 18:42:51 +0000
-Received: from mail-southcentralusazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c10d::3] helo=SN4PR0501CU005.outbound.protection.outlook.com)
+	id 1whBRK-0000000FkxA-09gr;
+	Tue, 07 Jul 2026 19:26:42 +0000
+Received: from mail-pl1-x631.google.com ([2607:f8b0:4864:20::631])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1whAkq-0000000Fegx-3X7S;
-	Tue, 07 Jul 2026 18:42:50 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RmTJ31Ct0+CUX97U2ZHkeLIC67kfdPmYljzcXQ24Eq72xGvEkrOtI5yYaSIcjiHbryxlfnUFDud1qPikhfgpVu7Asg8LGw6knYwEEg8Pzom6XlH2ceskkAzSLH5v3jrQgg1s5Bgw9tLFp35yTot6FPpxBIsmAVDepUo5ctsL7Mpjyk6F+GpBBjPrzOXEFL2SEDinpGyeriMRCNOLviJd4eBw68XjXDp66QBz61anrl2L/iRh8/Oczp02fWDutLzbS9XCtt+fJaxqMCAmxj0fvuCs26sgk6TWHspLoc+BfOtL6aQIKtE4MRkL/+VcecqPeXQzlNngHSPngoouWm//VQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8IIIY9pm8QsmrcsmVwRwM6OzE1/6nUvrPB27JfGzzx8=;
- b=iylyzlrc4c/wmEyxxb8Osn2/wtpafvvsCC4yT1r+wG5zsQPF2wh6HkBkM9OAJhlxz5LPDzMOPMANYrEm5CQOTvDQVIaEno6XoyquLlVFPZQ0sKLMU5bdvXvr5k687h1vgKzr38U8ahF7YdhKA4hch8SCEm9v40FJU7pggxGWvZK2DYop7sNI2X3rIOiiP61cxO08Xr6Hf5rfJS1OEPGA4klO21Ti/wFJPTXP5hCOjlBmxZc2ma+GNnyo5mxFbv1/5UG3Lpd8z94APxmJMd2e97c9CUaE2B15/y5aIw8wwm2H3Y/RCHSG7ucBIUVVdII3cgRRH6pUvQHMZOErMp/1kA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8IIIY9pm8QsmrcsmVwRwM6OzE1/6nUvrPB27JfGzzx8=;
- b=HfvhbpnyNLIK283FnMtZc11O7Q568YHI2HJyZywHF4FZU91KTHyI2dejIn4X+I9JA0QOZ1fyNOXLr8M+FaY+TmLhGnWcHkyhFkwpuW/CyplekBCXy89HNQz5i8E2jFXPBGnH2CL+9yxvK+UZzphQILbyhnWGqJhz25pPkmovuxLYedWY4hGNNS38+MTND4n+SDLSE9jlb1mWPaaW3JRd9rE6Ktgyn1r1VDMA+DbC/cbvH/w5wLRTKe07lZqN+gmMSfyPykUWyrnbNf7xs5O/41MRn7c2owKJQ65zXETneeefJHbqrGoS8cg3ppgxh744YDa2DfvuTqIZpAHOP8QdyQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV3PR12MB9356.namprd12.prod.outlook.com (2603:10b6:408:20c::21)
- by DM6PR12MB4281.namprd12.prod.outlook.com (2603:10b6:5:21e::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.14; Tue, 7 Jul
- 2026 18:42:32 +0000
-Received: from LV3PR12MB9356.namprd12.prod.outlook.com
- ([fe80::1c36:31b4:c420:6286]) by LV3PR12MB9356.namprd12.prod.outlook.com
- ([fe80::1c36:31b4:c420:6286%5]) with mapi id 15.21.0181.009; Tue, 7 Jul 2026
- 18:42:32 +0000
-Date: Tue, 7 Jul 2026 14:42:30 -0400
-From: Yury Norov <ynorov@nvidia.com>
-To: Andrew Morton <akpm@linux-foundation.org>,
-	Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Cc: Russell King <linux@armlinux.org.uk>, Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Ingo Molnar <mingo@redhat.com>,
-	Arnaldo Carvalho de Melo <acme@kernel.org>,
-	Namhyung Kim <namhyung@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	James Clark <james.clark@linaro.org>,
-	Thomas Gleixner <tglx@kernel.org>, Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	MyungJoo Ham <myungjoo.ham@samsung.com>,
-	Kyungmin Park <kyungmin.park@samsung.com>,
-	Heiko Stuebner <heiko@sntech.de>, Xu Yilun <yilun.xu@intel.com>,
-	Tom Rix <trix@redhat.com>, Moritz Fischer <mdf@kernel.org>,
-	Yicong Yang <yangyicong@hisilicon.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
-	Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Shuai Xue <xueshuai@linux.alibaba.com>,
-	Will Deacon <will@kernel.org>,
-	Jiucheng Xu <jiucheng.xu@amlogic.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Jing Zhang <renyu.zj@linux.alibaba.com>,
-	Xu Yang <xu.yang_2@nxp.com>, Linu Cherian <lcherian@marvell.com>,
-	Gowthami Thiagarajan <gthiagarajan@marvell.com>,
-	Ji Sheng Teoh <jisheng.teoh@starfivetech.com>,
-	Khuong Dinh <khuong@os.amperecomputing.com>,
-	Yury Norov <yury.norov@gmail.com>, Kees Cook <kees@kernel.org>,
-	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas.weissschuh@linutronix.de>,
-	Aboorva Devarajan <aboorvad@linux.ibm.com>,
-	Ilkka Koskinen <ilkka@os.amperecomputing.com>,
-	Besar Wicaksono <bwicaksono@nvidia.com>, Ma Ke <make24@iscas.ac.cn>,
-	Chengwen Feng <fengchengwen@huawei.com>,
-	Ritesh Harjani <ritesh.list@gmail.com>,
-	Yushan Wang <wangyushan12@huawei.com>,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	linux-perf-users@vger.kernel.org, x86@kernel.org,
-	driver-core@lists.linux.dev, linux-pm@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, linux-fpga@vger.kernel.org,
-	linux-rdma@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-amlogic@lists.infradead.org, linux-cxl@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 00/11] lib/cpumask: get rid of
- cpumap_print_to_pagebuf()
-Message-ID: <ak1IltLSvhw2xj2H@yury>
-References: <20260702154725.185376-1-ynorov@nvidia.com>
-Content-Disposition: inline
-In-Reply-To: <20260702154725.185376-1-ynorov@nvidia.com>
-X-ClientProxiedBy: CH0PR03CA0037.namprd03.prod.outlook.com
- (2603:10b6:610:b3::12) To LV3PR12MB9356.namprd12.prod.outlook.com
- (2603:10b6:408:20c::21)
+	id 1whBRF-0000000Fkvm-1MWd
+	for linux-amlogic@lists.infradead.org;
+	Tue, 07 Jul 2026 19:26:38 +0000
+Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-2c7c61b5292so66027095ad.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 07 Jul 2026 12:26:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1783452396; cv=none;
+        d=google.com; s=arc-20260327;
+        b=pR4xrmokYBOVJCsI3vFvIsgZR8OA0cRA02FFsNf7MfmuC11YZrymFEUD18VomacAXY
+         UR/RTaWc0JuUGCpRazW3l1qtdjL9x8PrF3apGiNp61NgRHYh/HEMunL7YwNRhTUjCqNn
+         ZYZ4b8XBPcCGeATwfuTsKX9jpo2G7KdQJK5480//Pxj7lMqd0IIqb4Yg6U37Cu6yvRsG
+         cyDYfiq1X/iEUNZ6h5lwvya1pgZ+N9HVvEgpBS2bTgGZZxlYS2I3R5nlR1pGsDEzNOCr
+         Sj/PU8ZnrQMx1kvpjZMgV2gVxLd+S4Pjwl8DC3/rL3lBU648wkVt25vWlK9ZArWQcNDc
+         lYNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=1u0DNx/dvFBXj7ONBaHCpq/y26kmxzUXBBihnDFYivE=;
+        fh=1qwU4SiOmX00rsOz6fNDVC8A/8PbDueI2P6tGUIDUj0=;
+        b=PU2b8DA0ROgyB9oCIk88nO4YEspRZoQKXZXPoMD4GPtr4nrAFtDSfCwjG9sIBSrgyT
+         XGEpEL9PNtX8AKM4NJQBb8QnK4vaXj/TBIRAAtq9G+5dAFg+EczH8S+Rg1aUeSJXCvks
+         BdWkHgXCsvwgi2UkFjYRKS2Ppn6iAndCb0rZ/gzNIgg94PyweLAMWOtI2HRDxGaC9qgQ
+         51qnSBVE9CTdLRqGUI9H+S3acNtCkyZioSSuT0rcAj5P/BtgEUdAY+crr+tysHDH8ciN
+         vSY6kUJQ57N6XljEeRAcE7fbScOwLUHjVEecDYda1R57t73bKipZ/PS1rnir2lVQIN1+
+         Xdaw==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20251104; t=1783452396; x=1784057196; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=1u0DNx/dvFBXj7ONBaHCpq/y26kmxzUXBBihnDFYivE=;
+        b=Lrc/LSGFsWiVAiKMZiCEpcw7xQh58ZcBeKXZbbOa3kll0fUfSFmJBe+ZgX4XM7jTHX
+         fTAt8US6KRh99ukH9dCAFugQS4KrWQAJNPbMJl8d+X0snRIReW6mxFrgQjYTlEpDzztq
+         xA9s+B70D28DFa4L7J66H/3irILW3UfiWQeA4/SxMcv3R/Yh0hCaqH1d3UnFhDK2fl59
+         TUKnKSgFiuGIOvGu31+bVnoklCy+f7N1fllXyCBxECbjg7UZB8dHOPXCxYrUmQzf1HRP
+         zw69RC7JhSzoXYEBzlzAWlKHBpDAiHP/lB2kn5orfJu9JjLtc+P/qQnYjPNK8w6855+C
+         47lg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1783452396; x=1784057196;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=1u0DNx/dvFBXj7ONBaHCpq/y26kmxzUXBBihnDFYivE=;
+        b=Pnzw8nklUj31wwMt6OVQDhTjWnDmenaFnvaYel8W8UItEh5yCnUYtKUuIXCi9rHSMb
+         WmpYAOa3vuX5K146oqLSwB1AFqi/LFgAItq67CNyws/5GuurciBYhHBaB46qTpy77YPG
+         BRGS1LdaJAfNZfB40Ah4H45AkRvdc1mE9x25lpv0mEHljomN46mdMoK7KRen/bta+cMQ
+         yS2l48kKhjUke8GDoo83DcYTfPh9bgtEyZ8X5t8PF3GV5qgzrlC7oVLjWcCjrdWtLJgL
+         NqjXdacWKZccyAA1XuxUg86IPrxScacmOhJGltg6JiVM5ti/vPIbe2Xop+AGVxIXKMZV
+         hD+A==
+X-Forwarded-Encrypted: i=1; AHgh+RoS5kGQTP4cDCdSISIGfpxvkhoKDu8ORC4wnmaG6S0hcw4Qlgo9o7eC8caN5vM8HFQSK+x8NvcSr9lzUtoh@lists.infradead.org
+X-Gm-Message-State: AOJu0YxBRQ05sZrcpGJc/rrnybfWeEhLhKMx5CjDdLO6qnu0yAe79z+v
+	o2tUgwPeW0FnWKl0lCOQJAn1IPdijx8wtQKX7wCluXUZusS3NDXc1C4s8b01YTcqt57qjPx/8p/
+	oDvCcK+ujlVZF9TWTiOYgdBzsrW7mnIc=
+X-Gm-Gg: AfdE7cklEQWrzP/vDdKBtjJMak7qSnNEFUWr3eusDM5OMN3I0vQ908g/g5EqEHKbATg
+	yLiuq97OioYZQonOghTx8MrYKbjdQRXbXAFZ6MEAXfNlgk6BYMO95adLI5MAtxru4Hwj7Ml+Z4b
+	INXp9ew78jmmPL+RWmyMVAq6fK8a1WqKFv0lEN/rFl0PaplkZWwcuNxYn24OXh12CfEbt77iArr
+	IxhyRAc4mR44gCJXHqhI4sVJrIRJXdo7VPy0E5QSulEZlUyCIvJY0Tf0i4hOjGnRoREYlu3QlR5
+	rXFzcg9UqRYtBJTl8fTVI0M4Sg==
+X-Received: by 2002:a17:903:248c:b0:2ca:11af:5ee9 with SMTP id
+ d9443c01a7336-2ccbf0515c7mr44657295ad.25.1783452395771; Tue, 07 Jul 2026
+ 12:26:35 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV3PR12MB9356:EE_|DM6PR12MB4281:EE_
-X-MS-Office365-Filtering-Correlation-Id: a9fe8075-5163-4391-bea2-08dedc578130
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|23010399003|376014|7416014|22082099003|18002099003|11063799006|56012099006|6133799003;
-X-Microsoft-Antispam-Message-Info: NxpmzHpLRHbkpQwIcSIbqnmUt1oSohXxde2OGgxei0cGQUG0PntrEJZuhETYGiDkfQkSrhL90K9iaUdXgb7Lmvk0FpHYsDiYegAwjmh2PYkgS0paPwYWxovWF3etkfsvgC575c2uC1+AbSZpPyGFkKmHBp+8heQlQk+XM0m8V/Q4U0R/3OJt7VTQOFdWp9d7ZJe0EBl6gk6QsSA9C2TMr0mzQtt7Ct6iOa15KPkm1Y0/ZqfWFdmqyokl4lUlN2Fk6oODKPoNdEE4lvVcTRkb0GrkPs/TgpabINay7QUgayipdxmKGlRlA9m5FAxHlC1sJi04lllmjuBKXH5wU2Qyhi1rhUWcMYHj03k1IAFTkf+HmnbfatkjtlJ3EjjOApqrTtFDB77Ooj+AZwuVgQiSWM7xnri+o50Qgk4F8z/U2ph2aKq5avzKyscbhLgQOZVTYlmBjD0eC5EuMoSWXycvW02femTwdL/v3wOTei+1H+kd44iQGMmrm4nM/vjs9Nzs1WDDMsKgnl0x+gonK8YTnZ+BXD4Bo5ugM8PSFWQYWvd97C/o/ZTyHhYg+WlMUQW5J+IkC7GufPiM7MTS1v9rbnH7Cb0c0iKYBTDQQnvZJi/PWnUGIWIAZuMzaC8jdKZvjM79sihzbWiN9syqiR7IFhfSyz0F0uFXoKUMrRPYM6U=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV3PR12MB9356.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(7416014)(22082099003)(18002099003)(11063799006)(56012099006)(6133799003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?SiQzI8ohKs62x9Az4vlIly7jtkeb1zq7fA+N8Y4QXsU61R7rOL2lPYxQZrJV?=
- =?us-ascii?Q?jP7N+OUGHezZWOqNG/LoH5SUHQzpeU3DN2iv01A5qCWtqxiGFrUdkP/WVTYY?=
- =?us-ascii?Q?ag86fU/SBiF26PIDjxOXkIVIkOJYXWeSE/+U8dUBQHXI38pTnU3cLgtR5k3a?=
- =?us-ascii?Q?TMDzZ5ajUwGstujZN4hJi+nGZlMJEfmPUHGHl4Ug8FNXlkisEhdIO2IqDJLl?=
- =?us-ascii?Q?WAU8x41BDPDuwLYkSn3tKoWz94Rq7eBA/+kx3cMg8AQXhvIaxDpq+BbbEyLD?=
- =?us-ascii?Q?WyXKA0Bg1L/ob8eaQiAp07uaxAzOaEKWPXHEb4y93BXynfLoR4lV4maDG0RT?=
- =?us-ascii?Q?FMCiiZrmoJr5seo0du/jwMovnBkeer4TV8WCj4xcMKR9YkgOP/t2NN97u7x9?=
- =?us-ascii?Q?wtKEIKN3Exs79ezHOg8haKhW7f5JcCmi+Jr60sYIbJCeRaF4TKnQi2NZgrcQ?=
- =?us-ascii?Q?mbU86xNacK2UJ4u5QriD33CiMjlgwbd9/ZqSgdg0Xfz6wK6r8mlhYx2mdEYQ?=
- =?us-ascii?Q?e8NV3+VcqyPrqTzlOKpHONruyACX5W6UNaBUNCnGfpj4RVETdhU4FwKq/l7E?=
- =?us-ascii?Q?HizgZWA87T+4saJQ1OHCw0zy7xo9QAoprQUxOkZj/x8zlYsa8olqBooTThug?=
- =?us-ascii?Q?XtXTolV/G6yN0dhX9idQ/qb9pJVV4+YYcUhXldKPUNZxo6sR6PAenoS4UkMR?=
- =?us-ascii?Q?qvGypU0jO1wGKVOkQI75LusZ6WvOrQqrGJjxbzktl7Bzcb3+UCq7W4YMI8Tn?=
- =?us-ascii?Q?+0SCpqUjGVWeQJH5a/0jTuxeG1TGJzJAcnC5Dl0TU4BIB7Njy/A3BX8YXH/R?=
- =?us-ascii?Q?WcusWrkSKkU4CxJICvLYbUrCEOwfyLG5gMMBsz75Wa7vKmWMRoJ/HajiSwDt?=
- =?us-ascii?Q?sLWXsO20+oAFm3BQg7ewE5Ugc8OAGL00DBfH3Nw0JefnNNwCW3PThWs/Wwer?=
- =?us-ascii?Q?eWEo3cnHdPCm0KVOxcjfk3ICWg7aRFT1ULay1y4c4L5vZyxr2ltI8d/hp1lW?=
- =?us-ascii?Q?HIoa65wmbpVUmFT6DggUgCq6iuyks3jl7nJ0xkRRIrsZ3sDVLSdf/I4tXemx?=
- =?us-ascii?Q?SLwRekoK0bn9gx6cQFVQ6XZV0xuMDVSdZYfaMwjAbp2KtxjJMGenE/hi6T2D?=
- =?us-ascii?Q?Dp3wF5Rm01fFzulYcl0r8IvrQm2ip7ZazotHt/zQ4UZ2JVgJZYmK4IHgBVh/?=
- =?us-ascii?Q?BBUeK+5nJrCyfYxUsF35C8Itc7M4cH4QiICtKk9lNVxIc2Q4JqODoKdMdtDB?=
- =?us-ascii?Q?hpfmREYiRPwHE1T+2dmMWX7WCGcfXNCKvFLv2tMRWiVPIINgd4b66QYUPQUY?=
- =?us-ascii?Q?dWXcDUfKkC5TyFXUdYLt2vX/72zJS6qJP/ZfuVxMn9MJHYtHrNID0W2fVu9S?=
- =?us-ascii?Q?gALekxfX/Y6MVNjd0sdzCajc7HIFptn3zGIUeB4Qh4JIB8q2o5lwBLu/a1yc?=
- =?us-ascii?Q?7KGU+O8XVRe0gMr5V1lctB/X9rDPIaRlKdYjyP/+stqcqdnWHE4diBFIgR7D?=
- =?us-ascii?Q?TevUlbhUhTGr1Dk4bAUoWJB91OS+m9yM5lE3sIjZ9d3eRlkjsPdomyWKViYr?=
- =?us-ascii?Q?gjjLcSVlh6It5NIVUojhSIgRw7rKXIfUpDN1R7WYShiCww6NVRlD+h63FQlO?=
- =?us-ascii?Q?7BPZLNOTGSDFbZ4G6/lgY2dIqJnIX85aJwFrns6W8Bq2TEISe+AOc0Ge38Tz?=
- =?us-ascii?Q?GTq5lrSUyvCAF+HoUWUAk2uh8pytRVQ5bMGCvLEP4IDtgX5B?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a9fe8075-5163-4391-bea2-08dedc578130
-X-MS-Exchange-CrossTenant-AuthSource: LV3PR12MB9356.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2026 18:42:32.3185
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uJ94FGIl5fGyIsMqJde9xM/7YwLuqHPmfqSuXko5YdDmTTaQuMcbWQZX6PT8XmAvMMaaqUt/VzshdNwEyjxqQQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4281
+References: <20260706093508.273968-2-krzysztof.kozlowski@oss.qualcomm.com>
+In-Reply-To: <20260706093508.273968-2-krzysztof.kozlowski@oss.qualcomm.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 7 Jul 2026 21:26:24 +0200
+X-Gm-Features: AVVi8Cew5STZTOkHk0OKqMhqBm-tS-RzEUyhCNysxzBbiVbMzJ57Y2V-AnBf18k
+Message-ID: <CAFBinCABGgQtsn1MsbQn_wjuCAUTaTaEhbGbwNjKeJRx-NDcZw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: amlogic: Correct indentation and whitespace
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260707_114248_936223_61C54EBE 
-X-CRM114-Status: GOOD (  18.52  )
+X-CRM114-CacheID: sfid-20260707_122637_355226_9E8824F2 
+X-CRM114-Status: UNSURE (   7.58  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -191,102 +116,18 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Added in bitmap-for-next. Thanks.
-
-On Thu, Jul 02, 2026 at 11:47:13AM -0400, Yury Norov wrote:
-> cpumap_print_to_pagebuf() is the equivalent for the "&*pb[l]" notation
-> in printk-like functions. In some cases, it makes people to create
-> temporary buffers for the printed cpumasks, where it can be avoided.
-> 
-> Get rid of it in a favor of more standard printing API.
-> 
-> Each patch, except for the last one, is independent and may be moved with
-> the corresponding subsystem. Or I can take it in bitmap-for-next, at
-> maintainers' discretion.
-> 
-> On top of -next.
-> 
-> This is the resend of:
-> 
-> https://lore.kernel.org/all/20260528183625.870813-1-ynorov@nvidia.com/
-> 
-> Except the patches merged in 7.1 cycle. I'm going to apply the material
-> in 7.2 unless explicit NAKs received.
-> 
-> Yury Norov (11):
->   arm: Use sysfs_emit() for cpumask show callbacks
->   powerpc: Use sysfs_emit() for cpumask show callbacks
->   x86/events: Use sysfs_emit() for cpumask show callbacks
->   cpu: Use sysfs_emit() for cpumask show callback
->   devfreq: Use sysfs_emit() for cpumask show callbacks
->   fpga: dfl-fme-perf: Use sysfs_emit() for cpumask show
->   hwtracing: hisi_ptt: Use sysfs_emit() for cpumask show
->   RDMA/hfi1: Use sysfs_emit() for cpumask show helper
->   PCI/sysfs: Use sysfs_emit() for cpumask show callbacks
->   perf: Use sysfs_emit() for cpumask show callbacks
->   lib/bitmap-str: get rid of cpumap_print_to_pagebuf()
-> 
->  arch/arm/mach-imx/mmdc.c                    |  2 +-
->  arch/arm/mm/cache-l2x0-pmu.c                |  2 +-
->  arch/powerpc/kernel/cacheinfo.c             |  3 ++-
->  arch/powerpc/perf/hv-24x7.c                 |  2 +-
->  arch/powerpc/perf/hv-gpci.c                 |  2 +-
->  arch/powerpc/perf/imc-pmu.c                 |  2 +-
->  arch/x86/events/amd/iommu.c                 |  2 +-
->  arch/x86/events/amd/power.c                 |  2 +-
->  arch/x86/events/amd/uncore.c                |  2 +-
->  arch/x86/events/intel/core.c                |  2 +-
->  arch/x86/events/intel/uncore.c              |  2 +-
->  drivers/base/cpu.c                          |  2 +-
->  drivers/devfreq/event/rockchip-dfi.c        |  2 +-
->  drivers/devfreq/hisi_uncore_freq.c          |  2 +-
->  drivers/fpga/dfl-fme-perf.c                 |  2 +-
->  drivers/hwtracing/ptt/hisi_ptt.c            |  2 +-
->  drivers/infiniband/hw/hfi1/sdma.c           |  3 ++-
->  drivers/pci/pci-sysfs.c                     |  7 ++++---
->  drivers/perf/alibaba_uncore_drw_pmu.c       |  2 +-
->  drivers/perf/amlogic/meson_ddr_pmu_core.c   |  2 +-
->  drivers/perf/arm-cci.c                      |  2 +-
->  drivers/perf/arm-ccn.c                      |  2 +-
->  drivers/perf/arm-cmn.c                      |  2 +-
->  drivers/perf/arm-ni.c                       |  2 +-
->  drivers/perf/arm_cspmu/arm_cspmu.c          |  2 +-
->  drivers/perf/arm_dmc620_pmu.c               |  4 ++--
->  drivers/perf/arm_dsu_pmu.c                  |  2 +-
->  drivers/perf/arm_pmu.c                      |  2 +-
->  drivers/perf/arm_smmuv3_pmu.c               |  2 +-
->  drivers/perf/arm_spe_pmu.c                  |  2 +-
->  drivers/perf/cxl_pmu.c                      |  2 +-
->  drivers/perf/dwc_pcie_pmu.c                 |  2 +-
->  drivers/perf/fsl_imx8_ddr_perf.c            |  2 +-
->  drivers/perf/fsl_imx9_ddr_perf.c            |  2 +-
->  drivers/perf/fujitsu_uncore_pmu.c           |  2 +-
->  drivers/perf/hisilicon/hisi_pcie_pmu.c      |  2 +-
->  drivers/perf/hisilicon/hisi_uncore_pmu.c    |  2 +-
->  drivers/perf/marvell_cn10k_ddr_pmu.c        |  2 +-
->  drivers/perf/marvell_cn10k_tad_pmu.c        |  2 +-
->  drivers/perf/marvell_pem_pmu.c              |  2 +-
->  drivers/perf/nvidia_t410_c2c_pmu.c          |  2 +-
->  drivers/perf/nvidia_t410_cmem_latency_pmu.c |  2 +-
->  drivers/perf/qcom_l2_pmu.c                  |  2 +-
->  drivers/perf/qcom_l3_pmu.c                  |  2 +-
->  drivers/perf/starfive_starlink_pmu.c        |  2 +-
->  drivers/perf/thunderx2_pmu.c                |  2 +-
->  drivers/perf/xgene_pmu.c                    |  2 +-
->  include/linux/cpumask.h                     | 19 -------------------
->  kernel/events/core.c                        |  2 +-
->  lib/bitmap-str.c                            |  9 ++++-----
->  50 files changed, 58 insertions(+), 75 deletions(-)
-> 
-> -- 
-> 2.53.0
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gTW9uLCBKdWwgNiwgMjAyNiBhdCAxMTozNeKAr0FNIEtyenlzenRvZiBLb3psb3dza2kKPGty
+enlzenRvZi5rb3psb3dza2lAb3NzLnF1YWxjb21tLmNvbT4gd3JvdGU6Cj4KPiBDb3JyZWN0IHNw
+YWNlcyBvciBtaXggb2YgdGFicytzcGFjZXMgaW50byBwcm9wZXIgdGFiLWluZGVudGVkIGxpbmVz
+IGFuZAo+IHJlbW92ZSBvdGhlciB3aGl0ZXNwYWNlIHZpb2xhdGlvbnMuICBObyBmdW5jdGlvbmFs
+IGltcGFjdCAoc2FtZSBEVEIpLgo+Cj4gU2lnbmVkLW9mZi1ieTogS3J6eXN6dG9mIEtvemxvd3Nr
+aSA8a3J6eXN6dG9mLmtvemxvd3NraUBvc3MucXVhbGNvbW0uY29tPgpSZXZpZXdlZC1ieTogTWFy
+dGluIEJsdW1lbnN0aW5nbCA8bWFydGluLmJsdW1lbnN0aW5nbEBnb29nbGVtYWlsLmNvbT4KCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9n
+aWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8v
+bGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
