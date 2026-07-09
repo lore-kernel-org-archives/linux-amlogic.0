@@ -4,94 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98EA3C44506
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jul 2026 20:56:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF548C43458
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jul 2026 21:08:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=I2TD1zlgvCsRgLyopG1xIU3a+Ca01V+hNi9SMiFBSW0=; b=F06XqK/Q11Xkc9
-	+yoIo9C7bl9A26SkxtgUWAHCev5y8R3ciCYJ6zP5de9LSW4QFoBSfJP3BHn2S05G+scfz6O4hw+E3
-	0in1GNPpjjCTbLdSanzu4X0Wzl0tBNlvDmOQJIsasNgOzBbl8bd1WlCjF1rDYvYyjVittKdAJ32TN
-	sP2tO0rc9fF6NBs5nWgz5xcaDE5ACR+Jk3/sFjlHoeb6O36FqGedwaXCxLVPB1Lk9E3mhl0voeCvv
-	P+EuVfqqwEDzpvSQRRtgzt7THNH2P1nqGWbnmIK4MX71wbzDo13K8ZJZOIhbyNfGGxez7mVwQzEEw
-	jmn21Rv8yC0QLswrF1zg==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=7V+kdPQKcBRxYbM+9kx3MmYmiH78JTXv7DvEXgRhYog=; b=Z9Au13iK/TsjUK
+	dcr4AHwh9UoxEuWlnLAvbpXoaq6kM+8JZv2CE+nsuwxpHYi/u5tXMfwV4IpmtdCgvMXpYiqDZEJUz
+	2EDnJRW10KzhlqjrDjbf0LlxVanj30N7+gEeZa/5BPi0ryL+pdJlKe2HOaEa4M5QNsUjpcaut1k6t
+	Rd6amrWCGi0fiLXqHPrwHYoJ5BhHzlzW23/hOLI6t9Y7XVoTSYIykXC67Hj4VwX+AV2fYpGUNVnHV
+	+W6RWTIpIJkyADiczU2rX9CAzJurFetdfxAJjLd/wuVqD+NU65pP8KiHs1BfbJBWLeI5GxLI+fZkW
+	iIJUpgI8B7J+Hat2IWgw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1whvmy-00000003eGg-47n2;
-	Thu, 09 Jul 2026 20:56:08 +0000
-Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
+	id 1whvz2-00000003fbp-1xAl;
+	Thu, 09 Jul 2026 21:08:36 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1whvmv-00000003eFP-2wAd
+	id 1whvz1-00000003fbe-2moI
 	for linux-amlogic@lists.infradead.org;
-	Thu, 09 Jul 2026 20:56:06 +0000
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-c15d47266baso37706266b.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 09 Jul 2026 13:56:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783630563; x=1784235363; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=lieoZSrETeNqfqjggjcg7YjI6XZdYix99GC+0aKI1SE=;
-        b=B2A8woM30j/LL1Mm9SEhHGpBHPANsVuf0ksDAk3sv8hfYI1nvVhs0o5EMONYQ6Py5f
-         itYUCzIzNK4ZNQ1hM24qm1DNTzmPwkmMC61EZwPzyi+xg6QHz54Bgve3Xtspu3pDmaJn
-         n9dMijmbWNexwkwYoauKOoRA2KP5a0lznFDeiuNQLgh+Thh4HTORJyinKcavRzamyBf8
-         lrPA3bI/migbmLdW9WKAWedKuZn1KVBOso5idCoDZnwc7utisOjCpAraGjkWtrKdWWyF
-         z8k27xSmSM/oVtfAO4p4NkRtoDnyUkrTZQWKfIpbpCJggz3lV3KW7oB/rApz9hV69NP9
-         PTjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783630563; x=1784235363;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=lieoZSrETeNqfqjggjcg7YjI6XZdYix99GC+0aKI1SE=;
-        b=KQ70LDw3IrgxxRa76lVFeaNUWSVguEXFCPFXf0Ngg+3uFm9qK4S0TQKoGNe+Hf5bpW
-         V6EspnDxqU1429jlFBJcQt3eRN3+HNAt58ao5veqGklRkTGYHFoMq7ADZHxWNVjHc18g
-         ny8iJml5hYqxzn0HinZP2PjyhsJFHy6vQnS1uBA8qL3esKM/BX51qG9Y0umsBcsmTudc
-         3alwBgqcIL4A5uYru/m6YZQYley2HR5X9zlmo8S5xA9c/r5wXR8M6WvrWCOewKFPa6wA
-         31GAkpji+CzPAc4TsfF3IXTQBaVb/Ec++dduTVzqWTrTtZ9BiOB9UG4t5ZPUVln7koDa
-         jiaQ==
-X-Forwarded-Encrypted: i=1; AHgh+RpviZ5X9aDa3NvxMxzZ3K+D+C4weT6pF/8+zEuzMMkUu7G1UFQuEuCLwsn9RsgGsS25r2K8yKCVYRwWfJjv@lists.infradead.org
-X-Gm-Message-State: AOJu0Yx99qnyOAYko+9CDpLd5j/eocyDiI2msx9y3KhGuLSeQfG/OvEL
-	71rTPvolHjOdFPuHmS6Kma8gKZw1eGKSeSeocIuDp6ZhPEPEHQIs8wCQ
-X-Gm-Gg: AfdE7cnSyOZk6O+8af/+iZ7WzAn15H+IfHNF331fnWu73h+Kim2oaLyE25UdLXrrYZa
-	ueLZXZo7XxYmpn+iMQgk36586gxic7AHCv39uzTTR+VykL2wfuzagR2WUt2XlCZxjTaMRCG/mOo
-	UMi0VG3bOU3GzTFRlyTaLIm2+4mtqVN8GPvYYiJ7ePB9kzsKD8wFDGWGjMXYuGMLQzoY4Hc6hue
-	K1r31C3PPK5Nci7JuVn9MF7dnEY1bjS6fRSaveIkuwCZIJBR1MrKlT6HjaO0+AijZMdNuhkgTKL
-	xsSQx7mYpZ/yBnBUJyfNTBc+1I4RWJswyEfd60vY1GMHmVlnXtFXbYOAqXe+tyrPJOznv8DL9pT
-	tOjfUwNFpdUA3AntIp3K3p6yaurZLbYpfwHUedi9oBb1aqOuF8M0iD/8Ogl6Y83p89QSchn6/XN
-	Lcz/INUuPHRfx/fVWBvwqEk+/lr1KJWcKoM9ZwtZJ7dwXZqw==
-X-Received: by 2002:a17:907:3e11:b0:c15:f26a:342f with SMTP id a640c23a62f3a-c15f26a5b0bmr128439166b.23.1783630562908;
-        Thu, 09 Jul 2026 13:56:02 -0700 (PDT)
-Received: from liam.home (233-51-98-95.ftth.glasoperator.nl. [95.98.51.233])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c15c63c04fbsm369352866b.23.2026.07.09.13.56.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jul 2026 13:56:02 -0700 (PDT)
-From: Liam Zuiderhoek <zuiderhoekl@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Cc: neil.armstrong@linaro.org,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	khilman@baylibre.com,
-	jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Liam Zuiderhoek <zuiderhoekl@gmail.com>
-Subject: [PATCH] GPU: drm: meson: inline call to drm_simple_encoder_init()
-Date: Thu,  9 Jul 2026 22:55:38 +0200
-Message-ID: <20260709205538.73157-1-zuiderhoekl@gmail.com>
-X-Mailer: git-send-email 2.43.0
-MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260709_135605_938217_D6F1C377 
-X-CRM114-Status: UNSURE (   9.45  )
-X-CRM114-Notice: Please train this message.
+	Thu, 09 Jul 2026 21:08:35 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 0F2FF40676;
+	Thu,  9 Jul 2026 21:08:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A72F31F000E9;
+	Thu,  9 Jul 2026 21:08:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783631314;
+	bh=r+xZpvMgaCfFyrAKqvHAw5Gzt11rUilGyxt/GV4BNsQ=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=BtgllV59JmLw/nsGxCnoiMDlcl2oRPiQqhXa3LUn0sJALAI/iYveLC/TkvY9Q7elt
+	 Wp01iWyovnKGdmwEeUvdqCZEebTcsVOXfldbboUU3XC4CiKdsO7kdpHe/dZHEzybqf
+	 MKZqHJ8inkkqjzRXzLYYEIy8XbqrDiOCuNiIvSk+5jtGOQacE41k1/7ONfdkIWbmq+
+	 buN+yZRlDFlKF4iaFQ9z8e872+HxyQht61oEF69uXIVx/R/rkeiI/SqnG+kWDcE3B6
+	 pAAL0RFgoWtY3vOpK/nJuAqbIEMPzMhX50+BWoq2IL/U9fEkH5lEniAFL7iNfPylRc
+	 iOwW86Vnav4oQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] GPU: drm: meson: inline call to
+ drm_simple_encoder_init()
+To: "Liam Zuiderhoek" <zuiderhoekl@gmail.com>
+Cc: linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <20260709205538.73157-1-zuiderhoekl@gmail.com>
+References: <20260709205538.73157-1-zuiderhoekl@gmail.com>
+Date: Thu, 09 Jul 2026 21:08:31 +0000
+Message-Id: <20260709210834.A72F31F000E9@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,52 +62,74 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This commit inlines the function drm_simple_encoder_init for the meson
-driver. It replaces the simple encoder init call with drm_encoder_init
-and a custom cleanup struct.
-
-Signed-off-by: Liam Zuiderhoek <zuiderhoekl@gmail.com>
----
- drivers/gpu/drm/meson/meson_encoder_hdmi.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-index 55c0601df3c6..0dd3a76ad959 100644
---- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-@@ -44,6 +44,10 @@ struct meson_encoder_hdmi {
- 	struct cec_notifier *cec_notifier;
- };
- 
-+static const struct drm_encoder_funcs drm_simple_encoder_funcs_cleanup = {
-+	.destroy = drm_encoder_cleanup,
-+};
-+
- #define bridge_to_meson_encoder_hdmi(x) \
- 	container_of(x, struct meson_encoder_hdmi, bridge)
- 
-@@ -407,8 +411,9 @@ int meson_encoder_hdmi_probe(struct meson_drm *priv)
- 	meson_encoder_hdmi->priv = priv;
- 
- 	/* Encoder */
--	ret = drm_simple_encoder_init(priv->drm, &meson_encoder_hdmi->encoder,
--				      DRM_MODE_ENCODER_TMDS);
-+	ret = drm_encoder_init(priv->drm, &meson_encoder_hdmi->encoder,
-+			       &drm_simple_encoder_funcs_cleanup,
-+			       DRM_MODE_ENCODER_TMDS, NULL);
- 	if (ret) {
- 		dev_err_probe(priv->dev, ret, "Failed to init HDMI encoder\n");
- 		goto err_put_node;
--- 
-2.43.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MiBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpOZXcgaXNzdWVzOgotIFtMb3ddIFRo
+ZSBjb21taXQgbWVzc2FnZSBjbGFpbXMgdG8gaW5saW5lIGBkcm1fc2ltcGxlX2VuY29kZXJfaW5p
+dCgpYCBmb3IgdGhlIG1lc29uIGRyaXZlciwgYnV0IGl0IG9ubHkgbW9kaWZpZXMgdGhlIEhETUkg
+ZW5jb2RlciwgbGVhdmluZyB0aGUgZGVwcmVjYXRlZCBoZWxwZXIgaW4gdXNlIGJ5IG90aGVyIGVu
+Y29kZXJzIGluIHRoZSBzYW1lIGRyaXZlci4KClByZS1leGlzdGluZyBpc3N1ZXM6Ci0gW0hpZ2hd
+IFRoZSBgbWVzb25fZW5jb2Rlcl9oZG1pYCBzdHJ1Y3R1cmUgKHdoaWNoIGVtYmVkcyBgc3RydWN0
+IGRybV9lbmNvZGVyYCkgaXMgYWxsb2NhdGVkIHdpdGggYGRldm1fZHJtX2JyaWRnZV9hbGxvYygp
+YCwgYnV0IHRoZSBlbmNvZGVyIGlzIGluaXRpYWxpemVkIHdpdGggYGRybV9lbmNvZGVyX2luaXQo
+KWAuIFRoaXMgY3JlYXRlcyBhIG1pc21hdGNoIGluIGxpZmVjeWNsZXMgdGhhdCBsZWFkcyB0byBh
+IHVzZS1hZnRlci1mcmVlIHdoZW4gdGhlIHBsYXRmb3JtIGRldmljZSBpcyB1bmJvdW5kIGJ1dCB1
+c2Vyc3BhY2Ugc3RpbGwgaG9sZHMgYSByZWZlcmVuY2UgdG8gdGhlIERSTSBkZXZpY2UuCi0tCgot
+LS0gUGF0Y2ggWzFdOiBbUEFUQ0hdIEdQVTogZHJtOiBtZXNvbjogaW5saW5lIGNhbGwgdG8gZHJt
+X3NpbXBsZV9lbmNvZGVyX2luaXQoKSAtLS0KY29tbWl0IGJiMjAyMjAyOTc0NDU1MDU0NTg4MTY4
+YjgyYWNmYzQ5ZmY4NWIyM2YKQXV0aG9yOiBMaWFtIFp1aWRlcmhvZWsgPHp1aWRlcmhvZWtsQGdt
+YWlsLmNvbT4KCkdQVTogZHJtOiBtZXNvbjogaW5saW5lIGNhbGwgdG8gZHJtX3NpbXBsZV9lbmNv
+ZGVyX2luaXQoKQoKVGhpcyBjb21taXQgaW5saW5lcyB0aGUgZnVuY3Rpb24gZHJtX3NpbXBsZV9l
+bmNvZGVyX2luaXQgZm9yIHRoZSBtZXNvbgpkcml2ZXIuIEl0IHJlcGxhY2VzIHRoZSBzaW1wbGUg
+ZW5jb2RlciBpbml0IGNhbGwgd2l0aCBkcm1fZW5jb2Rlcl9pbml0CmFuZCBhIGN1c3RvbSBjbGVh
+bnVwIHN0cnVjdC4KCj4gVGhpcyBjb21taXQgaW5saW5lcyB0aGUgZnVuY3Rpb24gZHJtX3NpbXBs
+ZV9lbmNvZGVyX2luaXQgZm9yIHRoZSBtZXNvbgo+IGRyaXZlci4gSXQgcmVwbGFjZXMgdGhlIHNp
+bXBsZSBlbmNvZGVyIGluaXQgY2FsbCB3aXRoIGRybV9lbmNvZGVyX2luaXQKPiBhbmQgYSBjdXN0
+b20gY2xlYW51cCBzdHJ1Y3QuCgpbU2V2ZXJpdHk6IExvd10KRG9lcyB0aGlzIGNvbW1pdCBtaXNz
+IHVwZGF0aW5nIG90aGVyIGVuY29kZXJzIGluIHRoZSBtZXNvbiBkcml2ZXI/CgpUaGUgY29tbWl0
+IG1lc3NhZ2UgaW1wbGllcyBpdCBpbmxpbmVzIHRoZSBmdW5jdGlvbiBmb3IgdGhlIG1lc29uIGRy
+aXZlciBhcyBhCndob2xlLCBidXQgbWVzb25fZW5jb2Rlcl9jdmJzX3Byb2JlKCkgaW4gbWVzb25f
+ZW5jb2Rlcl9jdmJzLmMgYW5kCm1lc29uX2VuY29kZXJfZHNpX3Byb2JlKCkgaW4gbWVzb25fZW5j
+b2Rlcl9kc2kuYyBzdGlsbCB1c2UKZHJtX3NpbXBsZV9lbmNvZGVyX2luaXQoKS4KCkFkZGl0aW9u
+YWxseSwgaXMgdGhlIGluY2x1ZGUgZm9yIDxkcm0vZHJtX3NpbXBsZV9rbXNfaGVscGVyLmg+IHN0
+aWxsIG5lZWRlZAppbiBtZXNvbl9lbmNvZGVyX2hkbWkuYyBub3cgdGhhdCB0aGUgaGVscGVyIGhh
+cyBiZWVuIG9wZW4tY29kZWQ/Cgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbWVzb24v
+bWVzb25fZW5jb2Rlcl9oZG1pLmMgYi9kcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fZW5jb2Rl
+cl9oZG1pLmMKPiBpbmRleCAwYzdhNzJjYjUxNGFlLi43MGE1NDMzNTgwNDFmIDEwMDY0NAo+IC0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl9lbmNvZGVyX2hkbWkuYwo+ICsrKyBiL2Ry
+aXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl9lbmNvZGVyX2hkbWkuYwoKWyAuLi4gXQoKPiBAQCAt
+NDA3LDggKzQxMSw5IEBAIGludCBtZXNvbl9lbmNvZGVyX2hkbWlfcHJvYmUoc3RydWN0IG1lc29u
+X2RybSAqcHJpdikKPiAgCW1lc29uX2VuY29kZXJfaGRtaS0+cHJpdiA9IHByaXY7Cj4gIAo+ICAJ
+LyogRW5jb2RlciAqLwo+IC0JcmV0ID0gZHJtX3NpbXBsZV9lbmNvZGVyX2luaXQocHJpdi0+ZHJt
+LCAmbWVzb25fZW5jb2Rlcl9oZG1pLT5lbmNvZGVyLAo+IC0JCQkJICAgICAgRFJNX01PREVfRU5D
+T0RFUl9UTURTKTsKPiArCXJldCA9IGRybV9lbmNvZGVyX2luaXQocHJpdi0+ZHJtLCAmbWVzb25f
+ZW5jb2Rlcl9oZG1pLT5lbmNvZGVyLAo+ICsJCQkgICAgICAgJmRybV9zaW1wbGVfZW5jb2Rlcl9m
+dW5jc19jbGVhbnVwLAo+ICsJCQkgICAgICAgRFJNX01PREVfRU5DT0RFUl9UTURTLCBOVUxMKTsK
+CltTZXZlcml0eTogSGlnaF0KVGhpcyBpcyBhIHByZS1leGlzdGluZyBpc3N1ZSwgYnV0IGRvZXMg
+dGhpcyBhbGxvY2F0aW9uIGxpZmVjeWNsZSBtaXNtYXRjaApsZWFkIHRvIGEgdXNlLWFmdGVyLWZy
+ZWU/CgpMb29raW5nIGF0IG1lc29uX2VuY29kZXJfaGRtaV9wcm9iZSgpLCB0aGUgc3RydWN0dXJl
+IGVtYmVkZGluZyB0aGUgZW5jb2RlciBpcwphbGxvY2F0ZWQgd2l0aCBkZXZtX2RybV9icmlkZ2Vf
+YWxsb2MoKSwgdHlpbmcgaXRzIGxpZmV0aW1lIHRvIHRoZSBwbGF0Zm9ybQpkZXZpY2U6CgptZXNv
+bl9lbmNvZGVyX2hkbWlfcHJvYmUoKSB7CiAgICAuLi4KICAgIG1lc29uX2VuY29kZXJfaGRtaSA9
+IGRldm1fZHJtX2JyaWRnZV9hbGxvYyhwcml2LT5kZXYsIC4uLik7CiAgICAuLi4KfQoKSG93ZXZl
+ciwgdGhlIGVuY29kZXIgaXMgaW5pdGlhbGl6ZWQgaGVyZSB3aXRoIGRybV9lbmNvZGVyX2luaXQo
+KSwgdHlpbmcgaXRzCmNsZWFudXAgdG8gdGhlIERSTSBkZXZpY2UncyByZWxlYXNlLgoKSWYgdGhl
+IHBsYXRmb3JtIGRldmljZSBpcyB1bmJvdW5kLCBkZXZyZXMgYXV0b21hdGljYWxseSBmcmVlcwpt
+ZXNvbl9lbmNvZGVyX2hkbWkuIElmIGEgdXNlcnNwYWNlIHByb2Nlc3MgaG9sZHMgYW4gb3BlbiBm
+aWxlIGRlc2NyaXB0b3IgdG8KdGhlIERSTSBkZXZpY2UgZHVyaW5nIHVuYmluZCwgdGhlIERSTSBk
+ZXZpY2Ugb3V0bGl2ZXMgdGhlIHBsYXRmb3JtIGRldmljZS4KCldoZW4gdGhlIHVzZXJzcGFjZSBw
+cm9jZXNzIGV2ZW50dWFsbHkgY2xvc2VzIHRoZSBmZCwgZHJtX2Rldl9yZWxlYXNlKCkKY2FsbHMg
+ZHJtX21vZGVfY29uZmlnX2NsZWFudXAoKSwgd2hpY2ggaXRlcmF0ZXMgb3ZlciB0aGUgbW9kZSBj
+b25maWcgbGlzdAphbmQgYWNjZXNzZXMgdGhlIGZyZWVkIG1lc29uX2VuY29kZXJfaGRtaS0+ZW5j
+b2RlciB0byBjYWxsIGl0cyBkZXN0cm95CmNhbGxiYWNrLgoKLS0gClNhc2hpa28gQUkgcmV2aWV3
+IMK3IGh0dHBzOi8vc2FzaGlrby5kZXYvIy9wYXRjaHNldC8yMDI2MDcwOTIwNTUzOC43MzE1Ny0x
+LXp1aWRlcmhvZWtsQGdtYWlsLmNvbT9wYXJ0PTEKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFt
+bG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
