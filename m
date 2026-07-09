@@ -4,133 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DFBDC43458
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jul 2026 09:32:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1188C44508
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jul 2026 11:52:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Z28KbwBThK3hsgg1+nFtkkECTEFU6JTLPivflYva+2Y=; b=lsSMDGt5p4dzTMCpYsGEeuHPxt
-	jqt6boU3S3eNVfw5RO4FoLlauHCDH4YWL7ZXRr/yuW59V2aXeIlqLj07h6KIgXF0PGtDt+fm4aXGS
-	156yNfEgHLcEl050fNwxe60Hpb25TGKmWep7wUXS79oopDwEiptsCTKpu6xTITl2wKwcNeLQyPcLg
-	kZckpmR6FfUHlni6eujGtSFkb99Iijq5PS+O7xGKVdHKM1LFq9qlZorycc3O+pS3rxvlp0MCkLR4F
-	TOsOHf7+AGtwb9IZxvFRZNjc8DVjsZceD7BQeEoCvwZerJWrF2JmsQNcvDtn8twoIn5g68K5pchk7
-	iWatYzmA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ZHsufjx4jZknKwkjXC9RxyxMhLWYgZ7pYMo/juD4Ies=; b=4qydyFFpX6KwDU
+	3S68GXQXk41R92KbgtpT7j58IDAHsV69eNb6aUHtJEax1tqEyLSH+4es5gOYbBAtzEh8uRgiTPFTN
+	fWI7s2g3wGQoteZreRiLFFbG3v3JhA0NPgJrZFKbOVnyRWnGqN1U4FhFEO2xiek2ijBdRFd0SZzVf
+	GMMz4muUSARDKjQu9PfZrQmmKcZHSJFvsV01B+aXyXSBJupAOhcBYSPklkVvVmZLY6n5qzsFOS57c
+	a7jc3WkMqngyGxc7+FSvA77G91E7JLklSTLxncqESgo+Au/u7BtFcic7INQRZrBpxTIRZ5mPP2a8L
+	VJc8Ov2cWqhA8LVZbiLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1whl6z-00000001lyy-1ckA;
-	Thu, 09 Jul 2026 09:32:05 +0000
-Received: from mail-japaneastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c405::7] helo=TYDPR03CU002.outbound.protection.outlook.com)
+	id 1whnIO-00000002Gre-2bGa;
+	Thu, 09 Jul 2026 11:52:00 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1whl6w-00000001lxc-3XjJ
+	id 1whnIN-00000002GrT-09Fz
 	for linux-amlogic@lists.infradead.org;
-	Thu, 09 Jul 2026 09:32:04 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DOFTBbL7P8743tyrg5151FzXSh3vWiXkAUR04xfj0bf0f2QoTyzZJl8Eq+6q9Wy+Y2UkLGjlMklguiy/9qqLpVHighqyMqrNts+qlLQoFAw3ilbspVG0MjcOKjrEpf4d52UcKqV8fcxUXD2RU7Jp0uI4YdfDeLwLt2F6/h+ODfDnow6F9dYdKzqL3Cc4jdv1Gt8/P7A3i2Gyp6C8jaWUAh2JXfF5mn6e1Bivshvorw8ZsiEUtjzX/tfRBHarGMYtaOYZBn37S8DAGy8l81sL+7hldqkVIalWpPL2CuH4QzafggKYows0DF5m6yycJuKbPEAvfnjI4AvCbkGOHxsuZg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=69OnSVdVbyAqzMDBu5Yi3FjqYcjADWW+GYhB6uVtDo0=;
- b=sOL2TqVP1U6jlUCS271jJGBlrwjDK8FQ5ypk+ycnn8CFQOln31YB8fCHabp3n1gdXNZ6EDST4SzHRWXe84htEISuiCWMqyE6P0MeWJkZ/Os+2AYgJ4sjSnzUIbFqNJzcgSnPZpcBhGbgRlOV4meWY8Cbs0I+bqNbn4zKY6QPf76tpfUILi2uR4nTNWapmuNW2WhZW9kfWHsKy5ujmeWzLs6MhcT7R8OBw9+HtS6Z6pee0Xy/GkmRUOLdmVX7vugR3BMkqwYPzFYYAKjDn8QDIp+ZlpUvc7G/gJtI3x//NzU9Lkwh5Zs4oaNDkUhejgv/uTzqU5SBd3cBp0IY9HGyWg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=69OnSVdVbyAqzMDBu5Yi3FjqYcjADWW+GYhB6uVtDo0=;
- b=LS2vm7CiGapkWMz2zWl7519MplYjRA53ei1Vh7x7/ognFA5DYjr+zqcKgfmI6qAdSgNKzUZ6HVn1uV3i4+2qblk7Qy9vSlmEP0dzgGroTI440TS+IaldY2zf6LkZUQ7gn1i1y/LAu4VWkYEOli+MUzIQk/hIiZpeVEHMbKR6VZX794H7VSOi0Bwl5OnVKdNGMVmW6pUizxe7GJcGQy7hry3ZRTL+ysZiC9YTrK52aes4gogy1FzL+ZT99atCY5HQpLwMc6NHHvXi1Q3/xt/NFj1tXowRJ5z6hDIZ75zTej3koVEx2zVjAotfxfUMOGNyThfNlKVCUgb+WlZMUYs9/g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by SEZPR03MB10185.apcprd03.prod.outlook.com (2603:1096:101:33d::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.11; Thu, 9 Jul
- 2026 09:31:48 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::78d4:9dee:2e32:d1e4]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::78d4:9dee:2e32:d1e4%3]) with mapi id 15.21.0181.014; Thu, 9 Jul 2026
- 09:31:47 +0000
-Message-ID: <ee06a6db-1f58-4bea-9933-598322f7671a@amlogic.com>
-Date: Thu, 9 Jul 2026 17:31:43 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: amlogic: a9: Add reset controller support
-Content-Language: en-US
-To: sashiko-reviews@lists.linux.dev
-Cc: conor+dt@kernel.org, robh@kernel.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, neil.armstrong@linaro.org
-References: <20260709-a9-reset-v1-0-fd7cf039b853@amlogic.com>
- <20260709-a9-reset-v1-3-fd7cf039b853@amlogic.com>
- <20260709083550.403D61F000E9@smtp.kernel.org>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <20260709083550.403D61F000E9@smtp.kernel.org>
-X-ClientProxiedBy: TPYP295CA0045.TWNP295.PROD.OUTLOOK.COM (2603:1096:7d0:7::6)
- To TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+	Thu, 09 Jul 2026 11:51:59 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 77B606132C;
+	Thu,  9 Jul 2026 11:51:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC18A1F000E9;
+	Thu,  9 Jul 2026 11:51:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1783597918;
+	bh=mBZ9iKgqAt4WS6yW2PnxBDUYIFnKe4BYNRhZixlLvis=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc;
+	b=ZioBm45l2aE51XfIZ5bmNZ0GOpGexGTSzeoSvdHkMohr5rSpnLwOkRhuE3XDDjx3G
+	 VbTg3Ng8AYFXc2vQY+SAM6gTDCatMPieP2Z5YYNqqx0XpipJb/nWmKLSUWL4NJmLCB
+	 YHo7HG0gotiw/eitngVz44OjZtS7138xorLOY8AI2JghUuebAPwmViHOmiVQaSH+Aq
+	 CSCybJgS4VlgdonSzy9REa6vJ8HDOhICS3sgjbExAlE6RmATuCWfRLN2/3+powj56T
+	 I2dK+N1FqhgiN4kt+upuTFoHWotADvjErs0KsT7a2V1CAVVzEjW65yqNObe3qwCB/o
+	 HY2laG4Mz69Uw==
+From: Maxime Ripard <mripard@kernel.org>
+Date: Thu, 09 Jul 2026 13:50:49 +0200
+Subject: [PATCH 23/60] drm/meson: Convert to atomic_create_state
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|SEZPR03MB10185:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1caff30d-9850-46f3-b4a6-08dedd9ce5aa
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|23010399003|376014|1800799024|56012099006|11063799006|6133799003|4143699003|18002099003|22082099003|3023799007;
-X-Microsoft-Antispam-Message-Info: +o1QYsSg8l3VYyLLmguyFpG9kAuWVzXtpv88nGQuUNrN9OLWHW2/dY5ytu+dqDE5i+e1fkbgtuXdVKnYg38pueveB6fsDtaRna21aQNMNu0RqpUWsSKbQ416YxXf3d5CQsL2+m1BCpbeF/gIlmuIeUrqKnEHumPIpH8qEnUfq4C5KDCp3Bn36JgqehdO2qJFUuNJyuyTdz10TtlxlVggYMDN9exFuZ6IGihS/dRKSxQRaY2JH8LdgjPeQ8V4aHD7+QRK842iQa3SHgoCCmgpJQTVBCWHmljBGzpIomZexO72uGYH26gF4Z767gg1IcA3xH1PpAQTV9SbYcdBaOLfMXMUwB+PvZqISkvEaYBIO9yovoVowo1jAluiZy7TJQ6v58tkj84qbBFo+6iWib9y/C2mjPFdERx1lgutPTCJCy+7YPgl3q5PdDS8F/Rh4oWFJ8QK7fylyG2RkR8p2D5sECGainJNGXxxAK5yBvY8jEcINCyrYgQ3+PRbXcxXbhXeWn7feyO/xcJrn2XqC0CKm3sB+Bt8vsYouYu1pzWQzO34CSrKUnFXeVP4VpS/cQh6/8Y6YvoyEbZkvU8omZRKlPB8xMVQV5GTlKMieVzeXqCNNNSZtTIyd5/XUYGI5I+kIUgF/XD+aQR/JMMACdJV0i8XYqq6G3SPJXH4NB8YVo8=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(23010399003)(376014)(1800799024)(56012099006)(11063799006)(6133799003)(4143699003)(18002099003)(22082099003)(3023799007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RXlKNFJ6RDhxbVkveFdpOERLcGdZcHpwUjdTUUxzbDNNbFp0YUJ1WHJqcnh4?=
- =?utf-8?B?Zzh6MVFERTZXbmxUODlnclhtQ2JJYmJWQmpmUjgvNTN2N2s0YzRYZEM0UWJV?=
- =?utf-8?B?cGJQcERmSDlTWUE4VlhGWjFtMExVbWxUbzBVMkRqdUJ2ZGFGRjdrUmNVVDR0?=
- =?utf-8?B?ZXcwcktyZGZRWEhmL2l6c3ptYWc0aXFqTWVyYTlmZHBNQklMd2VzMzd4R0hI?=
- =?utf-8?B?VWNKYktJRjl6ZHAvK3doTDREVE9XaWVaYUpjUFNSeHNYQkVab1BtVndCeHpI?=
- =?utf-8?B?czVnSThCMDc5elEyNGdjT0lVVDdZQzl3bkh3VEFjRGc1cklLUlIwdEFrMnFh?=
- =?utf-8?B?bUNSSjRDMVI3bnVFR1FpRlVVVW1nVVlWRit2c005bms1cWZvUVpqbGNESnBM?=
- =?utf-8?B?ZVlPOE1IN284TFM4Tk1kWTF3RnRjYlMyK212NEtndWwvc2VXZW9kUWYzUjJn?=
- =?utf-8?B?N3lDOWhNbEp4OTNRUkNSUkR3bEp2UjZKbHlVdGw1NWEvZWJYK3NJaDVxNkYx?=
- =?utf-8?B?cjN4ektWcjFpRXIydlZyNUIxWEVuMG03USs2R3p0MHUweDhQd0lDVXJTT2pt?=
- =?utf-8?B?Z29RRmFwVWdxTVdDQXJXYng5dno4ZitFeU9nMmJsT2RmV1NrMnk2WlJMQWVi?=
- =?utf-8?B?dXhDUEZxMS96YTRZUDhtZkZMQm9TcGJPYm9OZWFHU0lDbE54MmtIektkZVQ3?=
- =?utf-8?B?MEh0a0dQbTFvL2hXL1c4L0Y0SnRJZ2Q4OWhxcnZ1WXJVcktnRTE0MmJ1VzZr?=
- =?utf-8?B?Z01FaWFOK2t1b1krVkFuMkNqdnpxemh2RTlsdFVUaThqZGthbElNckpqckkv?=
- =?utf-8?B?MWY2MXMwQWt4OVliQlNxbjZHNCs4ZHM5MFhteUh3bWpyT1lKclVqZWEyTlN2?=
- =?utf-8?B?RXBncFdrejBtdnJZYjhQQTBvS0VHWnNUbDB4bmlwSVNMd1FzbEtndmgrQW01?=
- =?utf-8?B?eXJpckxMaTF4YlFES2JuYzdHOXRrNmZHMEZlaXNwaWpPZllmK1NRY1pHejdp?=
- =?utf-8?B?S2thMURVcTV6OTlVdXZ2MDQ2a0V2N2h0YnRUUkpSRGduVEh3SGdUejhWOEZl?=
- =?utf-8?B?YkJUcTVaQTg4Q05pbG9MQStwVHh5aHl1VitFRVBkc0JWcllYaE1uU3lZQ25K?=
- =?utf-8?B?Tkc0bmxMNnk1djJkdHJIUklrYXFmVjNCeXdVRGlPdzFrbGZiVFlLVjV3ZTNN?=
- =?utf-8?B?TlNzSjBrNWRYYjROeVRENitYaVFQSWppNG1oaVNoQjNLMWorU0p6VjFMNzNz?=
- =?utf-8?B?c0pCY2RWWFgxRU9RM0NoS1hrVmd2RmlTb1gxTTU0cDAxNytsZmYySTJyUnlC?=
- =?utf-8?B?ZGNMdDEwT3dhNnROSUdRSzh6U1RMS3VWMENOdDNzUkxuMXc3S0M0cGRFMEly?=
- =?utf-8?B?aEJ4T1FHbHpiQ2tqMFoyTmJtZnU3NjJTVkI4emtSUElMLzdwdFZpOTJVc3RE?=
- =?utf-8?B?eDczajhCZWdHQ3IyRnpFR1JlZDgvZnJ3OFRLbXNRUWxNTlA0aVZBc2FRZktD?=
- =?utf-8?B?U1hhdS85T0NMV1hiQ3ArN1FKWHQzZ3d2NURrb0thN3VpaGE4a3M3KzZLTEtv?=
- =?utf-8?B?ajFzWjdHNGM1dGM1UjZGY1ExeFhnSlVDWUFSRXZuNEpLSlhadWF0ZU44TzBa?=
- =?utf-8?B?S1ZkN0x4WGRKSko5aVJuN1hyQ3JaZVdSc2sxZlBVT2pBaWFHaXU2Vlc0a2Iy?=
- =?utf-8?B?TEN1R3kwa3kzM3gxYVBkWkNmM0xjUXhCSWdWOUVuSGtlUGpJbTdWWXpFZEp4?=
- =?utf-8?B?a1lqdUM0WG05TUhEcytJSWxzMHlEdEZQclZDV2VsTWQrSXBVckhVRHQ5WEpa?=
- =?utf-8?B?dVJnNldiL2JvcnEzaW5DdVVPQnhPdlg3KzVpR3NoSlBNd2h1NjcyRUJPeFNM?=
- =?utf-8?B?ajIwWjQ3YXN5N1JZekJkd0hpYnpOdW0rUkNtUFNabXpLL2FGOXgrUHloaG93?=
- =?utf-8?B?NHdmeDV4RGhUQUYzUHUxUkdmZ0UzcnoxRGhGZCs0dVdSTXl0VFZycHVvaERr?=
- =?utf-8?B?OVRYbFdJVEpRY1plY0licERIYmFRUU01V3dUWElLQ2tWaGdxdDYwRzFHbGlp?=
- =?utf-8?B?bGFBamdibjdjWGRoejJidWVnVm1kWS9WcUxOSUJjZ3lSUkhpTkFlWTN3c1lO?=
- =?utf-8?B?TjlNc1cxbDJkYXB3NmZDVzQ0UmdkZXAxYTMzVUcrL0xMaHJaQllnTVJTUURh?=
- =?utf-8?B?aUN6NjhmNzdRTkVwaFlMT2JtNk9jRFhIUzUvd0ZtVXlOZmVpeSs1UFJHd2Jm?=
- =?utf-8?B?U21MUTZMQlRiK3ZyNG1FMTRRdFh3Q1ZzN3JMNytTNUFhVzEya1h4QkZzYmNC?=
- =?utf-8?B?cituTzBLZ000R1RyN043QkpwZjlFY0RYR21jV25mWDJlVGJmcDh4dz09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1caff30d-9850-46f3-b4a6-08dedd9ce5aa
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 09:31:47.3875
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NOd1Et2hYfn4tUAaUejNHQT/YVpfmf38JxqHibv4GOkuPeMC5uxK+jl6tbF6pRVzq8b+otp4o44dQbOd7Q8stPqCAXxNOslsbIPEu0ycT6k=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB10185
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260709_023202_904029_CCCCE4E3 
-X-CRM114-Status: GOOD (  10.70  )
+Message-Id: <20260709-drm-no-more-plane-reset-v1-23-302d986fe5f0@kernel.org>
+References: <20260709-drm-no-more-plane-reset-v1-0-302d986fe5f0@kernel.org>
+In-Reply-To: <20260709-drm-no-more-plane-reset-v1-0-302d986fe5f0@kernel.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>, 
+ jbrunet@baylibre.com, khilman@baylibre.com, 
+ linux-amlogic@lists.infradead.org, martin.blumenstingl@googlemail.com
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6942; i=mripard@kernel.org;
+ h=from:subject:message-id; bh=I1yeP4i2wGrOnTSZn13OrGctgT8YRAwVIyJJjZI6VMM=;
+ b=owGbwMvMwCmsHn9OcpHtvjLG02pJDFn+3cKRTAeruF2PMgh96+f4t+WrmDKLWg7TNV/O8Jqw6
+ 1PU13h0TGVhEOZkkBVTZHkiE3Z6efviKgf7lT9g5rAygQxh4OIUgIk85WNsmKP/9Jp23s0XnrLb
+ S/59K9MT/Gl0cEZ51s/0TB7Jen5B8btmIofjva7wTJibacylpxbA2HDLvMtDm/XM65fxHfeXOAW
+ tcNlzbefZA+t65bu62XjmbZ2iuSom9vpt7SlGDE9m1/k1yQIA
+X-Developer-Key: i=mripard@kernel.org; a=openpgp;
+ fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -142,49 +75,324 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+The plane only initializes a pristine state in its reset hook
+using drm_atomic_helper_plane_reset(), which is equivalent to what
+atomic_create_state expects. Convert to it.
 
+The conversion was done using the following Coccinelle semantic patch:
 
-On 2026/7/9 16:35, sashiko-bot@kernel.org wrote:
-> arm64: dts: amlogic: a9: Add reset controller support
-> 
-> This commit adds reset controller descriptions for the Amlogic A9 SoC.
-> It includes the corresponding reset IDs header and device tree nodes for
-> both the main and ao reset controllers.
-> 
-> [ ... ]
-> 
->> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
->> --- a/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
-> [ ... ]
-> 
->> @@ -204,6 +212,12 @@ aobus: bus@ffa00000 {
->>                        #size-cells = <2>;
->>                        ranges = <0x0 0x0 0x0 0xffa00000 0x0 0x100000>;
->>
->> +                     ao_reset: ao-reset-controller@2000 {
-> [Severity: Low]
-> Could this node use the generic name reset-controller@2000 instead? Standard
-> device tree schema validation expects reset controllers to match the generic
-> pattern ^reset-controller(@.*)?$. Using ao-reset-controller@2000 will likely
-> trigger a validation warning when running make dtbs_check.
-> 
+@@
+identifier funcs;
+symbol drm_atomic_helper_plane_reset;
+symbol drm_atomic_helper_plane_create_state;
+@@
 
-will use node-name reset-controller
+struct drm_plane_funcs funcs = {
+  ...,
+- .reset = drm_atomic_helper_plane_reset,
++ .atomic_create_state = drm_atomic_helper_plane_create_state,
+  ...,
+};
 
->> +                             compatible = "amlogic,a9-ao-reset";
->> +                             reg = <0x0 0x2000 0x0 0xc>;
->> +                             #reset-cells = <1>;
->> +                     };
->> +
->>                        aobus_pinctrl: pinctrl@4000 {
->>                                compatible = "amlogic,pinctrl-a9";
->>                                #address-cells = <2>;
+@match_struct_reset@
+identifier funcs, reset_func;
+@@
+struct drm_plane_funcs funcs = {
+    ...,
+    .reset = reset_func,
+    ...,
+};
+
+@reset_uses_helpers depends on match_struct_reset@
+identifier match_struct_reset.reset_func;
+@@
+
+ void reset_func(...)
+ {
+ 	<+...
+(
+ 	__drm_atomic_helper_plane_reset(...);
+|
+	__drm_gem_reset_shadow_plane(...);
+)
+ 	...+>
+ }
+
+@match_struct_destroy@
+identifier funcs, destroy_func;
+@@
+struct drm_plane_funcs funcs = {
+    ...,
+    .atomic_destroy_state = destroy_func,
+    ...,
+};
+
+@script:python renamed_func@
+old_name << match_struct_reset.reset_func;
+new_name;
+@@
+if old_name.endswith("_reset"):
+    coccinelle.new_name = old_name.replace("_reset", "_create_state")
+else:
+    coccinelle.new_name = old_name
+
+@update_struct depends on match_struct_reset && reset_uses_helpers@
+identifier match_struct_reset.funcs, match_struct_reset.reset_func;
+identifier renamed_func.new_name;
+@@
+struct drm_plane_funcs funcs = {
+    ...,
+-   .reset = reset_func,
++   .atomic_create_state = new_name,
+    ...,
+};
+
+@drop_destroy depends on update_struct && match_struct_destroy@
+identifier match_struct_reset.reset_func;
+identifier match_struct_destroy.destroy_func;
+identifier container_func;
+identifier P;
+symbol drm_atomic_helper_plane_destroy_state;
+symbol __drm_atomic_helper_plane_destroy_state;
+@@
+
+ void reset_func(struct drm_plane *P)
+ {
+ 	...
+(
+-	if (P->state) {
+- 		<+...
+(
+-		drm_atomic_helper_plane_destroy_state(P, P->state);
+|
+-		__drm_atomic_helper_plane_destroy_state(P->state);
+|
+-		P->funcs->atomic_destroy_state(P, P->state);
+|
+-		destroy_func(P, P->state);
+)
+- 		...+>
+- 	}
+|
+-	drm_WARN_ON_ONCE(P->dev, P->state);
+|
+-	WARN_ON(P->state);
+)
+ 	...
+(
+-	kfree(P->state);
+|
+-	kfree(container_func(P->state));
+|
+ 	// kfree is optional
+)
+(
+-	P->state = NULL;
+|
+ 	// plane->state clearing is optional
+)
+ 	...
+ }
+
+@drop_destroy_mtk depends on update_struct@
+identifier P;
+symbol __drm_atomic_helper_plane_destroy_state;
+symbol to_mtk_plane_state;
+@@
+
+ void mtk_plane_reset(struct drm_plane *P)
+ {
+ 	...
+-	if (P->state) {
+-		__drm_atomic_helper_plane_destroy_state(P->state);
+-		...
+-	} else {
+ 		...
+-	}
+ 	...
+ }
+
+@transform_nv50_wndw depends on update_struct@
+identifier S;
+@@
+
+ void nv50_wndw_reset(...)
+ {
+ 	...
+-	if (WARN_ON(!(S = kzalloc_obj(*S))))
++	S = kzalloc_obj(*S);
++	if (WARN_ON(!S))
+ 		return;
+ 	...
+ }
+
+@transform_kzalloc depends on update_struct@
+identifier match_struct_reset.reset_func;
+identifier P, S;
+statement ST;
+statement list STL;
+@@
+
+ void reset_func(struct drm_plane *P)
+ {
+ 	<...
+ 	S = kzalloc_obj(*S);
+(
+-	if (S)
+-	{
+-		STL
+-	}
++	if (!S) return;
++
++	STL
+|
+-	if (S) ST
++	if (!S) return;
++
++	ST
+)
+	...>
+ }
+
+@transform_body depends on update_struct@
+identifier match_struct_reset.reset_func;
+identifier renamed_func.new_name;
+identifier S, P;
+expression PS;
+@@
+- void reset_func(struct drm_plane *P)
++ struct drm_plane_state *new_name(struct drm_plane *P)
+{
+	...
+ 	S = kzalloc_obj(*S);
+	...
+(
+ 	if (!S) {
+		...
+-		return;
++		return ERR_PTR(-ENOMEM);
+ 	}
+|
+ 	if (WARN_ON(!S)) {
+		...
+-		return;
++		return ERR_PTR(-ENOMEM);
+ 	}
+|
+ 	if (S == NULL) {
+ 		...
+-		return;
++		return ERR_PTR(-ENOMEM);
+ 	}
+)
+	...
+(
+-	__drm_atomic_helper_plane_reset(P, PS);
++	__drm_atomic_helper_plane_state_init(PS, P);
+|
+-	__drm_gem_reset_shadow_plane(P, PS);
++	__drm_gem_shadow_plane_state_init(P, PS);
+)
+	...
+}
+
+@update_early_return depends on update_struct@
+identifier match_struct_reset.reset_func;
+identifier renamed_func.new_name;
+identifier P;
+expression PS;
+@@
+ struct drm_plane_state *new_name(struct drm_plane *P)
+{
+	<+...
+-	return;
++	return ERR_PTR(-EINVAL);
+	...+>
+}
+
+@update_return_plane depends on update_struct@
+identifier match_struct_reset.reset_func;
+identifier renamed_func.new_name;
+identifier P;
+expression PS;
+@@
+ struct drm_plane_state *new_name(struct drm_plane *P)
+{
+	...
+ 	__drm_atomic_helper_plane_state_init(PS, P);
+	...
++
++	return PS;
+}
+
+@update_return_shadow depends on update_struct@
+identifier renamed_func.new_name;
+identifier P;
+expression PS;
+@@
+ struct drm_plane_state *new_name(struct drm_plane *P)
+{
+	...
+ 	__drm_gem_shadow_plane_state_init(P, PS);
+	...
++
++	return &PS->base;
+}
+
+Signed-off-by: Maxime Ripard <mripard@kernel.org>
+---
+Cc: jbrunet@baylibre.com
+Cc: khilman@baylibre.com
+Cc: linux-amlogic@lists.infradead.org
+Cc: martin.blumenstingl@googlemail.com
+---
+ drivers/gpu/drm/meson/meson_overlay.c | 2 +-
+ drivers/gpu/drm/meson/meson_plane.c   | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/meson/meson_overlay.c b/drivers/gpu/drm/meson/meson_overlay.c
+index 7047807f1a3e..930119e18a4f 100644
+--- a/drivers/gpu/drm/meson/meson_overlay.c
++++ b/drivers/gpu/drm/meson/meson_overlay.c
+@@ -800,11 +800,11 @@ static bool meson_overlay_format_mod_supported(struct drm_plane *plane,
+ 
+ static const struct drm_plane_funcs meson_overlay_funcs = {
+ 	.update_plane		= drm_atomic_helper_update_plane,
+ 	.disable_plane		= drm_atomic_helper_disable_plane,
+ 	.destroy		= drm_plane_cleanup,
+-	.reset			= drm_atomic_helper_plane_reset,
++	.atomic_create_state = drm_atomic_helper_plane_create_state,
+ 	.atomic_duplicate_state = drm_atomic_helper_plane_duplicate_state,
+ 	.atomic_destroy_state	= drm_atomic_helper_plane_destroy_state,
+ 	.format_mod_supported   = meson_overlay_format_mod_supported,
+ };
+ 
+diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
+index 2d88fe87a11a..cf8c90158fcf 100644
+--- a/drivers/gpu/drm/meson/meson_plane.c
++++ b/drivers/gpu/drm/meson/meson_plane.c
+@@ -464,11 +464,11 @@ static bool meson_plane_format_mod_supported(struct drm_plane *plane,
+ 
+ static const struct drm_plane_funcs meson_plane_funcs = {
+ 	.update_plane		= drm_atomic_helper_update_plane,
+ 	.disable_plane		= drm_atomic_helper_disable_plane,
+ 	.destroy		= drm_plane_cleanup,
+-	.reset			= drm_atomic_helper_plane_reset,
++	.atomic_create_state = drm_atomic_helper_plane_create_state,
+ 	.atomic_duplicate_state = drm_atomic_helper_plane_duplicate_state,
+ 	.atomic_destroy_state	= drm_atomic_helper_plane_destroy_state,
+ 	.format_mod_supported   = meson_plane_format_mod_supported,
+ };
+ 
+
+-- 
+2.54.0
+
 
 _______________________________________________
 linux-amlogic mailing list
