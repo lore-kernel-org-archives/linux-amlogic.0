@@ -4,82 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF126C43458
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jul 2026 21:10:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB9FCC44506
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 Jul 2026 21:10:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
-	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=hjWvoc3WV/3oHaJ5FXjY3RCOMncLhJRQlp2JWUBtGAQ=; b=cXVphdByoPF6lI
-	tP8mSuPUm//hpRIsr0f35YzZ2iG84cC6LeNRzCkAT/VvwdCWICMGP3TzLgV7IOuYb8l6N/dHtcByo
-	iY2xCDSv7teoX2+lxlkN+t+IqLKiYHzIj76HfNNCHAFQ91HrQcVPH8s4UlqfsJf4yt36wc65uDawA
-	I7Q1kyLsrMd8/IFX9n+ryuHbyLdbVxdqZiMlaEIxEgSY5/T/4C2+d3OgNLS8sxq9kmso/x7P0Z37U
-	VEEwfoCkZSFcFzUqW5cud8nQtTL59LVAjKF9cDtkMXJwkCsz1kPsV6f4LdnVgpH2J7FcDQE/y+zyx
-	F/YDCIiX5K4WTpWykctQ==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=xtE0TWbh/rIqAstloDz+mTeX95buw0jw4WUsW3bzJ6o=; b=o26rR72sKvE3EF
+	eO83pZeBO8arsRQM29+j6aqlnKY78uBozQZKs8vQiyg3FeeC8fc+xc4RWCyBvIvuuXmcpqK9dYJKw
+	8yCJLyIzjjguE53KdO5h2ofwqSeGkG0OkWIYJYWf/ZP1VeU+CU0QlSbGbIXkQjO7VIWto2O9aqDnp
+	OeD0V4vRZyJN9GfDW4BF9OTyoqn1F8446JOB1xrpdQqsM4gx1FdFlT81lH20fxhl9itWsz0ZsSrAx
+	DX2dvlcTJZWbGD7chR+XOeoXeDa97hTh3m80Ag6RYDUKh4cmJ9W8FpX17WwrolRYUPdthZ4JYLtHL
+	2bLdPvoDJCYrTEGOIh2g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wiITt-00000005lm2-0LMn;
-	Fri, 10 Jul 2026 21:09:57 +0000
-Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+	id 1wiITu-00000005lmv-0YNx;
+	Fri, 10 Jul 2026 21:09:58 +0000
+Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wiITp-00000005lji-33y7
+	id 1wiITq-00000005ljs-3pXW
 	for linux-amlogic@lists.infradead.org;
-	Fri, 10 Jul 2026 21:09:55 +0000
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-4720f3bf164so1223814f8f.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 10 Jul 2026 14:09:53 -0700 (PDT)
+	Fri, 10 Jul 2026 21:09:56 +0000
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-47640541585so688260f8f.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 10 Jul 2026 14:09:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1783717792; x=1784322592; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=ZM1sYc8Mcx33JxG91xPslSMUoyWjkZwKm16jd+wS4wg=;
-        b=DmlbPW7cL6YPdL0A9xtRjPe1APg09OyEGM7StKP9xd7QnDeO0hzga/139QkncgKgct
-         gHOMxVBAsu+GhIDysoawDGB+m0auxzNFxZTNVSObPM+asPyWhf/bl4KFojmJKZrLnXrh
-         CIhAao1FhD7VBfBooQyYOkdDMiru136wdg4MZTsU3LaIafhXkLpqfjbWsanG8glVb4T2
-         gqvVBclB3Mfrp4SS6b2DpkLENbeSrotNItc5ZIsYm40z+y88lmXvbh2W841PfmZJID8D
-         auK06AnQU0l5hAqLlykFLudLuGcz5XeCjuxc1PA09unmKsUPaYiKObG7wrMOEvO6psOH
-         MzJg==
+        d=baylibre.com; s=google; t=1783717793; x=1784322593; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=5rM5i69OmbRE0VBFYqnP7QagSMyMP9rPVK7lS65VX9Y=;
+        b=d+vf7o8KBdYunkh0uHpsUGAvEx9JpFD7RpxgGib+oC9+myx6dOAHTVEVIDJMOBzk7n
+         8vEBwfMxad/b/z6FyIrDS3DnOmZn+m5hoXTXX7wH/EExecnbCQZNIqdZjnKon8LrboLs
+         le0G6Q6f/ZMBSuBsHlswXd2j20eJX40m0OXX/zmPs3RGLFs7CvPRu+2zNP/uHEOldz32
+         nevVrWqsVpIjES6SUDQ1av2fql3tkXl4z3uyKpMQc/g68iuThm1t5H5ka/OGAkbG7cl/
+         qS2ZsYJIf0hn4Z0EuQ3i5bo8bvgV9GXBo2MsbxjRsC4U7umq9FjM5DEg8KmWyg3CwuFG
+         P0sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783717792; x=1784322592;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=ZM1sYc8Mcx33JxG91xPslSMUoyWjkZwKm16jd+wS4wg=;
-        b=HYVuzI3euX9hkxhWeYBQupZ8bmtVHw8t7OfDEniSXhSefV+ZetoZtL8F0g7UO5KWvP
-         v2ND/KEDxWN5DVRkGRUE44bj7e4j5TBfoY9m5J2eHozKyM9ZVLWZ+/pvGxeUOgJMfMnx
-         UNVTAscI406kANeqXw4ke1ia5CJH8GkBOa2EkoyEkLVutKeT4d8JyTT9oD3z1q/jK7hd
-         z9WQuYyysA5kT1+QLfLZW3RJm8eT8z8MKq4gz8/6i31h3WmeGoCcwCRRUFGWAaiLLrI5
-         0FCv1sUjnPjKnCn8SJ2OpTkft24X0dWlVykoz/ZIhCzFVfeJxGGeDmADD9Is9cZOZXvy
-         o6+A==
-X-Forwarded-Encrypted: i=1; AHgh+RrAruKTyGoCt5xD4XPcyWvJgr4C6UwudsAJS1+cni6OTlDRytD8UrAmX86oZJeuHWcBMiHLoNxoElxyCZCJ@lists.infradead.org
-X-Gm-Message-State: AOJu0YwiFKOfMA4CMiJz6UpmWhs0Yjy4E/rC2ZG8RxyU4bD423gHlV3l
-	sRcxTDA4GOBi0a3j2NP11QrGHhMw4sp5u1Nv4e4Qt6PkNCiL5MPZJJsU9BX5C/sYrQO9j9Vy5CJ
-	RSE4aTx4=
-X-Gm-Gg: AfdE7ckHVqe71z2rQmxehgGH8RE57FkT+quppGnKYTwwLOISYKtbmosdSuaiCOZbgUJ
-	iQ0rdxxrsrYJ3svLq/TICVXbXt4jZd/AbwYG97oN3gGmCcriiM7oWnb2Gb6pLCAyalxE/h28bp7
-	wYIyGzMnxOuhspEJt8xJNwmPOyFK9eMhGfNlMflTn9mJc5p0yfBr9LxmaiQqgsubNJCtOWtlivq
-	eJwg22+Jiu5gH4IJ4m8dPINyr9blrctHiaZ0/bzfuQKInx6aWzt/HXg4S5zZ3YAzqBAOyqZcZSN
-	6Eo6+trjQmKtuM4mZlXNXj7PN5XccqIg+O+QZ1SL2/nJOoV0PV9qgQ3r8nuZre4z8OPdf9zjtOL
-	p02uiJNze1dVedn+bkKvipE1W6AS6lfbMICT7Q212lqw4ORD2oFLucCx/F24B2Y1fZUgCuZS8Yy
-	FraSPBnGdkVw==
-X-Received: by 2002:a05:6000:4b07:b0:460:d18:865c with SMTP id ffacd0b85a97d-47eee0f3afcmr5999929f8f.1.1783717791925;
-        Fri, 10 Jul 2026 14:09:51 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1783717793; x=1784322593;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=5rM5i69OmbRE0VBFYqnP7QagSMyMP9rPVK7lS65VX9Y=;
+        b=GWuzJfJUEG/jrfjnnoj0srihS+ajWH17RmssbEcd4YtySZyvSrb507MzHFxUfLrWrb
+         RJU3X9uA7J0EY5fHbd2GRM7ZRak2oQF/20d4NEJvZCCvEZKpDU6kWU+zXHGWtwf01zfm
+         OsyhyMPrftnMZAgNvk9+el/ULU0v15wp1YglZ16uAGaQvjNPyPZ8Frk09ciH4DTH/rTV
+         SJIVpvzZnOXl0qjy5sXXFjpgIfeWfxJifwRzpXqhnyHOVCzZvaFcAG316ZtaC2LhT7W2
+         5eowddCf7cwQGt3l25Kmt3gB4aRfPnUARprNmT+SzfoG9pSX2GmPVa+yidIxIlQ6cfxa
+         TUmg==
+X-Forwarded-Encrypted: i=1; AHgh+Rp6mUVMUEaS/2RfKSmPJnjqCkIA6Ezqr9SuataRn0r+cQP2kJusu5ZZGs4v0qkKVn9vfH1/q3TPpx0xa5c3@lists.infradead.org
+X-Gm-Message-State: AOJu0Yw0n5gg2GQK5kjNhrazAL/9jvogb+w/z9fyUIgHbwSXk/xaj9N/
+	yneW1bsHzFk0eP+CpxFMPEcHQdM9wJel9W49OiQ9nZaUyT6HQUwrDxBVrILtTgBLGcA=
+X-Gm-Gg: AfdE7clTCOcFouh94C8aaDWxzrpquxn/wlo3K88YlWZdIwUXybso59VKS4R7Ar83Z4V
+	XIPGCODOogrCa4clFQTChvCKZ9L6fQeRQQJcA16jef+9e4UdQ96SAH1Ho9nWDg6Uagapjj4MMDy
+	ysaKACGubpA5nWhWGVKe90B8AENo5l782uqsj334vq//vbnd89nTZjn1DthNpfJkP9RZHfSt+Mz
+	z8KCcFjDHMu1HHlt0qaKa0BVPdOMpigu4FGTZvWhFUF46EZULsYRAYDBb6Lke69uCIaPG8ft6Tp
+	FOhYAYpWHfqhOZJdvmEYztxKLYJJpetS06WICrwOgLGr/mRqR35S/yreuzB1k0kRwn+KJjb7iVR
+	e0wx7pBXbb2yn9Nfvtt/8wrEG8U/AAP3+/FDakN49soejHybfK4AEhBNp+hmalJfQGgGvmgrRWG
+	JTd45y8awGcA==
+X-Received: by 2002:a05:6000:288c:b0:473:53b7:e390 with SMTP id ffacd0b85a97d-47f2dcac225mr411001f8f.11.1783717793050;
+        Fri, 10 Jul 2026 14:09:53 -0700 (PDT)
 Received: from [127.0.1.1] ([151.41.178.17])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47aa039b0cesm64274135f8f.22.2026.07.10.14.09.50
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47aa039b0cesm64274135f8f.22.2026.07.10.14.09.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jul 2026 14:09:51 -0700 (PDT)
+        Fri, 10 Jul 2026 14:09:52 -0700 (PDT)
 From: Valerio Setti <vsetti@baylibre.com>
-Subject: [PATCH 0/3] ASoC: meson: aiu-encoder-i2s: improve hw constraints
- checks
-Date: Fri, 10 Jul 2026 23:09:48 +0200
-Message-Id: <20260710-aiu-improve-quirk-check-v1-0-2fdd1b6f8896@baylibre.com>
+Date: Fri, 10 Jul 2026 23:09:49 +0200
+Subject: [PATCH 1/3] ASoC: meson: aiu-encoder-i2s: fix bs quirk
+ incompatibility check
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAJxfUWoC/yXMSw6DMAwA0asgr2spDj+1V6m6gNSAQQXqEISEu
- DtpWb7FzA6eVdjDI9lBeRUv0xhBtwRcV40to7yjwRpbmNKUWElA+cw6rYzfIDqg69gNaOvc5ER
- 0TzOCWM/KjWz/8/N12Ye6Z7f8dnAcJzF29Z17AAAA
-X-Change-ID: 20260707-aiu-improve-quirk-check-2b5051119341
+Message-Id: <20260710-aiu-improve-quirk-check-v1-1-2fdd1b6f8896@baylibre.com>
+References: <20260710-aiu-improve-quirk-check-v1-0-2fdd1b6f8896@baylibre.com>
+In-Reply-To: <20260710-aiu-improve-quirk-check-v1-0-2fdd1b6f8896@baylibre.com>
 To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
  Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
  Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -90,17 +88,17 @@ Cc: linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Valerio Setti <vsetti@baylibre.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2602; i=vsetti@baylibre.com;
- h=from:subject:message-id; bh=su4eVRqd91qk7OtvutfH5sLq2VmfyLE2Qn1mHmMHJ5I=;
- b=owGbwMvMwCV2z3ty7kUrRgbG02pJDFmB8fP4MtYdNvoupb1/37q7FVWTNUtuvc1sWdbh16XZt
- mDBvEm1HaUsDGJcDLJiiiws0+/9LihVe2iccLIAZg4rE8gQBi5OAZjIsd0M/2OC/0y6sVxkc+vd
- Tf++PWQ7ZnlqwsSCwAVrlfmkKwR3L+li+CvTk3Hs550sb63/X53iXv6etJ31nVriRLbIM03az/5
- snM8IAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6429; i=vsetti@baylibre.com;
+ h=from:subject:message-id; bh=KeFdEWnIy0h8OsuDM6nXoQiK/x/W2mOvEHTnodUTR0c=;
+ b=owGbwMvMwCV2z3ty7kUrRgbG02pJDFmB8fN2th759Djs0mG3ipCVesvS+pLCPwg3Hr+VGf2/R
+ KJ9lfGyjlIWBjEuBlkxRRaW6fd+F5SqPTROOFkAM4eVCWQIAxenAEzk5jmG/+ncWsvX27E90JbW
+ upE2dYcgV+1yEcfHj+/HnGEQ/9i+8S3DPy1DZiHu+QwLVlW41GZmG7g9yu48NuGd5vKXJ9qP3/f
+ 6wg4A
 X-Developer-Key: i=vsetti@baylibre.com; a=openpgp;
  fpr=0497DEFB707526E13360C970DE4B936DD13A0100
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260710_140953_794676_1590F14D 
-X-CRM114-Status: GOOD (  12.15  )
+X-CRM114-CacheID: sfid-20260710_140955_003340_9731D29C 
+X-CRM114-Status: GOOD (  24.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,61 +115,189 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This is a follow-up to the recently merged series reshaping the AIU
-driver following the same design as AXG [1]. During the review,
-Jerome pointed out that failing in hw_params() when two streams have
-incompatible requirements is too late from userspace's point of view [2].
+The bs-quirk incompatibility check has two flaws:
 
-This series addresses that comment:
+- It only rejects one direction of the mismatch. A stream that does
+  not require the quirk is rejected while a quirked stream is active,
+  but the opposite is not true: a stream requiring the quirk passes
+  the check while a non-quirked stream is active, silently
+  reprogramming the shared mclk/bclk divider with the 50% increase
+  and corrupting the output of the running stream.
 
-- Patch 1 fixes the existing bclk quirk check first: it only rejected
-  one direction of the mismatch, and its interface-wide flag was
-  cleared too late, making a legal reconfiguration of a single stream
-  fail. This is a standalone fix and it's preparing for patch 2.
+- 'bs_quirk' is only cleared in hw_free() when the last substream
+  closes, but userspace may legally stop/reconfigure/start the stream
+  without an intervening hw_free. Reconfiguring a single stream
+  from the quirked configuration (8ch/16-bit) to one that does not
+  need the quirk therefore fails with -EINVAL due to the stale flag.
 
-- Patch 2 is the actual answer to the review comment: the quirk
-  incompatibility is expressed as hw rules on channels and sample
-  bits, refined against the committed configuration of the opposite
-  stream, so it becomes visible during parameter refinement. The
-  hw_params() check is kept as the last backstop in case of concurrent
-  refinement.
-
-- Patch 3 applies the same philosophy to the interface-wide rate
-  symmetry. Instead of manually reimplementing the check, take advantage of
-  the core's 'symmetric_rate' handling.
-
-Jerome's comment also mentioned the error returned when 'bs' is not a
-multiple of 2. That one intentionally remains a hw_params() time
-error: bs depends on the mclk rate, which the DAI only learns via
-set_sysclk() from the machine driver's hw_params(), after parameter
-refinement has already run. I don't think that can easily be expressed as
-a constraint.
-
-Final note. [1] has not been mainlined yet and it's only present in
-'broonie/sound.git#for-7.3'. Therefore this series depends on commit
-c7852d2dcf66 ("ASoC: meson: aiu: align I2S design to the AXG one").
-
-[1] https://lore.kernel.org/linux-sound/20260610-reshape-aiu-as-axg-v2-0-cac3663a8b51@baylibre.com/
-[2] https://lore.kernel.org/linux-sound/1jik7pebk7.fsf@starbuckisacylon.baylibre.com/
+Drop the interface-wide flag and instead compare the quirk
+requirement of the incoming parameters against the committed
+configuration of the opposite stream at hw_params() time. The
+committed channels/width are cleared in hw_free() so that a released
+stream no longer constrains the other one.
 
 Signed-off-by: Valerio Setti <vsetti@baylibre.com>
 ---
-Valerio Setti (3):
-      ASoC: meson: aiu-encoder-i2s: fix bs quirk incompatibility check
-      ASoC: meson: aiu-encoder-i2s: reflect bs quirk in hw constraints
-      ASoC: meson: aiu-encoder-i2s: use the core symmetric_rate handling
+ sound/soc/meson/aiu-encoder-i2s.c | 66 +++++++++++++++++++++++++--------------
+ sound/soc/meson/gx-interface.h    |  3 --
+ 2 files changed, 43 insertions(+), 26 deletions(-)
 
- sound/soc/meson/aiu-encoder-i2s.c | 154 +++++++++++++++++++++++++++-----------
- sound/soc/meson/aiu.c             |   1 +
- sound/soc/meson/gx-interface.h    |   6 --
- 3 files changed, 113 insertions(+), 48 deletions(-)
----
-base-commit: 8e5a6599a38e5515cd2b5f34fe8a8ac476f8b127
-change-id: 20260707-aiu-improve-quirk-check-2b5051119341
+diff --git a/sound/soc/meson/aiu-encoder-i2s.c b/sound/soc/meson/aiu-encoder-i2s.c
+index 83b579e98f1c..c2a280bfdfe2 100644
+--- a/sound/soc/meson/aiu-encoder-i2s.c
++++ b/sound/soc/meson/aiu-encoder-i2s.c
+@@ -62,13 +62,36 @@ static int aiu_encoder_i2s_set_legacy_div(struct snd_soc_component *component,
+ 	return 0;
+ }
+ 
++/*
++ * Return true if the given combination of channels and sample width requires
++ * the bs quirk. Return false otherwise.
++ */
++static bool aiu_encoder_is_bs_quirk(unsigned int channels, int width)
++{
++	return (channels == 8) && (width == 16);
++}
++
++static int aiu_encoder_check_bs_quirk(struct snd_pcm_substream *substream,
++				      struct snd_pcm_hw_params *params,
++				      struct snd_soc_dai *dai)
++{
++	struct gx_stream *other_stream = snd_soc_dai_dma_data_get(dai, !substream->stream);
++
++	/* Nothing to do if the other stream doesn't exist or it's not configured yet. */
++	if (!other_stream || !other_stream->channels)
++		return 0;
++
++	if (aiu_encoder_is_bs_quirk(other_stream->channels, other_stream->width) !=
++	    aiu_encoder_is_bs_quirk(params_channels(params), params_width(params)))
++		return -EINVAL;
++
++	return 0;
++}
++
+ static int aiu_encoder_i2s_set_more_div(struct snd_soc_component *component,
+ 					struct snd_pcm_hw_params *params,
+ 					unsigned int bs)
+ {
+-	struct aiu *aiu = snd_soc_component_get_drvdata(component);
+-	struct gx_iface *iface = &aiu->i2s.iface;
+-
+ 	/*
+ 	 * NOTE: this HW is odd.
+ 	 * In most configuration, the i2s divider is 'mclk / blck'.
+@@ -76,25 +99,13 @@ static int aiu_encoder_i2s_set_more_div(struct snd_soc_component *component,
+ 	 * increased by 50% to get the correct output rate.
+ 	 * No idea why !
+ 	 */
+-	if (params_width(params) == 16 && params_channels(params) == 8) {
++	if (aiu_encoder_is_bs_quirk(params_channels(params), params_width(params))) {
+ 		if (bs % 2) {
+ 			dev_err(component->dev,
+ 				"Cannot increase i2s divider by 50%%\n");
+ 			return -EINVAL;
+ 		}
+ 		bs += bs / 2;
+-		iface->bs_quirk = true;
+-	} else {
+-		/*
+-		 * If the bs quirk is currently applied for one stream and another
+-		 * ones tries to setup a configuration for which the quirk is
+-		 * not required, then fail.
+-		 */
+-		if (iface->bs_quirk) {
+-			dev_err(component->dev,
+-				"bclk requirements are incompatible with active stream\n");
+-			return -EINVAL;
+-		}
+ 	}
+ 
+ 	/* Use CLK_MORE for mclk to bclk divider */
+@@ -110,9 +121,11 @@ static int aiu_encoder_i2s_set_more_div(struct snd_soc_component *component,
+ 	return 0;
+ }
+ 
+-static int aiu_encoder_i2s_set_clocks(struct snd_soc_component *component,
+-				      struct snd_pcm_hw_params *params)
++static int aiu_encoder_i2s_set_clocks(struct snd_pcm_substream *substream,
++				      struct snd_pcm_hw_params *params,
++				      struct snd_soc_dai *dai)
+ {
++	struct snd_soc_component *component = dai->component;
+ 	struct aiu *aiu = snd_soc_component_get_drvdata(component);
+ 	struct gx_iface *iface = &aiu->i2s.iface;
+ 	unsigned int srate = params_rate(params);
+@@ -133,10 +146,15 @@ static int aiu_encoder_i2s_set_clocks(struct snd_soc_component *component,
+ 
+ 	bs = fs / 64;
+ 
+-	if (aiu->platform->has_clk_ctrl_more_i2s_div)
++	if (aiu->platform->has_clk_ctrl_more_i2s_div) {
++		if (aiu_encoder_check_bs_quirk(substream, params, dai)) {
++			dev_err(dai->dev, "bclk requirements incompatible with other stream\n");
++			return -EINVAL;
++		}
+ 		ret = aiu_encoder_i2s_set_more_div(component, params, bs);
+-	else
++	} else {
+ 		ret = aiu_encoder_i2s_set_legacy_div(component, params, bs);
++	}
+ 
+ 	if (ret)
+ 		return ret;
+@@ -155,7 +173,6 @@ static int aiu_encoder_i2s_hw_params(struct snd_pcm_substream *substream,
+ {
+ 	struct gx_stream *ts = snd_soc_dai_get_dma_data(dai, substream);
+ 	struct gx_iface *iface = ts->iface;
+-	struct snd_soc_component *component = dai->component;
+ 	int ret;
+ 
+ 	/*
+@@ -170,7 +187,7 @@ static int aiu_encoder_i2s_hw_params(struct snd_pcm_substream *substream,
+ 		}
+ 	}
+ 
+-	ret = aiu_encoder_i2s_set_clocks(component, params);
++	ret = aiu_encoder_i2s_set_clocks(substream, params, dai);
+ 	if (ret) {
+ 		dev_err(dai->dev, "setting i2s clocks failed: %d\n", ret);
+ 		return ret;
+@@ -219,7 +236,6 @@ static int aiu_encoder_i2s_hw_free(struct snd_pcm_substream *substream,
+ 	if (snd_soc_dai_active(dai) <= 1) {
+ 		aiu_encoder_i2s_divider_enable(component, 0);
+ 		iface->rate = 0;
+-		iface->bs_quirk = false;
+ 	}
+ 
+ 	if (ts->clk_enabled) {
+@@ -227,6 +243,10 @@ static int aiu_encoder_i2s_hw_free(struct snd_pcm_substream *substream,
+ 		ts->clk_enabled = false;
+ 	}
+ 
++	ts->channels = 0;
++	ts->width = 0;
++	ts->physical_width = 0;
++
+ 	return 0;
+ }
+ 
+diff --git a/sound/soc/meson/gx-interface.h b/sound/soc/meson/gx-interface.h
+index 65c46dcce32a..d9ab894589fa 100644
+--- a/sound/soc/meson/gx-interface.h
++++ b/sound/soc/meson/gx-interface.h
+@@ -22,9 +22,6 @@ struct gx_iface {
+ 
+ 	/* For component wide symmetry */
+ 	int rate;
+-
+-	/* Only for GX platform */
+-	int bs_quirk;
+ };
+ 
+ struct gx_stream {
 
-Best regards,
---  
-Valerio Setti <vsetti@baylibre.com>
+-- 
+2.47.3
 
 
 _______________________________________________
