@@ -4,109 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A65A1C43458
-	for <linux-amlogic@archiver.kernel.org>; Sun, 12 Jul 2026 15:58:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97FA0C44507
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2026 12:08:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+v7u+TFsrhdMprV5LSkui+CsjFBpkXs0/PdxdY7RDMA=; b=vaS/Cof0Ope5xY
-	P04TEGXyiUO+67f9HuWoxNC9HGcy7ZWmiYakxrI6qG7oZ6HgqxHbGZpwEfSENm25YD9zJelQlLU0v
-	io0Wwn/30R4JVmiiS48fkwzPu4GpzMi3p87WwjOK+w0Zvnu6k7zmLwbfO/tY9W8gCNMYlKtrfsNCn
-	2bJPhOGvGLo3I2Oi8V01v8/g3CckA6u+Y/4tpmTC18wsKd/7yUn7GXcqTb/BFp9lL817My7Az6qvs
-	yJStJZWO4ERlMB/xrAV6/pPSLki4Q9tWKSqjj2PPBV2l2aFxEllIAvxyqY3n/aIqZXjFrYmqmy0o5
-	QJcMi4LR8FHg5tJZrs5g==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=jJ5rOQqurDioPEQ9FrHwVqxbtOVhbCIkIOMhHwBEXCQ=; b=PPbl6r7tZV5j2g
+	NM6xPWzXTw62WTFC4yL5vkC6vh/ZntgISSA40DQzURb+UYSd5LGZNj68sU6xuDPsOt3JsGxvXtmTO
+	ugNprD+eR7J+AhoDExoVAFJlIK5k/gXL8kyI7dyt1bp+n629oL3ugJgJTIU6845vYV5BWizM+MY/r
+	vbwzU8Ux7PWfczESQlFDx962swJYlKueV0QSJq7pHj5gyh/Kd8VTBqDEsr4CKC+SM/LYbKikSX03z
+	aOr39hCOB+FEyoLNhQXE7ZOu5v+wgNca/a37Kml9cozz/UbQSCqQSqikn9q7yt6uw2fzSmwv4P1Po
+	ayoorKJsqjB0Wdmlgr1g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wiwZi-00000007b2P-12pz;
-	Sun, 12 Jul 2026 15:58:38 +0000
-Received: from mail-pl1-x630.google.com ([2607:f8b0:4864:20::630])
+	id 1wjFSv-000000097sY-0vc1;
+	Mon, 13 Jul 2026 12:08:53 +0000
+Received: from mail-pl1-x631.google.com ([2607:f8b0:4864:20::631])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wiwZf-00000007b1R-1QrM
+	id 1wjFSs-000000097rG-46qE
 	for linux-amlogic@lists.infradead.org;
-	Sun, 12 Jul 2026 15:58:36 +0000
-Received: by mail-pl1-x630.google.com with SMTP id d9443c01a7336-2cace91f112so19248995ad.0
-        for <linux-amlogic@lists.infradead.org>; Sun, 12 Jul 2026 08:58:34 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1783871914; cv=none;
-        d=google.com; s=arc-20260327;
-        b=bomVaEoyTlvQqQEweRzUpPvwLAxik4fl8CAKaSsuYRytJkCs70priy7ub5HQQAVT+v
-         P0ewsUKtpCynQuq6w0L/g7UGIm3o+eTa328BZIeoSNuIT9mXvuYjmlobRQyM+c3ecai/
-         iEzovSQ5ATZWMq6rrgrXXrhR1fkeXzYEcuamU+mvUB0KjGPxl1Kf7JxN+l/cNvltb+/v
-         0T+QCz9WDeeMWlipFDThRPCwp8AALgk3pm2T1KYtnYJ/B6lK//BpurpoMi8nW4l/SAFz
-         OfzRHgCqC6SehPcoQ75ZPDQfz6vyOMps0AC2quBcum8JGJhUYpQ1UKOKptih2qHb5tdc
-         DdpQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=2qoHPnf7RHTkFcOSnpyDI8RpBT/XeamlmMbf/yeH5Pg=;
-        fh=Ooc4UBvqknDxUm3vebLSzvEtVHnGsZwjHKgzAwz2gic=;
-        b=NOAS4ZBp3HXEARflrtvVqFxDZxvKJvdZeoKVbE87aicWoA0a/j7omVeg3fzXaKLNJ/
-         uwp1g93CpT4Usa/Kr1YMyvd26eDj41BjD/P9jbX0abzPxn4OU1wTj+w6mzEydwZwIYm3
-         Ff4DbwcRc5LKE0FagKT1SXu9pQHlrT+UYw799D517Bw+YLsd5kqFK3TwIjQJxbkIAVvw
-         X+R0E3XUUpk7AgpLeYUOM+GC/XUMUlUFlCDdz06bPO7WDpPzeBzY21WNg2qeaXEB+wKC
-         RhBTBhDj+oOv5DklJweh4uVkGQW7s+wMwgSASqvHU7ufPh4y19b1BLuUWRFoKKJ2h2y6
-         5t9A==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	Mon, 13 Jul 2026 12:08:52 +0000
+Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-2cea3004256so23065995ad.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 13 Jul 2026 05:08:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20251104; t=1783871914; x=1784476714; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=2qoHPnf7RHTkFcOSnpyDI8RpBT/XeamlmMbf/yeH5Pg=;
-        b=n8zjbCGk2Jvn/N5d6mcwXqQz4Hw94X7H5vIB3zpw0aDh7NrWHk5l84t6WgwyMdCLSa
-         13oFCpi5X+6ouux3Ofma6s0JjXnzw8YA9AoSVFtE/+R30eoZ9MTWDk2e/Z9tgb8GeYy/
-         E7lZtHqLRd7HjWxo+EN3/WAZwH77iDBtstiZg1ScYGBnzu+/ygFqqBU5jCw3+RM6fgHL
-         skbiomeZvWpTM6GQdL7+W5lBauoYdLlHgaTcviwU41lY3GoOIR6WAV/YOoRncbeealXJ
-         txiZgu6kcw1cI7qH1S2TryqgAvkfT/4We67Ois0XjwT9uaKeknakupkgU49tQ76gh4WV
-         imsg==
+        d=gmail.com; s=20251104; t=1783944530; x=1784549330; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=FR0HREIu+ElJTqYD8DnR97TKZwOpP6adDHM14P7pQGE=;
+        b=FWLdRo5hsZyH0MKks5v3PrkGQUb+srCsrIOAC/6vfMjk4bXSmnYhi/PH/8zxBxPGMv
+         lI9t/eov3Bg3XGovaPweRcVfIxZ0iSBALJujRyV42bOFF1l5n+6vZuu7+GA3rgRGr9mz
+         vTIe/T94ZqHytofGLyfWJpn7m1aqbMK2ypGjUE7Dj7djHAfMrxhxgymaOhi/SsQYP8wV
+         lyBOEk6dyUtk/P/OSbg5wc5jfh33ff5FA+GSRD/7sGbDjD7vr3mG11EOtzFd/8TtxSjc
+         ZyemRB7BSxg6R1AJLbRirWjhZhiMoFn3NLlgcKKo6u94KGa77F12yRzA9tQGgh3FeUo9
+         8zIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783871914; x=1784476714;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=2qoHPnf7RHTkFcOSnpyDI8RpBT/XeamlmMbf/yeH5Pg=;
-        b=Mitd9DbCfOQWL5vAT3RUycoZsHeaafNsCmZ3It6pdmJ4T43wWfb9tEE1phNMgSqodi
-         PnJEUgx5DgylrEXDoOr+X/lHyjSCGIGoLQVFKY2wqIjjcprczfCzEjS1OMxoeXKXJN8j
-         V5A6EhFoKKTYY81FH+FG9jlcEpA/k6wzfViMR1Y+NusIisPyVGJWWOH1ptiQuXn62EWo
-         Zl6L5yZ9cFpK+8cEifOq8DYygb0TbxzuaQAzGCFQc7vx7kG3rEHNh9+giMuv7Tlg8yMC
-         09jD4cR2aLPtdg9li9FeukhQuN31JGSevrlgUv1SF81eMVyncMQlSr25+0E3/3Ac/RDx
-         szzQ==
-X-Forwarded-Encrypted: i=1; AHgh+Rr5nDCGDypTSVuiHTSSqbTn4BuoqPp8kb8XhxV5/gL56QVuIo/j6yr70bcfdBL1CWnojQ+ODYvuuHFgAyev@lists.infradead.org
-X-Gm-Message-State: AOJu0YwxJO2lGJNTXDEcNVtrg7aPCu7bnV8HlAvfUjRiiiJrzaK/pOPW
-	IhXOSAN5ihpuI8fqWd8CYhBS3Ekne1FdUZ5NwutuTnAE4b/+3KEC1AT+1X1Jj8GABammVS6EiRf
-	Ape9DlrfkujVK07Oem9R2L19rKrtHe5s=
-X-Gm-Gg: AfdE7cnZPVVsvkjEqx3LgqdUGixewMPp5U2hhAZBUKfCu0m9GB7bzhNRnqt9vv6J0fp
-	MsPNcoiTcswkU3koFmF9grkPf5JUiO8EnlHDYnkc6g0XI6id9UiOfRTbspcDWx1MU42ND+5wKIV
-	vkkbgVOEiGNvKL84RVXrpexQHaxoGNlSUimdLhZ9bjyH9uT2HDz89+1FtTd58fHV7Uq7Yaok6Ay
-	C+n9AqIgqR0kyRC+7W1aAR85JdGvSXTX5tKc3lgq7ChJGYdFyc63FSJ4SLwo77lovyehA8lYZG1
-	nOS+O3H1Rst/Kx/JNekcUcTt5D4YFA==
-X-Received: by 2002:a17:902:d987:b0:2cc:ae2b:b6d2 with SMTP id
- d9443c01a7336-2ce9eac1d98mr62500805ad.15.1783871914381; Sun, 12 Jul 2026
- 08:58:34 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1783944530; x=1784549330;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=FR0HREIu+ElJTqYD8DnR97TKZwOpP6adDHM14P7pQGE=;
+        b=tVl4SKan8g1cuH9FgJDvwFJEqQSBh/DMDwQ8S4viu5NGGsbZwcR0gzdU6SSh6Yo9bp
+         1xaaYaVGqW7QiGLfZDRcnmv3cyIXsvsrJ9oruETww9scm94NjB7ledjWfgzzkJx52kdl
+         QrMYKDTamz1MuHWxKmDrV9e0uAgVcxgf8Dj6OrO0FTRqja5mqhnwZJbt4pf/2G/PNXPf
+         Lg8Qq+aa9t9uY8TduFrUjGC7cYA0o8E2/NIU1pqzrUxWZZoRyva7BfOzTdXS25Lu2ei1
+         0oMwxSYWd0k7NOu4IRLq1+5HyqCfbx9bIFLBNsCdPF+tFzKxo2anvisi+2PNXIhNLA95
+         fkhw==
+X-Forwarded-Encrypted: i=1; AHgh+Rp6c6xRrZunFqUHc/HjFZwEz3mGZAX33ljRB2xxvmo4xAAC2c/eribBOfX4zYjQ+69aC5WdxdwM/U+WaNi8@lists.infradead.org
+X-Gm-Message-State: AOJu0YxXoMWRC3NyR83R+0hzWGLrBfLSlpAhtxqA4XbTqAtvB5klnE8v
+	Aud5etx0MDmDueZFI769yZ4ge+3gweB/cFeDmUxVpxRmUPcFl7N/P3wz
+X-Gm-Gg: AfdE7ckiXi861flhLxJiD5Gb1RVyCQA2MBTol3YncZ+ux4aXpY0n3eMlcbYQ+L9mnbl
+	8EqsRFK8Mw6BmCBTFkxlwmDTPpS0UNf8pi4x7HH5bMIT7KKDQeVuXY8a3qqM5dLr9svOY7HqJKN
+	1EChHZDI0lADwJZRP9SmdfMM5FjoJKSZcQTNLi2WRD24OKidPQ3GGZy8Wp+QgsV2JpETTzpc/vK
+	lTkbaFbSoYLnChW3DV28GPU6kdFztWYkzNa8if/DhDHikmQSDUk3MhQ3eHWMpbYO+H1E1Aq37s1
+	NrshiL8R5dbflYpJ7izC3w2N6WPmuygYhrnzu0y9WfkQEcmTf4PJsedP2mr7vBUT5SCL9k21AKz
+	PR8IxE7tUf3w82AFK1mk587bZunTpRz/dFte0mO7oPiagcCZW3s5sX/Y+L34176VC5SXdrLQjtC
+	5n5mRGb8JZt/RVk/L0vMSpHG0OeQBPW9o=
+X-Received: by 2002:a17:90a:d64c:b0:366:3517:1aa2 with SMTP id 98e67ed59e1d1-38dc7296c33mr7622430a91.0.1783944529816;
+        Mon, 13 Jul 2026 05:08:49 -0700 (PDT)
+Received: from rockpi-5b ([45.112.0.180])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-311747f7293sm67756935eec.3.2026.07.13.05.08.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jul 2026 05:08:49 -0700 (PDT)
+From: Anand Moon <linux.amoon@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	dri-devel@lists.freedesktop.org (open list:DRM DRIVERS FOR AMLOGIC SOCS),
+	linux-amlogic@lists.infradead.org (open list:DRM DRIVERS FOR AMLOGIC SOCS),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
+	linux-kernel@vger.kernel.org (open list),
+	linux-media@vger.kernel.org (open list:MESON VIDEO DECODER DRIVER FOR AMLOGIC SOCS),
+	linux-staging@lists.linux.dev (open list:STAGING SUBSYSTEM)
+Subject: [PATCH v7 00/19] media: meson: vdec: Fix lifecycles, race conditions, and stability bugs
+Date: Mon, 13 Jul 2026 17:36:55 +0530
+Message-ID: <20260713120840.17427-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-References: <20260712145718.126492-2-krzysztof.kozlowski@oss.qualcomm.com>
-In-Reply-To: <20260712145718.126492-2-krzysztof.kozlowski@oss.qualcomm.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 12 Jul 2026 17:58:23 +0200
-X-Gm-Features: AUfX_mxcpSIQ4DLxW6ZIvnxFvpspk6KaYmziRMf8gxBgAEDT5L34RLygHbWHhs8
-Message-ID: <CAFBinCDvwvc+qO-_-XUUf9orypOL1XJo+nukC4ZXnB7UtKMj4A@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: remoteproc: Drop redundant $ref of
- firmware-name property
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Suman Anna <s-anna@ti.com>, linux-remoteproc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260712_085835_381033_8D462ED9 
-X-CRM114-Status: UNSURE (   8.09  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260713_050851_025364_5A3A187C 
+X-CRM114-Status: GOOD (  13.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,20 +105,117 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Doruk Tan Ozturk <doruk@0sec.ai>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gU3VuLCBKdWwgMTIsIDIwMjYgYXQgNDo1N+KAr1BNIEtyenlzenRvZiBLb3psb3dza2kKPGty
-enlzenRvZi5rb3psb3dza2lAb3NzLnF1YWxjb21tLmNvbT4gd3JvdGU6Cj4KPiBUaGUgRFQgc2No
-ZW1hIGNvcmUgZGVmaW5lcyB0aGUgdHlwZSAoJHJlZikgb2YgJ2Zpcm13YXJlLW5hbWUnIHByb3Bl
-cnR5Cj4gYXMgc3RyaW5nLWFycmF5LCBzbyBpbmRpdmlkdWFsIHNjaGVtYXMgZG8gbm90IG5lZWQg
-dG8uICBUaGV5IGFsc28gc2hvdWxkCj4gbm90IHJlZGVmaW5lIGl0IHRvIGEgc2luZ2xlIHN0cmlu
-ZywgYnV0IGluc3RlYWQganVzdCBzZXQgbnVtYmVyIG9mCj4gZXhwZWN0ZWQgZmlybXdhcmUgbmFt
-ZXMuCj4KPiBTaWduZWQtb2ZmLWJ5OiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296
-bG93c2tpQG9zcy5xdWFsY29tbS5jb20+ClJldmlld2VkLWJ5OiBNYXJ0aW4gQmx1bWVuc3Rpbmds
-IDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPgoKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QK
-bGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQu
-b3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+This patch series addresses a collection of critical race conditions,
+memory leaks, use-after-free bugs, and resource management issues
+within the Amlogic Meson video decoder (meson-vdec) driver and
+associated components.
+
+The primary focus is tightening session lifecycles, safely synchronising
+the V4L2 m2m framework callbacks, hardening work queue operations
+(esparser_queue_work), and correcting buffer validations to prevent
+stability issues like KASAN out-of-bounds errors or stream-on timeouts.
+
+Summary of Changes:
+* Race Conditions & Synchronisation: Fixes multi-threading and
+  execution races across stream-on, stream-off, job abort, and
+  teardown pathways.
+* Memory Lifecycle: Eliminates memory leaks and use-after-free
+  vulnerabilities by safely pinning, canceling, and sequencing
+  device removals.
+* VP9 & Buffer Hardening: Addresses payload handling bugs in the ES
+  parser, properly tracks ongoing buffers via atomic counters, and
+  prevents invalid memory writes.
+* Platform/DMA Adjustments: Adjusts DMA segment configurations,
+  canvas handling, and buffer sizes to match modern hardware demands.
+
+Note on an outstanding issue:
+An execution deadlock occurs in the driver workqueue path during high
+stress or long playback sessions. This stall is triggered when the
+Amlogic hardware internal video FIFO buffer becomes completely full.
+When esparser_queue_all_src runs, the capacity validation check is
+tripped due to a design limitation in how buffer exhaustion is handled.
+This blocks progress and leaves the workqueue worker waiting indefinitely
+on a core mutex lock.
+
+The resulting hung task call trace shows the worker thread blocking
+on the internal lock:
+
+Workqueue: events esparser_queue_all_src [meson_vdec]
+...
+__mutex_lock
+mutex_lock_nested
+esparser_queue_all_src
+
+I have tried to address this issue, but the underlying deadlock persists
+under extreme conditions.
+
+Any feedback on this new appock is welcome.
+
+Testing was done using v4l2-compliance and active decoding pipelines
+on Meson platforms (like Hardkernel ODROID-N2+ and ODROID-C4) SBCs.
+
+The v4l2-compliance tests passed successfully via:
+$ v4l2-compliance -s -v -d /dev/video0
+
+Pipelines were validated using the following GStreamer script.
+
+[1] https://gist.github.com/moonlinux/08295ba1f17ce7155550773f2d2cb6e5
+
+Previous changes:
+v6: https://lore.kernel.org/all/20260530094326.11892-2-linux.amoon@gmail.com/
+
+Thanks
+-Annad
+
+Anand Moon (19):
+  media: meson: vdec: Fix m2m device lifetime and cleanup path
+  media: meson: vdec: Fix STREAMON / STREAMOFF race conditions and
+    session teardown
+  media: meson: vdec: Fix lifecycle leaks and race conditions in
+    recycle_thread
+  media: meson: vdec: Fix use-after-free race between teardown and ISR
+    routines
+  media: meson: vdec: Fix race condition and synchronize esparser IRQ
+  media: meson: vdec: Fix race condition by canceling work sync
+  media: meson: vdec: Refactor esparser work queue and fix teardown race
+  media: meson: vdec: Fix concurrent execution races and unsafe teardown
+  media: meson: vdec: Fix vp9 header update failure on invalid payloads
+  media: meson: vdec: Fix race conditions and leaks in esparser pipeline
+  media: meson: vdec: Update core m2m stream state during transitions
+  media: meson: vdec: Coordinate m2m task execution inside async loop
+  media: meson: vdec: Fix race conditions in job abort sequence
+  media: meson: vdec: Correct atomic counter placement in dst_buf_done
+  media: meson: vdec: Fix concurrent firmware loading race and hardware
+    timeout
+  media: meson: vdec: Configure DMA mask and segment size in probe
+  media: meson: canvas: Fix Use-After-Free by linking canvas provider
+    device
+  media: meson: vdec: Increase VIFIFO buffer size to 32 MiB
+  gpu: drm: meson: Fix DMA segment size limits and maximize allocation
+    boundaries
+
+ drivers/gpu/drm/meson/meson_drv.c             |   6 +
+ drivers/soc/amlogic/meson-canvas.c            |  14 +-
+ drivers/staging/media/meson/vdec/esparser.c   | 127 +++++--
+ drivers/staging/media/meson/vdec/vdec.c       | 320 ++++++++++++++----
+ drivers/staging/media/meson/vdec/vdec.h       |   8 +-
+ drivers/staging/media/meson/vdec/vdec_1.c     |  16 +-
+ .../staging/media/meson/vdec/vdec_helpers.c   |   3 +
+ 7 files changed, 388 insertions(+), 106 deletions(-)
+
+
+base-commit: a13c140cc289c0b7b3770bce5b3ad42ab35074aa
+-- 
+2.50.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
