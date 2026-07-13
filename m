@@ -4,71 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED4DCC43458
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2026 12:10:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 792E4C43458
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2026 12:10:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BeHslHjIlSMS4Pm+d0beG1IbZ+bdoCwLTPT2MhpK2bk=; b=yTlP/9ZlS+W/mL
-	0CR+4tOk9YgymTaENuWlwJo+ZrrgpF+8BfeIpXbh4k1Pxjjs5Zza7kT3Tjs1hvQQiTcC9Ra7qn/fm
-	8UAij18d9LLxb0h28ZmX7bnmPN7UpPTk6RPMu3MyOGAtJt+51GVwXdhGQnQv7YtSQiQhnnT2Uei3Y
-	JPXw3S3SWnNdZW3Q1qy8Kgffi7+/mlu3X1xe+CAMM2p1RpHQt8iWeoqHmK7BKMwVOb6W62Geh9UPG
-	TvQtYxvZDllZeNIWNudcN7B1PTCLTEpWJ58JHEHVJC0OhZZ+5M9YA9Cgt8B3j0ADdMhLp2BmD2U74
-	V2E1b/Y//v3XAM2kugHg==;
+	List-Owner; bh=vpsYPsxWko63gzltOJkepmDi9lpd+OiLpiu0a6xxXgo=; b=4wa3LG4zxC6Epr
+	3ttsqQ103sWIyxQ21DEw3cR5j9hBdPME4C4FvYHpQGQzKG69n2VPEbZa2qTUWQCEczBvbNtdMO1iV
+	OcitOPSOYpW06CxjfI4bxg/FvYnboqyTkppadE4NHVX/nLnoSXLLrX0mvebm3VjY6a5xF4MoRPNiU
+	zVp0Om1M6aEAh1X5JpR3+weu5Ghc38vPkUd2NMbZ3BrF8WKrPolcawD41WUTWdE1OLI+1BriTSdOX
+	ucgjUyWVhx/9QKph7qtU+sWrmLdnRpdpsCg7QvoetPGJmWLlPlKWKqwKB+6pnM0rI0Q9ly1Mzgxgc
+	dOpXXz8aRX2i9/4qP6TQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjFUO-000000098in-1voA;
-	Mon, 13 Jul 2026 12:10:24 +0000
-Received: from mail-pj1-x102b.google.com ([2607:f8b0:4864:20::102b])
+	id 1wjFUX-000000098ng-2O0v;
+	Mon, 13 Jul 2026 12:10:33 +0000
+Received: from mail-pf1-x433.google.com ([2607:f8b0:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjFUJ-000000098en-1h36
+	id 1wjFUT-000000098lX-47VA
 	for linux-amlogic@lists.infradead.org;
-	Mon, 13 Jul 2026 12:10:22 +0000
-Received: by mail-pj1-x102b.google.com with SMTP id 98e67ed59e1d1-383cb94f742so2618410a91.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 13 Jul 2026 05:10:19 -0700 (PDT)
+	Mon, 13 Jul 2026 12:10:31 +0000
+Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-8485ef63b68so2574626b3a.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 13 Jul 2026 05:10:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783944619; x=1784549419; darn=lists.infradead.org;
+        d=gmail.com; s=20251104; t=1783944629; x=1784549429; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=M52KCQrGH2efvkkWtyT/9Kw89ZxEs+AuVcYa54xJZ9k=;
-        b=S2sGS9nW3ki7m7QiQsAv0XG6u0BfJcrxQGRZ0rf2i1ENlYpOlH9q3Tk9nPhtZWUB4n
-         BkY4q3OLbNOjYzGz2wZ1hj4YDtNJDPL5CETHeRzvpnDPkucnwGRUiaguHLiFJF7jJwAj
-         cdvc+CavEVghjro8YNYE77wYPKcN01/oFNB894BdKzCXwLdaYm4vXl3IvoB2Vk99CMBB
-         0a1JzvLG67CLv3/RxvgHibJA2ohfkJx9uVvrwObQ+FeWeJxdL3aeB13fW4hKdocHTw5l
-         V0Q4pdcLf0yxu+ot35uEktnpBLe3hILNrknx688XmMcW8FoiRHui15yad4wXVIhcUEbI
-         p/Hg==
+        bh=0g+WRe3x8NF1Lsmp6BpHJTM0uwdyJj9zKy0hm9x5WoY=;
+        b=mwZS+uiNuDAWdFe2D0rACYVJsGdRugi78eZMoqt7FL2EQcMkmvi0KBVIkDySEWLyfd
+         LhlgoRR4S11OQKeNhOMZw3Qm74cWWvg2BEAX/is93GC86FIr0PSgaSRyWL2t74N0mQj9
+         6qn1xVWNbUGEVV1aLnL6pVh+/cHGSWp85VlpQ6AkdJg2cwCUn9mnQomkkvTlVn/Zd0vl
+         zMMH/PjP40hlSIWS0iidLqHtLF2Pnc6BJDcfkyER89lz/eXWCPLJMLZNkT9lvHI3ECQw
+         CuNqXa7iKIn88xANnIfZCQuYWJ7UFRxPVeEvPKz+gvZ/lxMYwjaClQSBJZBPyu3gKFiJ
+         SlOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783944619; x=1784549419;
+        d=1e100.net; s=20251104; t=1783944629; x=1784549429;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=M52KCQrGH2efvkkWtyT/9Kw89ZxEs+AuVcYa54xJZ9k=;
-        b=bUZWWVpqwTmW6s/A6NI24JBK1YHfKXs9ijgI4fWP3JToHvR9BAoBSL6Nrtqyl5R3L5
-         T87Nfa7UhPJBo5m+qM9+y5jFHKgSoiPzq5LlxE0Z9YtxmX/jWKOsEwXc7SeVRyS1fyxI
-         NAOkUjx8m5o94n8SR9BHyAToPmcstch3yJJ5e9Kr0D7jY+60YcjV6XvzxmFHYmO+ab43
-         wlOlIn6jP/6GF4wzPacqbqsvNRTEJtmwZWx+tjrXZBgHZuUPOIcpPftqzRmg01GswT+Q
-         JYIkwmWDAy1TFA+HX9/i7BPAtcVFpRW4IfzBi4vMg6V8Fm2/pOrSsaoUDUz4og9EJucQ
-         Z02A==
-X-Forwarded-Encrypted: i=1; AHgh+RrYhulBi1TNiLBkTuIZk3r5sWeq9xjNtUqdGZmoMYgIh4x/IhAAPD9bzVHqJVDq6XA8BWv6Aqk5lh8gM8YG@lists.infradead.org
-X-Gm-Message-State: AOJu0YwYajlwtZcrhRw5No0hULStNZ4xku6vWWOQ8ub52irH3BeIKdrD
-	lq1EaDU50/YCuPB1CaHNKqYjjBxJj68Xjza7U3j3ZLk90FaxRl2miDNP
-X-Gm-Gg: AfdE7clqJnpffTTD/LfkjZWf1y+SxOdQ901PtU1s7tzwtVB8s3ouKtyChM4kUyDucEA
-	SGeBVlbl5TwYvAeTGsi/KRJSMQ1mAyLXy77/JZu5fH00Ld3kcR8OmNn3dZH54bQ/iNjMBxkykPW
-	9t7TQhh3IK3jA/n9vMnN+X9T9xVOylswGTU3ul7D6s7cN315lyRNbXL0TGrG3R30E6tYzBUiVrs
-	ZU49WdDsgVgyqm3N75F903LkMR3tbXECG7322+41wYaK+FrtHrDE811nD34EXzp3Xu493QF1l8h
-	J2bqWL/1rHLWIHubISuzfPhPwKYJDtM6eXy/+RnIEdJjJP/213paxZU2kuUE5WVn9oVydWMpNrr
-	S02DllJlHBATN/nP400azOxI/O8Cn2mO/QJWIzm1BilWk1UTHSZBTbHWr1fbYEg6KDELiugfNUf
-	/tctCTi2zW/w==
-X-Received: by 2002:a17:90b:58cc:b0:380:540:d499 with SMTP id 98e67ed59e1d1-38dc78224a5mr7942822a91.6.1783944618568;
-        Mon, 13 Jul 2026 05:10:18 -0700 (PDT)
+        bh=0g+WRe3x8NF1Lsmp6BpHJTM0uwdyJj9zKy0hm9x5WoY=;
+        b=PNXBWW5lpRaTnyeIPqdgbyrJVb0FFxAUIZlSkzlg/JP+RB7l6/9Mu10nU3p96xGpQw
+         xf/rAJ5b3xYKut8KhuE+pjUD4QpsV2JjXKVWRU61MtkyN8YxUOpg9c2teiDCb4YtAPnH
+         2XxzrrroklnZzROobcWf40Qq/qfUwy3/klPMkEpLXqzQU0rrX8+Bx4giX4NPVZNaXeQn
+         2L54t/Y+0BFolQeYOoA5yQXxHA6BT6ferxp+WW2gQhcWol2OfSQbRs4v6nBf5fRq2J6d
+         JymU29jtgkGZF5W8IfdR0Mp1fQ6SVD+/79Vnd6vas9Tx073T/3vawReAyfoR0IptwLGE
+         kyRA==
+X-Forwarded-Encrypted: i=1; AHgh+RrLV66RUEZikN5HIP7AnC/HqNV0g6Nn8DBrW/LoQrPadZrdVLdGlOJ6TwYDZewiNZjdp8KBEdF0dUASnN2F@lists.infradead.org
+X-Gm-Message-State: AOJu0YyL56mmGtL9nXJgQP5FI4JU2548aZ4Fp7oiPElCiHKxXFj2K1n6
+	diMRV5FhcNcxSddTIEUaV59AUlJGvpi7LLaE9kRlmIozvgG7IBLwLGvS
+X-Gm-Gg: AfdE7cmEWYRc4n1gAksG+N61M6Y+vNEpZwZhBYnCYMSgC11lT7uKPIFIGaZi1ecEaF4
+	MWD+CrRByR49dIM2O7tzhPwdJypLNV+ouoFOM1hrQn73A3ZT7Mt3c2djz4graiGeZwv06oDC/cB
+	/9WgMglW8H424UrFdsHfmU3eI1AoQOcc809PYvibo6pT9k03XPg1145yCvhuvJRAKkyrSMGp+KI
+	QB3Tf5pnhXdTL4GXgqIZYrlnXWMUhygfz/0cApz63BYk2xJ4+VkRnA6gh2thX7GU/TKYCdy7b25
+	siKrZkbNrP6Fbf0wSbx1YGAtJIvHV8t5Gnp2sR1mURSzENUKwVYRsYXazs1OeWnGKbzBp1YnOpn
+	FAjFP3P5JE5aflDYfsGlyOyelzb2e6EWlMXauhJ/T4kDC+vICj0AZjtONoZ8fOR82wnyuC7p6ft
+	fxpsZEntED2xG+/F8nGsvc
+X-Received: by 2002:a05:6a21:6088:b0:3bf:9fc0:f6c2 with SMTP id adf61e73a8af0-3c1109ec872mr8713076637.11.1783944629120;
+        Mon, 13 Jul 2026 05:10:29 -0700 (PDT)
 Received: from rockpi-5b ([45.112.0.180])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-311747f7293sm67756935eec.3.2026.07.13.05.10.12
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-311747f7293sm67756935eec.3.2026.07.13.05.10.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jul 2026 05:10:17 -0700 (PDT)
+        Mon, 13 Jul 2026 05:10:28 -0700 (PDT)
 From: Anand Moon <linux.amoon@gmail.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -87,16 +87,16 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
 	linux-kernel@vger.kernel.org (open list),
 	linux-media@vger.kernel.org (open list:MESON VIDEO DECODER DRIVER FOR AMLOGIC SOCS),
 	linux-staging@lists.linux.dev (open list:STAGING SUBSYSTEM)
-Subject: [PATCH v7 08/19] media: meson: vdec: Fix concurrent execution races and unsafe teardown
-Date: Mon, 13 Jul 2026 17:37:03 +0530
-Message-ID: <20260713120840.17427-9-linux.amoon@gmail.com>
+Subject: [PATCH v7 09/19] media: meson: vdec: Fix vp9 header update failure on invalid payloads
+Date: Mon, 13 Jul 2026 17:37:04 +0530
+Message-ID: <20260713120840.17427-10-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260713120840.17427-1-linux.amoon@gmail.com>
 References: <20260713120840.17427-1-linux.amoon@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260713_051019_460053_A5D1256B 
-X-CRM114-Status: GOOD (  20.71  )
+X-CRM114-CacheID: sfid-20260713_051030_026496_CB365A57 
+X-CRM114-Status: GOOD (  14.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,219 +114,79 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Address data races involving 'should_stop' and prevent multi-session
-hardware clobbering by enforcing atomic tracking and strict owner
-validation during device teardown.
+Ensure vp9_update_header() returns an explicit error code on invalid or
+malformed buffer payloads instead of silently returning zero.
 
-The esparser work queue reads 'sess->should_stop' outside of critical
-regions without serialization primitives, risking data races or visibility
-delays. Furthermore, vdec_close() and vdec_stop_streaming() blindly
-shut down hardware components (via poweroff and canvas frees) and nullify
-'core->cur_sess' without confirming that the executing session actually
-owns the active hardware context. In multi-session scenarios, this allows
-a closing inactive session to inadvertently break a running session.
+When v4l2-compliance injects short, empty, or uninitialized test buffers,
+the validation logic catches the out-of-bounds size anomalies, but
+returning 0 tricks the calling esparser infrastructure into treating
+it as a successful 0-byte header conversion. This causes the hardware
+decoder engine to stall out, resulting in subsequent stream-on timeouts
+and failure marks inside v4l2-test-buffers.cpp.
 
-To fix these synchronization and lifecycle issues with the following
-changes use thread-safe flagging: Wrap reads and writes of
-'sess->should_stop' in READ_ONCE() and WRITE_ONCE() to prevent compiler
-optimizations from caching the condition variables across scheduling
-boundaries and optimizations across workqueue execution threads.
-
-Also safe context releasing: transition 'core->cur_sess' pointer
-clearings to use smp_store_release(). This ensures all prior internal
-memory structures are entirely flushed and visible to other execution
-cores.
+Fix this by returning -EINVAL across all validation and bounds check
+failures to force immediate core framework buffer drops. Additionally,
+tighten array pointer checks, secure the mag_ptr bounds loop, and
+convert the superframe parsing indexer into an explicit if/else block
+for readability.
 
 Cc: Nicolas Dufresne <nicolas@ndufresne.ca>
 Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 ---
- drivers/staging/media/meson/vdec/esparser.c |  2 +-
- drivers/staging/media/meson/vdec/vdec.c     | 88 ++++++++++++++-------
- 2 files changed, 59 insertions(+), 31 deletions(-)
+ drivers/staging/media/meson/vdec/esparser.c | 19 +++++++++++++------
+ 1 file changed, 13 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/staging/media/meson/vdec/esparser.c b/drivers/staging/media/meson/vdec/esparser.c
-index e5d3d817b9b2b..959673742e699 100644
+index 959673742e699..edbfc829e2da8 100644
 --- a/drivers/staging/media/meson/vdec/esparser.c
 +++ b/drivers/staging/media/meson/vdec/esparser.c
-@@ -379,7 +379,7 @@ void esparser_queue_all_src(struct work_struct *work)
+@@ -97,11 +97,15 @@ static int vp9_update_header(struct amvdec_core *core, struct vb2_buffer *buf)
+ 	unsigned char *old_header = NULL;
  
- 		scoped_guard(mutex, &sess->lock) {
- 			/* Safe atomic tracking check: exit loop if session is shutting down */
--			if (sess->should_stop)
-+			if (READ_ONCE(sess->should_stop))
- 				return;
- 
- 			/* Queue completely empty: exit work loop cleanly */
-diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
-index 6fe9722577179..83a9b1238972a 100644
---- a/drivers/staging/media/meson/vdec/vdec.c
-+++ b/drivers/staging/media/meson/vdec/vdec.c
-@@ -287,9 +287,13 @@ static int vdec_start_streaming(struct vb2_queue *q, unsigned int count)
- 	struct amvdec_session *sess = vb2_get_drv_priv(q);
- 	struct amvdec_codec_ops *codec_ops = sess->fmt_out->codec_ops;
- 	struct amvdec_core *core = sess->core;
-+	struct device *dev = core->dev_dec;
- 	struct vb2_v4l2_buffer *buf;
- 	int ret;
- 
-+	/* Reset workqueue loop shutdown signal to allow streaming */
-+	WRITE_ONCE(sess->should_stop, 0);
+ 	dp = (uint8_t *)vb2_plane_vaddr(buf, 0);
++	if (!dp)
++		return -EINVAL;
 +
- 	if (q->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
- 		sess->streamon_out = 1;
- 	else
-@@ -336,7 +340,7 @@ static int vdec_start_streaming(struct vb2_queue *q, unsigned int count)
- 		dma_alloc_coherent(sess->core->dev, sess->vififo_size,
- 				   &sess->vififo_paddr, GFP_KERNEL);
- 	if (!sess->vififo_vaddr) {
--		dev_err(sess->core->dev, "Failed to request VIFIFO buffer\n");
-+		dev_err(dev, "Failed to request VIFIFO buffer\n");
- 		ret = -ENOMEM;
- 		goto err_cleanup_session;
- 	}
-@@ -388,10 +392,12 @@ static int vdec_start_streaming(struct vb2_queue *q, unsigned int count)
- 		sess->streamon_cap = 0;
+ 	dsize = vb2_get_plane_payload(buf, 0);
  
- 	mutex_lock(&core->lock);
--	if (core->cur_sess == sess)
--		core->cur_sess = NULL;
--	if (sess->status != STATUS_NEEDS_RESUME)
--		sess->status = STATUS_STOPPED;
-+	if (core->cur_sess == sess) {
-+		/* Safely clear hardware ownership since we were confirmed as the owner */
-+		smp_store_release(&core->cur_sess, NULL);
-+		if (sess->status != STATUS_NEEDS_RESUME)
-+			sess->status = STATUS_STOPPED;
-+	}
- 	mutex_unlock(&core->lock);
- err_unlock_no_hw:
- 	while ((buf = v4l2_m2m_src_buf_remove(sess->m2m_ctx)))
-@@ -441,6 +447,9 @@ static void vdec_stop_streaming(struct vb2_queue *q)
- 	enum amvdec_status old_status;
- 	bool full_cleanup = false;
- 
-+	/* Signal workqueue loop to abort instantly */
-+	WRITE_ONCE(sess->should_stop, 1);
-+
- 	/* flush buffers to kill background workqueue thread */
- 	if (q->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
- 		while ((buf = v4l2_m2m_src_buf_remove(sess->m2m_ctx)))
-@@ -493,26 +502,33 @@ static void vdec_stop_streaming(struct vb2_queue *q)
- 		cancel_work_sync(&sess->esparser_queue_work);
- 		mutex_lock(&core->lock);
- 
--		vdec_poweroff(sess);
--		vdec_free_canvas(sess);
-+		if (core->cur_sess == sess) {
-+			vdec_poweroff(sess);
-+			vdec_free_canvas(sess);
-+
-+			if (sess->vififo_vaddr) {
-+				dma_free_coherent(sess->core->dev,
-+						  sess->vififo_size,
-+						  sess->vififo_vaddr,
-+						  sess->vififo_paddr);
-+				sess->vififo_vaddr = NULL;
-+				sess->vififo_paddr = 0;
-+			}
- 
--		if (sess->vififo_vaddr) {
--			dma_free_coherent(sess->core->dev, sess->vififo_size,
--					  sess->vififo_vaddr, sess->vififo_paddr);
--			sess->vififo_vaddr = NULL;
--			sess->vififo_paddr = 0;
--		}
-+			vdec_reset_timestamps(sess);
-+			vdec_reset_bufs_recycle(sess);
- 
--		vdec_reset_timestamps(sess);
--		vdec_reset_bufs_recycle(sess);
--		core->cur_sess = NULL;
-+			kfree(sess->priv);
-+			sess->priv = NULL;
- 
--		kfree(sess->priv);
--		sess->priv = NULL;
-+			/* Safely clear hardware ownership since we were confirmed as the owner */
-+			smp_store_release(&core->cur_sess, NULL);
-+		}
- 	} else {
- 		if (sess->status == STATUS_NEEDS_RESUME)
- 			sess->changed_format = 0;
- 	}
-+
- 	mutex_unlock(&core->lock);
- }
- 
-@@ -802,7 +818,7 @@ vdec_decoder_cmd(struct file *file, void *fh, struct v4l2_decoder_cmd *cmd)
- 
- 	if (cmd->cmd == V4L2_DEC_CMD_START) {
- 		v4l2_m2m_clear_state(sess->m2m_ctx);
--		sess->should_stop = 0;
-+		WRITE_ONCE(sess->should_stop, 0);
- 		return 0;
+-	if (dsize == vb2_plane_size(buf, 0)) {
+-		dev_warn(core->dev, "%s: unable to update header\n", __func__);
+-		return 0;
++	if (dsize <= 0 || dsize > vb2_plane_size(buf, 0)) {
++		dev_warn(core->dev, "%s: invalid payload size %d\n",
++			 __func__, dsize);
++		return -EINVAL;
  	}
  
-@@ -812,7 +828,7 @@ vdec_decoder_cmd(struct file *file, void *fh, struct v4l2_decoder_cmd *cmd)
+ 	marker = dp[dsize - 1];
+@@ -109,13 +113,16 @@ static int vp9_update_header(struct amvdec_core *core, struct vb2_buffer *buf)
+ 		num_frames = (marker & 0x7) + 1;
+ 		mag = ((marker >> 3) & 0x3) + 1;
+ 		mag_ptr = dsize - mag * num_frames - 2;
+-		if (dp[mag_ptr] != marker)
+-			return 0;
++		if (mag_ptr < 0 || dp[mag_ptr] != marker)
++			return -EINVAL;
  
- 	dev_dbg(dev, "Received V4L2_DEC_CMD_STOP\n");
- 
--	sess->should_stop = 1;
-+	WRITE_ONCE(sess->should_stop, 1);
- 
- 	v4l2_m2m_mark_stopped(sess->m2m_ctx);
- 
-@@ -998,6 +1014,9 @@ static int vdec_close(struct file *file)
- 	struct amvdec_session *sess = file_to_amvdec_session(file);
- 	struct amvdec_core *core = sess->core;
- 
-+	/* Signal workqueue loop to abort instantly */
-+	WRITE_ONCE(sess->should_stop, 1);
+ 		mag_ptr++;
+ 		for (cur_frame = 0; cur_frame < num_frames; cur_frame++) {
+ 			frame_size[cur_frame] = 0;
+ 			for (cur_mag = 0; cur_mag < mag; cur_mag++) {
++				if (mag_ptr >= dsize)
++					return -EINVAL;
 +
- 	/* Synchronize and flush pending hardware interrupt service routines */
- 	synchronize_irq(core->vdec_irq);
- 	/* Ensure esparser ISR finishes executing */
-@@ -1012,21 +1031,30 @@ static int vdec_close(struct file *file)
+ 				frame_size[cur_frame] |=
+ 					(dp[mag_ptr] << (cur_mag * 8));
+ 				mag_ptr++;
+@@ -140,7 +147,7 @@ static int vp9_update_header(struct amvdec_core *core, struct vb2_buffer *buf)
  
- 	mutex_lock(&core->lock);
- 
--	vdec_poweroff(sess);
--	vdec_free_canvas(sess);
--	core->cur_sess = NULL;
-+	if (core->cur_sess == sess) {
-+		vdec_poweroff(sess);
-+		vdec_free_canvas(sess);
- 
--	if (sess->vififo_vaddr) {
--		dma_free_coherent(core->dev, sess->vififo_size,
--				  sess->vififo_vaddr, sess->vififo_paddr);
--		sess->vififo_vaddr = NULL;
--		sess->vififo_paddr = 0;
-+		if (sess->vififo_vaddr) {
-+			dma_free_coherent(core->dev,
-+					  sess->vififo_size,
-+					  sess->vififo_vaddr,
-+					  sess->vififo_paddr);
-+			sess->vififo_vaddr = NULL;
-+			sess->vififo_paddr = 0;
-+		}
-+		vdec_reset_timestamps(sess);
-+		vdec_reset_bufs_recycle(sess);
+ 	if (new_frame_size >= vb2_plane_size(buf, 0)) {
+ 		dev_warn(core->dev, "%s: unable to update header\n", __func__);
+-		return 0;
++		return -ENOMEM;
  	}
--	vdec_reset_timestamps(sess);
--	vdec_reset_bufs_recycle(sess);
-+
- 	kfree(sess->priv);
- 	sess->priv = NULL;
  
-+	/* Unconditionally set our local status to stopped */
-+	sess->status = STATUS_STOPPED;
-+	/* Safely clear hardware ownership since we were confirmed as the owner */
-+	smp_store_release(&core->cur_sess, NULL);
-+
- 	mutex_unlock(&core->lock);
- 
- 	v4l2_m2m_ctx_release(sess->m2m_ctx);
+ 	for (cur_frame = num_frames - 1; cur_frame >= 0; cur_frame--) {
 -- 
 2.50.1
 
