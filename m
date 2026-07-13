@@ -4,114 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 204E9C43458
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2026 14:04:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6E3EC43458
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2026 17:17:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	MIME-Version:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=rtPGdsi3UQhaMGR0arPinyYLH1vfnRyygDhS8RHea5w=; b=2MEVNo+I4a8xDQ2w91pB2r+26y
-	5E5a8TTRKqsecU5dwm8OioRl/0Loy938cpjWxtsNtu34uab72sHewHhsNO5cCsm9gpIU1+AYw134s
-	Le7ILihcS/EQgBAVLhomBlJYTMi8GnjUW+DgR0Fk4urzkdy2FvrPlSh1gJ3HY8Rbj/E3LTM/r0Ulg
-	dwngb3eVA5Mg01mlCxOTD9ZgL+2kQFi9+uQ1+yk6DD/+UeA8XqDfBk+yj27CA1M3XkxH4tPQOrZ32
-	d6htWqHtJGIsjWS40hAgiMUwI7qA3E4kmkZIgfQT+VVt5daPH1GSMpIQPUxICOJ7+/14m7HcyYAd6
-	69hTjCzQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=eBfPIjxn81JP7GKyX4e1p4gdHORWNox9hwvLO7wr1Uc=; b=ZdYZkyDnHTL9D+
+	gM0qPiax3B6DtxmstpTePmOJoZoisN2tArU+2of7zA6onm6hczUdvqjbAuhwSyZ+p+lqEK20HMks0
+	9K9Q/j8gv0mpzZQn2T/g4AUqV73pPENUq2rV1yh2dCEhSPPuLTNMNVwzkht/jPkoN4PZ4gwOaq/UL
+	W815PIdZVdeBvXGcTqJ2Q752xNmuPce+MS9jlabws8OEVNv3iw+93bKMQ/+Wk57KO/sxEfhuvikwL
+	g/VArFKUmBk6WNAujMTMHRa0HvU0c72OSPyJNfpEQWyeo1rDKZFyLBy6wLr3PcfVSP0ypgDx6Zf2T
+	SIh6GgetN+dSIvlH8KIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjHGV-00000009Xbf-250B;
-	Mon, 13 Jul 2026 14:04:11 +0000
-Received: from mail-vs1-xe32.google.com ([2607:f8b0:4864:20::e32])
+	id 1wjKH9-0000000A65F-2T5c;
+	Mon, 13 Jul 2026 17:17:03 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjHGR-00000009XZK-3ZSa
+	id 1wjKGx-0000000A62V-3DVq
+	for linux-amlogic@bombadil.infradead.org;
+	Mon, 13 Jul 2026 17:17:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:In-Reply-To:References;
+	bh=r8F7PDpBGQrWy7oTUa6pu42Pf+937GWEA5yn0veEyiU=; b=UJ0Wd55hUae2nupoO1A/5mfW3p
+	kpEo42RlLR4fNxCp+W6HRDhwIGpe4mmg+hYbs/WT6Mvst/s1sZ5wy0ezlbBJEQZXxHpmfnp/urR1g
+	mh244I0DEMrIauYOAce9UO76Jw57frRYNsTh2Kg/pJtkxnzaE+mO1e+myNmcT0wJj0K80ZEC6mTNY
+	X7UoOTcIG5w7OcCvZrGb5Qkp+ma77f3v5gl3u2yHsIFDNO4hgO0NPDE8oN2AoPy1Xwwzo3tRKqwtQ
+	ElYW/xLVj7cepLs+ZruiShqBbl3X2nd2IOTQJuYJsxwION0sZMz2XFcmP2fNzhMDanAD9Ghl/fTS1
+	m03xMSzg==;
+Received: from mail-pj1-x102e.google.com ([2607:f8b0:4864:20::102e])
+	by desiato.infradead.org with esmtps (Exim 4.99.2 #2 (Red Hat Linux))
+	id 1wjKGu-0000000BsoJ-3xzb
 	for linux-amlogic@lists.infradead.org;
-	Mon, 13 Jul 2026 14:04:09 +0000
-Received: by mail-vs1-xe32.google.com with SMTP id ada2fe7eead31-74019ed06aeso2553032137.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 13 Jul 2026 07:04:07 -0700 (PDT)
+	Mon, 13 Jul 2026 17:16:50 +0000
+Received: by mail-pj1-x102e.google.com with SMTP id 98e67ed59e1d1-3811f512167so4133176a91.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 13 Jul 2026 10:16:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20251104.gappssmtp.com; s=20251104; t=1783951446; x=1784556246; darn=lists.infradead.org;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=eBW10Cfwapwvr0gihXMdckLTW8yiKSYBxKONjhqXCr8=;
-        b=GIlzv3BWN2NkEOFu7n7LmRegZSluTWBqhAlpSWylLrt2Qu6R0zbHg0kffO2o4+DMEn
-         kP3aMMiuNADhaOcF9cIWUHwmYYl67e+A9ebw2W4CdHt8sdUwB6k5rwWy1PXAZnngL3P+
-         IFMkQ6LOJ/S6k+dhySyTbPSMqHpzZQiVMeWGVD+NUdL/zOuiPLRAkOsAayr9iYg1PQi8
-         +DPWytFqVpCUu7KJGcdgM2/o9auMEW0YnxDjKK12ayrt5xw8D1mZ3LjWmGJUrSyTNkuJ
-         1Cs1lKf9tXIXbFJHnwz1ZkBR6ykmgfKR0V4pUJ04VMgiVaqSTg33TYeYvB2p7nOaIaQo
-         lIQg==
+        d=gmail.com; s=20251104; t=1783963006; x=1784567806; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=r8F7PDpBGQrWy7oTUa6pu42Pf+937GWEA5yn0veEyiU=;
+        b=LJOjUMHcVFiT/mwzISPtMPdFUHnpC2P6VodWNArVdDtkiUGjPE+/awZPnJayoKNK3L
+         OPF1nKVJd1lAj2TQ0cYs8n1ZHWSqVUVwnPKekiCe3ufkMQy7tqWo6zK6ObNUncXLxH5x
+         STtSkb1D6pTbUQRg/xQHP9AELzgQyOqEaPiigzwSTjgz9xbRMG49IL3ZTrNc6XbbYi1F
+         6pNtUcATcDJVmLbasSDkTOu/KqochKSG3woRJCHsBF2eJ6Uk3PTVQbzLpIsnDLjWTiSZ
+         90o9vgcFbeSvHi/UjwW08JGbNfFtdYOwxOPUPbcZLhlWehEePuqfmxgU0bQGyVrFPTDV
+         Cggw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783951446; x=1784556246;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=eBW10Cfwapwvr0gihXMdckLTW8yiKSYBxKONjhqXCr8=;
-        b=K5xpoRpZeYmjZLUqtSqT+aAWeiGj6iqhGVzY+csRuVQV/2t46WUOnF8/2112aC+7F9
-         lAbV2W74v5RB7nMZzuH0Kt+0Tud1u0YKyM5cdbYpWgzTw2YgONB1n/75cok2GPU+pr1U
-         eNwaChyZ8Dr+JQubphS7pOlgvJZt9YDieCzrMofRJKMawWXEeqkL0m8eN/keHOk6GzAw
-         9W+9lZSAM8mb74LQojfcQnmzshEl/jmcsni9JtaTNdigKa36JhtWI88PKuNBCPGvDi3l
-         i+RkK3NIDGulaYP919Q+3ttMJAvFtJj0Mq5xhvq2AAL9JKKSa7XR/ZuGHUFBjZVW6+wr
-         8FPw==
-X-Forwarded-Encrypted: i=1; AHgh+RqaYKQkeoer1W2Ax8jxa0SK2pNwR6I+dL7a/+U4Cma2hkKQewU8CGTeQ/1bf4tlpoAm8w68BoUOaA5/y2Mn@lists.infradead.org
-X-Gm-Message-State: AOJu0YwkpLmOhlbL18NtVhqy5DJHceWZ9hVCvIaaNN0rKTujKJyGKCXt
-	zvlVx9HrjWS3jkqFxt3AF7nfNRef/meVxaQ3G2iq59EBSISfviFEjniB8rJ61BIBma8=
-X-Gm-Gg: AfdE7clnowgDKt/R5KXM+Twu4Ta6bMM0oVq/t+mI1QZfp2tYFwqbNnvimvb2i/iPuoz
-	wSqsbIhnVG75bU7i2zL5q3xqyAoVVCk8kJiQmfWpb44EJCAhMUvFL7p+TPHHDoV1R6rTLPspKkn
-	aDu0VFyE6ToJWvQcZNXhjuoq0L4wtmop0GJIM9OtMCGkMdG7OTEaaAjyIUlmKP3g8opAXefrZgI
-	r5T1G99P54ZAlfQUSNhzOsHRNj3ubtcPBpkql3tEK50GQYDV4kl8q+bprZFjvRTi3i+PHSM0GcL
-	KTUS0rKIHdB5JCXoi6S2dE2ygkQjsdh7e5VIntxNiUHKE35nbvAIVqNetJp7PduoQOjJAtEmPWy
-	rvxWgACGkV0TS4FG8K7Fz3db59ClA9WVL684j4XMAWjU1K+SE2hGjaN+7JiGrfdHCq5ceZ7vLdW
-	GTkg7WoCfHjZXvP+rtWg==
-X-Received: by 2002:a05:6102:8026:b0:737:2ce5:7b2d with SMTP id ada2fe7eead31-74533bf2bccmr6755210137.9.1783951445952;
-        Mon, 13 Jul 2026 07:04:05 -0700 (PDT)
-Received: from ?IPv6:2606:6d00:15:e06b::c41? ([2606:6d00:15:e06b::c41])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-744d6a3eb8esm8744432137.3.2026.07.13.07.04.03
+        d=1e100.net; s=20251104; t=1783963006; x=1784567806;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=r8F7PDpBGQrWy7oTUa6pu42Pf+937GWEA5yn0veEyiU=;
+        b=BTnfxSAH0EG9BGUftTcnbOwKpVgfI096ReyVebPpow+OuSeZ6OwQqE/XCxWrO0XiOO
+         6Oxknloo80iEGkBAxPXrRzD/dOOZtgD/ZyYmuunoQZPv8zMZmyApXonKSjKdmuK06YwD
+         dlQr3QAf3u1oMbW/IjH/R+11kB2NNBELD9pmy9QEmovCFT2Nr6QMNvsUEWDd3KFnXWVC
+         kl7eFo8yqWnIMzofH93/Zcskfcc5c6oDQilYGWfK4F5c3Y1Hq3bbWI8W7qb0K6mEWUCE
+         jeKopE0JSybTTK9yBWK5fIrGGPKE7tkQdBo3suXN4PIoA72CaX6W8IV9yeO0ZCVG5kAk
+         r0+g==
+X-Forwarded-Encrypted: i=1; AHgh+Rropgttn3ZwUj6+EXkB0iFtzqhe6F/G0tUhS5EqR6H+CWC8Hfq5CN0NmaynLJUgnmXKd8yWJZqGZ0It44cC@lists.infradead.org
+X-Gm-Message-State: AOJu0YypgGMjE4v4eFATxXIdXen6BubmwwizR6IUE/nCpFUsNY9eF+I2
+	DXaYoMiWSswYm7TUmFQxd1p9dqfl4FLfJO5khY8+s6DsBcY/WdPemxgb
+X-Gm-Gg: AfdE7cl0BkBjqCx9fKnkJKCkJa9ieSAJ/9XFY9ajZCfMjk7mk3DXxQ81zjJhQzi0HCg
+	ckhomAWKjlJdS0Xxg8ITm6wHjU70m3lOIiVU+pjqeMWHZ+FEra5OyMEindHlLTWAN+AtZipo5Jq
+	AYTFuy8vNDKjLMFeWZE04x5Z6ssrTQGSDCVvHWqw/aRXYcaluMSlp4LgYQXrSFVDKoKfEyldjC2
+	r5/ZiuViS5w8vdzgSiGtL1JB8S7wsfEYnWJAiRU088KtCWGAGDOBtZzCziiiT8viiZLb/rLLA1N
+	BV/qSboAW4Si05rGxjbvfQRF/jl6WvxcGDE7tRvcJ48n98WUIoYbHdRgqkZaM0fxTJC3dP90IAW
+	41NciHtPNs7o4QCgsnHzA4LIodH/rIQL9wEkPsaFdkQ9Ha2sUOcvbyHovq9wBdkG0ZUjBXS7JGv
+	bzvNr9jEGvlvO01JtIkJkqOjbEHyU39Zs131FxDHa8BJbkqkzB/oaui+vZNdn9D1K8XL52WTzwc
+	r755XwxdeaahfiII1wiR6zTb7HfiAQLetvvzEtOnkwv8LU=
+X-Received: by 2002:a17:90b:58ce:b0:381:152b:d596 with SMTP id 98e67ed59e1d1-38dc74cff62mr9789745a91.11.1783963006364;
+        Mon, 13 Jul 2026 10:16:46 -0700 (PDT)
+Received: from OMEN ([103.184.238.250])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-311a6115e61sm55281016eec.22.2026.07.13.10.16.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jul 2026 07:04:04 -0700 (PDT)
-Message-ID: <5224ab5bffdee0777ecef73a3b96c88e8eed38e8.camel@ndufresne.ca>
-Subject: Re: [PATCH v7 19/19] gpu: drm: meson: Fix DMA segment size limits
- and maximize allocation boundaries
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Anand Moon <linux.amoon@gmail.com>, Neil Armstrong	
- <neil.armstrong@linaro.org>, Maarten Lankhorst	
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl	
- <martin.blumenstingl@googlemail.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>,  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "open list:DRM DRIVERS FOR AMLOGIC SOCS"	
- <dri-devel@lists.freedesktop.org>, "open list:DRM DRIVERS FOR AMLOGIC SOCS"
-	 <linux-amlogic@lists.infradead.org>, "moderated list:ARM/Amlogic Meson SoC
- support" <linux-arm-kernel@lists.infradead.org>, open list
- <linux-kernel@vger.kernel.org>, "open list:MESON VIDEO DECODER DRIVER FOR
- AMLOGIC SOCS"	 <linux-media@vger.kernel.org>, "open list:STAGING SUBSYSTEM"
-	 <linux-staging@lists.linux.dev>
-Cc: Doruk Tan Ozturk <doruk@0sec.ai>
-Date: Mon, 13 Jul 2026 10:04:02 -0400
-In-Reply-To: <20260713120840.17427-20-linux.amoon@gmail.com>
-References: <20260713120840.17427-1-linux.amoon@gmail.com>
-	 <20260713120840.17427-20-linux.amoon@gmail.com>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-User-Agent: Evolution 3.60.2 (3.60.2-1.fc44) 
+        Mon, 13 Jul 2026 10:16:45 -0700 (PDT)
+From: Alfie Varghese <alfievarghese22@gmail.com>
+To: neil.armstrong@linaro.org,
+	gregkh@linuxfoundation.org
+Cc: linux-media@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-staging@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Alfie Varghese <alfievarghese22@gmail.com>
+Subject: [PATCH] staging: media: meson: vdec: propagate devm_clk_get() errors
+Date: Mon, 13 Jul 2026 22:46:44 +0530
+Message-ID: <20260713171644.691-1-alfievarghese22@gmail.com>
+X-Mailer: git-send-email 2.54.0.windows.1
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260713_070408_031768_FA34636A 
-X-CRM114-Status: GOOD (  16.26  )
+X-CRM114-CacheID: sfid-20260713_181649_034463_D60DDF70 
+X-CRM114-Status: GOOD (  10.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,94 +111,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7871307790387956685=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+vdec_probe() maps any devm_clk_get() failure to -EPROBE_DEFER. This is
+incorrect because devm_clk_get() can fail with other error codes like
+-ENOMEM or -ENOENT (clock not registered). Hardcoding -EPROBE_DEFER
+masks these real errors, causing the driver core to retry probing
+indefinitely instead of failing early.
 
---===============7871307790387956685==
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-K7ZLBpNLX5/kwXKFKQKp"
+Propagate the actual error value using PTR_ERR() instead.
 
+Signed-off-by: Alfie Varghese <alfievarghese22@gmail.com>
+---
+ drivers/staging/media/meson/vdec/vdec.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
---=-K7ZLBpNLX5/kwXKFKQKp
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Le lundi 13 juillet 2026 =C3=A0 17:37 +0530, Anand Moon a =C3=A9crit=C2=A0:
-> When importing DMABUFs exported by the Amlogic video decoder driver
-> (meson_vdec) for hardware-accelerated rendering paths, the DMA core
-> subsystem throws constraint validation warnings. This occurs because the
-> display controller master device lacks explicit DMA layout configuration,
-> causing it to fall back to a default 64KB maximum segment size limit.
->=20
-> Address these architectural constraints during the master bind sequence:
->=20
-> 1. Initialize and validate a 32-bit coherent DMA allocation window by
-> =C2=A0=C2=A0 invoking dma_set_mask_and_coherent() with a DMA_BIT_MASK(32)=
- argument.
-> 2. Maximize the contiguous scatter-gather allocation segment boundary
-> =C2=A0=C2=A0 check constraint to UINT_MAX using the dma_set_max_seg_size(=
-) helper.
->=20
-> This guarantees that large video bitstream frame buffers can be imported
-> and scanned out across sub-driver domains without triggering allocation
-> warnings or page boundary splits.
->=20
-> Cc: Nicolas Dufresne <nicolas@ndufresne.ca>
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-
-Acked-by: Nicolas Dufresne <nicolas@ndufresne.ca>
-
-> ---
-> =C2=A0drivers/gpu/drm/meson/meson_drv.c | 6 ++++++
-> =C2=A01 file changed, 6 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/me=
-son_drv.c
-> index 49ff9f1f16d32..899e70bca4ce2 100644
-> --- a/drivers/gpu/drm/meson/meson_drv.c
-> +++ b/drivers/gpu/drm/meson/meson_drv.c
-> @@ -202,6 +202,12 @@ static int meson_drv_bind_master(struct device *dev,=
- bool has_components)
-> =C2=A0	if (IS_ERR(drm))
-> =C2=A0		return PTR_ERR(drm);
-> =C2=A0
-> +	ret =3D dma_set_mask_and_coherent(dev, DMA_BIT_MASK(32));
-> +	if (ret)
-> +		goto free_drm;
-> +
-> +	dma_set_max_seg_size(dev, UINT_MAX);
-> +
-> =C2=A0	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> =C2=A0	if (!priv) {
-> =C2=A0		ret =3D -ENOMEM;
-
---=-K7ZLBpNLX5/kwXKFKQKp
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCalTwUgAKCRDZQZRRKWBy
-9NNdAQDmsQSLx7lRRr/0dmnss88GGZZ8T5JiUJHYnp57V3Vo9gEA5tSuLIwnYukh
-D1WBuDEOFQqGktSq40CeUMEDMi1jCgg=
-=9ZVW
------END PGP SIGNATURE-----
-
---=-K7ZLBpNLX5/kwXKFKQKp--
-
-
---===============7871307790387956685==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
+index a039d925c0fe..fba1e7f88d81 100644
+--- a/drivers/staging/media/meson/vdec/vdec.c
++++ b/drivers/staging/media/meson/vdec/vdec.c
+@@ -1026,24 +1026,24 @@ static int vdec_probe(struct platform_device *pdev)
+ 	    core->platform->revision == VDEC_REVISION_SM1) {
+ 		core->vdec_hevcf_clk = devm_clk_get(dev, "vdec_hevcf");
+ 		if (IS_ERR(core->vdec_hevcf_clk))
+-			return -EPROBE_DEFER;
++			return PTR_ERR(core->vdec_hevcf_clk);
+ 	}
+ 
+ 	core->dos_parser_clk = devm_clk_get(dev, "dos_parser");
+ 	if (IS_ERR(core->dos_parser_clk))
+-		return -EPROBE_DEFER;
++		return PTR_ERR(core->dos_parser_clk);
+ 
+ 	core->dos_clk = devm_clk_get(dev, "dos");
+ 	if (IS_ERR(core->dos_clk))
+-		return -EPROBE_DEFER;
++		return PTR_ERR(core->dos_clk);
+ 
+ 	core->vdec_1_clk = devm_clk_get(dev, "vdec_1");
+ 	if (IS_ERR(core->vdec_1_clk))
+-		return -EPROBE_DEFER;
++		return PTR_ERR(core->vdec_1_clk);
+ 
+ 	core->vdec_hevc_clk = devm_clk_get(dev, "vdec_hevc");
+ 	if (IS_ERR(core->vdec_hevc_clk))
+-		return -EPROBE_DEFER;
++		return PTR_ERR(core->vdec_hevc_clk);
+ 
+ 	irq = platform_get_irq_byname(pdev, "vdec");
+ 	if (irq < 0)
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============7871307790387956685==--
-
