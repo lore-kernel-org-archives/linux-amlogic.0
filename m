@@ -4,71 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 015D0C43458
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2026 12:10:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6CD8C43458
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2026 12:11:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9oOr2/+zg1xx3gTN7GQ2oudQezomZXWExqYlQP0oueA=; b=bFQrE+/TZWLpSb
-	2hmMqzPz85HJP/QvekhD2/HWzReEs4qPGxtpmefWFk9iRna58YvT8oudSwIeEqw9Yq1T0xFuMXn0M
-	Jvgh3rCPHmDFFwu70Ye02ya8y0OBqX3ZBkWIWLA4Ni/wwjv4SjEzeXeXn+YMK22EtIncyvmywvaRW
-	N+ltT0xuezzUU/b3gscA2fEnBPLJJPSVlyKiDZBrwSbB/3jak1henOy7+tTj18CZvY+yW/ZHLBfXx
-	Ubv/db5F/qhA1UEOM3r+XG6bS2CQ+Uf/f+rZenpDc8LGbT5w3SjR9n2BqOGs/WLypWzpqPQ8Fkas9
-	wldjQw+LDzdl6vVJU/Rg==;
+	List-Owner; bh=EaArksckGbXXHKn4HhhztZaRtJ5uAXwySIQs7MwDNdU=; b=Voqc+vNkU/3rNq
+	O019lZuYzc+eWYGeyOA/gS8Aon+v5VoJOLl9wxeAGwlqiZ1YiV9C7nn75DVci/uwxlXxva1UdPYek
+	hpbnwpHbis2Xgcy1aNwpyp2/N4gTvYpjeu08XdsONR+5znQ9lrWKoi7B/tBYoqK+h8gvqNfwpHmp9
+	GN4iXqXFg0mJcc3UlF34rPPYE/bhj/mTDU3692zY1GOTQx4To/KsTIZvkc+ad5ao2Y18h3YVD6sLn
+	jV0h5cuWWRyO/7/M/gNnMGHi7Lrz5Rxoe007naabql+TgByzJHbMMHOIC7Gwo8x4O4Rs1kIUl1y9a
+	Qfvh8ebuYkRVMEuN9Kgg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjFUj-000000098vY-446J;
-	Mon, 13 Jul 2026 12:10:45 +0000
-Received: from mail-pj1-x1029.google.com ([2607:f8b0:4864:20::1029])
+	id 1wjFV0-0000000998I-2iJJ;
+	Mon, 13 Jul 2026 12:11:02 +0000
+Received: from mail-pj1-x102a.google.com ([2607:f8b0:4864:20::102a])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjFUe-000000098s3-317w
+	id 1wjFUo-000000098zN-3Dxj
 	for linux-amlogic@lists.infradead.org;
-	Mon, 13 Jul 2026 12:10:45 +0000
-Received: by mail-pj1-x1029.google.com with SMTP id 98e67ed59e1d1-382ef647e20so2766432a91.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 13 Jul 2026 05:10:40 -0700 (PDT)
+	Mon, 13 Jul 2026 12:10:54 +0000
+Received: by mail-pj1-x102a.google.com with SMTP id 98e67ed59e1d1-38175907a56so3127493a91.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 13 Jul 2026 05:10:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783944640; x=1784549440; darn=lists.infradead.org;
+        d=gmail.com; s=20251104; t=1783944650; x=1784549450; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=6GCAuneNa/1gKb9DW8CBD7WKj6dTVzcbk/e+PXY8YBw=;
-        b=HmvMGpeov73hGdUdtJWHBFSvanwO03bQScU2R7cdZOpq4GSJRIwJOV9m9c6uloIheg
-         uGdFbYOpeNURJxq2Bahhpg7lpbVZEkKAZKGAMDo8kJtL1R0ozSq02ZpDJMNqTEuLu8RD
-         R00iY3l2n//YxNBolg1QiRycLczSDFA19eGh/LR7VjeH3dXfSp4EN8NN3GosTAhRXM4O
-         G0ueUxsjNzG+8b5uhMhF0bObSYaxpprseuyCX6f/ShyxnvytImNdhhwk9D1jTJppyZnk
-         zgZiYOeTIg1x6D2q4p4RShH9ryg3G/cPKH787P3PGyZqgamclkgFjdcNJR8K0TLCUT8i
-         +0SQ==
+        bh=OBddtjFYWhyXG/z7saOr360Gpb3JLBOtzUiY/pJ38ko=;
+        b=EOG0GPJXGdMr+AGHCHv/mPS45z9pmglABFkhmP4qrISoGYu/UfO4kA7cQMxaYDFXwE
+         enpQxT3KtEy/FoeJqnnPyNU9bEmJejpc+W4BXtSY5Ux3vkLyuYJ1Cl/OTaRQXZI6ok2P
+         5ZyjlvW87Xa5dca+MR5PXf5LT9njELaMaQQ7JbzygsDbmwyQbugxcg70Z5tDNHd6eL2y
+         za6I/5d2B5uj/yHzEyIL2SN+18eVny2IKYQfXxz2bo90s4VinbL4BkqOHBFZGHAtNI5c
+         JK6mz1Ojm3GNa5JdrMeZkTL4om08RQPMzARrIWEx0SvIpZSf2PDy5DPF40fwRWDIpPTp
+         9X3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783944640; x=1784549440;
+        d=1e100.net; s=20251104; t=1783944650; x=1784549450;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=6GCAuneNa/1gKb9DW8CBD7WKj6dTVzcbk/e+PXY8YBw=;
-        b=MeQYCRUic7aUBoEF6nx2VtRpleZD5J0XdiV85zL9ZsF7vD7QpaEWdGdmC0Nf9LBB+v
-         hCVJSBxA/i0op7Q5Kh2wtE7MPJJu7LQAGkUNm9qr4T3Yviom3Wa4M8XA5d/wDOrikp2m
-         ArmXRwgkZiI8ed5VeP6JJIZe69tyPmew6iHu5kXDHqHwM+dMFdGUjdzlgkcT+v+6Bp9s
-         oxQtATPv4ReOzdGOmfNWJG1o6+9zUx1xUqL2yB19t/WsqTXWwM526hErbrDuv62/0Lro
-         ZsihaEgrLjwXVnqM5pEMry/67T1mvI4tXB3kBDZ/bIxjl2qtotcsmH5ipB1Jo8FguFb5
-         BIew==
-X-Forwarded-Encrypted: i=1; AHgh+RoJcAhgVmRe2p/84bG9WV2Ed6KQ0aKO6dnUP3RZrggVUnHY9doAWG3eCxH98JJmmvO+suYLpYzYUc8Q3sNN@lists.infradead.org
-X-Gm-Message-State: AOJu0YzS8T1WDbfUkI3FhAtD8VjSKH50PdEOLMat/kNP37B2kVyw68Di
-	223WdHU6kQOi7ybN++/Xts0mhrjxQkabC/y7oM2/Kgz+H9W3DW9XKmzB
-X-Gm-Gg: AfdE7ck2ymqlM9SF58KFUYmrEUYIkE/4+cYGuzAB1BBpA9VbAF2HyxwVfJOou0kepLx
-	hrVtlVzhD36ErHPimmt7702/YMPjhI8Huq/XflKASAIVL0fNSe8sar0In90R/oFTXw/HYuotw22
-	L8/8I3zzaYXbDrqL/wegg8HMGiDI3vhfaxO4HuPBLLa7glvUMRRC30sVV1JjPWijNIMQNG4/Sfy
-	uNBZAOWGk4THfKsMqOnoWsE4U1RqZDLw8UxV8AMrinKwis4FjGNEr/uD97g0hmcVa5QDRl1ZZ09
-	2J27qLM0N2chsWMyDJkYwmRxoszew68eiW9h/AHcafQYOy+mcBaHYCApnNsaw8Ib4FudAUuFo6G
-	8fGPfgydHYxFIMJ03HtJ8BAglNok++HLZMWMaz4bALms/UOT5Ev9dBatpCsw19Q+p/khYbyBgTB
-	OxY7Tjyf9qBA==
-X-Received: by 2002:a17:90b:4fd2:b0:38d:a76:6470 with SMTP id 98e67ed59e1d1-38dc77c61d6mr7650924a91.39.1783944639617;
-        Mon, 13 Jul 2026 05:10:39 -0700 (PDT)
+        bh=OBddtjFYWhyXG/z7saOr360Gpb3JLBOtzUiY/pJ38ko=;
+        b=FuPLy+M4qvcaTgdmt5aJRT5n1hnaQGTi68ztHr25SYP6n8cc8cRSCzfqdudbQA4QX0
+         sZl2UM5Ge+XnlPOxPJqF1TuReFMjEVL1wcoF+8GR6dzybCGkEtyOi1r0eW4SBLgDFiLu
+         Sr8HwwEofRvYlpQHhDoS+g+1pf/jPvV/zNDrZ5yO5Z5m1zeo6qh3YfYza4ykVDH8Y+cb
+         8bNFx8O5+Pvq2zC/eazKqgs/FGVuyUldfeuLtTvPPd4fVkNLeIykZJd/P5iXQM6iaMsl
+         zNDL329y+Sd5g2xOyDePo+Mee9pzwsNc6Wnez220Q+8/OQVKuVK+F+E55TfQKqfzKy1a
+         E2jw==
+X-Forwarded-Encrypted: i=1; AHgh+RpyQk9S529drY3RQo7UsyXJDhcbfamgjCIqPN8NcuMrUWLyIV9+EUyty/PQ4mfmKwPhFFylMZktHooTJpjO@lists.infradead.org
+X-Gm-Message-State: AOJu0Yw4omZQEBX/6DBsQYOk70ErbTr1cTM86yxtg/+oXz6kzzD9ackp
+	dWaDA7cZ6Hr/8pjXE/44cUMWqaWVZ6qvs0dOMgC0CRxCtNzrj5k75nZR
+X-Gm-Gg: AfdE7clF4LE08suLYu0l537TKujrAQq/jAoD81ilbzM5gKClrBGnEHMum2qW4QbXjAX
+	pGltcPsGF4kt0Oac7TW72e1NlhL9kEs0rUwdki5T42YkDKHb+qqDsZMYlNrKWqeoaZs267q1xjZ
+	IPZYZHJasX6hPRpDa6bzAlTw2xCW5S8h5ozbKsk0z54i+dgTO9VzF+p7ga/zCDVqjxhULwcxKvb
+	HY+KddOHxku+TO0bIV+b86qIbv5zij4w/vv9IgOrNxXeg/Gkr3d9KgIst9w5RtGLHPtPbvjQxMx
+	K6IfXVHbILvRVKRhiKlvz7btc4P4IaV+tVnzpPx6LYf74Brz+qTYtITvN6oZWg7w6UBHCFyjAOU
+	XFVMg/xSnJUjiNB7QeT5VLXw8LHsuL9GCCEKRBP/cQFhss98ctvMyNk09b8VeUXEN5u+1jrA5Fb
+	Ai2mqCR137etOuvyAWm/xG
+X-Received: by 2002:a17:90b:4cc7:b0:36b:b903:994 with SMTP id 98e67ed59e1d1-38d13768de2mr15327432a91.4.1783944650044;
+        Mon, 13 Jul 2026 05:10:50 -0700 (PDT)
 Received: from rockpi-5b ([45.112.0.180])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-311747f7293sm67756935eec.3.2026.07.13.05.10.33
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-311747f7293sm67756935eec.3.2026.07.13.05.10.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jul 2026 05:10:38 -0700 (PDT)
+        Mon, 13 Jul 2026 05:10:49 -0700 (PDT)
 From: Anand Moon <linux.amoon@gmail.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -87,16 +87,16 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
 	linux-kernel@vger.kernel.org (open list),
 	linux-media@vger.kernel.org (open list:MESON VIDEO DECODER DRIVER FOR AMLOGIC SOCS),
 	linux-staging@lists.linux.dev (open list:STAGING SUBSYSTEM)
-Subject: [PATCH v7 10/19] media: meson: vdec: Fix race conditions and leaks in esparser pipeline
-Date: Mon, 13 Jul 2026 17:37:05 +0530
-Message-ID: <20260713120840.17427-11-linux.amoon@gmail.com>
+Subject: [PATCH v7 11/19] media: meson: vdec: Update core m2m stream state during transitions
+Date: Mon, 13 Jul 2026 17:37:06 +0530
+Message-ID: <20260713120840.17427-12-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260713120840.17427-1-linux.amoon@gmail.com>
 References: <20260713120840.17427-1-linux.amoon@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260713_051040_762944_76310D64 
-X-CRM114-Status: GOOD (  17.17  )
+X-CRM114-CacheID: sfid-20260713_051050_836358_300EB946 
+X-CRM114-Status: GOOD (  13.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,104 +114,49 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Fix a circular locking dependency (lockdep warning) and a potential KASAN
-wild-memory-access race condition within the asynchronous esparser queue
-by restructuring register write and context evaluation blocks.
+Explicitly update the V4L2 core Memory-to-Memory (m2m) framework's
+internal streaming states when initiating or terminating streaming on
+the device queues.
 
-Previously, evaluating hardware ownership checks outside of core->lock
-introduced a time-of-check to time-of-use vulnerability, risking register
-corruption during parallel stream initialization cycles. Additionally,
-abruptly exiting the payload queue loop without sanitizing timestamp
-trackers left metadata dynamically stranded in memory, triggering regular
-kmemleak warnings.
+Without invoking these core framework helpers, the m2m engine's
+bookkeeping of active source and destination queues drifts out of
+alignment with the driver's local 'streamon_out' and 'streamon_cap'
+tracking variables. This misalignment causes state validation stalls
+and incorrect polling outcomes when the device is subjected to quick
+runtime cycles or strict testing setups (such as v4l2-compliance).
 
-Fix these flaws by moving the hardware session ownership validation and
-atomic stop signal checks directly inside the core->lock mutex region in
-esparser_queue(). Ensure that presentation timestamp pointers are cleanly
-removed via amvdec_remove_ts() on all early-exit routes. Finally, refine
-the VP9 payload evaluation logic to correctly catch negative error passes
-from vp9_update_header() and pass the session context explicitly to the
-padding helper to secure memory operations.
+Fix this by integrating v4l2_m2m_update_start_streaming_state() right
+after a queue is marked active in vdec_start_streaming(), and pairing
+it cleanly with v4l2_m2m_update_stop_streaming_state() at the end of
+vdec_stop_streaming() before the session core mutex is released.
 
 Cc: Nicolas Dufresne <nicolas@ndufresne.ca>
 Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 ---
- drivers/staging/media/meson/vdec/esparser.c | 29 ++++++++++++++++++---
- 1 file changed, 25 insertions(+), 4 deletions(-)
+ drivers/staging/media/meson/vdec/vdec.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/staging/media/meson/vdec/esparser.c b/drivers/staging/media/meson/vdec/esparser.c
-index edbfc829e2da8..b9f36fef4be12 100644
---- a/drivers/staging/media/meson/vdec/esparser.c
-+++ b/drivers/staging/media/meson/vdec/esparser.c
-@@ -199,12 +199,16 @@ static int vp9_update_header(struct amvdec_core *core, struct vb2_buffer *buf)
-  * the ESPARSER interrupt.
-  */
- static u32 esparser_pad_start_code(struct amvdec_core *core,
-+				   struct amvdec_session *sess,
- 				   struct vb2_buffer *vb,
- 				   u32 payload_size)
- {
- 	u32 pad_size = 0;
- 	u8 *vaddr = vb2_plane_vaddr(vb, 0);
+diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
+index 83a9b1238972a..0eb39aa6014ee 100644
+--- a/drivers/staging/media/meson/vdec/vdec.c
++++ b/drivers/staging/media/meson/vdec/vdec.c
+@@ -299,6 +299,8 @@ static int vdec_start_streaming(struct vb2_queue *q, unsigned int count)
+ 	else
+ 		sess->streamon_cap = 1;
  
-+	if (!sess || READ_ONCE(sess->should_stop) || !sess->priv || !vaddr)
-+		return 0;
++	v4l2_m2m_update_start_streaming_state(sess->m2m_ctx, q);
 +
- 	if (payload_size < ESPARSER_MIN_PACKET_SIZE) {
- 		pad_size = ESPARSER_MIN_PACKET_SIZE - payload_size;
- 		memset(vaddr + payload_size, 0, pad_size);
-@@ -313,6 +317,9 @@ esparser_queue(struct amvdec_session *sess, struct vb2_v4l2_buffer *vbuf)
- 	u32 offset;
- 	u32 pad_size;
+ 	if (!sess->streamon_out)
+ 		return 0;
  
-+	if (READ_ONCE(sess->should_stop) || !sess->priv)
-+		return -ESHUTDOWN;
-+
- 	/*
- 	 * When max ref frame is held by VP9, this should be -= 3 to prevent a
- 	 * shortage of CAPTURE buffers on the decoder side.
-@@ -349,24 +356,38 @@ esparser_queue(struct amvdec_session *sess, struct vb2_v4l2_buffer *vbuf)
- 	vbuf->sequence = sess->sequence_out++;
- 
- 	if (sess->fmt_out->pixfmt == V4L2_PIX_FMT_VP9) {
--		payload_size = vp9_update_header(core, vb);
-+		int res = vp9_update_header(core, vb);
- 
--		if (payload_size == 0) {
--			dev_err(core->dev, "esparser: VP9 header update failed\n");
-+		if (res <= 0) {
-+			dev_err(core->dev,
-+				"esparser: VP9 header update failed (%d)\n",
-+				res);
- 			amvdec_remove_ts(sess, vb->timestamp);
- 			return -EBADMSG;
- 		}
-+		payload_size = res;
-+	}
-+
-+	pad_size = esparser_pad_start_code(core, sess, vb, payload_size);
-+
-+	/* Protect hardware register writes under core->lock */
-+	mutex_lock(&core->lock);
-+	if (core->cur_sess != sess || READ_ONCE(sess->should_stop)) {
-+		mutex_unlock(&core->lock);
-+		amvdec_remove_ts(sess, vb->timestamp);
-+		return -ESHUTDOWN;
+@@ -529,6 +531,8 @@ static void vdec_stop_streaming(struct vb2_queue *q)
+ 			sess->changed_format = 0;
  	}
  
--	pad_size = esparser_pad_start_code(core, vb, payload_size);
- 	ret = esparser_write_data(core, phy, payload_size + pad_size);
- 
- 	if (ret <= 0) {
- 		dev_warn(core->dev, "esparser: input parsing error\n");
- 		amvdec_remove_ts(sess, vb->timestamp);
- 		amvdec_write_parser(core, PARSER_FETCH_CMD, 0);
-+		mutex_unlock(&core->lock);
- 		return -EIO;
- 	}
-+	mutex_unlock(&core->lock);
- 
- 	atomic_inc(&sess->esparser_queued_bufs);
++	v4l2_m2m_update_stop_streaming_state(sess->m2m_ctx, q);
++
+ 	mutex_unlock(&core->lock);
+ }
  
 -- 
 2.50.1
