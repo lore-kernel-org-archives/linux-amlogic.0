@@ -4,86 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CBD7C44501
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2026 12:11:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 139C4C43458
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 Jul 2026 12:11:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tLQHNhCxL7FaJgcSsxvxqhGFwcvdk0Qb9LGWAC6ZmwE=; b=AON79pdSXO8Mxu
-	c371g7BYYxdW785Zrnb4eEJEjMgsjRXRWgYq6mec+yrgCWVjMjQdZsgyQoG1ZKHizactAOSTLFD6W
-	6jMa4bVuFe+DHMgNoPauEEzePuPV60j/ez3apEeqeLN5Z7pixOqpxaqI2nJrOEYfYpvoXQhvyhcGD
-	XxH9aa7k2jQYB/ahfLXGsyp+m82J1gDTk7tJYrd2utYvcOWWf55YwZzrgVroAjXrsS+djlqYSGTYx
-	82mfrYEAhAlEvJgPQgd74rNE7OWjUB5pfRznNqrjbnVeJRwThcqMvVfN2Iel6FfuMzjoWp7o5cLpy
-	Iv4tU8fzJXBccdGPTNIg==;
+	List-Owner; bh=i1yjNtMR/fNZJktUj/y4zih50Gd5wDwzE1sep+oYEDE=; b=Q48aJVXwuybvs2
+	gmmVuIJZ9qcv3MaeaGvJTFFF+xgw9dqflgAd4OZFaG3q06sq69bC1faNnnGz13uqxA+jOIfxxSFI/
+	8pQgWCYqw3RWwmAgqisS73LPoz+CS3k5IpIlH1Z9gXx8EPJKwZ7ICS20pEcF38fRyQjUeBRqVa3Ru
+	I6diOMq4U03B6tjkQY2H8SyaMDt+GGPgqC3joshU4dshQr4FRr1+l53e6Md+CqBH1sd+J/nVlTJML
+	HVi5W+XESuji1iL+pCSuM6eXMOGdBe7vQKvttNe7U80rqeh+CHK/hrQijxK7kRYeE7Oqav3GxBHki
+	0tYDd/pfz0MGd7DVT3/w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjFVn-000000099ki-3ETc;
-	Mon, 13 Jul 2026 12:11:51 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1wjFVt-000000099qW-0Ec5;
+	Mon, 13 Jul 2026 12:11:57 +0000
+Received: from mail-pj1-x102e.google.com ([2607:f8b0:4864:20::102e])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjFVk-000000099hU-01jS
-	for linux-amlogic@bombadil.infradead.org;
-	Mon, 13 Jul 2026 12:11:48 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=xrLz/BgMOWZJw3Q53MMnd8sHfRljAQMBGTN2LAcpT4M=; b=YBUZ0P4+TQbw/VaGSuIQF3M1EK
-	a0ZR+U21SgitRLP98vcIS8+qymIMBT35J8APNazjGJ33zqS8ZgHZXLYknlt8Vn3EdbbssMd5v9/JO
-	E7imQmKSXd9zZA1NXAjskzpmd8S9LJIw3/MReNxGZswBU4ijELZ5rV1qe+xfMugEaHPUjGlaxOVSi
-	0+mHx8a7MhC10+U2TDcjjQ1a/m1SVtXhLtAOm+KxcXnMunfiyOyV/SGYopaZh0Q60+3rhId+kO5/9
-	bdOcPVpp1WIKikJe56dVIQ/y33kVPwoqcdOXD96oxNKDi3QVeAj4iO71q4hlVOD52U+teQBCjCWQP
-	kXh4loAA==;
-Received: from mail-pg1-x536.google.com ([2607:f8b0:4864:20::536])
-	by desiato.infradead.org with esmtps (Exim 4.99.2 #2 (Red Hat Linux))
-	id 1wjFVg-0000000Baan-4ARK
+	id 1wjFVq-000000099nI-1yBw
 	for linux-amlogic@lists.infradead.org;
-	Mon, 13 Jul 2026 12:11:46 +0000
-Received: by mail-pg1-x536.google.com with SMTP id 41be03b00d2f7-caf45fc5202so769909a12.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 13 Jul 2026 05:11:44 -0700 (PDT)
+	Mon, 13 Jul 2026 12:11:55 +0000
+Received: by mail-pj1-x102e.google.com with SMTP id 98e67ed59e1d1-38dc69c74b8so1491842a91.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 13 Jul 2026 05:11:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1783944703; x=1784549503; darn=lists.infradead.org;
+        d=gmail.com; s=20251104; t=1783944714; x=1784549514; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=xrLz/BgMOWZJw3Q53MMnd8sHfRljAQMBGTN2LAcpT4M=;
-        b=LmrenXCs5d56nlLZkozg9Dskgo3tdDv6/0QUr6nwKKWmt2zvEUMghuFMDEyAiOUXff
-         BDTU+0aMIIbB0dgk9yddKGI8O7vGmwtghTGFo3p7PLOlKZxoh8g4qab1HTpdtNzlsQr5
-         ppgOKl6T7w2iIVD14BiLMIkQGpz5XDbI9sKfFDNEz+/iImnRoY7YL+V8L2zwNl7rNp9k
-         37jWc4atMYWBx7GkhWR/zC5ClSt1k1BU3y/9rt2B69NJDhPAU8OBxY1yOkhkF8YiWl/d
-         7r7r0Hn2+a7RiMzvnyIli2KT3CHqFEy867W4OZAawT2Ss9voqTu7hu+Z+G0FUWfMPuJ2
-         zWSA==
+        bh=M8Fc1y4+RwjniJfgwRtIk0X9ABaeOzCopsCGLc1zspc=;
+        b=rvNokHJ8Bz7eQ9RmUjwI8b5USuvEtLGZnHLUEPixzAt6/3GFiC+iHkshbz4T4DIahw
+         yePW1F3D3vAMcW2bE+52HOgHvCBxSxOceaQ8fEX2+l7rG2ZO6DnHtGRKQaSV4aYyifHx
+         0YeXxtxjQowHvsimXx5Jze4/R/2mHuIo1TOaTUtJsQ5Mla2zvNw1JfFyh5nqfwNyP2LT
+         H1fBCjNNGfuPItpevk30KwzBH7tfxllRI7VRMc22Q3mPFC//e6FyCFF6dbkhXLfw1l5F
+         Q6ouwCMux4+rv5FNTnrLizvQT5nBFJa2K12nKEyPMN/YquXkyCxOPsqDpAdoYqho1fdR
+         CcmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1783944703; x=1784549503;
+        d=1e100.net; s=20251104; t=1783944714; x=1784549514;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=xrLz/BgMOWZJw3Q53MMnd8sHfRljAQMBGTN2LAcpT4M=;
-        b=ejYR5BoLfLmoCRAEvW0sbIUoJGlZAvH4bSiMe9N3dIZkz+R9ln8rWs+cLqj7lnAV1A
-         29dS3d5nvgUGX8N+GKIO3Oa1JNkuwlZLSY768+p5h6JFrwD6ISybmakRO+dnGpMtZov/
-         AqKxpI40PONDKieqWH1og/Es8kt4Xqq34pH+IKXND/N8uWoJGEzcjtqvfLJmpNDoeX28
-         Pt8Lj/ZqOizmlQyLWdfqyw2qtQJrRQZ2okmYhaomYVoo9CL8hh1EFYzAnlQrKZHCGqC7
-         RehcjWV1KPyrdkqZtH3pm7PwcUsk8X3x068Dmn5qWLeAhSmZq4619RVkIODdcZRsSUYz
-         Y7JA==
-X-Forwarded-Encrypted: i=1; AHgh+RoiwmTt9W4qTHlCW/7tFc+D7AJMKmMHRo83K3ATy8HtHBAoRP2NymvYxOJb3/gXOdz3ioqPtKdP7iKAYISk@lists.infradead.org
-X-Gm-Message-State: AOJu0YyDZJON591d68yNEDoVrfATb1T0CausFjBO1AKdujv8EikgNTnN
-	Vt3YIS5VRcyAkxcAZ0YM+TN97Y6wePSBlhyuagJGzLsjli+1ra3QbgJq
-X-Gm-Gg: AfdE7cnwKrnGOZ4sgStcBIY7p+Lsqs7Fagxbe7rWmfCHmWmSzKTmyowEpXplY8ft6NC
-	yGRyt5EbthM/mDfzAPrIrkTK0Siv4g6tVlR2pY2cNj6IWjDMFX8adkXYS3OIsp/wpdoDGAts0t1
-	dqbXyMyd4+cvCIjIf+suN3RD8H1QaVtWF1P6teycVmFMmqk+KRjm8Bxxj5cPc7DXdp+uoI1U1Cs
-	LnoYgMaF12KCrF/fcpRaZ+c1s9Y47fgiVN6fWGLUHss5JzVSuPZhdXasByG//+y6Q7AmVb3O7b5
-	obObvdiLC/jgAI2Y8b6LwuWj7TqGVot3ALRO3EVb+yGujMnUg2xZne2V2zgdgzSMgD9L1cl5tyW
-	YU9mQppSRWhC/FLFFqyyDHJMfVv45Zs9ugl2rjNsPkIlqQSW0KBHFbtw3FNHX4GyHWzKQSj8Z+d
-	pCYVK8lTXlYQ==
-X-Received: by 2002:a05:6a20:da1a:b0:3c0:9c18:d5a5 with SMTP id adf61e73a8af0-3c111073a84mr9971121637.66.1783944702870;
-        Mon, 13 Jul 2026 05:11:42 -0700 (PDT)
+        bh=M8Fc1y4+RwjniJfgwRtIk0X9ABaeOzCopsCGLc1zspc=;
+        b=LafeVe9HYudn0mJwY6xY2KGub69f6um+DXBMFd6e1bkX00WJtOUXrJWoi1tJj7osT/
+         sH+NDzCywMMjH/E22fhDRu9URHtKx/yvvM4WAo223uU82YnC7F7MnpUU40ItyQDfErH7
+         UId4fH0Q5J5z7wSpd49Qs1l409LGDkcO2giFPYv0yJVKsAXEwDTg+ZanM10MWKFqAtgU
+         JhgnIZgu/aMIc3uD5u6kazBP9QB0ITmXTN8/2SiwgLYy9tpQzxY7QTLa9QRKTMuA9YEJ
+         yJ0V+DirzR8Jn/QPhUhFZCLECq3CHFS/Zwa8/ToGij7uAx3EWgMPESHYc6X5U1PzERlx
+         T1OQ==
+X-Forwarded-Encrypted: i=1; AHgh+RpO71YqvREgH2vDT3EqhHg9E9iWC1tQqYRxnG7Gm2ZG16KCPFv/GEkMT5/cI+McQuF9ZfmdcMSYtsBAgh7i@lists.infradead.org
+X-Gm-Message-State: AOJu0Yxfryq+IfHxAqDMop2VjZFrqKG5f/RklxSWB4sRP/5C+3rPkMgn
+	1zD4+lx8LIF4QSLDI7x/0OqT9jR6UG7Ppa/T3f9XZl91v40sV+bxxoS7
+X-Gm-Gg: AfdE7cki5frOsXoSPLiy/StRnnfv0o/oLngEEi9lPMKztRzqLJPKA6Uw5N5LCp1IfOx
+	w9dL6gx4co0AFNvdSxDinBP9IoCnrnmQJpu/E7Xzco8t30gSJ87ShYGtBEtgMVbKUt90fHZppIo
+	dJJpHIaWyVduOlVRIf7upzGw2HRA60jdpDctuNKe1UW3CRbEPyscCSEDWbe9vXa+eTMsIgoUwVB
+	HBp4wBWUSIM5cny7myMryKNsHoQZNC3Pdcb77lumNGxOGh5Bm4gWTGVpiFh4UibyA561U6W/wnI
+	w07XaU/nEr69hIX6dmwc2DsmUtYQc0TC6jwJpKCmhpeEJbimg+mMqSJufTe7PsnGuHaRyOD+T9k
+	IysjFZL6uoIElR3iF+wJ+P1FMlUH21w4A7L1lDxHoBPKj0h925okwVqrdZqASFXvFDZvH82Dqn6
+	AYAmmZ7gyS2A==
+X-Received: by 2002:a17:90b:4c51:b0:37c:607b:2cd9 with SMTP id 98e67ed59e1d1-38dc7607589mr7644160a91.0.1783944713757;
+        Mon, 13 Jul 2026 05:11:53 -0700 (PDT)
 Received: from rockpi-5b ([45.112.0.180])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-311747f7293sm67756935eec.3.2026.07.13.05.11.36
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-311747f7293sm67756935eec.3.2026.07.13.05.11.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jul 2026 05:11:42 -0700 (PDT)
+        Mon, 13 Jul 2026 05:11:53 -0700 (PDT)
 From: Anand Moon <linux.amoon@gmail.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -102,16 +87,16 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
 	linux-kernel@vger.kernel.org (open list),
 	linux-media@vger.kernel.org (open list:MESON VIDEO DECODER DRIVER FOR AMLOGIC SOCS),
 	linux-staging@lists.linux.dev (open list:STAGING SUBSYSTEM)
-Subject: [PATCH v7 16/19] media: meson: vdec: Configure DMA mask and segment size in probe
-Date: Mon, 13 Jul 2026 17:37:11 +0530
-Message-ID: <20260713120840.17427-17-linux.amoon@gmail.com>
+Subject: [PATCH v7 17/19] media: meson: canvas: Fix Use-After-Free by linking canvas provider device
+Date: Mon, 13 Jul 2026 17:37:12 +0530
+Message-ID: <20260713120840.17427-18-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260713120840.17427-1-linux.amoon@gmail.com>
 References: <20260713120840.17427-1-linux.amoon@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260713_131145_163913_8C059E81 
-X-CRM114-Status: GOOD (  13.60  )
+X-CRM114-CacheID: sfid-20260713_051154_518900_6CF00437 
+X-CRM114-Status: GOOD (  16.04  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,57 +108,71 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Doruk Tan Ozturk <doruk@0sec.ai>, Nicolas Dufresne <nicolas@ndufresne.ca>
+Cc: Doruk Tan Ozturk <doruk@0sec.ai>, Sashiko <sashiko-bot@kernel.org>, Nicolas Dufresne <nicolas@ndufresne.ca>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The vdec probe routine does not set explicit DMA constraints, leaving the
-driver completely dependent on platform bus default values. This lack of
-explicit layout initialization can lead to allocation failures, restricted
-address space mappings, or broken contiguous buffer handling on
-architectures with restrictive DMA layers.
+The vdec driver retrieves a canvas instance using meson_canvas_get() and
+stores the raw pointer in core->canvas. However, the helper drops the
+provider device reference via put_device() right before returning. Because
+no formal device relationship is established, an unbind of the canvas
+provider driver triggers a Use-After-Free (UAF) bug when the video decoder
+subsequently attempts to access that memory block.
 
-Address these platform constraints with the following changes during driver
-initialization:
-1. Enforce a 32-bit coherent DMA allocation window by invoking
-   dma_set_mask_and_coherent() with a DMA_BIT_MASK(32) argument.
-2. Maximize the contiguous allocation segment boundary constraint to
-   UINT_MAX using the vb2_dma_contig_set_max_seg_size() configuration
-   helper.
+Fix this lifecycle hazard by enhancing meson_canvas_get() to establish a
+formal managed device link between the consumer device and the underlying
+canvas platform device. Using DL_FLAG_AUTOREMOVE_CONSUMER ensures the
+dependency link is automatically torn down when the consumer driver
+unbinds.
 
-This guarantees that large, contiguous video frame allocation requests
-work reliably and explicitly aligns the memory management paths with
-standard Linux kernel DMA management paradigms.
+Additionally, handle missing link conditions using dev_err_probe() to
+clean up upstream error diagnostics, and ensure the canvas platform device
+reference count is dropped safely along the uninitialized driver data
+path.
 
 Cc: Nicolas Dufresne <nicolas@ndufresne.ca>
+Reported-by: Sashiko <sashiko-bot@kernel.org>
+Closes: https://lore.kernel.org/all/20260530111022.9C6D71F00893@smtp.kernel.org
 Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 ---
- drivers/staging/media/meson/vdec/vdec.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/soc/amlogic/meson-canvas.c | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
-index ac86a9c4febff..d33cbebc4453b 100644
---- a/drivers/staging/media/meson/vdec/vdec.c
-+++ b/drivers/staging/media/meson/vdec/vdec.c
-@@ -1186,6 +1186,16 @@ static int vdec_probe(struct platform_device *pdev)
- 	if (IS_ERR(core->canvas))
- 		return PTR_ERR(core->canvas);
+diff --git a/drivers/soc/amlogic/meson-canvas.c b/drivers/soc/amlogic/meson-canvas.c
+index 79681afea8c61..5102a491bf778 100644
+--- a/drivers/soc/amlogic/meson-canvas.c
++++ b/drivers/soc/amlogic/meson-canvas.c
+@@ -54,6 +54,7 @@ struct meson_canvas *meson_canvas_get(struct device *dev)
+ 	struct device_node *canvas_node;
+ 	struct platform_device *canvas_pdev;
+ 	struct meson_canvas *canvas;
++	struct device_link *link;
  
-+	/* Enforce strict 32-bit DMA limit to match hardware capabilities */
-+	ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(32));
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to set 32-bit DMA mask\n");
+ 	canvas_node = of_parse_phandle(dev->of_node, "amlogic,canvas", 0);
+ 	if (!canvas_node)
+@@ -70,9 +71,18 @@ struct meson_canvas *meson_canvas_get(struct device *dev)
+ 	 * current state, this driver probe cannot return -EPROBE_DEFER
+ 	 */
+ 	canvas = dev_get_drvdata(&canvas_pdev->dev);
+-	put_device(&canvas_pdev->dev);
+-	if (!canvas)
++	if (!canvas) {
++		put_device(&canvas_pdev->dev);
+ 		return ERR_PTR(-EINVAL);
++	}
 +
-+	ret = vb2_dma_contig_set_max_seg_size(dev, UINT_MAX);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "Failed to set DMA max segment size\n");
-+
- 	of_id = of_match_node(vdec_dt_match, dev->of_node);
- 	core->platform = of_id->data;
++	/* Establish device link to prevent Use-After-Free */
++	link = device_link_add(dev, &canvas_pdev->dev,
++			       DL_FLAG_AUTOREMOVE_CONSUMER);
++	put_device(&canvas_pdev->dev);
++	if (!link)
++		return ERR_PTR(dev_err_probe(dev, -EINVAL,
++				     "Failed to create device link canvas\n"));
  
+ 	return canvas;
+ }
 -- 
 2.50.1
 
