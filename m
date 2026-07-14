@@ -4,113 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FCA3C43458
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Jul 2026 07:24:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 065B4C44501
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Jul 2026 08:08:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Hhxkm5sJ5Q+KXgKSScB165+VZNkygUzNdd1e2/mMmEQ=; b=DxnN0dSCCg7Sk2
-	dI7vP8245idBhjFDze1UH87vLo0Gn5o9UbGtkmN5ZX5H+h95hHtLdYmG9eAZLeWPF+ciE3ohxIm0I
-	CSB49SJ9nevYK8c8CjIWPQe5WfvS33S+Jj/kcK2G34GYt77ghYNuOYGXBi3uEtYj4cfA6/AK7Gr0c
-	IBqFAVKmWOrRkXhasj17yM02gwyRqiIfpwjcPQ6OfbfSVCJs3IND0IPAZOt/FPIHdxTCE6cQoAYVn
-	mz5k86Rh4fiRphSlzijn/BxuKJWUywJ0+6Aozx6f0WV+MnPIyrAmJ6hLlZaJpckuVHp3QPzXzG0XM
-	U56A2/GB0lV4m7LTulDA==;
+	List-Owner; bh=Bir9u8X6/1qNqzRDjVQJBkipJv9z3MAlkcrSq/jRnwg=; b=XzTA53Dltl1dvf
+	uSEjIAb7eSfWDPrt23eFFs0Ujnpm/5eh1BI8W6BZnWrq0mNovKiC/Pwr89RKGL8tnB5RbouPpdps7
+	mw10zSB0qP7uNadufC8qgJsArdhzG294ZbjZFBQsEngYHQa2hFwxs9e91rGQzh0UdvJ0Z5eniaYHn
+	ThjLdbh+TaH4ru30w8ip630dWS2XeIfbiK0d5a2nTT7LocizyuTeFc3xCKsQuwTD/aSs0uTWkG0/O
+	cUsy5Z0rZ5ETyjEhM06ZSuJ6YDmbqMyPj7YrChQyVcEWmNZafazLRXjjqtcoXqFAb4ey5eCkfRimH
+	AX6nRas51hDhC+FU0UAA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjXUn-0000000B9S2-3xOQ;
-	Tue, 14 Jul 2026 07:24:01 +0000
-Received: from mail-ed1-x52b.google.com ([2a00:1450:4864:20::52b])
+	id 1wjYBq-0000000BFxX-2bV3;
+	Tue, 14 Jul 2026 08:08:30 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjXUk-0000000B9Pw-3A3P
+	id 1wjYBn-0000000BFwv-3oki
 	for linux-amlogic@lists.infradead.org;
-	Tue, 14 Jul 2026 07:24:00 +0000
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-698acd36d67so7180851a12.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 14 Jul 2026 00:23:58 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1784013837; cv=none;
-        d=google.com; s=arc-20260327;
-        b=B23mvsVo52x5KV0kipcIg7vr3tKpre/DQeZ2ZKiB+0JzasdvGAQYiMvlIgmHs0PIyv
-         zC3VE0zcJ4azq9+8H7xNmdqH5VMJPfPiLPqC1lN7rbi5IhyCVBiE6jVhJi0SHwAs0aTd
-         EcecJk4NxnLw3xLLplOmLzgZjekdz/nX3uSRI76MaM4EQmxAvAdirBouy6kD0z4WXAuD
-         kFaFZrRNvRZw0GHX4N9QdSRPQ+NMWG9PXWv8pG8seLgNW9YPkgOPKOjkynJZm7i8Nktz
-         tyl1afqj+MuSGsMkWwB6gvlHWxMO9xc+Y18aimpmYO0C7uQhaHV9DMsEsu87Yc8xcdy/
-         XPCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=4otLa0osIIgCWg6PJhWGRKAbFh1CF4DbrLX8uzqDyWU=;
-        fh=qAcZRzJ1gq0iuIzw/iU4Hd5Ac+D15Wo6Q43Qf4QmGOU=;
-        b=Y/HeVpMViXWeJpkcc8NWHZRoupb59ZvPSnsVR4005bf+cNSJyf50nNU5t7m8Vejvxx
-         tc2JFeqy4VHOVmi9lPpa/djYmMlvo7o76GRzRe9kIWSgKZ4TFF0cYB8CyF/KckwjPgcj
-         dKHK1RT/Grelfa4l97hlxw+rJblz4xxRJ59G4Oyq+UfDnhK7HKmsnhGA1FNZPnZJmdN4
-         RVJYRpLCcPjQ4nzS7KsV+fWpf36uXrpvimskPEyVh9BmIKbajSn4LJ/YAtJY898o0YrX
-         ry9HMqAFY0dwnQ6BBVvA6V6/kEztZ9rpTO6Un5Ca+R6zwPnJZ30qIe7Z0QkU9T6WVaze
-         yeAg==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784013837; x=1784618637; darn=lists.infradead.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=4otLa0osIIgCWg6PJhWGRKAbFh1CF4DbrLX8uzqDyWU=;
-        b=P7TDkKVKWO7naUhb1jUIT3Yk+zG9DYkWxZoIa7L2OodtilS6SWK+qC6dXQnamGPFl5
-         XbjiVexydPASQtytHW4zHwSEHuNlaGqgks/qmv15DrCGXL121bwvooY0kEhA5HX2B8Kx
-         G4zw7KTv/FMnqWO56qAXdpstU/PRl3RfZm0XZPJvQkzASsJL5avnJdFGPLB8zziDSJ7B
-         tvDKCC81l9xS/0lwj4LBqQLUj8jFdyUQDrSHztCwjYGc/yJLxN22DPqHjHF47Qujp0iF
-         JPJQFL4MeEsH1JAqJYrLQt/6TkcxlgZvVYtx/H7vD6FfER6vGgiBUHlXvQSaVgG8zgso
-         OuXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784013837; x=1784618637;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=4otLa0osIIgCWg6PJhWGRKAbFh1CF4DbrLX8uzqDyWU=;
-        b=BeWP/S/V9PVzIstxat082kUz998tISwlCcapORGKHDvxxCfOTvfCJC3W2Hac2gsQVV
-         dN3vsARbU0q5IKo29pTgKzoos9Jbt/ZwGYFZw8XxJxZi1ljF15Pb0f5lwnaNpydAPWwy
-         M1/anjT/LYouKsGu5s1KVWUMYIVKirReY8k9256GwsIZig6mG2Gxg4Y6Iu364fvJSGAb
-         IKsnM9pK9StlPOoNSGlRnsG9yqQ6W4xAOFACxkJ2xTbm2lLODnI71f0UepDvJLB5a6S/
-         g6oiuKvyCQQ5JM8turBr1/z5A5N/8Fh8rSJhElcpDR7l1I/fXnUYOcN4PH6WXyaD1cQu
-         Yjtw==
-X-Forwarded-Encrypted: i=1; AHgh+RpIb6VptDVY72bxCulqPEpRrBtclBGche8nAbgXfD3s6yb7RxgGx8ADRA+v9JyyVEhga1R92E3RjNEMr8SJ@lists.infradead.org
-X-Gm-Message-State: AOJu0YxGmLTroPTxE7eJG1RZ8L9wJmxEZ/Y+eOrz61yzNtPhOjxndcdw
-	Bgz5W0jEQYq8HyshcIEdonM7gCxD+o6QfWk/zW/IKEtO02opJJ0Q6O/gNAe8GqnMRmLkNELGEk3
-	D8uXwrUiPUm8eS2Zkz0bqsfbNGS6bur4=
-X-Gm-Gg: AfdE7cmPZ/JrSHWELxa7r+az/4oTxLEHEOK7kIouNYqFfFY19vVf6fzdRQ16L2C3/k9
-	nHT2RBmpX6gYqSPJxP5uyjxHL9Un312KImuBGMQtepMX2QNhHc/0tPPZp1T5rFjXcQfdaj9XZRU
-	WTEZAJtTUUqLf34CtpJaP+YUAZ4BWWbmhxuySRAV1+BqSBHX2kCCecINUOXLfuwPwwESsalXfW/
-	pBIjYtOnYhzQsOvV4qeKyYSss5GZ0YzIWsvi1tPFd/koEiuCSFfy+tZWni8zTjE65yWYLFrPpV5
-	KQ+whg==
-X-Received: by 2002:a05:6402:e94:b0:698:c13e:179a with SMTP id
- 4fb4d7f45d1cf-69cd2a001acmr1004913a12.10.1784013836409; Tue, 14 Jul 2026
- 00:23:56 -0700 (PDT)
+	Tue, 14 Jul 2026 08:08:28 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 06C7A6136B;
+	Tue, 14 Jul 2026 08:08:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 91B1DC2BCF4;
+	Tue, 14 Jul 2026 08:08:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1784016506;
+	bh=1JoqAKvb1v+9+8D6Z6hKQDixrMHBsj2+KAE8y7K+VgE=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=rUpjOmZtT75xj83ZbwU9ymmX5LepMtytDbzi4/8PqHGS22JqWifzAs6lHWc2SSIok
+	 vtF/jbpcj5Uh464PiADd7Qex2cDmLnu6LVnjtAszlyePRwGso5PWTM2rkj1bB4MPBI
+	 IpdctoBTq+pBSAr/QghTqI4CvabmGAqX4jBHf+bAEMCtdoYTk67Tty40ar+l/PGkeg
+	 XmFRiUcXIdX4hyhenNObQNctUMQiJ5v35b7n+Z+WTEg5tsUQzAIToQ5z0J5A7UcZgf
+	 /Gpvhh5OrTo0nmikDT7TqaOyss0PMZPzkBBWq8tyhCveWUvNivJ2aSeN+qn6y9hwr0
+	 HwssCC0d/d+pw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 719C8C44507;
+	Tue, 14 Jul 2026 08:08:26 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Tue, 14 Jul 2026 08:08:22 +0000
+Subject: [PATCH v11 1/3] dt-bindings: dma: Add Amlogic A9 SoC DMA
 MIME-Version: 1.0
-References: <20260713120840.17427-1-linux.amoon@gmail.com>
-In-Reply-To: <20260713120840.17427-1-linux.amoon@gmail.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Tue, 14 Jul 2026 12:53:43 +0530
-X-Gm-Features: AUfX_mzvXnkQt9N3uwj4z53r62LfKGSebrr5Wzfs3imVuOH5yaZKNS9xAf_UWqU
-Message-ID: <CANAwSgSz+e483m9VKkFZzSKzB1Tsd8kS20UcB3ON-cZ=J8gX+w@mail.gmail.com>
-Subject: Re: [PATCH v7 00/19] media: meson: vdec: Fix lifecycles, race
- conditions, and stability bugs
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	"open list:DRM DRIVERS FOR AMLOGIC SOCS" <dri-devel@lists.freedesktop.org>, 
-	"open list:DRM DRIVERS FOR AMLOGIC SOCS" <linux-amlogic@lists.infradead.org>, 
-	"moderated list:ARM/Amlogic Meson SoC support" <linux-arm-kernel@lists.infradead.org>, 
-	open list <linux-kernel@vger.kernel.org>, 
-	"open list:MESON VIDEO DECODER DRIVER FOR AMLOGIC SOCS" <linux-media@vger.kernel.org>, 
-	"open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
-Cc: Doruk Tan Ozturk <doruk@0sec.ai>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260714_002358_814738_261878BD 
-X-CRM114-Status: GOOD (  21.00  )
+Message-Id: <20260714-amlogic-dma-v11-1-de79c2394282@amlogic.com>
+References: <20260714-amlogic-dma-v11-0-de79c2394282@amlogic.com>
+In-Reply-To: <20260714-amlogic-dma-v11-0-de79c2394282@amlogic.com>
+To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+ Frank Li <Frank.Li@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784016504; l=2916;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=o/Qp8oCw+N9EVwbF9aeiSMMFq+aTHa2sv+r3V4aaRw0=;
+ b=6Ol2T8VYPwXMhxCqvfoGG4CJmGSmph6kYYxU+hYx5OG61IblfX88kRxiSJBeSVhKP3AXVN8n0
+ s0i8bRRnMYdCSAA8X04Q2x8pbO1+f9zwmphm/ccgkQujLrg+eUWTiy8
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -122,85 +83,63 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi All,
-
-On Mon, 13 Jul 2026 at 17:38, Anand Moon <linux.amoon@gmail.com> wrote:
->
-> This patch series addresses a collection of critical race conditions,
-> memory leaks, use-after-free bugs, and resource management issues
-> within the Amlogic Meson video decoder (meson-vdec) driver and
-> associated components.
->
-> The primary focus is tightening session lifecycles, safely synchronising
-> the V4L2 m2m framework callbacks, hardening work queue operations
-> (esparser_queue_work), and correcting buffer validations to prevent
-> stability issues like KASAN out-of-bounds errors or stream-on timeouts.
->
-> Summary of Changes:
-> * Race Conditions & Synchronisation: Fixes multi-threading and
->   execution races across stream-on, stream-off, job abort, and
->   teardown pathways.
-> * Memory Lifecycle: Eliminates memory leaks and use-after-free
->   vulnerabilities by safely pinning, canceling, and sequencing
->   device removals.
-> * VP9 & Buffer Hardening: Addresses payload handling bugs in the ES
->   parser, properly tracks ongoing buffers via atomic counters, and
->   prevents invalid memory writes.
-> * Platform/DMA Adjustments: Adjusts DMA segment configurations,
->   canvas handling, and buffer sizes to match modern hardware demands.
->
-> Note on an outstanding issue:
-> An execution deadlock occurs in the driver workqueue path during high
-> stress or long playback sessions. This stall is triggered when the
-> Amlogic hardware internal video FIFO buffer becomes completely full.
-> When esparser_queue_all_src runs, the capacity validation check is
-> tripped due to a design limitation in how buffer exhaustion is handled.
-> This blocks progress and leaves the workqueue worker waiting indefinitely
-> on a core mutex lock.
->
-> The resulting hung task call trace shows the worker thread blocking
-> on the internal lock:
->
-> Workqueue: events esparser_queue_all_src [meson_vdec]
-> ...
-> __mutex_lock
-> mutex_lock_nested
-> esparser_queue_all_src
->
-> I have tried to address this issue, but the underlying deadlock persists
-> under extreme conditions.
->
-> Any feedback on this new appock is welcome.
->
-> Testing was done using v4l2-compliance and active decoding pipelines
-> on Meson platforms (like Hardkernel ODROID-N2+ and ODROID-C4) SBCs.
->
-> The v4l2-compliance tests passed successfully via:
-> $ v4l2-compliance -s -v -d /dev/video0
->
-> Pipelines were validated using the following GStreamer script.
->
-> [1] https://gist.github.com/moonlinux/08295ba1f17ce7155550773f2d2cb6e5
->
-> Previous changes:
-> v6: https://lore.kernel.org/all/20260530094326.11892-2-linux.amoon@gmail.com/
->
-
-I will review Sashiko's feedback. I will look into these suggestions and
-work on incorporating them to improve the code quality
-
-> Thanks
-> -Annad
->
-Thanks
--Anand
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+RnJvbTogWGlhbndlaSBaaGFvIDx4aWFud2VpLnpoYW9AYW1sb2dpYy5jb20+CgpBZGQgZG9jdW1l
+bnRhdGlvbiBkZXNjcmliaW5nIHRoZSBBbWxvZ2ljIEE5IFNvQyBETUEuIEFuZCBhZGQKdGhlIHBy
+b3BlcnRpZXMgc3BlY2lmaWMgdmFsdWVzIGRlZmluZXMgaW50byBhIG5ldyBpbmNsdWRlIGZpbGUu
+CgpSZXZpZXdlZC1ieTogS3J6eXN6dG9mIEtvemxvd3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBv
+c3MucXVhbGNvbW0uY29tPgpTaWduZWQtb2ZmLWJ5OiBYaWFud2VpIFpoYW8gPHhpYW53ZWkuemhh
+b0BhbWxvZ2ljLmNvbT4KLS0tCiAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9kbWEvYW1sb2dpYyxh
+OS1kbWEueWFtbCAgICB8IDY4ICsrKysrKysrKysrKysrKysrKysrKysKIGluY2x1ZGUvZHQtYmlu
+ZGluZ3MvZG1hL2FtbG9naWMsYTktZG1hLmggICAgICAgICAgIHwgIDggKysrCiAyIGZpbGVzIGNo
+YW5nZWQsIDc2IGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2Rldmlj
+ZXRyZWUvYmluZGluZ3MvZG1hL2FtbG9naWMsYTktZG1hLnlhbWwgYi9Eb2N1bWVudGF0aW9uL2Rl
+dmljZXRyZWUvYmluZGluZ3MvZG1hL2FtbG9naWMsYTktZG1hLnlhbWwKbmV3IGZpbGUgbW9kZSAx
+MDA2NDQKaW5kZXggMDAwMDAwMDAwMDAwLi42Y2VkZDVmZGZlZmQKLS0tIC9kZXYvbnVsbAorKysg
+Yi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZG1hL2FtbG9naWMsYTktZG1hLnlh
+bWwKQEAgLTAsMCArMSw2OCBAQAorIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMC1v
+bmx5IE9SIEJTRC0yLUNsYXVzZQorJVlBTUwgMS4yCistLS0KKyRpZDogaHR0cDovL2RldmljZXRy
+ZWUub3JnL3NjaGVtYXMvZG1hL2FtbG9naWMsYTktZG1hLnlhbWwjCiskc2NoZW1hOiBodHRwOi8v
+ZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMKKwordGl0bGU6IEFtbG9naWMg
+Z2VuZXJhbCBETUEgY29udHJvbGxlcgorCitkZXNjcmlwdGlvbjoKKyAgVGhpcyBpcyBhIGdlbmVy
+YWwtcHVycG9zZSBwZXJpcGhlcmFsIERNQSBjb250cm9sbGVyLiBJdCBjdXJyZW50bHkgc3VwcG9y
+dHMKKyAgbWFqb3IgcGVyaXBoZXJhbHMgaW5jbHVkaW5nIEkyQywgSTNDLCBQSU8sIGFuZCBDQU4t
+QlVTLiBUcmFuc21pdCBhbmQgcmVjZWl2ZQorICBmb3IgdGhlIHNhbWUgcGVyaXBoZXJhbCB1c2Ug
+dHdvIHNlcGFyYXRlIGNoYW5uZWxzLCBjb250cm9sbGVkIGJ5IGRpZmZlcmVudAorICByZWdpc3Rl
+ciBzZXRzLiBJMkMgYW5kIEkzQyB0cmFuc2ZlciBkYXRhIGluIDEtYnl0ZSB1bml0cywgd2hpbGUg
+UElPIGFuZAorICBDQU4tQlVTIHRyYW5zZmVyIGRhdGEgaW4gNC1ieXRlIHVuaXRzLiBGcm9tIHRo
+ZSBjb250cm9sbGVy4oCZcyBwZXJzcGVjdGl2ZSwKKyAgdGhlcmUgaXMgbm8gc2lnbmlmaWNhbnQg
+ZGlmZmVyZW5jZS4KKworbWFpbnRhaW5lcnM6CisgIC0gWGlhbndlaSBaaGFvIDx4aWFud2VpLnpo
+YW9AYW1sb2dpYy5jb20+CisKK3Byb3BlcnRpZXM6CisgIGNvbXBhdGlibGU6CisgICAgY29uc3Q6
+IGFtbG9naWMsYTktZG1hCisKKyAgcmVnOgorICAgIG1heEl0ZW1zOiAxCisKKyAgaW50ZXJydXB0
+czoKKyAgICBtYXhJdGVtczogMQorCisgIGNsb2NrczoKKyAgICBtYXhJdGVtczogMQorCisgIGNs
+b2NrLW5hbWVzOgorICAgIGNvbnN0OiBzeXMKKworICAnI2RtYS1jZWxscyc6CisgICAgY29uc3Q6
+IDIKKyAgICBkZXNjcmlwdGlvbjoKKyAgICAgIFRoZSBmaXJzdCBjZWxsIGlzIHRoZSBETUEgY2hh
+bm5lbCB0eXBlKERNQV9UWCBvciBETUFfUlgpLgorICAgICAgVGhlIHNlY29uZCBjZWxsIGlzIHRo
+ZSBETUEgY2hhbm5lbCBpbmRleC4KKworICBkbWEtY2hhbm5lbHM6CisgICAgbWF4aW11bTogNjQK
+KworcmVxdWlyZWQ6CisgIC0gY29tcGF0aWJsZQorICAtIHJlZworICAtIGludGVycnVwdHMKKyAg
+LSBjbG9ja3MKKyAgLSAnI2RtYS1jZWxscycKKyAgLSBkbWEtY2hhbm5lbHMKKworYWxsT2Y6Cisg
+IC0gJHJlZjogZG1hLWNvbnRyb2xsZXIueWFtbCMKKwordW5ldmFsdWF0ZWRQcm9wZXJ0aWVzOiBm
+YWxzZQorCitleGFtcGxlczoKKyAgLSB8CisgICAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2ludGVy
+cnVwdC1jb250cm9sbGVyL2FybS1naWMuaD4KKyAgICBkbWEtY29udHJvbGxlckBmZTQwMDAwMCB7
+CisgICAgICAgIGNvbXBhdGlibGUgPSAiYW1sb2dpYyxhOS1kbWEiOworICAgICAgICByZWcgPSA8
+MHhmZTQwMDAwMCAweDQwMDA+OworICAgICAgICBpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMzUgSVJR
+X1RZUEVfRURHRV9SSVNJTkc+OworICAgICAgICBjbG9ja3MgPSA8JmNsa2MgNDU+OworICAgICAg
+ICAjZG1hLWNlbGxzID0gPDI+OworICAgICAgICBkbWEtY2hhbm5lbHMgPSA8Mjg+OworICAgIH07
+CmRpZmYgLS1naXQgYS9pbmNsdWRlL2R0LWJpbmRpbmdzL2RtYS9hbWxvZ2ljLGE5LWRtYS5oIGIv
+aW5jbHVkZS9kdC1iaW5kaW5ncy9kbWEvYW1sb2dpYyxhOS1kbWEuaApuZXcgZmlsZSBtb2RlIDEw
+MDY0NAppbmRleCAwMDAwMDAwMDAwMDAuLmM1OWMyZmQ0Yjk1NgotLS0gL2Rldi9udWxsCisrKyBi
+L2luY2x1ZGUvZHQtYmluZGluZ3MvZG1hL2FtbG9naWMsYTktZG1hLmgKQEAgLTAsMCArMSw4IEBA
+CisvKiBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjAgT1IgTUlUKSAqLworCisjaWZu
+ZGVmIF9fRFRfQklORElOR1NfRE1BX0FNTE9HSUNfRE1BX0hfXworI2RlZmluZSBfX0RUX0JJTkRJ
+TkdTX0RNQV9BTUxPR0lDX0RNQV9IX18KKworI2RlZmluZSBETUFfVFgJCQkwCisjZGVmaW5lIERN
+QV9SWAkJCTEKKyNlbmRpZiAvKiBfX0RUX0JJTkRJTkdTX0RNQV9BTUxPR0lDX0RNQV9IX18gKi8K
+Ci0tIAoyLjUyLjAKCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZy
+YWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGlu
+dXgtYW1sb2dpYwo=
