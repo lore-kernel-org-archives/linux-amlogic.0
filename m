@@ -4,65 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05666C44507
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Jul 2026 11:06:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51A99C44501
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Jul 2026 11:59:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xpHphxNBPLBlywT2ddeCIUJbDDWkijRBaJIXM7FIiME=; b=fPxGuyW3VhSaYM
-	EuAXyOD9NiE3GtFSjKqE3oEvXYNhyl2bfOaUUMtWsDIbE/RO0CCIZWl8r6REyGZ2T2qgWTcLxNprI
-	Uu+npp/saJWK9U89KfHLnfxdPvmPLGSzMCp87hermqxhvq+oTE5NH5kUmJpcGjsHiTT+X8Nwrcud2
-	gp3dZdjHN1VaWho99pmAtLHW78pdGLSaUBAprIQIK/yaCReLW4gv8LbztHnAWLGW7cDMLCaaztGGp
-	WA1D6OBJoxLaJb4H8YOdl1OnCpswi4qsvVhsR3tMQP4Dp2quBwmfbzjMW7Xl176k7Oh3XIJDhbzJP
-	G9y1zeooF9oD6Yip+xxA==;
+	List-Owner; bh=63DFecDR+7aUOOU7aoyfPOIDfaYTjxPPlpw0hSOryDU=; b=On0zarRd1dJdFT
+	3eaZ2mHLlLLIOoKnohTZ9EZ95JBK+G8USgG5RqOTFox64u1Uo9o0aLiAIPpew6Wserd+tiOtFOErU
+	aZxhirrT5GK38dwujJKl163w3qfYkcQ1PITW0ojmsKm8SeYwE0C7ehDerHjgFZhNoruovxs6qsKEs
+	Ioc1qnIpOOw5VnTWfm5nfTHk01yP1EVRw+hwFlRzlaxtXkJ7S+Lv0Z0EmZ1itHXl0je/++aufPvhK
+	lVVXgUlYwoK1XQB18ctOYhnPIgT+M+7DhIt418ocw+6qdFRp6P6WCP1Dld/urfZpCD2MuTqUxNjsb
+	/as+5FSSG2MjRWdhuhgw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjayT-0000000BdxM-0guw;
-	Tue, 14 Jul 2026 11:06:53 +0000
-Received: from m16.mail.163.com ([220.197.31.3])
+	id 1wjbmu-0000000Bosk-1CfV;
+	Tue, 14 Jul 2026 11:59:00 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjayP-0000000BdvE-2zOi;
-	Tue, 14 Jul 2026 11:06:51 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=S323XPQAVbXMMiJRm+Dg+pgQry7Wic4cXHZLSGEJw+0=;
-	b=ZG/28Z9YW8+8O+S7agcsiaFV1MwoBUU+msb83Q9py4oWPZgTpjLvhYUhaQLaC7
-	BXqhypUV8U2IPJ0lkxgb6mWSThzlCykBtyKXpKjOUYmn3nyX32EKhxlC1kehCh8Q
-	UJJlhIMZSEiy9uGsFcTK2R8wxpOGY+4MEN9GGkYZesuEc=
-Received: from [10.111.8.51] (unknown [])
-	by gzga-smtp-mtada-g1-2 (Coremail) with SMTP id _____wDXna8fGFZqlFnYJQ--.22967S2;
-	Tue, 14 Jul 2026 19:06:08 +0800 (CST)
-Message-ID: <72a058fd-5781-43bc-9148-180140929ecd@163.com>
-Date: Tue, 14 Jul 2026 19:06:07 +0800
+	id 1wjbms-0000000BorK-3nWO
+	for linux-amlogic@lists.infradead.org;
+	Tue, 14 Jul 2026 11:58:58 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 021FE60120;
+	Tue, 14 Jul 2026 11:58:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F09801F000E9;
+	Tue, 14 Jul 2026 11:58:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784030337;
+	bh=giljRTyf1/GeNOSQzfIPJUop85WcABknb2AO0qQE6u8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=otdtft7koRJ9KTpp8Lc1Kbd0yTLVGKldNWh2Pgdgbxv8Vhn1tQWMLDJynabMil1As
+	 IrLVwudKY43tMQ9K6lC2xCblgiQpsMzzIu8kyX5MB1Pq4tQwGM2VRaFypD5LmPW27m
+	 uOTxcSvsUa0iJZynDx6ZFSBUFGAZQlplKAV+jiOZ+JNcad24LpbxRVDVUSP+N9TyW+
+	 d6Tm20PG90euvR1VHnSL3YbTZoIopdrLYRDoKH/5I651gQlF+115Hm3m5qube0LMct
+	 VFIQrwY6uFGKPdKbvNaoIwRdEJulEZsufvfX3wsCqFDI45tmf1B7KgR6qRIVC3+aRZ
+	 951wTJfKaMlmQ==
+Date: Tue, 14 Jul 2026 17:28:54 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: sashiko-bot@kernel.org
+Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>, neil.armstrong@linaro.org,
+	robh@kernel.org, conor+dt@kernel.org, Frank.Li@kernel.org,
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v11 1/3] dt-bindings: dma: Add Amlogic A9 SoC DMA
+Message-ID: <alYkfmsBU0UqI6Hz@vaman>
+References: <20260714-amlogic-dma-v11-0-de79c2394282@amlogic.com>
+ <20260714-amlogic-dma-v11-1-de79c2394282@amlogic.com>
+ <20260714081942.2E0B91F000E9@smtp.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 0/2] PCI: Configure Root Port MPS during host probing
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: bhelgaas@google.com, Manivannan Sadhasivam <mani@kernel.org>,
- lpieralisi@kernel.org, kwilczynski@kernel.org, heiko@sntech.de,
- yue.wang@amlogic.com, pali@kernel.org, neil.armstrong@linaro.org,
- robh@kernel.org, jingoohan1@gmail.com, khilman@baylibre.com,
- jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, cassel@kernel.org,
- linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-rockchip@lists.infradead.org
-References: <20260622171448.GA678675@bhelgaas>
-Content-Language: en-US
-From: Hans Zhang <18255117159@163.com>
-In-Reply-To: <20260622171448.GA678675@bhelgaas>
-X-CM-TRANSID: _____wDXna8fGFZqlFnYJQ--.22967S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7CFWUZryDtF43XF4kJFW7CFg_yoW8CFWkpF
-	W5XanayF4xKFyfCF4qqwsYkryYqa48ta43Xr1DtryayFn09rn8XFWjgws5Gwn7Xr1xCr1S
-	9r1qqa4xXwn0vaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U4UDXUUUUU=
-X-Originating-IP: [140.206.53.66]
-X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbC7AA+4WpWGCAV3gAA38
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260714_040650_198483_36BA333F 
-X-CRM114-Status: GOOD (  11.01  )
+Content-Disposition: inline
+In-Reply-To: <20260714081942.2E0B91F000E9@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,62 +68,63 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-
-On 6/23/26 01:14, Bjorn Helgaas wrote:
-> On Fri, Jun 19, 2026 at 11:29:39PM +0800, Hans Zhang wrote:
->> On 5/6/26 22:00, Manivannan Sadhasivam wrote:
->>> On Fri, Nov 28, 2025 at 01:09:06AM +0800, Hans Zhang wrote:
->>>> Current PCIe initialization exhibits a key optimization gap: Root Ports
->>>> may operate with non-optimal Maximum Payload Size (MPS) settings. While
->>>> downstream device configuration is handled during bus enumeration, Root
->>>> Port MPS values inherited from firmware or hardware defaults often fail
->>>> to utilize the full capabilities supported by controller hardware. This
->>>> results in suboptimal data transfer efficiency throughout the PCIe
->>>> hierarchy.
->>>>
->>>> This patch series addresses this by:
->>>>
->>>> 1. Core PCI enhancement (Patch 1):
->>>> - Proactively configures Root Port MPS during host controller probing
->>>> - Sets initial MPS to hardware maximum (128 << dev->pcie_mpss)
->>>> - Conditional on PCIe bus tuning being enabled (PCIE_BUS_TUNE_OFF unset)
->>>>     and not in PCIE_BUS_PEER2PEER mode (which requires default 128 bytes)
->>>> - Maintains backward compatibility via PCIE_BUS_TUNE_OFF check
->>>> - Preserves standard MPS negotiation during downstream enumeration
->>>>
->>>> 2. Driver cleanup (Patch 2):
->>>> - Removes redundant MPS configuration from Meson PCIe controller driver
->>>> - Functionality is now centralized in PCI core
->>>> - Simplifies driver maintenance long-term
->>>>
->>>
->>> For the series,
->>>
->>> Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
->>>
->>> Bjorn: Could you please take a look? This series has been floating for a
->>> while...
->>
->> Hello Bjorn,
->>
->> Any chance for this series to be applied?
+On 14-07-26, 08:19, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> - [Low] The macros DMA_TX and DMA_RX in the global DT binding header lack an Amlogic/SoC specific prefix, leading to namespace pollution and potential build conflicts.
+> --
 > 
-> It's too late for v7.2; we're already more than halfway through the
-> merge window.  We can look again for v7.3 after v7.2-rc1.
+> --- Patch [1]: [PATCH v11 1/3] dt-bindings: dma: Add Amlogic A9 SoC DMA ---
+> commit 093f368eaa67418008421d43d724ce2e98651039
+> Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> dt-bindings: dma: Add Amlogic A9 SoC DMA
+> 
+> This commit adds device tree binding documentation for the Amlogic A9 SoC
+> general-purpose DMA controller. It introduces the YAML schema and a header
+> file defining the channel type macros.
+> 
+> > diff --git a/Documentation/devicetree/bindings/dma/amlogic,a9-dma.yaml b/Documentation/devicetree/bindings/dma/amlogic,a9-dma.yaml
+> > new file mode 100644
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/dma/amlogic,a9-dma.yaml
+> [ ... ]
+> > +  '#dma-cells':
+> > +    const: 2
+> > +    description:
+> > +      The first cell is the DMA channel type(DMA_TX or DMA_RX).
+> > +      The second cell is the DMA channel index.
+> [ ... ]
+> > diff --git a/include/dt-bindings/dma/amlogic,a9-dma.h b/include/dt-bindings/dma/amlogic,a9-dma.h
+> > new file mode 100644
+> > --- /dev/null
+> > +++ b/include/dt-bindings/dma/amlogic,a9-dma.h
+> > @@ -0,0 +1,8 @@
+> > +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+> > +
+> > +#ifndef __DT_BINDINGS_DMA_AMLOGIC_DMA_H__
+> > +#define __DT_BINDINGS_DMA_AMLOGIC_DMA_H__
+> > +
+> > +#define DMA_TX			0
+> > +#define DMA_RX			1
+> 
+> [Severity: Low]
+> Are these macro names too generic for a global dt-bindings header?
+> 
+> Since headers in include/dt-bindings/ are globally visible and frequently
+> included by C drivers, unprefixed names like DMA_TX and DMA_RX could lead
+> to namespace pollution and macro redefinition build failures if a driver
+> includes this alongside other headers that use the same common names.
+> 
+> Would it be safer to add a vendor or SoC prefix, such as AMLOGIC_A9_DMA_TX?
 
-Hello Bjorn,
+I think this makes sense to add here
 
-Gentle ping on this series.
-
-Best regards,
-Hans
-
+-- 
+~Vinod
 
 _______________________________________________
 linux-amlogic mailing list
