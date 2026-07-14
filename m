@@ -4,61 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FB7AC43458
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Jul 2026 12:03:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39DD5C44501
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Jul 2026 14:00:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PChbshS1PJ5X3jSxR3Q6L8+jE2C07ThArjhjHDvik3U=; b=NfiaHzQ7RMQvXv
-	mecjxeytgd50hU2ExkicFIoqUBimaEU3lcPqdzjlzkRJgUO/814KtCkMjeG+l7vdaeyJQr3GVXSQg
-	DEBRqaxldgBjdFtehLyRH26Dpqevnr6ULZnYwYSuS1jRE5uxHmnAbR1an4wnx6wFcX5yfS23RxACI
-	gtvcDo0e7oi6BwK0UI9A1SbhLTnUD1clFkFs8nMOj3XPyCOAnKXHjHXbcXiklw7o1dRHJIWSX7/SX
-	k82HqlNptWKnKPrilOPGxKRPg2zxYm/aSgWOsQ4ADlY+CKL2Rqfn6m5PJq0ZEoCj+Yk12Y5R1Z60Q
-	aPIVYJRoqNqsjkVrXbEg==;
+	List-Owner; bh=wx6DisLNwxjsZMAiPJsVV2yXJnBXxOat/WtX6277i84=; b=yMy9OnHYqXA6Pi
+	fOsKZ7uU85LmRksb3yOQBTMnyDzoTB/+zr/rg6TwW1hkiNlsRZBcEQD4luWtavtnddKgBTgckztu7
+	cHOGZgqJ3VX71eio6mN4rccDfHrnTX1uidR+hs2Ox0zB2jCR6BlXcYNJw03xqB4zZaRGVD4bcDa4H
+	8f7sqe5yRA1JNcXXo94R7BSJQbuz0lEzuJy/o4NaI3R3uZXaNkDm65LiXb7L/U3eVihwM17mZgN7F
+	fzeNt+T4LqdObaVaNxPjpIJVFUbhUwFDB7jOrSPmjFP+SGaGBerl5vEVdCm8S6zGG1xuuNOa0qiP8
+	2gHR7OtgQCFqD8MkMCow==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjbrA-0000000BqaZ-0mqC;
-	Tue, 14 Jul 2026 12:03:24 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1wjdgd-0000000CGtN-0S9U;
+	Tue, 14 Jul 2026 14:00:39 +0000
+Received: from mgamail.intel.com ([192.198.163.18])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjbr9-0000000BqaI-0qAr
+	id 1wjdgY-0000000CGsU-3Tyy
 	for linux-amlogic@lists.infradead.org;
-	Tue, 14 Jul 2026 12:03:23 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 93F2B601DE;
-	Tue, 14 Jul 2026 12:03:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E56C1F000E9;
-	Tue, 14 Jul 2026 12:03:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784030602;
-	bh=TEZI3chpr1Sn0iTGmVOuZ3v5A0uYcjaAtTMT7DqMsDw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Nww+aQs7Vih9dRithSo4WWYbNEAli8OML9UuRIuzHAIlrHy2sZxGs52QacS//52ZZ
-	 k65+mU+AWPHBHeaXNaisXpoExyEpK8XklK/DACDZJZnH4a9lQGtMVtorGUAtsrUCTT
-	 ocndPzKAXCnH+kSEWNysCgx7OBB2R87oAXAaBUQsDqlas8BrK5C1qCRHAxwwrg9Ad2
-	 jfr4cT1xiqY9U483cTuLAXCJS4r5NZPpU2WixoZpSd4mYlDTYXnJUSgNXl3gIsTAOp
-	 4SQsNEwa39YQ2FxH6s8eZpBgSh204Sa8s8mdmdZtx+K9bOjXUDtrgFGbatIc/LgALv
-	 xdB3tgqD+RuZQ==
-Date: Tue, 14 Jul 2026 17:33:18 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: xianwei.zhao@amlogic.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	Frank Li <Frank.Li@kernel.org>, linux-amlogic@lists.infradead.org,
-	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
-	Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH v11 2/3] dmaengine: amlogic: Add general DMA driver for A9
-Message-ID: <alYlhm9vav59wKq9@vaman>
-References: <20260714-amlogic-dma-v11-0-de79c2394282@amlogic.com>
- <20260714-amlogic-dma-v11-2-de79c2394282@amlogic.com>
+	Tue, 14 Jul 2026 14:00:36 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1784037635; x=1815573635;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=JlTtuTgyttUoJX1tzSz3FCb8u2Xjs4nbU6LV982KfNo=;
+  b=LUmqrldBQIp9BYEYVvmS6EFRZGUQcVspqpeDw6qrSDEPQUZrHnlNnxZb
+   XV/NQoJSXNBr5bClxaut/rgGgUYt1qXWG2TDNnaRe3hsaAfGIrUhJPWaP
+   cE98VyVSPH8LILal/XdJaQP9wlgRrSW5T5MB16VZo7AUyYWfUleGBeTa5
+   3ad74JnqK2lSgTxx3HEB4k8YhKY2tn3T6T8L1rAefimqsw4VAq/RxX1AG
+   LkNqjiaCMOMqCSWiI2kxWXFsr5xUpHLxv2liFqU/sgS/Ti9PSZdI2dLm7
+   /G+huW0SXmhHXAH3kNMA4rj2H5pmWYAW8dEXbk8+RGlzWt4DTRDNVMgIc
+   w==;
+X-CSE-ConnectionGUID: DSeDFKfRTiGOIoN7C1NsRQ==
+X-CSE-MsgGUID: zvX2s4eCSlGm2NuxwdxRYA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="83781033"
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; 
+   d="scan'208";a="83781033"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2026 07:00:34 -0700
+X-CSE-ConnectionGUID: z8g/5vJ7ROme4zo2zAVSAQ==
+X-CSE-MsgGUID: 4ZauGFZWRNeP3PVTEl3ffw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; 
+   d="scan'208";a="260764911"
+Received: from lkp-server02.sh.intel.com (HELO ea128546eb3d) ([10.239.97.151])
+  by fmviesa005.fm.intel.com with ESMTP; 14 Jul 2026 07:00:32 -0700
+Received: from kbuild by ea128546eb3d with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1wjdgT-00000000Mh2-258m;
+	Tue, 14 Jul 2026 14:00:29 +0000
+Date: Tue, 14 Jul 2026 21:59:40 +0800
+From: kernel test robot <lkp@intel.com>
+To: Alfie Varghese <alfievarghese22@gmail.com>, neil.armstrong@linaro.org,
+	gregkh@linuxfoundation.org, linux-media@vger.kernel.org,
+	linux-amlogic@lists.infradead.org, linux-staging@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev,
+	Alfie Varghese <alfievarghese22@gmail.com>
+Subject: Re: [PATCH v2] staging: media: meson: vdec: fix advanced concurrency
+ and UAF bugs
+Message-ID: <202607142142.HnOYDndp-lkp@intel.com>
+References: <20260713181602.773-1-alfievarghese22@gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20260714-amlogic-dma-v11-2-de79c2394282@amlogic.com>
+In-Reply-To: <20260713181602.773-1-alfievarghese22@gmail.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260714_070034_884401_DDE2F216 
+X-CRM114-Status: UNSURE (   7.69  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,179 +93,47 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 14-07-26, 08:08, Xianwei Zhao via B4 Relay wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> 
-> Amlogic A9 SoCs include a general-purpose DMA controller that can be used
-> by multiple peripherals, such as I2C PIO and I3C. Each peripheral group
-> is associated with a dedicated DMA channel in hardware.
-> 
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->  drivers/dma/Kconfig       |  10 +
->  drivers/dma/Makefile      |   1 +
->  drivers/dma/amlogic-dma.c | 726 ++++++++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 737 insertions(+)
-> 
-> diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
-> index ae6a682c9f76..01f96a8257e5 100644
-> --- a/drivers/dma/Kconfig
-> +++ b/drivers/dma/Kconfig
-> @@ -85,6 +85,16 @@ config AMCC_PPC440SPE_ADMA
->  	help
->  	  Enable support for the AMCC PPC440SPe RAID engines.
->  
-> +config AMLOGIC_DMA
-> +	tristate "Amlogic general DMA support"
-> +	depends on ARCH_MESON || COMPILE_TEST
-> +	select DMA_ENGINE
-> +	select DMA_VIRTUAL_CHANNELS
-> +	select REGMAP_MMIO
-> +	help
-> +	  Enable support for the Amlogic general DMA engines. THis DMA
-> +	  controller is used some Amlogic SoCs, such as A9.
-> +
->  config APPLE_ADMAC
->  	tristate "Apple ADMAC support"
->  	depends on ARCH_APPLE || COMPILE_TEST
-> diff --git a/drivers/dma/Makefile b/drivers/dma/Makefile
-> index 14aa086629d5..f62d12b08e15 100644
-> --- a/drivers/dma/Makefile
-> +++ b/drivers/dma/Makefile
-> @@ -16,6 +16,7 @@ obj-$(CONFIG_DMATEST) += dmatest.o
->  obj-$(CONFIG_ALTERA_MSGDMA) += altera-msgdma.o
->  obj-$(CONFIG_AMBA_PL08X) += amba-pl08x.o
->  obj-$(CONFIG_AMCC_PPC440SPE_ADMA) += ppc4xx/
-> +obj-$(CONFIG_AMLOGIC_DMA) += amlogic-dma.o
->  obj-$(CONFIG_APPLE_ADMAC) += apple-admac.o
->  obj-$(CONFIG_ARM_DMA350) += arm-dma350.o
->  obj-$(CONFIG_AT_HDMAC) += at_hdmac.o
-> diff --git a/drivers/dma/amlogic-dma.c b/drivers/dma/amlogic-dma.c
-> new file mode 100644
-> index 000000000000..9de650a79aba
-> --- /dev/null
-> +++ b/drivers/dma/amlogic-dma.c
-> @@ -0,0 +1,726 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
-> +/*
-> + * Copyright (C) 2025 Amlogic, Inc. All rights reserved
+Hi Alfie,
 
-2026 please
+kernel test robot noticed the following build errors:
 
-> +/* DMA controller reg */
-> +#define RCH_INT_MASK		0x1000
-> +#define WCH_INT_MASK		0x1004
-> +#define CLEAR_W_BATCH		0x1014
-> +#define CLEAR_RCH		0x1024
-> +#define CLEAR_WCH		0x1028
-> +#define RCH_ACTIVE		0x1038
-> +#define WCH_ACTIVE		0x103c
-> +#define RCH_DONE		0x104c
-> +#define WCH_DONE		0x1050
-> +#define RCH_ERR			0x1060
-> +#define RCH_LEN_ERR		0x1064
-> +#define WCH_ERR			0x1068
-> +#define DMA_BATCH_END		0x1078
-> +#define WCH_EOC_DONE		0x1088
-> +#define WDMA_RESP_ERR		0x1098
-> +#define UPT_PKT_SYNC		0x10a8
-> +#define RCHN_CFG		0x10ac
-> +#define WCHN_CFG		0x10b0
-> +#define MEM_PD_CFG		0x10b4
-> +#define MEM_BUS_CFG		0x10b8
-> +#define DMA_GMV_CFG		0x10bc
-> +#define DMA_GMR_CFG		0x10c0
-> +
-> +#define MAX_CHAN_ID		32
-> +#define SG_MAX_LEN		(GENMASK(26, 0) & ~0x3)
+[auto build test ERROR on staging/staging-testing]
 
-So you define a mask for 0-26 and then clear everything expect last two
-bits, why not define last two bits..? Something does not look right here
+url:    https://github.com/intel-lab-lkp/linux/commits/Alfie-Varghese/staging-media-meson-vdec-fix-advanced-concurrency-and-UAF-bugs/20260714-023427
+base:   staging/staging-testing
+patch link:    https://lore.kernel.org/r/20260713181602.773-1-alfievarghese22%40gmail.com
+patch subject: [PATCH v2] staging: media: meson: vdec: fix advanced concurrency and UAF bugs
+config: parisc-allmodconfig (https://download.01.org/0day-ci/archive/20260714/202607142142.HnOYDndp-lkp@intel.com/config)
+compiler: hppa-linux-gcc (GCC) 16.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260714/202607142142.HnOYDndp-lkp@intel.com/reproduce)
 
-> +static int aml_dma_probe(struct platform_device *pdev)
-> +{
-> +	struct device_node *np = pdev->dev.of_node;
-> +	struct dma_device *dma_dev;
-> +	struct aml_dma_dev *aml_dma;
-> +	int ret, i, len;
-> +	u32 chan_nr;
-> +
-> +	const struct regmap_config aml_regmap_config = {
-> +		.reg_bits = 32,
-> +		.val_bits = 32,
-> +		.reg_stride = 4,
-> +		.max_register = 0x3000,
-> +	};
-> +
-> +	ret = of_property_read_u32(np, "dma-channels", &chan_nr);
-> +	if (ret)
-> +		return dev_err_probe(&pdev->dev, ret, "failed to read dma-channels\n");
-> +	if (chan_nr > (MAX_CHAN_ID * 2))
-> +		return dev_err_probe(&pdev->dev, -EINVAL, "dma-channels unusual\n");
-> +
-> +	len = sizeof(struct aml_dma_dev) + sizeof(struct aml_dma_chan) * chan_nr;
-> +	aml_dma = devm_kzalloc(&pdev->dev, len, GFP_KERNEL);
-> +	if (!aml_dma)
-> +		return -ENOMEM;
-> +
-> +	aml_dma->chan_nr = chan_nr;
-> +
-> +	aml_dma->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(aml_dma->base))
-> +		return PTR_ERR(aml_dma->base);
-> +
-> +	aml_dma->regmap = devm_regmap_init_mmio(&pdev->dev, aml_dma->base,
-> +						&aml_regmap_config);
-> +	if (IS_ERR_OR_NULL(aml_dma->regmap))
-> +		return PTR_ERR(aml_dma->regmap);
-> +
-> +	aml_dma->clk = devm_clk_get_enabled(&pdev->dev, NULL);
-> +	if (IS_ERR(aml_dma->clk))
-> +		return PTR_ERR(aml_dma->clk);
-> +
-> +	aml_dma->irq = platform_get_irq(pdev, 0);
-> +
-> +	aml_dma->pdev = pdev;
-> +	aml_dma->dma_device.dev = &pdev->dev;
-> +
-> +	dma_dev = &aml_dma->dma_device;
-> +	INIT_LIST_HEAD(&dma_dev->channels);
-> +
-> +	/* Initialize channel parameters */
-> +	for (i = 0; i < chan_nr; i++) {
-> +		struct aml_dma_chan *aml_chan = &aml_dma->aml_chans[i];
-> +
-> +		aml_chan->aml_dma = aml_dma;
-> +		aml_chan->vchan.desc_free = aml_dma_free_desc;
-> +		vchan_init(&aml_chan->vchan, &aml_dma->dma_device);
-> +	}
-> +	aml_dma->chan_used = 0;
-> +
-> +	dma_set_max_seg_size(dma_dev->dev, SG_MAX_LEN);
-> +	dma_cap_set(DMA_SLAVE, dma_dev->cap_mask);
-> +	dma_dev->device_alloc_chan_resources = aml_dma_alloc_chan_resources;
-> +	dma_dev->device_free_chan_resources = aml_dma_free_chan_resources;
-> +	dma_dev->device_tx_status = aml_dma_tx_status;
-> +	dma_dev->device_prep_slave_sg = aml_dma_prep_slave_sg;
-> +	dma_dev->device_pause = aml_dma_chan_pause;
-> +	dma_dev->device_resume = aml_dma_chan_resume;
-> +	dma_dev->device_terminate_all = aml_dma_terminate_all;
-> +	dma_dev->device_issue_pending = aml_dma_issue_pending;
-> +	/* PIO 4 bytes and I2C 1 byte */
-> +	dma_dev->dst_addr_widths = BIT(DMA_SLAVE_BUSWIDTH_4_BYTES) | BIT(DMA_SLAVE_BUSWIDTH_1_BYTE);
-> +	dma_dev->directions = BIT(DMA_DEV_TO_MEM) | BIT(DMA_MEM_TO_DEV);
-> +	dma_dev->residue_granularity = DMA_RESIDUE_GRANULARITY_BURST;
-> +
-> +	regmap_write(aml_dma->regmap, RCH_INT_MASK, 0xffffffff);
-> +	regmap_write(aml_dma->regmap, WCH_INT_MASK, 0xffffffff);
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202607142142.HnOYDndp-lkp@intel.com/
 
-I think we have macros for 32bit masks, please use that here and other
-places
- 
+All errors (new ones prefixed by >>):
 
--- 
-~Vinod
+   drivers/staging/media/meson/vdec/vdec.c: In function 'vdec_m2m_job_abort':
+>> drivers/staging/media/meson/vdec/vdec.c:156:33: error: 'struct amvdec_session' has no member named 'm2m_dev'
+     156 |         v4l2_m2m_job_finish(sess->m2m_dev, sess->m2m_ctx);
+         |                                 ^~
+
+
+vim +156 drivers/staging/media/meson/vdec/vdec.c
+
+3e7f51bd96077ac Maxime Jourdan 2019-06-06  151  
+3e7f51bd96077ac Maxime Jourdan 2019-06-06  152  static void vdec_m2m_job_abort(void *priv)
+3e7f51bd96077ac Maxime Jourdan 2019-06-06  153  {
+3e7f51bd96077ac Maxime Jourdan 2019-06-06  154  	struct amvdec_session *sess = priv;
+3e7f51bd96077ac Maxime Jourdan 2019-06-06  155  
+3e7f51bd96077ac Maxime Jourdan 2019-06-06 @156  	v4l2_m2m_job_finish(sess->m2m_dev, sess->m2m_ctx);
+3e7f51bd96077ac Maxime Jourdan 2019-06-06  157  }
+3e7f51bd96077ac Maxime Jourdan 2019-06-06  158  
+
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 _______________________________________________
 linux-amlogic mailing list
