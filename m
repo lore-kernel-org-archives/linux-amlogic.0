@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD01EC44501
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3251AC44507
 	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Jul 2026 02:33:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
-	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=bJib3W+AG8Uy1qdDwZ2zLa2ZUJbDtrVvrUjF7DegMRg=; b=Hx7h1vvUZQWjK2
-	6Fqz2QFJSGoG/5J+HcaaSCoHCe2qB1tprs8LhF818ayvoh7jdh4TrGGB44sdxT6RyEEiGcEKXBuj/
-	1EHVeSySRKHcplxDHfd9X8s0FS8CInTZbAO01Li0VS4km5R0Zay+VGsAYS0BQvbAsXRtAedf7yYPf
-	CUpGYfoIbMCf4O8D8x8GHC/i7XssEZIlKL6IN5YTkiw1zVPlf3LMV8uH+P+IrQmBdbuDILljmG7dY
-	Z13EOLVSuizlnK8EV+QyjOoo5aljoEOv9UVK7ElCjONQwuBA8OM3WA1ihd23pL/gUnjM44YST3YNx
-	/n2jVuKKKtktJOwcmS3w==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=/R5yZl7ETudvn/xkTCftMZESeYbpgg9RrT+n3ER62rM=; b=bCwErzaDz/Y8br
+	Sp612rmrm/VcOqrui+kfrVrEh7+yJ4D1Eh2JTdyXKCIHubkOXHHxCLWUt4F1c96epLiPt0GIvUIAM
+	AEfRDMLOVeIGQpmlbZ+QfO6Jrb6Hn2AvXrfzwsyu3U39GW2J9jxC6PMciUx9yF29M/Y7jppITUoUS
+	KWGuvHY4EaANhSZOWnCtkH8+DQFO8QQuq6wvBWg9tgYeUnvaKRGasPBohh4g6q+f4Ko6UuValJtD6
+	nhPTOFlookLENVK6B3gKLESHVs6Nrqr2TGBvlrDHj3MTUOZe0On4TBloyJNsCknRg/W1PLeQNkow1
+	OcZsgbhMjL+ZG8DpFVpA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjSy1-0000000AkYe-1zwh;
-	Tue, 14 Jul 2026 02:33:53 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
-	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjSy0-0000000AkY3-2fCz;
+	id 1wjSy0-0000000AkY4-1KKB;
 	Tue, 14 Jul 2026 02:33:52 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
+	id 1wjSxz-0000000AkXs-0SAv;
+	Tue, 14 Jul 2026 02:33:51 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id D3F004054B;
-	Tue, 14 Jul 2026 02:33:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id AD879C2BCC7;
+	by tor.source.kernel.org (Postfix) with ESMTP id 2D9E46013A;
+	Tue, 14 Jul 2026 02:33:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D7335C2BCF7;
 	Tue, 14 Jul 2026 02:33:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1783996429;
-	bh=W2d5QqQKBqxvLWMEJ0hRfu/NSeHdDzwS5lPAkyQg7Fo=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=OBlj2Ss4s1EEfrCDQ7YMfQdgcJUHk1pdQYeYa4XZg8V5xpBaitnR2pFSdKz6cVcNJ
-	 jOfGSYvtyHbZDZnCOMC6jTLW1u1gQgfyNE7pmCyok5STdrZkpEF/L0Uapp4/me6zmP
-	 QTqu0eBERkSbLFQMT9OsvpPLNSJtlGJGXUyiFjzqyb6Psx/zvlQIu6QIq1/JkGWeyP
-	 pxKEMZaxgQ2sRXXN8mwjdv6dUaOtZ3AnZle9hQvra+q8yKZ08CiamEkky0145JWEow
-	 i32/XwbpuXC1srDXtQWz0f3j7qoLCvJ4IA5l47L5dFXdFTq+nGmrIonnHH2DrTLAzv
-	 8yeJm8E7j7ThQ==
+	bh=w3qxllQ25LE1gS8AdT8JNxDck+B7Ux0PEBYco4iXrZM=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=rPHsGryKpT6MqZQ+qXnd+NmFvK5HVXAlmo+aFGE0C1v9/1K0gP3IzTwqzG2qpgXgE
+	 HyXnj2//S+/X2HW1c5aX2JXD0U/AhwwCKFyJc8iutoQbU4fCdixbAp05sP3/FPVFGy
+	 H9UtpeKofTKre2LQSiI2JezsD04NUAOl/NTwDoqd2OwXXmp2MhM/rCNQ4Vk2KZm7/Y
+	 UylQC8HqjkMYxxzQaK85C9MHs8JIVLGzGq7/ApnVvoU7YQWqAOXcciGlo8BCx2GY7j
+	 TNEuTzKtC6lfSZBtQwJ0dPFf5Sj2hdFuiyu0mltau0w1L5a8TaPgjOajMBII4qkPcl
+	 Gpb3UedLB+ChA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 923F0C43458;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BB350C44507;
 	Tue, 14 Jul 2026 02:33:49 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Subject: [PATCH v2 0/3] reset: support reset for Amlogic A9 SoC
-Date: Tue, 14 Jul 2026 02:33:36 +0000
-Message-Id: <20260714-a9-reset-v2-0-8df09b2f437c@amlogic.com>
+Date: Tue, 14 Jul 2026 02:33:37 +0000
+Subject: [PATCH v2 1/3] dt-bindings: reset: amlogic: Add A9 reset
+ compatibles
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAACgVWoC/0XMQQrDIBCF4auEWddilJrYVe9RsjA6JgNNLBqkJ
- Xj32kDp8n88vh0SRsIE12aHiJkShbWGODVgZ7NOyMjVBsGF4h1XzGgWMeHGtJUae+9GrhzU+zO
- ip9dB3YfaM6UtxPch5/a7/hD9R3LLOPOus55LPfYXeTPLI0xkzzYsMJRSPji0kEeiAAAA
-X-Change-ID: 20260706-a9-reset-9c39e8fdb06d
+Message-Id: <20260714-a9-reset-v2-1-8df09b2f437c@amlogic.com>
+References: <20260714-a9-reset-v2-0-8df09b2f437c@amlogic.com>
+In-Reply-To: <20260714-a9-reset-v2-0-8df09b2f437c@amlogic.com>
 To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
@@ -64,11 +63,11 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Xianwei Zhao <xianwei.zhao@amlogic.com>, 
  Conor Dooley <conor.dooley@microchip.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1783996426; l=1089;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1783996426; l=1488;
  i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=W2d5QqQKBqxvLWMEJ0hRfu/NSeHdDzwS5lPAkyQg7Fo=;
- b=vmB7Ld+u4rGK8fGznR+ORfIF7/ETmJgoEKJcC42b6lZpNEmrcerdce4ToUseFpWx35+nXD8kF
- FKlm8kGfiIHAtxvzQq+ZEIcd7vrMWrC+ojyyDkzc/wDkwMRsE5Rtos8
+ bh=5WFk+q6Lu4hN8rJdO/6ZEotdvqyA2ABmhWD4G7n6Cis=;
+ b=JGlItjGvPd98jmmQ1S2UVsuvwvMqeccsiTmNtrPOrq773X/fpTtjNvIR4/KPVPH4HfyR2v2jm
+ pY8F0iFQDOoDOGjFa/n8obfxdU2RySZyFrUcHf01w4tAgFtUWZjPx8Z
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
@@ -91,34 +90,44 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Document the reset controller compatibles used by the Amlogic A9 SoC, and
-add the reset configuration and compatible entry for the Amlogic A9 AO
-reset controller, and add reset node for Amlogic A9.
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
+Document the reset controller compatibles used by the Amlogic A9 SoC.
+Add support for the A9 AO reset controller and add the A9 reset
+compatible with the T7 reset controller as fallback.
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
-Changes in v2:
-- Use standard node name reset-controller.
-- Link to v1: https://lore.kernel.org/r/20260709-a9-reset-v1-0-fd7cf039b853@amlogic.com
+ Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
----
-Xianwei Zhao (3):
-      dt-bindings: reset: amlogic: Add A9 reset compatibles
-      reset: amlogic: Add A9 AO reset controller support
-      arm64: dts: amlogic: a9: Add reset controller support
+diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+index 150e95c0d9be..e585f71879f2 100644
+--- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
++++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+@@ -19,6 +19,7 @@ properties:
+           - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
+           - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
+           - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
++          - amlogic,a9-ao-reset
+           - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
+           - amlogic,t7-reset
+       - items:
+@@ -26,6 +27,10 @@ properties:
+               - amlogic,a4-reset
+               - amlogic,a5-reset
+           - const: amlogic,meson-s4-reset
++      - items:
++          - enum:
++              - amlogic,a9-reset
++          - const: amlogic,t7-reset
+ 
+   reg:
+     maxItems: 1
 
- .../bindings/reset/amlogic,meson-reset.yaml        |   5 +
- arch/arm64/boot/dts/amlogic/amlogic-a9-reset.h     | 247 +++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi        |  14 ++
- drivers/reset/amlogic/reset-meson.c                |   9 +
- 4 files changed, 275 insertions(+)
----
-base-commit: 4336e970ec6890fbd424128c352564a9c1dd514a
-change-id: 20260706-a9-reset-9c39e8fdb06d
-
-Best regards,
 -- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
+2.52.0
 
 
 
