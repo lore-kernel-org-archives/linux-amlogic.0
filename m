@@ -4,79 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39DD5C44501
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Jul 2026 14:00:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68111C44501
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Jul 2026 14:05:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wx6DisLNwxjsZMAiPJsVV2yXJnBXxOat/WtX6277i84=; b=yMy9OnHYqXA6Pi
-	fOsKZ7uU85LmRksb3yOQBTMnyDzoTB/+zr/rg6TwW1hkiNlsRZBcEQD4luWtavtnddKgBTgckztu7
-	cHOGZgqJ3VX71eio6mN4rccDfHrnTX1uidR+hs2Ox0zB2jCR6BlXcYNJw03xqB4zZaRGVD4bcDa4H
-	8f7sqe5yRA1JNcXXo94R7BSJQbuz0lEzuJy/o4NaI3R3uZXaNkDm65LiXb7L/U3eVihwM17mZgN7F
-	fzeNt+T4LqdObaVaNxPjpIJVFUbhUwFDB7jOrSPmjFP+SGaGBerl5vEVdCm8S6zGG1xuuNOa0qiP8
-	2gHR7OtgQCFqD8MkMCow==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=0TDdIUEqUlNW/cFk4kEq0P8KBxLLzPnjsjDic/Hc1ok=; b=nqmOmL/a1FY5hs
+	bxzyXjM4FYuXRr7Gc6qfG9Ub0VIOqQkUkQtGVsiOspnmmBCYE8xFxnLt1qW/vE42vo8EE0/bT/xlE
+	xsNnDserC2WT//8KclEKPFi7XmRq/dJPnQIO1YXLuOgYDx0dZgI7+jcUVt8UuN+lP/lzSkfX4+jkn
+	hx55esS89OfeCQCEnkqEPO3xkfXI713cG7qgQ317CzjqFbgIlXD3Y8rEP0SxwrMttJkrr0GWJTu3A
+	pIRViY4ECtD9tqcqxpxJNDeZ5ybxGKS4e9oeFkk/9V3AzpANt8EbUcLYz8S+f+e7cZwyv/6JMJN9U
+	Xs5ORdcBU7OGdu9w6B+g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjdgd-0000000CGtN-0S9U;
-	Tue, 14 Jul 2026 14:00:39 +0000
-Received: from mgamail.intel.com ([192.198.163.18])
+	id 1wjdl1-0000000CHW8-0OFN;
+	Tue, 14 Jul 2026 14:05:11 +0000
+Received: from mail-pj1-x1030.google.com ([2607:f8b0:4864:20::1030])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjdgY-0000000CGsU-3Tyy
+	id 1wjdkv-0000000CHUW-3c7g
 	for linux-amlogic@lists.infradead.org;
-	Tue, 14 Jul 2026 14:00:36 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1784037635; x=1815573635;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JlTtuTgyttUoJX1tzSz3FCb8u2Xjs4nbU6LV982KfNo=;
-  b=LUmqrldBQIp9BYEYVvmS6EFRZGUQcVspqpeDw6qrSDEPQUZrHnlNnxZb
-   XV/NQoJSXNBr5bClxaut/rgGgUYt1qXWG2TDNnaRe3hsaAfGIrUhJPWaP
-   cE98VyVSPH8LILal/XdJaQP9wlgRrSW5T5MB16VZo7AUyYWfUleGBeTa5
-   3ad74JnqK2lSgTxx3HEB4k8YhKY2tn3T6T8L1rAefimqsw4VAq/RxX1AG
-   LkNqjiaCMOMqCSWiI2kxWXFsr5xUpHLxv2liFqU/sgS/Ti9PSZdI2dLm7
-   /G+huW0SXmhHXAH3kNMA4rj2H5pmWYAW8dEXbk8+RGlzWt4DTRDNVMgIc
-   w==;
-X-CSE-ConnectionGUID: DSeDFKfRTiGOIoN7C1NsRQ==
-X-CSE-MsgGUID: zvX2s4eCSlGm2NuxwdxRYA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11846"; a="83781033"
-X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; 
-   d="scan'208";a="83781033"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2026 07:00:34 -0700
-X-CSE-ConnectionGUID: z8g/5vJ7ROme4zo2zAVSAQ==
-X-CSE-MsgGUID: 4ZauGFZWRNeP3PVTEl3ffw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,163,1779174000"; 
-   d="scan'208";a="260764911"
-Received: from lkp-server02.sh.intel.com (HELO ea128546eb3d) ([10.239.97.151])
-  by fmviesa005.fm.intel.com with ESMTP; 14 Jul 2026 07:00:32 -0700
-Received: from kbuild by ea128546eb3d with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1wjdgT-00000000Mh2-258m;
-	Tue, 14 Jul 2026 14:00:29 +0000
-Date: Tue, 14 Jul 2026 21:59:40 +0800
-From: kernel test robot <lkp@intel.com>
-To: Alfie Varghese <alfievarghese22@gmail.com>, neil.armstrong@linaro.org,
-	gregkh@linuxfoundation.org, linux-media@vger.kernel.org,
-	linux-amlogic@lists.infradead.org, linux-staging@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev,
-	Alfie Varghese <alfievarghese22@gmail.com>
-Subject: Re: [PATCH v2] staging: media: meson: vdec: fix advanced concurrency
- and UAF bugs
-Message-ID: <202607142142.HnOYDndp-lkp@intel.com>
-References: <20260713181602.773-1-alfievarghese22@gmail.com>
+	Tue, 14 Jul 2026 14:05:09 +0000
+Received: by mail-pj1-x1030.google.com with SMTP id 98e67ed59e1d1-38e08baf860so1780253a91.2
+        for <linux-amlogic@lists.infradead.org>; Tue, 14 Jul 2026 07:05:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1784037905; x=1784642705; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=bCS+xhHigKk4Qit1FS738ySqpbHn6h48fVzGRxbPZzk=;
+        b=YbYitBuznSnkkMmTyYK0Tf2ZT8IVeU0ZQtDcn1/mCb3By/LK7S8VpM1AGs7msl0BUY
+         03ry04YA0Lc2O2WgRauKUCar/Nvc5oL0kQ530VcuKhxfYbEr+xi8/bDIWORjjdvDwP2v
+         6QnOBH0tdjkncNr/LVD5dXxa4kSZkLg7SzKrG7gbxHKuIp7VrokEh9wzblYb2MJT19UY
+         1qMgU772873AdGz8mgZaga7fF3Ywu3z0axIoEHtvVSLy8DHIDB004bbVQZY/1TJPw3ks
+         Z1qDKXKR2QuJKri6T4MbcvWnhzbI+RjxIdbSqnrkpnV9mpNAuYI+Roec3dp1dUtK9r5z
+         7axg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784037905; x=1784642705;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=bCS+xhHigKk4Qit1FS738ySqpbHn6h48fVzGRxbPZzk=;
+        b=ILeF3sPNS0wYKhN68rtVUoLxU2PNUn6/u/lLywz6/4tLZcmLuod3Eph+J6Py8MsgZl
+         eg4nRXZmrLRpmtFmEOHT1+vytmC4jLOpgcSl33mZrbRO4O/2HYMA9sJqXgFu6SxgKpVr
+         4Pp+cA9nzUmbbdM1v92+/gcnpIFyNizy6JUyqQiDga60zt2o94G0+rVQlNGbxu16tOFR
+         tm6InROEoRZPKVoXdNe633rdAn+AN2umP9rMVQR/+7yuBIu7aW+Lfvj4Md/y/m3BIoNT
+         qgxCq703nZq1o/HWP3bngs48O+U8vYa1Dwt57vH2fBH1lJVSDC6PgLgc+/KLnmkHaatm
+         LRLQ==
+X-Forwarded-Encrypted: i=1; AHgh+RqBmjdPDjpuJxPRPI41STkFt1IIYT8ogQdFyaOGBPCGezeUpYjPVBRcj3cqt6RmCvabdIaF9A6GpdMT2Qnm@lists.infradead.org
+X-Gm-Message-State: AOJu0Yym5WSSPnORdITf1Gv6+eIkzs9nGPU13q5BdAWB/uhyg4izF3t7
+	zhPHd7hXKyRPhUA1ersJGv2/qaN1o2tJBPQRaJ5WRHdNhIv8YFdXHr/8
+X-Gm-Gg: AfdE7clflVckjLI9mcV1N7SZ0m1/XgFZ4GWTtMmiE9QmTNEBqAL1+EUNGMNjbbR9nCz
+	c18chZsuwHI2ZQSuIfd6ywH0D9APM6heYrISEjxzjHUdlPTcfZUZxZ2jAAKFkDi8DY9y5GaCVXf
+	Elk/6Ig+gBp8o6gmJrH22Ecym69duxlk25HdiMFLMR8oJVzV/T2yvQJ0uZ2MpGrsaFWY45NgveR
+	ia3L3WyllUs00/dRuewKpQyIvM8rcLLDM0UtmtIr+y6vQGWqAgrW7EoohUMaSmnCnQ9FPUfIKtX
+	48e0JNtr/8kTdH4ccFguaOho821kSr+yOkhvfw6OF4IzJd4gUKpqDWNSkpD6/gSUVT/fZl65S9Q
+	HIMuNrTCdzooP3vNFcvEdXAyXaCk5XQdvs5bssbwlJVv948EouvvHndL9x9JHZyZNhNh2EkB2sX
+	iBKh1xjY4t36RIU9U/4kM33zP/VEFHRbCVUYeOoMCvcZonm3vnR7gDAM2tun3nJqrf1JDtI0oyY
+	nYamJ6zEpKccDl0QM7HiZ1s5aZ+QOMi5RhcjPIi0sMGSDU=
+X-Received: by 2002:a17:90b:3c8a:b0:381:5bd6:eb19 with SMTP id 98e67ed59e1d1-38dc7605e7dmr12912747a91.18.1784037904733;
+        Tue, 14 Jul 2026 07:05:04 -0700 (PDT)
+Received: from OMEN ([103.184.238.250])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-31174ac14f2sm86964943eec.27.2026.07.14.07.05.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Jul 2026 07:05:04 -0700 (PDT)
+From: Alfie Varghese <alfievarghese22@gmail.com>
+To: neil.armstrong@linaro.org
+Cc: gregkh@linuxfoundation.org,
+	linux-media@vger.kernel.org,
+	linux-staging@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	dan.carpenter@linaro.org,
+	error27@gmail.com,
+	alfievarghese22@gmail.com
+Subject: [PATCH v2] staging: media: meson: vdec: propagate devm_clk_get() errors
+Date: Tue, 14 Jul 2026 19:34:58 +0530
+Message-ID: <20260714140458.1276-1-alfievarghese22@gmail.com>
+X-Mailer: git-send-email 2.54.0.windows.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20260713181602.773-1-alfievarghese22@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260714_070034_884401_DDE2F216 
-X-CRM114-Status: UNSURE (   7.69  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260714_070508_742090_34B8425C 
+X-CRM114-Status: GOOD (  11.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,47 +103,56 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Alfie,
+vdec_probe() hardcodes -EPROBE_DEFER for all devm_clk_get() failures.
+This masks the actual error code returned by the clock framework, such
+as -ENOENT when a clock is not registered or -ENOMEM on allocation
+failure.
 
-kernel test robot noticed the following build errors:
+Return PTR_ERR() instead to propagate the real error to the caller.
 
-[auto build test ERROR on staging/staging-testing]
+Fixes: 4f75e7dfa6dc ("media: meson: vdec: add driver")
+Signed-off-by: Alfie Varghese <alfievarghese22@gmail.com>
+---
+ drivers/staging/media/meson/vdec/vdec.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Alfie-Varghese/staging-media-meson-vdec-fix-advanced-concurrency-and-UAF-bugs/20260714-023427
-base:   staging/staging-testing
-patch link:    https://lore.kernel.org/r/20260713181602.773-1-alfievarghese22%40gmail.com
-patch subject: [PATCH v2] staging: media: meson: vdec: fix advanced concurrency and UAF bugs
-config: parisc-allmodconfig (https://download.01.org/0day-ci/archive/20260714/202607142142.HnOYDndp-lkp@intel.com/config)
-compiler: hppa-linux-gcc (GCC) 16.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260714/202607142142.HnOYDndp-lkp@intel.com/reproduce)
+diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
+index a039d925c0fe..fba1e7f88d81 100644
+--- a/drivers/staging/media/meson/vdec/vdec.c
++++ b/drivers/staging/media/meson/vdec/vdec.c
+@@ -1026,24 +1026,24 @@ static int vdec_probe(struct platform_device *pdev)
+ 	    core->platform->revision == VDEC_REVISION_SM1) {
+ 		core->vdec_hevcf_clk = devm_clk_get(dev, "vdec_hevcf");
+ 		if (IS_ERR(core->vdec_hevcf_clk))
+-			return -EPROBE_DEFER;
++			return PTR_ERR(core->vdec_hevcf_clk);
+ 	}
+ 
+ 	core->dos_parser_clk = devm_clk_get(dev, "dos_parser");
+ 	if (IS_ERR(core->dos_parser_clk))
+-		return -EPROBE_DEFER;
++		return PTR_ERR(core->dos_parser_clk);
+ 
+ 	core->dos_clk = devm_clk_get(dev, "dos");
+ 	if (IS_ERR(core->dos_clk))
+-		return -EPROBE_DEFER;
++		return PTR_ERR(core->dos_clk);
+ 
+ 	core->vdec_1_clk = devm_clk_get(dev, "vdec_1");
+ 	if (IS_ERR(core->vdec_1_clk))
+-		return -EPROBE_DEFER;
++		return PTR_ERR(core->vdec_1_clk);
+ 
+ 	core->vdec_hevc_clk = devm_clk_get(dev, "vdec_hevc");
+ 	if (IS_ERR(core->vdec_hevc_clk))
+-		return -EPROBE_DEFER;
++		return PTR_ERR(core->vdec_hevc_clk);
+ 
+ 	irq = platform_get_irq_byname(pdev, "vdec");
+ 	if (irq < 0)
+-- 
+2.54.0.windows.1
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202607142142.HnOYDndp-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/staging/media/meson/vdec/vdec.c: In function 'vdec_m2m_job_abort':
->> drivers/staging/media/meson/vdec/vdec.c:156:33: error: 'struct amvdec_session' has no member named 'm2m_dev'
-     156 |         v4l2_m2m_job_finish(sess->m2m_dev, sess->m2m_ctx);
-         |                                 ^~
-
-
-vim +156 drivers/staging/media/meson/vdec/vdec.c
-
-3e7f51bd96077ac Maxime Jourdan 2019-06-06  151  
-3e7f51bd96077ac Maxime Jourdan 2019-06-06  152  static void vdec_m2m_job_abort(void *priv)
-3e7f51bd96077ac Maxime Jourdan 2019-06-06  153  {
-3e7f51bd96077ac Maxime Jourdan 2019-06-06  154  	struct amvdec_session *sess = priv;
-3e7f51bd96077ac Maxime Jourdan 2019-06-06  155  
-3e7f51bd96077ac Maxime Jourdan 2019-06-06 @156  	v4l2_m2m_job_finish(sess->m2m_dev, sess->m2m_ctx);
-3e7f51bd96077ac Maxime Jourdan 2019-06-06  157  }
-3e7f51bd96077ac Maxime Jourdan 2019-06-06  158  
-
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
 _______________________________________________
 linux-amlogic mailing list
