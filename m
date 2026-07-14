@@ -4,59 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51A99C44501
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Jul 2026 11:59:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FB7AC43458
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 Jul 2026 12:03:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=63DFecDR+7aUOOU7aoyfPOIDfaYTjxPPlpw0hSOryDU=; b=On0zarRd1dJdFT
-	3eaZ2mHLlLLIOoKnohTZ9EZ95JBK+G8USgG5RqOTFox64u1Uo9o0aLiAIPpew6Wserd+tiOtFOErU
-	aZxhirrT5GK38dwujJKl163w3qfYkcQ1PITW0ojmsKm8SeYwE0C7ehDerHjgFZhNoruovxs6qsKEs
-	Ioc1qnIpOOw5VnTWfm5nfTHk01yP1EVRw+hwFlRzlaxtXkJ7S+Lv0Z0EmZ1itHXl0je/++aufPvhK
-	lVVXgUlYwoK1XQB18ctOYhnPIgT+M+7DhIt418ocw+6qdFRp6P6WCP1Dld/urfZpCD2MuTqUxNjsb
-	/as+5FSSG2MjRWdhuhgw==;
+	List-Owner; bh=PChbshS1PJ5X3jSxR3Q6L8+jE2C07ThArjhjHDvik3U=; b=NfiaHzQ7RMQvXv
+	mecjxeytgd50hU2ExkicFIoqUBimaEU3lcPqdzjlzkRJgUO/814KtCkMjeG+l7vdaeyJQr3GVXSQg
+	DEBRqaxldgBjdFtehLyRH26Dpqevnr6ULZnYwYSuS1jRE5uxHmnAbR1an4wnx6wFcX5yfS23RxACI
+	gtvcDo0e7oi6BwK0UI9A1SbhLTnUD1clFkFs8nMOj3XPyCOAnKXHjHXbcXiklw7o1dRHJIWSX7/SX
+	k82HqlNptWKnKPrilOPGxKRPg2zxYm/aSgWOsQ4ADlY+CKL2Rqfn6m5PJq0ZEoCj+Yk12Y5R1Z60Q
+	aPIVYJRoqNqsjkVrXbEg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjbmu-0000000Bosk-1CfV;
-	Tue, 14 Jul 2026 11:59:00 +0000
+	id 1wjbrA-0000000BqaZ-0mqC;
+	Tue, 14 Jul 2026 12:03:24 +0000
 Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wjbms-0000000BorK-3nWO
+	id 1wjbr9-0000000BqaI-0qAr
 	for linux-amlogic@lists.infradead.org;
-	Tue, 14 Jul 2026 11:58:58 +0000
+	Tue, 14 Jul 2026 12:03:23 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 021FE60120;
-	Tue, 14 Jul 2026 11:58:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F09801F000E9;
-	Tue, 14 Jul 2026 11:58:56 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 93F2B601DE;
+	Tue, 14 Jul 2026 12:03:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E56C1F000E9;
+	Tue, 14 Jul 2026 12:03:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784030337;
-	bh=giljRTyf1/GeNOSQzfIPJUop85WcABknb2AO0qQE6u8=;
+	s=k20260515; t=1784030602;
+	bh=TEZI3chpr1Sn0iTGmVOuZ3v5A0uYcjaAtTMT7DqMsDw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=otdtft7koRJ9KTpp8Lc1Kbd0yTLVGKldNWh2Pgdgbxv8Vhn1tQWMLDJynabMil1As
-	 IrLVwudKY43tMQ9K6lC2xCblgiQpsMzzIu8kyX5MB1Pq4tQwGM2VRaFypD5LmPW27m
-	 uOTxcSvsUa0iJZynDx6ZFSBUFGAZQlplKAV+jiOZ+JNcad24LpbxRVDVUSP+N9TyW+
-	 d6Tm20PG90euvR1VHnSL3YbTZoIopdrLYRDoKH/5I651gQlF+115Hm3m5qube0LMct
-	 VFIQrwY6uFGKPdKbvNaoIwRdEJulEZsufvfX3wsCqFDI45tmf1B7KgR6qRIVC3+aRZ
-	 951wTJfKaMlmQ==
-Date: Tue, 14 Jul 2026 17:28:54 +0530
+	b=Nww+aQs7Vih9dRithSo4WWYbNEAli8OML9UuRIuzHAIlrHy2sZxGs52QacS//52ZZ
+	 k65+mU+AWPHBHeaXNaisXpoExyEpK8XklK/DACDZJZnH4a9lQGtMVtorGUAtsrUCTT
+	 ocndPzKAXCnH+kSEWNysCgx7OBB2R87oAXAaBUQsDqlas8BrK5C1qCRHAxwwrg9Ad2
+	 jfr4cT1xiqY9U483cTuLAXCJS4r5NZPpU2WixoZpSd4mYlDTYXnJUSgNXl3gIsTAOp
+	 4SQsNEwa39YQ2FxH6s8eZpBgSh204Sa8s8mdmdZtx+K9bOjXUDtrgFGbatIc/LgALv
+	 xdB3tgqD+RuZQ==
+Date: Tue, 14 Jul 2026 17:33:18 +0530
 From: Vinod Koul <vkoul@kernel.org>
-To: sashiko-bot@kernel.org
-Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>, neil.armstrong@linaro.org,
-	robh@kernel.org, conor+dt@kernel.org, Frank.Li@kernel.org,
+To: xianwei.zhao@amlogic.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Frank Li <Frank.Li@kernel.org>, linux-amlogic@lists.infradead.org,
 	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v11 1/3] dt-bindings: dma: Add Amlogic A9 SoC DMA
-Message-ID: <alYkfmsBU0UqI6Hz@vaman>
+	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
+	Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH v11 2/3] dmaengine: amlogic: Add general DMA driver for A9
+Message-ID: <alYlhm9vav59wKq9@vaman>
 References: <20260714-amlogic-dma-v11-0-de79c2394282@amlogic.com>
- <20260714-amlogic-dma-v11-1-de79c2394282@amlogic.com>
- <20260714081942.2E0B91F000E9@smtp.kernel.org>
+ <20260714-amlogic-dma-v11-2-de79c2394282@amlogic.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20260714081942.2E0B91F000E9@smtp.kernel.org>
+In-Reply-To: <20260714-amlogic-dma-v11-2-de79c2394282@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,55 +75,176 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 14-07-26, 08:19, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Low] The macros DMA_TX and DMA_RX in the global DT binding header lack an Amlogic/SoC specific prefix, leading to namespace pollution and potential build conflicts.
-> --
+On 14-07-26, 08:08, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > 
-> --- Patch [1]: [PATCH v11 1/3] dt-bindings: dma: Add Amlogic A9 SoC DMA ---
-> commit 093f368eaa67418008421d43d724ce2e98651039
-> Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> dt-bindings: dma: Add Amlogic A9 SoC DMA
+> Amlogic A9 SoCs include a general-purpose DMA controller that can be used
+> by multiple peripherals, such as I2C PIO and I3C. Each peripheral group
+> is associated with a dedicated DMA channel in hardware.
 > 
-> This commit adds device tree binding documentation for the Amlogic A9 SoC
-> general-purpose DMA controller. It introduces the YAML schema and a header
-> file defining the channel type macros.
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  drivers/dma/Kconfig       |  10 +
+>  drivers/dma/Makefile      |   1 +
+>  drivers/dma/amlogic-dma.c | 726 ++++++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 737 insertions(+)
 > 
-> > diff --git a/Documentation/devicetree/bindings/dma/amlogic,a9-dma.yaml b/Documentation/devicetree/bindings/dma/amlogic,a9-dma.yaml
-> > new file mode 100644
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/dma/amlogic,a9-dma.yaml
-> [ ... ]
-> > +  '#dma-cells':
-> > +    const: 2
-> > +    description:
-> > +      The first cell is the DMA channel type(DMA_TX or DMA_RX).
-> > +      The second cell is the DMA channel index.
-> [ ... ]
-> > diff --git a/include/dt-bindings/dma/amlogic,a9-dma.h b/include/dt-bindings/dma/amlogic,a9-dma.h
-> > new file mode 100644
-> > --- /dev/null
-> > +++ b/include/dt-bindings/dma/amlogic,a9-dma.h
-> > @@ -0,0 +1,8 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-> > +
-> > +#ifndef __DT_BINDINGS_DMA_AMLOGIC_DMA_H__
-> > +#define __DT_BINDINGS_DMA_AMLOGIC_DMA_H__
-> > +
-> > +#define DMA_TX			0
-> > +#define DMA_RX			1
-> 
-> [Severity: Low]
-> Are these macro names too generic for a global dt-bindings header?
-> 
-> Since headers in include/dt-bindings/ are globally visible and frequently
-> included by C drivers, unprefixed names like DMA_TX and DMA_RX could lead
-> to namespace pollution and macro redefinition build failures if a driver
-> includes this alongside other headers that use the same common names.
-> 
-> Would it be safer to add a vendor or SoC prefix, such as AMLOGIC_A9_DMA_TX?
+> diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
+> index ae6a682c9f76..01f96a8257e5 100644
+> --- a/drivers/dma/Kconfig
+> +++ b/drivers/dma/Kconfig
+> @@ -85,6 +85,16 @@ config AMCC_PPC440SPE_ADMA
+>  	help
+>  	  Enable support for the AMCC PPC440SPe RAID engines.
+>  
+> +config AMLOGIC_DMA
+> +	tristate "Amlogic general DMA support"
+> +	depends on ARCH_MESON || COMPILE_TEST
+> +	select DMA_ENGINE
+> +	select DMA_VIRTUAL_CHANNELS
+> +	select REGMAP_MMIO
+> +	help
+> +	  Enable support for the Amlogic general DMA engines. THis DMA
+> +	  controller is used some Amlogic SoCs, such as A9.
+> +
+>  config APPLE_ADMAC
+>  	tristate "Apple ADMAC support"
+>  	depends on ARCH_APPLE || COMPILE_TEST
+> diff --git a/drivers/dma/Makefile b/drivers/dma/Makefile
+> index 14aa086629d5..f62d12b08e15 100644
+> --- a/drivers/dma/Makefile
+> +++ b/drivers/dma/Makefile
+> @@ -16,6 +16,7 @@ obj-$(CONFIG_DMATEST) += dmatest.o
+>  obj-$(CONFIG_ALTERA_MSGDMA) += altera-msgdma.o
+>  obj-$(CONFIG_AMBA_PL08X) += amba-pl08x.o
+>  obj-$(CONFIG_AMCC_PPC440SPE_ADMA) += ppc4xx/
+> +obj-$(CONFIG_AMLOGIC_DMA) += amlogic-dma.o
+>  obj-$(CONFIG_APPLE_ADMAC) += apple-admac.o
+>  obj-$(CONFIG_ARM_DMA350) += arm-dma350.o
+>  obj-$(CONFIG_AT_HDMAC) += at_hdmac.o
+> diff --git a/drivers/dma/amlogic-dma.c b/drivers/dma/amlogic-dma.c
+> new file mode 100644
+> index 000000000000..9de650a79aba
+> --- /dev/null
+> +++ b/drivers/dma/amlogic-dma.c
+> @@ -0,0 +1,726 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+> +/*
+> + * Copyright (C) 2025 Amlogic, Inc. All rights reserved
 
-I think this makes sense to add here
+2026 please
+
+> +/* DMA controller reg */
+> +#define RCH_INT_MASK		0x1000
+> +#define WCH_INT_MASK		0x1004
+> +#define CLEAR_W_BATCH		0x1014
+> +#define CLEAR_RCH		0x1024
+> +#define CLEAR_WCH		0x1028
+> +#define RCH_ACTIVE		0x1038
+> +#define WCH_ACTIVE		0x103c
+> +#define RCH_DONE		0x104c
+> +#define WCH_DONE		0x1050
+> +#define RCH_ERR			0x1060
+> +#define RCH_LEN_ERR		0x1064
+> +#define WCH_ERR			0x1068
+> +#define DMA_BATCH_END		0x1078
+> +#define WCH_EOC_DONE		0x1088
+> +#define WDMA_RESP_ERR		0x1098
+> +#define UPT_PKT_SYNC		0x10a8
+> +#define RCHN_CFG		0x10ac
+> +#define WCHN_CFG		0x10b0
+> +#define MEM_PD_CFG		0x10b4
+> +#define MEM_BUS_CFG		0x10b8
+> +#define DMA_GMV_CFG		0x10bc
+> +#define DMA_GMR_CFG		0x10c0
+> +
+> +#define MAX_CHAN_ID		32
+> +#define SG_MAX_LEN		(GENMASK(26, 0) & ~0x3)
+
+So you define a mask for 0-26 and then clear everything expect last two
+bits, why not define last two bits..? Something does not look right here
+
+> +static int aml_dma_probe(struct platform_device *pdev)
+> +{
+> +	struct device_node *np = pdev->dev.of_node;
+> +	struct dma_device *dma_dev;
+> +	struct aml_dma_dev *aml_dma;
+> +	int ret, i, len;
+> +	u32 chan_nr;
+> +
+> +	const struct regmap_config aml_regmap_config = {
+> +		.reg_bits = 32,
+> +		.val_bits = 32,
+> +		.reg_stride = 4,
+> +		.max_register = 0x3000,
+> +	};
+> +
+> +	ret = of_property_read_u32(np, "dma-channels", &chan_nr);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret, "failed to read dma-channels\n");
+> +	if (chan_nr > (MAX_CHAN_ID * 2))
+> +		return dev_err_probe(&pdev->dev, -EINVAL, "dma-channels unusual\n");
+> +
+> +	len = sizeof(struct aml_dma_dev) + sizeof(struct aml_dma_chan) * chan_nr;
+> +	aml_dma = devm_kzalloc(&pdev->dev, len, GFP_KERNEL);
+> +	if (!aml_dma)
+> +		return -ENOMEM;
+> +
+> +	aml_dma->chan_nr = chan_nr;
+> +
+> +	aml_dma->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(aml_dma->base))
+> +		return PTR_ERR(aml_dma->base);
+> +
+> +	aml_dma->regmap = devm_regmap_init_mmio(&pdev->dev, aml_dma->base,
+> +						&aml_regmap_config);
+> +	if (IS_ERR_OR_NULL(aml_dma->regmap))
+> +		return PTR_ERR(aml_dma->regmap);
+> +
+> +	aml_dma->clk = devm_clk_get_enabled(&pdev->dev, NULL);
+> +	if (IS_ERR(aml_dma->clk))
+> +		return PTR_ERR(aml_dma->clk);
+> +
+> +	aml_dma->irq = platform_get_irq(pdev, 0);
+> +
+> +	aml_dma->pdev = pdev;
+> +	aml_dma->dma_device.dev = &pdev->dev;
+> +
+> +	dma_dev = &aml_dma->dma_device;
+> +	INIT_LIST_HEAD(&dma_dev->channels);
+> +
+> +	/* Initialize channel parameters */
+> +	for (i = 0; i < chan_nr; i++) {
+> +		struct aml_dma_chan *aml_chan = &aml_dma->aml_chans[i];
+> +
+> +		aml_chan->aml_dma = aml_dma;
+> +		aml_chan->vchan.desc_free = aml_dma_free_desc;
+> +		vchan_init(&aml_chan->vchan, &aml_dma->dma_device);
+> +	}
+> +	aml_dma->chan_used = 0;
+> +
+> +	dma_set_max_seg_size(dma_dev->dev, SG_MAX_LEN);
+> +	dma_cap_set(DMA_SLAVE, dma_dev->cap_mask);
+> +	dma_dev->device_alloc_chan_resources = aml_dma_alloc_chan_resources;
+> +	dma_dev->device_free_chan_resources = aml_dma_free_chan_resources;
+> +	dma_dev->device_tx_status = aml_dma_tx_status;
+> +	dma_dev->device_prep_slave_sg = aml_dma_prep_slave_sg;
+> +	dma_dev->device_pause = aml_dma_chan_pause;
+> +	dma_dev->device_resume = aml_dma_chan_resume;
+> +	dma_dev->device_terminate_all = aml_dma_terminate_all;
+> +	dma_dev->device_issue_pending = aml_dma_issue_pending;
+> +	/* PIO 4 bytes and I2C 1 byte */
+> +	dma_dev->dst_addr_widths = BIT(DMA_SLAVE_BUSWIDTH_4_BYTES) | BIT(DMA_SLAVE_BUSWIDTH_1_BYTE);
+> +	dma_dev->directions = BIT(DMA_DEV_TO_MEM) | BIT(DMA_MEM_TO_DEV);
+> +	dma_dev->residue_granularity = DMA_RESIDUE_GRANULARITY_BURST;
+> +
+> +	regmap_write(aml_dma->regmap, RCH_INT_MASK, 0xffffffff);
+> +	regmap_write(aml_dma->regmap, WCH_INT_MASK, 0xffffffff);
+
+I think we have macros for 32bit masks, please use that here and other
+places
+ 
 
 -- 
 ~Vinod
