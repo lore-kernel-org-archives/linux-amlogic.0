@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29626C44501
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jul 2026 17:53:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ED45C44508
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jul 2026 17:53:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=S0ollY9atBpmSdFEt08TgJEP5CN7IlsOY/j90EtvLh8=; b=SpSwbFMZQ6xhn0
-	t2n+d2CyjpvAEq89OQsqRncY1sfgvfQocuTdIo8HK4N08scdgK81oYK06IasMmKJW1Apc1H0U5/u9
-	mLFZV/hfwxCxLRlZHUxucAFT98BBomOss/EYqfVcIaeIgIIGQwtwTHjrIJwmIXw7PdKUOtKMarjLy
-	VV5cBSrtMo8vVff5JjWlCFoR5DwQv1IJjaFNrfaTtad9k+jD1L9EWO9vp+/sbW5ddxnaQbu9epkEi
-	hVkhtAjQpUDqi3SZeKwGSPPK563Gek2qLVWwsrr8dtY+8jlsB7K5x1b5+bTeCpNuD0k+5IkWVDGnp
-	aZQCyqxO25YnIkbIsz0Q==;
+	List-Owner; bh=JZ4LinUC4c0sGDM3pwx/wRoV7Jq+aVNBDc+Yb4wHokU=; b=mEwD+cLysuyhHL
+	xyKQDPIpUCzCxDlk6ptYipID9iaM1jKxuAjhdWfa8GTsw9I/tFlViVxag9dyzi4uJTkPtWZNYjcKY
+	tspWDzT1VvtDmZl4y1psUVO7l7oH11mpTRTKGbWf/XnLtgkJzgbbxUtOfEH/wCw9zxXG71xTMyD7B
+	mzkMDjVI0sLhOPH7KBuFjaJFhVEvQvoJ7hXju/nCrdruZp/fYv8AcNc2i/enOeY7GdslTWo9KGPEK
+	cnx5HXImU1ocVuLcKCDeLCSjv7zErpFP9QkxBcLi4d5bs/FZvdqlQZ5lyQrM5pkQlAPi0+T2YVIXM
+	5O4mQREd/b0qCoPk+bag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wk3nT-0000000Fb5d-0Zys;
-	Wed, 15 Jul 2026 17:53:27 +0000
-Received: from 82-65-109-163.subs.proxad.net ([82.65.109.163] helo=luna.linkmauve.fr)
+	id 1wk3nX-0000000Fb8g-17Ki;
+	Wed, 15 Jul 2026 17:53:31 +0000
+Received: from [2a01:e0a:1040:9780:49:5ff:fe41:d261] (helo=luna.linkmauve.fr)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wk3nQ-0000000Fb3i-1YKz;
-	Wed, 15 Jul 2026 17:53:25 +0000
+	id 1wk3nV-0000000Fb5n-0n0n;
+	Wed, 15 Jul 2026 17:53:30 +0000
 Received: by luna.linkmauve.fr (Postfix, from userid 1000)
-	id 8AFA9F40D25; Wed, 15 Jul 2026 19:52:52 +0200 (CEST)
+	id 6F87FF402E8; Wed, 15 Jul 2026 19:52:55 +0200 (CEST)
 From: Link Mauve <linkmauve@linkmauve.fr>
 To: Srinivas Kandagatla <srini@kernel.org>
 Cc: Link Mauve <linkmauve@linkmauve.fr>,
@@ -117,16 +117,16 @@ Cc: Link Mauve <linkmauve@linkmauve.fr>,
 	linux-rtc@vger.kernel.org,
 	linux-sunxi@lists.linux.dev,
 	rust-for-linux@vger.kernel.org
-Subject: [PATCH 7/8] mfd: twl-core: make reg_write callback take const void *
-Date: Wed, 15 Jul 2026 19:52:23 +0200
-Message-ID: <20260715175229.24672-8-linkmauve@linkmauve.fr>
+Subject: [PATCH 8/8] media: ov2740: remove NULL reg_write callback
+Date: Wed, 15 Jul 2026 19:52:24 +0200
+Message-ID: <20260715175229.24672-9-linkmauve@linkmauve.fr>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260715175229.24672-1-linkmauve@linkmauve.fr>
 References: <20260715175229.24672-1-linkmauve@linkmauve.fr>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260715_105324_650542_0BE3B3C3 
-X-CRM114-Status: GOOD (  12.63  )
+X-CRM114-CacheID: sfid-20260715_105329_368592_939B5797 
+X-CRM114-Status: GOOD (  10.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -138,41 +138,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhlIHByZXZpb3VzIGNvbW1pdCBzd2l0Y2hlZCBmcm9tIGEgcG9pbnRlciB0byBtdXRhYmxlIGRh
-dGEgdG8gYSBwb2ludGVyCnRvIGltbXV0YWJsZSBkYXRhLCBzbyBsZXTigJlzIGZpeCBhbGwgdXNl
-cnMgb2YgdGhlIG52bWVtX2NvbmZpZyBBUEkuCgpTaWduZWQtb2ZmLWJ5OiBMaW5rIE1hdXZlIDxs
-aW5rbWF1dmVAbGlua21hdXZlLmZyPgotLS0KIGRyaXZlcnMvbWZkL3R3bC1jb3JlLmMgIHwgMiAr
-LQogaW5jbHVkZS9saW51eC9tZmQvdHdsLmggfCA0ICsrLS0KIDIgZmlsZXMgY2hhbmdlZCwgMyBp
-bnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvbWZkL3R3
-bC1jb3JlLmMgYi9kcml2ZXJzL21mZC90d2wtY29yZS5jCmluZGV4IGMwMjRhMjhiMDU3ZS4uZDdl
-M2FiNDE3MTdiIDEwMDY0NAotLS0gYS9kcml2ZXJzL21mZC90d2wtY29yZS5jCisrKyBiL2RyaXZl
-cnMvbWZkL3R3bC1jb3JlLmMKQEAgLTQ0Nyw3ICs0NDcsNyBAQCBzdGF0aWMgc3RydWN0IHJlZ21h
-cCAqdHdsX2dldF9yZWdtYXAodTggbW9kX25vKQogICoKICAqIFJldHVybnMgMCBvbiBzdWNjZXNz
-IG9yIGVsc2UgYSBuZWdhdGl2ZSBlcnJvciBjb2RlLgogICovCi1pbnQgdHdsX2kyY193cml0ZSh1
-OCBtb2Rfbm8sIHU4ICp2YWx1ZSwgdTggcmVnLCB1bnNpZ25lZCBudW1fYnl0ZXMpCitpbnQgdHds
-X2kyY193cml0ZSh1OCBtb2Rfbm8sIGNvbnN0IHU4ICp2YWx1ZSwgdTggcmVnLCB1bnNpZ25lZCBu
-dW1fYnl0ZXMpCiB7CiAJc3RydWN0IHJlZ21hcCAqcmVnbWFwID0gdHdsX2dldF9yZWdtYXAobW9k
-X25vKTsKIAlpbnQgcmV0OwpkaWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9tZmQvdHdsLmggYi9p
-bmNsdWRlL2xpbnV4L21mZC90d2wuaAppbmRleCBiMzFlMDdmYTRkNTEuLjEzMTQ1MWQ3MDk2MCAx
-MDA2NDQKLS0tIGEvaW5jbHVkZS9saW51eC9tZmQvdHdsLmgKKysrIGIvaW5jbHVkZS9saW51eC9t
-ZmQvdHdsLmgKQEAgLTE2OCw3ICsxNjgsNyBAQCBpbnQgdHdsX3NldF9yZWdjYWNoZV9ieXBhc3Mo
-dTggbW9kX25vLCBib29sIGVuYWJsZSk7CiAvKgogICogUmVhZCBhbmQgd3JpdGUgc2V2ZXJhbCA4
-LWJpdCByZWdpc3RlcnMgYXQgb25jZS4KICAqLwotaW50IHR3bF9pMmNfd3JpdGUodTggbW9kX25v
-LCB1OCAqdmFsdWUsIHU4IHJlZywgdW5zaWduZWQgbnVtX2J5dGVzKTsKK2ludCB0d2xfaTJjX3dy
-aXRlKHU4IG1vZF9ubywgY29uc3QgdTggKnZhbHVlLCB1OCByZWcsIHVuc2lnbmVkIG51bV9ieXRl
-cyk7CiBpbnQgdHdsX2kyY19yZWFkKHU4IG1vZF9ubywgdTggKnZhbHVlLCB1OCByZWcsIHVuc2ln
-bmVkIG51bV9ieXRlcyk7CiAKIC8qCkBAIC0xODYsNyArMTg2LDcgQEAgc3RhdGljIGlubGluZSBp
-bnQgdHdsX2kyY193cml0ZV91MTYodTggbW9kX25vLCB1MTYgdmFsLCB1OCByZWcpIHsKIAlfX2xl
-MTYgdmFsdWU7CiAKIAl2YWx1ZSA9IGNwdV90b19sZTE2KHZhbCk7Ci0JcmV0dXJuIHR3bF9pMmNf
-d3JpdGUobW9kX25vLCAodTggKikgJnZhbHVlLCByZWcsIDIpOworCXJldHVybiB0d2xfaTJjX3dy
-aXRlKG1vZF9ubywgKGNvbnN0IHU4ICopICZ2YWx1ZSwgcmVnLCAyKTsKIH0KIAogc3RhdGljIGlu
-bGluZSBpbnQgdHdsX2kyY19yZWFkX3UxNih1OCBtb2Rfbm8sIHUxNiAqdmFsLCB1OCByZWcpIHsK
-LS0gCjIuNTUuMAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFk
-ZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4
-LWFtbG9naWMK
+This field is already initialized to NULL, so there is no reason to
+write it again.
+
+This prevents it from appearing while grepping for reg_write in the
+future.
+
+Signed-off-by: Link Mauve <linkmauve@linkmauve.fr>
+---
+ drivers/media/i2c/ov2740.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/drivers/media/i2c/ov2740.c b/drivers/media/i2c/ov2740.c
+index fb590dfadda1..799eca4023da 100644
+--- a/drivers/media/i2c/ov2740.c
++++ b/drivers/media/i2c/ov2740.c
+@@ -1271,7 +1271,6 @@ static int ov2740_register_nvmem(struct i2c_client *client,
+ 	nvmem_config.compat = true;
+ 	nvmem_config.base_dev = dev;
+ 	nvmem_config.reg_read = ov2740_nvmem_read;
+-	nvmem_config.reg_write = NULL;
+ 	nvmem_config.priv = nvm;
+ 	nvmem_config.stride = 1;
+ 	nvmem_config.word_size = 1;
+-- 
+2.55.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
