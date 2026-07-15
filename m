@@ -4,95 +4,129 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2885CC44508
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jul 2026 15:33:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 174C3C44508
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jul 2026 17:53:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/vtvZuNjX4vq0577+lSNa6pK08tJTTi5KVGks3LVaZo=; b=4buNdMVMLPqrG9
-	HpZoVA/5eCNw6KSnoCCawL8NpE53w+Q2CZq10AxCYlN4ttBbiggk/fVu2Idow9DS+QbiizZ7ypInN
-	A/KRgv43Hs9kw7d1hv8tVAwMJqJyVISMjg6NxvJQIBUc6XobXtUpCgoMYNu2+l7lIZKKBDXe0bATu
-	ZMZHD0na4kPZAH5L2QBLkmy8aCcIp8e6cxvXm24vVJYasbFs/CG+wwY2qDIEtx2+v4IIqK1ve+GaS
-	fmOrPZQ7Bb9BNn2vyXVfnnGSPNb0YZym0mc0pQPQWEHkzrDyDsxpfS9JvmJDGfhNTuU4eGskMxuAM
-	mZowraxeEkYjfSX/h8UA==;
+	List-Owner; bh=mpdJujDcrSGkG9w8z0LeXl47TaAPwbvHOjR2HjHxIiU=; b=R5RcoyVge4c/5W
+	8RB4rnm3Gm4sm2OlXOZSeu7b5RMU6zJRhauO6Zlp684lAjyZ2/qxZoIOiDYK672KNMcIO+vDnDhcj
+	LbPkI13f7g7Ftx7e6crz3ohHX090V57a8WAgrXwX2xogK1jPonyYfkB25reBnIv7ekuL4vLovhxk2
+	++44igkcaEHcVnrm4TmPmGPxqWujzPVXIm+QmMldGocu4Vud23iWGzYLM5q9IwjtRJIHoPZW7fmNr
+	7gfwb5O9tWmfZ9K/U73GEag4ufBMBsqTyAhVdJy0qeK4wj1S4EwNLmVc7hrZjKch+NV6S7wd/naVP
+	4wWj/P2V4+zuPkkIyftg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wk1c2-0000000FKbT-1eWG;
-	Wed, 15 Jul 2026 15:33:30 +0000
-Received: from mail-pf1-x42b.google.com ([2607:f8b0:4864:20::42b])
+	id 1wk3n5-0000000Fav2-1SwP;
+	Wed, 15 Jul 2026 17:53:03 +0000
+Received: from 82-65-109-163.subs.proxad.net ([82.65.109.163] helo=luna.linkmauve.fr)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wk1bz-0000000FKaU-20Bi
-	for linux-amlogic@lists.infradead.org;
-	Wed, 15 Jul 2026 15:33:28 +0000
-Received: by mail-pf1-x42b.google.com with SMTP id d2e1a72fcca58-845b6d9bf39so2346855b3a.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 15 Jul 2026 08:33:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1784129607; x=1784734407; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=0mg3ZeFY1mH/lkxcwLQcXVtiMYVBxfdswbYpOEBR4q8=;
-        b=Py+a4S2TCAzGakNISCKb/tU0Hz+YyREGn3LlXQJEJ2h4hO1U7X1wErIZGs0ovNbxoK
-         TNh9zfEegfLy2tYyEcQNBfsZd/BZDMTrtrxfLAZpBicRLIiWPEnvt2pwNJMUZqU+kvB7
-         jndY2B0FU0Ou0u2m5bc4hmWJ7bTjVnfSg2O7xZXzqDX3Z1YLnM7Yxa2LhP+FWFeP16dy
-         F50Di+mjkRkqpyOuI/qnBSx4HytIi6Yqs0NGBypoPK/1cJQQy3RsBA9Qn5UvsfNeKDtv
-         5jknHslblX7c7xDQyFJ5S/Sd52Rf8SxmPoxJLnsDrwhsSDiC4RQ2eC1YpDnWIJHcFWcc
-         VngQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784129607; x=1784734407;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=0mg3ZeFY1mH/lkxcwLQcXVtiMYVBxfdswbYpOEBR4q8=;
-        b=Eoi7tJrxYCWRxhTSohhuVR/SlGPP0kbPsOQ9vAta86rin5aLhx36XGkGRmftd625Y1
-         vHJHckQWGoZj5y6XRxLs4q9e+cbfCzz+7YQi4MZiwDRB/av+yLupUPBep+G5xInwL6Rq
-         wo8sWpMdfJGDNqzeDiV5G/rm2zO5iR1SPDBR0I4XXBbxgrC4xRcv6n/JDNzC97xn73wH
-         zKskPjuuYInDGj5k4373dhqZR5aSUpRP7L4WVgcrjl2TVXzUtMDzpb4Hs0r3rYug1dCm
-         cVGOA7p/ufiJfyNi/44FernpiiPUccpYRc4LTy0eKxwK0H8PMIK+JLcmULmQuxo7lB6C
-         QsZA==
-X-Forwarded-Encrypted: i=1; AHgh+RrXfEeNQ4qhcjRxbu3dYI1ytzAeisJkgv2nQp+sRmuPRJkYbis/bgNRnwXFOEXg9uO0D7Y1LJPOVYa8nPgP@lists.infradead.org
-X-Gm-Message-State: AOJu0YwkMzpUTcEO98fg1sdlONOAbiN7eOwGC5er4UJ7D3So5bGOScxG
-	hYWdrK+zV6PuTjEXBGTeGxqycvpkcMzVt1rSQg4FMfxvgIM6RKo/qBcLZWb2HRo+Fm8=
-X-Gm-Gg: AfdE7clO7tw30yT93f+4Wg6Qg+fEmwJ3OKUqSVQboGxxhGxzkVgDRuDRKl2UWR5+WGk
-	aAV35hS30ikEP6Xa9P0t1ng5VwaiPJqprHjBXSSE3BCviNYXzri4W3oMVbkp3h3kmuuhcDHOztL
-	0glWU/5WaVXphRMzrE2FYeaiC1q7z6cZFbe6jFIqfhbFvzzPsWG3pZQQP4UAT+g5WWz2Sz0f7g3
-	xFq6Q0cDyFmxZGDgVkzPUQ67vBDehzbfo7vJOyIbJtSg7NJZu0mhGorRtDzyNsZHGNr/swqOnvH
-	flwXPhOYVP7JUJ8oGmmCOtOzfKRjPzuQRie9rbtc/KEeYx7QZe2lFFx+uQUgeL0waPWhGLRbjAV
-	8YvbKl9To1Pl3YZ7OHpA/QTcpBYBKJ8Uc/O8eFsvBK2FMZG3hMXWcgJ4ks9+lgVr+UeHgofQsr1
-	2VKRC1pG3Ue94G6px/
-X-Received: by 2002:a05:6a00:4f95:b0:847:9803:ec6f with SMTP id d2e1a72fcca58-84870373138mr20935586b3a.10.1784129606555;
-        Wed, 15 Jul 2026 08:33:26 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:4f38:9a5e:fd18:7a9b])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84a4f7de23asm3373865b3a.49.2026.07.15.08.33.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jul 2026 08:33:26 -0700 (PDT)
-Date: Wed, 15 Jul 2026 09:33:23 -0600
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+	id 1wk3n2-0000000FasP-3eEu;
+	Wed, 15 Jul 2026 17:53:02 +0000
+Received: by luna.linkmauve.fr (Postfix, from userid 1000)
+	id 989A4F40ABC; Wed, 15 Jul 2026 19:52:35 +0200 (CEST)
+From: Link Mauve <linkmauve@linkmauve.fr>
+To: Srinivas Kandagatla <srini@kernel.org>
+Cc: Link Mauve <linkmauve@linkmauve.fr>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Suman Anna <s-anna@ti.com>, linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: remoteproc: Drop redundant $ref of
- firmware-name property
-Message-ID: <aleoQy-YePWJC0sW@p14s>
-References: <20260712145718.126492-2-krzysztof.kozlowski@oss.qualcomm.com>
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Tianshu Qiu <tian.shu.qiu@intel.com>,
+	Bingbu Cao <bingbu.cao@intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Roger Quadros <rogerq@kernel.org>,
+	Tony Lindgren <tony@atomide.com>,
+	Lee Jones <lee@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	"Vaibhaav Ram T.L" <vaibhaavram.tl@microchip.com>,
+	Kumaravel Thiagarajan <kumaravel.thiagarajan@microchip.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Vladimir Zapolskiy <vz@mleia.com>,
+	=?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@linaro.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>,
+	Kalyani Akula <kalyani.akula@amd.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Joshua Kinard <linux@kumba.dev>,
+	Antoniu Miclaus <antoniu.miclaus@analog.com>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Boqun Feng <boqun@kernel.org>,
+	Gary Guo <gary@garyguo.net>,
+	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>,
+	Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Daniel Almeida <daniel.almeida@collabora.com>,
+	Tamir Duberstein <tamird@kernel.org>,
+	Alexandre Courbot <acourbot@nvidia.com>,
+	=?UTF-8?q?Onur=20=C3=96zkan?= <work@onurozkan.dev>,
+	Daniel Lezcano <daniel.lezcano@kernel.org>,
+	Johan Hovold <johan@kernel.org>,
+	Ronald Claveau <linux-kernel-dev@aliel.fr>,
+	Salah Triki <salah.triki@gmail.com>,
+	Yury Norov <ynorov@nvidia.com>,
+	David Carlier <devnexen@gmail.com>,
+	Achim Gratz <Achim.Gratz@Stromeko.DE>,
+	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
+	Patrick Wicki <patrick.wicki@siemens.com>,
+	Markus Heidelberg <m.heidelberg@cab.de>,
+	Markus Perkins <markus@notsyncing.net>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig=20=28The=20Capable=20Hub=29?= <u.kleine-koenig@baylibre.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>,
+	Chen Ni <nichen@iscas.ac.cn>,
+	Kees Cook <kees@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-omap@vger.kernel.org,
+	mfd@lists.linux.dev,
+	linux-i2c@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-msm@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-rtc@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	rust-for-linux@vger.kernel.org
+Subject: [PATCH 1/8] nvmem: core: make reg_write() take a const void *
+Date: Wed, 15 Jul 2026 19:52:17 +0200
+Message-ID: <20260715175229.24672-2-linkmauve@linkmauve.fr>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260715175229.24672-1-linkmauve@linkmauve.fr>
+References: <20260715175229.24672-1-linkmauve@linkmauve.fr>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20260712145718.126492-2-krzysztof.kozlowski@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260715_083327_536866_517BF659 
-X-CRM114-Status: GOOD (  15.79  )
+X-CRM114-CacheID: sfid-20260715_105301_058335_BF9CB609 
+X-CRM114-Status: GOOD (  12.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,52 +143,44 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, Jul 12, 2026 at 04:57:19PM +0200, Krzysztof Kozlowski wrote:
-> The DT schema core defines the type ($ref) of 'firmware-name' property
-> as string-array, so individual schemas do not need to.  They also should
-> not redefine it to a single string, but instead just set number of
-> expected firmware names.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml | 2 +-
->  .../devicetree/bindings/remoteproc/ti,pru-consumer.yaml         | 1 -
->  2 files changed, 1 insertion(+), 2 deletions(-)
+This callback used to take a mutable void * for no reason, this was
+found while drafting the Rust abstraction.
 
-Applied.
+Signed-off-by: Link Mauve <linkmauve@linkmauve.fr>
+---
+ drivers/nvmem/core.c           | 2 +-
+ include/linux/nvmem-provider.h | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-Thanks,
-Mathieu
+diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
+index e871181751f3..202607013054 100644
+--- a/drivers/nvmem/core.c
++++ b/drivers/nvmem/core.c
+@@ -62,7 +62,7 @@ static int __nvmem_reg_read(struct nvmem_device *nvmem, unsigned int offset,
+ }
+ 
+ static int __nvmem_reg_write(struct nvmem_device *nvmem, unsigned int offset,
+-			     void *val, size_t bytes)
++			     const void *val, size_t bytes)
+ {
+ 	int ret;
+ 
+diff --git a/include/linux/nvmem-provider.h b/include/linux/nvmem-provider.h
+index f3b13da78aac..e62285836cbb 100644
+--- a/include/linux/nvmem-provider.h
++++ b/include/linux/nvmem-provider.h
+@@ -19,7 +19,7 @@ struct nvmem_device;
+ typedef int (*nvmem_reg_read_t)(void *priv, unsigned int offset,
+ 				void *val, size_t bytes);
+ typedef int (*nvmem_reg_write_t)(void *priv, unsigned int offset,
+-				 void *val, size_t bytes);
++				 const void *val, size_t bytes);
+ /* used for vendor specific post processing of cell data */
+ typedef int (*nvmem_cell_post_process_t)(void *priv, const char *id, int index,
+ 					 unsigned int offset, void *buf,
+-- 
+2.55.0
 
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml b/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml
-> index 3f710433e937..4cd5121b9a4e 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/amlogic,meson-mx-ao-arc.yaml
-> @@ -25,7 +25,7 @@ properties:
->        - const: amlogic,meson-mx-ao-arc
->  
->    firmware-name:
-> -    $ref: /schemas/types.yaml#/definitions/string
-> +    maxItems: 1
->      description:
->        The name of the firmware which should be loaded for this remote
->        processor.
-> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
-> index 2811334515d1..591471e5f93a 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
-> @@ -30,7 +30,6 @@ properties:
->        maxItems: 1
->  
->    firmware-name:
-> -    $ref: /schemas/types.yaml#/definitions/string-array
->      minItems: 1
->      maxItems: 6
->      description: |
-> -- 
-> 2.53.0
-> 
 
 _______________________________________________
 linux-amlogic mailing list
