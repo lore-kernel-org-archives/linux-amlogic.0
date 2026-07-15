@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87EE3C44508
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jul 2026 18:58:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03C42C44501
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jul 2026 19:02:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=umqU1MOR2/kYV7t8WxXnn0vW1BuTZheKhniKLfF5GsY=; b=YNV0yh+YQneT9p
-	QMghIzIMv7uk3nHUvURTngM7/+DRXhwWrJuzTOyLiZLJi/VryyEuPvuzAFyvXtetl/0AitxQzTPkM
-	tl+ggVQfZsl0gJnYFp0aUmPVm4Tyg5aMVoVmZ5PQ0opx/njuD1465GdUjOoAhYAZwrtgMw1F3sx24
-	yz2utOPBTvRGC+xW41a+Grm9d5Cw5hgaSdmti0hEYoeR/kar/A14Widkb0kRCu4QdslLQJUCxubHm
-	A2uC9jpJeokJLlxpA8n1PsOs2qrGCh9/N6lmA91OztvgF6BLpdZB8mc/nGMDFhm3n6WMdvfPpSCKP
-	ye/emBnbCbq3fzm54qEA==;
+	List-Owner; bh=o1g1kYWqmV3UCPtp5l2wR2Nb6XgSkiZAJCrwp3SDZk4=; b=IszPBVCnn82gm6
+	PRqKMqhX1Dnit+y5BOePk0YLWMhUwfZfc2VX6FfAeybz3NA3yTEZfIgDSaG25W9Gnm3xAEIS0zVnx
+	Mtf3OQYkRFZBKwwm605GzPH5hnVfXepGJMduBDt1BBm2BZBQ5DmCEGbEp7R7LzSPHdXNHkmPsZ+7+
+	adQqOsFyvsPqMXL2XBkEiecw8a8NsW9EZ43TV1z2g300FpKSBPReJo33PcrE3i9CayIGvqqtwqLb4
+	EzpafbqRsxFaynbwPWFPQtUjHTGX1A9D03VF8HxDy/3ZpmYTi0MqLIbMl4lGqo/gvOkt1gj/shBUZ
+	o9BHs/u98X5d8cdYIDBg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wk4oX-0000000Fjqm-2sAJ;
-	Wed, 15 Jul 2026 18:58:37 +0000
-Received: from mgamail.intel.com ([192.198.163.14])
+	id 1wk4sO-0000000FkZg-46ao;
+	Wed, 15 Jul 2026 19:02:37 +0000
+Received: from mgamail.intel.com ([192.198.163.17])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wk4oV-0000000FjqB-1VwV;
-	Wed, 15 Jul 2026 18:58:36 +0000
+	id 1wk4sM-0000000FkZB-29cE;
+	Wed, 15 Jul 2026 19:02:35 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1784141915; x=1815677915;
+  t=1784142154; x=1815678154;
   h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=o1wdb3hvZg8Mwx/nf5Q5Kz1h9rVn80wGsO8ZhPlCSqA=;
-  b=U0fcjqE2OAt0lT7FNwfr+EFMLwXh7SqRIW+7G+d4Vn1DeSf6QKv6YwPR
-   /51vzeYHcyXL/NJTCGXrcZHPDT5jx3HPDHY6Gw7INPfNN0cNNSl5Ds5o9
-   6/eR8mb7Y28VE0sisUNspx98AUSLfKkHOvIZRzpS/8VYfxo+XYhOmmTvF
-   gnB3yGb1Mf1QrQlcFdbJ0KxhYu27ueKUAutu5hMj9ojp80GQR3l68wWYs
-   LB02KlL6tLja/javiKq6QD45yb+36Qebvq2ZCmd9TNr0LrbiVdwQSO3s9
-   QZ5KlfAdsTnuulpl5OT2sXUSU+99L7/W8GvDAzX8/UzVse3h23LnNNDk7
-   Q==;
-X-CSE-ConnectionGUID: UzPfKCy5RrWEYj/ifTDgZA==
-X-CSE-MsgGUID: kLYMiVUbRU+KgF1qgbAmyQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="84834950"
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=jkRUcG0fpUKUz5oE5nA2qUlCbNkbkFNgmwTENQzAFys=;
+  b=BvJMDgiyd4ulEV8ecbw1OHg0kYWyy9fC+UcvSHb4Rzx69nXcvhDKOAdh
+   pEXTZ7eAoeSg7/YXKv5U7E8aUbLRCizeYy6PNwZN+X6qYESAk12GfVgGP
+   eWu3f+Vcjn331tWCVemPblb/b8oiqhSZ2EWkIgj5OdVGmc0qaOcwzpL8z
+   ClJCTEHFwgXSNLvRQxqIEjOuDXN1NmD/DfI58cLKdHqhwqxMg2T+aYZWB
+   ALYJ+VZmFWmCYr2TVWbDsmA6zeelQfl3u9Sr22xY93WLMIcjdRvsyJBXg
+   5/kRkFMPgi26sZMEo70UsgxDhv6U7sG46n2VsRRwyQqGH2QhX6p6uZ4Hm
+   g==;
+X-CSE-ConnectionGUID: 1QkRuKgUT+2Wnq4tAustUA==
+X-CSE-MsgGUID: 7M+agry9RrScXtueC2qgoQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="84678539"
 X-IronPort-AV: E=Sophos;i="6.25,166,1779174000"; 
-   d="scan'208";a="84834950"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jul 2026 11:58:31 -0700
-X-CSE-ConnectionGUID: 49XMinnBQ1q16eL0jxD8dg==
-X-CSE-MsgGUID: kjqxmeOcQsKaDHlmEkIC5Q==
+   d="scan'208";a="84678539"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jul 2026 12:02:33 -0700
+X-CSE-ConnectionGUID: 8yyOrudNS+6KFBZjLwXtOQ==
+X-CSE-MsgGUID: YpTKP7aFT2KqlGQNWvtRZQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.25,166,1779174000"; 
-   d="scan'208";a="253661823"
+   d="scan'208";a="254517773"
 Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.129])
-  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jul 2026 11:58:10 -0700
-Date: Wed, 15 Jul 2026 21:58:08 +0300
+  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jul 2026 12:02:16 -0700
+Date: Wed, 15 Jul 2026 22:02:13 +0300
 From: Andy Shevchenko <andriy.shevchenko@intel.com>
 To: Link Mauve <linkmauve@linkmauve.fr>
 Cc: Srinivas Kandagatla <srini@kernel.org>,
@@ -129,18 +129,17 @@ Cc: Srinivas Kandagatla <srini@kernel.org>,
 	imx@lists.linux.dev, linux-arm-msm@vger.kernel.org,
 	linux-stm32@st-md-mailman.stormreply.com, linux-rtc@vger.kernel.org,
 	linux-sunxi@lists.linux.dev, rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH 1/8] nvmem: core: make reg_write() take a const void *
-Message-ID: <alfYQP4a1U9pI6UR@ashevche-desk.local>
+Subject: Re: [PATCH 0/8] nvmem: make reg_write() take a const void *
+Message-ID: <alfZNQGcX0Z68eto@ashevche-desk.local>
 References: <20260715175229.24672-1-linkmauve@linkmauve.fr>
- <20260715175229.24672-2-linkmauve@linkmauve.fr>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20260715175229.24672-2-linkmauve@linkmauve.fr>
+In-Reply-To: <20260715175229.24672-1-linkmauve@linkmauve.fr>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260715_115835_415461_26AD8F6E 
-X-CRM114-Status: GOOD (  10.37  )
+X-CRM114-CacheID: sfid-20260715_120234_565562_6629A958 
+X-CRM114-Status: GOOD (  15.07  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -152,26 +151,32 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jul 15, 2026 at 07:52:17PM +0200, Link Mauve wrote:
-> This callback used to take a mutable void * for no reason, this was
-> found while drafting the Rust abstraction.
-
-I don't understand how it was compiled. const void * != void * in C and can't
-be implicitly covered, if I am not mistaken. So, this patch heavily should
-break the build. What did I miss?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gV2VkLCBKdWwgMTUsIDIwMjYgYXQgMDc6NTI6MTZQTSArMDIwMCwgTGluayBNYXV2ZSB3cm90
+ZToKPiBUaGlzIGNhbGxiYWNrIHVzZWQgdG8gdGFrZSBhIG11dGFibGUgdm9pZCAqIGZvciBubyBy
+ZWFzb24sIHdoaWNoIGNhdXNlcwo+IHRoZSBjb21waWxlciB0byBiZSB1bmF3YXJlIHRoYXQgdGhl
+IHZhbCBidWZmZXIgc2hvdWxkIG5ldmVyIGJlIG1vZGlmaWVkCj4gYnkgdGhlIGNhbGxiYWNrLgo+
+IAo+IFRoaXMgd2FzIGZvdW5kIHdoaWxlIGRyYWZ0aW5nIHRoZSBudm1lbS1wcm92aWRlciBSdXN0
+IGFic3RyYWN0aW9uLgo+IAo+IEnigJl2ZSBzcGxpdCB0aGlzIHNlcmllcyBiYXNlZCBvbiB0aGUg
+c3Vic3lzdGVtIGVhY2ggcGF0Y2ggYWZmZWN0cywgYnV0IEkKPiB0aGluayBpdCBzaG91bGQgZ28g
+dGhyb3VnaCB0aGUgbnZtZW0gdHJlZSBpbiBvbmUgZ28gYWZ0ZXIgZ2F0aGVyaW5nIHRoZQo+IGFj
+a3MgZnJvbSB0aGUgb3RoZXIgc3Vic3lzdGVtIG1haW50YWluZXJzLgoKSXQncyBhbiBvcHRpb24u
+IFRoZSBvdGhlciBvcHRpb24gKGFuZCBvZnRlbiB3ZSBnbyB0aGlzIHdheSkgaXMgdG8gaW50cm9k
+dWNlCmEgbmV3IG5hbWUsIGNvbnZlcnQgdXNlcnMsIGNvbnZlcnQgdGhlIG5hbWUgYmFjay4KClNl
+ZSwgZm9yIGV4YW1wbGUsIGhvdyBHUElPIHN1YnN5c3RlbSBjaGFuZ2VkIGEgcHJvdG8gb2YgLnNl
+dCgpIGNhbGxiYWNrLgoKPiBJ4oCZdmUgYmVlbiB0b2xkIHByZXZpb3VzbHkgdG8gbm90IGluY2x1
+ZGUgdG9vIG1hbnkgbWFpbnRhaW5lcnMgaW4gQ2MsIGJ1dAo+IEkgZG9u4oCZdCBrbm93IHdoaWNo
+IG9uZXMgdG8gcmVtb3ZlIGZyb20gdGhlIGdldF9tYWludGFpbmVycy5wbCBvdXRwdXQsIHNvCj4g
+SeKAmXZlIHN0aWxsIGluY2x1ZGVkIGV2ZXJ5b25lLCBzb3JyeSBhYm91dCB0aGF0LgoKV2l0aCB0
+aGlzLCByYXRoZXIgc3RhbmRhcmQsIHdheSB5b3Ugd2lsbCBmdWxmaWxsIHRoZSBhYm92ZSByZXF1
+aXJlbWVudAphdXRvbWF0aWNhbGx5LiBBbHNvIHlvdSB3b24ndCBuZWVkIHRyZWV3aWRlIGNoYW5n
+ZSB0byBib3RoZXIgZXZlcnlib2R5CndpdGggdGhpcy4gQW5kIGFsc28gaW5jcmVhc2UgdGhlIGNo
+YW5jZXMgdG8gZ28gaW4gKG1heWJlIGluIGEgZmV3IHJlbGVhc2VzCnNwYW4pLgoKLS0gCldpdGgg
+QmVzdCBSZWdhcmRzLApBbmR5IFNoZXZjaGVua28KCgoKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgt
+YW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21h
+aWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
