@@ -4,129 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ED45C44508
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jul 2026 17:53:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC327C44501
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 Jul 2026 18:01:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JZ4LinUC4c0sGDM3pwx/wRoV7Jq+aVNBDc+Yb4wHokU=; b=mEwD+cLysuyhHL
-	xyKQDPIpUCzCxDlk6ptYipID9iaM1jKxuAjhdWfa8GTsw9I/tFlViVxag9dyzi4uJTkPtWZNYjcKY
-	tspWDzT1VvtDmZl4y1psUVO7l7oH11mpTRTKGbWf/XnLtgkJzgbbxUtOfEH/wCw9zxXG71xTMyD7B
-	mzkMDjVI0sLhOPH7KBuFjaJFhVEvQvoJ7hXju/nCrdruZp/fYv8AcNc2i/enOeY7GdslTWo9KGPEK
-	cnx5HXImU1ocVuLcKCDeLCSjv7zErpFP9QkxBcLi4d5bs/FZvdqlQZ5lyQrM5pkQlAPi0+T2YVIXM
-	5O4mQREd/b0qCoPk+bag==;
+	List-Owner; bh=N1rbN3pfRAHKUaoE8rkoWgo8K4D7Huk2l3+X7MkBUTU=; b=d/lPh6PRw4hToh
+	R775l7YLtdlQvw/Liv+SIxNcbtMULK8IfbtuOwvsUsyteaG9lnCdUXAZ9P78uRR22lnuq0kmv1rCT
+	2/iWsuZY/OeUBdtN20Oe3IVADyZpY5xKVwIEvGD2RSRhgv3E03V2yLiGSsGch0o26YmGylpt7pm63
+	o1HQp419ejRKMAmpUU+mPU0aZs58CX7a1Nx0D7ejPI+asgY0MWeCz2unU80ZonX/7+IITkqqwrpdc
+	VXMlCMF8Ot9yyIfEgpTx3P+K+xneOGsQd5ybXYL47n1PAZx9D2Btirxn4Tqtq1GcNQ9ap+v2b6ZMf
+	Ny22q7ux1sR+qlK5WJXA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wk3nX-0000000Fb8g-17Ki;
-	Wed, 15 Jul 2026 17:53:31 +0000
-Received: from [2a01:e0a:1040:9780:49:5ff:fe41:d261] (helo=luna.linkmauve.fr)
+	id 1wk3um-0000000Fbst-26mv;
+	Wed, 15 Jul 2026 18:01:00 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wk3nV-0000000Fb5n-0n0n;
-	Wed, 15 Jul 2026 17:53:30 +0000
-Received: by luna.linkmauve.fr (Postfix, from userid 1000)
-	id 6F87FF402E8; Wed, 15 Jul 2026 19:52:55 +0200 (CEST)
-From: Link Mauve <linkmauve@linkmauve.fr>
-To: Srinivas Kandagatla <srini@kernel.org>
-Cc: Link Mauve <linkmauve@linkmauve.fr>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Tianshu Qiu <tian.shu.qiu@intel.com>,
-	Bingbu Cao <bingbu.cao@intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Roger Quadros <rogerq@kernel.org>,
-	Tony Lindgren <tony@atomide.com>,
-	Lee Jones <lee@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	"Vaibhaav Ram T.L" <vaibhaavram.tl@microchip.com>,
-	Kumaravel Thiagarajan <kumaravel.thiagarajan@microchip.com>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Vladimir Zapolskiy <vz@mleia.com>,
-	=?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@linaro.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>,
-	Kalyani Akula <kalyani.akula@amd.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Joshua Kinard <linux@kumba.dev>,
-	Antoniu Miclaus <antoniu.miclaus@analog.com>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Boqun Feng <boqun@kernel.org>,
-	Gary Guo <gary@garyguo.net>,
-	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
-	Benno Lossin <lossin@kernel.org>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>,
-	Trevor Gross <tmgross@umich.edu>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Daniel Almeida <daniel.almeida@collabora.com>,
-	Tamir Duberstein <tamird@kernel.org>,
-	Alexandre Courbot <acourbot@nvidia.com>,
-	=?UTF-8?q?Onur=20=C3=96zkan?= <work@onurozkan.dev>,
-	Daniel Lezcano <daniel.lezcano@kernel.org>,
-	Johan Hovold <johan@kernel.org>,
-	Ronald Claveau <linux-kernel-dev@aliel.fr>,
-	Salah Triki <salah.triki@gmail.com>,
-	Yury Norov <ynorov@nvidia.com>,
-	David Carlier <devnexen@gmail.com>,
-	Achim Gratz <Achim.Gratz@Stromeko.DE>,
-	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
-	Patrick Wicki <patrick.wicki@siemens.com>,
-	Markus Heidelberg <m.heidelberg@cab.de>,
-	Markus Perkins <markus@notsyncing.net>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig=20=28The=20Capable=20Hub=29?= <u.kleine-koenig@baylibre.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>,
-	Chen Ni <nichen@iscas.ac.cn>,
-	Kees Cook <kees@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	linux-omap@vger.kernel.org,
-	mfd@lists.linux.dev,
-	linux-i2c@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-msm@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-rtc@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	rust-for-linux@vger.kernel.org
-Subject: [PATCH 8/8] media: ov2740: remove NULL reg_write callback
-Date: Wed, 15 Jul 2026 19:52:24 +0200
-Message-ID: <20260715175229.24672-9-linkmauve@linkmauve.fr>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260715175229.24672-1-linkmauve@linkmauve.fr>
+	id 1wk3uk-0000000FbsP-1okF
+	for linux-amlogic@lists.infradead.org;
+	Wed, 15 Jul 2026 18:00:58 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id B4F074395E;
+	Wed, 15 Jul 2026 18:00:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EE0C1F00A3E;
+	Wed, 15 Jul 2026 18:00:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784138457;
+	bh=d0dsrItk9jXayM9Q2oV+GZ8nC06mXCTAXStu/9l8J9A=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=cx0YuZW9Mlvd6W/dp6K+vSWTyT78ZoyO33t1J68uMTGORjw9nmW1QhWjKoYT5IHdz
+	 CBMAHZQmuWeUuR1+QIYWKK+ekXkaciKqkKDgbhVvOY30QJ7FFDU3RYDMeJkWc3d0Lp
+	 czn/wWie/U61BRuwHFVWZwI0/T0m7psPSP5YNWAMgLiuRfj5RuHpztvG6hXjHWFCGj
+	 RGCkMyYgjJn570ulTmvGfmUQM/6bSM06xdJbfWDRYSqkb5Ce21LaOOYWXJ8uSSydRC
+	 LYGCQaQCj3x5frvNF1/qz5afWx6VS1VQZ8qxu7Q1DIrPx+qHqtijty+kUthDB6vHsG
+	 MAYEUJ4uCMM/Q==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 1/8] nvmem: core: make reg_write() take a const void *
+To: "Link Mauve" <linkmauve@linkmauve.fr>
+Cc: linux-sunxi@lists.linux.dev, lee@kernel.org, imx@lists.linux.dev, Frank.Li@kernel.org, neil.armstrong@linaro.org, linux-rtc@vger.kernel.org, "Alexandre
+ Belloni" <alexandre.belloni@bootlin.com>, linux-amlogic@lists.infradead.org, mfd@lists.linux.dev, ojeda@kernel.org
+In-Reply-To: <20260715175229.24672-2-linkmauve@linkmauve.fr>
 References: <20260715175229.24672-1-linkmauve@linkmauve.fr>
-MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260715_105329_368592_939B5797 
-X-CRM114-Status: GOOD (  10.75  )
+ <20260715175229.24672-2-linkmauve@linkmauve.fr>
+Date: Wed, 15 Jul 2026 18:00:56 +0000
+Message-Id: <20260715180057.0EE0C1F00A3E@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -138,39 +63,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This field is already initialized to NULL, so there is no reason to
-write it again.
-
-This prevents it from appearing while grepping for reg_write in the
-future.
-
-Signed-off-by: Link Mauve <linkmauve@linkmauve.fr>
----
- drivers/media/i2c/ov2740.c | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/drivers/media/i2c/ov2740.c b/drivers/media/i2c/ov2740.c
-index fb590dfadda1..799eca4023da 100644
---- a/drivers/media/i2c/ov2740.c
-+++ b/drivers/media/i2c/ov2740.c
-@@ -1271,7 +1271,6 @@ static int ov2740_register_nvmem(struct i2c_client *client,
- 	nvmem_config.compat = true;
- 	nvmem_config.base_dev = dev;
- 	nvmem_config.reg_read = ov2740_nvmem_read;
--	nvmem_config.reg_write = NULL;
- 	nvmem_config.priv = nvm;
- 	nvmem_config.stride = 1;
- 	nvmem_config.word_size = 1;
--- 
-2.55.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0hpZ2hdIE1vZGlmeWluZyB0aGUg
+YG52bWVtX3JlZ193cml0ZV90YCBjYWxsYmFjayBzaWduYXR1cmUgdG8gdXNlIGBjb25zdCB2b2lk
+ICp2YWxgIHdpdGhvdXQgdXBkYXRpbmcgdGhlIGltcGxlbWVudGluZyBkcml2ZXJzIGNhdXNlcyB3
+aWRlc3ByZWFkIGJ1aWxkIGZhaWx1cmVzIGFuZCBydW50aW1lIGtDRkkgcGFuaWNzLgotLQoKLS0t
+IFBhdGNoIFsxXTogW1BBVENIIDEvOF0gbnZtZW06IGNvcmU6IG1ha2UgcmVnX3dyaXRlKCkgdGFr
+ZSBhIGNvbnN0IHZvaWQgKiAtLS0KY29tbWl0IDQ2NWFhMWVmN2FkNjQ3NWMyODY3MTZhMWZmZmM3
+Y2RiOWI2ZjA5ZGMKQXV0aG9yOiBMaW5rIE1hdXZlIDxsaW5rbWF1dmVAbGlua21hdXZlLmZyPgoK
+bnZtZW06IGNvcmU6IG1ha2UgcmVnX3dyaXRlKCkgdGFrZSBhIGNvbnN0IHZvaWQgKgoKVGhpcyBj
+b21taXQgY2hhbmdlcyB0aGUgbnZtZW1fcmVnX3dyaXRlX3QgY2FsbGJhY2sgc2lnbmF0dXJlIHRv
+IGV4cGVjdAphIGNvbnN0IHZvaWQgKiBpbnN0ZWFkIG9mIGEgbXV0YWJsZSB2b2lkICouCgo+IGRp
+ZmYgLS1naXQgYS9pbmNsdWRlL2xpbnV4L252bWVtLXByb3ZpZGVyLmggYi9pbmNsdWRlL2xpbnV4
+L252bWVtLXByb3ZpZGVyLmgKPiBpbmRleCBmM2IxM2RhNzhhYWM5Li5lNjIyODU4MzZjYmJlIDEw
+MDY0NAo+IC0tLSBhL2luY2x1ZGUvbGludXgvbnZtZW0tcHJvdmlkZXIuaAo+ICsrKyBiL2luY2x1
+ZGUvbGludXgvbnZtZW0tcHJvdmlkZXIuaAo+IEBAIC0xOSw3ICsxOSw3IEBAIHN0cnVjdCBudm1l
+bV9kZXZpY2U7Cj4gIHR5cGVkZWYgaW50ICgqbnZtZW1fcmVnX3JlYWRfdCkodm9pZCAqcHJpdiwg
+dW5zaWduZWQgaW50IG9mZnNldCwKPiAgCQkJCXZvaWQgKnZhbCwgc2l6ZV90IGJ5dGVzKTsKPiAg
+dHlwZWRlZiBpbnQgKCpudm1lbV9yZWdfd3JpdGVfdCkodm9pZCAqcHJpdiwgdW5zaWduZWQgaW50
+IG9mZnNldCwKPiAtCQkJCSB2b2lkICp2YWwsIHNpemVfdCBieXRlcyk7Cj4gKwkJCQkgY29uc3Qg
+dm9pZCAqdmFsLCBzaXplX3QgYnl0ZXMpOwoKW1NldmVyaXR5OiBIaWdoXQpEb2VzIG1vZGlmeWlu
+ZyB0aGlzIGNhbGxiYWNrIHNpZ25hdHVyZSB3aXRob3V0IHVwZGF0aW5nIHRoZSBpbXBsZW1lbnRp
+bmcKZHJpdmVycyBjYXVzZSB3aWRlc3ByZWFkIGJ1aWxkIGZhaWx1cmVzIGFuZCBydW50aW1lIGtD
+RkkgcGFuaWNzPwoKRm9yIGV4YW1wbGUsIGRyaXZlcnMvbnZtZW0vYmNtLW9jb3RwLmM6YmNtX290
+cGNfd3JpdGUoKSBzdGlsbCBleHBlY3RzCmEgbXV0YWJsZSB2b2lkICo6CgpzdGF0aWMgaW50IGJj
+bV9vdHBjX3dyaXRlKHZvaWQgKmNvbnRleHQsIHVuc2lnbmVkIGludCBvZmZzZXQsIHZvaWQgKnZh
+bCwKICAgICAgICAgICAgICAgICAgICAgICAgICBzaXplX3QgYnl0ZXMpCgpXaGVuIHRoaXMgaXMg
+YXNzaWduZWQgdG8gcmVnX3dyaXRlIGluIGJjbV9vdHBjX252bWVtX2NvbmZpZywgaXQgY2F1c2Vz
+IGFuCmluY29tcGF0aWJsZSBwb2ludGVyIHR5cGUgbWlzbWF0Y2guIFRoaXMgbGVhZHMgdG8gYnVp
+bGQgZXJyb3JzIHdpdGggbW9kZXJuCmNvbXBpbGVycyBvciAtV2Vycm9yLCBhbmQgd2lsbCB0cmln
+Z2VyIGtlcm5lbCBwYW5pY3MgdXBvbiBhbnkgbnZtZW0gd3JpdGUKb3BlcmF0aW9uIG9uIGtlcm5l
+bHMgd2l0aCBDb250cm9sLUZsb3cgSW50ZWdyaXR5IChrQ0ZJKSBlbmFibGVkLgoKLS0gClNhc2hp
+a28gQUkgcmV2aWV3IMK3IGh0dHBzOi8vc2FzaGlrby5kZXYvIy9wYXRjaHNldC8yMDI2MDcxNTE3
+NTIyOS4yNDY3Mi0xLWxpbmttYXV2ZUBsaW5rbWF1dmUuZnI/cGFydD0xCgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcg
+bGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJh
+ZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
