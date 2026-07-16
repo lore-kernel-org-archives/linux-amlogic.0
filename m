@@ -4,69 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C67AC44512
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jul 2026 15:24:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8780C44515
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jul 2026 17:49:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dsZlBJKbm7hy+cCq1WIF8SocH4uoKcvP5AsvZz42nmw=; b=FARV2ZMFnhdkJN
-	AyAQevMnCcpO34mj0fRt+K9VcqaugkEI2bANK0Mm6R5f9e9aYw5JbqXLAevb3q7bUIy0dkGf0T1dD
-	UIO01/Vq/g4AXGrj6B5vxWTvTrbrWig+KXTUW6bOLw9RlZj2bWeuQ5k4RcdVWFgblZjEqjGEwot94
-	lAkWbamCqPIKHmuEkwjvSiOLdzwCzrK8hvVTbsUT8LRsiNQVRlMn0mqKbZ3EV8mryBpSvJqUsTefh
-	6+8dODAmidt3ImLqWVs+MBgMfoob9ewVhcBs9wKVwz9PUNRhr2WM29mIG5MfzsTkoDiOf1ox4LBIe
-	GhVCTa5qIcJhdhBZsb/w==;
+	List-Owner; bh=FI38n92lXSnNVsksiQ7peXWcbUzqzG2+XALHUiez4sA=; b=mTfG6P2tsiKHya
+	u0Ja9Udg6VM9UyBfmNLg+NtozJz44TkuH0162Z9m4dRxNacBLGZNPbipyn9+VLeh/SkiJ1mft9Pnn
+	HNgT6GpJXtuBXhccnVE0eXdhpE8OV3Rtpkb1qwXt8KyoOZ/QsXy6QpyWYuttKjbgoHp5Wc56bY2m4
+	2yl2q6Tpy4kw58ZTW4YOvWnOHgJJO/2bhCTU/Wde8yQilPFirdX4c/R6y9jaQiLS7J7YMEXxrZWpe
+	hS30rtDHeOp3gW9QCVadaIcMK0yPI9tKFx3jPRfT5IJh1wKB99yIc1xa3PMLqUE4+fl4etet++e/Y
+	dz+JhcYRZNXUvkXSxTDw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkNwq-000000002W8-1pQr;
-	Thu, 16 Jul 2026 15:24:28 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1wkQCu-00000000JVJ-420x;
+	Thu, 16 Jul 2026 17:49:12 +0000
+Received: from mgamail.intel.com ([198.175.65.19])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkNwq-000000002Ve-0YHY;
-	Thu, 16 Jul 2026 15:24:28 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 9992E434F1;
-	Thu, 16 Jul 2026 15:24:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B3141F000E9;
-	Thu, 16 Jul 2026 15:24:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784215467;
-	bh=RHZlXDwmnmhNAHsXyKmT3KK/eNJCIlM0UHu2j00CWlo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=MFGj1d40jZB6tW/rv23DOlwJ5g/uU/vVvaS1m2H0Zz2m854PSBpvTzTzUEsCLixjy
-	 Gje41ODRwf+hr1UPkAill2j4M1f2GxHE34BrcWCnLgqIbK5ouoWBKRNphFgmZqxc3S
-	 4SNTAT4rINmL4L6aBNTmMqJnFpUcQvpo9YLVOd3VqGilSpz83s++aPct0dEuTI9Bwq
-	 phwYX+dTTO9tUv44z1SWA1eXsYnUrfh+lgSErFWtMj0fk/BxWpdIV59DRq7YhxR+9t
-	 /Gn4CQqFAihfdLlw3ZGoXDUHL7WyhDH3j9bSa3SADRAlEmnF9szPbDxsYen/uQ7c5a
-	 HVmKu8lK/qk+Q==
-Date: Thu, 16 Jul 2026 16:24:20 +0100
-From: Lee Jones <lee@kernel.org>
-To: linux-kernel-dev@aliel.fr
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
+	id 1wkQCs-00000000JUl-1LSr;
+	Thu, 16 Jul 2026 17:49:11 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1784224151; x=1815760151;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=WDOpxcwFle75xJgV45Y3mz4ze1wpcOya2GSWIlnO6Qg=;
+  b=R4Yk3PzuyFeKLBvJFyfCwhVDmVZ7VkMyPd0nDX7Hpq7VMA/fRhp3xnvr
+   PlyzWb+EdYfoihASSrQRtO+N6CMyifbw4bQa+S+Z9FyHoiSk0gMN5co6D
+   jxFiiIBOS/hZ9HRuhiehKdx/ek2ZiqqT1K/u66MDvq3dNFtjmEbFgGXJn
+   m0eRfjL7OXo9z8eGZpSPUaQCq8YZm5m3OsojfAQwztmLB9QfyhfKg4dDQ
+   WVWEGpg0zmtfRvwIKo6vF75kmSb5ZKJVuRHeQNJ4/SxCPAg9uXcsUexq2
+   IJuMXF79j7V/Xr6Y+VGrEIUnEsOD3dVqNAnr1JXL3LnF7NINUCF1kzXYE
+   Q==;
+X-CSE-ConnectionGUID: wuelDJ7rRV6YDb8pWsK/Nw==
+X-CSE-MsgGUID: G9L+Y94eRGSOH1VdhAYWHA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11848"; a="84853703"
+X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; 
+   d="scan'208";a="84853703"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jul 2026 10:49:10 -0700
+X-CSE-ConnectionGUID: XfGCLMq2TIOWPCEFC2xIgw==
+X-CSE-MsgGUID: kOYF/zaMQF25P48lYMtL6A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; 
+   d="scan'208";a="255415130"
+Received: from conormcd-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.245.26])
+  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jul 2026 10:49:00 -0700
+Date: Thu, 16 Jul 2026 20:48:58 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Link Mauve <linkmauve@linkmauve.fr>
+Cc: Srinivas Kandagatla <srini@kernel.org>,
+	Andy Shevchenko <andy@kernel.org>, Sven Peter <sven@kernel.org>,
+	Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>,
+	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Vladimir Zapolskiy <vz@mleia.com>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Beniamino Galvani <b.galvani@gmail.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@kernel.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, linux-amlogic@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-pm@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v8 0/8] Add VIM4 MCU/FAN support
-Message-ID: <20260716152420.GA1424265@google.com>
-References: <20260702-add-mcu-fan-khadas-vim4-v8-0-244feee91a36@aliel.fr>
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Kalyani Akula <kalyani.akula@amd.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
+	Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Daniel Almeida <daniel.almeida@collabora.com>,
+	Tamir Duberstein <tamird@kernel.org>,
+	Alexandre Courbot <acourbot@nvidia.com>,
+	Onur =?iso-8859-1?Q?=D6zkan?= <work@onurozkan.dev>,
+	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] nvmem: fix a const-unsoundness in reg_write
+Message-ID: <alkZiozKVGlAYVUb@ashevche-desk.local>
+References: <20260715195520.25410-1-linkmauve@linkmauve.fr>
+ <alieVR1cOtOySi4_@ashevche-desk.local>
+ <ali7bki3jqpd8ckE@luna>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20260702-add-mcu-fan-khadas-vim4-v8-0-244feee91a36@aliel.fr>
+In-Reply-To: <ali7bki3jqpd8ckE@luna>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260716_104910_404297_4BFC71FD 
+X-CRM114-Status: GOOD (  13.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,28 +120,21 @@ Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVGh1LCAwMiBKdWwgMjAyNiwgUm9uYWxkIENsYXZlYXUgdmlhIEI0IFJlbGF5IHdyb3RlOgoK
-PiBUaGUgS2hhZGFzIFZJTTQgYm9hcmQgZmVhdHVyZXMgYSBkaWZmZXJlbnQgTUNVIHZhcmlhbnQg
-Y29tcGFyZWQgdG8KPiBwcmV2aW91cyBWSU0gYm9hcmRzLgo+IFdoaWxlIGl0IHNoYXJlcyB0aGUg
-c2FtZSBJMkMtYmFzZWQgY29tbXVuaWNhdGlvbiBtb2RlbCwKPiBpdCBkaWZmZXJzIGluIHNvbWUg
-d2F5czoKPiAKPiAgIC0gQSBkaXN0aW5jdCByZWdpc3RlciBtYXAgd2l0aCBpdHMgb3duIHZvbGF0
-aWxlL3dyaXRlYWJsZSByZWdpc3RlciBzZXQKPiAgIC0gQSBmYW4gY29udHJvbCB3aXRoIDDigJMx
-MDAgbGV2ZWxzIGluc3RlYWQgb2YgdGhlIDDigJMzIGxldmVscyBwcmV2aW91c2x5Cj4gICAtIEEg
-ZmFuIHBvd2VyIHN1cHBseSBnYXRlZCB0aHJvdWdoIGEgcmVndWxhdG9yCj4gCj4gVGhpcyBzZXJp
-ZXMgYWRkcyBzdXBwb3J0IGZvciB0aGlzIG5ldyB2YXJpYW50IGJ5Ogo+IAo+ICAgMS4gUmVmYWN0
-b3JpbmcgdGhlIGtoYWRhcy1tY3UgTUZEIGRyaXZlciB0byB1c2UgcGVyLXZhcmlhbnQgZGF0YQo+
-ICAgICAgc3RydWN0dXJlcyAocmVnbWFwIGNvbmZpZywgY2VsbHMsIGZhbiBwbGF0Zm9ybSBkYXRh
-KSwKPiAgICAgIGFuZCBhZGRpbmcgdGhlIGtoYWRhcyx2aW00LW1jdSBjb21wYXRpYmxlIHN0cmlu
-Zy4KPiAKPiAgIDIuIEV4dGVuZGluZyB0aGUgZmFuIHRoZXJtYWwgZHJpdmVyIHRvIHJldHJpZXZl
-IHRoZSBmYW4gcmVnaXN0ZXIKPiAgICAgIGFuZCBtYXhpbXVtIGxldmVsIGZyb20gcGxhdGZvcm1f
-ZGF0YSwKPiAgICAgIGFuZCB0byBvcHRpb25hbGx5IG1hbmFnZSBhIHBvd2VyIHJlZ3VsYXRvciBm
-b3IgdGhlIGZhbiBzdXBwbHkuCj4gCj4gICAzLiBBZGRpbmcgdGhlIGNvcnJlc3BvbmRpbmcgRFRT
-IG5vZGUgZm9yIHRoZSBWSU00LCB3aXJpbmcgdGhlIE1DVSB0bwo+ICAgICAgdGhlIEkyQyBBT19B
-IGJ1cyBhbmQgZXhwb3NpbmcgaXQgYXMgYSB0aGVybWFsIGNvb2xpbmcgZGV2aWNlLgo+IAo+IFNp
-Z25lZC1vZmYtYnk6IFJvbmFsZCBDbGF2ZWF1IDxsaW51eC1rZXJuZWwtZGV2QGFsaWVsLmZyPgoK
-VGhlIE1GRCBwYXJ0cyBsb29rIG9rYXkuCgpJIHRoaW5rIHRoZSBUaGVybWFsIGRyaXZlciBoYXMg
-YSBkZXAgb24gdXMsIHJpZ2h0PwoKSWYgc28sIGxldCBtZSBrbm93IHdoZW4geW91IGhhdmUgdGhl
-IEFja3MgYW5kIEknbGwgbWVyZ2UgaXQuCgotLSAKTGVlIEpvbmVzCgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlz
-dApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVh
-ZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+T24gVGh1LCBKdWwgMTYsIDIwMjYgYXQgMDE6MDc6MjZQTSArMDIwMCwgTGluayBNYXV2ZSB3cm90
+ZToKPiBPbiBUaHUsIEp1bCAxNiwgMjAyNiBhdCAxMjowMzoxN1BNICswMzAwLCBBbmR5IFNoZXZj
+aGVua28gd3JvdGU6Cj4gPiBPbiBXZWQsIEp1bCAxNSwgMjAyNiBhdCAwOTo1NToxNlBNICswMjAw
+LCBMaW5rIE1hdXZlIHdyb3RlOgoKLi4uCgo+IEnigJl2ZSBhdHRhY2hlZCBhIHBhdGNoIGZpeGlu
+ZyB0aGlzIHBhcnRpY3VsYXIgaXNzdWUsIEkgd2lsbCBpbmNsdWRlIGl0IGluCj4gbXkgdjMgaWYg
+dGhhdOKAmXMgb2sgd2l0aCB5b3UgKG9yIGl0IGNvdWxkIGdvIGFzIGEgZGlmZmVyZW50IHNlcmll
+cywgSQo+IGRvbuKAmXQgY2FyZSBtdWNoKS4KCldvcmtzIGZvciBtZS4KCj4gSSB0aGluayBJ4oCZ
+dmUgZm91bmQgYW5vdGhlciBidWcgaW4gdGhhdCBkcml2ZXIsIGl0IHNheXMgLm1heF9yZWdpc3Rl
+ciA9Cj4gMHhmZmZmIGJ1dCAuc2l6ZSA9IDB4ZmZmZiwgb25lIG9yIHRoZSBvdGhlciBpcyBwcm9i
+YWJseSBvZmYtYnktb25lLCBhbmQKPiBJIHN1c3BlY3QgLnNpemUgc2hvdWxkIGJlIDB4MTAwMDAg
+aW5zdGVhZC4KClllYWgsIG1heF9yZWdpc3RlciBtZWFucyBvZmZzZXQgb2YgdGhlIGxhc3QgX2Fj
+Y2Vzc2libGVfIHJlZ2lzdGVyLgpTbywgMHhmZmZmIHNvdW5kcyBhYm91dCByaWdodCB0aGVyZS4g
+QXMgZm9yIHNpemUgYmVpbmcgMHhmZmZmLCBJIHdlYWtseQpyZW1lbWJlciB0aGF0IHRoZXJlIHdh
+cyBhIGRpc2N1c3Npb24gYWJvdXQgdGhlc2UgdmFsdWVzLiBDYW4geW91IGRpZyB0aGUKbG9yZSBh
+cmNoaXZlPwoKLS0gCldpdGggQmVzdCBSZWdhcmRzLApBbmR5IFNoZXZjaGVua28KCgoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBt
+YWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0
+cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
