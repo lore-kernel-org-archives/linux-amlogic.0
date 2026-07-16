@@ -4,104 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FEE4C4450E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jul 2026 09:03:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B94BC44501
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jul 2026 10:10:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FKdQuLtQXDjZZSATh7E37kPTl39jDJXbZG5PGdiswGQ=; b=Ld8GquBD1ZrUvP
-	TJmqTt5cEp0JsgGXDAkm8bbwZnvvV2JQjLwoo83k4YfukcuC7RrQM1mjsKmIRNLgmvLQ4YARnv67X
-	HEg6L/gLa4CZJkzyNBioIBO3q0JCB9YCkrS0jOwYL24XcTf1alPuTrvxbaf7tjvZiQ8o7+1w8rnsB
-	tQex4tR8lTBfDHjINShyElOWkiLQ2f1KA925nrm9/ADwGlChCqbSptOwqib0dmUiThyQfQfrVmCAP
-	hmInK75daOfmIF+U1mSJym44kpcZ2Vjul8KaX5T9GyURmkXDBfhymX/7ihHNGmcU+mPd2tMlizWM4
-	LdXsTHcOgMvpgF7n4C+Q==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=AKA+o0/udeevCSvzvNPCX6VDjF774HAB0y5Fwl+J5nU=; b=ehl2mrnyF9NWNs
+	VsV00p4yF2BrydtaUdVKh2irrpBKMM2Ob0JEtR3/JlDoxTXcwrkPvzmWjOwv+ZfzRq9gOhpGMfHMe
+	LgcHZ30IZFdUwbpP7DnriPDoL1N9og3F58Pb55yjTy5RSMZO8GxlmD/kMyCnwic4L4463eDu9zPCT
+	J6uxWjH7O0zJXEMNgyCpm2H7F0xDuYJTyjtNWY8csu5UfNItvvYGQHB2S3YxNZxjB7LQonIGdp2Ud
+	329rmtVGf164IM0w6Wu96waxBsztAKr6T0STzGpLsRSAFfzzv/GBSPNM3tlGhYEUDgRJFR2P9jSet
+	Q5dRuoCPfZac034EWWZw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkI0D-0000000GoCx-0Nke;
-	Thu, 16 Jul 2026 09:03:33 +0000
-Received: from mgamail.intel.com ([198.175.65.17])
+	id 1wkJ2V-0000000GyZ8-0xkr;
+	Thu, 16 Jul 2026 10:09:59 +0000
+Received: from mailgw.kylinos.cn ([124.126.103.232])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkI0A-0000000GoAK-41Uo;
-	Thu, 16 Jul 2026 09:03:32 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1784192612; x=1815728612;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=mdc0Qg0CaS9HhMRhYLzKY0lvqzMX6zDKQ+/7G+CVATM=;
-  b=jYILcZEHkQCRcC2bQQWXxoVLRN4I92P8XCKdFZP2IDy6Ih22ZzJ1LCbB
-   Zq8TzYQHi6JZkcVbCoF/Kz0JSu64HstwhjeFRhRsXP2XOwkjh6BGEARaX
-   9/g0lGizJcNKgTQDgq3Rg0vVDwJkW1cjA65yETJLHSg0MKFvPVpPh9NHW
-   mCyOzQlMVvxqsQgEU4W4XqaIKSwybDW9lzFKlFUBV7vJ8E2DGpDARdykC
-   kiQvLZjHQFhJ3YkFtkcAd+jRJiE+90chE4JzydiFncF/v1ybLaUvTfciy
-   fkIItJyvZxYlPPzD73MBMd7j2x8dWwaoj71O/fZJwY2KtaPLvXtmjg+Fl
-   w==;
-X-CSE-ConnectionGUID: Y4grOjKVQ1CtVI7OiPzs5A==
-X-CSE-MsgGUID: V3kmYgzSTOq/Q9oDEyKgIw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11847"; a="84874235"
-X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; 
-   d="scan'208";a="84874235"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jul 2026 02:03:30 -0700
-X-CSE-ConnectionGUID: lRoi4/cIQz+TT/pG5vIyBg==
-X-CSE-MsgGUID: /nbhLZgmScmziK0fSPUDtg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; 
-   d="scan'208";a="260260162"
-Received: from conormcd-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.245.26])
-  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jul 2026 02:03:20 -0700
-Date: Thu, 16 Jul 2026 12:03:17 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Link Mauve <linkmauve@linkmauve.fr>
-Cc: Srinivas Kandagatla <srini@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>, Sven Peter <sven@kernel.org>,
-	Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>,
-	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Vladimir Zapolskiy <vz@mleia.com>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	id 1wkJ2R-0000000GyX8-3pQZ;
+	Thu, 16 Jul 2026 10:09:57 +0000
+X-UUID: 77ac20b280fe11f1aa26b74ffac11d73-20260716
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.12,REQID:d3711d46-4afc-4338-ac37-b0cb538df76f,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:e7bac3a,CLOUDID:cd41769162fe44a8f4903991eaa13158,BulkI
+	D:nil,BulkQuantity:0,Recheck:0,SF:102|136|850|865|898,TC:nil,Content:0|15|
+	50,EDM:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0
+	,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 77ac20b280fe11f1aa26b74ffac11d73-20260716
+X-User: lilinmao@kylinos.cn
+Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
+	(envelope-from <lilinmao@kylinos.cn>)
+	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+	with ESMTP id 220007818; Thu, 16 Jul 2026 18:09:44 +0800
+From: Linmao Li <lilinmao@kylinos.cn>
+To: Jerome Brunet <jbrunet@baylibre.com>,
+	Mark Brown <broonie@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Kalyani Akula <kalyani.akula@amd.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
-	Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <lossin@kernel.org>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Daniel Almeida <daniel.almeida@collabora.com>,
-	Tamir Duberstein <tamird@kernel.org>,
-	Alexandre Courbot <acourbot@nvidia.com>,
-	Onur =?iso-8859-1?Q?=D6zkan?= <work@onurozkan.dev>,
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] nvmem: fix a const-unsoundness in reg_write
-Message-ID: <alieVR1cOtOySi4_@ashevche-desk.local>
-References: <20260715195520.25410-1-linkmauve@linkmauve.fr>
+	linux-sound@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Linmao Li <lilinmao@kylinos.cn>
+Subject: [PATCH] ASoC: meson: Keep link pointers valid on realloc failure
+Date: Thu, 16 Jul 2026 18:09:39 +0800
+Message-Id: <20260716100939.1381759-1-lilinmao@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20260715195520.25410-1-linkmauve@linkmauve.fr>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260716_020331_078282_EF15D356 
-X-CRM114-Status: GOOD (  18.02  )
+X-CRM114-CacheID: sfid-20260716_030956_252347_D22567BA 
+X-CRM114-Status: GOOD (  10.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,50 +83,57 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jul 15, 2026 at 09:55:16PM +0200, Link Mauve wrote:
-> This callback used to take a mutable void * for no reason, which causes
-> the compiler to be unaware that the val buffer should never be modified
-> by the callback.
-> 
-> This was found while drafting the nvmem-provider Rust abstraction.
-> 
-> Thanks to the guidance of Andy Shevchenko, this now introduces a new
-> callback and deprecates the existing one, with the goal of renaming the
-> new one into the old one once no user remains in the kernel.
+meson_card_reallocate_links() grows the DAI link and private data
+arrays with two consecutive krealloc() calls and updates the owner
+pointers only after both calls have succeeded.
 
-You forgot to use --base. It's unclear against what should be this applied.
-I tried Linux Next (next-20260715), and it fails.
+A successful krealloc() may move the data: it frees the old block and
+returns a new one. When that happens for the link array and the second
+krealloc() then fails, card->dai_link still points to the block that
+krealloc() already freed, and the error path frees the new block too.
+The probe error path then calls meson_card_clean_references(), which
+dereferences card->dai_link and kfree()s it again, resulting in a
+use-after-free and a double free.
 
-Yes, it applies against v7.2-rc3, but it means that this won't be applied on
-top of maintainer's tree (which has something already that you have to take
-into consideration).
+Set card->dai_link right after the first krealloc() succeeds and keep
+the resized array when the second call fails, so the pointer always
+refers to a valid allocation that the normal cleanup path can free.
+card->num_links is still updated only on full success, which keeps the
+cleanup limited to initialized links.
 
-For the record, the first version of the series was no go as the first patch
-there breaks the things, like
+Fixes: 7864a79f37b5 ("ASoC: meson: add axg sound card support")
+Signed-off-by: Linmao Li <lilinmao@kylinos.cn>
+---
+ sound/soc/meson/meson-card-utils.c | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
-drivers/nvmem/qfprom.c:446:22: error: incompatible function pointer types assigning to 'nvmem_reg_write_t' (aka 'int (*)(void *, unsigned int, const void *, unsigned long)') from 'int (void *, unsigned int, void *, size_t)' (aka 'int (void *, unsigned int, void *, unsigned long)') [-Wincompatible-function-pointer-types]
-  446 |                         econfig.reg_write = qfprom_reg_write;
-      |                                           ^ ~~~~~~~~~~~~~~~~
-1 error generated.
-
-This version doesn't have this issue (at least with my smoke build tests
-on x86_64).
-
-Now, what catches me is that regmap_bulk_read() proto used for both cases in
-drivers/nvmem/apple-spmi-nvmem.c without any changes. Which makes me think
-that the approach can be done in a simpler way, id est converting users first
-to use const specifiers in their callbacks first. But this trick is done with
-using (void *) casting (?) which makes warning to disappear, which is
-interesting case. So I think the Apple driver should actually use proper
-protos and hence wrappers, otherwise it makes compiler blind, which is not
-good. TL;DR: you should fix the Apple driver (and might more if any of them
-use that dirty trick).
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+diff --git a/sound/soc/meson/meson-card-utils.c b/sound/soc/meson/meson-card-utils.c
+index cdb759b466ad..38c1b2ae227f 100644
+--- a/sound/soc/meson/meson-card-utils.c
++++ b/sound/soc/meson/meson-card-utils.c
+@@ -52,19 +52,18 @@ int meson_card_reallocate_links(struct snd_soc_card *card,
+ 	if (!links)
+ 		goto err_links;
+ 
++	priv->card.dai_link = links;
++
+ 	ldata = krealloc(priv->link_data,
+ 			 num_links * sizeof(*priv->link_data),
+ 			 GFP_KERNEL | __GFP_ZERO);
+ 	if (!ldata)
+-		goto err_ldata;
++		goto err_links;
+ 
+-	priv->card.dai_link = links;
+ 	priv->link_data = ldata;
+ 	priv->card.num_links = num_links;
+ 	return 0;
+ 
+-err_ldata:
+-	kfree(links);
+ err_links:
+ 	dev_err(priv->card.dev, "failed to allocate links\n");
+ 	return -ENOMEM;
 
 _______________________________________________
 linux-amlogic mailing list
