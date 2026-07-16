@@ -4,53 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AF32C44501
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jul 2026 10:25:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AD70C44501
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jul 2026 11:07:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Fkr70g3CwC3viZEF/AG+XGJ2YfCRF+p4AIM/MUfISDs=; b=dfnI7jzS5VS5do
-	fzkttg7WCvxxYVZDY8xY/nQiX6aLxAVs8MbkhDQbkdWIIfXm4RxIwsjfYDEoMg5ojXivz74Wu/8XV
-	vUU4AQhiPmWXdkuZHs2OAqeJRAMHh8KwRFgce2TQVc97Qn+Fs7UR1tXgTLOFcusYiORILr8fbdRej
-	BN9SAFS60JnJBftyl52sqpYEf4HhbQ9bODExanLknV1eHoEPQMrQcBLrwOm+btASl/dDB+wK7Wtke
-	RUgRbcDXLDdUwUG44+qW0/4Hz6nGnR+a5s6sicTv82lKoQVW1sI6ssKPx13I1bw2CcQy6Yr86/5VI
-	GAdXZdz/QEba0N/PTV4g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=U+nVBwruzqt1l8htIa5uqB3WBgO9mQspt91EAoXrJew=; b=JYQVefkUhYwBY+xdQ6LacIOOEq
+	SdxnIaFlo2jWAjPw3HNkea6ac8fbfhY1iX0YNZNtx9kKnL9n03sA93vEB9K2j5a45/fG73Utt/Wlf
+	R7kMYOukuhz5nhmmeVlRixgcKYNLKoP/AMlmR44+D5X2uYX8GTdAWxGuw4FtEEsY/2AUrY4yKE9YR
+	+GuGWQBJWTWnvoKWi0COF34S6/YESWyksfTP7gn9VDIUewv8+0Cr2TPVvcCB+l5ZdSA+mLFOFJxk5
+	yFtLvr/8ohTzWbqy7CV8q4ZjbWVRyyQWcAZuSNZ66tmzTSMEssV8hvYpYvbSzuYsfGRbCP1s/XDXK
+	s6a2zBRw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkJHm-0000000H0bF-1jQd;
-	Thu, 16 Jul 2026 10:25:46 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1wkJwG-0000000H64Q-2pVx;
+	Thu, 16 Jul 2026 11:07:36 +0000
+Received: from [2a01:e0a:1040:9780:49:5ff:fe41:d261] (helo=luna.linkmauve.fr)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkJHl-0000000H0ag-1m2i
-	for linux-amlogic@lists.infradead.org;
-	Thu, 16 Jul 2026 10:25:45 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id E261E40385;
-	Thu, 16 Jul 2026 10:25:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B7681F00A3A;
-	Thu, 16 Jul 2026 10:25:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784197544;
-	bh=6FNbQhstUQ+nh/zZYhBzJqN5rj6ify5dRBkfLuGx6IA=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=PvD+33+HmfKCjzZvasgiDI2Q3mGgMdu7eH8txSscDi9Us+vRO8qGdk8W1Vun9znXL
-	 60VprATqpWRWQMZXrNmSE/b8I/SaCzMkqeQcZxJpa5yLPWUmLuZjggCdlMSntRl2xM
-	 6QBO6W5+qhmvdG9uNkrm2IfMESAkwxr+8C/06USuNusy3LSQLAfRHiKlvzZjhezMiO
-	 5DEXesAtgIVcfthJM2Y+yF61qOrcT5OadreS5tQ+juFOrmcXDrYNvPC2czxZSRebLu
-	 8ERz+PzuUNbHi0AtdUIRlDRQxRuBNCyx/AkKx+fNMIdTWgQ5P9zS3gYyqeC2BLwt9N
-	 HT1dR/r1dDVkQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] ASoC: meson: Keep link pointers valid on realloc
- failure
-To: "Linmao Li" <lilinmao@kylinos.cn>
-Cc: linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org
-In-Reply-To: <20260716100939.1381759-1-lilinmao@kylinos.cn>
-References: <20260716100939.1381759-1-lilinmao@kylinos.cn>
-Date: Thu, 16 Jul 2026 10:25:44 +0000
-Message-Id: <20260716102544.8B7681F00A3A@smtp.kernel.org>
+	id 1wkJwD-0000000H63o-3xk8;
+	Thu, 16 Jul 2026 11:07:35 +0000
+Received: by luna.linkmauve.fr (Postfix, from userid 1000)
+	id D604FF40D30; Thu, 16 Jul 2026 13:07:26 +0200 (CEST)
+Date: Thu, 16 Jul 2026 13:07:26 +0200
+From: Link Mauve <linkmauve@linkmauve.fr>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Link Mauve <linkmauve@linkmauve.fr>,
+	Srinivas Kandagatla <srini@kernel.org>,
+	Andy Shevchenko <andy@kernel.org>, Sven Peter <sven@kernel.org>,
+	Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>,
+	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Vladimir Zapolskiy <vz@mleia.com>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Kalyani Akula <kalyani.akula@amd.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
+	Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Daniel Almeida <daniel.almeida@collabora.com>,
+	Tamir Duberstein <tamird@kernel.org>,
+	Alexandre Courbot <acourbot@nvidia.com>,
+	Onur =?iso-8859-1?Q?=D6zkan?= <work@onurozkan.dev>,
+	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] nvmem: fix a const-unsoundness in reg_write
+Message-ID: <ali7bki3jqpd8ckE@luna>
+References: <20260715195520.25410-1-linkmauve@linkmauve.fr>
+ <alieVR1cOtOySi4_@ashevche-desk.local>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="siXK+shzjeD2fFGh"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <alieVR1cOtOySi4_@ashevche-desk.local>
+Jabber-ID: linkmauve@linkmauve.fr
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260716_040734_160303_230562E2 
+X-CRM114-Status: GOOD (  41.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,57 +91,164 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpQcmUtZXhpc3RpbmcgaXNzdWVzOgot
-IFtIaWdoXSBVbmJpbmRpbmcgdGhlIGRldmljZSBjYXVzZXMgYSB1c2UtYWZ0ZXItZnJlZSBiZWNh
-dXNlIGBtZXNvbl9jYXJkX3JlbW92ZWAgZnJlZXMgYGNhcmQtPmRhaV9saW5rYCBtYW51YWxseSBi
-ZWZvcmUgdGhlIGRldnJlcyBjYWxsYmFja3MgdW5yZWdpc3RlciB0aGUgY2FyZC4KLS0KCi0tLSBQ
-YXRjaCBbMV06IFtQQVRDSF0gQVNvQzogbWVzb246IEtlZXAgbGluayBwb2ludGVycyB2YWxpZCBv
-biByZWFsbG9jIGZhaWx1cmUgLS0tCmNvbW1pdCA2NzdhZDc1ZjVmYjVhNTc4Yjk4NGU3NDRmMjZk
-MjRiOTYxYzg5Njg1CkF1dGhvcjogTGlubWFvIExpIDxsaWxpbm1hb0BreWxpbm9zLmNuPgoKQVNv
-QzogbWVzb246IEtlZXAgbGluayBwb2ludGVycyB2YWxpZCBvbiByZWFsbG9jIGZhaWx1cmUKClRo
-aXMgY29tbWl0IGZpeGVzIGEgcG90ZW50aWFsIHVzZS1hZnRlci1mcmVlIGFuZCBkb3VibGUgZnJl
-ZSBpbiB0aGUgZXJyb3IKcGF0aCBvZiBtZXNvbl9jYXJkX3JlYWxsb2NhdGVfbGlua3MoKS4gSXQg
-dXBkYXRlcyB0aGUgY2FyZC0+ZGFpX2xpbmsKcG9pbnRlciBpbW1lZGlhdGVseSBhZnRlciB0aGUg
-Zmlyc3Qgc3VjY2Vzc2Z1bCBrcmVhbGxvYygpLCBlbnN1cmluZyB0aGUKY2xlYW51cCBwYXRoIGNh
-biBzYWZlbHkgZnJlZSB0aGUgbWVtb3J5IGlmIHRoZSBzZWNvbmQga3JlYWxsb2MoKSBmYWlscy4K
-Cj4gZGlmZiAtLWdpdCBhL3NvdW5kL3NvYy9tZXNvbi9tZXNvbi1jYXJkLXV0aWxzLmMgYi9zb3Vu
-ZC9zb2MvbWVzb24vbWVzb24tY2FyZC11dGlscy5jCj4gaW5kZXggY2RiNzU5YjQ2NmFkNC4uMzhj
-MWIyYWUyMjdmZiAxMDA2NDQKPiAtLS0gYS9zb3VuZC9zb2MvbWVzb24vbWVzb24tY2FyZC11dGls
-cy5jCj4gKysrIGIvc291bmQvc29jL21lc29uL21lc29uLWNhcmQtdXRpbHMuYwo+IEBAIC01Miwx
-OSArNTIsMTggQEAgaW50IG1lc29uX2NhcmRfcmVhbGxvY2F0ZV9saW5rcyhzdHJ1Y3Qgc25kX3Nv
-Y19jYXJkICpjYXJkLAo+ICAJaWYgKCFsaW5rcykKPiAgCQlnb3RvIGVycl9saW5rczsKPiAgCj4g
-Kwlwcml2LT5jYXJkLmRhaV9saW5rID0gbGlua3M7Cj4gKwo+ICAJbGRhdGEgPSBrcmVhbGxvYyhw
-cml2LT5saW5rX2RhdGEsCj4gIAkJCSBudW1fbGlua3MgKiBzaXplb2YoKnByaXYtPmxpbmtfZGF0
-YSksCj4gIAkJCSBHRlBfS0VSTkVMIHwgX19HRlBfWkVSTyk7Cj4gIAlpZiAoIWxkYXRhKQo+IC0J
-CWdvdG8gZXJyX2xkYXRhOwo+ICsJCWdvdG8gZXJyX2xpbmtzOwo+ICAKPiAtCXByaXYtPmNhcmQu
-ZGFpX2xpbmsgPSBsaW5rczsKPiAgCXByaXYtPmxpbmtfZGF0YSA9IGxkYXRhOwo+ICAJcHJpdi0+
-Y2FyZC5udW1fbGlua3MgPSBudW1fbGlua3M7Cj4gIAlyZXR1cm4gMDsKPiAgCj4gLWVycl9sZGF0
-YToKPiAtCWtmcmVlKGxpbmtzKTsKPiAgZXJyX2xpbmtzOgo+ICAJZGV2X2Vycihwcml2LT5jYXJk
-LmRldiwgImZhaWxlZCB0byBhbGxvY2F0ZSBsaW5rc1xuIik7Cj4gIAlyZXR1cm4gLUVOT01FTTsK
-CltTZXZlcml0eTogSGlnaF0KVGhpcyBpc24ndCBhIGJ1ZyBpbnRyb2R1Y2VkIGJ5IHRoaXMgcGF0
-Y2gsIGJ1dCBkb2VzIHVuYmluZGluZyB0aGUgZGV2aWNlCmNhdXNlIGEgdXNlLWFmdGVyLWZyZWUg
-YmVjYXVzZSBtZXNvbl9jYXJkX3JlbW92ZSgpIGZyZWVzIGNhcmQtPmRhaV9saW5rCm1hbnVhbGx5
-IGJlZm9yZSB0aGUgZGV2cmVzIGNhbGxiYWNrcyB1bnJlZ2lzdGVyIHRoZSBjYXJkPwoKV2hlbiB0
-aGUgZHJpdmVyIGlzIHVuYm91bmQsIHRoZSBkcml2ZXIgY29yZSBjYWxscyBtZXNvbl9jYXJkX3Jl
-bW92ZSgpLCB3aGljaApjYWxscyBtZXNvbl9jYXJkX2NsZWFuX3JlZmVyZW5jZXMoKSB0byBmcmVl
-IHRoZSBsaW5rczoKCnNvdW5kL3NvYy9tZXNvbi9tZXNvbi1jYXJkLXV0aWxzLmM6bWVzb25fY2Fy
-ZF9jbGVhbl9yZWZlcmVuY2VzKCkgewogICAgLi4uCiAgICBrZnJlZShjYXJkLT5kYWlfbGluayk7
-CiAgICAuLi4KfQoKT25seSBhZnRlciAucmVtb3ZlIHJldHVybnMgZG9lcyB0aGUgZHJpdmVyIGNv
-cmUgcnVuIGRldnJlcyBjYWxsYmFja3MsIHdoaWNoCmluY2x1ZGVzIHVucmVnaXN0ZXJpbmcgdGhl
-IGNhcmQgdmlhIGRldm1fc25kX3NvY19yZWdpc3Rlcl9jYXJkJ3MgY2xlYW51cApoYW5kbGVyLgoK
-VGhlIEFTb0MgdW5yZWdpc3RlciBwYXRoIGl0ZXJhdGVzIG92ZXIgYWxsIFBDTSBydW50aW1lcyBh
-bmQgZGVyZWZlcmVuY2VzCnJ0ZC0+ZGFpX2xpbmssIHdoaWNoIHBvaW50cyBkaXJlY3RseSB0byBl
-bGVtZW50cyBvZiB0aGUgYWxyZWFkeSBmcmVlZApjYXJkLT5kYWlfbGluayBhcnJheS4KCi0tIApT
-YXNoaWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nhc2hpa28uZGV2LyMvcGF0Y2hzZXQvMjAyNjA3
-MTYxMDA5MzkuMTM4MTc1OS0xLWxpbGlubWFvQGt5bGlub3MuY24/cGFydD0xCgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxp
-bmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmlu
-ZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+--siXK+shzjeD2fFGh
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+
+On Thu, Jul 16, 2026 at 12:03:17PM +0300, Andy Shevchenko wrote:
+> On Wed, Jul 15, 2026 at 09:55:16PM +0200, Link Mauve wrote:
+> > This callback used to take a mutable void * for no reason, which causes
+> > the compiler to be unaware that the val buffer should never be modified
+> > by the callback.
+> > 
+> > This was found while drafting the nvmem-provider Rust abstraction.
+> > 
+> > Thanks to the guidance of Andy Shevchenko, this now introduces a new
+> > callback and deprecates the existing one, with the goal of renaming the
+> > new one into the old one once no user remains in the kernel.
+> 
+> You forgot to use --base. It's unclear against what should be this applied.
+> I tried Linux Next (next-20260715), and it fails.
+> 
+> Yes, it applies against v7.2-rc3, but it means that this won't be applied on
+> top of maintainer's tree (which has something already that you have to take
+> into consideration).
+
+Indeed I developed against Linus’s master, I’ll rebase on linux-next for
+v3.
+
+> 
+> For the record, the first version of the series was no go as the first patch
+> there breaks the things, like
+> 
+> drivers/nvmem/qfprom.c:446:22: error: incompatible function pointer types assigning to 'nvmem_reg_write_t' (aka 'int (*)(void *, unsigned int, const void *, unsigned long)') from 'int (void *, unsigned int, void *, size_t)' (aka 'int (void *, unsigned int, void *, unsigned long)') [-Wincompatible-function-pointer-types]
+>   446 |                         econfig.reg_write = qfprom_reg_write;
+>       |                                           ^ ~~~~~~~~~~~~~~~~
+> 1 error generated.
+> 
+> This version doesn't have this issue (at least with my smoke build tests
+> on x86_64).
+
+Yup, I enabled the drivers but didn’t select COMPILE_TEST, so they
+didn’t actually build and I assumed everything was correct…  This won’t
+happen again.
+
+> 
+> Now, what catches me is that regmap_bulk_read() proto used for both cases in
+> drivers/nvmem/apple-spmi-nvmem.c without any changes. Which makes me think
+> that the approach can be done in a simpler way, id est converting users first
+> to use const specifiers in their callbacks first. But this trick is done with
+> using (void *) casting (?) which makes warning to disappear, which is
+> interesting case. So I think the Apple driver should actually use proper
+> protos and hence wrappers, otherwise it makes compiler blind, which is not
+> good. TL;DR: you should fix the Apple driver (and might more if any of them
+> use that dirty trick).
+
+This series only affects the reg_write callback, not reg_read, so it’s
+to be expected that regmap_bulk_read() keeps its void * parameter as it
+will modify it, it’s regmap_bulk_write() which correctly takes const
+void *.  The Apple driver completely removes all function pointer safety
+by casting the function into void *, although that’s not due to const
+incompatibility but due to the first argument being struct regmap *
+instead of void *.
+
+I’ve attached a patch fixing this particular issue, I will include it in
+my v3 if that’s ok with you (or it could go as a different series, I
+don’t care much).
+
+I think I’ve found another bug in that driver, it says .max_register =
+0xffff but .size = 0xffff, one or the other is probably off-by-one, and
+I suspect .size should be 0x10000 instead.
+
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
+
+Thanks!
+
+-- 
+Link Mauve
+
+--siXK+shzjeD2fFGh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment;
+	filename=0001-nvmem-apple-spmi-improve-calling-safety-with-wrapper.patch
+
+From ec85ce97c6c835d99aa28b11b78af2744b45dc49 Mon Sep 17 00:00:00 2001
+From: Link Mauve <linkmauve@linkmauve.fr>
+Date: Thu, 16 Jul 2026 12:59:13 +0200
+Subject: [PATCH] nvmem: apple-spmi: improve calling safety with wrapper
+ functions
+
+This driver used to cast the regmap_bulk_*() functions to void *,
+bypassing any compiler safety around incompatible function pointers.
+
+With two small helpers, which just convert the void * priv parameter
+into the wanted struct regmap *, we can remove the void * cast
+altogether.
+
+Signed-off-by: Link Mauve <linkmauve@linkmauve.fr>
+---
+ drivers/nvmem/apple-spmi-nvmem.c | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/nvmem/apple-spmi-nvmem.c b/drivers/nvmem/apple-spmi-nvmem.c
+index cbf25c53d048..81d9e242c836 100644
+--- a/drivers/nvmem/apple-spmi-nvmem.c
++++ b/drivers/nvmem/apple-spmi-nvmem.c
+@@ -18,6 +18,20 @@ static const struct regmap_config apple_spmi_regmap_config = {
+ 	.max_register	= 0xffff,
+ };
+ 
++static int apple_spmi_nvmem_read(void *priv, unsigned int offset,
++				 void *val, size_t bytes)
++{
++	struct regmap *regmap = priv;
++	return regmap_bulk_read(regmap, offset, val, bytes);
++}
++
++static int apple_spmi_nvmem_write(void *priv, unsigned int offset,
++				  const void *val, size_t bytes)
++{
++	struct regmap *regmap = priv;
++	return regmap_bulk_write(regmap, offset, val, bytes);
++}
++
+ static int apple_spmi_nvmem_probe(struct spmi_device *sdev)
+ {
+ 	struct regmap *regmap;
+@@ -28,8 +42,8 @@ static int apple_spmi_nvmem_probe(struct spmi_device *sdev)
+ 		.word_size = 1,
+ 		.stride = 1,
+ 		.size = 0xffff,
+-		.reg_read = (void *)regmap_bulk_read,
+-		.reg_write_const = (void *)regmap_bulk_write,
++		.reg_read = apple_spmi_nvmem_read,
++		.reg_write_const = apple_spmi_nvmem_write,
+ 	};
+ 
+ 	regmap = devm_regmap_init_spmi_ext(sdev, &apple_spmi_regmap_config);
+-- 
+2.55.0
+
+
+--siXK+shzjeD2fFGh
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--siXK+shzjeD2fFGh--
+
