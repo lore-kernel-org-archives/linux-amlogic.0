@@ -4,88 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBDBEC4450A
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jul 2026 14:27:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD5E9C4450A
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jul 2026 14:36:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iLLSaBYpnq7C4IH4Z8jr/jkzwBfZBV6ROcNg7AsVCWQ=; b=pR9R7EW318nhzl
-	VQ7mRbLxHS9siLZA7Gb4rQo31ZzvOL8BcxCoU3HikWVn1VHSu3lZntT3mMYSryMu7Sev3j1Zg9fB8
-	IR2f/pDYV8qaPS/QkKBGwdDl3tw8XDmnlGanszKkpMgWzFu+b3ciqPVu6U8F6ZX5tZKwv8ZmocxK/
-	o36GGV9r86Q0Ea3xUxVsv67/SMB8LABeofFEiu9COn60GWDPlIfOpLKOAweKl08EsGUVPHUGYCb/y
-	zwmb0Uibc07LtbI9AXcmq3UKlQDDHkooEHGASkTJ929TOS0+BBlyQZtjcWfd0+ZBEE2gzsp6T0BNY
-	HIDqORKdVFTrORO+ksVw==;
+	List-Owner; bh=nFkqk/N1r73kHNa+fWPdJPt1MIC3ZowfskSNelGAf2Y=; b=REA2iaDT2sIhkw
+	P6xuLK/wOYlHWNwoe3iJowoV2eO3aotp3PUhPWtsugPYiEWT/fZIlNc9FyIr878Q2M3TmZUvQjicq
+	WOJ6EgONrtVp7kHuQEf04C1/9cV3t8zeqhdS+SczmssOR+3wJ1rHpG2uIfI055/rr3eAKc5H+3Jj4
+	EeDPgPQRaoXfJ3UPiVEcdr5HovK+fY0Cik1TkvXAf1TyPpX9vWtPnLko425kA7+U0r+NtJzwKKuHE
+	vDWxG5IFXhi6lyJ7+2hK8ksI2d2K9Zb3bjbJc4F/fYIg3Ro/8GhNjeH53KgEL0lR4khiDqunt/RhA
+	BmKKhO+eVUmRTxjoubmQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkN3K-0000000HUQJ-0iDO;
-	Thu, 16 Jul 2026 14:27:06 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1wkNCo-0000000HVta-1kxP;
+	Thu, 16 Jul 2026 14:36:54 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkN3H-0000000HUPj-0nBt
+	id 1wkNCm-0000000HVtP-2h61
 	for linux-amlogic@lists.infradead.org;
-	Thu, 16 Jul 2026 14:27:04 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-493ec555a26so43854635e9.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 16 Jul 2026 07:27:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1784212021; x=1784816821; darn=lists.infradead.org;
-        h=content-type:mime-version:message-id:date:user-agent:references
-         :in-reply-to:subject:cc:to:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=lxE5XZQtOH+yq3837rq2MGs0Vy95QDtnOg1qhcM8VUw=;
-        b=KZtkFxuhGeVhAxZuu/sIgOK3G1s4BIGLYGBqihDX/l0+cDKKHSYNK/4tO08cqV8W7u
-         xiw1m2SWG0s2/4/qSRvWjTB5kpUXmDSBSB6GpzFAwKjuqx3HPEu8Z4y3q/WaUypMc1EW
-         XWP8sBv6sfD8qwcEcWXcDdNaR3cltgRCf9dXwS/wf6YQDN4Q71GzHMvBaDPB5ChR+WIG
-         TwS9ZPmvDLrIFfcb4KJBO/7HjoO+xiRq+buHpbWqyvovTkV4TL1eWEkkoOBTwD5LA47P
-         dltDqU596AESDvjfw+OhO9pIARhbryKcOIFOAS9jGB2xGQQS/Qp7W7Ii5zB1+SXQLdYq
-         VfBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784212021; x=1784816821;
-        h=content-type:mime-version:message-id:date:user-agent:references
-         :in-reply-to:subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to:content-type;
-        bh=lxE5XZQtOH+yq3837rq2MGs0Vy95QDtnOg1qhcM8VUw=;
-        b=Lo9yU7nZoGHsMt44IynJUVVDaw4etSMrcpdQ7tYJm5hfd67UAOIPvBX6AQ4IWht78S
-         ckG+xwjN9HFDI9aSLmoZMMtmJmHSUc8eMhlEGSCqWY+8/wHgm+GCuTcemvfaiaG7kK7u
-         2QrLIg8mVkHZIyXSFbdasXLbacxM6TvAR1qej6bqMKmu8Bpwa4vbJJVrNejBj4MzM/p3
-         8XyvU7jbOlixfVi0coJGhWl4lk65YWx8WlMpIG6di9crAD65nG3qd7lwW3cBCSFNZ3Rg
-         7Q4gCMGm3keqW2mxGYBIhq2wfAliqWwfqVAWTXxa13zLne1JJc2If4ICjbiE10QON6JZ
-         GpqQ==
-X-Forwarded-Encrypted: i=1; AHgh+RofF4W2PcSeRyCSfjdNyfaAy+B5wIibzp5gXNDFeis6iFglBEKYjHS5R0XepR5NHZvgJU8DBDXIBs0OBHol@lists.infradead.org
-X-Gm-Message-State: AOJu0Yxc70q1sdltXYedzgEM2hZco25XwKZiWa3/oywhEYXHWnUf2X2y
-	W76N340BefwE7chaepo/XjaxToXeBAvfpuynmr9Lqfy9Ke0HZvtTE2iZQNKg+F/AyOc=
-X-Gm-Gg: AfdE7cmBb0Rd61NRSv6WV3N6u8QV0kVc4dWrlkBEK5wVmwJtJEB95tp/qt3JD2Ty3TV
-	8KPDN+egR/4qTpKWoj6sOlblvEi2hCkMF6atkKf3EPU8H3coBUb1WCs2Z2n050OqEZZIazxMbGh
-	U/GRtP049IK8i/XO/Fbe8wYP+PRpH+hmJQXqvoLo6CYB5uScO+tNZcDMkYsAQ+WwRkHogIPZHxT
-	OaN2HqeBAaFxFwVObf0UPuKzFd8m0db7+uCvrzW3auaWC5PHBz4qA+oNonkhcC9zklfRHLMVDDa
-	eZ8TGvcONBom98gdd+z244F1M0duZV1VxbURMRa0qykz+2by6PiUrY2vMKJFqWfGF4l0H9k0KtN
-	W3xd2tMDnzqWQxZinDsCF+cl7o7LzVv5LWKUYiY/xwz/vvIStwaHFbyVBAEimY+lYJvnvvW1yEF
-	wcpLku9T4lAP0=
-X-Received: by 2002:a05:600d:6446:20b0:493:e034:a3b5 with SMTP id 5b1f17b1804b1-4953c27ab18mr65173875e9.24.1784212021209;
-        Thu, 16 Jul 2026 07:27:01 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:9758:7353:c342:aed3])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-4953c704bfasm134422995e9.2.2026.07.16.07.27.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jul 2026 07:27:00 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: sashiko-bot@kernel.org
-Cc: "Linmao Li" <lilinmao@kylinos.cn>,  sashiko-reviews@lists.linux.dev,
-  linux-amlogic@lists.infradead.org,  neil.armstrong@linaro.org
-Subject: Re: [PATCH] ASoC: meson: Keep link pointers valid on realloc failure
-In-Reply-To: <20260716102544.8B7681F00A3A@smtp.kernel.org>
-	(sashiko-bot@kernel.org's message of "Thu, 16 Jul 2026 10:25:44
-	+0000")
-References: <20260716100939.1381759-1-lilinmao@kylinos.cn>
-	<20260716102544.8B7681F00A3A@smtp.kernel.org>
-User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Thu, 16 Jul 2026 16:26:58 +0200
-Message-ID: <1jbjc7f1sd.fsf@starbuckisacylon.baylibre.com>
-MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260716_072703_245245_D7AF5459 
-X-CRM114-Status: GOOD (  16.72  )
+	Thu, 16 Jul 2026 14:36:52 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 1AAF06001A;
+	Thu, 16 Jul 2026 14:36:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A5741F000E9;
+	Thu, 16 Jul 2026 14:36:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784212611;
+	bh=cc/rUnB2f0Hj2xStKlqesGJ5W+XViSIpkOWjpFEnuzM=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=TojUgrUmMMLlz8B5jvLBTSRtycWn5bZw4r5cx+Rc/j/nrp4fXHA/jZSuoyVGitBT/
+	 QlkHcc+4MmmGJlqWdoawZ/QlY35mNrfekvM5w/bSFXMUCNoG9tNkZdtCQ0JdzuRMD3
+	 kRGQbo2heD/o5VavCU46V0bXlb8YauCkyeZzPZ7O16FlmTXGydftou75DhOajh88Df
+	 sODuxn5wN5wuxiSNFozG/8+VIjPf81XRHMfbehVK5B0BKZhS66oBmezI6/z8dDbMvL
+	 qlNkVXp6JywAIqmQtjZJeKmGhSio3hVH3ohH94VrtlxLybDHY3hC8X2FWocgttC/Jg
+	 pnRw9ydx8VRXg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 4/4] firmware: meson: pass a const buffer to
+ meson_sm_call_write()
+To: "Link Mauve" <linkmauve@linkmauve.fr>
+Cc: neil.armstrong@linaro.org, Frank.Li@kernel.org, imx@lists.linux.dev, ojeda@kernel.org, linux-amlogic@lists.infradead.org
+In-Reply-To: <20260716142415.28718-5-linkmauve@linkmauve.fr>
+References: <20260716142415.28718-1-linkmauve@linkmauve.fr>
+ <20260716142415.28718-5-linkmauve@linkmauve.fr>
+Date: Thu, 16 Jul 2026 14:36:51 +0000
+Message-Id: <20260716143651.6A5741F000E9@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,88 +63,69 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On jeu. 16 juil. 2026 at 10:25, sashiko-bot@kernel.org wrote:
-
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
->
-> Pre-existing issues:
-> - [High] Unbinding the device causes a use-after-free because `meson_card_remove` frees `card->dai_link` manually before the devres callbacks unregister the card.
-> --
->
-> --- Patch [1]: [PATCH] ASoC: meson: Keep link pointers valid on realloc failure ---
-> commit 677ad75f5fb5a578b984e744f26d24b961c89685
-> Author: Linmao Li <lilinmao@kylinos.cn>
->
-> ASoC: meson: Keep link pointers valid on realloc failure
->
-> This commit fixes a potential use-after-free and double free in the error
-> path of meson_card_reallocate_links(). It updates the card->dai_link
-> pointer immediately after the first successful krealloc(), ensuring the
-> cleanup path can safely free the memory if the second krealloc() fails.
->
->> diff --git a/sound/soc/meson/meson-card-utils.c b/sound/soc/meson/meson-card-utils.c
->> index cdb759b466ad4..38c1b2ae227ff 100644
->> --- a/sound/soc/meson/meson-card-utils.c
->> +++ b/sound/soc/meson/meson-card-utils.c
->> @@ -52,19 +52,18 @@ int meson_card_reallocate_links(struct snd_soc_card *card,
->>  	if (!links)
->>  		goto err_links;
->>  
->> +	priv->card.dai_link = links;
->> +
->>  	ldata = krealloc(priv->link_data,
->>  			 num_links * sizeof(*priv->link_data),
->>  			 GFP_KERNEL | __GFP_ZERO);
->>  	if (!ldata)
->> -		goto err_ldata;
->> +		goto err_links;
->>  
->> -	priv->card.dai_link = links;
->>  	priv->link_data = ldata;
->>  	priv->card.num_links = num_links;
->>  	return 0;
->>  
->> -err_ldata:
->> -	kfree(links);
->>  err_links:
->>  	dev_err(priv->card.dev, "failed to allocate links\n");
->>  	return -ENOMEM;
->
-> [Severity: High]
-> This isn't a bug introduced by this patch, but does unbinding the device
-> cause a use-after-free because meson_card_remove() frees card->dai_link
-> manually before the devres callbacks unregister the card?
->
-> When the driver is unbound, the driver core calls meson_card_remove(), which
-> calls meson_card_clean_references() to free the links:
->
-> sound/soc/meson/meson-card-utils.c:meson_card_clean_references() {
->     ...
->     kfree(card->dai_link);
->     ...
-> }
->
-> Only after .remove returns does the driver core run devres callbacks, which
-> includes unregistering the card via devm_snd_soc_register_card's cleanup
-> handler.
->
-> The ASoC unregister path iterates over all PCM runtimes and dereferences
-> rtd->dai_link, which points directly to elements of the already freed
-> card->dai_link array.
-
-Indeed. We need to move away from devres card registration to deregister
-the card before freeing the rest in the ressource clean up. I'll do so
-as soon as we have the v2 of this change.
-
--- 
-Jerome
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MiBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpQcmUtZXhpc3RpbmcgaXNzdWVzOgot
+IFtIaWdoXSBgbWVzb25fc21fY2FsbCgpYCBwcm9wYWdhdGVzIFNNQyBmYWlsdXJlcyB2aWEgaXRz
+IG91dHB1dCBwYXJhbWV0ZXIgYCpyZXRgIGJ1dCB1bmNvbmRpdGlvbmFsbHkgcmV0dXJucyAwIG9u
+IHN1Y2Nlc3MuIENhbGxlcnMgaW5jb3JyZWN0bHkgY2hlY2sgdGhlIHJldHVybiB2YWx1ZSBpbnN0
+ZWFkIG9mIHZhbGlkYXRpbmcgdGhlIG91dHB1dCBwYXJhbWV0ZXIsIGxlYWRpbmcgdG8gc2lsZW50
+bHkgaWdub3JlZCBlcnJvcnMgYW5kIHN0YXRlIGNvcnJ1cHRpb24uCi0gW0hpZ2hdIE1pc3Npbmcg
+bXV0dWFsIGV4Y2x1c2lvbiBpbiBgbWVzb25fc21fY2FsbF9yZWFkYCBhbmQgYG1lc29uX3NtX2Nh
+bGxfd3JpdGVgIHdoZW4gYWNjZXNzaW5nIHRoZSBzaGFyZWQgSU8gbWVtb3J5IGJ1ZmZlcnMgYGZ3
+LT5zbV9zaG1lbV9pbl9iYXNlYCBhbmQgYGZ3LT5zbV9zaG1lbV9vdXRfYmFzZWAuCi0tCgotLS0g
+UGF0Y2ggWzRdOiBbUEFUQ0ggdjMgNC80XSBmaXJtd2FyZTogbWVzb246IHBhc3MgYSBjb25zdCBi
+dWZmZXIgdG8gbWVzb25fc21fY2FsbF93cml0ZSgpIC0tLQpjb21taXQgZGFmZWRkY2MwMGU2MGQ4
+YmFmNGZjMjBlOGY4ZjJmNjI4NmEzM2RiMwpBdXRob3I6IExpbmsgTWF1dmUgPGxpbmttYXV2ZUBs
+aW5rbWF1dmUuZnI+CgpmaXJtd2FyZTogbWVzb246IHBhc3MgYSBjb25zdCBidWZmZXIgdG8gbWVz
+b25fc21fY2FsbF93cml0ZSgpCgpUaGlzIGNvbW1pdCB1cGRhdGVzIHRoZSBtZXNvbl9zbV9jYWxs
+X3dyaXRlKCkgc2lnbmF0dXJlIHRvIGFjY2VwdCBhCmNvbnN0IHZvaWQgKmJ1ZmZlciBpbnN0ZWFk
+IG9mIHZvaWQgKmJ1ZmZlci4gSXQgYWxzbyByZW1vdmVzIHVubmVjZXNzYXJ5CmNhc3RzIHRvICh1
+OCAqKSBpbiBtZXNvbl9lZnVzZV9yZWFkKCkgYW5kIG1lc29uX2VmdXNlX3dyaXRlKCkgd2hlbgpw
+YXNzaW5nIHRoZSBidWZmZXIgdG8gdGhlIFNNQyBjYWxsIGZ1bmN0aW9ucy4KCj4gZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZmlybXdhcmUvbWVzb24vbWVzb25fc20uYyBiL2RyaXZlcnMvZmlybXdhcmUv
+bWVzb24vbWVzb25fc20uYwo+IGluZGV4IGFiOTc1MWE1OWI1NTIuLjVkNGRhMmUzYzNhOTQgMTAw
+NjQ0Cj4gLS0tIGEvZHJpdmVycy9maXJtd2FyZS9tZXNvbi9tZXNvbl9zbS5jCj4gKysrIGIvZHJp
+dmVycy9maXJtd2FyZS9tZXNvbi9tZXNvbl9zbS5jCj4gQEAgLTE5Niw3ICsxOTYsNyBAQCBFWFBP
+UlRfU1lNQk9MKG1lc29uX3NtX2NhbGxfcmVhZCk7Cj4gICAqCj4gICAqIFJldHVybjoJc2l6ZSBv
+ZiBzZW50IGRhdGEgb24gc3VjY2VzcywgYSBuZWdhdGl2ZSB2YWx1ZSBvbiBlcnJvcgo+ICAgKi8K
+PiAtaW50IG1lc29uX3NtX2NhbGxfd3JpdGUoc3RydWN0IG1lc29uX3NtX2Zpcm13YXJlICpmdywg
+dm9pZCAqYnVmZmVyLAo+ICtpbnQgbWVzb25fc21fY2FsbF93cml0ZShzdHJ1Y3QgbWVzb25fc21f
+ZmlybXdhcmUgKmZ3LCBjb25zdCB2b2lkICpidWZmZXIsCj4gIAkJCXVuc2lnbmVkIGludCBzaXpl
+LCB1bnNpZ25lZCBpbnQgY21kX2luZGV4LCB1MzIgYXJnMCwKPiAgCQkJdTMyIGFyZzEsIHUzMiBh
+cmcyLCB1MzIgYXJnMywgdTMyIGFyZzQpCj4gIHsKCltTZXZlcml0eTogSGlnaF0KVGhpcyBpcyBh
+IHByZS1leGlzdGluZyBpc3N1ZSwgYnV0IHdoaWxlIHJldmlld2luZyB0aGlzIGZ1bmN0aW9uLCBp
+cyB0aGVyZSBhCm1pc3NpbmcgbG9jayB3aGVuIGFjY2Vzc2luZyBzaGFyZWQgSU8gbWVtb3J5PwoK
+SW4gbWVzb25fc21fY2FsbF93cml0ZSgpLCB3ZSBjb3B5IGRhdGEgdG8gc2hhcmVkIElPIG1lbW9y
+eSBhbmQgZXhlY3V0ZQphbiBTTUMgY2FsbDoKCgltZW1jcHkoZnctPnNtX3NobWVtX2luX2Jhc2Us
+IGJ1ZmZlciwgc2l6ZSk7CgoJaWYgKG1lc29uX3NtX2NhbGwoZncsIGNtZF9pbmRleCwgJndyaXR0
+ZW4sIGFyZzAsIGFyZzEsIGFyZzIsIGFyZzMsIGFyZzQpIDwgMCkKCklmIG11bHRpcGxlIHRocmVh
+ZHMgY2FsbCBtZXNvbl9zbV9jYWxsX3dyaXRlKCkgb3IgbWVzb25fc21fY2FsbF9yZWFkKCkKY29u
+Y3VycmVudGx5LCBjb3VsZCB0aGV5IGNsb2JiZXIgdGhlIHNoYXJlZCBJTyBtZW1vcnkgYnVmZmVy
+cyBiZWZvcmUgdGhlClNlY3VyZSBNb25pdG9yIGV4ZWN1dGVzIHRoZSBjb21tYW5kPyBBY2Nlc3Mg
+dG8gZnctPnNtX3NobWVtX2luX2Jhc2UgYW5kCmZ3LT5zbV9zaG1lbV9vdXRfYmFzZSBkb2VzIG5v
+dCBhcHBlYXIgdG8gYmUgc2VyaWFsaXplZCB3aXRoIGEgbXV0ZXguCgpbU2V2ZXJpdHk6IEhpZ2hd
+ClRoaXMgaXNuJ3QgYSBidWcgaW50cm9kdWNlZCBieSB0aGlzIHBhdGNoLCBidXQgZG9lcyBtZXNv
+bl9zbV9jYWxsKCkgbWFzawpTTUMgZXhlY3V0aW9uIGZhaWx1cmVzPwoKTG9va2luZyBhdCBtZXNv
+bl9zbV9jYWxsX3dyaXRlKCksIGl0IGNoZWNrcyB0aGUgcmV0dXJuIHZhbHVlOgoKCWlmIChtZXNv
+bl9zbV9jYWxsKGZ3LCBjbWRfaW5kZXgsICZ3cml0dGVuLCBhcmcwLCBhcmcxLCBhcmcyLCBhcmcz
+LCBhcmc0KSA8IDApCgkJcmV0dXJuIC1FSU5WQUw7CgpIb3dldmVyLCBtZXNvbl9zbV9jYWxsKCkg
+dW5jb25kaXRpb25hbGx5IHJldHVybnMgMDoKCmRyaXZlcnMvZmlybXdhcmUvbWVzb24vbWVzb25f
+c20uYzptZXNvbl9zbV9jYWxsKCkKCWxyZXQgPSBfX21lc29uX3NtX2NhbGwoY21kLCBhcmcwLCBh
+cmcxLCBhcmcyLCBhcmczLCBhcmc0KTsKCglpZiAocmV0KQoJCSpyZXQgPSBscmV0OwoKCXJldHVy
+biAwOwoKQmVjYXVzZSBpdCBhbHdheXMgcmV0dXJucyAwLCBjYWxsZXJzIGNoZWNraW5nIHRoZSBy
+ZXR1cm4gdmFsdWUgaW5zdGVhZCBvZgp0aGUgb3V0cHV0IHBhcmFtZXRlciB3aWxsIHNpbGVudGx5
+IGlnbm9yZSBlcnJvcnMuIENvdWxkIHRoaXMgY2F1c2UgZHJpdmVycwpsaWtlIG1lc29uLWVmdXNl
+IG9yIGFtbG9naWNfdGhlcm1hbCB0byB0cmVhdCBlcnJvciBjb2RlcyBhcyB2YWxpZCBkYXRhIGFu
+ZApjb3JydXB0IHN0YXRlPwoKLS0gClNhc2hpa28gQUkgcmV2aWV3IMK3IGh0dHBzOi8vc2FzaGlr
+by5kZXYvIy9wYXRjaHNldC8yMDI2MDcxNjE0MjQxNS4yODcxOC0xLWxpbmttYXV2ZUBsaW5rbWF1
+dmUuZnI/cGFydD00CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJh
+ZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51
+eC1hbWxvZ2ljCg==
