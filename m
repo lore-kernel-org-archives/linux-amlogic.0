@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AD70C44501
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jul 2026 11:07:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C154CC4450A
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jul 2026 11:30:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=U+nVBwruzqt1l8htIa5uqB3WBgO9mQspt91EAoXrJew=; b=JYQVefkUhYwBY+xdQ6LacIOOEq
-	SdxnIaFlo2jWAjPw3HNkea6ac8fbfhY1iX0YNZNtx9kKnL9n03sA93vEB9K2j5a45/fG73Utt/Wlf
-	R7kMYOukuhz5nhmmeVlRixgcKYNLKoP/AMlmR44+D5X2uYX8GTdAWxGuw4FtEEsY/2AUrY4yKE9YR
-	+GuGWQBJWTWnvoKWi0COF34S6/YESWyksfTP7gn9VDIUewv8+0Cr2TPVvcCB+l5ZdSA+mLFOFJxk5
-	yFtLvr/8ohTzWbqy7CV8q4ZjbWVRyyQWcAZuSNZ66tmzTSMEssV8hvYpYvbSzuYsfGRbCP1s/XDXK
-	s6a2zBRw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=GMD2+JVKydyTrw3AZbMaHRJ25rVe6vz7qAF0L8OMPuI=; b=LxyJVeBoOOL5AY
+	M0BMYPkvxw1u2GWQY9iNIukWYY3lSU+ufzbtswJ5d0AQ9cBiOnutDarseVan4bWBP1fd+pUberaMj
+	yhzv5Ll/0p+00ha8c+oSan7FS9eCTb1P346oK3dMVtGShCLxc/uc6IZzqKeQDw30EfPaQTrTLjfmU
+	vDAEVblBZd/1WHshoyd6Y70P+zJ7CTuGGB6pJG5KtimCfl25+/P8oBy4qrzZkETOapT8xPNHxHoW5
+	Jq9GyIuu22x/fB37h+TxRvSl2JG0ZPatrtE8g27STuXKWKkirMVrWuHtUCQ8y1oUMd7YZgkJRL8Dw
+	nPjf3/+heMVT2npIEVbw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkJwG-0000000H64Q-2pVx;
-	Thu, 16 Jul 2026 11:07:36 +0000
+	id 1wkKHr-0000000H83Y-0FxL;
+	Thu, 16 Jul 2026 11:29:55 +0000
 Received: from [2a01:e0a:1040:9780:49:5ff:fe41:d261] (helo=luna.linkmauve.fr)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkJwD-0000000H63o-3xk8;
-	Thu, 16 Jul 2026 11:07:35 +0000
+	id 1wkKHo-0000000H836-2zH9;
+	Thu, 16 Jul 2026 11:29:53 +0000
 Received: by luna.linkmauve.fr (Postfix, from userid 1000)
-	id D604FF40D30; Thu, 16 Jul 2026 13:07:26 +0200 (CEST)
-Date: Thu, 16 Jul 2026 13:07:26 +0200
+	id 9FB37F40D30; Thu, 16 Jul 2026 13:29:45 +0200 (CEST)
+Date: Thu, 16 Jul 2026 13:29:44 +0200
 From: Link Mauve <linkmauve@linkmauve.fr>
 To: Andy Shevchenko <andriy.shevchenko@intel.com>
 Cc: Link Mauve <linkmauve@linkmauve.fr>,
@@ -68,18 +68,16 @@ Cc: Link Mauve <linkmauve@linkmauve.fr>,
 	linux-stm32@st-md-mailman.stormreply.com,
 	rust-for-linux@vger.kernel.org
 Subject: Re: [PATCH v2 0/2] nvmem: fix a const-unsoundness in reg_write
-Message-ID: <ali7bki3jqpd8ckE@luna>
+Message-ID: <aljAqBNVXV1aVJqx@luna>
 References: <20260715195520.25410-1-linkmauve@linkmauve.fr>
  <alieVR1cOtOySi4_@ashevche-desk.local>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="siXK+shzjeD2fFGh"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
 In-Reply-To: <alieVR1cOtOySi4_@ashevche-desk.local>
 Jabber-ID: linkmauve@linkmauve.fr
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260716_040734_160303_230562E2 
-X-CRM114-Status: GOOD (  41.05  )
+X-CRM114-CacheID: sfid-20260716_042952_889724_86842A35 
+X-CRM114-Status: GOOD (  11.04  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,164 +89,22 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
---siXK+shzjeD2fFGh
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-
-On Thu, Jul 16, 2026 at 12:03:17PM +0300, Andy Shevchenko wrote:
-> On Wed, Jul 15, 2026 at 09:55:16PM +0200, Link Mauve wrote:
-> > This callback used to take a mutable void * for no reason, which causes
-> > the compiler to be unaware that the val buffer should never be modified
-> > by the callback.
-> > 
-> > This was found while drafting the nvmem-provider Rust abstraction.
-> > 
-> > Thanks to the guidance of Andy Shevchenko, this now introduces a new
-> > callback and deprecates the existing one, with the goal of renaming the
-> > new one into the old one once no user remains in the kernel.
-> 
-> You forgot to use --base. It's unclear against what should be this applied.
-> I tried Linux Next (next-20260715), and it fails.
-> 
-> Yes, it applies against v7.2-rc3, but it means that this won't be applied on
-> top of maintainer's tree (which has something already that you have to take
-> into consideration).
-
-Indeed I developed against Linus’s master, I’ll rebase on linux-next for
-v3.
-
-> 
-> For the record, the first version of the series was no go as the first patch
-> there breaks the things, like
-> 
-> drivers/nvmem/qfprom.c:446:22: error: incompatible function pointer types assigning to 'nvmem_reg_write_t' (aka 'int (*)(void *, unsigned int, const void *, unsigned long)') from 'int (void *, unsigned int, void *, size_t)' (aka 'int (void *, unsigned int, void *, unsigned long)') [-Wincompatible-function-pointer-types]
->   446 |                         econfig.reg_write = qfprom_reg_write;
->       |                                           ^ ~~~~~~~~~~~~~~~~
-> 1 error generated.
-> 
-> This version doesn't have this issue (at least with my smoke build tests
-> on x86_64).
-
-Yup, I enabled the drivers but didn’t select COMPILE_TEST, so they
-didn’t actually build and I assumed everything was correct…  This won’t
-happen again.
-
-> 
-> Now, what catches me is that regmap_bulk_read() proto used for both cases in
-> drivers/nvmem/apple-spmi-nvmem.c without any changes. Which makes me think
-> that the approach can be done in a simpler way, id est converting users first
-> to use const specifiers in their callbacks first. But this trick is done with
-> using (void *) casting (?) which makes warning to disappear, which is
-> interesting case. So I think the Apple driver should actually use proper
-> protos and hence wrappers, otherwise it makes compiler blind, which is not
-> good. TL;DR: you should fix the Apple driver (and might more if any of them
-> use that dirty trick).
-
-This series only affects the reg_write callback, not reg_read, so it’s
-to be expected that regmap_bulk_read() keeps its void * parameter as it
-will modify it, it’s regmap_bulk_write() which correctly takes const
-void *.  The Apple driver completely removes all function pointer safety
-by casting the function into void *, although that’s not due to const
-incompatibility but due to the first argument being struct regmap *
-instead of void *.
-
-I’ve attached a patch fixing this particular issue, I will include it in
-my v3 if that’s ok with you (or it could go as a different series, I
-don’t care much).
-
-I think I’ve found another bug in that driver, it says .max_register =
-0xffff but .size = 0xffff, one or the other is probably off-by-one, and
-I suspect .size should be 0x10000 instead.
-
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
-
-Thanks!
-
--- 
-Link Mauve
-
---siXK+shzjeD2fFGh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: attachment;
-	filename=0001-nvmem-apple-spmi-improve-calling-safety-with-wrapper.patch
-
-From ec85ce97c6c835d99aa28b11b78af2744b45dc49 Mon Sep 17 00:00:00 2001
-From: Link Mauve <linkmauve@linkmauve.fr>
-Date: Thu, 16 Jul 2026 12:59:13 +0200
-Subject: [PATCH] nvmem: apple-spmi: improve calling safety with wrapper
- functions
-
-This driver used to cast the regmap_bulk_*() functions to void *,
-bypassing any compiler safety around incompatible function pointers.
-
-With two small helpers, which just convert the void * priv parameter
-into the wanted struct regmap *, we can remove the void * cast
-altogether.
-
-Signed-off-by: Link Mauve <linkmauve@linkmauve.fr>
----
- drivers/nvmem/apple-spmi-nvmem.c | 18 ++++++++++++++++--
- 1 file changed, 16 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/nvmem/apple-spmi-nvmem.c b/drivers/nvmem/apple-spmi-nvmem.c
-index cbf25c53d048..81d9e242c836 100644
---- a/drivers/nvmem/apple-spmi-nvmem.c
-+++ b/drivers/nvmem/apple-spmi-nvmem.c
-@@ -18,6 +18,20 @@ static const struct regmap_config apple_spmi_regmap_config = {
- 	.max_register	= 0xffff,
- };
- 
-+static int apple_spmi_nvmem_read(void *priv, unsigned int offset,
-+				 void *val, size_t bytes)
-+{
-+	struct regmap *regmap = priv;
-+	return regmap_bulk_read(regmap, offset, val, bytes);
-+}
-+
-+static int apple_spmi_nvmem_write(void *priv, unsigned int offset,
-+				  const void *val, size_t bytes)
-+{
-+	struct regmap *regmap = priv;
-+	return regmap_bulk_write(regmap, offset, val, bytes);
-+}
-+
- static int apple_spmi_nvmem_probe(struct spmi_device *sdev)
- {
- 	struct regmap *regmap;
-@@ -28,8 +42,8 @@ static int apple_spmi_nvmem_probe(struct spmi_device *sdev)
- 		.word_size = 1,
- 		.stride = 1,
- 		.size = 0xffff,
--		.reg_read = (void *)regmap_bulk_read,
--		.reg_write_const = (void *)regmap_bulk_write,
-+		.reg_read = apple_spmi_nvmem_read,
-+		.reg_write_const = apple_spmi_nvmem_write,
- 	};
- 
- 	regmap = devm_regmap_init_spmi_ext(sdev, &apple_spmi_regmap_config);
--- 
-2.55.0
-
-
---siXK+shzjeD2fFGh
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---siXK+shzjeD2fFGh--
-
+T24gVGh1LCBKdWwgMTYsIDIwMjYgYXQgMTI6MDM6MTdQTSArMDMwMCwgQW5keSBTaGV2Y2hlbmtv
+IHdyb3RlOgpb4oCmXQo+IC4uLi4uIFRMO0RSOiB5b3Ugc2hvdWxkIGZpeCB0aGUgQXBwbGUgZHJp
+dmVyIChhbmQgbWlnaHQgbW9yZSBpZiBhbnkgb2YgdGhlbQo+IHVzZSB0aGF0IGRpcnR5IHRyaWNr
+KS4KCkl0IHdhcyB0aGUgb25seSBvbmUgb2YgdGhlIGRyaXZlcnMvbnZtZW0vIHRvIGRvIHRoYXQu
+ICBUaHJlZSBvdGhlcgpkcml2ZXJzIHVzZSBhIHBhdHRlcm4gd2hlcmUgdGhleSBtZXJnZSByZWFk
+IGFuZCB3cml0ZSBvcGVyYXRpb25zIGludG8gYQpzaW5nbGUgYWNjZXNzIGZ1bmN0aW9uIHdpdGgg
+YSB0eXBlPXJlYWQvd3JpdGUgcGFyYW1ldGVyLCBzbyBjb25zdCBzYWZldHkKY2Fu4oCZdCB3b3Jr
+IHRoZXJlIGFuZCBJ4oCZbGwgY29udGludWUgY2FzdGluZyBmcm9tIGNvbnN0IHZvaWQgKiB0byB2
+b2lkICoKaW4gdGhlIHdyaXRlIGZ1bmN0aW9uIHRvIGtlZXAgdGhhdCBwYXR0ZXJuIHdvcmtpbmcu
+Cgo+IAo+IC0tIAo+IFdpdGggQmVzdCBSZWdhcmRzLAo+IEFuZHkgU2hldmNoZW5rbwo+IAo+IAoK
+LS0gCkxpbmsgTWF1dmUKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5m
+cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xp
+bnV4LWFtbG9naWMK
