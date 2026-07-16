@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D128C44512
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jul 2026 18:07:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80BC6C44512
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 Jul 2026 18:10:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KhBQjq/Co1RImbBPDSDQuSXItIjdXQbYeUu3G5rIo/g=; b=aDKlRLVqrGLQ4R
-	Z21Sl5DUmk8RNDH9I9oXM66VTX9/WSMGr0+eQ+xIAlYV4hs5YQsxsaetTJH5Fiozu5B3RJ4oOMwMR
-	M/HIGgc3uu0OmN84WVCYdvm3TJxX8WC0385S8Ea+Hd0gI3JPjbItVP7xL+S286f72E5hrSQmURRqe
-	zGyeTYSjzZ6Ic5aZeeGJIwf+YyEilNX2xGqwIdhauv6EsSw4lGjumwgLvwLvDtvqztiuWU37ocssm
-	SG90qlbdzJUZN443ucp5AvoNPJbhYmrzgxK1umJwS6SSp83zOHHRLHI2p1P0HTqw+udawm+B8sfup
-	oi7cTksOt0sKmIEawxfg==;
+	List-Owner; bh=1C4GxS+t7+6EUKL6spu41mjf8Adn6cHS3ZCEfMASMZ8=; b=TGjUcVjQaxmWO2
+	fxH0XYrbnoSHKUoYJwOK/0QDdDL2uENZ57v3RgtjW+HvI2T/fzvxNPZ1ur07E+DaFhlNdjk6uN8da
+	XoaLPQzk0lst9TA7euqqrhlQyLMj8BtNrslwznFlU7Of5GWsRlgvnBvCVN5yQR9J0BsWSSXUcTFSi
+	TQVIppIyaqn6WRnNvaf6As+v1Iz5cWeSf7KewJyg5NS0a0oi9qwsdmTR22obh3wVjAmqY2sAILyji
+	qDvi8WmlPPwFHkbBd5Mw92ugAlBIVc0FP/oKa2RR3rNsqUmMueWk37sre61MgvzSQQ5Mmxvz2AXqm
+	CIEnPn/8hOO9glGrhLbg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkQUb-00000000LIT-0sEE;
-	Thu, 16 Jul 2026 18:07:29 +0000
-Received: from mgamail.intel.com ([198.175.65.11])
+	id 1wkQX3-00000000LbQ-2x60;
+	Thu, 16 Jul 2026 18:10:01 +0000
+Received: from mgamail.intel.com ([192.198.163.16])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkQUY-00000000LHU-0S1c;
-	Thu, 16 Jul 2026 18:07:27 +0000
+	id 1wkQX0-00000000LaK-27OP;
+	Thu, 16 Jul 2026 18:09:59 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1784225247; x=1815761247;
+  t=1784225398; x=1815761398;
   h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=3zU61iR89W7q/QfMisKJJhMrwLX8REl16SCm0WWEqt0=;
-  b=fhg61Dh3Wd46gWKL9ZC1SP3bEprBgu6gMBlF4qsHadRjVhOy3FVWlwNN
-   SYezHP5o2yzSK8CYU4/0+E4u7a0DCKY+fm+6/0g+Z6DUs8XkpHDdl9qCb
-   H4ex7rOtKin9S58jl2YGJ99mnoKO6pN4RChFqocYgfutGOaOVPl1m6Gii
-   b8DFSKjTIMLM3XIX3SdPndxx9xqQ3Fm7e9I/dbamc0PRJt3XkU1GQolJd
-   fSObOsTDU8VUB9qk8Q1Oojy9jHAzlkzz46+UwKa3Am2axznHfUYF1ux6o
-   T2BVJCzYQJv6Wf/nRa5FK5OhN6DTpldeLr3CNwYJ8ObN128OTMGINV0ho
-   Q==;
-X-CSE-ConnectionGUID: rYbMLO5SQ9iWc5gvj/Kl/g==
-X-CSE-MsgGUID: WalfNqL2TLuKMzl/N+G2Qw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11848"; a="95250927"
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=Okw3RFWG7FVuL2+E+b2U06t94SSVvQwqXkAr8OEAKqU=;
+  b=LqB1Xcew+XZigMwi0Wv0DkAML53EpLQGeVWrNAk5Bs+fO/X9BRUFytpH
+   b4HnJddrPhcopOYfO9U5QRPyJw+/4IVxW6PrFUS3udFtJNJB1Dj+I4kX9
+   M7RgWdVX9eEQTnIZOUhjiw/1yyJbcAp7r7BBgbjNzZUOaGcytF8omPF5N
+   yYR6nxJUTnXDvv0+XbUkPegM/8qsUGyJyG8BhLe4QbM1z9yjPFq74pSQ8
+   E91FOl7VUiFcj13q2BZca61hEplpxsc3Pm/0/U49SmGQgOSgUG0QSmKDT
+   JPnXMy7lEeZ6xV2eJLefOha39n3BqLFm1TrpfGBoE2pCcvD4aA18ixEdf
+   g==;
+X-CSE-ConnectionGUID: coWayIuASLiHZkPOF1UepQ==
+X-CSE-MsgGUID: JZcS/03XSAWsj4ZtADvR7g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11848"; a="72428741"
 X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; 
-   d="scan'208";a="95250927"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jul 2026 11:07:26 -0700
-X-CSE-ConnectionGUID: APJCwIcNR12AYNk0i8vioQ==
-X-CSE-MsgGUID: qNYSOzF+SJGatiaUqRLDtg==
+   d="scan'208";a="72428741"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jul 2026 11:09:57 -0700
+X-CSE-ConnectionGUID: QdmQqkseSuO0mjX2xbzbJA==
+X-CSE-MsgGUID: f2U++eSsRAqSyMQQF+RlRQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.25,167,1779174000"; 
-   d="scan'208";a="253929056"
+   d="scan'208";a="286635995"
 Received: from conormcd-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.245.26])
-  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jul 2026 11:07:16 -0700
-Date: Thu, 16 Jul 2026 21:07:13 +0300
+  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jul 2026 11:09:48 -0700
+Date: Thu, 16 Jul 2026 21:09:45 +0300
 From: Andy Shevchenko <andriy.shevchenko@intel.com>
 To: Link Mauve <linkmauve@linkmauve.fr>
 Cc: Srinivas Kandagatla <srini@kernel.org>,
@@ -95,19 +95,17 @@ Cc: Srinivas Kandagatla <srini@kernel.org>,
 	linux-arm-msm@vger.kernel.org,
 	linux-stm32@st-md-mailman.stormreply.com,
 	rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v3 3/4] nvmem: apple-spmi: improve calling safety with
- wrapper functions
-Message-ID: <alkd0WWr3KX7MS5O@ashevche-desk.local>
+Subject: Re: [PATCH v3 0/4] nvmem: fix a const-unsoundness in reg_write
+Message-ID: <alkeaYNKHZO5Tb3p@ashevche-desk.local>
 References: <20260716142415.28718-1-linkmauve@linkmauve.fr>
- <20260716142415.28718-4-linkmauve@linkmauve.fr>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20260716142415.28718-4-linkmauve@linkmauve.fr>
+In-Reply-To: <20260716142415.28718-1-linkmauve@linkmauve.fr>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260716_110726_190471_D02A8DA0 
-X-CRM114-Status: GOOD (  12.86  )
+X-CRM114-CacheID: sfid-20260716_110958_578160_526697FC 
+X-CRM114-Status: GOOD (  12.09  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,71 +117,26 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jul 16, 2026 at 04:24:10PM +0200, Link Mauve wrote:
-> This driver used to cast the regmap_bulk_*() functions to void *,
-> bypassing any compiler safety around incompatible function pointers.
-> 
-> With two small wrappers, which just convert the void * priv parameter
-> into the wanted struct regmap *, we can remove the void * cast
-> altogether.
-
-Reported-by: ?
-
-> Signed-off-by: Link Mauve <linkmauve@linkmauve.fr>
-
-...
-
-> +static int apple_spmi_nvmem_read(void *priv, unsigned int offset,
-> +				 void *val, size_t bytes)
-> +{
-
-> +	struct regmap *regmap = priv;
-
-No need :-)
-
-> +	return regmap_bulk_read(regmap, offset, val, bytes);
-> +}
-
-static int apple_spmi_nvmem_read(void *map, unsigned int offset,
-				 void *val, size_t bytes)
-{
-	return regmap_bulk_read(map, offset, val, bytes);
-}
-
-...
-
-> +static int apple_spmi_nvmem_write(void *priv, unsigned int offset,
-> +				  const void *val, size_t bytes)
-> +{
-> +	struct regmap *regmap = priv;
-> +	return regmap_bulk_write(regmap, offset, val, bytes);
-> +}
-
-In the similar way as above.
-
-...
-
-> -		.reg_read = (void *)regmap_bulk_read,
-> -		.reg_write_const = (void *)regmap_bulk_write,
-> +		.reg_read = apple_spmi_nvmem_read,
-> +		.reg_write_const = apple_spmi_nvmem_write,
-
-I think the proper ordering is to address this first (before your main change)
-and update later with const argument. Yes, it will be a bit more changes, but
-it will be cleaner.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gVGh1LCBKdWwgMTYsIDIwMjYgYXQgMDQ6MjQ6MDdQTSArMDIwMCwgTGluayBNYXV2ZSB3cm90
+ZToKPiBUaGlzIGNhbGxiYWNrIHVzZWQgdG8gdGFrZSBhIG11dGFibGUgdm9pZCAqIGZvciBubyBy
+ZWFzb24sIHdoaWNoIGNhdXNlcwo+IHRoZSBjb21waWxlciB0byBiZSB1bmF3YXJlIHRoYXQgdGhl
+IHZhbCBidWZmZXIgc2hvdWxkIG5ldmVyIGJlIG1vZGlmaWVkCj4gYnkgdGhlIGNhbGxiYWNrLgo+
+IAo+IFRoaXMgd2FzIGZvdW5kIHdoaWxlIGRyYWZ0aW5nIHRoZSBudm1lbS1wcm92aWRlciBSdXN0
+IGFic3RyYWN0aW9uLgo+IAo+IFRoYW5rcyB0byB0aGUgZ3VpZGFuY2Ugb2YgQW5keSBTaGV2Y2hl
+bmtvLCB0aGlzIG5vdyBpbnRyb2R1Y2VzIGEgbmV3Cj4gY2FsbGJhY2sgYW5kIGRlcHJlY2F0ZXMg
+dGhlIGV4aXN0aW5nIG9uZSwgd2l0aCB0aGUgZ29hbCBvZiByZW5hbWluZyB0aGUKPiBuZXcgb25l
+IGludG8gdGhlIG9sZCBvbmUgb25jZSBubyB1c2VyIHJlbWFpbnMgaW4gdGhlIGtlcm5lbC4KCi4u
+LgoKPiAtIEFjdHVhbGx5IHRlc3Qgd2l0aCBDT01QSUxFX1RFU1QsIHdoaWNoIEkgZm9yZ290IHRv
+IGVuYWJsZSBiZWZvcmXigKYKCkhpbnQsIHlvdSBtYXkgdXNlIGZvbGRlciBhcyBhIHRhcmdldCBp
+biBgbWFrZWAuIFRvIGF2b2lkIHRoaXMganVzdCBydW4KCgltYWtlIC4uLiBhbGx5ZXNjb25maWcg
+ZHJpdmVycy9udm1lbS8KCihJbiB0aGUgc2ltaWxhciB3YXkgZm9yIGFueSBvdGhlciBmb2xkZXIg
+YW5kIGl0cyBzdWJmb2xkZXJzLikKCi0tIApXaXRoIEJlc3QgUmVnYXJkcywKQW5keSBTaGV2Y2hl
+bmtvCgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxp
+bnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9y
+ZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9n
+aWMK
