@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE1BCC44515
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B13F2C44517
 	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Jul 2026 07:49:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
-	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=T+/RteALltEUTuCQI638YfsM+GfNnU6g3+z5Frc+xx0=; b=Ea5z+BqSRcfu79
-	rYlxivfT5D2MDp/+BKZvS8eDNGBZoyDYy1VCiatNEJ91n5PTMAYDu2GPRep3whHnUZq+hiM0Ekcqn
-	K8y2QskeLWKJpuPGfp5EtLDK8OY02jF1Qc1VQ0pNW6t2HJjPq4316V4jNGEf7BtF/cp+I9DB84usa
-	qhWDT5S84vIHcLpX1u58V+cTu8yHqBAVzeuy4CgsZaeT8wzorfPXYYFh/WXGRvSFtOFxlwPOihrFo
-	NSdGesOCu1zXIfobV7Mwdx6VYZSpsbr9QUfsl5Xdg8LCpr1oBXodgD+FI+BtJflPsmklOIXL/YW/8
-	f4VWlBmenRmM6sktSHug==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=XXyW0mV+3m4H+pPgbMgt0A3FURvPtd/e+EI+o06nheM=; b=2CqWm3780MCIZM
+	nSfuu9e2isK+BXGl/uZllUR3W6maQ8nLppRWjYeEFYop6FwhHGPR0tRL8vUriDZwsiEqAI/dqEJ2w
+	G9OY9Ty6cN+K1cvO7RoLKzqIdf4uzf/okJoEZn6lDeeLgdAy4eA9tLPcwsYDlqNpCMoKiZk1goXkD
+	UGcNJVxvHwW2fil/ObCQJJKLVc3XBm+/xxraRAE0bwn0tYWHe1UsYEBcurZQXT8O0Kxfd9lhlBbfm
+	OqO/cgqqxPs0917lAFxpqmslYw0KynHX+mldzSjbIITdLEhZq/6TjS1nr3jZGX7WhY/aNMx7HcTt1
+	TEz3VfFmBYqG1BX8eadA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkdKG-00000001VfC-2F5q;
+	id 1wkdKG-00000001Vf2-1hcw;
 	Fri, 17 Jul 2026 07:49:40 +0000
 Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkdKE-00000001VeA-2kli
+	id 1wkdKE-00000001Ve9-2kq4
 	for linux-amlogic@lists.infradead.org;
 	Fri, 17 Jul 2026 07:49:38 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id DA39660204;
+	by tor.source.kernel.org (Postfix) with ESMTP id DA3E060A5E;
 	Fri, 17 Jul 2026 07:49:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6ADEFC2BCB9;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 879C8C2BCB8;
 	Fri, 17 Jul 2026 07:49:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1784274577;
-	bh=hl4y02I9tA4u+DQHQqqO/xk7mXY4kQUgmqTa/x0JXaE=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=jv1GF3bJTnz8aME1PSNqcIK970ID3TJFdrzvXhGOsalzm9MHOCJ53R438Gd75gJyu
-	 twxoUpX5J7jyJTcnMGi8dyAZPozZluUIhhackvOEyobUf7wsBM3UwFblxvnRJv1eIf
-	 0z3txs323o8SBbyZB5QUHqSPYVuaCLi4siDiV0kIeAFhYzpgMB0UYBztrQzYaygQDR
-	 xRtETdtn6PVKcam7LB8ljHWSFyzjR2Kb43YdGVVwFrDGtHEqptiB40lb//Uy8xOvkk
-	 SFt8wSFwDc01E3K3l39aStwn+lKybXN02e97LyNvIGtV3va3h2pqVYl/CH3y8hemRm
-	 jTpFVSGAeQMjw==
+	bh=kH1x/C+bNVBFlqTXRh62APgCks1TYJKRNSlv2U2wXio=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=SZn+1La8IZHMj/F+Hft3XimmAhNKNBbBpY7btB2nCkYzh5uASuYLZCLE0ENd+fKFM
+	 hLCcGPga89ooNFyPAyyJZRrmKSWi44Erww+XM0IOqA+KgHfrKmlVHeDmsDarY2jS3g
+	 acI83Xe7Vfl5sYCeUa/+WoJuMZVc1WuhM5+RwZYK6ZmsFgbHHnkWl3hHRr1ty3pY0P
+	 AAE2g/LLq0uTWmY3UC+deytZfXFP58pRC0XTG6KdS/ESDzb8OGc8cdFT5XTKKOxpEl
+	 TkfeEdxImARuwBu9QAnvwjVF7Q/78L14vJWDU7gdAkqLhqNVGX7X9YS5NruwMCds/i
+	 cUBw6dqwl25Nw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 56196C44507;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 67BB0C44514;
 	Fri, 17 Jul 2026 07:49:37 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Subject: [PATCH 0/3] spi: add support for Amlogic A9
-Date: Fri, 17 Jul 2026 07:49:32 +0000
-Message-Id: <20260717-a9-spisg-v1-0-2eeea77be19f@amlogic.com>
+Date: Fri, 17 Jul 2026 07:49:33 +0000
+Subject: [PATCH 1/3] spi: dt-bindings: amlogic: spisg: Document A9-specific
+ properties
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAIzeWWoC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDc0NT3URL3eKCzOJ03TRDy+RUAxMD40RTAyWg8oKi1LTMCrBR0bG1tQA
- yW0scWgAAAA==
-X-Change-ID: 20260715-a9-spisg-f19ce0403a50
+Message-Id: <20260717-a9-spisg-v1-1-2eeea77be19f@amlogic.com>
+References: <20260717-a9-spisg-v1-0-2eeea77be19f@amlogic.com>
+In-Reply-To: <20260717-a9-spisg-v1-0-2eeea77be19f@amlogic.com>
 To: Sunny Luo <sunny.luo@amlogic.com>, Mark Brown <broonie@kernel.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>
@@ -61,11 +60,11 @@ Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1784274574; l=813;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784274574; l=2098;
  i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=hl4y02I9tA4u+DQHQqqO/xk7mXY4kQUgmqTa/x0JXaE=;
- b=ya0yNDSjGaGqYZuUAwyX5QW7AKAbiK0wPvRNHxKiKnT5Tfk7qIdIVPww5XU87USkzsRsxrvkx
- HEhWy/wo1iQAgAXRoUww+8OAHhTjukbMZm+eJ9Ia0HW6R74Ze6bU6uO
+ bh=S01FdKqQU8iANSc5yRkrElydRThefyYyd4gl5octfjc=;
+ b=RG0aRoS+AIlkg4WEA5oEP0heq1kmYDL6XWlS3kIBwjMtntWgPInjtakXqV/ijUzySpVddZLBU
+ g1Na4VBY1l6CqcEd8EvWb2p+bXp+8rqZwcb9IglYC6vBAwyXTkrYxvV
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
@@ -88,29 +87,80 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add bindings for A9 with some features, and driver for A9 base on A4.
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Fix the incorrect keep_ss of the last descriptor.
+Document the Amlogic A9 SPISG controller and its additional
+Device Tree properties.
+
+Add the "amlogic,a9-spisg" compatible string and define the
+A9-specific "amlogic,mo-idle-output" and "amlogic,word-gap"
+properties, which configure the MOSI idle output level and
+the inter-word gap, respectively.
 
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
-Sunny Luo (1):
-      spi: amlogic: spisg: Fix the incorrect keep_ss of the last descriptor
+ .../devicetree/bindings/spi/amlogic,a4-spisg.yaml  | 36 +++++++++++++++++++---
+ 1 file changed, 32 insertions(+), 4 deletions(-)
 
-Xianwei Zhao (2):
-      spi: dt-bindings: amlogic: spisg: Document A9-specific properties
-      spi: amlogic: spisg: Add support for A9 controller features
+diff --git a/Documentation/devicetree/bindings/spi/amlogic,a4-spisg.yaml b/Documentation/devicetree/bindings/spi/amlogic,a4-spisg.yaml
+index 9bfb8089f7ea..7efdc748d566 100644
+--- a/Documentation/devicetree/bindings/spi/amlogic,a4-spisg.yaml
++++ b/Documentation/devicetree/bindings/spi/amlogic,a4-spisg.yaml
+@@ -11,12 +11,11 @@ maintainers:
+   - Xianwei Zhao <xianwei.zhao@amlogic.com>
+   - Sunny Luo <sunny.luo@amlogic.com>
+ 
+-allOf:
+-  - $ref: spi-controller.yaml#
+-
+ properties:
+   compatible:
+-    const: amlogic,a4-spisg
++    enum:
++      - amlogic,a4-spisg
++      - amlogic,a9-spisg
+ 
+   reg:
+     maxItems: 1
+@@ -42,6 +41,35 @@ required:
+   - clocks
+   - clock-names
+ 
++allOf:
++  - $ref: spi-controller.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - amlogic,a9-spisg
++    then:
++      properties:
++        amlogic,mo-idle-output:
++          description: |
++            Controls the MOSI output level when the controller is idle.
++
++            0 - Drive MOSI low
++            1 - Drive MOSI high
++            2 - Follow the last transmitted bit
++          $ref: /schemas/types.yaml#/definitions/uint32
++          enum: [0, 1, 2]
++          default: 0
++
++        amlogic,word-gap:
++          description: |
++            Number of idle clock cycles inserted between consecutive SPI
++            words.
++          $ref: /schemas/types.yaml#/definitions/uint32
++          enum: [0, 1, 2, 3]
++          default: 1
++
+ unevaluatedProperties: false
+ 
+ examples:
 
- .../devicetree/bindings/spi/amlogic,a4-spisg.yaml  | 36 ++++++++--
- drivers/spi/spi-amlogic-spisg.c                    | 78 ++++++++++++++++++++--
- 2 files changed, 103 insertions(+), 11 deletions(-)
----
-base-commit: d0b5dd16226814e5c73ba8daf88d3d91c990a38f
-change-id: 20260715-a9-spisg-f19ce0403a50
-
-Best regards,
 -- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
+2.52.0
 
 
 
