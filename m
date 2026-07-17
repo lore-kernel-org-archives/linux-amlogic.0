@@ -4,71 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12582C44512
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Jul 2026 01:25:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 347BFC4450A
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Jul 2026 03:06:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=akF/k3qmXOFMYPN7IzYSoPYpnpJ09TMo1AFw9Ipv368=; b=Ub3rR9mhNrEHQn
-	G9rid+JOiJcBG6fQGSQWa+0kxG4NFOJSAh+2xWfouEwZ5z6zQJSUCu4/iJTpVeTUpUBSOuxh1kH5X
-	TUMinoY7IHXsiy3K3qBaIRedCd66J1Toa6YnV83ueePrCPcjraofAxq+e1GB1RH7OXZDZ+ofaZLtU
-	TBR3nLKaCylBfP5zOl/In768H1W+WMgNWS2Y8MfHD9DDGQn+rtgc4U2xGFxnR/TSSKrfXRx1wkmzF
-	Xk7ZYWQyBKcfsBuQriPToPjYywWOnQmIuzy5wIVpjxnMvgnaVT7k40cuUP/AcrFGj8RUAkM9/sEfW
-	IX63SQSmhi7Thli4G24g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=vWUuLr7mTMFouuvOV238jJh3iPbW0g0Ln190Cws5+Qs=; b=K57cSbv8D6B4u6
+	zZgUnj1QX83ZrS9sOOPK34j6nwIEFh84dU2VqVZ6VnWHXc+sIU3pGhsC3YR0J2kjtvMCMCuG7nmb/
+	F4sDDB3xXSnB5wCBlvDJarR1mzQeuMVtFKH/FSqJGFYb/U6dPrhML5OPkney8IO6MBUss1gRi2ugL
+	EKsucw1P2ZQsTemK1btkHNSZ3AOLo9m9JqC/oVIWAEOC52k1mJTr9BCB5E+BrpvGMl/uUIRDHwCUT
+	NxIq6fo5hGpK7WFrL49tz/OE5aGOdcHO729iU+r5OJihd5+G2UFrl5E7hIVlmZguJEShAo/VzjUen
+	mmU0E6zwawUxu7LL5G+w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkXJt-00000000tm3-355A;
-	Fri, 17 Jul 2026 01:24:53 +0000
-Received: from mailgw.kylinos.cn ([124.126.103.232])
+	id 1wkYto-000000010q6-15lz;
+	Fri, 17 Jul 2026 03:06:04 +0000
+Received: from mail-pj1-x1031.google.com ([2607:f8b0:4864:20::1031])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkXJp-00000000tkw-1n23;
-	Fri, 17 Jul 2026 01:24:51 +0000
-X-UUID: 482e9880817e11f1aa26b74ffac11d73-20260717
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.12,REQID:266998f4-54a9-4d8c-9379-97a3e12e18c4,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:e7bac3a,CLOUDID:c7669a7dd51c54e72c32c1faefd4cd1e,BulkI
-	D:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|136|850|865|898,TC:nil,Content
-	:0|15|50,EDM:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-	,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 482e9880817e11f1aa26b74ffac11d73-20260717
-X-User: lilinmao@kylinos.cn
-Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
-	(envelope-from <lilinmao@kylinos.cn>)
-	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
-	with ESMTP id 1000324493; Fri, 17 Jul 2026 09:24:40 +0800
-From: Linmao Li <lilinmao@kylinos.cn>
-To: Jerome Brunet <jbrunet@baylibre.com>,
-	Mark Brown <broonie@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-sound@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
+	id 1wkYtm-000000010pj-2UdB
+	for linux-amlogic@lists.infradead.org;
+	Fri, 17 Jul 2026 03:06:03 +0000
+Received: by mail-pj1-x1031.google.com with SMTP id 98e67ed59e1d1-382ef647e20so6837579a91.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 16 Jul 2026 20:06:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1784257561; x=1784862361; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=mZVR56XOREeMXVCUwfvytwmladieL4xpwdBWK5Npchw=;
+        b=IL5NAV15jn8WUUqEWCU9PWPjww6HNyRtG3dF/wgWzysQlH2kZpkC2rvUg/GToMdW7E
+         VXe1dA5XMcQqX4P9t7bpCTauvGLSiauhf2O3yME20BQovs9dGLiylPVIGKpnj5rcP6ze
+         9jmYmTR1PdwOW8Sufl0Elply+GAaKh8iniUIGy5OAMKLmrQ92uNRCwWSfsQMCmk3jiMQ
+         AoZ4CmUdJtrkm3VIGirZABcsC88podgoiQLvsDxYoKmApx0RWPWGKndgE5K1ADJRgI73
+         dccHR+nHypkEGJ7crE+0lYBggKdB/CstG24NAhmB7pVxZLQVxFlhfVM/2dZDgwasx0hJ
+         fOzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784257561; x=1784862361;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=mZVR56XOREeMXVCUwfvytwmladieL4xpwdBWK5Npchw=;
+        b=lttm1KizrrUgLzsyIjdTCHuBxdzRNBqaA66IZ+J58iQLpSmPPUnBC/yq+9o/gIC9uz
+         Jdsf2B9aUWPPfY3gPnTSMRsLMTaMguLXyG0MKtDvBBKBmOUEu7yeUc+MydzerhFEZarG
+         1BPSW3oPl89vzrG/Af7JBx0WGjaCxjl8Znbq+3/DQlpbNZIBSEoFcDJTqA3UDVhCvXjg
+         /PDixECpHFeMx92DY069rFVzMo7HwDm1D126EabF792pk5Q8S7Vkj8WCyc+CpnNbBvwI
+         yTiDIa46OWJOgIHtsvYLHQOIABjIgnc3yVd01M70hm7YiYlSz6xY30sQl7T48TzXAV/B
+         7DmA==
+X-Forwarded-Encrypted: i=1; AHgh+RqWjp/az+zbVa6JVfjOKqsajlblOKMf9JUYqAECWRhrvRrsIzn3Mr8F29IQt40Fmn2iPMHhheg406NwLYPa@lists.infradead.org
+X-Gm-Message-State: AOJu0YzXH7IDB5Dg2tXsKX0r4AWq0eBl9Viyjpnv/zVaLfxFHXyCp9KD
+	BRHkTQxlL1CwXINA4LaqzjhIl3kB7k/PZYPYbz8DbzV32dkk3t8HQBOR
+X-Gm-Gg: AfdE7cnLKLDLXIx4mChoE/SGrzpq5oyE24eOU6L9/Weno7fiAMm4O+pptPnQE6iXUEm
+	kYc7hmLet43xE3IrZjh2AsPy0yKszxyMh/917z/mZSayb8g7xleqR/2du2z7ORz9cyguGqRrlxL
+	tpeYSg4vpkQVj7MD8o9rMAydikVUbA6bTNv9U7KEeTfxJ9QwdD4Hp4cVVWdOyKZyzNOijs8iLgz
+	H4Wy2MgrgCj/E1o81BSRMVDfxhQ+39x8N1scvELY0s31Ypdt/F78h7zyVo1e5+1mT6urcKKg7u1
+	vfD3Vg3bRd0OapYdja21clyQDqszgKnefcgZs4wXf4Jz4eDJW9vh+oa3BecL1PZvSJocLcTTPey
+	cGv6i5CeE6QQyY7hueYSHfjhsq+aXm1mIQ0CiAMrj3zb8vKbmuXWGmQvgNuHoEGd84OUgBsLUaS
+	3xBHYyRcXEGaqdWJUuOaK2wr3lhtVTzTrQSDSQGK1qn7kgnv1Z/fbXNOsaubwJNZgNxxJKE0Xkh
+	TaI2XCg9z62jmCSeIqDoyCsYtww65pxEG9c
+X-Received: by 2002:a17:90b:58cb:b0:381:5bd6:eb19 with SMTP id 98e67ed59e1d1-38e4b47765dmr715137a91.18.1784257561268;
+        Thu, 16 Jul 2026 20:06:01 -0700 (PDT)
+Received: from OMEN ([103.184.238.237])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-31429fe1014sm1424650eec.7.2026.07.16.20.05.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Jul 2026 20:06:00 -0700 (PDT)
+From: Alfie Varghese <alfievarghese22@gmail.com>
+To: neil.armstrong@linaro.org
+Cc: gregkh@linuxfoundation.org,
+	linux-media@vger.kernel.org,
+	linux-staging@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
-	Linmao Li <lilinmao@kylinos.cn>
-Subject: [PATCH v2] ASoC: meson: Keep link pointers valid on realloc failure
-Date: Fri, 17 Jul 2026 09:24:33 +0800
-Message-Id: <20260717012433.1432285-1-lilinmao@kylinos.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260716100939.1381759-1-lilinmao@kylinos.cn>
-References: <20260716100939.1381759-1-lilinmao@kylinos.cn>
+	linux-amlogic@lists.infradead.org,
+	dan.carpenter@linaro.org,
+	error27@gmail.com,
+	alfievarghese22@gmail.com
+Subject: [PATCH v3] staging: media: meson: vdec: propagate devm_clk_get() errors
+Date: Fri, 17 Jul 2026 08:35:58 +0530
+Message-ID: <20260717030559.167-1-alfievarghese22@gmail.com>
+X-Mailer: git-send-email 2.54.0.windows.1
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260716_182449_770015_FD99B335 
-X-CRM114-Status: GOOD (  11.19  )
+X-CRM114-CacheID: sfid-20260716_200602_636523_CA2F3A55 
+X-CRM114-Status: GOOD (  10.28  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,75 +103,55 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-meson_card_reallocate_links() grows the DAI link and private data
-arrays with two consecutive krealloc() calls and updates the owner
-pointers only after both calls have succeeded.
+vdec_probe() hardcodes -EPROBE_DEFER for all devm_clk_get() failures.
+This masks the actual error code returned by the clock framework, such
+as -ENOENT when a clock is not registered or -ENOMEM on allocation
+failure.
 
-A successful krealloc() may move the data: it frees the old block and
-returns a new one. When that happens for the link array and the second
-krealloc() then fails, card->dai_link still points to the block that
-krealloc() already freed, and the error path frees the new block too.
-The probe error path then calls meson_card_clean_references(), which
-dereferences card->dai_link and kfree()s it again, resulting in a
-use-after-free and a double free.
+Return PTR_ERR() instead to propagate the real error to the caller.
 
-Commit card->dai_link and card->num_links right after the first
-krealloc() succeeds, so the pointer always refers to a valid allocation
-that meson_card_clean_references() can walk and free. krealloc() with
-__GFP_ZERO zero-initializes the added entries, so walking them on the
-error path is safe. With both failure paths reduced to a plain return,
-drop the goto labels and the error message.
-
-Fixes: 7864a79f37b5 ("ASoC: meson: add axg sound card support")
-Signed-off-by: Linmao Li <lilinmao@kylinos.cn>
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+Reviewed-by: Dan Carpenter <error27@gmail.com>
+Signed-off-by: Alfie Varghese <alfievarghese22@gmail.com>
 ---
-v2:
-- also commit num_links together with dai_link (Jerome)
-- drop the goto labels and the dev_err() (Jerome)
-- comment the ldata failure path (Jerome)
+ drivers/staging/media/meson/vdec/vdec.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
- sound/soc/meson/meson-card-utils.c | 17 ++++++-----------
- 1 file changed, 6 insertions(+), 11 deletions(-)
-
-diff --git a/sound/soc/meson/meson-card-utils.c b/sound/soc/meson/meson-card-utils.c
-index cdb759b466ad..8617a4661a33 100644
---- a/sound/soc/meson/meson-card-utils.c
-+++ b/sound/soc/meson/meson-card-utils.c
-@@ -50,25 +50,20 @@ int meson_card_reallocate_links(struct snd_soc_card *card,
- 			 num_links * sizeof(*priv->card.dai_link),
- 			 GFP_KERNEL | __GFP_ZERO);
- 	if (!links)
--		goto err_links;
-+		return -ENOMEM;
-+
-+	priv->card.dai_link = links;
-+	priv->card.num_links = num_links;
+diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
+index a039d925c0fe..fba1e7f88d81 100644
+--- a/drivers/staging/media/meson/vdec/vdec.c
++++ b/drivers/staging/media/meson/vdec/vdec.c
+@@ -1026,24 +1026,24 @@ static int vdec_probe(struct platform_device *pdev)
+ 	    core->platform->revision == VDEC_REVISION_SM1) {
+ 		core->vdec_hevcf_clk = devm_clk_get(dev, "vdec_hevcf");
+ 		if (IS_ERR(core->vdec_hevcf_clk))
+-			return -EPROBE_DEFER;
++			return PTR_ERR(core->vdec_hevcf_clk);
+ 	}
  
- 	ldata = krealloc(priv->link_data,
- 			 num_links * sizeof(*priv->link_data),
- 			 GFP_KERNEL | __GFP_ZERO);
-+	/* meson_card_clean_references() will free the links on this error path */
- 	if (!ldata)
--		goto err_ldata;
-+		return -ENOMEM;
+ 	core->dos_parser_clk = devm_clk_get(dev, "dos_parser");
+ 	if (IS_ERR(core->dos_parser_clk))
+-		return -EPROBE_DEFER;
++		return PTR_ERR(core->dos_parser_clk);
  
--	priv->card.dai_link = links;
- 	priv->link_data = ldata;
--	priv->card.num_links = num_links;
- 	return 0;
--
--err_ldata:
--	kfree(links);
--err_links:
--	dev_err(priv->card.dev, "failed to allocate links\n");
--	return -ENOMEM;
--
- }
- EXPORT_SYMBOL_GPL(meson_card_reallocate_links);
+ 	core->dos_clk = devm_clk_get(dev, "dos");
+ 	if (IS_ERR(core->dos_clk))
+-		return -EPROBE_DEFER;
++		return PTR_ERR(core->dos_clk);
  
+ 	core->vdec_1_clk = devm_clk_get(dev, "vdec_1");
+ 	if (IS_ERR(core->vdec_1_clk))
+-		return -EPROBE_DEFER;
++		return PTR_ERR(core->vdec_1_clk);
+ 
+ 	core->vdec_hevc_clk = devm_clk_get(dev, "vdec_hevc");
+ 	if (IS_ERR(core->vdec_hevc_clk))
+-		return -EPROBE_DEFER;
++		return PTR_ERR(core->vdec_hevc_clk);
+ 
+ 	irq = platform_get_irq_byname(pdev, "vdec");
+ 	if (irq < 0)
 -- 
-2.25.1
+2.54.0.windows.1
 
 
 _______________________________________________
