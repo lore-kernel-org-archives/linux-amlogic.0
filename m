@@ -4,72 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C97CC4451C
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Jul 2026 07:49:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8BC0C44507
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Jul 2026 08:01:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yjzcGuKNXY6ri+hRJToYNf0NsEzZ2lyy0jVXYvjAt+Q=; b=p+LblzJH4KXO99
-	LF77DDTSo37JIZKdQHPq/VkZuH4vqTuFa6UvxONMk4tqCDrpOoZdXaFjvBoNRSt7tXvoIAudL0k5S
-	/jICtRmrQQuUXMoaU6NkI62UGfxICm8px1WcleOs9SyqxF9rJqVqSRr/uzsNp3ygv6hqKcgteoczo
-	W9Cdcbg0nOqj85pYWnl9oSvW/1W04Ui/xCQMpUA94EwEI+NAkaOsxrr7zLFP7rfprfWQ8HAzQ8cyl
-	mtHLB8NQWPKyRimVvAvdSdDjBhh+vun/tidBleG6WZqT16yiBkPEEUCs32GFqVHcP7bddFsawHTUR
-	riEAZxTfJr+f3Ip+NWRA==;
+	List-Owner; bh=laG7FEZBU7uuoSz4l3AEoiA3ilvkGr/5HHUTbV4lOaY=; b=3YqmrBoYHQHcKy
+	mJCMgvBq3ENSt3jA7+LfUqtyMM5Jwd7LrcJHqodH9S33VROi0G9x/2E22iwptRfuRvtqEDSeqcCtr
+	D4SYl82AzRek6sahFkTg5LYV0kdTsWasFZEMQu2JaQ+7CZDQjKX8I2edq2fTI+VYQQhnrlpQBT9Q+
+	GADSTL4Ot00aB+ezcYfW0RVMS7VEAE0bvDlJCZw6+2V3hNJV/7pXkd2MiVAPfV422Em2QLDKUsrGq
+	RYvvLDfbKbLICjuGg2vedGoeBhz5/uyvwWjNLYFSacsROOrwnYeWT0bd9bWxMbdXpLDj26ATbawQr
+	SJnFDyd5Y4WvRwwvIm+w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkdKG-00000001VfG-2WDx;
-	Fri, 17 Jul 2026 07:49:40 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1wkdVL-00000001XcO-1ZuG;
+	Fri, 17 Jul 2026 08:01:07 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkdKE-00000001Ve8-0cxu
+	id 1wkdVK-00000001Xc6-3kR6
 	for linux-amlogic@lists.infradead.org;
-	Fri, 17 Jul 2026 07:49:38 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id DC98B43D13;
-	Fri, 17 Jul 2026 07:49:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A59A4C2BCC9;
-	Fri, 17 Jul 2026 07:49:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1784274577;
-	bh=qS2DLzuRq1fyJA41MJOJ8kFpVv3gdzDCD3kTwkTmt6A=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=eNeG6Ntf+UJgsZK9CAj3BQGtEF0EUB5NDYFX3KnQ5TLuIHznHjieVFYbkvWqgms7g
-	 AquXiV3RlHyla0/D0DLSqeSf0SUIybEiY7vUWUEiD/CNXXZn75wu4AJ322HQrJYTiy
-	 TCQBFu2ME/dfYG5voxbJD4d1VsQ4J/7uq7MNsiTLa/oaprhAv/pi9H8VJQlUspmHc1
-	 EKMmqJPluf38SfsEfCHq3AaUSVpKxrs4yMPy231ws9vcGilm2ZXGwx/Y2GGu6BJp7b
-	 RT4Gkp6c9jckOX1WLO5H9am5PslcyUs8ZliBpm+UqJcUJqP2rY1xLhIt7CwUXuFTVR
-	 P/1z8mpDNLDVA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8AFF8C44515;
-	Fri, 17 Jul 2026 07:49:37 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Fri, 17 Jul 2026 07:49:35 +0000
-Subject: [PATCH 3/3] spi: amlogic: spisg: Add support for A9 controller
- features
-MIME-Version: 1.0
-Message-Id: <20260717-a9-spisg-v1-3-2eeea77be19f@amlogic.com>
+	Fri, 17 Jul 2026 08:01:06 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 62871418DC;
+	Fri, 17 Jul 2026 08:01:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA9F51F000E9;
+	Fri, 17 Jul 2026 08:01:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784275266;
+	bh=Uu0wTGd+OyPGInm31ZdHqR2IOPXBZooPDxLPi8J3bTY=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=MYz8vQ1ELp4H3leqvJQE2fVrTtze647R5VWnOmzIMj260HiJB7r83KFxNB7DqReej
+	 IIOUJu6ZODqigChHf894NHWaOpB4Fx+zeKHlghcnnYq/9EifUKgekthv4tqtmleOc3
+	 9UEUtPoStrZu48EH4e+2iEoQdf9OsvGbEjRXWQcw0/f2+kZukQDzf0WO8WoVHsX8Oy
+	 920We/b8tPSeYN/9i9JzZLPIn4b0KTfbIzoQDvWIVB3z8L4WiNbz84jRAMEN5z3fzF
+	 SmFJBFqgE+Jru4B5rQkFgwBMyswAtctrLOU+2DvPVIuG2ChJXsWIitfJXh38VNm14F
+	 n96E93tnbx2Zw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 2/3] spi: amlogic: spisg: Fix the incorrect keep_ss of
+ the last descriptor
+To: "Xianwei Zhao" <xianwei.zhao@amlogic.com>
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org, robh@kernel.org
+In-Reply-To: <20260717-a9-spisg-v1-2-2eeea77be19f@amlogic.com>
 References: <20260717-a9-spisg-v1-0-2eeea77be19f@amlogic.com>
-In-Reply-To: <20260717-a9-spisg-v1-0-2eeea77be19f@amlogic.com>
-To: Sunny Luo <sunny.luo@amlogic.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1784274574; l=5993;
- i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=hSBlHqyRKAFzXRe5Mipf9iWE55K2Qe+NrDF5i5K4r+4=;
- b=oJ1QsKwU7s3BAluM3mGKO9WRC4zRwLYDoY+4s6U5EPkqNgmGIe7vUcOeypBUE1oHw6hxR2dVa
- XfpSOOFoTCRA8vjc421OToQlLakawI22icz4mguovajuGe6u7QescAl
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
- auth_id=578
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+ <20260717-a9-spisg-v1-2-2eeea77be19f@amlogic.com>
+Date: Fri, 17 Jul 2026 08:01:05 +0000
+Message-Id: <20260717080105.EA9F51F000E9@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,191 +63,91 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-
-The Amlogic A9 SPISG controller extends the A4 controller with additional
-configuration options, including:
-
-- Extended CS setup timing
-- Hardware-controlled CS hold timing
-- MOSI idle output configuration
-- Configurable word gap
-
-Add SoC-specific capability data and configure these features when they
-are supported by the underlying hardware while keeping compatibility with
-existing A4 controllers.
-
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- drivers/spi/spi-amlogic-spisg.c | 65 ++++++++++++++++++++++++++++++++++++++---
- 1 file changed, 61 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/spi/spi-amlogic-spisg.c b/drivers/spi/spi-amlogic-spisg.c
-index 0f026d3e43e0..845eb81d483a 100644
---- a/drivers/spi/spi-amlogic-spisg.c
-+++ b/drivers/spi/spi-amlogic-spisg.c
-@@ -37,6 +37,12 @@
- #define CFG_HW_POS			BIT(6)
- /* start on vsync falling */
- #define CFG_HW_NEG			BIT(7)
-+#define CFG_WORD_GAP			GENMASK(9, 8)
-+#define CFG_MO_IDLE_OUTPUT		GENMASK(11, 10)
-+/* cs hold time in pclk */
-+#define CFG_CS_HOLD			GENMASK(26, 12)
-+/* high 4 bits of cs setup time in sclk */
-+#define CFG_CS_SETUP_EXTEND		GENMASK(30, 27)
- 
- #define SPISG_REG_CFG_START		0x08
- #define CFG_BLOCK_NUM			GENMASK(19, 0)
-@@ -143,6 +149,13 @@ struct spisg_descriptor_extra {
- 	int				rx_ccsg_len;
- };
- 
-+struct aml_spisg_data {
-+	bool				mo_idle_output_ctrl;
-+	bool				word_gap_ctrl;
-+	bool				cs_hold_ctrl;
-+	bool				cs_setup_extend_ctrl;
-+};
-+
- struct spisg_device {
- 	struct spi_controller		*controller;
- 	struct platform_device		*pdev;
-@@ -152,6 +165,7 @@ struct spisg_device {
- 	struct clk			*sclk;
- 	struct clk_div_table		*tbl;
- 	struct completion		completion;
-+	const struct aml_spisg_data	*data;
- 	u32				status;
- 	u32				speed_hz;
- 	u32				effective_speed_hz;
-@@ -483,6 +497,7 @@ static int aml_spisg_transfer_one_message(struct spi_controller *ctlr,
- {
- 	struct spisg_device *spisg = spi_controller_get_devdata(ctlr);
- 	struct device *dev = &spisg->pdev->dev;
-+	const struct aml_spisg_data *data = spisg->data;
- 	unsigned long long ms = 0;
- 	struct spi_transfer *xfer;
- 	struct spisg_descriptor *descs, *desc;
-@@ -491,6 +506,7 @@ static int aml_spisg_transfer_one_message(struct spi_controller *ctlr,
- 	int desc_num = 1, descs_len;
- 	bool last_xfer_keep_ss = false;
- 	u32 cs_hold_in_sclk = 0;
-+	u32 val;
- 	int ret = -EIO;
- 
- 	if (!aml_spisg_sem_down_read(spisg)) {
-@@ -525,9 +541,17 @@ static int aml_spisg_transfer_one_message(struct spi_controller *ctlr,
- 		}
- 
- 		/* calculate cs-setup delay with the first xfer speed */
--		if (list_is_first(&xfer->transfer_list, &msg->transfers))
--			desc->cfg_bus |= FIELD_PREP(CFG_CS_SETUP,
--				spi_delay_to_sclk(xfer->effective_speed_hz, &msg->spi->cs_setup));
-+		if (list_is_first(&xfer->transfer_list, &msg->transfers)) {
-+			val = spi_delay_to_sclk(xfer->effective_speed_hz, &msg->spi->cs_setup);
-+			if (data && data->cs_setup_extend_ctrl) {
-+				val = min_t(u32, 0xFF, val);
-+				desc->cfg_bus |= FIELD_PREP(CFG_CS_SETUP, val & 0xF);
-+				FIELD_MODIFY(CFG_CS_SETUP_EXTEND, &spisg->cfg_spi, val >> 4);
-+			} else {
-+				val = min_t(u32, 0xF, val);
-+				desc->cfg_bus |= FIELD_PREP(CFG_CS_SETUP, val);
-+			}
-+		}
- 
- 		/* calculate cs-hold delay with the last xfer speed */
- 		if (list_is_last(&xfer->transfer_list, &msg->transfers)) {
-@@ -542,7 +566,12 @@ static int aml_spisg_transfer_one_message(struct spi_controller *ctlr,
- 				       xfer->effective_speed_hz);
- 	}
- 
--	if (cs_hold_in_sclk) {
-+	if (data && data->cs_hold_ctrl) {
-+		cs_hold_in_sclk = cs_hold_in_sclk ? : 1;
-+		val = cs_hold_in_sclk * (FIELD_GET(CFG_CLK_DIV, spisg->cfg_bus) + 1);
-+		FIELD_MODIFY(CFG_CS_HOLD, &spisg->cfg_spi, val);
-+		desc--;
-+	} else if (cs_hold_in_sclk) {
- 		/* additional null-descriptor to achieve the cs-hold delay */
- 		aml_spisg_setup_null_desc(spisg, desc, cs_hold_in_sclk);
- 		desc--;
-@@ -722,6 +751,7 @@ static int aml_spisg_probe(struct platform_device *pdev)
- 	struct spisg_device *spisg;
- 	struct device *dev = &pdev->dev;
- 	void __iomem *base;
-+	u32 val = 0;
- 	int ret, irq;
- 
- 	const struct regmap_config aml_regmap_config = {
-@@ -740,6 +770,7 @@ static int aml_spisg_probe(struct platform_device *pdev)
- 
- 	spisg = spi_controller_get_devdata(ctlr);
- 	spisg->controller = ctlr;
-+	spisg->data = (struct aml_spisg_data *)of_device_get_match_data(dev);
- 
- 	spisg->pdev = pdev;
- 	platform_set_drvdata(pdev, spisg);
-@@ -770,6 +801,21 @@ static int aml_spisg_probe(struct platform_device *pdev)
- 
- 	spisg->cfg_spi = FIELD_PREP(CFG_SFLASH_WP, 1) |
- 			 FIELD_PREP(CFG_SFLASH_HD, 1);
-+
-+	if (spisg->data && spisg->data->mo_idle_output_ctrl) {
-+		if (!of_property_read_u32(dev->of_node, "amlogic,mo-idle-output", &val))
-+			spisg->cfg_spi |=  FIELD_PREP(CFG_MO_IDLE_OUTPUT, val);
-+		else
-+			spisg->cfg_spi |=  FIELD_PREP(CFG_MO_IDLE_OUTPUT, 0);
-+	}
-+
-+	if (spisg->data && spisg->data->word_gap_ctrl) {
-+		if (!of_property_read_u32(dev->of_node, "amlogic,word-gap", &val))
-+			spisg->cfg_spi |=  FIELD_PREP(CFG_WORD_GAP, val);
-+		else
-+			spisg->cfg_spi |=  FIELD_PREP(CFG_WORD_GAP, 1);
-+	}
-+
- 	if (spi_controller_is_target(ctlr)) {
- 		spisg->cfg_spi |= FIELD_PREP(CFG_SLAVE_EN, 1);
- 		spisg->cfg_bus = FIELD_PREP(CFG_TX_TUNING, 0xf);
-@@ -856,6 +902,13 @@ static int spisg_resume_runtime(struct device *dev)
- 	return 0;
- }
- 
-+static const struct aml_spisg_data a9_spisg_data = {
-+	.mo_idle_output_ctrl = true,
-+	.word_gap_ctrl = true,
-+	.cs_hold_ctrl = true,
-+	.cs_setup_extend_ctrl = true,
-+};
-+
- static const struct dev_pm_ops amlogic_spisg_pm_ops = {
- 	.runtime_suspend	= spisg_suspend_runtime,
- 	.runtime_resume		= spisg_resume_runtime,
-@@ -865,6 +918,10 @@ static const struct of_device_id amlogic_spisg_of_match[] = {
- 	{
- 		.compatible = "amlogic,a4-spisg",
- 	},
-+	{
-+		.compatible = "amlogic,a9-spisg",
-+		.data = &a9_spisg_data,
-+	},
- 
- 	{ /* sentinel */ }
- };
-
--- 
-2.52.0
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+NCBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpQcmUtZXhpc3RpbmcgaXNzdWVzOgot
+IFtDcml0aWNhbF0gTWlzc2luZyBoYXJkd2FyZSBhYm9ydCBvbiBTUEkgdHJhbnNmZXIgdGltZW91
+dCBsZWFkcyB0byBETUEgVXNlLUFmdGVyLUZyZWUgYW5kIG1lbW9yeSBjb3JydXB0aW9uLgotIFtI
+aWdoXSAzMi1iaXQgaW50ZWdlciBvdmVyZmxvdyBpbiBgc3BpX2RlbGF5X3RvX3NjbGtgIGxlYWRz
+IHRvIHNldmVyZWx5IHRydW5jYXRlZCBTUEkgZGVsYXlzLgotIFtIaWdoXSBgU1BJU0dfQkxPQ0tf
+TUFYYCBleGNlZWRzIHRoZSBoYXJkd2FyZSBtYXNrIHNpemUsIGNhdXNpbmcgbWF4aW11bS1sZW5n
+dGggdHJhbnNmZXJzIHRvIGJlIHByb2Nlc3NlZCBhcyB6ZXJvLWxlbmd0aC4KLSBbSGlnaF0gSGFy
+ZHdhcmUgbGltaXRzIGZvciBgY3Nfc2V0dXBgIGFuZCBgY3NfaG9sZGAgZGVsYXlzIGFyZSBub3Qg
+Y2xhbXBlZCBiZWZvcmUgYmVpbmcgcGFja2VkIGludG8gcmVnaXN0ZXIgZmllbGRzLCBjYXVzaW5n
+IGxvbmcgZGVsYXlzIHRvIHNpbGVudGx5IHdyYXAgYXJvdW5kIHRvIHNob3J0IHZhbHVlcy4KLS0K
+Ci0tLSBQYXRjaCBbMl06IFtQQVRDSCAyLzNdIHNwaTogYW1sb2dpYzogc3Bpc2c6IEZpeCB0aGUg
+aW5jb3JyZWN0IGtlZXBfc3Mgb2YgdGhlIGxhc3QgZGVzY3JpcHRvciAtLS0KY29tbWl0IDA3ZjNj
+Nzg5M2NkOGJkZDM5NDEzMDAyYjVmNjE3YTIyZTkzZTA4NDIKQXV0aG9yOiBTdW5ueSBMdW8gPHN1
+bm55Lmx1b0BhbWxvZ2ljLmNvbT4KCnNwaTogYW1sb2dpYzogc3Bpc2c6IEZpeCB0aGUgaW5jb3Jy
+ZWN0IGtlZXBfc3Mgb2YgdGhlIGxhc3QgZGVzY3JpcHRvcgoKVGhpcyBwYXRjaCBmaXhlcyBhbiBp
+c3N1ZSB3aGVyZSB0aGUgQ0ZHX0tFRVBfU1MgZmxhZyBpcyB1bmNvbmRpdGlvbmFsbHkKY2xlYXJl
+ZCBvbiB0aGUgbGFzdCBTUEkgZGVzY3JpcHRvci4gSXQgcmVjb3JkcyB0aGUgY3NfY2hhbmdlIHZh
+bHVlIG9mCnRoZSBsYXN0IHRyYW5zZmVyIGFuZCBwcm9wZXJseSBwcm9ncmFtcyBDRkdfS0VFUF9T
+UyBvbiB0aGUgZmluYWwgZGVzY3JpcHRvci4KV2hlbiBhIG51bGwgZGVzY3JpcHRvciBpcyB1c2Vk
+IGZvciBjcy1ob2xkLCB0aGUgZmxhZyBpcyBrZXB0IG9uIHRoZQpwcmVjZWRpbmcgZGVzY3JpcHRv
+ciBhbmQgdGhlIHJlY29yZGVkIHZhbHVlIGlzIGFwcGxpZWQgYXQgdGhlIGVuZC4KCj4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvc3BpL3NwaS1hbWxvZ2ljLXNwaXNnLmMgYi9kcml2ZXJzL3NwaS9zcGkt
+YW1sb2dpYy1zcGlzZy5jCj4gaW5kZXggYWZjOGFmMDQ2MzhkMy4uMGYwMjZkM2U0M2UwYiAxMDA2
+NDQKPiAtLS0gYS9kcml2ZXJzL3NwaS9zcGktYW1sb2dpYy1zcGlzZy5jCj4gKysrIGIvZHJpdmVy
+cy9zcGkvc3BpLWFtbG9naWMtc3Bpc2cuYwo+IEBAIC01MjksOSArNTMwLDExIEBAIHN0YXRpYyBp
+bnQgYW1sX3NwaXNnX3RyYW5zZmVyX29uZV9tZXNzYWdlKHN0cnVjdCBzcGlfY29udHJvbGxlciAq
+Y3RsciwKPiAgCQkJCXNwaV9kZWxheV90b19zY2xrKHhmZXItPmVmZmVjdGl2ZV9zcGVlZF9oeiwg
+Jm1zZy0+c3BpLT5jc19zZXR1cCkpOwoKW1NldmVyaXR5OiBIaWdoXQpUaGlzIGlzbid0IGEgYnVn
+IGludHJvZHVjZWQgYnkgdGhpcyBwYXRjaCwgYnV0IGNhbiB0aGUgMzItYml0IG11bHRpcGxpY2F0
+aW9uCmluIHNwaV9kZWxheV90b19zY2xrKCkgb3ZlcmZsb3cgaGVyZT8KCklmIGEgcmVxdWVzdGVk
+IGRlbGF5IGluIG5hbm9zZWNvbmRzIGFuZCB0aGUgU1BJIGNsb2NrIGZyZXF1ZW5jeSBpbiBIeiBh
+cmUKbXVsdGlwbGllZCB0b2dldGhlciwgaXQgZXZhbHVhdGVzIGFzIGEgMzItYml0IHVuc2lnbmVk
+IG9wZXJhdGlvbiBiZWZvcmUgYmVpbmcKY2FzdCB0byA2NC1iaXQgZm9yIHRoZSBkaXZpc2lvbjoK
+CmRyaXZlcnMvc3BpL3NwaS1hbWxvZ2ljLXNwaXNnLmM6c3BpX2RlbGF5X3RvX3NjbGsoKSB7CiAg
+ICAuLi4KCXJldHVybiBESVZfUk9VTkRfVVBfVUxMKHNsY2tfc3BlZWRfaHogKiBucywgTlNFQ19Q
+RVJfU0VDKTsKfQoKRm9yIGV4YW1wbGUsIGF0IGEgMTAwTUh6IGNsb2NrLCBhIGRlbGF5IGdyZWF0
+ZXIgdGhhbiA0Mi45dXMgd2lsbCB3cmFwIGFyb3VuZCwKY2F1c2luZyBoYXJkd2FyZSBzZXR1cCBv
+ciBob2xkIGRlbGF5cyB0byBiZWNvbWUgZXh0cmVtZWx5IHNob3J0IG9yIHplcm8uCgpbU2V2ZXJp
+dHk6IEhpZ2hdClRoaXMgaXMgYWxzbyBhIHByZS1leGlzdGluZyBpc3N1ZSwgYnV0IGFyZSB0aGUg
+aGFyZHdhcmUgbGltaXRzIGZvciBjc19zZXR1cAphbmQgY3NfaG9sZCBkZWxheXMgY2xhbXBlZCBi
+ZWZvcmUgYmVpbmcgcGFja2VkIGludG8gdGhlIHJlZ2lzdGVyIGZpZWxkcz8KCkNGR19DU19TRVRV
+UCBpcyBhIDQtYml0IGZpZWxkIChtYXggMTUpLiBJZiBzcGlfZGVsYXlfdG9fc2NsaygpIHJldHVy
+bnMKYSB2YWx1ZSBncmVhdGVyIHRoYW4gMTUsIEZJRUxEX1BSRVAoKSB3aWxsIHNpbGVudGx5IHRy
+dW5jYXRlIHRoZSB1cHBlcgpiaXRzLCByZXN1bHRpbmcgaW4gYW4gaW5jb3JyZWN0LCBkcmFzdGlj
+YWxseSBzaG9ydGVyIGRlbGF5LgoKPiAgCQkvKiBjYWxjdWxhdGUgY3MtaG9sZCBkZWxheSB3aXRo
+IHRoZSBsYXN0IHhmZXIgc3BlZWQgKi8KPiAtCQlpZiAobGlzdF9pc19sYXN0KCZ4ZmVyLT50cmFu
+c2Zlcl9saXN0LCAmbXNnLT50cmFuc2ZlcnMpKQo+ICsJCWlmIChsaXN0X2lzX2xhc3QoJnhmZXIt
+PnRyYW5zZmVyX2xpc3QsICZtc2ctPnRyYW5zZmVycykpIHsKPiAgCQkJY3NfaG9sZF9pbl9zY2xr
+ID0KPiAgCQkJCXNwaV9kZWxheV90b19zY2xrKHhmZXItPmVmZmVjdGl2ZV9zcGVlZF9oeiwgJm1z
+Zy0+c3BpLT5jc19ob2xkKTsKPiArCQkJbGFzdF94ZmVyX2tlZXBfc3MgPSB4ZmVyLT5jc19jaGFu
+Z2U7Cj4gKwkJfQoKWyAuLi4gXQoKW1NldmVyaXR5OiBDcml0aWNhbF0KVGhpcyBpcyBhIHByZS1l
+eGlzdGluZyBpc3N1ZSwgYnV0IGRvZXMgdGhlIGVycm9yIGhhbmRsaW5nIHBhdGggZm9yIHRpbWVv
+dXRzIGluCmFtbF9zcGlzZ190cmFuc2Zlcl9vbmVfbWVzc2FnZSgpIGxhY2sgYSBoYXJkd2FyZSBh
+Ym9ydD8KCklmIGEgaGFyZHdhcmUgdHJhbnNmZXIgdGltZXMgb3V0LCB0aGUgZHJpdmVyIHVubWFw
+cyBETUEgYnVmZmVycyBhbmQgZnJlZXMgdGhlCnRyYW5zZmVyIGRlc2NyaXB0b3JzIHdpdGhvdXQg
+c3RvcHBpbmcgdGhlIFNQSSBjb250cm9sbGVyIGhhcmR3YXJlOgoKZHJpdmVycy9zcGkvc3BpLWFt
+bG9naWMtc3Bpc2cuYzphbWxfc3Bpc2dfdHJhbnNmZXJfb25lX21lc3NhZ2UoKSB7CiAgICAuLi4K
+CWlmICh3YWl0X2Zvcl9jb21wbGV0aW9uX3RpbWVvdXQoJnNwaXNnLT5jb21wbGV0aW9uLCAuLi4p
+KQoJCXJldCA9IHNwaXNnLT5zdGF0dXMgPyAtRUlPIDogMDsKCWVsc2UKCQlyZXQgPSAtRVRJTUVE
+T1VUOwoKCWRtYV91bm1hcF9zaW5nbGUoZGV2LCBkZXNjc19wYWRkciwgZGVzY3NfbGVuLCBETUFf
+VE9fREVWSUNFKTsKZW5kOgogICAgLi4uCn0KCkNvdWxkIHRoaXMgbGVhZCB0byB0aGUgaGFyZHdh
+cmUgY29udGludWluZyB0byB3cml0ZSB0byBvciByZWFkIGZyb20gZnJlZWQgbWVtb3J5CnBhZ2Vz
+IChETUEgVXNlLUFmdGVyLUZyZWUpIHNpbmNlIHRoZSBoYXJkd2FyZSBpc24ndCBzdG9wcGVkPwoK
+W1NldmVyaXR5OiBIaWdoXQpUaGlzIGlzIGEgcHJlLWV4aXN0aW5nIGlzc3VlLCBidXQgY2FuIHRo
+ZSBtYXhpbXVtIGJsb2NrcyBjb3VudCBleGNlZWQgdGhlCmhhcmR3YXJlIG1hc2sgc2l6ZSBpbiBh
+bWxfc3Bpc2dfc2V0dXBfdHJhbnNmZXIoKT8KClRoZSBibG9ja3MgY291bnQgaXMgY2FwcGVkIGF0
+IFNQSVNHX0JMT0NLX01BWCAoMHgxMDAwMDApOgoKZHJpdmVycy9zcGkvc3BpLWFtbG9naWMtc3Bp
+c2cuYzphbWxfc3Bpc2dfc2V0dXBfdHJhbnNmZXIoKSB7CiAgICAuLi4KCQlibG9ja3MgPSBtaW5f
+dChpbnQsIGJsb2NrcywgU1BJU0dfQkxPQ0tfTUFYKTsKCQlkZXNjLT5jZmdfc3RhcnQgfD0gRklF
+TERfUFJFUChDRkdfQkxPQ0tfU0laRSwgYmxvY2tfc2l6ZSAmIDB4NykgfAoJCQkJICAgRklFTERf
+UFJFUChDRkdfQkxPQ0tfTlVNLCBibG9ja3MpOwogICAgLi4uCn0KClNpbmNlIENGR19CTE9DS19O
+VU0gdXNlcyBhIDIwLWJpdCBtYXNrIChHRU5NQVNLKDE5LCAwKSksIGEgdHJhbnNmZXIgYm91bmRl
+ZApleGFjdGx5IGF0IFNQSVNHX0JMT0NLX01BWCAoMHgxMDAwMDApIHdpbGwgYmUgc2lsZW50bHkg
+emVyb2VkIG91dCB3aGVuIG1hc2tlZCwKY2F1c2luZyBpdCB0byBiZSBwcm9jZXNzZWQgYXMgYSB6
+ZXJvLWxlbmd0aCB0cmFuc2Zlci4KCi0tIApTYXNoaWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nh
+c2hpa28uZGV2LyMvcGF0Y2hzZXQvMjAyNjA3MTctYTktc3Bpc2ctdjEtMC0yZWVlYTc3YmUxOWZA
+YW1sb2dpYy5jb20/cGFydD0yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3Rz
+LmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9saW51eC1hbWxvZ2ljCg==
