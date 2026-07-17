@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18154C44514
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C97CC4451C
 	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Jul 2026 07:49:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,45 +12,45 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=62YPLAs2VklhdHE7/y6W8GezMmAQjsD8shNaYQ5dU+M=; b=xv08e1U5CItAc0
-	UbmSFhFtgDJTYCDW14TN/N907enO6tM9EPQTwrMlrsifA4ztEiHHQHie13Muvu4Ms1iAdx2SgaKBt
-	QY5IJ8yJ1U50eEwvaQp+0f5pd9VDt32g4SeCLvfNfOlGYeLP4YdYujvHFtbl2ymuEdOF948KcJffh
-	qtNv0KKtSIDJs6Seu5wjznXZLSXbg1C/xs1BviVQ0RBnDll3NK8K7nihxNOyV07GzIX2jAIhePu+f
-	L2717UMYAikgY+WIh7uSDPb45j2JaVk24blOSTjdLothXaisVd+NLZllpYSEnlMoLij1Gb0R5GHPb
-	hB4QcTop4Xce3gTvNowQ==;
+	List-Owner; bh=yjzcGuKNXY6ri+hRJToYNf0NsEzZ2lyy0jVXYvjAt+Q=; b=p+LblzJH4KXO99
+	LF77DDTSo37JIZKdQHPq/VkZuH4vqTuFa6UvxONMk4tqCDrpOoZdXaFjvBoNRSt7tXvoIAudL0k5S
+	/jICtRmrQQuUXMoaU6NkI62UGfxICm8px1WcleOs9SyqxF9rJqVqSRr/uzsNp3ygv6hqKcgteoczo
+	W9Cdcbg0nOqj85pYWnl9oSvW/1W04Ui/xCQMpUA94EwEI+NAkaOsxrr7zLFP7rfprfWQ8HAzQ8cyl
+	mtHLB8NQWPKyRimVvAvdSdDjBhh+vun/tidBleG6WZqT16yiBkPEEUCs32GFqVHcP7bddFsawHTUR
+	riEAZxTfJr+f3Ip+NWRA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkdKG-00000001Vf8-1vTo;
+	id 1wkdKG-00000001VfG-2WDx;
 	Fri, 17 Jul 2026 07:49:40 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkdKE-00000001Ve7-0WoC
+	id 1wkdKE-00000001Ve8-0cxu
 	for linux-amlogic@lists.infradead.org;
 	Fri, 17 Jul 2026 07:49:38 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id CFC8E43C8B;
+	by sea.source.kernel.org (Postfix) with ESMTP id DC98B43D13;
 	Fri, 17 Jul 2026 07:49:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 99418C2BCF5;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A59A4C2BCC9;
 	Fri, 17 Jul 2026 07:49:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1784274577;
-	bh=rVssC21U/QDQdBOXC2oY3s+Mk18yYKdEpNvdGVASwp8=;
+	bh=qS2DLzuRq1fyJA41MJOJ8kFpVv3gdzDCD3kTwkTmt6A=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=pcf9SKFDUGvghwUE45WVYABcY3UbLwA9v2oYGM4CFL3aPZ5aLP+6QZA/CyCmk8zNp
-	 tQGO7lJQxVciAPokKB0lzKqAT6kMI+mmsmZmzb2r1EbDIrzo0IA/9rEL8o9W+S9mx+
-	 COHVCb7zqTzn5e8JVZWU4CaxncS/vX0vySA8rS+iMrMraQ8APCRKstwyCeJIY58U0p
-	 CA3WeX6pN9qpFfJ/vtpIOS1oIrCBXAXk5GcnlZDAssPIgLqUtmrChyGaDYpZGR6iDT
-	 zowMpwyj/NRDjWObkdX+cG1YzKKX9C6GMQXGYniz4fLGByiy+ZYlYwOQBU57NIM+dz
-	 IVEO9tfRCB4Sw==
+	b=eNeG6Ntf+UJgsZK9CAj3BQGtEF0EUB5NDYFX3KnQ5TLuIHznHjieVFYbkvWqgms7g
+	 AquXiV3RlHyla0/D0DLSqeSf0SUIybEiY7vUWUEiD/CNXXZn75wu4AJ322HQrJYTiy
+	 TCQBFu2ME/dfYG5voxbJD4d1VsQ4J/7uq7MNsiTLa/oaprhAv/pi9H8VJQlUspmHc1
+	 EKMmqJPluf38SfsEfCHq3AaUSVpKxrs4yMPy231ws9vcGilm2ZXGwx/Y2GGu6BJp7b
+	 RT4Gkp6c9jckOX1WLO5H9am5PslcyUs8ZliBpm+UqJcUJqP2rY1xLhIt7CwUXuFTVR
+	 P/1z8mpDNLDVA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 79D5FC44517;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8AFF8C44515;
 	Fri, 17 Jul 2026 07:49:37 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Fri, 17 Jul 2026 07:49:34 +0000
-Subject: [PATCH 2/3] spi: amlogic: spisg: Fix the incorrect keep_ss of the
- last descriptor
+Date: Fri, 17 Jul 2026 07:49:35 +0000
+Subject: [PATCH 3/3] spi: amlogic: spisg: Add support for A9 controller
+ features
 MIME-Version: 1.0
-Message-Id: <20260717-a9-spisg-v1-2-2eeea77be19f@amlogic.com>
+Message-Id: <20260717-a9-spisg-v1-3-2eeea77be19f@amlogic.com>
 References: <20260717-a9-spisg-v1-0-2eeea77be19f@amlogic.com>
 In-Reply-To: <20260717-a9-spisg-v1-0-2eeea77be19f@amlogic.com>
 To: Sunny Luo <sunny.luo@amlogic.com>, Mark Brown <broonie@kernel.org>, 
@@ -60,11 +60,11 @@ Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1784274574; l=2503;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784274574; l=5993;
  i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=jkQLA6xWlywdjSsQl2U+CAG0++S5LTk9ZPS6pBUGm6g=;
- b=PXxinu3SBPGoS2bj1k8oC2+9+s3J4vn0sOqvhp9OTs57NDUHxQWy83zsh+akV2RBOTmo/uy+x
- CdWXAERlkepCnMQ0BwMBb395YGijg+4eVICF+4dUXmcDsSyCXta20jx
+ bh=hSBlHqyRKAFzXRe5Mipf9iWE55K2Qe+NrDF5i5K4r+4=;
+ b=oJ1QsKwU7s3BAluM3mGKO9WRC4zRwLYDoY+4s6U5EPkqNgmGIe7vUcOeypBUE1oHw6hxR2dVa
+ XfpSOOFoTCRA8vjc421OToQlLakawI22icz4mguovajuGe6u7QescAl
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
@@ -87,73 +87,178 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Sunny Luo <sunny.luo@amlogic.com>
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-The driver currently unconditionally clears CFG_KEEP_SS on the last
-descriptor, causing the last transfer's cs_change setting to be ignored.
+The Amlogic A9 SPISG controller extends the A4 controller with additional
+configuration options, including:
 
-Record the cs_change value of the last SPI transfer and use it to
-program CFG_KEEP_SS on the final descriptor. When a null descriptor is
-inserted to implement the cs-hold delay, keep CFG_KEEP_SS set on the
-preceding transfer descriptor and apply the recorded value to the final
-descriptor instead.
+- Extended CS setup timing
+- Hardware-controlled CS hold timing
+- MOSI idle output configuration
+- Configurable word gap
 
-This ensures the controller handles chip select correctly for the last
-transfer regardless of whether a cs-hold delay is required.
+Add SoC-specific capability data and configure these features when they
+are supported by the underlying hardware while keeping compatibility with
+existing A4 controllers.
 
-Fixes: cef9991e04ae ("spi: Add Amlogic SPISG driver")
-Signed-off-by: Sunny Luo <sunny.luo@amlogic.com>
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
- drivers/spi/spi-amlogic-spisg.c | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
+ drivers/spi/spi-amlogic-spisg.c | 65 ++++++++++++++++++++++++++++++++++++++---
+ 1 file changed, 61 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/spi/spi-amlogic-spisg.c b/drivers/spi/spi-amlogic-spisg.c
-index afc8af04638d..0f026d3e43e0 100644
+index 0f026d3e43e0..845eb81d483a 100644
 --- a/drivers/spi/spi-amlogic-spisg.c
 +++ b/drivers/spi/spi-amlogic-spisg.c
-@@ -489,6 +489,7 @@ static int aml_spisg_transfer_one_message(struct spi_controller *ctlr,
- 	struct spisg_descriptor_extra *exdescs, *exdesc;
- 	dma_addr_t descs_paddr;
+@@ -37,6 +37,12 @@
+ #define CFG_HW_POS			BIT(6)
+ /* start on vsync falling */
+ #define CFG_HW_NEG			BIT(7)
++#define CFG_WORD_GAP			GENMASK(9, 8)
++#define CFG_MO_IDLE_OUTPUT		GENMASK(11, 10)
++/* cs hold time in pclk */
++#define CFG_CS_HOLD			GENMASK(26, 12)
++/* high 4 bits of cs setup time in sclk */
++#define CFG_CS_SETUP_EXTEND		GENMASK(30, 27)
+ 
+ #define SPISG_REG_CFG_START		0x08
+ #define CFG_BLOCK_NUM			GENMASK(19, 0)
+@@ -143,6 +149,13 @@ struct spisg_descriptor_extra {
+ 	int				rx_ccsg_len;
+ };
+ 
++struct aml_spisg_data {
++	bool				mo_idle_output_ctrl;
++	bool				word_gap_ctrl;
++	bool				cs_hold_ctrl;
++	bool				cs_setup_extend_ctrl;
++};
++
+ struct spisg_device {
+ 	struct spi_controller		*controller;
+ 	struct platform_device		*pdev;
+@@ -152,6 +165,7 @@ struct spisg_device {
+ 	struct clk			*sclk;
+ 	struct clk_div_table		*tbl;
+ 	struct completion		completion;
++	const struct aml_spisg_data	*data;
+ 	u32				status;
+ 	u32				speed_hz;
+ 	u32				effective_speed_hz;
+@@ -483,6 +497,7 @@ static int aml_spisg_transfer_one_message(struct spi_controller *ctlr,
+ {
+ 	struct spisg_device *spisg = spi_controller_get_devdata(ctlr);
+ 	struct device *dev = &spisg->pdev->dev;
++	const struct aml_spisg_data *data = spisg->data;
+ 	unsigned long long ms = 0;
+ 	struct spi_transfer *xfer;
+ 	struct spisg_descriptor *descs, *desc;
+@@ -491,6 +506,7 @@ static int aml_spisg_transfer_one_message(struct spi_controller *ctlr,
  	int desc_num = 1, descs_len;
-+	bool last_xfer_keep_ss = false;
+ 	bool last_xfer_keep_ss = false;
  	u32 cs_hold_in_sclk = 0;
++	u32 val;
  	int ret = -EIO;
  
-@@ -529,9 +530,11 @@ static int aml_spisg_transfer_one_message(struct spi_controller *ctlr,
- 				spi_delay_to_sclk(xfer->effective_speed_hz, &msg->spi->cs_setup));
+ 	if (!aml_spisg_sem_down_read(spisg)) {
+@@ -525,9 +541,17 @@ static int aml_spisg_transfer_one_message(struct spi_controller *ctlr,
+ 		}
  
- 		/* calculate cs-hold delay with the last xfer speed */
--		if (list_is_last(&xfer->transfer_list, &msg->transfers))
-+		if (list_is_last(&xfer->transfer_list, &msg->transfers)) {
- 			cs_hold_in_sclk =
- 				spi_delay_to_sclk(xfer->effective_speed_hz, &msg->spi->cs_hold);
-+			last_xfer_keep_ss = xfer->cs_change;
+ 		/* calculate cs-setup delay with the first xfer speed */
+-		if (list_is_first(&xfer->transfer_list, &msg->transfers))
+-			desc->cfg_bus |= FIELD_PREP(CFG_CS_SETUP,
+-				spi_delay_to_sclk(xfer->effective_speed_hz, &msg->spi->cs_setup));
++		if (list_is_first(&xfer->transfer_list, &msg->transfers)) {
++			val = spi_delay_to_sclk(xfer->effective_speed_hz, &msg->spi->cs_setup);
++			if (data && data->cs_setup_extend_ctrl) {
++				val = min_t(u32, 0xFF, val);
++				desc->cfg_bus |= FIELD_PREP(CFG_CS_SETUP, val & 0xF);
++				FIELD_MODIFY(CFG_CS_SETUP_EXTEND, &spisg->cfg_spi, val >> 4);
++			} else {
++				val = min_t(u32, 0xF, val);
++				desc->cfg_bus |= FIELD_PREP(CFG_CS_SETUP, val);
++			}
 +		}
  
- 		desc++;
- 		exdesc++;
-@@ -539,13 +542,17 @@ static int aml_spisg_transfer_one_message(struct spi_controller *ctlr,
+ 		/* calculate cs-hold delay with the last xfer speed */
+ 		if (list_is_last(&xfer->transfer_list, &msg->transfers)) {
+@@ -542,7 +566,12 @@ static int aml_spisg_transfer_one_message(struct spi_controller *ctlr,
  				       xfer->effective_speed_hz);
  	}
  
--	if (cs_hold_in_sclk)
-+	if (cs_hold_in_sclk) {
+-	if (cs_hold_in_sclk) {
++	if (data && data->cs_hold_ctrl) {
++		cs_hold_in_sclk = cs_hold_in_sclk ? : 1;
++		val = cs_hold_in_sclk * (FIELD_GET(CFG_CLK_DIV, spisg->cfg_bus) + 1);
++		FIELD_MODIFY(CFG_CS_HOLD, &spisg->cfg_spi, val);
++		desc--;
++	} else if (cs_hold_in_sclk) {
  		/* additional null-descriptor to achieve the cs-hold delay */
  		aml_spisg_setup_null_desc(spisg, desc, cs_hold_in_sclk);
--	else
  		desc--;
-+		desc->cfg_bus |= FIELD_PREP(CFG_KEEP_SS, 1);
-+		desc++;
-+	} else {
-+		desc--;
+@@ -722,6 +751,7 @@ static int aml_spisg_probe(struct platform_device *pdev)
+ 	struct spisg_device *spisg;
+ 	struct device *dev = &pdev->dev;
+ 	void __iomem *base;
++	u32 val = 0;
+ 	int ret, irq;
+ 
+ 	const struct regmap_config aml_regmap_config = {
+@@ -740,6 +770,7 @@ static int aml_spisg_probe(struct platform_device *pdev)
+ 
+ 	spisg = spi_controller_get_devdata(ctlr);
+ 	spisg->controller = ctlr;
++	spisg->data = (struct aml_spisg_data *)of_device_get_match_data(dev);
+ 
+ 	spisg->pdev = pdev;
+ 	platform_set_drvdata(pdev, spisg);
+@@ -770,6 +801,21 @@ static int aml_spisg_probe(struct platform_device *pdev)
+ 
+ 	spisg->cfg_spi = FIELD_PREP(CFG_SFLASH_WP, 1) |
+ 			 FIELD_PREP(CFG_SFLASH_HD, 1);
++
++	if (spisg->data && spisg->data->mo_idle_output_ctrl) {
++		if (!of_property_read_u32(dev->of_node, "amlogic,mo-idle-output", &val))
++			spisg->cfg_spi |=  FIELD_PREP(CFG_MO_IDLE_OUTPUT, val);
++		else
++			spisg->cfg_spi |=  FIELD_PREP(CFG_MO_IDLE_OUTPUT, 0);
 +	}
++
++	if (spisg->data && spisg->data->word_gap_ctrl) {
++		if (!of_property_read_u32(dev->of_node, "amlogic,word-gap", &val))
++			spisg->cfg_spi |=  FIELD_PREP(CFG_WORD_GAP, val);
++		else
++			spisg->cfg_spi |=  FIELD_PREP(CFG_WORD_GAP, 1);
++	}
++
+ 	if (spi_controller_is_target(ctlr)) {
+ 		spisg->cfg_spi |= FIELD_PREP(CFG_SLAVE_EN, 1);
+ 		spisg->cfg_bus = FIELD_PREP(CFG_TX_TUNING, 0xf);
+@@ -856,6 +902,13 @@ static int spisg_resume_runtime(struct device *dev)
+ 	return 0;
+ }
  
--	desc->cfg_bus |= FIELD_PREP(CFG_KEEP_SS, 0);
-+	FIELD_MODIFY(CFG_KEEP_SS, &desc->cfg_bus, last_xfer_keep_ss);
- 	desc->cfg_start |= FIELD_PREP(CFG_EOC, 1);
++static const struct aml_spisg_data a9_spisg_data = {
++	.mo_idle_output_ctrl = true,
++	.word_gap_ctrl = true,
++	.cs_hold_ctrl = true,
++	.cs_setup_extend_ctrl = true,
++};
++
+ static const struct dev_pm_ops amlogic_spisg_pm_ops = {
+ 	.runtime_suspend	= spisg_suspend_runtime,
+ 	.runtime_resume		= spisg_resume_runtime,
+@@ -865,6 +918,10 @@ static const struct of_device_id amlogic_spisg_of_match[] = {
+ 	{
+ 		.compatible = "amlogic,a4-spisg",
+ 	},
++	{
++		.compatible = "amlogic,a9-spisg",
++		.data = &a9_spisg_data,
++	},
  
- 	/* some tolerances */
+ 	{ /* sentinel */ }
+ };
 
 -- 
 2.52.0
