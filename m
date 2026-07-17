@@ -4,142 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAE90C44507
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Jul 2026 10:17:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10C66C44515
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Jul 2026 19:18:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
+	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=WquoCegpWWmpSf8u49+iVMYEqP7SqyCzkELZydPi7mA=; b=LdvZjTA7DvvBZM
-	GuvcTzUuXlucGCJiT36/tSC/jdxxUoxspO/G2+ZbboC34sFZUwXWgY7dqutY3Ln16vbuVELBylh1Y
-	EiMUCC+G30/AWiYYgv36lyQOEHGt/As9WoqPO7fHGBtE2bLUrPzXBZvgsvIdXFtqSreYxaM2Gt04D
-	G5t7oXasVyy8aTIl1hX6gT2qdCrxHvsHgtUxX/RLiOdWx8MqCKQOjgwhpURq2KHjYW5Sk4eQZoXLT
-	VVgkEAIo5+jwzFdJ4AU7QKNNwcH2Rr4QjX9FDi8mkvLJ/N+kApgAyU9rp4XYPemTTiHXnqVg5V06G
-	/yn/9aK4ABZU8XEQQNSA==;
+	List-Owner; bh=54ufRlqL8KRRkl/IdXSszJo0nk+pkX4NQ/2h+cJmMA8=; b=YJSv8UruuUqYsq
+	/s7skRwWlvBM39Qozdg1NZoDbCjHzM/lDUvdzJvs4T8OtxJ81Y6xwq0B9FkLHdD6yrZKPPldxHZkD
+	2SUhLDxbtiayYzyRO68c1APJohc3VFURYwNAL51ePSMUq3BPbGnuWwlKWRuUMFcMy/EWeDrxLcJ7B
+	dp4hZBl8yLvNscWB5a42EELU8rvGWz560tkte9zCcKVREvQqnzqkfoANzgmJ4EJQKH6bm22V7Eshu
+	xL1sshAZlL6S09/ID/B4A9yNU+PWxrScXY68HQgdhdD6TtxBy5heccwOQV4vwkSkwxTO6xv+yBwBE
+	UuAMJ9RM29ESpsPvLF/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkfdd-00000001wWO-3h4q;
-	Fri, 17 Jul 2026 10:17:50 +0000
-Received: from mail-koreacentralazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c40f::6] helo=SEYPR02CU001.outbound.protection.outlook.com)
+	id 1wko5A-0000000373p-3zEP;
+	Fri, 17 Jul 2026 19:18:48 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkfdb-00000001wUw-0q19;
-	Fri, 17 Jul 2026 10:17:48 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=c1OR1Ztd+r+GzXaXdOtCkMgul6zjSX9GgjIWtjaZ944MMXO9+TgevaSurUNu7T3oHL9bVvkIr/FkLLmcteBZtXjNiDHFhoT6VDX1fN39Lv7ah9JvxjMt3CVO9W3LILQH8lp4tONlRyW8lHiiDbhdghRBRocmjEX34w/Erex6JfrurLodW1wlS9rjz0qbAjrvJ/L379u7A0VNVEPxFHsxV5r/hd21h5EpaW/yNi6x3EzRQLiQz9MxfT8fKuuhO25jwZXaZhS/ue8IE9G85wy1sgCd6FWHXPzoOghniDqA02lXM4ZymWSw7D/mZZbk6Q/GTXX3c0ZEZ/OdM7zEG97+wg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QlCXnuVJLtgpwozbDJuuBWH1wFu7oE+TtVH9lNTRAv4=;
- b=fD5IoZXtFiNdDKJTkMvnCVdJoKwh852GNe4OE/jqVfUQYd6Ro/BHG5ir+vO1FivsfeO4A080osqORXbJBO09K7Tc/DEzwjk21hyyQ+8QLf8y4sUbemBnxzraa5nyd4meV6NePZdAC7P5CYNdCaT+qpMtJ0CguaZ3ltqjeIOgKA9Vby5V+JTWa6JXadZwXdjb6qSttiul9Ycs7KLYT31QJgSlkUWWbB6tbZGKsXNa1+qUEeYuhPfme3boyEbxr1IYi0GgquPx/rBv/6doG4WF7MHI0IEi0oFesyAtYesKwi4m3N6JA4yST1w5fAcn10pU4eOcC5Zuh8/0fliVXr3bZQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
- dkim=pass header.d=vivo.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QlCXnuVJLtgpwozbDJuuBWH1wFu7oE+TtVH9lNTRAv4=;
- b=G9VS29Hkx8WVCXj8JIfNddhvVKc4DywXPVf9PjxPlx7T0Y0iLTRT5Ewr2EeF7Kw7mtdhKbJia+IOJqSSCRELC2keCwoaFKAqPRSAQz27Als3SzmcEtLrHFGj2HnYQ2DYaHfhCU5a7AJsFRehpTHi0h8CUaGKC8T2GW24/5BPD84e0PUOqeUNtKiKIwixfZ+LukCsmJG3XkIcn4cJhzXcoLIWtaCNoAogaSZ/oua5kSoO+XCFMalhIwr/xtvv2xekg10fcwPf7vfp42H177miz9R0bh1eWfXTs/ENiHvSurazu2GUbVwCLV5fU9P1w9tbXmvpTLk9rjwCUuileOevcw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=vivo.com;
-Received: from SEZPR06MB5832.apcprd06.prod.outlook.com (2603:1096:101:c8::12)
- by SEYPR06MB5940.apcprd06.prod.outlook.com (2603:1096:101:d2::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.12; Fri, 17 Jul
- 2026 10:17:26 +0000
-Received: from SEZPR06MB5832.apcprd06.prod.outlook.com
- ([fe80::f98:5e32:4ccb:d07b]) by SEZPR06MB5832.apcprd06.prod.outlook.com
- ([fe80::f98:5e32:4ccb:d07b%6]) with mapi id 15.21.0223.011; Fri, 17 Jul 2026
- 10:17:25 +0000
-From: Pan Chuang <panchuang@vivo.com>
-To: Ulf Hansson <ulfh@kernel.org>,
-	Robert Richter <rric@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Nicolas Pitre <nico@fluxnic.net>,
-	=?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Pan Chuang <panchuang@vivo.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-	Linus Walleij <linusw@kernel.org>,
-	Thomas Fourier <fourier.thomas@gmail.com>,
-	Pedro Demarchi Gomes <pedrodemargomes@gmail.com>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig=20=28The=20Capable=20Hub=29?= <u.kleine-koenig@baylibre.com>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Takashi Sakamoto <o-takashi@sakamocchi.jp>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-mmc@vger.kernel.org (open list:MULTIMEDIA CARD (MMC), SECURE DIGITAL (SD) AND...),
-	linux-kernel@vger.kernel.org (open list),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
-	linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC support),
-	linux-omap@vger.kernel.org (open list:OMAP HS MMC SUPPORT),
-	linux-actions@lists.infradead.org (moderated list:ARM/ACTIONS SEMI ARCHITECTURE),
-	linux-arm-msm@vger.kernel.org (open list:ARM/QUALCOMM MAILING LIST)
-Subject: [PATCH] mmc: host: Remove redundant dev_err()/dev_err_probe()
-Date: Fri, 17 Jul 2026 18:14:49 +0800
-Message-Id: <20260717101508.635969-1-panchuang@vivo.com>
-X-Mailer: git-send-email 2.34.1
-X-ClientProxiedBy: TY4P286CA0109.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:405:380::15) To SEZPR06MB5832.apcprd06.prod.outlook.com
- (2603:1096:101:c8::12)
+	id 1wko56-0000000372j-2RzI
+	for linux-amlogic@lists.infradead.org;
+	Fri, 17 Jul 2026 19:18:46 +0000
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-47122683cf3so4796890f8f.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 17 Jul 2026 12:18:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1784315921; x=1784920721; darn=lists.infradead.org;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=lWIRT5uS2ksF/3R5X9j6L1l/EYTREprkeYSc920eioM=;
+        b=SduJnKD+jKVme4fPhBpDCiR4nOWQbieLXm7ItaFChMCM4P4ezwoXY4tYo+hkGGhsX+
+         3JqP+2aKXySUmG92KVxXIoMoBxm8JG58Uwi4q7XJd70Pjt/AJQLp6sQARp49pEpOowup
+         PswYQVgypo0A6g4/YEXtevQPL1vcXjdYLjq8/ilfkQR4C62uE3B+CXTk9I95qJSEm/BS
+         gEE6/WYcQDYYuSiy5pwwWYmQywGrtD9yfNtBVLX+8eGQXIDvAxHiQZprPxrrganieJD3
+         mpB8Zjs3Whv/ZDiBbXFrme36ah6wi6aZB/ZZBs6MiElUz/JlcwHMzRzlettx62EdOThM
+         i/JQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784315921; x=1784920721;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=lWIRT5uS2ksF/3R5X9j6L1l/EYTREprkeYSc920eioM=;
+        b=Dg9YNhIDUeWeH+5WZCZ79StaXDit7U84RYjRMAEIS7n1MRYqMFfq/KQemsCAGp3fI6
+         v+qkixR66v81iYjkDJqx752xv6zjeiHZkfmIRclfmjJGc498LDyj3RiaNnen/S3XbMv3
+         NSpGGstppmmuA6FNGDRLjmcw+MvzSkVNw8YwdXt8vlIR2wvD256njOnCpeWjEwbimKoB
+         mz+6PVcBfAoDLpF4sgXothSNJ5tYO8jcaChsRt9vYl6tnhDAAMhM9CTvb0Ja/m6w4E3l
+         fSoltIbS9Xy3+NPOdBu6tBZCehSxrDMwhE6Twk60A29ulALRZIBtwq0AgmAyB3G0/1Ts
+         zRsQ==
+X-Forwarded-Encrypted: i=1; AHgh+Rr9+4FlsndU1szknQ3RS0M0hWlftlihqoTiupX7XMLB3A7tRIXemlroGJkKZqDZt3hm05y0N+Y2Fny4RGmj@lists.infradead.org
+X-Gm-Message-State: AOJu0Yx4aBVLFLm7f3VRsYjfvPEKdGW8M3nY2CYwDXww0mBO/6iUUQL5
+	zKHAVlt7oxIM9b+2JEfYhv0jrqd9mNG8KkEwt8h4ZqL2YguyP6LvcWrq9trsIL1bENg=
+X-Gm-Gg: AfdE7cl0CXFyRr4ngzlEU8Duc4bgxRSLPmogEpFgW71OJ5t0hbRHo9pRl7B2ODtZR1C
+	20CwJdDR/ib8yM3NZ4XJkNVAWMnAvgZTPKwm1LTXaTz01eG4cX9XDT9ScNSJDMSCjBNa8xV69mF
+	pKeivs+FhqfQdOfBiCuZ3rdQIVJkkmPJS4zbT97WPhiQqU2eQIiuZM1lLIWDEV5SoKkQPPnkdiL
+	vZA8ASiEvKyxfs/wedL/LgbWt92uFE92LKcR3yDZC51j05wdn0Zv+gfB6o0vKJN6dboaeMLcmgt
+	tU4uNJKRAoPBJMlES4OgrRCmTOyHav9VmgBYoe+G9Q9vthQtMRWoMx2rGW1IqvTRzcHmfwYdVeL
+	CT4LDbhuUpjiyPtcQafSjfmAapHXgV/LpIKJ2dMXGnBN7k2OPVHvB4Ivufg13COmaeFycJMJ57U
+	k/OhJy1WEAsLJUl66BUM7mOYTCgiyR0aYITIiwBCgSWg==
+X-Received: by 2002:a05:6000:3113:b0:477:47c6:36e5 with SMTP id ffacd0b85a97d-47f6230dc46mr5668112f8f.25.1784315921371;
+        Fri, 17 Jul 2026 12:18:41 -0700 (PDT)
+Received: from [192.168.5.218] (88-127-185-231.subs.proxad.net. [88.127.185.231])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-47f63e51986sm6959880f8f.11.2026.07.17.12.18.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Jul 2026 12:18:40 -0700 (PDT)
+From: Alexandre Mergnat <amergnat@baylibre.com>
+Date: Fri, 17 Jul 2026 21:18:17 +0200
+Subject: [PATCH] pwm: meson: Convert to waveform API
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SEZPR06MB5832:EE_|SEYPR06MB5940:EE_
-X-MS-Office365-Filtering-Correlation-Id: 92fbbbec-fb2d-4b95-87fb-08dee3ec991b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|52116014|7416014|23010399003|366016|1800799024|6133799003|18002099003|56012099006|11063799006|10067099003|921020|38350700014;
-X-Microsoft-Antispam-Message-Info: xoNfW4hMvV1k/cnKs8eFDPwk4rBYb2OHFuwrYiPny+OFrP+L8bydW+PWco84Uk7d55uq4foUPGxGKJoamdYtR6hBHd7JVP+OiGQaedTcfBl7JNsSyvRWwAQ2gyugJDqpwm+2ptvUrQGAKVAOKd3b/Z8bYy5WH9EymQmKUQcdy7ChAeDK+7TqrSe8Qkxqy6zLaEDo5Tw9ikP6NGNRflROOFI+G2hLXY0mXqV0ob/pxwPvInXSrz/NFAvm2F307/1+zgEC25Wmi9b3fDFkl3R8G8cmrGJ0sQsTWGSBlo4A1l0cA1oy2GPMpLsi792SgL+vnjWsmYcnbjEUvgzowHag3kUfoUnx43001zAvCUG2nYJ8v98DBaPjGgnMQVRaL1Q7vxNhg6URJcU4XMaFgTFPn9+Z0vRzliPXZv/Siyun2YJQDfmdeP6uIlCtL2iuwxmoSbzLCX0lg4pXavHp2cMdppnF0xP83t2qKdGr+kt5yHnp43OwMdNBW45qHJ/rSvrxzvMb5lb2H6acNyLcm9iniITizEs7EkIrhyUK0jEwVqHVZfzP6QWbseyp+VyGpZ6iuCth8mAv8F9aBAGE3m7QBxtzF6HLGXF/fOsRbstaL0SM1a5733HjjpBTz/6s+KN1dh0Z7pqNDL35FyDBjsSSXKomJb/Ww/N1F6L/Ewv3gMAMYRwlkCvQcwCLskgXC1ThAXkvy5HJ7v55pczQpwYsL0VtWGDaFPikkvjTEPMmjVYViECWR7GV2NKSOzm/Uogh
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEZPR06MB5832.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(7416014)(23010399003)(366016)(1800799024)(6133799003)(18002099003)(56012099006)(11063799006)(10067099003)(921020)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?cUveRhYOqkorN/3wiWFS+AT037dH2uQ4yMZ2dA4o15rhjHRL/bP1i/UKkwpw?=
- =?us-ascii?Q?OkXrrvypoTHom2tK99heDKSQD0hSDtottfmvtMNlKEtPkVfEngvA1pvDiBJO?=
- =?us-ascii?Q?jhwkktMmYfCoAeCubyJw41TXkiKiTrfipUrJyGhe5z+NJjH5T7s2R0ckkZP3?=
- =?us-ascii?Q?OVFQAlEF3jVrMKvCM2nzl3LJLYnfert/kbDQhjNtA1WW/TARFmQtzt1eoGjm?=
- =?us-ascii?Q?P6zxqQ2ka2BOfLnLwuSNXAhRux74CvlBCUspL074FFct3oVmZSf/mrUjmQVg?=
- =?us-ascii?Q?CHI01RqdYAYuiKh0zppD2zTI9ELiz5sq7f7V765nvP0Vd/N7NNr5QWE+yD5v?=
- =?us-ascii?Q?uQx9QnVBeMowiZRXjbwekqQD4tSRxxrmU51Uwe1CJKszaSTq8WKTQJFkGmOJ?=
- =?us-ascii?Q?VJ8a/5Hjd8lg0XLccz5b9GWpxu7KT+eNQEL3hiMmV7heaa1qXhU/pTMCsr5j?=
- =?us-ascii?Q?3qwUfpAju/RxKXt3KOFuvJww5OS8Ns5Erb/OnesEaHIS6FrVuv/Z2P+qrsmX?=
- =?us-ascii?Q?pqFnEQSQd3tlAoaY+3wrkvhzVDmxFBPEjfYAi7MjTyLuk4FB9URV9LmG2/NG?=
- =?us-ascii?Q?k6dnDimyjPSbjgzirrg5EHRF878JSLjI7/iN4KA6ksAGWz5SMfmlLRxCzzFb?=
- =?us-ascii?Q?v1GtqKL02cB7qSm6TT1nEEzLUYZwF3NMv6EDxGWyiLMa3J3VipsiwzSvniSa?=
- =?us-ascii?Q?DXyVllfma7Jiwt7LcyMlZN3hq6EUj7fnFWg0Mi/lFTkwuCqc0ufzCavKhovz?=
- =?us-ascii?Q?QiumUBD50MQjZqnEXIQ/jsJomNcmLfB6/jJsVgWcd2JmQN2JYrZlG2xMT/zW?=
- =?us-ascii?Q?WiGMqXn6dCKSIkCEC8Xc6TRdqiZIkdi1zaN0bR+/t8K0muNrQEHeWbRqwzlL?=
- =?us-ascii?Q?4FJRHIeGF1KCu4SZuwahf4ghyDhDMcqni4WUKSY5IVnNh7t+d6ApbAncrO+K?=
- =?us-ascii?Q?KGzxjhAjMnzTRcOOUh4ONe3CNK35w8ozymXRFKGiJ4ZWPoy6AQ1oW368wMZL?=
- =?us-ascii?Q?qBZb5JTH2PW/Ku4n0Yg5rkVUW+skHOWSYK/K+5oxUcfW8DdZnSDaBV1wLw3+?=
- =?us-ascii?Q?zSo3FUSN61XHT/+aLMMLvIDq6Bbrq/P4emhFSLPqYRBUb/9ATGPtdhsCjsDT?=
- =?us-ascii?Q?Y3JZ/1ITRd9lQyQKzff2abmiGu+naOoJfxx7hB5htzaMfbgkblGo6MhIRtsM?=
- =?us-ascii?Q?Tn9c84wSnnaw7+p8AXSxgnz54RQz0vMOTrAapRTZ/BhHaesbrJfdSW4mDn4/?=
- =?us-ascii?Q?sk8amB8gfYuMhgQEMw+2fuaeQbr2QMuThfPr8hWcoGzG5IBM22yslZ5YJNo9?=
- =?us-ascii?Q?SDQLdTgwV1vA0ciyEtL92iWmHGf4GIkWqKjRyBF5dI2hlqtdLhzDJ4V58HC7?=
- =?us-ascii?Q?Mz3KkMbTEUl+7dvdGmzJOpmF+3TLdNtVXIZK7swA7nTtwzFUdjZlytebdiwG?=
- =?us-ascii?Q?5vEe3dK/Cvc9GsRbVwLssAIBGn8VqZEXTRBnFYDD3q7S1Ct2g6b/9Vk2szmy?=
- =?us-ascii?Q?5MzA/6k4CF4Mm2wbKf0gfTy/z4SU264G+Q/rnia+EGTeasULe+2plTJfEdyi?=
- =?us-ascii?Q?yM2Tvmq4vHEkSi7vABp3HiSb52xBf39GT5INxXnmbQyPN/mTPIqxf4T2poSH?=
- =?us-ascii?Q?CJcQWOngT3dF38otWH6/DKDND6aj3ay75nnCW/ygMrw49+PyTlRmQtPD5fnM?=
- =?us-ascii?Q?zvjcsfRQHEdOkMTXPs4gFoM8WZetMwGsYpJZPoz8r2pkK7Q1UWiTdMVJVEGJ?=
- =?us-ascii?Q?0tFVhpUu8Q=3D=3D?=
-X-OriginatorOrg: vivo.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 92fbbbec-fb2d-4b95-87fb-08dee3ec991b
-X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB5832.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2026 10:17:25.5382
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: om+aYqPkmGZYnKXFzzGgfEpBERCrsOzazsdeVPSGKTOcXVZqPkGtzl7fOS12JyrSxC8yg59CaF+dCkui/sm4yQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB5940
+Message-Id: <20260717-pwm_meson_convert_to_waveform_api-v1-1-d7dbdae1318d@baylibre.com>
+X-B4-Tracking: v=1; b=H4sIAPh/WmoC/yXN0QrCIBSA4VcZ5zpBB8vRq0SIs2OdQI+oc8HYu
+ 2d1+d38/w4FM2GBy7BDxkaFOHao0wDuaeMDBd27YZTjWWolRdqCCVg4GsexYa6mstlsQ885GJt
+ IzFqpRfvZ6WmC3kkZPb1/j+vt77IuL3T1G4bj+AAdLElwhQAAAA==
+X-Change-ID: 20260710-pwm_meson_convert_to_waveform_api-8711b7f8c755
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-pwm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Alexandre Mergnat <amergnat@baylibre.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=21833;
+ i=amergnat@baylibre.com; h=from:subject:message-id;
+ bh=qI0/iXFXVOR+SOwwsLfV9tfW+ickIia9hOREj+cs6Is=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBqWoAOdg74ltkM/S96oEZdAnGT4r621kzGAdRQD
+ U24p20jFUKJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCalqADgAKCRArRkmdfjHU
+ RQqFD/0WyaGKhnIz+DEeCZTZH2CDpI8Ghx3rSuyXelbc+jQFXSmZf8AxqD4ubMBlkOgV9dd/eH8
+ W5g+/4qD13Vy21TUUKBuAI4SBfWhfpDJxrymqw58WdvYvJwUfe5vWU7wM5fYZuHlLF+yx8tQkcI
+ W865it0gZWg6PXHlLHJAiRJ9bsREMH/kaJ3j7QGBmDIsD8wZrKNdcf2Vu3r83XO7b2h5/wU64La
+ mjK8OQid/GxblQbS6gTvnd/G4ek9W7ZT9Qr4w4p2DQLYBgEzFOdfP1gX5CcAtJhPcXjNloR7tut
+ vbWpiTi8Ga+tWXL5s2B9WuIZFJwuSMBUMB6Z2UJBDWGKy4aRV/o7IWfR3UFxeNX/U+NtWok3YuN
+ ZBo+Bf+nrb5Y6T/Zya5oyf5QLXA+KLyeTb1yTK35kL5tbU00VsrxzaV8Df9RrL1ZCCNZmvDMDD2
+ TZ3yTY54TQW7sg5nskylkbnqxKMYfwUctoGlMNJi2rQwFIomR/uFlUwSE/9xtqpuzmyW5+J5SmF
+ dCjO6q7+n2ubFAjP3m0ciNym/7tHzS4apdAK6TAMlBQe7jTpXWyv7y9sABDNtNz7n6HZzqeGrCW
+ TNSeS623ApUCznZ2R0uxVL0SMAJ7wsQxeoo60tZpUkTHi8nn4YrixOA3EHUX0Uef4LAOCgVvkli
+ GW5vT7/mA3Co5fQ==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260717_031747_373767_3E8FFB9A 
-X-CRM114-Status: GOOD (  11.20  )
+X-CRM114-CacheID: sfid-20260717_121844_805743_23C88DB9 
+X-CRM114-Status: GOOD (  29.04  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -156,174 +122,593 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Since commit 55b48e23f5c4 ("genirq/devres: Add error handling in
-devm_request_*_irq()"), devm_request_irq() and devm_request_threaded_irq()
-automatically log detailed error messages on failure. Remove the
-now-redundant driver-specific dev_err() and dev_err_probe() calls.
+The PWM subsystem introduced a new waveform abstraction that
+describes a PWM signal by period length, duty length and duty offset
+instead of period, duty cycle and polarity. The meson driver still
+uses the legacy .apply() and .get_state() callbacks and does not
+implement the waveform callbacks, so consumers cannot use the
+pwm_*_waveform() helper functions with it.
 
-Signed-off-by: Pan Chuang <panchuang@vivo.com>
+Adopt the new API by implementing .round_waveform_tohw(),
+.round_waveform_fromhw(), .read_waveform() and .write_waveform()
+with a private meson_pwm_waveform struct holding the hardware
+representation. The cached channel state fields (rate, hi, lo,
+constant, inverted) are removed; counter values are now computed in
+.round_waveform_tohw() via clk_round_rate() without register writes,
+then committed in .write_waveform().
+
+The hardware invert bit places the duty active phase at the end of the
+period on revisions that have it. Input clock rates are kept at or
+below 1 GHz so each counter cycle remains representable in nanoseconds
+by .round_waveform_fromhw(). Requests for which clk_round_rate() cannot
+provide such a rate are rejected. Otherwise, period counts above the
+16-bit range are clamped, while a zero count is rounded up to one and
+signalled by .round_waveform_tohw() returning 1.
+
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 ---
- drivers/mmc/host/alcor.c         |  3 +--
- drivers/mmc/host/cavium-octeon.c | 10 ++--------
- drivers/mmc/host/meson-mx-sdio.c |  5 +----
- drivers/mmc/host/mvsdio.c        |  4 +---
- drivers/mmc/host/omap_hsmmc.c    |  4 +---
- drivers/mmc/host/owl-mmc.c       |  5 +----
- drivers/mmc/host/sdhci-msm.c     |  4 +---
- drivers/mmc/host/sh_mmcif.c      |  8 ++------
- 8 files changed, 10 insertions(+), 33 deletions(-)
+The PWM core gained a new waveform abstraction that lets drivers
+describe the hardware more directly and gives consumers access to
+rounding and read-back without touching registers. The meson driver
+still uses the legacy .apply() and .get_state() callbacks, so
+consumers of its PWMs cannot benefit from the new pwm_*_waveform()
+helpers.
 
-diff --git a/drivers/mmc/host/alcor.c b/drivers/mmc/host/alcor.c
-index 721db54739c1..45528909a758 100644
---- a/drivers/mmc/host/alcor.c
-+++ b/drivers/mmc/host/alcor.c
-@@ -1103,8 +1103,7 @@ static int alcor_pci_sdmmc_drv_probe(struct platform_device *pdev)
- 			alcor_irq, alcor_irq_thread, IRQF_SHARED,
- 			DRV_NAME_ALCOR_PCI_SDMMC, host);
- 	if (ret)
--		return dev_err_probe(&pdev->dev, ret,
--				     "Failed to get irq for data line\n");
-+		return ret;
+This series implements the four waveform callbacks and removes the
+cached channel state that the legacy .apply() path relied on.
+Settings are now computed without side effects and committed in a
+separate step, matching the split the waveform API requires.
+
+Behavioural changes visible to consumers:
+
+- On revisions without the invert bit, a nonzero duty offset is
+  rounded down to zero. An inverted polarity request through the
+  legacy path produces the same register settings as the previous
+  "duty = period - duty" emulation, so the generated signal is
+  unchanged for those consumers.
+
+- Disabling a PWM no longer emulates an inactive-high output on
+  revisions without the invert bit. The PWM API defines the output
+  of a disabled PWM as undefined (this was already the case for
+  .apply()), so affected consumers were relying on unspecified
+  behaviour. Consumers that need an inactive high output should keep
+  the PWM enabled with inverted polarity and zero duty cycle.
+
+- Input clock rates are kept at or below 1 GHz so counter cycles remain
+  representable in nanoseconds. Requests for which clk_round_rate()
+  cannot provide such a rate are rejected. Otherwise, period counts
+  exceeding the 16-bit range are clamped. A zero count is rounded up to
+  one, signalled by .round_waveform_tohw() returning 1.
+
+- Reported period and duty cycle values are rounded up instead of
+  down, so a returned setting reproduces the same counter values
+  when applied again. The constant output bit is now derived from
+  the converted counter values, which also covers cases where the
+  ns-to-counter conversion yields an empty high or low phase.
+  clk_set_rate() failures now propagate as write errors instead of
+  being logged and ignored, and .write_waveform() now also fails if
+  the input clock rate changed between rounding and writing.
+
+Testing
+=======
+
+Tested on a Libre Computer Le Potato (AML-S905X-CC, Amlogic S905X /
+GXL SoC) with CONFIG_PWM_DEBUG=y, built in tree. Three PWM nodes were
+enabled in the board device tree (pwm_ab, pwm_ef, pwm_AO_ab), exposing
+6 channels across the EE and AO clock domains.
+
+The libpwm tools drive the /dev/pwmchipN character device directly, so
+the new waveform callbacks are exercised through their own ioctls. All
+6 channels went through pwmround for rounding queries (ROUNDWF:
+standard, too-short and too-long periods, zero and full duty, duty
+offsets, non-representable values), pwmset for rounded and exact
+settings (SETROUNDEDWF / SETEXACTWF) with hardware read-back through
+debugfs (.read_waveform()), and pwmtestperf duty sweeps. pwmtestperf
+was run in all four direction/polarity combinations at 100 us, 1 ms and
+10 ms (72 runs), then with a 1 ns step at a non-tick-aligned period so
+every duty and duty-offset rounding boundary is crossed (about 24000
+boundary checks). PWM_DEBUG's rounding and read-back checks stayed
+silent throughout.
+
+ROUNDWF and SETEXACTWF agree as specified: SETEXACTWF applies exactly
+representable waveforms and returns -EDOM otherwise. 1 ms is exact on
+the EE chips and rounds to 999990 ns on the AO chip, reflecting
+each PWM's clock granularity. A 1 ns period request is
+rounded up to the shortest representable period with zero duty,
+signalled by .round_waveform_tohw() returning 1. Periods too long for
+the source clock to represent (349.52 ms on this board) are rejected
+with -EINVAL when clk_round_rate() cannot provide a low enough rate.
+GXL has no invert bit (has_polarity = false), so nonzero duty offsets
+are rounded down to zero and the axg/g12/s4 invert paths are not
+exercisable on this board.
+
+The sysfs interface (50%/25%/0%/100% duty, polarity inversion,
+enable/disable on all 6 channels) was also exercised and reads back
+consistently, confirming no regression for legacy consumers.
+---
+ drivers/pwm/pwm-meson.c | 372 ++++++++++++++++++++++++++++--------------------
+ 1 file changed, 215 insertions(+), 157 deletions(-)
+
+diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+index 8c6bf3d49753..be17aae0941b 100644
+--- a/drivers/pwm/pwm-meson.c
++++ b/drivers/pwm/pwm-meson.c
+@@ -6,11 +6,11 @@
+  * PWM output is achieved by calculating a clock that permits calculating
+  * two periods (low and high). The counter then has to be set to switch after
+  * N cycles for the first half period.
+- * Partly the hardware has no "polarity" setting. This driver reverses the period
+- * cycles (the low length is inverted with the high length) for
+- * PWM_POLARITY_INVERSED. This means that .get_state cannot read the polarity
+- * from the hardware.
+- * Setting the duty cycle will disable and re-enable the PWM output.
++ * Some of the IP block revisions have an invert bit that swaps the high and
++ * low parts of the output. This is used to implement waveforms with
++ * duty_offset_ns + duty_length_ns == period_length_ns, i.e. what the legacy
++ * API calls inverted polarity. On the other revisions a nonzero duty_offset_ns
++ * is rounded down to zero.
+  * Disabling the PWM stops the output immediately (without waiting for the
+  * current period to complete first).
+  *
+@@ -35,6 +35,7 @@
+ #include <linux/io.h>
+ #include <linux/kernel.h>
+ #include <linux/math64.h>
++#include <linux/minmax.h>
+ #include <linux/module.h>
+ #include <linux/of.h>
+ #include <linux/platform_device.h>
+@@ -96,12 +97,6 @@ static struct meson_pwm_channel_data {
+ };
  
- 	mutex_init(&host->cmd_mutex);
- 	INIT_DELAYED_WORK(&host->timeout_work, alcor_timeout_timer);
-diff --git a/drivers/mmc/host/cavium-octeon.c b/drivers/mmc/host/cavium-octeon.c
-index 8a0daddd9200..1bfc1a4f9fe9 100644
---- a/drivers/mmc/host/cavium-octeon.c
-+++ b/drivers/mmc/host/cavium-octeon.c
-@@ -240,21 +240,15 @@ static int octeon_mmc_probe(struct platform_device *pdev)
- 			ret = devm_request_irq(&pdev->dev, mmc_irq[i],
- 					       cvm_mmc_interrupt,
- 					       0, cvm_mmc_irq_names[i], host);
--			if (ret < 0) {
--				dev_err(&pdev->dev, "Error: devm_request_irq %d\n",
--					mmc_irq[i]);
-+			if (ret < 0)
- 				return ret;
--			}
- 		}
- 	} else {
- 		ret = devm_request_irq(&pdev->dev, mmc_irq[0],
- 				       cvm_mmc_interrupt, 0, KBUILD_MODNAME,
- 				       host);
--		if (ret < 0) {
--			dev_err(&pdev->dev, "Error: devm_request_irq %d\n",
--				mmc_irq[0]);
-+		if (ret < 0)
- 			return ret;
--		}
+ struct meson_pwm_channel {
+-	unsigned long rate;
+-	unsigned int hi;
+-	unsigned int lo;
+-	bool constant;
+-	bool inverted;
+-
+ 	struct clk_mux mux;
+ 	struct clk_divider div;
+ 	struct clk_gate gate;
+@@ -156,30 +151,44 @@ static void meson_pwm_free(struct pwm_chip *chip, struct pwm_device *pwm)
+ 	clk_disable_unprepare(channel->clk);
+ }
+ 
+-static int meson_pwm_calc(struct pwm_chip *chip, struct pwm_device *pwm,
+-			  const struct pwm_state *state)
++struct meson_pwm_waveform {
++	unsigned long rate;
++	u16 hi;
++	u16 lo;
++	bool enabled;
++	bool inverted;
++};
++
++static int meson_pwm_round_waveform_tohw(struct pwm_chip *chip,
++					 struct pwm_device *pwm,
++					 const struct pwm_waveform *wf,
++					 void *_wfhw)
+ {
++	struct meson_pwm_waveform *wfhw = _wfhw;
+ 	struct meson_pwm *meson = to_meson_pwm(chip);
+ 	struct meson_pwm_channel *channel = &meson->channels[pwm->hwpwm];
+-	unsigned int cnt, duty_cnt;
++	u64 cnt, duty_cnt, freq;
+ 	long fin_freq;
+-	u64 duty, period, freq;
++	int ret = 0;
+ 
+-	duty = state->duty_cycle;
+-	period = state->period;
++	if (wf->period_length_ns == 0) {
++		*wfhw = (struct meson_pwm_waveform){
++			.enabled = false,
++		};
++
++		return 0;
++	}
+ 
+ 	/*
+-	 * Note this is wrong. The result is an output wave that isn't really
+-	 * inverted and so is wrongly identified by .get_state as normal.
+-	 * Fixing this needs some care however as some machines might rely on
+-	 * this.
++	 * Get the highest input clock rate that makes the requested period
++	 * representable with the 16 bit wide counters, but at most 1 GHz so
++	 * one counter cycle stays at least a nanosecond long, which
++	 * .round_waveform_fromhw() relies on. clk_round_rate() may round up
++	 * past the requested rate, so reject a too-high result below.
+ 	 */
+-	if (state->polarity == PWM_POLARITY_INVERSED && !meson->data->has_polarity)
+-		duty = period - duty;
+-
+-	freq = div64_u64(NSEC_PER_SEC * 0xffffULL, period);
+-	if (freq > ULONG_MAX)
+-		freq = ULONG_MAX;
++	freq = div64_u64((u64)NSEC_PER_SEC * FIELD_MAX(PWM_LOW_MASK),
++			 wf->period_length_ns);
++	freq = min_t(u64, freq, NSEC_PER_SEC);
+ 
+ 	fin_freq = clk_round_rate(channel->clk, freq);
+ 	if (fin_freq <= 0) {
+@@ -188,180 +197,226 @@ static int meson_pwm_calc(struct pwm_chip *chip, struct pwm_device *pwm,
+ 		return fin_freq ? fin_freq : -EINVAL;
  	}
  
- 	host->global_pwr_gpiod = devm_gpiod_get_optional(&pdev->dev,
-diff --git a/drivers/mmc/host/meson-mx-sdio.c b/drivers/mmc/host/meson-mx-sdio.c
-index 5921e2cb2180..bef5e843f449 100644
---- a/drivers/mmc/host/meson-mx-sdio.c
-+++ b/drivers/mmc/host/meson-mx-sdio.c
-@@ -683,11 +683,8 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
- 					meson_mx_mmc_irq,
- 					meson_mx_mmc_irq_thread, IRQF_ONESHOT,
- 					NULL, host);
--	if (ret) {
--		dev_err_probe(host->controller_dev, ret,
--			      "Failed to request IRQ\n");
-+	if (ret)
- 		goto error_unregister_slot_pdev;
--	}
- 
- 	core_clk = devm_clk_get_enabled(host->controller_dev, "core");
- 	if (IS_ERR(core_clk)) {
-diff --git a/drivers/mmc/host/mvsdio.c b/drivers/mmc/host/mvsdio.c
-index 79df2fa89a3f..cf705b265e21 100644
---- a/drivers/mmc/host/mvsdio.c
-+++ b/drivers/mmc/host/mvsdio.c
-@@ -764,10 +764,8 @@ static int mvsd_probe(struct platform_device *pdev)
- 	mvsd_power_down(host);
- 
- 	ret = devm_request_irq(&pdev->dev, irq, mvsd_irq, 0, DRIVER_NAME, host);
--	if (ret) {
--		dev_err(&pdev->dev, "cannot assign irq %d\n", irq);
-+	if (ret)
- 		goto out;
--	}
- 
- 	timer_setup(&host->timer, mvsd_timeout_timer, 0);
- 	platform_set_drvdata(pdev, mmc);
-diff --git a/drivers/mmc/host/omap_hsmmc.c b/drivers/mmc/host/omap_hsmmc.c
-index 58c881f2725b..63a9fb970975 100644
---- a/drivers/mmc/host/omap_hsmmc.c
-+++ b/drivers/mmc/host/omap_hsmmc.c
-@@ -1915,10 +1915,8 @@ static int omap_hsmmc_probe(struct platform_device *pdev)
- 	/* Request IRQ for MMC operations */
- 	ret = devm_request_irq(&pdev->dev, host->irq, omap_hsmmc_irq, 0,
- 			mmc_hostname(mmc), host);
--	if (ret) {
--		dev_err(mmc_dev(host->mmc), "Unable to grab HSMMC IRQ\n");
-+	if (ret)
- 		goto err_irq;
--	}
- 
- 	ret = omap_hsmmc_reg_get(host);
- 	if (ret)
-diff --git a/drivers/mmc/host/owl-mmc.c b/drivers/mmc/host/owl-mmc.c
-index 349082d76a99..d5b8a110267b 100644
---- a/drivers/mmc/host/owl-mmc.c
-+++ b/drivers/mmc/host/owl-mmc.c
-@@ -635,11 +635,8 @@ static int owl_mmc_probe(struct platform_device *pdev)
- 
- 	ret = devm_request_irq(&pdev->dev, owl_host->irq, owl_irq_handler,
- 			       0, dev_name(&pdev->dev), owl_host);
--	if (ret) {
--		dev_err(&pdev->dev, "Failed to request irq %d\n",
--			owl_host->irq);
-+	if (ret)
- 		goto err_release_channel;
--	}
- 
- 	ret = mmc_add_host(mmc);
- 	if (ret) {
-diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
-index ceed47ccfda8..4aff965f0e2e 100644
---- a/drivers/mmc/host/sdhci-msm.c
-+++ b/drivers/mmc/host/sdhci-msm.c
-@@ -2864,10 +2864,8 @@ static int sdhci_msm_probe(struct platform_device *pdev)
- 	ret = devm_request_threaded_irq(&pdev->dev, msm_host->pwr_irq, NULL,
- 					sdhci_msm_pwr_irq, IRQF_ONESHOT,
- 					dev_name(&pdev->dev), host);
--	if (ret) {
--		dev_err(&pdev->dev, "Request IRQ failed (%d)\n", ret);
-+	if (ret)
- 		goto clk_disable;
--	}
- 
- 	msm_host->mmc->caps |= MMC_CAP_WAIT_WHILE_BUSY | MMC_CAP_NEED_RSP_BUSY;
- 
-diff --git a/drivers/mmc/host/sh_mmcif.c b/drivers/mmc/host/sh_mmcif.c
-index 9831956de1c8..7706d01b149e 100644
---- a/drivers/mmc/host/sh_mmcif.c
-+++ b/drivers/mmc/host/sh_mmcif.c
-@@ -1505,18 +1505,14 @@ static int sh_mmcif_probe(struct platform_device *pdev)
- 	name = irq[1] < 0 ? dev_name(dev) : "sh_mmc:error";
- 	ret = devm_request_threaded_irq(dev, irq[0], sh_mmcif_intr,
- 					sh_mmcif_irqt, 0, name, host);
--	if (ret) {
--		dev_err(dev, "request_irq error (%s)\n", name);
-+	if (ret)
- 		goto err_clk;
--	}
- 	if (irq[1] >= 0) {
- 		ret = devm_request_threaded_irq(dev, irq[1],
- 						sh_mmcif_intr, sh_mmcif_irqt,
- 						0, "sh_mmc:int", host);
--		if (ret) {
--			dev_err(dev, "request_irq error (sh_mmc:int)\n");
-+		if (ret)
- 			goto err_clk;
--		}
+-	dev_dbg(pwmchip_parent(chip), "fin_freq: %ld Hz\n", fin_freq);
+-
+-	cnt = mul_u64_u64_div_u64(fin_freq, period, NSEC_PER_SEC);
+-	if (cnt > 0xffff) {
+-		dev_err(pwmchip_parent(chip), "unable to get period cnt\n");
++	if (fin_freq > NSEC_PER_SEC) {
++		dev_err(pwmchip_parent(chip),
++			"source clock frequency %ld too high\n", fin_freq);
+ 		return -EINVAL;
  	}
  
- 	mutex_init(&host->thread_lock);
--- 
-2.34.1
+-	dev_dbg(pwmchip_parent(chip), "period=%llu cnt=%u\n", period, cnt);
+-
+-	if (duty == period) {
+-		channel->hi = cnt;
+-		channel->lo = 0;
+-		channel->constant = true;
+-	} else if (duty == 0) {
+-		channel->hi = 0;
+-		channel->lo = cnt;
+-		channel->constant = true;
+-	} else {
+-		duty_cnt = mul_u64_u64_div_u64(fin_freq, duty, NSEC_PER_SEC);
+-
+-		dev_dbg(pwmchip_parent(chip), "duty=%llu duty_cnt=%u\n", duty, duty_cnt);
++	/*
++	 * If the requested period is too long to be counted even at the
++	 * lowest possible input clock rate, implement the longest possible
++	 * period instead.
++	 */
++	cnt = mul_u64_u64_div_u64(fin_freq, wf->period_length_ns, NSEC_PER_SEC);
++	cnt = min_t(u64, cnt, FIELD_MAX(PWM_LOW_MASK));
++
++	if (cnt == 0) {
++		/*
++		 * The requested period is shorter than one cycle of the
++		 * fastest available input clock, implement the minimal
++		 * period with zero duty cycle (the general calculation below
++		 * yields that as duty_length_ns and duty_offset_ns cannot
++		 * exceed the requested period) and signal the rounding up
++		 * in the return value.
++		 */
++		cnt = 1;
++		ret = 1;
++	}
+ 
+-		channel->hi = duty_cnt;
+-		channel->lo = cnt - duty_cnt;
+-		channel->constant = false;
++	duty_cnt = mul_u64_u64_div_u64(fin_freq, wf->duty_length_ns, NSEC_PER_SEC);
++	duty_cnt = min(duty_cnt, cnt);
++
++	*wfhw = (struct meson_pwm_waveform){
++		.rate = fin_freq,
++		.hi = duty_cnt,
++		.lo = cnt - duty_cnt,
++		.enabled = true,
++	};
++
++	if (meson->data->has_polarity && duty_cnt) {
++		u64 offset_cnt = mul_u64_u64_div_u64(fin_freq, wf->duty_offset_ns,
++						     NSEC_PER_SEC);
++
++		/*
++		 * Waveforms with duty_offset_ns + duty_length_ns ==
++		 * period_length_ns are implemented by inverting the output:
++		 * The signal then is low for hi counts (the offset) followed
++		 * by high for lo counts (the duty cycle). Other nonzero
++		 * duty_offset_ns values are rounded down to 0.
++		 */
++		if (offset_cnt && duty_cnt + offset_cnt >= cnt) {
++			swap(wfhw->hi, wfhw->lo);
++			wfhw->inverted = true;
++		}
+ 	}
+ 
+-	channel->rate = fin_freq;
++	dev_dbg(pwmchip_parent(chip),
++		"pwm#%u: %llu/%llu [+%llu] @%lu -> hi: %u, lo: %u, inverted: %d\n",
++		pwm->hwpwm, wf->duty_length_ns, wf->period_length_ns,
++		wf->duty_offset_ns, wfhw->rate, wfhw->hi, wfhw->lo,
++		wfhw->inverted);
+ 
+-	return 0;
++	return ret;
+ }
+ 
+-static void meson_pwm_enable(struct pwm_chip *chip, struct pwm_device *pwm)
++static u64 meson_pwm_cnt_to_ns(unsigned long fin_freq, u32 cnt)
+ {
+-	struct meson_pwm *meson = to_meson_pwm(chip);
+-	struct meson_pwm_channel *channel = &meson->channels[pwm->hwpwm];
+-	struct meson_pwm_channel_data *channel_data;
+-	unsigned long flags;
+-	u32 value;
+-	int err;
+-
+-	channel_data = &meson_pwm_per_channel_data[pwm->hwpwm];
+-
+-	err = clk_set_rate(channel->clk, channel->rate);
+-	if (err)
+-		dev_err(pwmchip_parent(chip), "setting clock rate failed\n");
+-
+-	spin_lock_irqsave(&meson->lock, flags);
++	return DIV64_U64_ROUND_UP(NSEC_PER_SEC * (u64)cnt, fin_freq);
++}
+ 
+-	value = FIELD_PREP(PWM_HIGH_MASK, channel->hi) |
+-		FIELD_PREP(PWM_LOW_MASK, channel->lo);
+-	writel(value, meson->base + channel_data->reg_offset);
++static int meson_pwm_round_waveform_fromhw(struct pwm_chip *chip,
++					   struct pwm_device *pwm,
++					   const void *_wfhw,
++					   struct pwm_waveform *wf)
++{
++	const struct meson_pwm_waveform *wfhw = _wfhw;
+ 
+-	value = readl(meson->base + REG_MISC_AB);
+-	value |= channel_data->pwm_en_mask;
++	if (!wfhw->enabled || !wfhw->rate) {
++		*wf = (struct pwm_waveform){
++			.period_length_ns = 0,
++		};
+ 
+-	if (meson->data->has_constant) {
+-		value &= ~channel_data->const_en_mask;
+-		if (channel->constant)
+-			value |= channel_data->const_en_mask;
++		return 0;
+ 	}
+ 
+-	if (meson->data->has_polarity) {
+-		value &= ~channel_data->inv_en_mask;
+-		if (channel->inverted)
+-			value |= channel_data->inv_en_mask;
++	/*
++	 * wfhw->hi and wfhw->lo are u16, so their sum doesn't overflow and
++	 * NSEC_PER_SEC * (hi + lo) fits into the u64 dividend in
++	 * meson_pwm_cnt_to_ns().
++	 */
++	wf->period_length_ns = meson_pwm_cnt_to_ns(wfhw->rate, wfhw->hi + wfhw->lo);
++
++	if (wfhw->inverted && wfhw->lo == 0) {
++		/*
++		 * The output is constant low. Report a normal constant-low
++		 * waveform instead of duty_offset_ns == period_length_ns
++		 * which wouldn't be a valid waveform description. This
++		 * setting is only reachable when the hardware was programmed
++		 * by the bootloader as .round_waveform_tohw() never produces
++		 * it.
++		 */
++		wf->duty_length_ns = 0;
++		wf->duty_offset_ns = 0;
++	} else if (wfhw->inverted) {
++		wf->duty_length_ns = meson_pwm_cnt_to_ns(wfhw->rate, wfhw->lo);
++		wf->duty_offset_ns = meson_pwm_cnt_to_ns(wfhw->rate, wfhw->hi);
++	} else {
++		wf->duty_length_ns = meson_pwm_cnt_to_ns(wfhw->rate, wfhw->hi);
++		wf->duty_offset_ns = 0;
+ 	}
+ 
+-	writel(value, meson->base + REG_MISC_AB);
+-
+-	spin_unlock_irqrestore(&meson->lock, flags);
++	return 0;
+ }
+ 
+-static void meson_pwm_disable(struct pwm_chip *chip, struct pwm_device *pwm)
++static int meson_pwm_read_waveform(struct pwm_chip *chip,
++				   struct pwm_device *pwm,
++				   void *_wfhw)
+ {
++	struct meson_pwm_waveform *wfhw = _wfhw;
+ 	struct meson_pwm *meson = to_meson_pwm(chip);
+ 	struct meson_pwm_channel *channel = &meson->channels[pwm->hwpwm];
+ 	struct meson_pwm_channel_data *channel_data;
+-	unsigned long flags;
+-	u32 value;
++	u32 value, pwm_reg;
+ 
+ 	channel_data = &meson_pwm_per_channel_data[pwm->hwpwm];
+ 
+-	spin_lock_irqsave(&meson->lock, flags);
+-
+ 	value = readl(meson->base + REG_MISC_AB);
+-	value &= ~channel_data->pwm_en_mask;
++	if (!(value & channel_data->pwm_en_mask)) {
++		*wfhw = (struct meson_pwm_waveform){
++			.enabled = false,
++		};
+ 
+-	if (meson->data->has_polarity) {
+-		value &= ~channel_data->inv_en_mask;
+-		if (channel->inverted)
+-			value |= channel_data->inv_en_mask;
++		return 0;
+ 	}
+ 
+-	writel(value, meson->base + REG_MISC_AB);
++	pwm_reg = readl(meson->base + channel_data->reg_offset);
+ 
+-	spin_unlock_irqrestore(&meson->lock, flags);
++	*wfhw = (struct meson_pwm_waveform){
++		.rate = clk_get_rate(channel->clk),
++		.hi = FIELD_GET(PWM_HIGH_MASK, pwm_reg),
++		.lo = FIELD_GET(PWM_LOW_MASK, pwm_reg),
++		.enabled = true,
++		.inverted = meson->data->has_polarity &&
++			    (value & channel_data->inv_en_mask),
++	};
++
++	return 0;
+ }
+ 
+-static int meson_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+-			   const struct pwm_state *state)
++static int meson_pwm_write_waveform(struct pwm_chip *chip,
++				    struct pwm_device *pwm,
++				    const void *_wfhw)
+ {
++	const struct meson_pwm_waveform *wfhw = _wfhw;
+ 	struct meson_pwm *meson = to_meson_pwm(chip);
+ 	struct meson_pwm_channel *channel = &meson->channels[pwm->hwpwm];
+-	int err = 0;
+-
+-	channel->inverted = (state->polarity == PWM_POLARITY_INVERSED);
+-
+-	if (!state->enabled) {
+-		if (channel->inverted && !meson->data->has_polarity) {
+-			/*
+-			 * Some of IP block revisions don't have an "always high"
+-			 * setting which we can use for "inverted disabled".
+-			 * Instead we achieve this by setting mux parent with
+-			 * highest rate and minimum divider value, resulting
+-			 * in the shortest possible duration for one "count"
+-			 * and "period == duty_cycle". This results in a signal
+-			 * which is LOW for one "count", while being HIGH for
+-			 * the rest of the (so the signal is HIGH for slightly
+-			 * less than 100% of the period, but this is the best
+-			 * we can achieve).
+-			 */
+-			channel->rate = ULONG_MAX;
+-			channel->hi = ~0;
+-			channel->lo = 0;
+-			channel->constant = true;
+-
+-			meson_pwm_enable(chip, pwm);
+-		} else {
+-			meson_pwm_disable(chip, pwm);
+-		}
+-	} else {
+-		err = meson_pwm_calc(chip, pwm, state);
+-		if (err < 0)
++	struct meson_pwm_channel_data *channel_data;
++	unsigned long flags;
++	u32 value;
++	int err;
++
++	channel_data = &meson_pwm_per_channel_data[pwm->hwpwm];
++
++	/*
++	 * Channel clock operations also modify REG_MISC_AB under meson->lock,
++	 * including from .request()/.free() outside the pwmchip lock. Set the
++	 * rate before taking meson->lock to avoid recursive locking. Skip
++	 * clk_set_rate() when unchanged because even a no-op re-evaluates the
++	 * mux parent and reparses the device tree.
++	 */
++	if (wfhw->enabled && clk_get_rate(channel->clk) != wfhw->rate) {
++		err = clk_set_rate(channel->clk, wfhw->rate);
++		if (err) {
++			dev_err(pwmchip_parent(chip),
++				"setting clock rate failed: %d\n", err);
+ 			return err;
++		}
+ 
+-		meson_pwm_enable(chip, pwm);
++		/*
++		 * The rate computed by .round_waveform_tohw() might not be
++		 * hit if an input clock changed its rate in between; the
++		 * counter values only implement the promised waveform at
++		 * exactly wfhw->rate.
++		 */
++		if (clk_get_rate(channel->clk) != wfhw->rate) {
++			dev_err(pwmchip_parent(chip),
++				"clock rate changed since rounding\n");
++			return -EINVAL;
++		}
+ 	}
+ 
+-	return 0;
+-}
++	spin_lock_irqsave(&meson->lock, flags);
+ 
+-static u64 meson_pwm_cnt_to_ns(unsigned long fin_freq, u32 cnt)
+-{
+-	return fin_freq ? div64_ul(NSEC_PER_SEC * (u64)cnt, fin_freq) : 0;
+-}
++	if (wfhw->enabled) {
++		value = FIELD_PREP(PWM_HIGH_MASK, wfhw->hi) |
++			FIELD_PREP(PWM_LOW_MASK, wfhw->lo);
++		writel(value, meson->base + channel_data->reg_offset);
+ 
+-static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+-			       struct pwm_state *state)
+-{
+-	struct meson_pwm *meson = to_meson_pwm(chip);
+-	struct meson_pwm_channel_data *channel_data;
+-	unsigned long fin_freq;
+-	unsigned int hi, lo;
+-	u32 value;
+-
+-	channel_data = &meson_pwm_per_channel_data[pwm->hwpwm];
+-	fin_freq = clk_get_rate(meson->channels[pwm->hwpwm].clk);
++		value = readl(meson->base + REG_MISC_AB);
++		value |= channel_data->pwm_en_mask;
+ 
+-	value = readl(meson->base + REG_MISC_AB);
+-	state->enabled = value & channel_data->pwm_en_mask;
++		if (meson->data->has_constant) {
++			value &= ~channel_data->const_en_mask;
++			/* The signal is constant when one phase is empty */
++			if (!wfhw->hi || !wfhw->lo)
++				value |= channel_data->const_en_mask;
++		}
+ 
+-	if (meson->data->has_polarity && (value & channel_data->inv_en_mask))
+-		state->polarity = PWM_POLARITY_INVERSED;
+-	else
+-		state->polarity = PWM_POLARITY_NORMAL;
++		if (meson->data->has_polarity) {
++			value &= ~channel_data->inv_en_mask;
++			if (wfhw->inverted)
++				value |= channel_data->inv_en_mask;
++		}
+ 
+-	value = readl(meson->base + channel_data->reg_offset);
+-	lo = FIELD_GET(PWM_LOW_MASK, value);
+-	hi = FIELD_GET(PWM_HIGH_MASK, value);
++		writel(value, meson->base + REG_MISC_AB);
++	} else {
++		value = readl(meson->base + REG_MISC_AB);
++		value &= ~channel_data->pwm_en_mask;
++		writel(value, meson->base + REG_MISC_AB);
++	}
+ 
+-	state->period = meson_pwm_cnt_to_ns(fin_freq, lo + hi);
+-	state->duty_cycle = meson_pwm_cnt_to_ns(fin_freq, hi);
++	spin_unlock_irqrestore(&meson->lock, flags);
+ 
+ 	return 0;
+ }
+@@ -369,8 +424,11 @@ static int meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+ static const struct pwm_ops meson_pwm_ops = {
+ 	.request = meson_pwm_request,
+ 	.free = meson_pwm_free,
+-	.apply = meson_pwm_apply,
+-	.get_state = meson_pwm_get_state,
++	.sizeof_wfhw = sizeof(struct meson_pwm_waveform),
++	.round_waveform_tohw = meson_pwm_round_waveform_tohw,
++	.round_waveform_fromhw = meson_pwm_round_waveform_fromhw,
++	.read_waveform = meson_pwm_read_waveform,
++	.write_waveform = meson_pwm_write_waveform,
+ };
+ 
+ static int meson_pwm_init_clocks_meson8b(struct pwm_chip *chip,
+
+---
+base-commit: 2e0a43a9e6f2e846f370aa63ea274f5403628b79
+change-id: 20260710-pwm_meson_convert_to_waveform_api-8711b7f8c755
+
+Best regards,
+--  
+Alexandre Mergnat <amergnat@baylibre.com>
 
 
 _______________________________________________
