@@ -4,71 +4,127 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6F09C4451B
-	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Jul 2026 11:18:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F24F4C44521
+	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Jul 2026 23:36:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=IxjvGCaw02Y3RrxAXwjgT75HRzqdCKcK6b64IZkxroU=; b=ircGz1Pse4u/iX
-	1CJdBialGxkLdhf5jXEyWE21ERyBHnY6rOgxyMDsy72MUmXxHyHowm4VBA/oCnjE9Y4ltfKT5FF0V
-	tStbX0we/IETxrttlvTEv1L2EjPiDpKi9qNh31bJUXvRX4Pyi586ASvbXL73E3fPgFPWzht09zGLm
-	/IitHyPpIFAtUzBPYcn1U1tfZ92ilaIdyY2ikV7jKd9RTRGWomIX80nkgOxA29jOG6bDi1pu6c7/k
-	oKnbalMLnsexcwmm4fGoZhQRJLp8GGJ4WVBbOIFXTOnHWBvcZghwHpvR2WrpiNgucOjxUIonMbr5y
-	smssgfHVSr+fmG8/7UJA==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=4jirWbj5b4kHOCSsxuvG7i9Nub0kG39z7bFldJcoXCU=; b=vUfDpMiE4YdH9B
+	Kpzc3UPKAugSVrgUoi2N995fd8ZTWFpIiBBP4GEMb4erAZzkoqKpbWpShYfA4Xbg2a9YJjff6V7o+
+	9VNwoVYThAzdVh7sNhNgx6injlUCRu7zD4HjBKSAX6j4sxfF/7npEt/LGkckjanduflvpQM9rFVRh
+	k/Whrh9S85bWQxIeK6JGhpyHcgawsUypvTudOvzhKGHtQSal0wBo/ddhiuvDOgsGdMqrDe+SZGYhP
+	VKhfoxudphuE36ebTX9dC6w3RlhiJfHeCFMYU667iurkk+dt3w9l7qunywXrJwpBEV5MUZ319cEDQ
+	wraZyjQzgPZvqpsrRtxQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wl33c-000000042pB-13rY;
-	Sat, 18 Jul 2026 11:18:12 +0000
-Received: from out-183.mta1.migadu.com ([95.215.58.183])
+	id 1wlEZe-00000004bZo-1zUW;
+	Sat, 18 Jul 2026 23:36:02 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wl33Z-000000042mn-0CSz
+	id 1wlEZb-00000004bYj-3iON
 	for linux-amlogic@lists.infradead.org;
-	Sat, 18 Jul 2026 11:18:10 +0000
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mieulab.com; s=key1;
-	t=1784373487;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=iX+mNcsLzoRlbFysdi2lELSN0lTLQ6Chr+xxoRDbP5k=;
-	b=QPMlD6/O5/Lsvl23y5B4KKBWFZMRIMHic9yi0aOgL8KgoVFqgXC765fppxcTzX/tAlZUsr
-	BWmeHq/uIjJkvjHNlG5xgqUxgd3zu2rdQTWLl2lf1zNyKnN0u/SiWuyif8GwCxVFXtKoHT
-	MZe52lPofJxNEZXBlPHi3XNOH084F5Ypk64LgnlrFGH6icm/iT7OZ8CCBwihHJYoeXv6o1
-	SlpEy/+K9RSVS9PVcvnkisHCpnMRoNvz0VilZU6fQeiIIg4dCNPIKm2mqYjWEsutAfRXVD
-	FOAHNBF3fxg7NA4KcP094WBjg1jNl53PkRL7V/dmUYUXuQ9xsBLLOYMYX1XQ0w==
-From: Zinan Zhou <zinan@mieulab.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Zinan Zhou <zinan@mieulab.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	dri-devel@lists.freedesktop.org,
-	linux-amlogic@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [RFC PATCH 2/2] drm/meson: add GXLX2 HDMI register support
-Date: Sat, 18 Jul 2026 20:15:27 +0900
-Message-ID: <20260718111527.119231-3-zinan@mieulab.com>
-In-Reply-To: <20260718111527.119231-1-zinan@mieulab.com>
-References: <20260718111527.119231-1-zinan@mieulab.com>
+	Sat, 18 Jul 2026 23:36:01 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-4954df200ddso7180855e9.0
+        for <linux-amlogic@lists.infradead.org>; Sat, 18 Jul 2026 16:35:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1784417758; x=1785022558; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=fbveywkXEOoKA5l+wqrU0DqqoG4NoX/G8iLvkPe8hb4=;
+        b=oEbV6wi5Z/ZukF/mLl9eQfnPlO1xxWqWcP2sj1d1We55Vt7yWC5k+/68kL/YN5DOtH
+         5toIkzeAOAoMJ8QDoHxC1y+5vK5zr9mMG8JE9ryJU89zmLPxb/fB7Hl+ImMdiUtQx3S0
+         fCptVg1mFZUSyWHlp/4767onjndC5NTVqoCYsXLoKWO7zEl3yxtesralMDq3vszAq5om
+         bDOKdmHcAl989pz/fNtHuVt8HvtIkTL9ukJEWyHJnTfYYfwmebiqDXOj/U4H6vioKSUI
+         fjOHeI43bAZgNmEuqRU5nBkdRxDCR5mQNBi+H7T1q5Px44OdFKcDvcfjc3jkjfHUZYKF
+         x6gQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784417758; x=1785022558;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=fbveywkXEOoKA5l+wqrU0DqqoG4NoX/G8iLvkPe8hb4=;
+        b=Bf4LFr11erfhihBYU6XqAhvE+5JJldOBVLc9FcbyhIbyJX8mTxIHLBfAFMmgqx1IA/
+         ef9diiXQEBcadVM/umspIaCiDFDoCGAhYIXYfKEUoND1HXU2rsBd9uBQCMvMMLh/xoS7
+         W7ch1nQ+OuCJB6c4H2AjTVoXp8LguoqEAwzXAkJBol83rrJlQcYcBEeiGkbXVV/5nwo7
+         /r0ECcdPVpKZf66XhYw3qb6G3hVh0A2Onm7h/jL1x3EMKF/N69tVNRj71B2j2cdaOzcx
+         yRiLuVs6X2aEoUj4oUP6QAICUb5JAdCLf1fTkHlNXw8DSRWYSVLNF5I3rBlmyyHLYjIA
+         Kjqg==
+X-Forwarded-Encrypted: i=1; AHgh+RrbKdIpAdjrCOtXftvoW/yFdmQ9fwKa1/9Fm/S7YUYq8XKdn7WgNngTGSEcsc1sLcK8FiuLK7R4JV2A55DG@lists.infradead.org
+X-Gm-Message-State: AOJu0YxM2riACmo53jtTBtqoFoBz97ZxDEFFuBAS1yaFzM9TKXpjoC51
+	464HoRRPyLc8KkWZAPac0lDQl/dmovb76EBnx8jjroQ4VWKkcnPh6sWi
+X-Gm-Gg: AfdE7cnEYhPDeFAP+FE/1ZS7sbe2uNbXiCLpvGNyaSpZKsVA8uE5M/nkWBvIS+1W9c4
+	Rcmmg9dQcaOd1B336rRh6wOPX8L8H58yQ7hkqk3MbMdK5y/zv7/kDf6Azh9qGQ9Z+ecRlaN+qRH
+	E2Gq2E1EtIJj4T9eE6J1cWTfRiQcLpN4EIytqg0ApQl/MzuEt4RBOjuZFgOU1qBM9ZbwzEjp6j1
+	X3FB3/ybcPfrHQl6gnYOPYSbhIUXJMl+fHNYiGKl9TLjFyMO4F5ajQehqa+EWp9u1StHac75b+O
+	zoEBUdVf4vj12kUOTYUdezftUOwplqxIc6K73qhhj+WX7SsFsNg5wTH92TC4PVZ/Co9LF+3DeLT
+	HE5GAGCXFKrRIe/Wp9jTRLHQ5bskkF+eNaToCVQVauxz1W9Cbr8u0m6yQyAmgt/soOVJrr51pkm
+	SeOvHJS3XQ8Q==
+X-Received: by 2002:a05:600c:1989:b0:495:699:84ca with SMTP id 5b1f17b1804b1-4954a798f17mr83663665e9.28.1784417757432;
+        Sat, 18 Jul 2026 16:35:57 -0700 (PDT)
+Received: from [127.0.0.2] ([2a01:14:111:ccf0:645b:9e5c:7fe3:c09f])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4954a2a24b6sm160964675e9.3.2026.07.18.16.35.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 18 Jul 2026 16:35:56 -0700 (PDT)
+From: Diogo Silva <diogompaissilva@gmail.com>
+Subject: [PATCH 00/15] drm/drm_simple: remove drm_simple_encoder_init
+Date: Sun, 19 Jul 2026 01:35:31 +0200
+Message-Id: <20260719-drm_simple_encoder_init-v1-0-a78c509e3062@gmail.com>
 MIME-Version: 1.0
-X-Migadu-Flow: FLOW_OUT
+X-B4-Tracking: v=1; b=H4sIAMQNXGoC/yXM0QqCQBBG4VeRuW5hlVDrVSIWnf2tiVxlRiMQ3
+ 72tLr+LczYyqMDoXGykeInJlDLKQ0F879INTmI2Vb6qfVO2LuoYTMb5iYDEU4QGSbK46OtTd2R
+ uhranXM+KQd6/8+X6t639A7x8d7TvHyUPD1h7AAAA
+X-Change-ID: 20260718-drm_simple_encoder_init-d069a4cc7f8b
+To: Jingoo Han <jingoohan1@gmail.com>, Inki Dae <inki.dae@samsung.com>, 
+ Seung-Woo Kim <sw0312.kim@samsung.com>, 
+ Kyungmin Park <kyungmin.park@samsung.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Michal Simek <michal.simek@amd.com>, 
+ Thierry Reding <thierry.reding@kernel.org>, 
+ Mikko Perttunen <mperttunen@nvidia.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, Stefan Agner <stefan@agner.ch>, 
+ Alison Wang <alison.wang@nxp.com>, 
+ Anitha Chrisanthus <anitha.chrisanthus@intel.com>, 
+ David Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>, 
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>, 
+ Gurchetan Singh <gurchetansingh@chromium.org>, 
+ Chia-I Wu <olvaffe@gmail.com>, Jyri Sarha <jyri.sarha@iki.fi>, 
+ Liu Ying <victor.liu@nxp.com>, Frank Li <Frank.Li@nxp.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Xinliang Liu <xinliang.liu@linaro.org>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, 
+ Yongqin Liu <yongqin.liu@linaro.org>, John Stultz <jstultz@google.com>, 
+ Liviu Dudau <liviu.dudau@arm.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>
+Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-tegra@vger.kernel.org, virtualization@lists.linux.dev, 
+ imx@lists.linux.dev, linux-mediatek@lists.infradead.org, 
+ linux-renesas-soc@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-doc@vger.kernel.org, Diogo Silva <diogompaissilva@gmail.com>
+X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260718_041809_238013_A120836D 
-X-CRM114-Status: GOOD (  18.78  )
+X-CRM114-CacheID: sfid-20260718_163559_985289_325BE56A 
+X-CRM114-Status: UNSURE (   8.07  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,143 +141,64 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-GXLX2 combines a GXL-like display pipeline and HDMI PHY with directly
-mapped DesignWare and TOP registers. Reusing the indirect GX callbacks
-returns an invalid HDMI controller ID and prevents the HDMI component from
-binding.
+The simple KMS helpers are deprecated because they only add an
+intermediate layer between drivers and atomic modesetting.
 
-Add GXLX2 match data using the existing direct register callbacks, while
-retaining the GXL PHY initialization values. Do not enable APB3
-fail-on-error through the legacy indirect control-register offsets for a
-direct-register device. Add the compatible to the VPU component match list
-and use the GXLX2-specific HHI_HDMI_PHY_CNTL0 value for the 297 MHz
-pixel-clock bucket.
+This series open-codes all remaining drm_simple_encoder_init() users by
+calling drm_encoder_init() directly and providing driver-local
+drm_encoder_funcs where needed. After the driver conversions, the helper
+is removed and the completed DRM todo item is dropped.
 
-The register layout and the 297 MHz value were determined by analysis of
-the HG680-LC vendor kernel. Public Amlogic-derived source independently
-documents the direct access mechanism and the ordinary GXL PHY values; no
-vendor code is copied by this change.
-
-An equivalent Linux 6.6 implementation was tested on an HG680-LC with 1080p
-HDMI video and two-channel HDMI audio. The Linux 6.12 port boots from eMMC
-with working Ethernet, 1080p and native 1440p video, and two-channel HDMI
-audio. This port has passed arm64 compilation; 4K30 physical validation of
-the 297 MHz branch remains pending.
-
-Assisted-by: Codex:gpt-5.6-sol
-Signed-off-by: Zinan Zhou <zinan@mieulab.com>
+Signed-off-by: Diogo Silva <diogompaissilva@gmail.com>
 ---
- drivers/gpu/drm/meson/meson_drv.c     |  1 +
- drivers/gpu/drm/meson/meson_dw_hdmi.c | 33 +++++++++++++++++++++++----
- 2 files changed, 29 insertions(+), 5 deletions(-)
+Diogo Silva (15):
+      drm/exynos: remove dependency on DRM simple helpers
+      drm/xlnx/zynqmp_dpsub: remove dependency on DRM simple helpers
+      drm/tegra: remove dependency on DRM simple helpers
+      drm/fsl-dcu: remove dependency on DRM simple helpers
+      drm/kmb: remove dependency on DRM simple helpers
+      drm/virtio: remove dependency on DRM simple helpers
+      drm/tidss: remove dependency on DRM simple helpers
+      drm/imx: remove dependency on DRM simple helpers
+      drm/mediatek: remove dependency on DRM simple helpers
+      drm/renesas/shmobile: remove dependency on DRM simple helpers
+      drm/hisilicon/kirin: remove dependency on DRM simple helpers
+      drm/arm/komeda: remove dependency on DRM simple helpers
+      drm/meson: remove dependency on DRM simple helpers
+      drm/drm_simple: remove deprecated drm_simple_encoder_init function
+      Documentation/gpu: remove completed drm_simple_encoder_init() todo
 
-diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index 49ff9f1f16d3..5c136743e60c 100644
---- a/drivers/gpu/drm/meson/meson_drv.c
-+++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -469,6 +469,7 @@ static void meson_drv_shutdown(struct platform_device *pdev)
- static const struct of_device_id components_dev_match[] = {
- 	{ .compatible = "amlogic,meson-gxbb-dw-hdmi" },
- 	{ .compatible = "amlogic,meson-gxl-dw-hdmi" },
-+	{ .compatible = "amlogic,meson-gxlx2-dw-hdmi" },
- 	{ .compatible = "amlogic,meson-gxm-dw-hdmi" },
- 	{ .compatible = "amlogic,meson-g12a-dw-hdmi" },
- 	{}
-diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-index 1004108fb7ca..f02d6a513dd3 100644
---- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-@@ -136,6 +136,8 @@ struct meson_dw_hdmi_data {
- 				     unsigned int addr, unsigned int data);
- 	u32 cntl0_init;
- 	u32 cntl1_init;
-+	u32 phy_cntl0_3g;
-+	bool uses_direct_regs;
- };
- 
- struct meson_dw_hdmi {
-@@ -287,7 +289,9 @@ static void meson_hdmi_phy_setup_mode(struct meson_dw_hdmi *dw_hdmi,
- 	/* For 420, pixel clock is half unlike venc clock */
- 	if (mode_is_420) pixel_clock /= 2;
- 
--	if (dw_hdmi_is_compatible(dw_hdmi, "amlogic,meson-gxl-dw-hdmi") ||
-+	if (dw_hdmi_is_compatible(dw_hdmi,
-+				  "amlogic,meson-gxlx2-dw-hdmi") ||
-+	    dw_hdmi_is_compatible(dw_hdmi, "amlogic,meson-gxl-dw-hdmi") ||
- 	    dw_hdmi_is_compatible(dw_hdmi, "amlogic,meson-gxm-dw-hdmi")) {
- 		if (pixel_clock >= 371250) {
- 			/* 5.94Gbps, 3.7125Gbps */
-@@ -295,7 +299,8 @@ static void meson_hdmi_phy_setup_mode(struct meson_dw_hdmi *dw_hdmi,
- 			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL3, 0x2136315b);
- 		} else if (pixel_clock >= 297000) {
- 			/* 2.97Gbps */
--			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0, 0x33303382);
-+			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0,
-+				     dw_hdmi->data->phy_cntl0_3g);
- 			regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL3, 0x2036315b);
- 		} else if (pixel_clock >= 148500) {
- 			/* 1.485Gbps */
-@@ -586,6 +591,7 @@ static const struct meson_dw_hdmi_data meson_dw_hdmi_gxl_data = {
- 	.dwc_write = dw_hdmi_dwc_write,
- 	.cntl0_init = 0x0,
- 	.cntl1_init = PHY_CNTL1_INIT,
-+	.phy_cntl0_3g = 0x33303382,
- };
- 
- static const struct meson_dw_hdmi_data meson_dw_hdmi_g12a_data = {
-@@ -595,6 +601,19 @@ static const struct meson_dw_hdmi_data meson_dw_hdmi_g12a_data = {
- 	.dwc_write = dw_hdmi_g12a_dwc_write,
- 	.cntl0_init = 0x000b4242, /* Bandgap */
- 	.cntl1_init = PHY_CNTL1_INIT,
-+	.uses_direct_regs = true,
-+};
-+
-+/* GXLX2 uses the direct register layout with the older GXL PHY setup. */
-+static const struct meson_dw_hdmi_data meson_dw_hdmi_gxlx2_data = {
-+	.top_read = dw_hdmi_g12a_top_read,
-+	.top_write = dw_hdmi_g12a_top_write,
-+	.dwc_read = dw_hdmi_g12a_dwc_read,
-+	.dwc_write = dw_hdmi_g12a_dwc_write,
-+	.cntl0_init = 0x0,
-+	.cntl1_init = PHY_CNTL1_INIT,
-+	.phy_cntl0_3g = 0x33353382,
-+	.uses_direct_regs = true,
- };
- 
- static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
-@@ -612,8 +631,8 @@ static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
- 	reset_control_reset(meson_dw_hdmi->hdmitx_ctrl);
- 	reset_control_reset(meson_dw_hdmi->hdmitx_phy);
- 
--	/* Enable APB3 fail on error */
--	if (!meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
-+	/* The APB3 control registers exist only with the indirect interface. */
-+	if (!meson_dw_hdmi->data->uses_direct_regs) {
- 		writel_bits_relaxed(BIT(15), BIT(15),
- 				    meson_dw_hdmi->hdmitx + HDMITX_TOP_CTRL_REG);
- 		writel_bits_relaxed(BIT(15), BIT(15),
-@@ -769,7 +788,9 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
- 	dw_plat_data->disable_cec = true;
- 	dw_plat_data->output_port = 1;
- 
--	if (dw_hdmi_is_compatible(meson_dw_hdmi, "amlogic,meson-gxl-dw-hdmi") ||
-+	if (dw_hdmi_is_compatible(meson_dw_hdmi,
-+				  "amlogic,meson-gxlx2-dw-hdmi") ||
-+	    dw_hdmi_is_compatible(meson_dw_hdmi, "amlogic,meson-gxl-dw-hdmi") ||
- 	    dw_hdmi_is_compatible(meson_dw_hdmi, "amlogic,meson-gxm-dw-hdmi") ||
- 	    dw_hdmi_is_compatible(meson_dw_hdmi, "amlogic,meson-g12a-dw-hdmi"))
- 		dw_plat_data->use_drm_infoframe = true;
-@@ -854,6 +875,8 @@ static const struct of_device_id meson_dw_hdmi_of_table[] = {
- 	  .data = &meson_dw_hdmi_gxl_data },
- 	{ .compatible = "amlogic,meson-gxm-dw-hdmi",
- 	  .data = &meson_dw_hdmi_gxl_data },
-+	{ .compatible = "amlogic,meson-gxlx2-dw-hdmi",
-+	  .data = &meson_dw_hdmi_gxlx2_data },
- 	{ .compatible = "amlogic,meson-g12a-dw-hdmi",
- 	  .data = &meson_dw_hdmi_g12a_data },
- 	{ }
--- 
-2.43.0
+ Documentation/gpu/todo.rst                        | 15 ---------------
+ drivers/gpu/drm/arm/display/komeda/komeda_crtc.c  |  9 +++++++--
+ drivers/gpu/drm/drm_simple_kms_helper.c           | 13 ++-----------
+ drivers/gpu/drm/exynos/exynos_dp.c                | 13 +++++++++++--
+ drivers/gpu/drm/exynos/exynos_drm_dpi.c           | 14 ++++++++++++--
+ drivers/gpu/drm/exynos/exynos_drm_dsi.c           | 11 +++++++++--
+ drivers/gpu/drm/exynos/exynos_drm_vidi.c          | 14 ++++++++++++--
+ drivers/gpu/drm/exynos/exynos_hdmi.c              | 15 +++++++++++++--
+ drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_rgb.c         | 10 +++++++---
+ drivers/gpu/drm/hisilicon/kirin/dw_drm_dsi.c      |  9 +++++++--
+ drivers/gpu/drm/imx/dc/dc-kms.c                   |  8 ++++++--
+ drivers/gpu/drm/kmb/kmb_dsi.c                     |  9 +++++++--
+ drivers/gpu/drm/mediatek/mtk_dsi.c                | 10 +++++++---
+ drivers/gpu/drm/meson/meson_encoder_cvbs.c        | 11 ++++++++---
+ drivers/gpu/drm/meson/meson_encoder_dsi.c         | 11 ++++++++---
+ drivers/gpu/drm/meson/meson_encoder_hdmi.c        | 11 ++++++++---
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.c | 10 +++++++---
+ drivers/gpu/drm/tegra/dsi.c                       | 17 ++++++++++++++---
+ drivers/gpu/drm/tegra/rgb.c                       | 14 ++++++++++++--
+ drivers/gpu/drm/tidss/tidss_encoder.c             | 10 +++++++---
+ drivers/gpu/drm/virtio/virtgpu_display.c          | 12 ++++++++++--
+ drivers/gpu/drm/xlnx/zynqmp_kms.c                 | 13 +++++++++++--
+ include/drm/drm_simple_kms_helper.h               |  4 ----
+ 23 files changed, 185 insertions(+), 78 deletions(-)
+---
+base-commit: e55c6b9a3522aaf1441a0662d534c1c7bfa9b860
+change-id: 20260718-drm_simple_encoder_init-d069a4cc7f8b
+
+Best regards,
+--  
+Diogo Silva <diogompaissilva@gmail.com>
 
 
 _______________________________________________
