@@ -4,65 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8455CC44523
-	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Jul 2026 09:09:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C561BC4451B
+	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Jul 2026 09:19:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=wQQRLF1KcE/rqiN6xB1VWO0TpYvA/ryngIZddAcdGyM=; b=PbLvx55gTC0jvn
-	U/hyeRIVTGTaV2zelF6TuOjk/HtV5NDzpcpZ8x6wLfZjl0x9z0TcPZJu2B0eJv9jpbUFhLrOgC1xz
-	VWeagyboVffNx+qU83rQWxLp9IUyUOj5I/ZFDZHBQi8n2j1TTqkWQ3zWva+72ts1ZjV5Mk/JDcX3b
-	cgWPEO3gtmv9ACCVUrtY/sg84qd12iDHIQ13HbvNTt858Sw80koFrUS8pjp+5ta081WUTiQQHTGe7
-	yXoCz5BqU4HrdN+qIaMVRQwaKh2O7QY6YfPV4hGqKzjzHnCeDcHDh/xW74S9jVwp4rlKFTcydg95+
-	4vOalQe2a+3TQkYm2Ixw==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=qfe0UsF1aBml269CfSAxZK+1l7ByaSgHnWzNTNyBuuE=; b=MNOVZ0B1YZnOYw
+	FNranfrWZhSdlWBaK3FfxD3YzXr9UPzdk3RAqpkZgrRLeVQu+grlNylDL0qOTbcMzg2eEjeY4ogP0
+	rJWa8wCIQfuoAFrDDN3PgWmm8lOiNbbI/xsaDSRU4osVp2HN2BIn7xsrhxdtYusIMun/WmWZpOvQW
+	C0e8nDwSEM08zqiiipRfDKpM706Oca6AVUw6rzW433nO5DD+1iBzosxo5gAkL8j84C50rmlo/f0dm
+	iGzSAj2dpcukORL00rO5zQihul7IV6O8VCc7mjUr1SW5oeDeIi5905L05rOeozA5/SQ63CpHx+jt6
+	m5GYBbMCXpy3NrE51BVg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wl130-00000003w0A-04oX;
-	Sat, 18 Jul 2026 09:09:26 +0000
-Received: from out-179.mta0.migadu.com ([91.218.175.179])
+	id 1wl1Cv-00000003wwu-31hc;
+	Sat, 18 Jul 2026 09:19:41 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wl12w-00000003vyn-43SX
+	id 1wl1Cu-00000003wwm-0gmA
 	for linux-amlogic@lists.infradead.org;
-	Sat, 18 Jul 2026 09:09:24 +0000
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mieulab.com; s=key1;
-	t=1784365749;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=04ZG929EQhX1dGNLkVMZf7o0QfRRX5rccHgYz9v8S+U=;
-	b=KhOZP0PJkvHKX7WngjioyotNt/pO8fljU0Vgyo7CFCT4OlU/hu2906O+/lPs0BaBFILBBj
-	XAcHxaWAbow0SNTsrn47UeHbu7IXkPyFQGgUtU30vQbOaNxUSHAMkAtmeMDEeLy/HYS/8l
-	7qrXx651/jgATPKzu+Y25+EIxZmPdg5oNH0ymacfxN5C9ymb/UMrRKjysuPliiRrSb04kn
-	NjopTSvCoAiKtd8RRilvH1AEoNWhopr1iMenin4ylg/fq1lofQ6uE4jUov+/YVlyP7xYP/
-	BUaO0aukHg6kHLHJCFgw1bq7vtO4yCfYeOi/K1n+oulQgSdKTyXgX72AkYVwQQ==
-From: Zinan Zhou <zinan@mieulab.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Zinan Zhou <zinan@mieulab.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	dri-devel@lists.freedesktop.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/meson: constrain the DW-HDMI regmap range
-Date: Sat, 18 Jul 2026 18:07:10 +0900
-Message-ID: <20260718090710.70534-1-zinan@mieulab.com>
-MIME-Version: 1.0
-X-Migadu-Flow: FLOW_OUT
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260718_020923_150312_E40C5008 
-X-CRM114-Status: UNSURE (   9.40  )
-X-CRM114-Notice: Please train this message.
+	Sat, 18 Jul 2026 09:19:40 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 76CB141A00;
+	Sat, 18 Jul 2026 09:19:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14F871F000E9;
+	Sat, 18 Jul 2026 09:19:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784366379;
+	bh=qFqYyrBdcq0ibDmYiLePTSZIXE8UPQe0qPMs8Yh4Fjs=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=Ky+Mc3cqgME+CpDV66ALB8bWjdv1Wlc2Lu5EuMnfEJAgQBp6xdsj0tHCf12AMb91L
+	 x36J/rvRYZv0EK7xLu2jvzJPohmnobtSYL0BKHKxnswkA7S41qMP4UpkvkgaWOQe/R
+	 eFupOc8i7YdQq2yl86aF6nQ7O6YtuiH5UewnHQiUmSKYhnAdPAHcLNUwOGQ74DAYQQ
+	 7CvJHKzf3BUAQ7ha+wgyi1i5Nj9UrqOkZZyb66hucf0TaMW9Y4LM29gPyY51Io72xV
+	 WzaOnAj4EYMjVBLhz8Cs98U9QthRtOebtT4eFrE3zeLfXvEtMPBum9KsjgvLokyTwk
+	 34s7980Ix0qBg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] drm/meson: constrain the DW-HDMI regmap range
+To: "Zinan Zhou" <zinan@mieulab.com>
+Cc: dri-devel@lists.freedesktop.org, neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
+In-Reply-To: <20260718090710.70534-1-zinan@mieulab.com>
+References: <20260718090710.70534-1-zinan@mieulab.com>
+Date: Sat, 18 Jul 2026 09:19:38 +0000
+Message-Id: <20260718091939.14F871F000E9@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,57 +61,68 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The DesignWare HDMI regmap declares 0x10000 as its inclusive maximum
-register. A regmap traversal can consequently read one byte past the
-directly mapped G12A 64 KiB resource. It also treats the Meson TOP window
-from offset 0x8000 as DWC registers. On the older indirect interface, the
-address is truncated to 16 bits and aliases register zero.
-
-Limit the regmap to 0x7e12, the last register defined by the supported
-Synopsys HDMI controller. This also keeps register iteration below the
-Meson TOP register window at offset 0x8000.
-
-Fixes: 3f68be7d8e96 ("drm/meson: Add support for HDMI encoder and DW-HDMI bridge + PHY")
-Assisted-by: Codex:gpt-5.6-sol
-Signed-off-by: Zinan Zhou <zinan@mieulab.com>
----
- drivers/gpu/drm/meson/meson_dw_hdmi.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-index fef1702acb14..1004108fb7ca 100644
---- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-@@ -100,6 +100,8 @@
- #define HDMITX_DWC_ADDR_REG	0x10
- #define HDMITX_DWC_DATA_REG	0x14
- #define HDMITX_DWC_CTRL_REG	0x18
-+/* Last DWC register; direct layouts place the TOP block at offset 0x8000. */
-+#define HDMITX_DWC_MAX_REGISTER	0x7e12
- 
- /* HHI Registers */
- #define HHI_MEM_PD_REG0		0x100 /* 0x40 */
-@@ -564,7 +566,7 @@ static const struct regmap_config meson_dw_hdmi_regmap_config = {
- 	.val_bits = 8,
- 	.reg_read = meson_dw_hdmi_reg_read,
- 	.reg_write = meson_dw_hdmi_reg_write,
--	.max_register = 0x10000,
-+	.max_register = HDMITX_DWC_MAX_REGISTER,
- 	.fast_io = true,
- };
- 
-
-base-commit: b0a652436b892eb9a036a031b33099dca036faaa
--- 
-2.43.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpQcmUtZXhpc3RpbmcgaXNzdWVzOgot
+IFtIaWdoXSBUaGUgdGhyZWFkZWQgSVJRIGhhbmRsZXIgYGR3X2hkbWlfdG9wX3RocmVhZF9pcnFg
+IGNhbiBleGVjdXRlIGJlZm9yZSB0aGUgYGhkbWlgIGFuZCBgYnJpZGdlYCBwb2ludGVycyBhcmUg
+aW5pdGlhbGl6ZWQsIGxlYWRpbmcgdG8gYSBOVUxMIHBvaW50ZXIgZGVyZWZlcmVuY2UuCi0tCgot
+LS0gUGF0Y2ggWzFdOiBbUEFUQ0hdIGRybS9tZXNvbjogY29uc3RyYWluIHRoZSBEVy1IRE1JIHJl
+Z21hcCByYW5nZSAtLS0KY29tbWl0IGY4ZmY2OGU2ZjM3MmRkYjlmNWNhODM4OTNlN2YxYjFiMjEz
+NDJkNzIKQXV0aG9yOiBaaW5hbiBaaG91IDx6aW5hbkBtaWV1bGFiLmNvbT4KCmRybS9tZXNvbjog
+Y29uc3RyYWluIHRoZSBEVy1IRE1JIHJlZ21hcCByYW5nZQoKVGhlIERlc2lnbldhcmUgSERNSSBy
+ZWdtYXAgZGVjbGFyZXMgMHgxMDAwMCBhcyBpdHMgaW5jbHVzaXZlIG1heGltdW0KcmVnaXN0ZXIu
+IEEgcmVnbWFwIHRyYXZlcnNhbCBjYW4gY29uc2VxdWVudGx5IHJlYWQgb25lIGJ5dGUgcGFzdCB0
+aGUKZGlyZWN0bHkgbWFwcGVkIEcxMkEgNjQgS2lCIHJlc291cmNlLiBJdCBhbHNvIHRyZWF0cyB0
+aGUgTWVzb24gVE9QIHdpbmRvdwpmcm9tIG9mZnNldCAweDgwMDAgYXMgRFdDIHJlZ2lzdGVycy4g
+T24gdGhlIG9sZGVyIGluZGlyZWN0IGludGVyZmFjZSwgdGhlCmFkZHJlc3MgaXMgdHJ1bmNhdGVk
+IHRvIDE2IGJpdHMgYW5kIGFsaWFzZXMgcmVnaXN0ZXIgemVyby4KCkxpbWl0IHRoZSByZWdtYXAg
+dG8gMHg3ZTEyLCB0aGUgbGFzdCByZWdpc3RlciBkZWZpbmVkIGJ5IHRoZSBzdXBwb3J0ZWQKU3lu
+b3BzeXMgSERNSSBjb250cm9sbGVyLiBUaGlzIGFsc28ga2VlcHMgcmVnaXN0ZXIgaXRlcmF0aW9u
+IGJlbG93IHRoZQpNZXNvbiBUT1AgcmVnaXN0ZXIgd2luZG93IGF0IG9mZnNldCAweDgwMDAuCgo+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fZHdfaGRtaS5jIGIvZHJp
+dmVycy9ncHUvZHJtL21lc29uL21lc29uX2R3X2hkbWkuYwo+IGluZGV4IGZlZjE3MDJhY2IxNDUu
+LjEwMDQxMDhmYjdjYTIgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29u
+X2R3X2hkbWkuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl9kd19oZG1pLmMK
+ClsgLi4uIF0KCj4gQEAgLTU2NCw3ICs1NjYsNyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IHJlZ21h
+cF9jb25maWcgbWVzb25fZHdfaGRtaV9yZWdtYXBfY29uZmlnID0gewo+ICAJLnZhbF9iaXRzID0g
+OCwKPiAgCS5yZWdfcmVhZCA9IG1lc29uX2R3X2hkbWlfcmVnX3JlYWQsCj4gIAkucmVnX3dyaXRl
+ID0gbWVzb25fZHdfaGRtaV9yZWdfd3JpdGUsCj4gLQkubWF4X3JlZ2lzdGVyID0gMHgxMDAwMCwK
+PiArCS5tYXhfcmVnaXN0ZXIgPSBIRE1JVFhfRFdDX01BWF9SRUdJU1RFUiwKPiAgCS5mYXN0X2lv
+ID0gdHJ1ZSwKPiAgfTsKCltTZXZlcml0eTogSGlnaF0KVGhpcyBpc24ndCBhIGJ1ZyBpbnRyb2R1
+Y2VkIGJ5IHRoaXMgcGF0Y2gsIGJ1dCB3aGlsZSByZXZpZXdpbmcgdGhpcyBmaWxlIEkKbm90aWNl
+ZCBhIHBvdGVudGlhbCByYWNlIGNvbmRpdGlvbiBkdXJpbmcgaW5pdGlhbGl6YXRpb24uCgpJbiBt
+ZXNvbl9kd19oZG1pX2JpbmQoKSwgdGhlIElSUSBoYW5kbGVyIGlzIHJlZ2lzdGVyZWQgdmlhCmRl
+dm1fcmVxdWVzdF90aHJlYWRlZF9pcnEoKSBiZWZvcmUgZHdfaGRtaS0+aGRtaSBhbmQgZHdfaGRt
+aS0+YnJpZGdlIGFyZQppbml0aWFsaXplZDoKCmRyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl9k
+d19oZG1pLmM6bWVzb25fZHdfaGRtaV9iaW5kKCkgewogICAgLi4uCiAgICByZXQgPSBkZXZtX3Jl
+cXVlc3RfdGhyZWFkZWRfaXJxKGRldiwgaXJxLCBkd19oZG1pX3RvcF9pcnEsCiAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIGR3X2hkbWlfdG9wX3RocmVhZF9pcnEsIElSUUZfU0hB
+UkVELAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiZHdfaGRtaV90b3BfaXJx
+IiwgbWVzb25fZHdfaGRtaSk7CiAgICAuLi4KICAgIG1lc29uX2R3X2hkbWktPmhkbWkgPSBkd19o
+ZG1pX3Byb2JlKHBkZXYsICZtZXNvbl9kd19oZG1pLT5kd19wbGF0X2RhdGEpOwogICAgLi4uCiAg
+ICBtZXNvbl9kd19oZG1pLT5icmlkZ2UgPSBvZl9kcm1fZmluZF9hbmRfZ2V0X2JyaWRnZShwZGV2
+LT5kZXYub2Zfbm9kZSk7CiAgICAuLi4KfQoKVGhlIGRyaXZlciB0aGVuIGNhbGxzIGR3X2hkbWlf
+cHJvYmUoKSwgd2hpY2ggdW5tYXNrcyB0aGUgSFBEIGludGVycnVwdHMgYXQKdGhlIGhhcmR3YXJl
+IGxldmVsLgoKSWYgYW4gSFBEIGludGVycnVwdCBmaXJlcyBpbW1lZGlhdGVseSAoZS5nLiwgaWYg
+YSBjYWJsZSBpcyBhbHJlYWR5IGNvbm5lY3RlZApvciB0aGUgbGluZSBib3VuY2VzKSwgY2FuIGR3
+X2hkbWlfdG9wX3RocmVhZF9pcnEoKSBleGVjdXRlIGNvbmN1cnJlbnRseSBhbmQKY2F1c2UgYSBO
+VUxMIHBvaW50ZXIgZGVyZWZlcmVuY2U/Cgpkcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fZHdf
+aGRtaS5jOmR3X2hkbWlfdG9wX3RocmVhZF9pcnEoKSB7CiAgICAuLi4KICAgIGR3X2hkbWlfc2V0
+dXBfcnhfc2Vuc2UoZHdfaGRtaS0+aGRtaSwgaHBkX2Nvbm5lY3RlZCwKICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgaHBkX2Nvbm5lY3RlZCk7CgogICAgZHJtX2hlbHBlcl9ocGRfaXJxX2V2ZW50
+KGR3X2hkbWktPmJyaWRnZS0+ZGV2KTsKICAgIC4uLgp9CgpTaW5jZSBkd19oZG1pX3Byb2JlKCkg
+aGFzIG5vdCB5ZXQgcmV0dXJuZWQsIHdvdWxkbid0IGR3X2hkbWktPmhkbWkgYW5kCmR3X2hkbWkt
+PmJyaWRnZSBzdGlsbCBiZSBOVUxMIGF0IHRoaXMgcG9pbnQsIGNhdXNpbmcgYSBjcmFzaCB3aGVu
+CmRlcmVmZXJlbmNpbmcgdGhlbT8KCi0tIApTYXNoaWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nh
+c2hpa28uZGV2LyMvcGF0Y2hzZXQvMjAyNjA3MTgwOTA3MTAuNzA1MzQtMS16aW5hbkBtaWV1bGFi
+LmNvbT9wYXJ0PTEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFk
+ZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4
+LWFtbG9naWMK
