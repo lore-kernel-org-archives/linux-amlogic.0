@@ -4,77 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70C53C4450A
-	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Jul 2026 23:36:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EF6FC4450A
+	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Jul 2026 23:36:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=sGOMte3bRLStp+BwLxJrlR2ZjK34PAt9AOANy6YWgfI=; b=hHA8btJeepcO1Y
-	5jwBjLT0g33NNR49zgRCTGAWkiHDENKZquM0llz1FhhInp9ajMFsyhF4p7vlaw1pfNfzlr9IGlzgL
-	MytpSvYBDGKJ0RnebWoALMFQy1QA5wQp6GaoD/9m2LzjZ5FsJcC/iplf1DREhPSiOnpQNpjruNvoO
-	MZJVQh7E2HmqbteMrHjx4YVkG1V02plnGIYN6EPTvQLT7sjJxskUeQ2dwYlAwqhNJQ3MAa47217Sm
-	1lvHT/oTzOCVihWtBEZ3RZ+BaOPIpp6/ZXk/ZvbYvXF3hEBhh/zfMX9QG8DAdIHD5GPpnCt50tM+r
-	kRRsn1xIXnpts3cpjIPA==;
+	List-Owner; bh=2GjwR7LCgV+VmDExsOjJzG6xdjCNm5d+lyrxWvdwJwU=; b=QHgZTU+zciee0g
+	iSthuMPnOkNjTkpoZZf8tyEwn790fgeP0KtgYpKESiuJ3fsXM0Rtz2OHcUNoGKc5cgTpHlQvHCeFj
+	Em9rtslt6Ni+Evps1OtKHh/l3W2prE8YmYJcnB/guH+H8p19023cOlWr4q1MYVj3T6ow+ayGHA1rQ
+	bZOD/nwqxQg2XWKH5mzVm/cR1G1SdyPCB9UWj/pPzS2bxPfjFnK6zeaoeuFXk8nNQFrjvs7Y1Ok0R
+	lZtTRgH4jzFIlGx+NyvhK61HmYy0fTcaeZ80Q5yZJXGZrRPyN5g8EC9+2mArvgfofs6xU5WdwtGIH
+	e4Gwz2PHs4s8IhN8RZag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wlEa0-00000004bvk-1OIz;
-	Sat, 18 Jul 2026 23:36:24 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1wlEa4-00000004c0O-0N7W;
+	Sat, 18 Jul 2026 23:36:28 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wlEZw-00000004brO-3gZ7
+	id 1wlEa0-00000004bv2-0i9M
 	for linux-amlogic@lists.infradead.org;
-	Sat, 18 Jul 2026 23:36:22 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-4953ddae026so28559805e9.3
-        for <linux-amlogic@lists.infradead.org>; Sat, 18 Jul 2026 16:36:20 -0700 (PDT)
+	Sat, 18 Jul 2026 23:36:25 +0000
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-4954c0833b4so9390225e9.1
+        for <linux-amlogic@lists.infradead.org>; Sat, 18 Jul 2026 16:36:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784417779; x=1785022579; darn=lists.infradead.org;
+        d=gmail.com; s=20251104; t=1784417782; x=1785022582; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=/m2It/8MnIxoX8xbOWjx4p2UhJgFTMfhBAqsULip3yI=;
-        b=GZkQZyrJlB8YHZbZJE7hhHbAN4e3qhvy5VR1bDb026dNPFKqekEkFLvQkKwsO+6aom
-         mL65owsfi8K6s4P61+LRUFk7VzH4i9rY2t7WW110yGXWz1jNMOqx9nZekUYWdCF929sX
-         Gl6PWDMS0PbUVuYTuRgEZ4hkS2bzmCmZAkqZXKbV7VZTruigZyemYXXjrHb8kPxl7P1x
-         OXLJpaBNAsT0HwVkgCphF68YaK0M7TakON5BYGreit2/2liugE2JpNrsT7Hjt+KmPrsU
-         fnJU0qTwpDIH4JNeofvEAze5rAo7EU37Ow1TYKvrxv+X6oo5rzjMfm+XlI8J3y1sTnAI
-         SrwQ==
+        bh=ATiv+bDbiK4r8/Ev/Mp3rnzRTm75IqK6z6i5srau5Es=;
+        b=emSYkNvhyVQpsVYx999zJOlbp5Xb8RHe6kQ7BK7CaeyZIknASV6xZhYgfwV+c/wgHv
+         u3xTcSC8OCWrKbdr8bqclN5OB0Na6ognSE6v8a2/dp2iGe0gwPiYnsd9TTmBYIZ9mFy3
+         W67DtDkFQgVZ2LV0csNpvJNdrePTY+6rKCXRLRtG+rwGm+Nk9dxyQB6qvcLi72XT0Q+Q
+         gpKcJXFZd0YRWk+ogsNu1reDP4U6FiHF7XYPArUsF6gdRaI/Blv2hfaaBq43W1psDVvI
+         Het/P0tXiBwbXCw6tLzHuqwGfq6Z2ZyokwqD00IV+4u0PQvYs2ACWi2Ikc6u8ZxSy0H7
+         M0CQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784417779; x=1785022579;
+        d=1e100.net; s=20251104; t=1784417782; x=1785022582;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=/m2It/8MnIxoX8xbOWjx4p2UhJgFTMfhBAqsULip3yI=;
-        b=qwksYlqhSaOmRuRF2QpbE3imoaHmF1oCVFZ2WQqaW5V63b9ssUxQnsAkuBONb8Gp6r
-         IWjbW217wA8rKoXAcZJkzvtNdI1H2WpCxAwHucdsP4vdkJB35bz/gALpeH/yU8kOa4O8
-         sxAvRekc+YohjYwzwryN+ZfMzRhbMvfWC0lZrfReloeI2bfsSit0eEZCYaLfBTndn6b8
-         XWhVu8/4ZeweyMy2bQLYqk0Nt74uZ4Std8fVFuhtJsH+GEKOE/g3ph4CVkIgwX0TlFkA
-         fl0y34xIMRqE2Xw0F68BMb0r91OGwwT6XItCpaPzAiZiUnZvRtNsf9Hp7uKPlwIQg3SN
-         3HkA==
-X-Forwarded-Encrypted: i=1; AHgh+RoZI984CJj2Hieok01GN70z4K9kyHVx/Y3DSDmWTNuyNi4NbWLNoJHjU9YLYqmh5Oit7v2jfP4IFHuiYFkj@lists.infradead.org
-X-Gm-Message-State: AOJu0YyrQQgy4n8tzU9GS0WA0jrXY4fP8zTLdRsun3M306UAVUTWWe5D
-	csrgV4DzSG5BHcLfn0P96tyRi29LUTmNMNFjCQDnLNT9ZNv1uN1UeGY0
-X-Gm-Gg: AfdE7cn8pj2u/UaREAHYDpiFceO5ybUf3ylB63B2g9AO1yU5BhyyIup7R1LQYsvtoQK
-	sq9jveFMDzGX1o9WUC+j7pZTar7VDHgD9xIOcbNJrnpt4x4XEgeLc//cjEa+8DVbhczahY+Maqe
-	KI/xJPHEZmuM6/aS6LjtEL6DUwYQWIfjNmQsfJB+P2eVf/cEmEPd8AZ2efqvCfWfqsXDE2uqfjk
-	3RrBflkveVZgCb5GGINWt4j/9x8ddZ+naHgAFW1Sf/O0Hrt4AmWkIefWp/SyDd81VrDD8069lel
-	piUsQmpari6sphG3DjT8bivbCB8LlslBSqSjln/XYTHaJ0H6V2ghsdMNEqzyDjbS/Wae/dUmKKA
-	0QMGopnm3ZeETRSCQeumGgGLTPmTwA4uzOzqsZaVFm7nCXDS+nAkxzlP8JY/36rZ8ytJu0NdsCV
-	s81FNALaSZ6a2/yukKiDYu
-X-Received: by 2002:a7b:ca50:0:b0:495:3fe1:4ce4 with SMTP id 5b1f17b1804b1-4954a40c110mr70449165e9.26.1784417779234;
-        Sat, 18 Jul 2026 16:36:19 -0700 (PDT)
+        bh=ATiv+bDbiK4r8/Ev/Mp3rnzRTm75IqK6z6i5srau5Es=;
+        b=LNKQx8NqpK8kxgoP02vhTEWFlcFhbiRpnsAx1CDG4QCJwnYzNeojVNHZCdosFMP+eW
+         VAJc+GVoLS7lKRMGDcdn5cweRxnrETcYccWTGQ/qP1STGtuPBDS2cjevXBa4sYVpeC3c
+         7KKEUsJzO8dDBZOehLXCInzooStC/rdco1Y2bEL4WJ4zGpEN8Lkat05J5djEGf5+xvRb
+         qu6qRpySTcW2kgCXT67hZLrjV/o2bdZkC4UG1HAMbGTwI92X+8+Z/j0fag81xcIs6O+5
+         L1HngMFSeUsIpuCl8hbe3IRz6SyJqnh7jz/VHhCl+VWY105/zSH9O8GT4VzMooQuuDYV
+         ajaQ==
+X-Forwarded-Encrypted: i=1; AHgh+RoZLwvMlXuwS4lAsomOKxwB9IwfDY9QN3OVDIZ16G4UCvKEmirZYYP1mbUufJl4WWrgu9ZuCbr4oGrHalNK@lists.infradead.org
+X-Gm-Message-State: AOJu0YzFwzXZXBvmWZarlyMdFNa9yDd/UfI9AoNCOWdARnEDwjO3mJis
+	tlUkBveHjSPrmAwvGxYxmGtXvzcn+aS1mn1uYp2hfvEE1+dpNy/ucCkv
+X-Gm-Gg: AfdE7cnok64nWkExhGrL1anad04V5opXA/ctOxtPTfCDl74sK17QYoYL8sLfz5Vr1Qa
+	N0qBbZDmTzCiM6i3eIHwp70iItp7pa+a9XxLmdTHRCnYRnN1k8ftJofJcMYvu3Gm/DTu7AYyrUs
+	n6kknMpyolj1ehQdFZt73CRI5vdv6si8c5/rw8IkAE66gkzhtV0lOpqYubTiXdWD2ngfiHxkgD7
+	KT3yCMLnFkK7cBEjKkWbOT0ROBSijLDntw+kri6ZY5HRwLAYGxQIafbfAl53iXAsv99xWSVUbDy
+	IqvYIixaI28oCGB1xZBYg1smIBKwrpczZl4FZXE4+8soFyks4yQtwKBEw8EOp4pn/qqhuoaYdMD
+	wlS2LqMpN4l81nZdWAIQr7SyZ3wCN3dRzO9408WwXwzeiq9l7y34Nl5cA43BcIpukpn27esGe5N
+	g5pgysy6MX1A==
+X-Received: by 2002:a05:600c:4746:b0:495:4d07:4fcb with SMTP id 5b1f17b1804b1-4954d0784c6mr79013155e9.36.1784417782504;
+        Sat, 18 Jul 2026 16:36:22 -0700 (PDT)
 Received: from [127.0.0.2] ([2a01:14:111:ccf0:645b:9e5c:7fe3:c09f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4954a2a24b6sm160964675e9.3.2026.07.18.16.36.15
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4954a2a24b6sm160964675e9.3.2026.07.18.16.36.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Jul 2026 16:36:18 -0700 (PDT)
+        Sat, 18 Jul 2026 16:36:21 -0700 (PDT)
 From: Diogo Silva <diogompaissilva@gmail.com>
-Date: Sun, 19 Jul 2026 01:35:37 +0200
-Subject: [PATCH 06/15] drm/virtio: remove dependency on DRM simple helpers
+Date: Sun, 19 Jul 2026 01:35:38 +0200
+Subject: [PATCH 07/15] drm/tidss: remove dependency on DRM simple helpers
 MIME-Version: 1.0
-Message-Id: <20260719-drm_simple_encoder_init-v1-6-a78c509e3062@gmail.com>
+Message-Id: <20260719-drm_simple_encoder_init-v1-7-a78c509e3062@gmail.com>
 References: <20260719-drm_simple_encoder_init-v1-0-a78c509e3062@gmail.com>
 In-Reply-To: <20260719-drm_simple_encoder_init-v1-0-a78c509e3062@gmail.com>
 To: Jingoo Han <jingoohan1@gmail.com>, Inki Dae <inki.dae@samsung.com>, 
@@ -121,8 +121,8 @@ Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
  linux-doc@vger.kernel.org, Diogo Silva <diogompaissilva@gmail.com>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260718_163620_992332_1E62073F 
-X-CRM114-Status: GOOD (  12.64  )
+X-CRM114-CacheID: sfid-20260718_163624_258261_109F9063 
+X-CRM114-Status: GOOD (  11.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -144,54 +144,50 @@ intermediate layer between drivers and atomic modesetting.
 
 Open-code drm_simple_encoder_init() by calling drm_encoder_init()
 directly and providing driver-local drm_encoder_funcs.
-Also check the return value from drm_encoder_init() to avoid silent
-failures.
 
 Signed-off-by: Diogo Silva <diogompaissilva@gmail.com>
 ---
- drivers/gpu/drm/virtio/virtgpu_display.c | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/tidss/tidss_encoder.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/virtio/virtgpu_display.c b/drivers/gpu/drm/virtio/virtgpu_display.c
-index 44ffffec550f..67023d91d40b 100644
---- a/drivers/gpu/drm/virtio/virtgpu_display.c
-+++ b/drivers/gpu/drm/virtio/virtgpu_display.c
-@@ -28,11 +28,11 @@
+diff --git a/drivers/gpu/drm/tidss/tidss_encoder.c b/drivers/gpu/drm/tidss/tidss_encoder.c
+index 698f8d964ca0..10dbcc6cdf6a 100644
+--- a/drivers/gpu/drm/tidss/tidss_encoder.c
++++ b/drivers/gpu/drm/tidss/tidss_encoder.c
+@@ -9,11 +9,11 @@
  #include <drm/drm_atomic_helper.h>
- #include <drm/drm_damage_helper.h>
- #include <drm/drm_edid.h>
+ #include <drm/drm_bridge.h>
+ #include <drm/drm_bridge_connector.h>
 +#include <drm/drm_encoder.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_gem_framebuffer_helper.h>
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
+ #include <drm/drm_crtc.h>
+ #include <drm/drm_modeset_helper_vtables.h>
+ #include <drm/drm_panel.h>
+ #include <drm/drm_of.h>
 -#include <drm/drm_simple_kms_helper.h>
- #include <drm/drm_vblank.h>
- #include <drm/drm_vblank_helper.h>
  
-@@ -232,6 +232,10 @@ static enum drm_mode_status virtio_gpu_conn_mode_valid(struct drm_connector *con
- 	return MODE_BAD;
- }
+ #include "tidss_crtc.h"
+ #include "tidss_drv.h"
+@@ -81,6 +81,10 @@ static const struct drm_bridge_funcs tidss_bridge_funcs = {
+ 	.atomic_destroy_state		= drm_atomic_helper_bridge_destroy_state,
+ };
  
-+static const struct drm_encoder_funcs virtio_gpu_enc_funcs = {
++static const struct drm_encoder_funcs tidss_encoder_funcs = {
 +	.destroy = drm_encoder_cleanup,
 +};
 +
- static const struct drm_encoder_helper_funcs virtio_gpu_enc_helper_funcs = {
- 	.mode_set   = virtio_gpu_enc_mode_set,
- 	.enable     = virtio_gpu_enc_enable,
-@@ -306,7 +310,11 @@ static int vgdev_output_init(struct virtio_gpu_device *vgdev, int index)
- 	if (vgdev->has_edid)
- 		drm_connector_attach_edid_property(connector);
+ int tidss_encoder_create(struct tidss_device *tidss,
+ 			 struct drm_bridge *next_bridge,
+ 			 u32 encoder_type, u32 possible_crtcs)
+@@ -95,8 +99,8 @@ int tidss_encoder_create(struct tidss_device *tidss,
+ 	if (IS_ERR(t_enc))
+ 		return PTR_ERR(t_enc);
  
--	drm_simple_encoder_init(dev, encoder, DRM_MODE_ENCODER_VIRTUAL);
-+	ret = drm_encoder_init(dev, encoder, &virtio_gpu_enc_funcs,
-+			       DRM_MODE_ENCODER_VIRTUAL, NULL);
-+	if (ret)
-+		return ret;
-+
- 	drm_encoder_helper_add(encoder, &virtio_gpu_enc_helper_funcs);
- 	encoder->possible_crtcs = 1 << index;
+-	ret = drm_simple_encoder_init(&tidss->ddev, &t_enc->encoder,
+-				      encoder_type);
++	ret = drm_encoder_init(&tidss->ddev, &t_enc->encoder,
++			       &tidss_encoder_funcs, encoder_type, NULL);
+ 	if (ret)
+ 		return ret;
  
 
 -- 
