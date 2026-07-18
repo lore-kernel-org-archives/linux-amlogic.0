@@ -4,77 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01D18C44526
-	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Jul 2026 23:36:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BA52C44521
+	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Jul 2026 23:36:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0VNJlsSFLDGt7LtLRrOLsRKfYTMUJOtpO2pl0UOLO5Y=; b=t+mp7+HEon9gf1
-	f/qh9sWv3z/Q1RbpgplWwkWzK+kQcx0/mLez9Z5yKsrJQDXex/w42tZKPw9slotvNVVNb5y6Z9TKY
-	/QqTkkwJ5i/rQvBq21gqrzBHbcFN31nGaX0/tdm5oXqRLBblCa2o3jUhNQnuLXek26nsKWd8EHXqX
-	FdOPzeJrwxJ7GG7RVUs4YEnUuXqc8EOqTDMhlwrKxFN8SNZlNNmxyF+UDjzskOPzTbh/S0KymbFsf
-	V3wt0AFDUo3UifV1Q2tj9eR05XMa9KudNG+fCVv/JX9qE6z3QJ5GDZCAl3FpMUil+RskhdKXKeBTX
-	FsKck93Zv8BgXvKp16VA==;
+	List-Owner; bh=UB8clDkEiF8DsRAbjUi+EDKk0mov4jiZfSTpPn4vpV4=; b=bclRXa4AtpJUo+
+	PpylJ6G5Bw3608cHanqwQdLKuy7ZIFk30YlAK2f9VbZhYdsyxyWFzsfCb4/ahQzEk3nt+MEa6slVY
+	/Z3ZoG7X9cdtVlR+JdFJ3m46DZKXJmo10vSZPI1AZn8AAxr4ZEo/Uli7yvT/28Rbjbyz5XEMB8zY2
+	Kd/jckOeKbdLZJyYhfhgcKbuwMQSB3XnYTcmQtG68LijpNyp3OMCpw+t1snnurtdGdk1DpEGLN307
+	Shiy9318C3q5SZhPcktCDGWaE5O3rZkJsbR5c8EIwUr5ap08rS/m+q/UAuNCG9XtzbIugODNDiIYS
+	YKMWCPzOo84wFmG8Ngqw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wlEZg-00000004bb6-3RuL;
-	Sat, 18 Jul 2026 23:36:05 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1wlEZm-00000004bgu-36uv;
+	Sat, 18 Jul 2026 23:36:10 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wlEZe-00000004bZa-2eHw
+	id 1wlEZi-00000004bby-3gfl
 	for linux-amlogic@lists.infradead.org;
-	Sat, 18 Jul 2026 23:36:04 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4955158f26aso4605655e9.3
-        for <linux-amlogic@lists.infradead.org>; Sat, 18 Jul 2026 16:36:02 -0700 (PDT)
+	Sat, 18 Jul 2026 23:36:08 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-495590dde14so1120545e9.0
+        for <linux-amlogic@lists.infradead.org>; Sat, 18 Jul 2026 16:36:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1784417761; x=1785022561; darn=lists.infradead.org;
+        d=gmail.com; s=20251104; t=1784417765; x=1785022565; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=qVQM0So1MCL7ilj5LYZg6mzfa82XvkJyQz/kOpkAFIY=;
-        b=NsUov35uBFlWfmx2+MwrmaXUW9nHfQp29hSXqdzKtgkNDiJ81B4DKwztIzeDV+LNg6
-         wV8o0j7950qq1L4y0EFHTjAwtqbs4wrFWUnnvKMIMFVG9PQtF/fZ5u8UBGXouc3U8dcr
-         kR+k8MQppxsjAZEs4hF5zJ1PymKOfiJXbjRFmhYk/qeqXVi8FisnaJYcCppvXivOq4Ty
-         62/3pwvXo9l5AVaEWLFhPcsUCn9cvYV8ItMq3jFJ2Wo0uvi3qybs4qsR1iDteeAHOia5
-         Vz/5vjy7/SnHsmKPS0ub2Gliu+2KtmrSYylzMxRFwdQDh8oYCF+fbve1AAN5IDZCX1lJ
-         DlVA==
+        bh=oxJhJqOvpAaSiQeGabxE955gR5KY+0a4asEx/JWs7Lo=;
+        b=JiyJzfwGcbMoGLCbS9VQK9Krlb9tAcJO1xt9u39/577aE1gfEIt8HtPPRg3tRuVGH7
+         6eF+XXXtHulWa5h5VkfysZBk/qdR2r23B6gkZsMsslbrsVnstJWQSrPN5X4zya1j5WRo
+         G+3wxO0VsfK5c3wqdW7k7gBgbMStDKj/+OpLQwcOfxSKsUqkiVNok2cdbq5gE3Wd60mn
+         U1MPz+WXWG4quSaB6lT6iwlnv7tfNAV96wP5p2p6xYp9jOAfjc5no29gc8GoG+naLocD
+         qfHU3yhdEdaet6S1Kw7L2FI3CJfuGqEeIpQKKWFTzXjn4DV/RjOnWgJ2u7D9yavea6oA
+         xo9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784417761; x=1785022561;
+        d=1e100.net; s=20251104; t=1784417765; x=1785022565;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=qVQM0So1MCL7ilj5LYZg6mzfa82XvkJyQz/kOpkAFIY=;
-        b=I51FZ4wNbnGpFkzGEDL628GfEec2OLNQRVvqDlc6vlJ4zl0vVYFRGvM2VBrTiBARvd
-         A2A0zpzVhmkwTS1nNo/M+CyjP+jcS8Cxczc+t+BhkxfsrN4YhiCcl1lmmolkbRIqYTR1
-         3ptXvq0+ATH9CBy+yZYXQb5wvZvA2xKTVA+gnKwEPcaP6UNPUZX0Fzta4jGdiv3ARZNc
-         PqRpP6REkKUwkcTpl/MTtkjVhwJ50XjXDad6uRDs7j05nZz62T4a1vAMh8GEojc3Uaqf
-         aqjfvFX9xFoKE0z0x9tK815M5K08cc+oCkzuhtJjFp7lv9BjaQhlBjB9AUCToBo85MCa
-         Yj1w==
-X-Forwarded-Encrypted: i=1; AHgh+RqikjUNd2S9ZJI/bOD//gdvyhn+JiqNCPuY9quIa1maoQe2/5ju8sMbWWc3s75HfMCgJAXxMgJdtuRU4R6r@lists.infradead.org
-X-Gm-Message-State: AOJu0YxP2EfTs90japc8gw5kUt5pJiIFtW1KNeWTge6Fe0wDi0UsLZVI
-	cjLGe1UAEdcR1MyfIeaFCLwzJa1Atm5CgcQl7N/6r+k0fy8Fi8rMhGSl
-X-Gm-Gg: AfdE7ckVixIPH+PkRfu+mRJaC0SerGb4gaR7SLM5IH5I8ylJ1P5Wys6LSWWq547AVir
-	yBi0G/AVLZcdSc95asFx1KKPFXOLsrYFLubHuP3nDshVvoHcJPjXBThxX8ugZs/8wH6NGYSzs5z
-	OkVQKQTkIAbhtZhLVuQa3wMIOs+PFnC8Yimxlp5EQDgfm8LqeRk73OPKLywz0g0lAL6Yaha/i4z
-	GfUuPlpXVG2KoKrlSmTBqh+b/ivlRs2yRSVXbLfKLbnwcJQv+Zs17AgWh79FUlP1KTiFOas/S+/
-	dwXbsM7jv5vpwNTEx1m7tA+uz/8KqGhL1fie1kjeHawfs54iucf56N62SWpQN2LRD6nvPIJy5OA
-	auIkXMwlNx1U+SRZopTMY5mXtdl2MHAy+6mscII1dTthJA7p6IwA+ZT/F6mlp4Ui7tyYAeivvYw
-	xgPypnBHo8cQ==
-X-Received: by 2002:a05:600c:4e94:b0:495:571e:e5d3 with SMTP id 5b1f17b1804b1-495571ee75fmr14134205e9.36.1784417760679;
-        Sat, 18 Jul 2026 16:36:00 -0700 (PDT)
+        bh=oxJhJqOvpAaSiQeGabxE955gR5KY+0a4asEx/JWs7Lo=;
+        b=s5/jGMVI6X2g4/7fOKgEUi7xy5FYlkdi3EEjIbWhybCVd5mydsfYYGOjJwaUBHAFs0
+         Wasmo23Sjb/tdAp0RwKc4oln4HEe9qDXc2safmJGMbPdTzPUrsM/8sqz8oCVQ7g9YVzb
+         i127F/sS+cp8x/1UD/BPLdU+04U0MuiG71D3kVg5W0ZN5jHQh8u8AyKYjfr6x1GESr38
+         kDkHVJl3Awxd/Ge8Q7qbYeknuvLTGrukwIGqp+cc13wBQtAEEyeMxlbnavGhlJDfdnlf
+         5AOdKLb6nmMQFpvXEQEaGC1CTDGHxRO3k1dqOCC9apFPBlLTckGEiBOQgYMoMesMpwsH
+         aoyQ==
+X-Forwarded-Encrypted: i=1; AHgh+Roc+/NGMziwDhK0C6rfaXUjtdYF/gBuN1ldvAGkXeFOHJL2sgM22psdwnxqkVlmuuvCNbRLganwfxYatSvg@lists.infradead.org
+X-Gm-Message-State: AOJu0YxvKmjssXD8xaIS9V7FYjmYKc09zyePdQOUJaKL3MbxL0Hd2Ogz
+	vHCjd7Ic73ud6+Rp0MdVZrI2wCfVklWdUFrBkEordFYFg9YDE0iKllHS
+X-Gm-Gg: AfdE7cnpmtk47bwEr+v+t3b2P1loarRx+B6GCHshd02QPxEgyuintP2u7LRc/mR8dUk
+	h1hkaf6QMEA+ZtHEMAQRJC9xa7xXEenaZYJ80tWEoktZnU7adnNYhS2T4FBHdL480WwG0RSlTFV
+	9rMAOk63idOjlFJkri3+NroafmjXJx28/yWqDT7D88D6leZ8GxAxY5XmdQaE+IQm/xaLyt4/LHa
+	/3bHgH6sXoES73Rju8Fc7ak1UHj9ovIrJ2YiN8LB2vh/stKcNJaWYsympZlBCJvlaQ6sUbotJZy
+	IB4YxhUNw4B3x+ejOvmNID4dujqMDxPw7CRJaTcYDo+TXrzWBV32c7EWlPLwz8riYhY7k37rB2u
+	dPDlms+K1iONosQUM7Ee93P64aZHMb97SPlpg+MVNQZE4ONHh5QSt/6EEaSOiE0CpJuyAI1he1O
+	XdZYOTVwyq7A==
+X-Received: by 2002:a05:600c:4ec6:b0:495:4d5c:903e with SMTP id 5b1f17b1804b1-4954d5c913dmr76289525e9.7.1784417764814;
+        Sat, 18 Jul 2026 16:36:04 -0700 (PDT)
 Received: from [127.0.0.2] ([2a01:14:111:ccf0:645b:9e5c:7fe3:c09f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4954a2a24b6sm160964675e9.3.2026.07.18.16.35.57
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4954a2a24b6sm160964675e9.3.2026.07.18.16.36.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Jul 2026 16:36:00 -0700 (PDT)
+        Sat, 18 Jul 2026 16:36:04 -0700 (PDT)
 From: Diogo Silva <diogompaissilva@gmail.com>
-Date: Sun, 19 Jul 2026 01:35:32 +0200
-Subject: [PATCH 01/15] drm/exynos: remove dependency on DRM simple helpers
+Date: Sun, 19 Jul 2026 01:35:33 +0200
+Subject: [PATCH 02/15] drm/xlnx/zynqmp_dpsub: remove dependency on DRM
+ simple helpers
 MIME-Version: 1.0
-Message-Id: <20260719-drm_simple_encoder_init-v1-1-a78c509e3062@gmail.com>
+Message-Id: <20260719-drm_simple_encoder_init-v1-2-a78c509e3062@gmail.com>
 References: <20260719-drm_simple_encoder_init-v1-0-a78c509e3062@gmail.com>
 In-Reply-To: <20260719-drm_simple_encoder_init-v1-0-a78c509e3062@gmail.com>
 To: Jingoo Han <jingoohan1@gmail.com>, Inki Dae <inki.dae@samsung.com>, 
@@ -121,8 +122,8 @@ Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
  linux-doc@vger.kernel.org, Diogo Silva <diogompaissilva@gmail.com>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260718_163602_726199_89EBD602 
-X-CRM114-Status: GOOD (  14.89  )
+X-CRM114-CacheID: sfid-20260718_163606_954403_B6728224 
+X-CRM114-Status: GOOD (  14.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -149,217 +150,47 @@ failures.
 
 Signed-off-by: Diogo Silva <diogompaissilva@gmail.com>
 ---
- drivers/gpu/drm/exynos/exynos_dp.c       | 13 +++++++++++--
- drivers/gpu/drm/exynos/exynos_drm_dpi.c  | 14 ++++++++++++--
- drivers/gpu/drm/exynos/exynos_drm_dsi.c  | 11 +++++++++--
- drivers/gpu/drm/exynos/exynos_drm_vidi.c | 14 ++++++++++++--
- drivers/gpu/drm/exynos/exynos_hdmi.c     | 15 +++++++++++++--
- 5 files changed, 57 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xlnx/zynqmp_kms.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/exynos/exynos_dp.c b/drivers/gpu/drm/exynos/exynos_dp.c
-index b80540328150..1598892c602b 100644
---- a/drivers/gpu/drm/exynos/exynos_dp.c
-+++ b/drivers/gpu/drm/exynos/exynos_dp.c
-@@ -24,11 +24,11 @@
- #include <drm/drm_bridge.h>
- #include <drm/drm_bridge_connector.h>
- #include <drm/drm_crtc.h>
-+#include <drm/drm_encoder.h>
- #include <drm/drm_of.h>
- #include <drm/drm_panel.h>
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
--#include <drm/drm_simple_kms_helper.h>
- #include <drm/exynos_drm.h>
- 
- #include "exynos_drm_crtc.h"
-@@ -79,6 +79,10 @@ static void exynos_dp_nop(struct drm_encoder *encoder)
- 	/* do nothing */
- }
- 
-+static const struct drm_encoder_funcs exynos_dp_encoder_funcs = {
-+	.destroy = drm_encoder_cleanup,
-+};
-+
- static const struct drm_encoder_helper_funcs exynos_dp_encoder_helper_funcs = {
- 	.mode_set = exynos_dp_mode_set,
- 	.enable = exynos_dp_nop,
-@@ -95,7 +99,12 @@ static int exynos_dp_bind(struct device *dev, struct device *master, void *data)
- 
- 	dp->drm_dev = drm_dev;
- 
--	drm_simple_encoder_init(drm_dev, encoder, DRM_MODE_ENCODER_TMDS);
-+	ret = drm_encoder_init(drm_dev, encoder, &exynos_dp_encoder_funcs,
-+			       DRM_MODE_ENCODER_TMDS, NULL);
-+	if (ret) {
-+		dev_err(dp->dev, "Failed to initialize encoder\n");
-+		return ret;
-+	}
- 
- 	drm_encoder_helper_add(encoder, &exynos_dp_encoder_helper_funcs);
- 
-diff --git a/drivers/gpu/drm/exynos/exynos_drm_dpi.c b/drivers/gpu/drm/exynos/exynos_drm_dpi.c
-index 0dc36df6ada3..4e42a1da81d1 100644
---- a/drivers/gpu/drm/exynos/exynos_drm_dpi.c
-+++ b/drivers/gpu/drm/exynos/exynos_drm_dpi.c
-@@ -12,10 +12,10 @@
- #include <linux/regulator/consumer.h>
- 
- #include <drm/drm_atomic_helper.h>
-+#include <drm/drm_encoder.h>
- #include <drm/drm_panel.h>
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
--#include <drm/drm_simple_kms_helper.h>
- 
- #include <video/of_videomode.h>
- #include <video/videomode.h>
-@@ -140,6 +140,10 @@ static void exynos_dpi_disable(struct drm_encoder *encoder)
- 	}
- }
- 
-+static const struct drm_encoder_funcs exynos_dpi_encoder_funcs = {
-+	.destroy = drm_encoder_cleanup,
-+};
-+
- static const struct drm_encoder_helper_funcs exynos_dpi_encoder_helper_funcs = {
- 	.mode_set = exynos_dpi_mode_set,
- 	.enable = exynos_dpi_enable,
-@@ -194,7 +198,13 @@ int exynos_dpi_bind(struct drm_device *dev, struct drm_encoder *encoder)
- {
- 	int ret;
- 
--	drm_simple_encoder_init(dev, encoder, DRM_MODE_ENCODER_TMDS);
-+	ret = drm_encoder_init(dev, encoder, &exynos_dpi_encoder_funcs,
-+			       DRM_MODE_ENCODER_TMDS, NULL);
-+	if (ret) {
-+		DRM_DEV_ERROR(encoder_to_dpi(encoder)->dev,
-+			      "failed to create encoder ret = %d\n", ret);
-+		return ret;
-+	}
- 
- 	drm_encoder_helper_add(encoder, &exynos_dpi_encoder_helper_funcs);
- 
-diff --git a/drivers/gpu/drm/exynos/exynos_drm_dsi.c b/drivers/gpu/drm/exynos/exynos_drm_dsi.c
-index c4d098ab7863..6b7561ac9bb0 100644
---- a/drivers/gpu/drm/exynos/exynos_drm_dsi.c
-+++ b/drivers/gpu/drm/exynos/exynos_drm_dsi.c
-@@ -13,7 +13,7 @@
- 
- #include <drm/bridge/samsung-dsim.h>
- #include <drm/drm_probe_helper.h>
--#include <drm/drm_simple_kms_helper.h>
-+#include <drm/drm_encoder.h>
- 
- #include "exynos_drm_crtc.h"
- #include "exynos_drm_drv.h"
-@@ -22,6 +22,10 @@ struct exynos_dsi {
- 	struct drm_encoder encoder;
- };
- 
-+static const struct drm_encoder_funcs exynos_drm_dsi_encoder_funcs = {
-+	.destroy = drm_encoder_cleanup,
-+};
-+
- static irqreturn_t exynos_dsi_te_irq_handler(struct samsung_dsim *dsim)
- {
- 	struct exynos_dsi *dsi = dsim->priv;
-@@ -79,7 +83,10 @@ static int exynos_dsi_bind(struct device *dev, struct device *master, void *data
- 	struct drm_device *drm_dev = data;
- 	int ret;
- 
--	drm_simple_encoder_init(drm_dev, encoder, DRM_MODE_ENCODER_TMDS);
-+	ret = drm_encoder_init(drm_dev, encoder, &exynos_drm_dsi_encoder_funcs,
-+			       DRM_MODE_ENCODER_TMDS, NULL);
-+	if (ret)
-+		return ret;
- 
- 	ret = exynos_drm_set_possible_crtcs(encoder, EXYNOS_DISPLAY_TYPE_LCD);
- 	if (ret < 0)
-diff --git a/drivers/gpu/drm/exynos/exynos_drm_vidi.c b/drivers/gpu/drm/exynos/exynos_drm_vidi.c
-index 67bbf9b8bc0e..59dea853d364 100644
---- a/drivers/gpu/drm/exynos/exynos_drm_vidi.c
-+++ b/drivers/gpu/drm/exynos/exynos_drm_vidi.c
-@@ -13,10 +13,10 @@
- 
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_edid.h>
-+#include <drm/drm_encoder.h>
- #include <drm/drm_framebuffer.h>
- #include <drm/drm_print.h>
+diff --git a/drivers/gpu/drm/xlnx/zynqmp_kms.c b/drivers/gpu/drm/xlnx/zynqmp_kms.c
+index d5f922450565..1d194c2824e3 100644
+--- a/drivers/gpu/drm/xlnx/zynqmp_kms.c
++++ b/drivers/gpu/drm/xlnx/zynqmp_kms.c
+@@ -30,7 +30,6 @@
+ #include <drm/drm_mode_config.h>
+ #include <drm/drm_plane.h>
  #include <drm/drm_probe_helper.h>
 -#include <drm/drm_simple_kms_helper.h>
  #include <drm/drm_vblank.h>
- #include <drm/exynos_drm.h>
  
-@@ -403,6 +403,10 @@ static void exynos_vidi_disable(struct drm_encoder *encoder)
+ #include <linux/clk.h>
+@@ -417,6 +416,10 @@ static const struct drm_driver zynqmp_dpsub_drm_driver = {
+ 	.minor				= 0,
+ };
+ 
++static const struct drm_encoder_funcs zynqmp_dpsub_encoder_funcs = {
++	.destroy = drm_encoder_cleanup,
++};
++
+ static int zynqmp_dpsub_kms_init(struct zynqmp_dpsub *dpsub)
  {
- }
+ 	struct drm_encoder *encoder = &dpsub->drm->encoder;
+@@ -436,7 +439,13 @@ static int zynqmp_dpsub_kms_init(struct zynqmp_dpsub *dpsub)
  
-+static const struct drm_encoder_funcs exynos_vidi_encoder_funcs = {
-+	.destroy = drm_encoder_cleanup,
-+};
-+
- static const struct drm_encoder_helper_funcs exynos_vidi_encoder_helper_funcs = {
- 	.mode_set = exynos_vidi_mode_set,
- 	.enable = exynos_vidi_enable,
-@@ -445,7 +449,13 @@ static int vidi_bind(struct device *dev, struct device *master, void *data)
- 		return PTR_ERR(ctx->crtc);
- 	}
- 
--	drm_simple_encoder_init(drm_dev, encoder, DRM_MODE_ENCODER_TMDS);
-+	ret = drm_encoder_init(drm_dev, encoder, &exynos_vidi_encoder_funcs,
-+			       DRM_MODE_ENCODER_TMDS, NULL);
+ 	/* Create the encoder and attach the bridge. */
+ 	encoder->possible_crtcs |= drm_crtc_mask(&dpsub->drm->crtc);
+-	drm_simple_encoder_init(&dpsub->drm->dev, encoder, DRM_MODE_ENCODER_NONE);
++	ret = drm_encoder_init(&dpsub->drm->dev, encoder,
++			       &zynqmp_dpsub_encoder_funcs,
++			       DRM_MODE_ENCODER_NONE, NULL);
 +	if (ret) {
-+		DRM_DEV_ERROR(dev, "failed to initialize encoder ret = %d\n",
-+			      ret);
++		dev_err(dpsub->dev, "failed to initialize encoder\n");
 +		return ret;
 +	}
  
- 	drm_encoder_helper_add(encoder, &exynos_vidi_encoder_helper_funcs);
- 
-diff --git a/drivers/gpu/drm/exynos/exynos_hdmi.c b/drivers/gpu/drm/exynos/exynos_hdmi.c
-index 09b2cabb236f..f44586ce0fdf 100644
---- a/drivers/gpu/drm/exynos/exynos_hdmi.c
-+++ b/drivers/gpu/drm/exynos/exynos_hdmi.c
-@@ -36,9 +36,9 @@
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
- #include <drm/drm_edid.h>
-+#include <drm/drm_encoder.h>
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
--#include <drm/drm_simple_kms_helper.h>
- 
- #include "exynos_drm_crtc.h"
- #include "regs-hdmi.h"
-@@ -1575,6 +1575,11 @@ static void hdmi_disable(struct drm_encoder *encoder)
- 	mutex_unlock(&hdata->mutex);
- }
- 
-+static const struct drm_encoder_funcs exynos_hdmi_encoder_funcs = {
-+	.destroy = drm_encoder_cleanup,
-+};
-+
-+
- static const struct drm_encoder_helper_funcs exynos_hdmi_encoder_helper_funcs = {
- 	.mode_fixup	= hdmi_mode_fixup,
- 	.enable		= hdmi_enable,
-@@ -1862,7 +1867,13 @@ static int hdmi_bind(struct device *dev, struct device *master, void *data)
- 
- 	hdata->phy_clk.enable = hdmiphy_clk_enable;
- 
--	drm_simple_encoder_init(drm_dev, encoder, DRM_MODE_ENCODER_TMDS);
-+	ret = drm_encoder_init(drm_dev, encoder, &exynos_hdmi_encoder_funcs,
-+			       DRM_MODE_ENCODER_TMDS, NULL);
-+	if (ret) {
-+		DRM_DEV_ERROR(dev, "failed to initialize encoder ret = %d\n",
-+			      ret);
-+		return ret;
-+	}
- 
- 	drm_encoder_helper_add(encoder, &exynos_hdmi_encoder_helper_funcs);
- 
+ 	ret = drm_bridge_attach(encoder, dpsub->bridge, NULL,
+ 				DRM_BRIDGE_ATTACH_NO_CONNECTOR);
 
 -- 
 2.54.0
