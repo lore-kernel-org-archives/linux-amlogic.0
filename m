@@ -4,41 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F6CDC4451C
-	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Jul 2026 11:17:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EED48C4451C
+	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Jul 2026 11:18:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Zxdlj3jm3QjcvTfQhJeg1mEBpgOp6t+3x4DEJYT8/yo=; b=p7/FMBBeB8P7a5
-	bOCbMhnympIDX+6hy7TV7/Fzn39fnlnvYxeF8kSTzmzTcBMKKoCg2ix3i3w7TqFW708Ykr1Yw6uCF
-	ZtIPCKxd+UBU3cpDwZc42PRQVgcVovjiJKPVqCL4BYLePCoAM2DVLzH5kvq/UsHFmgMrIKG8mbGKd
-	NxPq4imhX3VW1nAgjVKeRlw7q0FkgiJqtV3WC/NuZKyxwL+6ym6XXJxpztsmmllV/y9umja9/M+rz
-	auwQGjNvn11KkagY9J+NdrRJHvnIqpEXrklxoLdM7XJQhPo2d+PXZiTN/eZCbI7jxxao3velFZGyG
-	y8Ksw3/SCztpqXJ8uORg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=25m79zY0amcHoy4L3akcyWE+hKTNBmRZA84asNN5Hx8=; b=sTKm8tR2qmBES4
+	egZ+QLgkSKif3ZSlPeyeSXvekpRu4MxtAnhp02jLIEOuM5YRRnJUt1Mc/VKvZjo3OufX9VULD51tF
+	a/pJuKwcV7FOfAKbNF0z/smJn9lrvmVcg2aRiwCVazEvaa1jH9KgTsPRaDTtMyuXsE+gE/BJVFyF6
+	cS7BfEM5jFVmBuiUdayhj2bF0TMVDQBk0/YI/xm1g1SxXz3/rBkyHLG7cTWBqjr44vVK+NHrd5VKY
+	waEMs4QojMFqyVZiF+fSxteiDOUE4ezKZNV8QkM7a6DnEIi2ypxqRWFK0XuMIapFkcdhLlaA+skTZ
+	JblnQYm+BGhSS9/wilOQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wl33I-000000042hs-3jGH;
-	Sat, 18 Jul 2026 11:17:52 +0000
-Received: from out-183.mta1.migadu.com ([95.215.58.183])
+	id 1wl33V-000000042lK-0hTM;
+	Sat, 18 Jul 2026 11:18:05 +0000
+Received: from out-174.mta1.migadu.com ([95.215.58.174])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wl33E-000000042h4-3x1K
+	id 1wl33O-000000042iX-2aLn
 	for linux-amlogic@lists.infradead.org;
-	Sat, 18 Jul 2026 11:17:51 +0000
+	Sat, 18 Jul 2026 11:18:00 +0000
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mieulab.com; s=key1;
-	t=1784373463;
+	t=1784373476;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=nrmn9JnAUSFb3FQ2ARJKUpkkcIgVFhmL+iD3YNZEr6g=;
-	b=bBR39izvKO+1yCIHI/DvLs3Nh+aEIWvJlMDVAER4IbmPudR0PefsHliyiPErIo+a9zrPk3
-	taHU+rmseiz2i8FSXpcBfqRgnJVPf+T7CJevJHjaiFUqakU/AXQw/DZiC9xWBWxUhW2ZLl
-	AklqRQiONX++pp+v4au/OY9Plqqngy7tCliJUBjreTUfFV580ZppJGEJ/f4qvZr4c3+x20
-	G/vNVT4THw8+c41G7w3wGC67rBwI29J1wYICaNSAcBPfmrLK/OZ8lVaFRP6n25+j0PkS5n
-	exQmVqVoyZzCub3qCzGaJnB3MJSkM5YTuxwthQ5hB/91baUL/NGB9c16d7zfYw==
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=s0L/CvyUhmFHnr8ZdmxcBtUe6vtszqB/KJYG8quybbM=;
+	b=dDvWpZ9C5oZyJar+uUTs4hmEtNIhJMTY6rjb6zyg3K7IDsgqkeaqozlMLWsBBPFAD41QJ8
+	FTzb3xhfF7CNK2ktGMMIzOCaP03q/LiLBoAFueIozDdt+l9FYq7s7rJ2xzk4Onhe++PZR1
+	5og3NPL+dwVeB3t0HoLgIxrxeDW/a5xsnQnO5OCKu5Z1NKG+2G1A8kbdwKMnpes6k3nFBx
+	xENiHUDdkjdSQ9drg6slecE+L+/J13/2hsyhZqoE7pX6WXlq2jhGme9MLlNGlXKHU9qQKF
+	6NwkJw/L794RhfQ4NydNsGCtJRNJxc8LQQMUyxI0uuPf7FwteZYApm6kLnbJIQ==
 From: Zinan Zhou <zinan@mieulab.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>
 Cc: Zinan Zhou <zinan@mieulab.com>,
@@ -58,14 +59,17 @@ Cc: Zinan Zhou <zinan@mieulab.com>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [RFC PATCH 0/2] drm/meson: add HDMI support for GXLX2
-Date: Sat, 18 Jul 2026 20:15:25 +0900
-Message-ID: <20260718111527.119231-1-zinan@mieulab.com>
+Subject: [RFC PATCH 1/2] dt-bindings: display: meson-dw-hdmi: add GXLX2 compatible
+Date: Sat, 18 Jul 2026 20:15:26 +0900
+Message-ID: <20260718111527.119231-2-zinan@mieulab.com>
+In-Reply-To: <20260718111527.119231-1-zinan@mieulab.com>
+References: <20260718111527.119231-1-zinan@mieulab.com>
 MIME-Version: 1.0
 X-Migadu-Flow: FLOW_OUT
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260718_041749_620307_EE93D04A 
-X-CRM114-Status: GOOD (  13.91  )
+X-CRM114-CacheID: sfid-20260718_041758_797783_1D1BF99D 
+X-CRM114-Status: UNSURE (   9.37  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,89 +86,52 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This RFC adds HDMI transmitter support for the Amlogic GXLX2 family,
-observed as an S905L3 (CPU major ID 0x2a) in a FiberHome HG680-LC set-top
-box.
+The GXLX2 HDMI transmitter uses the byte-addressed DesignWare controller
+registers and directly mapped TOP window also present on G12A. Its display
+pipeline and HDMI PHY programming remain GXL-like, however.
 
-GXLX2 is unusual in that the display pipeline, clocks and HDMI PHY follow
-the older GXL path, while the HDMI controller register interface is
-directly mapped: DWC registers are byte-addressed from 0xda800000 and TOP
-registers are 32-bit registers at 0xda808000 + index * 4. The existing
-G12A access callbacks implement this layout, but using all G12A match data
-would select the wrong PHY initialization for GXLX2.
+Add a dedicated compatible with no fallback. The generic
+meson-gx-dw-hdmi interface uses indirect address/data registers and cannot
+operate this hardware, while meson-g12a-dw-hdmi would select incompatible
+PHY initialization values.
 
-Patch 1 proposes a dedicated amlogic,meson-gxlx2-dw-hdmi compatible
-without a meson-gx-dw-hdmi fallback. Patch 2 adds dedicated match data
-combining direct register callbacks with GXL PHY behavior. It also handles
-the GXLX2 value for the 297 MHz PHY bucket and adds the compatible to the
-Meson DRM component match list.
-
-This RFC depends on the separately posted common Meson DW-HDMI regmap fix:
-
-  drm/meson: constrain the DW-HDMI regmap range
-  https://lore.kernel.org/all/20260718090710.70534-1-zinan@mieulab.com/
-
-That formal bug-fix patch bounds register iteration below the directly
-mapped TOP block and prevents the legacy 16-bit indirect interface from
-wrapping. It is intentionally not part of this RFC so it can be reviewed
-and merged without waiting for agreement on the GXLX2 DT ABI.
-
-I would particularly appreciate feedback on two DT ABI questions:
-
-1. Is amlogic,meson-gxlx2-dw-hdmi the appropriate block compatible name?
-2. Should the DWC and TOP windows be represented as one contiguous MMIO
-   resource, as in this RFC, or as two named resources?
-
-Evidence and disclosure:
-
-- The GXLX2 addresses and 297 MHz value are factual results of analysis of
-  the HG680-LC vendor kernel. Firmware SHA-256 and focused behavioral
-  evidence can be supplied if useful, but no firmware, kallsyms dump or
-  disassembly is part of this submission.
-- Public Amlogic-derived GPL source documents the ordinary GXL 2.97 Gbps
-  values and public GPL-2.0+/MIT source documents the same direct DWC/TOP
-  access mechanism used on later SoCs. The implementation here does not
-  copy a vendor function body.
-
-Testing:
-
-- An equivalent Linux 6.6.18 implementation boots from eMMC on the
-  HG680-LC.
-- 1920x1080 HDMI video was physically verified on an LG 27GL850.
-- Two-channel HDMI LPCM through the display and analog stereo audio were
-  physically verified.
-- The downstream 6.12 port boots from eMMC with working Ethernet/SSH and
-  has physically verified 1920x1080@60 video and HDMI LPCM.
-- With the generic Meson non-CEA mode-range change already present in
-  current mainline, 2560x1440@59.95 video and HDMI LPCM were physically
-  verified on the display's native timing.
-- The RFC port builds on arm64 and its binding passes dt_binding_check.
-- 3840x2160 at 30 Hz has not yet been physically tested. That test is
-  required before a non-RFC PATCH v1 because it exercises the
-  GXLX2-specific 297 MHz branch. It is not a blocker for the verified
-  1080p/1440p use case.
-- No other GXLX2 board has been tested yet.
-
-The initial RFC intentionally contains no board DTS. A downstream-only
-HG680-LC DTS is being kept as DO NOT MERGE until the compatible and resource
-model have received initial feedback.
+The one-resource representation is proposed for RFC review; DWC and TOP
+occupy one contiguous MMIO range on the tested HG680-LC.
 
 Assisted-by: Codex:gpt-5.6-sol
+Signed-off-by: Zinan Zhou <zinan@mieulab.com>
+---
+ .../devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-Zinan Zhou (2):
-  dt-bindings: display: meson-dw-hdmi: add GXLX2 compatible
-  drm/meson: add GXLX2 HDMI register support
-
- .../display/amlogic,meson-dw-hdmi.yaml        |  7 ++--
- drivers/gpu/drm/meson/meson_drv.c             |  1 +
- drivers/gpu/drm/meson/meson_dw_hdmi.c         | 33 ++++++++++++++++---
- 3 files changed, 34 insertions(+), 7 deletions(-)
-
-
-base-commit: b0a652436b892eb9a036a031b33099dca036faaa
-prerequisite-patch-id: 0a689485bbc3c1d77d52aeee0b81e4943d1e904a
+diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
+index 416fe263ac92..4a17eccabea9 100644
+--- a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
++++ b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
+@@ -29,8 +29,10 @@ description: |
+   The HDMI TOP block only supports HPD sensing.
+   The Synopsys HDMI Controller interrupt is routed through the
+   TOP Block interrupt.
+-  Communication to the TOP Block and the Synopsys HDMI Controller is done
+-  via a pair of dedicated addr+read/write registers.
++  Communication with the TOP Block and the Synopsys HDMI Controller uses a pair
++  of dedicated address/data registers on GXBB, GXL and GXM. GXLX2 and G12A
++  instead expose byte-addressed controller registers and a directly mapped TOP
++  window.
+   The HDMI PHY is configured by registers in the HHI register block.
+ 
+   Pixel data arrives in "4:4:4" format from the VENC block and the VPU HDMI mux
+@@ -54,6 +56,7 @@ properties:
+               - amlogic,meson-gxm-dw-hdmi # GXM (S912)
+           - const: amlogic,meson-gx-dw-hdmi
+       - enum:
++          - amlogic,meson-gxlx2-dw-hdmi # GXLX2 (S905L3)
+           - amlogic,meson-g12a-dw-hdmi # G12A (S905X2, S905Y2, S905D2)
+ 
+   reg:
 -- 
 2.43.0
+
 
 _______________________________________________
 linux-amlogic mailing list
