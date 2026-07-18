@@ -4,52 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F123AC4451B
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 Jul 2026 19:27:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8455CC44523
+	for <linux-amlogic@archiver.kernel.org>; Sat, 18 Jul 2026 09:09:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hSWs6w+FUkTX0JPDXTUYrxgfRUBBRmnPHhNbZ35P1bs=; b=p/FQ7gF+WxldYG
-	Br/gZ80xiw4KZoFkPktSMC0P0kc2XsXQV4YrycW4O/vpWTuTWV9OC5SHUFfEGDintZglZlC4rUHbr
-	IBI8CQ9Tr8TZ4ExaDehoxR47a5IM1F/aiKU0KUMrDqIYYiN27y06Dj4VjmAkBAlBNXAzXXhkREfe0
-	3FxITJmCVoIa3IIUs0uoLlLIGULb4L1n/f5PdlQss/OXYLHSJv4EQUPsQYyRNBd70xrCF1N5RFN1L
-	jD6evFLZU9LCLTvCEjAozT0OdHp3afDPlcfPH8MbAbO7lDv54jGRyBVMi2e5UBmXx2xdWLHb1l7nR
-	zUIS/moo6fPRcaJtK0NA==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=wQQRLF1KcE/rqiN6xB1VWO0TpYvA/ryngIZddAcdGyM=; b=PbLvx55gTC0jvn
+	U/hyeRIVTGTaV2zelF6TuOjk/HtV5NDzpcpZ8x6wLfZjl0x9z0TcPZJu2B0eJv9jpbUFhLrOgC1xz
+	VWeagyboVffNx+qU83rQWxLp9IUyUOj5I/ZFDZHBQi8n2j1TTqkWQ3zWva+72ts1ZjV5Mk/JDcX3b
+	cgWPEO3gtmv9ACCVUrtY/sg84qd12iDHIQ13HbvNTt858Sw80koFrUS8pjp+5ta081WUTiQQHTGe7
+	yXoCz5BqU4HrdN+qIaMVRQwaKh2O7QY6YfPV4hGqKzjzHnCeDcHDh/xW74S9jVwp4rlKFTcydg95+
+	4vOalQe2a+3TQkYm2Ixw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkoDh-0000000383g-2gJO;
-	Fri, 17 Jul 2026 19:27:38 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1wl130-00000003w0A-04oX;
+	Sat, 18 Jul 2026 09:09:26 +0000
+Received: from out-179.mta0.migadu.com ([91.218.175.179])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wkoDg-0000000383V-0UkX
+	id 1wl12w-00000003vyn-43SX
 	for linux-amlogic@lists.infradead.org;
-	Fri, 17 Jul 2026 19:27:36 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 86B4F41665;
-	Fri, 17 Jul 2026 19:27:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E71E1F000E9;
-	Fri, 17 Jul 2026 19:27:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784316455;
-	bh=eq2PxpDrI0tPizb7DFfulDAXBmxrGJHJqdI1QKIxTCw=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=K6XkmQLNXR+8EZeV28qffKEZ0HaDv0Jioa7HacYROtc9B9pHE+N6fNaQ+ODwhbNYt
-	 gv0LEd9hZaw9fJco/kRiysluYqo3Gid6kzhPrp4COqRsnONMk8vmWjnzswU71HGimO
-	 Tzg/S24D7dcFrzYYeMc1PPNwLZHOLcInH0uDU3dRI12SO9VndkqAUpiQxZLtxQfhHi
-	 zbiTdW61c0OdHn/DaMJoArpcgnw/U9kQqmIYDo6leKUkp01oeKafp+uoOzOIQY4HJV
-	 RWGvOMf9SK0HjjbfLC+mrEsjNWadxu8U95lZfT5SNcMBNBZdnywl0cjn3STaT/reBJ
-	 9zVosLpWSRNBQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] pwm: meson: Convert to waveform API
-To: "Alexandre Mergnat" <amergnat@baylibre.com>
-Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
-In-Reply-To: <20260717-pwm_meson_convert_to_waveform_api-v1-1-d7dbdae1318d@baylibre.com>
-References: <20260717-pwm_meson_convert_to_waveform_api-v1-1-d7dbdae1318d@baylibre.com>
-Date: Fri, 17 Jul 2026 19:27:34 +0000
-Message-Id: <20260717192735.3E71E1F000E9@smtp.kernel.org>
+	Sat, 18 Jul 2026 09:09:24 +0000
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mieulab.com; s=key1;
+	t=1784365749;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=04ZG929EQhX1dGNLkVMZf7o0QfRRX5rccHgYz9v8S+U=;
+	b=KhOZP0PJkvHKX7WngjioyotNt/pO8fljU0Vgyo7CFCT4OlU/hu2906O+/lPs0BaBFILBBj
+	XAcHxaWAbow0SNTsrn47UeHbu7IXkPyFQGgUtU30vQbOaNxUSHAMkAtmeMDEeLy/HYS/8l
+	7qrXx651/jgATPKzu+Y25+EIxZmPdg5oNH0ymacfxN5C9ymb/UMrRKjysuPliiRrSb04kn
+	NjopTSvCoAiKtd8RRilvH1AEoNWhopr1iMenin4ylg/fq1lofQ6uE4jUov+/YVlyP7xYP/
+	BUaO0aukHg6kHLHJCFgw1bq7vtO4yCfYeOi/K1n+oulQgSdKTyXgX72AkYVwQQ==
+From: Zinan Zhou <zinan@mieulab.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Zinan Zhou <zinan@mieulab.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	dri-devel@lists.freedesktop.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/meson: constrain the DW-HDMI regmap range
+Date: Sat, 18 Jul 2026 18:07:10 +0900
+Message-ID: <20260718090710.70534-1-zinan@mieulab.com>
+MIME-Version: 1.0
+X-Migadu-Flow: FLOW_OUT
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260718_020923_150312_E40C5008 
+X-CRM114-Status: UNSURE (   9.40  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,84 +74,57 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MiBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0hpZ2hdIFRydW5jYXRpb24gZXJy
-b3IgaW4gaGFyZHdhcmUgd2F2ZWZvcm0gcXVhbnRpemF0aW9uIGJyZWFrcyBsZWdhY3kgcG9sYXJp
-dHkgaW52ZXJzaW9uLgotIFtNZWRpdW1dIEluZGVwZW5kZW50IHJvdW5kaW5nIGluIHdhdmVmb3Jt
-IHJlYWRiYWNrIHByb2R1Y2VzIGFuIGludmFsaWQgc3RhdGUgd2hlcmUgZHV0eSArIG9mZnNldCA+
-IHBlcmlvZC4KLS0KCi0tLSBQYXRjaCBbMV06IFtQQVRDSF0gcHdtOiBtZXNvbjogQ29udmVydCB0
-byB3YXZlZm9ybSBBUEkgLS0tCmNvbW1pdCAyMDVkMGFlZTEyMzE0NTZiOTIzNTE1YWNmOTVhNDYx
-YTlmMGEyMTdmCkF1dGhvcjogQWxleGFuZHJlIE1lcmduYXQgPGFtZXJnbmF0QGJheWxpYnJlLmNv
-bT4KCnB3bTogbWVzb246IENvbnZlcnQgdG8gd2F2ZWZvcm0gQVBJCgpUaGUgUFdNIHN1YnN5c3Rl
-bSBpbnRyb2R1Y2VkIGEgbmV3IHdhdmVmb3JtIGFic3RyYWN0aW9uIHRoYXQgZGVzY3JpYmVzIGEg
-UFdNCnNpZ25hbCBieSBwZXJpb2QgbGVuZ3RoLCBkdXR5IGxlbmd0aCBhbmQgZHV0eSBvZmZzZXQg
-aW5zdGVhZCBvZiBwZXJpb2QsIGR1dHkKY3ljbGUgYW5kIHBvbGFyaXR5LiBBZG9wdCB0aGUgbmV3
-IEFQSSBieSBpbXBsZW1lbnRpbmcgLnJvdW5kX3dhdmVmb3JtX3RvaHcoKSwKLnJvdW5kX3dhdmVm
-b3JtX2Zyb21odygpLCAucmVhZF93YXZlZm9ybSgpIGFuZCAud3JpdGVfd2F2ZWZvcm0oKSB3aXRo
-IGEKcHJpdmF0ZSBtZXNvbl9wd21fd2F2ZWZvcm0gc3RydWN0IGhvbGRpbmcgdGhlIGhhcmR3YXJl
-IHJlcHJlc2VudGF0aW9uLgoKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9wd20vcHdtLW1lc29uLmMg
-Yi9kcml2ZXJzL3B3bS9wd20tbWVzb24uYwo+IGluZGV4IDIwZTZjZDA3MTI3YzQuLjYzM2IzODQz
-NThjMDggMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9wd20vcHdtLW1lc29uLmMKPiArKysgYi9kcml2
-ZXJzL3B3bS9wd20tbWVzb24uYwoKWyAuLi4gXQoKPiArc3RhdGljIGludCBtZXNvbl9wd21fcm91
-bmRfd2F2ZWZvcm1fdG9odyhzdHJ1Y3QgcHdtX2NoaXAgKmNoaXAsCj4gKwkJCQkJIHN0cnVjdCBw
-d21fZGV2aWNlICpwd20sCj4gKwkJCQkJIGNvbnN0IHN0cnVjdCBwd21fd2F2ZWZvcm0gKndmLAo+
-ICsJCQkJCSB2b2lkICpfd2ZodykKPiAgewoKWyAuLi4gXQoKPiArCWlmIChtZXNvbi0+ZGF0YS0+
-aGFzX3BvbGFyaXR5ICYmIGR1dHlfY250KSB7Cj4gKwkJdTY0IG9mZnNldF9jbnQgPSBtdWxfdTY0
-X3U2NF9kaXZfdTY0KGZpbl9mcmVxLCB3Zi0+ZHV0eV9vZmZzZXRfbnMsCj4gKwkJCQkJCSAgICAg
-TlNFQ19QRVJfU0VDKTsKPiArCj4gKwkJLyoKPiArCQkgKiBXYXZlZm9ybXMgd2l0aCBkdXR5X29m
-ZnNldF9ucyArIGR1dHlfbGVuZ3RoX25zID09Cj4gKwkJICogcGVyaW9kX2xlbmd0aF9ucyBhcmUg
-aW1wbGVtZW50ZWQgYnkgaW52ZXJ0aW5nIHRoZSBvdXRwdXQ6Cj4gKwkJICogVGhlIHNpZ25hbCB0
-aGVuIGlzIGxvdyBmb3IgaGkgY291bnRzICh0aGUgb2Zmc2V0KSBmb2xsb3dlZAo+ICsJCSAqIGJ5
-IGhpZ2ggZm9yIGxvIGNvdW50cyAodGhlIGR1dHkgY3ljbGUpLiBPdGhlciBub256ZXJvCj4gKwkJ
-ICogZHV0eV9vZmZzZXRfbnMgdmFsdWVzIGFyZSByb3VuZGVkIGRvd24gdG8gMC4KPiArCQkgKi8K
-PiArCQlpZiAob2Zmc2V0X2NudCAmJiBkdXR5X2NudCArIG9mZnNldF9jbnQgPj0gY250KSB7Cgpb
-U2V2ZXJpdHk6IEhpZ2hdCkNvdWxkIGludGVnZXIgZGl2aXNpb24gdHJ1bmNhdGlvbiBjYXVzZSB0
-aGlzIGNoZWNrIHRvIGZhaWwgZm9yIGludmVydGVkCndhdmVmb3Jtcz8KCklmIGR1dHlfY250IGFu
-ZCBvZmZzZXRfY250IGFyZSBjYWxjdWxhdGVkIHdpdGggaW5kZXBlbmRlbnQgdHJ1bmNhdGlvbiwg
-dGhlaXIKc3VtIG1pZ2h0IGVuZCB1cCBzdHJpY3RseSBsZXNzIHRoYW4gY250IGV2ZW4gd2hlbiB0
-aGUgb3JpZ2luYWwgbGVuZ3RocyBzdW0gdG8KdGhlIHBlcmlvZC4KCldvdWxkIHRoaXMgY2F1c2Ug
-dGhlIGRyaXZlciB0byBpbmNvcnJlY3RseSBmYWxsIGJhY2sgdG8gbm9ybWFsIHBvbGFyaXR5IHdp
-dGggYQp6ZXJvIG9mZnNldD8KCj4gKwkJCXN3YXAod2Zody0+aGksIHdmaHctPmxvKTsKPiArCQkJ
-d2Zody0+aW52ZXJ0ZWQgPSB0cnVlOwo+ICsJCX0KPiAgCX0KClsgLi4uIF0KCj4gK3N0YXRpYyBp
-bnQgbWVzb25fcHdtX3JvdW5kX3dhdmVmb3JtX2Zyb21odyhzdHJ1Y3QgcHdtX2NoaXAgKmNoaXAs
-Cj4gKwkJCQkJICAgc3RydWN0IHB3bV9kZXZpY2UgKnB3bSwKPiArCQkJCQkgICBjb25zdCB2b2lk
-ICpfd2ZodywKPiArCQkJCQkgICBzdHJ1Y3QgcHdtX3dhdmVmb3JtICp3ZikKPiArewoKWyAuLi4g
-XQoKPiArCS8qCj4gKwkgKiB3Zmh3LT5oaSBhbmQgd2Zody0+bG8gYXJlIHUxNiwgc28gdGhlaXIg
-c3VtIGRvZXNuJ3Qgb3ZlcmZsb3cgYW5kCj4gKwkgKiBOU0VDX1BFUl9TRUMgKiAoaGkgKyBsbykg
-Zml0cyBpbnRvIHRoZSB1NjQgZGl2aWRlbmQgaW4KPiArCSAqIG1lc29uX3B3bV9jbnRfdG9fbnMo
-KS4KPiArCSAqLwo+ICsJd2YtPnBlcmlvZF9sZW5ndGhfbnMgPSBtZXNvbl9wd21fY250X3RvX25z
-KHdmaHctPnJhdGUsIHdmaHctPmhpICsgd2Zody0+bG8pOwo+ICsKPiArCWlmICh3Zmh3LT5pbnZl
-cnRlZCAmJiB3Zmh3LT5sbyA9PSAwKSB7Cj4gKwkJLyoKPiArCQkgKiBUaGUgb3V0cHV0IGlzIGNv
-bnN0YW50IGxvdy4gUmVwb3J0IGEgbm9ybWFsIGNvbnN0YW50LWxvdwo+ICsJCSAqIHdhdmVmb3Jt
-IGluc3RlYWQgb2YgZHV0eV9vZmZzZXRfbnMgPT0gcGVyaW9kX2xlbmd0aF9ucwo+ICsJCSAqIHdo
-aWNoIHdvdWxkbid0IGJlIGEgdmFsaWQgd2F2ZWZvcm0gZGVzY3JpcHRpb24uIFRoaXMKPiArCQkg
-KiBzZXR0aW5nIGlzIG9ubHkgcmVhY2hhYmxlIHdoZW4gdGhlIGhhcmR3YXJlIHdhcyBwcm9ncmFt
-bWVkCj4gKwkJICogYnkgdGhlIGJvb3Rsb2FkZXIgYXMgLnJvdW5kX3dhdmVmb3JtX3RvaHcoKSBu
-ZXZlciBwcm9kdWNlcwo+ICsJCSAqIGl0Lgo+ICsJCSAqLwo+ICsJCXdmLT5kdXR5X2xlbmd0aF9u
-cyA9IDA7Cj4gKwkJd2YtPmR1dHlfb2Zmc2V0X25zID0gMDsKPiArCX0gZWxzZSBpZiAod2Zody0+
-aW52ZXJ0ZWQpIHsKPiArCQl3Zi0+ZHV0eV9sZW5ndGhfbnMgPSBtZXNvbl9wd21fY250X3RvX25z
-KHdmaHctPnJhdGUsIHdmaHctPmxvKTsKPiArCQl3Zi0+ZHV0eV9vZmZzZXRfbnMgPSBtZXNvbl9w
-d21fY250X3RvX25zKHdmaHctPnJhdGUsIHdmaHctPmhpKTsKCltTZXZlcml0eTogTWVkaXVtXQpT
-aW5jZSBtZXNvbl9wd21fY250X3RvX25zKCkgZXhwbGljaXRseSByb3VuZHMgdXAsIGNhbiByb3Vu
-ZGluZyBkdXR5X2xlbmd0aF9ucwphbmQgZHV0eV9vZmZzZXRfbnMgaW5kZXBlbmRlbnRseSByZXN1
-bHQgaW4gdGhlaXIgc3VtIGV4Y2VlZGluZwpwZXJpb2RfbGVuZ3RoX25zPwoKRm9yIGV4YW1wbGUs
-IGlmIHJhdGUgaXMgMzMzMzMzMzMzIEh6IGFuZCBib3RoIGhpIGFuZCBsbyBjb3VudHMgYXJlIDEs
-CnBlcmlvZF9sZW5ndGhfbnMgcm91bmRzIHVwIHRvIDcgbnMsIHdoaWxlIGR1dHlfbGVuZ3RoX25z
-IGFuZCBkdXR5X29mZnNldF9ucwp3b3VsZCBlYWNoIHJvdW5kIHVwIHRvIDQgbnMuIFRoZWlyIHN1
-bSAoOCBucykgd291bGQgZXhjZWVkIHRoZSBwZXJpb2QgbGVuZ3RoLApwb3RlbnRpYWxseSBsZWFk
-aW5nIHRvIGludGVnZXIgdW5kZXJmbG93IGluIGNvbnN1bWVycyBhdHRlbXB0aW5nIHRvIGNhbGN1
-bGF0ZQp0aGUgcmVtYWluaW5nIHBlcmlvZCB0aW1lLgoKPiArCX0gZWxzZSB7Cj4gKwkJd2YtPmR1
-dHlfbGVuZ3RoX25zID0gbWVzb25fcHdtX2NudF90b19ucyh3Zmh3LT5yYXRlLCB3Zmh3LT5oaSk7
-Cj4gKwkJd2YtPmR1dHlfb2Zmc2V0X25zID0gMDsKPiAgCX0KCi0tIApTYXNoaWtvIEFJIHJldmll
-dyDCtyBodHRwczovL3Nhc2hpa28uZGV2LyMvcGF0Y2hzZXQvMjAyNjA3MTctcHdtX21lc29uX2Nv
-bnZlcnRfdG9fd2F2ZWZvcm1fYXBpLXYxLTEtZDdkYmRhZTEzMThkQGJheWxpYnJlLmNvbT9wYXJ0
-PTEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4
-LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpo
-dHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+The DesignWare HDMI regmap declares 0x10000 as its inclusive maximum
+register. A regmap traversal can consequently read one byte past the
+directly mapped G12A 64 KiB resource. It also treats the Meson TOP window
+from offset 0x8000 as DWC registers. On the older indirect interface, the
+address is truncated to 16 bits and aliases register zero.
+
+Limit the regmap to 0x7e12, the last register defined by the supported
+Synopsys HDMI controller. This also keeps register iteration below the
+Meson TOP register window at offset 0x8000.
+
+Fixes: 3f68be7d8e96 ("drm/meson: Add support for HDMI encoder and DW-HDMI bridge + PHY")
+Assisted-by: Codex:gpt-5.6-sol
+Signed-off-by: Zinan Zhou <zinan@mieulab.com>
+---
+ drivers/gpu/drm/meson/meson_dw_hdmi.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+index fef1702acb14..1004108fb7ca 100644
+--- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
++++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+@@ -100,6 +100,8 @@
+ #define HDMITX_DWC_ADDR_REG	0x10
+ #define HDMITX_DWC_DATA_REG	0x14
+ #define HDMITX_DWC_CTRL_REG	0x18
++/* Last DWC register; direct layouts place the TOP block at offset 0x8000. */
++#define HDMITX_DWC_MAX_REGISTER	0x7e12
+ 
+ /* HHI Registers */
+ #define HHI_MEM_PD_REG0		0x100 /* 0x40 */
+@@ -564,7 +566,7 @@ static const struct regmap_config meson_dw_hdmi_regmap_config = {
+ 	.val_bits = 8,
+ 	.reg_read = meson_dw_hdmi_reg_read,
+ 	.reg_write = meson_dw_hdmi_reg_write,
+-	.max_register = 0x10000,
++	.max_register = HDMITX_DWC_MAX_REGISTER,
+ 	.fast_io = true,
+ };
+ 
+
+base-commit: b0a652436b892eb9a036a031b33099dca036faaa
+-- 
+2.43.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
