@@ -4,197 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BDD5C4452B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Jul 2026 15:27:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9C47C4452B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Jul 2026 15:27:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=12PrPRu6kw5CtBUGHMdMc3afcC3t2E1IgbgmoNhuC20=; b=JBaxJXiMkx9fOE
-	TFepbPA/OasdLRoz8LOBzDbBC3tufTGg+bbfyXnbZumbBAS/TLQCpymzJleC2CfVHGhPmX5KYqnB4
-	RrDtVn0ZoLwk9HWPb2Z87tJfHJWQ1Qts8OLoEI+dWIoQQtWGO6BxrUdGpZdDGoxrAytzvUrpVe0E4
-	+uHKfQZnncy8kHx8lW/YlfOsqbSJUn5eO/yLG6bpn+YZwHu+7h80ud5dYdaeOFcH7gArxvTo3/QxS
-	1/5X4dHLlqUkBHCHjCZljP0eRxb63jjpKMieoNgMpM9C5t9A2ftf6yKaw9Kvr4/N1r7gqx78Y3U0s
-	6ad0A3lG+px6dLl5bh7w==;
+	List-Owner; bh=dJkgduQFb66cWLD4a8o6CK3yIpNXhJ6LbktghYNUoQ8=; b=TQ0U2TpK/eoLB4
+	IbDqDBf44mSfi1CQk/qhNzWbokjF5Ud0DwDaU/vpBmeLp4AQvBhpWefDQLRmhy9vzcamSyGWuOhQ5
+	qhN2eUF/tbPFoeLZJ9XQ1cLcs+NEQFEpR94A/eoSvEEgQWuv5g3x88N26QsKUPlod36dnBNzQ1ZOV
+	+PWwjT70GZs09NxlhIV1fMX0hXULzk9UWiBKYJW2+9k0vZNfk0hkzGOIXBdEx80ltSp8RdL7Cuvm4
+	RFMQ2yq3IGo24OTvfnqf2KU1xeaGxJNQ9NeaGU56jttDy/fnCLI5NX97c+9UsaorEAFiu9pcg104S
+	drupg5uCuz5nMJq3Iu1g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wlpuB-00000007Bl6-0vPm;
-	Mon, 20 Jul 2026 15:27:43 +0000
-Received: from smtp-out1.suse.de ([195.135.223.130])
+	id 1wlpuK-00000007BqF-1w7Y;
+	Mon, 20 Jul 2026 15:27:52 +0000
+Received: from m16.mail.163.com ([220.197.31.4])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wlpu7-00000007Bil-1VKV
+	id 1wlpuH-00000007Bo1-3dCc
 	for linux-amlogic@lists.infradead.org;
-	Mon, 20 Jul 2026 15:27:42 +0000
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id D6B0C7A027;
-	Mon, 20 Jul 2026 15:27:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1784561257; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=kTyehpI+Frpde8vx4Y/usVDlefaVXjVPd9jl0F472DA=;
-	b=rSvtzNjtQIY+oL+pZb9Z7HxTl+ceaV1jIAfd90ZAviR/KUdRbN4YOiCjyazpvR/PA8g13I
-	ip5sL7rxrk6wVoZAmzi5W+OJ21reUcDlrXqBqAlP21vQD/uy2TKtSNu0eD5pqwlCf2Cqco
-	gOhOjJhe8gZ/bQnsuYOvQXir2Yofj1o=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1784561257;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=kTyehpI+Frpde8vx4Y/usVDlefaVXjVPd9jl0F472DA=;
-	b=s8wRfVdc+ajxxOiSm5qAIaGfAxpSWN8FFiWUMl5Yc+Ptht+dAYpKm8TNx1SLbM9xPYbOfS
-	Cf52o18/LCbbAECQ==
-Authentication-Results: smtp-out1.suse.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=FZxXkRq3;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=Y8b71xct
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1784561256; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=kTyehpI+Frpde8vx4Y/usVDlefaVXjVPd9jl0F472DA=;
-	b=FZxXkRq3+XPfr7HNKL1iVxiYCbadfG59H8SS/f9s+AF23Ta/lCVqEMyoohir+bgO3Ke9Vd
-	JSl0eAlwz5EfzTdCiIMUWLNn646doRy/KWZdlfAumSJ/cFlSztw6LK3sQBX/brF7xhaspw
-	tXlSGTPQrGIB6//gEfBWfCy/G5kYSZ8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1784561256;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=kTyehpI+Frpde8vx4Y/usVDlefaVXjVPd9jl0F472DA=;
-	b=Y8b71xctD+F7nWJ+3Jr4a4km6bsocJJhhQYVVlZpixDP72DjWw0E/dHkBsnpIKueaP1lzm
-	Ns4Kbl11JgHIHvAw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 4F75C779AA;
-	Mon, 20 Jul 2026 15:27:35 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id BHEDEmc+XmrzCgAAD6G6ig
-	(envelope-from <tzimmermann@suse.de>); Mon, 20 Jul 2026 15:27:35 +0000
-Message-ID: <bde20e63-ec55-4ad4-872e-a7a983424100@suse.de>
-Date: Mon, 20 Jul 2026 17:27:34 +0200
+	Mon, 20 Jul 2026 15:27:51 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=qcO4Jx5AKS6Igcf3/JaMxYeNZarJWUVQHogxhHenLsQ=;
+	b=oozf8t223x6rPeIKh3fmOHRTrFfQEJHXO5I1LTSkPyUvi/v8oNl9euSwX9hk7I
+	7ChfbVtq4Tabfm7+2t+8vO2eg3/K57yr/35p3O6QNrVqgqRe5NgCzUppEu/soTNh
+	tHyP1Aeb9EwpaW0sBzrazvG0R3Qsk5QBmpK21+/Za7DRU=
+Received: from [IPV6:240e:b8f:91b3:d000:f138:f837:e143:4264] (unknown [])
+	by gzga-smtp-mtada-g0-1 (Coremail) with SMTP id _____wD31y5hPl5qiykBKQ--.65457S2;
+	Mon, 20 Jul 2026 23:27:30 +0800 (CST)
+Message-ID: <7b76cdd1-1001-4d2d-a221-33988261faf9@163.com>
+Date: Mon, 20 Jul 2026 23:27:29 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/15] drm/exynos: remove dependency on DRM simple helpers
-To: Diogo Silva <diogompaissilva@gmail.com>
-Cc: Jingoo Han <jingoohan1@gmail.com>, Inki Dae <inki.dae@samsung.com>,
- Seung-Woo Kim <sw0312.kim@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Krzysztof Kozlowski <krzk@kernel.org>,
- Peter Griffin <peter.griffin@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Michal Simek <michal.simek@amd.com>,
- Thierry Reding <thierry.reding@kernel.org>,
- Mikko Perttunen <mperttunen@nvidia.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, Stefan Agner <stefan@agner.ch>,
- Alison Wang <alison.wang@nxp.com>,
- Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
- David Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
- <olvaffe@gmail.com>, Jyri Sarha <jyri.sarha@iki.fi>,
- Liu Ying <victor.liu@nxp.com>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Xinliang Liu <xinliang.liu@linaro.org>,
- Sumit Semwal <sumit.semwal@linaro.org>, Yongqin Liu
- <yongqin.liu@linaro.org>, John Stultz <jstultz@google.com>,
- Liviu Dudau <liviu.dudau@arm.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-tegra@vger.kernel.org, virtualization@lists.linux.dev,
- imx@lists.linux.dev, linux-mediatek@lists.infradead.org,
- linux-renesas-soc@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-doc@vger.kernel.org
-References: <20260719-drm_simple_encoder_init-v1-0-a78c509e3062@gmail.com>
- <20260719-drm_simple_encoder_init-v1-1-a78c509e3062@gmail.com>
- <4af254a4-beb7-4f77-830f-42d5bacb10a4@suse.de>
- <CAJpoHp73S2_cavgV3aVwC5PS8H1GRqTdDV-Xu8n6nXavBnV2=g@mail.gmail.com>
+Subject: Re: [PATCH v3 01/16] PCI: dwc: Add pcie_cap field and helper in
+ designware header
+To: sashiko-reviews@lists.linux.dev
+Cc: Frank.Li@kernel.org, linux-pci@vger.kernel.org, imx@lists.linux.dev,
+ neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
+References: <20260720150619.24733-1-18255117159@163.com>
+ <20260720150619.24733-2-18255117159@163.com>
+ <20260720151732.7B9A41F00A3A@smtp.kernel.org>
 Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <CAJpoHp73S2_cavgV3aVwC5PS8H1GRqTdDV-Xu8n6nXavBnV2=g@mail.gmail.com>
-X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.01 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	MX_GOOD(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,samsung.com,ffwll.ch,kernel.org,linaro.org,ideasonboard.com,linux.intel.com,amd.com,nvidia.com,agner.ch,nxp.com,intel.com,redhat.com,collabora.com,chromium.org,iki.fi,pengutronix.de,glider.be,google.com,arm.com,baylibre.com,googlemail.com,lwn.net,linuxfoundation.org,lists.freedesktop.org,lists.infradead.org,vger.kernel.org,lists.linux.dev];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	ARC_NA(0.00)[];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	RCVD_TLS_ALL(0.00)[];
-	R_RATELIMIT(0.00)[to_ip_from(RL5qdohruh175rhiw1bqi96ifb)];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	TO_MATCH_ENVRCPT_SOME(0.00)[];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[suse.de:+];
-	RCPT_COUNT_GT_50(0.00)[59];
-	DWL_DNSWL_BLOCKED(0.00)[suse.de:dkim];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:dkim,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns,suse.com:url]
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Rspamd-Queue-Id: D6B0C7A027
+From: Hans Zhang <18255117159@163.com>
+In-Reply-To: <20260720151732.7B9A41F00A3A@smtp.kernel.org>
+X-CM-TRANSID: _____wD31y5hPl5qiykBKQ--.65457S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7KFW5WF1UurW5ZFyUXFWfuFg_yoW8Kr1Upa
+	9xJFyayF48JF43ZF97Aa15WF1akF9IyFy3G3y3G34fZFya9F17Ka1FyrWrKF17GrZ7Kr1Y
+	kr4UtF9xCrn5JFDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U4BTOUUUUU=
+X-Originating-IP: [240e:b8f:91b3:d000:f138:f837:e143:4264]
+X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbC7APZfWpePmPkIQAA3n
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260720_082739_695341_390F4B26 
-X-CRM114-Status: GOOD (  12.29  )
+X-CRM114-CacheID: sfid-20260720_082750_267965_B92153C7 
+X-CRM114-Status: GOOD (  17.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -206,29 +72,77 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkKCkFtIDIwLjA3LjI2IHVtIDE3OjE1IHNjaHJpZWIgRGlvZ28gU2lsdmE6Cj4gSGV5LAo+Cj4+
-IEFnYWluLCB5b3UgcmF0aGVyIHdhbnQgZHJtX2VycigpIHdpdGggZHJtX2RldiBoZXJlLgo+Pgo+
-PiBJJ3ZlIGJyaWVmbHkgbG9va2VkIG92ZXIgdGhlIHNlcmllcyBhbmQgbWFueSBwYXRjaGVzIHNl
-ZW0gYWZmZWN0ZWQuCj4+IFBsZWFzZSBwcmVmZXIgZHJtXyBsb2dnaW5nIGZ1bmN0aW9ucyBhbmQg
-RFJNIGRldmljZXMgb3ZlciB0aGUgcGxhaW4KPj4gZGV2aWNlIGVxdWl2YWxlbnRzLgo+IFRoYW5r
-cy4gSSB3aWxsIHN1Ym1pdCBhIHYyIHdpdGggY29uc2lzdGVudCB1c2FnZSBvZiBkcm1fZXJyKCku
-CgpUaGFua3MKCj4KPiBBbHNvLCBpcyB0aGVyZSBhbnkgb25nb2luZyB0YXNrIG9yIHdvdWxkIGl0
-IGJlIHVzZWZ1bCB0byBzdWJtaXQgcGF0Y2hlcwo+IGNoYW5naW5nIHRoZSB1c2FnZSBvZiBEUk1f
-REVWXyogZnVuY3Rpb25zIHdpdGggZHJtXyogZXF1aXZhbGVudHM/Cj4gT3IgZnJvbSBkZXZfKiB0
-byBkcm1fKiB3aGVuIHBvc3NpYmxlID8KClBvc3NpYmx5LiBEUk1fREVWXyBsb2dnaW5nIGlzIHN1
-cHBvc2VkIHRvIGJlIHJlcGxhY2VkIHdpdGggZHJtXyBsb2dnaW5nIApoZWxwZXJzLiBUaGF0IHdv
-dWxkIGJlIGEgc2ltcGxlIGZvbGxvdy11cCBzZXJpZXMuwqAgV2hldGhlciB0byBwcmVmZXIgCmRy
-bV8gb3ZlciBkZXZfIGxvZ2dpbmcgZGVwZW5kcyBvbiB0aGUgY29udGV4dCBhbmQgdGhlIGRyaXZl
-ciBtYWludGFpbmVyLgoKQmVzdCByZWdhcmRzClRob21hcwoKCj4KPiBCUiwKPiBEaW9nbwoKLS0g
-Ci0tClRob21hcyBaaW1tZXJtYW5uCkdyYXBoaWNzIERyaXZlciBEZXZlbG9wZXIKU1VTRSBTb2Z0
-d2FyZSBTb2x1dGlvbnMgR2VybWFueSBHbWJICkZyYW5rZW5zdHIuIDE0NiwgOTA0NjEgTsO8cm5i
-ZXJnLCBHZXJtYW55LCB3d3cuc3VzZS5jb20KR0Y6IEpvY2hlbiBKYXNlciwgQW5kcmV3IE1jRG9u
-YWxkLCAoSFJCIDM2ODA5LCBBRyBOw7xybmJlcmcpCgoKCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4
-LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+
+
+On 7/20/26 23:17, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> - [Medium] Data race and logically flawed caching in dw_pcie_get_pcie_cap() due to unprotected read-modify-write and failure to cache 'not found' state.
+> --
+> 
+> --- Patch [1]: [PATCH v3 01/16] PCI: dwc: Add pcie_cap field and helper in designware header ---
+> commit ab22dc6f534d77b34df13c99dd929771547f5ff1
+> Author: Hans Zhang <18255117159@163.com>
+> 
+> PCI: dwc: Add pcie_cap field and helper in designware header
+> 
+> This commit adds a pcie_cap field to struct dw_pcie to cache the offset of
+> the PCI Express Capability structure. It introduces dw_pcie_get_pcie_cap()
+> to perform the capability search on the first call and cache the result.
+> 
+>> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+>> --- a/drivers/pci/controller/dwc/pcie-designware.h
+>> +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> [ ... ]
+>> @@ -829,6 +831,21 @@ static inline void dw_pcie_dbi_ro_wr_dis(struct dw_pcie *pci)
+>>   	dw_pcie_writel_dbi(pci, reg, val);
+>>   }
+>>   
+>> +/**
+>> + * dw_pcie_get_pcie_cap() - Return cached PCIe Capability offset
+>> + * @pci: DWC instance
+>> + *
+>> + * Finds and caches the offset of PCI_CAP_ID_EXP on first call.
+>> + * Returns 0 if the capability is not present.
+>> + */
+>> +static inline u8 dw_pcie_get_pcie_cap(struct dw_pcie *pci)
+>> +{
+>> +	if (!pci->pcie_cap)
+>> +		pci->pcie_cap = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+> 
+> [Severity: Medium]
+> Will this repeatedly search the configuration space if the capability is
+> not found? If dw_pcie_find_capability() returns 0 when the capability is
+> missing, pci->pcie_cap will remain 0, causing the search to be repeated
+> on every subsequent call instead of being cached.
+> 
+> Also, since this helper might be called concurrently by different threads,
+> could the unprotected read and write to pci->pcie_cap cause a data race?
+> 
+
+Hi,
+
+As mentioned in the previous reply, there is no need for us to worry 
+about this.
+
+https://lore.kernel.org/linux-pci/5cc6fbcc-98eb-4da5-b123-2c04c4d39326@163.com/
+
+
+Best regards,
+Hans
+
+
+>> +
+>> +	return pci->pcie_cap;
+>> +}
+> 
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
