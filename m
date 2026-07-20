@@ -4,63 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9C47C4452B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Jul 2026 15:27:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD3A7C44515
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 Jul 2026 15:27:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dJkgduQFb66cWLD4a8o6CK3yIpNXhJ6LbktghYNUoQ8=; b=TQ0U2TpK/eoLB4
-	IbDqDBf44mSfi1CQk/qhNzWbokjF5Ud0DwDaU/vpBmeLp4AQvBhpWefDQLRmhy9vzcamSyGWuOhQ5
-	qhN2eUF/tbPFoeLZJ9XQ1cLcs+NEQFEpR94A/eoSvEEgQWuv5g3x88N26QsKUPlod36dnBNzQ1ZOV
-	+PWwjT70GZs09NxlhIV1fMX0hXULzk9UWiBKYJW2+9k0vZNfk0hkzGOIXBdEx80ltSp8RdL7Cuvm4
-	RFMQ2yq3IGo24OTvfnqf2KU1xeaGxJNQ9NeaGU56jttDy/fnCLI5NX97c+9UsaorEAFiu9pcg104S
-	drupg5uCuz5nMJq3Iu1g==;
+	List-Owner; bh=cHrBWSiIA4l4OMIzFj0zJySDl5JV4okPsJCntcq+tUg=; b=c5cgtpiKkVpD6s
+	9zj1Sbulr0ecJZ+URja2lzzS+3rV3DXNxoujfDTOJL70FfNxcvOE+4BxtKImi+wCsxxz7D2bNHkAd
+	kPQqzUo4spHk3szOhXBt3+PPa7hPKuoiMwnLj26dMgL3E9zF25mbaZP1BFjmK+disbnZ0r3byYkIH
+	RSHJ7b57Wpvhs2JxrkIs+MGYGXDJJhEYtBTbAObrDqzj8P22bGJtCiXWc/TX5vjf0ONuw5Jprl1cF
+	k/4Hq3dRwFex+sy0IeN2iCrH4dHfMdqeB8DdGAy+IhW/o0bduMRgRjsoJh5IzwlDr1G9ZS6DmbP8V
+	bgLGBVqzWO3LOHlhNp7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wlpuK-00000007BqF-1w7Y;
-	Mon, 20 Jul 2026 15:27:52 +0000
-Received: from m16.mail.163.com ([220.197.31.4])
+	id 1wlpuN-00000007BrY-2OI5;
+	Mon, 20 Jul 2026 15:27:55 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wlpuH-00000007Bo1-3dCc
+	id 1wlpuM-00000007Bqo-0tsd
 	for linux-amlogic@lists.infradead.org;
-	Mon, 20 Jul 2026 15:27:51 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=qcO4Jx5AKS6Igcf3/JaMxYeNZarJWUVQHogxhHenLsQ=;
-	b=oozf8t223x6rPeIKh3fmOHRTrFfQEJHXO5I1LTSkPyUvi/v8oNl9euSwX9hk7I
-	7ChfbVtq4Tabfm7+2t+8vO2eg3/K57yr/35p3O6QNrVqgqRe5NgCzUppEu/soTNh
-	tHyP1Aeb9EwpaW0sBzrazvG0R3Qsk5QBmpK21+/Za7DRU=
-Received: from [IPV6:240e:b8f:91b3:d000:f138:f837:e143:4264] (unknown [])
-	by gzga-smtp-mtada-g0-1 (Coremail) with SMTP id _____wD31y5hPl5qiykBKQ--.65457S2;
-	Mon, 20 Jul 2026 23:27:30 +0800 (CST)
-Message-ID: <7b76cdd1-1001-4d2d-a221-33988261faf9@163.com>
-Date: Mon, 20 Jul 2026 23:27:29 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 01/16] PCI: dwc: Add pcie_cap field and helper in
- designware header
-To: sashiko-reviews@lists.linux.dev
-Cc: Frank.Li@kernel.org, linux-pci@vger.kernel.org, imx@lists.linux.dev,
- neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
+	Mon, 20 Jul 2026 15:27:54 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 4B80060A5C;
+	Mon, 20 Jul 2026 15:27:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A88AC1F00A3A;
+	Mon, 20 Jul 2026 15:27:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1784561272;
+	bh=JjQaLdF/6J1Cr39wdv1yjoSfvOqAtBuzbF59nsWBkD8=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=WNQCV1mwPps170gjMiiDw2R1riBhwYGMfuAKL7TBoXn+1OFfehyMQPYydWpVmiRKu
+	 2dUy5LDZ3v/7zEOhQ+IHaqFyxBnCs2UbnkkKFSuanB00SvoCw4E8Yrg/srhlQ55Djr
+	 7Pr2BA/naCutWgJdL6wXDXnr0nl1Bp38sGt8aS5RFZJlwqWOTnsbG+adGms4usgeq8
+	 LzNjQ1Fm99HgFDXb0GoH7II33i9TkKeR+4S+5r7Lo4n7bP1+qWUoX5vjkBsMsKcH7L
+	 LwrOsDH+8E7427Zok2baacMSy2S2aJ0xfzJ+P+XoJNQLbXXFCUuFbtvsW+MNwNQHke
+	 L8pFdYizLPwDQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 14/16] PCI: dwc: spear13xx: Use cached PCIe
+ capability offset
+To: "Hans Zhang" <18255117159@163.com>
+Cc: linux-pci@vger.kernel.org, neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org, imx@lists.linux.dev, Frank.Li@kernel.org
+In-Reply-To: <20260720150619.24733-15-18255117159@163.com>
 References: <20260720150619.24733-1-18255117159@163.com>
- <20260720150619.24733-2-18255117159@163.com>
- <20260720151732.7B9A41F00A3A@smtp.kernel.org>
-Content-Language: en-US
-From: Hans Zhang <18255117159@163.com>
-In-Reply-To: <20260720151732.7B9A41F00A3A@smtp.kernel.org>
-X-CM-TRANSID: _____wD31y5hPl5qiykBKQ--.65457S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7KFW5WF1UurW5ZFyUXFWfuFg_yoW8Kr1Upa
-	9xJFyayF48JF43ZF97Aa15WF1akF9IyFy3G3y3G34fZFya9F17Ka1FyrWrKF17GrZ7Kr1Y
-	kr4UtF9xCrn5JFDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U4BTOUUUUU=
-X-Originating-IP: [240e:b8f:91b3:d000:f138:f837:e143:4264]
-X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbC7APZfWpePmPkIQAA3n
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260720_082750_267965_B92153C7 
-X-CRM114-Status: GOOD (  17.38  )
+ <20260720150619.24733-15-18255117159@163.com>
+Date: Mon, 20 Jul 2026 15:27:51 +0000
+Message-Id: <20260720152751.A88AC1F00A3A@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,77 +63,82 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-
-On 7/20/26 23:17, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Medium] Data race and logically flawed caching in dw_pcie_get_pcie_cap() due to unprotected read-modify-write and failure to cache 'not found' state.
-> --
-> 
-> --- Patch [1]: [PATCH v3 01/16] PCI: dwc: Add pcie_cap field and helper in designware header ---
-> commit ab22dc6f534d77b34df13c99dd929771547f5ff1
-> Author: Hans Zhang <18255117159@163.com>
-> 
-> PCI: dwc: Add pcie_cap field and helper in designware header
-> 
-> This commit adds a pcie_cap field to struct dw_pcie to cache the offset of
-> the PCI Express Capability structure. It introduces dw_pcie_get_pcie_cap()
-> to perform the capability search on the first call and cache the result.
-> 
->> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
->> --- a/drivers/pci/controller/dwc/pcie-designware.h
->> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> [ ... ]
->> @@ -829,6 +831,21 @@ static inline void dw_pcie_dbi_ro_wr_dis(struct dw_pcie *pci)
->>   	dw_pcie_writel_dbi(pci, reg, val);
->>   }
->>   
->> +/**
->> + * dw_pcie_get_pcie_cap() - Return cached PCIe Capability offset
->> + * @pci: DWC instance
->> + *
->> + * Finds and caches the offset of PCI_CAP_ID_EXP on first call.
->> + * Returns 0 if the capability is not present.
->> + */
->> +static inline u8 dw_pcie_get_pcie_cap(struct dw_pcie *pci)
->> +{
->> +	if (!pci->pcie_cap)
->> +		pci->pcie_cap = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-> 
-> [Severity: Medium]
-> Will this repeatedly search the configuration space if the capability is
-> not found? If dw_pcie_find_capability() returns 0 when the capability is
-> missing, pci->pcie_cap will remain 0, causing the search to be repeated
-> on every subsequent call instead of being cached.
-> 
-> Also, since this helper might be called concurrently by different threads,
-> could the unprotected read and write to pci->pcie_cap cause a data race?
-> 
-
-Hi,
-
-As mentioned in the previous reply, there is no need for us to worry 
-about this.
-
-https://lore.kernel.org/linux-pci/5cc6fbcc-98eb-4da5-b123-2c04c4d39326@163.com/
-
-
-Best regards,
-Hans
-
-
->> +
->> +	return pci->pcie_cap;
->> +}
-> 
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MyBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpQcmUtZXhpc3RpbmcgaXNzdWVzOgot
+IFtIaWdoXSBNYW5kYXRvcnkgQVBJIGNvbnRyYWN0IHZpb2xhdGlvbjogaWdub3JlZCByZXR1cm4g
+dmFsdWUgb2YgYHBoeV9pbml0KClgLgotIFtIaWdoXSBVbmNvbmRpdGlvbmFsIGBJUlFfSEFORExF
+RGAgaW4gYSBzaGFyZWQgSVJRIGhhbmRsZXIuCi0gW0hpZ2hdIFNoYXJlZCBJUlEgaXMgcmVxdWVz
+dGVkIGJlZm9yZSB0aGUgaGFyZHdhcmUgYmFzZSBhZGRyZXNzIGlzIGluaXRpYWxpemVkLCBsZWFk
+aW5nIHRvIGEgcG90ZW50aWFsIE5VTEwgcG9pbnRlciBkZXJlZmVyZW5jZS4KLS0KCi0tLSBQYXRj
+aCBbMTRdOiBbUEFUQ0ggdjMgMTQvMTZdIFBDSTogZHdjOiBzcGVhcjEzeHg6IFVzZSBjYWNoZWQg
+UENJZSBjYXBhYmlsaXR5IG9mZnNldCAtLS0KY29tbWl0IGM0MWQ0OWJmOWU5NGFjMjM4MDQ5NzY4
+MTIyMTQ4YjdhYmI1NjQ2NjUKQXV0aG9yOiBIYW5zIFpoYW5nIDwxODI1NTExNzE1OUAxNjMuY29t
+PgoKUENJOiBkd2M6IHNwZWFyMTN4eDogVXNlIGNhY2hlZCBQQ0llIGNhcGFiaWxpdHkgb2Zmc2V0
+CgpJbnNpZGUgLmluaXQgd2UgbXVzdCBjYWxsIGR3X3BjaWVfZ2V0X3BjaWVfY2FwKCkgdG8gb2J0
+YWluIHRoZSBvZmZzZXQsCmJlY2F1c2UgdGhlIGNvcmUgaGFzIG5vdCB5ZXQgY2FjaGVkIGl0LiBU
+aGUgaGFyZHdhcmUgaXMgYWxyZWFkeSBlbmFibGVkCmJ5IHRoZSBkcml2ZXIncyBvd24gaW5pdGlh
+bGl6YXRpb24gYmVmb3JlIHRoaXMgcG9pbnQuCgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9j
+b250cm9sbGVyL2R3Yy9wY2llLXNwZWFyMTN4eC5jIGIvZHJpdmVycy9wY2kvY29udHJvbGxlci9k
+d2MvcGNpZS1zcGVhcjEzeHguYwo+IGluZGV4IDAxNzk0YTlkM2FkMjkuLjZlNGMxMWI0OTdkNDUg
+MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNpZS1zcGVhcjEzeHgu
+Ywo+ICsrKyBiL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaWUtc3BlYXIxM3h4LmMKPiBA
+QCAtMTIyLDcgKzEyMiw3IEBAIHN0YXRpYyBpbnQgc3BlYXIxM3h4X3BjaWVfaG9zdF9pbml0KHN0
+cnVjdCBkd19wY2llX3JwICpwcCkKPiAgewo+ICAJc3RydWN0IGR3X3BjaWUgKnBjaSA9IHRvX2R3
+X3BjaWVfZnJvbV9wcChwcCk7Cj4gIAlzdHJ1Y3Qgc3BlYXIxM3h4X3BjaWUgKnNwZWFyMTN4eF9w
+Y2llID0gdG9fc3BlYXIxM3h4X3BjaWUocGNpKTsKPiAtCXUzMiBleHBfY2FwX29mZiA9IGR3X3Bj
+aWVfZmluZF9jYXBhYmlsaXR5KHBjaSwgUENJX0NBUF9JRF9FWFApOwo+ICsJdTggZXhwX2NhcF9v
+ZmYgPSBkd19wY2llX2dldF9wY2llX2NhcChwY2kpOwo+ICAJdTMyIHZhbDsKPiAgCj4gIAlzcGVh
+cjEzeHhfcGNpZS0+YXBwX2Jhc2UgPSBwY2ktPmRiaV9iYXNlICsgMHgyMDAwOwoKW1NldmVyaXR5
+OiBIaWdoXQpUaGlzIGlzbid0IGEgYnVnIGludHJvZHVjZWQgYnkgdGhpcyBwYXRjaCwgYnV0IEkg
+bm90aWNlZCBhIHBvdGVudGlhbApOVUxMIHBvaW50ZXIgZGVyZWZlcmVuY2UgaW52b2x2aW5nIGFw
+cF9iYXNlIGhlcmUuCgpJbiBzcGVhcjEzeHhfYWRkX3BjaWVfcG9ydCgpLCBkZXZtX3JlcXVlc3Rf
+aXJxKCkgaXMgY2FsbGVkIHdpdGggSVJRRl9TSEFSRUQKYmVmb3JlIGR3X3BjaWVfaG9zdF9pbml0
+KCkgc2V0cyBzcGVhcjEzeHhfcGNpZS0+YXBwX2Jhc2U6CgpzcGVhcjEzeHhfYWRkX3BjaWVfcG9y
+dCgpIHsKICAgIC4uLgogICAgcmV0ID0gZGV2bV9yZXF1ZXN0X2lycShkZXYsIHBwLT5pcnEsIHNw
+ZWFyMTN4eF9wY2llX2lycV9oYW5kbGVyLAogICAgICAgICAgICAgICAgICAgICAgICAgICBJUlFG
+X1NIQVJFRCB8IElSUUZfTk9fVEhSRUFELAogICAgICAgICAgICAgICAgICAgICAgICAgICAic3Bl
+YXIxMzQwLXBjaWUiLCBzcGVhcjEzeHhfcGNpZSk7CiAgICAuLi4KICAgIHJldCA9IGR3X3BjaWVf
+aG9zdF9pbml0KHBwKTsKICAgIC4uLgp9CgpJZiBhbm90aGVyIGRldmljZSBvbiB0aGUgc2hhcmVk
+IElSUSBsaW5lIHRyaWdnZXJzIGFuIGludGVycnVwdCBiZWZvcmUKc3BlYXIxM3h4X3BjaWVfaG9z
+dF9pbml0KCkgaXMgY2FsbGVkLCBzcGVhcjEzeHhfcGNpZV9pcnFfaGFuZGxlcigpIHdpbGwgcnVu
+CmFuZCBkZXJlZmVyZW5jZSB0aGUgc3RpbGwtTlVMTCBhcHBfYmFzZToKCnNwZWFyMTN4eF9wY2ll
+X2lycV9oYW5kbGVyKCkgewogICAgLi4uCiAgICBzdHJ1Y3QgcGNpZV9hcHBfcmVnIF9faW9tZW0g
+KmFwcF9yZWcgPSBzcGVhcjEzeHhfcGNpZS0+YXBwX2Jhc2U7CiAgICAuLi4KICAgIHN0YXR1cyA9
+IHJlYWRsKCZhcHBfcmVnLT5pbnRfc3RzKTsKICAgIC4uLgp9CgpDb3VsZCB0aGUgSVJRIHJlcXVl
+c3QgYmUgbW92ZWQgdW50aWwgYWZ0ZXIgdGhlIGJhc2UgYWRkcmVzcyBpcyBpbml0aWFsaXplZD8K
+ClsgLi4uIF0KCkkgYWxzbyBub3RpY2VkIGEgZmV3IG90aGVyIHByZS1leGlzdGluZyBpc3N1ZXMg
+aW4gdGhpcyBmaWxlLgoKW1NldmVyaXR5OiBIaWdoXQpUaGlzIGlzIGEgcHJlLWV4aXN0aW5nIGlz
+c3VlLCBidXQgdGhlIGludGVnZXIgcmV0dXJuIHZhbHVlIG9mCnBoeV9pbml0KCkgaXMgY29tcGxl
+dGVseSBpZ25vcmVkIGluIHNwZWFyMTN4eF9wY2llX3Byb2JlKCk6CgpzcGVhcjEzeHhfcGNpZV9w
+cm9iZSgpIHsKICAgIC4uLgogICAgcGh5X2luaXQoc3BlYXIxM3h4X3BjaWUtPnBoeSk7CgogICAg
+c3BlYXIxM3h4X3BjaWUtPmNsayA9IGRldm1fY2xrX2dldChkZXYsIE5VTEwpOwogICAgLi4uCn0K
+CklmIHBoeV9pbml0KCkgZmFpbHMsIHRoZSBkcml2ZXIgYmxpbmRseSBwcm9jZWVkcyB0byBjb25m
+aWd1cmUgY2xvY2tzIGFuZAppbml0aWFsaXplIHRoZSBQQ0llIGhvc3QgY29udHJvbGxlci4gQWNj
+ZXNzaW5nIGFuIHVuaW5pdGlhbGl6ZWQgb3IKdW5wb3dlcmVkIFBIWSBjYW4gbGVhZCB0byBoYXJk
+d2FyZSBsb2NrdXBzIG9yIHN5bmNocm9ub3VzIGV4dGVybmFsIGFib3J0cy4KU2hvdWxkIHRoZSBy
+ZXR1cm4gdmFsdWUgb2YgcGh5X2luaXQoKSBiZSBjaGVja2VkIGhlcmU/CgpbU2V2ZXJpdHk6IEhp
+Z2hdClRoaXMgaXMgYSBwcmUtZXhpc3RpbmcgaXNzdWUsIGJ1dCB0aGUgc2hhcmVkIElSUSBoYW5k
+bGVyIHVuY29uZGl0aW9uYWxseQpyZXR1cm5zIElSUV9IQU5ETEVEOgoKc3BlYXIxM3h4X3BjaWVf
+aXJxX2hhbmRsZXIoKSB7CiAgICAuLi4KICAgIHN0YXR1cyA9IHJlYWRsKCZhcHBfcmVnLT5pbnRf
+c3RzKTsKCiAgICBpZiAoc3RhdHVzICYgTVNJX0NUUkxfSU5UKSB7CiAgICAgICAgQlVHX09OKCFJ
+U19FTkFCTEVEKENPTkZJR19QQ0lfTVNJKSk7CiAgICAgICAgZHdfaGFuZGxlX21zaV9pcnEocHAp
+OwogICAgfQoKICAgIHdyaXRlbChzdGF0dXMsICZhcHBfcmVnLT5pbnRfY2xyKTsKCiAgICByZXR1
+cm4gSVJRX0hBTkRMRUQ7Cn0KClJldHVybmluZyBJUlFfSEFORExFRCB1bmNvbmRpdGlvbmFsbHkg
+aW4gYSBzaGFyZWQgSVJRIGhhbmRsZXIgYnJlYWtzIHRoZQprZXJuZWwncyBzcHVyaW91cyBpbnRl
+cnJ1cHQgZGV0ZWN0aW9uIGFuZCBjYW4gc3dhbGxvdyBpbnRlcnJ1cHRzLiBJZiB0aGUKc2hhcmVk
+IElSUSBsaW5lIHNjcmVhbXMsIHRoZSBrZXJuZWwgd2lsbCBub3QgZGlzYWJsZSB0aGUgbGluZSBi
+ZWNhdXNlIGl0CnRoaW5rcyB0aGlzIGRyaXZlciBpcyBzdWNjZXNzZnVsbHkgaGFuZGxpbmcgdGhl
+IGludGVycnVwdHMsIHdoaWNoIGNhbiBsZWFkCnRvIENQVSBzdGFsbHMuIFNob3VsZCB0aGlzIHJl
+dHVybiBJUlFfTk9ORSB3aGVuIHN0YXR1cyBpcyAwPwoKLS0gClNhc2hpa28gQUkgcmV2aWV3IMK3
+IGh0dHBzOi8vc2FzaGlrby5kZXYvIy9wYXRjaHNldC8yMDI2MDcyMDE1MDYxOS4yNDczMy0xLTE4
+MjU1MTE3MTU5QDE2My5jb20/cGFydD0xNAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dp
+Y0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
+bGlzdGluZm8vbGludXgtYW1sb2dpYwo=
