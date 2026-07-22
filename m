@@ -4,188 +4,138 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44A3BC4451C
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 Jul 2026 10:21:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A83C8C4452D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Jul 2026 02:21:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:
-	References:To:Subject:Date:Message-ID:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=N+vJO8Zihw/AHa3gVhYvksnkGY0ABZXU1HIcVwCsZL8=; b=kbBv7mLRvq/7IPbiwzwjbv5s/M
-	Orw4ahCKrAEjMXygmdWkqRjUUW2t2MKEsYmb47bPK/pzjbIrtfbFie5fA4CGVnAC7GSPRzkxlsJYL
-	h45n3lOsxTJYlvR6CQHuDz9fhbce3hX4p4KMwTNRcDiZrO1NGmiBInJfzSDJKhZiVZ43K47zZI3Bw
-	yV2qNmPVYiJnr+rdGDBsyN+TemGFyqqcErETB0E3GGrN6oA+oq1Fc97JXNT39TeSVAy9BEhCd8INb
-	JqVpNPXcbICA32eUsFSBaqkjArd5QOZ5sCiEk8/DuusiPeRObYiumJ43UGFv8QYzi2z50gdjsKC/G
-	pJp9kJ2g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=qPHoU6rc1rDl6S7By+XRLFghAEkAmwsR1HeplCWhElU=; b=z+TXRIOAIAhjmTePKlad5jhtz1
+	fBFvHDHR1lSC0bOskQAiIjIMnCMYBS7QunXaTTGubXEeBO6LdUpWyxGeScU9JmJKn6XStpwbYPVxO
+	GLRK6JjxDvVr4EyNmvU0r1LQhKk3MpHHOCS8nftyUlxH5VlUuyVytbH8WlE/IX/2QIxU2ntWtVpRK
+	AxTTNDUSiGoGV3kalu8LzuaETrIOvU92tCy3nneFRa9iPiuvSunnfRvp7L4CSzDkidw2igzYZZpZF
+	XQEdurhbkncB40wMiHzhYPEeRmL2rqQ/stN6hgKLa3gyI/xozwa6lWleIa4aPuXp3xx8mGUqnf1lj
+	TiVYk9yg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wm7bZ-000000096iT-0TxE;
-	Tue, 21 Jul 2026 10:21:41 +0000
-Received: from mgamail.intel.com ([192.198.163.13])
+	id 1wmMaQ-0000000AkLW-32JH;
+	Wed, 22 Jul 2026 02:21:30 +0000
+Received: from mail-japanwestazlp170120003.outbound.protection.outlook.com ([2a01:111:f403:c406::3] helo=OS8PR02CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wm7bW-000000096hZ-3nF1;
-	Tue, 21 Jul 2026 10:21:40 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1784629299; x=1816165299;
-  h=message-id:date:subject:to:references:from:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=Epc6NVxhLGrSZdHt2irC4SnMTEPyf7AOufeN8ovyVmw=;
-  b=SrcZmUS3UXfLLvrWgBmNJPnrUpyFJKG+85LlXJrrhgGu74EqafOXuOOD
-   dd0J7Qs8hrL08SDj9HavHFjZF3V8HLJWOvS0gZD8iHe2zDurfyO1g8qTh
-   b9AaR9PV/h8AXVpMffvCcY+MKQMpdzi4l0F/c8E66UuqtS1F3KTbCuyB/
-   EZUMs3O5YuZV8UJKnFNMtbct7Wp9uX8rI7Q9uKFzIjsD/OA/0abzPI9FY
-   JRIl/ne5iQ5FkAJ8wFMAg9VbK6wwdmSRibPCI/XzPGI+hubEXrYTvaZaW
-   tdqSD6bT1MI/3WsJSRZbQC5h2+ndD9ZRpxvhQDYq86qbI0+Cgow83qNrZ
-   g==;
-X-CSE-ConnectionGUID: VbAjMOceSLCpLk3W9n0Z6Q==
-X-CSE-MsgGUID: 1EWRIb1pSZaOQQ9sBmEMPQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11852"; a="87760913"
-X-IronPort-AV: E=Sophos;i="6.25,176,1779174000"; 
-   d="scan'208";a="87760913"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2026 03:21:38 -0700
-X-CSE-ConnectionGUID: uuD0WukmStqdelnqcsFX2w==
-X-CSE-MsgGUID: gX0PZmEoRTGxTPd2d/xQsg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,176,1779174000"; 
-   d="scan'208";a="259699205"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
-  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2026 03:21:38 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Tue, 21 Jul 2026 03:21:37 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Tue, 21 Jul 2026 03:21:37 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.56) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Tue, 21 Jul 2026 03:21:35 -0700
+	id 1wmMaN-0000000AkKp-40mA
+	for linux-amlogic@lists.infradead.org;
+	Wed, 22 Jul 2026 02:21:29 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=N5bnLbTPBx0vwHbAfaU32u3WWP/311XCHt5IDU6Cbf99x88aXbqOJbGl16MTm0y5sFjxD9ggUk9c9Y4unXhxT5lMcmCUKbivAVSlLvr7/5b2OUk4htFt3hLy26smEJJMTC5i35qOFOjPBEUuxODfUN5oGMeNawjgtAjDoig3mRwoNxOAWWZYiHQvqF/tdUq29nVMhuYn9VaxupjWcaiYSapttVxd3fW6EacABLH8TUSGjtHczC/sGjQ++pKnI0DQStodZChHNgqGW3+8BVy6Hi5gvBZGpUE9a8hH8TFIbs9OVQ5mf15IisM/8gNPLOtXkxm+vI5EDkm1BgKFQb7nRQ==
+ b=wM3jr49uox7P5UmO2XjG4Pw2MQWORQcen39JlMdtKc6PjMzDtJTM0TkssTraN/N32QR3SyIJvcdQ34kBS2WI/0rodTADlYnWE611oLMbGDtF5b82+njI+/fFqbekoBwmL/elAO+4c0dkyXFIbflDphssid1jQZCFGJh3Rr2CXKM7T5osc0Kk2t4V27hcb52t9iCNN59ZLXe5F5lXqm8qM1eOPFr8bs4ma7Uta5ORS9bSvq2i/lpz/kJx9r7z2UWpf/zcF6cnBAI0ClTZt2agUtPs4nmzCO3MYzdScgyWimgcdRKleyTldEowBuVwMxlJDFF470XdjC7Z9rMLP4ewIA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=w3miXJImS058jRTaMQSSP4PafmV29mxMiNFxdmATXMs=;
- b=wv/HvjobxExiSKa1f8/JCYCAlJBLLSQseVGVNxfK3LX4mp9FQ0SmoZ6kQSfHX5cXMYDW4n2G2tXOgb2+0hYLcVcg7k+tV/yXK5OtPEkyESWtKTprHjn9XdcuQFQarGeOtt1zh6bxjRuSKigXqV7SRuW8MLLstrc7WQdsrjk2kgXURuvf4uXGrCyk1lFMJoctTRZnl90e6PGg6u0J3m9TJTshaS3RuHWRSBXun3oT3aJZDId7Uu7A615ULSRi52IGtCKNdWo5AOChRPti1xzyQshwbYAHLjpziv+6bnG5d9Epydg/v7jTl6z/UIcYIEO8ybQQuw445Kry46KEkf7Vpw==
+ bh=63dv/dniBjV4ZvxkzpSHAkzQqfUJVoC8s4IFRL7jr4s=;
+ b=yOrS8BaVNTFD3F60ppnkCcsCmuvAMfmObMluzbtEVWM8BzPpy7gy2MJPu7K0JvMUeSZ/LYXfej6P3vku+iSsf3jFynzxeaHKb7F9UNBAm7mr4Qtvm5TlbuvT8IXVaZOt0scJTPjvyeMYy7M1yCDu+iSzcjOwbSN7WJn2cqQd/qFX7sdYve/tCT5tpcz7dC9lYVBXzSUJv5/eTzoBhOjT+VS0Zeo6XQJM/sixvFDBqAyzrfJVZGmlEkByAyLZQy3Pl3MDK84DGUqGE9CNEHS5Gmnr75O3PUggThrywpx9Axb2dInchGx//MtJSD2CrUUn11YdwQI8H2vJRKrDY84nKA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=63dv/dniBjV4ZvxkzpSHAkzQqfUJVoC8s4IFRL7jr4s=;
+ b=dHDuK2foToFXfHRjFzTKfl2IZTvyFDbGfYORw4+JMjCIMVANv9voGRxgoasNdgma7vWBq2pVSyaTiuYz6RwtitP/7RdRNdo1Xbt2U+9Z6PikN3FyYa4a1me1mqZzYjZvDiMjG0DpQ8VXUYQ4vXi/j4wby59ImzSpYZUrLVfTU50oLm/pmWkqWTGexkMf+0+sx+pzA/RcPpT6o/Hg4ROi+NTgcfIp3ppejWsqdxR6JV3CfcXfnZmH5aN1Oy0kUwFympQQAYaVChyjN0N9dVs/2pRtP6CuFPOiiLdAxpcrjRHRnaCAmTlGiwUHFc+lFHXE2Rq9G5E6Z+fdBlEfZoowRw==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA1PR11MB7198.namprd11.prod.outlook.com (2603:10b6:208:419::15)
- by CY8PR11MB7745.namprd11.prod.outlook.com (2603:10b6:930:90::13) with
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+ by PUZPR03MB7187.apcprd03.prod.outlook.com (2603:1096:301:11c::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.245.10; Tue, 21 Jul
- 2026 10:21:32 +0000
-Received: from IA1PR11MB7198.namprd11.prod.outlook.com
- ([fe80::2c4e:e92a:4fa:a456]) by IA1PR11MB7198.namprd11.prod.outlook.com
- ([fe80::2c4e:e92a:4fa:a456%3]) with mapi id 15.21.0245.009; Tue, 21 Jul 2026
- 10:21:32 +0000
-Message-ID: <3f696a6a-c032-4c48-9230-90d9cb6003c2@intel.com>
-Date: Tue, 21 Jul 2026 13:21:24 +0300
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.18; Wed, 22 Jul
+ 2026 02:21:16 +0000
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::78d4:9dee:2e32:d1e4]) by TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::78d4:9dee:2e32:d1e4%5]) with mapi id 15.21.0245.009; Wed, 22 Jul 2026
+ 02:21:16 +0000
+Message-ID: <9568564b-be74-4a5e-a84d-c548af398995@amlogic.com>
+Date: Wed, 22 Jul 2026 10:21:08 +0800
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] mmc: host: Remove redundant dev_err()/dev_err_probe()
-To: Pan Chuang <panchuang@vivo.com>, Ulf Hansson <ulfh@kernel.org>, "Robert
- Richter" <rric@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
-	"Kevin Hilman" <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	"Martin Blumenstingl" <martin.blumenstingl@googlemail.com>, Nicolas Pitre
-	<nico@fluxnic.net>, =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-	Manivannan Sadhasivam <mani@kernel.org>, Jisheng Zhang <jszhang@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, Linus Walleij
-	<linusw@kernel.org>, Thomas Fourier <fourier.thomas@gmail.com>, "Pedro
- Demarchi Gomes" <pedrodemargomes@gmail.com>,
-	=?UTF-8?Q?Uwe_Kleine-K=C3=B6nig_=28The_Capable_Hub=29?=
-	<u.kleine-koenig@baylibre.com>, Danilo Krummrich <dakr@kernel.org>, "Takashi
- Sakamoto" <o-takashi@sakamocchi.jp>, Geert Uytterhoeven
-	<geert+renesas@glider.be>, "open list:MULTIMEDIA CARD (MMC), SECURE DIGITAL
- (SD) AND..." <linux-mmc@vger.kernel.org>, open list
-	<linux-kernel@vger.kernel.org>, "moderated list:ARM/Amlogic Meson SoC
- support" <linux-arm-kernel@lists.infradead.org>, "open list:ARM/Amlogic Meson
- SoC support" <linux-amlogic@lists.infradead.org>, "open list:OMAP HS MMC
- SUPPORT" <linux-omap@vger.kernel.org>, "moderated list:ARM/ACTIONS SEMI
- ARCHITECTURE" <linux-actions@lists.infradead.org>, "open list:ARM/QUALCOMM
- MAILING LIST" <linux-arm-msm@vger.kernel.org>
-References: <20260717101508.635969-1-panchuang@vivo.com>
+Subject: Re: [PATCH 1/3] spi: dt-bindings: amlogic: spisg: Document
+ A9-specific properties
 Content-Language: en-US
-From: Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: c/o Alberga Business Park,
- 6 krs, Bertel Jungin Aukio 5, 02600 Espoo, Business Identity Code: 0357606 -
- 4, Domiciled in Helsinki
-In-Reply-To: <20260717101508.635969-1-panchuang@vivo.com>
-X-ClientProxiedBy: DUZPR01CA0131.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:4bc::16) To IA1PR11MB7198.namprd11.prod.outlook.com
- (2603:10b6:208:419::15)
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Sunny Luo <sunny.luo@amlogic.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-amlogic@lists.infradead.org,
+ linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260717-a9-spisg-v1-0-2eeea77be19f@amlogic.com>
+ <20260717-a9-spisg-v1-1-2eeea77be19f@amlogic.com>
+ <20260721-determined-melodic-boa-c379fb@quoll>
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <20260721-determined-melodic-boa-c379fb@quoll>
+X-ClientProxiedBy: ME0P300CA0021.AUSP300.PROD.OUTLOOK.COM
+ (2603:10c6:220:20f::25) To TYZPR03MB6896.apcprd03.prod.outlook.com
+ (2603:1096:400:289::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR11MB7198:EE_|CY8PR11MB7745:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6f582bc8-469f-4b69-6421-08dee711d5bf
+X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|PUZPR03MB7187:EE_
+X-MS-Office365-Filtering-Correlation-Id: 86f1e905-6b50-4b25-02fa-08dee797e867
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|366016|7416014|376014|1800799024|56012099006|11063799006|10067099003|921020|22082099003|18002099003|6133799003;
-X-Microsoft-Antispam-Message-Info: nIJgkuMf1v4AT+NkaeEvSFlyl5fhHP9SceaSnQSdhyKHIeRhswmPo8+webHtNF2Aw94AzCIa0RZmFcNNUrnlmloa49JKjAQNtVWuHuZYefJ0cF9GFEb6FJn42t9hP9iH4HLqOzWir40olAa63hOiTcc2mgNLZFztpKkMiMX1Y1BQ160ULY1fu6ahAmea+JKaUvmDWuX4C6PUgFTwdK7yYZ6vyImNXLTqfU3aRGblEFss1N8J9ssdzX2h8R0yesdHHTBblxPj8QXy/7tm3/ahakeQ4ZPFHSfPu5GxvdO49nXEu5ZcvX4HW7AYYdbPivvVq5Rd+MVK4qyidpbNzsGXAVUcA17Tdt4UxdySQq6rtnCmvT2o9bRUC0e2p+7b7tN0nEYgx8+AV45AgQKM9M2vATxNak4aBL2TN6VsS64btYysffWn1PK+mR1EUkNhOUoiv4uV806X87R/yCwCGMiT0IwJY/mY1AvtzYtVsuK1QqzZzoeQ2BeZCV35eNYfXF9vp0JAaQA2cQOc1iNArsrrCQy15+AjZkBkMsFUQHo176J8Q8845S6Y9+a6rn4z29H5Cp7VhSi/Qk+iTBZXoNi0hRzs3PmY/mY4/ggULvu8z4PlrlIcc7vHkBnjS+f9W/kMAiCojqemc523+tnZBSgLPOMEf/gkW5Vm4zh8S0asqc4CswSSCqM+eLEA05PqKlgw3Fhwgl22xk+iFqv7QEP4CA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR11MB7198.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(366016)(7416014)(376014)(1800799024)(56012099006)(11063799006)(10067099003)(921020)(22082099003)(18002099003)(6133799003);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|23010399003|1800799024|22082099003|18002099003|3023799007|56012099006|11063799006|4143699003|10067099003;
+X-Microsoft-Antispam-Message-Info: 0lFicoAkeZg/PWTdOHLSfnQPg3ZK/tmUbw7EOJdFrvhq0srdzu+1xAP7o2aK7fsxI4tVNXe7e/d8ENM0MwO1Ox3lJxdJrjV1BFD2ZMC3LN+GJc/O+YzpW44smCGDERxNFCXuBPDDm9rsnPedsOoYyjDjD6AW6h11ctvjTz8DLfuJh99GUwlTl6cDxF5g6PVDHr67t64+qKn/hqe48Sea+UmYEX59Fl3/esMcoTupuyZr7fosGNtH+bET56uCkIbfIEGAinflpS5oxjZDQ21ci386F1gmq3G0dRy8MtgAk92WGcu1nUXPejr89Ev2CXyOyzHb/FH5GZ76EK9GZThuCUJtdwAa39aXzmbIEDXkxhgUevMbGLkmdfiafxz3KBISEaWXcXTBHlFaG7HQFgOFrEBYpxOAhEFYKVnScGnJlpJc2zSS5CYcLz1Zz5c6WssBZ2VHxXrZicl3tpqmvz3xMSUCGkBo2Qh77ILWyXA2SEPT+2XTMtVjTQE/2Urmj7wIl6ur7dFUFGED4FVHy9ijX79OlkdpRDzOiavnSshgzflM3RToY417XlFaCRcHtyZFN+AwYx2knI/wUpDg/Ywv29CTPdkXwvLG9yZNDSnnu24pt83OnnPa2pGtdE/uQjTfcUeNqANf0eKNdk7Fc18S/zXsgQd6YsLKSOziYTE7D5E=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(23010399003)(1800799024)(22082099003)(18002099003)(3023799007)(56012099006)(11063799006)(4143699003)(10067099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VWhiTTJlY0pOWkZmVmd4aDY3VXBpMjBWVFJNdVNMUDBORldPM3RQN0phTGpL?=
- =?utf-8?B?SUwwS1Zja0xRUzlidTFTMVFjYUN2ZDFqSysxTzFrbjUzbXdNVll6T3hNdkZK?=
- =?utf-8?B?a2RESWdsRWxIcGdVbHZWWnBhSlpTNGw5MFFuVkJuN3k4aGhXcExoeGEyR0dr?=
- =?utf-8?B?MXZKeHo5bW5QK2NqU3Ftb3BaYXlBRUhON0NnUDIrVHBhdjc0djdIYk5OMThQ?=
- =?utf-8?B?REE3ODJaRmZrZzlPVWNuY3JUQ2FvT0pwM2FYRjNuUCt1NGM5cHBhWWluUE5q?=
- =?utf-8?B?ZW1mWUpETElncHY5ZCthREowcG9qUFE4bjI3YW9JRHJhOGFxM2hWWnhJM2R4?=
- =?utf-8?B?aHRiN3hSRkYydlFLSVZlOFg3Nm83em5iNDFpeFN6VUQ3MERraTVveFljcFl5?=
- =?utf-8?B?VkhVbjhiY1lnK1ByeW5xUjVSZDdZcXFPTTNkQ0lJSm1kU0h1eTlDZHVTNzJr?=
- =?utf-8?B?RmVHTWppOGJ0cG90Y0d2QzVrRDlGZkpXbzljR2kxWGJHOURCajk3RWs1Z1k2?=
- =?utf-8?B?UjBjOGhwcldiY3pLZHRTSzc3My9GVFBZcktSMy9NZk1oRG1FdjlibktzK0VG?=
- =?utf-8?B?WnU3alBSWkxRdVUyeXlheHdFdkFBTkRMSFlXZ2xRM1k5ci9HMk1hcjgvQnFI?=
- =?utf-8?B?K2wwY2lmYitKbnU3VmoydzFWSTBZS2FhMk1NTjRmTjFicFArTW5PbHhBVVBM?=
- =?utf-8?B?T3dsdmFKTXF1bEFkMDEyc1ZhSHNtQ254b3hIZWw1MTZBVDA1bFEwaHNNb0FH?=
- =?utf-8?B?NnpYb0VDa0JpYW9QM1hpajRNVituYmhkWm1MN1RoejNDSHcydXp1akhqYkVB?=
- =?utf-8?B?UnhVMTJJNmJXWkF2dm51bUZabVY3cFc2OGlYSVhmSHVwL3N1T0ErSWphN3hC?=
- =?utf-8?B?cXB4eXkzYUpnM1Z5dFE5MXVrRjdObnFGeU5VU0JTK3cycVVmT3FtcTJSTEVi?=
- =?utf-8?B?a28xNEVBTzFMR3BMZGZ2Wk43RGUyN1kzNk1SR2ZhYUFVTnFjZXkwUjM2L1Vh?=
- =?utf-8?B?RXdKUWFKVENtMkdqaTVoZk1QUFdEeXhibDhYcTJoOFBMNkh4TmlRT1FLUTRq?=
- =?utf-8?B?dkFoTmF5dllpUEIyQ082TE9xZFNkaGJoemhJOGNRMGR2WHVPcmF2dDJVUWdR?=
- =?utf-8?B?SWk2cTVUSXZ4dXNOMzZxL1grZU03VjFQRXFUdTVoKzB2RVBLT3BZckdtdTcx?=
- =?utf-8?B?aTNnQ044cW5yb01NVEhNanV6SlJkQTZJYWgxbGc4c29CVnhmeW5SUU5pR1Uw?=
- =?utf-8?B?ajBaS2cxYk9QQW95VzJyajZxTnd4c0hrUDJjZktENVNSRlRKSUdKaXB2RGg4?=
- =?utf-8?B?NW5XcGJHeWl6d0lkWjZtODB2SldnWk1EV2xrK2k2NWtmb3p1TktyT3BtV21V?=
- =?utf-8?B?VHF2aSsrR3NORkl0d0s2Tm1Ua3d1aUhoaXJNQ1F5NElHWS93SE5GNkRCNkpT?=
- =?utf-8?B?dTZ1aDJxZC8wNzJ2bUR4R3NLSUhlWlMzV0hmd2dxN2ZSVnV5VGo3NCtYZG0x?=
- =?utf-8?B?TFBWb2VkWW44RDdxWXNrNXNrRVVIL0RpUHl1UTRKQlhMOThraXBCQjlySUdS?=
- =?utf-8?B?cGlGcG5iZjlkUGRXbDZNWlRtNXZoNEsycW9RWUN1NTJJZUpjWVJCZzRJbXdv?=
- =?utf-8?B?M3BlenBsbUY0K0xvbU1rcWk0VlVocmtTUjF3dzF2a1NETnA0WW1pb1lZSW1C?=
- =?utf-8?B?cTlwUWtTdG1HRGZLYWZBandUWEdIR2JnVW1PUStsNUc4ZUwwdWhjbkxHbWlj?=
- =?utf-8?B?bEV3MnRjUnRYcnYyMDJRbmVRQ3VpYkhnTmtSTGlvcE1VT1ovUm5yU3F5SUFC?=
- =?utf-8?B?b2Z6T0x3bmRob3AxUlUzV2dEM3Z4LzFBWkNqSkpxb1dsSHFtZWZhR2VrVml3?=
- =?utf-8?B?SnY1eHdvdGJWNlJWeGs4L1NxRUFueUp5WGlycURWV1RKL2FjeWpjS08rVUsx?=
- =?utf-8?B?QlhYTTRKb0h4NkoxU0pEZG91azd2RkhWQzg1NHhFWFNzbnpkam9IRUtuQVhp?=
- =?utf-8?B?L2RBeVl2b1liU2N4YWVXZ3VUVldZM2E0YUw4aHMyS2ZSSGJIZVc2NFVlcCsy?=
- =?utf-8?B?ZjI4M25MbWFqV0JuRE9IOTIvNEZmOTU2ckJQekg0amNXeEdkL0JqWHdvSm1Q?=
- =?utf-8?B?WVhic2hiWStCeW1BOWR2aXVQT3kwcjhVTE5RaDE2c0l0ZXlQalRxU1g1VHdN?=
- =?utf-8?B?R0dTem9wbC9MS0QraitSM3FvWnlTMkthdXVDOFFXU0ZhOWtIRTJBMG5ieDR0?=
- =?utf-8?B?aE84UnNCSmN0S0xCRkE4NWR4dGcraC84N3hHN2l0QXdteUVCejQ5UThrbzdI?=
- =?utf-8?B?Z3RTaC9jaTQ3OGhqSUZpWFFQUTVYQjRMYXQ5QllZb3RJSjZUc1NZcks3Q0Na?=
- =?utf-8?Q?PEaaMjtijiTpxF7A=3D?=
-X-Exchange-RoutingPolicyChecked: DkC3IPktLmg+GRXS11Lfng7L72EnOjbOrEv7jL3bDiatcZsPQ3e8mYfh6m2/ML5yQj3FlADzUBb8jnIfgY5dPpE+d98NL1qio0nNwhbIGBY5Fxr1n/A0f+ZR9qBA5wy7ikunUu4QfyXIuBh3LMZlkCkTgBZH/I7/B/aCGLArBTRYxPmQqoARt8H4amQt9RW0icZuMr/xav8FZnUPztlrf2RubuIKWUrEos3NftA2ktOfq7OZkFGyhrVXGhl5bftUBnRsN8Fi5uWbMwrAfqaAYG0aC8O8Gdt4F5ZGiDWUs0DYblmccaD70XhyZ3pYKZ3bUwtl4X+97uetNPTfp9Ydsg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6f582bc8-469f-4b69-6421-08dee711d5bf
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB7198.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cEpBMXBMa0RaWlhCZWYvQjdrTm5hMVU0eUczbGZqQWZWWEhZTGE0azJaalFJ?=
+ =?utf-8?B?WGMzTnJpWTRLdm1IU3V5Rm5McWpaa2FvTVJPZm5HY0ZHVUVaWE9DR2YvRHBs?=
+ =?utf-8?B?L3hQUWZPa2J5VzBmQktlRnNKV1NQeXVGblFJMFgzOGE1dXVCU1JKYVlPRk5z?=
+ =?utf-8?B?WTFXMjhUUDRsTzc4d0ZidXlxVVFxbFA3RkJYa1Vlb2tDcWhwTHFCL1FXcVhB?=
+ =?utf-8?B?K2lvb2paQkFPUmwwQkFnRGRKTm9yUkdqQ0hJQktISDhKU2YrUHdlM3N4cmZC?=
+ =?utf-8?B?RFRRTkUxM3U1OGdOSFhzRkhqeVpNcjFtUktHVzZ1Qzhqbk9aVWVZdkFzNEsz?=
+ =?utf-8?B?SmZiYzFxMzV4MlJBcWJleERrOExmdWFPZk5UT2VHWWNEMmVpK3BXREYrWEo5?=
+ =?utf-8?B?NlJ0SnZvbjZuWDNaUUZvRi9RMEhKM0dPOVcxR3l1K0E5R3VqQXVobi83a0ZT?=
+ =?utf-8?B?dWJLUGh6WGpIaEJzNTdiTjRYa0NrU092ZEIxWTZkS2hQYkRMMmh5Z3l0QkhL?=
+ =?utf-8?B?NWp0VmZxVjZTQ0E5TGp2YVJGcWt3bG85WVYveUxuclROY1BZR1JLNjR2SlVQ?=
+ =?utf-8?B?ZzRDb2dJQVRrVDhwUnN0WlM2U0ZJdGExTndIVkFvQkk1U2w5bVg4U1NqM2to?=
+ =?utf-8?B?Wm1kV1FGcGRmUDd1ZE5Pa0g5MG1LRlZkWGM0K0hHNEUybGxoR00wVWwyTkRW?=
+ =?utf-8?B?THNGYk40OEtGSHJ3L3Irb2h0cDk4NStJNDJaaDdZYkRvMUN5d3NYbEVmblhW?=
+ =?utf-8?B?L2FkeGJEcTV3OExiaThXcGU1MkxiRzlJSHMvSEpzU3JkVnppRndlNHdrS1Ji?=
+ =?utf-8?B?TzVmbkEvaEEvUGdCOEk5aDZISnJRNmd6eTArWHhJK042OFJOd3h0ZUJDN1ln?=
+ =?utf-8?B?dzhRUWM4eVJlWXFOQkxJalFDc3VwN3pmSCtXVVVwRHBpUzNHekMyUS9UcldQ?=
+ =?utf-8?B?OGV6dFpDVlhCR1BXRktkUzB2YWVyVWFtOFBubXRhVGN3VkVqL1JVMXFCMEF2?=
+ =?utf-8?B?VytGSkt0RnEzVVNxdURRblZUSExONWZ6Mjh2dW5LTjRuSitkT1VzMDlQcGdk?=
+ =?utf-8?B?YVVaM2hrajd0R1ZhQnNneVp1cStLc0lMUjVGSDBBWHhjY1RvZC9jUU55c3Ez?=
+ =?utf-8?B?UENVTHNQb21pMDE3N0xldHJ6cXdjZUhydEw5ZjZQM0hoejVtMG84Wi9jTzFR?=
+ =?utf-8?B?dUdnQlNaSUk4eWphWEhGM00wbWZhL0RWTGlOMkpIN0ZXWVVBelJBK3dCQnpt?=
+ =?utf-8?B?Z2c0MnRZMzNWNVZRVmJKZEpKc3hSMXBQSnp3T0ViR2djSlFiSFl4TUIwQWox?=
+ =?utf-8?B?ZXZXcFp4cW1aQ3N4c2FHK2JZVlZmOERPWUx2ekRMLy8rRzRSTUQzemtWWHZF?=
+ =?utf-8?B?Vjdwam5sTWVIK2hQL1pIZlZPYVVMSlNOUDgzL0xFQkZkTVZvVUJjSDB6S1Qz?=
+ =?utf-8?B?em1OTTJZWGcweFFNK3l2eVdPZG1yZE5EdE1HVE1lRUNObEgyU0dmL0QrZDU2?=
+ =?utf-8?B?T0JWWnJRSEdJS2crSWJQWS91RFBCeVc1ZkkrUjJVaFRXblhkUDN6a29nZUFu?=
+ =?utf-8?B?QlQzNmtXOEtHR1NYZDBaclJ1V3Y5VjJKOE9BREN0L25lWFZ0bFg5eDFxWS9K?=
+ =?utf-8?B?eVVSaXVyVEF1NUNheWR6dE02cnYyOE4ydTN0RmxrWTkzdkx6UWplejV2dDBu?=
+ =?utf-8?B?bXBNOTEzcVNXSy9rTVpBNjluQ085ZFBZdStqWjF5OVphbGpoaDM3WU5NRE9U?=
+ =?utf-8?B?OWZIcG5VNWRubG82Z0MyMUtkK3VNU2dVOVFxRzlVd0xsMk83V2FObjVsS29h?=
+ =?utf-8?B?L1J6U3lISFk2czd3VlB1dFoxWEFSbFF6aUVYRVdubUI3RkhoTkMvRDAreUhR?=
+ =?utf-8?B?WFp0N0FNa0dmbnpzeWxQQ0J4T3VkTVRvMVc5ZzdDRVZHaHlZcGplZGlubkNn?=
+ =?utf-8?B?eTdXaGY0Ty9TcnVMS2lsWU1VRzMvWDJlL0tHbGdUNUJQK1Vsb1VNVW1xeFNz?=
+ =?utf-8?B?M3d2STBvTVlLT0NHbFVuTGJiWHBLUmZSWS9FcTlpWW01b29WNnhjeHBiK0tl?=
+ =?utf-8?B?dzZ4eXRUSGthUDQ0QlA1SXNGcEtvYmREM2VhNVRhbkhRa1JXandydndzNjN5?=
+ =?utf-8?B?ZTRKbVU2TnpSanBsSGthUWJoWHlTSUNtS2xiZFR0SW9oZnl3SXpoYitNVXhp?=
+ =?utf-8?B?MCtyTktNcXNXZzNGSzBnbmRqRFJPSEVRS29wNitzQ1lyaFdtTzBJUFRDUktF?=
+ =?utf-8?B?Sis0VU51Rm5CYnVocmVJcVNFQWpCOUJjNSthdFhleUNwRVpVY2dMaVRCY0pL?=
+ =?utf-8?B?MkdYdFZ5Z1hvUE9zUDBXQzI1U1lpODVlWEF0dFNPY1hsNFRNY0c4Zz09?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 86f1e905-6b50-4b25-02fa-08dee797e867
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2026 10:21:32.1857
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2026 02:21:16.2337
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: svN5zsVP2VMuH0xYd4764PboGksRUTbVf0bVvoXYOzWpOWNcz9JF3gR2+VqwgXKrc4gvvnEvxaaYKO0R0RhYyA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7745
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1sAA/yERMMlgVXwWJB/RuoOkhqeR0zJhsbqrBhGC634K0jFhM42oMSV4Arb/7iySrLa/hozOz+Wt/SYjMRjY7knz6PiBaLu1q8sLrRVZIr8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR03MB7187
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260721_032138_969948_0FB3BD0A 
-X-CRM114-Status: GOOD (  17.23  )
+X-CRM114-CacheID: sfid-20260721_192128_066228_14E96969 
+X-CRM114-Status: GOOD (  12.61  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -197,182 +147,71 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 17/07/2026 13:14, Pan Chuang wrote:
-> Since commit 55b48e23f5c4 ("genirq/devres: Add error handling in
-> devm_request_*_irq()"), devm_request_irq() and devm_request_threaded_irq()
-> automatically log detailed error messages on failure. Remove the
-> now-redundant driver-specific dev_err() and dev_err_probe() calls.
+Hi Krzysztof,
+    Thank you for your advice.
+
+On 2026/7/21 18:18, Krzysztof Kozlowski wrote:
+> On Fri, Jul 17, 2026 at 07:49:33AM +0000, Xianwei Zhao wrote:
+>> Document the Amlogic A9 SPISG controller and its additional
+>> Device Tree properties.
+>>
+>> Add the "amlogic,a9-spisg" compatible string and define the
+>> A9-specific "amlogic,mo-idle-output" and "amlogic,word-gap"
+>> properties, which configure the MOSI idle output level and
+>> the inter-word gap, respectively.
+>>
+>> Signed-off-by: Xianwei Zhao<xianwei.zhao@amlogic.com>
+>> ---
+>>   .../devicetree/bindings/spi/amlogic,a4-spisg.yaml  | 36 +++++++++++++++++++---
+>>   1 file changed, 32 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/spi/amlogic,a4-spisg.yaml b/Documentation/devicetree/bindings/spi/amlogic,a4-spisg.yaml
+>> index 9bfb8089f7ea..7efdc748d566 100644
+>> --- a/Documentation/devicetree/bindings/spi/amlogic,a4-spisg.yaml
+>> +++ b/Documentation/devicetree/bindings/spi/amlogic,a4-spisg.yaml
+>> @@ -11,12 +11,11 @@ maintainers:
+>>     - Xianwei Zhao<xianwei.zhao@amlogic.com>
+>>     - Sunny Luo<sunny.luo@amlogic.com>
+>>
+>> -allOf:
+>> -  - $ref: spi-controller.yaml#
+>> -
+>>   properties:
+>>     compatible:
+>> -    const: amlogic,a4-spisg
+>> +    enum:
+>> +      - amlogic,a4-spisg
+>> +      - amlogic,a9-spisg
+>>
+>>     reg:
+>>       maxItems: 1
+>> @@ -42,6 +41,35 @@ required:
+>>     - clocks
+>>     - clock-names
+>>
+>> +allOf:
+>> +  - $ref: spi-controller.yaml#
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - amlogic,a9-spisg
+>> +    then:
+>> +      properties:
+> Properties MUST be defined in top-level. You only restrict them here.
+> See writing-schema and example-schema.
 > 
-> Signed-off-by: Pan Chuang <panchuang@vivo.com>
 
-Reviewed-by: Adrian Hunter <adrian.hunter@intel.com>
+Will do.
 
-> ---
->  drivers/mmc/host/alcor.c         |  3 +--
->  drivers/mmc/host/cavium-octeon.c | 10 ++--------
->  drivers/mmc/host/meson-mx-sdio.c |  5 +----
->  drivers/mmc/host/mvsdio.c        |  4 +---
->  drivers/mmc/host/omap_hsmmc.c    |  4 +---
->  drivers/mmc/host/owl-mmc.c       |  5 +----
->  drivers/mmc/host/sdhci-msm.c     |  4 +---
->  drivers/mmc/host/sh_mmcif.c      |  8 ++------
->  8 files changed, 10 insertions(+), 33 deletions(-)
-> 
-> diff --git a/drivers/mmc/host/alcor.c b/drivers/mmc/host/alcor.c
-> index 721db54739c1..45528909a758 100644
-> --- a/drivers/mmc/host/alcor.c
-> +++ b/drivers/mmc/host/alcor.c
-> @@ -1103,8 +1103,7 @@ static int alcor_pci_sdmmc_drv_probe(struct platform_device *pdev)
->  			alcor_irq, alcor_irq_thread, IRQF_SHARED,
->  			DRV_NAME_ALCOR_PCI_SDMMC, host);
->  	if (ret)
-> -		return dev_err_probe(&pdev->dev, ret,
-> -				     "Failed to get irq for data line\n");
-> +		return ret;
->  
->  	mutex_init(&host->cmd_mutex);
->  	INIT_DELAYED_WORK(&host->timeout_work, alcor_timeout_timer);
-> diff --git a/drivers/mmc/host/cavium-octeon.c b/drivers/mmc/host/cavium-octeon.c
-> index 8a0daddd9200..1bfc1a4f9fe9 100644
-> --- a/drivers/mmc/host/cavium-octeon.c
-> +++ b/drivers/mmc/host/cavium-octeon.c
-> @@ -240,21 +240,15 @@ static int octeon_mmc_probe(struct platform_device *pdev)
->  			ret = devm_request_irq(&pdev->dev, mmc_irq[i],
->  					       cvm_mmc_interrupt,
->  					       0, cvm_mmc_irq_names[i], host);
-> -			if (ret < 0) {
-> -				dev_err(&pdev->dev, "Error: devm_request_irq %d\n",
-> -					mmc_irq[i]);
-> +			if (ret < 0)
->  				return ret;
-> -			}
->  		}
->  	} else {
->  		ret = devm_request_irq(&pdev->dev, mmc_irq[0],
->  				       cvm_mmc_interrupt, 0, KBUILD_MODNAME,
->  				       host);
-> -		if (ret < 0) {
-> -			dev_err(&pdev->dev, "Error: devm_request_irq %d\n",
-> -				mmc_irq[0]);
-> +		if (ret < 0)
->  			return ret;
-> -		}
->  	}
->  
->  	host->global_pwr_gpiod = devm_gpiod_get_optional(&pdev->dev,
-> diff --git a/drivers/mmc/host/meson-mx-sdio.c b/drivers/mmc/host/meson-mx-sdio.c
-> index 5921e2cb2180..bef5e843f449 100644
-> --- a/drivers/mmc/host/meson-mx-sdio.c
-> +++ b/drivers/mmc/host/meson-mx-sdio.c
-> @@ -683,11 +683,8 @@ static int meson_mx_mmc_probe(struct platform_device *pdev)
->  					meson_mx_mmc_irq,
->  					meson_mx_mmc_irq_thread, IRQF_ONESHOT,
->  					NULL, host);
-> -	if (ret) {
-> -		dev_err_probe(host->controller_dev, ret,
-> -			      "Failed to request IRQ\n");
-> +	if (ret)
->  		goto error_unregister_slot_pdev;
-> -	}
->  
->  	core_clk = devm_clk_get_enabled(host->controller_dev, "core");
->  	if (IS_ERR(core_clk)) {
-> diff --git a/drivers/mmc/host/mvsdio.c b/drivers/mmc/host/mvsdio.c
-> index 79df2fa89a3f..cf705b265e21 100644
-> --- a/drivers/mmc/host/mvsdio.c
-> +++ b/drivers/mmc/host/mvsdio.c
-> @@ -764,10 +764,8 @@ static int mvsd_probe(struct platform_device *pdev)
->  	mvsd_power_down(host);
->  
->  	ret = devm_request_irq(&pdev->dev, irq, mvsd_irq, 0, DRIVER_NAME, host);
-> -	if (ret) {
-> -		dev_err(&pdev->dev, "cannot assign irq %d\n", irq);
-> +	if (ret)
->  		goto out;
-> -	}
->  
->  	timer_setup(&host->timer, mvsd_timeout_timer, 0);
->  	platform_set_drvdata(pdev, mmc);
-> diff --git a/drivers/mmc/host/omap_hsmmc.c b/drivers/mmc/host/omap_hsmmc.c
-> index 58c881f2725b..63a9fb970975 100644
-> --- a/drivers/mmc/host/omap_hsmmc.c
-> +++ b/drivers/mmc/host/omap_hsmmc.c
-> @@ -1915,10 +1915,8 @@ static int omap_hsmmc_probe(struct platform_device *pdev)
->  	/* Request IRQ for MMC operations */
->  	ret = devm_request_irq(&pdev->dev, host->irq, omap_hsmmc_irq, 0,
->  			mmc_hostname(mmc), host);
-> -	if (ret) {
-> -		dev_err(mmc_dev(host->mmc), "Unable to grab HSMMC IRQ\n");
-> +	if (ret)
->  		goto err_irq;
-> -	}
->  
->  	ret = omap_hsmmc_reg_get(host);
->  	if (ret)
-> diff --git a/drivers/mmc/host/owl-mmc.c b/drivers/mmc/host/owl-mmc.c
-> index 349082d76a99..d5b8a110267b 100644
-> --- a/drivers/mmc/host/owl-mmc.c
-> +++ b/drivers/mmc/host/owl-mmc.c
-> @@ -635,11 +635,8 @@ static int owl_mmc_probe(struct platform_device *pdev)
->  
->  	ret = devm_request_irq(&pdev->dev, owl_host->irq, owl_irq_handler,
->  			       0, dev_name(&pdev->dev), owl_host);
-> -	if (ret) {
-> -		dev_err(&pdev->dev, "Failed to request irq %d\n",
-> -			owl_host->irq);
-> +	if (ret)
->  		goto err_release_channel;
-> -	}
->  
->  	ret = mmc_add_host(mmc);
->  	if (ret) {
-> diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
-> index ceed47ccfda8..4aff965f0e2e 100644
-> --- a/drivers/mmc/host/sdhci-msm.c
-> +++ b/drivers/mmc/host/sdhci-msm.c
-> @@ -2864,10 +2864,8 @@ static int sdhci_msm_probe(struct platform_device *pdev)
->  	ret = devm_request_threaded_irq(&pdev->dev, msm_host->pwr_irq, NULL,
->  					sdhci_msm_pwr_irq, IRQF_ONESHOT,
->  					dev_name(&pdev->dev), host);
-> -	if (ret) {
-> -		dev_err(&pdev->dev, "Request IRQ failed (%d)\n", ret);
-> +	if (ret)
->  		goto clk_disable;
-> -	}
->  
->  	msm_host->mmc->caps |= MMC_CAP_WAIT_WHILE_BUSY | MMC_CAP_NEED_RSP_BUSY;
->  
-> diff --git a/drivers/mmc/host/sh_mmcif.c b/drivers/mmc/host/sh_mmcif.c
-> index 9831956de1c8..7706d01b149e 100644
-> --- a/drivers/mmc/host/sh_mmcif.c
-> +++ b/drivers/mmc/host/sh_mmcif.c
-> @@ -1505,18 +1505,14 @@ static int sh_mmcif_probe(struct platform_device *pdev)
->  	name = irq[1] < 0 ? dev_name(dev) : "sh_mmc:error";
->  	ret = devm_request_threaded_irq(dev, irq[0], sh_mmcif_intr,
->  					sh_mmcif_irqt, 0, name, host);
-> -	if (ret) {
-> -		dev_err(dev, "request_irq error (%s)\n", name);
-> +	if (ret)
->  		goto err_clk;
-> -	}
->  	if (irq[1] >= 0) {
->  		ret = devm_request_threaded_irq(dev, irq[1],
->  						sh_mmcif_intr, sh_mmcif_irqt,
->  						0, "sh_mmc:int", host);
-> -		if (ret) {
-> -			dev_err(dev, "request_irq error (sh_mmc:int)\n");
-> +		if (ret)
->  			goto err_clk;
-> -		}
->  	}
->  
->  	mutex_init(&host->thread_lock);
-
+> Best regards,
+> Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
