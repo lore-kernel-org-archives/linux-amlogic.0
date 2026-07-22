@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8F5CC4453A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Jul 2026 08:39:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB4B1C44533
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 Jul 2026 08:39:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cB1xO+Gaf0RAvUgHMPfscU6tyYc+x8Dxeo9kQQxNTiw=; b=DE1aksADJBQtc/
-	WpKx2I4zWlWIHzFEMZgrt+kh8slLmS0LfxOFFBEsPm8a7eOY3xcB2cz8kfmF/K716H+rvZd41oAlu
-	SEzNHgNJOi+Ks2Bo5wGTYvMHdhqM0qaGjMQREee9icRKE7+JGh3we77cDJubKaPyrlZMmcgS0FciF
-	6z2lDMkSzpkTU1IT5ZsBuWlN14QviepUbxCHgcmsZoZcuG4bfSzURBioEr7xvjGcIZe/Y3c37F9zq
-	vnbLBwXD6yy2dyBHC5RUvIIWM1wlgB+rfAYaU6d04PnPAJ0kwHkqS9X0DsJvigAs86EDn5fKbOZbs
-	q8FjTEoyvZze/iR416pA==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=pdGd37WrHIAxA173MfvQvttKgZuQIWkKXEIYbKqW7UM=; b=D0XcdLKC1YhLfw
+	Gy0BwtBmAbK9tJqRsWBopuamANj6qshf70GpdoFpaMydgMcs+m0erXi8noA0bOR/3BxGkWCaPH5eH
+	tiJcwEvqDbm0HkHorCZ3HizEyY7B1jCsvY0FHosihOq0FzNp8YR+5w1R91jfEPIJSfYpCNYRl+Ugo
+	B81HYqcK8zIPFA18T5ZOa1pBADbQdf0yab9KqWBdUzYJKrelOKK6fE6Vjf6/5aiEkFbX8iu+dKFSk
+	bHJjW3AQMH3bOGgZtzwFdKPeNqNwJNt8N/cljB6NSV7SP3oIg/ZlA8VSq2rKFTpbU2L0PzhZBKAWp
+	T2TH/GgvXpeT9GdVsNaQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wmSUL-0000000BHR9-3LkM;
+	id 1wmSUL-0000000BHQP-2JdS;
 	Wed, 22 Jul 2026 08:39:37 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wmSUL-0000000BHPt-0rgG;
+	id 1wmSUL-0000000BHPs-0L40;
 	Wed, 22 Jul 2026 08:39:37 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id B968143FE3;
+	by sea.source.kernel.org (Postfix) with ESMTP id 93F1A43272;
 	Wed, 22 Jul 2026 08:39:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 941B4C2BCFD;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 691D8C2BCC7;
 	Wed, 22 Jul 2026 08:39:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1784709576;
-	bh=rcQeDo5UoMmhlm0sZIB41JjoS+2snFmUVnAn3/eGTz0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=Gwihkad8V3uKxA0Tqtj4E6G7FNqhVjguejzl1oIRI+6Vw/T1Bq1vty42OoKjoJ3fd
-	 /ZiMYjzJfKuuu+1r48A/9jox+/zGIFg1X9rPkRsXhqmkRQM+TZN3GsR2L8TAy1zh6/
-	 4mtYk+nIRWzQk4TNcsHiI7LBApYq6cNzkv1NoYYvhe1ovLny1buAcUUa+3l7UHKpeW
-	 iHWsS5aPZ4FoFoJ9HeY0HD68bx1EvKnO8vB2W6Umzm8NfX6RF8MdGedRrPIfqmokLU
-	 B6ur0qlflskfRWdW23KZRFNwc8LcccP0LntmUVOFj2RWd0DocLMZGES+c64TTwdHCM
-	 CRUuSy0DCN3wg==
+	bh=QQCi8joyIQJkB/7W6FFWGEeP6YN+mclhm8poIQ026HY=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=jcW/b/cIFCOrDCNQFMdgN0r8V5wQB4EfkdIp6CaIsRNV1hO9xl2l4LlQDcmbxTSop
+	 xnz0aw9HdjUJQbXo5dKpv5pBUsbr0Zb1ZYUQYhK9HqAghw+m8VWTfgPNOb7bBk7/UV
+	 ZD1eWHzyp8Ln/YmKhmoF9DtSGFWjAaeJvoCqzsa7y+b5ScCDmF3L1K4UG1JMmH1PyC
+	 E4caJATseBQop5g+pTcieeQkaVKbKPYNC5FDS3mCJe8LfZDM72dWS53wQhbbKAQXax
+	 l5u+k8huQMhSA7ZZPmO9rVQJjBaTDxXwUbBXYAUkznZiTUC/NkFBFzH2Uc1xMvY6XP
+	 QiLhkV+pU50Jw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F95BC4453A;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 53711C4451C;
 	Wed, 22 Jul 2026 08:39:36 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Wed, 22 Jul 2026 08:39:32 +0000
-Subject: [PATCH 2/3] pmdomain: amlogic: Add support for A9 power domains
- controller
+Subject: [PATCH 0/3] Power: Add power domain for A9
+Date: Wed, 22 Jul 2026 08:39:30 +0000
+Message-Id: <20260722-a9-pm-v1-0-1fe20a44bf2d@amlogic.com>
 MIME-Version: 1.0
-Message-Id: <20260722-a9-pm-v1-2-1fe20a44bf2d@amlogic.com>
-References: <20260722-a9-pm-v1-0-1fe20a44bf2d@amlogic.com>
-In-Reply-To: <20260722-a9-pm-v1-0-1fe20a44bf2d@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAMKBYGoC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDcyMj3URL3YJcXePUtCTjNKNEkxRzIyWg2oKi1LTMCrA50bG1tQDAyC7
+ HVwAAAA==
+X-Change-ID: 20260722-a9-pm-3efb3f2a4d72
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -62,11 +63,11 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  linux-pm@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1784709572; l=3797;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1784709572; l=814;
  i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=aA+XjaI8J4Dk36k0e6tePHR7OYdh6T5F5939mIxU5ck=;
- b=2XyApDwRB19STwV3fcrFyt6Uej1ZasA9HEWcQrSNgX7BV4hbGtLXf2iYQ9wr8vzRKDFMxbum2
- 5AHuduN6EErCuFYXumBll49nsmWVSLloPwCVVq0Gp27E1IHfud8X2WD
+ bh=QQCi8joyIQJkB/7W6FFWGEeP6YN+mclhm8poIQ026HY=;
+ b=WLQ47soAxbaZK576/tY+iiZaJ+qwcSMeFxILfLIWBKgQ9gUpoJkMTVFTUiaU9RzgZsL9M+dAC
+ J6phS4teZz6CL993sARjLs4UT/eYb9BYbCni9oX3A4iZJRMwX2xfUXU
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
@@ -89,120 +90,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-
-Add support for the A9 power controller, whose registers are
-in the secure domain and should be accessed via SMC.
+Add power controller driver support for Amlogic A9 SoC.
 
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
- drivers/pmdomain/amlogic/meson-secure-pwrc.c | 69 ++++++++++++++++++++++++++++
- 1 file changed, 69 insertions(+)
+Xianwei Zhao (3):
+      dt-bindings: power: Add Amlogic A9 power domains
+      pmdomain: amlogic: Add support for A9 power domains controller
+      arm64: dts: amlogic: a9: Add power domain controller node
 
-diff --git a/drivers/pmdomain/amlogic/meson-secure-pwrc.c b/drivers/pmdomain/amlogic/meson-secure-pwrc.c
-index 1d2f371d2d7f..133549956efa 100644
---- a/drivers/pmdomain/amlogic/meson-secure-pwrc.c
-+++ b/drivers/pmdomain/amlogic/meson-secure-pwrc.c
-@@ -16,6 +16,7 @@
- #include <dt-bindings/power/amlogic,t7-pwrc.h>
- #include <dt-bindings/power/amlogic,a4-pwrc.h>
- #include <dt-bindings/power/amlogic,a5-pwrc.h>
-+#include <dt-bindings/power/amlogic,a9-pwrc.h>
- #include <dt-bindings/power/amlogic,s6-pwrc.h>
- #include <dt-bindings/power/amlogic,s7-pwrc.h>
- #include <dt-bindings/power/amlogic,s7d-pwrc.h>
-@@ -175,6 +176,65 @@ static const struct meson_secure_pwrc_domain_desc a5_pwrc_domains[] = {
- 	SEC_PD(A5_DSPA,		0),
- };
- 
-+static const struct meson_secure_pwrc_domain_desc a9_pwrc_domains[] = {
-+	SEC_PD(A9_DSPA,		0),
-+	SEC_PD(A9_U3HSG_U3,	0),
-+	SEC_PD(A9_DP,		0),
-+	SEC_PD(A9_DOS_HCODEC,	0),
-+	SEC_PD(A9_TAHOE,	0),
-+	SEC_PD(A9_DOS_HEVC,	0),
-+	SEC_PD(A9_U2H,		0),
-+	SEC_PD(A9_U3DRD_B,	0),
-+	SEC_PD(A9_VPU_HDMI,	0),
-+	SEC_PD(A9_U2DRD,	0),
-+	SEC_PD(A9_U3DRD_A,	0),
-+	SEC_PD(A9_SD_EMMC_C,	0),
-+	SEC_PD(A9_GE2D,		0),
-+	SEC_PD(A9_AMFC,		0),
-+	SEC_PD(A9_EDPTX,	0),
-+	SEC_PD(A9_OPP,		0),
-+	SEC_PD(A9_VICP,		0),
-+	SEC_PD(A9_SD_EMMC_A,	0),
-+	SEC_PD(A9_SD_EMMC_B,	0),
-+	SEC_PD(A9_ETH,		0),
-+	SEC_PD(A9_PCIE_A,	0),
-+	SEC_PD(A9_PCIE_B,	0),
-+	SEC_PD(A9_NNA_4T,	0),
-+	SEC_PD(A9_HDMIRX,	0),
-+	SEC_PD(A9_CVE,		0),
-+	SEC_PD(A9_ISP,		0),
-+	SEC_PD(A9_ETH_1G,	0),
-+	SEC_PD(A9_U3HSG_HSG,	0),
-+	SEC_PD(A9_U3DPPHY_U3,	0),
-+	SEC_PD(A9_U3DPPHY_DP,	0),
-+	SEC_PD(A9_PCIE3PHY,	0),
-+	SEC_PD(A9_U3HSG_PCIE2,	0),
-+	SEC_PD(A9_MALI_TOP,	0),
-+	SEC_PD(A9_AO_SED,	0),
-+	SEC_PD(A9_AO_IR,	0),
-+	/* UART_B is for console log, and should be always on */
-+	SEC_PD(A9_AO_UART_B,	GENPD_FLAG_ALWAYS_ON),
-+	SEC_PD(A9_AO_UART_C,	0),
-+	SEC_PD(A9_AO_UART_D,	0),
-+	SEC_PD(A9_AO_SPISG,	0),
-+	SEC_PD(A9_AO_UART_E,	0),
-+	SEC_PD(A9_AO_CEC,	0),
-+	/* SRAMA is used as ATF runtime memory, and should be always on */
-+	SEC_PD(A9_EE_SRAMA,	GENPD_FLAG_ALWAYS_ON),
-+	SEC_PD(A9_AUDIO,	0),
-+	/* DMC0 is for DDR PHY ana/dig and DMC, and should be always on */
-+	SEC_PD(A9_DMC0,		GENPD_FLAG_ALWAYS_ON),
-+	/*GIC needs to be used consistently, and should be always on */
-+	SEC_PD(A9_GIC,		GENPD_FLAG_ALWAYS_ON),
-+	/* DDRPHY is for DDR Work, and should be always on */
-+	SEC_PD(A9_DDRPHY,	GENPD_FLAG_ALWAYS_ON),
-+	SEC_PD(A9_AUCPU,	0),
-+	SEC_PD(A9_DSI0,		0),
-+	SEC_PD(A9_DSI1,		0),
-+	SEC_PD(A9_CAN0,		0),
-+	SEC_PD(A9_CAN1,		0),
-+};
-+
- static const struct meson_secure_pwrc_domain_desc c3_pwrc_domains[] = {
- 	SEC_PD(C3_NNA,		0),
- 	SEC_PD(C3_AUDIO,	0),
-@@ -425,6 +485,11 @@ static const struct meson_secure_pwrc_domain_data amlogic_secure_a5_pwrc_data =
- 	.count = ARRAY_SIZE(a5_pwrc_domains),
- };
- 
-+static const struct meson_secure_pwrc_domain_data amlogic_secure_a9_pwrc_data = {
-+	.domains = a9_pwrc_domains,
-+	.count = ARRAY_SIZE(a9_pwrc_domains),
-+};
-+
- static const struct meson_secure_pwrc_domain_data amlogic_secure_c3_pwrc_data = {
- 	.domains = c3_pwrc_domains,
- 	.count = ARRAY_SIZE(c3_pwrc_domains),
-@@ -468,6 +533,10 @@ static const struct of_device_id meson_secure_pwrc_match_table[] = {
- 		.compatible = "amlogic,a5-pwrc",
- 		.data = &amlogic_secure_a5_pwrc_data,
- 	},
-+	{
-+		.compatible = "amlogic,a9-pwrc",
-+		.data = &amlogic_secure_a9_pwrc_data,
-+	},
- 	{
- 		.compatible = "amlogic,c3-pwrc",
- 		.data = &amlogic_secure_c3_pwrc_data,
+ .../bindings/power/amlogic,meson-sec-pwrc.yaml     |  1 +
+ arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi        | 10 ++++
+ drivers/pmdomain/amlogic/meson-secure-pwrc.c       | 69 ++++++++++++++++++++++
+ include/dt-bindings/power/amlogic,a9-pwrc.h        | 61 +++++++++++++++++++
+ 4 files changed, 141 insertions(+)
+---
+base-commit: 544455a3a844edd6107b15cd0ab0b657399f2d49
+change-id: 20260722-a9-pm-3efb3f2a4d72
 
+Best regards,
 -- 
-2.52.0
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
 
 
