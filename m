@@ -4,99 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 283B1C531F9
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 Jul 2026 22:46:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01C70C531F9
+	for <linux-amlogic@archiver.kernel.org>; Sat, 25 Jul 2026 07:14:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mu36wA5ztvMTT/95lHg2IgnCETweDUolEXlEW6nh0Mw=; b=ZfUvxQDlH5f3Pw
-	0L6OvifaGqt8uxUmQJ8CcRtOVzu/jvynMR1WqlUl56ff0dEH5ZVFmdtLykPMNTtxVONYmSg3xkgCn
-	4AJBJJPBmEIgvj/kZ92vgB0dd2M8q8KWKDTVSwY2/+tFcMLxfOH2Qvj6jLkuNb6F45ViHN+inqm64
-	/fAiGbDFc+nYVuhmAi9XcFqHoyK6G6ozxFjG1W3JcWmQXWKFhHsTOg0v7jZ5WwTLPoehC+dQC8BgP
-	kxY5vHbCNLihkGZPyM9+qpO2hFgmBtbGjTz3iSXNWnQV8wqM0FY1Cp5wRXxlG2Fct6EGiu9Hag6mW
-	NfpkjL6na6pbdhIetyjg==;
+	List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:Cc:Date:
+	In-Reply-To:From:Subject:Mime-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Rk1+JoUt5Gj5o0MnxNFJ5vr2VBI/sA/8++VP46TcKbQ=; b=gStnbqDIRvqx6H
+	hr4YOP+oU5uchstj5fPETWhSyN2xPdUW7+K/ag0Zn4xLQ1BEsEl+GA0EdHytHVjZH0f8O5Hm/8dNe
+	6l9Nppd62Idm+ahYDsd/jgEyAePTbP1PwivEAgN7iLxzMfS8iL2CCdACFAkiRWi4FqklZFpa79njb
+	WZoF2s9nV4ESV26RcPt+OWfKaHPpvRRQ36bwOW+6LGVbsK97z/xl5pMdukK0VZH+o+LBsN6K9jk2Q
+	m8rCrhSEALhdeXg9zatzMax+qNGcSxqNT6qQzv+AoLfF2G8klryQSzq/rb32Cye5+tmrducsDKUjA
+	xPvk4ea+OVjZyROnCukg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wnOf1-0000000HKVS-4AV5;
-	Fri, 24 Jul 2026 22:46:31 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1wnWaJ-000000008yS-3al1;
+	Sat, 25 Jul 2026 07:14:11 +0000
+Received: from mail-ed1-x533.google.com ([2a00:1450:4864:20::533])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wnOeb-0000000HKEu-1Bf2;
-	Fri, 24 Jul 2026 22:46:05 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 09DEE41AB4;
-	Fri, 24 Jul 2026 22:46:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A7F21F00AC4;
-	Fri, 24 Jul 2026 22:46:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1784933164;
-	bh=K125TY74W87vhbOlzJ/FpCa02u74B+oM2H9sVUMeeOo=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=DNutic3y4iV6+eyYcy4rwQNwLeQzrjFdAqTJiqrBOyOEWptY1tUjsPrZCB7a+2Rce
-	 7WKRN2fpfQ1BH4OSNlv8Ygz7piMxGyuqiTFOB8siO1bB/P+YFJYYg/dEVTSiGcUTE8
-	 vnkofqb9758AL8BRwmY7SqDav0yzD69GE//A7v8wrhXIdBukMFDnjNUXOlaQv8a7bg
-	 IIDvyg+zxVPf1kHcdIsUIza3Z+0MpbDf5Hv1uMxPb9oZ07wF+23iVfKnQBx42N2MsD
-	 63lPpGj83DQB5USxWPX/mQEXEEV6YfJSeeDPKCHeiIPK+rS8ur8iXo7sySJCthZoVE
-	 H0eTUUDBYX25Q==
-From: Jakub Kicinski <kuba@kernel.org>
-To: bartosz.golaszewski@oss.qualcomm.com
-Cc: Jakub Kicinski <kuba@kernel.org>,
-	andersson@kernel.org,
-	konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	pabeni@redhat.com,
-	mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com,
-	vkoul@kernel.org,
-	peppe.cavallaro@st.com,
-	wens@kernel.org,
-	jernej.skrabec@gmail.com,
-	neil.armstrong@linaro.org,
-	khilman@baylibre.com,
-	jbrunet@baylibre.com,
-	shawnguo@kernel.org,
-	festevam@gmail.com,
-	jan.petrous@oss.nxp.com,
-	s32@nxp.com,
-	mohd.anwar@oss.qualcomm.com,
-	romain.gantois@bootlin.com,
-	geert+renesas@glider.be,
-	magnus.damm@gmail.com,
-	mripard@kernel.org,
-	christophe.roullier@foss.st.com,
-	brgl@kernel.org,
-	radu@rendec.net,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	dfustini@tenstorrent.com,
-	linux-sunxi@lists.linux.dev,
-	linux-amlogic@lists.infradead.org,
-	linux-mips@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-renesas-soc@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	sophgo@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
-	bartosz.golaszewski@linaro.org
-Subject: Re: [PATCH net-next v13 09/10] net: stmmac: qcom-ethqos: factor out linux-level setup into a separate function
-Date: Fri, 24 Jul 2026 15:46:02 -0700
-Message-ID: <20260724224602.1650002-1-kuba@kernel.org>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260713-qcom-sa8255p-emac-v13-9-119f8699ef8e@oss.qualcomm.com>
-References: <20260713-qcom-sa8255p-emac-v13-9-119f8699ef8e@oss.qualcomm.com>
-MIME-Version: 1.0
+	id 1wnWaH-000000008xe-2xOa
+	for linux-amlogic@lists.infradead.org;
+	Sat, 25 Jul 2026 07:14:10 +0000
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-698bf053053so1619166a12.3
+        for <linux-amlogic@lists.infradead.org>; Sat, 25 Jul 2026 00:14:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1784963647; x=1785568447; darn=lists.infradead.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:content-type:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=JP/wbNLQSrW5qwWjE+qQUBSSCP+5d3b6gjSj9x/s0bc=;
+        b=qNuY4WaF0LOaaCbvkp386R7N7FHlxLfqeteRr852i4Bc9vmSDdimAeirjfCtCR4i8j
+         l5+oPfr8EzkxtgBUdzRP+aLszPw5ZjZ8MuTjxsmAnMXrESB54PvV0fad2JcCdcpPM2/5
+         hOwzs0yttxQOTnNWTi8tjfFJqTgeK/N0RooGjA4B8g5VNH2MdaxJZ/57e9PiIrooZRwT
+         ABtEDS47pdOhl5JBMeINJzda94Ji30iViRntu78AahXebqEHjizO0WkBtr3pFZbySssU
+         uT6lKPcaXBMvMYWFFKgwqOPtY3Bt0zGAUAsT2aGTQWPVLejDlcK0rDofYd6s2E9g1o5K
+         DXTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784963647; x=1785568447;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:content-type:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=JP/wbNLQSrW5qwWjE+qQUBSSCP+5d3b6gjSj9x/s0bc=;
+        b=jiJOJpNtp8vNIMNrPpUX67Kl+XVgmyefLe5awqPDg8Vb4PupuPU823AwN+d977BjPD
+         Rn0eHucD1lXwka3qZIr603SUNwYnGMtion+/nHAV1Un94IcokaEgFRx2cmRdq7BRlwvD
+         BYmlD9q0/e4w3WOUbZf5llJ4T27417P/q5FCcjiT/34oqYyK+q/jweU1rwjaaDPgZjOA
+         4QrpVnrKfQixYJyufbLNv97TSWcB35Kl/bsReT8xPv86URNsrFiAZe9GULCAw3ZiD7bY
+         YVfQgrcVswi4ERguRBM8EYPo+6gQ717rKdCkGgoifZegKfBuGixCGEKBbUeHyGMWDNXb
+         suVQ==
+X-Forwarded-Encrypted: i=1; AHgh+RqzT6bg4MFn0H2KLbEAKGv8J2edtp4t2Z8W8cxOeHoFhA7RrladswrHbI6FIMrPUdXWdk88arF/vHF6t+zx@lists.infradead.org
+X-Gm-Message-State: AOJu0Yza3/P327QbUjyqEIOAE9hORq1QpjFo28QV/idyji0aKR63p+e8
+	6RSdeke0tmXmgv4yDfZuVmQf9fJusOV8u9Ps0hIhmBR5DIp+qXKWAklkci+UoiKH
+X-Gm-Gg: AR+sD13KesCdC23adq8MRrmrhdAf9RuUiYKkKF8eW+04IJAPPKAd3chQl0O1nG5Ps5h
+	qOX4oZG+trjXKmzMla3+6mySDqIb5zApNdFqeTD8WkoM3k2JNDBOV5ub464IW7ieLG4w33NvnTu
+	2xiH9/yAZ9qumpRA2BxLjnBsExHuQyxD0tqIymZcetaXuYrxx1kItpghIO0qP60wHpbAf/lJqxn
+	sBtkXIFMY55G5KquwTGX9Exvh1YG0INtfB5vA9MXytBF4iVyT2GzYCabqRzaUXC/c0YkGRbMOSM
+	X2aJjlx5sYQCrMzsa3vqrRqNhEpCrV7ysIO6PaJJCDBiBm4Qy4r4FoyH1KIDNjsev4FqvvlAomH
+	yXH1x9HLziNWtCLAHnkdYxwOHpCdTFUtM96CvC6pDN8p2bZ4QO2ha4GHG9rcZbODOIbWTMwYxgl
+	hV+gNoiltVCsGQmr930H4KIp7v0zff8GKIgtRkfZdgbmPyA0Uxka1708KKNN5yiY+bA3EXBEA=
+X-Received: by 2002:a05:6402:2692:b0:698:f7d:4e11 with SMTP id 4fb4d7f45d1cf-69fc0fed1bfmr434261a12.1.1784963647447;
+        Sat, 25 Jul 2026 00:14:07 -0700 (PDT)
+Received: from smtpclient.apple (89-66-237-154.dynamic.play.pl. [89.66.237.154])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-69fb4e11519sm658390a12.0.2026.07.25.00.14.04
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 25 Jul 2026 00:14:05 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3864.600.51.1.1\))
+Subject: Re: [PATCH v6 1/6] firmware: meson: sm: Add video firmware loading
+ SMC call
+From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <20260724-b4-s4-vdec-upstream-v6-1-6072a7ee7428@amlogic.com>
+Date: Sat, 25 Jul 2026 09:13:53 +0200
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org
+Message-Id: <49F34481-918C-42ED-92E9-DFC336526BAD@gmail.com>
+References: <20260724-b4-s4-vdec-upstream-v6-0-6072a7ee7428@amlogic.com>
+ <20260724-b4-s4-vdec-upstream-v6-1-6072a7ee7428@amlogic.com>
+To: zhentao.guo@amlogic.com
+X-Mailer: Apple Mail (2.3864.600.51.1.1)
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260725_001409_758539_A9F863BA 
+X-CRM114-Status: GOOD (  14.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,83 +108,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This is an AI-generated review of your patch. The human sending this
-email has considered the AI review valid, or at least plausible.
----
-net: stmmac: qcom-ethqos: factor out linux-level setup into a separate function
-
-This refactor extends ethqos_emac_driver_data with a setup() callback,
-implements it for the existing models, and moves operations not required
-in SCMI mode into it, in preparation for firmware-controlled EMAC
-variants.
-
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> index 43384960278b..3af1608fc21c 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> @@ -5,6 +5,7 @@
->  #include <linux/of.h>
->  #include <linux/of_net.h>
->  #include <linux/platform_device.h>
-> +#include <linux/pm_domain.h>
->  #include <linux/phy.h>
->  #include <linux/phy/phy.h>
-
-[Low]
-Is there a reason linux/pm_domain.h is added here?  Looking through
-this commit, no pm_domain symbols (pm_genpd_*, dev_pm_domain_*,
-PD_FLAG_*, etc.) appear to be referenced.
-
-The header seems to belong with the follow-up patch that introduces
-devm_pm_domain_attach_list() and struct dev_pm_domain_list usage.
-
-Would it be preferable to move this include into the patch that
-actually needs it, so each patch remains self-contained?
-
-[ ... ]
-
-> @@ -765,21 +815,8 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
->  		return dev_err_probe(dev, PTR_ERR(ethqos->serdes_phy),
->  				     "Failed to get serdes phy\n");
->  
-> -	ethqos_set_clk_tx_rate(ethqos, NULL, plat_dat->phy_interface,
-> -			       SPEED_1000);
-> -
-> -	qcom_ethqos_set_sgmii_loopback(ethqos, true);
-> -	ethqos_set_func_clk_en(ethqos);
-> -
-> -	/* The clocks are controlled by firmware, so we don't know for certain
-> -	 * what clock rate is being used. Hardware documentation mentions that
-> -	 * the AHB slave clock will be in the range of 50 to 100MHz, which
-> -	 * equates to a MDC between 1.19 and 2.38MHz.
-> -	 */
->  	plat_dat->clk_csr = STMMAC_CSR_60_100M;
->  	plat_dat->bsp_priv = ethqos;
-> -	plat_dat->set_clk_tx_rate = ethqos_set_clk_tx_rate;
-> -	plat_dat->dump_debug_regs = rgmii_dump;
->  	plat_dat->ptp_clk_freq_config = ethqos_ptp_clk_freq_config;
->  	plat_dat->core_type = DWMAC_CORE_GMAC4;
->  	if (data->has_emac_ge_3)
-
-[Low]
-Was the comment above plat_dat->clk_csr = STMMAC_CSR_60_100M; intended
-to be dropped?
-
-The assignment itself is preserved, but the rationale for choosing
-STMMAC_CSR_60_100M (firmware-controlled AHB clock in the 50-100MHz
-range yielding an MDC between 1.19 and 2.38MHz) is now gone.
-
-The commit message describes a mechanical refactor and does not
-mention removing this rationale.  Should the comment be kept next to
-the assignment, or moved into ethqos_hlos_setup() where the
-surrounding clock setup now lives?
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Cgo+IFdpYWRvbW/Fm8SHIG5hcGlzYW5hIHByemV6IFpoZW50YW8gR3VvIHZpYSBCNCBSZWxheSA8
+ZGV2bnVsbCt6aGVudGFvLmd1by5hbWxvZ2ljLmNvbUBrZXJuZWwub3JnPiB3IGRuaXUgMjQgbGlw
+IDIwMjYsIG8gZ29kei4gMDk6MDQ6Cj4gCj4gRnJvbTogWmhlbnRhbyBHdW8gPHpoZW50YW8uZ3Vv
+QGFtbG9naWMuY29tPgo+IAo+IEFkZCBTTV9MT0FEX1ZJREVPX0ZXIGF0IFNNQyBJRCAweGIyMDAw
+MDBmIGluIHRoZSBjb21tYW5kCj4gdGFibGUgdG8gbG9hZCB2aWRlbyBmaXJtd2FyZS4KPiAKPiBT
+aWduZWQtb2ZmLWJ5OiBaaGVudGFvIEd1byA8emhlbnRhby5ndW9AYW1sb2dpYy5jb20+Cj4gLS0t
+Cj4gZHJpdmVycy9maXJtd2FyZS9tZXNvbi9tZXNvbl9zbS5jIHwgMSArCj4gMSBmaWxlIGNoYW5n
+ZWQsIDEgaW5zZXJ0aW9uKCspCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZmlybXdhcmUvbWVz
+b24vbWVzb25fc20uYyBiL2RyaXZlcnMvZmlybXdhcmUvbWVzb24vbWVzb25fc20uYwo+IGluZGV4
+IGFiOTc1MWE1OWI1NS4uODg3Y2FhNWM2MjVkIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZmlybXdh
+cmUvbWVzb24vbWVzb25fc20uYwo+ICsrKyBiL2RyaXZlcnMvZmlybXdhcmUvbWVzb24vbWVzb25f
+c20uYwo+IEBAIC00OCw2ICs0OCw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgbWVzb25fc21fY2hp
+cCBneGJiX2NoaXAgPSB7Cj4gQ01EKFNNX1RIRVJNQUxfQ0FMSUJfUkVBRCwgMHg4MjAwMDA0Nyks
+Cj4gQ01EKFNNX0ExX1BXUkNfU0VULCAweDgyMDAwMDkzKSwKPiBDTUQoU01fQTFfUFdSQ19HRVQs
+IDB4ODIwMDAwOTUpLAo+ICsgQ01EKFNNX0xPQURfVklERU9fRlcsIDB4YjIwMDAwMGYpLAo+IHsg
+Lyogc2VudGluZWwgKi8gfSwKPiB9LAo+IH07Cj4gCj4gLS0gCj4gMi40Mi4wCj4gCgpaaGVudGFv
+LAoKV2hhdCBpcyByZXEuIGJhc2VsaW5lIGZvciB0aGlzIHBhdGNoPwoob3Igd2hhdCBleHRyYSBw
+YXRjaGVzIGFyZSBuZWVkZWQgdG8gdGVzdCBpdCBvbiA3LjEgbWFpbmxpbmUpCgpBc2tpbmcgYXMg
+YXBwbHlpbmcgb24gbWFpbmxpbmUgNy4xLjUgSeKAmW0gZ2V0dGluZzoKCnBhdGNoaW5nIGZpbGUg
+ZHJpdmVycy9maXJtd2FyZS9tZXNvbi9tZXNvbl9zbS5jCkh1bmsgIzEgRkFJTEVEIGF0IDQ4Lgox
+IG91dCBvZiAxIGh1bmsgRkFJTEVEIC0tIHNhdmluZyByZWplY3RzIHRvIGZpbGUgZHJpdmVycy9m
+aXJtd2FyZS9tZXNvbi9tZXNvbl9zbS5jLnJlaiAgCgoKCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4
+LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
