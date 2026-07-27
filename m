@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D1B6C53209
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jul 2026 13:19:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C69D7C531D0
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jul 2026 13:19:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bqY80Tz+OK0wtJ3Mzrax0Yj/i2j27KNdAAWhuE+kMiw=; b=Ht34acskmnVQ1H
-	lCNon9bZXG5DFyOvJN2eYfFoZX2/1Um6vg2aBGXI47b+VrHWYaRtLErI8FsLemPkGZZAriMQL9WRr
-	TJjsbHMKtkoLm2TVQSct4734YN0V4doxTtfuxtmqYl+WX/ItcD2NuT1ppqrgHFfRH8YXC96xr/JqT
-	GCjf9+cW2Kl0Vn2Xob0g6p8Ianc6DAmrRKIKnYweo5sz0fWAXFDETpCGVUYtOTaPWyLi2Z5jf3P1g
-	x6zhJmWlS/0c+Ji8cxj2bi8Au19UYl6mH9uT2kjfq4CgCKbut87+w3JenbIDmh5h1/ezMwedXPHXn
-	0WUPGsesJ6N/URERmkaQ==;
+	List-Owner; bh=/Ctc8CSyWoc/KxHoOPFtT4DwiAnV6m7TgUdaROzWI6E=; b=EPzZLYFUHm65JN
+	1s7T5z4XPa6vQ0FBMxCaA4aJ+GqGWHkRSgvjiEgKVn66RWLL6VoTJS9O/rLqZJKlZivpf802i8/qW
+	DiTQqDAgDL188opwaTBHnQL+rP9mju/nPVarBppYOeORN3mrHv5NShb1HCMyKPGuHj+5Wx6WplonU
+	A9Girx0qOkDHsgp9d7rmUQsXk4ZFf7e0qP3dKV+f8mmveAXsyZKG9OyhK1nFy8WkYIR5gdyF7a8/y
+	AYhJ3GrqLkhTjOpf5yhOtIB6S4wKpeZ+7EMVRxHCBpuZSslAd9BWAIZAUm/FBvYmJ1JTX3uEug8Lg
+	3zG/gNRRUkwclqtt8dWQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1woLEp-00000002pN2-1xhK;
-	Mon, 27 Jul 2026 13:19:23 +0000
+	id 1woLEw-00000002pPv-41sq;
+	Mon, 27 Jul 2026 13:19:30 +0000
 Received: from extorris.mess.org ([92.243.27.206])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1woLEm-00000002pKh-0UQt;
-	Mon, 27 Jul 2026 13:19:22 +0000
+	id 1woLEm-00000002pKK-3cuQ;
+	Mon, 27 Jul 2026 13:19:23 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mess.org; s=2020;
-	t=1785158358; bh=eSs17I3gI0a4kTGzSQjzniOZzuQNj3YU+5kAUZgohrs=;
+	t=1785158357; bh=MjWQ07Kksq4lkvfRIc1nFy1BvBlXTzQS5OL4pj1+KgU=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=FtWdFM+2rtbsBuCBugcaeSqtYfYdAoNi2n4K4gwcaC1FRlyVX4PBfkNMwqf+gUmmv
-	 dPzZ+VitKy/OapW3JtQQ3XvDSKMTK2RyEsIY0NOuhiIbCiAdbnYYIDZUnl37jUaYMh
-	 w7Euxx0RyrM9cSb+1bv0dkF5SIpPPBe9ISWdo5rNJbxDR8u05iQPOFtYOTiEWHET7C
-	 xIGJCDxzhnPX45Gb7BLP25R+LEBYmTu4lj/DTUSTJwg8OIIB6IYU2gVey9nuW8wMiG
-	 lw3u4MUuTee1o2I3y7+7G9qHZDvzMa78Bz3q5pd9UG4ePQYOLCnKGmkrCyR7KunJtD
-	 EHIuQ6oz74Big==
+	b=YI4OE07DBYkJZrFRURRjrgAHMhXA+Cek9gBQP+crgcuBx+AGpVskpq+ucjfLBXSRa
+	 FJHXRe/mOQj8QdIjCK3UIkYSlQNIdYbnHydePkAKqM33i/U/iFMnzToESmJJZRYtAO
+	 yd6ocLjedA4adhU2Hxm9/wtSwiAQMg6axwXWzDZQ90qZUXtW/WpkKJ1cXZHJvXHJ8f
+	 f2RvC7Jo3j5zCkXSUewKm8mtgkqBK+1Nhf6VtI9VyudbVizwS7+Y5nzeDccF2gSTv3
+	 rYXiPdZHgiqy3D6kN0DgEsgZMq+m41x+LYKNIDjCj0wa9p7MlgcVo6KLG1tt18NIX8
+	 qQNp8xjHp00cA==
 Received: by extorris.mess.org (Postfix, from userid 1004)
-	id 7E5EF42556; Mon, 27 Jul 2026 14:19:18 +0100 (BST)
+	id C547F41CD1; Mon, 27 Jul 2026 14:19:17 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mess.org; s=2020;
-	t=1785158357; bh=eSs17I3gI0a4kTGzSQjzniOZzuQNj3YU+5kAUZgohrs=;
+	t=1785158356; bh=MjWQ07Kksq4lkvfRIc1nFy1BvBlXTzQS5OL4pj1+KgU=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=FwA6BcLZVQ884ht9BqiiKjjKp1UmdkCuqqFzzEbnjxrfb8gYed8A4AhRdXnGFb7KI
-	 SqiGhFp9DMzqzM1gEhWtoWdhpnbBUt56BLP6nqFdXSsMhYxgKKqQ7eHNzjCHJTE1sB
-	 yGAbFlpxttmexsnYz1FKtdLXrwslY/lw6Uyl7Kh8SYYYvPxiTxfsqtoQSH8b1WXcm7
-	 CgDwedvDy92RkdDsBOjK4hd5SoQlAHd9LgMXiu04gOy9qs3XdFbdwTfnyA1Bm/b6Xl
-	 e3KO1klW1xEKRWVTOXWWu7abn5vcoHcgtk1tFOG2MilpT5WOkUHXxGr6ytRNN4RVK3
-	 GfvBm4GeoGE8Q==
+	b=lstHC8/mp0d0iKpjM5tnpW0QnO2ajuwI0hwTQOYMewCQSqmHg1ieANEyLAfs37uFs
+	 4P1f5xaSr3YLDZLDx8jzcypexUgBoV67UUhpO5N2PH6u07UgsU3Yeu0vvFKc5sIO0q
+	 N7Q7tUEWr17XdbbwIWCaGDxiLJDteNUROSwHJp6TtD9GUdjT8N9Y+XdX2WyXqhIDG7
+	 Oymifu9He5wiT76AZK07OqxYkm/8cUcgcqc7yJjwvo02RVmsGM64h4JdgHujai72xg
+	 LyirARdi0FXk7AtfpLVOM46+/mGLWTc6tTyPmsTF0W4LPaoIFY1bMUPejBswW1Dw3z
+	 +5pk7bRkmcNWQ==
 Received: from maru.local (unknown [62.232.99.130])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by extorris.mess.org (Postfix) with ESMTPSA id C897E42554;
+	by extorris.mess.org (Postfix) with ESMTPSA id 283EA42534;
 	Mon, 27 Jul 2026 14:19:16 +0100 (BST)
 From: Sean Young <sean@mess.org>
 To: linux-media@vger.kernel.org,
@@ -60,22 +60,22 @@ To: linux-media@vger.kernel.org,
 	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+	Hans Verkuil <hverkuil+cisco@kernel.org>,
+	Patrice Chotard <patrice.chotard@foss.st.com>
 Cc: stable@vger.kernel.org,
-	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 09/15] media: meson-ir-tx: Ensure probe error is propagated
-Date: Mon, 27 Jul 2026 14:18:52 +0100
-Message-ID: <45cb104675d7abe96dd3570d54f017bce7063be4.1785158244.git.sean@mess.org>
+Subject: [PATCH v4 08/15] media: meson-ir-tx: Ensure rc_free_device() is called on unbind
+Date: Mon, 27 Jul 2026 14:18:51 +0100
+Message-ID: <4674de80dfb7ab8c4a66282be26260ce4e7c9055.1785158244.git.sean@mess.org>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <cover.1785158244.git.sean@mess.org>
 References: <cover.1785158244.git.sean@mess.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260727_061920_297958_9DADA242 
-X-CRM114-Status: GOOD (  13.08  )
+X-CRM114-CacheID: sfid-20260727_061921_041710_06BD208E 
+X-CRM114-Status: GOOD (  12.45  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,39 +92,41 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-devm_clk_get_enabled() may return -EPROBE_DEFER which needs to be
-propagated else the probe will not be deferred, it will fail instead.
+Make rc_dev devm managed.
 
-Fixes: 49be1c78d575 ("media: rc: introduce Meson IR TX driver")
+Fixes: dccc0c3ddf8f ("media: rc: fix race between unregister and urb/irq callbacks")
 Signed-off-by: Sean Young <sean@mess.org>
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc: stable@vger.kernel.org
 ---
- drivers/media/rc/meson-ir-tx.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/media/rc/meson-ir-tx.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/media/rc/meson-ir-tx.c b/drivers/media/rc/meson-ir-tx.c
-index abb107d19e8c..174d5135e1bb 100644
+index e7bb107e6a84..abb107d19e8c 100644
 --- a/drivers/media/rc/meson-ir-tx.c
 +++ b/drivers/media/rc/meson-ir-tx.c
-@@ -290,7 +290,7 @@ static int meson_irtx_mod_clock_probe(struct meson_irtx *ir,
+@@ -345,7 +345,7 @@ static int meson_irtx_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		return dev_err_probe(dev, ret, "irq request failed\n");
  
- 	clock = devm_clk_get_enabled(ir->dev, "xtal");
- 	if (IS_ERR(clock))
--		return -ENODEV;
-+		return PTR_ERR(clock);
+-	rc = rc_allocate_device(RC_DRIVER_IR_RAW_TX);
++	rc = devm_rc_allocate_device(dev, RC_DRIVER_IR_RAW_TX);
+ 	if (!rc)
+ 		return -ENOMEM;
  
- 	*clk_nr = IRB_MOD_XTAL3_CLK;
- 	ir->clk_rate = clk_get_rate(clock) / 3;
-@@ -324,7 +324,7 @@ static int meson_irtx_probe(struct platform_device *pdev)
+@@ -358,10 +358,8 @@ static int meson_irtx_probe(struct platform_device *pdev)
+ 	rc->s_tx_duty_cycle = meson_irtx_set_duty_cycle;
  
- 	irq = platform_get_irq(pdev, 0);
- 	if (irq < 0)
--		return -ENODEV;
-+		return irq;
+ 	ret = devm_rc_register_device(dev, rc);
+-	if (ret < 0) {
+-		rc_free_device(rc);
++	if (ret < 0)
+ 		return dev_err_probe(dev, ret, "rc_dev registration failed\n");
+-	}
  
- 	ir->dev = dev;
- 	ir->carrier = MIRTX_DEFAULT_CARRIER;
+ 	return 0;
+ }
 -- 
 2.55.0
 
