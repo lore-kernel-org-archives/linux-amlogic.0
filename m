@@ -4,141 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 321A3C531FC
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jul 2026 07:20:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D1B6C53209
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jul 2026 13:19:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Vd7rc0o6x2Po+GltHIm8bfDnnoIddhFrE/Hdg0NNrc8=; b=srOTG6RZmns9ds1FtPm79hEqDd
-	K1Rs3xSTZlrTvT2AcOT8Yi+etl+jNIeatdjLQGpUhdZZrPYSCF7awVXPU11ASLAtpX+XgMvkkDImP
-	1qiNZtvIDrgFmMdYJHmjdxLeahV5q6UnUHzrTb0vqtaD7nAbEZGNfKNzx+pxn9Dm2ETNd4+c/1a1t
-	u0nFpaZAsdQ6hi8F/eFI1cBK4gCiNqRTXyuqs3mM8TpH4bvkEukDr7XL+zSzA5+iLo5FMrYYgYyQ+
-	PSohE8Cszv07jHevWvwo2CJifcNpbdobd+L/MlK96bstC2uy/37lrMaJQGbG/DxR8r6OmnHoFZKyv
-	Xr6UuY/Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=bqY80Tz+OK0wtJ3Mzrax0Yj/i2j27KNdAAWhuE+kMiw=; b=Ht34acskmnVQ1H
+	lCNon9bZXG5DFyOvJN2eYfFoZX2/1Um6vg2aBGXI47b+VrHWYaRtLErI8FsLemPkGZZAriMQL9WRr
+	TJjsbHMKtkoLm2TVQSct4734YN0V4doxTtfuxtmqYl+WX/ItcD2NuT1ppqrgHFfRH8YXC96xr/JqT
+	GCjf9+cW2Kl0Vn2Xob0g6p8Ianc6DAmrRKIKnYweo5sz0fWAXFDETpCGVUYtOTaPWyLi2Z5jf3P1g
+	x6zhJmWlS/0c+Ji8cxj2bi8Au19UYl6mH9uT2kjfq4CgCKbut87+w3JenbIDmh5h1/ezMwedXPHXn
+	0WUPGsesJ6N/URERmkaQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1woFdJ-000000026f1-47Yy;
-	Mon, 27 Jul 2026 07:20:17 +0000
-Received: from mail-japaneastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c405::7] helo=TYDPR03CU002.outbound.protection.outlook.com)
+	id 1woLEp-00000002pN2-1xhK;
+	Mon, 27 Jul 2026 13:19:23 +0000
+Received: from extorris.mess.org ([92.243.27.206])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1woFdH-000000026eA-1yjp;
-	Mon, 27 Jul 2026 07:20:16 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=C1nMktM68Sc8gdPLBKgLntMzYNs0K5OWM+zHyxYaUvCIXUc73Ps7FTHsZZe3o3c0bc3w78DPU5Un8m5ieYWHwZH+1XAOk33hyPqpaLlmFmpP5ULmntrGkASpR4yR/I7E+OFGyPK6DBlE/4xh7pN77skR58vkbOAey1acxrWSKF3S5wpu17Oqt8dAj9tpHHN8KUnecSHCS05qrp9gbUx3zhlKL13kuZ3iikR3GKun0z4MdYhZTlWFaYa6p8+qyW0e+TkT7d8mWYdqmVmq2kF4eJYhN//yJE2MIzkIElkLVd+MXNB19QIshafYikIHSDelSalsNZrHTEqON4JXDAuR+Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HfWv0lxaAee8KCqyj0nJQ4bQlq3yEz9NJTnkD/yvvII=;
- b=YseE21iEkFYw6mx4uBkMmy3PN8pjuTDUeKb3TOmLTDV1T+CzrbhAJ8ZiHEk3sG1/yrADpzFaDxkpfIiFsnQ/KpsszvrI9dWqrQFVI3OTs7dDhvOkXvlogYPaWW+rAkrBUmq1KCgdRfPP98/RDy1w4DYTMmD6UQyIcSZ3gX7EpFBCXAXCjGhlNq37OUUA5ub/xT+88vuwYuTW7R/ecKwFuQ4/3GzWbUgGw1RchULAXUaUHiwpbnDrUiM6JvImDjzww8FoPpteIh8WpOiFICQv4x4SLqpooT38Er/zxUAvLUQn6vUlNIY3lOQOCNGVNEBSMPtCq9/Ox78kXEvCi8/vYg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HfWv0lxaAee8KCqyj0nJQ4bQlq3yEz9NJTnkD/yvvII=;
- b=yRCmIlMrL0xVes4IQxAneMPjwmQoYxLekeXM5/ygM9DmtfK8abAy7Nzec9wEZM60tZXQDQLkpBXvSPit8H0H4cp/gA1yyo4Mvhd4tY8538UV8HtU7lvqmKgVEBQsxg+cfVVmoNlPleAErGT9ykAupkIz7Qksl0nFNidtKgAB1lKU6hYZqkTf/3Ik1SUWZk1vnrhkZG8xT+dNCm2DKGKBjXFWviuBLoEAVXzDvaTU0YEMnWPeT34xa0IjxCjZiX6wtSoArqMlM2fnb6sj5h5mMG2hIIsV6iCoaYTHg6uNjzUBvRK8w4nVOonIC7RzS9Yhdw0kLJjTp9QdnurMtwzpaw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB5521.apcprd03.prod.outlook.com (2603:1096:820:51::12)
- by JH0PR03MB8620.apcprd03.prod.outlook.com (2603:1096:990:9d::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.245.13; Mon, 27 Jul
- 2026 07:19:45 +0000
-Received: from KL1PR03MB5521.apcprd03.prod.outlook.com
- ([fe80::f12b:85e:f95c:191e]) by KL1PR03MB5521.apcprd03.prod.outlook.com
- ([fe80::f12b:85e:f95c:191e%6]) with mapi id 15.21.0245.012; Mon, 27 Jul 2026
- 07:19:44 +0000
-Message-ID: <983d5ac5-e489-4d28-a1d3-ba736b3cdc28@amlogic.com>
-Date: Mon, 27 Jul 2026 15:19:42 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 6/6] arm64: defconfig: Enable CONFIG_VIDEO_AMLOGIC_VDEC
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20260724-b4-s4-vdec-upstream-v6-0-6072a7ee7428@amlogic.com>
- <20260724-b4-s4-vdec-upstream-v6-6-6072a7ee7428@amlogic.com>
- <20260727-vivid-native-bloodhound-4c7ff6@quoll>
- <16ede5f1-dcd4-4b43-98a9-02754796de81@kernel.org>
- <b7d083b4-fe1e-4788-b027-fa803d067521@amlogic.com>
- <e9c42d55-905c-4bab-8e63-e859a8f4fd46@kernel.org>
-From: Zhentao Guo <zhentao.guo@amlogic.com>
-In-Reply-To: <e9c42d55-905c-4bab-8e63-e859a8f4fd46@kernel.org>
-X-ClientProxiedBy: SI3PR01CA0007.apcprd01.prod.exchangelabs.com
- (2603:1096:4:296::8) To KL1PR03MB5521.apcprd03.prod.outlook.com
- (2603:1096:820:51::12)
+	id 1woLEm-00000002pKh-0UQt;
+	Mon, 27 Jul 2026 13:19:22 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mess.org; s=2020;
+	t=1785158358; bh=eSs17I3gI0a4kTGzSQjzniOZzuQNj3YU+5kAUZgohrs=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=FtWdFM+2rtbsBuCBugcaeSqtYfYdAoNi2n4K4gwcaC1FRlyVX4PBfkNMwqf+gUmmv
+	 dPzZ+VitKy/OapW3JtQQ3XvDSKMTK2RyEsIY0NOuhiIbCiAdbnYYIDZUnl37jUaYMh
+	 w7Euxx0RyrM9cSb+1bv0dkF5SIpPPBe9ISWdo5rNJbxDR8u05iQPOFtYOTiEWHET7C
+	 xIGJCDxzhnPX45Gb7BLP25R+LEBYmTu4lj/DTUSTJwg8OIIB6IYU2gVey9nuW8wMiG
+	 lw3u4MUuTee1o2I3y7+7G9qHZDvzMa78Bz3q5pd9UG4ePQYOLCnKGmkrCyR7KunJtD
+	 EHIuQ6oz74Big==
+Received: by extorris.mess.org (Postfix, from userid 1004)
+	id 7E5EF42556; Mon, 27 Jul 2026 14:19:18 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mess.org; s=2020;
+	t=1785158357; bh=eSs17I3gI0a4kTGzSQjzniOZzuQNj3YU+5kAUZgohrs=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=FwA6BcLZVQ884ht9BqiiKjjKp1UmdkCuqqFzzEbnjxrfb8gYed8A4AhRdXnGFb7KI
+	 SqiGhFp9DMzqzM1gEhWtoWdhpnbBUt56BLP6nqFdXSsMhYxgKKqQ7eHNzjCHJTE1sB
+	 yGAbFlpxttmexsnYz1FKtdLXrwslY/lw6Uyl7Kh8SYYYvPxiTxfsqtoQSH8b1WXcm7
+	 CgDwedvDy92RkdDsBOjK4hd5SoQlAHd9LgMXiu04gOy9qs3XdFbdwTfnyA1Bm/b6Xl
+	 e3KO1klW1xEKRWVTOXWWu7abn5vcoHcgtk1tFOG2MilpT5WOkUHXxGr6ytRNN4RVK3
+	 GfvBm4GeoGE8Q==
+Received: from maru.local (unknown [62.232.99.130])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by extorris.mess.org (Postfix) with ESMTPSA id C897E42554;
+	Mon, 27 Jul 2026 14:19:16 +0100 (BST)
+From: Sean Young <sean@mess.org>
+To: linux-media@vger.kernel.org,
+	Sean Young <sean@mess.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+Cc: stable@vger.kernel.org,
+	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 09/15] media: meson-ir-tx: Ensure probe error is propagated
+Date: Mon, 27 Jul 2026 14:18:52 +0100
+Message-ID: <45cb104675d7abe96dd3570d54f017bce7063be4.1785158244.git.sean@mess.org>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <cover.1785158244.git.sean@mess.org>
+References: <cover.1785158244.git.sean@mess.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB5521:EE_|JH0PR03MB8620:EE_
-X-MS-Office365-Filtering-Correlation-Id: c0fe3c1a-107c-4f28-09f9-08deebaf6f07
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|366016|1800799024|376014|23010399003|11063799006|56012099006|4143699003|10067099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: phapUrMGGh560x0SWoRCnU2wKHnYRNSY90J19M+11n7StgBuvLPVmS7UKLlL5fsu5F4EV8OqvPS14XnQHDNYnTKRx8fWuvQfcjgSNHoIJ5D9JIv+CPj6nSKv6x3ttcAZzpq1no6wehRUo/DIQkdr3hOsXSlJcZvuUDVp3EjDqC8Y3Di6Cwu6TEiAfZWvxsH9wCfn43jjFquTVh8ARDuzfg92xEed22y23ahYPgGerw1LDMuyrmK89lkcIhtHjYrgKTL56P/0E5GC31aE7O4mavCU0VX9GwbCEEDnMz2wQM8pL4eXTbsC74tt6jxsflHHZZqVZ2xuCKmQLk6jtrkTJ0wdoxBIAATgWdP98RiMhlrPmjKtAAqsFExnfgMwTKWGFUNpp/SBvw+A8r+lBQOivMCmw37fZ4xu+ZvH5X1Hq29Swi38rv8g14t006/Fsu9qWKXBZtJ7SD5SK91oh2EbszETGM9iteu4HkamWYx17EgdHR2q8uncO8JuOaYVkWxZcC+wd3BbquV81eHhWUC0kLYtG9vU+O19aReLm0siWpxnbX2eeblbjkSB0Ea9V1RNq4q+Hz0BQ3J9C+1uZYMs7pm+YW+SuVQedvr9tdDDZsbWQxZge80Ur1ogrSk78pDtiIlyj3+gPmBWN1FS3M5Dx81v+qs+k6M+1+02bnjuEeY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5521.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(1800799024)(376014)(23010399003)(11063799006)(56012099006)(4143699003)(10067099003)(18002099003)(22082099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dnJvQldKZVh4QXRyZnpnUEtuS21IQjYwYm95b2d2TnZVelBiMzAvc0ZVeldG?=
- =?utf-8?B?eGQxanowVlRsbkJkNjBEZ3VDWXkrQXplWHpXaFpjNFh6WTJQWFBKV1RoODNZ?=
- =?utf-8?B?MlRvMG5rcTFLazNhRThpT3VadE1ZYmF4aWlSeWgyZWR1b2JndVVLRzYwaU11?=
- =?utf-8?B?SXZJR1k1RUozNERQeE9EdW5PcXF0NStUbnRCOU9JeDNBdDhSdkZLY0o1WnNI?=
- =?utf-8?B?SldDdVh4SXVyZE4vMnlFUldwWllhOUZvNjNVZ252NDlqN1FtM1dVRjl4QmJI?=
- =?utf-8?B?aC9XUmwrcGVyZEZsaHU5WXQ5SlVvU0s1K2FuWDc2R09TOXRzMVJpM2FhTDlu?=
- =?utf-8?B?b0JTUjlMNGJHYURORG5Bdm9ONHNTUmJmazZxaFRIbUZNaFpXczF0V0d4ZEsv?=
- =?utf-8?B?S09iTnc1dWwvdGo1RlhiL09NQWlzLytZOEhkK1Z2d0FoU3FTTHJ3Zk5jUyt3?=
- =?utf-8?B?ZVFISlFaSTVLNGRza2czdHpTbjZrZGtCYy9aTVBzRGNtMEZtUVU3R3Q5Yk52?=
- =?utf-8?B?d1ZqeVBMWjYycGViSXFiNW9nekdIN1VBSllESk5PS3JHcTR6TXd2UTNLZVBw?=
- =?utf-8?B?K21yOFhpSmhlUlF1UEtRSUlhYy9iZVZWUW5CZmtKTmxMTVNzajVYaFhsZnhP?=
- =?utf-8?B?Q3liVGE0djBGWVl0V3N1azJEbWFZb1pUVmVJdHcxYk1Oa0owenZXRThMTEUr?=
- =?utf-8?B?djlXYUIwUXJtZW5ZWjdFL0VKNTZBVnpaZE5RdVpsMnByL0w4SitWazVZZ0o0?=
- =?utf-8?B?VzRKYWk2ZjE0bEZ2U2x2czVPNnozVHd4bFB1S3RmYW5KZk9LKzJCS055Y2Yz?=
- =?utf-8?B?L3hRYzUxNzFLSDEzeVdBTnZHT3pkaGNUc3VJWmI1VnVjL1ErdlpaRS9UMVJo?=
- =?utf-8?B?TDZRWG9MM3BSaXlRNC8yWkVZcUxrN3JNY3ZtUUlYSUNIMmgwZEtwbEZyZXND?=
- =?utf-8?B?cHNBSlZ5UC8ra095bTh6emxkOVNoaW9lcXErUTd5RG5lREQwYnh4dHNReHd6?=
- =?utf-8?B?ZlRBTStQVkZXNW1FdWRLbHMwUVE2MUxBZFBmL0NBbjRsSHg5Zm9odmhjQzBu?=
- =?utf-8?B?UVlsQm5sblpydG42NEg5dmpsWTZkOHFmMnliZDllL2VpZmRQRzFPWjYyQnZP?=
- =?utf-8?B?UFZ4dzFiRU9ZRzBBT01GR2tHNlp4ZTJzSStLd294NUE0dXBUYmVDVmtqRkU0?=
- =?utf-8?B?OXJrbjc1VC80ZnNXVVQrS2NOc1ZXcTcrM2VNRkhsRW4xeldzSFMrVUpZSjhp?=
- =?utf-8?B?QnMxaWtYU1VnTGNJQUdDMWRqOW85eElHQ0EvT1VMRW5JVVVOa3gya3NoQzA5?=
- =?utf-8?B?dmxwNlU5aFdoMEIzdHZScXVCdUVPT3cxV281L2Vpa0JLR0F1b1paWmloMzZ1?=
- =?utf-8?B?SGhOVUdKZHlPYnNWZEtOVDNLeE0wUFNLdGV1ZTY3alF4VExQcVlzUXZBeTR1?=
- =?utf-8?B?ak5CT2VjbENGd1Y4cTNZcmJ1SXRMTEwxc0Z3WGxIc0VvVW1KbnR2U0t4bkxU?=
- =?utf-8?B?ZmhnN3QrRGQ5a0RMZGpuQmx0Y1JmU1djbzVOWmcxcm9uY3BVbUhXeGcreFpy?=
- =?utf-8?B?QXhNYkxxbUpsMzdrQ0pGNi9WOFlaSHBIZk9QT2ExSndXci94M2JVc2h3bjQ4?=
- =?utf-8?B?QTZCWWtRc0t5YVN1bFFreFY3ekZlQXdkRk5iNURUdExXdUl6OFFMZ244Rkhi?=
- =?utf-8?B?Z09FS1hmZDFqZXZtQ0FBbVZRUUc2citOSUpiSGRwTHBuZmFyWHp4Z1BKZ2Nq?=
- =?utf-8?B?TTQxUXhDS3RiWXNBYXNKbUhMazZTbWhhNnNwQ2c1QS9zZkdNSXNYYlgwZVJs?=
- =?utf-8?B?MjNVUTErOWc3RE1IREQ3dkxZaXh0Tk1zczFvbDRnYng4TEF5ZjV2VkZwRGNu?=
- =?utf-8?B?Rlk1aFIrZDZSQWlHZ2ZPTUVuL1hLZE1HVjNVRHdmcmFqa1FoZE1MYm9tejZM?=
- =?utf-8?B?S1l4dHl4cjMrdkFFbHZEejBVNzJJMndiWmpueCtoc1FGR2Z3Z0NoVlkxTmFM?=
- =?utf-8?B?V2tvMzhVRVlLUEdQVVk2emFPOUJBQnkxcThyTE1adTRXYWFBYlQzSlBlVFcr?=
- =?utf-8?B?ajhVc0xWWWlUY2pldGlWczFyeEpHODJpRkQrckw4azRjcW5XZGlOdkpRMElD?=
- =?utf-8?B?MlU3eFhjYW1QVzZYK2I5VC9ITEp1dFNiNExNbnJxMnJtRnltWE9DMkZqampP?=
- =?utf-8?B?aW85NzNaYWcyRU5sY3R1WFh5K2JNQ0FUMllQN1VULzJXQVAvcGtlbHVoQXBj?=
- =?utf-8?B?VFBxMGRPVDdKN3duamxUYVg5UE9heWpvLzR0bnNGMnZFeDNWZjR3b3VSQi9L?=
- =?utf-8?B?RUhCOGxsSjlLSXdaa2UyL1hscVNlVWRCdFA0TENoU0RWaVFpaXpkUT09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c0fe3c1a-107c-4f28-09f9-08deebaf6f07
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5521.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jul 2026 07:19:44.9084
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DxgiZeW+wFSmfG+aUbSUJmPu2mTAL2Mt44/nceGAcKOJ7wSs90thq2KsKai+dMrgwcdfsCvCd6h3hJ5AJzVDeA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR03MB8620
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260727_002015_519690_B8FABF80 
-X-CRM114-Status: GOOD (  12.40  )
+X-CRM114-CacheID: sfid-20260727_061920_297958_9DADA242 
+X-CRM114-Status: GOOD (  13.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -150,40 +87,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+devm_clk_get_enabled() may return -EPROBE_DEFER which needs to be
+propagated else the probe will not be deferred, it will fail instead.
 
-> On 27/07/2026 08:36, Zhentao Guo wrote:
->> Hi Krzysztof
->>
->>> On 27/07/2026 08:24, Krzysztof Kozlowski wrote:
->>>> On Fri, Jul 24, 2026 at 03:04:56PM +0800, Zhentao Guo wrote:
->>>>> Enable the Amlogic V4L2 stateless video decoder driver as a module
->>>>> in the arm64 defconfig. This driver is needed for stateless video
->>>>> decoding support on Amlogic SoCs.
->>>> Which boards use it? Look at `git log` to learn how this commit should
->>>> be written.
->>> I already ASKED YOU this at v4 and pointing you to git log history. Not
->>> much improved.
->>>
->>> Did you even check any commits?
->> I did check some of the commits. I'll refer to more git logs of other
->> commits, and describe this patch as clearly as possible.
-> No, you need to provide reason WHY do we want it in mainline. You do not
-> need to write more sentences. The reason is some mainline board using it.
-Yes, I read the other feedback from you and see what you mean. Actually 
-I missed the point when I was reading other git logs before. Thanks for 
-the reminder, it's clear to me now.
->
-> Best regards,
-> Krzysztof
+Fixes: 49be1c78d575 ("media: rc: introduce Meson IR TX driver")
+Signed-off-by: Sean Young <sean@mess.org>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: stable@vger.kernel.org
+---
+ drivers/media/rc/meson-ir-tx.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-BRs,
-
-Zhentao
+diff --git a/drivers/media/rc/meson-ir-tx.c b/drivers/media/rc/meson-ir-tx.c
+index abb107d19e8c..174d5135e1bb 100644
+--- a/drivers/media/rc/meson-ir-tx.c
++++ b/drivers/media/rc/meson-ir-tx.c
+@@ -290,7 +290,7 @@ static int meson_irtx_mod_clock_probe(struct meson_irtx *ir,
+ 
+ 	clock = devm_clk_get_enabled(ir->dev, "xtal");
+ 	if (IS_ERR(clock))
+-		return -ENODEV;
++		return PTR_ERR(clock);
+ 
+ 	*clk_nr = IRB_MOD_XTAL3_CLK;
+ 	ir->clk_rate = clk_get_rate(clock) / 3;
+@@ -324,7 +324,7 @@ static int meson_irtx_probe(struct platform_device *pdev)
+ 
+ 	irq = platform_get_irq(pdev, 0);
+ 	if (irq < 0)
+-		return -ENODEV;
++		return irq;
+ 
+ 	ir->dev = dev;
+ 	ir->carrier = MIRTX_DEFAULT_CARRIER;
+-- 
+2.55.0
 
 
 _______________________________________________
