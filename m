@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B79CC531D0
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jul 2026 06:24:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DD56C531D0
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jul 2026 06:24:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FN9TJOPGCgbuQAX73D6MTmmGwpvzehs/ptAYF9NHiiw=; b=2xlorhcgs217HV
-	HcikM7yXE5h02g33IsVg9SM4k5OJmCnivgqeE6/mQGLgaA9TVLLP7bqipWrlASy+wXJ2y6+snAzT4
-	vI1mJlZH7q1qnHDaudnsMLyPGU+jn+kv8Dy/LbAyFgHDWgFQvGxMr6T9Ab1Jcf0Rw3i5KmjCjANsR
-	jIcqXiGPYXRUv8goswbPgwFINAlH2MWVYO7v2lAyO3LvJXPr332V/dxNoXePf+v7aLtbq/yCrdnYw
-	16LJJ53mNyy5eXuZWxFzLbmBqTXCCMuTLWHz5dPrVHR/au5uW+lke8rivxgXQAm5zJhObpjc6OnO+
-	TqxNBS3iF6vVXrwnEepw==;
+	List-Owner; bh=TEYIsP5mI2lHIO2+9K2TISiSlYjfDZYoSYnfGJeGQpU=; b=MxiPKBqMEEvPA4
+	/nmG3oDbaVV8Rh4yKCbfNp/9D+WyS+pxVvoXKR68RGYsyBSf3obCaAcH0SJZgwEP0dUfc3uJpEHHw
+	lwoc/0wmWSyG6hlsKF8c2hCk544eQhh5LMzQLphlemL5+CKHyFKkNmoXm+05qXBCh60rSLw9rJYcG
+	uTC/yQ1aTMwp+osEsB7Hc1oKGZlkyGPkP5m5LHD+MapWZCAAuLvyLK3t7MjplBz2jR05zTo7WNxdM
+	1faKlQadHgIxVhl7jrzx0pOT73yq3LcNpzpHm04x8Vgpl6/QI/2HExqtgSShLiVSwc9HZ6VZw8hh3
+	c4SBiRKbE0h5NXMH38xw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1woEkq-000000020wS-2xkq;
-	Mon, 27 Jul 2026 06:24:00 +0000
+	id 1woElY-00000002143-05tP;
+	Mon, 27 Jul 2026 06:24:44 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1woEkp-000000020wJ-1MAR;
-	Mon, 27 Jul 2026 06:23:59 +0000
+	id 1woElW-0000000213c-43J1;
+	Mon, 27 Jul 2026 06:24:42 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 1257A43505;
-	Mon, 27 Jul 2026 06:23:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE8A71F000E9;
-	Mon, 27 Jul 2026 06:23:56 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id B699340085;
+	Mon, 27 Jul 2026 06:24:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A4201F000E9;
+	Mon, 27 Jul 2026 06:24:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1785133438;
-	bh=eVsgJPRHn51XcESko363GMJRqIFO2EWO17u2oafb950=;
+	s=k20260515; t=1785133482;
+	bh=uj0dW1/cUOSptKugRvHnG1G86d/08F19sM+hIpNCDkY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=WHHfYYc/EVunwM/BogFHtGsU8/oSwATiUe4Bbl4i0C2qoQ6OVAEk3yBR3a1xuW82R
-	 Jwg+AKk0O9Dj/ms1Pi0LOfABiQpx51jWFUDbWZWwSPsanpvCZtmKETuJZ2Ii7B6Xmi
-	 R2nEYVkkm1wGQzMdfCs5fqvygonY8z0HocJF+KA8ebmredvBuAFGKJDU+fB4j/bohA
-	 Vf9eBnGJfIWXfaKPWUXl+VrJX1uFv8mQudo7ewu4wqa3/qRC5IdLpdQugAqN5jnpx8
-	 fPRZ9gGtpDbOQv9CpNdfZbHblCd6rUJvplquMEZN3WQhMeYznCI8xs7bAaHH3G/MPC
-	 DnbXxDCrPpPSQ==
-Date: Mon, 27 Jul 2026 08:23:53 +0200
+	b=JLYpDhlcK2qVtLl7HKfvmO3THxWACz5O/Os6Dg5cUPh4ETa7C1R+siuKFlY5W/2u0
+	 reiyj9fIMuCnw9P+4qs7RTDXcfMuX87Pk6kxnaZ+UDVOByOkcrKLxg3eJjTLxbLFMh
+	 PU2NnYXGOvuM5c25KsRqUV9aEYspeeIaQyzO5FC746tl9jfn/Ct7Vmf2V+w0c9TVa8
+	 mlQGrkmGxHlyzK6ssfGXBmdG085x/GIkE4klKvr6Cp4I+g62uxSFK9EJnoySwl/bfb
+	 OLxW79Id5EGPI3qm7h1sWe8neaur8gACDq9KaAMBjqzpMcAjW3YbKQxQ8D9wXJWLYS
+	 1VuGgQT8BuGTw==
+Date: Mon, 27 Jul 2026 08:24:38 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Zhentao Guo <zhentao.guo@amlogic.com>
 Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -51,13 +51,13 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
 	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 3/6] media: dt-bindings: Add Amlogic V4L2 video decoder
-Message-ID: <20260727-brawny-silent-kangaroo-a02c9c@quoll>
+Subject: Re: [PATCH v6 6/6] arm64: defconfig: Enable CONFIG_VIDEO_AMLOGIC_VDEC
+Message-ID: <20260727-vivid-native-bloodhound-4c7ff6@quoll>
 References: <20260724-b4-s4-vdec-upstream-v6-0-6072a7ee7428@amlogic.com>
- <20260724-b4-s4-vdec-upstream-v6-3-6072a7ee7428@amlogic.com>
+ <20260724-b4-s4-vdec-upstream-v6-6-6072a7ee7428@amlogic.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20260724-b4-s4-vdec-upstream-v6-3-6072a7ee7428@amlogic.com>
+In-Reply-To: <20260724-b4-s4-vdec-upstream-v6-6-6072a7ee7428@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,27 +74,13 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Jul 24, 2026 at 03:04:53PM +0800, Zhentao Guo wrote:
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
-> +    #include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
-> +    #include <dt-bindings/power/meson-s4-power.h>
-> +    #include <dt-bindings/reset/amlogic,meson-s4-reset.h>
-> +    video-codec@fe320000 {
-> +      compatible = "amlogic,s4-vdec";
-> +      reg = <0xfe320000 0x10000>,
-> +            <0xfe036000 0x20>;
-> +      amlogic,canvas = <&canvas>;
-> +      reg-names = "dos",
-> +                  "dmc";
+On Fri, Jul 24, 2026 at 03:04:56PM +0800, Zhentao Guo wrote:
+> Enable the Amlogic V4L2 stateless video decoder driver as a module
+> in the arm64 defconfig. This driver is needed for stateless video
+> decoding support on Amlogic SoCs.
 
-Please read carefully DTS coding style.
-
-You also need to address all comments from Sashiko.
+Which boards use it? Look at `git log` to learn how this commit should
+be written.
 
 Best regards,
 Krzysztof
