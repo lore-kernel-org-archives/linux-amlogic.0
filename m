@@ -4,61 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5236DC531FC
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jul 2026 06:26:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8433C531D0
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jul 2026 06:31:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:From:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mRapLcT8edw8AwuX9l6034moQxSntrjhpfdIKMrTYDk=; b=nZ44xf/xY9Oi1q
-	er+fXoL2FvO/7OT26j4OPSz0QXOtPRBnCeLEQU9uy0T0al+p++4LQ2U24SkNP+igdtaPnncCBaAjV
-	E8aXNJaR/HIHidOSk3KZVQV8Me41aCE1mLmKOYENqlvhLy2nsoggQ8eqlaLBYLMZ6hV15kGTJ7S8+
-	ubD3FY2M+QWG7miOLOG3wKEWeYmqydsXj8voQ59vkpJ9eC8QX0ck+FSt34GOuMhcO967GAE8N05tI
-	0a+2tgEWOcUA9vPXNwDXXraUTpT+75ihhYxBmzSkZFCm98na5Bs8uiwO3XGkc0bNpMBlZoX5FkEBu
-	2vfUvN20rV1X3bLgL4xw==;
+	List-Owner; bh=RPVSojGkr64IIGCr3SeBDlg5JWHy0Zfpr+KG3+cW/ts=; b=ivKbvz0oQZaFnt
+	uGei1I57cvuK8KBIuZ1TTkilfBXgRJ9Dk3BJ4kybjkDbnpnYip7QurUKjsfTv1iMzeeMpP2cUIEXQ
+	7zTqNOUV2Oan3ui5PQaov1XEN+FBadxyULlrt+2WMOQnf/pRG2EgsF8RKU0VC2XyD/BwVGjIm0HIb
+	KEz6Cr494aDRne6tKNK5ZVmBbjhpnwaKLZvnEs8UzZw9klcyZexdDBIlnJg24dx9eiAr9Zhv9ASXf
+	FeCoRX07VE56TTzySCQXVZmuwVK2l/3cq1HZppQwjxF3EBOUp63H4jtbPIkoAEzj2vjUyDFHMlBLe
+	3qol7A+oRFoinjbnf+mA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1woEnW-000000021Xf-0FKO;
-	Mon, 27 Jul 2026 06:26:46 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1woEs2-000000021uL-35kd;
+	Mon, 27 Jul 2026 06:31:26 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1woEnV-000000021XW-0fOC;
-	Mon, 27 Jul 2026 06:26:45 +0000
+	id 1woEs1-000000021u9-3btf;
+	Mon, 27 Jul 2026 06:31:25 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id E52C043975;
-	Mon, 27 Jul 2026 06:26:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3320F1F000E9;
-	Mon, 27 Jul 2026 06:26:39 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 6348242DB1;
+	Mon, 27 Jul 2026 06:31:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29D9D1F000E9;
+	Mon, 27 Jul 2026 06:31:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1785133604;
-	bh=CEcsYQM4ljco82dEKg+yhxhcPhTVO5qy8nLEQaYZrN0=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To;
-	b=eLWHZk1TOQ7GHKI0f/1uiSLAD/GtGt9c3sY+i8RcJ/MOhsMVuSrOMtic/1KOpkkWA
-	 wvd2uoK30r5dwj/XtyIbdN3Fs4j2q65Tbe74CHk9rN24G35iy1/xDs2nnfr26s/1/6
-	 DG80Zs7rx/g2NaYAz6yXnZfOAB8ydbQQjUwIREDmQMwKWsGTMxJtKWhDwNijGEoEaV
-	 Jt9+4kWQDnF6mn4zbtWAu2igbfa+bbx9RUbI5N9YU6J9x9a+mxLqzgyT0r59PQNtlm
-	 qqVClLeZAEevKb4eH3+OTGY+nyH64iHJMWXwDx/4LU175NOCclrayhn1BDQj2wYcC6
-	 NadiVMi2JSTBQ==
-Message-ID: <16ede5f1-dcd4-4b43-98a9-02754796de81@kernel.org>
-Date: Mon, 27 Jul 2026 08:26:37 +0200
+	s=k20260515; t=1785133885;
+	bh=wzbvqpwJ4tVuHha4a/AUKgG69FWQ3lB+QJyk93qBqRI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=A3SrILAtExo6jZZFlwXryvbkBVFyefolqGPkrnFgmuCpyQN7shK7QEt8dhioS/JMh
+	 9TJn2G06MG0bXeG+SYEFr442F6HT7zCZ2fftpCvnDGlMAmZUKY6r6Dx4Yx7nld1fjL
+	 6KMTSgvSMkPVQuY7aUiSa4CyrLu/dBIHmh3nd+1JjelM1WMqnOOgRaPDNxTkZUJy4F
+	 Lx0S8+2BoGyef2AvcPlIu1whkrABG6iYjnCe5albf4fMH4bQHXM0gWxC1KpnWSmtmM
+	 tX0MmMsZ4Ma4P1/vOTsYHA5uClvpr+A/QYdh7+sJUiFyyY7UJbWRX5eWb3C5rpMyuI
+	 XWgA4OER3zlLQ==
+Message-ID: <0ce72645-aec6-478d-afad-b5c9f838d7ea@kernel.org>
+Date: Mon, 27 Jul 2026 08:31:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 6/6] arm64: defconfig: Enable CONFIG_VIDEO_AMLOGIC_VDEC
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Zhentao Guo <zhentao.guo@amlogic.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+Subject: Re: [PATCH v6 4/6] decoder: Add V4L2 stateless H.264 decoder driver
+To: zhentao.guo@amlogic.com, Neil Armstrong <neil.armstrong@linaro.org>,
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org
 References: <20260724-b4-s4-vdec-upstream-v6-0-6072a7ee7428@amlogic.com>
- <20260724-b4-s4-vdec-upstream-v6-6-6072a7ee7428@amlogic.com>
- <20260727-vivid-native-bloodhound-4c7ff6@quoll>
+ <20260724-b4-s4-vdec-upstream-v6-4-6072a7ee7428@amlogic.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -103,7 +101,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <20260727-vivid-native-bloodhound-4c7ff6@quoll>
+In-Reply-To: <20260724-b4-s4-vdec-upstream-v6-4-6072a7ee7428@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,21 +118,156 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 27/07/2026 08:24, Krzysztof Kozlowski wrote:
-> On Fri, Jul 24, 2026 at 03:04:56PM +0800, Zhentao Guo wrote:
->> Enable the Amlogic V4L2 stateless video decoder driver as a module
->> in the arm64 defconfig. This driver is needed for stateless video
->> decoding support on Amlogic SoCs.
+On 24/07/2026 09:04, Zhentao Guo via B4 Relay wrote:
+> From: Zhentao Guo <zhentao.guo@amlogic.com>
 > 
-> Which boards use it? Look at `git log` to learn how this commit should
-> be written.
+> Add initial support for V4L2 stateless video decoder
+> driver on Amlogic S4(S805X2) platform. In phase 1,
+> it supports 8bit H.264 bitstreams decoding. Currently
+> only progressive streams are supported.
+> 
+> Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
+> ---
+>  MAINTAINERS                                        |    7 +
+>  drivers/media/platform/amlogic/Kconfig             |    1 +
+>  drivers/media/platform/amlogic/Makefile            |    1 +
+>  drivers/media/platform/amlogic/vdec/Kconfig        |   18 +
+>  drivers/media/platform/amlogic/vdec/Makefile       |    4 +
+>  drivers/media/platform/amlogic/vdec/TODO           |    7 +
+>  drivers/media/platform/amlogic/vdec/aml_vdec.c     |  736 +++++++
+>  drivers/media/platform/amlogic/vdec/aml_vdec.h     |   33 +
+>  drivers/media/platform/amlogic/vdec/aml_vdec_drv.c |  239 +++
+>  drivers/media/platform/amlogic/vdec/aml_vdec_drv.h |  172 ++
+>  drivers/media/platform/amlogic/vdec/aml_vdec_hw.c  |  538 +++++
+>  drivers/media/platform/amlogic/vdec/aml_vdec_hw.h  |  157 ++
+>  .../platform/amlogic/vdec/aml_vdec_platform.c      |   81 +
+>  .../platform/amlogic/vdec/aml_vdec_platform.h      |   46 +
+>  .../media/platform/amlogic/vdec/aml_vdec_tee_fw.c  |  240 +++
+>  .../media/platform/amlogic/vdec/aml_vdec_tee_fw.h  |   27 +
+>  drivers/media/platform/amlogic/vdec/h264.c         | 2067 ++++++++++++++++++++
+>  drivers/media/platform/amlogic/vdec/h264.h         |  299 +++
+>  drivers/media/platform/amlogic/vdec/reg_defines.h  |  177 ++
+>  19 files changed, 4850 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index a112ce9f0fa0..a27ea19907f9 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1423,6 +1423,13 @@ S:	Maintained
+>  F:	Documentation/devicetree/bindings/spi/amlogic,a4-spisg.yaml
+>  F:	drivers/spi/spi-amlogic-spisg.c
+>  
+> +AMLOGIC VDEC DRIVER
+> +M:	Zhentao Guo <zhentao.guo@amlogic.com>
+> +L:	linux-media@vger.kernel.org
 
-I already ASKED YOU this at v4 and pointing you to git log history. Not
-much improved.
+You can drop the L:. Subsystem defines it.
 
-Did you even check any commits?
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/media/amlogic,s4-vcodec-dec.yaml
+> +F:	drivers/media/platform/amlogic/vdec/
+> +
+>  AMPHENOL CHIPCAP 2 DRIVER
+>  M:	Javier Carrasco <javier.carrasco.cruz@gmail.com>
+>  L:	linux-hwmon@vger.kernel.org
+> diff --git a/drivers/media/platform/amlogic/Kconfig b/drivers/media/platform/amlogic/Kconfig
+> index 458acf3d5fa8..7c541ac0d0c3 100644
+> --- a/drivers/media/platform/amlogic/Kconfig
+> +++ b/drivers/media/platform/amlogic/Kconfig
+> @@ -4,3 +4,4 @@ comment "Amlogic media platform drivers"
+>  
+>  source "drivers/media/platform/amlogic/c3/Kconfig"
+>  source "drivers/media/platform/amlogic/meson-ge2d/Kconfig"
+> +source "drivers/media/platform/amlogic/vdec/Kconfig"
+> diff --git a/drivers/media/platform/amlogic/Makefile b/drivers/media/platform/amlogic/Makefile
+> index c744afcd1b9e..7409de674c0b 100644
+> --- a/drivers/media/platform/amlogic/Makefile
+> +++ b/drivers/media/platform/amlogic/Makefile
+> @@ -2,3 +2,4 @@
+>  
+>  obj-y += c3/
+>  obj-y += meson-ge2d/
+> +obj-y += vdec/
+> diff --git a/drivers/media/platform/amlogic/vdec/Kconfig b/drivers/media/platform/amlogic/vdec/Kconfig
+> new file mode 100644
+> index 000000000000..d392967c7743
+> --- /dev/null
+> +++ b/drivers/media/platform/amlogic/vdec/Kconfig
+> @@ -0,0 +1,18 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+> +
+> +config VIDEO_AMLOGIC_VDEC
+> +    tristate "Amlogic Video Decoder Driver"
+> +    depends on ARCH_MESON || COMPILE_TEST
+> +    depends on VIDEO_DEV
+> +    depends on V4L_MEM2MEM_DRIVERS
+> +    depends on TEE
+> +    select VIDEOBUF2_DMA_CONTIG
+> +    select V4L2_H264
+> +    select V4L2_MEM2MEM_DEV
+> +    select MESON_CANVAS
+> +    select MESON_SM
+> +    help
+> +      This is a v4l2 driver for Amlogic video decoder driver.
+> +	  This driver is designed to support V4L2 M2M STATELESS
+> +	  interface.
 
-NAK
+Somehow messed indentation.
+
+...
+
+> +err_media_dev_register:
+> +	v4l2_m2m_unregister_media_controller(dev->m2m_dev_dec);
+> +error_m2m_mc_register:
+> +	media_device_cleanup(&dev->mdev);
+> +err_vid_dev_register:
+> +	v4l2_m2m_release(dev->m2m_dev_dec);
+> +err_hw_init:
+> +	dev->dec_hw = NULL;
+> +err_dec_mem_init:
+> +	video_device_release(vfd_dec);
+> +err_device_alloc:
+> +	v4l2_device_unregister(&dev->v4l2_dev);
+> +	return ret;
+> +}
+> +
+> +static void aml_vdec_drv_remove(struct platform_device *pdev)
+> +{
+> +	struct aml_vdec_dev *dev = platform_get_drvdata(pdev);
+> +
+> +	vdec_disable(dev->dec_hw);
+> +
+> +	if (media_devnode_is_registered(dev->mdev.devnode)) {
+> +		media_device_unregister(&dev->mdev);
+> +		media_device_cleanup(&dev->mdev);
+> +	}
+> +
+> +	if (dev->m2m_dev_dec)
+> +		v4l2_m2m_release(dev->m2m_dev_dec);
+> +	if (dev->vfd)
+> +		video_unregister_device(dev->vfd);
+> +	if (dev->dec_hw) {
+
+I do not understand why do you release resources conditionally. Where
+they allocated conditionally? Why probe is not releasing them the same
+way in error paths?
+
+> +		dev->pvdec_data->destroy_hw_resource(dev);
+> +		dev->dec_hw = NULL;
+
+What's the purpose of this? If this is needed, then your driver has
+serious concurrency issues which are not solved with it.
+
+
+> +	}
+> +	v4l2_device_unregister(&dev->v4l2_dev);
+> +}
+> +
+> +static const struct of_device_id aml_vdec_match[] = {
+> +	{.compatible = "amlogic,s4-vdec", .data = &aml_vdec_s4_pdata},
+
+Fix the style, so you will not re-introduce issue Uwe is fixing.
+
 
 Best regards,
 Krzysztof
