@@ -4,54 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97684C531C9
-	for <linux-amlogic@archiver.kernel.org>; Sun, 26 Jul 2026 20:26:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 950DBC53219
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 Jul 2026 00:36:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cPTJppY+qGQNhDmaDsLrBC5KKYNG2Lvsv6wuMcXphOM=; b=XKWYP3q9RSqXJD
-	TvICfM1oEVHk44aBJoB2zbgvTtKKpNfharpOsT+p5lAU/1AeBqSvd3D92GJvm2KKBjQGAAnGuoxd/
-	AKFKcOlEGjvkZkjHwJTdFwoILy3yTWnNJnfEcVENkAsEAIgjRDV7O9Yw4xN/D9laYuGob0xNNw155
-	aU8rpSHY5+osBP4ZqfzIXbmfCcjCOanhZo7Wx7BPFWyrfMmfVZGcbB+jHVfa5TpwoX0IGXHdeo2Tc
-	3v0cPpyl5DtNTD/mRfey4htBtpKhcYraMjciHuVRAGFYxhHF+AnW5iVs1OsxGjKWlo6rECIXtVLaB
-	6DRmaxrtVehIowPc3N6g==;
+	List-Owner; bh=dB80CH/Z2lE8BdH94ak8cmhEboJbc1UDL3WpRxNk3M4=; b=lDIdytGd2cv8Yp
+	HdCXQBrrQYij1SEJrTnlKU63v0jPCYdoJm3xEbFxYAXK4TMfprkJupsypdDsF7WU10n8C/j/p2pIc
+	Znidw/TaOHklZZO7GQ9rgm5mmjjvPz/AomcdpjDm9rbN4DOwzr1jTrzrb1bGFALCTpYmKPLP88R0p
+	tNgkK8Vu6eNGdLTxsmpEgMRLiJtwWbCrsbHABVlx+sQL5x0PxbLJWbaBdpNOyDpvykYieoWfT8haZ
+	OTY9pLdRyiXa7e5HNaR9ykfRlqwhGyjnsz0FdFGMEYJgwBBJ3zURukg1hh/iKM0h/edTXy2ztZSlk
+	IP3IRehFY+CTzAwlORmg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wo5Qu-00000001anO-1XZU;
-	Sun, 26 Jul 2026 20:26:48 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1wo9K1-00000001kAg-0hKr;
+	Mon, 27 Jul 2026 00:35:57 +0000
+Received: from abb.hmeau.com ([180.181.231.80])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wo5Qt-00000001anE-1WUk
-	for linux-amlogic@lists.infradead.org;
-	Sun, 26 Jul 2026 20:26:47 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id E6C3D60054;
-	Sun, 26 Jul 2026 20:26:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B6DF1F000E9;
-	Sun, 26 Jul 2026 20:26:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1785097605;
-	bh=B1YxlU8BBhOK6tQiTrcIR71UmCeieT44RHJV42wXvEM=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Re5QTsHscXaEo3zTxJRozbHVTBo5BG4n7qZ+HVNea0byAUc5JsNMPbBZlQG4LiN6Q
-	 sD5s6qY2rM5fjoPgp/H0qjIiFD+lRtC2ane08vrn2tAa74d83XrjqhVdpg++P2WOke
-	 0HWqC0KKJXIcwnMTUYxpCrnHo6dLdMiFBHSoDqGYL756BLYemQcy4eBgB4SYhR06FJ
-	 cWlJ/dy4F67RYWniufiHOO6vg45Ey5xIveDu1PJ1UOeNXwIcm2jvbIbOCmSbrhhW9n
-	 NHd3zRxqkZqRMnAPLjzKa+Y7OSbgN1iYryAbDavKfFRqs+ddyHR/ceeUDmNch7OTsD
-	 4W40QiSfEgtxA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 3/3] arm64: dts: amlogic: add support for Orbbec Zora
- P1
-To: "Alberto Robazza" <robazzalberto@gmail.com>
-Cc: neil.armstrong@linaro.org, devicetree@vger.kernel.org, robh@kernel.org, linux-amlogic@lists.infradead.org, conor+dt@kernel.org
-In-Reply-To: <20260726201647.264108-4-robazzalberto@gmail.com>
-References: <20260726201647.264108-1-robazzalberto@gmail.com>
- <20260726201647.264108-4-robazzalberto@gmail.com>
-Date: Sun, 26 Jul 2026 20:26:44 +0000
-Message-Id: <20260726202645.3B6DF1F000E9@smtp.kernel.org>
+	id 1wo9Jx-00000001kA4-0K3a;
+	Mon, 27 Jul 2026 00:35:54 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=gondor.apana.org.au; s=h01; h=In-Reply-To:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:cc:to:subject:message-id:date:
+	from:content-type:reply-to; bh=7A3LFRZ61WV2Y8KMKIOzkO8WcMNetvJNv/MmH+S50Fg=; 
+	b=rb9lAWnlFuVHGfjZrw5RIvREO+1IsmUu1niONXWgUM8KCSkTgmtU8hfH1+1t+Qtb4msWXiLnKrj
+	cMWuLucHDCMSmoKPJMTmlm7BIgmH49UOS73r8LhYCw9cBlRWwYJKNiVdus1O3JL/DiAPk5wBI8kpe
+	XhAiQ9D7jOhqmixltxiXr1qvziPK+amMPN3LXJKBZBXKFfrxQcqo6do5JmwBIyt37ngtZE4eh3RVD
+	uORX81jQE/+c5UFRSogVHQkeIJ2TwJFl/ZQGx8aYLOKvXnyDZbCDD9Bu9jyO6jhSSdJaB+WwL6IU3
+	Lq/6pF/SB3lxUkiTVtXCwggoReXRXx4mYGrw==;
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+	by formenos.hmeau.com with smtp (Exim 4.98.2 #2 (Debian))
+	id 1wo9JA-0000000Gz1z-1dOl;
+	Mon, 27 Jul 2026 08:35:05 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Mon, 27 Jul 2026 10:35:04 +1000
+Date: Mon, 27 Jul 2026 10:35:04 +1000
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: Pan Chuang <panchuang@vivo.com>
+Cc: Corentin Labbe <clabbe.montjoie@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Neal Liu <neal_liu@aspeedtech.com>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Horia =?utf-8?Q?Geant=C4=83?= <horia.geanta@nxp.com>,
+	Pankaj Gupta <pankaj.gupta@nxp.com>,
+	Gaurav Jain <gaurav.jain@nxp.com>,
+	Gilad Ben-Yossef <gilad@benyossef.com>,
+	Hans Ulli Kroll <ulli.kroll@googlemail.com>,
+	Linus Walleij <linusw@kernel.org>,
+	Antoine Tenart <atenart@kernel.org>,
+	Prabhjot Khurana <prabhjot.khurana@intel.com>,
+	Declan Murphy <declan.murphy@intel.com>,
+	Srujana Challa <schalla@marvell.com>,
+	Bharat Bhushan <bbhushan2@marvell.com>, Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Ovidiu Panait <ovidiu.panait.oss@gmail.com>,
+	Arnd Bergmann <arnd@arndb.de>, Eric Biggers <ebiggers@kernel.org>,
+	Myeonghun Pak <mhun512@gmail.com>, Ijae Kim <ae878000@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+	Kees Cook <kees@kernel.org>,
+	Thorsten Blum <thorsten.blum@linux.dev>,
+	Colin Ian King <colin.i.king@gmail.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	"open list:ALLWINNER CRYPTO DRIVERS" <linux-crypto@vger.kernel.org>,
+	"moderated list:ARM/Allwinner sunXi SoC support" <linux-arm-kernel@lists.infradead.org>,
+	"open list:ARM/Allwinner sunXi SoC support" <linux-sunxi@lists.linux.dev>,
+	open list <linux-kernel@vger.kernel.org>,
+	"open list:ARM/Amlogic Meson SoC Crypto Drivers" <linux-amlogic@lists.infradead.org>,
+	"moderated list:ASPEED CRYPTO DRIVER" <linux-aspeed@lists.ozlabs.org>,
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
+	"open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>,
+	"moderated list:ARM/STM32 ARCHITECTURE" <linux-stm32@st-md-mailman.stormreply.com>
+Subject: Re: [PATCH 00/12] crypto: Remove redundant error messages on IRQ
+ request failure
+Message-ID: <amanuOXfLwXXDuBk@gondor.apana.org.au>
+References: <20260717080045.191538-1-panchuang@vivo.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20260717080045.191538-1-panchuang@vivo.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260726_173553_121787_E1B67BE9 
+X-CRM114-Status: GOOD (  14.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,49 +108,78 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0hpZ2hdIFBpbiBtdWx0aXBsZXhp
-bmcgY29uZmxpY3Qgb24gR1BJT1hfMTYgYmV0d2VlbiB0aGUgV2ktRmkgU0RJTyBwb3dlciBzZXF1
-ZW5jZSByZXNldCBhbmQgdGhlIDMyLjc2OGtIeiBQV00gY2xvY2suCi0tCgotLS0gUGF0Y2ggWzNd
-OiBbUEFUQ0ggdjIgMy8zXSBhcm02NDogZHRzOiBhbWxvZ2ljOiBhZGQgc3VwcG9ydCBmb3IgT3Ji
-YmVjIFpvcmEgUDEgLS0tCmNvbW1pdCA0YzI1YzIyYjU5ZWY1NGEzYjA4ZDAyYWFiODQ4ZDZmNmFh
-NmFmMWVmCkF1dGhvcjogQWxiZXJ0byBSb2JhenphIDxyb2JhenphbGJlcnRvQGdtYWlsLmNvbT4K
-CmFybTY0OiBkdHM6IGFtbG9naWM6IGFkZCBzdXBwb3J0IGZvciBPcmJiZWMgWm9yYSBQMQoKVGhp
-cyBjb21taXQgYWRkcyBkZXZpY2UgdHJlZSBzdXBwb3J0IGZvciB0aGUgT3JiYmVjIFpvcmEgUDEg
-Ym9hcmQsIGFuIEEzMTFECmJhc2VkIGRldmljZS4gSXQgYnVpbGRzIHVwb24gdGhlIE9EUk9JRC1O
-MiBkZXZpY2UgdHJlZSwgYWRkaW5nIHNwZWNpZmljIEdQSU8Kd2lyaW5nIGZvciBXaS1GaSBhbmQg
-Qmx1ZXRvb3RoIG92ZXIgU0RJTyBhbmQgVUFSVF9BLiBJdCBhbHNvIGluY2x1ZGVzIHRoZQpib2Fy
-ZCdzIGNvbXBhdGlibGUgc3RyaW5nIGFuZCBMRUQgY29uZmlndXJhdGlvbnMuCgo+IGRpZmYgLS1n
-aXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tZzEyYi16b3JhLXAxLmR0cyBi
-L2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1nMTJiLXpvcmEtcDEuZHRzCj4gbmV3
-IGZpbGUgbW9kZSAxMDA2NDQKPiAtLS0gL2Rldi9udWxsCj4gKysrIGIvYXJjaC9hcm02NC9ib290
-L2R0cy9hbWxvZ2ljL21lc29uLWcxMmItem9yYS1wMS5kdHMKWyAuLi4gXQo+ICsJc2Rpb19wd3Jz
-ZXE6IHNkaW8tcHdyc2VxIHsKPiArCQljb21wYXRpYmxlID0gIm1tYy1wd3JzZXEtc2ltcGxlIjsK
-PiArCQlyZXNldC1ncGlvcyA9IDwmZ3BpbyBHUElPWF8xNiBHUElPX0FDVElWRV9MT1c+Owo+ICsJ
-CWNsb2NrcyA9IDwmd2lmaTMyaz47Cj4gKwkJY2xvY2stbmFtZXMgPSAiZXh0X2Nsb2NrIjsKPiAr
-CX07Cj4gKwo+ICsJd2lmaTMyazogd2lmaTMyayB7Cj4gKwkJY29tcGF0aWJsZSA9ICJwd20tY2xv
-Y2siOwo+ICsJCSNjbG9jay1jZWxscyA9IDwwPjsKPiArCQljbG9jay1mcmVxdWVuY3kgPSA8MzI3
-Njg+Owo+ICsJCXB3bXMgPSA8JnB3bV9lZiAwIDMwNTE4IDA+Owo+ICsJfTsKWyAuLi4gXQo+ICsm
-cHdtX2VmIHsKPiArCXN0YXR1cyA9ICJva2F5IjsKPiArCXBpbmN0cmwtMCA9IDwmcHdtX2VfcGlu
-cz47CgpbU2V2ZXJpdHk6IEhpZ2hdCldpbGwgdGhpcyBjcmVhdGUgYSBwaW4gbXVsdGlwbGV4aW5n
-IGNvbmZsaWN0IG9uIEdQSU9YXzE2PwoKVGhlIHNkaW9fcHdyc2VxIG5vZGUgY2xhaW1zIEdQSU9Y
-XzE2IGFzIGEgc3RhbmRhcmQgR1BJTyBmb3IgdGhlIHJlc2V0LWdwaW9zCmxpbmUuIEhvd2V2ZXIs
-IHRoZSBwd21fZWYgbm9kZSByZXF1ZXN0cyB0aGUgcHdtX2VfcGlucyBwaW5jdHJsIGdyb3VwLiBP
-biB0aGUKQW1sb2dpYyBHMTJCIHBsYXRmb3JtLCBwd21fZV9waW5zIG1hcHMgZXhhY3RseSB0byBH
-UElPWF8xNi4KClNpbmNlIGEgc2luZ2xlIHBoeXNpY2FsIHBpbiBjYW5ub3QgY29uY3VycmVudGx5
-IG91dHB1dCBhIDMya0h6IFBXTSBjbG9jayBzaWduYWwKYW5kIGZ1bmN0aW9uIGFzIGEgc3RhdGlj
-IEdQSU8gcmVzZXQgc2lnbmFsIGZvciB0aGUgV2ktRmkgbW9kdWxlLCB3aWxsIHRoZQpwaW5jdHJs
-IHN1YnN5c3RlbSBmYWlsIG9uZSBvZiB0aGUgcmVxdWVzdHMgYW5kIHByZXZlbnQgdGhlIFdpLUZp
-IG1vZHVsZSBmcm9tCmluaXRpYWxpemluZz8KCi0tIApTYXNoaWtvIEFJIHJldmlldyDCtyBodHRw
-czovL3Nhc2hpa28uZGV2LyMvcGF0Y2hzZXQvMjAyNjA3MjYyMDE2NDcuMjY0MTA4LTEtcm9iYXp6
-YWxiZXJ0b0BnbWFpbC5jb20/cGFydD0zCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2lj
-QGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On Fri, Jul 17, 2026 at 04:00:14PM +0800, Pan Chuang wrote:
+> Commit 55b48e23f5c4 ("genirq/devres: Add error handling in
+> devm_request_*_irq()") added automatic error logging to
+> devm_request_threaded_irq() and devm_request_any_context_irq()
+> via the new devm_request_result() helper, which prints device
+> name, IRQ number, handler functions, and error code on failure.
+> 
+> Since devm_request_irq() is a static inline wrapper around
+> devm_request_threaded_irq(), it also benefits from this
+> automatic logging.
+> 
+> Remove the now-redundant dev_err() and dev_err_probe() calls
+> in crypto drivers that follow these devm_request_*_irq()
+> functions, as the core now provides more detailed diagnostic
+> information on failure.
+> 
+> Pan Chuang (12):
+>   crypto: allwinner - Remove redundant dev_err()
+>   crypto: amlogic - Remove redundant dev_err()
+>   crypto: aspeed - Remove redundant dev_err()
+>   crypto: Remove redundant dev_err()/dev_err_probe()
+>   crypto: caam - Remove redundant dev_err()
+>   crypto: ccree - Remove redundant dev_err()
+>   crypto: sl3516 - Remove redundant dev_err()
+>   crypto: safexcel - Remove redundant dev_err()
+>   crypto: keembay - Remove redundant dev_err()
+>   crypto: octeontx2 - Remove redundant dev_err()
+>   crypto: rockchip - Remove redundant dev_err()
+>   crypto: stm32 - Remove redundant dev_err()
+> 
+>  drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c   | 4 +---
+>  drivers/crypto/allwinner/sun8i-ss/sun8i-ss-core.c   | 4 +---
+>  drivers/crypto/amlogic/amlogic-gxl-core.c           | 4 +---
+>  drivers/crypto/aspeed/aspeed-acry.c                 | 4 +---
+>  drivers/crypto/aspeed/aspeed-hace.c                 | 4 +---
+>  drivers/crypto/atmel-aes.c                          | 4 +---
+>  drivers/crypto/atmel-sha.c                          | 4 +---
+>  drivers/crypto/atmel-tdes.c                         | 4 +---
+>  drivers/crypto/caam/jr.c                            | 2 --
+>  drivers/crypto/ccree/cc_driver.c                    | 4 +---
+>  drivers/crypto/gemini/sl3516-ce-core.c              | 4 +---
+>  drivers/crypto/img-hash.c                           | 4 +---
+>  drivers/crypto/inside-secure/safexcel.c             | 4 +---
+>  drivers/crypto/intel/keembay/keembay-ocs-aes-core.c | 4 +---
+>  drivers/crypto/intel/keembay/keembay-ocs-ecc.c      | 4 +---
+>  drivers/crypto/intel/keembay/keembay-ocs-hcu-core.c | 4 +---
+>  drivers/crypto/marvell/octeontx2/otx2_cptpf_main.c  | 5 +----
+>  drivers/crypto/mxs-dcp.c                            | 8 ++------
+>  drivers/crypto/omap-aes.c                           | 4 +---
+>  drivers/crypto/omap-des.c                           | 4 +---
+>  drivers/crypto/omap-sham.c                          | 5 +----
+>  drivers/crypto/rockchip/rk3288_crypto.c             | 4 +---
+>  drivers/crypto/sahara.c                             | 3 +--
+>  drivers/crypto/stm32/stm32-cryp.c                   | 4 +---
+>  drivers/crypto/stm32/stm32-hash.c                   | 4 +---
+>  25 files changed, 25 insertions(+), 78 deletions(-)
+> 
+> -- 
+> 2.34.1
+
+All applied.  Thanks.
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
