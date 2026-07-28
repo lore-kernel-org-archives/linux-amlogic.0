@@ -4,71 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F17AC53219
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42475C54F4D
 	for <linux-amlogic@archiver.kernel.org>; Tue, 28 Jul 2026 15:16:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
-	Subject:Cc:To:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=OwpOuG7ISe1ZlV0+viVvuU/5rSqpyR+G+ivPa5OX2ME=; b=VOfH+ITP1scGGP
-	qe3NJABT1c52xYbaJCifD2q8n5rwPLwGAPjUF+oC0cqgAgn6UNnq7z7pm6agoWOClQ+vN+nC1QsJw
-	cYws24tFdO5q5eYU7hBCxEi2JVF9wEFML5TCKrPNu4KqXY94ry3md6goDKfnBKabeCjr1mJb2s0g8
-	9xFJ49amwJPgV4jKjMbE/REjS8O3MQTAQnTIe7peNdR2bU7VT+epfv1OuMQfoGTVIQwyOtmMKDLm/
-	KTt+gOHFtmD9VZDkrgK7GAGD7BP/URgd9lr8+p4CkT5UxjWR/h9eZcztrz218jX3Qiwsr+SjBpPgZ
-	0kxYGZqrPaV0bOhhaZyA==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:
+	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=mrpyiXGXvRYMImtAUV0g2nqEf7xs6VYprMp8sfl82F4=; b=TqiIgh7OBzz9zN
+	521XmLxXki+be5szKAl5Vc50/vWYXK8MNukWUwMPlDBZr0z/0piwgjuJ5xbUEoZ2ZTpLbQ+eE6OMZ
+	1RP3jWW1e87SeLxcjOE2mbDiibu3hh24jmIdA5gu7XOXgX/AUOr9mBdQM7PvZ3KJ3GPL/3VE0PS/c
+	GQn0GM1IwltBFxJM4jCDuEtjq/1IEy2JBDCXGh1c1aBWc0Ju3dH+xB2nsVBhLyBsCJD+nSk0u3c0H
+	69FnW3E/K2yudLBbbmgdU2lsa+gQBjkDIel+YTh3njIfMtTg6rZzauUlmakF+TYBS6tjA5eihblZX
+	dO3GnjmwCL9YhNnGjZNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wojXy-00000005c6A-18Qv;
-	Tue, 28 Jul 2026 15:16:46 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	id 1wojY0-00000005c7t-2i5m;
+	Tue, 28 Jul 2026 15:16:48 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wojXv-00000005c42-3pZZ
+	id 1wojXx-00000005c4m-2R1g
 	for linux-amlogic@lists.infradead.org;
-	Tue, 28 Jul 2026 15:16:45 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-47f703a9d05so1584f8f.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 28 Jul 2026 08:16:42 -0700 (PDT)
+	Tue, 28 Jul 2026 15:16:47 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-49548aebcd8so29665515e9.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 28 Jul 2026 08:16:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1785251802; x=1785856602; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:reply-to:message-id:date
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=/TYvBUpeT2RltElx7WsXqQl+6E8angCl/PINS2CX8a8=;
-        b=f3TK6vDf30x+u7NRRk5giMe8/0l2zNGlD2izVpVEPMVODGXR2SqpPoeaFB5Cc9i6+J
-         NBQ1Xzd/iMkUqkRonWPxjuNze+nkKaw6XJ1osIk5KK848gfWyeEoeAsKgHPt7PXtLNpx
-         I/Dr5M6YfQcIsy8d7kP7hPEwSGVOlCaDNUss/HrORVJdkSY1n/40KQNF3bKWdIydaRJJ
-         aF51tiS8XXzc5eiGB2ojSgN3woK9Fvy/L+rqO4i050KGWyQuG6Jf2x0W9owA3PRBEbXz
-         NHm0NdHy5Ht7wRLlcbWwgNGuc9qdNG1ZM5T5kju9OrfDp3Ppxu7ZSjDw/WMUPbma4zvw
-         kB+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1785251802; x=1785856602;
-        h=content-transfer-encoding:mime-version:reply-to:message-id:date
-         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+        d=gmail.com; s=20251104; t=1785251803; x=1785856603; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:reply-to:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=/TYvBUpeT2RltElx7WsXqQl+6E8angCl/PINS2CX8a8=;
-        b=nmYugXOVXA/fBvbaZpcknhFcfPtRI3uuHl0xs9he7eQ06tbdJuH6/rrN5fAWD6os2/
-         9DcRILlm3yK9ybi8lxW8I9nuIfw3ulXJ/vF0H6vJDjvS8fP1FQaE7amOkMmv72UYeG2m
-         lbv9xpmrJAS3Lon3ZfBSMKPnRxLfLtlfwsNtYLM9t1K2B8h38Aod+Rcy5NbZ+1nIWfpn
-         elnz6iGDZjb3LhopHI2TleipuoJWSOGvsnYpNavo0w5uy6SuWAJjnkYA6Cn3l0MO0I5R
-         N0mTPNEy2srjZp5Lpg6Gq/7IiECebWSEQ5LLzl17/C/hUupl65JINB/qU3dXaWWetWzN
-         E18Q==
-X-Forwarded-Encrypted: i=1; AHgh+Rp6wukMGVsk77gieDsu7zMpjecOGsK1Ps2YEW4VwLHfhmwI08vhzH7sMtvulaG6PmatDMz1fDshvx30P5yA@lists.infradead.org
-X-Gm-Message-State: AOJu0YyhiH25YEeXmau+4FExGoZGDrCUZSN3tsHakmGQ9jw1K4gY1rA8
-	9xVhobaLwLs4oXBFZYJHKBBk5HaIqXhxeG9YjDw0VahViM67A+VpzbYP
-X-Gm-Gg: AR+sD10Oa4fZD0ZjEswDEF3YRkicO/mg6D77fuvHnsRuOR4HlZk5RCT7eqf9ZXDlN1n
-	n04NeeEifE3qon1km3NTfeH86WklBKei553A6z2fyj0nXntbXB7vAb5EQp2CCEVgHcWNf66rNMs
-	Mpja6rRgaLAxJNv1CqZ0owtaggTeA/hyAGGzJLaHcrvlWZmqWjrk/eleF7MS5q2CRiPqek9sDUe
-	w7SPcoY9BEw4IK0KbExawYe1RgyRSvyGvNM/hYqfz0zVcLic+G7+LgfOEYITVzo6DqGZqlMSycG
-	Rj2IT8fTQ0TrGgUkjFoQgsuEp2dED4ur2ZaLJ/RDcCb1DyG8VDzQkXOt9XjJX5q4b1S3Ud9SYy1
-	r7K0xTL5HRQYBCAgJRNK6yp7dvMGo5m3i71kXPX3USQduigthy+FfksIT6nfc1aScl1U1wCA3qW
-	pustgYwabtHjymfzF1aQOqu5CN8b20g/PKkHYdGVYQ6Sci8g==
-X-Received: by 2002:a05:6000:4918:b0:47f:5a97:2a5d with SMTP id ffacd0b85a97d-47fb1e5cd25mr3577209f8f.11.1785251801287;
-        Tue, 28 Jul 2026 08:16:41 -0700 (PDT)
+        bh=4eIQcdRfGNlUtm4nFJpWfG0m8ngl2vo8ULkvsCbNlJA=;
+        b=LOuJTKWgyJl7MH87a518I+rA8z1otp1SH5u5+6L0ZhWTncylyo42ys7wEneyK1GzZR
+         wTcs3G+rb0pIVmYjNstbmQZMYf9guQdtTtX7w9kY2fsG+mdHyxbGhqBvJ2AptrcU6U/5
+         NKJYDObEiFA5BZCmyYvCXeMdOG0pvwCxQA/hEHK1sWtbzZEe1+sYkidyWrO4GHTIWFnM
+         digvxWmfwuGunamA9Vl5/1ypqYsqnZwxqZJTiAQ2VDW6JbXynbEV9eXCtQaaW1GsZ2Ap
+         0rCYTrPSl9Oh9I7hnB2Lk1GDX6AcAu/xlE86dlIXMDc3h/ss0K4H3YX7Bf5oOeKnNC9K
+         bqFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1785251803; x=1785856603;
+        h=content-transfer-encoding:mime-version:reply-to:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=4eIQcdRfGNlUtm4nFJpWfG0m8ngl2vo8ULkvsCbNlJA=;
+        b=YvIQsPB6K75+ZH1QdsxukH7ngh308lvXosrz7qN6sYMN/bOyQ4+Hs99ipXVlQOg27t
+         59QsiZJRNtTwAxjZ7+wVTIM7kmZHl3oXoxJKHz6X5GJi7L3V4TLwJFXQywTXaQMf/Vzt
+         jnH8IoTjHGGpscE5uwmSDhaU+AyScWhtm4E3p0xU4AVDPJYC6pmQPqH85osGEEjB1pSn
+         hdoPMzMzAiVV3nThXHTbKbCjCjn1gzDpRAltjhADVwaywfx1Q7qgEiR8/mAehrLqCp2x
+         riy3LNM8yE7BBsdq7gB6ffw7GOfe+FIR6FrlEIsQyYo1LUMutrhi+zyDgYgY/xkQn9/e
+         ZSWA==
+X-Forwarded-Encrypted: i=1; AHgh+RroeegwhZC2+UqH6Cbd/qv3EUaB5da81kaz7++5D123LkHMx+FIr1WPXe6JHHwmc8+T188/OYsLNpB/83pd@lists.infradead.org
+X-Gm-Message-State: AOJu0YxAmDra33XhshmXzPiCkKaehYqm9ihDGqFa0qUJuqyInnNnTlz9
+	bEV9zXyrPf1TI6FGqGHaisZ08rREJTR6Ls9WpqcwXROFD5GfjQcJs5ZZ
+X-Gm-Gg: AR+sD122M5hAmadK03b8OCO49KDJzVkrQ8ERS8h6Sqp4I2iHvyzYn+jHb32XQQ7NFvt
+	vc+CVBV2Ics2+ylgxEBmV2DQ/FXYlnfeKkFCjUja2aJzAz42GzU1b1yxWuK1gPQZx61acJpyVm9
+	0YXfsZRimu9j4Jx82j1+FCrVzVq59+Fd6xHx2hIScktAqz7k2PYqtWohkAiug1eFFoZkxjbWEUK
+	/38VltO1YF/MTGTRXurojJkjIR/O5VAXuclY0qrFCwP+01TZ2z3L5/6/8C/KfG6hd6gy8jZIs+f
+	Z64vWLv4V0gmHoIRzexoZq86A36nPRZLiRRHWj+VeaTJXXWVjqon+nYin0xHAPkQCfHNVvFYRfj
+	PefEettTqSlQWrgt2EReSC/+OikGEwhRA3hkaswe0LxDM2OTEu8CGk77kG1znT2HXxH3Tu21KLF
+	oHFoyrCMxnqY8eYUkN9pUwICLuC0gMV3swQLksO+biQVMqTA==
+X-Received: by 2002:a05:600c:4e14:b0:496:bba5:33a8 with SMTP id 5b1f17b1804b1-496c658ef36mr29194675e9.33.1785251803412;
+        Tue, 28 Jul 2026 08:16:43 -0700 (PDT)
 Received: from slackboot (93-34-146-61.ip50.fastwebnet.it. [93.34.146.61])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47f85c631fdsm58422500f8f.28.2026.07.28.08.16.40
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47f85c631fdsm58422500f8f.28.2026.07.28.08.16.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jul 2026 08:16:40 -0700 (PDT)
+        Tue, 28 Jul 2026 08:16:42 -0700 (PDT)
 From: Alberto Robazza <robazzalberto@gmail.com>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -82,14 +83,17 @@ Cc: jbrunet@baylibre.com,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	Alberto Robazza <robazzalberto@gmail.com>
-Subject: [PATCH v3 0/3] arm64: dts: amlogic: add support for Orbbec Zora P1
-Date: Tue, 28 Jul 2026 17:16:33 +0200
-Message-ID: <20260728151636.236393-1-robazzalberto@gmail.com>
+Subject: [PATCH v3 2/3] dt-bindings: arm: amlogic: document Orbbec Zora P1 board compatible
+Date: Tue, 28 Jul 2026 17:16:35 +0200
+Message-ID: <20260728151636.236393-3-robazzalberto@gmail.com>
 X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260728151636.236393-1-robazzalberto@gmail.com>
+References: <20260728151636.236393-1-robazzalberto@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260728_081644_015793_29AC3670 
-X-CRM114-Status: GOOD (  12.94  )
+X-CRM114-CacheID: sfid-20260728_081645_647829_29B7525A 
+X-CRM114-Status: UNSURE (   9.18  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,59 +111,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Orbbec Zora P1 is a vision development board based on the Amlogic
-A311D (Meson G12B) SoC, with 2 or 4 GiB LPDDR4, an Ampak AP6256 combo
-module (Broadcom BCM43456 Wi-Fi over SDIO and BCM4345C5 Bluetooth over
-UART_A), HDMI output and Gigabit Ethernet.
+Document the "orbbec,zora-p1" compatible for the Orbbec Zora P1 board,
+which is based on the Amlogic A311D (Meson G12B) SoC. The corresponding
+device tree is added in the follow-up patch.
 
-According to its specifications and original device tree, the board is
-a revised version of the ODROID-N2 with Wi-Fi, Bluetooth and an Amlogic
-A311D instead of the original S922X. The device tree therefore builds on
-meson-g12b-a311d.dtsi and meson-g12b-odroid-n2.dtsi, mirroring
-meson-g12b-odroid-n2-plus.dts. It extends those descriptions with the
-board-specific AP6256 wiring. The status LED is green instead of the
-original ODROID-N2 blue and has inverted polarity.
+The "orbbec" vendor prefix used here is added in the first patch of this
+series
 
-This series consists of:
-  Patch 1: add the "orbbec" vendor prefix.
-  Patch 2: document the "orbbec,zora-p1" board compatible.
-  Patch 3: add the meson-g12b-zora-p1.dts board file and Makefile entry.
-
-The DTB was built, validated against the amlogic.yaml binding using
-DT_SCHEMA_FILES, and boot-tested twice on the board. The AP6256 Wi-Fi
-interface enumerates and operates with the GPIOX_16 reset and PWM clock
-description present. Removing the wifi32k and pwm_ef descriptions causes
-the SDIO Wi-Fi device to stop working on this board.
-
+Signed-off-by: Alberto Robazza <robazzalberto@gmail.com>
 ---
-Changes in v2:
-- Investigated the apparent GPIOX_16 overlap between the SDIO power
-  sequence reset and the 32.768 kHz PWM clock. Retained the description
-  after two successful hardware tests; removing the clock description
-  prevents the AP6256 Wi-Fi device from working.
-- Sort the new DTB entry alphabetically in the Amlogic Makefile.
-- Sort the "orbbec" entry alphabetically in vendor-prefixes.yaml.
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
----
-Changes in v3:
-- Polished meson-g12b-zora-p1.dts
-  - Use proper comment with /* and */
-  - Use the new bindings with function and color properties instead of
-    label in leds node
-  - Include dt-bindings/leds/common.h
-
-Alberto Robazza (3):
-  dt-bindings: vendor-prefixes: add Orbbec
-  dt-bindings: arm: amlogic: document Orbbec Zora P1 board compatible
-  arm64: dts: amlogic: add support for Orbbec Zora P1
-
- .../devicetree/bindings/arm/amlogic.yaml      |   1 +
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../boot/dts/amlogic/meson-g12b-zora-p1.dts   | 105 ++++++++++++++++++
- 4 files changed, 109 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-zora-p1.dts
-
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 9f73a0054..2d6ecdada 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -167,6 +167,7 @@ properties:
+               - bananapi,bpi-m2s
+               - khadas,vim3
+               - libretech,aml-a311d-cc
++              - orbbec,zora-p1
+               - radxa,zero2
+           - const: amlogic,a311d
+           - const: amlogic,g12b
 -- 
 2.55.0
 
