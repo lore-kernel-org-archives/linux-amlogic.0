@@ -4,73 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B17EC54F51
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Jul 2026 14:12:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54442C54F55
+	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Jul 2026 14:12:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:
 	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rVAi1kAW9QoEqSS5/une8UZIVVZdy0DBDSdZUo68qAI=; b=m49RCHm+8B03y5
-	FAH+jmkOjUh5cIiEVh7b58tQRa7j3YENAyPzU0D2WSgeSgP64HJLUkbvmXdrBEk+K6tZUZRk0VYFq
-	QW3g8wlXZxjIkczxiIK/kaQqgFam9Shgb7F08e3aejDk+ENrzd+rZstw3YNIey2heQO1YTh5GbHA5
-	LusUixG57pGke4hNNR9cPvonqSvMiXGQlYqIVQ5tMgO+H8oHZcV818uGDmwnZmyGHWkka4aYLa5OX
-	mN52r4uVaE65EtJRvWRf24Bsb2fpkFt3gwAodNWmoqW0c6OPpLNFhRxp1mt90JF3ObwQTKC4p929f
-	BwOZwY7v3mi09hUEIhZA==;
+	List-Owner; bh=/JIaMNtdvwWT4Hqw1T5ZcMt7OctG2MVJspNnmmqxzog=; b=1VeNuEluu0XRaN
+	tzn6F5txdzvhhvra6OF+YrOyAwS5ULUz6ID3PYY9GMPEJydwoBof5+XgZ4RQu69sy+fAZ3f1A0tV6
+	29FfC/5QsIYAgYp12bwNDHdi5mlCMMrB1gnrBnjztKTz+d3i8jsgmBViHba+wcHMwupGKd/cyZDTW
+	Q8Shc157RuJ/5hOW1xNp2T5G09uFQiFn8f1tXv8mUnlmRfqEE70DbCIoJNQfhEFNE3Teq72CZSy23
+	XppDjsz+Rlisl4f6BYfNoMAkJjWmo7DPd+6unySKqAoLnVOU4/daTCLNCGSZHhHsqkPmahBFjyqvs
+	9AVnCe8H8rWlF4/iZ89Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wp51e-00000008Dm0-1kLz;
+	id 1wp51e-00000008DmM-21EK;
 	Wed, 29 Jul 2026 14:12:50 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wp51U-00000008Dh4-2jzw
+	id 1wp51V-00000008DhZ-1noM
 	for linux-amlogic@lists.infradead.org;
 	Wed, 29 Jul 2026 14:12:42 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-47df43bfb07so420580f8f.1
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-47f6609c657so539599f8f.2
         for <linux-amlogic@lists.infradead.org>; Wed, 29 Jul 2026 07:12:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20251104; t=1785334359; x=1785939159; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:reply-to:references
          :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=e/ABHH261kAcEZtti2TzXUxz3ZAT2vqzNe1BRxM87S8=;
-        b=fSKBuFJ7i79ItJv0Ut4c8ftrVXQveiDryMV/MlQS0s5AQQCFNL8q9LwyMv7CX8uJJV
-         F1Nm7GDRihARyHCvzeiI6fmwxqqOjYpP/wpoQ/YL3a+BR/fHiy4FMIs0uzDB9PJQqadG
-         YO6B4av6nplm2VRp8ZkIskh97Mkg/65+hIl4NXpj1NRhg8dKMEOtvzkcYau8uFEJxiX9
-         J2MDZICFbdC2vIrfzuQw3c7dVOOn1aMLe0PUGBsvQXK4fxucpX54JfquRXUfxym7Vafk
-         onjPNIizPEbCOYBsgqSCM+SFzcSd8DCmSW3yYc5fWdrjWpmQt3G68jymGPMMtVCGObqr
-         gn4w==
+        bh=xKo0PbduxVqaCMeHxby+gQYFixdrgfyKcUIaMfXcM0Q=;
+        b=pRKn9Ca6LQhPPuxU3aZWk+JCo1NuL/xjwRdy2H45aFQdC+aRjn0JDBiVRcZ8mDfbjp
+         n3EM1A0AUT1w2NcdEFr41rSeIcgdxZgah4owc6WqamnC1drz3KwwQJ9JYGfvV9ZP8UxT
+         pOythnWnjSOC5QcqCNNVs05k90bEqG8DCpYYOIFJ/t7srgK9GvsPwC2GB0xIcY39Towh
+         umORa8IsAvPodqE1PV6m3sdQYY9boQnEMnKh8g7FIva0smWQWBdTTN1LFhDozvZ3sDHQ
+         JisLH/VoLWl7G3k4HMQgjWQ24gq+IDJgi5ar6uJaYSEBTD60GIgUXB0xMLPuFT/K9J7+
+         8LLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20251104; t=1785334359; x=1785939159;
         h=content-transfer-encoding:mime-version:reply-to:references
          :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=e/ABHH261kAcEZtti2TzXUxz3ZAT2vqzNe1BRxM87S8=;
-        b=ss7ZSM1CzCSm7KVQ7b/jI7WRaEFd6S3cR6RcEuz6RHzKptId2kxnArytFFvlXoNnMe
-         b83/rOE7LomMXclak2wQ9iKZKnem2yuDI0As2HHYed4urry1CskRV/Q4xXoOcYDrjDw1
-         9kJGvQ+RfsiYQ1S6ArQ8b/NlmrIwoWJilWj5DcmglUOv/aIpnN9aCXLZ7T3Dp17rnU8x
-         uqRAJ9Zv66ixYhaFR1MSJMPPEaqoetmzuGQmnLFUmSD+E5kiaYJC6wvlRHpBJh1qYF9q
-         14gDV85ngHWF9fSIcdwiYGHqsDH3GrdlK2usLvOGw3ioeHjkNx1uAZGusr5bXIgs09SV
-         qrgw==
-X-Forwarded-Encrypted: i=1; AHgh+RpUzmdV3nVtMQyJkb3KTWxuny+llGuJNqFj8f62IiSt2Ry52SiJbezreOMQlptK0ujwhmGnBv9HMtvIFwjF@lists.infradead.org
-X-Gm-Message-State: AOJu0YyzXfDGJxcE90Erv4ajGkLHipN4/k44A50BCPrLKhvx7WTxX4Ey
-	VxbsJURh2cXsHj/HqX7Ht9jeEy6/jmFWbUDJaguuZC0/CFQex7VGjjIR
-X-Gm-Gg: AR+sD11AHu5e/k4fpwuuaz3cEeoyAeWOuEf/6Dadg70LOsivX9Y6HQzkKNk1GpsLp/C
-	5aCP3Wi0rqYgO3gljQnsTwFQx4WUzEJYcuSHf/KWv8iIBzqo26q6rQqbRWcO/0N3LlGVPqGJiMO
-	TNIYjw4TyV3WBHxUdj3w+cZf3RuPf4A0d04dmSWXkVi7koVE72NucCXIcS6cZ8FkBwjpJt4wXtg
-	+mL0AiqHtBJVFyrSoFZpDs5J/xkZ07CIX3LgJpkUjQbmwf1JCyZIWCJE4xwd8F4yHKze80+N5JW
-	CWt/KGLmzuoCd/XzqHP3fICfUAAwVMM6xtpjnJ0qfYaXdhYm5pCqfDtyhomWUse2RrHWHVxbCij
-	O8LWEGagFcMIipf0jmoMBydIegxTLIASW2EgGjRNF4JuLiYbXw+mTX5qlXJP7KszLDdabW6jNde
-	8N8PD8XF91hPO5+sXQyruMTlGzP/dhlKpCEZUfSmVEoDruyXXE43387Lg+eJQFvBu86O+jm9fqR
-	QqR0hTYCHNGKuFjWE+nTA==
-X-Received: by 2002:a05:600c:1912:b0:495:3b8a:bf11 with SMTP id 5b1f17b1804b1-496c6577941mr78545775e9.26.1785334358491;
-        Wed, 29 Jul 2026 07:12:38 -0700 (PDT)
+        bh=xKo0PbduxVqaCMeHxby+gQYFixdrgfyKcUIaMfXcM0Q=;
+        b=U+8/RbcOIFJtDIMkZ0yvDMARI+SJWsapvg+OZYIPkPBZudMIV+hatGLlrhKgO6/al6
+         w+IvDic1E0Rpr2FXe/9R0GwxBHDq7/wwD6mJ9Y3ljUCJVVhCkA2UokIDz4aFpxEqAaBh
+         a8PTNxHym5VGoW/9jd0abiFVDKd4WjSaSGoPEXnqyytsnCaaSqr6aVUOveWab5Paxq2z
+         ubwNvtjxNI90muFBjH+YNMuD7KTtadGKEkrdoyM0qstJlLZognfVSujeh0GPx1mkMHN+
+         9PR1vZhCeYyLLTaEo7Wt7HB0w6hRVxg4ouLzhgCecM2+6izAQUefHfQm7wscsIq0MajY
+         uY6g==
+X-Forwarded-Encrypted: i=1; AHgh+RqPqIsswWmMLg/lBVxZG5XIy19lgvDuuCyeOjuH/eOihVB70QbtIwUFRzxHYDwioFzyg3ji3hPoukejI45C@lists.infradead.org
+X-Gm-Message-State: AOJu0YzOrnpdX1sLznrN7/HOnkEALpe7L19fP7JYaj0pPKfGQyak+M0r
+	2rDcVq4f1eRHYtC/PH2tKYAfCMKgFZpUgnHIA3h0A8wbOkrGMDxi4RXe
+X-Gm-Gg: AR+sD13AT/xFTVFkyMQndKSwiotUo/bWPtrk1VyrYxi5DkZBwR8B6M94qjggxwuHtw5
+	VBPtd0dIYr631qaPn5gDcrMHDMmNFwIBpJ5+l7o0NVazIEY/+a1hdjv9ZmlG9dJzqd8mHmA+3lY
+	OzvZpZ/fL6zIKK458q51z2df6opP/F72WxKl1jGO78kknNWQitdiI7wYepftZhL90zrm37tGTrm
+	pY/hDh5qZ2BWtQP1yWU68kTs/qi7V+qrPYOGXWlcBE7sY1VtHxnvcQKLQdx6mZFMltuF5dSBSPy
+	v0npHFPZKn2IFSG687CwZQeRe+a8TBOdf2cxpc4bsAzUi0kLwy2EX4ETse8RjM0tMzj33WSPp3K
+	PJtWYC0jzhku4kRx+KH2V7JQRJ/PqTbW+eIk9awaYb6DlIp5UmKmcXr3ycOHet0q7+t+2eP5w5e
+	JLKjpreJyt1hv13Bs3v22pBRHLvr5YSsQbWhnGUJMFXbCpVwTps1XEnG8Q+S5eUxUPeL+V6YArR
+	dA0dQ/Rbkp9hZ9vxWiUiF27nfh+H2kg
+X-Received: by 2002:a05:6000:4918:b0:47f:5a97:2a5d with SMTP id ffacd0b85a97d-47fb1e5cd25mr8567174f8f.11.1785334359421;
+        Wed, 29 Jul 2026 07:12:39 -0700 (PDT)
 Received: from slackboot (93-34-146-61.ip50.fastwebnet.it. [93.34.146.61])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47fb6ad01b6sm8955482f8f.16.2026.07.29.07.12.37
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-47fb6ad01b6sm8955482f8f.16.2026.07.29.07.12.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jul 2026 07:12:38 -0700 (PDT)
+        Wed, 29 Jul 2026 07:12:39 -0700 (PDT)
 From: Alberto Robazza <robazzalberto@gmail.com>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -84,16 +84,16 @@ Cc: jbrunet@baylibre.com,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	Alberto Robazza <robazzalberto@gmail.com>
-Subject: [PATCH v4 1/3] dt-bindings: vendor-prefixes: add Orbbec
-Date: Wed, 29 Jul 2026 16:12:32 +0200
-Message-ID: <20260729141234.65037-2-robazzalberto@gmail.com>
+Subject: [PATCH v4 2/3] dt-bindings: arm: amlogic: document Orbbec Zora P1 board compatible
+Date: Wed, 29 Jul 2026 16:12:33 +0200
+Message-ID: <20260729141234.65037-3-robazzalberto@gmail.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260729141234.65037-1-robazzalberto@gmail.com>
 References: <20260729141234.65037-1-robazzalberto@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260729_071240_690364_FFAD2886 
-X-CRM114-Status: UNSURE (   7.00  )
+X-CRM114-CacheID: sfid-20260729_071241_472259_2D339196 
+X-CRM114-Status: UNSURE (   7.55  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -112,27 +112,26 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the "orbbec" vendor prefix for Orbbec Inc., a manufacturer of
-3D depth cameras and embedded vision boards.
+Document the "orbbec,zora-p1" compatible for the Orbbec Zora P1 board,
+which is based on the Amlogic A311D (Meson G12B) SoC.
 
 Signed-off-by: Alberto Robazza <robazzalberto@gmail.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 396044f36..a42899bd2 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1251,6 +1251,8 @@ patternProperties:
-     description: Option NV
-   "^oranth,.*":
-     description: Shenzhen Oranth Technology Co., Ltd.
-+  "^orbbec,.*":
-+    description: Orbbec Inc.
-   "^ORCL,.*":
-     description: Oracle Corporation
-   "^orisetech,.*":
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 9f73a0054..2d6ecdada 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -167,6 +167,7 @@ properties:
+               - bananapi,bpi-m2s
+               - khadas,vim3
+               - libretech,aml-a311d-cc
++              - orbbec,zora-p1
+               - radxa,zero2
+           - const: amlogic,a311d
+           - const: amlogic,g12b
 -- 
 2.55.0
 
