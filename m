@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09029C53219
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Jul 2026 15:36:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D83A0C53219
+	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Jul 2026 16:31:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6gI0dZ702RfxVfmqI7lOZ/olBW+gS7a+yvfJ+p8d7TY=; b=tIc6Pe49ViFQN6
-	/z0Tg2yDODuTb4wCDBu5HxdXV0O1JrsC0i5scNhQN9JlcP4AJquwPOXv2wWamUGyz/uAl3Q0PW1XE
-	KMNK4SDilAsR/FsqwjJsIe5i2zz6LhHXGv+9zSZ3CySdgNUjAnY1PFaajuUOlOX/l1QvIchqvYsrV
-	DoOvhtUKN3rO0awLgtHtLN79NwImH51nxxqHAhKmEOSHJhycPJCvZVAMkarmj0iOC7NowS0D2dUVg
-	T5RZcWuTxwLYW8gnsz1lo3eKtqF4bPoz207GOQ/ATc36Zqs4ffz3XW6vGZmeLSNEPiU4TYEbFzjRI
-	EkZpsJSKywvIUyhDz5xg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:References:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=NbUzW9HPQ8Yk+4fY/FwBXFeLo1tMkfV0j5N2AsKo9so=; b=YtxYciAVQBRepMbTEuAR98lF3s
+	N9Aq4wsnx/v2Quu8mjv5stdw7kssMl9C3szQOtESnjuDGVqTFV8fS9iCaqknExyaAQCdmfTTWwlXu
+	X0JbOhnVQJMjXunjU3QVv2VY3aCB+AAoNngy48kJA3FCGf7t0LywfJedjtsX0PVIm4EGlVTLbjEe7
+	NIM2Z6ayAy+k3ugRoC8SbZHGtxJAvODZM5xeQlpkqQZwV1Jpy7y0agEtlO0JABOKGatZEtL3Xwru0
+	ornH3EVqHIehr6ewbmLld3eSnx+QXm2F4jnHF2FKGt46u+CATMjCy74d2a3mN7tLFX7QwQYiuK8sb
+	AyaxJtiA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wp6KD-00000008Qk6-3xoL;
-	Wed, 29 Jul 2026 15:36:05 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1wp7Bf-00000008Yg5-0E68;
+	Wed, 29 Jul 2026 16:31:19 +0000
+Received: from out-182.mta0.migadu.com ([91.218.175.182])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wp6KD-00000008Qjc-1bvY
+	id 1wp7Bc-00000008Yec-1WnE
 	for linux-amlogic@lists.infradead.org;
-	Wed, 29 Jul 2026 15:36:05 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 8B1A26001D;
-	Wed, 29 Jul 2026 15:36:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F34521F000E9;
-	Wed, 29 Jul 2026 15:36:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1785339364;
-	bh=FwSV2//29NDzEKOpMLAG4UFiCJY5x7hfxfKALs2kUFA=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Ien1YajQEz5i6Dg7g8ubmh7UsB/b+sM42JTIIvCN52GHOVR2SDnAjFQzafPPIXFgZ
-	 ocRi2vCXvlzK4DdAnhJs54s4DiCwiiPzPAEw9awTz/gMoMy2+9KT6rjwUqjUm6DM50
-	 ZFbycWaETMEZqPa2jBtEJO6VabLoFWjP9+qBuy6YHoLsdVGor66bXLR7rngnaU+Fs1
-	 GGL1UVwbNCRaaHE5U0SMMGcXOealsWQ2dXRXTPLctSnMvJmRk3IjdHVLhUM+sY2GLm
-	 /g6MOAOlpoKrHzX2fJHXr/0ZCMt029iRjHKryHcOKFYclxobg8ApAWWik5Q08FXWkK
-	 9KH3Hjio+/FyQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 07/15] media: meson-ir-tx: Ensure clock is disabled
- on unbind
-To: "Sean Young" <sean@mess.org>
-Cc: linux-amlogic@lists.infradead.org, media-ci@linuxtv.org, neil.armstrong@linaro.org
-In-Reply-To: <0a0066a531aedbcb18620cac5897cb91c78a5188.1785338381.git.sean@mess.org>
-References: <cover.1785338381.git.sean@mess.org>
- <0a0066a531aedbcb18620cac5897cb91c78a5188.1785338381.git.sean@mess.org>
-Date: Wed, 29 Jul 2026 15:36:03 +0000
-Message-Id: <20260729153603.F34521F000E9@smtp.kernel.org>
+	Wed, 29 Jul 2026 16:31:17 +0000
+Date: Wed, 29 Jul 2026 16:16:49 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1785342668;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=G/CH1RQ51wDKB1nw1PqJ4AnZY65vJPiP0L6rpa3Xr34=;
+	b=RlhoJ0IOQVoLpDQtytQO8MTjIYvJpV3c/0Zq3gYTRqDiCpNDZmC8ob6kOYX3z7VfxM3Ivs
+	1is//wB95LM4LTyrvKkj4de4HjIwlR38130ajWnOSPkmPJhLTvXIv9nytRZgNcPDeshIs+
+	uRMOpQ04SZPdTnp06C+fkrbKpBuMHMC+qIEDCRyC2uiYV0kWN77rCAOGPJsk9gZjRKZvbu
+	r6QGk2IIcYtHhsmY0sUq2zxJ/hDf3wFAZK9IZHQnhq68dJgUXfR87uIoQ3qhTtVv6zXtnf
+	7s7CjvtQ2qwu/S8l3/mfJkp4vTI/bH9ye7bPEL6GlhJ+fl9wqXnzCVN1It6o1Q==
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Ferass El Hafidi <funderscore@postmarketos.org>
+To: linux-amlogic@lists.infradead.org, Alberto Robazza <robazza.alberto@proton.me>, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org, khilman@baylibre.com
+Cc: jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, Alberto Robazza <robazzalberto@gmail.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: vendor-prefixes: add Orbbec
+References: <20260729141234.65037-1-robazzalberto@gmail.com> <20260729141234.65037-2-robazzalberto@gmail.com>
+In-Reply-To: <20260729141234.65037-2-robazzalberto@gmail.com>
+Message-ID: <tiy37g.1ypi45yn8qibx@postmarketos.org>
+MIME-Version: 1.0
+X-Migadu-Flow: FLOW_OUT
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260729_093116_544620_47E4D1E8 
+X-CRM114-Status: GOOD (  10.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,56 +64,69 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MiBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpOZXcgaXNzdWVzOgotIFtNZWRpdW1d
-IFRoZSBjbG9jayBpcyBhdXRvbWF0aWNhbGx5IGRpc2FibGVkIG9uIHVuYmluZCB2aWEgZGV2cmVz
-LCBidXQgdGhlIGhhcmR3YXJlIGlzIG5vdCBncmFjZWZ1bGx5IHNodXQgZG93biBmaXJzdCwgdmlv
-bGF0aW5nIHRoZSBoYXJkd2FyZSBzdGF0ZSBtYWNoaW5lLgoKUHJlLWV4aXN0aW5nIGlzc3VlczoK
-LSBbSGlnaF0gVGhlIGRyaXZlciBvdmVyd3JpdGVzIGdlbnVpbmUgZXJyb3IgY29kZXMgKGluY2x1
-ZGluZyAtRVBST0JFX0RFRkVSKSB3aXRoIGEgaGFyZGNvZGVkIC1FTk9ERVYsIGJyZWFraW5nIGRl
-ZmVycmVkIHByb2JpbmcuCi0tCgotLS0gUGF0Y2ggWzddOiBbUEFUQ0ggdjUgMDcvMTVdIG1lZGlh
-OiBtZXNvbi1pci10eDogRW5zdXJlIGNsb2NrIGlzIGRpc2FibGVkIG9uIHVuYmluZCAtLS0KY29t
-bWl0IGVkMzcwNDAwNjFmMjI1NzM3NmZkOTU1YmEyY2QwMGQwNGE0NjcxOWMKQXV0aG9yOiBTZWFu
-IFlvdW5nIDxzZWFuQG1lc3Mub3JnPgoKICAgIG1lZGlhOiBtZXNvbi1pci10eDogRW5zdXJlIGNs
-b2NrIGlzIGRpc2FibGVkIG9uIHVuYmluZAogICAgClRoaXMgY29tbWl0IHVwZGF0ZXMgdGhlIG1l
-c29uLWlyLXR4IGRyaXZlciB0byB1c2UgZGV2bV9jbGtfZ2V0X2VuYWJsZWQoKSBzbwp0aGF0IHRo
-ZSBjbG9jayBpcyBhdXRvbWF0aWNhbGx5IGRpc2FibGVkIGR1cmluZyBkcml2ZXIgdW5iaW5kLgoK
-PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9tZWRpYS9yYy9tZXNvbi1pci10eC5jIGIvZHJpdmVycy9t
-ZWRpYS9yYy9tZXNvbi1pci10eC5jCj4gaW5kZXggZmRlZDJjMjU2ZjJhNi4uZTdiYjEwN2U2YTg0
-MyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL21lZGlhL3JjL21lc29uLWlyLXR4LmMKPiArKysgYi9k
-cml2ZXJzL21lZGlhL3JjL21lc29uLWlyLXR4LmMKPiBAQCAtMjg4LDggKzI4OCw4IEBAIHN0YXRp
-YyBpbnQgbWVzb25faXJ0eF9tb2RfY2xvY2tfcHJvYmUoc3RydWN0IG1lc29uX2lydHggKmlyLAo+
-ICAJaWYgKCFucCkKPiAgCQlyZXR1cm4gLUVOT0RFVjsKPiAgCj4gLQljbG9jayA9IGRldm1fY2xr
-X2dldChpci0+ZGV2LCAieHRhbCIpOwo+IC0JaWYgKElTX0VSUihjbG9jaykgfHwgY2xrX3ByZXBh
-cmVfZW5hYmxlKGNsb2NrKSkKPiArCWNsb2NrID0gZGV2bV9jbGtfZ2V0X2VuYWJsZWQoaXItPmRl
-diwgInh0YWwiKTsKPiArCWlmIChJU19FUlIoY2xvY2spKQo+ICAJCXJldHVybiAtRU5PREVWOwoK
-W1NldmVyaXR5OiBIaWdoXQpUaGlzIGlzIGEgcHJlLWV4aXN0aW5nIGlzc3VlLCBidXQgZG9lcyBy
-ZXR1cm5pbmcgLUVOT0RFViBoZXJlIGluCm1lc29uX2lydHhfbW9kX2Nsb2NrX3Byb2JlKCkgb3Zl
-cndyaXRlIHRoZSBhY3R1YWwgZXJyb3IgY29kZSByZXR1cm5lZCBieQpkZXZtX2Nsa19nZXRfZW5h
-YmxlZCgpLCBzdWNoIGFzIC1FUFJPQkVfREVGRVI/CgpJZiB0aGUgY2xvY2sgcHJvdmlkZXIgaXMg
-bm90IHlldCByZWFkeSwgcmV0dXJuaW5nIC1FTk9ERVYgaW5zdGVhZCBvZgpwcm9wYWdhdGluZyB0
-aGUgZXJyb3IgY29kZSBjb3VsZCBwZXJtYW5lbnRseSBmYWlsIHRvIHByb2JlIGluc3RlYWQgb2YK
-ZGVmZXJyaW5nLiBBIHNpbWlsYXIgb3ZlcnJpZGUgaGFwcGVucyBpbiBtZXNvbl9pcnR4X3Byb2Jl
-KCkgd2l0aApwbGF0Zm9ybV9nZXRfaXJxKCkuCgpbU2V2ZXJpdHk6IE1lZGl1bV0KV2l0aCBkZXZt
-X2Nsa19nZXRfZW5hYmxlZCgpLCB0aGUgY2xvY2sgaXMgYXV0b21hdGljYWxseSBkaXNhYmxlZCBv
-biB1bmJpbmQgdmlhCmRldnJlcy4KCklzIGl0IHNhZmUgdG8gZGlzYWJsZSB0aGUgY2xvY2sgd2l0
-aG91dCBmaXJzdCBzaHV0dGluZyBkb3duIHRoZSBoYXJkd2FyZSBibG9jaz8KClRoZSBkcml2ZXIg
-Y29uZmlndXJlcyB0aGUgaGFyZHdhcmUgaW4gbWVzb25faXJ0eF9wcm9iZSgpLCBidXQgc2luY2Ug
-dGhlcmUgaXMKbm8gLnJlbW92ZSBjYWxsYmFjayBpbiBtZXNvbl9pcnR4X3BkIChvciBhIGNvcnJl
-c3BvbmRpbmcgZGV2bSBhY3Rpb24pIHRvCmdyYWNlZnVsbHkgc2h1dCBkb3duIHRoZSBoYXJkd2Fy
-ZSwgaXQgaXMgbGVmdCBydW5uaW5nLiBEaXNhYmxpbmcgdGhlIGNsb2NrCndoaWxlIHRoZSBoYXJk
-d2FyZSBpcyBzdGlsbCBhY3RpdmUgbWlnaHQgZnJlZXplIHRoZSBoYXJkd2FyZSBibG9jayBvciBj
-YXVzZQpidXMgbG9ja3VwcyB3aGVuIHRoZSBkcml2ZXIgaXMgdW5ib3VuZC4KCj4gIAo+ICAJKmNs
-a19uciA9IElSQl9NT0RfWFRBTDNfQ0xLOwoKLS0gClNhc2hpa28gQUkgcmV2aWV3IMK3IGh0dHBz
-Oi8vc2FzaGlrby5kZXYvIy9wYXRjaHNldC9jb3Zlci4xNzg1MzM4MzgxLmdpdC5zZWFuQG1lc3Mu
-b3JnP3BhcnQ9NwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRl
-YWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgt
-YW1sb2dpYwo=
+Hi Alberto,
+
+On Wed, 29 Jul 2026 14:12, Alberto Robazza <robazzalberto@gmail.com> wrote:
+>Add the "orbbec" vendor prefix for Orbbec Inc., a manufacturer of
+>3D depth cameras and embedded vision boards.
+>
+>Signed-off-by: Alberto Robazza <robazzalberto@gmail.com>
+>---
+> Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+> 1 file changed, 2 insertions(+)
+>
+
+You seem to have missed Krzysztof's Acked-by tag in this patch:
+https://lore.kernel.org/all/20260729-unbreakable-observant-clam-ca4f6d@quoll/
+
+Reviewers will typically give out Acked-by or Reviewed-by tags to your
+patch to signal that the patch looks good to them (typically the former tag)
+or that they have reviewed it in great detail and approve it (typically the
+latter tag). These tags need to be picked up and added to your patch.
+
+If you use b4 to send the patches, you can run `b4 trailers -u` each
+time before sending a new patchset revision to the mailing list to get
+all Acked-by and Reviewed-by tags reviewers will give to your patch.
+If you don't use b4, you should be able to add them manually still with
+git commands.
+
+If you don't have them added to your patch, it may sound like you
+ignored their review. Reviewing takes effort and is time-consuming,
+so always make sure you have all of them added.
+
+Also see: https://docs.kernel.org/process/submitting-patches.html
+
+Best regards,
+Ferass
+
+>diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>index 396044f36..a42899bd2 100644
+>--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>@@ -1251,6 +1251,8 @@ patternProperties:
+>     description: Option NV
+>   "^oranth,.*":
+>     description: Shenzhen Oranth Technology Co., Ltd.
+>+  "^orbbec,.*":
+>+    description: Orbbec Inc.
+>   "^ORCL,.*":
+>     description: Oracle Corporation
+>   "^orisetech,.*":
+>-- 
+>2.55.0
+>
+>
+>_______________________________________________
+>linux-amlogic mailing list
+>linux-amlogic@lists.infradead.org
+>http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
