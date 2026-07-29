@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24925C54F51
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Jul 2026 08:40:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A2E8C54F51
+	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Jul 2026 08:40:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1lD8eZeTqXFfJK2FdD6e0tMHfhsQSfNXGM9oDFXWzaI=; b=jvUxSyLxST3Pf6
-	6P4ybHltlImlpep0Q02V3AlJKyttaJKEAyZuqF028scoYHQq7JOay3sRZ67+iM9wAfPlTXnkuv+hR
-	md0qTd/IhIZlDaL+aXBqTwBgpKz/N6UcD5PRMail/ByDmKuRBxGzHQ51GByBX7ZR/bhDXKZGlH+WC
-	JEWDcdIgPbYUwLiyvfQDxM3KljsCqnORioOrEHHZ4w/Q4NgSQnoT77FV4L6dSe67IsRagRSuBCwoK
-	EzMkgk9OpzEKsTxww20bLlfazqORC2wJNnSi9QqFw1gBwTCU3Jl87M5hB/ji1SrJNRRpCXfsXWJYE
-	VOjujVtjV7RXtf/Srtdg==;
+	List-Owner; bh=HJ7ovlf9F0b/eivMWiLcVN7/M5ErQ7Bhp3WDeLsEjtg=; b=g4YIpAJJsGBV8d
+	IcIKJD54R91102/k+TuPx3nZlHm/RYojCKv3Tvx/Mm6C3XmAXlS+AgybvbzFYGxVLZmSpJ8Xlk7jd
+	c7+559DzlrmNAeEKoRW3yB6B4AQ54eOAmmtx3FZEECEh2FGDfzXXQnEP8Y4PJYiCVglf2zyaePkHa
+	ZEYRi+avqS1fYoRcIu3bu2WPn/h+PAmJu/D8tpqWISyLweId8jJF0rjjNsND2qTX+K5CuM+riBY4y
+	BnBQTeNMWPvzK42PmQG5rypMz1HitzHmKGia6YSR1vURQrQx8cHoYMnMxOUBV2HjRfBs5zWs6ekNX
+	0r7l50+c0Y9m2qTvzqIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wozpu-00000007Fzz-0lxZ;
-	Wed, 29 Jul 2026 08:40:22 +0000
+	id 1wozqJ-00000007G6l-1avI;
+	Wed, 29 Jul 2026 08:40:47 +0000
 Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wozps-00000007FzT-3EKs;
-	Wed, 29 Jul 2026 08:40:20 +0000
+	id 1wozqI-00000007G6T-2Ajz;
+	Wed, 29 Jul 2026 08:40:46 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 2C49B60A5E;
-	Wed, 29 Jul 2026 08:40:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7D8F1F000E9;
-	Wed, 29 Jul 2026 08:40:18 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id F083860A5E;
+	Wed, 29 Jul 2026 08:40:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA0891F000E9;
+	Wed, 29 Jul 2026 08:40:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1785314419;
-	bh=lgVUcD8CFwoIBIUfkRSTzNndhdC7UEOcfo40aszScmE=;
+	s=k20260515; t=1785314445;
+	bh=sFmSf2jbiL7dzInzF3ILU/H09H5oNuenhAieGaL8ySA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Pz3hMM0FQ5je3tz4sXl5/T3mPU0zNBSa2Py+tDu8Qs8igIipFWRYPF5MZ2HoMGvRX
-	 CB/vkkqC4ujVZQNEiVFZf57ir88xqMZaRs3HC8VwSTiNltd+at5OXBwgP2yJjQDr7c
-	 HGc9K2WcB2SuFKQpQYzWjbKGzTDO7x+0XKS0n2/hwpEobpgGQeEN544xBG/O7ernDf
-	 sRrk1XUElCsE/RrXaV4jCYC5y758UxEsg/BvJ41BHbqcvNp5zrjjkTcn1QMNrL2zVZ
-	 AQ+uYQx6paUeg8abmgjy+bLMUFm9By9A3/S6yhkbJQJxfI6kLKZ+H85y5ET6n/uSvd
-	 p2krLy7KGT4TA==
-Date: Wed, 29 Jul 2026 10:40:15 +0200
+	b=oTuaRGdjiYEVFU9jpDiDeMRUMmdwAl48ya5YICmZKy+aA9mQzjGTovMLUttMdeO2+
+	 qgY9CSQEcijE/g2tYA1DZq4FdV80WefkMb+zowIdkzOTPzYJebGQ6sx2x3TPL0yBHP
+	 coG1bcMNx43P/6W9piL3cakc2aI7V8rk4/hke8+VWHBituQJI9OZHJWe13wY6i4uW7
+	 hs+b43yd7LpynQjlrFS5zY3eFJhlZf0+cHob4slXM5en4T2th3ilAxBhDIPDujh5e2
+	 3X6wFlIPHOH944zHym99hB4ftaW1S/XfuxhgSUvbqcVMkc6H3qx7g67vSpZvFVLvqw
+	 MpntsLn6J6k9g==
+Date: Wed, 29 Jul 2026 10:40:41 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Alberto Robazza <robazza.alberto@proton.me>
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
@@ -49,13 +49,14 @@ Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
 	martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
 	Alberto Robazza <robazzalberto@gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: vendor-prefixes: add Orbbec
-Message-ID: <20260729-unbreakable-observant-clam-ca4f6d@quoll>
+Subject: Re: [PATCH v3 2/3] dt-bindings: arm: amlogic: document Orbbec Zora
+ P1 board compatible
+Message-ID: <20260729-watchful-snobbish-velociraptor-b6f5d4@quoll>
 References: <20260728151636.236393-1-robazzalberto@gmail.com>
- <20260728151636.236393-2-robazzalberto@gmail.com>
+ <20260728151636.236393-3-robazzalberto@gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20260728151636.236393-2-robazzalberto@gmail.com>
+In-Reply-To: <20260728151636.236393-3-robazzalberto@gmail.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,23 +73,18 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Jul 28, 2026 at 05:16:34PM +0200, Alberto Robazza wrote:
-> Add the "orbbec" vendor prefix for Orbbec Inc., a manufacturer of
-> 3D depth cameras and embedded vision boards. The prefix is needed by
-> an upcoming board compatible string ("orbbec,zora-p1") introduced by
-> this series.
+On Tue, Jul 28, 2026 at 05:16:35PM +0200, Alberto Robazza wrote:
+> Document the "orbbec,zora-p1" compatible for the Orbbec Zora P1 board,
+> which is based on the Amlogic A311D (Meson G12B) SoC. The corresponding
+> device tree is added in the follow-up patch.
 
-Drop the last sentence. It is implied if it comes within this patchset.
-Are you using it in this patchset, though?
+Drop the sentence.
 
 > 
-> Link: https://www.orbbec.com/
-> Signed-off-by: Alberto Robazza <robazzalberto@gmail.com>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> The "orbbec" vendor prefix used here is added in the first patch of this
+> series
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Drop the sentence.
 
 Best regards,
 Krzysztof
