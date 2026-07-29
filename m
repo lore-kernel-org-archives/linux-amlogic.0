@@ -4,96 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58C12C54F51
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Jul 2026 17:52:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 639C0C53200
+	for <linux-amlogic@archiver.kernel.org>; Wed, 29 Jul 2026 18:00:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:
-	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0BMNJXDO6gYl7CeLu+fi8DP7bsVJPJcInehG6d1m66g=; b=E5BqilPQ/VNGG9
-	rswhFesKqwDqGxPcf0RTT12cr/tnvJq9IKq9BsQin6WVXeW0xx2bBLLUk/5Z/ScedQ9aBxoI5t0WJ
-	/RtY34+9S8jfrRnnW5jjR/ksECnEVcNDwhyNuIWXbM0wS8rAr74fHPCKzB2UAzvKSjrKJxh95JzwW
-	3/QkwOo4WvbiY2BFPf3aUQhCq5tnoOZIzSC17ISxgybNJjNvSQ0TAuXqrDS8TgRRBCYzZUKeKZIiS
-	3sSgtkK0SNx+lrsUkvxPRVx/ERYMHBdEqCHIpF5ZdlnYIfxq3VO/11yuHXhBX0EygNKsx7S87yI8F
-	XsIuf+QMw+/wqkROS1Xg==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=EwRdge/PahJ7b84NYUR//oJKcgwPT0wmf5+2p647Jl0=; b=qSt14RuEOL2XrU
+	adPtgzmW4BgdR7J1bpTWVDr7sm25sxjjv5hG2vmk2RZP6heySrERMWmJjsXy1358VfzTnCcs+1imG
+	zGqazZ3NDPi9/QS0BuLHGjeom8t8DptKN58VtLSohKSe3162x9UMvYcF5ETtvwzO0zKz8uVeVCOpa
+	VL5RLVaFKOrke1QrqEiL5q7FuDuOkgMRwqkfQXxiKl9mqrwZdcDCHeY6IVW3bAURTlIOr7N3ZQaNN
+	MKybSLrKc+Am4lDpqnEP0FFXc4fKoNu9N1W5Ao4fRwWXGMYGdN+Bbec1F2CBNCdJofU2/jkWrzCWJ
+	/MtwoK9LuJb+F0LJgIrg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wp8Rj-00000008kK5-1AFy;
-	Wed, 29 Jul 2026 17:51:59 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1wp8ZS-00000008lrz-0jsp;
+	Wed, 29 Jul 2026 17:59:58 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wp8RU-00000008kBS-1p3X
+	id 1wp8ZQ-00000008lrI-3HbN
 	for linux-amlogic@lists.infradead.org;
-	Wed, 29 Jul 2026 17:51:45 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-493f6de72faso1132655e9.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 29 Jul 2026 10:51:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1785347502; x=1785952302; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:reply-to:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=dg/MbR2Z6TESuIFxgaSk9l6XDWrZ8tDzJ8s/nIWGkrA=;
-        b=adY2lR/52vl3bPuVWMiy/4yNhxggpMBQIH4nlqiufco0rmK3SdKXZtZ8GWe5EIh/70
-         9tp1L7tLLpPRtiNkji7CRGNo0BW5E9F+sGNiVC2UsavH2gZG7773yHfTw5u2fx0185JK
-         nea4+flLUKcp11wyYdZDyQv0L88N+uxTJS4s7mDDYYGsOrJAM9kiXGDQyxYVDnKrBtwe
-         d8xuNuKOZIjviVhGQoz+7yaRenQR86N5bHnx7IpIdhWjE8AmrfMb3ZT8tCyO+zAWlFhK
-         GldcRpLA6NsfY1aCz8dxzOxIWNl2sJ0C5UU6TKsv1VEvCOaF1FIe4/t/6eDSVh7aUGkf
-         GQug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1785347502; x=1785952302;
-        h=content-transfer-encoding:mime-version:reply-to:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=dg/MbR2Z6TESuIFxgaSk9l6XDWrZ8tDzJ8s/nIWGkrA=;
-        b=cn20WVHYxnA/m/Wg3Q0W+d4VfCc8EVAMJF0WTq425qltJzHAPrkbSCJSSMH9TqxZiu
-         ZrkVPmWE+68V4aiX6teiNFHLErrqWZZSmsyuqHxTjCuoUcfhanKzEvxPFel0teUjNWFH
-         Afk9QDSMeGkDvq7qn9lBF7EkDVEmYuYl1COmDJ8LwV1W99k3HMd765VGToLiPGKY/s4H
-         KJaDIZ+TSNHbThxyO/UTWQjr8GLGNHDnZIUcWlfoL12cf4uhMslGPoxdJ8hYUzfjuv1L
-         ipBxewMrvnm2PSJ6zCC7goMmdqcpLbm1EnLqSorZMY8p1bKHXE4cNZ3Fw7RBdB3oZt+8
-         4eMg==
-X-Forwarded-Encrypted: i=1; AHgh+RpPn+GWdPH6rseu7QR/JjXXarDU2ScUlsWXKobu9tznqbQdD86WmraYvTjjySyT4EiLmS/ZpnZKDpnn2szb@lists.infradead.org
-X-Gm-Message-State: AOJu0YxYsbi1tHruMUXpoaYxgNQWjRq3Z+iUJ/uxkFk76idkcdegqS3L
-	zeLmn4dNmF6PYleRENwVh6klNCRkndLYDd/mPUbf0kMSsEvTttdOt6E4
-X-Gm-Gg: AR+sD13+3KqZ0HX6wL4MvYzrNIivoOaoZnZpuYRx8wvH+usysr1pxnTndhNT2g6UZYn
-	6xSSpZMnKy98mVk1AxZy7bgR4fmzuwj2dqJ6P2Vb5XCu+LH6FPZ1AiF1j1MFZwa6lnS41KYAskV
-	e5F9mm/HmSchiMdNfj1LxSeYkf4YRFKEPA/UnqPc53tE30P3ltFY4q0o3dk2uepc2hP/JRpb1US
-	L6eydUubSh3i3KBJBy3kw30yEIHg6U4vxcghvvI4cG/vuXK1+XMeRMt6MyMrWuY6BzerrAZmMHS
-	AXm9phDkn6JCAuB9iduiBfueAzgxmAwwkvYn40eZYV/JcqUwKx5tBz2sN9WvWxlV1MoBm3hXlHu
-	GUE1hFAbXzjH/hZJPD7jItYSdMO+6oL8bymBnoy7bAoWpvNFNEPf2LGydoiaTn1fHi11JwwqZg7
-	o7AeJne1m3ph85WPHWoBUQn9AyKtPi0rglVkVB6VoGLs31v/n1FInzXa5Popnlrdh5biJfFbNzN
-	ujTlqlaD+fxl6ioq8RSBZBuzygQn1Y3
-X-Received: by 2002:a05:600c:45c3:b0:495:69eb:27d3 with SMTP id 5b1f17b1804b1-497fd3014e6mr32775345e9.8.1785347502214;
-        Wed, 29 Jul 2026 10:51:42 -0700 (PDT)
-Received: from slackboot (93-34-146-61.ip50.fastwebnet.it. [93.34.146.61])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4976bd83fabsm75723775e9.15.2026.07.29.10.51.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jul 2026 10:51:41 -0700 (PDT)
-From: Alberto Robazza <robazzalberto@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	neil.armstrong@linaro.org,
-	khilman@baylibre.com
-Cc: jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	Alberto Robazza <robazzalberto@gmail.com>
-Subject: [PATCH v5 3/3] arm64: dts: amlogic: add support for Orbbec Zora P1
-Date: Wed, 29 Jul 2026 19:51:34 +0200
-Message-ID: <20260729175134.92909-4-robazzalberto@gmail.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260729175134.92909-1-robazzalberto@gmail.com>
+	Wed, 29 Jul 2026 17:59:56 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 3A11840C01;
+	Wed, 29 Jul 2026 17:59:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B772F1F000E9;
+	Wed, 29 Jul 2026 17:59:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1785347996;
+	bh=Afr8AYMx3BMn2gSwsRKx+oiaoVXcclqbOn2L0f9Bohs=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=k0TlBh850067w6GKBvF0eJQhok/oWcwB7gCBx3JSKxmovtZIDAfdvZ/96oXuq7jiX
+	 EyQiTuzDC0EyUcjNxNcYZ5OplID+bhCpgPS6w4hAnBp/6xHsirjcEb96HqVPIC36kx
+	 doOZ5ckF5RiD1oMkrNp88NpeEviAsW+Y6kvJP5bSHpMj1+kCbeSrsl6K1hXH64chPa
+	 lWZnuSAQJ+A3cBIQcD39McX5nMkxPMJ8vh+3LhwLlCJHQo1taEI+a64bM1K9s/4Lc2
+	 q5QWaxEyeeQcYztm77vOM7W3gaFTKVSQD6abZ4GJ5sUm5DylHp1bF2cDlxTh/aZoZo
+	 2an1kMHsQOtug==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 3/3] arm64: dts: amlogic: add support for Orbbec Zora
+ P1
+To: "Alberto Robazza" <robazzalberto@gmail.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org, neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
+In-Reply-To: <20260729175134.92909-4-robazzalberto@gmail.com>
 References: <20260729175134.92909-1-robazzalberto@gmail.com>
-MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260729_105144_496034_DD74009B 
-X-CRM114-Status: GOOD (  16.72  )
+ <20260729175134.92909-4-robazzalberto@gmail.com>
+Date: Wed, 29 Jul 2026 17:59:55 +0000
+Message-Id: <20260729175955.B772F1F000E9@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,162 +63,64 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Alberto Robazza <robazza.alberto@proton.me>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Orbbec Zora P1 is an A311D (Meson G12B) board with 2/4 GiB DDR4,
-an Ampak AP6256 combo module (Broadcom BCM43456 Wi-Fi over SDIO and
-BCM4345C5 Bluetooth over UART_A).
-
-According to the original Linux dts, the board is a modded version
-of the ODROID-N2, with Amlogic A311D instead of the original S922X
-and WiFi and Bluetooth support.
-So the device tree builds on meson-g12b-a311d.dtsi and
-meson-g12b-odroid-n2.dtsi (using same vddcpu values of N2+),
-extended with the board-specific GPIO wiring for the AP6256 handling,
-and some modifications for the led, GPIO_ACTIVE_LOW instead of
-GPIO_ACTIVE_HIGH and different label (it is a green led, not blue as
-in the Odroid N2).
-Add the new DTB to the Makefile.
-
-Signed-off-by: Alberto Robazza <robazzalberto@gmail.com>
----
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../boot/dts/amlogic/meson-g12b-zora-p1.dts   | 105 ++++++++++++++++++
- 2 files changed, 106 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-zora-p1.dts
-
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 57bc440fa..83fb38b94 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -40,6 +40,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-radxa-zero2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-s922x-bananapi-m2s.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-s922x-khadas-vim3.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-ugoos-am6.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12b-zora-p1.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-kii-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nanopi-k2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nexbox-a95x.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-zora-p1.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-zora-p1.dts
-new file mode 100644
-index 000000000..6e696ddbc
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-zora-p1.dts
-@@ -0,0 +1,105 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2026 Alberto Robazza <robazza.alberto@proton.me>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-g12b-a311d.dtsi"
-+#include "meson-g12b-odroid-n2.dtsi"
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	compatible = "orbbec,zora-p1", "amlogic,a311d", "amlogic,g12b";
-+	model = "Orbbec Zora P1";
-+
-+	leds {
-+		/* Status led on Zora is actually green, same pin as N2, but reversed polarity */
-+		led-blue {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&gpio_ao GPIOAO_11 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio GPIOX_16 GPIO_ACTIVE_LOW>;
-+		clocks = <&clock_32768>;
-+		clock-names = "ext_clock";
-+	};
-+
-+	clock_32768: clock-32768 {
-+		compatible = "pwm-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		pwms = <&pwm_ef 0 30518 0>;
-+	};
-+
-+	sound {
-+		model = "ZORA-P1";
-+	};
-+};
-+
-+&pwm_ef {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_e_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+/* AP6256 Wi-Fi: Broadcom BCM43456 over SDIO. */
-+&sd_emmc_a {
-+	status = "okay";
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <100000000>;
-+	non-removable;
-+	disable-wp;
-+	keep-power-in-suspend;
-+
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+	vmmc-supply = <&tflash_vdd>;
-+	vqmmc-supply = <&vddao_1v8>;
-+
-+	wifi@1 {
-+		compatible = "brcm,bcm4329-fmac";
-+		reg = <1>;
-+	};
-+};
-+
-+/* AP6256 Bluetooth: Broadcom BCM4345C5 over UART_A. */
-+&uart_A {
-+	status = "okay";
-+	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+
-+	bluetooth {
-+		compatible = "brcm,bcm4345c5";
-+		shutdown-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_HIGH>;
-+		max-speed = <2000000>;
-+		clocks = <&clock_32768>;
-+		clock-names = "lpo";
-+	};
-+};
-+
-+/* vddcpu regulators same as Odroid N2+ */
-+&vddcpu_a {
-+	regulator-min-microvolt = <680000>;
-+	regulator-max-microvolt = <1040000>;
-+
-+	pwms = <&pwm_ab 0 1500 0>;
-+};
-+
-+&vddcpu_b {
-+	regulator-min-microvolt = <680000>;
-+	regulator-max-microvolt = <1040000>;
-+
-+	pwms = <&pwm_AO_cd 1 1500 0>;
-+};
--- 
-2.55.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MiBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0hpZ2hdIFBpbiBtdWx0aXBsZXhp
+bmcgY29uZmxpY3Qgb24gR1BJT1hfMTYgYmV0d2VlbiBXaS1GaSByZXNldCBhbmQgUFdNIGNsb2Nr
+LgotIFtMb3ddIFRoZSBMRUQgbm9kZSBmYWlscyB0byBvdmVycmlkZSB0aGUgbGVnYWN5ICdsYWJl
+bCcgcHJvcGVydHksIHJlc3VsdGluZyBpbiBpbmNvcnJlY3Qgc3lzZnMgbmFtaW5nLgotLQoKLS0t
+IFBhdGNoIFszXTogW1BBVENIIHY1IDMvM10gYXJtNjQ6IGR0czogYW1sb2dpYzogYWRkIHN1cHBv
+cnQgZm9yIE9yYmJlYyBab3JhIFAxIC0tLQpjb21taXQgOTI4NzliNjRmYzk1MTBkNzE2NDkyYzg2
+Yzc5ZWMzZTdmMGVhYWQyZgpBdXRob3I6IEFsYmVydG8gUm9iYXp6YSA8cm9iYXp6YWxiZXJ0b0Bn
+bWFpbC5jb20+Cgphcm02NDogZHRzOiBhbWxvZ2ljOiBhZGQgc3VwcG9ydCBmb3IgT3JiYmVjIFpv
+cmEgUDEKClRoZSBPcmJiZWMgWm9yYSBQMSBpcyBhbiBBMzExRCAoTWVzb24gRzEyQikgYm9hcmQg
+d2l0aCAyLzQgR2lCIEREUjQsCmFuIEFtcGFrIEFQNjI1NiBjb21ibyBtb2R1bGUgKEJyb2FkY29t
+IEJDTTQzNDU2IFdpLUZpIG92ZXIgU0RJTyBhbmQKQkNNNDM0NUM1IEJsdWV0b290aCBvdmVyIFVB
+UlRfQSkuCkFjY29yZGluZyB0byB0aGUgb3JpZ2luYWwgTGludXggZHRzLCB0aGUgYm9hcmQgaXMg
+YSBtb2RkZWQgdmVyc2lvbgpvZiB0aGUgT0RST0lELU4yLCB3aXRoIEFtbG9naWMgQTMxMUQgaW5z
+dGVhZCBvZiB0aGUgb3JpZ2luYWwgUzkyMlgKYW5kIFdpRmkgYW5kIEJsdWV0b290aCBzdXBwb3J0
+LgoKPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWcxMmIt
+em9yYS1wMS5kdHMgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tZzEyYi16b3Jh
+LXAxLmR0cwo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4gLS0tIC9kZXYvbnVsbAo+ICsrKyBiL2Fy
+Y2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1nMTJiLXpvcmEtcDEuZHRzCgpbIC4uLiBd
+Cgo+ICsJbGVkcyB7Cj4gKwkJLyogU3RhdHVzIGxlZCBvbiBab3JhIGlzIGFjdHVhbGx5IGdyZWVu
+LCBzYW1lIHBpbiBhcyBOMiwgYnV0IHJldmVyc2VkIHBvbGFyaXR5ICovCj4gKwkJbGVkLWJsdWUg
+ewo+ICsJCQlmdW5jdGlvbiA9IExFRF9GVU5DVElPTl9TVEFUVVM7Cj4gKwkJCWNvbG9yID0gPExF
+RF9DT0xPUl9JRF9HUkVFTj47Cj4gKwkJCWdwaW9zID0gPCZncGlvX2FvIEdQSU9BT18xMSBHUElP
+X0FDVElWRV9MT1c+Owo+ICsJCX07Cj4gKwl9OwoKW1NldmVyaXR5OiBMb3ddCklzIHRoaXMgbGVk
+LWJsdWUgbm9kZSBtaXNzaW5nIGEgL2RlbGV0ZS1wcm9wZXJ0eS8gZm9yIHRoZSBsYWJlbD8KClRo
+ZSBkZXZpY2UgdHJlZSBpbmNsdWRlcyBtZXNvbi1nMTJiLW9kcm9pZC1uMi5kdHNpIHdoaWNoIGRl
+ZmluZXMgYSBsYWJlbApwcm9wZXJ0eSBmb3IgbGVkLWJsdWUuIFdoZW4gdGhlIExFRCBzdWJzeXN0
+ZW0gcGFyc2VzIHRoaXMgaW4KbGVkX3BhcnNlX2Z3bm9kZV9wcm9wcygpLCBpdCByZWFkcyB0aGUg
+aW5oZXJpdGVkIGxhYmVsIGFuZCByZXR1cm5zCmltbWVkaWF0ZWx5LCBpZ25vcmluZyB0aGUgbmV3
+bHkgYWRkZWQgY29sb3IgYW5kIGZ1bmN0aW9uIHByb3BlcnRpZXMuCgpXaWxsIHRoaXMgY2F1c2Ug
+dGhlIExFRCB0byBhcHBlYXIgYXMgJ24yOmJsdWUnIGluIHN5c2ZzIGluc3RlYWQgb2YgdGhlCmlu
+dGVuZGVkIGNvbG9yLWJhc2VkIG5hbWU/Cgo+ICsKPiArCXNkaW9fcHdyc2VxOiBzZGlvLXB3cnNl
+cSB7Cj4gKwkJY29tcGF0aWJsZSA9ICJtbWMtcHdyc2VxLXNpbXBsZSI7Cj4gKwkJcmVzZXQtZ3Bp
+b3MgPSA8JmdwaW8gR1BJT1hfMTYgR1BJT19BQ1RJVkVfTE9XPjsKPiArCQljbG9ja3MgPSA8JmNs
+b2NrXzMyNzY4PjsKPiArCQljbG9jay1uYW1lcyA9ICJleHRfY2xvY2siOwo+ICsJfTsKPiArCj4g
+KwljbG9ja18zMjc2ODogY2xvY2stMzI3Njggewo+ICsJCWNvbXBhdGlibGUgPSAicHdtLWNsb2Nr
+IjsKPiArCQkjY2xvY2stY2VsbHMgPSA8MD47Cj4gKwkJY2xvY2stZnJlcXVlbmN5ID0gPDMyNzY4
+PjsKPiArCQlwd21zID0gPCZwd21fZWYgMCAzMDUxOCAwPjsKPiArCX07Cj4gKwo+ICsJc291bmQg
+ewo+ICsJCW1vZGVsID0gIlpPUkEtUDEiOwo+ICsJfTsKPiArfTsKPiArCj4gKyZwd21fZWYgewo+
+ICsJc3RhdHVzID0gIm9rYXkiOwo+ICsJcGluY3RybC0wID0gPCZwd21fZV9waW5zPjsKPiArCXBp
+bmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7Cj4gK307CgpbU2V2ZXJpdHk6IEhpZ2hdCkRvZXMgdGhp
+cyBwaW4gY29uZmlndXJhdGlvbiBjcmVhdGUgYSBtdWx0aXBsZXhpbmcgY29uZmxpY3Qgb24gR1BJ
+T1hfMTY/CgpUaGUgc2Rpb19wd3JzZXEgbm9kZSByZXF1ZXN0cyBHUElPWF8xNiBhcyBhIHN0YW5k
+YXJkIEdQSU8gZm9yIHRoZSByZXNldApzZXF1ZW5jZS4gSG93ZXZlciwgcHdtX2VmIHJlcXVlc3Rz
+IHRoZSBwd21fZV9waW5zIHBpbmN0cmwgZ3JvdXAuIEJhc2VkIG9uCmRyaXZlcnMvcGluY3RybC9t
+ZXNvbi9waW5jdHJsLW1lc29uLWcxMmEuYywgcHdtX2VfcGlucyBtYXBzIGRpcmVjdGx5IHRvCkdQ
+SU9YXzE2LgoKU2luY2UgdGhlIHBpbmN0cmwgc3Vic3lzdGVtIHByZXZlbnRzIGNvbmN1cnJlbnQg
+Y2xhaW1zIG9mIHRoZSBzYW1lIHBpbiBmb3IKZGlmZmVyZW50IGZ1bmN0aW9ucywgd2lsbCBvbmUg
+b2YgdGhlc2UgaW5pdGlhbGl6YXRpb25zIGZhaWwgYW5kIHByZXZlbnQKV2ktRmkgZnJvbSB3b3Jr
+aW5nPwoKLS0gClNhc2hpa28gQUkgcmV2aWV3IMK3IGh0dHBzOi8vc2FzaGlrby5kZXYvIy9wYXRj
+aHNldC8yMDI2MDcyOTE3NTEzNC45MjkwOS0xLXJvYmF6emFsYmVydG9AZ21haWwuY29tP3BhcnQ9
+MwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgt
+YW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0
+dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
