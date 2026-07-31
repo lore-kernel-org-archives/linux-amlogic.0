@@ -4,138 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 979D9C55167
-	for <linux-amlogic@archiver.kernel.org>; Fri, 31 Jul 2026 03:16:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42B11C55167
+	for <linux-amlogic@archiver.kernel.org>; Fri, 31 Jul 2026 09:08:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=rSXFYUY0+NST8HT1XVJkNC4Nz1qLef0VPblKcarZ8lQ=; b=ITCvdyVeo5GggNeHvQDc6p3SFD
-	DPJR0Mj9lKWzDjxmq832phQTSQd3hceS5UM5EER+VN/aNqCW60Ur9wTye/RoR590QPNZzRi7gNs38
-	fuKnmAdYIEDLYCqbJWuOPXNm1d5uNdlFGDZJMU2LA8wjIMGykKqQ4PfoyDt4KnrUmxuxnnuifiDa6
-	Bgdj1ggHVbn0wyAdHF9NzDr848C/UiwaK2hI4Ijxrf2iYrphjaGi/AvndrsXGWUWz/ldDUDyqWhX7
-	nHt5U2hF5SUyOl5nVysr4JvTtam1PMeXm9C9JZ4YJH/qEtzYmMG2qNXA9iJsWbd9stll9OH0sJqpu
-	QKt+CFmA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=QuG2eVaYc1Up4ychQlPRmAyCadBgDGbyexkrkt+6kQA=; b=GsVpYTsn79NERm
+	NkjAWGIKTSL+5Xv1UeOWgaDgSdenBQOlovPFStkapNXkQxWwi9b9//tN7FRUvgXwq4YERtHdejvz6
+	uYIGwjNMfOAEI1Eih2x1Q0nZnUp3xVmLT8Dcc53nrb05YOvdDeE4coAcOzf4Lphguzgd+7rB5DUSO
+	pTZ6MMmOvlfVytoZlaf/9HEJYi5nI82Pi3E6TiNabZxW98juQURVhzD/jv9UnA+XvdofjRLTwB4ub
+	DyPre2Sa48FxUwULS0JyLeRPN1qxM4axTyplqdWM8qV26TUcIeiWFXF7fB5YmowGiNWxLmvsN9Ari
+	iOk0e51q4Qp4s7H0vp7w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wpdjA-0000000BfX3-2RfH;
-	Fri, 31 Jul 2026 03:16:05 +0000
-Received: from mail-japanwestazon11022110.outbound.protection.outlook.com ([40.107.75.110] helo=OS8PR02CU002.outbound.protection.outlook.com)
+	id 1wpjEG-0000000C8Ux-1Ywo;
+	Fri, 31 Jul 2026 09:08:32 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wpdj6-0000000BfWg-3z3n
+	id 1wpjEE-0000000C8UQ-3VLL
 	for linux-amlogic@lists.infradead.org;
-	Fri, 31 Jul 2026 03:16:02 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ov/1VjynLA2CCpxk/hiuRn+9QnaC6kLMw1GUAwqA8smoML7kVMm3RgddauiCQGxsPDDz1Z/fY9wZzRAtmAUGnzJYF6twoPOFPJ/ExmxkPu1G384dj4IEYFr7yx5iR6LHBvU9E64MFUOeXl1q0yb/rlcGWGM0MVVbC5ACg4zvcxhgMmILWsNNanlbLIPVIoEM7akjVFNWB14DnRUJZStcocl8M71wmXRr69KXm9CY9vRDNqbuwSziNg28hNjEajjmwaM2IX3io31y/iTCuUoAg+LZijradXLcXFuotLzSLJLIwAFc0JzXqzWYgHD+bln0yl2+AcXP584tHhIQcLavyQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0IWw0UZLTilE2t+xyIAttGb7xx3/vxH7X5dHAzu9aAA=;
- b=AUdwT3/JgXrRnJIrU1/rb9U6HcTrhGbX9r2uX2PRUfHVRU8POnUYMBQTG3nciuwz5M2ujzESewIopINbvPS7X/LJ5H8mCqpNHsSsuRBpT8kXiC/EzeZjtrpDVgeaeUb3QvF5DumtdF0xT80uiH7Fnz1Jap/yPhGgSyb2G7G/yWHW0/WpOd1Xk1XEA/yf0Z7Pi6zUndI2pIRCrUuZnygUrY8I7q//qLTUyR31/84u0FKPCJnvHBeDgK7v6N8ysekqPpP5cxfx95mB3eIFD4+LCdHO3liXRu8ZKRI5FhUoAi8V1/vtbfupc3iLP2HEBmj3nkYIm9/PxSkWrbY7kdvxDA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0IWw0UZLTilE2t+xyIAttGb7xx3/vxH7X5dHAzu9aAA=;
- b=NZ67onGgf8tmb8BB1cWyOXzWrUVCuseyRxv8/2EZ5w2HvcOLuOkadogbM94Iv4KtJxO76FE3LKyUvN40W0wrZi5O76CNG+fHIxOHclWcwWFef3e2dvMpEald51hlT1c5tuQ7nZpMLGLntwygR2VqnU5yg38jKcD9QRr4HJXk0DuIBeCyP0SFS3ybYv+a4Fsbk+094KehvPZPg57mqXszfqah1r9R8bKyFAv4HiRSui/H2XuqSZPoz0trqChasgMefisSGkSmmTwCEYgHOz3n1LHFp+gkDuxrY8WJpJeEM2kXHj/7nluTEfvwmrZhH/7CCVVy7cnzQhJfWatkxtFxSg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by OSNPR03MB10184.apcprd03.prod.outlook.com (2603:1096:604:49e::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.270.14; Fri, 31 Jul
- 2026 03:15:41 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::78d4:9dee:2e32:d1e4]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::78d4:9dee:2e32:d1e4%5]) with mapi id 15.21.0270.012; Fri, 31 Jul 2026
- 03:15:41 +0000
-Message-ID: <cd9e63b8-7c64-4a69-b772-014b03c9e3b1@amlogic.com>
-Date: Fri, 31 Jul 2026 11:15:35 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] spi: dt-bindings: amlogic: spisg: Document
- A9-specific properties
-Content-Language: en-US
-To: Mark Brown <broonie@kernel.org>
-Cc: Sunny Luo <sunny.luo@amlogic.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-amlogic@lists.infradead.org,
- linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260723-a9-spisg-v2-0-9fc39106b7e2@amlogic.com>
- <20260723-a9-spisg-v2-1-9fc39106b7e2@amlogic.com>
- <db111663-27a2-4299-a692-6154f1f842ca@sirena.org.uk>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <db111663-27a2-4299-a692-6154f1f842ca@sirena.org.uk>
-X-ClientProxiedBy: JH0PR06CA0017.apcprd06.prod.outlook.com
- (2603:1096:990:77::14) To TYZPR03MB6896.apcprd03.prod.outlook.com
- (2603:1096:400:289::14)
+	Fri, 31 Jul 2026 09:08:30 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 4178343F47;
+	Fri, 31 Jul 2026 09:08:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0DEAFC2BCF7;
+	Fri, 31 Jul 2026 09:08:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1785488910;
+	bh=rq/tb46DP924L/FjVCUkL1FIttRHuK8j2ySAzVvIQZM=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=qHzfLoYGijlNkK5s6v2QAipdIJb70s6BBlSUGJpWG9oiN8o+2fk+LLTw4p9Fp9qNp
+	 j/RuJbcBVBjWyM08YY9nlin4F8CcmmY7LcsZDoWRYdLRBXQQ9cIQWOVi4rY2tZdQBJ
+	 kgf/RhF3kCbNrVGAf236v8y0SBIUBeH3Am7W6lhqHno7gWTDidr1Qlxc1mz7ZRmTRL
+	 +cFE3f3MrAsX/hNZQ8bKLkIJbwxcazFMJW+5ok+Us9FP/SneSdVWv7flQIEbV6vPgb
+	 GNFyWUIJPWytR1Ov0GgNFI68wGsv2lYgDZCEQEuz/X/rhnQf/egYp6Xr6yqbGot2eC
+	 8WqCkKQe7aC9w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E4FC7C55172;
+	Fri, 31 Jul 2026 09:08:29 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Fri, 31 Jul 2026 09:08:26 +0000
+Subject: [PATCH v3 2/4] spi: amlogic: spisg: Fix transfer size limit and
+ timeout handling
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|OSNPR03MB10184:EE_
-X-MS-Office365-Filtering-Correlation-Id: 962f6b5a-f838-4e58-0a61-08deeeb20037
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|23010399003|376014|18002099003|22082099003|4143699003|3023799007|11063799006|10067099003|56012099006|6133799003;
-X-Microsoft-Antispam-Message-Info: bxevEzfYGpfLrgHnXPBKpyth8ZwRz900MM8sWx07guH/5Ke60sRepCRTH6d5er80G4dCx2Y4aQJOd7t+OxmrIAEZQow7AxGNQgx41nZ0c0pYGxrC0UjmpoRVXHgzV9oMazSMHusYJKaWggwrwIcSC8u7mh1rl7w17upFANxAt1p99Y10RRrDJIcCxO40teGARXB3ZBimFlkGghb7rs1KdiWBZM192m0OgQLl9vFDOZLuerKimAVtDk+6Ew10qBKGfb9REirTnWGaNJkrsKwHXZldJggM4Aw15eDcwqZnvLCBHgj/0MU8PeGyUtSYT5N0M4F43l3LFOVYzAD2fpS7QBw/Y743Gn9csDvadqoBjcTI+H71Hm+p/wzvl6JykAUAfd4/3t9tWv51Ndv8fZDXPtUADMVo8s3XFcaA3XCtNNhIvnXW7732pB8HR15bb+nNUVxWl6y7Iaoz2M4f24r0VWDDpkEX3wmj4CAfsBXNyIRWDxBPqml2qmEMpxOis5bIaIW72xU/pAXYtYn8rhLwHrOQ4rP8nBXhyI0xLFBvofjDJkOMAaghMiRQW7RTZral5ERt3sK8g1qULx8Ncnj3+aGF1OrK2CsY/eMmPSCmDJDlfZq3D1EWyc2VT2/hbB0muoa8teiS3RRDGNH+ECUpgO3j1eLPFZ4t3yorY/uweDY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(18002099003)(22082099003)(4143699003)(3023799007)(11063799006)(10067099003)(56012099006)(6133799003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TTEyMnBHQWxrNjRIZGhwa0VqdEh1aEpJYzlab2FrWTJUNGw1eGpsTTg1Qm41?=
- =?utf-8?B?NEtZanREWGFTUFdDdTRhY0hWYWtuYU5ocXpsUEE0L2tQOVE5QVF1WHZoTWhT?=
- =?utf-8?B?bGVHeG5icUk3MnVraFFBYW1iM0NZWk9QSVZiUEdET213Z2dZTG5xaWR6dVZt?=
- =?utf-8?B?U2FTYlBsQm5wYzhVd09yckswdmxMTkx2TkV6NnpWcE9DdElBRHFtNFZCTjJU?=
- =?utf-8?B?Mysxakk3UmxGYXNuTi9Fc0JiRkI2RjFQTHBlZ0ZzR1hlSTJXeDJBazdZa1FU?=
- =?utf-8?B?Zm5FL2loREpDZVJHdDM2U1VWT1IvZm5hQkNkUjg0QXJjMG0zRFppajl2MXJt?=
- =?utf-8?B?L1hSeDErMDB5WHV6NmFkOWNpNFdIV3ErY2RiM3BqajRJSjFydUtsaDhoMURI?=
- =?utf-8?B?SFptNzdTd2xhdzJPL2Fsa0dqMW1oVkU3eXBaOWFUUncwN2UrVUl0K1E3RTdU?=
- =?utf-8?B?a3A0aHFEQ0NVU3ZkUi8rWFM0V1EvWFFBNWtTNWt5d2xOWkZoTTZMQjBQZEdv?=
- =?utf-8?B?S3pLcG4rVGdhMUZ0MmI3TkZtWmQ5Z0pTd3lrREdSOEtOTDhTNUdlcjFKeFdS?=
- =?utf-8?B?QTlEU1JsRlo1NTMrV3Z3ckw2S0l4R0RYbzVpSWNlUU9sOGd5MDQwcElhS1hS?=
- =?utf-8?B?M2oyUE1mSURxRm9HQ3Z5N2VYM0VwWit3Z2NOYTN6YXVPVEJ3c2JBS2NlSjFU?=
- =?utf-8?B?SHlub1Q5YmhLS09rSGwrMEcvaU1vbjUydjFyTngrbmRHZ3B1Ymd5RTcwUmY0?=
- =?utf-8?B?QlZDdDRVa2U2bXZvUDdkUnBWV2JRS2ZLUDc0TWxZR3NPUzB5Yk55alZhNm1E?=
- =?utf-8?B?WWdoMDRRZm5sdm1INU9TZjJkczNtNUNiRE1JV0JiNUVXSVNwSWgrT3JEUzhS?=
- =?utf-8?B?SzVrOUdQeERBamRoVjJhait1b2ZlUytpV2o3NzliY05oNThWRStSUkRvOUpv?=
- =?utf-8?B?UlVGTEtDMXJKZDIrN1B0dFV5NlNtL0dpYmlVM1RHS2trR1lJcUxOZWF0RVlu?=
- =?utf-8?B?ZVdtQWlrMXpadTBzQk9SemNRNC8wZjU1N1hjOTdxamJscXdWWVFpNFg5RXpX?=
- =?utf-8?B?bFFwZk9JazNwNlVzYUcycUVNdG5GbHdWRnI0WnhuMWlWSTdiUHhVQjZZWHYv?=
- =?utf-8?B?NWo0eUpyc3ByM0F2S1FnTjlWUDVHTkhSeFVTbmtPZ1BMZ1VFN3dqYWZHZnYy?=
- =?utf-8?B?RHpNWkxPbS9tTm5oWU40UStsSGFnaUNNd2dVSG8rZEp5aTZ2VjJWNlpPR1g0?=
- =?utf-8?B?dnBYTWo1L2tTcDFEbldNWFZVWVhtejB2TGdOMEJWRDRzMmNrMmVHT0lIM0JQ?=
- =?utf-8?B?SHBjQ1ZzaTlRWTMwUlZib1gvTVJTQXlXRjgzU2xjSGVycmhpcit3ZXhPTTJz?=
- =?utf-8?B?NGcwWk1Lb2lydFQwbG9vVlM5U2Vyd0pZbk9La24zK3VRcDdTVnNBM3ZPcXRM?=
- =?utf-8?B?ZVUwMEw4Z0hBbTU1T1JnQ1VNeGpNQnFGdno4SlU5NnlwQm8vSWgvWTd3SmZn?=
- =?utf-8?B?dTBacE5RdHBDc295UHhFL3IxNi9oTVcwMXNqVmI5Z2JsYjlYU3F5R0R3aysx?=
- =?utf-8?B?WGxqbzB4Q2VodVpwRWxzQ0c3RStRT1BhZEJBTE1nTE5kRnlOZmZKK0lTajNG?=
- =?utf-8?B?V0tVZzNEOXJJZEVIU3oyR2lESXczOHdOR0NQZWhYR0VLYUZLUmVpbTUxWVI0?=
- =?utf-8?B?c2VNeVhGb0VDbm4zZU5lam9LZklrU25Yc0RCMkJMc0xjMEtPU29YSXhMWkI1?=
- =?utf-8?B?ZXRmZjlvODJkMTFUbG1NM2VUdDh0UDF0MXgwY1RGM1ByeFFwRTFaN0VlVnhG?=
- =?utf-8?B?RGhaZVMxVnFkWVVpQ3JKY2ZlYWxJUEt6OHlTbkJab0NFVmhNRHVxTVoyZkNu?=
- =?utf-8?B?OUtRVHRqV2k4TzBWOVdlN2tYTUNENzNjOGQ2NkFUQWJlT0ZmTFVIMFdGbVRU?=
- =?utf-8?B?a2dqa2htOWdORm5IaVZDeUtrTHZQSzY2YUloSlNaN2JPdkJvN2VpNVpWekJH?=
- =?utf-8?B?K2xLdXc0TlJFQW81Zjg5RDdVN0ErVHZ3c3RuM0R5OVgzQlJvdzVXOE5NL3Zr?=
- =?utf-8?B?R1VLTlQ5SWFOV0N6RTNkb05lOEVFUGQvTXNGanpES2J1Y3hXYThZMEtHK1Rt?=
- =?utf-8?B?MnVGMVhqbGx6dzFMeHNNWFYvZnRzUWhVSndhSTVBRHJtc0ZVMVRrSWgvbXZn?=
- =?utf-8?B?ZVZhSFZkN0dicHFhaEtmdTcwdFdGQWhxb0Y3VTg5R0YyL0ZuMzZPMEE2cTZE?=
- =?utf-8?B?YUw2TllacVkveE9ycEYvRmplTC82czJFVUJqcTEyVE92NFNwVUp6QU15SzUx?=
- =?utf-8?B?bnNMZnRhMXpZd05wOXhJcnRyV1lUVDlpSEttdENvVVdya29KcDRvQT09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 962f6b5a-f838-4e58-0a61-08deeeb20037
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jul 2026 03:15:41.0712
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 30rf9/KEt6/yT6EX8NawrE4ZT8Mfy7lMKjrcJLll+4xymMLguRx7H7/ZMqNWASMl+q/YksGsHZYgDZojrRsUzoS/JDj9reRIQayvvBbmLYI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSNPR03MB10184
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260730_201601_137755_B41D6AA2 
-X-CRM114-Status: GOOD (  11.56  )
+Message-Id: <20260731-a9-spisg-v3-2-a15da3f70029@amlogic.com>
+References: <20260731-a9-spisg-v3-0-a15da3f70029@amlogic.com>
+In-Reply-To: <20260731-a9-spisg-v3-0-a15da3f70029@amlogic.com>
+To: Sunny Luo <sunny.luo@amlogic.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1785488907; l=1947;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=BRq2nLOiEjtiR+0vj/uM6L8HPr1w32uaAGwS/r33K78=;
+ b=+wtwSwKdGJ97TDwEtJc8168Lm+z187CiysDr9iVjlng+UZdwvgQC5anWhFOOEUIIOWvjCGJOh
+ +41DdnUizsOCxC9uWXuNOE+9BqV72bytRXuxDN2WxCeKWtVKqyqoXQu
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -147,70 +81,71 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Mark,
-    Thanks for your review.
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-On 2026/7/30 21:22, Mark Brown wrote:
-> Subject:
-> Re: [PATCH v2 1/4] spi: dt-bindings: amlogic: spisg: Document 
-> A9-specific properties
-> From:
-> Mark Brown <broonie@kernel.org>
-> Date:
-> 2026/7/30 21:22
-> 
-> To:
-> xianwei.zhao@amlogic.com
-> CC:
-> Sunny Luo <sunny.luo@amlogic.com>, Rob Herring <robh@kernel.org>, 
-> Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley 
-> <conor+dt@kernel.org>, linux-amlogic@lists.infradead.org, 
-> linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
-> linux-kernel@vger.kernel.org
-> 
-> 
-> 
-> On Thu, Jul 23, 2026 at 06:43:42AM +0000, Xianwei Zhao via B4 Relay wrote:
->> From: Xianwei Zhao<xianwei.zhao@amlogic.com>
->> Document the Amlogic A9 SPISG controller and its additional
->> Device Tree properties.
->> Add the "amlogic,a9-spisg" compatible string and define the
->> A9-specific "amlogic,mo-idle-output" and "amlogic,word-gap"
->> properties, which configure the MOSI idle output level and
->> the inter-word gap, respectively.
->> @@ -35,6 +34,23 @@ properties:
->>     resets:
->>       maxItems: 1
->>   
->> +  amlogic,mo-idle-output:
->> +    description: |
->> +      Controls the MOSI output level when the controller is idle.
->> +      0 - Drive MOSI low
->> +      1 - Drive MOSI high
->> +      2 - Follow the last transmitted bit
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [0, 1, 2]
->> +    default: 0
->> +
->> +  amlogic,word-gap:
->> +    description: |
->> +      Number of idle clock cycles inserted between consecutive SPI words.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [0, 1, 2, 3]
->> +    default: 1
-> I'd expect these to be per-device properties, not per controller.  The
-> word_gap sounds a lot like the existing word_delay feature we have - if
-> it's different it'd be good to be clear why.
+The CFG_BLOCK_NUM field can encode at most 20 bits, so reduce
+SPISG_BLOCK_MAX to 0xfffff to avoid programming a zero-length transfer.
 
-You're right. There is no functional difference from the existing 
-word_delay support. I'll drop this controller-specific DT property and 
-handle the hardware word gap through the existing word_delay mechanism 
-in the transfer path instead.
+Perform the delay calculation in 64-bit arithmetic to avoid overflow
+when converting nanoseconds to SPI clock cycles.
+
+Stop the controller on transfer timeout by clearing the descriptor list
+register before returning an error.
+
+Fixes: cef9991e04ae ("spi: Add Amlogic SPISG driver")
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ drivers/spi/spi-amlogic-spisg.c | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/spi/spi-amlogic-spisg.c b/drivers/spi/spi-amlogic-spisg.c
+index afc8af04638d..a6123975a37c 100644
+--- a/drivers/spi/spi-amlogic-spisg.c
++++ b/drivers/spi/spi-amlogic-spisg.c
+@@ -95,7 +95,7 @@
+ 
+ #define SPISG_MAX_REG			0x40
+ 
+-#define SPISG_BLOCK_MAX			0x100000
++#define SPISG_BLOCK_MAX			0xFFFFF
+ 
+ #define SPISG_OP_MODE_WRITE_CMD		0
+ #define SPISG_OP_MODE_READ_STS		1
+@@ -175,7 +175,7 @@ static int spi_delay_to_sclk(u32 slck_speed_hz, struct spi_delay *delay)
+ 	if (ns < 0)
+ 		return 0;
+ 
+-	return DIV_ROUND_UP_ULL(slck_speed_hz * ns, NSEC_PER_SEC);
++	return DIV_ROUND_UP_ULL((u64)slck_speed_hz * ns, NSEC_PER_SEC);
+ }
+ 
+ static inline u32 aml_spisg_sem_down_read(struct spisg_device *spisg)
+@@ -565,10 +565,13 @@ static int aml_spisg_transfer_one_message(struct spi_controller *ctlr,
+ 	aml_spisg_pending(spisg, descs_paddr, false, true);
+ 	if (wait_for_completion_timeout(&spisg->completion,
+ 					spi_controller_is_target(spisg->controller) ?
+-					MAX_SCHEDULE_TIMEOUT : msecs_to_jiffies(ms)))
++					MAX_SCHEDULE_TIMEOUT : msecs_to_jiffies(ms))) {
+ 		ret = spisg->status ? -EIO : 0;
+-	else
++	} else {
++		/* stop transfer */
++		regmap_write(spisg->map, SPISG_REG_DESC_LIST_H, 0);
+ 		ret = -ETIMEDOUT;
++	}
+ 
+ 	dma_unmap_single(dev, descs_paddr, descs_len, DMA_TO_DEVICE);
+ end:
+
+-- 
+2.52.0
+
 
 
 _______________________________________________
