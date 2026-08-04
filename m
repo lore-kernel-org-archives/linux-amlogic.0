@@ -4,79 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F7BAC55843
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Aug 2026 06:12:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54439C5518F
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Aug 2026 08:31:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:To:From:Reply-To:Cc:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rnuaUKT3hcopenpUbKAGjNom3GhYfjLFEvNGPwPrx1E=; b=MGj8R/hy8BPZEY
-	xtlynYCt7iUh/dZnMfh53T6sWIW/WBrdmQA6dG82ny1KxPiJjmPv+piG7KBZBsdrFJbCGSIJagkbQ
-	3hIW6C7E/1mLNUYMmKZq/MkBWj4IBFjAWrsxcxzHlRhGi/hyWLnywiwemActfL2ouS7O1tutxWyDa
-	hRz7oGClDUxiZvoqUb2texkB7mc2TvOZ19goMKRWkh8ji11TjM0AevJsGSzaYNebkTHDpNhpLMtrX
-	8Qt554vFtzTDYoWSt0CVe31mUgW+QTHfKxJuCPa6S9sxETuPkupdsuez7e08HqFKzlEVxTQm6fRhJ
-	NOMf8ltxw92E+U5ry/fQ==;
+	List-Owner; bh=jscFHOtpJpxjoqY5dIgHtjrmYGLalbildw5U0T2m+eU=; b=Vph17NGewjF8yE
+	4iLLKrDSG41IWpYjNvc1csPkr4bwM9Z5hyT5giIjRfVoM08zrSO5lVFtCGelcSM5Z5NV/6mLc2+nQ
+	UsKUrXwl66fko86ljDaYcZihiqshgh6CqadV2KteqT3fus22lwGK1XJyQjzivX9qiB+SQi/WPsIqo
+	P2FP1KYuF0+ivsHEjyRnAu8CB67elju2B3Bs5UmKnJq21d89I+NQRSnOd58n+hg0w17IrkhV9z5Bt
+	zKSduSV5Les43WBegF0ql/JuPXAMeDlpv5O3SWOW/M2qKycUmSge7Wtepy09LN8QEFNRnjqlu/AMI
+	TDP0n91CzeSlTZB55NfQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wr8O6-0000000164B-1I4J;
-	Tue, 04 Aug 2026 06:12:30 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1wrAYd-00000001LjV-0hJp;
+	Tue, 04 Aug 2026 08:31:31 +0000
+Received: from courrier.aliel.fr ([65.21.61.41])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wr8O4-0000000163K-3NOG;
-	Tue, 04 Aug 2026 06:12:28 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id BF20E40E13;
-	Tue,  4 Aug 2026 06:12:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35CA51F00A3A;
-	Tue,  4 Aug 2026 06:12:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1785823947;
-	bh=NDNd9DzFETq7zh1CKdTiu36YsT+TypRRNBpZkxjqnXQ=;
-	h=From:To:In-Reply-To:References:Subject:Date;
-	b=nxPZb2ttW+AtHuTh7EaCmi5Q1aeKAz7A4kjEhHSkoXevYZkAJ1SwjC79NVj79bEWa
-	 fCd21l42uHO1pst7NbEAeF3Y47viGm/7wJm2Hny5OjTrt/v8oor0eOWP1ZGoDEMWev
-	 5gmXjhJA9orub5sQh/q266YYqEPxOPCNxmytLj8jtQRCPKIJo023NOmjJFZRuPFnGn
-	 awRZA3lc/vHJqEsMODDZsvDBRxytIIbB0zgSFOTCP3WGyKh2Zq8KjWhI+e7NFH/M0k
-	 gNWvASJsRldMDEYc4OIZCd63jzX85LRnYjia+qYpa2V3ax81eHV+IZyrFXdp8MVbhM
-	 K/JtRdeQ35Ahw==
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Hauke Mehrtens <hauke@hauke-m.de>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
- Patrice Chotard <patrice.chotard@foss.st.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Michal Simek <michal.simek@amd.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Khuong Dinh <khuong@os.amperecomputing.com>, Sven Peter <sven@kernel.org>, 
- Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>, 
- Dinh Nguyen <dinguyen@kernel.org>, 
- Thierry Reding <thierry.reding@kernel.org>, 
- Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-stm32@st-md-mailman.stormreply.com, linux-amlogic@lists.infradead.org, 
- asahi@lists.linux.dev, linux-rpi-kernel@lists.infradead.org, 
- linux-tegra@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-In-Reply-To: <20260801210210.383417-4-krzysztof.kozlowski@oss.qualcomm.com>
-References: <20260801210210.383417-4-krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH 2/2] arm64: dts: Correct white-space style
-Message-Id: <178582393779.12985.8100593791487064400.b4-ty@b4>
-Date: Tue, 04 Aug 2026 08:12:17 +0200
+	id 1wrAYa-00000001Liw-2jOu;
+	Tue, 04 Aug 2026 08:31:30 +0000
+Message-ID: <42363af0-a2af-4f8b-8ad2-834539c979b0@aliel.fr>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1785832273;
+	bh=p2hRbF6OR9u6soQD8uwd3KG20dyyAPFIEut3UyAAn20=;
+	h=Date:From:Subject:To:Cc:References:In-Reply-To;
+	b=TxqyMj3z1Lg2uE0F//7bjxqsXG1z7qyHSQ/66bPbAUtMFaPEBrytueMpUZpuZy/Qc
+	 mRmdKvaYJ5Fvb1d8aVSO1M2Bct0I0AbM9nlq/Q7ynqP7UZAka/+kXnAxSBBf24+YpH
+	 oJo6XkMgCCF0ivRjz7XUkw654IL4NXB8uGzEVmF8=
+Date: Tue, 4 Aug 2026 10:30:24 +0200
 MIME-Version: 1.0
-X-Mailer: b4 0.15.2
+User-Agent: Mozilla Thunderbird Beta
+From: linux-kernel-dev@aliel.fr
+Subject: Re: [PATCH v8 0/8] Add VIM4 MCU/FAN support
+To: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+ Conor Dooley <conor.dooley@microchip.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Beniamino Galvani <b.galvani@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+References: <20260702-add-mcu-fan-khadas-vim4-v8-0-244feee91a36@aliel.fr>
+ <713c728a-f68f-41fa-a64b-09ccecef9157@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <713c728a-f68f-41fa-a64b-09ccecef9157@oss.qualcomm.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260804_013129_128353_7CCA382E 
+X-CRM114-Status: GOOD (  13.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,28 +72,38 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On Sat, 01 Aug 2026 23:02:12 +0200, Krzysztof Kozlowski wrote:
-> Correct a few white-space issues, like missing space before bracket '{'
-> character or spurious space, which will be flagged by dt-check-style
-> ("redundant-whitespace" warning).  No functional changes.
-
-Applied, thanks!
-
-[2/2] arm64: dts: Correct white-space style
-      https://git.kernel.org/krzk/linux-dt/c/7c78d6fa9aec67a72a498cda5cdbaced890cb038
-
-Best regards,
--- 
-Krzysztof Kozlowski <krzk@kernel.org>
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gNy84LzI2IDM6NDIgUE0sIERhbmllbCBMZXpjYW5vIHdyb3RlOgo+IE9uIDcvMi8yNiAxMTo1
+NSwgUm9uYWxkIENsYXZlYXUgdmlhIEI0IFJlbGF5IHdyb3RlOgo+PiBUaGUgS2hhZGFzIFZJTTQg
+Ym9hcmQgZmVhdHVyZXMgYSBkaWZmZXJlbnQgTUNVIHZhcmlhbnQgY29tcGFyZWQgdG8KPj4gcHJl
+dmlvdXMgVklNIGJvYXJkcy4KPj4gV2hpbGUgaXQgc2hhcmVzIHRoZSBzYW1lIEkyQy1iYXNlZCBj
+b21tdW5pY2F0aW9uIG1vZGVsLAo+PiBpdCBkaWZmZXJzIGluIHNvbWUgd2F5czoKPj4KPj4gwqDC
+oCAtIEEgZGlzdGluY3QgcmVnaXN0ZXIgbWFwIHdpdGggaXRzIG93biB2b2xhdGlsZS93cml0ZWFi
+bGUgcmVnaXN0ZXIgc2V0Cj4+IMKgwqAgLSBBIGZhbiBjb250cm9sIHdpdGggMOKAkzEwMCBsZXZl
+bHMgaW5zdGVhZCBvZiB0aGUgMOKAkzMgbGV2ZWxzIHByZXZpb3VzbHkKPiAKPiBUaGF0IG1lYW5z
+IGZvciBhIGVnLiAxMDAgbXMgcG9sbGluZywgdGhlIGZpcnN0IG9uZSB0YWtlcyAxMHMgdG8gcmVh
+Y2gKPiB0aGUgbWF4IHNwZWVkLCB3aGlsZSB0aGUgc2Vjb25kIHRha2VzIDMwMG1zLCByaWdodCA/
+Cj4gCgpTb3JyeSBmb3IgdGhlIGRlbGF5LgpZZXMgSSBkZWZpbmVkIGxldmVscyAzMC0xMDAgaW4g
+dGhlIERUIGFzIHRoZSBNQ1UgcmVnaXN0ZXIgZGVzY3JpcHRpb24Kc3RhdGVkIHRoYXQ6CmBOb3Rl
+OiB0aGUgcGFyYW1ldGVyIHZhbHVlIG9mIGZhbiBub3JtYWxseSBvcGVuIGlzIDB4MUV+MHg2NGAK
+CkkgZGlkbid0IGZpbmQgYW55IGlzc3VlIHdpdGggdGhlIHN0cmVzcyB0ZXN0LCBidXQgSSB3aWxs
+IGFkZHJlc3MgeW91cgpjb25jZXJuIHdpdGggYSBzbWFsbGVyIGxpc3QuCgo+PiDCoMKgIC0gQSBm
+YW4gcG93ZXIgc3VwcGx5IGdhdGVkIHRocm91Z2ggYSByZWd1bGF0b3IKPj4KPj4gVGhpcyBzZXJp
+ZXMgYWRkcyBzdXBwb3J0IGZvciB0aGlzIG5ldyB2YXJpYW50IGJ5Ogo+Pgo+PiDCoMKgIDEuIFJl
+ZmFjdG9yaW5nIHRoZSBraGFkYXMtbWN1IE1GRCBkcml2ZXIgdG8gdXNlIHBlci12YXJpYW50IGRh
+dGEKPj4gwqDCoMKgwqDCoCBzdHJ1Y3R1cmVzIChyZWdtYXAgY29uZmlnLCBjZWxscywgZmFuIHBs
+YXRmb3JtIGRhdGEpLAo+PiDCoMKgwqDCoMKgIGFuZCBhZGRpbmcgdGhlIGtoYWRhcyx2aW00LW1j
+dSBjb21wYXRpYmxlIHN0cmluZy4KPj4KPj4gwqDCoCAyLiBFeHRlbmRpbmcgdGhlIGZhbiB0aGVy
+bWFsIGRyaXZlciB0byByZXRyaWV2ZSB0aGUgZmFuIHJlZ2lzdGVyCj4+IMKgwqDCoMKgwqAgYW5k
+IG1heGltdW0gbGV2ZWwgZnJvbSBwbGF0Zm9ybV9kYXRhLAo+PiDCoMKgwqDCoMKgIGFuZCB0byBv
+cHRpb25hbGx5IG1hbmFnZSBhIHBvd2VyIHJlZ3VsYXRvciBmb3IgdGhlIGZhbiBzdXBwbHkuCj4g
+Cj4gVGhyb3VnaCB3aGljaCB0cmVlIGRvIHlvdSBleHBlY3QgcGF0Y2ggNS84IHRvIGdvID8KPiAK
+Ck1GRCBzZWVtcyBhIGdvb2QgY2FuZGlkYXRlIGFzIHRoaXMgcGF0Y2ggZGVwZW5kcyBvbiBpdC4K
+Ci0tIApCZXN0IHJlZ2FyZHMsClJvbmFsZAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dp
+Y0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
+bGlzdGluZm8vbGludXgtYW1sb2dpYwo=
