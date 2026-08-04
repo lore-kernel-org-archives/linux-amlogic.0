@@ -4,113 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89228C55184
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Aug 2026 12:55:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC43BC55172
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Aug 2026 06:12:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WdZ701gR0Ry61aziqcykxfoMNRFcqRn9hq3Q+Fgtc2o=; b=ER2Gwv7SHXlUS8
-	AeHg22wAU5QuPJruNpiYWmHaNoZuhlzkHBDlUaHUFomCecdm7xnaVYwTLTNIGW/yaq2JKTInmGk5k
-	srS/jLNbsQ36UJnqA9+rFo8iNEMIj3pVqIsU08ROCK92yFF0u/MorQZ0yDXhJzdGOKEey1q1frZb8
-	KkjIurYoG39q1YHJTlkKnWCUj/jqj1LGWy1i7ENfjT8USqj6gxo+3AilIX6IP/LiUnO8ApoTpoY40
-	bLrg8pyKa7Hp94B70RhA4pIh/6rDaO35EnQLcRhDKW2eCej/SLgqBq9Kwd58fQGCCj4fBSxiLH60a
-	BYGeWvHmp1z1CDVU7jrA==;
+	List-Owner; bh=tpUylFkUJS5tgQAi2FB3DrG9CZcBtDL5sOA0BFLDJds=; b=fkNGk+frocXct9
+	olW16Z8g812kivF76mhAvmfyerRvfAOoqpXLhizMQlrgJ4Tr/ZU/LnI5BxEetAx+Q9Y/6gafsO3nC
+	5WubEQ7LyxLB2UW6AiJEfDyN7rnEtcaJeiisaqpC7ttplft4JaK8AAuViejPMkH2HSK4I7vHpQZBU
+	aW0lAp8U7/TlILxronfYGkE3meDLHS2wlCuV5GDvybnlIKEZqFJVVjkfVwoYZBHDPlZ/IUwSicapH
+	g7t1EyJcYi3JVke6lKk3iJivLFhhhO9UMgoTVGzmkPRFTiTLPJzwaoCH+cYxBlc1xKHyTavjWBMG7
+	HngymuvKUeEfUg/oLqiQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wqsC6-0000000H5Ro-1Ja3;
-	Mon, 03 Aug 2026 12:55:02 +0000
-Received: from mail-vk1-f169.google.com ([209.85.221.169])
+	id 1wr8Nv-00000001605-0JmS;
+	Tue, 04 Aug 2026 06:12:19 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wqsC3-0000000H5Qt-35mO
-	for linux-amlogic@lists.infradead.org;
-	Mon, 03 Aug 2026 12:55:00 +0000
-Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-5c276bd3692so2304037e0c.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 03 Aug 2026 05:54:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1785761698; x=1786366498;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=WGVqxVKLC2Gks94xayPEyUqyvnJiYIaVHNXa8plDaec=;
-        b=N1VO2sq7C3okIECTw39t7OyE4NJhWEztyL8Jt30sQh609jUUOTf66FoeoUVZqxINWB
-         3fNl7faal69uf4KDSUhjcldPfJYn06POcrBPviixwYae9AZ8zprVqQle5ZhgB3mdJSNh
-         x/D06WnP+3gPVwJYJ0fCoUxLcVWmbKB5qhJC2clz554ySVnJvHMsW7syjHcUjIrLWlmY
-         J9iGsjIAav84rVIgtaZEbp2JkHVpgdjYSDAeSOimj61kjfYjgdaixtLhpRPjSdku4PCx
-         AOxgUnw2gbdrX2AioffrmltadAtPD2uQT1GTHzM1hqlVBhcrccb5K3kV0xMNu1/19Yjm
-         KpQw==
-X-Forwarded-Encrypted: i=1; AHgh+RrtIFLjEQFpwhnWUcVLdhA8g1R8//C5W8bUSYtGePmbfm88LWpEXgiajDv+2WipnrNuEcezy3X+GTNjNhod@lists.infradead.org
-X-Gm-Message-State: AOJu0YwuwtCC8V+Ww7ExIa9nTI9qX0VdGyXrq48QxggJjYhPdeauPEiI
-	vrIHlw1WpmoLztBBGZ5gxejB6lP2S5++daEUQNgtZedduP+pHjlwGewMomWiMez+
-X-Gm-Gg: AR+sD139dK69begfbQkXLd4pkd1yd7ELyt4a+3lAidOg0dlg4Ry8h1ScwykVAhIcNOx
-	wVIEJ1MYuroAABqwoetadQxaQovvx3G1ymvjr8cCuHSnTguRU2n8OkzQ3WJY9UfI1/xbn59+/33
-	TjPXzThpYfmRtBXliy6KxPiUzruTn572qemizsZ3soAA7jlPebWil6pA24TIUrfCoPTLGacuouc
-	Q2j83lldLV4TvzRGSvAoVf2dY2Oc2JCDtXYFZrzncJMYAeuqDt5WmCyG753CGCNaCIQJ7BsUHYP
-	jJJA/Uh8RY9G8+j4o4D+XtZxPEY2ZvWK6fad5AlGlxohLFz/ghPtpGASe4PcR9kXzHA1Xuh3jpD
-	PVcigBLqMNTllRHlOYmrYjtxnhJeHgtWJey2wk6ogJYmpPAV9kGn4XbY7xs5AdFoSp1ud/wvE2E
-	Jvw10sCS35IG/JBKhDtB7vAW0ND06qY8/wanL1GjvJXlo+TD+tuPLWIiJ+SkgvgUjHUvOFjZMK4
-	PEXrVOnP8qBL76Yfo0p4WEfGw==
-X-Received: by 2002:a05:6122:1309:b0:5bd:fc23:c9d1 with SMTP id 71dfb90a1353d-5c38777161cmr3299628e0c.6.1785761698335;
-        Mon, 03 Aug 2026 05:54:58 -0700 (PDT)
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5c37eb2a833sm8667946e0c.6.2026.08.03.05.54.58
-        for <linux-amlogic@lists.infradead.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Aug 2026 05:54:58 -0700 (PDT)
-Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-97727c2064fso2193302241.0
-        for <linux-amlogic@lists.infradead.org>; Mon, 03 Aug 2026 05:54:58 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AHgh+Rq0kx1j78fYyVv9WIylmc/Cd+tD9GK2hedwuwoPFmqW0eGWt0HdeC4BBhUUftghMVtsLoh51rY5lRPSYdeE@lists.infradead.org
-X-Received: by 2002:a05:6102:6a83:b0:729:affa:70fd with SMTP id
- ada2fe7eead31-75b2295c6d6mr7103654137.8.1785761305110; Mon, 03 Aug 2026
- 05:48:25 -0700 (PDT)
+	id 1wr8Nu-000000015zr-245E;
+	Tue, 04 Aug 2026 06:12:18 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id D8A77600AE;
+	Tue,  4 Aug 2026 06:12:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5487F1F000E9;
+	Tue,  4 Aug 2026 06:12:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1785823937;
+	bh=PKYseCVUwAsrRbAPoZQ6d4d90WKFCcuz+KWQSPJljBM=;
+	h=From:To:In-Reply-To:References:Subject:Date;
+	b=jJsCxs8dQHMV4VZQ8X3uIxwKM22zfav6Eh3dBkIPsBuhofxUa/GTB0aNqIi9VGlJN
+	 vfhzcJX0T+0uZHaR0sR4Y3GXjzFmHy4wkxd3tCB/70KjJbKifuuYaC8NyHQ7iaPUHO
+	 wccqNKHTXcsE2fl5UZa1L8hYHgX9XzWewAjrevp6+ihVv24SRnjadFMJm+jdPx7RzL
+	 e62FqrI2krUrJHnia7WWri4gfBC3Kmi+tBYmzPud7zr6g+T3Y12bgUzwurhWbAo7w/
+	 pzvD84R5B6llP3BlF2U1qpFUW4sRuRpj5efx8+4+OkJMNmCOKO8MSSk6MmLh13y49t
+	 zHPCknuf0UC9A==
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Hauke Mehrtens <hauke@hauke-m.de>, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>, 
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+ Nicolas Ferre <nicolas.ferre@microchip.com>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+ Patrice Chotard <patrice.chotard@foss.st.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Michal Simek <michal.simek@amd.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Khuong Dinh <khuong@os.amperecomputing.com>, Sven Peter <sven@kernel.org>, 
+ Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>, 
+ Dinh Nguyen <dinguyen@kernel.org>, 
+ Thierry Reding <thierry.reding@kernel.org>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-stm32@st-md-mailman.stormreply.com, linux-amlogic@lists.infradead.org, 
+ asahi@lists.linux.dev, linux-rpi-kernel@lists.infradead.org, 
+ linux-tegra@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+In-Reply-To: <20260801210210.383417-3-krzysztof.kozlowski@oss.qualcomm.com>
+References: <20260801210210.383417-3-krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH 1/2] ARM: dts: Correct white-space style
+Message-Id: <178582392607.12985.6150713140771675075.b4-ty@b4>
+Date: Tue, 04 Aug 2026 08:12:06 +0200
 MIME-Version: 1.0
-References: <20260720-drm_simple_encoder_init-v2-0-5020b630668a@gmail.com> <20260720-drm_simple_encoder_init-v2-10-5020b630668a@gmail.com>
-In-Reply-To: <20260720-drm_simple_encoder_init-v2-10-5020b630668a@gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 3 Aug 2026 14:48:14 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUe0F06RE4ahWb9ERFq0_pnNy-qGZ5ewod+59x-RtU_FQ@mail.gmail.com>
-X-Gm-Features: AUfX_mz7dUNKx_CkXmX2bBiqeRWfQJXaKympC5b4Q722_mZANMq2M_rTZsMnNYo
-Message-ID: <CAMuHMdUe0F06RE4ahWb9ERFq0_pnNy-qGZ5ewod+59x-RtU_FQ@mail.gmail.com>
-Subject: Re: [PATCH v2 10/15] drm/renesas/shmobile: remove dependency on DRM
- simple helpers
-To: Diogo Silva <diogompaissilva@gmail.com>
-Cc: Jingoo Han <jingoohan1@gmail.com>, Inki Dae <inki.dae@samsung.com>, 
-	Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Michal Simek <michal.simek@amd.com>, 
-	Thierry Reding <thierry.reding@kernel.org>, Mikko Perttunen <mperttunen@nvidia.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Stefan Agner <stefan@agner.ch>, 
-	Alison Wang <alison.wang@nxp.com>, Anitha Chrisanthus <anitha.chrisanthus@intel.com>, 
-	David Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>, 
-	Dmitry Osipenko <dmitry.osipenko@collabora.com>, 
-	Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu <olvaffe@gmail.com>, 
-	Jyri Sarha <jyri.sarha@iki.fi>, Liu Ying <victor.liu@nxp.com>, Frank Li <Frank.Li@nxp.com>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Xinliang Liu <xinliang.liu@linaro.org>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, Yongqin Liu <yongqin.liu@linaro.org>, 
-	John Stultz <jstultz@google.com>, Liviu Dudau <liviu.dudau@arm.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jonathan Corbet <corbet@lwn.net>, 
-	Shuah Khan <skhan@linuxfoundation.org>, dri-devel@lists.freedesktop.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	virtualization@lists.linux.dev, imx@lists.linux.dev, 
-	linux-mediatek@lists.infradead.org, linux-renesas-soc@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, linux-doc@vger.kernel.org
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260803_055459_799406_834E20FA 
-X-CRM114-Status: GOOD (  20.82  )
+X-Mailer: b4 0.15.2
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,57 +93,21 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Diogo,
 
-On Mon, 20 Jul 2026 at 17:41, Diogo Silva <diogompaissilva@gmail.com> wrote:
-> The simple KMS helpers are deprecated because they only add an
-> intermediate layer between drivers and atomic modesetting.
->
-> Open-code drm_simple_encoder_init() by calling drm_encoder_init()
-> directly and providing driver-local drm_encoder_funcs.
->
-> Signed-off-by: Diogo Silva <diogompaissilva@gmail.com>
+On Sat, 01 Aug 2026 23:02:11 +0200, Krzysztof Kozlowski wrote:
+> Correct a few white-space issues, like missing space before bracket '{'
+> character or spurious space, which will be flagged by dt-check-style
+> ("redundant-whitespace" warning).  No functional changes.
 
-Thanks for your patch!
+Applied, thanks!
 
-> --- a/drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.c
-> +++ b/drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.c
+[1/2] ARM: dts: Correct white-space style
+      https://git.kernel.org/krzk/linux-dt/c/e2b3acf8c227beda488f00d06f1266f83b9b5c08
 
-> @@ -29,7 +30,6 @@
->  #include <drm/drm_modeset_helper_vtables.h>
->  #include <drm/drm_panel.h>
->  #include <drm/drm_probe_helper.h>
-> -#include <drm/drm_simple_kms_helper.h>
->  #include <drm/drm_vblank.h>
->
->  #include <video/videomode.h>
-> @@ -436,6 +436,10 @@ static const struct drm_encoder_helper_funcs encoder_helper_funcs = {
->         .mode_fixup = shmob_drm_encoder_mode_fixup,
->  };
->
-> +static const struct drm_encoder_funcs shmob_encoder_funcs = {
-
-Nit: shmob_drm_encoder_funcs?
-
-> +       .destroy = drm_encoder_cleanup,
-> +};
-> +
->  /* -----------------------------------------------------------------------------
->   * Encoder
->   */
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+Best regards,
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Krzysztof Kozlowski <krzk@kernel.org>
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
 _______________________________________________
 linux-amlogic mailing list
