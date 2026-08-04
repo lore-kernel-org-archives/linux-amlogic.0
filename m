@@ -4,156 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E949AC55184
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Aug 2026 14:38:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33927C55822
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Aug 2026 15:08:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=S+e1RVHDkNRqLixhVLSOVeoZdZRQmacMU5+CV33LBu4=; b=lg76bXKUtXOOxM
-	/P45LQFqs0GZB+CvwAFOCyCzzaBXudCmH4o6kLa/zYF8n9k/kpdq7OmX3x82cBfcf9dIwpZmqDYkm
-	YKhW8aaidG1xYRpu3UhjAU4EburwB+xAymwzq1YqO15eP5/Wwx78gk8EIEGlmIgCEADvILtbmNTH1
-	xw2vm83RgWWNJC7qRkk532Jd1xD2lG1Dy8m39sG28ajbg3slrEyGR8zM+hw5YUJ3FDzqSxDWhgH8W
-	5xFk6Q3PzriXsfLKkBH5dGlsnhb8we7vowatDnWz2gXxnGdqLH6w7u9vVXuWV6v5GIVcuRjhO41+4
-	Tjso4QuGduTQmsDNrYMw==;
+	List-Owner; bh=shIG3oXhVhGqmY58q+LtMdKbP/7cCRTrvBZnjl3opLk=; b=W3d3gcyGSwANWh
+	WQoJg7L97a4phT/IJTxpPEl1Z7wIWr8JZoXffu61s2OSh2k9zznLMzyYqz+VhurbFujuw3y8KOftI
+	89U10cMlb4lw4EXhHsYiFsX2d/h5ahlfs+Te0/CfHuTeIEuulbaEc3kd9UlDmyRgDXAnR1w/zdA1X
+	7AUemP5OffdLDeThEngpGci5sBgHyuZh09Ve/9qRdFliAwlOhEMJD9gv1Y2tiNpbPMLP9hvF6kx6/
+	SCaYszS1po8zyQEtE/gxNO0DFnDTPG75UbLi2bYPCrDJ8TOZg16mJmun/Vvcl3Imtv426LZzOog3+
+	RYfUntjNeLscI2lAxjXA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wrGHN-0000000263D-2Xpb;
-	Tue, 04 Aug 2026 14:38:05 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1wrGkf-00000002AXJ-1op7;
+	Tue, 04 Aug 2026 15:08:21 +0000
+Received: from mail-pf1-x42c.google.com ([2607:f8b0:4864:20::42c])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wrGHM-0000000262Y-0B3e
+	id 1wrGkc-00000002AWC-2Npl
 	for linux-amlogic@lists.infradead.org;
-	Tue, 04 Aug 2026 14:38:05 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 674CX9oF4129540
-	for <linux-amlogic@lists.infradead.org>; Tue, 4 Aug 2026 14:38:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	RBSOug13prxCCT+BAqmbK4GJruJOjABAt4v/5onpB8g=; b=of8sOQp9xUSfTu71
-	IHMwC4jMPpavp12E+ekTQze2YGL05ivig4ZfN52E1ZLalg5gz3McVISQCUYoa5R8
-	122GhAoYJvhNsWfxgBqKfKB46LEmC9gqrflOwl4QSG4j+bVHBIemZ+AquCwJ9oj3
-	HWJjwrlVjKveGsR3Y0mTvtHHYqY0VuSaZKoKei075ReWkK0deKUQzR3cg2+qbrDg
-	L2AHymVMoS43fM4uDIsOvMvq7BZ73Y37kzegg1uvEWooxdryIlgcn7WMwKCVyhPm
-	E8EY8dw0UKfYsQW9dMassyHPtfGMAaArB/IE3pWDce7FmooGveCBPXBqS1jQ39N6
-	QulxNQ==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4fug658jfe-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-amlogic@lists.infradead.org>; Tue, 04 Aug 2026 14:38:02 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-92e820609d9so391676885a.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 04 Aug 2026 07:38:02 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1785854282; cv=none;
-        d=google.com; s=arc-20260327;
-        b=MCzp+KTVouGiNLQw3ko085MkuTZ6BWJJ9ZwEksVzB3bn8vgo4XDpA3vPbjEk4KHBXf
-         fnovRKe8zeNGVBGIwKmhCOYq+b7bPEj7ULpqpIhwrbQtJJRedCNGsjEW9uo6jYvNGFNc
-         W9VMOkdwn76Kw0jsnG3P88qElbt9a/cdKTCsC2u1HKCQLb6JODy/CJtIkVoeXzEi2y06
-         BXc/ob45V7sYbTX/nN5jYML2poYoXG8YgXoAfnnmspQMqtC2yrlfygy/7o5g+S6dAcTA
-         oRa1EOGN+ALqJClw21rjOcb4G0VxIU9OYwtenqBBEhTTmGZJ8KGA3tmtZk8kOiuLT56d
-         xfDQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=RBSOug13prxCCT+BAqmbK4GJruJOjABAt4v/5onpB8g=;
-        fh=/AuQ0ZMa9B+vHnBWFIBetNviE5wjGDIYKcFdy59fnuU=;
-        b=dVpUZR1gKr+GTcf8rckHFUuHF3cok7BG+iJxbA2nQtUpLbqT36e/i4Fd9jSbd1cgc5
-         Z/L5EVe2Gx8iElaO8j8x9gJ5wNUdmVRsN+DnW0c7NppehoX080i9DaUNJtHKzJPVvzkt
-         KZxZlLZUfVOeTFzteDuajF0WOyZuNqqMz8mNpgkr+BrbEC8vgj4RDGHE2/RZ+LtGYFVO
-         za2HdgVpCtzYsifw7XYx6taVa9k8ofgqNjCHnnZIKIHgbtZsJxFhxmxe540KrEF6FUVe
-         LYcbNy5/sl2og9KFQRqO9RjSDLfPcXZmYcARVIPUdg0MGhl5rrgZJaQFASJlPPE7BEUY
-         Iirw==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	Tue, 04 Aug 2026 15:08:19 +0000
+Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-8485ef63b68so5260717b3a.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 04 Aug 2026 08:08:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1785854282; x=1786459082; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=RBSOug13prxCCT+BAqmbK4GJruJOjABAt4v/5onpB8g=;
-        b=cGEJlWngbZncYSKF3kc20BZ6vloDHtOw640mVE5g3ygopU6AdFeiYyAYL+Bius9yOR
-         hYb6ltYWYYTTW9Lqv+RokmCfS5VUDacjEWQIIPS4uW86XV3oW7HIBM69ewb4cdpNNyXI
-         PRfbLPvkXBK31t3UgMdhzz2DEimc7SLXEoBee2Qa9SqZTfvi7IFg5ny0I+6CGERVAg7p
-         SH0hwB4lHykInKrfLq3JTBnAG3RxZ7GEPzMw+22U333nYPeeakTEe8Cu4awWj+5uMmE+
-         op1OYoauSNhyCrzD440BtnYO1Hd+dBj8SFQW9eDijkDNdyHBd7L5oe/HMnuv57k47X9n
-         PElQ==
+        d=gmail.com; s=20251104; t=1785856097; x=1786460897; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=S4Qg2o+emc3m6rF47B2E/svsOXDIcQrkgOFSzKR4MaY=;
+        b=ZU1BPmr2Us2514IYnDBJ4K+dfYj3vXFa/5GF3xfsext7xLeHMIWKkL4/2WwKZqgJM5
+         47dmW4MgAO1spkfIRQHmTG5vQ2fA5mnzXfywKeHOlrhHb1fGYehuEidum6StN4bQBvHK
+         t1Bisvuxjn1twxtSs65IpOvtj0AYKHmjWrsGZX/VMP/o5hJtx0EsH/Qj1EfcVhdJESp+
+         sh3sL+NTDpdh23HdhuPN0M3wEA9NUD5FYYmG0XtTcKfxHVwfGOQSI3/+0e46dchaN6+x
+         EzT6HKrfli0dRbD8xk4lYCIiFfs1EDcFmQreykA8uNuOS+Rzn+Tt7MlCXpVff5MPchpU
+         b9FA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1785854282; x=1786459082;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=RBSOug13prxCCT+BAqmbK4GJruJOjABAt4v/5onpB8g=;
-        b=lPq6IuJyeBaHZTbjB0ttECZZI/srjR2RtXW1OQ6xvyZtsarmlf4+kYwgDe6v9aI8Dw
-         m4Yrl/Oh74BShrkLNGrx6hU09paoSICe4eXXP6xNoJWC4gG05BneD0UMUP6VLGWaMJH7
-         u/cQ+Kcpb0luOMWwWicJ/Btep1oyFVmqiIZ6INvN6JI29cXg7CJJDnEjq9Z4kuXNLiug
-         8jr1CAOTkGCt6JsMXMwuQUf/fSxAszlU+dxxYAGqapBOcth4DN1krLXnXOqpZGpGp8EB
-         17ij1r9+WQrUiOeKNA0uYld9k3dxpl25K4+peuCVGQY6DqjGOb29Hii1OEdUo3OZ8pr5
-         kyXA==
-X-Forwarded-Encrypted: i=1; AHgh+RppuX9DRpDZqCgE/miPtbZpI12BK61pNVUKK1VeuC8t5jfzzTCWEFtwgFcvzkuAQvd2bUhBbFW9iFW0pms6@lists.infradead.org
-X-Gm-Message-State: AOJu0Yw6JhpbJuCUsa3CKVoS1/7tGjeqO17IyglDivo3U9r96jOCLUHg
-	dUXVvZz/u2eUVfPWwOeJ0A1NRHVydznnLULLXzANR7TTz7xQyKFBy7sVsgAtXrK5YkxoegWgG4t
-	CeFdvFtd04jTG3Qs+MfsB/Aa5PJ+sei41MU+atPP1oQbaUMrRwEaWyvpNx/7zLwcElsFnBA0guu
-	ronmN2+5EcJ1r0TMZCg34b/Q8aAxBCr1E3HHEchRy3ND7z/Uy9
-X-Gm-Gg: AR+sD139ADBYrMGxjG7/YhZlhPk8n1yHVfOZwWsq4vF30/MAld0GKZXph81u2Z3DZxB
-	Rr5V0zwH/FdDT6C9Ik0ISaYK6V9U3HJ/D+hwleGJr+rLk+9qn4BLb2H1ATwFht3OBZWjFUnfC8B
-	J0lPt5W+GzotZMpb2xsUUFNb6r/CKpzNxoWnCX/E9C9HJdYhV671TEyQAUBA==
-X-Received: by 2002:a05:620a:a407:10b0:92e:bc28:5479 with SMTP id af79cd13be357-934a07523e6mr2091178785a.2.1785854282369;
-        Tue, 04 Aug 2026 07:38:02 -0700 (PDT)
-X-Received: by 2002:a05:620a:a407:10b0:92e:bc28:5479 with SMTP id
- af79cd13be357-934a07523e6mr2091173285a.2.1785854281821; Tue, 04 Aug 2026
- 07:38:01 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1785856097; x=1786460897;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=S4Qg2o+emc3m6rF47B2E/svsOXDIcQrkgOFSzKR4MaY=;
+        b=mCKVM4CuxCbiUSIBespWXS9ZdFbsn7lj6Kz7eidrTgEDXSL3XUa0lhHTgTjzJJXMgU
+         Km7U6cMKeB0Zk/3mAjmQdwrg+wzeVobWNlcMoJ9OQ5wwmrgLKPaEkNhoj317V3XWK2DK
+         cIEVckiiceVLDFc25/o30oYmSm7IsHkeih1Bs+PjPqTiJ9xu8g7tBywrRVTzhArFfDM1
+         stUbwGhRPHR9/00DhobEabjPFrqRe2sIjar3YludNDr2RSKidbowVQY3tQ7vv0vjkbUQ
+         ESXzjAafeP1vXmrDMgUoRyvRzh/zWfeR4b8nnxR3Gw3BKjz7qKSWsvnSzMn4u89JuVm9
+         Pqhw==
+X-Forwarded-Encrypted: i=1; AHgh+RogWy4OTaXT3zIsnZygPMJkZuGeCRTExxSiiqhoHHfSM3yggRbaMjYcm52LS0LjXtLfyuY0P+fMM5XLn34t@lists.infradead.org
+X-Gm-Message-State: AOJu0YxKMo1KRtWZrinHDO8vxaBvSi5+xdN8M2+lnfaD4pXv3wCJ71E9
+	7lPXH0U6EEyJBJYwIbXCBSpk6sPxKSWkbj3kbMmEp5oE94sWkv22x5I=
+X-Gm-Gg: AR+sD105cRKNjXGOWxhS8ghmNxxzopA3TV10a8UmxDn+TGYgzODzT35GyO8r6gQQw/E
+	GFvWBPc5QOMBfmseK9HIKxpeFQbitnUtc/nu3XbVZtDDuxyLcJV4QnzWrlbfv58utnzNKW84mwC
+	wEUVwRZkbHNV83FtA0kMij093C7CzeJIewtAK3G54qwLsRZV6PwDI0K7ssOz7fLf7xBoCoVp8HN
+	mN9XTBiH+N0h7o4dBACEmmKJ8wcplPT85/TElrVl4wabQQ7DgX8r8J7CZaPDm5NUMa7QiszBqcH
+	sT0vvBcLgWcgSIO8vcg7A92FZNNHTaJ72PX39ix0cF2aQSNTwiqRde7qIdpAp3sKufNlnYm8BDp
+	++ALzuvvzjwKBt++2YL8lOIoQkQ87WFsTvbwjz9zzmrN4lds0ZfyoWPzT7skZ6wBWsoMLitYtRZ
+	9KCyoyREFdket/v1+IsEzKogx7Z3G+6rR27EZrSDI9+kfgmBiVnhwwx/JivyBIlURwtQ6BD8f2f
+	kPAhcBpbkTkfso6zs+SQ3gf6u87Ljd9G4FuDG8ny1jqY57slwsksBGIZQBspzcedNV+5uzxTcyx
+	u1coOT/UHUIhp+2N1+qaYvM=
+X-Received: by 2002:a05:6a00:ad1:b0:845:4126:222b with SMTP id d2e1a72fcca58-84ee47d8768mr14159742b3a.28.1785856096851;
+        Tue, 04 Aug 2026 08:08:16 -0700 (PDT)
+Received: from localhost.localdomain ([1.226.165.54])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84edc41ca4dsm5420587b3a.52.2026.08.04.08.08.11
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Tue, 04 Aug 2026 08:08:15 -0700 (PDT)
+From: Myeonghun Pak <mhun512@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	dri-devel@lists.freedesktop.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	kernel test robot <lkp@intel.com>,
+	oe-kbuild-all@lists.linux.dev,
+	stable@vger.kernel.org,
+	Ijae Kim <ae878000@gmail.com>
+Subject: [PATCH v2] drm/meson: clean up KMS polling on register failure
+Date: Wed,  5 Aug 2026 00:08:02 +0900
+Message-ID: <20260804150802.45262-1-mhun512@gmail.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20260524160657.17802-1-mhun512@gmail.com>
+References: <20260524160657.17802-1-mhun512@gmail.com>
 MIME-Version: 1.0
-References: <20260722-a9-pm-v1-0-1fe20a44bf2d@amlogic.com>
-In-Reply-To: <20260722-a9-pm-v1-0-1fe20a44bf2d@amlogic.com>
-From: Ulf Hansson <ulf.hansson@oss.qualcomm.com>
-Date: Tue, 4 Aug 2026 16:37:51 +0200
-X-Gm-Features: AUfX_mxidf6ep2hrmZtMSZcppo4HDdyELeecQKKRS0CT2NESLqRaSdKaXo6bY6M
-Message-ID: <CAPx+jO9RBvDJHSoCT3QVUCfGK3bLduhV1W7T7VuHipOvas1v+g@mail.gmail.com>
-Subject: Re: [PATCH 0/3] Power: Add power domain for A9
-To: xianwei.zhao@amlogic.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>, Ulf Hansson <ulfh@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-X-Proofpoint-ORIG-GUID: -SSU7mWGRB93lwB7J-MBzt-QYvbDYs6Y
-X-Authority-Analysis: v=2.4 cv=fcydDUQF c=1 sm=1 tr=0 ts=6a71f94a cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=IkcTkHD0fZMA:10 a=Sv0fKeRqtYgA:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=_glEPmIy2e8OvE2BGh3C:22 a=VwQbUJbxAAAA:8 a=BY5PBP3jAAAA:8
- a=stQ3y3mWCCOjWvy4rzMA:9 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
- a=gQW0MTutLl7eKD3OLfcZ:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYwODA0MDExOCBTYWx0ZWRfX8Q0SvWb7QKPT
- Gm5Y+YFEWjNFcMomRkaqZBlyBe15IB8la2SB3L3PROmlGSMI05Klz95iHzBgXev/LpuPQr2z02k
- llBl6DYkWWxMcSxWlkvGXd2FcVikuTA=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwODA0MDExOCBTYWx0ZWRfX0fp575HmJJYf
- su5oWzTNFExOrrb2jCIpOZnafohW2OqlQxZCPFVrxDEfH81ZI7ynZ8MRSon3sCMJCStQtMaC4VN
- wtBOuXsTErjOAX9EFpxAQe+Q/XKu70Bs+Rmhhoka+Hcu2CIdqSkK85xybAaygelIaZ2gqULH9JK
- nF0SYv/uA0sVcoGAWIy4R97gtzMfisXb6yspNvRswsq/koC7I5jycH7EtYgbwDqhgo7s9IZF96L
- 7Hbh9g1UEH0K3KImZk6SPV93I/g/qT/HHt3WAg3vNF1rH08V1dPBCVW1oWhcBTstKzOdHHU1Y56
- oUEA4Qfsr7XJALzf+87BANzAce9XgvES/EGaSZ7CqLH7hBM5MpuIV/yHeNHR8IrBAHQsTqBCCey
- Rp5caG/n8GZlb00DNjlng85UOoXwySAe/ELFt1lk7nOuSltzxK9MOvXcgyRYpUv7s7jNeMczbmp
- 54PtOHt2JQYqgk4ac3g==
-X-Proofpoint-GUID: -SSU7mWGRB93lwB7J-MBzt-QYvbDYs6Y
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-08-04_03,2026-08-03_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 lowpriorityscore=0 impostorscore=0 suspectscore=0 adultscore=0
- bulkscore=0 clxscore=1015 spamscore=0 priorityscore=1501 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2608040118
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260804_073804_195156_7A27D9B8 
-X-CRM114-Status: GOOD (  14.53  )
+X-CRM114-CacheID: sfid-20260804_080818_630271_BC513277 
+X-CRM114-Status: GOOD (  13.07  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -165,32 +110,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gV2VkLCBKdWwgMjIsIDIwMjYgYXQgMTA6MznigK9BTSBYaWFud2VpIFpoYW8gdmlhIEI0IFJl
-bGF5CjxkZXZudWxsK3hpYW53ZWkuemhhby5hbWxvZ2ljLmNvbUBrZXJuZWwub3JnPiB3cm90ZToK
-Pgo+IEFkZCBwb3dlciBjb250cm9sbGVyIGRyaXZlciBzdXBwb3J0IGZvciBBbWxvZ2ljIEE5IFNv
-Qy4KPgo+IFNpZ25lZC1vZmYtYnk6IFhpYW53ZWkgWmhhbyA8eGlhbndlaS56aGFvQGFtbG9naWMu
-Y29tPgo+IC0tLQo+IFhpYW53ZWkgWmhhbyAoMyk6Cj4gICAgICAgZHQtYmluZGluZ3M6IHBvd2Vy
-OiBBZGQgQW1sb2dpYyBBOSBwb3dlciBkb21haW5zCj4gICAgICAgcG1kb21haW46IGFtbG9naWM6
-IEFkZCBzdXBwb3J0IGZvciBBOSBwb3dlciBkb21haW5zIGNvbnRyb2xsZXIKPiAgICAgICBhcm02
-NDogZHRzOiBhbWxvZ2ljOiBhOTogQWRkIHBvd2VyIGRvbWFpbiBjb250cm9sbGVyIG5vZGUKPgo+
-ICAuLi4vYmluZGluZ3MvcG93ZXIvYW1sb2dpYyxtZXNvbi1zZWMtcHdyYy55YW1sICAgICB8ICAx
-ICsKPiAgYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL2FtbG9naWMtYTkuZHRzaSAgICAgICAg
-fCAxMCArKysrCj4gIGRyaXZlcnMvcG1kb21haW4vYW1sb2dpYy9tZXNvbi1zZWN1cmUtcHdyYy5j
-ICAgICAgIHwgNjkgKysrKysrKysrKysrKysrKysrKysrKwo+ICBpbmNsdWRlL2R0LWJpbmRpbmdz
-L3Bvd2VyL2FtbG9naWMsYTktcHdyYy5oICAgICAgICB8IDYxICsrKysrKysrKysrKysrKysrKysK
-PiAgNCBmaWxlcyBjaGFuZ2VkLCAxNDEgaW5zZXJ0aW9ucygrKQo+IC0tLQo+IGJhc2UtY29tbWl0
-OiA1NDQ0NTVhM2E4NDRlZGQ2MTA3YjE1Y2QwYWIwYjY1NzM5OWYyZDQ5Cj4gY2hhbmdlLWlkOiAy
-MDI2MDcyMi1hOS1wbS0zZWZiM2YyYTRkNzIKPgo+IEJlc3QgcmVnYXJkcywKPiAtLQo+IFhpYW53
-ZWkgWmhhbyA8eGlhbndlaS56aGFvQGFtbG9naWMuY29tPgo+Cj4KClBhdGNoMSBhbmQgcGF0Y2gy
-IGFwcGxpZWQgZm9yIG5leHQsIHRoYW5rcyEKClBsZWFzZSBub3RlLCBwYXRjaDEgKGR0IHBhdGNo
-KSBpcyBhbHNvIGF2YWlsYWJsZSBpbiB0aGUgaW1tdXRhYmxlIGR0CmJyYW5jaCwgZm9yIFNvQyBt
-YWludGFpbmVycyB0byBwdWxsIGluIGlmIG5lZWRlZCBmb3IgcGF0Y2gzLgoKS2luZCByZWdhcmRz
-ClVmZmUKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxp
-bnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9y
-ZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9n
-aWMK
+meson_drv_bind_master() starts the KMS polling helper before registering
+the DRM device. If drm_dev_register() fails, probe unwinds the IRQ and
+DRM device without stopping the polling helper.
+
+Call drm_kms_helper_poll_fini() on that failure path before freeing the
+IRQ.
+
+This issue was identified during our ongoing static-analysis research while
+reviewing kernel code.
+
+Fixes: bbbe775ec5b5 ("drm: Add support for Amlogic Meson Graphic Controller")
+Cc: stable@vger.kernel.org
+Co-developed-by: Ijae Kim <ae878000@gmail.com>
+Signed-off-by: Ijae Kim <ae878000@gmail.com>
+Signed-off-by: Myeonghun Pak <mhun512@gmail.com>
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v2:
+- Avoid the unused uninstall_irq label reported by the kernel test robot.
+- Link to v1: https://lore.kernel.org/r/20260524160657.17802-1-mhun512@gmail.com
+
+ drivers/gpu/drm/meson/meson_drv.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+index 49ff9f1f16..bcc36f2cdc 100644
+--- a/drivers/gpu/drm/meson/meson_drv.c
++++ b/drivers/gpu/drm/meson/meson_drv.c
+@@ -351,8 +351,10 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ 	platform_set_drvdata(pdev, priv);
+ 
+ 	ret = drm_dev_register(drm, 0);
+-	if (ret)
++	if (ret) {
++		drm_kms_helper_poll_fini(drm);
+ 		goto uninstall_irq;
++	}
+ 
+ 	drm_client_setup(drm, NULL);
+ 
+-- 
+2.47.1
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
