@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60485C5AC82
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Aug 2026 10:03:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85977C5AC82
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Aug 2026 11:11:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WratqqtjD2SRzrhDZbvVk1ZX8u2Ur1HZ0dcHS51AUXU=; b=UECjxInxEmH2ef
-	U6UcjIs5przJyVWY+FbcJLAdR5qymplvDdt5RButdNxyujI/pTKfyHpAV7lW2Ism8k+cQbJeu3gis
-	CwkhAfAjg5R+zaTZqDR+sBXcrnr4NkNNuKmr0nmbHrWZVhbykdzXfJ3ExBWrWwHtYnfx+eCvu56G6
-	ObNq4NBC5BRA50cLOJGE0D2ysJF0/j9xF9CkGyq0EnbfOz7wZBD3/wpDxY8QS0ibY+t4WjaKGzE7v
-	X8bPigJXF/oeKBi9/FGjGithTfaSd6LYVJBCVyIVzlrFK1OLC/vkOIdtXJ7vcMPyJeSJfS1RQSC5V
-	k96zV5AK51CnD3njoKmA==;
+	List-Owner; bh=r4mZitlyewccNkUJXYRIJll6gD+0SW4XmYdFXHSjjts=; b=XDuk0bFw3XoSMM
+	fCKL7BO9GNNYSsXaqFItoCEeqvzO3Jw8fzAXHJioEruH1bsc/3lkGzq8CbDYXuwWNe2zt7HcjcRlP
+	Z+vuYubrXrJXfadNGgP7g2EhSYpGexO2mi5DjpJdv3/m/8hytJZhhraH3+QHZbhf4Kun4qLANibk6
+	T4vI1XRc/5T7B71I/OyFE5bDPjGZf/8vjip4UuUA/zNHpMMCFwv0nKHv1o5EXvTUF2CoX/gcX3Zwz
+	z8FX4mY2+4O+95LYIlHH17TWa4dDEYYMfDr3XFgox5DlOfI3FkfpVy4t4iv8X1ghqvNOCXzg0L2dg
+	KBhqoDFVCWmzzeCRe7LA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wtMrI-0000000BSIZ-28S2;
-	Mon, 10 Aug 2026 10:03:52 +0000
+	id 1wtNuB-0000000BZey-1USH;
+	Mon, 10 Aug 2026 11:10:55 +0000
 Received: from linkmauve.fr ([82.65.109.163])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wtMrF-0000000BSGn-2qKc;
-	Mon, 10 Aug 2026 10:03:51 +0000
+	id 1wtNu7-0000000BZeU-1OBW;
+	Mon, 10 Aug 2026 11:10:53 +0000
 Received: by linkmauve.fr (Postfix, from userid 1000)
-	id 0C2B470AF95E; Mon, 10 Aug 2026 12:03:45 +0200 (CEST)
-Date: Mon, 10 Aug 2026 12:03:45 +0200
+	id 19C8370AFA9E; Mon, 10 Aug 2026 13:10:47 +0200 (CEST)
+Date: Mon, 10 Aug 2026 13:10:47 +0200
 From: Link Mauve <linkmauve@linkmauve.fr>
 To: Andy Shevchenko <andriy.shevchenko@intel.com>
 Cc: Link Mauve <linkmauve@linkmauve.fr>,
@@ -72,7 +72,7 @@ Cc: Link Mauve <linkmauve@linkmauve.fr>,
 	linux-stm32@st-md-mailman.stormreply.com,
 	rust-for-linux@vger.kernel.org
 Subject: Re: [PATCH v4 0/3] nvmem: migrate to const void * in reg_write
-Message-ID: <anmiAfteOQzPXRqX@desktop>
+Message-ID: <anmxt26wZdQK4FP3@desktop>
 References: <20260726131724.15299-1-linkmauve@linkmauve.fr>
  <anl9ZRM0REenBK8t@ashevche-desk.local>
 MIME-Version: 1.0
@@ -80,8 +80,8 @@ Content-Disposition: inline
 In-Reply-To: <anl9ZRM0REenBK8t@ashevche-desk.local>
 Jabber-ID: linkmauve@linkmauve.fr
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260810_030349_870905_76ADD548 
-X-CRM114-Status: GOOD (  18.39  )
+X-CRM114-CacheID: sfid-20260810_041051_545456_9EAE6F83 
+X-CRM114-Status: GOOD (  18.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,33 +93,45 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gTW9uLCBBdWcgMTAsIDIwMjYgYXQgMTA6Mjc6MzNBTSArMDMwMCwgQW5keSBTaGV2Y2hlbmtv
-IHdyb3RlOgo+IE9uIFN1biwgSnVsIDI2LCAyMDI2IGF0IDAzOjE3OjE4UE0gKzAyMDAsIExpbmsg
-TWF1dmUgd3JvdGU6Cj4gPiBUaGlzIGNhbGxiYWNrIHVzZWQgdG8gdGFrZSBhIG11dGFibGUgdm9p
-ZCAqIGZvciBubyByZWFzb24sIHdoaWNoIGNhdXNlcwo+ID4gdGhlIGNvbXBpbGVyIHRvIGJlIHVu
-YXdhcmUgdGhhdCB0aGUgdmFsIGJ1ZmZlciBzaG91bGQgbmV2ZXIgYmUgbW9kaWZpZWQKPiA+IGJ5
-IHRoZSBjYWxsYmFjay4KPiA+IAo+ID4gVGhpcyB3YXMgZm91bmQgd2hpbGUgZHJhZnRpbmcgdGhl
-IG52bWVtLXByb3ZpZGVyIFJ1c3QgYWJzdHJhY3Rpb24uCj4gPiAKPiA+IFRoYW5rcyB0byB0aGUg
-Z3VpZGFuY2Ugb2YgQW5keSBTaGV2Y2hlbmtvLCB0aGlzIG5vdyBpbnRyb2R1Y2VzIGEgbmV3Cj4g
-PiBjYWxsYmFjayBhbmQgZGVwcmVjYXRlcyB0aGUgZXhpc3Rpbmcgb25lLCB3aXRoIHRoZSBnb2Fs
-IG9mIHJlbmFtaW5nIHRoZQo+ID4gbmV3IG9uZSBpbnRvIHRoZSBvbGQgb25lIG9uY2Ugbm8gdXNl
-ciByZW1haW5zIGluIHRoZSBrZXJuZWwuCj4gCj4gTEdUTSBub3csIEZXSVcsCj4gUmV2aWV3ZWQt
-Ynk6IEFuZHkgU2hldmNoZW5rbyA8YW5kcml5LnNoZXZjaGVua29AaW50ZWwuY29tPgo+IAo+IEJ1
-dCBJIHRoaW5rIHlvdSBhbHNvIG5lZWQgdG8gcHJvdmlkZSBhIHJvYWQgbWFwIG9mIGZpbmlzaGlu
-ZyB0aGlzIGpvYiAodGhlIGJlc3QKPiBpcyB0byBwcm92aWRlIGEgY29udGludWF0aW9uIGluIHNv
-bWUgb2YgeW91cnMgcHVibGljIEdpdCB0cmVlcyB0byBwb2ludCBvdXQpLgoKSeKAmXZlIGp1c3Qg
-cHVzaGVkIHRoZXNlIGNoYW5nZXMgaGVyZSwgYXMgdXN1YWwganVzdCBidWlsZC10ZXN0ZWQ6Cmh0
-dHBzOi8vZ2l0aHViLmNvbS9saW5rbWF1dmUvbGludXgvY29tbWl0cy9udm1lbS12NgoKSSB3YXMg
-cGxhbm5pbmcgb24gd29ya2luZyBvbiB0aG9zZSBhZnRlciB0aGUgNy4zIG1lcmdlIHdpbmRvdyBp
-ZiB0aGlzCnNlcmllcyBpbmRlZWQgZ29lcyBpbnRvIDcuMywgYnV0IEkgd2FzIG5ldmVyIHdvcnJp
-ZWQgdGhpcyB3b3VsZCBiZSBoYXJkCnRvIGRvLCBpdOKAmXMgYSBwcmV0dHkgbWVjaGFuaWNhbCBj
-aGFuZ2UuCgo+IAo+IC0tIAo+IFdpdGggQmVzdCBSZWdhcmRzLAo+IEFuZHkgU2hldmNoZW5rbwo+
-IAo+IAoKLS0gCkxpbmsgTWF1dmUKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlz
-dHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2xpbnV4LWFtbG9naWMK
+On Mon, Aug 10, 2026 at 10:27:33AM +0300, Andy Shevchenko wrote:
+> On Sun, Jul 26, 2026 at 03:17:18PM +0200, Link Mauve wrote:
+> > This callback used to take a mutable void * for no reason, which causes
+> > the compiler to be unaware that the val buffer should never be modified
+> > by the callback.
+> > 
+> > This was found while drafting the nvmem-provider Rust abstraction.
+> > 
+> > Thanks to the guidance of Andy Shevchenko, this now introduces a new
+> > callback and deprecates the existing one, with the goal of renaming the
+> > new one into the old one once no user remains in the kernel.
+> 
+> LGTM now, FWIW,
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+> 
+> But I think you also need to provide a road map of finishing this job (the best
+> is to provide a continuation in some of yours public Git trees to point out).
+
+Also note that I sent a v5 a few days ago but you reviewed v4, although
+there are very few changes[1].
+
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
+
+[1] https://lore.kernel.org/lkml/20260804135940.2378737-1-linkmauve@linkmauve.fr/T/
+
+-- 
+Link Mauve
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
