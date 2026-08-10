@@ -4,59 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8091C5AC82
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Aug 2026 07:28:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60485C5AC82
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Aug 2026 10:03:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Lkru1GwmNRHXkk4+Ypq2BJ4FfXOMyN3ixMvx4gzAsaY=; b=1cjeU51kBV9v+D
-	Y7KGW6EF9SnUN1IbpA5lkO4XPZoIfgO5hMGjZ/s58FiHQc+s3lpWaj0hCEU2B4xWR3Cyv8AH8mTk7
-	YFRUtWw9HxyGuFVwBDZzN3c2bJRR85QpIHeAg1Psphduaqns2hpzV9UicnDDKI4TeoM7h/MOwD2eN
-	HJq7/wN7KacDinh3vIlsejAUnc6SMc4LkxZnrnBtg0xLXfxIc3VkpM+C6gpc1m2mNX+mobeR/C439
-	oaZrpWhLC1xoG+dBEmzTySlnnW505b6r7Y0sBE+vD8iI5NnQrOMc1xf1Ekkk8Sfr1kub5tb1td5zT
-	9XoSjC6tN4Nd9u0Krfsw==;
+	List-Owner; bh=WratqqtjD2SRzrhDZbvVk1ZX8u2Ur1HZ0dcHS51AUXU=; b=UECjxInxEmH2ef
+	U6UcjIs5przJyVWY+FbcJLAdR5qymplvDdt5RButdNxyujI/pTKfyHpAV7lW2Ism8k+cQbJeu3gis
+	CwkhAfAjg5R+zaTZqDR+sBXcrnr4NkNNuKmr0nmbHrWZVhbykdzXfJ3ExBWrWwHtYnfx+eCvu56G6
+	ObNq4NBC5BRA50cLOJGE0D2ysJF0/j9xF9CkGyq0EnbfOz7wZBD3/wpDxY8QS0ibY+t4WjaKGzE7v
+	X8bPigJXF/oeKBi9/FGjGithTfaSd6LYVJBCVyIVzlrFK1OLC/vkOIdtXJ7vcMPyJeSJfS1RQSC5V
+	k96zV5AK51CnD3njoKmA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wtKQK-0000000BCXN-4B45;
-	Mon, 10 Aug 2026 07:27:52 +0000
-Received: from mgamail.intel.com ([192.198.163.7])
+	id 1wtMrI-0000000BSIZ-28S2;
+	Mon, 10 Aug 2026 10:03:52 +0000
+Received: from linkmauve.fr ([82.65.109.163])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wtKQH-0000000BCWU-0O5Q;
-	Mon, 10 Aug 2026 07:27:50 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1786346869; x=1817882869;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=xQLhwS8wv9sFqYFOv/TIN/5z4j31qZTJrUsswVUaMwY=;
-  b=Sk0yWa7lVhMQFFn6a/QUqsvWmDlZsHWUimO+tvt7R3ezaWtCIyug0s4u
-   2PnJPNu5WbSRY639syjdKoxLHlbsw+I2auyeT6of0Vh9o7fy70xLIisXO
-   l0K3CnSfQOOWiRZA0hhWhDVmMEp08gXYs4TWlYw8tSqf2Ovx3l71woauW
-   lZbwQQg51ExVOsXdYB173x+unWut9M2cPW0QXJ6cKahhLJpEjw2R5euqV
-   MtuZM3JNUGU1Ni4acxSYlON4+KfY3PJSPYcgFYyKVSbDMr0i83JYJh4Ku
-   5IPO6TwXON807b4OQ8ycTWGRanRQ54opOg46Sf6cgSUH8Oe5hrHAVMLj8
-   g==;
-X-CSE-ConnectionGUID: cJ9lhu4TQSSt3u12NKt+iA==
-X-CSE-MsgGUID: jY6GZIwaToO9SWgSCw/eAg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11870"; a="112400364"
-X-IronPort-AV: E=Sophos;i="6.25,215,1779174000"; 
-   d="scan'208";a="112400364"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Aug 2026 00:27:46 -0700
-X-CSE-ConnectionGUID: fVqcRD4QTWCn0dQ6j9/S5A==
-X-CSE-MsgGUID: 7ZXTFfZuQhmUulcEeVHcvQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,215,1779174000"; 
-   d="scan'208";a="263584571"
-Received: from conormcd-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.244.99])
-  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Aug 2026 00:27:36 -0700
-Date: Mon, 10 Aug 2026 10:27:33 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Link Mauve <linkmauve@linkmauve.fr>
-Cc: Srinivas Kandagatla <srini@kernel.org>,
+	id 1wtMrF-0000000BSGn-2qKc;
+	Mon, 10 Aug 2026 10:03:51 +0000
+Received: by linkmauve.fr (Postfix, from userid 1000)
+	id 0C2B470AF95E; Mon, 10 Aug 2026 12:03:45 +0200 (CEST)
+Date: Mon, 10 Aug 2026 12:03:45 +0200
+From: Link Mauve <linkmauve@linkmauve.fr>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Link Mauve <linkmauve@linkmauve.fr>,
+	Srinivas Kandagatla <srini@kernel.org>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
@@ -96,16 +72,16 @@ Cc: Srinivas Kandagatla <srini@kernel.org>,
 	linux-stm32@st-md-mailman.stormreply.com,
 	rust-for-linux@vger.kernel.org
 Subject: Re: [PATCH v4 0/3] nvmem: migrate to const void * in reg_write
-Message-ID: <anl9ZRM0REenBK8t@ashevche-desk.local>
+Message-ID: <anmiAfteOQzPXRqX@desktop>
 References: <20260726131724.15299-1-linkmauve@linkmauve.fr>
+ <anl9ZRM0REenBK8t@ashevche-desk.local>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20260726131724.15299-1-linkmauve@linkmauve.fr>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <anl9ZRM0REenBK8t@ashevche-desk.local>
+Jabber-ID: linkmauve@linkmauve.fr
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260810_002749_171172_035D86B4 
-X-CRM114-Status: GOOD (  12.03  )
+X-CRM114-CacheID: sfid-20260810_030349_870905_76ADD548 
+X-CRM114-Status: GOOD (  18.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,35 +93,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, Jul 26, 2026 at 03:17:18PM +0200, Link Mauve wrote:
-> This callback used to take a mutable void * for no reason, which causes
-> the compiler to be unaware that the val buffer should never be modified
-> by the callback.
-> 
-> This was found while drafting the nvmem-provider Rust abstraction.
-> 
-> Thanks to the guidance of Andy Shevchenko, this now introduces a new
-> callback and deprecates the existing one, with the goal of renaming the
-> new one into the old one once no user remains in the kernel.
-
-LGTM now, FWIW,
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-
-But I think you also need to provide a road map of finishing this job (the best
-is to provide a continuation in some of yours public Git trees to point out).
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gTW9uLCBBdWcgMTAsIDIwMjYgYXQgMTA6Mjc6MzNBTSArMDMwMCwgQW5keSBTaGV2Y2hlbmtv
+IHdyb3RlOgo+IE9uIFN1biwgSnVsIDI2LCAyMDI2IGF0IDAzOjE3OjE4UE0gKzAyMDAsIExpbmsg
+TWF1dmUgd3JvdGU6Cj4gPiBUaGlzIGNhbGxiYWNrIHVzZWQgdG8gdGFrZSBhIG11dGFibGUgdm9p
+ZCAqIGZvciBubyByZWFzb24sIHdoaWNoIGNhdXNlcwo+ID4gdGhlIGNvbXBpbGVyIHRvIGJlIHVu
+YXdhcmUgdGhhdCB0aGUgdmFsIGJ1ZmZlciBzaG91bGQgbmV2ZXIgYmUgbW9kaWZpZWQKPiA+IGJ5
+IHRoZSBjYWxsYmFjay4KPiA+IAo+ID4gVGhpcyB3YXMgZm91bmQgd2hpbGUgZHJhZnRpbmcgdGhl
+IG52bWVtLXByb3ZpZGVyIFJ1c3QgYWJzdHJhY3Rpb24uCj4gPiAKPiA+IFRoYW5rcyB0byB0aGUg
+Z3VpZGFuY2Ugb2YgQW5keSBTaGV2Y2hlbmtvLCB0aGlzIG5vdyBpbnRyb2R1Y2VzIGEgbmV3Cj4g
+PiBjYWxsYmFjayBhbmQgZGVwcmVjYXRlcyB0aGUgZXhpc3Rpbmcgb25lLCB3aXRoIHRoZSBnb2Fs
+IG9mIHJlbmFtaW5nIHRoZQo+ID4gbmV3IG9uZSBpbnRvIHRoZSBvbGQgb25lIG9uY2Ugbm8gdXNl
+ciByZW1haW5zIGluIHRoZSBrZXJuZWwuCj4gCj4gTEdUTSBub3csIEZXSVcsCj4gUmV2aWV3ZWQt
+Ynk6IEFuZHkgU2hldmNoZW5rbyA8YW5kcml5LnNoZXZjaGVua29AaW50ZWwuY29tPgo+IAo+IEJ1
+dCBJIHRoaW5rIHlvdSBhbHNvIG5lZWQgdG8gcHJvdmlkZSBhIHJvYWQgbWFwIG9mIGZpbmlzaGlu
+ZyB0aGlzIGpvYiAodGhlIGJlc3QKPiBpcyB0byBwcm92aWRlIGEgY29udGludWF0aW9uIGluIHNv
+bWUgb2YgeW91cnMgcHVibGljIEdpdCB0cmVlcyB0byBwb2ludCBvdXQpLgoKSeKAmXZlIGp1c3Qg
+cHVzaGVkIHRoZXNlIGNoYW5nZXMgaGVyZSwgYXMgdXN1YWwganVzdCBidWlsZC10ZXN0ZWQ6Cmh0
+dHBzOi8vZ2l0aHViLmNvbS9saW5rbWF1dmUvbGludXgvY29tbWl0cy9udm1lbS12NgoKSSB3YXMg
+cGxhbm5pbmcgb24gd29ya2luZyBvbiB0aG9zZSBhZnRlciB0aGUgNy4zIG1lcmdlIHdpbmRvdyBp
+ZiB0aGlzCnNlcmllcyBpbmRlZWQgZ29lcyBpbnRvIDcuMywgYnV0IEkgd2FzIG5ldmVyIHdvcnJp
+ZWQgdGhpcyB3b3VsZCBiZSBoYXJkCnRvIGRvLCBpdOKAmXMgYSBwcmV0dHkgbWVjaGFuaWNhbCBj
+aGFuZ2UuCgo+IAo+IC0tIAo+IFdpdGggQmVzdCBSZWdhcmRzLAo+IEFuZHkgU2hldmNoZW5rbwo+
+IAo+IAoKLS0gCkxpbmsgTWF1dmUKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlz
+dHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL2xpbnV4LWFtbG9naWMK
