@@ -4,68 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDFDDC5AD5A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Aug 2026 10:18:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC9C9C5AD5A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Aug 2026 10:22:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
 	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=V9WMP1EVMhXhYXEM23BgX2dQ3OpAmkG+WxhrkXFOcvU=; b=JTLd5CmU3dd7sI
-	LVjta8thwjtZt0OPdsVJBY1sFFiHog8UlHj84S7m8EZnQyv/r/yKvZWWY+fjLCraOUmXlJsSOzvNz
-	VrM71I/ga5+SMEFTVMsmyJ6KHWWbzucjYEvdAcbIEa6F89CvjlfRQNpONDA2LttOazpUFSEjC5iWo
-	rC6QJwl+B2qqLrN8Om7JFoEXZPMpVJYLMI1Q+O953aWDbe+FO4xAaki5uE7eHwydT9ZDUvZHHHbJb
-	DNZAczCa93rRo2s0OwpzqPeQhqYscq0aR3fwr4ffgYRVByXxUReEJtMo0r1oqsOtbA1BT7d4VY71o
-	gWHF9l9NVoeXGSkzyfZw==;
+	List-Owner; bh=UuIx4aqLDqTUWgJjYkZ5fDMW6OJQPbS/ytWO8OAiA8Q=; b=HZNVSMyvo08poo
+	SskyPvivZ8T31zlf2skgxFRRF8208CHUH/7BkyLth7OkQKEaXRsai/4tgGtlp6scuyf2ivX+62Xud
+	mkuiVu/zqPq00sCK0QAa94FO7S0pSUgjSP0MXk3rnr77/3+X2KmgEur1EfWux5L495kqrWj7nVauw
+	O9AEOKdTmWy3MHtkf3Nj2CKHz0oyNYjfC1OE6qyVgHQ3U/khBZQzBzXnP35X+G0S0O7KJDC42f5KY
+	GJdfng2/Nw9k+wkSjxDoRV770kARQrv+CyMLoH+5yJcBBtLLAd9/IoZfxbVsaPmOu211Rgk9UrRZR
+	ShXQaCxSc5iPcCV/tHnw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wu627-0000000Frst-2xf0;
-	Wed, 12 Aug 2026 10:18:04 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1wu66C-0000000FsZy-1ftA;
+	Wed, 12 Aug 2026 10:22:16 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wu625-0000000Frsf-3E04;
-	Wed, 12 Aug 2026 10:18:01 +0000
+	id 1wu66A-0000000FsZa-3beN;
+	Wed, 12 Aug 2026 10:22:15 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1B82260A85;
-	Wed, 12 Aug 2026 10:18:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id BABD0C2BCB9;
-	Wed, 12 Aug 2026 10:18:00 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 769EF43CDD;
+	Wed, 12 Aug 2026 10:22:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 519D8C2BCF4;
+	Wed, 12 Aug 2026 10:22:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1786529880;
-	bh=GmTbEPvkwJ5IHvxjuWI1y3VvjQ4yhh+Rh8rB8hiuHpE=;
+	s=k20201202; t=1786530134;
+	bh=FsFkACjzxhmjjBFuJr7WRdIrgV1ZzFunR+1J4ZbzPDY=;
 	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=olH0SctUXdGKKkRp2o2Th9FpB9truE+eq8BkspfuknysL0rYrT4BFRDxYu/nwXryS
-	 gi7y4nBapblXc4zHQGxzCY+tonmIDfaRUNbQP1Sk5gPquoumHmeqRuMmwjlM1ZpFOC
-	 ZCUKy9heCHEgWj06gQOrKbOEnx1WJNLPwm6uFtgQYD5B+eK1Xvd+TrSFzG9jpb6tEA
-	 eS27rBxO5bQ627g4Pz95wwaRVSvRc9JU8mH8CSQ+xSxB2AuUhhNIJTFtQh6VPIoYZd
-	 jGG4sunfBbBxV/hmgjXt7WZHbO6rOhEq6dhi+HyFgISTcmcVczdAXYPl+0xNl+Uv9J
-	 fGwx7Kahb+l7Q==
+	b=nwt33dr1S6z55+7n7X9+vQZOVdsucGH613Uqigpnp38GBUJDHrLe53ZbeU2+uY3Pd
+	 MGiyKbWQ6n/u0GZoGnYbbxsw0lIeAf/wumcR516uD128AssTZikKmUwfftSZBsdmlI
+	 TaOmpsf4X6Sz5UiI+lg2GT1HIIF6gw967d8Lpc7mrYeC6WGid475C+5g3A1/YnE7+J
+	 KRc7nlZzUe8xSGHCvbOFBQsdCUnyA+uj5y0n7dvMxGW377q1mMQHa3iTRjdhthNux4
+	 U3XuBYBiinwuUM2/PkeeY5AicSkxDC6Bbai9M2XjeNschR2lWe3Co5H84Tt0oHAVXw
+	 aQglxwgL22Uxg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 98F62C5CFDB;
-	Wed, 12 Aug 2026 10:18:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3050EC5B56A;
+	Wed, 12 Aug 2026 10:22:14 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Wed, 12 Aug 2026 10:17:44 +0000
-Subject: [PATCH] pinctrl: meson: a4: Add input enable pin configuration
+Date: Wed, 12 Aug 2026 10:22:12 +0000
+Subject: [PATCH] pinctrl: meson: sync some modify from A4
 MIME-Version: 1.0
-Message-Id: <20260812-input-enable-v1-1-81e5ca7772aa@amlogic.com>
-X-B4-Tracking: v=1; b=H4sIAEdIfGoC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDC0Mj3cy8gtIS3dS8xKScVF1TQ0MzsyQTExMzS3MloJaCotS0zAqwcdG
- xtbUAY0ASUl4AAAA=
-X-Change-ID: 20260812-input-enable-51166b444697
+Message-Id: <20260812-sync_a4-v1-1-b7279c26e2bc@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAFNJfGoC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDC0Mj3eLKvOT4RBNdA0PDxFQjg7Q0Y8NkJaDqgqLUtMwKsEnRsbW1ADs
+ 3+W5ZAAAA
+X-Change-ID: 20260812-sync_a4-011ae20ff31c
 To: Linus Walleij <linusw@kernel.org>, 
  Neil Armstrong <neil.armstrong@linaro.org>, 
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+Cc: linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1786529877; l=2149;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1786530133; l=1591;
  i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=9SbIm6+8Ee1Yqah/Xj7ZLaezrMlBamtDl5jNdbzcGzc=;
- b=D7w+Kf1zPLXNaLWHPsaixnfXbBtvYYqUK5MBvXWe+kNz9Ckdy07+uAigRFK3asjPqxVVkefBm
- 5oLbnS5j6n3Dfqk58YoCnHFz1xdZi88f7ZaNnuFs2Qg2iOAGA2c/0XX
+ bh=e/6sQWJ1ygoCKacBsI4pbgOSo29ZSl5fN1COhUhv2b0=;
+ b=+npSTpTZcyUHwNQKfVQMSVMkn7ZL/7EmlBUcCciWqI0ADTvpgZxjGNIPFljysn5gww3Skd8T9
+ qvIhywPAjIADP8eZEf03v8d3ZxXYnHfIBxR600Yn+YSA1nkayfJfNlj
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
@@ -90,64 +90,53 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Add support for PIN_CONFIG_INPUT_ENABLE in the Amlogic A4 pinctrl
-driver.
+Set the drive strength before enabling the output to avoid enabling
+the output with an unintended drive strength.
 
-Use the existing output enable control to configure the input enable
-state, since the hardware uses the same control with inverse semantics.
-
-Also update PIN_CONFIG_OUTPUT_ENABLE handling to return the actual
-output enable state instead of treating any non-zero value as enabled.
+Also return the actual output enable state from
+PIN_CONFIG_OUTPUT_ENABLE instead of always reporting it as enabled.
 
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
- drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 14 ++++++++++++--
- 1 file changed, 12 insertions(+), 2 deletions(-)
+Sync some fixes from  A4.
+---
+ drivers/pinctrl/meson/pinctrl-meson.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-index 420f7915c010..39eb8cc7fc0d 100644
---- a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-+++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-@@ -469,9 +469,15 @@ static int aml_pinconf_get(struct pinctrl_dev *pcdev, unsigned int pin,
+diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
+index 4507dc8b5563..1eea3e9d1cb2 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson.c
++++ b/drivers/pinctrl/meson/pinctrl-meson.c
+@@ -252,11 +252,11 @@ static int meson_pinconf_set_output_drive(struct meson_pinctrl *pc,
+ {
+ 	int ret;
+ 
+-	ret = meson_pinconf_set_output(pc, pin, true);
++	ret = meson_pinconf_set_drive(pc, pin, high);
+ 	if (ret)
+ 		return ret;
+ 
+-	return meson_pinconf_set_drive(pc, pin, high);
++	return meson_pinconf_set_output(pc, pin, true);
+ }
+ 
+ static int meson_pinconf_disable_bias(struct meson_pinctrl *pc,
+@@ -498,9 +498,9 @@ static int meson_pinconf_get(struct pinctrl_dev *pcdev, unsigned int pin,
  		break;
  	case PIN_CONFIG_OUTPUT_ENABLE:
- 		ret = aml_pinconf_get_output(info, pin);
+ 		ret = meson_pinconf_get_output(pc, pin);
 -		if (ret <= 0)
-+		if (ret < 0)
-+			return -EINVAL;
-+		arg = ret;
-+		break;
-+	case PIN_CONFIG_INPUT_ENABLE:
-+		ret = aml_pinconf_get_output(info, pin);
 +		if (ret < 0)
  			return -EINVAL;
 -		arg = 1;
-+		arg = !ret;
++		arg = ret;
  		break;
  	case PIN_CONFIG_LEVEL:
- 		ret = aml_pinconf_get_output(info, pin);
-@@ -619,6 +625,7 @@ static int aml_pinconf_set(struct pinctrl_dev *pcdev, unsigned int pin,
- 		switch (param) {
- 		case PIN_CONFIG_DRIVE_STRENGTH_UA:
- 		case PIN_CONFIG_OUTPUT_ENABLE:
-+		case PIN_CONFIG_INPUT_ENABLE:
- 		case PIN_CONFIG_LEVEL:
- 			arg = pinconf_to_config_argument(configs[i]);
- 			break;
-@@ -643,6 +650,9 @@ static int aml_pinconf_set(struct pinctrl_dev *pcdev, unsigned int pin,
- 		case PIN_CONFIG_OUTPUT_ENABLE:
- 			ret = aml_pinconf_set_output(info, pin, arg);
- 			break;
-+		case PIN_CONFIG_INPUT_ENABLE:
-+			ret = aml_pinconf_set_output(info, pin, !arg);
-+			break;
- 		case PIN_CONFIG_LEVEL:
- 			ret = aml_pinconf_set_output_drive(info, pin, arg);
- 			break;
+ 		ret = meson_pinconf_get_output(pc, pin);
 
 ---
 base-commit: 761af93c9f1a100b8d9f71aa744b8f9abbbbbfb2
-change-id: 20260812-input-enable-51166b444697
+change-id: 20260812-sync_a4-011ae20ff31c
 
 Best regards,
 -- 
