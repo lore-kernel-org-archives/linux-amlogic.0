@@ -4,54 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72E1DC5B56A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Aug 2026 11:56:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 011D7C5B56A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Aug 2026 12:00:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=l1M8opcxaPumHFbGrorl8rsvCgTg1gU4RSzxwn6DIMM=; b=NAChlFHIbV+LLx
-	kmkEYdiy8WwmCXS2GKdG+t/vDOWpZEXC7K4jyMjUjfP51gADZLv60Ygnp4N+iwOeHcMYj6pAC/sPt
-	8WB/p0dK3rfUm6LaqF+EwwPtJf/9U27y0wTApxdXk84/2hQkiakeiDsrhBnPbmiNm/94CExME4s+j
-	bEeE56BOWvu+wb6WKZJNKcERrrm3/t6WdzO9CwteU7DTEtCou9e9Pxynq9G2YldYd1CYDvtsajNsP
-	76EZdcw0YixhnZoU2090BAqf8dTLWJrXVqahT4+ttQaroX8+GljBna1bupn561D8XznGTwaXImWjK
-	4hwwLJt2mlzj0QcsZvMw==;
+	List-Owner; bh=rSXPrV3eFSDWfkyUz9K6iQGQB3o1Fl+JeCIISPA+xtk=; b=EYX4/fkU2njnZ4
+	zaew0bQR75XZdTHMmem1xvp/dZJZ/Fern2YPmeUC2jj1kab0+slkH1nDtvYmQgwts0pVerP/h3Ly5
+	12p1atOrHMx0IaQIIjFOAH1c5mtcmqyeSOmGa70Ym4/gcLtrLpLA3Nh/x/AL9fEQRaM7MiknOYta4
+	eKq+Cg/CzELe7AiK30jZSZOBzpDmwFz4ipNBkDXjcYI1HvwjCj5PZQtbXsujXZG5/EH8EcqVOwc3p
+	X929Q1zeWEiBLlTManl6nUNf/uNBGXjullm8MuBPOMzbknkecVHvP8RfB01wFuHTu6PLR7zHQ2IMq
+	KO4Jg3exN0TQXIsBbhYA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wu7Z4-0000000G8lz-0st7;
-	Wed, 12 Aug 2026 11:56:10 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1wu7d1-0000000G93R-2lzR;
+	Wed, 12 Aug 2026 12:00:15 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wu7Z2-0000000G8lk-2Rvp
+	id 1wu7d0-0000000G93J-0bXw
 	for linux-amlogic@lists.infradead.org;
-	Wed, 12 Aug 2026 11:56:08 +0000
+	Wed, 12 Aug 2026 12:00:14 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id E0B1360A85;
-	Wed, 12 Aug 2026 11:56:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AA5D1F000E9;
-	Wed, 12 Aug 2026 11:56:06 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 656D560A92;
+	Wed, 12 Aug 2026 12:00:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63D301F00A3A;
+	Wed, 12 Aug 2026 12:00:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1786535766;
-	bh=S7M3KXQ1HHMfZ8wimGKPSGh/V7TFRviBwpUXLGorjbY=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=STLIOuf15jipw1C2fAne1ui2A+NatgPJf/3G00rkEeY4GpRBhDZKqn4dyAX4kryLf
-	 ImgesM2/d5q/h9gG5t+OCLmgZW5IKHeOizrG2uuDXkNRINUKnekNwIr4/2l4ZFjut3
-	 Ap87J0sc2/1jZuiGmPBUbICwjhgjGEVD8UBbgEHuCXKxmdu7hOaq4/OaQ946vCmHlf
-	 huNR+ai0ZPf0ywStlrD2/vf1TF7gC+nlbmsZJ40OCMXal4+Fer5rmjLc/tzZpE03N2
-	 n/zi/pgimiHVFdMikBR91n0qSVTUplqmS0U6Mv5UzbwAwHx/m5OPIcIU7F8ejUz2Te
-	 VDFB1E6uDCzqA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 3/3] mmc: davinci: Handle optional IRQ return value
- correctly
-To: phucduc.bui@gmail.com
-Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
-In-Reply-To: <20260812112023.42254-4-phucduc.bui@gmail.com>
-References: <20260812112023.42254-1-phucduc.bui@gmail.com>
- <20260812112023.42254-4-phucduc.bui@gmail.com>
-Date: Wed, 12 Aug 2026 11:56:05 +0000
-Message-Id: <20260812115606.6AA5D1F000E9@smtp.kernel.org>
+	s=k20260515; t=1786536012;
+	bh=MHNBwGGnswWSzAP7z65dBZa8AALtkmk2EGpH/Ujybd0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=ic/w6eGgJIqhYWfLKdXfmz98qSzg6rfB+ir7Atcv+jNiJY7/P3MdEASn2QvwjA1Xv
+	 vKVSxqD2rofrap+9PVJs3t6FawtfXhajZu18cktJ+eZTRkEUvrgxPwPfXewolHSu29
+	 ABfJrEv73jwoTYX2qs64v2L9KQYbFGv2ZP7z9Zk5cVUR9HpYfT0/I0iRwvGNMTpe/M
+	 N//WCw/7H/yv0R0W6ZPIOMZXp8zgeGl42b4vpD9RgRI+YiyHym4yxzIHEdiPiyJwm2
+	 z/SyrZlj9BtRrrqx1k06RxOVOt3y7sYa/Z4Cu/wjKJIqM8z5D3O1ToBZce0y9lDuyd
+	 fLarLCf72R20g==
+Date: Wed, 12 Aug 2026 13:00:07 +0100
+From: Lee Jones <lee@kernel.org>
+To: sashiko-reviews@lists.linux.dev
+Cc: Ronald Claveau <linux-kernel-dev@aliel.fr>, neil.armstrong@linaro.org,
+	linux-amlogic@lists.infradead.org, mfd@lists.linux.dev,
+	conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v9 3/6] mfd: khadas-mcu: Add support for VIM4 MCU variant
+Message-ID: <20260812120007.GO1072730@google.com>
+References: <20260805-add-mcu-fan-khadas-vim4-v9-0-75df78710b9e@aliel.fr>
+ <20260805-add-mcu-fan-khadas-vim4-v9-3-75df78710b9e@aliel.fr>
+ <20260805081913.272991F00A3A@smtp.kernel.org>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20260805081913.272991F00A3A@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,78 +67,111 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-NCBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpOZXcgaXNzdWVzOgotIFtNZWRpdW1d
-IERpcmVjdCByZXR1cm4gb24gYHBsYXRmb3JtX2dldF9pcnFfb3B0aW9uYWxgIGVycm9yIGJ5cGFz
-c2VzIGNsb2NrIGNsZWFudXAsIGxlYWtpbmcgdGhlIGNsb2NrIGVuYWJsZSByZWZlcmVuY2UuCgpQ
-cmUtZXhpc3RpbmcgaXNzdWVzOgotIFtIaWdoXSBUaGUgZHJpdmVyIG1hbnVhbGx5IGRpc2FibGVz
-IHRoZSBoYXJkd2FyZSBjbG9jayBpbiB0aGUgcmVtb3ZlIGFuZCBwcm9iZSBlcnJvciBwYXRocyB3
-aGlsZSBkZXZtLW1hbmFnZWQgSVJRcyBhcmUgc3RpbGwgYWN0aXZlLCByaXNraW5nIHVuY2xvY2tl
-ZCByZWdpc3RlciBhY2Nlc3Nlcy4KLSBbSGlnaF0gSWYgRE1BIGRlc2NyaXB0b3IgYWxsb2NhdGlv
-biBmYWlscywgdGhlIGRyaXZlciBhdHRlbXB0cyBQSU8gZmFsbGJhY2sgYnV0IGxlYXZlcyBgaG9z
-dC0+ZG9fZG1hYCBzZXQgYW5kIGxlYWtzIHRoZSBtYXBwZWQgc2NhdHRlcmxpc3QuCi0gW0hpZ2hd
-IFRoZSBzeXN0ZW0gc3VzcGVuZCByb3V0aW5lIGRpc2FibGVzIHRoZSBNTUMgY29udHJvbGxlciBj
-bG9jayB3aXRob3V0IG1hc2tpbmcgdGhlIFNESU8gaW50ZXJydXB0LCByaXNraW5nIHVuY2xvY2tl
-ZCByZWdpc3RlciBhY2Nlc3MuCi0tCgotLS0gUGF0Y2ggWzNdOiBbUEFUQ0ggMy8zXSBtbWM6IGRh
-dmluY2k6IEhhbmRsZSBvcHRpb25hbCBJUlEgcmV0dXJuIHZhbHVlIGNvcnJlY3RseSAtLS0KY29t
-bWl0IDZmOGUzMjkxYThiYmE0OGZjZDc4ODBlY2UyNTg0Yjg2YmMyY2E1MDYKQXV0aG9yOiBidWkg
-ZHVjIHBodWMgPHBodWNkdWMuYnVpQGdtYWlsLmNvbT4KCm1tYzogZGF2aW5jaTogSGFuZGxlIG9w
-dGlvbmFsIElSUSByZXR1cm4gdmFsdWUgY29ycmVjdGx5CiAgICAKVGhlIGNvbW1pdCBjaGVja3Mg
-Zm9yIGEgcG9zaXRpdmUgSVJRIG51bWJlciBiZWZvcmUgcmVxdWVzdGluZyB0aGUgU0RJTwpJUlEs
-IGZpeGluZyBhbiBpc3N1ZSB3aGVyZSAwIHdhcyB0cmVhdGVkIGFzIGEgdmFsaWQgSVJRLgoKPiBk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9tbWMvaG9zdC9kYXZpbmNpX21tYy5jIGIvZHJpdmVycy9tbWMv
-aG9zdC9kYXZpbmNpX21tYy5jCj4gaW5kZXggNDc2NWQyZGVlNTk5My4uZGRkZDE1MmQyZWM0NSAx
-MDA2NDQKPiAtLS0gYS9kcml2ZXJzL21tYy9ob3N0L2RhdmluY2lfbW1jLmMKPiArKysgYi9kcml2
-ZXJzL21tYy9ob3N0L2RhdmluY2lfbW1jLmMKPiBAQCAtMTMwMyw3ICsxMzAzLDcgQEAgc3RhdGlj
-IGludCBkYXZpbmNpX21tY3NkX3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpCj4g
-IAlpZiAocmV0KQo+ICAJCWdvdG8gbW1jX2FkZF9ob3N0X2ZhaWw7Cj4gIAo+IC0JaWYgKGhvc3Qt
-PnNkaW9faXJxID49IDApIHsKPiArCWlmIChob3N0LT5zZGlvX2lycSA+IDApIHsKCltTZXZlcml0
-eTogTWVkaXVtXQpJbiBkYXZpbmNpX21tY3NkX3Byb2JlKCksIGlmIHBsYXRmb3JtX2dldF9pcnFf
-b3B0aW9uYWwoKSByZXR1cm5zIGFuIGVycm9yOgoKICAgIHJldCA9IHBsYXRmb3JtX2dldF9pcnFf
-b3B0aW9uYWwocGRldiwgMSk7CiAgICBpZiAocmV0IDwgMCAmJiByZXQgIT0gLUVOWElPKQogICAg
-ICAgIHJldHVybiByZXQ7CgpEb2VzIHRoaXMgZGlyZWN0IHJldHVybiBieXBhc3MgdGhlIGVycm9y
-IGhhbmRsaW5nIHNlcXVlbmNlIChlLmcuLCBnb3RvCnBhcnNlX2ZhaWwpIGFuZCBsZWFrIHRoZSBj
-bG9jayBlbmFibGUgcmVmZXJlbmNlPwoKCltTZXZlcml0eTogSGlnaF0KVGhpcyBpc24ndCBhIGJ1
-ZyBpbnRyb2R1Y2VkIGJ5IHRoaXMgcGF0Y2gsIGJ1dCBJIG5vdGljZWQgdGhlIGRyaXZlcgptYW51
-YWxseSBkaXNhYmxlcyB0aGUgaGFyZHdhcmUgY2xvY2sgaW4gdGhlIHJlbW92ZSBhbmQgcHJvYmUg
-ZXJyb3IgcGF0aHMKd2hpbGUgZGV2bS1tYW5hZ2VkIElSUXMgYXJlIHN0aWxsIGFjdGl2ZS4KCklu
-IHRoZSBkYXZpbmNpX21tY3NkX3Byb2JlKCkgZXJyb3IgcGF0aHMgYW5kIGRhdmluY2lfbW1jc2Rf
-cmVtb3ZlKCksCmNsa19kaXNhYmxlX3VucHJlcGFyZShob3N0LT5jbGspIGlzIGNhbGxlZCBiZWZv
-cmUgZGV2cmVzIGZyZWVzIHRoZSBJUlFzLgoKSWYgYSBzcHVyaW91cyBvciBTRElPIGludGVycnVw
-dCBmaXJlcyBpbiB0aGlzIHdpbmRvdywKbW1jX2RhdmluY2lfc2Rpb19pcnEoKSB3aWxsIGV4ZWN1
-dGU6CgogICAgc3RhdHVzID0gcmVhZGwoaG9zdC0+YmFzZSArIERBVklOQ0lfU0RJT0lTVCk7CgpD
-b3VsZCB0aGlzIGNhdXNlIGEgZmF0YWwgYnVzIGZhdWx0IGJ5IHJlYWRpbmcgZnJvbSBtZW1vcnkt
-bWFwcGVkCnJlZ2lzdGVycyB3aGlsZSB0aGUgY2xvY2sgaXMgZGlzYWJsZWQ/CgoKW1NldmVyaXR5
-OiBIaWdoXQpUaGlzIGlzIGEgcHJlLWV4aXN0aW5nIGlzc3VlLCBidXQgSSBmb3VuZCBhIHBvdGVu
-dGlhbCBwcm9ibGVtIGluIHRoZSBETUEKZmFsbGJhY2sgcGF0aC4KCkluIG1tY19kYXZpbmNpX3N0
-YXJ0X2RtYV90cmFuc2ZlcigpOgoKICAgIGhvc3QtPmRvX2RtYSA9IDE7CiAgICByZXQgPSBtbWNf
-ZGF2aW5jaV9zZW5kX2RtYV9yZXF1ZXN0KGhvc3QsIGRhdGEpOwoKSWYgZG1hZW5naW5lX3ByZXBf
-c2xhdmVfc2coKSBmYWlscyBpbnNpZGUgbW1jX2RhdmluY2lfc2VuZF9kbWFfcmVxdWVzdCgpLApp
-dCByZXR1cm5zIGFuIGVycm9yIGJ1dCBsZWF2ZXMgaG9zdC0+ZG9fZG1hIHNldCB0byAxLCBhbmQg
-ZG9lcyBub3QgdW5tYXAKdGhlIHNjYXR0ZXJsaXN0IG1hcHBlZCB2aWEgZG1hX21hcF9zZygpLgoK
-RG9lcyB0aGlzIGJyZWFrIHRoZSBQSU8gZmFsbGJhY2sgc2luY2UgbW1jX2RhdmluY2lfc3RhcnRf
-Y29tbWFuZCgpIHdpbGwKc3RpbGwgY29uZmlndXJlIHRoZSBoYXJkd2FyZSBmb3IgRE1BPwoKCltT
-ZXZlcml0eTogSGlnaF0KVGhpcyBpcyBhIHByZS1leGlzdGluZyBpc3N1ZSwgYnV0IHRoZSBzeXN0
-ZW0gc3VzcGVuZCByb3V0aW5lIG1pZ2h0IGhhdmUgYQpjbG9jayBtYW5hZ2VtZW50IHByb2JsZW0u
-CgpJbiBkYXZpbmNpX21tY3NkX3N1c3BlbmQoKToKCiAgICB3cml0ZWwoMCwgaG9zdC0+YmFzZSAr
-IERBVklOQ0lfTU1DSU0pOwogICAgbW1jX2RhdmluY2lfcmVzZXRfY3RybChob3N0LCAxKTsKICAg
-IGNsa19kaXNhYmxlKGhvc3QtPmNsayk7CgpUaGUgTU1DIGNvbnRyb2xsZXIgY2xvY2sgaXMgZGlz
-YWJsZWQgd2l0aG91dCBtYXNraW5nIHRoZSBTRElPIGludGVycnVwdAp2aWEgREFWSU5DSV9TRElP
-SUVOLgoKSWYgYW4gU0RJTyBpbnRlcnJ1cHQgZmlyZXMgYmV0d2VlbiB0aGUgZGV2aWNlIHN1c3Bl
-bmQgY2FsbGJhY2sgYW5kIHRoZSBJUlEKY29yZSdzIHN1c3BlbmRfZGV2aWNlX2lycXMoKSBwaGFz
-ZSwgd29uJ3QgbW1jX2RhdmluY2lfc2Rpb19pcnEoKSBhdHRlbXB0CnRvIHJlYWQgREFWSU5DSV9T
-RElPSVNUIHdoaWxlIHRoZSBjbG9jayBkb21haW4gaXMgb2ZmPwoKPiAgCQlyZXQgPSBkZXZtX3Jl
-cXVlc3RfaXJxKCZwZGV2LT5kZXYsIGhvc3QtPnNkaW9faXJxLAo+ICAJCQkJICAgICAgIG1tY19k
-YXZpbmNpX3NkaW9faXJxLCAwLAo+ICAJCQkJICAgICAgIG1tY19ob3N0bmFtZShtbWMpLCBob3N0
-KTsKCi0tIApTYXNoaWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nhc2hpa28uZGV2LyMvcGF0Y2hz
-ZXQvMjAyNjA4MTIxMTIwMjMuNDIyNTQtMS1waHVjZHVjLmJ1aUBnbWFpbC5jb20/cGFydD0zCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxv
-Z2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDov
-L2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On Wed, 05 Aug 2026, sashiko-bot@kernel.org wrote:
+
+> Thank you for your contribution! Sashiko AI review found 1 potential issu=
+e(s) to consider:
+> - [High] The driver unconditionally fails to probe on generic Khadas MCU =
+boards (VIM1/VIM2/VIM3) due to a NULL pointer check on valid match data.
+
+Please review, explain or fix the Sashiko review(s).
+
+If this is a set, this request includes the other patches too.
+
+> --
+> =
+
+> --- Patch [3]: [PATCH v9 3/6] mfd: khadas-mcu: Add support for VIM4 MCU v=
+ariant ---
+> commit eab418dac1b5e94bd297b0a14e92e87b2063dc9b
+> Author: Ronald Claveau <linux-kernel-dev@aliel.fr>
+> =
+
+> mfd: khadas-mcu: Add support for VIM4 MCU variant
+> =
+
+> This patch refactors the probe function to use per-variant values instead=
+ of
+> hardcoded globals. It adds dedicated regmap configuration, fan control re=
+gister,
+> and duty-cycle levels for the VIM4 MCU variant. A new compatible string
+> "khadas,vim4-mcu" is introduced for this new device.
+> =
+
+> > diff --git a/drivers/mfd/khadas-mcu.c b/drivers/mfd/khadas-mcu.c
+> > index 0e74efe14f367..4cb305ac915e1 100644
+> > --- a/drivers/mfd/khadas-mcu.c
+> > +++ b/drivers/mfd/khadas-mcu.c
+> [ ... ]
+> > @@ -75,47 +75,138 @@ static const struct regmap_config khadas_mcu_regma=
+p_config =3D {
+> [ ... ]
+> >  static int khadas_mcu_probe(struct i2c_client *client)
+> >  {
+> > +	const struct mfd_cell *cells, *fan_cells;
+> > +	const struct regmap_config *regmap_cfg;
+> >  	struct device *dev =3D &client->dev;
+> > +	int ncells, nfan_cells, ret;
+> >  	struct khadas_mcu *ddata;
+> > -	int ret;
+> > +	const void *match;
+> >  =
+
+> >  	ddata =3D devm_kzalloc(dev, sizeof(*ddata), GFP_KERNEL);
+> >  	if (!ddata)
+> >  		return -ENOMEM;
+> >  =
+
+> > +	match =3D i2c_get_match_data(client);
+> > +	if (!match)
+> > +		return -ENODEV;
+> =
+
+> [Severity: High]
+> Does this code inadvertently break the probe for generic Khadas MCU boards
+> (VIM1/VIM2/VIM3)?
+> =
+
+> Because KHADAS_MCU_GENERIC evaluates to 0 in its enum, i2c_get_match_data=
+() will
+> return a NULL pointer when matching "khadas,mcu" in khadas_mcu_probe() in
+> drivers/mfd/khadas-mcu.c. This will cause the check here to evaluate to t=
+rue and
+> unconditionally abort the probe with -ENODEV.
+> =
+
+> [ ... ]
+> > @@ -123,7 +214,8 @@ static int khadas_mcu_probe(struct i2c_client *clie=
+nt)
+> >  =
+
+> >  #ifdef CONFIG_OF
+> >  static const struct of_device_id khadas_mcu_of_match[] =3D {
+> > -	{ .compatible =3D "khadas,mcu", },
+> > +	{ .compatible =3D "khadas,mcu", .data =3D (void *)KHADAS_MCU_GENERIC =
+},
+> > +	{ .compatible =3D "khadas,vim4-mcu", .data =3D (void *)KHADAS_MCU_VIM=
+4 },
+> >  	{},
+> >  };
+> >  MODULE_DEVICE_TABLE(of, khadas_mcu_of_match);
+> =
+
+> -- =
+
+> Sashiko AI review =B7 https://sashiko.dev/#/patchset/20260805-add-mcu-fan=
+-khadas-vim4-v9-0-75df78710b9e@aliel.fr?part=3D3
+
+-- =
+
+Lee Jones
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
