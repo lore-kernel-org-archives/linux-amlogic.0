@@ -4,54 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C292C5AD5A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Aug 2026 05:07:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDFDDC5AD5A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Aug 2026 10:18:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-ID:Date:To:Cc:From:Subject:
-	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tBhZHHlVOi7+TSE2QvpkTkP5mjHtLsg6IMqJZ4Mwflo=; b=qXJnWmUA2N2pzd
-	RFuSemABufxN23LHGZ+COMtuW1RVW1bir0YcD8POWCznhBfBJQd5PEsKVp/CFyz2HV8aIB60/JdRv
-	T44Z0thvvdFFme4K6Xm5fcugkRN9VA/9c1hGfMB02yAProtYND7pCIK8qGie16697ky965hk4qV7E
-	NegbC5iBa1HnwW83hmQ8Ht22LRZ1bJCoFf1MUEU7XKcUEyk8+JD+wfiEdIOmxZrCa8QdYRn7L9ut4
-	Dx/891+7TxDe9NCZ+D3EZ3wQDG2sefwLot41n4eMFH14x6Ku32wxMH1sxq1zIExY2aB2kqgyzOnnH
-	akcdP8TCffjac5ZdGy2A==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=V9WMP1EVMhXhYXEM23BgX2dQ3OpAmkG+WxhrkXFOcvU=; b=JTLd5CmU3dd7sI
+	LVjta8thwjtZt0OPdsVJBY1sFFiHog8UlHj84S7m8EZnQyv/r/yKvZWWY+fjLCraOUmXlJsSOzvNz
+	VrM71I/ga5+SMEFTVMsmyJ6KHWWbzucjYEvdAcbIEa6F89CvjlfRQNpONDA2LttOazpUFSEjC5iWo
+	rC6QJwl+B2qqLrN8Om7JFoEXZPMpVJYLMI1Q+O953aWDbe+FO4xAaki5uE7eHwydT9ZDUvZHHHbJb
+	DNZAczCa93rRo2s0OwpzqPeQhqYscq0aR3fwr4ffgYRVByXxUReEJtMo0r1oqsOtbA1BT7d4VY71o
+	gWHF9l9NVoeXGSkzyfZw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wu1B8-0000000FQ5Z-2bNM;
-	Wed, 12 Aug 2026 05:07:02 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1wu627-0000000Frst-2xf0;
+	Wed, 12 Aug 2026 10:18:04 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wu1B7-0000000FQ5T-3QpX
-	for linux-amlogic@lists.infradead.org;
-	Wed, 12 Aug 2026 05:07:01 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id CC32D600AE;
-	Wed, 12 Aug 2026 05:07:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68EDC1F000E9;
-	Wed, 12 Aug 2026 05:07:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1786511220;
-	bh=utHsm6FG+U4VgEp01NBzjQkdxSyUSz3OrQhJ8WjPFcg=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date;
-	b=LKbS0+QiHJlMhTXBXBqGyysX9+L1Ish/0Rj+hd5zxzsf9dJSvqVi5EQjAlIfQU3Rf
-	 cPyrSika0j6jachHkyZRk5NgSex8RZCNh8qXbvDKHSJ9+PbRnrJkdV5DH6J3CO+UEu
-	 TZWYIqjOS0XxIRp4ldUQZFLNGWZzuKOYbOSDxWn/5zl+uG94sD/LM+BK8IoUG/OCUz
-	 dU3wV8ia0l0H6q4OcGbupita3Wq/8ufOGN8q9/r/NI/R8pyVUoSSWIqUVQnIfm1+GN
-	 xLflqCynNi2aVGS5Z3ktyw3gNSsp8K/bfIiHoHygSurtHhdPgykNeCNW4tutem9+4f
-	 i/wy8nxe+GIjg==
+	id 1wu625-0000000Frsf-3E04;
+	Wed, 12 Aug 2026 10:18:01 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 1B82260A85;
+	Wed, 12 Aug 2026 10:18:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id BABD0C2BCB9;
+	Wed, 12 Aug 2026 10:18:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1786529880;
+	bh=GmTbEPvkwJ5IHvxjuWI1y3VvjQ4yhh+Rh8rB8hiuHpE=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=olH0SctUXdGKKkRp2o2Th9FpB9truE+eq8BkspfuknysL0rYrT4BFRDxYu/nwXryS
+	 gi7y4nBapblXc4zHQGxzCY+tonmIDfaRUNbQP1Sk5gPquoumHmeqRuMmwjlM1ZpFOC
+	 ZCUKy9heCHEgWj06gQOrKbOEnx1WJNLPwm6uFtgQYD5B+eK1Xvd+TrSFzG9jpb6tEA
+	 eS27rBxO5bQ627g4Pz95wwaRVSvRc9JU8mH8CSQ+xSxB2AuUhhNIJTFtQh6VPIoYZd
+	 jGG4sunfBbBxV/hmgjXt7WZHbO6rOhEq6dhi+HyFgISTcmcVczdAXYPl+0xNl+Uv9J
+	 fGwx7Kahb+l7Q==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 98F62C5CFDB;
+	Wed, 12 Aug 2026 10:18:00 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Wed, 12 Aug 2026 10:17:44 +0000
+Subject: [PATCH] pinctrl: meson: a4: Add input enable pin configuration
 MIME-Version: 1.0
-In-Reply-To: <1jmrv7xlyk.fsf@starbuckisacylon.baylibre.com>
-References: <1jmrv7xlyk.fsf@starbuckisacylon.baylibre.com>
-Subject: Re: [GIT PULL] clk: meson: Amlogic clock changes for v7.3
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-clk <linux-clk@vger.kernel.org>, linux-amlogic <linux-amlogic@lists.infradead.org>, Brian Masney <bmasney@redhat.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Date: Tue, 11 Aug 2026 22:06:58 -0700
-Message-ID: <178651121874.5862.15074147400142820342@lazor>
-User-Agent: alot/0.12
+Message-Id: <20260812-input-enable-v1-1-81e5ca7772aa@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAEdIfGoC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDC0Mj3cy8gtIS3dS8xKScVF1TQ0MzsyQTExMzS3MloJaCotS0zAqwcdG
+ xtbUAY0ASUl4AAAA=
+X-Change-ID: 20260812-input-enable-51166b444697
+To: Linus Walleij <linusw@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1786529877; l=2149;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=9SbIm6+8Ee1Yqah/Xj7ZLaezrMlBamtDl5jNdbzcGzc=;
+ b=D7w+Kf1zPLXNaLWHPsaixnfXbBtvYYqUK5MBvXWe+kNz9Ckdy07+uAigRFK3asjPqxVVkefBm
+ 5oLbnS5j6n3Dfqk58YoCnHFz1xdZi88f7ZaNnuFs2Qg2iOAGA2c/0XX
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,38 +82,78 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Jerome Brunet (2026-07-31 07:39:15)
-> Hi Stephen,
-> 
-> Here are the Amlogic clock changes for v7.3
-> Nothing out of the ordinary, 1 fix for an old chip and 2 new controllers
-> for a new chip.
-> 
-> Please Pull.
-> 
-> Cheers
-> Jerome
-> 
-> The following changes since commit dc59e4fea9d83f03bad6bddf3fa2e52491777482:
-> 
->   Linux 7.2-rc1 (2026-06-28 12:01:31 -0700)
-> 
-> are available in the Git repository at:
-> 
->   https://github.com/BayLibre/clk-meson.git tags/clk-meson-v7.3-1
-> 
-> for you to fetch changes up to 6f809ca8104b01dff31a20e91fa748b49fe2971f:
-> 
->   clk: amlogic: Add A9 peripherals clock controller driver (2026-07-24 18:09:37 +0200)
-> 
-> ----------------------------------------------------------------
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Thanks. Pulled into clk-next
+Add support for PIN_CONFIG_INPUT_ENABLE in the Amlogic A4 pinctrl
+driver.
+
+Use the existing output enable control to configure the input enable
+state, since the hardware uses the same control with inverse semantics.
+
+Also update PIN_CONFIG_OUTPUT_ENABLE handling to return the actual
+output enable state instead of treating any non-zero value as enabled.
+
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+index 420f7915c010..39eb8cc7fc0d 100644
+--- a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
++++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+@@ -469,9 +469,15 @@ static int aml_pinconf_get(struct pinctrl_dev *pcdev, unsigned int pin,
+ 		break;
+ 	case PIN_CONFIG_OUTPUT_ENABLE:
+ 		ret = aml_pinconf_get_output(info, pin);
+-		if (ret <= 0)
++		if (ret < 0)
++			return -EINVAL;
++		arg = ret;
++		break;
++	case PIN_CONFIG_INPUT_ENABLE:
++		ret = aml_pinconf_get_output(info, pin);
++		if (ret < 0)
+ 			return -EINVAL;
+-		arg = 1;
++		arg = !ret;
+ 		break;
+ 	case PIN_CONFIG_LEVEL:
+ 		ret = aml_pinconf_get_output(info, pin);
+@@ -619,6 +625,7 @@ static int aml_pinconf_set(struct pinctrl_dev *pcdev, unsigned int pin,
+ 		switch (param) {
+ 		case PIN_CONFIG_DRIVE_STRENGTH_UA:
+ 		case PIN_CONFIG_OUTPUT_ENABLE:
++		case PIN_CONFIG_INPUT_ENABLE:
+ 		case PIN_CONFIG_LEVEL:
+ 			arg = pinconf_to_config_argument(configs[i]);
+ 			break;
+@@ -643,6 +650,9 @@ static int aml_pinconf_set(struct pinctrl_dev *pcdev, unsigned int pin,
+ 		case PIN_CONFIG_OUTPUT_ENABLE:
+ 			ret = aml_pinconf_set_output(info, pin, arg);
+ 			break;
++		case PIN_CONFIG_INPUT_ENABLE:
++			ret = aml_pinconf_set_output(info, pin, !arg);
++			break;
+ 		case PIN_CONFIG_LEVEL:
+ 			ret = aml_pinconf_set_output_drive(info, pin, arg);
+ 			break;
+
+---
+base-commit: 761af93c9f1a100b8d9f71aa744b8f9abbbbbfb2
+change-id: 20260812-input-enable-51166b444697
+
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
 
 _______________________________________________
 linux-amlogic mailing list
