@@ -4,69 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30B0DC5B572
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Aug 2026 16:47:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E79D9C5CFC1
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Aug 2026 02:41:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DIPvD0g24n5YO+4EO1tkvnR/wjO5atAekch994Qz0/c=; b=CGHINzmc229t2v
-	wLJhno+pr7ke0A4cQw4Hfllen3Rn5BfjAJQVFkSNjAk0Wsfre/8MUlnYPowVwocI1RqZIme7h8Xov
-	bqNvGevYjGfrKafZZZB3fKVK3X/ujede3py2yR579VkuITnvi3y+HWBR1y75ngjpKhrH/ftKdOsCn
-	Uo/iQ63Kt9kpNcutdtW9Ue0J1qO1n8YhEWajTTMg7pFd2g8j1N/DmVBAUqYW4gVkCk4vhUPkSoaNv
-	MR0gzXxykNFU0gh3YqVuE+qD5fEgcc6qH/auSB3d01dYSbVxsskJBt0Jluo32+G28HNJfjUcIllwy
-	nwhkjTaNBE5icu8sUXmw==;
+	List-Owner; bh=vC70T+7PhdWyIu2IlVayvkF/IDoPt60LT9VZXJc4nUI=; b=Kg7z6UKOTi7jps
+	59yid0q50y2waVPF52Y4e/gIi+cWlyt9wqXNRvmjrlXuJTBF9ZtlsoifvXrEJ3k24x+Q8hdMlBb4Y
+	ZigYgz+YRZ3p3MxlfFTQQrX3zB2dv5ECJ7U1ldM1Bzia2WK1qjfKVrNZnyUp73wHFaOef6wlgE8GI
+	xsvrIjJLgobMNQX3w1zF2p7wp/4WzVHTkbag7MN7VFummZQX0Bf10r2yeye794dvmqtPSIxW60qpc
+	M/IZ8C5Um2zqAY0A5/CZXRRjawYi93txe+CugKM7T2vYXTTCYpgswIeDW5lH3i9S04CFC4KorPOtz
+	392HZlRMtCHkNwn0pYZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wtpcu-0000000EXti-1iKV;
-	Tue, 11 Aug 2026 16:46:56 +0000
+	id 1wtyuQ-0000000FHny-26c0;
+	Wed, 12 Aug 2026 02:41:38 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wtpct-0000000EXtZ-1h0I;
-	Tue, 11 Aug 2026 16:46:55 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id E5F40423CC;
-	Tue, 11 Aug 2026 16:46:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A94631F000E9;
-	Tue, 11 Aug 2026 16:46:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1786466814;
-	bh=35SLMVPx0u6ayMN4r4D0tKX7Ejde+ZgmUYJJPjitprw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=aJtX+m3fc3xxLA0Q9AKc5S4DEtALmtAq/9rYx74j4YQPC4RzgCSSG3ohIF39znldg
-	 Pum0I8zL6uP47KPy4e6QUTQAtKIcraPNBWEm9y1tmlM6/Q0Rwt6IBmxNL3IqrmMLz/
-	 cNsX8eSRmFZqSG4DRazhqiQLU+AwQ/m6yB91/VzRp+QSRpSWwQxVEYFYNC0v0jAMs3
-	 70TCxVvbhP0BNiA5xIXCipydo5wPVsAf5LlutPz9sssh/dF+tR3+G+XMGPZENwdhUM
-	 XklYzbMwWoFgV472FKFA/128xuP9Smcf9raiDDnvex/n86oJQgJp+/d1tj5yttQFK8
-	 DP4hWh8KFFQYw==
-From: Mark Brown <broonie@kernel.org>
+	id 1wtyuO-0000000FHmz-1SHV;
+	Wed, 12 Aug 2026 02:41:36 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 922E343A35;
+	Wed, 12 Aug 2026 02:41:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6A64AC2BCC7;
+	Wed, 12 Aug 2026 02:41:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1786502495;
+	bh=PynJ5xo9Sdp/Ik69/y60OZIBerQ/6DJ4h2lEOta72bc=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=BWbMolET+BUv+HCNiYSywfCMTafMv8EbTu0ttnqa/PNdzATzYBBf4YeM4WKsEDDa0
+	 HrAmpp3S79mhFqgPiZgBmjS2ztfwAIYgV4VpC0sgtoWCN1DF7ngjKh/vCPCgrju3Xz
+	 Hkyp0Mi/02tM34/G2qs+T92MqTZ89rh3WJJfKIg5Fws1TqeLLTcn42LrCVpeeEjVeL
+	 DZ8ioJpfLv2n+pavUKjrihHzeXLRLt9ODk+4CYz9j/LAIMpUBSF0I0QkEqgo7f1faR
+	 DEj2EICD53DFsFcdjXuYf9kK+y3KpgNZI9qBK8Zg8ssKpsUTl2wHjC7sp43Ud/D6Vw
+	 C5bLQd9OPIsgA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 48316C5AC67;
+	Wed, 12 Aug 2026 02:41:35 +0000 (UTC)
+From: Zhentao Guo via B4 Relay <devnull+zhentao.guo.amlogic.com@kernel.org>
+Date: Wed, 12 Aug 2026 10:41:23 +0800
+Subject: [PATCH v7 1/6] firmware: meson: sm: video firmware loading via
+ secure monitor
+MIME-Version: 1.0
+Message-Id: <20260812-b4-s4-vdec-upstream-v7-1-3fae085861bd@amlogic.com>
+References: <20260812-b4-s4-vdec-upstream-v7-0-3fae085861bd@amlogic.com>
+In-Reply-To: <20260812-b4-s4-vdec-upstream-v7-0-3fae085861bd@amlogic.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Felix Gu <ustc.gu@gmail.com>
-Cc: linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20260802-spifc-v2-1-46e9d06a3217@gmail.com>
-References: <20260802-spifc-v2-1-46e9d06a3217@gmail.com>
-Subject: Re: [PATCH v2] spi: meson-spifc: use
- devm_pm_runtime_set_active_enabled
-Message-Id: <178645712491.119683.11333152337040642121.b4-ty@b4>
-Date: Tue, 11 Aug 2026 15:05:24 +0100
-MIME-Version: 1.0
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1122; i=broonie@kernel.org;
- h=from:subject:message-id; bh=+JK/qtzYidYxvmfvEm32GTzCLRscEza11mb/ChBDu38=;
- b=owEBbAGT/pANAwAKASTWi3JdVIfQAcsmYgBqe1H71ff9HUK4skCti6zzMXrFYRGaDkU1jVyo2
- ZgPr9DwTgqJATIEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCantR+wAKCRAk1otyXVSH
- 0GxWB/Yj7AZhfrU7mudjhSzbAMFpUyuh/nfPqyLT7oFAz+x6qCq72kUL+F8+5XiqNNj0Jp9jQXw
- RMMtuyzrg9aRl5/OKN6AKGWUOHrxYJbaxIdbcML+d95Mw31rvhfFiE76VIHLcMuIUM1lXi/wcl6
- S5dvnlGG8rL7PS+HlAzHm2AQfO/z+eHjz+ReNpPryC1jxkA9FIoRNu2QKBerOtsQOzeYfNNbKmg
- aq4ORFpuWxcPKxnrguNc+pieO7XlbVf1QZ0vLxOeWj07sr6L8hmvji703eqOEZrEYLL7op2bw7M
- pUfI5Pzw3KNwkUxt5QTczJS9szeWZL17JrgqOtUrONs8IBo=
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+ devicetree@vger.kernel.org, Zhentao Guo <zhentao.guo@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1786502492; l=670;
+ i=zhentao.guo@amlogic.com; s=20251024; h=from:subject:message-id;
+ bh=ioNPQiZsvUfM7WHdEfF4xb07l7H3o3hVIdC2XZUtO1g=;
+ b=eK1kDLPi+TZ0ozmq9apoa6V7z/Tacdapq4Ey5p5r/Sn47u2Ng6Q6TZMe7fL2KhAE4D5HqpoDk
+ Or7Tr9aXEvzDGucXn6s0rGvzAFbylCH9EbAjRSx6HrMqVTJnk2bFngM
+X-Developer-Key: i=zhentao.guo@amlogic.com; a=ed25519;
+ pk=5yfDKrjreXwcAoEUsdtWafy6YN500upXp/CgtnXjLVU=
+X-Endpoint-Received: by B4 Relay for zhentao.guo@amlogic.com/20251024 with
+ auth_id=555
+X-Original-From: Zhentao Guo <zhentao.guo@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,41 +83,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: zhentao.guo@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, 02 Aug 2026 01:51:24 +0800, Felix Gu wrote:
-> spi: meson-spifc: use devm_pm_runtime_set_active_enabled
+From: Zhentao Guo <zhentao.guo@amlogic.com>
 
-Applied to
+Add SM_LOAD_VIDEO_FW to the secure monitor command enum
+to allow decoder drivers to load firmware through the meson_sm
+interface.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-7.3
+Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
+---
+ include/linux/firmware/meson/meson_sm.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-Thanks!
+diff --git a/include/linux/firmware/meson/meson_sm.h b/include/linux/firmware/meson/meson_sm.h
+index 3ebc2bd9a976..3b90b49d0552 100644
+--- a/include/linux/firmware/meson/meson_sm.h
++++ b/include/linux/firmware/meson/meson_sm.h
+@@ -15,6 +15,7 @@ enum {
+ 	SM_THERMAL_CALIB_READ,
+ 	SM_A1_PWRC_SET,
+ 	SM_A1_PWRC_GET,
++	SM_LOAD_VIDEO_FW,
+ };
+ 
+ struct meson_sm_firmware;
 
-[1/1] spi: meson-spifc: use devm_pm_runtime_set_active_enabled
-      https://git.kernel.org/broonie/spi/c/c10b7f5e0cb1
+-- 
+2.42.0
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
 
 
 _______________________________________________
