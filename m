@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D73AC5CFEB
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Aug 2026 07:02:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76495C5CFDB
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Aug 2026 08:28:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3cY7xTA48gQMg1Mdf5nFnaYKcAB7rJzK5q3tP57EFFA=; b=jTwjPzg4G12Htt
-	EptWmvcPBMkGjgScB7nxE1wEv7ho71tn6ICCluYRPblONorZsBf6i56m5ht/fmvtDju5NAYg8V1dn
-	ma9h25HsPaTloSicrg5memhGCKQR3VBI8jU2AuKgvi1FaviXVWOF6bfi0lVJQUJoKBaqMc+8MHFAq
-	AdSfNKQFiGIkiWwY/8IsAI0naqWOprRgtF6HL0UpLZLVljE+qfmeQ4Xp7oLZc9iPQAPb0kM3wOx/U
-	rD8SZ7wkCAbtiCr4IYHIuqrsW0CMAX7qiULrlEmrD6dgKoxohold5KCtyNwMWg5avErtmdP3AdMwB
-	fuXyr00A4FwAMcLU0sfg==;
+	List-Owner; bh=HukqWie9sVVa+yXxFBBUe7HAQFtNQtYhenjDR1igwLQ=; b=0kMOyJON10G9AN
+	A/vSyiZERCc2aDVo0YkYyDb//HGDHig6co2OYpsHVud8P1UTFk119pG/SfxEYTkEEqkjACcyI3But
+	S58H/EyKPfSmw42OfOjx/WYvZ/w8rRv2cG+gBsHpwsFTTfJh9HhANGeRq4yNKRnUMagDyETjj5PHG
+	Ofzq1ysccxXsdP8UpxEwWyh5DyJOlsjnn27ijm4Uvbpof4ETDs7WPR2B8PpTFpfSrtng6WqN6esT0
+	96Xzal3Je695xoD703HYRfHIqJogzbGQnQ9YlDd+NRBI474eBGhh5OstyKC3qo7K8LdtIp4zy28Gh
+	NG0SgeAFzTp0a+JGA2FQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wuPS6-0000000HYUR-1IJ8;
-	Thu, 13 Aug 2026 07:02:10 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1wuQna-000000008SB-3AUW;
+	Thu, 13 Aug 2026 08:28:26 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wuPS4-0000000HYUI-3mF2;
-	Thu, 13 Aug 2026 07:02:08 +0000
+	id 1wuQnZ-000000008S4-2CCk
+	for linux-amlogic@lists.infradead.org;
+	Thu, 13 Aug 2026 08:28:25 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id A4EAC438AE;
-	Thu, 13 Aug 2026 07:02:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D8A11F000E9;
-	Thu, 13 Aug 2026 07:02:02 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id CBD32600AF;
+	Thu, 13 Aug 2026 08:28:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72C921F000E9;
+	Thu, 13 Aug 2026 08:28:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1786604527;
-	bh=/gqKioEF1GbavDA4gwe7ihUQosNd/QI2W5YICXn7nnM=;
+	s=k20260515; t=1786609704;
+	bh=DrCppzolJDbBGIHmFRLxn1uZx4F/MBvG12Nh0mtaG60=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=VPNynnMKL0D+jC2TYBCxyz6/CIOrImpUbn9HaqmsYgbOJXdkyDNTUWGSAAkfUj210
-	 qzNYoVGaM2Lh/HZrM9fAkftOBaDQ1wReQ9dLFTc2G8JskEYyMCgpS6QZvKLfE5+cyP
-	 3Iw3Wb+BOP/gG6i9vqc6e+CIPywd97oWkr9otA7rHSZ3V6/dLZALCRccRgUzzs7qWn
-	 qQ1RO7HelgDVVyYRwLz4mNS9E1L7vEA8yop7bsKrklGsZZ3wiHzF682nsnyPwYbsf8
-	 4TrMzMPPokVRUcU23LStE2v79ttyY7xstReSObt4x9mtUpvW57g4uNYKprJLuXdM56
-	 2Wjwj97PEl8fw==
-Date: Thu, 13 Aug 2026 09:01:59 +0200
+	b=IajlGgYQjxra7W4hfzoJNu+BNaUAhnLcNO2HkVMOZXk90QPBw6EiBMGmJHwpwRozR
+	 Qe7KJ5NJ0YqYdeQowxb1IWsOJZ/vhKJ8obkWVH0UdyD5/X1cSyF0FGfzfHFUDupR4B
+	 rU8ZyGxFbPXo2m35TlASGS9+0OEzaSIn5Rmmp8yMwiE2n7D7G4acUCLiWd7TygkpL2
+	 XnHKjDFES1rTI1mOQIZodldz7plUuTl+1uykPr0ZLpUURa+FvJoX9u9ClIh56FpEgh
+	 hTkp0HDmYvOPtbVtgljVTtUXtTKDb4DKRZxCJ+U1zbDkglC6246gtLcnchGVXdku7p
+	 iPAPSinKCXp+g==
+Date: Thu, 13 Aug 2026 10:28:16 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Zhentao Guo <zhentao.guo@amlogic.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 3/6] media: dt-bindings: Add Amlogic V4L2 video decoder
-Message-ID: <20260813-rustling-sassy-terrier-11b99d@quoll>
-References: <20260812-b4-s4-vdec-upstream-v7-0-3fae085861bd@amlogic.com>
- <20260812-b4-s4-vdec-upstream-v7-3-3fae085861bd@amlogic.com>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Guillaume La Roque <glaroque@baylibre.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: thermal: amlogic: Add A9 thermal
+ bindings
+Message-ID: <20260813-international-optimal-limpet-dfb06e@quoll>
+References: <20260811-a9-thermal-v2-0-7ddc33b11b9a@amlogic.com>
+ <20260811-a9-thermal-v2-1-7ddc33b11b9a@amlogic.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20260812-b4-s4-vdec-upstream-v7-3-3fae085861bd@amlogic.com>
+In-Reply-To: <20260811-a9-thermal-v2-1-7ddc33b11b9a@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,104 +74,71 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Aug 12, 2026 at 10:41:25AM +0800, Zhentao Guo wrote:
-> Describe the initial support for the V4L2 stateless video decoder
-> driver used with the Amlogic S4 (S805X2) platform.
+On Tue, Aug 11, 2026 at 08:37:43AM +0000, Xianwei Zhao wrote:
+> Document the thermal controller compatibles for the Amlogic A9 SoC.
 > 
-> Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
+> Describe the required "core" and "plck" clocks, add the optional
+> "amlogic,hw-reset-temp" property, and update the schema constraints for
+> A9-specific thermal controllers.
+> 
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
->  .../devicetree/bindings/media/amlogic,s4-vdec.yaml | 111 +++++++++++++++++++++
->  1 file changed, 111 insertions(+)
+>  .../bindings/thermal/amlogic,thermal.yaml          | 28 +++++++++++++++++++++-
+>  1 file changed, 27 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml b/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml
-> new file mode 100644
-> index 000000000000..b5af3f931b26
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml
-> @@ -0,0 +1,111 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2025 Amlogic, Inc. All rights reserved
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/amlogic,s4-vdec.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic Video Decode Accelerator
-> +
-> +maintainers:
-> +  - Zhentao Guo <zhentao.guo@amlogic.com>
-> +
-> +description:
-> +  The Video Decoder Accelerator present on Amlogic SOCs.
-> +  It supports stateless h264 decoding.
-> +
-> +properties:
-> +  compatible:
-> +    const: amlogic,s4-vdec
-> +
-> +  reg:
+> diff --git a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
+> index 8cfa44dcda58..f73ee66bcc47 100644
+> --- a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
+> @@ -23,6 +23,7 @@ properties:
+>            - const: amlogic,g12a-thermal
+>        - enum:
+>            - amlogic,a1-cpu-thermal
+> +          - amlogic,a9-thermal
+>            - amlogic,t7-thermal
+>  
+>    reg:
+> @@ -32,7 +33,13 @@ properties:
+>      maxItems: 1
+>  
+>    clocks:
+> -    maxItems: 1
+> +    minItems: 1
 > +    maxItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: dos
-> +      - const: dmc
-> +
-> +  interrupts:
-> +    maxItems: 2
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: hvdec
-> +      - const: vdec
-
-vdec is the name of the module, so not really useful name.
-
-> +
-> +  clocks:
-> +    maxItems: 3
 > +
 > +  clock-names:
 > +    items:
-> +      - const: dos
-> +      - const: vdec
+> +      - const: core
+> +      - const: pclk
+>  
+>    power-domains:
+>      maxItems: 1
+> @@ -52,6 +59,10 @@ properties:
+>            - description: phandle to the secure monitor
+>            - description: sensor index to get specific calibration data
+>  
+> +  amlogic,hw-reset-temp:
+> +    description: The hardware-controlled reset temperature value.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-Same here
-
-> +      - const: hevcf
-> +
-> +  power-domains:
-> +    maxItems: 2
-> +
-> +  power-domain-names:
-> +    items:
-> +      - const: vdec
-> +      - const: hvdec
-
-Same here.
+Thermal zones define that, not custom properties.
 
 > +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  amlogic,canvas:
-> +    description: should point to a canvas provider node
+>  required:
+>    - compatible
+>    - reg
+> @@ -73,6 +84,21 @@ allOf:
+>        required:
+>          - amlogic,secure-monitor
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - amlogic,a9-thermal
 
-You basically duplicate the property name. Say something useful, what is
-it used for?
-
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +
-> +  secure-monitor:
-> +    description: phandle to the secure-monitor node
-
-Can a property whose type is a phandle and is called "secure-monitor" be
-not "phandle to the secure-monitor node"?
-
-Write useful code, not redundant.
-
-Anyway, missing vendor prefix as it is not a generic property (otherwise
-point me to generic schema defining it).
+Why is one clock valid as well for the new device?
 
 Best regards,
 Krzysztof
