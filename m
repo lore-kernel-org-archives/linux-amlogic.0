@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1985EC5DF64
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Aug 2026 06:06:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D73AC5CFEB
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Aug 2026 07:02:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=179lkU1jvAmrwUihAOydLWZJR/A9dnMKfSYKTH9+W7I=; b=3EUbKdmCnvy+7Q
-	19e8izCbKxobMzaAPuB5Hnup3+Gfcz1ocdceZAx5lAr7NZ3ML4IF3r0rKoySrU2frxSweA2xUX/12
-	nSdH6ntRCiKYpdyUg4etElw+Kg0VV8abDjB4PAnfWmCeTxSeLuhzQVL8sR8ZlhAAHKAjPN7rrixEv
-	nt1FqugeNPH6MZCiF0mYOzjUbm08jNgV+hgjqAw26cMoYHtE/T7aGIU/FGENjg8zyfspL0dt2zRcR
-	WuyRPI/Ibh1Y5hTh7VTU+ofdtZ6rp1lzm7wMqiRq3mGCJS3FiZGENiIfqKrU/P/rDDpjfQRYq96SC
-	B5ff8UAEZ+YIOUszuh6Q==;
+	List-Owner; bh=3cY7xTA48gQMg1Mdf5nFnaYKcAB7rJzK5q3tP57EFFA=; b=jTwjPzg4G12Htt
+	EptWmvcPBMkGjgScB7nxE1wEv7ho71tn6ICCluYRPblONorZsBf6i56m5ht/fmvtDju5NAYg8V1dn
+	ma9h25HsPaTloSicrg5memhGCKQR3VBI8jU2AuKgvi1FaviXVWOF6bfi0lVJQUJoKBaqMc+8MHFAq
+	AdSfNKQFiGIkiWwY/8IsAI0naqWOprRgtF6HL0UpLZLVljE+qfmeQ4Xp7oLZc9iPQAPb0kM3wOx/U
+	rD8SZ7wkCAbtiCr4IYHIuqrsW0CMAX7qiULrlEmrD6dgKoxohold5KCtyNwMWg5avErtmdP3AdMwB
+	fuXyr00A4FwAMcLU0sfg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wuOaR-0000000HSfl-39u9;
-	Thu, 13 Aug 2026 06:06:43 +0000
+	id 1wuPS6-0000000HYUR-1IJ8;
+	Thu, 13 Aug 2026 07:02:10 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wuOaQ-0000000HSfZ-1wAv;
-	Thu, 13 Aug 2026 06:06:42 +0000
+	id 1wuPS4-0000000HYUI-3mF2;
+	Thu, 13 Aug 2026 07:02:08 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 2042F41649;
-	Thu, 13 Aug 2026 06:06:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E2EA1F000E9;
-	Thu, 13 Aug 2026 06:06:35 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id A4EAC438AE;
+	Thu, 13 Aug 2026 07:02:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D8A11F000E9;
+	Thu, 13 Aug 2026 07:02:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1786601201;
-	bh=2bRU4db2xtFcGOhDIJOKkQ4ShBGU9e2BMEUZzod3loM=;
+	s=k20260515; t=1786604527;
+	bh=/gqKioEF1GbavDA4gwe7ihUQosNd/QI2W5YICXn7nnM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=WepnVrP8FwDHztG5a+pL5+vdR+Cg8T4y90PcZBh/rlnZNWLRLfnDWWRxVJvS0+crZ
-	 lh7fpDVlbqh/6qvpmhacKyRBEAArsqvbDDRNZsTZ84+InSYC+LQE/2ApqTgrggsNhH
-	 YhxB5J0+AVZSQsk4LoO4+RjU9GDi4VJ7LjJUaYY3sLwr0c5vz/7/bRPur4asCQDR1r
-	 cNVYLKjWL4z4LWF+Z0JghcCDVi9WN26c7VGLvxJXgFSrnHhF5fGl1dbGiWnRcm8sU1
-	 SI1/W2qha+159VhpFETiKxPs27GXkyYyN7ajSyXNSy7VOA36iIT+UpNy1PI2kQZa1m
-	 WhxFEX5ERcXyQ==
-Date: Thu, 13 Aug 2026 08:06:31 +0200
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Hans Zhang <18255117159@163.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org, 
-	jingoohan1@gmail.com, imx@lists.linux.dev, linuxppc-dev@lists.ozlabs.org, 
-	linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, sophgo@lists.linux.dev, linux-riscv@lists.infradead.org, 
-	spacemit@lists.linux.dev, linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 02/16] PCI: dwc: Use cached PCIe capability offset in
- core
-Message-ID: <ps2qzgcb5lixkoqz2xbofdurkgmsiojg7e5ueqfdhyissqvzf2@tuderrjgzg6b>
-References: <20260720150619.24733-1-18255117159@163.com>
- <20260720150619.24733-3-18255117159@163.com>
+	b=VPNynnMKL0D+jC2TYBCxyz6/CIOrImpUbn9HaqmsYgbOJXdkyDNTUWGSAAkfUj210
+	 qzNYoVGaM2Lh/HZrM9fAkftOBaDQ1wReQ9dLFTc2G8JskEYyMCgpS6QZvKLfE5+cyP
+	 3Iw3Wb+BOP/gG6i9vqc6e+CIPywd97oWkr9otA7rHSZ3V6/dLZALCRccRgUzzs7qWn
+	 qQ1RO7HelgDVVyYRwLz4mNS9E1L7vEA8yop7bsKrklGsZZ3wiHzF682nsnyPwYbsf8
+	 4TrMzMPPokVRUcU23LStE2v79ttyY7xstReSObt4x9mtUpvW57g4uNYKprJLuXdM56
+	 2Wjwj97PEl8fw==
+Date: Thu, 13 Aug 2026 09:01:59 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Zhentao Guo <zhentao.guo@amlogic.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 3/6] media: dt-bindings: Add Amlogic V4L2 video decoder
+Message-ID: <20260813-rustling-sassy-terrier-11b99d@quoll>
+References: <20260812-b4-s4-vdec-upstream-v7-0-3fae085861bd@amlogic.com>
+ <20260812-b4-s4-vdec-upstream-v7-3-3fae085861bd@amlogic.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20260720150619.24733-3-18255117159@163.com>
+In-Reply-To: <20260812-b4-s4-vdec-upstream-v7-3-3fae085861bd@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,41 +69,115 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gTW9uLCBKdWwgMjAsIDIwMjYgYXQgMTE6MDY6MDVQTSArMDgwMCwgSGFucyBaaGFuZyB3cm90
-ZToKPiBNb2RpZnkgdGhlIERXQyBjb3JlIGZ1bmN0aW9ucyB0byB1c2UgdGhlIGNhY2hlZCBwY2ll
-X2NhcCBvZmZzZXQgaW5zdGVhZAo+IG9mIGNhbGxpbmcgZHdfcGNpZV9maW5kX2NhcGFiaWxpdHko
-KSBlYWNoIHRpbWUuCj4gCj4gSW4gdGhlIERXQyBjb3JlLCBkd19wY2llX2ZpbmRfY2FwYWJpbGl0
-eSgpIGlzIGNhbGxlZCBhdCBzZXZlcmFsIGxvY2F0aW9uczoKPiAtIGR3X3BjaWVfZXBfaW5pdF9u
-b25fc3RpY2t5X3JlZ2lzdGVycygpCj4gLSBkd19wY2llX3dhaXRfZm9yX2xpbmsoKQo+IC0gZHdf
-cGNpZV9saW5rX3NldF9tYXhfc3BlZWQoKQo+IC0gZHdfcGNpZV9saW5rX2dldF9tYXhfbGlua193
-aWR0aCgpCj4gLSBkd19wY2llX2xpbmtfc2V0X21heF9saW5rX3dpZHRoKCkKPiAKPiBUaGUgY2Fj
-aGVkIG9mZnNldCBpcyBpbml0aWFsaXplZCBhZnRlciBoYXJkd2FyZSBpcyByZWFkeToKPiAtIElu
-IGhvc3QgbW9kZTogZHdfcGNpZV9ob3N0X2luaXQoKSBjYWxscyBwcC0+b3BzLT5ob3N0X2luaXQo
-KSAoZW5hYmxlcwo+ICAgY2xvY2tzL3Jlc2V0cyksIHRoZW4gZHdfcGNpZV9nZXRfcGNpZV9jYXAo
-KSBjYWNoZXMgdGhlIG9mZnNldC4KPiAtIEluIGVuZHBvaW50IG1vZGU6IHRoZSBjb3JlIG5vIGxv
-bmdlciBjYWNoZXMgYXV0b21hdGljYWxseS4gSW5zdGVhZCwKPiAgIGRyaXZlcnMgbXVzdCBjYWxs
-IGR3X3BjaWVfZ2V0X3BjaWVfY2FwKCkgYWZ0ZXIgaGFyZHdhcmUgaXMgZW5hYmxlZAo+ICAgKGUu
-Zy4sIGFmdGVyIFBFUlNUIyBkZWFzc2VydCkuCgpCdXQgeW91IGRpZG4ndCBtb2RpZnkgYWxsIERX
-QyBFUCBkcml2ZXJzIHRvIGNhbGwgZHdfcGNpZV9nZXRfcGNpZV9jYXAoKS4gVGhpcwpjYW4gbGVh
-ZCB0byBwY2llX2NhcCBiZWluZyAwLgoKPiBkd19wY2llX2VwX2luaXRfbm9uX3N0aWNreV9yZWdp
-c3RlcnMoKQo+ICAgaXMgY2FsbGVkIGFmdGVyIHRoYXQgcG9pbnQsIHNvIGl0IGNhbiBzYWZlbHkg
-dXNlIHBjaS0+cGNpZV9jYXAuCj4gCj4gZHdfcGNpZV9lcF9pbml0X25vbl9zdGlja3lfcmVnaXN0
-ZXJzKCkgbm93IGFzc3VtZXMgcGNpLT5wY2llX2NhcCBpcwo+IHZhbGlkLiBpZiBub3QsIGl0IHBy
-aW50cyBhIHdhcm5pbmcgYW5kIHNraXBzIHRoZSBvcGVyYXRpb24uCgpXaGVyZSBpcyB0aGlzIHdh
-cm5pbmcgcHJpbnRlZD8KClRoZXNlIGFyZSBhbHJlYWR5IHBvaW50ZWQgb3V0IGJ5IFNhc2hpa28u
-IFlvdSBzaG91bGQgZ28gcmVhbGx5IGdvIHRocm91Z2ggYWxsIG9mCnRoZW0gKG5vdCB0aGUgcHJl
-LWV4aXN0aW5nIGlzc3VlcykgYW5kIGNvbW1lbnQgd2hldGhlciB0aGUgaXNzdWVzIGFyZSB2YWxp
-ZCBvcgpmYWxzZSBwb3NpdGl2ZS4gRm9yIGEgc2VyaWVzIHRvdWNoaW5nIG1hbnkgY29udHJvbGxl
-ciBkcml2ZXJzLCB0aGlzIGlzIG5lY2Vzc2FyeQp0byBhdm9pZCBpbnRyb2R1Y2luZyByZWdyZXNz
-aW9ucy4KCkknbSBub3QgZ29pbmcgdG8gbWVyZ2UgdGhpcyBzZXJpZXMgdW50aWwgeW91IGZpeCB0
-aGUgcmVhbCBpc3N1ZXMgU2FzaGlrbwpyZXBvcnRlZCBvciBtYXJrIHRoZW0gYXMgZmFsc2UgcG9z
-aXRpdmUgaWYgbm90IHZhbGlkLgoKLSBNYW5pCgotLSAK4K6u4K6j4K6/4K614K6j4K+N4K6j4K6p
-4K+NIOCumuCupOCuvuCumuCuv+CuteCuruCvjQoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1s
-b2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxt
-YW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On Wed, Aug 12, 2026 at 10:41:25AM +0800, Zhentao Guo wrote:
+> Describe the initial support for the V4L2 stateless video decoder
+> driver used with the Amlogic S4 (S805X2) platform.
+> 
+> Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
+> ---
+>  .../devicetree/bindings/media/amlogic,s4-vdec.yaml | 111 +++++++++++++++++++++
+>  1 file changed, 111 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml b/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml
+> new file mode 100644
+> index 000000000000..b5af3f931b26
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml
+> @@ -0,0 +1,111 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2025 Amlogic, Inc. All rights reserved
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/amlogic,s4-vdec.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Video Decode Accelerator
+> +
+> +maintainers:
+> +  - Zhentao Guo <zhentao.guo@amlogic.com>
+> +
+> +description:
+> +  The Video Decoder Accelerator present on Amlogic SOCs.
+> +  It supports stateless h264 decoding.
+> +
+> +properties:
+> +  compatible:
+> +    const: amlogic,s4-vdec
+> +
+> +  reg:
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: dos
+> +      - const: dmc
+> +
+> +  interrupts:
+> +    maxItems: 2
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: hvdec
+> +      - const: vdec
+
+vdec is the name of the module, so not really useful name.
+
+> +
+> +  clocks:
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    items:
+> +      - const: dos
+> +      - const: vdec
+
+Same here
+
+> +      - const: hevcf
+> +
+> +  power-domains:
+> +    maxItems: 2
+> +
+> +  power-domain-names:
+> +    items:
+> +      - const: vdec
+> +      - const: hvdec
+
+Same here.
+
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  amlogic,canvas:
+> +    description: should point to a canvas provider node
+
+You basically duplicate the property name. Say something useful, what is
+it used for?
+
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +
+> +  secure-monitor:
+> +    description: phandle to the secure-monitor node
+
+Can a property whose type is a phandle and is called "secure-monitor" be
+not "phandle to the secure-monitor node"?
+
+Write useful code, not redundant.
+
+Anyway, missing vendor prefix as it is not a generic property (otherwise
+point me to generic schema defining it).
+
+Best regards,
+Krzysztof
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
