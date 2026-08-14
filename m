@@ -4,88 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58901C5DF6E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Aug 2026 20:38:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DD34C5B572
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Aug 2026 20:51:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
-	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=MRTlMOMhsMEvA9vc3Gry44hdJecr2ZxbdXfdVQeFs8g=; b=JXnDKe6IBkbNIO
-	MWkOrv2j4H2MJkQBvS9dGiKoXMzvXTrZOdT2uHLlu/jq8tzZUrCTN5YWlx89xGYH9Sbxdgd4Qcbmi
-	V0pE60NktbkkhaXmppv1Jw8Qn++rgyyjp1dr/RnYNr/0jI5V4cZu/VSV6Im1dz/UMaWXHKwgmVvAc
-	EpGgvfyxGDIFG00Yo36WC8Isf2/ti5btZmNFxXpgxUD0Mjty8x0NWked0Iwndx4eMBKs0Caz+mZJy
-	ohWp0x87rygSWxqSfBD0gMo/WIWOpa6Y8Hk4LDi55Wef9IRmUpSECh6Kxhb/8dr3C7uIoBLjk1Sr4
-	GRTGwvSnHDcxRAltMhBA==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=s0+QZU0UYIjacpTr1Pk+naYwjGjb0rl8kMHKQJQWX6Q=; b=JsVC4C8RllnL0M
+	rDCCbv3cxDHI467DYglKBC+EEzzhXTanM9iyuujJmnKwBiJdn0WvehSZZ/GUbSHlTqV7b5F1ITvSM
+	pKRAwW61/+OU3A/yvO+cS2HpS+UWmujBgFwQ7W9+UgqdMMhRzeA4ebAWyEuaB3VLxR6S99SzPXeVZ
+	Y2Rnn5aIn1F1srBahzZ8tP3bB5jKphGjfYHEtH+RmoiDKzrz6ZYowpwjJklznZV5nyWIwQTvy5tWU
+	ZgC8u0dFBmS+IiVIl8oR6C4wJ3s8TCODxBDYyVcoEpV+QmUN9cQELixFh9nesq8sq4+TZWi1emyhw
+	EnDJ2XrAV7qKrs9aw6GQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wuyfN-000000039rf-0vCi;
-	Fri, 14 Aug 2026 20:38:13 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+	id 1wuysY-00000003B89-30i5;
+	Fri, 14 Aug 2026 20:51:50 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wuyfC-000000039f6-1U3P
+	id 1wuysX-00000003B7h-13OA
 	for linux-amlogic@lists.infradead.org;
-	Fri, 14 Aug 2026 20:38:06 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1786739881;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=XmXy8TGZMtUdUflzhbcwpO5PBzlQNsR1Xi5VVFI9N3E=;
-	b=HYL+va8t40Z/1nmVvW0IEFYjAufSYE24u7Mmpi+298z4FZG4bWWOnpcQfayAhvzA68x4/F
-	NlBesSpOWLeCt9CzpkXZA3KD0+qRHx65gdNW5XAXhBaZi9QKKgUpxTw18DNTbdLCX7Bt3h
-	3IaSc1lzOPzgNvLyskw3ytB089xbf/s=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-500-zePa_GbsMtmTsuH5SevbYw-1; Fri,
- 14 Aug 2026 16:35:54 -0400
-X-MC-Unique: zePa_GbsMtmTsuH5SevbYw-1
-X-Mimecast-MFC-AGG-ID: zePa_GbsMtmTsuH5SevbYw_1786739751
-Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id D6B6219560AE;
-	Fri, 14 Aug 2026 20:35:49 +0000 (UTC)
-Received: from GoldenWind.lan (unknown [10.22.64.233])
-	by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 02CAB197750F;
-	Fri, 14 Aug 2026 20:35:44 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org,
-	freedreno@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	nouveau@lists.freedesktop.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-hyperv@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	asahi@lists.linux.dev,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-samsung-soc@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	intel-gfx@lists.freedesktop.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-rockchip@lists.infradead.org,
-	linux-tegra@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	amd-gfx@lists.freedesktop.org,
-	spice-devel@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org,
-	imx@lists.linux.dev
-Subject: [PATCH 0/5] drm/vblank: Enforce all-or-nothing vblank support
-Date: Fri, 14 Aug 2026 16:35:28 -0400
-Message-ID: <20260814203542.1405135-1-lyude@redhat.com>
-MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
-X-Mimecast-MFC-PROC-ID: mL6MG1dzzAcLZ4e_N8vTHVv1mX6f55zYhenImtMgTEg_1786739751
-X-Mimecast-Originator: redhat.com
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260814_133802_494910_E0B52E76 
-X-CRM114-Status: GOOD (  12.41  )
+	Fri, 14 Aug 2026 20:51:49 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 3D450600AF;
+	Fri, 14 Aug 2026 20:51:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 560FA1F000E9;
+	Fri, 14 Aug 2026 20:51:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1786740706;
+	bh=0IYOYwNbA/BZ+ifKph8wX7c9viUdBpinxV81JfV7DrM=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=kutsmjbdJj//waNJ/u3uWkelQcLhVYJqTjCMBkH/ia5KfE6A0TogkSU5frpfOAaFJ
+	 n0YEsTDwkj/GqZ5xeVuH4gwDFA2SE6/t9KZBUhQxDsr1uAnCSjLCFml8X3A4i87iR5
+	 cegpEf+BcQYBuIxfzNj0Yvr3AGoDN1tcdNQNzo2KozfvRJUKqRlmMOC6GYvilCJIBw
+	 uSs8o2df0YNNh/tViXOY06lHy1VzxJU6Ih9ngO9OyYzOeg5mTlMKo1gle2oIsKXkAH
+	 mPbHu1FXJQd5LCGwZoat4Kkf/9oY7psZyF1nhOTuGWdNNhTxgSoMxC/86yz5Kx7qn0
+	 f7XsIIT4TRQCw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 3/5] drm/vblank: Remove num_crtcs argument from
+ drm_vblank_init()
+To: "Lyude Paul" <lyude@redhat.com>
+Cc: linux-hyperv@vger.kernel.org, intel-xe@lists.freedesktop.org, Frank.Li@kernel.org, linux-sunxi@lists.linux.dev, imx@lists.linux.dev, linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org, wsa+renesas@sang-engineering.com, dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20260814203542.1405135-4-lyude@redhat.com>
+References: <20260814203542.1405135-1-lyude@redhat.com>
+ <20260814203542.1405135-4-lyude@redhat.com>
+Date: Fri, 14 Aug 2026 20:51:45 +0000
+Message-Id: <20260814205146.560FA1F000E9@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,113 +63,72 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-One of the oddities with DRM that is leftover from the old days is how
-vblank support is implemented by drivers. This has caused some minor
-issues for the rust bindings for KMS which could be worked around.
-However, it seems like a much better idea to fix this on the C side.
-Those oddities are mainly:
-
-* There's nothing in the vblank core that actually ensures that all
-  CRTCs implement vblank support if one of them do. On Rust's side, we
-  can't have this and have to ensure either the whole device has vblank
-  support or not - otherwise it would be quite painful ensuring we don't
-  expose vblank methods to drivers that can't use them.
-  This additionally means such a situation would lead to UB.
-* There is a second variable for keeping track of the number of CRTCs
-  and it's kind of broken and confusing. Even worse, we currently allow
-  the vblank API to allow a driver to specify a different number of
-  CRTCs then it actually has.
-
-So, let's just go ahead and fix this across the whole tree, and enforce
-that a driver must either implement hardware vblank support for all
-CRTCs or no CRTCs.
-
-Lyude Paul (5):
-  drm/vblank: Add drm_device.has_hw_vblank
-  drm/vblank: Remove drm->num_crtcs
-  drm/vblank: Remove num_crtcs argument from drm_vblank_init()
-  drm/vblank: Use drm_for_each_crtc() in drm_vblank_init()
-  drm/vblank: Require all CRTCs implement vblank support in
-    drm_vblank_init()
-
- drivers/gpu/drm/adp/adp_drv.c                 |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c      |  2 +-
- drivers/gpu/drm/amd/amdgpu/dce_v10_0.c        |  2 +-
- drivers/gpu/drm/amd/amdgpu/dce_v6_0.c         |  2 +-
- drivers/gpu/drm/amd/amdgpu/dce_v8_0.c         |  2 +-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  2 +-
- .../gpu/drm/arm/display/komeda/komeda_kms.c   |  2 +-
- drivers/gpu/drm/arm/hdlcd_drv.c               |  2 +-
- drivers/gpu/drm/arm/malidp_drv.c              |  2 +-
- drivers/gpu/drm/armada/armada_drv.c           |  2 +-
- drivers/gpu/drm/aspeed/aspeed_gfx_drv.c       |  2 +-
- drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c  |  2 +-
- drivers/gpu/drm/drm_vblank.c                  | 60 ++++++++++++-------
- drivers/gpu/drm/exynos/exynos_drm_drv.c       |  2 +-
- drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c     |  2 +-
- drivers/gpu/drm/gma500/psb_drv.c              |  2 +-
- drivers/gpu/drm/gma500/psb_irq.c              |  4 +-
- .../gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c   |  2 +-
- .../gpu/drm/hisilicon/kirin/kirin_drm_drv.c   |  2 +-
- drivers/gpu/drm/hyperv/hyperv_drm_modeset.c   |  2 +-
- .../drm/i915/display/intel_display_driver.c   |  3 +-
- drivers/gpu/drm/imx/dc/dc-kms.c               |  2 +-
- drivers/gpu/drm/imx/dcss/dcss-kms.c           |  2 +-
- drivers/gpu/drm/imx/ipuv3/imx-drm-core.c      |  2 +-
- drivers/gpu/drm/imx/lcdc/imx-lcdc.c           |  2 +-
- drivers/gpu/drm/ingenic/ingenic-drm-drv.c     |  2 +-
- drivers/gpu/drm/kmb/kmb_drv.c                 |  2 +-
- drivers/gpu/drm/logicvc/logicvc_mode.c        |  2 +-
- drivers/gpu/drm/loongson/lsdc_drv.c           |  2 +-
- drivers/gpu/drm/mcde/mcde_drv.c               |  2 +-
- drivers/gpu/drm/mediatek/mtk_drm_drv.c        |  2 +-
- drivers/gpu/drm/meson/meson_drv.c             |  2 +-
- drivers/gpu/drm/msm/msm_kms.c                 |  2 +-
- drivers/gpu/drm/mxsfb/lcdif_drv.c             |  2 +-
- drivers/gpu/drm/mxsfb/mxsfb_drv.c             |  2 +-
- drivers/gpu/drm/nouveau/nouveau_display.c     |  2 +-
- drivers/gpu/drm/omapdrm/omap_drv.c            |  2 +-
- drivers/gpu/drm/pl111/pl111_drv.c             |  2 +-
- drivers/gpu/drm/qxl/qxl_display.c             |  2 +-
- drivers/gpu/drm/radeon/atombios_crtc.c        |  4 +-
- drivers/gpu/drm/radeon/radeon_irq_kms.c       |  2 +-
- drivers/gpu/drm/radeon/radeon_legacy_crtc.c   |  4 +-
- drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c |  2 +-
- drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c  |  2 +-
- .../gpu/drm/renesas/shmobile/shmob_drm_drv.c  |  2 +-
- drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |  2 +-
- drivers/gpu/drm/sprd/sprd_drm.c               |  2 +-
- drivers/gpu/drm/sti/sti_compositor.c          |  2 +-
- drivers/gpu/drm/stm/ltdc.c                    |  2 +-
- drivers/gpu/drm/sun4i/sun4i_drv.c             |  2 +-
- drivers/gpu/drm/tegra/drm.c                   |  2 +-
- drivers/gpu/drm/tidss/tidss_kms.c             |  2 +-
- drivers/gpu/drm/tilcdc/tilcdc_drv.c           |  2 +-
- drivers/gpu/drm/tiny/bochs.c                  |  2 +-
- drivers/gpu/drm/tiny/cirrus-qemu.c            |  2 +-
- drivers/gpu/drm/tve200/tve200_drv.c           |  2 +-
- drivers/gpu/drm/vc4/vc4_kms.c                 |  6 +-
- drivers/gpu/drm/verisilicon/vs_drm.c          |  2 +-
- drivers/gpu/drm/virtio/virtgpu_display.c      |  2 +-
- drivers/gpu/drm/vkms/vkms_drv.c               |  3 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_vkms.c          |  2 +-
- drivers/gpu/drm/xlnx/zynqmp_kms.c             |  2 +-
- include/drm/drm_device.h                      | 10 +++-
- include/drm/drm_vblank.h                      |  2 +-
- 64 files changed, 114 insertions(+), 92 deletions(-)
-
-
-base-commit: 568d4cb5dcc5ec4e22975699b6ea67a30806884c
--- 
-2.55.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0NyaXRpY2FsXSBkcm1fdmJsYW5r
+X2luaXQoKSByZXR1cm5zIC1FTk9ERVYgY2F1c2luZyBwcm9iZSBmYWlsdXJlcyBpbiBtdWx0aXBs
+ZSBkcml2ZXJzCi0tCgotLS0gUGF0Y2ggWzNdOiBbUEFUQ0ggMy81XSBkcm0vdmJsYW5rOiBSZW1v
+dmUgbnVtX2NydGNzIGFyZ3VtZW50IGZyb20gZHJtX3ZibGFua19pbml0KCkgLS0tCmNvbW1pdCAw
+NDllMWUxNDJmYWNmMmJiZGQ5MmNkOGE4ODQ3YTUzZjZiMThiM2FhCkF1dGhvcjogTHl1ZGUgUGF1
+bCA8bHl1ZGVAcmVkaGF0LmNvbT4KCmRybS92Ymxhbms6IFJlbW92ZSBudW1fY3J0Y3MgYXJndW1l
+bnQgZnJvbSBkcm1fdmJsYW5rX2luaXQoKQoKVGhpcyBjb21taXQgcmVtb3ZlcyB0aGUgbnVtX2Ny
+dGNzIGFyZ3VtZW50IGZyb20gZHJtX3ZibGFua19pbml0KCkgYW5kCnVwZGF0ZXMgY2FsbGVycyBh
+Y3Jvc3MgdGhlIHRyZWUgdG8gcmVseSBvbiB0aGUgaW50ZXJuYWwgRFJNIGNvdW50IG9mIENSVENz
+Cmluc3RlYWQuIFRoZSBjaGFuZ2Ugd2FzIGFwcGxpZWQgbWVjaGFuaWNhbGx5IHVzaW5nIGEgQ29j
+Y2luZWxsZSBwYXRjaC4KCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hc3BlZWQvYXNw
+ZWVkX2dmeF9kcnYuYyBiL2RyaXZlcnMvZ3B1L2RybS9hc3BlZWQvYXNwZWVkX2dmeF9kcnYuYwo+
+IGluZGV4IGQ0NTc3NjYzYTFmMGUuLmJhNzg2OTVkMTAxNWMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL2FzcGVlZC9hc3BlZWRfZ2Z4X2Rydi5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
+L2FzcGVlZC9hc3BlZWRfZ2Z4X2Rydi5jCj4gQEAgLTIwNSw3ICsyMDUsNyBAQCBzdGF0aWMgaW50
+IGFzcGVlZF9nZnhfbG9hZChzdHJ1Y3QgZHJtX2RldmljZSAqZHJtKQo+ICAJaWYgKHJldCA8IDAp
+Cj4gIAkJcmV0dXJuIHJldDsKPiAgCj4gLQlyZXQgPSBkcm1fdmJsYW5rX2luaXQoZHJtLCAxKTsK
+PiArCXJldCA9IGRybV92YmxhbmtfaW5pdChkcm0pOwoKW1NldmVyaXR5OiBDcml0aWNhbF0KV2ls
+bCB0aGlzIGNhdXNlIGEgcHJvYmUgcmVncmVzc2lvbiBmb3IgdGhpcyBkcml2ZXI/CgpCeSByZW1v
+dmluZyB0aGUgZXhwbGljaXQgQ1JUQyBjb3VudCwgZHJtX3ZibGFua19pbml0KCkgbm93IHJlbGll
+cyBvbiB0aGUKRFJNIGRldmljZSdzIGludGVybmFsIENSVEMgbGlzdCBiZWluZyBwb3B1bGF0ZWQu
+IEhvd2V2ZXIsIGFzcGVlZF9nZnhfbG9hZCgpCmNhbGxzIGRybV92YmxhbmtfaW5pdCgpIGJlZm9y
+ZSBjYWxsaW5nIGFzcGVlZF9nZnhfY3JlYXRlX3BpcGUoKSwgd2hpY2ggaXMKd2hlcmUgdGhlIENS
+VEMgaXMgYWN0dWFsbHkgY3JlYXRlZC4KCkJlY2F1c2UgdGhlIENSVEMgbGlzdCBpcyBlbXB0eSBh
+dCB0aGlzIHBvaW50LCBkcm1fdmJsYW5rX2luaXQoKSB3aWxsCnJldHVybiAtRU5PREVWIGFuZCBm
+YWlsIHRoZSBwcm9iZS4KCj4gIAlpZiAocmV0IDwgMCkgewo+ICAJCWRldl9lcnIoZHJtLT5kZXYs
+ICJGYWlsZWQgdG8gaW5pdGlhbGlzZSB2YmxhbmtcbiIpOwo+ICAJCXJldHVybiByZXQ7Cgo+IFsg
+Li4uIF0KCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9yZW5lc2FzL3JjYXItZHUvcmNh
+cl9kdV9rbXMuYyBiL2RyaXZlcnMvZ3B1L2RybS9yZW5lc2FzL3JjYXItZHUvcmNhcl9kdV9rbXMu
+Ywo+IGluZGV4IDkyMjhhN2FkMGRmYTQuLmM5ZTI5ZGE1M2QwNTYgMTAwNjQ0Cj4gLS0tIGEvZHJp
+dmVycy9ncHUvZHJtL3JlbmVzYXMvcmNhci1kdS9yY2FyX2R1X2ttcy5jCj4gKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL3JlbmVzYXMvcmNhci1kdS9yY2FyX2R1X2ttcy5jCj4gQEAgLTg4OCw3ICs4ODgs
+NyBAQCBpbnQgcmNhcl9kdV9tb2Rlc2V0X2luaXQoc3RydWN0IHJjYXJfZHVfZGV2aWNlICpyY2R1
+KQo+ICAJICogSW5pdGlhbGl6ZSB2ZXJ0aWNhbCBibGFua2luZyBpbnRlcnJ1cHRzIGhhbmRsaW5n
+LiBTdGFydCB3aXRoIHZibGFuawo+ICAJICogZGlzYWJsZWQgZm9yIGFsbCBDUlRDcy4KPiAgCSAq
+Lwo+IC0JcmV0ID0gZHJtX3ZibGFua19pbml0KGRldiwgcmNkdS0+bnVtX2NydGNzKTsKPiArCXJl
+dCA9IGRybV92YmxhbmtfaW5pdChkZXYpOwoKW1NldmVyaXR5OiBDcml0aWNhbF0KRG9lcyB0aGlz
+IGludHJvZHVjZSBhIHNpbWlsYXIgcmVncmVzc2lvbiBmb3IgcmNhci1kdT8KClRoZSBkcml2ZXIg
+Y2FsbHMgZHJtX3ZibGFua19pbml0KCkgaGVyZSwgYnV0IHRoZSBDUlRDcyBhcmUgbm90IGNyZWF0
+ZWQKdW50aWwgdGhlIHJjYXJfZHVfY3J0Y19jcmVhdGUoKSBsb29wIGZ1cnRoZXIgZG93bi4gVGhp
+cyBtZWFucwpkcm1fdmJsYW5rX2luaXQoKSB3aWxsIHNlZSBhbiBlbXB0eSBDUlRDIGxpc3QgYW5k
+IGZhaWwgd2l0aCAtRU5PREVWLgoKPiAgCWlmIChyZXQgPCAwKQo+ICAJCXJldHVybiByZXQ7Cgo+
+IFsgLi4uIF0KCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS92a21zL3ZrbXNfZHJ2LmMg
+Yi9kcml2ZXJzL2dwdS9kcm0vdmttcy92a21zX2Rydi5jCj4gaW5kZXggNWE2NDBiNTMxZDg4Zi4u
+NWE4MzBjZWU3ZmU5YiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vdmttcy92a21zX2Ry
+di5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3ZrbXMvdmttc19kcnYuYwo+IEBAIC0xOTIsOCAr
+MTkyLDcgQEAgaW50IHZrbXNfY3JlYXRlKHN0cnVjdCB2a21zX2NvbmZpZyAqY29uZmlnKQo+ICAJ
+CWdvdG8gb3V0X2RldnJlczsKPiAgCX0KPiAgCj4gLQlyZXQgPSBkcm1fdmJsYW5rX2luaXQoJnZr
+bXNfZGV2aWNlLT5kcm0sCj4gLQkJCSAgICAgIHZrbXNfY29uZmlnX2dldF9udW1fY3J0Y3MoY29u
+ZmlnKSk7Cj4gKwlyZXQgPSBkcm1fdmJsYW5rX2luaXQoJnZrbXNfZGV2aWNlLT5kcm0pOwoKW1Nl
+dmVyaXR5OiBDcml0aWNhbF0KQ2FuIHRoaXMgbGVhZCB0byBhIGNvbXBsZXRlIGluaXRpYWxpemF0
+aW9uIGZhaWx1cmUgZm9yIHZrbXM/CgpUaGUgY2FsbCB0byBkcm1fdmJsYW5rX2luaXQoKSBvY2N1
+cnMgYmVmb3JlIHZrbXNfbW9kZXNldF9pbml0KCksIG1lYW5pbmcKdGhlIHBpcGVsaW5lIGNvbXBv
+bmVudHMgaGF2ZSBub3QgYmVlbiBjcmVhdGVkIHlldCBhbmQgdGhlIGludGVybmFsIENSVEMKY291
+bnQgaXMgemVyby4KCj4gIAlpZiAocmV0KSB7Cj4gIAkJRFJNX0VSUk9SKCJGYWlsZWQgdG8gdmJs
+YW5rXG4iKTsKPiAgCQlnb3RvIG91dF9kZXZyZXM7CgotLSAKU2FzaGlrbyBBSSByZXZpZXcgwrcg
+aHR0cHM6Ly9zYXNoaWtvLmRldi8jL3BhdGNoc2V0LzIwMjYwODE0MjAzNTQyLjE0MDUxMzUtMS1s
+eXVkZUByZWRoYXQuY29tP3BhcnQ9MwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0Bs
+aXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlz
+dGluZm8vbGludXgtYW1sb2dpYwo=
