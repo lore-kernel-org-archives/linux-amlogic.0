@@ -4,92 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4424C5CFC1
-	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Aug 2026 11:28:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA5DAC5CFDB
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Aug 2026 11:30:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8oBJwRP7DPda72xN6lmf83undmo1fwrrj8O7AMPtk8E=; b=CqtIFUXYKQ7eYN
-	jkAbCIyvNxjjXJbw470Sr4VtpqN3tJGffsmbFybzEo9er+uX69xokt1LDSFqRyrP6HLlR0I4nSuZa
-	g5XsBWXsTMguLG2dTGePxQBjWNgfTQSuIoW7xcEtocX1JCALArhis9KC4DDiajCvd/6+3EdpYOkhp
-	kkK236ihAgXUr4KoJoAFD4LSqBazLIjkg5gzZ3fIpISFuQBsvaqWL1XMY3p/sAzedgQkhV0C2DXx3
-	DM7NhUvq4bAAmYIPvXbrlMlpUUvmMRB85oPCQG313rsGpqy5sN4nrKtJVM83lE4wqk0/PnhwB0ljn
-	e51Fr0QAXkbv21tgCq0Q==;
+	List-Owner; bh=KpV9zLvbjw5x6fXGLMvGxatATd6gBtQVCUoT+UvqnfE=; b=D0wEkHwDxs3T+d
+	j2JaaNzZca3ZABMaxrGlCgjkAG96NL64bDDpjpk56LTlddgcety3MVUaO0wSDZWbmxb2Bxgn1lYrK
+	+rdcodAeazR8KCUvWUnriit9oBoj75/MAQHPjPwuE50WU89Ii2WDjyc2/VHKJsLnif4c2aOCbmicn
+	3TAktM4Z9/3DIqkiPhlnCa6vs+TU+VH1LesO0z24t3/VEYsyew7ztjl7nZIR4XITGeOy/ChBFHsBp
+	Y4DaL1u0Jd4XW5KDhIWOWSJOMk5uLkwqdLbyArgbkNMX6DsANRicFcYlnc8W1fugL5Re3gdceOlAV
+	3YwvSD0gxwJNKdVw7OEA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wuq5W-00000002ah8-3b5X;
-	Fri, 14 Aug 2026 11:28:38 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1wuq6w-00000002av3-0RpE;
+	Fri, 14 Aug 2026 11:30:06 +0000
+Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wuq5U-00000002ag6-0HDO
+	id 1wuq6t-00000002auj-1Qsg
 	for linux-amlogic@lists.infradead.org;
-	Fri, 14 Aug 2026 11:28:37 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-496bb7cdf51so12471465e9.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 14 Aug 2026 04:28:35 -0700 (PDT)
+	Fri, 14 Aug 2026 11:30:04 +0000
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-47fde295992so667024f8f.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 14 Aug 2026 04:30:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1786706914; x=1787311714; darn=lists.infradead.org;
+        d=baylibre.com; s=google; t=1786707001; x=1787311801; darn=lists.infradead.org;
         h=content-type:mime-version:message-id:date:user-agent:references
          :in-reply-to:subject:cc:to:from:from:to:cc:subject:date:message-id
          :reply-to:content-type;
-        bh=Od3wbNXS9rJBhW02utE5o2yh9IgRySqZm0ekh3uR4Ts=;
-        b=WuL07T+oPfta8y6TkD1xsp/hbh2N86ic/NmLaf4emG+k6HIRqiW6q7WeNMSwQUZ1ns
-         wCvEc9FkhQxnwXM7Uj7X3asQIIoprIkuFay9tGxdxJp2uPHIpA2GV87ZXjA7nqcVnVWn
-         At4lf3dhqs752a54NRZU/EeC57f3XKuEIh1c7Ky6K+HsR2XAk1BiQ0GWapxd8887MQ5O
-         ZNa0LlxkU8+QxZuDvEi0Kh+Lum+Poxxe4EYwwnwNUwc6UkPuld/T0ys7QOdS+ePxKdoa
-         TjL8QRrQFtyNysUWwoErxi66O25dCMAgS1py793DHaR1MsNtGGeBgT+8VsBRpaQr/4jV
-         h7PQ==
+        bh=qSRVi6rE8VMPSSkScWq+jHFmOMJRNe08YnZV6a0P7BI=;
+        b=dUBUgeS1ZopHxha8z+VoGFJ+h/03pgEl5Eg8PsyZWUIErUvkDlvGq3hnfcBtrB/py5
+         1ulsmWwhVDse7UxP854bZkr8c/dAyT1KXzOa0VNB2W+gNQc4apRVUwGn8WRfA9r0qFWy
+         u7kAljF9vMYyey0Wh5XvH7iamSRHwVSCI7uZGlc9UfPWlSSiXczfUZ32ADCuIkNpWjeU
+         zCtUC3wGoshxb/Q+0mBLq57cSm39NNITjIrpPm7eP1E9VBb0JrP89RnIXoQDLaFZHCuQ
+         kNFYtQZNR4AGgj/HIJyZV4rb6xqD0pbu+GlxqzqcqVYCqSqgjIuyZsQPpP92PfjgEkrF
+         8mKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1786706914; x=1787311714;
+        d=1e100.net; s=20251104; t=1786707001; x=1787311801;
         h=content-type:mime-version:message-id:date:user-agent:references
          :in-reply-to:subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to:content-type;
-        bh=Od3wbNXS9rJBhW02utE5o2yh9IgRySqZm0ekh3uR4Ts=;
-        b=N+6uL9Mtw3uIl2SK8XSDvtau6tjfCX0+pHw8bLwtI/8I0vQWm/3yPFrn8m+7v8Zrv2
-         wZmKJ/u72POdZYHGSTUAv6xY8rbg316EDj+wZU4HNAilCGoU5/52gW+2DzK+ck9zb2Xs
-         77lSn2Vi160JIgWCydUlmCCcEhWPa3wK9Er/WlAi5xAjHhIcMdm0Ph730eij/9+S5L8I
-         4AIxYouKPiXngDsWXIPz9ImXPMdIHxSZJTTIgivsMyipbaGpF5gIm0VEHZo/7LIEndTU
-         ZkBxYKhhAj/HSvXVt+i++veEL84HAG8QE5PJZuNLvk0r0ALFvrYBOJQMQ685XFk8/LrW
-         G9pQ==
-X-Forwarded-Encrypted: i=1; AHgh+Ro19/hDPKvpITVWhD3LqzCJ6hJ9kHZmieTNxgVFViLFqLmmLk5p1sXOumeS3p49ZUTv3ZXBlMCqUnEy0a53@lists.infradead.org
-X-Gm-Message-State: AOJu0YyioYObHtEuAlSOJklkjLP7186xYmdlnduXJDESoM8xZNF9fCI/
-	ESxoMmozLAoolOOAPeq8Rvh4a+hILtRvOUXNh8gcDep4X2hkgc7yyOLGy5tEdLRqeUE=
-X-Gm-Gg: AR+sD12Pe+UmiawDE6bPdhzMtlgiZwahU3PIA5dJsFcFSo7d7x6C0gtxnSakSGLwnJO
-	8d1gF6xLRriRqJhrUrWitOeOWBAxISAc4K1Sodmda6yiHvEOMa8ZnXUFUOiufZNHNQSJ0cMy+Ga
-	9eJPgXyK+m452nneuCXRTtcnrsDv8jwyLvFk7VbxAwPLCSEiu1rqfsp+LDVeJppZv2DRNMlE/yi
-	gtAHbubZnUs38SFz9T19sn8wqDXKhexPmOHxoKb2CRpQIR39BTdttoJFlC2CsQ3NA/M6OfCmuet
-	2VXakKLjk3Izz/OiY045YAawYGvw1qRp/b3k/taQN3IT6n30ewD64WdxOUycMo3uB75OznfbFRb
-	dS4+Ose2M4LYRetJXEiPSlpW1D7CMnHGCRPzWzEH2B18lB7jocI0/2AObG7aMABiR+HHfe5JgdP
-	ubGF/ln1tllNO+F3Z3cUTuR5EPwb0tBLf0g3fB9q7YGKuQSsSA7nDIh3hwueo=
-X-Received: by 2002:a05:600c:4708:b0:495:6396:8b67 with SMTP id 5b1f17b1804b1-499879419bdmr54955745e9.4.1786706914115;
-        Fri, 14 Aug 2026 04:28:34 -0700 (PDT)
+        bh=qSRVi6rE8VMPSSkScWq+jHFmOMJRNe08YnZV6a0P7BI=;
+        b=FFivn2ha+7YB0K0+K+GGZmUL12iZoZH/ocbkaaqPVKq382NdWKPBSw7wwyBsaJ2voO
+         IT5ngHBTyPP1EFB3BA36zDaCtxoOyFyvAWilAZDt0PT7KBrdfmwgVI+/trkBIPRbIRpa
+         3l8Tg/jA2UlcEN2IMKmPD/6WbvPx8Qz26CB8L9RC6Qa1ukvJ8/nxVCIxaLcGUGx6Q0TY
+         176zH2veF7X/NnNfQgxqk/E93Z15dQN6yiTDZPUzgIvsukijIuN4SW3D9rO4f3Jt0mo3
+         B9Gi7UA2xKXsKlXKIsTdxRv6WdTh6Bqae+i0gcEjNI9n8hgp/tLdmthvj1HUNaAbprdy
+         Rn9g==
+X-Forwarded-Encrypted: i=1; AHgh+RrMfrG4lyDpofaUJGGTnvvZpSizDNJ7BBtM3TStZJtUTduQWHQUtmKCjPtS3A93xM7NAckY6jcGvVnLhpug@lists.infradead.org
+X-Gm-Message-State: AOJu0Yx5cXGs/we6LhZQLQPQX6JDsb5jcKIy6Re2STJOLn29AeoJezbG
+	ucVw3Gklmc2q1sxMdzSxaRe872GOqRMJEFaHdR6tKSaiw3WCqAq9nnWMhm127p34KRXcBAKELCa
+	Vt+smfWDjzTWL
+X-Gm-Gg: AR+sD135YCO2HF9rggsb5ttP1IsKaE6IyUERC4/mAsrI9xhQkIXtVSQ+aw34fS3ZpQX
+	V37jmuwKE2cjgzQ1AJY8pJN7hNEu3r5jKJ5rBWU0v1AJydC+OybwuZ09srBO5nmnicDtUid+XkW
+	cdw9oBRotYOJFtFJv9C0L09eqe+xRR9M4/YlrJMlJHaHBIPw4rtCEwy0bOL5ackVePQgMoy4jyd
+	gBpDrTa57mWFh0e9JVIShDzAFlZ23GbOCYSfYUubY8LBE1YHpuRlZo6NdNrPxuA6aqFjEqERCMX
+	2jsb8H3ZIdj+8sN1f22SvZEqST8nBkMgxnA2y01GSbPudzowACR/gkSWc/F1d3ZLThd3ZK6F8BA
+	1ye0EEcsZ82f0BSY1VHpbTt0UkaQvXoxprf28SUvVB4uVrwbIx9ePvFH6iLvSI08+0kyteKx/ah
+	eKXjY+NCkoh4m0R6ZBkcMW1NoSLJ7jUfWKTFqj/D6apamzpVCMHqxarQuBAg0V0ESdH0/aahc=
+X-Received: by 2002:a05:6000:4022:b0:47f:7ea0:6c20 with SMTP id ffacd0b85a97d-481607a6158mr7464630f8f.15.1786707001164;
+        Fri, 14 Aug 2026 04:30:01 -0700 (PDT)
 Received: from localhost ([2a01:e0a:3c5:5fb1:9886:6a22:ee2a:d5e1])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-499899753ccsm24626765e9.0.2026.08.14.04.28.33
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-4815f2cc811sm7217490f8f.33.2026.08.14.04.30.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Aug 2026 04:28:33 -0700 (PDT)
+        Fri, 14 Aug 2026 04:30:00 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: phucduc.bui@gmail.com, Mark Brown <broonie@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>, Jaroslav Kysela
- <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+To: sashiko-bot@kernel.org, phucduc.bui@gmail.com
+Cc: sashiko-reviews@lists.linux.dev, neil.armstrong@linaro.org,
+ linux-amlogic@lists.infradead.org
 Subject: Re: [PATCH 2/2] ASoC: meson: meson-card-utils: Drop redundant probe
  error messages
-In-Reply-To: <20260814094211.25151-2-phucduc.bui@gmail.com> (phucduc bui's
-	message of "Fri, 14 Aug 2026 16:42:11 +0700")
+In-Reply-To: <20260814095120.235F21F000E9@smtp.kernel.org>
+	(sashiko-bot@kernel.org's message of "Fri, 14 Aug 2026 09:51:19
+	+0000")
 References: <20260814094211.25151-1-phucduc.bui@gmail.com>
 	<20260814094211.25151-2-phucduc.bui@gmail.com>
+	<20260814095120.235F21F000E9@smtp.kernel.org>
 User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Fri, 14 Aug 2026 13:28:32 +0200
-Message-ID: <1jzeyplz4v.fsf@starbuckisacylon.baylibre.com>
+Date: Fri, 14 Aug 2026 13:29:59 +0200
+Message-ID: <1jqzk1lz2g.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260814_042836_114591_1F99BD7E 
-X-CRM114-Status: UNSURE (   7.56  )
+X-CRM114-CacheID: sfid-20260814_043003_389234_62FBEF07 
+X-CRM114-Status: UNSURE (   8.37  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,17 +106,22 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On lun. 14 janv. 2008 at 11:42, phucduc.bui@gmail.com wrote:
+On lun. 14 janv. 2008 at 11:51, sashiko-bot@kernel.org wrote:
 
-> From: bui duc phuc <phucduc.bui@gmail.com>
+> Thank you for your contribution! Sashiko AI review found 1 potential
+> issue(s) to consider:
 >
-> The functions called here don't log the error themselves, but the
-> error is already reported deeper in the call chain, so the dev_err()
-> calls are redundant and can be removed.
+> Pre-existing issues:
+> - [High] Preexisting dangling pointer dereference (Use-After-Free) and
+> double-free in the `meson_card_reallocate_links()` error path.
+> --
 >
-> Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
 
-Acked-by: Jerome Brunet <jbrunet@baylibre.com>
+Yeah, that was picked up before and it is related to the use of devm_.
+It is on my TODO list
+
+-- 
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
