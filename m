@@ -4,78 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCFC4C5DF81
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Aug 2026 21:21:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A9EEC5B572
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Aug 2026 21:22:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5/lIV7frGw6GPIyRtBrwpl+bgIJm3RnJI8wYZylFfdA=; b=R9DjqpKfqhs+kW
-	yofEF/wXvobvJDnuT8zC3wzNbrC8+sia3KNGqMVUd6FNkTZLKen+ySh+qTRraTGHedtAc68d6+MXl
-	8qR89ApIRACQc3rgLBWkyRU40X6tNn3K9J2iEhmeKGNHCv1sT68ddyR06kZdgZnkju8ydMYwOlLb9
-	H9cjxKGNEZAAq88PFSEECIjJMkfLzfywcBFXY3XUBZpXbpFLT8wfccgV0fTLWqSkwE8Du1+0dxXrp
-	xUJzAlR67IHyOtbV3Zlfo6oW3O0jsjfnk6wiKUJGJGrdxuLQ1nMB1/fj9L3mjN7s5efReNRqBspEf
-	YMwIRSEJKObPoHJfpdYQ==;
+	List-Owner; bh=QbPDB0R7JadjUCHzECFwDuwiPy/HL3bUzAJqNbfIOjs=; b=OlJ/7PpydvXiv4
+	APkhOXLfLHtshUa4RUewRqFRiYxTD8gXdHQ+HP+2XeiCt9/NbBDS+75JlpVOLz2xpxkjI+JnFEncs
+	iXGX4k19f850D8xOJf22vB+627N3pBtNYABYXKODs6zJDErprHSGNpa8twbwy9l7HamTUnUSk78XU
+	u/UomsdS+/aItYSbljnhuX3J8HwgrXULbs5MMvY3pCw0TWmMBHrYYed137G1lnm+utIZeVRZOX9Pt
+	2YoYNVLFfyAUnn85ZF6TpNGinMaEf1fIsphxWCn74xQ1uJyPDn7AuB0QsWjhwQHdReZfNGVibg6YV
+	bY+9GOtxo0MWHbIGM48A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wwnj7-0000000AYTw-35bB;
-	Wed, 19 Aug 2026 21:21:37 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	id 1wwnjt-0000000AYeD-47IP;
+	Wed, 19 Aug 2026 21:22:25 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wwnj5-0000000AYT2-2YEI
+	id 1wwnjr-0000000AYdd-1gtx
 	for linux-amlogic@lists.infradead.org;
-	Wed, 19 Aug 2026 21:21:36 +0000
+	Wed, 19 Aug 2026 21:22:24 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1787174494;
+	s=mimecast20190719; t=1787174542;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=pVGzn/bp+HeoWhJcAlXzRJysNeFi8GSJbP12rbQe8Y4=;
-	b=L8dNnuXP5IhnrE9VWe2vk74YdnSQra+uTMzoiqaOXRBMPqb3g+goaiMrpqYhkcjluyOp8q
-	fT8HwA+vdUIb2YG0ji7tcsAUuKaWbdd4CUIsgNASLCiKjs4/imRxuXp/VPIfJlHP9rfXiM
-	7D9Tb3x9eZGF1t6xF6I5nLRwNNUnehQ=
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
- [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=/BxA7XcUttIdzHWbOyyyGM4mWiq1VkGr6i1wmE/8c1I=;
+	b=RE5VTG3KPs1CYT5imkvkp6vZdKRrbnBSpA99awsj15XAUnSTMvSgPjZg2P7e7ei5ndfG1T
+	9+diIQLTiSsn5UJjnh890Z6HsNkO6yk3HpJA0OoKcMR4bVKvlKTrQb3tuaROdXv6nQ7YHO
+	jc+nS1zS7YC3e87KaxNrFc/BGMwpL80=
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
+ [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-12-UxrZST9qMhekq17gLD4wlg-1; Wed, 19 Aug 2026 17:21:33 -0400
-X-MC-Unique: UxrZST9qMhekq17gLD4wlg-1
-X-Mimecast-MFC-AGG-ID: UxrZST9qMhekq17gLD4wlg_1787174493
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-52de05de414so7448291cf.2
-        for <linux-amlogic@lists.infradead.org>; Wed, 19 Aug 2026 14:21:33 -0700 (PDT)
+ us-mta-647-i2yJ2OcbMn-rUzDTcw2bTQ-1; Wed, 19 Aug 2026 17:22:21 -0400
+X-MC-Unique: i2yJ2OcbMn-rUzDTcw2bTQ-1
+X-Mimecast-MFC-AGG-ID: i2yJ2OcbMn-rUzDTcw2bTQ_1787174540
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-51c1d137a68so28054561cf.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 19 Aug 2026 14:22:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787174493; x=1787779293;
+        d=1e100.net; s=20251104; t=1787174540; x=1787779340;
         h=user-agent:in-reply-to:content-disposition:content-type
          :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=pVGzn/bp+HeoWhJcAlXzRJysNeFi8GSJbP12rbQe8Y4=;
-        b=ha01ynWBCq2PRFg+GyrS6k7c8i+f7JtwU0bQc0mCgi8+tMI7fXVf+aiRX8bNVqGeA9
-         uIYu+xQdZ9RVyhagszqHGqkUxH6wqKd1un7aZSc6qC1wTpPBmzDopq7oWchkPXhbNcTh
-         8UzD1FA0n1QDs6H+4bse9hwNOzbJLVEEeEirqHQ2sCxJlJwUj7PGOW+ksKs4ir7bqvEZ
-         6mkWakdsyprYiK4BQ8QUUsVMIfmzEolEQKlmGqOcqlLC5/pxpWc1H4HZCrmFKBrid0Uz
-         sdiGcNIiByDvszEaF92KyAiI/J3t1+nyS7wttAU0O4YlmYOeMSPzkXXqvNMCNcd7rxsl
-         Jedw==
-X-Forwarded-Encrypted: i=1; AHgh+Rrf9A7+t/VZbBicXRLAb7zGO1BI4bfv9ZhHNsXmvD5zPTLzehIYpUV6kyOFwsf0EEx+VK7S/vnJTJwOFS9k@lists.infradead.org
-X-Gm-Message-State: AOJu0Yyl/I2NCLBMO6mXuTs2qPBzzKoYR6Ghcuq4YX4ABUI1fmqXZdyq
-	DL5df1f0GF9n1HtfwnogIKWf4RDUbXW2oQZVp+1DsAg8l+M8SPlk0WKbCiX86YhI/3PNdIRi4kk
-	SIXU1UCKVRC8kV7btVFzOL+PlTtFPbAvR0Nr+EthS8A7erdyIhpKl3CxzNoUaMupbnUoNmESB
-X-Gm-Gg: AR+sD13PFmU3CHjTz/K71EKuaJlNlI/mkwp99sq3s3ebfdlS/Pk8mjHsns1mvUgSsa7
-	n2YHGELrdXfzeyKl1xlmTqfRe64yZsvmNCFWQQwrKZumJJrEn9/XSrGbEQgg+SZ2xAxc5yQYVFu
-	i8lvlMCdoAiPlP+CkypShLyN+ap2fuAo+5G3bjTeY75NHEKfnK7EOg7ctKi+depGkPn2+NZ3Cby
-	Rz0WOM3n8glalM3w4aJmZM++bYuN7nOjDKQWQRHTfS/Xw5EjwGWIGxqmPoRC5CKnwTDzDCYUyC+
-	Vu2iKuCcO4iH8IhRUq6moKL7neGgcfVYAg8w2Kz6DcDsj3x5Wgf7/tAq4p1+wNLInu7vxMoKcIt
-	FsUy+qoQx30NN/S1YieUlUaH7PwWGZKv817E=
-X-Received: by 2002:ac8:5cd3:0:b0:51c:f8f:13e with SMTP id d75a77b69052e-52dd5cf792bmr79425501cf.40.1787174492950;
-        Wed, 19 Aug 2026 14:21:32 -0700 (PDT)
-X-Received: by 2002:ac8:5cd3:0:b0:51c:f8f:13e with SMTP id d75a77b69052e-52dd5cf792bmr79425061cf.40.1787174492580;
-        Wed, 19 Aug 2026 14:21:32 -0700 (PDT)
+        bh=/BxA7XcUttIdzHWbOyyyGM4mWiq1VkGr6i1wmE/8c1I=;
+        b=dGTI48XfZVM9pHjSC0GtQ2oATPAsGqPiyE5wTemrbmLTfrMS+CvGyVYe42/ii+kH3y
+         znOVAPkKsb+g5e7CGerccW5ZQGSm+kpdeVetghy7feML3htNSwZWDg5hSE7F9Sy3kCwi
+         k32TuB/XuQPNmu3t7sImhgRI4fmNJdThc3+yJ+8jnShXPDCx+pRx5t5T9l/5e8j2kQ6f
+         7wr4pBRiX4YHczCyEJ+t4tj7nhU14LNoPT4Za86lcSznVV+4E1oExeIkU3jqFIc6NIlK
+         4sg3pb4rjmOlmBMQ0aWiGutZm85sSyGXlsF4mI4IY9McEdZfAGYvvUSR5P2wQzfvKv6t
+         2UgA==
+X-Forwarded-Encrypted: i=1; AHgh+RpRA7AmrlNKZBEQuoVjNyaLZ8nph3SPQh7wyAyVtiS36U5X0qe4uRPnEehAY1boB4gdY1yfQaXgRPi5XRAs@lists.infradead.org
+X-Gm-Message-State: AOJu0YyuLx8mjW1VmzvoLeh20D1VN+hQ4MpEpIHwcKPV/DMfWcglC55n
+	BZuG758qeHtSKCrPADv4CLfSGyQLjn6e2ZyCi4d68Wxh57BDkQFUxrFj7yA/qiC9zOzRcWo1/dy
+	N+DIBtE7kSTz2e9LbH7eGA96yum886HgbTRTQBeS2DqUMcthG10gPWlcuS43Bpvkyoou4edR8
+X-Gm-Gg: AR+sD10NTqtETfMfsl3sC+QPt5DMMczBOwcDDH6B44FEMK+ubJ5WNTwb9rVipXM+SYY
+	lEv8Zdese/dBTe9+hS5MabSI+MTGs9pii0g3RGc465CA9Go63wTmwCu9Aq5peWPqLrLcLzX1hcu
+	nnMfK+ou+VdfFLkg1ROSQVbuZZzvwcffl6CKf8xpBgPK0a9bQHzhLgMomxHx+pU5l3o+NXwQht8
+	f1rlVr9PgjA+wju1uRrc6Nmh9Vbrv2WvSQHGkYb3rSKmOlZhSvce1ALZaQYVy9D7dMwne1qJJg2
+	SpOOf/dnp/Qw7+0Fmg+2no4pu8tvv17dBjR/1GQiKMnRdL2aAj0G8q3xhpN/X+g60TUpjyv0goI
+	JIYPXVxtJXZGlXp0I3t7JiVjceSIAgVuQybw=
+X-Received: by 2002:ac8:5d04:0:b0:516:e249:e30f with SMTP id d75a77b69052e-52dd5e05a70mr71525011cf.42.1787174540398;
+        Wed, 19 Aug 2026 14:22:20 -0700 (PDT)
+X-Received: by 2002:ac8:5d04:0:b0:516:e249:e30f with SMTP id d75a77b69052e-52dd5e05a70mr71524431cf.42.1787174539914;
+        Wed, 19 Aug 2026 14:22:19 -0700 (PDT)
 Received: from redhat.com (c-73-183-53-213.hsd1.pa.comcast.net. [73.183.53.213])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-52dd8598adcsm18745871cf.9.2026.08.19.14.21.30
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-52dd857b36fsm18734791cf.5.2026.08.19.14.22.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Aug 2026 14:21:32 -0700 (PDT)
-Date: Wed, 19 Aug 2026 17:21:29 -0400
+        Wed, 19 Aug 2026 14:22:19 -0700 (PDT)
+Date: Wed, 19 Aug 2026 17:22:17 -0400
 From: Brian Masney <bmasney@redhat.com>
 To: Geert Uytterhoeven <geert+renesas@glider.be>
 Cc: Tero Kristo <kristo@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
@@ -98,21 +98,21 @@ Cc: Tero Kristo <kristo@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
 	linux-iio@vger.kernel.org, linux-amlogic@lists.infradead.org,
 	linux-spi@vger.kernel.org, linux-clk@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH treewide 2/5] clk: visconti: Make sure clk_init_data is
+Subject: Re: [PATCH treewide 3/5] hwmon: (ltc4282) Make sure clk_init_data is
  fully initialized
-Message-ID: <aoYeWR6H3q-d3yd3@redhat.com>
+Message-ID: <aoYeifWtRNoksCoR@redhat.com>
 References: <cover.1787165329.git.geert+renesas@glider.be>
- <42dd7be99acbbea1343e2fcc0ba4ffb91f8517ca.1787165329.git.geert+renesas@glider.be>
+ <8ec3c5cbd2df675a938f090470f5da5f22008517.1787165329.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-In-Reply-To: <42dd7be99acbbea1343e2fcc0ba4ffb91f8517ca.1787165329.git.geert+renesas@glider.be>
+In-Reply-To: <8ec3c5cbd2df675a938f090470f5da5f22008517.1787165329.git.geert+renesas@glider.be>
 User-Agent: Mutt/2.4.0 (2026-06-19)
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: E3sUpjrdst74NUq3NwVZcxnPB9BBY0c6mfVgMcLr1Bs_1787174493
+X-Mimecast-MFC-PROC-ID: UWJywUzOedTc6SxUzWoJkrjhCVYANk7v9iqizmx7Dmg_1787174540
 X-Mimecast-Originator: redhat.com
 Content-Disposition: inline
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260819_142135_724275_B4862A90 
-X-CRM114-Status: GOOD (  14.47  )
+X-CRM114-CacheID: sfid-20260819_142223_517790_A5D75DBE 
+X-CRM114-Status: GOOD (  14.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,7 +129,7 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Aug 19, 2026 at 09:05:16PM +0200, Geert Uytterhoeven wrote:
+On Wed, Aug 19, 2026 at 09:05:17PM +0200, Geert Uytterhoeven wrote:
 > The clk_init_data structure contains several mutually-exclusive members
 > for different methods to specify the possible parents of a clock,
 > prompting drivers to initialize only the members they need.  However,
@@ -137,15 +137,15 @@ On Wed, Aug 19, 2026 at 09:05:16PM +0200, Geert Uytterhoeven wrote:
 > exposed when CONFIG_INIT_STACK_ALL_PATTERN or CONFIG_INIT_STACK_NONE is
 > enabled.
 > 
-> visconti_clk_register_gate() fills in init.parent_data, and assumes that
-> init.parent_names is NULL.  However, the latter in uninitialized, and
-> thus may cause a crash.
+> ltc428_clk_provider_setup() does not fill in any parent clocks, and
+> assumes that init.num_parents is NULL.  However, the latter in
+> uninitialized, and thus may cause a crash.
 > 
 > Make sure all members are fully initialized, to fix such bugs, and to
 > avoid future breakage when converting drivers to a different method for
 > specifying the parents.
 > 
-> Fixes: b4cbe606dc3674b2 ("clk: visconti: Add support common clock driver and reset driver")
+> Fixes: cbc29538dbf7d740 ("hwmon: Add driver for LTC4282")
 > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
 Reviewed-by: Brian Masney <bmasney@redhat.com>
