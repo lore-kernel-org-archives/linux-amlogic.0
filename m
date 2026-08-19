@@ -4,33 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35068C5DF81
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Aug 2026 19:05:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40D62C5DF88
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Aug 2026 19:05:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Be4oGVMf/5jlY5rVklO89GsDFkqlUAEpm18YsPK7ddY=; b=16BAkfkmGnbxAN
-	D8VY7heyZ27LQym724YqQJR7EemFHzVmW/kNsCyoaJsPD2fyDhRe6nSNP7xDl5w8E0rc9pYwkgvyR
-	p7Oo4DH6/gysv0yfhIdMniVFzOzAYM/sJ8CgDce+3dMqPKLIuAkMg9RIPD1txiUMqdHRmShPwOy2A
-	A3/qu5VfKUuSyxAHAhCl/CDieMsXOS64Gzj5HOkzcT37w0n3I/LYsOdjg/uEAnoy+xBtH/Vf0wdBJ
-	Sr9XAc73ACCBgcJYLWldTM6G1zmOv2L16zZ/9L8B4AvWNPgTiIeEObOfAyPmtdjMiXUCqQ07lpvmX
-	166fLnf8xE/DAawjtmPA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=emX85tls4BjBt36KF2Sn8qEAs2gsPMQrBZXh/cHac2k=; b=40vF9TgNPKBLMx
+	dp7+uGiea1fAmDtThIJCQ6UU0ESTyvF+6D33EydHB4jAnG9PXK4lVRmYReR1f7G0UM3u+qbgHLe61
+	h6NZSlPEvkrUxDba340rjFj/M22yRoolbDArCtNUhMSDyPrDYOxZVd9u3EDZJkQe2EnqIbAQpTBh6
+	fNUxtZKyl4w//RuWez2viD3I57GbR18VxpvV9IcF3TYQu9trzbRcBqBnv7x8fpWFEqK1axBKbuTFJ
+	1moKA7UIUrT1s6mVoSpwlTSS59M4ag0VCRcBurYCBi7ke77tz1963+XlyM3Wwf7+AqTsqS8pJL1rH
+	dYRXSwpVNmP1uT0SvKPg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wwlbh-0000000APps-13Rw;
-	Wed, 19 Aug 2026 19:05:49 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1wwlbn-0000000APrM-1n54;
+	Wed, 19 Aug 2026 19:05:55 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wwlbg-0000000APph-0IfC;
-	Wed, 19 Aug 2026 19:05:48 +0000
+	id 1wwlbl-0000000APqx-3A4I;
+	Wed, 19 Aug 2026 19:05:53 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 265C660AAA;
+	by tor.source.kernel.org (Postfix) with ESMTP id 0286D6136F;
+	Wed, 19 Aug 2026 19:05:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4040B1F00A3D;
 	Wed, 19 Aug 2026 19:05:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 576961F000E9;
-	Wed, 19 Aug 2026 19:05:41 +0000 (UTC)
 From: Geert Uytterhoeven <geert+renesas@glider.be>
 To: Tero Kristo <kristo@kernel.org>,
 	Stephen Boyd <sboyd@kernel.org>,
@@ -60,10 +60,12 @@ Cc: linux-omap@vger.kernel.org,
 	linux-clk@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH treewide 0/5] clk: Make sure clk_init_data is fully initialized (part 1)
-Date: Wed, 19 Aug 2026 21:05:14 +0200
-Message-ID: <cover.1787165329.git.geert+renesas@glider.be>
+Subject: [PATCH treewide 1/5] clk: ti: Make sure clk_init_data is fully initialized
+Date: Wed, 19 Aug 2026 21:05:15 +0200
+Message-ID: <e6f52b34163c8e708c1100107b437af0b3b049a6.1787165329.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <cover.1787165329.git.geert+renesas@glider.be>
+References: <cover.1787165329.git.geert+renesas@glider.be>
 MIME-Version: 1.0
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -81,68 +83,83 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-	Hi all,
-
-The clk_init_data structure contains three mutually-exclusive members
+The clk_init_data structure contains several mutually-exclusive members
 for different methods to specify the possible parents of a clock,
-prompting drivers to initialize only the members they need.  When commit
-fc0c209c147f35ed ("clk: Allow parents to be specified without string
-names") added the last two methods, this was done in a
-backwards-compatible way, using a priority-based scheme:
-  - .name, .ops, .num_parents, and .flags must always be initialized,
-  - if .num_parents is non-zero, .parent_names must be initialized,
-      - if .parent_names is NULL, .parent_data must be initialized,
-	  - if .parent_data is NULL, .parent_hws must be initialized
-	    and valid.
+prompting drivers to initialize only the members they need.  However,
+not initializing all members may cause subtle issues, which are only
+exposed when CONFIG_INIT_STACK_ALL_PATTERN or CONFIG_INIT_STACK_NONE is
+enabled.
 
-However, not initializing all members may cause subtle issues, which are
-only exposed when CONFIG_INIT_STACK_ALL_PATTERN or
-CONFIG_INIT_STACK_NONE is enabled.
+_register_mux() fills in init.parent_data, and assumes that
+init.parent_names is NULL.  However, the latter in uninitialized, and
+thus may cause a crash.
 
-Hence this series makes sure all members are fully initialized, to fix
-such bugs, and to avoid future breakage when converting drivers to a
-different method for specifying the parents.
+Make sure all members are fully initialized, to fix such bugs, and to
+avoid future breakage when converting drivers to a different method for
+specifying the parents.
 
-This (small) series is part 1, and fixes all cases that I identified to
-be real bugs:
-  - The first patch fixes a crash I saw on BeagleBone Black,
-  - The other patches are only compile-tested.
-All patches in this series can be applied independently.
+Fixes: 667f420c09f1417c ("clk: ti: mux: resolve parent clocks by DT index, not by name")
+Closes: https://lore.kernel.org/CAMuHMdU3yVqoyHC4eNF2NuYo8wy+6ODLoYat4R71X99Mxc_=kw@mail.gmail.com
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ drivers/clk/ti/adpll.c   | 4 ++--
+ drivers/clk/ti/divider.c | 2 +-
+ drivers/clk/ti/mux.c     | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
 
-Part 2 will be much larger (touching 185 files), and will fix the
-remaining cases that are currently harmless.
-
-Thanks for your comments!
-
-Geert Uytterhoeven (5):
-  clk: ti: Make sure clk_init_data is fully initialized
-  clk: visconti: Make sure clk_init_data is fully initialized
-  hwmon: (ltc4282) Make sure clk_init_data is fully initialized
-  iio: frequency: adf4377: Make sure clk_init_data is fully initialized
-  spi: amlogic-spisg: Make sure clk_init_data is fully initialized
-
- drivers/clk/ti/adpll.c          | 4 ++--
- drivers/clk/ti/divider.c        | 2 +-
- drivers/clk/ti/mux.c            | 2 +-
- drivers/clk/visconti/clkc.c     | 2 +-
- drivers/hwmon/ltc4282.c         | 2 +-
- drivers/iio/frequency/adf4377.c | 2 +-
- drivers/spi/spi-amlogic-spisg.c | 2 +-
- 7 files changed, 8 insertions(+), 8 deletions(-)
-
+diff --git a/drivers/clk/ti/adpll.c b/drivers/clk/ti/adpll.c
+index e305fcbac6475b03..8885d28face50beb 100644
+--- a/drivers/clk/ti/adpll.c
++++ b/drivers/clk/ti/adpll.c
+@@ -483,7 +483,7 @@ static const struct clk_ops ti_adpll_ops = {
+ 
+ static int ti_adpll_init_dco(struct ti_adpll_data *d)
+ {
+-	struct clk_init_data init;
++	struct clk_init_data init = {};
+ 	struct clk *clock;
+ 	const char *postfix;
+ 	int width, err;
+@@ -576,7 +576,7 @@ static int ti_adpll_init_clkout(struct ti_adpll_data *d,
+ 				struct clk *clk1)
+ {
+ 	struct ti_adpll_clkout_data *co;
+-	struct clk_init_data init;
++	struct clk_init_data init = {};
+ 	struct clk_ops *ops;
+ 	const char *parent_names[2];
+ 	const char *child_name;
+diff --git a/drivers/clk/ti/divider.c b/drivers/clk/ti/divider.c
+index af923b8cb0ed8fbc..3b438c2d68aacd7c 100644
+--- a/drivers/clk/ti/divider.c
++++ b/drivers/clk/ti/divider.c
+@@ -311,7 +311,7 @@ static struct clk *_register_divider(struct device_node *node,
+ 				     u32 flags,
+ 				     struct clk_omap_divider *div)
+ {
+-	struct clk_init_data init;
++	struct clk_init_data init = {};
+ 	const char *parent_name;
+ 	const char *name;
+ 
+diff --git a/drivers/clk/ti/mux.c b/drivers/clk/ti/mux.c
+index ded4432f7528cc6e..0fef60e82107a5a5 100644
+--- a/drivers/clk/ti/mux.c
++++ b/drivers/clk/ti/mux.c
+@@ -124,9 +124,9 @@ static struct clk *_register_mux(struct device_node *node, const char *name,
+ 				 struct clk_omap_reg *reg, u8 shift, u32 mask,
+ 				 s8 latch, u8 clk_mux_flags, u32 *table)
+ {
++	struct clk_init_data init = {};
+ 	struct clk_omap_mux *mux;
+ 	struct clk *clk;
+-	struct clk_init_data init;
+ 
+ 	/* allocate the mux */
+ 	mux = kzalloc_obj(*mux);
 -- 
 2.43.0
 
-Gr{oetje,eeting}s,
-
-						Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-							    -- Linus Torvalds
 
 _______________________________________________
 linux-amlogic mailing list
