@@ -4,69 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5F93C5DF88
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Aug 2026 19:06:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B4DCC5DF85
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Aug 2026 19:11:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BTq4Q52oKKtJrUmTaRZWmtApj2/J2VK9pDVffRk7ky0=; b=qaetbnojAAP8Jo
-	N2gx37PSmVng9inP9r4av4/ELgNjvuPkfdk3CJvGmZiPZuwJm19/lCSehHpTbE/Ny86rlJxY1Ps1T
-	S17NLlccI3r9VkqEgnBFNkryBwsEnAKNDgjSRqtmVRDlLxVynLtzyGG3nJTyYe/X4VyTFoszqJheJ
-	3cvZzsLwpICbgekjQXxhDIyLPC88Gv1kfJ2Oz5/vf+8rHd4VVrxvMYABdpcv0jpy2UwweALzpz5Yj
-	Vf5qXuLULDbFF8NdMOjZvM747Vj3n9yyz+Suj0x88LW/WUlRTXBMSAHMLxah4yxOWxz54T1XOqMwU
-	kyMfywfafE7DjGPr5P+Q==;
+	List-Owner; bh=Pl20TiGMIqI9oMMnv2DMM0icy3BEPiKDz35D2wAk5IM=; b=vavypNRLhh2/c6
+	d560WjvVX2KbVmeP9Znbuj6RHV2B4SeIswUZyK/yyKryHQG6Dh3vwCxAPP30+JLhhpPkhvWzF39oh
+	jgAkujKVk4j7e3FH/IRjxFhH8KVUWpv0kLCiH65W7hO2w5S9epFISgFT6cc+qXP7ixVqlt6dww3pg
+	sWKHTqDsxbtdmuIEnW2cFEBJUitp1xdrKztJckFu+FAGf14ZETZfH8fv/PzYY6Pc7s1WqA5Ru1nwf
+	lB03kMXTfsg7jbOJPzc6iEryoGCwYE7mQ3Q451lfnNEJIQXOdA7P+GjLlCNql0NlDeK0k8SXDI6eI
+	+eCzMozQEYvUZxumJVuQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wwlcC-0000000AQ4t-0tby;
-	Wed, 19 Aug 2026 19:06:20 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1wwlgi-0000000AQp3-0B5F;
+	Wed, 19 Aug 2026 19:11:00 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wwlc9-0000000AQ2V-0jOX;
-	Wed, 19 Aug 2026 19:06:17 +0000
+	id 1wwlgh-0000000AQor-16aL
+	for linux-amlogic@lists.infradead.org;
+	Wed, 19 Aug 2026 19:10:59 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 99EE561878;
-	Wed, 19 Aug 2026 19:06:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DADE91F00A3A;
-	Wed, 19 Aug 2026 19:06:10 +0000 (UTC)
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Tero Kristo <kristo@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
-	Nuno Sa <nuno.sa@analog.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Antoniu Miclaus <antoniu.miclaus@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Sunny Luo <sunny.luo@amlogic.com>,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>,
-	Mark Brown <broonie@kernel.org>,
-	Kees Cook <kees@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: linux-omap@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-hwmon@vger.kernel.org,
-	linux@analog.com,
-	linux-iio@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-spi@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH treewide 5/5] spi: amlogic-spisg: Make sure clk_init_data is fully initialized
-Date: Wed, 19 Aug 2026 21:05:19 +0200
-Message-ID: <9fb35ae0aedb7a6db0db6c78a8193c7602dd9d44.1787165329.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1787165329.git.geert+renesas@glider.be>
+	by sea.source.kernel.org (Postfix) with ESMTP id D23B540320;
+	Wed, 19 Aug 2026 19:10:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A3C81F000E9;
+	Wed, 19 Aug 2026 19:10:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1787166658;
+	bh=Dcc723rn+1ttrxxNUtvg9nDjftZMomopk4bIpJuOrMg=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=ibk8StY2ockBu7UazXFHaX2glAlNiYwdxRBjtkbsg9jMTEm/oEmzHzt/1Us6DOpZV
+	 iVQh6/8qE+rySLhMzNZmYrFWyrVLVImdaFyqZzoz1Pk7EOPtoS1g2RQ0kEjO1Dlxlz
+	 m6Dslfw3160nBkzkT0NRuilKg+D3aJbCrRCS4yYklYSb+mTyXcFXLk0M3oweRWI5TD
+	 yUTeN2WY6m8yDo6owXll+fEqck1yyDf6owOerG4avanhU9tGqj4oau4pZWf7rZcT/t
+	 n/oLrWRWZj1irnPOScdwdBKEzoIz2kAhh1Yv0HJ6E4SjNiCqhn4JvmdJHBKWYW7+TG
+	 WlxiDuO9SpVZg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH treewide 1/5] clk: ti: Make sure clk_init_data is fully
+ initialized
+To: "Geert Uytterhoeven" <geert+renesas@glider.be>
+Cc: linux-hwmon@vger.kernel.org, neil.armstrong@linaro.org, linux-clk@vger.kernel.org, linux-amlogic@lists.infradead.org
+In-Reply-To: <e6f52b34163c8e708c1100107b437af0b3b049a6.1787165329.git.geert+renesas@glider.be>
 References: <cover.1787165329.git.geert+renesas@glider.be>
-MIME-Version: 1.0
+ <e6f52b34163c8e708c1100107b437af0b3b049a6.1787165329.git.geert+renesas@glider.be>
+Date: Wed, 19 Aug 2026 19:10:58 +0000
+Message-Id: <20260819191058.8A3C81F000E9@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,52 +63,34 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The clk_init_data structure contains several mutually-exclusive members
-for different methods to specify the possible parents of a clock,
-prompting drivers to initialize only the members they need.  However,
-not initializing all members may cause subtle issues, which are only
-exposed when CONFIG_INIT_STACK_ALL_PATTERN or CONFIG_INIT_STACK_NONE is
-enabled.
-
-aml_spisg_clk_init() fills in init.parent_data, and assumes that
-init.parent_names is NULL.  However, the latter in uninitialized, and
-thus may cause a crash.
-
-Make sure all members are fully initialized, to fix such bugs, and to
-avoid future breakage when converting drivers to a different method for
-specifying the parents.
-
-Fixes: cef9991e04aed330 ("spi: Add Amlogic SPISG driver")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-Compile-tested only.
----
- drivers/spi/spi-amlogic-spisg.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/spi/spi-amlogic-spisg.c b/drivers/spi/spi-amlogic-spisg.c
-index afc8af04638d3b6e..9049a87e9d0f2df6 100644
---- a/drivers/spi/spi-amlogic-spisg.c
-+++ b/drivers/spi/spi-amlogic-spisg.c
-@@ -636,7 +636,7 @@ static int aml_spisg_target_abort(struct spi_controller *ctlr)
- static int aml_spisg_clk_init(struct spisg_device *spisg, void __iomem *base)
- {
- 	struct device *dev = &spisg->pdev->dev;
--	struct clk_init_data init;
-+	struct clk_init_data init = {};
- 	struct clk_divider *div;
- 	struct clk_div_table *tbl;
- 	char name[32];
--- 
-2.43.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+PiBUaGUgY2xrX2luaXRfZGF0YSBzdHJ1Y3R1cmUgY29udGFpbnMgc2V2ZXJhbCBtdXR1YWxseS1l
+eGNsdXNpdmUgbWVtYmVycwo+IGZvciBkaWZmZXJlbnQgbWV0aG9kcyB0byBzcGVjaWZ5IHRoZSBw
+b3NzaWJsZSBwYXJlbnRzIG9mIGEgY2xvY2ssCj4gcHJvbXB0aW5nIGRyaXZlcnMgdG8gaW5pdGlh
+bGl6ZSBvbmx5IHRoZSBtZW1iZXJzIHRoZXkgbmVlZC4gIEhvd2V2ZXIsCj4gbm90IGluaXRpYWxp
+emluZyBhbGwgbWVtYmVycyBtYXkgY2F1c2Ugc3VidGxlIGlzc3Vlcywgd2hpY2ggYXJlIG9ubHkK
+PiBleHBvc2VkIHdoZW4gQ09ORklHX0lOSVRfU1RBQ0tfQUxMX1BBVFRFUk4gb3IgQ09ORklHX0lO
+SVRfU1RBQ0tfTk9ORSBpcwo+IGVuYWJsZWQuCj4gCj4gX3JlZ2lzdGVyX211eCgpIGZpbGxzIGlu
+IGluaXQucGFyZW50X2RhdGEsIGFuZCBhc3N1bWVzIHRoYXQKPiBpbml0LnBhcmVudF9uYW1lcyBp
+cyBOVUxMLiAgSG93ZXZlciwgdGhlIGxhdHRlciBpbiB1bmluaXRpYWxpemVkLCBhbmQKPiB0aHVz
+IG1heSBjYXVzZSBhIGNyYXNoLgo+IAo+IE1ha2Ugc3VyZSBhbGwgbWVtYmVycyBhcmUgZnVsbHkg
+aW5pdGlhbGl6ZWQsIHRvIGZpeCBzdWNoIGJ1Z3MsIGFuZCB0bwo+IGF2b2lkIGZ1dHVyZSBicmVh
+a2FnZSB3aGVuIGNvbnZlcnRpbmcgZHJpdmVycyB0byBhIGRpZmZlcmVudCBtZXRob2QgZm9yCj4g
+c3BlY2lmeWluZyB0aGUgcGFyZW50cy4KPiAKPiBGaXhlczogNjY3ZjQyMGMwOWYxNDE3YyAoImNs
+azogdGk6IG11eDogcmVzb2x2ZSBwYXJlbnQgY2xvY2tzIGJ5IERUIGluZGV4LCBub3QgYnkgbmFt
+ZSIpCj4gQ2xvc2VzOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9DQU11SE1kVTN5VnFveUhDNGVO
+RjJOdVlvOHd5KzZPRExvWWF0NFI3MVg5OU14Y189a3dAbWFpbC5nbWFpbC5jb20KPiBTaWduZWQt
+b2ZmLWJ5OiBHZWVydCBVeXR0ZXJob2V2ZW4gPGdlZXJ0K3JlbmVzYXNAZ2xpZGVyLmJlPgoKU2Fz
+aGlrbyBoYXMgcmV2aWV3ZWQgdGhpcyBwYXRjaCBhbmQgZm91bmQgbm8gaXNzdWVzLiBJdCBsb29r
+cyBncmVhdCEKCi0tIApTYXNoaWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nhc2hpa28uZGV2LyMv
+cGF0Y2hzZXQvY292ZXIuMTc4NzE2NTMyOS5naXQuZ2VlcnQrcmVuZXNhc0BnbGlkZXIuYmU/cGFy
+dD0xCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGlu
+dXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3Jn
+Cmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dp
+Ywo=
