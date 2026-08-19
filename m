@@ -4,33 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFE8CC5DF88
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Aug 2026 19:06:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB3F2C5DF81
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Aug 2026 19:06:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hcCSd1ON2sHlRVhqtk61j8EmjNSQA/oZUcDuJTrvZVQ=; b=KT+v3NaQfA0rHp
-	mNQyYmunO71nBSWtRgFngZ4VnChfThfyiL5Sm6ZsEE9ZolHcZipyvDm8DkqBX1xXSt5t1xDjLVglR
-	NMFkyISXw4s3swPeJBfw3tX5IALhhgkAOUCXj0COCPk+4cSI5WRw1LvudftZ4PHhjZxq5RkFEvlcy
-	kgGzA2DwSfaTUHxMaB3lHCIHRpNGxCyHKFeurZUJ84NPM/rAGBqtkFyzLRHKy3T1pAn5Vt/b9bTaS
-	5NOdmYtQhrn0OxVZgCJAsxOP4qsyI95b9Uf0AoEbVBTOcPT1y8INt3DiQ6JUDnGM9imQC4yPSv1bd
-	fkXYZQCO1sHWryJIZ//Q==;
+	List-Owner; bh=iC4eV8Xhm6J8tzSDIKEN5theix1sNJg1VpXl96ZTFIA=; b=bpNUfEOI8fmgcZ
+	/rC7CzCtpq5w3ho3Pd+RgVXajBFOczTfGNK4VvyVcTojbk6VyNYzNyt+p1TDuG+jFkY4LY9r0kfxA
+	Kh0DbfkTQ3cwVVzZ3Sdeo5uilUTClaIE5IrdXOCJGApJpyz+GTsTrkLomZcZR54+K1NnIFGnj2q8T
+	7AAvGjaoNAhvILnKzirXim6Xt3EmT/DJDOXnDLLRqZqS2UH7A4oTBl993TIO2pPCzjYPK9YXHZDPr
+	LYtRfez3pR2h0dXCi9OKXxG6n44c3nPfvflKVV7fzd3N3tjWbcWyuFqCH5Z1c+a9RBTKcTPfjRjH5
+	n8+JjXcR04Xk5C531oyg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wwlby-0000000APxf-3kzT;
-	Wed, 19 Aug 2026 19:06:06 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1wwlcC-0000000AQ4d-0Gir;
+	Wed, 19 Aug 2026 19:06:20 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wwlbw-0000000APwO-3hVf;
-	Wed, 19 Aug 2026 19:06:04 +0000
+	id 1wwlc3-0000000AQ0a-16e1;
+	Wed, 19 Aug 2026 19:06:11 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 9F6F543315;
+	by tor.source.kernel.org (Postfix) with ESMTP id B1C5561836;
+	Wed, 19 Aug 2026 19:06:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 028071F000E9;
 	Wed, 19 Aug 2026 19:06:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 121F01F00A3E;
-	Wed, 19 Aug 2026 19:05:58 +0000 (UTC)
 From: Geert Uytterhoeven <geert+renesas@glider.be>
 To: Tero Kristo <kristo@kernel.org>,
 	Stephen Boyd <sboyd@kernel.org>,
@@ -60,9 +60,9 @@ Cc: linux-omap@vger.kernel.org,
 	linux-clk@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH treewide 3/5] hwmon: (ltc4282) Make sure clk_init_data is fully initialized
-Date: Wed, 19 Aug 2026 21:05:17 +0200
-Message-ID: <8ec3c5cbd2df675a938f090470f5da5f22008517.1787165329.git.geert+renesas@glider.be>
+Subject: [PATCH treewide 4/5] iio: frequency: adf4377: Make sure clk_init_data is fully initialized
+Date: Wed, 19 Aug 2026 21:05:18 +0200
+Message-ID: <302584628c4c0699239a0218376fe1c11cdc8944.1787165329.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1787165329.git.geert+renesas@glider.be>
 References: <cover.1787165329.git.geert+renesas@glider.be>
@@ -90,35 +90,35 @@ not initializing all members may cause subtle issues, which are only
 exposed when CONFIG_INIT_STACK_ALL_PATTERN or CONFIG_INIT_STACK_NONE is
 enabled.
 
-ltc428_clk_provider_setup() does not fill in any parent clocks, and
-assumes that init.num_parents is NULL.  However, the latter in
-uninitialized, and thus may cause a crash.
+adf4377_clk_register() fills in init.parent_data, and assumes that
+init.parent_names is NULL.  However, the latter in uninitialized, and
+thus may cause a crash.
 
 Make sure all members are fully initialized, to fix such bugs, and to
 avoid future breakage when converting drivers to a different method for
 specifying the parents.
 
-Fixes: cbc29538dbf7d740 ("hwmon: Add driver for LTC4282")
+Fixes: 60e5448ddbec2dc2 ("iio: frequency: adf4377: add clk provider support")
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
 Compile-tested only.
 ---
- drivers/hwmon/ltc4282.c | 2 +-
+ drivers/iio/frequency/adf4377.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/hwmon/ltc4282.c b/drivers/hwmon/ltc4282.c
-index b1675dc5b3c7fd2f..54ba4b8542e94b7b 100644
---- a/drivers/hwmon/ltc4282.c
-+++ b/drivers/hwmon/ltc4282.c
-@@ -1106,7 +1106,7 @@ static const struct clk_ops ltc4282_ops = {
- static int ltc428_clk_provider_setup(struct ltc4282_state *st,
- 				     struct device *dev)
+diff --git a/drivers/iio/frequency/adf4377.c b/drivers/iio/frequency/adf4377.c
+index 4dd19a9aa9943c57..f4eb9ba5878e1893 100644
+--- a/drivers/iio/frequency/adf4377.c
++++ b/drivers/iio/frequency/adf4377.c
+@@ -990,7 +990,7 @@ static int adf4377_clk_register(struct adf4377_state *st)
  {
+ 	struct spi_device *spi = st->spi;
+ 	struct device *dev = &spi->dev;
 -	struct clk_init_data init;
 +	struct clk_init_data init = {};
+ 	struct clk_parent_data parent_data;
  	int ret;
  
- 	if (!IS_ENABLED(CONFIG_COMMON_CLK))
 -- 
 2.43.0
 
