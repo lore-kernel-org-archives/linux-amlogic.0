@@ -4,115 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A759C5B572
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Aug 2026 21:23:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE01CC5DF81
+	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Aug 2026 01:38:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JZVzqNoA0/rqWkH/pyAN2wfa1O9aBICeqb5OwFLcoWc=; b=JaNwja74DghYon
-	Xv2+QVw0yo1JnkC82/MjSb9m/FNQZjdUwVgYOR7Qgjb/ymu9CKWYcupuZHwBkt7Uvvz7n4BKcplqw
-	uRPG/2zJ41LJZY9ySw1tl7rtDYUDh4Y/TgYCPuZ5FjcYRRSR1wzc3osPMpU6J3aJ9SNAJORQteN3E
-	9mZVga4vCd03Z1o/55aUKRsvQuINooqPbdYP7fFdiUrLowqd7KwY1dl1BYCGUqpGuLggOP9tkrgiO
-	MJBpEqRyXueGw9gRRQopmJFM26lLx4RzRGYhod3VIDpbBTI8lj6rNruYY0dCAokgnYM90nThoupJy
-	vaQSHHaa6RNfADYxQmFw==;
+	List-Owner; bh=2qIB3foNiB27XhFNJdfLAIXPkvQz2b8V9I20lMEWuCk=; b=wBFMptATs9YXT6
+	uxK7tERn1bLTdM1dldnfYtVsc3uAktmadKIHk4R9hf7FhzFH+9EW7p0mlloZvxngdfrn2ZUr6ojO+
+	84iZqkMinkALmt/vDpJ8aH1ymjyt2Q4vYhe9iSl9reg6Nro36YRNPUKa1InB44zugbcieS1OsMM64
+	mf69aYrPcDjSUpaNV6mKYh7geKQbMy2uCWc1rXG8y50cvqoZlBwlUFQAFlSyIz1f88bSazuhZDkfr
+	r3QBQsZCjoORUJ9A0qSHaAvShIKCN0I7qaqXq0WjpMwD/4gKX10PaRk3zkGaIetQCHoYmBHMd4aNc
+	fPFUvpCKBp4ogh7/eeyg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wwnkh-0000000AYtg-2NTY;
-	Wed, 19 Aug 2026 21:23:15 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+	id 1wwrjS-0000000AjBn-0AHO;
+	Thu, 20 Aug 2026 01:38:14 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wwnkf-0000000AYsa-2efC
-	for linux-amlogic@lists.infradead.org;
-	Wed, 19 Aug 2026 21:23:14 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1787174592;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Y2Nq6oWt/A+GglsE2R04tSZrXRfphvvWNtrnE+gHf8s=;
-	b=WDV4nx5+PLOwIzrIQxoQ6LLCzzqU3/+keFXokh9Pryo0QEUVlRmboSpm5fd0azh/DSbf/p
-	3boOmdCIV57EmyvbiXw7jtwbCryXG2i0h5/f9hXKXq9ay6AB7rOZG232kfYlnmeOg3mLq9
-	NABj8Dx/ejWZLPrEtwsWXCfnL1qkA7w=
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
- [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-695-DOxRVXvkPyKJDxlxJjq9Bg-1; Wed, 19 Aug 2026 17:23:06 -0400
-X-MC-Unique: DOxRVXvkPyKJDxlxJjq9Bg-1
-X-Mimecast-MFC-AGG-ID: DOxRVXvkPyKJDxlxJjq9Bg_1787174586
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-8efad04d884so28297576d6.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 19 Aug 2026 14:23:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787174586; x=1787779386;
-        h=user-agent:in-reply-to:content-disposition:content-type
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=Y2Nq6oWt/A+GglsE2R04tSZrXRfphvvWNtrnE+gHf8s=;
-        b=WP9SFA7zwTyffX9M9MaFstbnct/vAZ8zoNfYxx6DYScfvgqLo2IQN+V6GptjVV7H9p
-         O65SvoGzhTYf94NnyYScDF77OK90i5OqvHxHhhD2+TIzs7aNjXX0VFIBn/7YnTC911kM
-         h0/K76oIjY0dROTVk9bEf8EB2umrzTQYBI9diDBjpwv8foZ5T+O5whJOi5vvEVWRS5xW
-         1zIl1ff8k/7f3avmUG9RucyABS5MYa8pgG0ZhemhdL5heVGh7b8F4gNhBhTj/fHcDm0S
-         FRo1+jw09k1VJ0fmrCC6kKvBZYqv8xaPu8S32noaDMsZONyTwByX+OMZSliCrst7OCVL
-         Cltw==
-X-Forwarded-Encrypted: i=1; AHgh+Rr+vTqURg6ghN9kykTP6tmmFPMxNAvc3tvpwYgTnkdmUxwJifc6RaNsuF62Nrh7Ak16z7EWY1jQNzLGtq+N@lists.infradead.org
-X-Gm-Message-State: AFuF++lazrESidIXKe248K5y5sOgwDFWcZYy61k7NPfogulakBy6YDr5
-	DuVjEEfE4gLEvXmwKev41017jXB6Kqbqq9dLTJp1zJu30OQ/b7FGFLfvyYlfqEUAmWzy4+dEJS7
-	u+sOBeyTAF+f9WXW1BHvuvsA1P5jJ4TDyTvLzi/zXCNJfvQ2tNyQkMpoJmeTg42ZxjQjPZlQs
-X-Gm-Gg: AR+sD13fiuMCdjz4IIO+4iYJTkR+6cD7B4RLrlrB8AIdaWywJOMmQIGus2HjgpZE6mV
-	FS9Wz8VyvpqR1th3KST6AM1X/t3aBza3h/2CtDd8J57uok/bWwRMPRE3PXDN23bY/GC/2e6kvUf
-	Xirj2s5LGYrJiOwaUwhlI30GvADB4kkHB9GZzDm8+p5F4Ni/TOtnuVYFKoc8NGAQ5ExrYzSIexU
-	SxzMevmERhArJgvVCsrSr5YWUEC5D9BSod1p4MyFGFFfXhIbKtddEK+XibeMIb/c9LgqrjZ72uC
-	uH3JMrGX/hA5758MdYRnMsoFmu5y17uf1TcVEjq/4HWXLmwKoqp4YvIsCJ0bzZ80byyGYSZ1xxW
-	KLb1uV936O3A6bIUyqnOLMxgf0aGAQDQUYgM=
-X-Received: by 2002:a05:6214:260f:b0:90a:804a:968e with SMTP id 6a1803df08f44-90c5eb8132fmr77665946d6.32.1787174585813;
-        Wed, 19 Aug 2026 14:23:05 -0700 (PDT)
-X-Received: by 2002:a05:6214:260f:b0:90a:804a:968e with SMTP id 6a1803df08f44-90c5eb8132fmr77665056d6.32.1787174585342;
-        Wed, 19 Aug 2026 14:23:05 -0700 (PDT)
-Received: from redhat.com (c-73-183-53-213.hsd1.pa.comcast.net. [73.183.53.213])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-90c5f2a1139sm23455876d6.34.2026.08.19.14.23.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Aug 2026 14:23:04 -0700 (PDT)
-Date: Wed, 19 Aug 2026 17:23:02 -0400
-From: Brian Masney <bmasney@redhat.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Tero Kristo <kristo@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
-	Nuno Sa <nuno.sa@analog.com>, Guenter Roeck <linux@roeck-us.net>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Antoniu Miclaus <antoniu.miclaus@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Sunny Luo <sunny.luo@amlogic.com>,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>,
-	Mark Brown <broonie@kernel.org>, Kees Cook <kees@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
-	linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-hwmon@vger.kernel.org, linux@analog.com,
-	linux-iio@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-spi@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH treewide 5/5] spi: amlogic-spisg: Make sure clk_init_data
- is fully initialized
-Message-ID: <aoYetnpb5fu2M9u6@redhat.com>
+	id 1wwrjQ-0000000AjBe-0VM2;
+	Thu, 20 Aug 2026 01:38:12 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id A73826187F;
+	Thu, 20 Aug 2026 01:38:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 609D21F00A3A;
+	Thu, 20 Aug 2026 01:38:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1787189890;
+	bh=7A6JesNR31qbM8jFMjX5uG+J+rXUo91CSdPomfFkkHE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=CZMkr2kwPcjJvMeEgedtJWG1ojnfdOz1937Nbdm4EWQtkYeYW3m8xArP3mLJBF/IL
+	 MAzJJOKD1scDjgvBwwrST/fB2Jyoba4j+Ghq+nagPOPxbnNunmQdQSKZJbchZeudbP
+	 u60FNlGetJI1+3ALTuQlVRqScRpi3GxzpuLlPi+b1cdT0n8e/ciunLYs4aoo9opzbG
+	 5ANoIuR92ive30NLGR3Li7Im5/YYatfyQ38MydVx17mtmSaoTstgpdYg3ErKSUqwDb
+	 mrU/dAosK/xAWqC6BYR3TTcIYb5TLnj1g1ZvFGwsio8ZBGuUkQVQkJQ6Hf3h7DmGMJ
+	 d3yZMkfxkhAnQ==
+Date: Thu, 20 Aug 2026 02:38:04 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Brian Masney <bmasney@redhat.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Tero Kristo
+ <kristo@kernel.org>, Stephen Boyd <sboyd@kernel.org>, Brian Masney
+ <bmasney+clk@redhat.com>, Jerome Brunet <jbrunet+clk@baylibre.com>,
+ Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>, Nuno Sa
+ <nuno.sa@analog.com>, Guenter Roeck <linux@roeck-us.net>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Antoniu Miclaus
+ <antoniu.miclaus@analog.com>, David Lechner <dlechner@baylibre.com>, Andy
+ Shevchenko <andy@kernel.org>, Sunny Luo <sunny.luo@amlogic.com>, Xianwei
+ Zhao <xianwei.zhao@amlogic.com>, Mark Brown <broonie@kernel.org>, Kees Cook
+ <kees@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Mathieu
+ Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
+ linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-hwmon@vger.kernel.org, linux@analog.com, linux-iio@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH treewide 4/5] iio: frequency: adf4377: Make sure
+ clk_init_data is fully initialized
+Message-ID: <20260820023804.70ba61d1@jic23-huawei>
+In-Reply-To: <aoYeoSnvf5-l69lE@redhat.com>
 References: <cover.1787165329.git.geert+renesas@glider.be>
- <9fb35ae0aedb7a6db0db6c78a8193c7602dd9d44.1787165329.git.geert+renesas@glider.be>
+	<302584628c4c0699239a0218376fe1c11cdc8944.1787165329.git.geert+renesas@glider.be>
+	<aoYeoSnvf5-l69lE@redhat.com>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <9fb35ae0aedb7a6db0db6c78a8193c7602dd9d44.1787165329.git.geert+renesas@glider.be>
-User-Agent: Mutt/2.4.0 (2026-06-19)
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: TzI6P_xhpi92Dpe7YGtpHbseKSoDv7mG2vKQTckr1Vs_1787174586
-X-Mimecast-Originator: redhat.com
-Content-Disposition: inline
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260819_142313_749821_C067DBD6 
-X-CRM114-Status: GOOD (  13.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,27 +84,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Aug 19, 2026 at 09:05:19PM +0200, Geert Uytterhoeven wrote:
-> The clk_init_data structure contains several mutually-exclusive members
-> for different methods to specify the possible parents of a clock,
-> prompting drivers to initialize only the members they need.  However,
-> not initializing all members may cause subtle issues, which are only
-> exposed when CONFIG_INIT_STACK_ALL_PATTERN or CONFIG_INIT_STACK_NONE is
-> enabled.
-> 
-> aml_spisg_clk_init() fills in init.parent_data, and assumes that
-> init.parent_names is NULL.  However, the latter in uninitialized, and
-> thus may cause a crash.
-> 
-> Make sure all members are fully initialized, to fix such bugs, and to
-> avoid future breakage when converting drivers to a different method for
-> specifying the parents.
-> 
-> Fixes: cef9991e04aed330 ("spi: Add Amlogic SPISG driver")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Wed, 19 Aug 2026 17:22:41 -0400
+Brian Masney <bmasney@redhat.com> wrote:
 
-Reviewed-by: Brian Masney <bmasney@redhat.com>
+> On Wed, Aug 19, 2026 at 09:05:18PM +0200, Geert Uytterhoeven wrote:
+> > The clk_init_data structure contains several mutually-exclusive members
+> > for different methods to specify the possible parents of a clock,
+> > prompting drivers to initialize only the members they need.  However,
+> > not initializing all members may cause subtle issues, which are only
+> > exposed when CONFIG_INIT_STACK_ALL_PATTERN or CONFIG_INIT_STACK_NONE is
+> > enabled.
+> > 
+> > adf4377_clk_register() fills in init.parent_data, and assumes that
+> > init.parent_names is NULL.  However, the latter in uninitialized, and
+> > thus may cause a crash.
+> > 
+> > Make sure all members are fully initialized, to fix such bugs, and to
+> > avoid future breakage when converting drivers to a different method for
+> > specifying the parents.
+> > 
+> > Fixes: 60e5448ddbec2dc2 ("iio: frequency: adf4377: add clk provider support")
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>  
+> 
+> Reviewed-by: Brian Masney <bmasney@redhat.com>
+> 
 
+Applied to the fixes-togreg branch of iio.git
+I'll rebase on rc1 before sending a pull request (so waiting for that
+to be available)
+
+Thanks,
+
+Jonathan
 
 _______________________________________________
 linux-amlogic mailing list
