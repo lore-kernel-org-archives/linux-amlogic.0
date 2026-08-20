@@ -4,67 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FE47C5DF81
-	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Aug 2026 15:17:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B22A6C5DF81
+	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Aug 2026 18:53:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4gQ/RlxNlxgIfjfrZMb1eEzGcrcWer+iWjM0lCbBXhE=; b=h8nZPWTUFtA80x
-	N/M4Pp0xF3IWN3e5eaBdsYdrs0rMyI9aWZkxBnHWFu4jG5YFQoZysKIniOUXLuFBIKA/kHIxFcLg/
-	0pongzbbOXP3WqNp4SQPsgPvx1QS+SGCxAUYRLCEUEwr0Y55QoTSu7UMZwukLTIGnExBoRopyUX7D
-	auvCsEtWMb52l+gC29aMGLujRQDstyAJpAwo9E0vhW3MuyNbM/kOJcviP/tnIhWWZSNy5VBvvnnaF
-	i0qAHuHKLcXk1WhF7mCZNA83wEpCdpWQqnLme4TL/zz5TOI0GdtKN1hXmocX1d434iUplj73f9wv5
-	Sqd1oHBjP4i77XHftN8A==;
+	List-Owner; bh=c5uOY5rtc59NS5z4wTpi0aOSIVK1yShkLhmGAncZ9u8=; b=a4DvcUA1rQj0mK
+	HliNYvtRraikV7A7YOLBkmjphtA43YXChzhskQCel6OOMZH6mSQlK5SnEx14i5SvqQScqZ+fqe5B5
+	Trn0J7KS3B0ralIRIFqoEvb2rVHgGpbdRTaqIW4iS8Alb/6uMILkXPUnbwEyX4As9AM3Am3cKBGYt
+	LxqmHofa9rDZSyp8ZaoF/IEeLswJnDlTEr/z/3+PjY7syKyMBAAe4bXEP0NR8u3gQ1NZn/LmLPBI0
+	3uCsdjBFniz2KdrIW9hDdvESQ4WySigDqF1mzTbLBsnHqznSDSjjtx5APnwnvB+ghW8Z1MJwXkpl0
+	dqI03TVyCwNJ0ubk54Ow==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wx4W6-0000000Bn2U-2JeE;
-	Thu, 20 Aug 2026 15:17:18 +0000
-Received: from m16.mail.163.com ([220.197.31.5])
+	id 1wx7tc-0000000C4m1-0099;
+	Thu, 20 Aug 2026 18:53:48 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wx4W3-0000000Bn23-32H5;
-	Thu, 20 Aug 2026 15:17:17 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=hCBCfkhuylDswajnEAey0yhp/w2gaAIUfLfZkrqLJZI=;
-	b=jz7Yb4NV2f4ape26Kp1GE/Cg4BTdXVJCyxo9NcOQCjfIZGGbmJazQ27Qg+bQ8E
-	K9iqAp0NKgajM4aFMscqoafCMxBrzSFXaGCX0qxzW+EEXJDVnZ6q9s4aaPkyr85P
-	DVveMqpuEMuJ7rSa8XEECERFA43Wfvq3V2lj4f80cLFVM=
-Received: from [IPV6:240e:b8f:91b3:d000:fc9b:5f4:477a:dca5] (unknown [])
-	by gzga-smtp-mtada-g1-2 (Coremail) with SMTP id _____wCHTa9jGodqjxLpQQ--.14990S2;
-	Thu, 20 Aug 2026 23:16:52 +0800 (CST)
-Message-ID: <a2f0c2d6-750e-4076-aae2-6efaba1009a1@163.com>
-Date: Thu, 20 Aug 2026 23:16:50 +0800
+	id 1wx7ta-0000000C4lh-2znX;
+	Thu, 20 Aug 2026 18:53:46 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 293C541771;
+	Thu, 20 Aug 2026 18:53:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 490B21F000E9;
+	Thu, 20 Aug 2026 18:53:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1787252026;
+	bh=j4+HEzu84tHiUAZOxRhDjFI/ug5GzBnvn/WLzOcpkyY=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=H0NP1aHU1Kw2CsPh2H8BLbi6yqq5B182IUlX89TgqPSaIxveE5Jr3xi/Qcs3m7Xbd
+	 Y/befz+dDSuMEw7cndcbClLTwxPwc7YMS+Vi8jIm9FtAqL3cw54XFz7L5DBWi3jfUE
+	 VrLuxAHW68PsF4lFUW7glviay0Vqno/Hsk28QJhgmyIzPusNpwE7QnGXQ1kXqITIZd
+	 OpolHzWzmiPZELFdVHuOc73iCDT/vmumH2CHy4zYLFJtx5hsqWVO+H6JB998UjdRTA
+	 Og3YldTWRaRSDHc7iJubIDoaPP5HJp+E6InQYoqeywDSj3o7EzcgG1aOAPxnFpFT5g
+	 dA666zqlo005A==
+From: Mark Brown <broonie@kernel.org>
+To: Tero Kristo <kristo@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
+ Brian Masney <bmasney+clk@redhat.com>, 
+ Jerome Brunet <jbrunet+clk@baylibre.com>, 
+ Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>, 
+ Nuno Sa <nuno.sa@analog.com>, Guenter Roeck <linux@roeck-us.net>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Antoniu Miclaus <antoniu.miclaus@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+ Andy Shevchenko <andy@kernel.org>, Sunny Luo <sunny.luo@amlogic.com>, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, Kees Cook <kees@kernel.org>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-hwmon@vger.kernel.org, linux@analog.com, linux-iio@vger.kernel.org, 
+ linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <cover.1787165329.git.geert+renesas@glider.be>
+References: <cover.1787165329.git.geert+renesas@glider.be>
+Subject: Re: (subset) [PATCH treewide 0/5] clk: Make sure clk_init_data is
+ fully initialized (part 1)
+Message-Id: <178722791204.89147.8075686338925258822.b4-ty@b4>
+Date: Thu, 20 Aug 2026 13:11:52 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 02/16] PCI: dwc: Use cached PCIe capability offset in
- core
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
- jingoohan1@gmail.com, imx@lists.linux.dev, linuxppc-dev@lists.ozlabs.org,
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, sophgo@lists.linux.dev,
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
- linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260720150619.24733-1-18255117159@163.com>
- <20260720150619.24733-3-18255117159@163.com>
- <ps2qzgcb5lixkoqz2xbofdurkgmsiojg7e5ueqfdhyissqvzf2@tuderrjgzg6b>
-Content-Language: en-US
-From: Hans Zhang <18255117159@163.com>
-In-Reply-To: <ps2qzgcb5lixkoqz2xbofdurkgmsiojg7e5ueqfdhyissqvzf2@tuderrjgzg6b>
-X-CM-TRANSID: _____wCHTa9jGodqjxLpQQ--.14990S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7KF15GFy5tryfZw17uFy8Zrb_yoW8ur18p3
-	yaqr4ayr4kZrW2vFWxJa1YqF10gF98trW3J3s3Kr15ZwsxCFWxJrW2yryYvF9rGrWqyr1F
-	kF4UXryDur98AaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRi2-OUUUUU=
-X-Originating-IP: [240e:b8f:91b3:d000:fc9b:5f4:477a:dca5]
-X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbC7AQcv2qHGmR67gAA3M
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260820_081716_210070_485254A3 
-X-CRM114-Status: GOOD (  16.11  )
+X-Mailer: b4 0.17-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1882; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=T4O6Ytd+oVjquoKgE7hf+vP7Dh6bPlJfF2fa2COS54M=;
+ b=owEBbAGT/pANAwAKASTWi3JdVIfQAcsmYgBqh00yfuqNALH6N3AXS+G0HCah2fOyCOhjzME7f
+ KNnVXeAwAOJATIEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCaodNMgAKCRAk1otyXVSH
+ 0AShB/dhLJEEeXKrFQP9gPrIolmzi20NN0M7zC8KH9y3aa0HDRIJ7TvS+Mlng+fdUJET/6Z7YdN
+ WwL1wHIjh3EU33JMDcZr5roVJlS2GMOtkapj/U0/KKGaNeIjzv4dfTSJHfNsGJzAEbsAl1DJOG2
+ EL9hRt5A6Bm6qkLavFafXoAOgXgTNPvroZfhwTUzkSICx+buDnmQ0FulKgO8h9wYKRMOsrRfyLO
+ 0vz7DyM9o2N/dZFZc+ioL0Zr6TqUFedhtZO+ICe+0AauztCGPgGqinrzsgRgm+I8INFJZoPOmt3
+ Ua3StNsCFMpgq0hNzFgNCUVp74ea+Y3GiTcnrWUWzMbP5B8=
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,65 +89,57 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-
-On 8/13/26 14:06, Manivannan Sadhasivam wrote:
-> On Mon, Jul 20, 2026 at 11:06:05PM +0800, Hans Zhang wrote:
->> Modify the DWC core functions to use the cached pcie_cap offset instead
->> of calling dw_pcie_find_capability() each time.
->>
->> In the DWC core, dw_pcie_find_capability() is called at several locations:
->> - dw_pcie_ep_init_non_sticky_registers()
->> - dw_pcie_wait_for_link()
->> - dw_pcie_link_set_max_speed()
->> - dw_pcie_link_get_max_link_width()
->> - dw_pcie_link_set_max_link_width()
->>
->> The cached offset is initialized after hardware is ready:
->> - In host mode: dw_pcie_host_init() calls pp->ops->host_init() (enables
->>    clocks/resets), then dw_pcie_get_pcie_cap() caches the offset.
->> - In endpoint mode: the core no longer caches automatically. Instead,
->>    drivers must call dw_pcie_get_pcie_cap() after hardware is enabled
->>    (e.g., after PERST# deassert).
+On Wed, 19 Aug 2026 21:05:14 +0200, Geert Uytterhoeven wrote:
+> clk: Make sure clk_init_data is fully initialized (part 1)
 > 
-> But you didn't modify all DWC EP drivers to call dw_pcie_get_pcie_cap(). This
-> can lead to pcie_cap being 0.
+> 	Hi all,
 > 
->> dw_pcie_ep_init_non_sticky_registers()
->>    is called after that point, so it can safely use pci->pcie_cap.
->>
->> dw_pcie_ep_init_non_sticky_registers() now assumes pci->pcie_cap is
->> valid. if not, it prints a warning and skips the operation.
+> The clk_init_data structure contains three mutually-exclusive members
+> for different methods to specify the possible parents of a clock,
+> prompting drivers to initialize only the members they need.  When commit
+> fc0c209c147f35ed ("clk: Allow parents to be specified without string
+> names") added the last two methods, this was done in a
+> backwards-compatible way, using a priority-based scheme:
+>   - .name, .ops, .num_parents, and .flags must always be initialized,
+>   - if .num_parents is non-zero, .parent_names must be initialized,
+>       - if .parent_names is NULL, .parent_data must be initialized,
+> 	  - if .parent_data is NULL, .parent_hws must be initialized
+> 	    and valid.
 > 
-> Where is this warning printed?
-> 
-> These are already pointed out by Sashiko. You should go really go through all of
-> them (not the pre-existing issues) and comment whether the issues are valid or
-> false positive. For a series touching many controller drivers, this is necessary
-> to avoid introducing regressions.
-> 
-> I'm not going to merge this series until you fix the real issues Sashiko
-> reported or mark them as false positive if not valid.
+> [...]
 
-Hello Mani,
+Applied to
 
-I'm truly sorry. Recently, due to work commitments, I haven't had any 
-spare time. I plan to handle this series after v7.3-rc1 is released. 
-Thank you very much for your reply. I will carefully consider the 
-subsequent review comments regarding Sashiko. Thank you again.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-7.3
 
+Thanks!
 
-Best regards,
-Hans
+[5/5] spi: amlogic-spisg: Make sure clk_init_data is fully initialized
+      https://git.kernel.org/broonie/spi/c/b2702908ee23
 
-> 
-> - Mani
-> 
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
 _______________________________________________
