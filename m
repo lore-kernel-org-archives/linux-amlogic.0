@@ -4,80 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B22A6C5DF81
-	for <linux-amlogic@archiver.kernel.org>; Thu, 20 Aug 2026 18:53:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FF1FC5DF87
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2026 07:15:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=c5uOY5rtc59NS5z4wTpi0aOSIVK1yShkLhmGAncZ9u8=; b=a4DvcUA1rQj0mK
-	HliNYvtRraikV7A7YOLBkmjphtA43YXChzhskQCel6OOMZH6mSQlK5SnEx14i5SvqQScqZ+fqe5B5
-	Trn0J7KS3B0ralIRIFqoEvb2rVHgGpbdRTaqIW4iS8Alb/6uMILkXPUnbwEyX4As9AM3Am3cKBGYt
-	LxqmHofa9rDZSyp8ZaoF/IEeLswJnDlTEr/z/3+PjY7syKyMBAAe4bXEP0NR8u3gQ1NZn/LmLPBI0
-	3uCsdjBFniz2KdrIW9hDdvESQ4WySigDqF1mzTbLBsnHqznSDSjjtx5APnwnvB+ghW8Z1MJwXkpl0
-	dqI03TVyCwNJ0ubk54Ow==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=GBu0J8ELKCfPZkzS9m+XwEGxrILLRPses7HWjVxmgHg=; b=QMitfts6VsvFWj
+	F2nhTALE4mNxNCk0aqF6TOJmZdgjtX3MwVVmck77Bd+tKJFS0eL5toVT08qINI6gOEhUoI8HotIuf
+	/B09RoeHvO1K7PgNnTzCmVMB4IwqAM4XMQKo7mjHEZ/lLjyEj5r2o9S4IT4LWiwnTaIMpgJ1hzIz+
+	jHU5xvpCzKQmFLipK1/mv1C0t/T8yTVOwC7VdOJRNFMl2gyXelNN+cfyqFQTtuDVy1NssfKxXAFlz
+	7AFgGBMhXhhv5gzSAaDS4Gx5fWtu13DBhS4NTiVHmVcOR2xB2mXFOpNaxw/33HMtUXKqS6OTATZhy
+	H4LrbLDbBKIoPuwBGMcA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wx7tc-0000000C4m1-0099;
-	Thu, 20 Aug 2026 18:53:48 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1wxJTh-0000000Cg8t-03Fh;
+	Fri, 21 Aug 2026 07:15:49 +0000
+Received: from mail-pj1-x102c.google.com ([2607:f8b0:4864:20::102c])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wx7ta-0000000C4lh-2znX;
-	Thu, 20 Aug 2026 18:53:46 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 293C541771;
-	Thu, 20 Aug 2026 18:53:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 490B21F000E9;
-	Thu, 20 Aug 2026 18:53:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1787252026;
-	bh=j4+HEzu84tHiUAZOxRhDjFI/ug5GzBnvn/WLzOcpkyY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=H0NP1aHU1Kw2CsPh2H8BLbi6yqq5B182IUlX89TgqPSaIxveE5Jr3xi/Qcs3m7Xbd
-	 Y/befz+dDSuMEw7cndcbClLTwxPwc7YMS+Vi8jIm9FtAqL3cw54XFz7L5DBWi3jfUE
-	 VrLuxAHW68PsF4lFUW7glviay0Vqno/Hsk28QJhgmyIzPusNpwE7QnGXQ1kXqITIZd
-	 OpolHzWzmiPZELFdVHuOc73iCDT/vmumH2CHy4zYLFJtx5hsqWVO+H6JB998UjdRTA
-	 Og3YldTWRaRSDHc7iJubIDoaPP5HJp+E6InQYoqeywDSj3o7EzcgG1aOAPxnFpFT5g
-	 dA666zqlo005A==
-From: Mark Brown <broonie@kernel.org>
-To: Tero Kristo <kristo@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
- Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, 
- Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>, 
- Nuno Sa <nuno.sa@analog.com>, Guenter Roeck <linux@roeck-us.net>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Antoniu Miclaus <antoniu.miclaus@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
- Andy Shevchenko <andy@kernel.org>, Sunny Luo <sunny.luo@amlogic.com>, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>, Kees Cook <kees@kernel.org>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>, 
- Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-hwmon@vger.kernel.org, linux@analog.com, linux-iio@vger.kernel.org, 
- linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <cover.1787165329.git.geert+renesas@glider.be>
-References: <cover.1787165329.git.geert+renesas@glider.be>
-Subject: Re: (subset) [PATCH treewide 0/5] clk: Make sure clk_init_data is
- fully initialized (part 1)
-Message-Id: <178722791204.89147.8075686338925258822.b4-ty@b4>
-Date: Thu, 20 Aug 2026 13:11:52 +0100
+	id 1wxJTe-0000000Cg7c-2xJU
+	for linux-amlogic@lists.infradead.org;
+	Fri, 21 Aug 2026 07:15:48 +0000
+Received: by mail-pj1-x102c.google.com with SMTP id 98e67ed59e1d1-38e08baf860so655431a91.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 21 Aug 2026 00:15:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1787296546; x=1787901346; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=9Y/Hk1ij4iIeeDeCgZ2taRMrjGJza1klMebG4Wvu7x0=;
+        b=cm8vpJFo9QS0LYHZ2sXo8zlAXekpwAYsP8XvLOFU0ctGsL04w5bCMk+SrFgs8LpkJG
+         0D7P+PdST6Yp5ehbsSkEa0IuWE2BlUdUPaHv+sZlJuPmIWtId5hZmywcrXDZjcfqzCWO
+         WRqtB9qFLaqYeFaF7+4BBOc1weEj4A+c8z9vShozY5aS5iU/FvKJBMeYCZ4+kjfx0WH7
+         J92FQUzFML23rBmdXcxAjFiZaB+d1Ovjz8DYrsXmElcfs3NuOk1nkmsRG0GpqyJiMKJZ
+         WQ7KvDBDWz8XFZFZWrJ3VbfqfLaLkXRjVjr1AO9Ih5dp4ukqpldRfWvxtsUlRonBMYQb
+         4Wag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1787296546; x=1787901346;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=9Y/Hk1ij4iIeeDeCgZ2taRMrjGJza1klMebG4Wvu7x0=;
+        b=BqFDjvExTLsQG5Ug24mjGsjBwwudG2D9/OLAPNRGFJ88QDZjlhDwJu3oHcYYi4p1yY
+         jsqVXQN1mN+zcrWa/39zHufpOruajVjn/q+9XmibzSMO08FBDC63jQrMuP7tHzOEcRUj
+         JyxLjtpMi2z3NS0WIPfm4EdkGNb/r1H5CXVss/eioJ1jj875SnxwAjsN5AdmeCq4uB1p
+         L5QLRb1PYyynLN2eNwyirGlhwBAw+/DKBBlv3B2k4+FmvyP0YGZe2a2J5yOQtBs6KGOV
+         LU9ZrKSZj+t1vBylF7okWh+1R74UePshxvqoYEj3jICsBet3NvJ6ELGQlifIRvZMfUg+
+         LcVA==
+X-Forwarded-Encrypted: i=1; AHgh+Rp0VEWGD7yFQb390BUsVUOIzuvJe8gQk/Ca6psixtVFU33aovkrMUIMHYPBdn48mceQsUk2886V8ZVKv99T@lists.infradead.org
+X-Gm-Message-State: AFuF++mFxI8GzDAPRyRkHPAxf2Ngxcl4fW0KFKG4baQN0X3viKmjoO7l
+	yQIImi+pBU1Q6M6vc+XH6lTLMYC/uOVdB5zuw/taN0zSQxGvlaVbDew=
+X-Gm-Gg: AR+sD13u+Xvy3GXOcufoU9nIK2WUA6n/9sHy8dxNQ6RmkZ4td3ALHLVZaKOY3Fkemi+
+	n0UKzYo5OZE8m4RVxNpW6ZG6cO4iJk6jbgWyVdG2wgf2XezFCxn90cPsdK/hNTB+lW6Rq2qqIMa
+	B4Dfju+yAiPxrpdwcQGkm0q2KhcwIz69hHeGWm7o5NUko61aPxn8qfL9f3uJMI+1XB7xXdtepMT
+	53GvDh8r7471k+X4OAUsnQDEaBKAymrWeNs75UwpLe+rxvWCoLe8YryrnVnoxknWh/LiZB+NNp/
+	bmk4ToNmvSOQzdhMfyWDTgupEq9deTobFAUALvP2sJmtf59CjX+SdggqOOMFkmXp/C4Y4VslvPM
+	jFZqkjYpL6fguAUO2OtZkPJMNmOH71yRqXuYzpXvG+ncAKbsoqloUx9cCtXiKlfUTmx9htQqfv/
+	Fv0am9U8b+ljgoyjbhWoFHbFNAXqrcdswizE+zKKnaZMJcQE/0TW13F/Pi9eERjTJAZ6DlXwKlW
+	Jm46LMWbxTJwQ==
+X-Received: by 2002:a17:90a:da87:b0:38e:2860:253f with SMTP id 98e67ed59e1d1-395c3731c29mr8394315a91.12.1787296545832;
+        Fri, 21 Aug 2026 00:15:45 -0700 (PDT)
+Received: from DL2XHKPB4.dl.net ([103.63.104.162])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-395c4c194d2sm1951676a91.15.2026.08.21.00.15.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Aug 2026 00:15:45 -0700 (PDT)
+From: Triet Hoang <triet.hoang.dev@gmail.com>
+To: sean@mess.org
+Cc: mchehab@kernel.org,
+	neil.armstrong@linaro.org,
+	khilman@baylibre.com,
+	jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com,
+	wens@kernel.org,
+	jernej.skrabec@gmail.com,
+	samuel@sholland.org,
+	linux-media@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Triet Hoang <triet.hoang.dev@gmail.com>
+Subject: [PATCH] media: rc: Convert to DEFINE_SIMPLE_DEV_PM_OPS()
+Date: Fri, 21 Aug 2026 14:15:33 +0700
+Message-ID: <20260821071533.215821-1-triet.hoang.dev@gmail.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1882; i=broonie@kernel.org;
- h=from:subject:message-id; bh=T4O6Ytd+oVjquoKgE7hf+vP7Dh6bPlJfF2fa2COS54M=;
- b=owEBbAGT/pANAwAKASTWi3JdVIfQAcsmYgBqh00yfuqNALH6N3AXS+G0HCah2fOyCOhjzME7f
- KNnVXeAwAOJATIEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCaodNMgAKCRAk1otyXVSH
- 0AShB/dhLJEEeXKrFQP9gPrIolmzi20NN0M7zC8KH9y3aa0HDRIJ7TvS+Mlng+fdUJET/6Z7YdN
- WwL1wHIjh3EU33JMDcZr5roVJlS2GMOtkapj/U0/KKGaNeIjzv4dfTSJHfNsGJzAEbsAl1DJOG2
- EL9hRt5A6Bm6qkLavFafXoAOgXgTNPvroZfhwTUzkSICx+buDnmQ0FulKgO8h9wYKRMOsrRfyLO
- 0vz7DyM9o2N/dZFZc+ioL0Zr6TqUFedhtZO+ICe+0AauztCGPgGqinrzsgRgm+I8INFJZoPOmt3
- Ua3StNsCFMpgq0hNzFgNCUVp74ea+Y3GiTcnrWUWzMbP5B8=
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260821_001546_744519_55789E78 
+X-CRM114-Status: GOOD (  11.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,52 +109,90 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 19 Aug 2026 21:05:14 +0200, Geert Uytterhoeven wrote:
-> clk: Make sure clk_init_data is fully initialized (part 1)
-> 
-> 	Hi all,
-> 
-> The clk_init_data structure contains three mutually-exclusive members
-> for different methods to specify the possible parents of a clock,
-> prompting drivers to initialize only the members they need.  When commit
-> fc0c209c147f35ed ("clk: Allow parents to be specified without string
-> names") added the last two methods, this was done in a
-> backwards-compatible way, using a priority-based scheme:
->   - .name, .ops, .num_parents, and .flags must always be initialized,
->   - if .num_parents is non-zero, .parent_names must be initialized,
->       - if .parent_names is NULL, .parent_data must be initialized,
-> 	  - if .parent_data is NULL, .parent_hws must be initialized
-> 	    and valid.
-> 
-> [...]
+Convert the deprecated SIMPLE_DEV_PM_OPS
+to DEFINE_SIMPLE_DEV_PM_OPS
+and pm_sleep_ptr().
 
-Applied to
+This lets us drop the __maybe_unused annotations
+from its suspend and resume callbacks,
+also reduces kernel size in case CONFIG_PM or
+CONFIG_PM_SLEEP is disabled.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-7.3
+Signed-off-by: Triet Hoang <triet.hoang.dev@gmail.com>
+---
+ drivers/media/rc/meson-ir.c  | 6 +++---
+ drivers/media/rc/sunxi-cir.c | 8 ++++----
+ 2 files changed, 7 insertions(+), 7 deletions(-)
 
-Thanks!
-
-[5/5] spi: amlogic-spisg: Make sure clk_init_data is fully initialized
-      https://git.kernel.org/broonie/spi/c/b2702908ee23
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
+index 272ebb0d97c8..795b38ca864a 100644
+--- a/drivers/media/rc/meson-ir.c
++++ b/drivers/media/rc/meson-ir.c
+@@ -567,7 +567,7 @@ static void meson_ir_shutdown(struct platform_device *pdev)
+ 	spin_unlock_irqrestore(&ir->lock, flags);
+ }
+ 
+-static __maybe_unused int meson_ir_resume(struct device *dev)
++static int meson_ir_resume(struct device *dev)
+ {
+ 	struct meson_ir *ir = dev_get_drvdata(dev);
+ 
+@@ -579,7 +579,7 @@ static __maybe_unused int meson_ir_resume(struct device *dev)
+ 	return 0;
+ }
+ 
+-static __maybe_unused int meson_ir_suspend(struct device *dev)
++static int meson_ir_suspend(struct device *dev)
+ {
+ 	struct meson_ir *ir = dev_get_drvdata(dev);
+ 	unsigned long flags;
+@@ -591,7 +591,7 @@ static __maybe_unused int meson_ir_suspend(struct device *dev)
+ 	return 0;
+ }
+ 
+-static SIMPLE_DEV_PM_OPS(meson_ir_pm_ops, meson_ir_suspend, meson_ir_resume);
++static DEFINE_SIMPLE_DEV_PM_OPS(meson_ir_pm_ops, meson_ir_suspend, meson_ir_resume);
+ 
+ static const struct meson_ir_param meson6_ir_param = {
+ 	.support_hw_decoder = false,
+diff --git a/drivers/media/rc/sunxi-cir.c b/drivers/media/rc/sunxi-cir.c
+index 28e840a7e5b8..7fd48c510143 100644
+--- a/drivers/media/rc/sunxi-cir.c
++++ b/drivers/media/rc/sunxi-cir.c
+@@ -236,19 +236,19 @@ static void sunxi_ir_hw_exit(struct device *dev)
+ 	reset_control_assert(ir->rst);
+ }
+ 
+-static int __maybe_unused sunxi_ir_suspend(struct device *dev)
++static int sunxi_ir_suspend(struct device *dev)
+ {
+ 	sunxi_ir_hw_exit(dev);
+ 
+ 	return 0;
+ }
+ 
+-static int __maybe_unused sunxi_ir_resume(struct device *dev)
++static int sunxi_ir_resume(struct device *dev)
+ {
+ 	return sunxi_ir_hw_init(dev);
+ }
+ 
+-static SIMPLE_DEV_PM_OPS(sunxi_ir_pm_ops, sunxi_ir_suspend, sunxi_ir_resume);
++static DEFINE_SIMPLE_DEV_PM_OPS(sunxi_ir_pm_ops, sunxi_ir_suspend, sunxi_ir_resume);
+ 
+ static int sunxi_ir_probe(struct platform_device *pdev)
+ {
+@@ -422,7 +422,7 @@ static struct platform_driver sunxi_ir_driver = {
+ 	.driver = {
+ 		.name = SUNXI_IR_DEV,
+ 		.of_match_table = sunxi_ir_match,
+-		.pm = &sunxi_ir_pm_ops,
++		.pm = pm_sleep_ptr(&sunxi_ir_pm_ops),
+ 	},
+ };
+ 
+-- 
+2.53.0
 
 
 _______________________________________________
