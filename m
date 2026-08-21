@@ -4,54 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 659FFC5DF7D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2026 10:18:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3938C5DF7D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2026 10:22:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qNBqvj7/tTk4ug0rDbE24vfAi//OAbioIZjam9Fg/J0=; b=ZRJ3CZyctTRUwE
-	tAPEKHVRCCGF7JFDBCP/YGw9vl4mozBNz54ZjqHo9act0tly7IA3vYar7I0dFnSrd16Y7yHkKlk4O
-	nV6w9ZhWylgH4TuFluRULeImDiF1+g2ayJO9OH3YbnpBc6yhuOOaITWlWECRIqzVW3pivHbwATfaX
-	qtvoFx1tWv1cfiEhasKWGD5kE7tuOu2EMtolbogiWbpFHNUR8ntCE4OKV8VK6zI9HVeQ/1ou2pGtF
-	75a0UHU44n6IEjJYQkulR8yBTxqv3a3/yBqv/3yDyF+2n6/4XXJ8ECgiVPxXWscV+BFo376jWWydS
-	9u9L2hwIybN1cxFidCIg==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=rOoDKZOboMwmXE4ZBpXaY+wRoTSKxBiHmcAdHeAlgKQ=; b=X3w+5dAZfJyHfFgKMUW0pp91hQ
+	wC2rFgVI8Ry9JRjjAd/gismR1JXJES7J6Qgh4U+QphioxvGJcAAV2JJK9JDhFhOjSi66TMkY9G0/O
+	g0e8WJfArwRqqfVLFrS6GABzWH0OV/u9Ym+8Y/D9na9SMEvmSnFavlk8TGcyntN6JgfJI8lasHRGj
+	2zkqaX+R/V85K0p6uJ6Lbnydw/Pb/Klf0MhE95rWOx3UjvJTDGa4OhZ0OoQzlxZ3yAOM0LYqCuIb7
+	NhMBxZXPm7tIvcO68IbAYOloP92KS5cPBO/PPgV9Z1i+PLUHHaRzYQfrL1Rtz0fstvnMGfVGyh37N
+	lbsjf2lg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wxMKM-0000000D57U-2f7E;
-	Fri, 21 Aug 2026 10:18:22 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1wxMOC-0000000D5UV-1Ed8;
+	Fri, 21 Aug 2026 10:22:20 +0000
+Received: from mail-vk1-f179.google.com ([209.85.221.179])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wxMKL-0000000D57M-3M1o
+	id 1wxMOA-0000000D5Tt-07Px
 	for linux-amlogic@lists.infradead.org;
-	Fri, 21 Aug 2026 10:18:21 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 384CF41B06;
-	Fri, 21 Aug 2026 10:18:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D012A1F000E9;
-	Fri, 21 Aug 2026 10:18:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1787307501;
-	bh=whinKhOnbBpFaLiJHM5JFGDjF73h4ClZ7n5vppHJv8c=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=XogmDiCDZCbN29RyE+PEREi0zxt3OlYeYf3yJGtNU/mNla/0qeQeqoLvO5Y3tGWK+
-	 BtBG6dv27MM//JfJLrYeTD76+K8hl3P6nCGgUjYyHGAapkviNRBiFt0mTt21Jw0I/f
-	 z5SAOC3IhuK595CAvZN+5M7hNLd1jM0F7NR2bj2bK87f+iy0LDicTDz/FFH1xE8vWQ
-	 zT4ntlyswSHh9OFvtEVU3AtkZ64AJTEBn4jQMl1114xe2mh7g1ReqaoO+shNCCG7Dp
-	 hGyutxET2Xb3CDZSKsi3C1sB2ayg6jJNbioJV6uBNKkenI9J/pIDEyxTu71Q39JZP/
-	 za76CqE4hTG3g==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 1/2] mmc: meson-gx: FIXME: Make sure clk_init_data is
- fully initialized
-To: "Geert Uytterhoeven" <geert+renesas@glider.be>
-Cc: linux-clk@vger.kernel.org, neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
-In-Reply-To: <4b9a377a810b69a4eb885fc00cb34ef63e7fc1f1.1787240090.git.geert+renesas@glider.be>
-References: <cover.1787240090.git.geert+renesas@glider.be>
- <4b9a377a810b69a4eb885fc00cb34ef63e7fc1f1.1787240090.git.geert+renesas@glider.be>
-Date: Fri, 21 Aug 2026 10:18:20 +0000
-Message-Id: <20260821101820.D012A1F000E9@smtp.kernel.org>
+	Fri, 21 Aug 2026 10:22:19 +0000
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-5c2ae02f69eso704960e0c.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 21 Aug 2026 03:22:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1787307736; x=1787912536;
+        h=content-type:cc:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=NZ9qFWwtyy0CyLFBazZArycje1mFKlJigB1GC39CAP0=;
+        b=gdGNxn7Kz12N0JqamcWcZlYrZQg52jujnkgRa0YWywH7hOez1tQLIUpvW+NL/RrQDo
+         KtG3+3YGUVlJDDfSXczqXxx5QuD33P5ONVC8NwgxUHEaH/inNXoADQqN+uGtwWXULRhL
+         U3km0aO65B4zkRxShZfoZHnTLnxqpum8gmqStp4nrJJGoXhGu6djbf1osyqx/ka+D4Bf
+         0GHBzWtRgPCMb/u/CS4t721/fd5Mhp2i7WTgPJQOs3HIkWOmoWtnUQr3NMIdbbzG1/Sg
+         yd5bSaK6COUewfurvsiDwJeheeZoyuOBXb9/8wus8bQsHQ0Vt3tfm4D+QDD2u/XgaGpL
+         mvkQ==
+X-Forwarded-Encrypted: i=1; AHgh+Rp1kTs8IFldmLucNyby/zYtaLYCE7YQBGXG8RzvAzpWukURWl0PPG9Lafn9SXRL/XOj6cIsGKPG0ryl4I3h@lists.infradead.org
+X-Gm-Message-State: AFuF++nfAuqS6fxDrGuZERY117jewOAkteYNZtMmAn6lFzW+zNbt4m+2
+	/P4sj4/9WMrqs+K816i671fI5pcRI8LfMfZdmTVwJo6F3Q7jzYfbbqK8RudX/3mo
+X-Gm-Gg: AR+sD12GeBuA5rTFEH1uARhgni2POR0j+sLJBxGmxVnNgvoQPBvg3HVrdSF3awgdDTg
+	sfsnmlLAjzf+8Fotx8ju6z6efYsNE1Lhs/AzTGmQXS2+DcUL/Ju69yRYwG7eH9cXG3LRiVOme2k
+	+zcMo6D1UseXYQ394csljF8GHbsNI9K6ASnip4R6GIkcGmAT++Mkh5zdPrTL/qUFIREvH7vGRcc
+	gSgAhz1p0hUl4oENCqjtygtRKBXpeO1RDUHAA97DZbGaMDRpO7aW+AwtrPDL5pOkTiKUjB9u9Rc
+	OaGbhr70/TYFbqA83VHF3aDLZbRwk5Pac3TOEbpl6PeAM+khAnIBoLOD+KzTZNEU0+wUECqYZKD
+	qSl9D/2sPH9r7rPZVA2EoNV+g1OCXdo4YhKrp4RPI8UJ/Ah21RXFe0AqTay5I9SpyH5bAGWpC0r
+	Err56z8Ln1G8VszMj57vJE+akKp4Vd9mU97DE19X4qTcG1XI7gME/QQ8v8YyAiwKrhw6AwK/YxR
+	thLdtkH1UXdQ9f7ElYQAiDb73if2Q==
+X-Received: by 2002:a05:6122:d8f:b0:5c5:d7aa:13ec with SMTP id 71dfb90a1353d-5c5ff3afbb1mr2132587e0c.1.1787307736578;
+        Fri, 21 Aug 2026 03:22:16 -0700 (PDT)
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com. [209.85.221.178])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5c5fbdb21d6sm3239592e0c.0.2026.08.21.03.22.16
+        for <linux-amlogic@lists.infradead.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Aug 2026 03:22:16 -0700 (PDT)
+Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-5bf8a2932a3so551467e0c.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 21 Aug 2026 03:22:16 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AHgh+RooHnUfQbrHTaE4aPx9ocJj9PqBHdbX8fPId3iNJTSPGXEJlyMePFH0PCmOYwvRua4vv25Q74McQwYbrLLe@lists.infradead.org
+X-Received: by 2002:a05:6122:330d:b0:5bd:fb78:5461 with SMTP id
+ 71dfb90a1353d-5c5fedcae2emt4672086e0c.0.1787307416387; Fri, 21 Aug 2026
+ 03:16:56 -0700 (PDT)
+MIME-Version: 1.0
+References: <cover.1787165329.git.geert+renesas@glider.be>
+In-Reply-To: <cover.1787165329.git.geert+renesas@glider.be>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 21 Aug 2026 12:16:44 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXaxV9K8=yQ3KU-V2dV-eFqFqMR9WDyt2RVKADLS51Dcg@mail.gmail.com>
+X-Gm-Features: AcwNN1XMP476J77X05DStUZ6YHTKoquM1cTbXZSuVIS6ygsja8ReRo486qzyWdY
+Message-ID: <CAMuHMdXaxV9K8=yQ3KU-V2dV-eFqFqMR9WDyt2RVKADLS51Dcg@mail.gmail.com>
+Subject: Re: [PATCH treewide 0/5] clk: Make sure clk_init_data is fully
+ initialized (part 1)
+Cc: Tero Kristo <kristo@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
+	Brian Masney <bmasney+clk@redhat.com>, Jerome Brunet <jbrunet+clk@baylibre.com>, 
+	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>, Nuno Sa <nuno.sa@analog.com>, 
+	Guenter Roeck <linux@roeck-us.net>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Antoniu Miclaus <antoniu.miclaus@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
+	Sunny Luo <sunny.luo@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+	Mark Brown <broonie@kernel.org>, Kees Cook <kees@kernel.org>, 
+	Kevin Hilman <khilman@baylibre.com>, 
+	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>, linux-omap@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org, 
+	linux@analog.com, linux-iio@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Geert Uytterhoeven <geert+renesas@glider.be>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260821_032218_077158_D7F62A45 
+X-CRM114-Status: GOOD (  26.36  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,53 +105,82 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpQcmUtZXhpc3RpbmcgaXNzdWVzOgot
-IFtIaWdoXSBVbmluaXRpYWxpemVkIHNwaW5sb2NrIGFjY2VzcyBpbiBpbnRlcnJ1cHQgaGFuZGxl
-cgotLQoKLS0tIFBhdGNoIFsxXTogW1BBVENIIDEvMl0gbW1jOiBtZXNvbi1neDogRklYTUU6IE1h
-a2Ugc3VyZSBjbGtfaW5pdF9kYXRhIGlzIGZ1bGx5IGluaXRpYWxpemVkIC0tLQpjb21taXQgMjAz
-Njg4MjE0NDRmNjU0ZjExNjVjNThjMDgxNjI4M2EzNzc0ZDM3NgpBdXRob3I6IEdlZXJ0IFV5dHRl
-cmhvZXZlbiA8Z2VlcnQrcmVuZXNhc0BnbGlkZXIuYmU+CgptbWM6IG1lc29uLWd4OiBGSVhNRTog
-TWFrZSBzdXJlIGNsa19pbml0X2RhdGEgaXMgZnVsbHkgaW5pdGlhbGl6ZWQKClRoaXMgY29tbWl0
-IGZ1bGx5IGluaXRpYWxpemVzIHRoZSBjbGtfaW5pdF9kYXRhIHN0cnVjdHVyZSB0byBhdm9pZCBz
-dWJ0bGUKaW5pdGlhbGl6YXRpb24gaXNzdWVzLiBCeSBlbnN1cmluZyBhbGwgbWVtYmVycyBhcmUg
-emVyb2VkLCBpdCBwcmV2ZW50cyBidWdzCndoZW4gc3BlY2lmaWMgc3RhY2sgaW5pdGlhbGl6YXRp
-b24gY29uZmlncyBhcmUgZW5hYmxlZC4KCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbW1jL2hvc3Qv
-bWVzb24tZ3gtbW1jLmMgYi9kcml2ZXJzL21tYy9ob3N0L21lc29uLWd4LW1tYy5jCj4gaW5kZXgg
-Njk0YmI0NDNkNWYzZi4uNjk4ZmViZGNkNDk4OCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL21tYy9o
-b3N0L21lc29uLWd4LW1tYy5jCj4gKysrIGIvZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1neC1tbWMu
-Ywo+IEBAIC00MTgsNyArNDE4LDcgQEAgc3RhdGljIGludCBtZXNvbl9tbWNfY2xrX3NldChzdHJ1
-Y3QgbWVzb25faG9zdCAqaG9zdCwgdW5zaWduZWQgbG9uZyByYXRlLAo+ICAgKi8KPiAgc3RhdGlj
-IGludCBtZXNvbl9tbWNfY2xrX2luaXQoc3RydWN0IG1lc29uX2hvc3QgKmhvc3QpCj4gIHsKPiAt
-CXN0cnVjdCBjbGtfaW5pdF9kYXRhIGluaXQ7Cj4gKwlzdHJ1Y3QgY2xrX2luaXRfZGF0YSBpbml0
-ID0ge307Cj4gIAlzdHJ1Y3QgY2xrX211eCAqbXV4Owo+ICAJc3RydWN0IGNsa19kaXZpZGVyICpk
-aXY7Cj4gIAljaGFyIGNsa19uYW1lWzMyXTsKCltTZXZlcml0eTogSGlnaF0KVGhpcyBpcyBhIHBy
-ZS1leGlzdGluZyBpc3N1ZSwgYnV0IEkgbm90aWNlZCBhIHBvdGVudGlhbCBwcm9ibGVtIGluIGhv
-dyB0aGUKaW50ZXJydXB0IGhhbmRsZXIgaXMgcmVnaXN0ZXJlZCByZWxhdGl2ZSB0byBsb2NrIGlu
-aXRpYWxpemF0aW9uIGluIHRoaXMgZHJpdmVyLgoKSW4gZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1n
-eC1tbWMuYzptZXNvbl9tbWNfcHJvYmUoKSwgdGhlIGludGVycnVwdCBpcwpyZXF1ZXN0ZWQgYmVm
-b3JlIHRoZSBzcGlubG9jayBpcyBpbml0aWFsaXplZDoKCglyZXQgPSByZXF1ZXN0X3RocmVhZGVk
-X2lycShob3N0LT5pcnEsIG1lc29uX21tY19pcnEsCgkJCQkgICBtZXNvbl9tbWNfaXJxX3RocmVh
-ZCwgSVJRRl9PTkVTSE9ULAoJCQkJICAgZGV2X25hbWUoJnBkZXYtPmRldiksIGhvc3QpOwoJaWYg
-KHJldCkKCQlnb3RvIGVycl9pbml0X2NsazsKCglzcGluX2xvY2tfaW5pdCgmaG9zdC0+bG9jayk7
-CgpJZiBhbiBpbnRlcnJ1cHQgZmlyZXMgaW1tZWRpYXRlbHkgdXBvbiByZWdpc3RyYXRpb24sIHRo
-ZSBpbnRlcnJ1cHQgaGFuZGxlcgpjYW4gYmVnaW4gZXhlY3V0aW9uIGFuZCBhdHRlbXB0IHRvIGFj
-cXVpcmUgdGhlIHVuaW5pdGlhbGl6ZWQgbG9jazoKCmRyaXZlcnMvbW1jL2hvc3QvbWVzb24tZ3gt
-bW1jLmM6bWVzb25fbW1jX2lycSgpIHsKCS4uLgoJaWYgKHN0YXR1cyAmIElSUV9TRElPKSB7CgkJ
-c3Bpbl9sb2NrKCZob3N0LT5sb2NrKTsKCQlfX21lc29uX21tY19lbmFibGVfc2Rpb19pcnEoaG9z
-dC0+bW1jLCAwKTsKCQlzZGlvX3NpZ25hbF9pcnEoaG9zdC0+bW1jKTsKCQlzcGluX3VubG9jaygm
-aG9zdC0+bG9jayk7CgkuLi4KfQoKQ291bGQgdGhpcyByZXN1bHQgaW4gYSBsb2NrZGVwIHdhcm5p
-bmcgb3Iga2VybmVsIG9vcHMgaWYgYSBzcHVyaW91cyBpbnRlcnJ1cHQKb3IgcGVuZGluZyBoYXJk
-d2FyZSBldmVudCB0cmlnZ2VycyBiZWZvcmUgc3Bpbl9sb2NrX2luaXQoKSBjb21wbGV0ZXM/Cgot
-LSAKU2FzaGlrbyBBSSByZXZpZXcgwrcgaHR0cHM6Ly9zYXNoaWtvLmRldi8jL3BhdGNoc2V0L2Nv
-dmVyLjE3ODcyNDAwOTAuZ2l0LmdlZXJ0K3JlbmVzYXNAZ2xpZGVyLmJlP3BhcnQ9MQoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBt
-YWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0
-cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On Wed, 19 Aug 2026 at 21:05, Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+> The clk_init_data structure contains three mutually-exclusive members
+> for different methods to specify the possible parents of a clock,
+> prompting drivers to initialize only the members they need.  When commit
+> fc0c209c147f35ed ("clk: Allow parents to be specified without string
+> names") added the last two methods, this was done in a
+> backwards-compatible way, using a priority-based scheme:
+>   - .name, .ops, .num_parents, and .flags must always be initialized,
+>   - if .num_parents is non-zero, .parent_names must be initialized,
+>       - if .parent_names is NULL, .parent_data must be initialized,
+>           - if .parent_data is NULL, .parent_hws must be initialized
+>             and valid.
+>
+> However, not initializing all members may cause subtle issues, which are
+> only exposed when CONFIG_INIT_STACK_ALL_PATTERN or
+> CONFIG_INIT_STACK_NONE is enabled.
+>
+> Hence this series makes sure all members are fully initialized, to fix
+> such bugs, and to avoid future breakage when converting drivers to a
+> different method for specifying the parents.
+>
+> This (small) series is part 1, and fixes all cases that I identified to
+> be real bugs:
+>   - The first patch fixes a crash I saw on BeagleBone Black,
+>   - The other patches are only compile-tested.
+> All patches in this series can be applied independently.
+>
+> Part 2 will be much larger (touching 185 files), and will fix the
+> remaining cases that are currently harmless.
+
+FTR, I split part two in 13 subparts, per subsystem:
+  - "[PATCH 0/2] ARM/soc: Make sure clk_init_data is fully initialized"
+    https://lore.kernel.org/cover.1787239869.git.geert+renesas@glider.be>
+  - "[PATCH 0/3] ASoC: Make sure clk_init_data is fully initialized"
+    https://lore.kernel.org/cover.1787239902.git.geert+renesas@glider.be>
+  - "[PATCH 00/45] clk: Make sure clk_init_data is fully initialized (part two)"
+    https://lore.kernel.org/cover.1787239813.git.geert+renesas@glider.be>
+  - "[PATCH 0/2] drm: Make sure clk_init_data is fully initialized"
+    https://lore.kernel.org/cover.1787239944.git.geert+renesas@glider.be>
+  - "[PATCH] i2c: bcm2835: Make sure clk_init_data is fully initialized"
+    https://lore.kernel.org/9f82f37e6d6c069cd44326bcd5e5a2a8069a13a9.1787239980.git.geert+renesas@glider.be>
+  - "[PATCH 0/2] iio: Make sure clk_init_data is fully initialized"
+    https://lore.kernel.org/cover.1787240005.git.geert+renesas@glider.be>
+  - "[PATCH 0/3] media: Make sure clk_init_data is fully initialized"
+    https://lore.kernel.org/cover.1787240035.git.geert+renesas@glider.be>
+  - "[PATCH] MIPS: Alchemy: clock: Make sure clk_init_data is fully"
+    https://lore.kernel.org/3610b51df642abb1fbb39f5bd93fddea43f8f164.1787240060.git.geert+renesas@glider.be>
+  - "[PATCH 0/2] mmc: Make sure clk_init_data is fully initialized"
+    https://lore.kernel.org/cover.1787240090.git.geert+renesas@glider.be>
+  - "[PATCH net-next 0/3] net: Make sure clk_init_data is fully initialized"
+    https://lore.kernel.org/cover.1787240118.git.geert+renesas@glider.be>
+  - "[PATCH] peci: controller: aspeed: Make sure clk_init_data is fully"
+    https://lore.kernel.org/48aa77c45e109f78ccd806bc3b7bf380c5bc5e71.1787240145.git.geert+renesas@glider.be>
+  - "[PATCH 0/2] phy: Make sure clk_init_data is fully initialized"
+    https://lore.kernel.org/cover.1787240165.git.geert+renesas@glider.be>
+  - "[PATCH 0/5] rtc: Make sure clk_init_data is fully initialized"
+    https://lore.kernel.org/cover.1787241693.git.geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
