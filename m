@@ -4,52 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1EEBC5DF87
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2026 07:24:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E620AC5DF87
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2026 07:50:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GNtHo7MY5M6lJgyT280xodwBZhAMOaLNuJf+WHy8/CY=; b=wIHK2FHoKYQj3m
-	ocTIiRxQJQAgUBUv4Uw2Dw6Pu/EfMm2b/odQQdXdSieZ7tb7ZYaGIk0M/SUgVfP4iHG0rLHkR4rhU
-	EwY4QpBKMODgkNntErNOjCsufaksbIuBqYtDBzykFOHbub6gucwNHPz3caUt2svrVXbmvqYJGUXyj
-	Ruu1Q+5Yw4rYmOhXoyRSmOafIhTxSXhkyzFuAWAkd0rEtxKkpBCQsXsarzKXWvKfhmvCDS/fGogpi
-	pA8a78Q9DtwVnHyK1mpMTHvQedJosCp28hhXeOxpr8aZnU9bg3V/1Wdw+ItNjjOHBmR8/C7bNRqx9
-	UuTQXbPl6Y/I7RHkhZHQ==;
+	List-Owner; bh=TuOtwL4eWTWfeLD4mzQFtSf7NSU8DFMtokSkWyUhHXA=; b=Gu4Qm6EpsJdR5Z
+	fEyukiRzCLOM3xi2sV6TTEkObuvlyPbclGA6Js4we8y9U+QSAET20dUZr1BQWJCNcddqsEiO8U/Q5
+	ejkCRG8mUySU8xDpRZcCGBWSQTdnXsQnkYmSv1WgA6xDS8yg98GpTK3FtFfipmI03+qFzlaHj6DP2
+	uEaBR1wLZmlEdojKeTTvPwtwRrMJJj0liNDxHIcZyA8yjp/blZjO+eOkYs/nAmvTKHKxaVb4rYg8T
+	SWH2vW0liAkWDusMOd0jTdZFrs8pfqL5GfzlhSc+Z1pDMY43K0ONtZs08YGJ0k3744Py/QQyyHy2q
+	LGzVHa65/5gX7UUqj82w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wxJbj-0000000ChBc-1KAN;
-	Fri, 21 Aug 2026 07:24:07 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1wxK1J-0000000Ck8K-0OxC;
+	Fri, 21 Aug 2026 07:50:33 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wxJbi-0000000ChBO-08Sz
+	id 1wxK1H-0000000Ck80-3KiY
 	for linux-amlogic@lists.infradead.org;
-	Fri, 21 Aug 2026 07:24:06 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 4821D435BD;
-	Fri, 21 Aug 2026 07:24:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5F001F000E9;
-	Fri, 21 Aug 2026 07:24:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1787297045;
-	bh=+D+0qgBaAp4Lhw/H/2MaR9l6LVKXMe7xTX1Wu+7ofBQ=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=MCS2d7zeLkq8f/BYkkLuOH7lsKtxZw0fVezKYEGaVikfwkseeE2HAhjjOob+4VFLX
-	 VY6ggKMfA6grojdoFRXyTtqE06QzkTGglK/6SJflTYXGJgp60CTBMvACrruAtbolTM
-	 ZcIMdxHqUsRJImIXxxIWawxfrNbDOSEwheQIOhoLvi/0b8gk/kqULXHmjrRnyeNMQu
-	 IafgJU+SBO9IsbYKLqiCmUdvn0fMdn56K1FVrynRY47s4YGbbMsPo3bOZgqXZ9iHV4
-	 cXpBdGl0ajez8eYvF43LLPxJh1pd9MpJ68P1t18XSZ+9m25ueS7aJYVlfHSthsNhcA
-	 mdXfwuB/Jp0Og==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] media: rc: Convert to DEFINE_SIMPLE_DEV_PM_OPS()
-To: "Triet Hoang" <triet.hoang.dev@gmail.com>
-Cc: linux-amlogic@lists.infradead.org, media-ci@linuxtv.org, linux-sunxi@lists.linux.dev, neil.armstrong@linaro.org
-In-Reply-To: <20260821071533.215821-1-triet.hoang.dev@gmail.com>
-References: <20260821071533.215821-1-triet.hoang.dev@gmail.com>
-Date: Fri, 21 Aug 2026 07:24:04 +0000
-Message-Id: <20260821072404.D5F001F000E9@smtp.kernel.org>
+	Fri, 21 Aug 2026 07:50:31 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 586EE40368;
+	Fri, 21 Aug 2026 07:50:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0AC89C2BCF7;
+	Fri, 21 Aug 2026 07:50:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1787298631;
+	bh=VhHOuZqwXblHkKQiSaBumg8ULsVMZMYN6r6pDjM3eDc=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=EIOvnKRcxuPQFWs1LgH8H4zNM7pSMrfjMT3LCGwWzjtHVncyvDHc4FAr5shBEAeht
+	 I4QeYaaZlZd3YI4FfIeMoSpSTh2gCXWbjkhsg2op0oYgKKbMyfcsbEuYYGtmjB48Oh
+	 zIW/tGCNp4Vo9WeBrG1qvwE+K4koaNsCdq03qIxsXVmOpLwSvW2vWGXOoXydKzq9UJ
+	 TLo96E1otkehD6rfXs4JEryzjERei+00CG54+SekQi6S5IOioQaV6ZftHT4OsrVoKq
+	 ASnq668JGzIcZlS9EpqBa5A8KOnZ9AgCjN9dEnrPCExjwoHYNF+oPVlzNATvFfzUkY
+	 vBQ+lXKFNV+HQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DD8C9C5DF87;
+	Fri, 21 Aug 2026 07:50:30 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Fri, 21 Aug 2026 07:50:23 +0000
+Subject: [PATCH v3 2/2] thermal: amlogic: Add support for A9 thermal
+ controller
+MIME-Version: 1.0
+Message-Id: <20260821-a9-thermal-v3-2-0e7abf3941e3@amlogic.com>
+References: <20260821-a9-thermal-v3-0-0e7abf3941e3@amlogic.com>
+In-Reply-To: <20260821-a9-thermal-v3-0-0e7abf3941e3@amlogic.com>
+To: Guillaume La Roque <glaroque@baylibre.com>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1787298628; l=7631;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=UvhpgUFqEAfFgKvsv+UYvjNOTDt0ClrfvOVR4Megv98=;
+ b=ETt1tdLJm8x3mlWHnP+Wt2ajlTSvKJeCFODDMBbgPC9hMbP9fXa1f5dCQ0xVO4NmqZVPm4DI3
+ a8yL0LRl9lDBYSoY2iRFsipe7YmasabI4VQzb5tWhBZqR3jD3m7OZsH
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,58 +84,250 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MiBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpOZXcgaXNzdWVzOgotIFtMb3ddIElu
-Y29ycmVjdCBQTSB3cmFwcGVyIG1hY3JvIHVzZWQgZm9yIHRoZSBkZXZfcG1fb3BzIHN0cnVjdHVy
-ZSBwb2ludGVyLgoKUHJlLWV4aXN0aW5nIGlzc3VlczoKLSBbQ3JpdGljYWxdIFRoaXMgcHJvYmxl
-bSB3YXNuJ3QgaW50cm9kdWNlZCBieSB0aGlzIHBhdGNoLCBidXQgdGhlcmUgaXMgYSB1c2UtYWZ0
-ZXItZnJlZSBvZiB0aGUgUkMgZGV2aWNlIG9uIGRyaXZlciByZW1vdmFsIGFuZCBwcm9iZSBlcnJv
-ciBwYXRocyBkdWUgdG8gYW4gYWN0aXZlIGRldnJlcy1tYW5hZ2VkIElSUSBoYW5kbGVyLgotLQoK
-LS0tIFBhdGNoIFsxXTogW1BBVENIXSBtZWRpYTogcmM6IENvbnZlcnQgdG8gREVGSU5FX1NJTVBM
-RV9ERVZfUE1fT1BTKCkgLS0tCmNvbW1pdCA1YWQwMTNjZTQ3YjkwMWY0YmQ4YTUzYTFjMDJiMjIy
-YThkZjY4NThhCkF1dGhvcjogVHJpZXQgSG9hbmcgPHRyaWV0LmhvYW5nLmRldkBnbWFpbC5jb20+
-CgptZWRpYTogcmM6IENvbnZlcnQgdG8gREVGSU5FX1NJTVBMRV9ERVZfUE1fT1BTKCkKCkNvbnZl
-cnQgdGhlIGRlcHJlY2F0ZWQgU0lNUExFX0RFVl9QTV9PUFMgdG8gREVGSU5FX1NJTVBMRV9ERVZf
-UE1fT1BTCmFuZCBwbV9zbGVlcF9wdHIoKS4gVGhpcyBsZXRzIHVzIGRyb3AgdGhlIF9fbWF5YmVf
-dW51c2VkIGFubm90YXRpb25zCmZyb20gaXRzIHN1c3BlbmQgYW5kIHJlc3VtZSBjYWxsYmFja3Ms
-IGFsc28gcmVkdWNlcyBrZXJuZWwgc2l6ZSBpbgpjYXNlIENPTkZJR19QTSBvciBDT05GSUdfUE1f
-U0xFRVAgaXMgZGlzYWJsZWQuCgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL21lZGlhL3JjL3N1bnhp
-LWNpci5jIGIvZHJpdmVycy9tZWRpYS9yYy9zdW54aS1jaXIuYwo+IGluZGV4IDI4ZTg0MGE3ZTVi
-OGMuLjdmZDQ4YzUxMDE0M2QgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9tZWRpYS9yYy9zdW54aS1j
-aXIuYwo+ICsrKyBiL2RyaXZlcnMvbWVkaWEvcmMvc3VueGktY2lyLmMKClsgLi4uIF0KCj4gQEAg
-LTQyMiw3ICs0MjIsNyBAQCBzdGF0aWMgc3RydWN0IHBsYXRmb3JtX2RyaXZlciBzdW54aV9pcl9k
-cml2ZXIgPSB7Cj4gIAkuZHJpdmVyID0gewo+ICAJCS5uYW1lID0gU1VOWElfSVJfREVWLAo+ICAJ
-CS5vZl9tYXRjaF90YWJsZSA9IHN1bnhpX2lyX21hdGNoLAo+IC0JCS5wbSA9ICZzdW54aV9pcl9w
-bV9vcHMsCj4gKwkJLnBtID0gcG1fc2xlZXBfcHRyKCZzdW54aV9pcl9wbV9vcHMpLAoKW1NldmVy
-aXR5OiBMb3ddCkRvZXMgdGhpcyBjb2RlIHVzZSB0aGUgY29ycmVjdCB3cmFwcGVyIG1hY3JvIGZv
-ciBhIGRldl9wbV9vcHMgc3RydWN0dXJlCnBvaW50ZXI/IFNpbmNlIHN1bnhpX2lyX3BtX29wcyBp
-cyBhIHN0cnVjdHVyZSBwb2ludGVyIHJhdGhlciB0aGFuIGEgc2xlZXAKY2FsbGJhY2ssIHNob3Vs
-ZCBpdCB1c2UgcG1fcHRyKCkgaW5zdGVhZCBvZiBwbV9zbGVlcF9wdHIoKT8KCj4gIAl9LAo+ICB9
-OwoKW1NldmVyaXR5OiBDcml0aWNhbF0KVGhpcyBpcyBhIHByZS1leGlzdGluZyBpc3N1ZSwgYnV0
-IGNvdWxkIHRoZXJlIGJlIGEgdXNlLWFmdGVyLWZyZWUgb2YgdGhlIFJDCmRldmljZSBvbiBkcml2
-ZXIgcmVtb3ZhbCBhbmQgcHJvYmUgZXJyb3IgcGF0aHM/CgpUaGUgZHJpdmVyIGluaXRpYWxpemVz
-IGEgZGV2cmVzLW1hbmFnZWQgSVJRIGluIHN1bnhpX2lyX3Byb2JlKCk6CgoJcmV0ID0gZGV2bV9y
-ZXF1ZXN0X2lycShkZXYsIGlyLT5pcnEsIHN1bnhpX2lyX2lycSwgMCwgU1VOWElfSVJfREVWLCBp
-cik7CgpPbiBwcm9iZSBmYWlsdXJlIG9yIGR1cmluZyBzdW54aV9pcl9yZW1vdmUoKSwgdGhlIGRy
-aXZlciBtYW51YWxseSBjYWxscwpyY191bnJlZ2lzdGVyX2RldmljZSgpIGFuZCByY19mcmVlX2Rl
-dmljZSgpLCBmcmVlaW5nIHRoZSBSQyBkZXZpY2UgbWVtb3J5OgoKZXhpdF91bnJlZ2lzdGVyX2Rl
-djoKCXJjX3VucmVnaXN0ZXJfZGV2aWNlKGlyLT5yYyk7CmV4aXRfZnJlZV9kZXY6CglyY19mcmVl
-X2RldmljZShpci0+cmMpOwoKQmVjYXVzZSBkZXZyZXMgY2xlYW51cCBoYXMgbm90IHlldCBydW4s
-IHRoZSBJUlEgcmVtYWlucyBhY3RpdmUuIElmIGFuCmludGVycnVwdCBmaXJlcyBvciBpcyBhbHJl
-YWR5IGluLWZsaWdodCBvbiBhbm90aGVyIENQVSBkdXJpbmcgdGhpcyB3aW5kb3csCndvdWxkIHN1
-bnhpX2lyX2lycSgpIGRlcmVmZXJlbmNlIHRoZSBmcmVlZCBpci0+cmM/CgoJaXJfcmF3X2V2ZW50
-X292ZXJmbG93KGlyLT5yYyk7CgpBbHNvLCBjb3VsZCB0aGlzIHJlYWQgZnJvbSBkaXNhYmxlZCBo
-YXJkd2FyZSBpZiBhbiBpbnRlcnJ1cHQgZmlyZXMgYWZ0ZXIKc3VueGlfaXJfaHdfZXhpdCgpIGlz
-IGNhbGxlZD8KCi0tIApTYXNoaWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nhc2hpa28uZGV2LyMv
-cGF0Y2hzZXQvMjAyNjA4MjEwNzE1MzMuMjE1ODIxLTEtdHJpZXQuaG9hbmcuZGV2QGdtYWlsLmNv
-bT9wYXJ0PTEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFk
-Lm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFt
-bG9naWMK
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+Add support for the Amlogic A9 thermal controller.
+
+The A9 thermal controller uses different calibration parameters, requires
+separate core and bus clocks, and supports a hardware over-temperature
+reset mechanism, and restore the hardware reset configuration after resume.
+
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ drivers/thermal/amlogic_thermal.c | 113 +++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 110 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/thermal/amlogic_thermal.c b/drivers/thermal/amlogic_thermal.c
+index a0b530624b60..ff8a8b152536 100644
+--- a/drivers/thermal/amlogic_thermal.c
++++ b/drivers/thermal/amlogic_thermal.c
+@@ -45,6 +45,18 @@
+ 		 TSENSOR_CFG_REG1_DEM_EN |	\
+ 		 TSENSOR_CFG_REG1_CH_SEL)
+ 
++#define TSENSOR_CFG_REG2			0x8
++	#define TSENSOR_CFG_REG2_HITEMP_EN	BIT(31)
++	#define TSENSOR_CFG_REG2_REBOOT_EN	BIT(30)
++	#define TSENSOR_CFG_REG2_REBOOT_CODE	GENMASK(15, 4)
++	#define TSENSOR_CFG_REG2_REBOOT_TIME	GENMASK(23, 16)
++	#define TSENSOR_CFG_REG2_ENABLE		\
++		(TSENSOR_CFG_REG2_HITEMP_EN |	\
++		 TSENSOR_CFG_REG2_REBOOT_EN |	\
++		 TSENSOR_CFG_REG2_REBOOT_TIME)
++
++#define TSENSOR_TEMP_CAL		1
++
+ #define TSENSOR_STAT0			0x40
+ 
+ #define TSENSOR_STAT9			0x64
+@@ -63,6 +75,7 @@
+ 
+ #define TSENSOR_CALIB_OFFSET	1
+ #define TSENSOR_CALIB_SHIFT	4
++#define TSENSOR_HW_RESET_DEFAULT_TEMP	110000
+ 
+ /**
+  * struct amlogic_thermal_soc_calib_data
+@@ -85,14 +98,18 @@ struct amlogic_thermal_soc_calib_data {
+  * @u_efuse_off: register offset to read fused calibration value
+  * @calibration_parameters: calibration parameters structure pointer
+  * @regmap_config: regmap config for the device
++ * @reset_temp: the hardware-controlled reset temperature value
+  * @use_sm: read data from secure monitor instead of efuse
++ * @has_sysclk: sensor driver control sysclk
+  * This structure is required for configuration of amlogic thermal driver.
+  */
+ struct amlogic_thermal_data {
+ 	int u_efuse_off;
+ 	const struct amlogic_thermal_soc_calib_data *calibration_parameters;
+ 	const struct regmap_config *regmap_config;
++	u32 reset_temp;
+ 	bool use_sm;
++	bool has_sysclk;
+ };
+ 
+ struct amlogic_thermal {
+@@ -101,8 +118,10 @@ struct amlogic_thermal {
+ 	struct regmap *regmap;
+ 	struct regmap *sec_ao_map;
+ 	struct clk *clk;
++	struct clk *sysclk;
+ 	struct thermal_zone_device *tzd;
+ 	u32 trim_info;
++	u32 temp_code;
+ 	struct meson_sm_firmware *sm_fw;
+ 	u32 tsensor_id;
+ };
+@@ -138,6 +157,49 @@ static int amlogic_thermal_code_to_millicelsius(struct amlogic_thermal *pdata,
+ 	return temp;
+ }
+ 
++/*
++ * Calculate a temperature code from a temperature value .
++ * The unit of the temperature is degree milliCelsius.
++ */
++static u32 amlogic_thermal_millicelsius_to_code(struct amlogic_thermal *pdata, int millicelsius)
++{
++	const struct amlogic_thermal_soc_calib_data *param =
++					pdata->data->calibration_parameters;
++	s64 factor, uptat, uefuse;
++	u32 temp_code;
++
++	uefuse = pdata->trim_info & TSENSOR_TRIM_SIGN_MASK ?
++			     ~(pdata->trim_info & TSENSOR_TRIM_TEMP_MASK) + 1 :
++			     (pdata->trim_info & TSENSOR_TRIM_TEMP_MASK);
++
++	factor = param->B + div_s64(millicelsius, 100);
++	factor = BIT(16) * factor;
++	factor = div_s64(factor, param->A);
++	factor = factor - uefuse;
++
++	uptat = param->n * factor;
++	uptat = div_s64(uptat, BIT(16));
++	uptat = param->m - uptat;
++
++	factor = factor * 100;
++	if (!uptat)
++		factor = TSENSOR_TEMP_MASK << 0x4;
++	else
++		factor = div_s64(factor, uptat);
++
++	temp_code = ((factor >> 0x4) & TSENSOR_TEMP_MASK) + TSENSOR_TEMP_CAL;
++
++	return temp_code;
++}
++
++static void amlogic_tsensor_setup_hw_reset(struct amlogic_thermal *data)
++{
++	regmap_update_bits(data->regmap, TSENSOR_CFG_REG2, TSENSOR_CFG_REG2_REBOOT_CODE,
++			   data->temp_code << 0x4);
++	regmap_update_bits(data->regmap, TSENSOR_CFG_REG2,
++			   TSENSOR_CFG_REG2_ENABLE, TSENSOR_CFG_REG2_ENABLE);
++}
++
+ static int amlogic_thermal_enable(struct amlogic_thermal *data)
+ {
+ 	int ret;
+@@ -254,6 +316,13 @@ static const struct amlogic_thermal_soc_calib_data amlogic_thermal_g12a = {
+ 	.n = 324,
+ };
+ 
++static const struct amlogic_thermal_soc_calib_data amlogic_thermal_a9 = {
++	.A = 9164,
++	.B = 2747,
++	.m = 370,
++	.n = 270,
++};
++
+ static const struct amlogic_thermal_data amlogic_thermal_g12a_cpu_param = {
+ 	.u_efuse_off = 0x128,
+ 	.calibration_parameters = &amlogic_thermal_g12a,
+@@ -272,6 +341,14 @@ static const struct amlogic_thermal_data amlogic_thermal_a1_cpu_param = {
+ 	.regmap_config = &amlogic_thermal_regmap_config_g12a,
+ };
+ 
++static const struct amlogic_thermal_data amlogic_thermal_a9_param = {
++	.use_sm			= true,
++	.has_sysclk		= true,
++	.calibration_parameters	= &amlogic_thermal_a9,
++	.regmap_config		= &amlogic_thermal_regmap_config_g12a,
++	.reset_temp		= 110000,
++};
++
+ static const struct amlogic_thermal_data amlogic_thermal_t7_param = {
+ 	.use_sm			= true,
+ 	.calibration_parameters	= &amlogic_thermal_g12a,
+@@ -291,6 +368,10 @@ static const struct of_device_id of_amlogic_thermal_match[] = {
+ 		.compatible = "amlogic,a1-cpu-thermal",
+ 		.data = &amlogic_thermal_a1_cpu_param,
+ 	},
++	{
++		.compatible = "amlogic,a9-thermal",
++		.data = &amlogic_thermal_a9_param,
++	},
+ 	{
+ 		.compatible = "amlogic,t7-thermal",
+ 		.data = &amlogic_thermal_t7_param,
+@@ -305,6 +386,7 @@ static int amlogic_thermal_probe(struct platform_device *pdev)
+ 	struct device *dev = &pdev->dev;
+ 	void __iomem *base;
+ 	int ret;
++	u32 reset_temp;
+ 
+ 	pdata = devm_kzalloc(dev, sizeof(*pdata), GFP_KERNEL);
+ 	if (!pdata)
+@@ -323,9 +405,18 @@ static int amlogic_thermal_probe(struct platform_device *pdev)
+ 	if (IS_ERR(pdata->regmap))
+ 		return PTR_ERR(pdata->regmap);
+ 
+-	pdata->clk = devm_clk_get(dev, NULL);
+-	if (IS_ERR(pdata->clk))
+-		return dev_err_probe(dev, PTR_ERR(pdata->clk), "failed to get clock\n");
++	if (pdata->data->has_sysclk) {
++		pdata->clk = devm_clk_get(dev, "core");
++		if (IS_ERR(pdata->clk))
++			return dev_err_probe(dev, PTR_ERR(pdata->clk), "failed to get core clk\n");
++		pdata->sysclk = devm_clk_get_enabled(dev, "pclk");
++		if (IS_ERR(pdata->sysclk))
++			return dev_err_probe(dev, PTR_ERR(pdata->sysclk), "failed to get pclk\n");
++	} else {
++		pdata->clk = devm_clk_get(dev, NULL);
++		if (IS_ERR(pdata->clk))
++			return dev_err_probe(dev, PTR_ERR(pdata->clk), "failed to get clock\n");
++	}
+ 
+ 	if (pdata->data->use_sm)
+ 		ret = amlogic_thermal_probe_sm(pdev, pdata);
+@@ -346,6 +437,17 @@ static int amlogic_thermal_probe(struct platform_device *pdev)
+ 
+ 	devm_thermal_add_hwmon_sysfs(&pdev->dev, pdata->tzd);
+ 
++	if (pdata->data->reset_temp) {
++		reset_temp = pdata->data->reset_temp;
++	} else {
++		dev_dbg(dev, "using default hardware reset temperature\n");
++		reset_temp = TSENSOR_HW_RESET_DEFAULT_TEMP;
++	}
++
++	pdata->temp_code = amlogic_thermal_millicelsius_to_code(pdata, reset_temp);
++
++	amlogic_tsensor_setup_hw_reset(pdata);
++
+ 	ret = amlogic_thermal_enable(pdata);
+ 
+ 	return ret;
+@@ -363,6 +465,8 @@ static int amlogic_thermal_suspend(struct device *dev)
+ 	struct amlogic_thermal *data = dev_get_drvdata(dev);
+ 
+ 	amlogic_thermal_disable(data);
++	if (data->data->has_sysclk)
++		clk_disable_unprepare(data->sysclk);
+ 
+ 	return 0;
+ }
+@@ -371,6 +475,9 @@ static int amlogic_thermal_resume(struct device *dev)
+ {
+ 	struct amlogic_thermal *data = dev_get_drvdata(dev);
+ 
++	if (data->data->has_sysclk)
++		clk_prepare_enable(data->sysclk);
++	amlogic_tsensor_setup_hw_reset(data);
+ 	return amlogic_thermal_enable(data);
+ }
+ 
+
+-- 
+2.52.0
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
