@@ -4,33 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7823EC5DF87
-	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2026 10:07:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83AA3C5DF8C
+	for <linux-amlogic@archiver.kernel.org>; Fri, 21 Aug 2026 10:07:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iBP8vg8tLFDEk+pP1qbzlSdO7zwYD/nAVNymI8I1Mi8=; b=PFAxIX8E5eVPC9
-	IjBy9GzJv/aoiGz/U4Afgr5d/QPCzaRg7GkBe+dua4WvbMi+0TliQgPB6n6VVTMIsVMyBgiKBtR+e
-	fs+yb67m1m29lXEwLjQ8YW6iOe06Yavwek+f4M4MSOnvjJTz9McUfS970JZi8XFzQcuhjpYlqyMhc
-	zKj3MF9sudoXEFg6WNiJBW7qva5GBlQKOFGuFSWHz9418A/LokLPYjBDudCUQWiUOng8eAyl1SSa1
-	wUrC/eyVuXLlZnJYpxBn8G2rxwVB7oDnYrSBBM6AjdRod3YNxF1otTjWOm1wUzf/oTg0yipsAff3X
-	JlAkJ4LEIGPsrdw6AgKQ==;
+	List-Owner; bh=Vnszrl07Ab5bdzs1uvnyeJNFfGxl7W6EUsCffy4eI+Y=; b=CzMEW5yfj8JGeN
+	RkM82k4Jz0TQTlxpKGVVXba/x10TJEVA15fMSfQOI0lI2rcmYn6tjobGD3FTv9RPl5U6HIhFoyoW7
+	dW8+S7QgpZY9iwGqhNxG86kiGl9+0REV3SrV/5BFz/cRwq4oMci/EF4Ut8Hy+iPqrMU51J8/b94sb
+	avk8ERgJ/r8CWGJNuj+NK0/CslcyaYk4iAyOlgXh43hZtqyygiSVQBIO92rELUXJxf2N2//vF0rTT
+	gKBv0IHLg6zT1V7iqDOIE4GTdfAXNyV+85vURdllZdlB0JHQS5sM/4ny5xWKjsukYbArQ12nTo+cL
+	6bnwqgm9Xf0s+6IULuqw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wxMA6-0000000D1oQ-2Sjm;
-	Fri, 21 Aug 2026 10:07:46 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1wxMA9-0000000D1qb-3IT3;
+	Fri, 21 Aug 2026 10:07:49 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wxMA4-0000000D1nD-2wA9;
-	Fri, 21 Aug 2026 10:07:44 +0000
+	id 1wxMA8-0000000D1pW-2M18;
+	Fri, 21 Aug 2026 10:07:48 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6FB8F43F1B;
+	by sea.source.kernel.org (Postfix) with ESMTP id 4FDEB401DA;
+	Fri, 21 Aug 2026 10:07:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF74A1F00AC4;
 	Fri, 21 Aug 2026 10:07:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E25511F00A3A;
-	Fri, 21 Aug 2026 10:07:40 +0000 (UTC)
 From: Geert Uytterhoeven <geert+renesas@glider.be>
 To: =?UTF-8?q?Th=C3=A9o=20Lebrun?= <theo.lebrun@bootlin.com>,
 	Conor Dooley <conor.dooley@microchip.com>,
@@ -50,9 +50,9 @@ Cc: netdev@vger.kernel.org,
 	linux-amlogic@lists.infradead.org,
 	linux-clk@vger.kernel.org,
 	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH net-next 1/3] net: macb: Make sure clk_init_data is fully initialized
-Date: Fri, 21 Aug 2026 12:07:30 +0200
-Message-ID: <00772e2fb1f8433a5d6c47dbd28cb4149495e1ab.1787240118.git.geert+renesas@glider.be>
+Subject: [PATCH net-next 2/3] net: mdio: mux-meson-g12a: Make sure clk_init_data is fully initialized
+Date: Fri, 21 Aug 2026 12:07:31 +0200
+Message-ID: <ae6cfac64d3983801b9baa2abb30bf09c3d7ce3b.1787240118.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1787240118.git.geert+renesas@glider.be>
 References: <cover.1787240118.git.geert+renesas@glider.be>
@@ -88,22 +88,22 @@ Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
 Compile-tested only.
 ---
- drivers/net/ethernet/cadence/macb_main.c | 2 +-
+ drivers/net/mdio/mdio-mux-meson-g12a.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
-index 1476bce77f34d2a5..319e43098f57ed7b 100644
---- a/drivers/net/ethernet/cadence/macb_main.c
-+++ b/drivers/net/ethernet/cadence/macb_main.c
-@@ -5376,7 +5376,7 @@ static int fu540_c000_clk_init(struct platform_device *pdev, struct clk **pclk,
- 			       struct clk **hclk, struct clk **tx_clk,
- 			       struct clk **rx_clk, struct clk **tsu_clk)
+diff --git a/drivers/net/mdio/mdio-mux-meson-g12a.c b/drivers/net/mdio/mdio-mux-meson-g12a.c
+index 08d6a6c93fb8bf02..e6c9ef3641afa27e 100644
+--- a/drivers/net/mdio/mdio-mux-meson-g12a.c
++++ b/drivers/net/mdio/mdio-mux-meson-g12a.c
+@@ -223,7 +223,7 @@ static int g12a_ephy_glue_clk_register(struct device *dev)
  {
+ 	struct g12a_mdio_mux *priv = dev_get_drvdata(dev);
+ 	const char *parent_names[PLL_MUX_NUM_PARENT];
 -	struct clk_init_data init;
 +	struct clk_init_data init = {};
- 	int err = 0;
- 
- 	err = macb_clk_init_dflt(pdev, pclk, hclk, tx_clk, rx_clk, tsu_clk);
+ 	struct g12a_ephy_pll *pll;
+ 	struct clk_mux *mux;
+ 	struct clk *clk;
 -- 
 2.43.0
 
