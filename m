@@ -4,81 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 419BAC5DF8C
-	for <linux-amlogic@archiver.kernel.org>; Sun, 23 Aug 2026 11:54:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A985C5DF97
+	for <linux-amlogic@archiver.kernel.org>; Sun, 23 Aug 2026 15:40:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=91zWnkX47nagMDUaUbguFQYB0bS9prB2d4b5Dvl2U1s=; b=rv4KNswXs6IOk5
-	TvGJz9FUOMS7OsFzvR+lcrIxB8nWQoY8iPrmVDwiAMfZUPh5uALzJnnDwsaCAOa8GGc2PsL8Arybj
-	pOcN7KbrXu7FWzhSupepqc7q87P+s2KC+VHvO3mRCbNuAZaF2Frp35he2Sgko4byoJgbDDcuF4K/B
-	0MZRaW5ov2RcHn8dgU/rJYI38552OCmUOJooCHHUGZfus9h3rkaN+mJkWlKXNXDQgG6LF+Ppk2CFH
-	5d4sJREASQMKBws0svtCFTQheHK+ytLgct/1dc9tIzDJIQZeQBEaQf0bRSsCuLoWTunFuvZzScyFy
-	wgTwR88yBE1eYgLxFcww==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Subject:From:Cc:To:MIME-Version:Date:Message-ID:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=/ChISq5IsvMWT7SnaOcLE2Sie5NmL57Y2UsWqQuz0R4=; b=3+UVOLBNXD3pAydWCH5XJj2ZdT
+	Kyae0/8vlBEPlrKVwkEGyePgfBBvKXh+rIInPaLJT+DPCAmKzI6xVZEOlrFYz8qsPyQJfpUmPqlY2
+	O74jrGGEv+n8BHxqK3xNs3SbwV9gctoWN+oJApF6d2fl8ag73A5xBpIcW6/C8DazKzbnw/lWhJaen
+	mfM70ltsW05Xzb6qTBc3aXDyBCi0L0JVaFucC/EsEnRCfg+PCMClc2CHuu6duwoOzewmHrnCvTOfL
+	IbZQQ3IRH68IqAw5TTMbCjdMBy9DW6Ohz8IeqkY5fJKNiaJrdzC5D2szEktKqHqdrRR6WBpzUViKp
+	ayiIfz2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wy6m0-0000000FJUm-2H4z;
-	Sun, 23 Aug 2026 11:54:00 +0000
-Received: from mail-wm1-f42.google.com ([209.85.128.42])
+	id 1wyAJU-0000000FSKP-2zOE;
+	Sun, 23 Aug 2026 15:40:48 +0000
+Received: from mail-wr1-f52.google.com ([209.85.221.52])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wy6lt-0000000FJQM-3YT5
+	id 1wyAJS-0000000FSJS-0XyM
 	for linux-amlogic@lists.infradead.org;
-	Sun, 23 Aug 2026 11:53:54 +0000
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-499ae1c6471so15422665e9.3
-        for <linux-amlogic@lists.infradead.org>; Sun, 23 Aug 2026 04:53:53 -0700 (PDT)
+	Sun, 23 Aug 2026 15:40:47 +0000
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-482c58a8683so904855f8f.0
+        for <linux-amlogic@lists.infradead.org>; Sun, 23 Aug 2026 08:40:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787486032; x=1788090832;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=7jThRiaQ/26wqHZ1vL8lEl8IaaxJS8aQBBZUVqHcHFM=;
-        b=iaB1mPdeuaWAWImrOg+3UJLGdIt9mtwE2xzeK06/v1IQ+yQb6kGMJ0rRip+hMV26Ku
-         AWj7+xoVY+MCGIl4bHLWYob4XXyhAZ0b69Zav10ixePDs7O9TfrmerONuuWlIvqs7tJi
-         9DUtsU+onhmuqxDsNqUR6KyS/XkhO5Q8FKNlT8+vFHBwvYCJsWXJeoejJ81giDJy1aBP
-         IuZ8xibfpdQbO4qmLsLCTNI/glmH9j4gjbKDvQs86OpbAWYdq7SD76sGlnHUje91ILlu
-         wgXEHnoCWMS7qzIlQ6u4KMkEgtFODp3yfjF0495mO0GguBOls4n0cpp97pv83TboLHH6
-         jivw==
-X-Forwarded-Encrypted: i=1; AHgh+RoxtXM4m2BJGdL6EoXdYXtGao+2CCZDCOAM7KI77Ly4fx4nNL8mjT6Gt9/zJWbAdb3V+thuYSg13nmEMlrw@lists.infradead.org
-X-Gm-Message-State: AFuF++lzr0uN31o0k+HNle9iT0MGZdkYrdErsME3vmKItI42E5MC5wB3
-	m4GO1+j0Zv/ex7+P5WnplcKNt5wMtNQnn9GNe/wYB2ZSF/qJ735vMz22
-X-Gm-Gg: AR+sD12pDnFt13ccyf3kFG23STKxccr1v6kJsmAtQeuMC6Fsd6t92wzwZR5dewD0RF/
-	d/kjaJTAkHpFI7x+BHxF2N0pj8nlTVsQ1SRAi5yarP/V+XqsTLeK+pALyOkx9utzFggEi5ir6HD
-	gv4PHKyf+7IxHpHHzVbCjhjWPxdq7GEIG2oupct7FWuALFcugrDGtcoWCQy25S40b5sV0nhaUBm
-	sAnc87Koa8eSmwZrs/X7lhEQW3J854U+B6dqvtykRPjYLR2wB0ej3Q5+KS/VAG6R/PypRMiu/cT
-	ZIL+m2lFA8gFoRHyyi3aGdQMt8I9w64wOJ99DIJnwwxw4HEa8yrLvTcYMBdG5/tVXztCzRsmkes
-	Syv74XYMnjqSY2WbZRR8maFznCHh85dIhu0fzX4Buib5AdUhQ6CRpwqNaWHdqhIldgtTcCyiZII
-	4CIu+Oats19eyMAzpz3Dap9wEiVle6wGVGCD3MYFvXZx9jOuphTmzFIZvUc9YNoOtxUEJ5XSyOa
-	/HAtcadKzIC+fuuzqUa3f2+il8WKkW3/A1ARCQ=
-X-Received: by 2002:a05:600c:6296:b0:495:4d5c:903e with SMTP id 5b1f17b1804b1-499b8327cd8mr242910645e9.7.1787486032189;
-        Sun, 23 Aug 2026 04:53:52 -0700 (PDT)
-Received: from threads.localdomain ([83.106.158.114])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-499c355e1ddsm48680935e9.5.2026.08.23.04.53.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Aug 2026 04:53:51 -0700 (PDT)
-From: Lucas Tanure <tanure@linux.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>,
-	linux-amlogic@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] arm64: dts: amlogic: t7: khadas-vim4: allow the SD card to be power cycled
-Date: Sun, 23 Aug 2026 12:53:35 +0100
-Message-ID: <20260823115335.102219-3-tanure@linux.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260823115335.102219-1-tanure@linux.com>
-References: <20260823115335.102219-1-tanure@linux.com>
+        d=1e100.net; s=20251104; t=1787499644; x=1788104444;
+        h=content-transfer-encoding:content-type:subject:from:cc:to
+         :content-language:user-agent:mime-version:date:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=bGssleoR8j5d5BjeV9KwAwh1Wr2o/KlpY4sV/yr+LHU=;
+        b=SnDYHAEz47vbHejzLmZSYRbm0jeOIZwFvsGqa8HYDO5gsjBe3iKxK9CJ6vBl2m9tix
+         CFcle3lKl50LjR1TWKyOMwX0Za/uk/YQOgBUqf1He4ey1ZJx94F96xA8yPJ0/Xmu0L/w
+         dHwG0kJLF5w/he8/KRGCSUxWerWiVvNa5mYvSUlKDOPVvhsS3thmNZyPw+1tGSHb1nW9
+         1RuLxKmwOxyW2/GUFSkAxjxxj8/a68lk0mnjlfuQu3G8/CRoAsL5pTe/ysx5IakcpH44
+         rOem7BuwYAFEqzJqUtzd/HLiJDtCztWf7xC93YTihgRiv+3PrXMflb0YNosZMJugq9l7
+         NA+A==
+X-Forwarded-Encrypted: i=1; AHgh+RoY6Tkrm+BnFHPy/jjO9p7q9copD2lp+a6PH/BPmyqh7EF/ZGAolF8cTW4bSvqhrSzPcQuqeXBsTbec2EJJ@lists.infradead.org
+X-Gm-Message-State: AFuF++lwj1rjuJ+6mTyKiuk82t50qzczYEDSLQZ2wQ/UYrXbOndumRCe
+	S5Fj1GWf+Rv98CESDDyB7RC5G8AMIWtnd9PGsqTaeZf1OyTdCfGdZ7GPGV+uBQ==
+X-Gm-Gg: AR+sD11IAnrx0sVh5yaszrT4f/GdTHiz+7WBsDkcKIbacQdoGOEgIgVuaCkwqJEtbiF
+	46SrikETKz0RWMP5hp7QUiZBW5Hol0Jgvscn3ZRCa2kHviaC+NPgOWfeF6KqTPMyBI/ZsT1SdEK
+	bYnMpk3jA9GQQUwwt0thyzyV6VxeDf3CtgbPfaRq73tWTtaXosXNQR6SkeH/Fikea5Q+WLwiV0i
+	Tz4M8EMlFFWEBkvW3P7kKlfGRkUo4WM01ti9HrnGfFPyHGa2gLPldlh67qILGiKd9vAdi6uBkT6
+	IDaJTR4qmA0HMSq8CVIg+WK6BKaBrfyhTo1GVxrzGh2MnWJMX5po4780JL3lA2A7joqqKrO4rZp
+	4lJlK7AKYYMuNYgEVyahgO7+24u2Hl1G4w9HKJG1P5nGKyP6IFCx4ddJAk6mBNdMzK3V+Z+ISUE
+	7w/diWngSfpbbod5Sof0/TN4PlJjPZH8JcFs73zia6TMp2nyXyRcotPndFOOFMY033B5IqTAnS4
+	WUY3KW5PoyYqYsrF26sbg==
+X-Received: by 2002:a05:6000:2dc9:b0:482:9a18:d753 with SMTP id ffacd0b85a97d-482c0b44acbmr22762075f8f.5.1787499643925;
+        Sun, 23 Aug 2026 08:40:43 -0700 (PDT)
+Received: from [192.168.1.135] ([83.106.158.114])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-482c9c0acaesm5321239f8f.29.2026.08.23.08.40.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 23 Aug 2026 08:40:42 -0700 (PDT)
+Message-ID: <3930906f-783b-4d72-9260-ba25cc8081cb@linux.com>
+Date: Sun, 23 Aug 2026 16:40:42 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jian Hu <jian.hu@amlogic.com>
+Cc: Brian Masney <bmasney@redhat.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+From: Lucas Tanure <tanure@linux.com>
+Subject: [RFC] clk: meson: t7: Intermittent boot instability and memory
+ corruption on VIM4
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260823_045353_891757_E7177E3B 
-X-CRM114-Status: UNSURE (   9.77  )
+X-CRM114-CacheID: sfid-20260823_084046_181676_588A383B 
+X-CRM114-Status: UNSURE (   6.29  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -91,47 +91,59 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SD cards start at 3.3V and switch to 1.8V to reach UHS-I speeds. Some
-cards refuse that switch, and the SD specification says the only way
-to recover is to power the card off and start again.
+Hi,
 
-SD_3V3 is marked regulator-always-on, so the supply never goes off,
-the card stays stuck half way through the switch, and the MMC core
-retries forever:
+While testing mainline Linux on the Khadas VIM4 (Amlogic A311D2 / T7), I 
+am hitting intermittent system instability, storage loss, and memory 
+corruption during boot, unless I append clk_ignore_unused to the kernel 
+command line.
 
-  mmc1: error -95 whilst initialising SD card
+Because the failure is intermittent, I am running 100-reboot test 
+campaigns to bisect the remaining clocks and isolate which clocks are 
+critical and cannot be safely disabled.
 
-Drop regulator-always-on. regulator-boot-on still turns the supply on
-at boot, and a card that refuses the switch now falls back to high
-speed instead of failing to initialise.
+As testing takes significant time over serial console, I wanted to check 
+if Amlogic or the maintainers could shed light on this:
 
-Fixes: 8c45bf9ae4ef ("arm64: dts: amlogic: t7: khadas-vim4: Add power regulators")
-Signed-off-by: Lucas Tanure <tanure@linux.com>
-Assisted-by: Claude:claude-fable-5
----
- arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts | 1 -
- 1 file changed, 1 deletion(-)
+Are there specific T7 clocks or hardware domains that must remain 
+critical/protected even without an explicit in-kernel consumer?
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-index 75d81ad6830d..c94afaaf8826 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-@@ -71,7 +71,6 @@ sd_3v3: regulator-sdcard-3v3 {
- 		vin-supply = <&vddao_3v3>;
- 		gpio = <&gpio GPIOD_11 GPIO_ACTIVE_LOW>;
- 		regulator-boot-on;
--		regulator-always-on;
- 	};
- 
- 	sdio_pwrseq: sdio-pwrseq {
--- 
-2.55.0
+Current clocks being disabled that don't kill the board on a test run:
 
+[    0.380313] clk: Disabling unused clocks
+[    0.380413] clk: Disabled unused clock: rtc_dualdiv
+[    0.380718] clk: Disabled unused clock: rtc_duandiv_in
+[    0.381377] clk: Unprepared unused clock: a73_div16
+[    0.381972] clk: Unprepared unused clock: cpu_div16
+[    0.382605] clk: Unprepared unused clock: f50m
+[    0.383174] clk: Unprepared unused clock: fixed_pll_dco
+[    0.383786] clk: Unprepared unused clock: hdmi_pll_osc
+[    0.384416] clk: Unprepared unused clock: sys1_pll_osc
+[    0.385056] clk: Unprepared unused clock: earc_osc
+[    0.385652] clk: Unprepared unused clock: pcie_refclk_osc
+[    0.386323] clk: Unprepared unused clock: eth_pll_osc
+[    0.386961] clk: Unprepared unused clock: pcie_osc
+[    0.387548] clk: Unprepared unused clock: mclk_pll_osc
+[    0.388187] clk: Unprepared unused clock: usb_pll1_osc
+[    0.388826] clk: Unprepared unused clock: usb_pll0_osc
+[    0.389465] clk: Unprepared unused clock: tcon_pll_osc
+[    0.390105] clk: Unprepared unused clock: top_pll_osc
+[    0.390738] clk: Unprepared unused clock: aud_pll_osc
+[    0.391361] clk: Unprepared unused clock: ddr_pll_osc
+
+I am not forcing any clock to be disabled; I am forcing all clocks to 
+stay on and letting them be disabled if unused one by one.
+
+Any guidance or hints on required platform clocks would be greatly 
+appreciated.
+
+Thanks,
+Lucas Tanure
 
 _______________________________________________
 linux-amlogic mailing list
