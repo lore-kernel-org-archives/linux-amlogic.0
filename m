@@ -4,102 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CE21C61DB6
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Aug 2026 15:29:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A8E7C5DF9C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Aug 2026 16:03:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Cc:Subject:
+	From:Message-Id:Date:Mime-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UsIn++xSwaqCcYqboRHZGch9ipUhaKeDCps7za14CyE=; b=xvQWJNDoz/F+cR
-	qc6hqx8hPDMOfGW031FjMIiRXWlSnk2K0R7dat8FD6hUnHPjbQS3zkCwcySzhMzCCFPmt33lDw9wm
-	u8mb/cJ0q1glMKlwt6qzKcxSWFsEJhTUn01Hw+HD80/Ngs5Sdd47tBqvNMCvI/e3/BBfMBXhiiTTY
-	piAOTGP/387pdteFa3BktctdCe+Q3CMP9lKLIPECL/M/RpT8YuaaM5/JcStut+BxzHiSKW6bJg5Bh
-	9gUymbjeuj3XB5fJPfwewCJLGa2wXk1LDk4cR1cW9kG1DlYC6GBZ4KhR9qkWujkKv/1j9mwe4tDfb
-	IrzBGCbkkJJk+MS7IOSA==;
+	List-Owner; bh=Jp6R7u0nn6/l9TKI8vbFabktMW1qWUtdrztfIcVbDPU=; b=GaESa0+C2xnl2f
+	F9LvIsLwe4w6LWb8ELEYVj2MBxe4K15yyEGs3ug0emYAvoUFjZIMij3AjwcvD6HbCr3kpeDwddN9E
+	lyFXpAhphm4pxWRjBo/O+y1xQLqeujCUmo529C8oy/M/T6EDvQi9uV6ZyRZ5vKdVlge52Rme0DWzc
+	qHnyLof1k0N4uvxdo1IwUBTOiA9l71vygPEmN0hFccYst+GfUfrLl/pAP3y+9MtF7Qd8Q7Hhdpoug
+	Qgd+26WRY+uZbs1cGAArrlbLXmXbX5jUBCIK6siCbeU1Tqp2aUy6kHH4AGUfkmFZc6GNlGrjOgJMV
+	7EZ5E3iBGYMTqw2EG9zQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wyWcK-0000000Gvi0-3UgH;
-	Mon, 24 Aug 2026 15:29:44 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+	id 1wyX9O-0000000GzsA-1RRx;
+	Mon, 24 Aug 2026 16:03:54 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wyWcH-0000000Gvg3-1G0i
+	id 1wyX9I-0000000Gzpa-3nYL
 	for linux-amlogic@lists.infradead.org;
-	Mon, 24 Aug 2026 15:29:43 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1787585380;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/goNprm3vb+vqF+2+ZaUSBOvzdh+ZGsOcB6bvYFMahs=;
-	b=dWHpnMI9KLnxCUbUwoz/Qb/oJXKZzWvjL60pzC6v2rIE0fLTeU087rD+KNHjZip6Yuz6/i
-	r+tXrumCl7ZHRYiQUDx0eSyaa/R3OEC5tBnAM5Efl3G+bX+DOxnwWD/J5dT56nAZ0iw4by
-	WXKvc1gLtQrQeWfAgqQjUEyHNr58+1s=
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
- [209.85.160.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-665-DNo1pucxOBK2wXp6oEZVJQ-1; Mon, 24 Aug 2026 11:29:38 -0400
-X-MC-Unique: DNo1pucxOBK2wXp6oEZVJQ-1
-X-Mimecast-MFC-AGG-ID: DNo1pucxOBK2wXp6oEZVJQ_1787585378
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-51c1a97644aso47542871cf.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 24 Aug 2026 08:29:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787585378; x=1788190178;
-        h=user-agent:in-reply-to:content-disposition:content-type
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=/goNprm3vb+vqF+2+ZaUSBOvzdh+ZGsOcB6bvYFMahs=;
-        b=fS6XPT6WdYZ7jqKYI2ngeIflai4meVhTolohNk2cfooFYwzvIalvsgsRacKquJNMsZ
-         bHJrcjJipz1RSc/VTyF6PjQcA1Flxclg5ylJ/XJQAQM692lkl3g353TgEXtz7RR8PZUc
-         g+Qb5JFd95TFa/OIGLCiGKNCrwMKkQxavrJJUO9vEBajehNmKuAtIxo6IKAdEXaZdS+H
-         hGDlsVPH2vroiRNeVs9207xTUPjejhfdg1UkaO5/13w6edt9ZYmK3f1CHRtgY4/OpFQ9
-         u0FioMw9NlgYMG6Dnzu6oV4ffC6lo1x1aUuN5hKwG7Q/6+PhjpS08AbQBbZGl0HQfr/b
-         DpPg==
-X-Forwarded-Encrypted: i=1; AHgh+RqAu961PHXLNYE/Hdaf86ZtQ6kl/b2B6nbcCuBZRVWjZ58R8kdtWMdK3uVIaxLM66dWCgJlGbXSUbfTzKPw@lists.infradead.org
-X-Gm-Message-State: AFuF++kOZKIeLtdlH7o8Lz4eJAf6MkzfBXAeIQ77mEXtfZaCA1hXIH/N
-	yR/mxSRiibdzpRCDxLjbKnlMAdNtfHpMMWRXWxUFkZCACmUMykcEfM3txHaelpzjGtKx1Rk45fw
-	i1cQKan3jr47gVIemCMuoDMPTnejixStMtLM+u/HltqGUonuSN9xdRer5vt7TyIOhDTFe2SMb
-X-Gm-Gg: AR+sD11aDMPi8oZwKfucYTy/55iGTsB8wJredmKJ6LnweDi+kSrejLzvEyDyD/huu7h
-	GdTsW9Q6nhecct2p1vh6Mvdx0IpE6y8sB8CW97HCuQJgkw9nqgL1MyJS1bf5oYftxpj8potJ4RA
-	sndUDXf4UsF70zI3NPuc0sLyiHximS1npAs3i2Y4bpAaJavvj1EWCVNfPne9tt1wOxFlCjAFOOn
-	3iqwDTGroJVR+Rb9yrVaBWk7sGgODiB8IL2m3a+5VB20Rks6fAr8Bl6lyPaGF9DBz+uucY36Ihf
-	BrFVqa8RBKk6aoIIQaOFOIEccPG0hbXylYSEjqpS8GHwtpsNyj2/Iq7CyVXV1j0N0lqoLjRvzQw
-	yBgIwSmd/iSNr79Udx1DZkFUrCG7FVvIHA5k=
-X-Received: by 2002:a05:6214:212d:b0:8c4:edb4:a44a with SMTP id 6a1803df08f44-90c80f9357fmr293301096d6.23.1787585377975;
-        Mon, 24 Aug 2026 08:29:37 -0700 (PDT)
-X-Received: by 2002:a05:6214:212d:b0:8c4:edb4:a44a with SMTP id 6a1803df08f44-90c80f9357fmr293300306d6.23.1787585377513;
-        Mon, 24 Aug 2026 08:29:37 -0700 (PDT)
-Received: from redhat.com (c-73-183-53-213.hsd1.pa.comcast.net. [73.183.53.213])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-90c936183d0sm65105676d6.22.2026.08.24.08.29.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Aug 2026 08:29:36 -0700 (PDT)
-Date: Mon, 24 Aug 2026 11:29:35 -0400
-From: Brian Masney <bmasney@redhat.com>
-To: Lucas Tanure <tanure@linux.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>, Jian Hu <jian.hu@amlogic.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC] clk: meson: t7: Intermittent boot instability and memory
- corruption on VIM4
-Message-ID: <aoxjX3HabY0brgXk@redhat.com>
-References: <3930906f-783b-4d72-9260-ba25cc8081cb@linux.com>
-MIME-Version: 1.0
-In-Reply-To: <3930906f-783b-4d72-9260-ba25cc8081cb@linux.com>
-User-Agent: Mutt/2.4.0 (2026-06-19)
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: dwm7-ZhxxVMqZk9tDOAbWIpKARHTRGqcuXxzFKWtVxs_1787585378
-X-Mimecast-Originator: redhat.com
-Content-Disposition: inline
+	Mon, 24 Aug 2026 16:03:53 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id ECBD01A17F1;
+	Mon, 24 Aug 2026 16:03:43 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id BB11A5FFC1;
+	Mon, 24 Aug 2026 16:03:43 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 78E4511C7984B;
+	Mon, 24 Aug 2026 18:03:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1787587418; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=5Yw9p/e/gTObI0E0KW0aPmvh3/jojeNij8byOhPchOM=;
+	b=aMfQljN/arHfb158wkr6CLAxSet5iYUnnt2uZH3SAyBHHe34JaDMHVlouYUDP/wu9UFPHk
+	hhToPHJMaibC6ufFX3eAdBc4N0QOCeo3982Ddg5EQrWbF8Nx4HyjmUWDJUKiY1f9LSiZj+
+	Z4qfvh5Sk96mK6eM1+uMQa95BFrAKYezzqHsO7LBQqj5M79l+3mFih7KxEYPtwLavaHp3o
+	a3aFmclYXZxSB51anNKIJr9sIm2ahqqrgQkVk/ps+tRSZRlM7kFhE7Yueqf5+hyAy8XQsf
+	w4Ct0qOqMzO8kHzgAy56q4Qg0mRmKjqhR8680oSotZYxSN/ShI1rvqATHHzXLQ==
+Mime-Version: 1.0
+Date: Mon, 24 Aug 2026 18:03:32 +0200
+Message-Id: <DKXAUOKYDIWV.B30CB2QWDDXQ@bootlin.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH net-next 1/3] net: macb: Make sure clk_init_data is
+ fully initialized
+Cc: <netdev@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>
+To: "Geert Uytterhoeven" <geert+renesas@glider.be>, "Conor Dooley"
+ <conor.dooley@microchip.com>, "Andrew Lunn" <andrew+netdev@lunn.ch>, "David
+ S . Miller" <davem@davemloft.net>, "Eric Dumazet" <edumazet@google.com>,
+ "Jakub Kicinski" <kuba@kernel.org>, "Paolo Abeni" <pabeni@redhat.com>,
+ "Heiner Kallweit" <hkallweit1@gmail.com>, "Russell King"
+ <linux@armlinux.org.uk>, "Neil Armstrong" <neil.armstrong@linaro.org>,
+ "Kevin Hilman" <khilman@baylibre.com>, "Jerome Brunet"
+ <jbrunet@baylibre.com>, "Martin Blumenstingl"
+ <martin.blumenstingl@googlemail.com>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <cover.1787240118.git.geert+renesas@glider.be>
+ <00772e2fb1f8433a5d6c47dbd28cb4149495e1ab.1787240118.git.geert+renesas@glider.be>
+In-Reply-To: <00772e2fb1f8433a5d6c47dbd28cb4149495e1ab.1787240118.git.geert+renesas@glider.be>
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260824_082941_406631_6460DD18 
-X-CRM114-Status: GOOD (  16.20  )
+X-CRM114-CacheID: sfid-20260824_090349_077893_3EE66114 
+X-CRM114-Status: GOOD (  15.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,71 +80,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Lucas,
-
-On Sun, Aug 23, 2026 at 04:40:42PM +0100, Lucas Tanure wrote:
-> While testing mainline Linux on the Khadas VIM4 (Amlogic A311D2 / T7), I am
-> hitting intermittent system instability, storage loss, and memory corruption
-> during boot, unless I append clk_ignore_unused to the kernel command line.
-> 
-> Because the failure is intermittent, I am running 100-reboot test campaigns
-> to bisect the remaining clocks and isolate which clocks are critical and
-> cannot be safely disabled.
-> 
-> As testing takes significant time over serial console, I wanted to check if
-> Amlogic or the maintainers could shed light on this:
-> 
-> Are there specific T7 clocks or hardware domains that must remain
-> critical/protected even without an explicit in-kernel consumer?
-> 
-> Current clocks being disabled that don't kill the board on a test run:
-> 
-> [    0.380313] clk: Disabling unused clocks
-> [    0.380413] clk: Disabled unused clock: rtc_dualdiv
-> [    0.380718] clk: Disabled unused clock: rtc_duandiv_in
-> [    0.381377] clk: Unprepared unused clock: a73_div16
-> [    0.381972] clk: Unprepared unused clock: cpu_div16
-> [    0.382605] clk: Unprepared unused clock: f50m
-> [    0.383174] clk: Unprepared unused clock: fixed_pll_dco
-> [    0.383786] clk: Unprepared unused clock: hdmi_pll_osc
-> [    0.384416] clk: Unprepared unused clock: sys1_pll_osc
-> [    0.385056] clk: Unprepared unused clock: earc_osc
-> [    0.385652] clk: Unprepared unused clock: pcie_refclk_osc
-> [    0.386323] clk: Unprepared unused clock: eth_pll_osc
-> [    0.386961] clk: Unprepared unused clock: pcie_osc
-> [    0.387548] clk: Unprepared unused clock: mclk_pll_osc
-> [    0.388187] clk: Unprepared unused clock: usb_pll1_osc
-> [    0.388826] clk: Unprepared unused clock: usb_pll0_osc
-> [    0.389465] clk: Unprepared unused clock: tcon_pll_osc
-> [    0.390105] clk: Unprepared unused clock: top_pll_osc
-> [    0.390738] clk: Unprepared unused clock: aud_pll_osc
-> [    0.391361] clk: Unprepared unused clock: ddr_pll_osc
-> 
-> I am not forcing any clock to be disabled; I am forcing all clocks to stay
-> on and letting them be disabled if unused one by one.
-> 
-> Any guidance or hints on required platform clocks would be greatly
-> appreciated.
-
-I have an outstanding series that disables unused clocks via the
-sync_state callback:
-
-https://lore.kernel.org/linux-clk/20260626-clk-sync-state-v1-0-4156d8196dc8@redhat.com/
-
-Be sure to not have clk_ignore_unused in your kernel command line.
-
-I suggest comparing the list of which clocks are disabled with that
-series against your list of clocks above.
-
-Brian
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGVsbG8gR2VlcnQsCgpPbiBGcmkgQXVnIDIxLCAyMDI2IGF0IDEyOjA3IFBNIENFU1QsIEdlZXJ0
+IFV5dHRlcmhvZXZlbiB3cm90ZToKPiBUaGUgY2xrX2luaXRfZGF0YSBzdHJ1Y3R1cmUgY29udGFp
+bnMgc2V2ZXJhbCBtdXR1YWxseS1leGNsdXNpdmUgbWVtYmVycwo+IGZvciBkaWZmZXJlbnQgbWV0
+aG9kcyB0byBzcGVjaWZ5IHRoZSBwb3NzaWJsZSBwYXJlbnRzIG9mIGEgY2xvY2ssCj4gcHJvbXB0
+aW5nIGRyaXZlcnMgdG8gaW5pdGlhbGl6ZSBvbmx5IHRoZSBtZW1iZXJzIHRoZXkgbmVlZC4gIEhv
+d2V2ZXIsCj4gbm90IGluaXRpYWxpemluZyBhbGwgbWVtYmVycyBtYXkgY2F1c2Ugc3VidGxlIGlz
+c3Vlcywgd2hpY2ggYXJlIG9ubHkKPiBleHBvc2VkIHdoZW4gQ09ORklHX0lOSVRfU1RBQ0tfQUxM
+X1BBVFRFUk4gb3IgQ09ORklHX0lOSVRfU1RBQ0tfTk9ORSBpcwo+IGVuYWJsZWQuCj4KPiBNYWtl
+IHN1cmUgYWxsIG1lbWJlcnMgYXJlIGZ1bGx5IGluaXRpYWxpemVkLCB0byBhdm9pZCBzdWNoIGJ1
+Z3MsIGFuZCB0bwo+IHByZXZlbnQgZnV0dXJlIGJyZWFrYWdlIHdoZW4gY29udmVydGluZyBkcml2
+ZXJzIHRvIGEgZGlmZmVyZW50IG1ldGhvZAo+IGZvciBzcGVjaWZ5aW5nIHRoZSBwYXJlbnRzLgo+
+Cj4gU2lnbmVkLW9mZi1ieTogR2VlcnQgVXl0dGVyaG9ldmVuIDxnZWVydCtyZW5lc2FzQGdsaWRl
+ci5iZT4KPiAtLS0KPiBDb21waWxlLXRlc3RlZCBvbmx5Lgo+IC0tLQo+ICBkcml2ZXJzL25ldC9l
+dGhlcm5ldC9jYWRlbmNlL21hY2JfbWFpbi5jIHwgMiArLQo+ICAxIGZpbGUgY2hhbmdlZCwgMSBp
+bnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL25ldC9l
+dGhlcm5ldC9jYWRlbmNlL21hY2JfbWFpbi5jIGIvZHJpdmVycy9uZXQvZXRoZXJuZXQvY2FkZW5j
+ZS9tYWNiX21haW4uYwo+IGluZGV4IDE0NzZiY2U3N2YzNGQyYTUuLjMxOWU0MzA5OGY1N2VkN2Ig
+MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9uZXQvZXRoZXJuZXQvY2FkZW5jZS9tYWNiX21haW4uYwo+
+ICsrKyBiL2RyaXZlcnMvbmV0L2V0aGVybmV0L2NhZGVuY2UvbWFjYl9tYWluLmMKPiBAQCAtNTM3
+Niw3ICs1Mzc2LDcgQEAgc3RhdGljIGludCBmdTU0MF9jMDAwX2Nsa19pbml0KHN0cnVjdCBwbGF0
+Zm9ybV9kZXZpY2UgKnBkZXYsIHN0cnVjdCBjbGsgKipwY2xrLAo+ICAJCQkgICAgICAgc3RydWN0
+IGNsayAqKmhjbGssIHN0cnVjdCBjbGsgKip0eF9jbGssCj4gIAkJCSAgICAgICBzdHJ1Y3QgY2xr
+ICoqcnhfY2xrLCBzdHJ1Y3QgY2xrICoqdHN1X2NsaykKPiAgewo+IC0Jc3RydWN0IGNsa19pbml0
+X2RhdGEgaW5pdDsKPiArCXN0cnVjdCBjbGtfaW5pdF9kYXRhIGluaXQgPSB7fTsKPiAgCWludCBl
+cnIgPSAwOwo+ICAKPiAgCWVyciA9IG1hY2JfY2xrX2luaXRfZGZsdChwZGV2LCBwY2xrLCBoY2xr
+LCB0eF9jbGssIHJ4X2NsaywgdHN1X2Nsayk7CgpSZXZpZXdlZC1ieTogVGjDqW8gTGVicnVuIDx0
+aGVvLmxlYnJ1bkBib290bGluLmNvbT4KCkkgY2Fubm90IGdpdmUgeW91IGEgVGVzdGVkLWJ5IGJl
+Y2F1c2UgdGhpcyB0cmlnZ2VycyBvbmx5IG9uCnNpZml2ZSxmdTU0MC1jMDAwLWdlbSBjb21wYXRp
+YmxlIG1hdGNoaW5nIHVwc3RyZWFtIGRldmljZXRyZWVzCnNpZml2ZS9oaWZpdmUte3VubGVhc2hl
+ZCx1bm1hdGNoZWR9LWEwMC5kdHMKClRoYW5rcywKCi0tClRow6lvIExlYnJ1biwgQm9vdGxpbgpF
+bWJlZGRlZCBMaW51eCBhbmQgS2VybmVsIGVuZ2luZWVyaW5nCmh0dHBzOi8vYm9vdGxpbi5jb20K
+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1h
+bWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0
+cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
