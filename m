@@ -4,71 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A8E7C5DF9C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 24 Aug 2026 16:03:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75884C61CE3
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Aug 2026 06:28:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Cc:Subject:
-	From:Message-Id:Date:Mime-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Jp6R7u0nn6/l9TKI8vbFabktMW1qWUtdrztfIcVbDPU=; b=GaESa0+C2xnl2f
-	F9LvIsLwe4w6LWb8ELEYVj2MBxe4K15yyEGs3ug0emYAvoUFjZIMij3AjwcvD6HbCr3kpeDwddN9E
-	lyFXpAhphm4pxWRjBo/O+y1xQLqeujCUmo529C8oy/M/T6EDvQi9uV6ZyRZ5vKdVlge52Rme0DWzc
-	qHnyLof1k0N4uvxdo1IwUBTOiA9l71vygPEmN0hFccYst+GfUfrLl/pAP3y+9MtF7Qd8Q7Hhdpoug
-	Qgd+26WRY+uZbs1cGAArrlbLXmXbX5jUBCIK6siCbeU1Tqp2aUy6kHH4AGUfkmFZc6GNlGrjOgJMV
-	7EZ5E3iBGYMTqw2EG9zQ==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=uZqmlrXvlwD5tsmT3Yy6N/+cxXWxcXa3n0dTBXFMkrA=; b=mfMgx7aP3mDT+F
+	DE5KOCjbZDJTHI9OcKCwAyeQkFKyfN3zB075cFLM4sbK6/PfqK6oNQRUSqyukBMudaah532gD/20w
+	C3v4tss3Jy59cWRIgwvpiUWA52YuGgZVfCvUbiP/fUSK4aeiwQCtj/jq1tUnVZzMRraG+eSGVWSEd
+	Gac64nJ0+bPUcPb79WyfImgH2l/UCFU0ykhTDGcXmQH/RhM/JmI9z7gJ1aso5K38VDwI2HOq8scim
+	fHFCVs07Go94tJ7Plkah2Y0Ft1urP7vmbqb/IHCeQvJAsGWrw6LoDhCB4TyrhykUD4h9RRV+P8uuf
+	XZ7mjc+FFwNuObSeCCCQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wyX9O-0000000GzsA-1RRx;
-	Mon, 24 Aug 2026 16:03:54 +0000
-Received: from smtpout-02.galae.net ([185.246.84.56])
+	id 1wykeC-00000000EFZ-1GQ5;
+	Tue, 25 Aug 2026 06:28:36 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wyX9I-0000000Gzpa-3nYL
+	id 1wykeB-00000000EFF-196u
 	for linux-amlogic@lists.infradead.org;
-	Mon, 24 Aug 2026 16:03:53 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id ECBD01A17F1;
-	Mon, 24 Aug 2026 16:03:43 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id BB11A5FFC1;
-	Mon, 24 Aug 2026 16:03:43 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 78E4511C7984B;
-	Mon, 24 Aug 2026 18:03:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1787587418; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=5Yw9p/e/gTObI0E0KW0aPmvh3/jojeNij8byOhPchOM=;
-	b=aMfQljN/arHfb158wkr6CLAxSet5iYUnnt2uZH3SAyBHHe34JaDMHVlouYUDP/wu9UFPHk
-	hhToPHJMaibC6ufFX3eAdBc4N0QOCeo3982Ddg5EQrWbF8Nx4HyjmUWDJUKiY1f9LSiZj+
-	Z4qfvh5Sk96mK6eM1+uMQa95BFrAKYezzqHsO7LBQqj5M79l+3mFih7KxEYPtwLavaHp3o
-	a3aFmclYXZxSB51anNKIJr9sIm2ahqqrgQkVk/ps+tRSZRlM7kFhE7Yueqf5+hyAy8XQsf
-	w4Ct0qOqMzO8kHzgAy56q4Qg0mRmKjqhR8680oSotZYxSN/ShI1rvqATHHzXLQ==
-Mime-Version: 1.0
-Date: Mon, 24 Aug 2026 18:03:32 +0200
-Message-Id: <DKXAUOKYDIWV.B30CB2QWDDXQ@bootlin.com>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH net-next 1/3] net: macb: Make sure clk_init_data is
- fully initialized
-Cc: <netdev@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>
-To: "Geert Uytterhoeven" <geert+renesas@glider.be>, "Conor Dooley"
- <conor.dooley@microchip.com>, "Andrew Lunn" <andrew+netdev@lunn.ch>, "David
- S . Miller" <davem@davemloft.net>, "Eric Dumazet" <edumazet@google.com>,
- "Jakub Kicinski" <kuba@kernel.org>, "Paolo Abeni" <pabeni@redhat.com>,
- "Heiner Kallweit" <hkallweit1@gmail.com>, "Russell King"
- <linux@armlinux.org.uk>, "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Kevin Hilman" <khilman@baylibre.com>, "Jerome Brunet"
- <jbrunet@baylibre.com>, "Martin Blumenstingl"
- <martin.blumenstingl@googlemail.com>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <cover.1787240118.git.geert+renesas@glider.be>
- <00772e2fb1f8433a5d6c47dbd28cb4149495e1ab.1787240118.git.geert+renesas@glider.be>
-In-Reply-To: <00772e2fb1f8433a5d6c47dbd28cb4149495e1ab.1787240118.git.geert+renesas@glider.be>
-X-Last-TLS-Session-Version: TLSv1.3
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260824_090349_077893_3EE66114 
-X-CRM114-Status: GOOD (  15.03  )
+	Tue, 25 Aug 2026 06:28:35 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 738CC439EC;
+	Tue, 25 Aug 2026 06:28:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4849FC2BCF4;
+	Tue, 25 Aug 2026 06:28:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1787639314;
+	bh=wtn1I+ai2TfN4YtsNfLA2KMBghSMbAH01BL0yp3zDvE=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=FEZr7Sv3d+5cr0PQIx41y23gXoYErknC6jxzIMTwt3foltbh+YZAA4dSmtvwt+FP9
+	 Urbn3TciHGLehE375EgAQMT/Fcs28RrkcR18ju2ei+T0+ufCUei1Kc7cJzuDS2FhZx
+	 +3HX2r8XV7MnWdxuw9iVJ2uiJVT2pEOUGvOrP3g34AbIwqlU+BrkWhfbGE2BSQFzaz
+	 gQA7PpU/RqQFllqS1//afMxDfAlz3AUnh3lNg/nvyjyGNJWmMwshLcnyIC2M/keutz
+	 mEUzTnkeDT65e9eCsbLVn4hvVpAiu/IF0r3k5yvh6cBuDNhPZxGRyD4I4AV5dJDXaO
+	 cYqL4AfDTJkPA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1CF4FC61DB6;
+	Tue, 25 Aug 2026 06:28:34 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v4 0/2] thermal: Add support A9
+Date: Tue, 25 Aug 2026 06:28:28 +0000
+Message-Id: <20260825-a9-thermal-v4-0-d8fc9859cf22@amlogic.com>
+MIME-Version: 1.0
+X-B4-Tracking: v=1; b=H4sIAAw2jWoC/2XMSwqDMBSF4a1Ixk1Jcq0xHXUfpYM8bjTgo0SRF
+ nHvjVKo0uE58P0zGTAGHMg1m0nEKQyh79LITxmxte4qpMGlTQQTBZMMqFZ0rDG2uqG+EBZ9gVp
+ xTxJ4RvThtcXuj7TrMIx9fG/tia/vNwNsn5k4ZdTJsnAgrdGX8qbbpq+CPdu+JWtoEj9ccn7AI
+ mHpnAUwnBul/zHssDhiSJih1MaDyjnCES/L8gEOipaQIAEAAA==
+X-Change-ID: 20260703-a9-thermal-f62cef6ea91f
+To: Guillaume La Roque <glaroque@baylibre.com>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1787639310; l=1596;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=wtn1I+ai2TfN4YtsNfLA2KMBghSMbAH01BL0yp3zDvE=;
+ b=F5+QWQZl4PmucrgygUs+YLg5rrOp+WvqSGZix8VgOu8ehFtrOeF6XCsABxyDJUapkpv9En1pg
+ jN30zNiglk+CB37pANMJqMad75efyfP4iaHscftoGikgpJgMXZ6x1b8
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,42 +87,52 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGVsbG8gR2VlcnQsCgpPbiBGcmkgQXVnIDIxLCAyMDI2IGF0IDEyOjA3IFBNIENFU1QsIEdlZXJ0
-IFV5dHRlcmhvZXZlbiB3cm90ZToKPiBUaGUgY2xrX2luaXRfZGF0YSBzdHJ1Y3R1cmUgY29udGFp
-bnMgc2V2ZXJhbCBtdXR1YWxseS1leGNsdXNpdmUgbWVtYmVycwo+IGZvciBkaWZmZXJlbnQgbWV0
-aG9kcyB0byBzcGVjaWZ5IHRoZSBwb3NzaWJsZSBwYXJlbnRzIG9mIGEgY2xvY2ssCj4gcHJvbXB0
-aW5nIGRyaXZlcnMgdG8gaW5pdGlhbGl6ZSBvbmx5IHRoZSBtZW1iZXJzIHRoZXkgbmVlZC4gIEhv
-d2V2ZXIsCj4gbm90IGluaXRpYWxpemluZyBhbGwgbWVtYmVycyBtYXkgY2F1c2Ugc3VidGxlIGlz
-c3Vlcywgd2hpY2ggYXJlIG9ubHkKPiBleHBvc2VkIHdoZW4gQ09ORklHX0lOSVRfU1RBQ0tfQUxM
-X1BBVFRFUk4gb3IgQ09ORklHX0lOSVRfU1RBQ0tfTk9ORSBpcwo+IGVuYWJsZWQuCj4KPiBNYWtl
-IHN1cmUgYWxsIG1lbWJlcnMgYXJlIGZ1bGx5IGluaXRpYWxpemVkLCB0byBhdm9pZCBzdWNoIGJ1
-Z3MsIGFuZCB0bwo+IHByZXZlbnQgZnV0dXJlIGJyZWFrYWdlIHdoZW4gY29udmVydGluZyBkcml2
-ZXJzIHRvIGEgZGlmZmVyZW50IG1ldGhvZAo+IGZvciBzcGVjaWZ5aW5nIHRoZSBwYXJlbnRzLgo+
-Cj4gU2lnbmVkLW9mZi1ieTogR2VlcnQgVXl0dGVyaG9ldmVuIDxnZWVydCtyZW5lc2FzQGdsaWRl
-ci5iZT4KPiAtLS0KPiBDb21waWxlLXRlc3RlZCBvbmx5Lgo+IC0tLQo+ICBkcml2ZXJzL25ldC9l
-dGhlcm5ldC9jYWRlbmNlL21hY2JfbWFpbi5jIHwgMiArLQo+ICAxIGZpbGUgY2hhbmdlZCwgMSBp
-bnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL25ldC9l
-dGhlcm5ldC9jYWRlbmNlL21hY2JfbWFpbi5jIGIvZHJpdmVycy9uZXQvZXRoZXJuZXQvY2FkZW5j
-ZS9tYWNiX21haW4uYwo+IGluZGV4IDE0NzZiY2U3N2YzNGQyYTUuLjMxOWU0MzA5OGY1N2VkN2Ig
-MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9uZXQvZXRoZXJuZXQvY2FkZW5jZS9tYWNiX21haW4uYwo+
-ICsrKyBiL2RyaXZlcnMvbmV0L2V0aGVybmV0L2NhZGVuY2UvbWFjYl9tYWluLmMKPiBAQCAtNTM3
-Niw3ICs1Mzc2LDcgQEAgc3RhdGljIGludCBmdTU0MF9jMDAwX2Nsa19pbml0KHN0cnVjdCBwbGF0
-Zm9ybV9kZXZpY2UgKnBkZXYsIHN0cnVjdCBjbGsgKipwY2xrLAo+ICAJCQkgICAgICAgc3RydWN0
-IGNsayAqKmhjbGssIHN0cnVjdCBjbGsgKip0eF9jbGssCj4gIAkJCSAgICAgICBzdHJ1Y3QgY2xr
-ICoqcnhfY2xrLCBzdHJ1Y3QgY2xrICoqdHN1X2NsaykKPiAgewo+IC0Jc3RydWN0IGNsa19pbml0
-X2RhdGEgaW5pdDsKPiArCXN0cnVjdCBjbGtfaW5pdF9kYXRhIGluaXQgPSB7fTsKPiAgCWludCBl
-cnIgPSAwOwo+ICAKPiAgCWVyciA9IG1hY2JfY2xrX2luaXRfZGZsdChwZGV2LCBwY2xrLCBoY2xr
-LCB0eF9jbGssIHJ4X2NsaywgdHN1X2Nsayk7CgpSZXZpZXdlZC1ieTogVGjDqW8gTGVicnVuIDx0
-aGVvLmxlYnJ1bkBib290bGluLmNvbT4KCkkgY2Fubm90IGdpdmUgeW91IGEgVGVzdGVkLWJ5IGJl
-Y2F1c2UgdGhpcyB0cmlnZ2VycyBvbmx5IG9uCnNpZml2ZSxmdTU0MC1jMDAwLWdlbSBjb21wYXRp
-YmxlIG1hdGNoaW5nIHVwc3RyZWFtIGRldmljZXRyZWVzCnNpZml2ZS9oaWZpdmUte3VubGVhc2hl
-ZCx1bm1hdGNoZWR9LWEwMC5kdHMKClRoYW5rcywKCi0tClRow6lvIExlYnJ1biwgQm9vdGxpbgpF
-bWJlZGRlZCBMaW51eCBhbmQgS2VybmVsIGVuZ2luZWVyaW5nCmh0dHBzOi8vYm9vdGxpbi5jb20K
-CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1h
-bWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0
-cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+Document the thermal controller compatibles for the Amlogic A9 SoC
+And add driver support for the Amlogic A9 thermal controller.
+
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v4:
+- Fix type error in comit mesage, and set factor valid value. 
+- Link to v3: https://lore.kernel.org/r/20260821-a9-thermal-v3-0-0e7abf3941e3@amlogic.com
+
+Changes in v3:
+- Binding: add restrictive conditions for clock, and remove remove "amlogic,hw-reset-temp" property.
+- Driver: add private data reset_temp instead of get value from DTS.
+- Link to v2: https://lore.kernel.org/r/20260811-a9-thermal-v2-0-7ddc33b11b9a@amlogic.com
+
+Changes in v2:
+- Fix the spelling mistakes (clock-names) and reset-temp properties is visible to old chips.
+- Adjust the clock enable sequence in resume func and remove the clock disable in remove func.
+- Add the judgment on the divisor zero.
+- Add description of support for over-temperature reset for old chips in commit message.
+- Link to v1: https://lore.kernel.org/r/20260730-a9-thermal-v1-0-d786d37cba58@amlogic.com
+
+---
+Xianwei Zhao (2):
+      dt-bindings: thermal: amlogic: Add A9 thermal bindings
+      thermal: amlogic: Add support for A9 thermal controller
+
+ .../bindings/thermal/amlogic,thermal.yaml          |  27 ++++-
+ drivers/thermal/amlogic_thermal.c                  | 113 ++++++++++++++++++++-
+ 2 files changed, 136 insertions(+), 4 deletions(-)
+---
+base-commit: 78bc8af4affb9a732504eb22eeac7d1e50883853
+change-id: 20260703-a9-thermal-f62cef6ea91f
+
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
