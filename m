@@ -4,104 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E778C61DC6
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Aug 2026 17:17:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78FF1C61DBE
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Aug 2026 20:05:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MJgAhMrIUysgNNufn2R9/czwde4kQ91j1MqCyeSuCnM=; b=c6PLtTqQAoCRWM
-	RgX6Mmtt9pLZuw3gptcz/f5np/pyun4MWt7hAKZrXBxWLu8CtspPm4IZgzgWiWT5enwXO/7OZeXTO
-	moKX0V3VhaQPDkopzFW6u5W1LWYQ6leCTEvywlFp8AguvzYS1FKms3rn1mOwoNmrbL2TIAi216Kpj
-	/sJzJWT2Y57sVBv/8rw4hjpb0tehwDefGtwucuXmIpbWj2N30VhftUhStMbxnGEG2vj3O2Oj4bd8+
-	jcABxwjRwyCVGTlP4BtTMUJ/jJV3yEvd+UV2IzbdpFPtQ3W/LUTBkAStaOJfXyQB8g2BeWrv6jpUd
-	nSnbXFjKZwk+RBTG/R1w==;
+	List-Owner; bh=dO7SlCWZEg7Ls6a17mDK07O5FIYRO3/EWRBdw9R0bBE=; b=kKkrYLmElQ9/sC
+	yZVwIhuLoMUvmF3hGVt07e3MHcEYRRKDlOriU+S/xeCp9KDqoBPryFiYaXQMrAfW6GLFpM9Pgxe32
+	T+LG3cPoamMgRAP68xa17JoLbOxaetj85r9k6dYtjlQyD262MNFK8YQQRn5LlFMPqVIcMgNYwQS05
+	oFf3ZT/qI2dd5IlZdlm5Wi6OsuZbFpFF2X3qWARRb3AckgvP5AutnB6KDXTt/r9w8vSLeqrTyYFkD
+	dTwOmqtv1bzGObH3ffSqSuv/QkWw1s6q4Ih9xXwvSeSS8byp47LNC+p+fDBJEyMnC+WA/gmcgRahW
+	bfpIuEhAAJTwjHBhVgpw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wzHFt-00000002nqg-46W0;
-	Wed, 26 Aug 2026 17:17:41 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+	id 1wzJrj-00000002xkc-0Bj1;
+	Wed, 26 Aug 2026 20:04:55 +0000
+Received: from mail-wm1-f52.google.com ([209.85.128.52])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wzHFq-00000002npZ-493e
+	id 1wzJre-00000002xjf-1LBu
 	for linux-amlogic@lists.infradead.org;
-	Wed, 26 Aug 2026 17:17:40 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1787764656;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=6yYb0HNz5KGftss5YJcVkpZccia/QhI7Av14y4QDURk=;
-	b=JLB9w1BDhlGPX7eht8/VcLC/cXCpzHjwFHl26E1zArVKVD6h20HGyCIsQs7e6t1SMffd7l
-	0QgEOdjQGRA3LaHFdRdR4Preoq1B9dNn08uapYT55M+/JEuee9Upvkkq+pJzFw6Uv8c0CN
-	C8SocA7LMQ3CwBtZkMhe+QSVf2R+og0=
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
- [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-647-RthjNEEGMUuDO53RJ-TVjA-1; Wed, 26 Aug 2026 13:17:34 -0400
-X-MC-Unique: RthjNEEGMUuDO53RJ-TVjA-1
-X-Mimecast-MFC-AGG-ID: RthjNEEGMUuDO53RJ-TVjA_1787764654
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-936aa34873bso98906285a.3
-        for <linux-amlogic@lists.infradead.org>; Wed, 26 Aug 2026 10:17:34 -0700 (PDT)
+	Wed, 26 Aug 2026 20:04:53 +0000
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4956869750eso8648245e9.2
+        for <linux-amlogic@lists.infradead.org>; Wed, 26 Aug 2026 13:04:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787764654; x=1788369454;
-        h=user-agent:in-reply-to:content-disposition:content-type
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=6yYb0HNz5KGftss5YJcVkpZccia/QhI7Av14y4QDURk=;
-        b=dlqlb6am5KMMEzcsLN+2Ztz5jcgKb/o5U2xsyiz2bZ5b9si/mErJqkvQLfOuq87+s3
-         2cYCvdMn+HgQ1E6JHJdzEkre4IXEDoA5mTXqnTVSOC38vldENZ7SjPPXeiGQfgX3pYuP
-         9pg+cuH5X+ufSCd87NcdGfaFl5Is/FGEQ9aBDvyrf17TxdM5WmOdSnKoJ2cthb37BDcm
-         XRQxD7iHWym55/1L5XlU8cSKfyg5baz1FRFK8lTnY4Uy6ktQP15LFAQ/fOgz2GMyFC8r
-         iIuRSpanqBKdLR2evOxI5jK83lbOjJxGJsKrgfvBKBGuDltgmxwimXZuT0Hy5/6puIAc
-         HwaQ==
-X-Forwarded-Encrypted: i=1; AHgh+RprYCRTFcVMLB69koYvR7K3M7pwSAzlGswY6QrI3JXTenEcTQpngldo7Q232fx4zAUT82n+gjvxlCYv1fJz@lists.infradead.org
-X-Gm-Message-State: AFuF++mMM1Nl6SiUfEcb0kB+37rF0vmyN9DdUsGV0JQy5aoca7m6o1uO
-	DtBMUU+HIInyTX7EDRqj9V3skMJ+mDDmm5Ua1XYPHyoSqJM5UHQmQdq56kOegxPGrJDcLviVZLT
-	lmE8zt6MnIYu0vFo5bEMD9789B1vSOkh8y8zG2fRf2EmK/wARrMIwZLqF99Tq2sFFvUadUdTR
-X-Gm-Gg: AR+sD12HD44y+gCCzk2Rjznbrn0XHquR1KQioGj83GUtq0zvjR0FLPsJC3s33EVzJ3g
-	t/+HTDktrefK1e7JIKyGwvSk+KvQ8tXrTUbfjkpUD2Ui8PnWc8gbB6k992dwEBwmmaIa1dT1wXw
-	XkHhe579sfaSmvXFVYvaKI9eoX/y44npI6cyxh9Ro2QBsgXNfH8UJcGcfj951dxAT2DjREYQ+Fv
-	vbWiHN09Kj+Vf8ZjfjsySxPT3u3CzqfVEb71iEen9dLDoAapDSnSIbLUy+6HHBquF3xp43Anc6W
-	MiDM5XxtaHDXLp/s5orku3K8TAgcK4tMsCeFrhONqpsuXMNsjEeFErqdaPndHdFmvwqnzA==
-X-Received: by 2002:a05:620a:a4a:b0:936:ce17:dac3 with SMTP id af79cd13be357-93780433529mr609195585a.40.1787764653965;
-        Wed, 26 Aug 2026 10:17:33 -0700 (PDT)
-X-Received: by 2002:a05:620a:a4a:b0:936:ce17:dac3 with SMTP id af79cd13be357-93780433529mr609188785a.40.1787764653394;
-        Wed, 26 Aug 2026 10:17:33 -0700 (PDT)
-Received: from redhat.com ([23.25.77.22])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-9377e36954asm255124385a.18.2026.08.26.10.17.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Aug 2026 10:17:32 -0700 (PDT)
-Date: Wed, 26 Aug 2026 13:17:30 -0400
-From: Brian Masney <bmasney@redhat.com>
-To: Lucas Tanure <tanure@linux.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>, Jian Hu <jian.hu@amlogic.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+        d=1e100.net; s=20251104; t=1787774688; x=1788379488;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=aqltKglBedGMune1iOvieoStWiRDAaU03/Ap5YDSFbs=;
+        b=QizcbQWZugZBidQAIMNaRM0/p6lS4PGTBPZnVwmyHwBV91kbJl3bkyiYMQvXfEkuD4
+         8wPkiR/mtZDHQEoluERxpXvaeTN5/3Y2xhr711BYxUMwVYDkdomkjlyb0336s3F4Zef0
+         irYUO9I6AySzcoEKE2mYxe3SngwoITvOuEegmHni/N03JMqySlCszMWZH3EHuNziajyn
+         U7sGtM2332/RNAideOOQBxR0L4/zeMI6KzxgtphYsNROw8qI804Xdot5e2UKvmAQygoe
+         k+sbjzfg9oOhQJ82KW4WApU932LD2Lp7YhpeDl9JdDrVf/djVaGWPZTMxSR9pxYXhG+8
+         RuiA==
+X-Forwarded-Encrypted: i=1; AHgh+RoagWo1y3XzKMxoMJ4Ba1lCa9HWXMpry24P2eXDf/TdAJ94qI3R6MeUBayC0BqiSEN1Z9K1rEZbGwH4G3Lc@lists.infradead.org
+X-Gm-Message-State: AFuF++lHfxEM3uDUN7D9RkcvzPisV70UUmuPuUkBWe38hi4Kv3YEsS8z
+	/iXnPAJwPE76rd66FPa9VpRxhwap4YdGTlQ4g2mHT+uf2c6+VDzOX65i
+X-Gm-Gg: AR+sD12/j109Yw6dK7a9JCxbaPL4rOdB4B8mbylEd0wlAfEE2Grm6W+oN6NyBLNmGso
+	of83Cryz1/+l3zwmMatYRo+L4z8ZtofEboxxtEhiNHmss2stWfVGmohl5e6H/jlAw/LVg7zmYgv
+	GEJiWq3XnhJpp/jdaCmXFVz39nN4X3AkTGyppqekAJrjEK84ZBS2HaiCYa4D40CRjy2tHIc7Y0x
+	3GrCrBOZaViT039lFbf4NvcsKSWeEcrFjiB1iT0YLlJq2QmGIb/g/BFfS17iU0t5bZ4tUWzSP+t
+	rkOtHe1asycSjhUmISZDyEHtbuS4/g/u3ufPcmratZbzl029kQvfVdmaaAT6LVbvQNXLapWb9av
+	csgkkiFC6TpLzzQkq5j6ZngCeVjDlbObrx3kXhrTBVITzCL0HAHrMcGcGLmQgies7/cQHQbK9wP
+	SD2ypVgrkYpRw1w7s7WgmJ7J/wc7w7ocwU5M7Y8H2sAVglrK6gfflQzTeRwbm8m19ARpiCl7lKl
+	pml7/N3IW2/zXmiEkj7yQ==
+X-Received: by 2002:a05:600c:3112:b0:499:db6e:40a5 with SMTP id 5b1f17b1804b1-499dc6fba17mr83121845e9.4.1787774687928;
+        Wed, 26 Aug 2026 13:04:47 -0700 (PDT)
+Received: from [192.168.1.135] ([83.106.158.114])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-499e7170b72sm22537845e9.0.2026.08.26.13.04.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Aug 2026 13:04:47 -0700 (PDT)
+Message-ID: <5ac071a6-8013-4143-9f59-7d0c6cad5c00@linux.com>
+Date: Wed, 26 Aug 2026 21:04:44 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [RFC] clk: meson: t7: Intermittent boot instability and memory
  corruption on VIM4
-Message-ID: <ao8fqstEs01hd3--@redhat.com>
+To: Brian Masney <bmasney@redhat.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jian Hu <jian.hu@amlogic.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <3930906f-783b-4d72-9260-ba25cc8081cb@linux.com>
  <aoxjX3HabY0brgXk@redhat.com>
  <57d796bd-7a3c-46b9-bd65-d6860adbd355@linux.com>
  <72db2062-e0ac-4c33-b1d1-d1fa5ae4bec8@linux.com>
-MIME-Version: 1.0
-In-Reply-To: <72db2062-e0ac-4c33-b1d1-d1fa5ae4bec8@linux.com>
-User-Agent: Mutt/2.4.0 (2026-06-19)
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: iH_6QXkgOGErbAdamhVI3l44pMx3YHZweVbVHcT0TCs_1787764654
-X-Mimecast-Originator: redhat.com
-Content-Disposition: inline
+ <ao8fqstEs01hd3--@redhat.com>
+Content-Language: en-US
+From: Lucas Tanure <tanure@linux.com>
+In-Reply-To: <ao8fqstEs01hd3--@redhat.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260826_101739_116597_237E281D 
-X-CRM114-Status: GOOD (  15.70  )
+X-CRM114-CacheID: sfid-20260826_130451_243050_18A493A3 
+X-CRM114-Status: GOOD (  24.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,124 +96,260 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Lucas,
-
-On Wed, Aug 26, 2026 at 05:42:01PM +0100, Lucas Tanure wrote:
-> With Brian's patches, VIM4 does not turn off 4 clocks:
+On 26/08/2026 18:17, Brian Masney wrote:
+> Hi Lucas,
 > 
-> t7_sys_sd_emmc_b
-> t7_sys_sd_emmc_c
-> sd_emmc_b
-> sd_emmc_c
+> On Wed, Aug 26, 2026 at 05:42:01PM +0100, Lucas Tanure wrote:
+>> With Brian's patches, VIM4 does not turn off 4 clocks:
+>>
+>> t7_sys_sd_emmc_b
+>> t7_sys_sd_emmc_c
+>> sd_emmc_b
+>> sd_emmc_c
+>>
+>> This is expected since I'm trying to run from an SD card. However, even with
+>> these four clocks kept enabled, the board still hangs.
+>>
+>> Complete list with all clocks being disabled after Brians patches:
+>> [    1.002247] clk: Disabled unused clock: t7_sys_pwm_ao_gh
+>> [    1.002898] clk: Disabled unused clock: t7_sys_pwm_ao_ef
+>> [    1.003560] clk: Disabled unused clock: t7_sys_pwm_ao_cd
+>> [    1.004220] clk: Disabled unused clock: t7_sys_pwm_ao_ab
+>> [    1.004972] clk: Disabled unused clock: t7_sys_pwm_ef
+>> [    1.005509] clk: Disabled unused clock: t7_sys_pwm_cd
+>> [    1.006211] clk: Disabled unused clock: t7_sys_pwm_ab
+>> [    1.006766] clk: Disabled unused clock: t7_sys_ts_hevc
+>> [    1.007434] clk: Disabled unused clock: t7_sys_ts_vpu
+>> [    1.008033] clk: Disabled unused clock: t7_sys_ts_nna
+>> [    1.008741] clk: Disabled unused clock: t7_sys_ts_gpu
+>> [    1.009294] clk: Disabled unused clock: t7_sys_sar_adc
+>> [    1.009929] clk: Disabled unused clock: t7_sys_vpu_intr
+>> [    1.010609] clk: Disabled unused clock: t7_sys_dspb
+>> [    1.011186] clk: Disabled unused clock: t7_sys_dspa
+>> [    1.011792] clk: Disabled unused clock: t7_sys_a73pclk_apb
+>> [    1.012554] clk: Disabled unused clock: t7_sys_pclk_sys_apb
+>> [    1.013213] clk: Disabled unused clock: t7_sys_rsa
+>> [    1.013811] clk: Disabled unused clock: t7_sys_mipi_isp_pclk
+>> [    1.014529] clk: Disabled unused clock: t7_sys_mmc_apb
+>> [    1.015107] clk: Disabled unused clock: t7_sys_hdmirx_pclk
+>> [    1.015819] clk: Disabled unused clock: t7_sys_i2c_s_a
+>> [    1.016429] clk: Disabled unused clock: t7_sys_hdmitx_apb
+>> [    1.017109] clk: Disabled unused clock: t7_sys_i2c_m_f
+>> [    1.017740] clk: Disabled unused clock: t7_sys_i2c_m_e
+>> [    1.018379] clk: Disabled unused clock: t7_sys_i2c_m_d
+>> [    1.019018] clk: Disabled unused clock: t7_sys_i2c_m_c
+>> [    1.019657] clk: Disabled unused clock: t7_sys_i2c_m_b
+>> [    1.020296] clk: Disabled unused clock: t7_sys_i2c_m_a
+>> [    1.020940] clk: Disabled unused clock: t7_sys_i2c_ao_b
+>> [    1.021585] clk: Disabled unused clock: t7_sys_i2c_ao_a
+>> [    1.022236] clk: Disabled unused clock: t7_sys_pcie_phy
+>> [    1.022885] clk: Disabled unused clock: t7_sys_usb
+>> [    1.023482] clk: Disabled unused clock: t7_sys_pcie
+>> [    1.024088] clk: Disabled unused clock: t7_sys_spicc1
+>> [    1.024723] clk: Disabled unused clock: t7_sys_spicc0
+>> [    1.025345] clk: Disabled unused clock: t7_sys_g2d
+>> [    1.025940] clk: Disabled unused clock: t7_sys_spicc5
+>> [    1.026569] clk: Disabled unused clock: t7_sys_ts_a53
+>> [    1.027197] clk: Disabled unused clock: t7_sys_ts_a73
+>> [    1.027825] clk: Disabled unused clock: t7_sys_spicc4
+>> [    1.028454] clk: Disabled unused clock: t7_sys_spicc3
+>> [    1.029085] clk: Disabled unused clock: t7_sys_spicc2
+>> [    1.029710] clk: Disabled unused clock: t7_sys_aififo
+>> [    1.030339] clk: Disabled unused clock: t7_sys_uart_f
+>> [    1.030967] clk: Disabled unused clock: t7_sys_uart_e
+>> [    1.031595] clk: Disabled unused clock: t7_sys_uart_d
+>> [    1.032224] clk: Disabled unused clock: t7_sys_uart_c
+>> [    1.032857] clk: Disabled unused clock: t7_sys_uart_b
+>> [    1.033482] clk: Disabled unused clock: t7_sys_eth
+>> [    1.034077] clk: Disabled unused clock: t7_sys_audio
+>> [    1.034694] clk: Disabled unused clock: t7_sys_ir_ctrl
+>> [    1.035333] clk: Disabled unused clock: t7_sys_msr_clk
+>> [    1.035972] clk: Disabled unused clock: t7_sys_spifc
+>> [    1.036596] clk: Disabled unused clock: t7_sys_acodec
+>> [    1.037218] clk: Disabled unused clock: t7_sys_smartcard
+>> [    1.037880] clk: Disabled unused clock: t7_sys_am2axi2
+>> [    1.038518] clk: Disabled unused clock: t7_sys_am2axi1
+>> [    1.039157] clk: Disabled unused clock: t7_sys_am2axi0
+>> [    1.039796] clk: Disabled unused clock: t7_sys_ampipe_eth
+>> [    1.040468] clk: Disabled unused clock: t7_sys_ampipe_nand
+>> [    1.041155] clk: Disabled unused clock: t7_sys_deswarp
+>> [    1.041790] clk: Disabled unused clock: t7_sys_gdc
+>> [    1.042385] clk: Disabled unused clock: t7_sys_cec
+>> [    1.042981] clk: Disabled unused clock: t7_sys_aucpu
+>> [    1.043600] clk: Disabled unused clock: t7_sys_aocpu
+>> [    1.044217] clk: Disabled unused clock: t7_sys_mali
+>> [    1.044830] clk: Disabled unused clock: t7_sys_ethphy
+>> [    1.045451] clk: Disabled unused clock: t7_sys_mipi_dsi_b
+>> [    1.046123] clk: Disabled unused clock: t7_sys_mipi_dsi_a
+>> [    1.046795] clk: Disabled unused clock: t7_sys_dos
+>> [    1.047390] clk: Disabled unused clock: t7_sys_ddr
+>> [    1.047991] clk: Disabled unused clock: pwm_ao_g
+>> [    1.048565] clk: Disabled unused clock: pwm_ao_f
+>> [    1.049135] clk: Disabled unused clock: pwm_ao_e
+>> [    1.049709] clk: Disabled unused clock: pwm_ao_d
+>> [    1.050283] clk: Disabled unused clock: pwm_ao_b
+>> [    1.050857] clk: Disabled unused clock: pwm_ao_a
+>> [    1.051454] clk: Disabled unused clock: rtc_dualdiv
+>> [    1.052038] clk: Disabled unused clock: rtc_duandiv_in
+>>
+>> Also with the patches the disable happens 0.5 second later, from 0.5 seconds
+>> after the boot to 1 second after the boot.
+>>
+>> I am still investigating what is missing a consumer or what should be
+>> labeled critical.
 > 
-> This is expected since I'm trying to run from an SD card. However, even with
-> these four clocks kept enabled, the board still hangs.
+> I've seen cases where a clock is modeled in Linux, but isn't actually
+> used by Linux, so it gets caught in the disable unused clocks sweep.
 > 
-> Complete list with all clocks being disabled after Brians patches:
-> [    1.002247] clk: Disabled unused clock: t7_sys_pwm_ao_gh
-> [    1.002898] clk: Disabled unused clock: t7_sys_pwm_ao_ef
-> [    1.003560] clk: Disabled unused clock: t7_sys_pwm_ao_cd
-> [    1.004220] clk: Disabled unused clock: t7_sys_pwm_ao_ab
-> [    1.004972] clk: Disabled unused clock: t7_sys_pwm_ef
-> [    1.005509] clk: Disabled unused clock: t7_sys_pwm_cd
-> [    1.006211] clk: Disabled unused clock: t7_sys_pwm_ab
-> [    1.006766] clk: Disabled unused clock: t7_sys_ts_hevc
-> [    1.007434] clk: Disabled unused clock: t7_sys_ts_vpu
-> [    1.008033] clk: Disabled unused clock: t7_sys_ts_nna
-> [    1.008741] clk: Disabled unused clock: t7_sys_ts_gpu
-> [    1.009294] clk: Disabled unused clock: t7_sys_sar_adc
-> [    1.009929] clk: Disabled unused clock: t7_sys_vpu_intr
-> [    1.010609] clk: Disabled unused clock: t7_sys_dspb
-> [    1.011186] clk: Disabled unused clock: t7_sys_dspa
-> [    1.011792] clk: Disabled unused clock: t7_sys_a73pclk_apb
-> [    1.012554] clk: Disabled unused clock: t7_sys_pclk_sys_apb
-> [    1.013213] clk: Disabled unused clock: t7_sys_rsa
-> [    1.013811] clk: Disabled unused clock: t7_sys_mipi_isp_pclk
-> [    1.014529] clk: Disabled unused clock: t7_sys_mmc_apb
-> [    1.015107] clk: Disabled unused clock: t7_sys_hdmirx_pclk
-> [    1.015819] clk: Disabled unused clock: t7_sys_i2c_s_a
-> [    1.016429] clk: Disabled unused clock: t7_sys_hdmitx_apb
-> [    1.017109] clk: Disabled unused clock: t7_sys_i2c_m_f
-> [    1.017740] clk: Disabled unused clock: t7_sys_i2c_m_e
-> [    1.018379] clk: Disabled unused clock: t7_sys_i2c_m_d
-> [    1.019018] clk: Disabled unused clock: t7_sys_i2c_m_c
-> [    1.019657] clk: Disabled unused clock: t7_sys_i2c_m_b
-> [    1.020296] clk: Disabled unused clock: t7_sys_i2c_m_a
-> [    1.020940] clk: Disabled unused clock: t7_sys_i2c_ao_b
-> [    1.021585] clk: Disabled unused clock: t7_sys_i2c_ao_a
-> [    1.022236] clk: Disabled unused clock: t7_sys_pcie_phy
-> [    1.022885] clk: Disabled unused clock: t7_sys_usb
-> [    1.023482] clk: Disabled unused clock: t7_sys_pcie
-> [    1.024088] clk: Disabled unused clock: t7_sys_spicc1
-> [    1.024723] clk: Disabled unused clock: t7_sys_spicc0
-> [    1.025345] clk: Disabled unused clock: t7_sys_g2d
-> [    1.025940] clk: Disabled unused clock: t7_sys_spicc5
-> [    1.026569] clk: Disabled unused clock: t7_sys_ts_a53
-> [    1.027197] clk: Disabled unused clock: t7_sys_ts_a73
-> [    1.027825] clk: Disabled unused clock: t7_sys_spicc4
-> [    1.028454] clk: Disabled unused clock: t7_sys_spicc3
-> [    1.029085] clk: Disabled unused clock: t7_sys_spicc2
-> [    1.029710] clk: Disabled unused clock: t7_sys_aififo
-> [    1.030339] clk: Disabled unused clock: t7_sys_uart_f
-> [    1.030967] clk: Disabled unused clock: t7_sys_uart_e
-> [    1.031595] clk: Disabled unused clock: t7_sys_uart_d
-> [    1.032224] clk: Disabled unused clock: t7_sys_uart_c
-> [    1.032857] clk: Disabled unused clock: t7_sys_uart_b
-> [    1.033482] clk: Disabled unused clock: t7_sys_eth
-> [    1.034077] clk: Disabled unused clock: t7_sys_audio
-> [    1.034694] clk: Disabled unused clock: t7_sys_ir_ctrl
-> [    1.035333] clk: Disabled unused clock: t7_sys_msr_clk
-> [    1.035972] clk: Disabled unused clock: t7_sys_spifc
-> [    1.036596] clk: Disabled unused clock: t7_sys_acodec
-> [    1.037218] clk: Disabled unused clock: t7_sys_smartcard
-> [    1.037880] clk: Disabled unused clock: t7_sys_am2axi2
-> [    1.038518] clk: Disabled unused clock: t7_sys_am2axi1
-> [    1.039157] clk: Disabled unused clock: t7_sys_am2axi0
-> [    1.039796] clk: Disabled unused clock: t7_sys_ampipe_eth
-> [    1.040468] clk: Disabled unused clock: t7_sys_ampipe_nand
-> [    1.041155] clk: Disabled unused clock: t7_sys_deswarp
-> [    1.041790] clk: Disabled unused clock: t7_sys_gdc
-> [    1.042385] clk: Disabled unused clock: t7_sys_cec
-> [    1.042981] clk: Disabled unused clock: t7_sys_aucpu
-> [    1.043600] clk: Disabled unused clock: t7_sys_aocpu
-> [    1.044217] clk: Disabled unused clock: t7_sys_mali
-> [    1.044830] clk: Disabled unused clock: t7_sys_ethphy
-> [    1.045451] clk: Disabled unused clock: t7_sys_mipi_dsi_b
-> [    1.046123] clk: Disabled unused clock: t7_sys_mipi_dsi_a
-> [    1.046795] clk: Disabled unused clock: t7_sys_dos
-> [    1.047390] clk: Disabled unused clock: t7_sys_ddr
-> [    1.047991] clk: Disabled unused clock: pwm_ao_g
-> [    1.048565] clk: Disabled unused clock: pwm_ao_f
-> [    1.049135] clk: Disabled unused clock: pwm_ao_e
-> [    1.049709] clk: Disabled unused clock: pwm_ao_d
-> [    1.050283] clk: Disabled unused clock: pwm_ao_b
-> [    1.050857] clk: Disabled unused clock: pwm_ao_a
-> [    1.051454] clk: Disabled unused clock: rtc_dualdiv
-> [    1.052038] clk: Disabled unused clock: rtc_duandiv_in
+> Does the board immediately crash after the disable unused clock sweep?
+yes> If so, you could add a log statement, then 1 second sleep in
+> clk_disable_unused_subtree() and wait for the board to crash.
+good idea , thanks
 > 
-> Also with the patches the disable happens 0.5 second later, from 0.5 seconds
-> after the boot to 1 second after the boot.
+> If you can't get timely help from the vendor, then you can add
+> CLK_IGNORE_UNUSED to all of those clocks, and slowly start taking them
+> off in batches and wait for the crash.
+That's what I've been doing for the past few weeks, but I'm probably 
+hunting down a set of clock issues, as support for this board is still 
+in its early stages. It's a combination of clocks, which makes it way 
+more time-consuming.
+
+I went with a more localized approach:
+
+diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+index 2b6fae54702a..3358f4dc871f 100644
+--- a/drivers/clk/clk.c
++++ b/drivers/clk/clk.c
+@@ -1489,14 +1489,95 @@ static void clk_unprepare_unused_subtree(struct 
+clk_core *core,
+                 else if (core->ops->unprepare)
+                         core->ops->unprepare(core->hw);
+                 trace_clk_unprepare_complete(core);
++               pr_info("clk: V Unprepared unused clock: %s\n", core->name);
+         }
+  }
+
++static const char * const disable_clocks[] = {
++       "t7_sys_pwm_ao_gh",
++       "t7_sys_pwm_ao_ef",
++       "t7_sys_pwm_ef",
++       "t7_sys_pwm_cd",
++       "t7_sys_pwm_ab",
++       "t7_sys_ts_hevc",
++       "t7_sys_ts_vpu",
++       "t7_sys_ts_nna",
++       "t7_sys_ts_gpu",
++       "t7_sys_sar_adc",
++       "t7_sys_vpu_intr",
++       "t7_sys_dspb",
++       "t7_sys_dspa",
++       "t7_sys_a73pclk_apb",
++       "t7_sys_pclk_sys_apb",
++       "t7_sys_rsa",
++       "t7_sys_mipi_isp_pclk",
++       "t7_sys_mmc_apb",
++       "t7_sys_hdmirx_pclk",
++       "t7_sys_i2c_s_a",
++       "t7_sys_hdmitx_apb",
++       "t7_sys_i2c_m_f",
++       "t7_sys_i2c_m_e",
++       "t7_sys_i2c_m_d",
++       "t7_sys_i2c_m_c",
++       "t7_sys_i2c_m_b",
++       "t7_sys_i2c_m_a",
++       "t7_sys_i2c_ao_b",
++       "t7_sys_i2c_ao_a",
++       "t7_sys_pcie_phy",
++       "t7_sys_usb",
++       "t7_sys_pcie",
++       "t7_sys_spicc1",
++       "t7_sys_spicc0",
++       "t7_sys_g2d",
++       "t7_sys_spicc5",
++       "t7_sys_ts_a53",
++       "t7_sys_ts_a73",
++       "t7_sys_spicc4",
++       "t7_sys_spicc3",
++       "t7_sys_spicc2",
++       "t7_sys_aififo",
++       "t7_sys_uart_f",
++       "t7_sys_uart_e",
++       "t7_sys_uart_d",
++       "t7_sys_uart_c",
++       "t7_sys_uart_b",
++       "t7_sys_eth",
++       "t7_sys_audio",
++       "t7_sys_ir_ctrl",
++       "t7_sys_msr_clk",
++       "t7_sys_spifc",
++       "t7_sys_acodec",
++       "t7_sys_smartcard",
++       "t7_sys_am2axi2",
++       "t7_sys_am2axi1",
++       "t7_sys_am2axi0",
++       "t7_sys_ampipe_eth",
++       "t7_sys_ampipe_nand",
++       "t7_sys_deswarp",
++       "t7_sys_gdc",
++       "t7_sys_cec",
++       "t7_sys_aucpu",
++       "t7_sys_aocpu",
++       "t7_sys_mali",
++       "t7_sys_ethphy",
++       "t7_sys_mipi_dsi_b",
++       "t7_sys_mipi_dsi_a",
++       "t7_sys_dos",
++       "t7_sys_ddr",
++       "pwm_ao_g",
++       "pwm_ao_e",
++       "pwm_ao_a",
++       "rtc_dualdiv",
++       "rtc_duandiv_in",
++};
++
++
+  static void clk_disable_unused_subtree(struct clk_core *core,
+                                        struct device *dev)
+  {
+         struct clk_core *child;
+         unsigned long flags;
++       int i;
+
+         lockdep_assert_held(&prepare_lock);
+
+@@ -1517,6 +1598,11 @@ static void clk_disable_unused_subtree(struct 
+clk_core *core,
+         if (core->flags & CLK_IGNORE_UNUSED)
+                 goto unlock_out;
+
++       for (i = 0; i < ARRAY_SIZE(disable_clocks); i++) {
++               if (strcmp(core->name, disable_clocks[i]) == 0)
++                       goto unlock_out;
++       }
++
+         /*
+          * some gate clocks have special needs during the disable-unused
+          * sequence.  call .disable_unused if available, otherwise fall
+@@ -1529,6 +1615,7 @@ static void clk_disable_unused_subtree(struct 
+clk_core *core,
+                 else if (core->ops->disable)
+                         core->ops->disable(core->hw);
+                 trace_clk_disable_complete(core);
++               pr_info("clk: V Disabled unused clock: %s\n", core->name);
+         }
+
+This makes it easier to let the sweep disable clocks for testing.
+
 > 
-> I am still investigating what is missing a consumer or what should be
-> labeled critical.
-
-I've seen cases where a clock is modeled in Linux, but isn't actually
-used by Linux, so it gets caught in the disable unused clocks sweep.
-
-Does the board immediately crash after the disable unused clock sweep?
-If so, you could add a log statement, then 1 second sleep in
-clk_disable_unused_subtree() and wait for the board to crash.
-
-If you can't get timely help from the vendor, then you can add
-CLK_IGNORE_UNUSED to all of those clocks, and slowly start taking them
-off in batches and wait for the crash.
-
-Brian
+> Brian
+> 
+Thanks
+Lucas
 
 
 _______________________________________________
