@@ -4,56 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5775EC61DCB
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2026 08:40:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF698C61DC2
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2026 08:41:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
-	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=mfiwK5LgHsK+he4HVoSXvNbAg0QBX6yXlYcHbABwGFg=; b=QW1tduZ62tNHBB
-	6Fz9xRarbS4ASXK/gfwueKs5tht8caEDKLfIdss1aji6rZyu+myWagD/ZA+pfH8apMB6Cz30BF7wN
-	A+6T2sHkPW7oiu9ILKgp5RvIjd6f6yzvEG9Ck1fsGRq/PAwR0J0EwIUIhrOZueCYnRGx4bMy06yA8
-	9TKKs6oLeY8mSx2iQ/QrVj31dds/Uat88wUKxvDTXI4PTaP3PU+WT0pNePEIxl4Jac9X3k3Usq8kd
-	lCAK9/qe85s0S3MDRbtNrMFHH/AzEhDuyUBdbEOwE7k3xqmAKiTvLy0griZLGj68V6yJEblGzipqz
-	It+x02pCFG3NqTwJRZ2A==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=9BIpQ05+I5P5Nq5eD4uaVHPHY30qUhbpZTB0RixpVro=; b=5F3lKhnTx9VcUf
+	KCCqyYcFMGp8nWQ2DDvgj+Hk925CS9C58eHgxKqYWv68eMi9yNHmdDhDbjiSu5Fg/W689BA3xw8ZN
+	oTy5iFoaj4joM982/UPwNoqoCM3PozZ9VwHMKGK1EV0sFsrflTB2zbD7cnEYx23uw5+jRdIUaSK86
+	idCgv33vAod/jVAADdmUsXxPNIGeFgnGTVM9iF0nq9ByDQyGwZB7FnWCmUq+FnMlOExT8QphHVtbI
+	ss/64SbNkt6IJro4PwN5h9zW2ShQtNoA05ucClbYKnpfVLl83ii5+Z0q3ImO9hq5csyqdLLo9jXWp
+	mJAiT+ySV0xchefYSsFg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wzVfF-00000003f0e-2x8f;
-	Thu, 27 Aug 2026 08:40:49 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1wzVfQ-00000003f81-3GdE;
+	Thu, 27 Aug 2026 08:41:00 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wzVfD-00000003exi-3I3c;
-	Thu, 27 Aug 2026 08:40:47 +0000
+	id 1wzVfE-00000003exl-0L36;
+	Thu, 27 Aug 2026 08:40:48 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id E63E7600DC;
-	Thu, 27 Aug 2026 08:40:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 8FDF5C2BCF5;
+	by tor.source.kernel.org (Postfix) with ESMTP id 0EF53600D2;
+	Thu, 27 Aug 2026 08:40:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id AF800C19425;
 	Thu, 27 Aug 2026 08:40:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1787820046;
-	bh=ktpLGSlyRRlqw7auNzLNwbOhfx3Zng7gvl3lK1CmWIs=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=uu8HYdP25xXPbklmeM3pK4dVsPQ19o/IoBEr0duItu2sswyx0nl97Z3Whr/25Ecgq
-	 +/8HBLIf1I6CbQyrDmIuT2IAGhb/B28gqkYOJdoOs3N/kfGwIJ/l6F9NrYd5IpbPkY
-	 oAJYjtRIuKCDJW3tHaPoH6ZcyzQGGty2ENJTMlAjnLao+HG/5e9pM09M2BjnUhgQiR
-	 //wuDLD/4VJwykwyCR7fB+ToR0lX+DBXSYJmGkRSrTdDjva6gCam2axew2XFsg96O4
-	 IUFA0XhewnJiUyD/17P9eZqKupz/Rh6UyzZrqNDsUfcZcMRJ1MRkKXV24I9uaVadac
-	 gELTgNlGbtdLQ==
+	bh=3+Z6/DMs03PTFoO3aAzzf6hsDxqMJ+xrrf+GTzL+F/M=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=eNX2cryq9egT0r/z9CNx+UtpSTSXKuJxP3Rheq008FHOwKdYt2/AexBvvSY78HSZa
+	 o+iY6hjRubabChPCcqgeKi82cifpUYB6AWK8ATX+jI+/CxneNptW8Co5MOI1m4Y9vj
+	 e/Jz9+caoVl4yVfVt4w15N0QPbJMMcrkOB1M7+B70Hy/cuxo2peZeQ/4D686P4LLsF
+	 b5U4kCsoKpHLAjoyjKmD4TCdYAM1CnuZtTsKRUTjyer5cNrFgC4EuSr76mJmnpETC+
+	 A8YDm9lsJ4A+burKQ6BmYn3bUMX0iOfWDmPJQ7Ec7shPjzppjoFG/1BPzclOyJOWbr
+	 2xaShb8CUSqhw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7B7DDC61DB9;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8D995C61DC2;
 	Thu, 27 Aug 2026 08:40:46 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Subject: [PATCH v4 0/4] Add PWM support Amlogic S7 S7D S6
-Date: Thu, 27 Aug 2026 08:40:09 +0000
-Message-Id: <20260827-s6-s7-pwm-v4-0-d28a2015177d@amlogic.com>
+Date: Thu, 27 Aug 2026 08:40:10 +0000
+Subject: [PATCH v4 1/4] dt-bindings: pwm: amlogic: Add new bindings for S6
+ S7 S7D
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAOn3j2oC/2XM3w6CIBiH4VtpHEfDD/ljR91H60AQlC3FQaOa8
- 95Dt6atwx98zzuhaIIzEZ0PEwomuej8kEd5PCDd1UNrsGvyRkCAEwoMR46jwOOzxyALzqSSUlC
- O8v0YjHWvtXW95d25+PDhvaZTsbx+K3xXSQUmmAsDVoCqpNKXur/71umT9j1aOgk2WxLYW1gsE
- 402+adi/N/SzTIo9pZmy4QiglpVW2N/7TzPH5JA1UscAQAA
-X-Change-ID: 20260325-s6-s7-pwm-281658b88736
+Message-Id: <20260827-s6-s7-pwm-v4-1-d28a2015177d@amlogic.com>
+References: <20260827-s6-s7-pwm-v4-0-d28a2015177d@amlogic.com>
+In-Reply-To: <20260827-s6-s7-pwm-v4-0-d28a2015177d@amlogic.com>
 To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
@@ -67,11 +65,11 @@ Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
  Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
  Alexandre Mergnat <amergnat@baylibre.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1787820043; l=1421;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1787820043; l=1867;
  i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=ktpLGSlyRRlqw7auNzLNwbOhfx3Zng7gvl3lK1CmWIs=;
- b=1mluRuPLujAiR3pYWMwR9d/nxY/Xl2i8+db1I3eTojXLA+UvV9RemLT0/znYBS+HpudSEpHsx
- 8m2SQN7OUFBA8QSNObT2Q2Cease9XiDpI6K5sA8P4vVgg3LKrZBzQas
+ bh=EyhN/nBz1aGm3bA756eZeqYpc8GpJGOBSwKy4zTbe6s=;
+ b=B2iCcJhThtx4DRKaVM7MoG+W41W+eDfX3FjdGcR9cCwGar9tjh55GmMWHe8ZWzPnL6BzxpWmW
+ foWDyl/oWeQCnSGdbFKO7oYSFjtbRG7YCWltt6XwL6hhNBZ3dHumImR
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
@@ -94,43 +92,68 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add bindings and driver support Amlogic S7/S7D/S6 SoCs.
+From: Junyi Zhao <junyi.zhao@amlogic.com>
 
+Amlogic S7/S7D/S6 different from the previous SoCs, a controller
+includes one pwm, at the same time, the controller has only one
+input clock source.
+
+Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
-Changes in v4:
-- It is divided into three submissions based on the function-driven part.
-- Merge and modify functions for init clocks, According to Alexandre's suggestion.
-- Link to v3: https://lore.kernel.org/r/20260521-s6-s7-pwm-v3-0-57b073fbafef@amlogic.com
+ .../devicetree/bindings/pwm/pwm-amlogic.yaml          | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-Changes in v3:
-- Use npwm instead of single_pwm in priv_data and format adjustments.
-- Link to v2: https://lore.kernel.org/r/20260402-s6-s7-pwm-v2-0-657dce040956@amlogic.com
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+index c337d85da40f..93fa97f4011b 100644
+--- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
++++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+@@ -37,6 +37,7 @@ properties:
+       - enum:
+           - amlogic,meson8-pwm-v2
+           - amlogic,meson-s4-pwm
++          - amlogic,s7-pwm
+       - items:
+           - enum:
+               - amlogic,a4-pwm
+@@ -45,6 +46,11 @@ properties:
+               - amlogic,t7-pwm
+               - amlogic,meson-a1-pwm
+           - const: amlogic,meson-s4-pwm
++      - items:
++          - enum:
++              - amlogic,s6-pwm
++              - amlogic,s7d-pwm
++          - const: amlogic,s7-pwm
+       - items:
+           - enum:
+               - amlogic,meson8b-pwm-v2
+@@ -146,6 +152,19 @@ allOf:
+         clock-names: false
+       required:
+         - clocks
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - amlogic,s7-pwm
++    then:
++      properties:
++        clocks:
++          maxItems: 1
++        clock-names: false
++      required:
++        - clocks
+ 
+   - if:
+       properties:
 
-Changes in v2:
-- Simpler s7 clock desc, and drop the example in bindings.
-- Make minor changes to probe based on Martin's suggestion.
-- Link to v1: https://lore.kernel.org/r/20260326-s6-s7-pwm-v1-0-67e2f72b98bc@amlogic.com
-
----
-Junyi Zhao (1):
-      dt-bindings: pwm: amlogic: Add new bindings for S6 S7 S7D
-
-Xianwei Zhao (3):
-      pwm: meson: add the PWM count driver data
-      pwm: meson: use bulk API for per-channel clocks
-      pwm: meson: Add support for Amlogic S7
-
- .../devicetree/bindings/pwm/pwm-amlogic.yaml       | 19 ++++++
- drivers/pwm/pwm-meson.c                            | 73 +++++++++++++---------
- 2 files changed, 63 insertions(+), 29 deletions(-)
----
-base-commit: b1385d0c7b7c633e55adcf4a7c1ef46c43a84a4a
-change-id: 20260325-s6-s7-pwm-281658b88736
-
-Best regards,
 -- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
+2.52.0
 
 
 
