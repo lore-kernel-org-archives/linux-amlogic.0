@@ -4,79 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3375C61DB9
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2026 08:51:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA6A3C61DC2
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Aug 2026 08:53:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=MdvPdENeEjGR9ZpsUYRzYH1olcT4FVcE6UStsUnHvOo=; b=pk59kSvilZx30A/2CPZV3QdwYD
-	1a9pM1Hyfm9m5zFijb7DAfydYgtbAZ2H4iBOTlqU6vbSxnJSQNny/G774bqQ4ugMiq7utWfrrE+Nn
-	4svXl6w/WzbZtRaDJaBJN1XhGSlIgx7SiG47Njd2cVq6inHBTRKmtG9x2vXgMlSu4YLgok10sBRBC
-	CV10WRxmARh96UkOx+SU58e+7MuBza8MQ+PeIFcF+9EUrbM9pF6IESW4gZF4PnPKAas4b7ZQJkwtP
-	c9Lzl1kerGzKuK3gcucYngHO9kjIRoFBT5dxLHcIFsjn/1Eix2LrTz0QtAZrfbZIZMuAEjezze15/
-	nK2CFS4g==;
+	bh=llWMisoUlEXz9fLIhrNh5H3kH9zrYRuRrymR1kvQIv4=; b=cE3vzAa2X992ezgGr+xtehOAgG
+	ti5R4W0FkwX92ePfG0PyxX6hASzNoDgF+jZEDNaY7rKV4kBWmSdUAn683CmeNjt1f1f17MM1sUZFD
+	vjSY4X9iPshFhNjpufSQAgUzMkId3HmFhZfDpDD5iqlbznoAOE4KdeaK3c/+mifAoUmpcPeLyecUE
+	IvkV/C+sQDnibfP1CnKfbZBKiAZGruYSbxhjcSeb5yKyo7qa6b6k3UBHB9Fay2UNMrR5Hc+jxv5b7
+	8iH6mCL58DPQCzwzztR9BHWQ+sUpC4l0ikTSWQa2kXc36Y8MSeKudquKk9tXO8XpNwkEs7XLpsYzJ
+	CKay0BoA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wzVpA-00000003gUi-2Wt7;
-	Thu, 27 Aug 2026 08:51:04 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1wzVrg-00000003gj4-0cTQ;
+	Thu, 27 Aug 2026 08:53:40 +0000
+Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wzVp7-00000003gTM-3o5M
+	id 1wzVrc-00000003ghe-3q6u
 	for linux-amlogic@lists.infradead.org;
-	Thu, 27 Aug 2026 08:51:03 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4956869750eso12114835e9.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 27 Aug 2026 01:51:01 -0700 (PDT)
+	Thu, 27 Aug 2026 08:53:38 +0000
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-482db627cd8so754276f8f.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 27 Aug 2026 01:53:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1787820660; x=1788425460; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1787820815; x=1788425615; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:in-reply-to:organization
          :autocrypt:content-language:references:cc:to:subject:reply-to:from
          :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=3/ECa4tNd88XdLDSwFPQYikw5L3eXcClU7jpbYu21eM=;
-        b=osw+Tkk/tsSneZngcrKtHXl+zI1JwrAxHBQLYTY3vfuFp+sZhffylR1RiRVmvyhmGx
-         kyW7M+kZ18BDDZlVioFQzDY7iX1YRHFWA9zo3Kb+YA63bnn8oy1ieFEApefnHZLHbYTe
-         CZyFV+vFFq/9RBnPDSA62xcTnK89RLCNEwgxViipK6QSPdokN2he/uYzzyvKANdDwP1v
-         onEut55XuhJASIs9qAwFgNhleRR1Ny6QXNdumWSN16Fvm8v3d7VvUIZ273hzoY2wcdai
-         wMMWOQ8tBjAfPkWTmb8aTDt/Oe4PIke8nWsnnK4If0a31K+g5ALj7ycuCE1wqfqUyi2q
-         mJ0g==
+        bh=7ksaYL/zucytvEfLPsKZt0AQxFIOQbkrkL74ZbSWk0E=;
+        b=DTi++6woFlzyNYJq7CafD86xy+1uOBgLc7n+CqJadxxqNHeMYp5OXTOjIU9Ug/JhhO
+         5cuZv9qKqGr8efUH4KuovM04wcsH3PeblNJ6nNzNWSKeX3kUcIF0mWbGcgRA2Z/TfIJ2
+         CjxLDkSr0Izq58e4J46/qo48UxBJPdCxbZNSbxdoZbMwk8C6IEkJ/x0OwAKwDAJqCK1o
+         3ggwU+MNsD4gAv1WQcq+1QdXUqWPpXaK6KnrZvjZI6TmXiXDiKbi5/jFWcYO5UYjkaQQ
+         kLKzohA52NkWIR7PMNunRIm1GDFB8Lk7HjarRatY3n/xMOop0Hn/Gi5kBx8EdTyjhEfZ
+         CMwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1787820660; x=1788425460;
+        d=1e100.net; s=20251104; t=1787820815; x=1788425615;
         h=content-transfer-encoding:content-type:in-reply-to:organization
          :autocrypt:content-language:references:cc:to:subject:reply-to:from
          :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=3/ECa4tNd88XdLDSwFPQYikw5L3eXcClU7jpbYu21eM=;
-        b=shBvsRy+lY/C8SuiZqZiwPeOAmSg2nTAB65hAYgEzEHVyfBi4dPfKmNmXPbcgt4ThF
-         iCH77cscAvkOEMitJxqLU8VS+nifwpcJyQiOU84DOa/pMbXSkZz4hHFzEYNl7Wq8Ey7e
-         chkkVjeb5gHHj9NuHL0hrYdOx3NhZcWUJ/KowY3Nd3g2oby3mV3Iu9ybMwne68t6NnTN
-         uNBpEAwFHZFLDYzM0D0Xj2hbqnHv0hmRa4ylZKJjQC/nvJRUUP7rtfDSVDRAy1LgtPLm
-         NsQB8f87LVhWhgZp9NYBgiZb/mO2rBJmfi0ut8uZabLdDRhlddTvQB6WPmO+itA5KwOe
-         DnOA==
-X-Forwarded-Encrypted: i=1; AHgh+Rqnu4IX9oeDmCsufUaTbkcNpPSOXZGlWrS08ecpm6AN3Zt3UpvYBgPNhZ67xyb6hXSyjphgnun5U2ZSkELQ@lists.infradead.org
-X-Gm-Message-State: AFuF++niF873/XfFqgsaxexJ/gi7ns93dSo2+Jz3305eh1Ep8pWeCgb3
-	SBZpPgv15CBcgd8v7DrWA1kecRppE7GYHc6WSThqnUdKjzzyXPqtlQDCaCze+PmTQyE=
-X-Gm-Gg: AR+sD13yLsvFaVaJ8cA9OpNeAHtOaQorDlBK3oQCzEU5YxZ/ojhPBEK2ck3qzhAugTa
-	5M5Dlg+cL8G0fcAUjA2YS6BKFzLlAihcwgsUxegmXm91V/ZN5xqCQaHRDpjnEckkHg6pBeS0RHo
-	De+XPVFiEI3o+kAm+6RjA/smWk2qwp3X9j17lv/KJJbrc2L1EKU+Djr/yze6eHbukvK2ionLSDa
-	GOpg/4dnefuTao6FwtSVg29cDbqPaeaMlh4PcfPGAyrtzo9LqPi1BcJnftFVIrQmgYVgaPus82x
-	b6pEHSl9QGEztvF8F3qvfPkeq3reiQDsWvvflU+5iMTzv7FwsE+bDsKCp1Kygydliy+5WkO7XhI
-	5HFzPHeaJriv5aMVP53QqqllUsftUgQFeX/qP7j6wByUQRcJKNXEpHOgYozKCv082vO22GrFO3q
-	+itETZuDhJnACZEmL7a2PKqh2xARA4dEJ2hMlisX/FpaYJQfual/PnUU61ArDjrCzzAyfgkA==
-X-Received: by 2002:a05:600c:a0d:b0:499:bdf1:7578 with SMTP id 5b1f17b1804b1-499dc6e9b00mr154198865e9.3.1787820659765;
-        Thu, 27 Aug 2026 01:50:59 -0700 (PDT)
+        bh=7ksaYL/zucytvEfLPsKZt0AQxFIOQbkrkL74ZbSWk0E=;
+        b=j1IZjtaCFjWMxOD4ZY/ml5z2zSIOI84/BRl5Xvy9rCzUMAf1LE5uKtrHRkmE2TIOZc
+         B2qjAluvZt25TSdNh6TDpBMPxcHnM/xFrEX5EMiIVWRSbJ2G1S9BQoA3y09vv3sn8Uuy
+         AYNdA1LzigscxGwSPLWnJcclSE7vc0B9YQTxTSG+tGlX04gDLnsp9kycYmcchgcB4C9Y
+         DuFvzvgn0lEN4mbyD7Nw/f88NiY1/Ddu+WtK45eKrdUj+++9qqohRM2uCp0BpICwCh/g
+         j9X14MSzXP5cgg3VxVSfz0JUMG1KmVo+JXEcvyf8nYhQ/krfB/Ffr7DPzOOneGZ3DVJ4
+         4H9Q==
+X-Forwarded-Encrypted: i=1; AHgh+Rp92wt359Gxr2JCSGlFQQhAmIoefDPH4Lu1YCY4fyW0orBh1pqzKBT+BVq/2ypCOhPgUscaYaBsVkKOes7v@lists.infradead.org
+X-Gm-Message-State: AFuF++nZAqgqxqPq9UjujT5oNrjBOciBiGM96wmS3ZENNmoEt0uQNMK7
+	xE0cwbkM8nXHpCgwPSMfjBPOoLLdLEIwfnmiPUXcmzZVdFVwEAoMxZ28qg435a/n1So=
+X-Gm-Gg: AR+sD13RWnXMGSyjtffx87ba6EjFY8tEslrFEWg453Xe30IxbqGDJtjE9PFk4FqCkmA
+	o6iZE3DmnpRUGVd1OtVEhx4GCDoPSN/MKXDqfAM3h7K1RWdC3qPGgbfI6lrJUnVq/yRm2ZVKzyV
+	tt+t//SqxEUbIYG0JFR3AbqvVH0Z0xxRgvCH7F47uCcfiTaGEp5HITODAzqJTEMW85f6OQAbGGH
+	brtdRjwXoEILG1K/QakDgN7qJoon2AsW/PFD7e0LzopU90D2Qv+eolZkLQkLq+xCTcPjbKRvf4j
+	V/01yt+gray4idmgzTYTpstf+SZKBDPvA57e12Kzr1eaeRdadGGVhq3cntpMQDNy/xfLgo8Eu7o
+	96fmT/tqUI/mDfC4rCAJnDv9ZYFFOy+WJv6xXT4ijKoXdIf0AxFR9Scc7F0BxyvaPyglcJKiYou
+	qPGexrdH1mrfC3mLwGDoobR6QHYOgWqn7V3Inoo/e+d4v1eCXO3bo4PI+2yKzdQQAE2+Uk
+X-Received: by 2002:a05:6000:29ce:b0:47f:8ac0:282 with SMTP id ffacd0b85a97d-482e26c3ff0mr12975216f8f.17.1787820814796;
+        Thu, 27 Aug 2026 01:53:34 -0700 (PDT)
 Received: from [172.20.10.4] ([37.165.68.39])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-49b4ddf5023sm30302265e9.13.2026.08.27.01.50.58
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-482e27a9f0esm8105572f8f.10.2026.08.27.01.53.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Aug 2026 01:50:59 -0700 (PDT)
-Message-ID: <57e0daca-485e-4672-abf4-a1f8e55777da@linaro.org>
-Date: Thu, 27 Aug 2026 10:50:55 +0200
+        Thu, 27 Aug 2026 01:53:34 -0700 (PDT)
+Message-ID: <80dd837c-9dd5-4b7e-9abb-02bb59d45da5@linaro.org>
+Date: Thu, 27 Aug 2026 10:51:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 1/2] arm64: dts: amlogic: t7: use the real UART pclk
+Subject: Re: [PATCH v2 2/2] arm64: dts: amlogic: t7: khadas-vim4: allow the SD
+ card to be power cycled
 To: Lucas Tanure <tanure@linux.com>, Kevin Hilman <khilman@baylibre.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>
@@ -84,7 +85,7 @@ Cc: linux-arm-kernel@lists.infradead.org,
  Xianwei Zhao <xianwei.zhao@amlogic.com>, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20260823115335.102219-1-tanure@linux.com>
- <20260823115335.102219-2-tanure@linux.com>
+ <20260823115335.102219-3-tanure@linux.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -111,10 +112,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20260823115335.102219-2-tanure@linux.com>
+In-Reply-To: <20260823115335.102219-3-tanure@linux.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260827_015101_987484_FA66FA29 
-X-CRM114-Status: GOOD (  14.72  )
+X-CRM114-CacheID: sfid-20260827_015336_988820_9BA2ABBC 
+X-CRM114-Status: GOOD (  15.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -133,50 +134,39 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 8/23/26 13:53, Lucas Tanure wrote:
-> uart_a listed the 24MHz crystal for all three of its clocks because the
-> T7 clock controller driver did not exist when these boards were added.
+> SD cards start at 3.3V and switch to 1.8V to reach UHS-I speeds. Some
+> cards refuse that switch, and the SD specification says the only way
+> to recover is to power the card off and start again.
 > 
-> That leaves the real UART bus clock without a user, so the kernel
-> turns it off when it disables unused clocks at the end of boot, and
-> the board hangs.
+> SD_3V3 is marked regulator-always-on, so the supply never goes off,
+> the card stays stuck half way through the switch, and the MMC core
+> retries forever:
 > 
-> Update the board DTS files to point uart_a's pclk to CLKID_SYS_UART_A
-> instead of the dummy crystal clock.
+>    mmc1: error -95 whilst initialising SD card
 > 
-> Fixes: 4fef056588f5 ("arm64: dts: amlogic-t7-a311d2-khadas-vim4: add initial device-tree")
-> Fixes: 6f048cc7a635 ("arm64: dts: add board AN400")
+> Drop regulator-always-on. regulator-boot-on still turns the supply on
+> at boot, and a card that refuses the switch now falls back to high
+> speed instead of failing to initialise.
+> 
+> Fixes: 8c45bf9ae4ef ("arm64: dts: amlogic: t7: khadas-vim4: Add power regulators")
 > Signed-off-by: Lucas Tanure <tanure@linux.com>
 > Assisted-by: Claude:claude-fable-5
 > ---
->   arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dts       | 2 +-
->   arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts | 2 +-
->   2 files changed, 2 insertions(+), 2 deletions(-)
+>   arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts | 1 -
+>   1 file changed, 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dts
-> index cab2ee9ea0d3..ca7536f772ff 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dts
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dts
-> @@ -33,7 +33,7 @@ xtal: xtal-clk {
->   };
->   
->   &uart_a {
-> -	clocks = <&xtal>, <&xtal>, <&xtal>;
-> +	clocks = <&xtal>, <&clkc_periphs CLKID_SYS_UART_A>, <&xtal>;
->   	clock-names = "xtal", "pclk", "baud";
->   	status = "okay";
->   };
 > diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-> index c41525a34b72..75d81ad6830d 100644
+> index 75d81ad6830d..c94afaaf8826 100644
 > --- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
 > +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-> @@ -266,6 +266,6 @@ &sd_emmc_c {
+> @@ -71,7 +71,6 @@ sd_3v3: regulator-sdcard-3v3 {
+>   		vin-supply = <&vddao_3v3>;
+>   		gpio = <&gpio GPIOD_11 GPIO_ACTIVE_LOW>;
+>   		regulator-boot-on;
+> -		regulator-always-on;
+>   	};
 >   
->   &uart_a {
->   	status = "okay";
-> -	clocks = <&xtal>, <&xtal>, <&xtal>;
-> +	clocks = <&xtal>, <&clkc_periphs CLKID_SYS_UART_A>, <&xtal>;
->   	clock-names = "xtal", "pclk", "baud";
->   };
+>   	sdio_pwrseq: sdio-pwrseq {
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
