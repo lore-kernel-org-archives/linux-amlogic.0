@@ -4,53 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 792B5C61DBD
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Aug 2026 09:25:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 397A6C61DCB
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Aug 2026 09:48:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=p4E5qKqXXS1j09U1UZWz4SmGNe1ll4jGSQcUao1suN4=; b=ykVhH/+rxXevY4
-	MvbmoneH2E5mywFbeyr6qm1YbYZ2apkl29kgBuqdSg0Lgas++5E08JIEqNxeT6CsCRRb+kcg7kDDw
-	2Mw7p1PvdP/Zgsprs9HEz2D7zgWEtCffSogYgYZSIsaUAh1Gz1tDwpOgPLSMl5A7+rfPzkLpOiEIQ
-	ZxIJ/7MSPeq2ZHBhk4B/qKoUJ+Z8lxi1DpZOLmQNx0d+zf1jHPNeVSK6mAEQeTIu+TbTVuVfm6DH3
-	NlRkqkXwdIvK0pyAE4Jxhr2jfyanPXfFoneQZDwFVplD3aXpRlYxkcvf0qXQkKKOnS3IBullyDBqR
-	6YowVFaTkoGFpZC/qSPg==;
+	List-Owner; bh=5o155bdH9uLarAv9QLX85hKeWSBAFdYvd1bYszvjXA4=; b=T4P+rxdiylYMd2
+	N+lJ2TGxN0/Xzihnpo73A7QU9IlBO4icY+SCdlIycEYn/dOJZ7ALQecgbUpgGw0Y/QqT3qNRiZjNr
+	xzoJKyhSGJRCC6zry/fktWijxFn1JDa2BP4YyTglHWl9Dv3dwpkNT4t3EWNKrTxnRtdPBePYX7dwK
+	ZPda7LUprbhvUQpkNrP9UYbZj9hBq3zMoQVtoY2FQLrEnXg3u2aaJ+aPiOcO3yid4m6kouW6Jny9e
+	pGaGtTf4aobwH7LZ4F3kgsRCuJGb6EudNTHvIinrmPOajusXjxeVesY7Cq6V9Dz7R+18RRIHSD834
+	dm9NIy7FvyLT0tr4e7TA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wzsq4-00000005TGa-0Uww;
-	Fri, 28 Aug 2026 09:25:32 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1x0FfS-00000006thE-2Rxu;
+	Sat, 29 Aug 2026 09:48:06 +0000
+Received: from mail-wr1-f49.google.com ([209.85.221.49])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1wzsq1-00000005TGL-1Eos
+	id 1x0FfO-00000006tdt-3Cdf
 	for linux-amlogic@lists.infradead.org;
-	Fri, 28 Aug 2026 09:25:29 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id D5AAD43796;
-	Fri, 28 Aug 2026 09:25:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7720A1F000E9;
-	Fri, 28 Aug 2026 09:25:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1787909128;
-	bh=c2kvSh2/ELWEywx8INAdI2eJCL/7HoLQC3vS4clKbWw=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=RlQf1rLJ7iXC+ka+iY74uY81662HIYeAvymaCiTic9hE2E6gjxTfJK5rTbfrDaZMR
-	 eavnktkiT20cTzhKFbq0nLiU2rAKN6Nu/rWHm944u3sfTJoNLMPn8IpXNwF+dd2R/J
-	 s1GKnSMQtVqghjSsNott2WRtyWn6rFH2g4Zz/Xnby4D/UQfEJell4heHOGhs63zMWa
-	 nChmBgTvAZ7R4dq+GE2fM1GQZwwmDyVmxk8lp1+lDpSl+xxs0Jpk5VUmKF/jRS5UGX
-	 5dLeQKcr8G3VU2bG5rexMWsUXvOgcldBDGKD/YHd5lObAQvo0gCMhM79FyaT6gTS8t
-	 ukH+Ld19XysHw==
-From: sashiko-bot@kernel.org
-Subject: Re: [RFC PATCH] drm/meson: dw-hdmi: Propagate reset failures during
- initialization
-To: "Pengpeng Hou" <pengpeng@iscas.ac.cn>
-Cc: dri-devel@lists.freedesktop.org, neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
-In-Reply-To: <20260828091424.6375-1-pengpeng@iscas.ac.cn>
-References: <20260828091424.6375-1-pengpeng@iscas.ac.cn>
-Date: Fri, 28 Aug 2026 09:25:28 +0000
-Message-Id: <20260828092528.7720A1F000E9@smtp.kernel.org>
+	Sat, 29 Aug 2026 09:48:05 +0000
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-47f96c5b722so1073775f8f.0
+        for <linux-amlogic@lists.infradead.org>; Sat, 29 Aug 2026 02:48:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1787996881; x=1788601681;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=RGDbub8U4HXvEWoNu7b7TUqir4ckSWpnsJ/08Cf1vHM=;
+        b=cClkVOhvJV/pKkYh78mTG2AkyEIGOQw7JzDRoMqzCa2Bqx/MO0B+2tm8LfRAhzm2PQ
+         GrjnvGWRR8m6h3lZUJHkYlFtfDcAcj1el+6yUyNsMABWdft8Saq8/CcpXA6zy2FXj4lC
+         LM3Cv4vSAOekCe+HCcvuCQsBxFvTu55NNCb2WbqYMFMQP6w5fws7vOcIzOlQ1LhCcSNT
+         9lfmKyQl7oZO4ZUQAdV89pB/7DV/hGllWcG2shj0MLxjulOwIdAf6UPEFhynDonsOicA
+         hgIlOmUcmXlpaXzgnTsb5X4LoTRYKxTx8oT2U57NKGbEEqYfxL6Y3cm5KfcCm4cP5PVl
+         uBhA==
+X-Forwarded-Encrypted: i=1; AKwUvBy/y0PCHM3VgE5UdF7E0bmEzEGwYgXvHdiBe9xJOqVltOH+Vzassjx5pxzDY0ce7t2CDUGxt4gIkmyO3E4X@lists.infradead.org
+X-Gm-Message-State: AFuF++kaNhy650YbxLaUXg+/ecltYhV+3Z55cw6/8FUj8IjVGPLpIHtw
+	pPYj8NJIaRshwwBR1A3HDJfK5Fj7hCmvGhMPQFNTC6Ksof3tK5LQYhwo
+X-Gm-Gg: AYBFou3cJ/iLxLp/yvmxl3uS0MHu/tpWoLITCRoZaOwMlmpyQIW4NXWUcWgvCmDcmLf
+	Ew9Pa5Q0YWPV5A5Ukya72eFNgJSFGIhtgeqpYIwK9B2JSCD4pkki9hyLs6kzuTETuUySQqyRskq
+	2Q1SX9pa0nYcb92CTUkWVbBBs8w/zjAlugewtMbBJB8toVQHxoC2NJU6ZQITQ6BihbEqlABxcmb
+	OqMr8/XyzMgn+l3iThnv8igL5/dkm/euuGMah3mCXOMgAvku0+lTnMXV2/eoKACLXlLshw/ikkh
+	xpKbWf4SdQ4hGn6RrkzayDkkGpkc2vKQpbarcOnVTMX7JZxioUvVfxd1317qo/kkB2bGuL6h/vF
+	yOaOaac87M+G/WH2/ckIeFs/h3VqhWgy1c5Q2NfO/3HtwTrvqdZmLgW+kQL234qCEt5SVW8v4Fs
+	vmGmEvBWO+z0BFkfEccIlVoGscR1deMFnkA8xIASm2+8nwNdRfMAH+kwPVU6MzEqfYZfifR07B5
+	flpxCPuhBVrDjtQH3Zs/xC/Tfg=
+X-Received: by 2002:a05:6000:2207:b0:484:3310:f398 with SMTP id ffacd0b85a97d-4843310f455mr2068417f8f.25.1787996880459;
+        Sat, 29 Aug 2026 02:48:00 -0700 (PDT)
+Received: from threads.localdomain ([83.106.158.114])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-482fbb20784sm9661562f8f.18.2026.08.29.02.47.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 29 Aug 2026 02:48:00 -0700 (PDT)
+From: Lucas Tanure <tanure@linux.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>
+Cc: Jian Hu <jian.hu@amlogic.com>,
+	Ronald Claveau <linux-kernel-dev@aliel.fr>,
+	Brian Masney <bmasney@redhat.com>,
+	Chuan Liu <chuan.liu@amlogic.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: [PATCH 1/4] clk: meson: t7: keep the memory fabric clocks running
+Date: Sat, 29 Aug 2026 10:47:55 +0100
+Message-ID: <20260829094758.23248-2-tanure@linux.com>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260829094758.23248-1-tanure@linux.com>
+References: <20260829094758.23248-1-tanure@linux.com>
+MIME-Version: 1.0
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260829_024802_856213_37552B98 
+X-CRM114-Status: GOOD (  10.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,58 +97,57 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MiBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpQcmUtZXhpc3RpbmcgaXNzdWVzOgot
-IFtIaWdoXSBUaGUgc2hhcmVkIElSUSBoYW5kbGVyIGlzIHJlZ2lzdGVyZWQgYmVmb3JlIHRoZSBo
-YXJkd2FyZSBpcyBmdWxseSBpbml0aWFsaXplZCwgcmlza2luZyBhIE5VTEwgcG9pbnRlciBkZXJl
-ZmVyZW5jZSBpZiBpbml0aWFsaXphdGlvbiBmYWlscy4KLSBbSGlnaF0gQ29tcG9uZW50IGJpbmQg
-ZXJyb3IgcGF0aHMgcGVybWFuZW50bHkgbGVhayBgZGV2bV9gIGFsbG9jYXRlZCByZXNvdXJjZXMu
-Ci0tCgpjb21taXQgZjc0YmYwMWQzZGVkOGIxODIyZjIyNzhiNDlkNWYwMDBlMGQ3MmE2YgpBdXRo
-b3I6IFBlbmdwZW5nIEhvdSA8cGVuZ3BlbmdAaXNjYXMuYWMuY24+Cgpkcm0vbWVzb246IGR3LWhk
-bWk6IFByb3BhZ2F0ZSByZXNldCBmYWlsdXJlcyBkdXJpbmcgaW5pdGlhbGl6YXRpb24KClRoaXMg
-Y29tbWl0IHVwZGF0ZXMgbWVzb25fZHdfaGRtaV9pbml0KCkgdG8gcHJvcGFnYXRlIHJlc2V0IGVy
-cm9ycyBpbnN0ZWFkCm9mIGlnbm9yaW5nIHRoZW0uIEl0IGFsc28gdXBkYXRlcyB0aGUgYmluZCBh
-bmQgcmVzdW1lIHBhdGhzIHRvIGFib3J0IGlmCmluaXRpYWxpemF0aW9uIGZhaWxzLgoKPiBkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29uX2R3X2hkbWkuYyBiL2RyaXZlcnMv
-Z3B1L2RybS9tZXNvbi9tZXNvbl9kd19oZG1pLmMKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbWVz
-b24vbWVzb25fZHdfaGRtaS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29uX2R3
-X2hkbWkuYwoKWyAuLi4gXQoKPiBAQCAtNzU0LDcgKzc2NCw5IEBAIHN0YXRpYyBpbnQgbWVzb25f
-ZHdfaGRtaV9iaW5kKHN0cnVjdCBkZXZpY2UgKmRldiwgc3RydWN0IGRldmljZSAqbWFzdGVyLAo+
-ICAJCXJldHVybiByZXQ7Cj4gIAl9Cj4gIAo+IC0JbWVzb25fZHdfaGRtaV9pbml0KG1lc29uX2R3
-X2hkbWkpOwo+ICsJcmV0ID0gbWVzb25fZHdfaGRtaV9pbml0KG1lc29uX2R3X2hkbWkpOwo+ICsJ
-aWYgKHJldCkKPiArCQlyZXR1cm4gcmV0OwoKW1NldmVyaXR5OiBIaWdoXQpUaGlzIGlzIGEgcHJl
-LWV4aXN0aW5nIGlzc3VlLCBidXQgZG9lcyB0aGlzIG5ldyBlcnJvciBwYXRoIGV4cG9zZSB1cyB0
-byBhCk5VTEwgcG9pbnRlciBkZXJlZmVyZW5jZSBmcm9tIHRoZSBzaGFyZWQgSVJRPwoKRWFybGll
-ciBpbiBtZXNvbl9kd19oZG1pX2JpbmQoKSwgYSBzaGFyZWQgSVJRIGlzIHJlcXVlc3RlZCB1c2lu
-ZyBhIGRldm1fCmZ1bmN0aW9uOgoKCXJldCA9IGRldm1fcmVxdWVzdF90aHJlYWRlZF9pcnEoZGV2
-LCBpcnEsIGR3X2hkbWlfdG9wX2lycSwKCQkJCQlkd19oZG1pX3RvcF90aHJlYWRfaXJxLCBJUlFG
-X1NIQVJFRCwKCQkJCQkiZHdfaGRtaV90b3BfaXJxIiwgbWVzb25fZHdfaGRtaSk7CgpJZiBtZXNv
-bl9kd19oZG1pX2luaXQoKSBmYWlscyBhbmQgcmV0dXJucyBlYXJseSBoZXJlLCB0aGUgSVJRIHJl
-bWFpbnMgYWN0aXZlCmJlY2F1c2UgaXRzIGxpZmV0aW1lIGlzIHRpZWQgdG8gdGhlIHBsYXRmb3Jt
-IGRldmljZSwgbm90IHRoZSBiaW5kIGxpZmVjeWNsZS4KSWYgdGhlIHNoYXJlZCBJUlEgZmlyZXMs
-IGR3X2hkbWlfdG9wX3RocmVhZF9pcnEoKSB1bmNvbmRpdGlvbmFsbHkgCmRlcmVmZXJlbmNlcyBk
-d19oZG1pLT5oZG1pIGFuZCBkd19oZG1pLT5icmlkZ2UsIHdoaWNoIHdpbGwgYmUgTlVMTCBzaW5j
-ZQpkd19oZG1pX3Byb2JlKCkgd2FzIHNraXBwZWQuCgpbU2V2ZXJpdHk6IEhpZ2hdClRoaXMgaXNu
-J3QgYSBidWcgaW50cm9kdWNlZCBieSB0aGlzIHBhdGNoLCBidXQgZG9lcyByZXR1cm5pbmcgZWFy
-bHkgaGVyZQphbHNvIGNhdXNlIHVuYm91bmRlZCByZXNvdXJjZSBsZWFrcz8KCkJlY2F1c2UgbWVz
-b25fZHdfaGRtaV9iaW5kKCkgaXMgYSBjb21wb25lbnQgYmluZCBmdW5jdGlvbiwgaXQgcnVucwpy
-ZXBlYXRlZGx5IG9uIGRlZmVycmVkIHByb2JlIG9yIHVuYmluZC9iaW5kIGN5Y2xlcy4gSXQgYWxs
-b2NhdGVzIHJlc291cmNlcwp1c2luZyBkZXZtXyBhbGxvY2F0aW9uIGZ1bmN0aW9ucywgc3VjaCBh
-czoKCgltZXNvbl9kd19oZG1pID0gZGV2bV9remFsbG9jKGRldiwgc2l6ZW9mKCptZXNvbl9kd19o
-ZG1pKSwKCQkJCSAgICAgR0ZQX0tFUk5FTCk7CgpJZiB0aGlzIGJpbmQgb3BlcmF0aW9uIGZhaWxz
-IGF0IG1lc29uX2R3X2hkbWlfaW5pdCgpLCB0aGVzZSBkZXZtXyByZXNvdXJjZXMKYXJlIG5vdCBh
-dXRvbWF0aWNhbGx5IGZyZWVkIHNpbmNlIHRoZSB1bmRlcmx5aW5nIHBsYXRmb3JtIGRldmljZSBp
-cyBub3QKZGVzdHJveWVkLiBDYW4gdGhpcyBsZWFkIHRvIG1lbW9yeSBhbmQgSVJRIGV4aGF1c3Rp
-b24gb3ZlciB0aW1lPwoKLS0gClNhc2hpa28gQUkgcmV2aWV3IMK3IGh0dHBzOi8vc2FzaGlrby5k
-ZXYvIy9wYXRjaHNldC8yMDI2MDgyODA5MTQyNC42Mzc1LTEtcGVuZ3BlbmdAaXNjYXMuYWMuY24/
-cGFydD0xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwps
-aW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5v
-cmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxv
-Z2ljCg==
+Four clocks feed the bus that moves data between the peripherals and
+memory. Nothing in Linux claims them, so they were switched off shortly
+after boot, and any device that started a transfer after that point
+simply stopped. The SD card, which comes up about two seconds in, never
+finished reading its identification.
+
+There is no device these clocks belong to, so mark them as always
+needed.
+
+Fixes: fab4d651b592 ("clk: meson: t7: add t7 clock peripherals controller driver")
+Assisted-by: Claude:claude-opus-5
+Signed-off-by: Lucas Tanure <tanure@linux.com>
+---
+ drivers/clk/meson/t7-peripherals.c | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/clk/meson/t7-peripherals.c b/drivers/clk/meson/t7-peripherals.c
+index 214db7850d86..55d09e78593b 100644
+--- a/drivers/clk/meson/t7-peripherals.c
++++ b/drivers/clk/meson/t7-peripherals.c
+@@ -945,11 +945,16 @@ static T7_SYS_PCLK(sys_aucpu,		SYS_CLK_EN0_REG0, 14,	0);
+ static T7_SYS_PCLK(sys_cec,		SYS_CLK_EN0_REG0, 16,	0);
+ static T7_SYS_PCLK(sys_gdc,		SYS_CLK_EN0_REG0, 17,	0);
+ static T7_SYS_PCLK(sys_deswarp,		SYS_CLK_EN0_REG0, 18,	0);
+-static T7_SYS_PCLK(sys_ampipe_nand,	SYS_CLK_EN0_REG0, 19,	0);
++/*
++ * NOTE: sys_ampipe_nand and sys_am2axi0..2 provide the clock to the AXI bus
++ * used for DMA between the peripherals and the DRAM. After the clocks are
++ * disabled, a device that starts a transfer cannot complete it.
++ */
++static T7_SYS_PCLK(sys_ampipe_nand,	SYS_CLK_EN0_REG0, 19,	CLK_IS_CRITICAL);
+ static T7_SYS_PCLK(sys_ampipe_eth,	SYS_CLK_EN0_REG0, 20,	0);
+-static T7_SYS_PCLK(sys_am2axi0,		SYS_CLK_EN0_REG0, 21,	0);
+-static T7_SYS_PCLK(sys_am2axi1,		SYS_CLK_EN0_REG0, 22,	0);
+-static T7_SYS_PCLK(sys_am2axi2,		SYS_CLK_EN0_REG0, 23,	0);
++static T7_SYS_PCLK(sys_am2axi0,		SYS_CLK_EN0_REG0, 21,	CLK_IS_CRITICAL);
++static T7_SYS_PCLK(sys_am2axi1,		SYS_CLK_EN0_REG0, 22,	CLK_IS_CRITICAL);
++static T7_SYS_PCLK(sys_am2axi2,		SYS_CLK_EN0_REG0, 23,	CLK_IS_CRITICAL);
+ static T7_SYS_PCLK(sys_sd_emmc_a,	SYS_CLK_EN0_REG0, 24,	0);
+ static T7_SYS_PCLK(sys_sd_emmc_b,	SYS_CLK_EN0_REG0, 25,	0);
+ static T7_SYS_PCLK(sys_sd_emmc_c,	SYS_CLK_EN0_REG0, 26,	0);
+-- 
+2.55.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
