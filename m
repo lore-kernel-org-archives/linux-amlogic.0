@@ -4,80 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94CE4C61DD9
-	for <linux-amlogic@archiver.kernel.org>; Sun, 30 Aug 2026 13:02:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B56DC61DD9
+	for <linux-amlogic@archiver.kernel.org>; Sun, 30 Aug 2026 13:04:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Tudt43YmfcKRPn4rKAe1TjrZGlIsUA1QvLH7Z6XHYjE=; b=IuQVLvr2HvJfxh3//mnW047S1A
-	jQUJaLkzdtYfGK8RM/z5DZWwUzPLI6QeBeXQebVGatgEGBcJOMcoKkzb3rDw79EEWuTodeCizrOlC
-	adrNqSonHRj9uww740EolRaLJuLFDXs/1zcK9GoGcsGIKwTeYamuonjwU47jhEUAKcCAHmrm11SA3
-	qW3zrTXMxcyjkNI+10v6nElqyNx/TipRGFP/eWSyy8SlqR94nXApqW7uh61PumESbhviF2zdlOnhw
-	cq/Ae8xJT/o+hZIh24ClUlSh6N/9zfqJ06eoJq5XBoqJjr9/puJW6Se+CBve1ZFDC2fZ5h+LJl45m
-	LfXhSo1A==;
+	bh=SW+wwgrPSqxzLwmM2X9SW1skIiOjrHRE1witJG04DoM=; b=f84hwMksl+ZiooYVg2SDUqm15k
+	ls0CbANm+GfEqX56ncdfrtp2jOC+Nr4HXmsZdz9WVQ1DUun8/+uuqdDrGZRZVG6MbpjXzaeSPMDTD
+	lzmKfwTFDGYY/+/+t2IiTQCKtLqVOl1dM/N6lZcQCnLrwZeuD1V1vZM75IqCFuX4ogPuA6Ro5YiRu
+	xtde7Q0YjcAjObFlrgrHqAV7wev5dSsuNl/0a2hUnRyYH7OlALjqFOGoac9NJ6VsCm+0klDCa2vRj
+	aBLWDSsqCeZlq5Q8kHhDrzd8+9UAUwHMG/BzHfHJrko2UkhBsbtYu/Ksdc88vWIH+1pLbUeCAzi0w
+	Se84N6IQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x0fAe-00000007j1K-2D6b;
-	Sun, 30 Aug 2026 13:02:00 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1x0fDL-00000007jD8-3tQ7;
+	Sun, 30 Aug 2026 13:04:47 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x0fAb-00000007izh-140z
+	id 1x0fDJ-00000007jCF-0lhF
 	for linux-amlogic@lists.infradead.org;
-	Sun, 30 Aug 2026 13:01:59 +0000
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-49b0dd3c9a0so18435875e9.1
-        for <linux-amlogic@lists.infradead.org>; Sun, 30 Aug 2026 06:01:56 -0700 (PDT)
+	Sun, 30 Aug 2026 13:04:46 +0000
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-48433f36a21so600337f8f.1
+        for <linux-amlogic@lists.infradead.org>; Sun, 30 Aug 2026 06:04:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1788094915; x=1788699715; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1788095083; x=1788699883; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:in-reply-to:organization
          :autocrypt:content-language:references:cc:to:subject:reply-to:from
          :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=rqekcWJTKXTHZtsMCquuZKmqeOHHO1OiGd6uuu0JU74=;
-        b=o3G0v7oeXjdbRsNi6KUhBKk+O/DCsVa7fGlW8GvzXVpZWLRQP0IA2HEPhEE5gXjd0J
-         iZVdy/OXPOf6UjezlH+MObnqOXvPXseuCn0voXGbqid+4pUwJCmgiqfcY+BdmIlZw5uU
-         4kO6aAUcFcY2i4HP00NpY+uquOnlo2cjFlC5JSAUhagpkNfztGH619pPG6N/3EJHfu2W
-         2QA8yCgaDKrtJvjhvjQhJrlOygtWTWzVxTIEL127jFrzz9pL4Wpr2r7uGYw0IVnJX8qE
-         EMTFyCnYC2scc00cgGJ6tHuMCqIvuCyILaHWhnn/TTkZSQDVmj2LpYHhO9amNBhD+RJ+
-         Qfcg==
+        bh=BGEZNmWTNMZMXanzrEPwQbHM5u7d/Ry5Or1T+0Vsl9w=;
+        b=zAeJpZYoMeHOjkPngfoPlUrPuhfXMM7R5hcDH94DD8K6RsRiEwTwc2zZ5TBsrEU27B
+         2LEJRV413BbLXgkLbEHHFHdds7RxobJCVoxO4PE9VBqoB0URVy5uXtRpi8SrHK7VFtui
+         l1H1k214ZUDE8reVp2Tvh+vu9mr6jbx4AlHF3LyZjHJIQgXY8e7/c9qsgksJoKWtHS7B
+         WsVoQ5Tu6OuMBljkEn2EvzeHXRViYEkJrJ9q2ntqiOwHoGkD33xt+dnA+LGDMLnAp/yb
+         kC0O1H7+4stiIxhjqvuQHMIpJvubleJOvUcN1pwUh+Fg0Az62dz8TijVZZeRNgiLelDc
+         Tqzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1788094915; x=1788699715;
+        d=1e100.net; s=20251104; t=1788095083; x=1788699883;
         h=content-transfer-encoding:content-type:in-reply-to:organization
          :autocrypt:content-language:references:cc:to:subject:reply-to:from
          :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=rqekcWJTKXTHZtsMCquuZKmqeOHHO1OiGd6uuu0JU74=;
-        b=Op/x3Bs0gp4BQ/va8m97m2dMyiq3dAl5z2OBW1rFwdElppZX5CymlbWHwetesXKtqW
-         hB21IaJKZwSXusRfEi08xOls1+bU5/HyqOa8Ioxi5MB+tHCgMFv1ckrfRRl8kbzQqUNc
-         DNAjLWg/2wsTUSMlsQ9QXrkpd9IQF3lfpL/2JaElmOtgII+bCUIKe+mFQQrPKjWWPmAb
-         1Q/XSGeQgsWOoTXgLDIJMkOc+SUcucdWPx+Ha5CxuRq0JPTeo9zLsxaodMpK/M/ue/sr
-         SWEArkmV0ChSlBPuIhwRNoTbxiWzFsFMf+T7pThwNcwzE/2cob358C2EeDqnCTvRdcGd
-         uNJw==
-X-Forwarded-Encrypted: i=1; AHgh+RpB2x8NwNehPzOHY+9cIFqbZydcPrI7SRyLHHV5VxnQZl9S6+WCRVhLGTkNwxp5jTkosyaH7PcAbEkW3JX9@lists.infradead.org
-X-Gm-Message-State: AFuF++nRhjL1Iv7TI8P5NmWamTOTNEtNotF3eL3MT2m35FCEjKCkSapR
-	N2xk6/dVJNMDU0MJzibJQ3hQlHkOudETk3wQu/nEMJ6QiR7UcNfcGE0sV30gEKf4/bE=
-X-Gm-Gg: AR+sD12SdA2iVQ0xqMnJ55blI7fdqSa/WIu/2PcKNHI5qnEnPa+RYHvmBzFZRU7xz6T
-	+iX1CUTdgUqFQievRwRaia1VlhLPLqzg8RtlDajmyT0cV4IDfKAbTibQcn71UTs9woYUG7T9wfZ
-	BvuSEX2u7TKLB0oFU8q/1z+DXJyi198F+41T/SGU7RZ8O9LWHN8e/An1dhosJ73yj4j4Ssu+lDG
-	6thNfHoRRJH0ev1RQdr0ugwVh+SP13+CHZt5717RbSYljfdEpNBu5GlM83qttW7WweoOYBLGx4J
-	AEN4EeaEh4Tz1rWb5EMMamfRujYHQDYVTMxuL0Pc9iyYQ/PgDWPiivhkA0Ln+A+ms2YoI8Mk9mb
-	HM3pKy2WJ8sdxgWSxYvMd7UNMmpai7LQVBEjAYdqM+U5TFH+czk7ZOaWuM0OTTlUVvUDza1n2Qd
-	KG9EbP+Q+4OxfbxpXNmJLuFKhFfKlEmNJgLQt2+C23NKRVLLnFQMKNzUgh7UAKnlbcjfK6UjY=
-X-Received: by 2002:a05:600c:524e:b0:49b:9438:7785 with SMTP id 5b1f17b1804b1-49b94387aaemr213444345e9.4.1788094915126;
-        Sun, 30 Aug 2026 06:01:55 -0700 (PDT)
+        bh=BGEZNmWTNMZMXanzrEPwQbHM5u7d/Ry5Or1T+0Vsl9w=;
+        b=pVa5vV092X0Y50uXwDp1Ap4Yt7OYT8HG/qeQ2aVzEZhzqNuIHN3ramqlF9JBkQFL5h
+         IEQ5NMRoudwj4ixlKmnTuB7pCWXOnV7uPvoPjged7bcCyLNDod072npsOLSuxlTJGNao
+         qJlvIGCYrHB9VtaPelz7u1chbnQ7+AXpIxo4bFvpSiZTV1JADdglI9YbtsyLtrI+62fV
+         sfX2DXFh3J/Y8EHajh7/8amt8psMXhO2ovZPjoWdnq99Aiudx+ETOyK2uDt6sIXMX2i6
+         T6UF3MExZhhLBdpXZqOVIK7iPwi6GWjtkEP6I6B5JNxWZlD2P6V5ibshJxLZwdPOfVc9
+         PeKw==
+X-Forwarded-Encrypted: i=1; AHgh+RoijvuoBbCgDlkEi2LGZNJwQ+JYXxoFZ7AP8edehecNPFLLr8vT2UkwsENBY2c+p3PZLZxIgwgTu2xZym5U@lists.infradead.org
+X-Gm-Message-State: AFuF++l2NAT9iLfwp/mPPochWmjQpsp2QWwKiqPglbCsYKvERz/KcFfa
+	UmVKGPgptw1iOY7aIhPJ4u8fDG7QUc+b/aSNoj0Tlsf5vGW2sSS6pbSbaH8WWIRMycc=
+X-Gm-Gg: AR+sD12vgE/4ZXv9uEGOhmsfbJUw4mnY96jqxkhX6JUaB1Gi2CzXa1oTElYXdOTGNbP
+	R9n03ITKo7LcPzcj/xL+j2aHn8KGuz0m3XRgWAAWJdqF9+N9hjKFnj5XDzOk1yj62icJ660t/2i
+	EsLxKxjZaPkbR7ERebUkT8meWM6H45qqHtyzV2EI3CY4CeChYVpJf+xPxphlRUkKfgGKqAozOhj
+	kviFwWpGDcYiI94CtZXPunfRGE0QqVrT/qq6R/Nh4JnowKJ9W7bXuJX1LhbCrKgv0w3lxGajW6B
+	YNPf0HPgAyRX8cRiV4vXM9mD/nOsX0mjFPBN4GFkwejKZbczb5bnnvdIGedhieyj26nG3ic8Da5
+	Dc3pqbxwMV9NKNepOFon084LzW2yHV7FWk7vySWVZ9KV1Dhyx59yuR2N5WBeY6kKp6L1Z1odcbD
+	YUVzkwQgHoIKocRDAKT8Y/N7AxRJFRkpaNVaUyHDB8J3qbTMNz3ebP99N7J/MlaFGO2OiMyrEE
+X-Received: by 2002:a05:600c:8b63:b0:49c:ced9:ab7f with SMTP id 5b1f17b1804b1-49cd53c438bmr35600565e9.8.1788095083121;
+        Sun, 30 Aug 2026 06:04:43 -0700 (PDT)
 Received: from [192.168.1.36] ([83.214.235.72])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-49b9266be71sm449355905e9.2.2026.08.30.06.01.53
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-49b95018ee8sm205342395e9.15.2026.08.30.06.04.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 30 Aug 2026 06:01:54 -0700 (PDT)
-Message-ID: <2bbff6c2-7308-4152-b7fa-f24e95541aa5@linaro.org>
-Date: Sun, 30 Aug 2026 15:01:53 +0200
+        Sun, 30 Aug 2026 06:04:42 -0700 (PDT)
+Message-ID: <d4ba8298-fb80-4fed-b1ce-7fc5d0adf5a0@linaro.org>
+Date: Sun, 30 Aug 2026 15:02:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 3/4] arm64: dts: amlogic: t7: khadas-vim4: add the
- PWM-driven supplies
+Subject: Re: [PATCH 4/4] arm64: dts: amlogic: t7: fix the pin groups of the
+ vsync PWM
 To: Lucas Tanure <tanure@linux.com>, Kevin Hilman <khilman@baylibre.com>,
  Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
@@ -89,7 +89,7 @@ Cc: Jian Hu <jian.hu@amlogic.com>, Ronald Claveau
  linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
 References: <20260829094758.23248-1-tanure@linux.com>
- <20260829094758.23248-4-tanure@linux.com>
+ <20260829094758.23248-5-tanure@linux.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -116,10 +116,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20260829094758.23248-4-tanure@linux.com>
+In-Reply-To: <20260829094758.23248-5-tanure@linux.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260830_060157_329890_FB5E1688 
-X-CRM114-Status: GOOD (  16.91  )
+X-CRM114-CacheID: sfid-20260830_060445_241089_9B7B133B 
+X-CRM114-Status: GOOD (  13.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -138,164 +138,44 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 8/29/26 11:47, Lucas Tanure wrote:
-> The board powers its two CPU clusters, the GPU, the NPU, the memory and
-> the always-on domain from regulators steered by PWM outputs. None of
-> them were described, so Linux treated those outputs as unused and
-> switched them off part way through boot. The supplies then drifted away
-> from the levels the bootloader had set, which showed up as random hangs
-> and memory corruption.
+> The vsync PWM output can appear on either of two pins, but the
+> description named a single group that does not exist, so anything using
+> it would refuse to start.
 > 
-> Describe each supply so it has an owner and is left alone.
+> Name the real groups instead, one entry per pin. No board describes this
+> output yet, so nothing changes today.
 > 
-> The voltage ranges are read off the feedback networks on the board
-> schematic. VDDNPU is deliberately not the range in Amlogic's own
-> device tree: this board fits a different feedback resistor, which
-> puts it about 40mV higher at both ends.
-> 
-> Fixes: 8c45bf9ae4ef ("arm64: dts: amlogic: t7: khadas-vim4: Add power regulators")
+> Fixes: 2a2a7b9701a7 ("arm64: dts: amlogic: t7: Add PWM pinctrl nodes")
 > Assisted-by: Claude:claude-opus-5
 > Signed-off-by: Lucas Tanure <tanure@linux.com>
 > ---
->   .../amlogic/amlogic-t7-a311d2-khadas-vim4.dts | 110 +++++++++++++++++-
->   1 file changed, 109 insertions(+), 1 deletion(-)
+>   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 12 ++++++++++--
+>   1 file changed, 10 insertions(+), 2 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-> index c94afaaf8826..77abfd555ec5 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-> @@ -104,6 +104,66 @@ vcc5v0_usb: regulator-vcc-usb {
->   		enable-active-high;
->   	};
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+> index 8c4bd683cce0..719e111bc3dd 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+> @@ -546,9 +546,17 @@ mux {
+>   					};
+>   				};
 >   
-> +	vdd_ddr: regulator-vddddr {
-> +		/*
-> +		 * SY8003ADFC Regulator.
-> +		 */
-> +		compatible = "pwm-regulator";
-> +		regulator-name = "VDDDDR";
-> +		regulator-min-microvolt = <690000>;
-> +		regulator-max-microvolt = <890000>;
-> +		pwm-supply = <&dc_in>;
-> +		pwms = <&pwm_ao_gh 0 1500 0>;
-> +		pwm-dutycycle-range = <100 0>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
+> -				pwm_vs_pins: pwm-vs {
+> +				pwm_vs_y_pins: pwm-vs-y {
+>   					mux {
+> -						groups = "pwm_vs";
+> +						groups = "pwm_vs_y";
+> +						function = "pwm_vs";
+> +						bias-disable;
+> +					};
+> +				};
 > +
-> +	vdd_ee: regulator-vddee {
-> +		/*
-> +		 * MP8756GD Regulator.
-> +		 */
-> +		compatible = "pwm-regulator";
-> +		regulator-name = "VDDEE";
-> +		regulator-min-microvolt = <700000>;
-> +		regulator-max-microvolt = <922000>;
-> +		pwm-supply = <&dc_in>;
-> +		pwms = <&pwm_ao_ab 0 1500 0>;
-> +		pwm-dutycycle-range = <100 0>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
-> +	vdd_gpu: regulator-vddgpu {
-> +		/*
-> +		 * SY8003ADFC Regulator.
-> +		 */
-> +		compatible = "pwm-regulator";
-> +		regulator-name = "VDDGPU";
-> +		regulator-min-microvolt = <700000>;
-> +		regulator-max-microvolt = <922000>;
-> +		pwm-supply = <&dc_in>;
-> +		pwms = <&pwm_ao_ef 0 1500 0>;
-> +		pwm-dutycycle-range = <100 0>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
-> +	vdd_npu: regulator-vddnpu {
-> +		/*
-> +		 * SY8003ADFC Regulator.
-> +		 */
-> +		compatible = "pwm-regulator";
-> +		regulator-name = "VDDNPU";
-> +		regulator-min-microvolt = <733000>;
-> +		regulator-max-microvolt = <933000>;
-> +		pwm-supply = <&dc_in>;
-> +		pwms = <&pwm_ao_ef 1 1500 0>;
-> +		pwm-dutycycle-range = <100 0>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
->   	vddao_1v8: regulator-vddao-1v8 {
->   		compatible = "regulator-fixed";
->   		regulator-name = "VDDAO_1V8";
-> @@ -122,6 +182,36 @@ vddao_3v3: regulator-vddao-3v3 {
->   		regulator-always-on;
->   	};
->   
-> +	vddcpu_a: regulator-vddcpu-a {
-> +		/*
-> +		 * MP8756GD Regulator.
-> +		 */
-> +		compatible = "pwm-regulator";
-> +		regulator-name = "VDDCPU_A";
-> +		regulator-min-microvolt = <689000>;
-> +		regulator-max-microvolt = <1049000>;
-> +		pwm-supply = <&dc_in>;
-> +		pwms = <&pwm_ao_cd 1 1500 0>;
-> +		pwm-dutycycle-range = <100 0>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
-> +	vddcpu_b: regulator-vddcpu-b {
-> +		/*
-> +		 * MP8756GD Regulator.
-> +		 */
-> +		compatible = "pwm-regulator";
-> +		regulator-name = "VDDCPU_B";
-> +		regulator-min-microvolt = <689000>;
-> +		regulator-max-microvolt = <1049000>;
-> +		pwm-supply = <&dc_in>;
-> +		pwms = <&pwm_ao_ab 1 1500 0>;
-> +		pwm-dutycycle-range = <100 0>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
->   	vddio_1v8: regulator-vddio-1v8 {
->   		compatible = "regulator-fixed";
->   		regulator-name = "VDDIO_1V8";
-> @@ -172,9 +262,27 @@ &pwm_ab {
->   	pinctrl-names = "default";
->   };
->   
-> +&pwm_ao_ab {
-> +	status = "okay";
-> +	pinctrl-0 = <&pwm_ao_a_pins>, <&pwm_ao_b_pins>;
-> +	pinctrl-names = "default";
-> +};
-> +
->   &pwm_ao_cd {
->   	status = "okay";
-> -	pinctrl-0 = <&pwm_ao_c_d_pins>;
-> +	pinctrl-0 = <&pwm_ao_c_d_pins>, <&pwm_ao_d_pins>;
-> +	pinctrl-names = "default";
-> +};
-> +
-> +&pwm_ao_ef {
-> +	status = "okay";
-> +	pinctrl-0 = <&pwm_ao_e_pins>, <&pwm_ao_f_pins>;
-> +	pinctrl-names = "default";
-> +};
-> +
-> +&pwm_ao_gh {
-> +	status = "okay";
-> +	pinctrl-0 = <&pwm_ao_g_e_pins>;
->   	pinctrl-names = "default";
->   };
->   
+> +				pwm_vs_h_pins: pwm-vs-h {
+> +					mux {
+> +						groups = "pwm_vs_h";
+>   						function = "pwm_vs";
+>   						bias-disable;
+>   					};
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
