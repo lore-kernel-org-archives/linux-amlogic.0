@@ -4,52 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46CD4C624A4
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Sep 2026 02:53:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AA31C624C6
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Sep 2026 09:30:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RNAXdiWY1HgdL12gts3srJAoYa7Fvw7E6+gfvMC+GXI=; b=WtGqDq5BFh3DuU
-	vhsNu7OX5XWVDjwPWwvq0BkEnfk6Iqe+lzYVI4dQTv6rLkNvACGnQvkkPJd6LOJFUqwD+RB43qfDK
-	B39bBDW8w7oMLq+qyeD/vA0G4XQK2WIbTg0cGRM2/0Ul7tjFFQrFr7kSUC+BIGLndyyII3xyBuS0q
-	ocOYkEbTVzqJ00SrYY+2eMS67KtJJ/1J82urDf+3EU3NuyWkdN/Eo7dA6Gv06rBF7Hron80Ffembg
-	Fx9BRbY/cWeMdRi82mRjR331MbHO1MeB7u3C8A4yV+i7/cu+oFj7uNiwDcTQgZI4NjquADm7pQGya
-	WRC0H+IvcXGmlQGErnjw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Vyp4w1ct2fh1d9fxkGieXKiv0EVTI9tp+XacaGLlFVY=; b=h6WtGtYj2KcvtvfykNOz+dIEcH
+	hYkXFlT+Vyy6AqEutu3bGBL27o/pA87XjAtTiIacsKsblMPFsAr3phZVnFhr+EW2tP7OVwIg0srQk
+	Cku+KIREm9QPAFRKvn8i/1yCYu/+PWyEjotXxlpIYjxf6JK3emVFEdiIdClKTEERaq+prSKv7uS+6
+	PvkBDWQdwPm+QN7lvulPWp2CNb+BHSYWYxQxWXiIiUAETTQh4OQbDu0+XCywDFCEtGIAuZlkaKja6
+	ORISg0fx6l4t+hqG0PXf0hJl+33LgssKqN/7+1gQzwbgeFyIzl/jnn/tVoLqZiKTJWHbznCbUsB+K
+	RpWtmImw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x1Ecj-0000000AuUA-0mIc;
-	Tue, 01 Sep 2026 02:53:21 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1x1Kp9-0000000BRHn-0mLt;
+	Tue, 01 Sep 2026 09:30:35 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x1Ece-0000000AuTn-2lMr
-	for linux-amlogic@lists.infradead.org;
-	Tue, 01 Sep 2026 02:53:16 +0000
+	id 1x12Bf-00000009RLW-1q0y;
+	Mon, 31 Aug 2026 13:36:35 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0248141836;
-	Tue,  1 Sep 2026 02:53:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB52C1F00A3D;
-	Tue,  1 Sep 2026 02:53:15 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 9A17F60215;
+	Mon, 31 Aug 2026 13:36:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 016D61F000E9;
+	Mon, 31 Aug 2026 13:36:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1788231195;
-	bh=NgTovNvpxGHXrGYRtng5cl1v2deE+8QHvQ4h1lgkmoY=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=iRAMX+2DZbA3kulcPy4Zh9ABJOqhRaK+Quwh4Zd1h7OOABXK+ZNuL9xuXbmmFlMAu
-	 1FknzPHTJQYAimwbSS6TtOcs0eY14LuBX9cRZu1Trk0DSdHiIvkn8oHDgC18oVhXde
-	 0/3dAW9gXBB83gVs5H4bpBoXaiHQQ8R1l80cG7Xf/fll9WY+hrXu3LOESYJr6PIXO3
-	 dCB6pC1mVHJPehem80UvlhHqo5VpgyvRjClzQ6tjn8hcR/UZO8vkP1OI4h/ch9W3dE
-	 zPXKS8yyLw9Fq/Ej9ZjpCHm2bUDnJOdlbQwRJCs6aOKa1KsUhQG2/ga8oXWiYKqmx4
-	 AIN6F3NSPsTBg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2] crypto/amlogic: Use devm APIs for clock management
-To: "Mohamad Raizudeen" <raizudeen.kerneldev@gmail.com>
-Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
-In-Reply-To: <20260901024302.5407-1-raizudeen.kerneldev@gmail.com>
-References: <20260901024302.5407-1-raizudeen.kerneldev@gmail.com>
-Date: Tue, 01 Sep 2026 02:53:15 +0000
-Message-Id: <20260901025315.BB52C1F00A3D@smtp.kernel.org>
+	s=k20260515; t=1788183394;
+	bh=3d2wE4iPk/eSRIKBUJMr1Vert2gthTCrW2UXhnx95p4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=Fa7a1Q3YoUsfdoMvZbQAiBxdeh/TNaAy2cWmN+gHJtD0G5fAKj07cg5+8PsqlLHGz
+	 A1PAQuTvFk3cBiBuBnU9BX06M7lLnfqiM9pOLnHs/A2YOWF6hTp4V8VTsE2c/GmSFo
+	 URF1s+nDBwrxxWO45AdqLpYaq6wzMJThp7iMOVVQEGXgXFPN8CtiP/WnqMUZqdnyKW
+	 EQDpd7/10qJ2kUHSiXAJKr/GRWQLdNSiDsyIUkC44uOO8x+JESPpssnyKwOnT03CZH
+	 1TMqMRafZA0VRWtpwFEEpq9yiXTseAFhl04jX5wKhiXF3DXtIzYeLnD80tcC/prJs1
+	 YmW1jKy9yiPhA==
+Date: Mon, 31 Aug 2026 15:36:29 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org, Janne Grunau <j@jannau.net>, Sasha Finkelstein <k@chaosmail.tech>, asahi@lists.linux.dev, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, Liviu Dudau <liviu.dudau@arm.com>, Russell King <linux@armlinux.org.uk>, Alim Akhtar <alim.akhtar@samsung.com>, Inki Dae <inki.dae@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>, Kyungmin Park <kyungmin.park@samsung.com>, Peter Griffin <peter.griffin@linaro.org>, Seung-Woo Kim <sw0312.kim@samsung.com>, linux-samsung-soc@vger.kernel.org, Alison Wang <alison.wang@nxp.com>, Stefan Agner <stefan@agner.ch>, Ruben Wauters <rubenru09@aol.com>, Tian Tao <tiantao6@hisilicon.com>, Xinwei Kong <kong.kongxinwei@hisilicon.com>, Yongbang Shi <shiyongbang@huawei.com>, John Stultz <jstultz@google.com>, Sumit Semwal <sumit.semwal@linaro.org>, Xinliang Liu <xinliang.liu@linaro.org>, Yongqin Liu <yongqin.liu@linaro.org>, Dexuan Cui <decui@microsoft.com>, Long Li <longli@microsoft.com>, Saurabh Sengar <ssengar@linux.microsoft.com>, linux-hyperv@vger.kernel.org, Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>, Liu Ying <victor.liu@nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, Sascha Hauer <s.hauer@pengutronix.de>, imx@lists.linux.dev, Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, Lucas Stach <l.stach@pengutronix.de>, Paul Cercueil <paul@crapouillou.net>, linux-mips@vger.kernel.org, Anitha Chrisanthus <anitha.chrisanthus@intel.com>, Paul Kocialkowski <paulk@sys-base.io>, Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org, Abhinav Kumar <abhinav.kumar@linux.dev>, Dmitry Baryshkov <lumag@kernel.org>, Jessica Zhang <jesszhan0024@gmail.com>, Marijn Suijten <marijn.suijten@somainline.org>, Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>, freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, Marek Vasut <marex@denx.de>, Dave Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>, spice-devel@lists.freedesktop.org, virtualization@lists.linux.dev, Geert Uytterhoeven <geert+renesas@glider.be>, linux-renesas-soc@vger.kernel.org, Marcus Folkesson <marcus.folkesson@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, Orson Zhai <orsonzhai@gmail.com>, Alain Volmat <alain.volmat@foss.st.com>, Raphael Gallais-Pou <rgallaispou@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Philippe Cornu <philippe.cornu@foss.st.com>, Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>, Yannick Fertre <yannick.fertre@foss.st.com>, Chen-Yu Tsai <wens@kernel.org>, Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev, Jyri Sarha <jyri.sarha@iki.fi>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, Aditya Garg <gargaditya08@proton.me>, Aun-Ali Zaidi <admin@kodeit.net>, LiangCheng Wang <zaq14760@gmail.com>, Alex Lanzano <lanzano.alex@gmail.com>, Hans de Goede <hansg@kernel.org>, Icenowy Zheng <zhengxingda@iscas.ac.cn>, Chia-I Wu <olvaffe@gmail.com>, Dmitry Osipenko <dmitry.osipenko@collabora.com>, Gurchetan Singh <gurchetansingh@chromium.org>, Michal Simek <michal.simek@amd.com>, Javier Martinez Canillas <javierm@redhat.com>, Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>, Jocelyn Falempe <jfalempe@redhat.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, Dharma Balasubiramani <dharma.b@microchip.com>, Manikandan Muralidharan <manikandan.m@microchip.com>, Nicolas Ferre <nicolas.ferre@microchip.com>, Philipp Zabel <p.zabel@pengutronix.de>, Huacai Chen <chenhuacai@kernel.org>, Jianmin Lv <lvjianmin@loongson.cn>, Mingcong Bai <jeffbai@aosc.io>, Qianhai Wu <wuqianhai@loongson.cn>, Xi Ruoyao <xry111@xry111.site>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, Danilo Krummrich <dakr@kernel.org>, Lyude Paul <lyude@redhat.com>, nouveau@lists.freedesktop.org, Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, Magnus Damm <magnus.damm@gmail.com>, Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, Biju Das <biju.das.jz@bp.renesas.com>, Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>, Sandy Huang <hjc@rock-chips.com>, linux-rockchip@lists.infradead.org, Iker Pedrosa <ikerpedrosam@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, Mikko Perttunen <mperttunen@nvidia.com>, Thierry Reding <thierry.reding@kernel.org>, linux-tegra@vger.kernel.org, =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>, Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, Haneen Mohammed <hamohammed.sa@gmail.com>, Louis Chauvet <louis.chauvet@bootlin.com>, Melissa Wen <melissa.srw@gmail.com>, Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Zack Rusin <zack.rusin@broadcom.com>
+Subject: Re: [PATCH 00/70] drm/crtc: Convert all drivers to
+ atomic_create_state and remove reset
+Message-ID: <apWDRq8YOTwvGuSf@houat>
+References: <20260821-drm-no-more-crtc-reset-v1-0-fb793475c05a@kernel.org>
+MIME-Version: 1.0
+In-Reply-To: <20260821-drm-no-more-crtc-reset-v1-0-fb793475c05a@kernel.org>
+X-Mailman-Approved-At: Tue, 01 Sep 2026 02:30:33 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,126 +66,82 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0652778397818365117=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-NSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpOZXcgaXNzdWVzOgotIFtIaWdoXSBU
-aGUgcGF0Y2ggaW50cm9kdWNlcyBhIFVzZS1BZnRlci1GcmVlIG9mIG1jLT5jaGFubGlzdCBpbiB0
-aGUgSVJRIGhhbmRsZXIgZHVyaW5nIGRyaXZlciByZW1vdmFsIGFuZCBwcm9iZSBlcnJvciBwYXRo
-cyBkdWUgdG8gZGV2cmVzIHRlYXJkb3duIG9yZGVyLgoKUHJlLWV4aXN0aW5nIGlzc3VlczoKLSBb
-SGlnaF0gSVJRcyBhcmUgcmVxdWVzdGVkIGFuZCBlbmFibGVkIGJlZm9yZSB0aGVpciBhc3NvY2lh
-dGVkIGRhdGEgc3RydWN0dXJlcyAobWMtPmNoYW5saXN0KSBhcmUgYWxsb2NhdGVkLCBsZWFkaW5n
-IHRvIGEgTlVMTCBwb2ludGVyIGRlcmVmZXJlbmNlIGlmIGEgcGVuZGluZyBpbnRlcnJ1cHQgZmly
-ZXMgZWFybHkgZHVyaW5nIHByb2JlLgotIFtIaWdoXSBTdGF0aWMgYXJyYXkgc3RhdGUgaXMgbm90
-IGNsZWFyZWQgb24gdW5iaW5kLCBsZWFkaW5nIHRvIGRvdWJsZSB1bnJlZ2lzdHJhdGlvbiBhbmQg
-Y3J5cHRvIGxpc3QgY29ycnVwdGlvbiBpZiBhIHN1YnNlcXVlbnQgcHJvYmUgZmFpbHMuCi0gW0hp
-Z2hdIFN5c2ZzIHVuYmluZCBjYXVzZXMgYSBVc2UtQWZ0ZXItRnJlZSBmb3IgYWN0aXZlIENyeXB0
-byBBUEkgVEZNcy4KLSBbTWVkaXVtXSBUaGUgSVJRIGhhbmRsZXIgdW5jb25kaXRpb25hbGx5IHJl
-dHVybnMgSVJRX0hBTkRMRUQgZXZlbiBmb3IgdW5oYW5kbGVkIG9yIHNwdXJpb3VzIGludGVycnVw
-dHMsIGRlZmVhdGluZyB0aGUga2VybmVsJ3Mgc3B1cmlvdXMgaW50ZXJydXB0IGRldGVjdGlvbi4K
-LS0KCmNvbW1pdCBiNzQ2OTQ0YWYwNTM0ZWQ3MjBlZjExZjI2ZGY0Yjc4ODQzYjEyNWI5CkF1dGhv
-cjogTW9oYW1hZCBSYWl6dWRlZW4gPHJhaXp1ZGVlbi5rZXJuZWxkZXZAZ21haWwuY29tPgoKY3J5
-cHRvL2FtbG9naWM6IFVzZSBkZXZtIEFQSXMgZm9yIGNsb2NrIG1hbmFnZW1lbnQKClRoaXMgcGF0
-Y2ggdHJhbnNpdGlvbnMgdGhlIGRyaXZlciB0byB1c2UgZGV2bV9jbGtfZ2V0X2VuYWJsZWQgZm9y
-IG1hbmFnaW5nCnRoZSBjb3JlIGNsb2NrLiBUaGlzIGNoYW5nZSBhbGxvd3MgdGhlIGtlcm5lbCB0
-byBhdXRvbWF0aWNhbGx5IGhhbmRsZSB0aGUKY2xvY2sgbGlmZWN5Y2xlIGFuZCByZW1vdmVzIHRo
-ZSBuZWVkIGZvciBtYW51YWwgY2xlYW51cCBpbiBlcnJvciBwYXRocyBhbmQKdGhlIHJlbW92ZSBm
-dW5jdGlvbi4KCkNsb3NlczogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvb2Uta2J1aWxkLWFsbC8y
-MDI2MDgzMTAzMjkuUWd4Q0NNczEtbGtwQGludGVsLmNvbS8KCj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvY3J5cHRvL2FtbG9naWMvYW1sb2dpYy1neGwtY29yZS5jIGIvZHJpdmVycy9jcnlwdG8vYW1s
-b2dpYy9hbWxvZ2ljLWd4bC1jb3JlLmMKPiBpbmRleCAxNjljNmVlYjUxZTUxLi42ZjRjNjJkZGFm
-ODk2IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvY3J5cHRvL2FtbG9naWMvYW1sb2dpYy1neGwtY29y
-ZS5jCj4gKysrIGIvZHJpdmVycy9jcnlwdG8vYW1sb2dpYy9hbWxvZ2ljLWd4bC1jb3JlLmMKPiBA
-QCAtMjQzLDEwICsyNDMsMTAgQEAgc3RhdGljIGludCBtZXNvbl9jcnlwdG9fcHJvYmUoc3RydWN0
-IHBsYXRmb3JtX2RldmljZSAqcGRldikKPiAgCWlmIChJU19FUlIobWMtPmJhc2UpKQo+ICAJCXJl
-dHVybiBQVFJfRVJSKG1jLT5iYXNlKTsKPiAgCj4gLQltYy0+YnVzY2xrID0gZGV2bV9jbGtfZ2V0
-KCZwZGV2LT5kZXYsICJibGttdiIpOwo+ICsJbWMtPmJ1c2NsayA9IGRldm1fY2xrX2dldF9lbmFi
-bGVkKCZwZGV2LT5kZXYsICJibGttdiIpOwoKW1NldmVyaXR5OiBIaWdoXQpDb3VsZCB0aGlzIGNo
-YW5nZSBpbnRyb2R1Y2UgYSB1c2UtYWZ0ZXItZnJlZSByZWdyZXNzaW9uIGR1cmluZyBkcml2ZXIg
-dW5iaW5kCm9yIHByb2JlIGVycm9yIHBhdGhzPwoKQnkgdXNpbmcgZGV2bV9jbGtfZ2V0X2VuYWJs
-ZWQgaGVyZSwgdGhlIGNsb2NrIGlzIHJlZ2lzdGVyZWQgZm9yIGRldnJlcyBjbGVhbnVwCmJlZm9y
-ZSBtYy0+Y2hhbmxpc3QgaXMgYWxsb2NhdGVkIHdpdGggZGV2bV9rY2FsbG9jLiBEdXJpbmcgZGV2
-aWNlIHJlbW92YWwsCmRldnJlcyBjbGVhbnMgdXAgaW4gTElGTyBvcmRlcjoKCjEuIGRldm1fa2Nh
-bGxvYyBmcmVlcyBtYy0+Y2hhbmxpc3QKMi4gZGV2bV9yZXF1ZXN0X2lycSB1bmJpbmRzIHRoZSBJ
-UlFzCjMuIGRldm1fY2xrX2dldF9lbmFibGVkIGRpc2FibGVzIHRoZSBjbG9jawoKSWYgYW4gaW50
-ZXJydXB0IGZpcmVzIGJldHdlZW4gdGhlIHRpbWUgbWMtPmNoYW5saXN0IGlzIGZyZWVkIGFuZCB0
-aGUgSVJRcwphcmUgdW5ib3VuZCwgbWVzb25faXJxX2hhbmRsZXIgd2lsbCBkZXJlZmVyZW5jZSB0
-aGUgZnJlZWQgbWMtPmNoYW5saXN0IGFycmF5LgpXb3VsZCBpdCBiZSBzYWZlciB0byBlbnN1cmUg
-bWMtPmNoYW5saXN0IG91dGxpdmVzIHRoZSBJUlEgYmluZGluZ3M/Cgo+ICAJaWYgKElTX0VSUiht
-Yy0+YnVzY2xrKSkgewo+ICAJCWVyciA9IFBUUl9FUlIobWMtPmJ1c2Nsayk7Cj4gLQkJZGV2X2Vy
-cigmcGRldi0+ZGV2LCAiQ2Fubm90IGdldCBjb3JlIGNsb2NrIGVycj0lZFxuIiwgZXJyKTsKPiAr
-CQlkZXZfZXJyKCZwZGV2LT5kZXYsICJDYW5ub3QgZ2V0L2VuYWJsZSBjb3JlIGNsb2NrIGVycj0l
-ZFxuIiwgZXJyKTsKPiAgCQlyZXR1cm4gZXJyOwo+ICAJfQo+ICAKPiBAQCAtMjYxLDE1ICsyNjEs
-OSBAQCBzdGF0aWMgaW50IG1lc29uX2NyeXB0b19wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNl
-ICpwZGV2KQo+ICAJCQlyZXR1cm4gZXJyOwo+ICAJfQo+ICAKPiAtCWVyciA9IGNsa19wcmVwYXJl
-X2VuYWJsZShtYy0+YnVzY2xrKTsKPiAtCWlmIChlcnIgIT0gMCkgewo+IC0JCWRldl9lcnIoJnBk
-ZXYtPmRldiwgIkNhbm5vdCBwcmVwYXJlX2VuYWJsZSBidXNjbGtcbiIpOwo+IC0JCXJldHVybiBl
-cnI7Cj4gLQl9Cj4gLQo+ICAJZXJyID0gbWVzb25fYWxsb2NhdGVfY2hhbmxpc3QobWMpOwoKW1Nl
-dmVyaXR5OiBIaWdoXQpUaGlzIGlzIGEgcHJlLWV4aXN0aW5nIGlzc3VlLCBidXQgaXMgdGhlcmUg
-YSByaXNrIG9mIGEgbnVsbCBwb2ludGVyCmRlcmVmZXJlbmNlIGhlcmUgaWYgYW4gaW50ZXJydXB0
-IGFycml2ZXMgZWFybHk/CgpJbiBtZXNvbl9jcnlwdG9fcHJvYmUoKSwgZGV2bV9yZXF1ZXN0X2ly
-cSgpIGlzIGNhbGxlZCB0byByZXF1ZXN0IGFuZCBlbmFibGUKdGhlIElSUXMgcmlnaHQgYmVmb3Jl
-IG1lc29uX2FsbG9jYXRlX2NoYW5saXN0KCkgaXMgY2FsbGVkOgoKbWVzb25fY3J5cHRvX3Byb2Jl
-KCkgewogICAgLi4uCiAgICBlcnIgPSBkZXZtX3JlcXVlc3RfaXJxKCZwZGV2LT5kZXYsIG1jLT5p
-cnFzW2ldLCBtZXNvbl9pcnFfaGFuZGxlciwgLi4uKTsKICAgIC4uLgogICAgZXJyID0gbWVzb25f
-YWxsb2NhdGVfY2hhbmxpc3QobWMpOwogICAgLi4uCn0KCklmIHRoZSBoYXJkd2FyZSBoYXMgYSBw
-ZW5kaW5nIGludGVycnVwdCBmcm9tIGEgcHJldmlvdXMgc3RhdGUsIHRoZSBoYW5kbGVyCmNhbiBm
-aXJlIGJlZm9yZSB0aGUgbWMtPmNoYW5saXN0IGFycmF5IGlzIGFsbG9jYXRlZCwgbGVhZGluZyB0
-byBhIHBhbmljIHdoZW4KbWVzb25faXJxX2hhbmRsZXIgYWNjZXNzZXMgbWMtPmNoYW5saXN0LiBT
-aG91bGQgdGhlIElSUXMgYmUgcmVxdWVzdGVkIGFmdGVyCnRoZSBuZWNlc3Nhcnkgc3RydWN0dXJl
-cyBhcmUgYWxsb2NhdGVkPwoKPiAgCWlmIChlcnIpCj4gLQkJZ290byBlcnJvcl9mbG93Owo+ICsJ
-CXJldHVybiBlcnI7Cj4gIAo+ICAJZXJyID0gbWVzb25fcmVnaXN0ZXJfYWxncyhtYyk7Cj4gIAlp
-ZiAoZXJyKQo+IEBAIC0yOTAsOCArMjg0LDYgQEAgc3RhdGljIGludCBtZXNvbl9jcnlwdG9fcHJv
-YmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikKPiAgZXJyb3JfYWxnOgo+ICAJbWVzb25f
-dW5yZWdpc3Rlcl9hbGdzKG1jKTsKCltTZXZlcml0eTogSGlnaF0KVGhpcyBpcyBhIHByZS1leGlz
-dGluZyBpc3N1ZSwgYnV0IGRvZXMgdGhpcyBjbGVhbnVwIHBhdGggcHJvcGVybHkgcmVzZXQgdGhl
-CnJlZ2lzdHJhdGlvbiBzdGF0ZSBmb3IgbWNfYWxncz8KCldoZW4gbWVzb25fdW5yZWdpc3Rlcl9h
-bGdzKCkgdW5yZWdpc3RlcnMgdGhlIGFsZ29yaXRobXMsIGl0IGxlYXZlcyB0aGUKbWNfYWxnc1tp
-XS5tYyBwb2ludGVyIGludGFjdCBpbnN0ZWFkIG9mIGNsZWFyaW5nIGl0OgoKbWVzb25fdW5yZWdp
-c3Rlcl9hbGdzKCkgewogICAgZm9yIChpID0gMDsgaSA8IEFSUkFZX1NJWkUobWNfYWxncyk7IGkr
-KykgewogICAgICAgIGlmICghbWNfYWxnc1tpXS5tYykKICAgICAgICAgICAgY29udGludWU7CiAg
-ICAgICAgLi4uCiAgICAgICAgY3J5cHRvX2VuZ2luZV91bnJlZ2lzdGVyX3NrY2lwaGVyKCZtY19h
-bGdzW2ldLmFsZy5za2NpcGhlcik7CiAgICB9Cn0KCklmIGEgc3Vic2VxdWVudCBwcm9iZSBmYWls
-cywgdGhlIGVycm9yIHBhdGggd2lsbCBjYWxsIG1lc29uX3VucmVnaXN0ZXJfYWxncygpCmFnYWlu
-LiBTaW5jZSB0aGUgZ2xvYmFsIHN0YXRpYyBtY19hbGdzIGFycmF5IHN0aWxsIGhvbGRzIHRoZSBz
-dGFsZSBtYwpwb2ludGVycywgaXQgd2lsbCBhdHRlbXB0IHRvIHVucmVnaXN0ZXIgdGhlIGFsZ29y
-aXRobXMgYSBzZWNvbmQgdGltZSwKcG90ZW50aWFsbHkgY2F1c2luZyBsaXN0IGNvcnJ1cHRpb24g
-aW4gdGhlIGNvcmUgY3J5cHRvIHN1YnN5c3RlbS4gRG9lcyB0aGlzCmFycmF5IG5lZWQgdG8gYmUg
-Y2xlYXJlZD8KCj4gIAltZXNvbl9mcmVlX2NoYW5saXN0KG1jLCBNQVhGTE9XIC0gMSk7Cj4gLWVy
-cm9yX2Zsb3c6Cj4gLQljbGtfZGlzYWJsZV91bnByZXBhcmUobWMtPmJ1c2Nsayk7Cj4gIAlyZXR1
-cm4gZXJyOwo+ICB9Cj4gIAo+IEBAIC0zMDYsOCArMjk4LDYgQEAgc3RhdGljIHZvaWQgbWVzb25f
-Y3J5cHRvX3JlbW92ZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQo+ICAJbWVzb25fdW5y
-ZWdpc3Rlcl9hbGdzKG1jKTsKPiAgCj4gIAltZXNvbl9mcmVlX2NoYW5saXN0KG1jLCBNQVhGTE9X
-IC0gMSk7Cj4gLQo+IC0JY2xrX2Rpc2FibGVfdW5wcmVwYXJlKG1jLT5idXNjbGspOwo+ICB9Cgpb
-U2V2ZXJpdHk6IEhpZ2hdClRoaXMgaXMgYSBwcmUtZXhpc3RpbmcgaXNzdWUsIGJ1dCBjYW4gc3lz
-ZnMgdW5iaW5kIGNhdXNlIGEgdXNlLWFmdGVyLWZyZWUKZm9yIGFjdGl2ZSBDcnlwdG8gQVBJIGNv
-bnRleHRzPwoKVGhlIG1haW4gZGV2aWNlIGNvbnRleHQgbWMgaXMgYWxsb2NhdGVkIHdpdGggZGV2
-bV9remFsbG9jKCksIHdoaWNoIHRpZXMgaXQKdG8gdGhlIGRldmljZSdzIHN5c2ZzIGxpZmVjeWNs
-ZS4gSWYgYW4gYWRtaW5pc3RyYXRvciB1bmJpbmRzIHRoZSBkcml2ZXIgd2hpbGUKdW5wcml2aWxl
-Z2VkIHVzZXJzcGFjZSBob2xkcyBvcGVuIGFuIEFGX0FMRyBzb2NrZXQsIHRoZSBURk1zIHdpbGwg
-b3V0bGl2ZQp0aGUgZGV2aWNlLgoKV2hlbiB1c2Vyc3BhY2Ugc3Vic2VxdWVudGx5IGlzc3VlcyBh
-biBlbmNyeXB0IG9yIGRlY3J5cHQgcmVxdWVzdCwgb3BlcmF0aW9ucwpsaWtlIG1lc29uX3NrZW5j
-cnlwdCgpIHdpbGwgZGVyZWZlcmVuY2Ugb3AtPm1jLCB3aGljaCBoYXMgYWxyZWFkeSBiZWVuIGZy
-ZWVkCmJ5IGRldnJlcy4gRG9lcyB0aGUgZHJpdmVyIG5lZWQgdG8gZGVjb3VwbGUgdGhlIG1jIGNv
-bnRleHQgbGlmZXRpbWUgZnJvbQpkZXZyZXMgdG8gcHJvdGVjdCBhY3RpdmUgVEZNcz8KCgpbU2V2
-ZXJpdHk6IE1lZGl1bV0KVGhpcyBpcyBhIHByZS1leGlzdGluZyBpc3N1ZSwgYnV0IGRvZXMgdGhl
-IGludGVycnVwdCBoYW5kbGVyIHVuY29uZGl0aW9uYWxseQpyZXR1cm4gSVJRX0hBTkRMRUQgZXZl
-biBmb3IgdW5oYW5kbGVkIGludGVycnVwdHM/Cgpkcml2ZXJzL2NyeXB0by9hbWxvZ2ljL2FtbG9n
-aWMtZ3hsLWNvcmUuYzptZXNvbl9pcnFfaGFuZGxlcigpIHsKICAgIC4uLgogICAgZGV2X2Vyciht
-Yy0+ZGV2LCAiJXMgJWQgZnJvbSB1bmtub3duIGlycVxuIiwgX19mdW5jX18sIGlycSk7CiAgICBy
-ZXR1cm4gSVJRX0hBTkRMRUQ7Cn0KClJldHVybmluZyBJUlFfSEFORExFRCB1bmNvbmRpdGlvbmFs
-bHkgZm9yIHVua25vd24gb3IgZW1wdHkgY29uZGl0aW9ucyBieXBhc3Nlcwp0aGUga2VybmVsIHNw
-dXJpb3VzIGludGVycnVwdCBkZXRlY3Rpb24gbWVjaGFuaXNtLiBJZiB0aGUgZGV2aWNlIG1pc2Jl
-aGF2ZXMKYW5kIGdlbmVyYXRlcyBhbiBpbnRlcnJ1cHQgc3Rvcm0sIHRoZSBrZXJuZWwgd2lsbCBu
-b3QgbWFzayB0aGUgbGluZSwgd2hpY2gKY291bGQgcmVzdWx0IGluIGEgbG9ja3VwLiBTaG91bGQg
-dGhpcyBmYWxsYmFjayBwYXRoIHJldHVybiBJUlFfTk9ORSBpbnN0ZWFkPwoKLS0gClNhc2hpa28g
-QUkgcmV2aWV3IMK3IGh0dHBzOi8vc2FzaGlrby5kZXYvIy9wYXRjaHNldC8yMDI2MDkwMTAyNDMw
-Mi41NDA3LTEtcmFpenVkZWVuLmtlcm5lbGRldkBnbWFpbC5jb20/cGFydD0xCgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxp
-bmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmlu
-ZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+
+--===============0652778397818365117==
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="eainbiqt42xdkeio"
+Content-Disposition: inline
+
+
+--eainbiqt42xdkeio
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 00/70] drm/crtc: Convert all drivers to
+ atomic_create_state and remove reset
+MIME-Version: 1.0
+
+On Fri, Aug 21, 2026 at 04:38:36PM +0200, Maxime Ripard wrote:
+> This is a follow-up to the plane reset removal series, and part of a
+> larger effort to remove the reset hook from all KMS objects.
+>=20
+> The CRTC reset hook is overloaded: it is called both at probe time to
+> create the initial software state and during suspend/resume to reset
+> hardware and software state. These two roles have different
+> requirements, and the reset hook is not fallible, making error
+> handling difficult for the initial state allocation path.
+>=20
+> While reset has the semantics to reset both the software and hardware
+> state, the vast majority of implementations and all the helpers only
+> reset the software state, making them equivalent to
+> atomic_create_state in practice. The atomic_create_state hook makes
+> this explicit: it only allocates and initializes a pristine state
+> without any side effect, and returns the state pointer or an ERR_PTR
+> on failure.
+>=20
+> This series converts all CRTC drivers tree-wide from the reset hook to
+> atomic_create_state, then removes the reset hook from struct
+> drm_crtc_funcs entirely. Two drivers (tilcdc and loongson) had actual
+> hardware reset logic mixed into their reset hook; those are moved to
+> CRTC creation instead. The conversions were done using a combination of
+> Coccinelle semantic patches and manual adjustments.
+>=20
+> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+
+
+Applied patches 1,3-14,16-28,31-41,43,45-49,52-62,64-68 to drm-misc-next
+
+Maxime
+
+--eainbiqt42xdkeio
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCapWDXQAKCRAnX84Zoj2+
+dtnDAYDvbcHtYOX7CuJCyNGSb99Ed+Livj62dMg0nsp864oeIMVzqxGBJIKgPp8Z
+RCHnUyUBfAxvXYJDr3LaH94QifMoTvJPOgPapZRwWXp6VAygmOgZF8WFxC9cEp2h
+0/QjaJymHA==
+=mCUP
+-----END PGP SIGNATURE-----
+
+--eainbiqt42xdkeio--
+
+
+--===============0652778397818365117==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============0652778397818365117==--
+
