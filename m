@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AD52C624D3
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3671CC624D5
 	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Sep 2026 15:27:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,44 +12,43 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aapNV4qSVGF6CTKPmv5hrW2meqAAE+66RWtiLdaWO4s=; b=4Wlpf0ABhf4CEw
-	umyWkhZTDdKkFqW+976zhF33ddUQPPgDFBdGYGgqYsr6wiOE3qGWwT6o9o5JxbztUoxjJ1JAgwkzf
-	1wg5H3DuohNnhdTs2Utf/bVm6i0atQJQ6nE9FqPbZTqQF4SAZ+Hn1iWg7yLYmt4lHNM+MbruTjUB3
-	gydB9FiGL8vIl/W5luZRr7Ssm1TmCIMeZNIhsDQGqdMc40gq7eC1yEUlv88cr1XEIrgCH+RoONWXv
-	oa3elsREZBOQpcG8KfkuoU3JAY25/pO5UQBxHCYdORVfuWmx+HbzHQOyUZ1f0cKXQTBEKx/n3E4mp
-	oPZh0T51KdSSxeR8JobA==;
+	List-Owner; bh=aYMCPNaXaht5C/LdzUt/D/u+JlWmk50EkjytumehyOU=; b=cBZX1B5lhhyagU
+	HLOnwUDPp71itn2XdKAXeKXkANH0spPBVEtgNf35MD9AxZ6d26j/19J1YKHURpMkkJdbuaFG8wqlh
+	zcTCwQn1qv03mjUyPvxHMSf6IztnZ8jSi/uopCodPo7er/EwGL8PDRp81mIvbBWF/I9cL8qCMzKW0
+	yD8vBiABzJEHecgicn5SQ+59R7AAQTuOLM1cPnhoQ21yXybH5bXRwW5mk0/1qmfqqDtQqNlr1zd6w
+	YIRyyEE0PwEIrvKAWX8b4sJSKPR5hxBizqlK9y0W3I2gANc4d4bv5w7EVDnA+BGANHr7WniVHTanM
+	FzsZiRooCwvvJtP9J2Uw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x1QOq-0000000CUAC-2TKV;
+	id 1x1QOq-0000000CUAz-49Jv;
 	Tue, 01 Sep 2026 15:27:48 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x1QOp-0000000CU8i-0gC3;
+	id 1x1QOp-0000000CU8i-1cYd;
 	Tue, 01 Sep 2026 15:27:47 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id C5BE84338F;
+	by sea.source.kernel.org (Postfix) with ESMTP id ED6FE433AD;
 	Tue,  1 Sep 2026 15:27:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 927F4C2BCFC;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C51D9C4AF18;
 	Tue,  1 Sep 2026 15:27:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1788276466;
-	bh=NpJ68cAdxRTul9v+KRzPMyOhGoHG7IvwOK7cj3TZ7Fk=;
+	bh=OuEeieU+V6Hv70haVoj7A7lwMd9n5Nm96UZgZOqvhug=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=J/GI7Gg6N3UrOXIuonjkoT042Z+OEbLS5iYUsNrW4suZQDlvL4WbUeHlUVrG2PrcO
-	 UvqX+47tGZz2WPkZyqXWVkrwgaIIlaRnVEvm1vM+AWcrJmjRwvo0EKB/DoD2bWuRvD
-	 Nw6WCyMKZSR192MXFiCzGwWApsJibnHJUu6dfpDzqif9y+FRsnGsARiSMIZn2vWips
-	 W8uLzsyU4B+nfXtWbo1ZElBrI9ymvAR0gsUPpXF49T2cronN00L/K6q7pkwYflyDLq
-	 YCYXks41M/pnKc6by9LrAVJ12WloVg7PdAJtpG41mJUsvDiYpIgFVqau+RWvuj/Vrp
-	 WrE81QUFy8kLg==
+	b=l9RtJ98t7H1IDdapibl0W/Z4iL9+fD6pIwu5gu5Engbzd3fFoGUTolpWRNHT81H//
+	 fjoOR6swbRWHMSI/5kxfF9vfgLaR2TDGhhoo79eqKVyrLDvoaoE+CaHS3BHYvx1HqM
+	 Ci9uvvKgFuBIcY+oqyQN68PHerDA/kFT2HtIdun9fdyw7u/WZ5gV6F6hEs0kANmemJ
+	 9KvktKEo+7OzXrJsiZFD+mafypcq8kgERxRVU7kqbSP0ZViHUt8muG0TZMtKeG9xkN
+	 PdrZzgazhxkCJRIeyS2RieHK4A9zVBD6KmpQEFdXEkegfYv9dksbtpm8A+5gtbCQ68
+	 QhpDfq0hXk1YQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 72347C61DD6;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AF270C624D7;
 	Tue,  1 Sep 2026 15:27:46 +0000 (UTC)
 From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Tue, 01 Sep 2026 17:25:53 +0200
-Subject: [PATCH v10 2/6] mfd: khadas-mcu: Use MFD_CELL_* macros for cell
- declarations
+Date: Tue, 01 Sep 2026 17:25:56 +0200
+Subject: [PATCH v10 5/6] arm64: dts: amlogic: t7: Add i2c controller node
 MIME-Version: 1.0
-Message-Id: <20260901-add-mcu-fan-khadas-vim4-v10-2-aecdb9955a30@aliel.fr>
+Message-Id: <20260901-add-mcu-fan-khadas-vim4-v10-5-aecdb9955a30@aliel.fr>
 References: <20260901-add-mcu-fan-khadas-vim4-v10-0-aecdb9955a30@aliel.fr>
 In-Reply-To: <20260901-add-mcu-fan-khadas-vim4-v10-0-aecdb9955a30@aliel.fr>
 To: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>, 
@@ -67,13 +66,13 @@ Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, 
  mfd@lists.linux.dev, Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1351;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1224;
  i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=EC3QR4h1VRMR/TQsGWmFoDDKLNA1VXSGTQljiGJtTRI=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ9a0d69FKn349lQz/bn81phL9F3j/wlHN1R09ciuz7bOk
- X7mXJXaUcrCIMbFICumyNI/1/LEu8tHz3zdo54CM4eVCWQIAxenAEyEV47hD4+NbNTazXp7lj1b
- IVbpYPlAdYtSrP7THHUzV07j+tPqMxn+WTOr8xt5v/Q6m3rA9ETKExHxrV8SlvO8rCnT0f365kQ
- +LwA=
+ bh=aLYRKhvnbuah+/DuOuT+PfGuc1jyAXlae73BAxIufCo=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ9a0d+/eZhodzvRNn6t8z4Ht04IrulaBQhpy018tV1u9V
+ n5F5VLxjlIWBjEuBlkxRZb+uZYn3l0+eubrHvUUmDmsTCBDGLg4BWAiH7oZ/qdF7hCNOx/x4pqp
+ WYh2zNG6icFdTz5MVSjoNJbufhq0/xDDX2n598UP9h/rPrRMfMrpB9uu7eK+5WHg2dVdfKJfmkV
+ sHj8A
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
  fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
 X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
@@ -98,42 +97,39 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 
-Convert khadas_mcu_fan_cells[] and khadas_mcu_cells[] to use the
-MFD_CELL_NAME() helper macro instead of open-coding the struct
-mfd_cell initialisers. While at it, make both arrays const since
-they are never modified after initialisation.
+Add the T7 i2c controller node used by the Khadas VIM4
+for MCU communication.
 
-This is a pure cleanup with no functional change, done in
-preparation for a subsequent patch which will need to attach
-platform_data to the fan cell.
+Use amlogic,meson-axg-i2c as fallback compatible.
 
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- drivers/mfd/khadas-mcu.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/mfd/khadas-mcu.c b/drivers/mfd/khadas-mcu.c
-index ba981a7886921..0e74efe14f367 100644
---- a/drivers/mfd/khadas-mcu.c
-+++ b/drivers/mfd/khadas-mcu.c
-@@ -75,13 +75,13 @@ static const struct regmap_config khadas_mcu_regmap_config = {
- 	.cache_type	= REGCACHE_MAPLE,
- };
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+index c3dc479b137de..0f48e23077e99 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+@@ -724,6 +724,16 @@ pwm_ao_cd: pwm@60000 {
+ 				status = "disabled";
+ 			};
  
--static struct mfd_cell khadas_mcu_fan_cells[] = {
-+static const struct mfd_cell khadas_mcu_fan_cells[] = {
- 	/* VIM1/2 Rev13+ and VIM3 only */
--	{ .name = "khadas-mcu-fan-ctrl", },
-+	MFD_CELL_NAME("khadas-mcu-fan-ctrl"),
- };
- 
--static struct mfd_cell khadas_mcu_cells[] = {
--	{ .name = "khadas-mcu-user-mem", },
-+static const struct mfd_cell khadas_mcu_cells[] = {
-+	MFD_CELL_NAME("khadas-mcu-user-mem"),
- };
- 
- static int khadas_mcu_probe(struct i2c_client *client)
++			i2c_m_ao_a: i2c@76000 {
++				compatible = "amlogic,t7-i2c", "amlogic,meson-axg-i2c";
++				reg = <0x0 0x76000 0x0 0x48>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc_periphs CLKID_SYS_I2C_AO_A>;
++				status = "disabled";
++			};
++
+ 			sd_emmc_a: mmc@88000 {
+ 				compatible = "amlogic,t7-mmc", "amlogic,meson-axg-mmc";
+ 				reg = <0x0 0x88000 0x0 0x800>;
 
 -- 
 2.49.0
