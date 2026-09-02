@@ -4,81 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 642E0C624DD
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2026 12:52:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9EF4C624D3
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Sep 2026 12:59:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aapNV4qSVGF6CTKPmv5hrW2meqAAE+66RWtiLdaWO4s=; b=DCCTnOu5dsYQr6
-	iwuhEBnwtVFbYjNOPn1tYmjbPkx9/KFYaMhG/GVj7EFTzunkGZ7v7sexT5x9ndWC8UGdFN9uAffoO
-	SsN0O2oX+kMSidDcwsbkOwgg5ybN2aikNfoCcaq21BZeWptlZ5tmxP6kWN89p7SzxrdycpjOLk4e+
-	/wp7EwcUjBpcIwBKE5a/X92pFA25erkOtUE/Ft5vgNaWfkCCxWF0/D/SrCrB6xuNiuW5b2xhmqhdK
-	0J92Pv9MlUvu7w9U1j1ezXecpilUqsPdUDT2QHuh8PrattML0Z6rkRhG1HJ0OGzo4h5LDZOBUHwVm
-	VmKPzLNO1/g+jfqAlIcg==;
+	List-Owner; bh=KgDjYYWNklJj5qzoFIesicOl16lrEigqpR6ubea+SXk=; b=hjCZ2XlOVtt30h
+	vvSOT/+noUayYL7BGrxGJBk7uZ1pnZ99eMvjMtXKByoQMOHRGz+eZN3Y9OVnShZvpu11BNcJgXsjn
+	4ej8+KajHMA0ZtEOElkKXOmBc40iJVxVQWknzhUCshH3KBGG9Qe8u2tMaXzdXGJKMPgqs9ppaVAy6
+	XbIjvqvR8Za0I1VWt8cW+NFABx5zaplUrQHKbZfh7HPi6ul1X4IRng0Kddi+emaTpdy9tlrKkmqkZ
+	apEFSbMDB8YfG7jRFbRwKClPyNp/KxPOw6M1LWCBGpFQEOG8PHMo929RtZnrJ0UpsWzdVqLNlLCUS
+	ItGBwshDEIZGKNWHlgLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x1kRv-0000000Eiim-2gco;
-	Wed, 02 Sep 2026 12:52:19 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1x1kYO-0000000EjmW-41LG;
+	Wed, 02 Sep 2026 12:59:01 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x1kRu-0000000Eihb-0OtE;
-	Wed, 02 Sep 2026 12:52:18 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7EBEA443E1;
-	Wed,  2 Sep 2026 12:52:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 21602C2BD01;
-	Wed,  2 Sep 2026 12:52:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1788353537;
-	bh=NpJ68cAdxRTul9v+KRzPMyOhGoHG7IvwOK7cj3TZ7Fk=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=ZlMEPtYb8sDEZ0lQL5z/OEYH3pSB5l7nbCuiXsKG8SPqRvvO5ClN+z5/SNch0oLZ/
-	 v7WFc41oZTAUBcRTkYOwDVL/t6PfXUhqjd76Xpsuv5Hw66qu9gsdBTO5boHTykntop
-	 3iWSoBQ1/cis4nOw9d8BuHo/eF4jpMUbDVC0THKo8gaaKjpC+XVUDxJRIncdR6Zitd
-	 lAN6Y7VgBslaZNVUt4EXb0x3CpPmolWppZ0JBP7i3oJUkXZyopi2GAWrMWkKZgSlck
-	 0RbL/4e7LfDWHNvGirlfZBiYE39epGlE3YNRuO/6ZtJ7mkYOFhlAhDs0tJm2e4TlIV
-	 wd5mJOs9eq4sQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 053F7C624D0;
-	Wed,  2 Sep 2026 12:52:17 +0000 (UTC)
-From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Wed, 02 Sep 2026 14:51:06 +0200
-Subject: [PATCH v11 2/6] mfd: khadas-mcu: Use MFD_CELL_* macros for cell
+	id 1x1kYN-0000000EjmJ-2ms2
+	for linux-amlogic@lists.infradead.org;
+	Wed, 02 Sep 2026 12:58:59 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 06B3942A39;
+	Wed,  2 Sep 2026 12:58:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79B581F000E9;
+	Wed,  2 Sep 2026 12:58:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1788353938;
+	bh=bE69FJQTzPLfXxv55ESIfZ0SRnSNE0EolT5V9XasIs0=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=CJAjhQQX5ZrhrgMT1QJ/vEVLzUqd2a1ZbZhoU7wSlYMvbNrw2CBhXA9Ipi09b3Jd4
+	 S1DCyrX26cugkaZlgXq0o2pcObur2BSfm2RlWACR+szk+aCGFl0T++wRXXLui1S18g
+	 J5U45opVhBeZKW0XSa5OrNjCBHhxDv2ObggctoccRkJmXCZ4a2KB+L056pQ0lbuoH/
+	 xqmhsrYCmeOq5s95RCkTSeyaJlkQjOYLW1Ydg12RswYagyihvuzWWllI6kcLQeJ+C4
+	 6UaFEKnsi2KSpfR+HgibFr0K9a0rJluW58PYOnd8sI6EBdavYgKZoU+OMq2LXqDTPE
+	 Q932keCwOFa/w==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v11 2/6] mfd: khadas-mcu: Use MFD_CELL_* macros for cell
  declarations
-MIME-Version: 1.0
-Message-Id: <20260902-add-mcu-fan-khadas-vim4-v11-2-5f1610d83bf0@aliel.fr>
+To: "Ronald Claveau" <linux-kernel-dev@aliel.fr>
+Cc: mfd@lists.linux.dev, devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org, neil.armstrong@linaro.org, lee@kernel.org, linux-amlogic@lists.infradead.org
+In-Reply-To: <20260902-add-mcu-fan-khadas-vim4-v11-2-5f1610d83bf0@aliel.fr>
 References: <20260902-add-mcu-fan-khadas-vim4-v11-0-5f1610d83bf0@aliel.fr>
-In-Reply-To: <20260902-add-mcu-fan-khadas-vim4-v11-0-5f1610d83bf0@aliel.fr>
-To: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Beniamino Galvani <b.galvani@gmail.com>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
- Lukasz Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, 
- mfd@lists.linux.dev, Ronald Claveau <linux-kernel-dev@aliel.fr>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1351;
- i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=EC3QR4h1VRMR/TQsGWmFoDDKLNA1VXSGTQljiGJtTRI=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ9YM6dc6bS1vZX3qQ9qDK78sPlr6zubF64d6wdvYll6Un
- 6utsG5hRykLgxgXg6yYIkv/XMsT7y4fPfN1j3oKzBxWJpAhDFycAjCRi62MDD0TX+8LUWzmzfRJ
- +XC3O7U98KaJwkXnXyZa21oSpz0578jwT9vP0PPDHN+5E1e//PsxU+65S1MA78ob7uuWPLGNWGe
- ixAsA
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
- fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
-X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
- auth_id=744
-X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+ <20260902-add-mcu-fan-khadas-vim4-v11-2-5f1610d83bf0@aliel.fr>
+Date: Wed, 02 Sep 2026 12:58:57 +0000
+Message-Id: <20260902125858.79B581F000E9@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,57 +63,26 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: linux-kernel-dev@aliel.fr
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-
-Convert khadas_mcu_fan_cells[] and khadas_mcu_cells[] to use the
-MFD_CELL_NAME() helper macro instead of open-coding the struct
-mfd_cell initialisers. While at it, make both arrays const since
-they are never modified after initialisation.
-
-This is a pure cleanup with no functional change, done in
-preparation for a subsequent patch which will need to attach
-platform_data to the fan cell.
-
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
- drivers/mfd/khadas-mcu.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/mfd/khadas-mcu.c b/drivers/mfd/khadas-mcu.c
-index ba981a7886921..0e74efe14f367 100644
---- a/drivers/mfd/khadas-mcu.c
-+++ b/drivers/mfd/khadas-mcu.c
-@@ -75,13 +75,13 @@ static const struct regmap_config khadas_mcu_regmap_config = {
- 	.cache_type	= REGCACHE_MAPLE,
- };
- 
--static struct mfd_cell khadas_mcu_fan_cells[] = {
-+static const struct mfd_cell khadas_mcu_fan_cells[] = {
- 	/* VIM1/2 Rev13+ and VIM3 only */
--	{ .name = "khadas-mcu-fan-ctrl", },
-+	MFD_CELL_NAME("khadas-mcu-fan-ctrl"),
- };
- 
--static struct mfd_cell khadas_mcu_cells[] = {
--	{ .name = "khadas-mcu-user-mem", },
-+static const struct mfd_cell khadas_mcu_cells[] = {
-+	MFD_CELL_NAME("khadas-mcu-user-mem"),
- };
- 
- static int khadas_mcu_probe(struct i2c_client *client)
-
--- 
-2.49.0
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+PiBGcm9tOiBSb25hbGQgQ2xhdmVhdSA8bGludXgta2VybmVsLWRldkBhbGllbC5mcj4KPiAKPiBD
+b252ZXJ0IGtoYWRhc19tY3VfZmFuX2NlbGxzW10gYW5kIGtoYWRhc19tY3VfY2VsbHNbXSB0byB1
+c2UgdGhlCj4gTUZEX0NFTExfTkFNRSgpIGhlbHBlciBtYWNybyBpbnN0ZWFkIG9mIG9wZW4tY29k
+aW5nIHRoZSBzdHJ1Y3QKPiBtZmRfY2VsbCBpbml0aWFsaXNlcnMuIFdoaWxlIGF0IGl0LCBtYWtl
+IGJvdGggYXJyYXlzIGNvbnN0IHNpbmNlCj4gdGhleSBhcmUgbmV2ZXIgbW9kaWZpZWQgYWZ0ZXIg
+aW5pdGlhbGlzYXRpb24uCj4gCj4gVGhpcyBpcyBhIHB1cmUgY2xlYW51cCB3aXRoIG5vIGZ1bmN0
+aW9uYWwgY2hhbmdlLCBkb25lIGluCj4gcHJlcGFyYXRpb24gZm9yIGEgc3Vic2VxdWVudCBwYXRj
+aCB3aGljaCB3aWxsIG5lZWQgdG8gYXR0YWNoCj4gcGxhdGZvcm1fZGF0YSB0byB0aGUgZmFuIGNl
+bGwuCj4gCj4gU2lnbmVkLW9mZi1ieTogUm9uYWxkIENsYXZlYXUgPGxpbnV4LWtlcm5lbC1kZXZA
+YWxpZWwuZnI+CgpTYXNoaWtvIGhhcyByZXZpZXdlZCB0aGlzIHBhdGNoIGFuZCBmb3VuZCBubyBp
+c3N1ZXMuIEl0IGxvb2tzIGdyZWF0IQoKLS0gClNhc2hpa28gQUkgcmV2aWV3IMK3IGh0dHBzOi8v
+c2FzaGlrby5kZXYvIy9wYXRjaHNldC8yMDI2MDkwMi1hZGQtbWN1LWZhbi1raGFkYXMtdmltNC12
+MTEtMC01ZjE2MTBkODNiZjBAYWxpZWwuZnI/cGFydD0yCgoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGlu
+dXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3Jn
+L21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
