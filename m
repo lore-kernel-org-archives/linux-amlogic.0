@@ -4,119 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A405C624A4
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Sep 2026 07:20:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9997CC624A4
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Sep 2026 07:36:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=27YxS6Ff0sG6A5StIogTfhefS+UJlJYpqaso6/DkJYo=; b=YPPGvAtp8oJdsGpkRI+T0yOpH9
-	Ezvr0WVxE7qKo8TQK6XBH55FrMXpPcRoHQJ9nUOFOf26pkdC/qzZmlLxQtmQMczL1Zi7liCADuc3B
-	eP70f/YuJOZrYlyAjbUstz1BYf1+H/FIryzrWXr97RvqzDX+oOlsMDLUoA5V/BOH52XB1Ff8wFyTg
-	E1l/YSbYsNK0X4jGK0dy/fYHJKQup/QqXimuyeiQtEPes2Svpk3SKYmxkc/lMqPInKdYPcSqKTWTb
-	60lCLAxEneAAH9Gxt5dk7EPLR7CATSAC+G9SqMz/j954nXpQL/ck9MzeJqIJRg497FvNAEaCHA78f
-	mPDiN+og==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Ff33Mcq+GmzWA7e4EJefJWOmxwwboK27jIU5Cd3ui5w=; b=JHP+AhOa/KMtON
+	na8/XRlwMxF1ljfUlYLA9XS3LMVpkSnW4C9UGnMgzsTQqq6Onz/jlpquE7peYQi892R0bt1nlXpfP
+	WijDw/YRZXgpPZ5dQ6jzOBuxNyZ0gXkpgYWi9w2LNKpYq79Xf+hBkwwOMKbAQtAPXTVy/2YxrvDrh
+	jOPh66sNuKw48W8x8QL9XYIyhUcY2znmBV1DY10eDtbxaqLUOCcekZr9qB/PMquEjWawY/0+0xE+y
+	qhPc7o7UUEykM8o676TkxZnDXrb389QPw0lGZdlfeVGTIRZQ1N031PiYXC2MsH3CkFHvCcjEVlapP
+	EQN9l1Z7V+7YAK6+DXkw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x21k7-0000000GYqy-3uaC;
-	Thu, 03 Sep 2026 07:20:15 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1x2206-0000000Gbxp-0Ytq;
+	Thu, 03 Sep 2026 07:36:46 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x21k4-0000000GYob-2mQQ
+	id 1x2204-0000000GbxP-3gP3
 	for linux-amlogic@lists.infradead.org;
-	Thu, 03 Sep 2026 07:20:14 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4953e04ef16so18595615e9.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 03 Sep 2026 00:20:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1788420010; x=1789024810; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:organization
-         :autocrypt:content-language:references:cc:to:subject:reply-to:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=z8MY7PnwVmu/gEhUahNDDwC7ZqCJxgd/Hx/DEmiiGPk=;
-        b=TqgFiUzFkEevN7MJS3bPHdAuOuuB/bDFBcNITTq5p3JI66yKWw0TXqoRmdd2vqw4+K
-         YuuFF8rnZClsI8o/886Cr7XbzVAh3Dnh0EGl9/9ljrWxu/yKz2VZQvCOxOnnrk/Cz95T
-         UbuKEtwea9UPXEx5LyxYCy3Uiu6lN2KwXlmue2umKoPwBNdUENab527UoXCyZhB0b4WU
-         rPZDNa4gXskexef4wN5BXBrtWnd5GAEksbFrt7Z7557gh2ggEdXnsg1z4dqiduHW8W9B
-         dn7kyCysFvp/WDaM7cL2mzpbYnxpa+mq/Q38ejyo/IcT/IC+rjUUrqQpnIv+jJm6DWeb
-         5zUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1788420010; x=1789024810;
-        h=content-transfer-encoding:content-type:in-reply-to:organization
-         :autocrypt:content-language:references:cc:to:subject:reply-to:from
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=z8MY7PnwVmu/gEhUahNDDwC7ZqCJxgd/Hx/DEmiiGPk=;
-        b=ZTlNIE/HZpOl6ffnde4GeLMFdFfajG99Q+j9XRntKtYcK7P7Wo7bYiSnkxeZpZCZqF
-         lbfMcxJc6PQGQqmZbwggU5wp2Q0rksLvfhVYLMKQ+4woqAyi9S9lGkstGJm4WnoeN3qE
-         gZLmqqJfcHvKgnnMNKWLSxZnKHCjSJTEcQrxre6mdZW2Kv0lCW9rWmDL1T03C8MGBhqR
-         iw0Q3w/crL/boJotTiN7G8gDsz0WrHrQN3SegTwvA7gZ+yjaFqXJy0f4wKmWh+TVNFmS
-         L5Yghm5linUQw+/3fywYua0pY12oYXJ0ifYI9xI/aWPp+heJoV0WQmWeQUJExYYs3tb9
-         J/uw==
-X-Forwarded-Encrypted: i=1; AKwUvBxIn6KNp+jkoNRBr89epjvafwEB+T4YRhtCQG+qYbDy+NuB3QjgtvBB06LSY3hLJaWL2YvmcY7Il0wCbxKP@lists.infradead.org
-X-Gm-Message-State: AFuF++nERdA+gurxueJWk4ir+aHSMS2H5dV2s/9DjRI0CTj1vwTA+Lks
-	bxUjnnUrG1yTpmD5TLeOzTxxqG/dmmjq8XvWi5pPMkLH2frpn3zxBrSqsboqy1J3G8Q=
-X-Gm-Gg: AYBFou0rlVVa2fbV4DfDzMyWYAh8uhQNocWrQEpZN67ScYcDHq/lxghQUutKaN5sNJv
-	yG7gYe4D3Jgancvom5iePx1Y6i5G/roO/8zInh6YPmUP/g5P21NIu6RaBiOLiW0B7E2IWl56WeF
-	mEDK16/nzIJU70lPyBIDWO2zDHl9Y9Vaep1w6EXWXp3yaSZ4kEDiMvBhIqY+vJBymeL6RiFaMu6
-	MoeWEs7v2mZcGQJCnVBv8BCsff3x54TD8fGdGd3IhkXNM8/kMZ6M+eDi9ieUNU+ZhxdUfyeYxwr
-	BIHOZ4tBy69trd9q0APXoRsGuf3ExsZJ4N+OrqNbDJzh7nvVEnmvouEV9Z/VwgKSvZuirsATGAZ
-	5X/7q0aE6c/4Tp6EgYwvkzxWnI6TsE5BKe+4OlrtY+D/fLv0bCk+ehxJwVWl0JDoTfSkQPJmbJo
-	7NtgBRkN+QqzU7vihLu8d56bT4McqOu0xo4jy/e0grQyu0gggDPcoISZ+PczJjpX1dw1EFNyM6z
-	ugB+UKSk4y7JL6CzRore6jy/IX6WxMCwXQoDJ4aEDo=
-X-Received: by 2002:a05:600c:83c4:b0:499:8ff5:8ecc with SMTP id 5b1f17b1804b1-49ce58268afmr184260015e9.15.1788420008556;
-        Thu, 03 Sep 2026 00:20:08 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:106d:1080:bc03:561f:5dac:f48f? ([2a01:e0a:106d:1080:bc03:561f:5dac:f48f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-49cee60d8a6sm47704275e9.10.2026.09.03.00.20.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Sep 2026 00:20:07 -0700 (PDT)
-Message-ID: <28a9c801-92a6-431c-aa54-1f203e3d2a6e@linaro.org>
-Date: Thu, 3 Sep 2026 09:20:05 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
+	Thu, 03 Sep 2026 07:36:44 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 3A35041F97;
+	Thu,  3 Sep 2026 07:36:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B92A71F000E9;
+	Thu,  3 Sep 2026 07:36:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1788421004;
+	bh=EPTzsvt7zknDgykhy6/SS/ByprLd9bK8MMFBN4TQRm0=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=bKn5KEp9EzN8B4UrUmbpK8irSeGU+DyIO7Lxv+228AALpH4ZTSkXcUuHmcxi4kJFO
+	 fSYxdIr25errdX75xOpBPr8h1VrpUVk6u7cOeOM4cCBUSteF9LCdgrny1afZB0CgaE
+	 pHLysGFXQAX/TWWpIUlCuvnWLLrFbRF7V+mc5L6YRJ5BmYOzZ2GYyd9mhucwzsxW5N
+	 oGpxEPm3Y6u7UsscidtLHieygYJburKHzaz5rcFjo+FTtxAui8M/C/KRbZF04v6mQ9
+	 qAO2Yf4ydRYa4ll2N9c/ZWJiLX0vrDbQPNYS2LmBdjnHNc+ZD7CyGDfFrzBljgqHup
+	 85LrNvrqh4NKQ==
+From: sashiko-bot@kernel.org
 Subject: Re: [PATCH 2/2] arm64: dts: amlogic: add Xiaomi Mi Box 4 support
-To: YuChia-Kan <raspberrykan@stu.hqu.edu.cn>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+To: YuChia-Kan <raspberrykan@stu.hqu.edu.cn>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, linux-amlogic@lists.infradead.org, conor+dt@kernel.org, neil.armstrong@linaro.org
+In-Reply-To: <20260903-mibox4-dt-v1-2-f29f1e828ca3@stu.hqu.edu.cn>
 References: <20260903-mibox4-dt-v1-0-f29f1e828ca3@stu.hqu.edu.cn>
  <20260903-mibox4-dt-v1-2-f29f1e828ca3@stu.hqu.edu.cn>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20260903-mibox4-dt-v1-2-f29f1e828ca3@stu.hqu.edu.cn>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260903_002012_757738_6F08D4DF 
-X-CRM114-Status: GOOD (  15.98  )
+Date: Thu, 03 Sep 2026 07:36:43 +0000
+Message-Id: <20260903073643.B92A71F000E9@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,397 +62,50 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On 9/3/26 09:09, YuChia-Kan wrote:
-> Add initial device tree support for the Xiaomi Mi Box 4
-> (MDZ-21-AA), based on the Amlogic S905L SoC.
-> 
-> Enable the main on-board peripherals including eMMC, Wi-Fi,
-> HDMI, CEC, USB, IR, audio, power LED, GPU and video decoder.
-> 
-> Signed-off-by: YuChia-Kan <raspberrykan@stu.hqu.edu.cn>
-> ---
->   arch/arm64/boot/dts/amlogic/Makefile              |   1 +
->   arch/arm64/boot/dts/amlogic/meson-gxlx-mibox4.dts | 340 ++++++++++++++++++++++
->   2 files changed, 341 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index 57bc440fa55c..9f357df5fc54 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -72,6 +72,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-vero4k.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-gxlx-s905l-p271.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-gxlx-mibox4.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-gxm-gt1-ultimate.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-gxm-khadas-vim2.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-gxm-mecool-kiii-pro.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxlx-mibox4.dts b/arch/arm64/boot/dts/amlogic/meson-gxlx-mibox4.dts
-> new file mode 100644
-> index 000000000000..db774efb2898
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxlx-mibox4.dts
-> @@ -0,0 +1,340 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +// Copyright (c) 2026 YuChia-Kan <mail@raspberrykan.dev>
-> +
-> +/dts-v1/;
-> +
-> +#include "meson-gxl-s905x.dtsi"
-> +
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/sound/meson-aiu.h>
-> +
-> +/ {
-> +	compatible = "xiaomi,mibox4", "amlogic,s905l", "amlogic,meson-gxlx";
-> +	model = "Xiaomi Mi Box 4 (MDZ-21-AA)";
-> +
-> +	aliases {
-> +		serial0 = &uart_AO;
-> +		mmc0 = &sd_emmc_c;
-> +		mmc1 = &sd_emmc_a;
-> +		/delete-property/ mmc2;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	av_mute: analog-audio-mute {
-> +		compatible = "simple-audio-amplifier";
-> +		sound-name-prefix = "AV";
-> +		enable-gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x0 0x0 0x80000000>;
-> +	};
-> +
-> +	hdmi_connector: hdmi-connector {
-> +		compatible = "hdmi-connector";
-> +		type = "a";
-> +
-> +		port {
-> +			hdmi_connector_in: endpoint {
-> +				remote-endpoint = <&hdmi_tx_tmds_out>;
-> +			};
-> +		};
-> +	};
-> +
-> +	cvbs_connector: cvbs-connector {
-> +		compatible = "composite-video-connector";
-> +
-> +		port {
-> +			cvbs_connector_in: endpoint {
-> +				remote-endpoint = <&cvbs_vdac_out>;
-> +			};
-> +		};
-> +	};
-> +
-> +	hdmi_usb_5v: regulator-hdmi-usb-5v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "HDMI_USB_5V";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		gpio = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
-> +	vddio_boot: regulator-vddio-boot {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VDDIO_BOOT";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +	};
-> +
-> +	vddao_3v3: regulator-vddao-3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VDDAO_3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +	};
-> +
-> +	vddio_ao18: regulator-vddio-ao18 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VDDIO_AO18";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +	};
-> +
-> +	vcc_3v3: regulator-vcc-3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VCC_3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +	};
-> +
-> +	emmc_pwrseq: emmc-pwrseq {
-> +		compatible = "mmc-pwrseq-emmc";
-> +		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
-> +	};
-> +
-> +	wifi32k: wifi32k {
-> +		compatible = "pwm-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <32768>;
-> +		pwms = <&pwm_ef 0 30518 0>;
-> +	};
-> +
-> +	wifi_pwrseq: wifi-pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		reset-gpios = <&gpio GPIOX_9 GPIO_ACTIVE_LOW>;
-> +		clocks = <&wifi32k>;
-> +		clock-names = "ext_clock";
-> +		post-power-on-delay-ms = <200>;
-> +	};
-> +
-> +	leds: leds {
-> +		compatible = "gpio-leds";
-> +
-> +		power_led: power-led {
-> +			label = "mibox4:power";
-
-Drop the label, add the color attribute.
-
-> +			function = LED_FUNCTION_POWER;
-> +			gpios = <&gpio GPIOX_6 GPIO_ACTIVE_HIGH>;
-> +			default-state = "on";
-> +		};
-> +	};
-> +
-> +	sound {
-> +		compatible = "amlogic,gx-sound-card";
-> +		model = "Xiaomi-Mi-Box-4";
-> +		audio-aux-devs = <&av_mute>;
-> +		audio-widgets = "Line", "Lineout";
-> +		audio-routing = "AV INL", "ACODEC LOLN",
-> +				"AV INR", "ACODEC LORN",
-> +				"Lineout", "AV OUTL",
-> +				"Lineout", "AV OUTR";
-> +
-> +		clocks = <&clkc CLKID_MPLL0>,
-> +			 <&clkc CLKID_MPLL1>,
-> +			 <&clkc CLKID_MPLL2>;
-> +		assigned-clocks = <&clkc CLKID_MPLL0>,
-> +				  <&clkc CLKID_MPLL1>,
-> +				  <&clkc CLKID_MPLL2>;
-> +		assigned-clock-rates = <294912000>, <270950400>, <393216000>;
-> +
-> +		dai-link-0 {
-> +			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-> +		};
-> +
-> +		dai-link-1 {
-> +			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
-> +			dai-format = "i2s";
-> +			mclk-fs = <256>;
-> +
-> +			codec-0 {
-> +				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
-> +			};
-> +
-> +			codec-1 {
-> +				sound-dai = <&aiu AIU_ACODEC CTRL_I2S>;
-> +			};
-> +		};
-> +
-> +		dai-link-2 {
-> +			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
-> +
-> +			codec-0 {
-> +				sound-dai = <&hdmi_tx>;
-> +			};
-> +		};
-> +
-> +		dai-link-3 {
-> +			sound-dai = <&aiu AIU_ACODEC CTRL_OUT>;
-> +
-> +			codec-0 {
-> +				sound-dai = <&acodec>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&apb {
-> +	mali: gpu@c0000 {
-> +		interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 165 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-names = "gp", "gpmmu", "pp", "pmu",
-> +			"pp0", "ppmmu0", "pp1", "ppmmu1",
-> +			"pp2", "ppmmu2";
-> +	};
-> +};
-
-Drop this, it's already defined in arch/arm64/boot/dts/amlogic/meson-gx-mali450.dtsi
-
-> +
-> +&acodec {
-> +	AVDD-supply = <&vddio_ao18>;
-> +	status = "okay";
-> +};
-> +
-> +&aiu {
-> +	status = "okay";
-> +};
-> +
-> +&cec_AO {
-> +	status = "okay";
-> +	pinctrl-0 = <&ao_cec_pins>;
-> +	pinctrl-names = "default";
-> +	hdmi-phandle = <&hdmi_tx>;
-> +};
-> +
-> +&cvbs_vdac_port {
-> +	cvbs_vdac_out: endpoint {
-> +		remote-endpoint = <&cvbs_connector_in>;
-> +	};
-> +};
-> +
-> +/delete-node/ &eth_mac;
-> +/delete-node/ &sn;
-> +/delete-node/ &bid;
-
-Add a comment stating the nvmem layout is custom
-
-> +
-> +&efuse {
-> +	wifi_mac: mac-address@c {
-> +		reg = <0x0c 0x06>;
-> +	};
-> +};
-> +
-> +&ethmac {
-> +	status = "disabled";
-> +};
-> +
-> +&hdmi_tx {
-> +	status = "okay";
-> +	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
-> +	pinctrl-names = "default";
-> +	hdmi-supply = <&hdmi_usb_5v>;
-> +};
-> +
-> +&hdmi_tx_tmds_port {
-> +	hdmi_tx_tmds_out: endpoint {
-> +		remote-endpoint = <&hdmi_connector_in>;
-> +	};
-> +};
-> +
-> +&ir {
-> +	status = "okay";
-> +	pinctrl-0 = <&remote_input_ao_pins>;
-> +	pinctrl-names = "default";
-> +};
-> +
-> +&pwm_ef {
-> +	status = "okay";
-> +	pinctrl-0 = <&pwm_e_pins>;
-> +	pinctrl-names = "default";
-> +};
-> +
-> +&saradc {
-> +	compatible = "amlogic,meson-gxlx-saradc", "amlogic,meson-saradc";
-> +	status = "okay";
-> +	vref-supply = <&vddio_ao18>;
-> +};
-> +
-> +&sd_emmc_a {
-> +	status = "okay";
-> +	pinctrl-0 = <&sdio_pins>;
-> +	pinctrl-1 = <&sdio_clk_gate_pins>;
-> +	pinctrl-names = "default", "clk-gate";
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	bus-width = <4>;
-> +	cap-sd-highspeed;
-> +	cap-sdio-irq;
-> +	max-frequency = <50000000>;
-> +	non-removable;
-> +	no-mmc;
-> +	no-sd;
-> +	disable-wp;
-> +	keep-power-in-suspend;
-> +	sd-uhs-sdr12;
-> +	sd-uhs-sdr25;
-> +	sd-uhs-sdr50;
-> +	sd-uhs-sdr104;
-> +	mmc-pwrseq = <&wifi_pwrseq>;
-> +	vmmc-supply = <&vddao_3v3>;
-> +	vqmmc-supply = <&vddio_boot>;
-> +
-> +	rtl8723ds: wifi@1 {
-> +		reg = <1>;
-> +		nvmem-cells = <&wifi_mac>;
-> +		nvmem-cell-names = "mac-address";
-> +		interrupt-parent = <&gpio_intc>;
-> +		interrupts = <GPIOX_7 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-names = "host-wake";
-> +	};
-> +};
-> +
-> +&sd_emmc_b {
-> +	status = "disabled";
-> +};
-> +
-> +&sd_emmc_c {
-> +	status = "okay";
-> +	pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
-> +	pinctrl-1 = <&emmc_clk_gate_pins>;
-> +	pinctrl-names = "default", "clk-gate";
-> +	bus-width = <8>;
-> +	cap-mmc-highspeed;
-> +	max-frequency = <100000000>;
-> +	non-removable;
-> +	disable-wp;
-> +	mmc-ddr-1_8v;
-> +	mmc-hs200-1_8v;
-> +	mmc-hs400-1_8v;
-> +	mmc-pwrseq = <&emmc_pwrseq>;
-> +	vmmc-supply = <&vcc_3v3>;
-> +	vqmmc-supply = <&vddio_boot>;
-> +};
-> +
-> +&uart_AO {
-> +	status = "okay";
-> +	pinctrl-0 = <&uart_ao_a_pins>;
-> +	pinctrl-names = "default";
-> +};
-> +
-> +&usb {
-> +	status = "okay";
-> +	dr_mode = "host";
-> +};
-> +
-> +&usb2_phy0 {
-> +	phy-supply = <&hdmi_usb_5v>;
-> +};
-> +
-> +&vdec {
-> +	compatible = "amlogic,gxlx-vdec", "amlogic,gx-vdec";
-> +};
-> 
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW01lZGl1bV0gVGhlIE1hbGkgR1BV
+IGludGVycnVwdCBjb25maWd1cmF0aW9uIGluY29ycmVjdGx5IHNwZWNpZmllcyAxMCBpbnRlcnJ1
+cHRzIChNYWxpLTQ1MCBNUDMgY29uZmlndXJhdGlvbikgaW5zdGVhZCBvZiA4LCBjb25mbGljdGlu
+ZyB3aXRoIHRoZSBTOTA1TCBTb0MncyBNYWxpLTQ1MCBNUDIgaGFyZHdhcmUuCi0tCgpjb21taXQg
+OGY2NTRhNDhmOGViMmU4ZGY0ODA0ZmRlZTI1MjBlZDI0MmJlZGIxNgpBdXRob3I6IFl1Q2hpYS1L
+YW4gPHJhc3BiZXJyeWthbkBzdHUuaHF1LmVkdS5jbj4KCmFybTY0OiBkdHM6IGFtbG9naWM6IGFk
+ZCBYaWFvbWkgTWkgQm94IDQgc3VwcG9ydAoKQWRkIGluaXRpYWwgZGV2aWNlIHRyZWUgc3VwcG9y
+dCBmb3IgdGhlIFhpYW9taSBNaSBCb3ggNCAoTURaLTIxLUFBKSwKYmFzZWQgb24gdGhlIEFtbG9n
+aWMgUzkwNUwgU29DLCBlbmFibGluZyBvbi1ib2FyZCBwZXJpcGhlcmFscy4KCj4gZGlmZiAtLWdp
+dCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1neGx4LW1pYm94NC5kdHMgYi9h
+cmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tZ3hseC1taWJveDQuZHRzCj4gbmV3IGZp
+bGUgbW9kZSAxMDA2NDQKPiAtLS0gL2Rldi9udWxsCj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0
+cy9hbWxvZ2ljL21lc29uLWd4bHgtbWlib3g0LmR0cwoKWyAuLi4gXQoKPiArJmFwYiB7Cj4gKwlt
+YWxpOiBncHVAYzAwMDAgewo+ICsJCWludGVycnVwdHMgPSA8R0lDX1NQSSAxNjAgSVJRX1RZUEVf
+TEVWRUxfSElHSD4sCj4gKwkJCTxHSUNfU1BJIDE2MSBJUlFfVFlQRV9MRVZFTF9ISUdIPiwKPiAr
+CQkJPEdJQ19TUEkgMTYyIElSUV9UWVBFX0xFVkVMX0hJR0g+LAo+ICsJCQk8R0lDX1NQSSAxNjMg
+SVJRX1RZUEVfTEVWRUxfSElHSD4sCj4gKwkJCTxHSUNfU1BJIDE2NCBJUlFfVFlQRV9MRVZFTF9I
+SUdIPiwKPiArCQkJPEdJQ19TUEkgMTY1IElSUV9UWVBFX0xFVkVMX0hJR0g+LAo+ICsJCQk8R0lD
+X1NQSSAxNjYgSVJRX1RZUEVfTEVWRUxfSElHSD4sCj4gKwkJCTxHSUNfU1BJIDE2NyBJUlFfVFlQ
+RV9MRVZFTF9ISUdIPiwKPiArCQkJPEdJQ19TUEkgMTY4IElSUV9UWVBFX0xFVkVMX0hJR0g+LAo+
+ICsJCQk8R0lDX1NQSSAxNjkgSVJRX1RZUEVfTEVWRUxfSElHSD47Cj4gKwkJaW50ZXJydXB0LW5h
+bWVzID0gImdwIiwgImdwbW11IiwgInBwIiwgInBtdSIsCj4gKwkJCSJwcDAiLCAicHBtbXUwIiwg
+InBwMSIsICJwcG1tdTEiLAo+ICsJCQkicHAyIiwgInBwbW11MiI7CgpbU2V2ZXJpdHk6IE1lZGl1
+bV0KSXMgdGhpcyBpbnRlcnJ1cHQgY29uZmlndXJhdGlvbiBjb3JyZWN0IGZvciB0aGUgUzkwNUwg
+U29DPwoKVGhlIFM5MDVMIGNvbnRhaW5zIGEgTWFsaS00NTAgTVAyIEdQVSwgYnV0IHRoaXMgc3Bl
+Y2lmaWVzIDEwIGludGVycnVwdHMKd2hpY2ggdGFyZ2V0cyBhIE1hbGktNDUwIE1QMyBjb25maWd1
+cmF0aW9uIChpbmNsdWRpbmcgcHAyIGFuZCBwcG1tdTIpLgoKQnkgcHJvdmlkaW5nIGludGVycnVw
+dHMgZm9yIHRoZSBub24tZXhpc3RlbnQgcHAyIGFuZCBwcG1tdTIgY29yZXMsIGNvdWxkCnRoaXMg
+Y2F1c2UgdGhlIExpbWEgR1BVIGRyaXZlciB0byBtaXN0YWtlbmx5IGF0dGVtcHQgaW5pdGlhbGl6
+YXRpb24gb2YKbWlzc2luZyBJUCBibG9ja3M/IFRoaXMgbWlnaHQgcmVzdWx0IGluIGhhcmR3YXJl
+IGluaXRpYWxpemF0aW9uIHRpbWVvdXRzLApzcHVyaW91cyBoYXJkd2FyZSByZXNldCBlcnJvcnMg
+aW4gdGhlIGtlcm5lbCBsb2csIG9yIHBvdGVudGlhbGx5IHRyaWdnZXIKYSBmYXRhbCBidXMgZXJy
+b3IgKFNFcnJvcikgZGVwZW5kaW5nIG9uIGhvdyB0aGUgU29DIGhhbmRsZXMgdW5tYXBwZWQgQVBC
+CnJlYWRzLgoKPiArCX07Cj4gK307CgpbIC4uLiBdCgotLSAKU2FzaGlrbyBBSSByZXZpZXcgwrcg
+aHR0cHM6Ly9zYXNoaWtvLmRldi8jL3BhdGNoc2V0LzIwMjYwOTAzLW1pYm94NC1kdC12MS0wLWYy
+OWYxZTgyOGNhM0BzdHUuaHF1LmVkdS5jbj9wYXJ0PTIKCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4
+LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
