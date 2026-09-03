@@ -4,73 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3061EC624DB
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Sep 2026 05:23:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 756AFC61DD3
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Sep 2026 07:10:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=w1X+K10hgxvLIZrZG3CdKPEly0bnr/5Cwrg84eQoGxc=; b=aRREPcY9JUvMIS
-	IqhWomoIxb/IW8elesNJpL767vFhMYnXXcVceJcoRFv3hpS+k2CwNvhDR4VGRc6X9Hh1SIjjG6GQQ
-	CLRcT3D29eL4RR/GKP3kTOOvVeOI7vhsjB9o5cAYqORZiGpiJ14+oxcQUB4M3zeiNCBU3XlLHudrX
-	uhgMrGGKFkeflNcPczgn9VkvB1IqJs+IOHBD/Xsf17+J+M1PNDZ9wlURZkbkUybwIccD2EUm01E9o
-	3kZaPrsT6rLBXdJq5j/R4hW0QMw6LFo16TjM6Sj95do8+0eWsOQFPWqeR0Jz6tNcl1hWFE76Hky6j
-	twHmYNdCA2GWdIBsH8Fw==;
+	List-Owner; bh=TSYbV+K99JY68Q+2bEazvMGCSNv2gHtlKGVGCzs5Xl8=; b=VdCjWf7L5dtcE7
+	ueXSuGwBiHZoylR+yT5MYRbAb+ReHr5bxfumV1SqseyK388O2wffVb135JAK6MiZNjrLhvBgskAv/
+	QYOTqJsVT2Ik6D3ZEmJa/wZKSNNPMh435sBDNdCZH0qqZzMOMgaAVi7ngXXbk3RZUnpXOLq11bINl
+	LgRMM53iukQXbDvann2clo+atgwl6wBjjmk61Nh1UeDVidnwg3UuiHZF2pmwOl9VTcAOTKALXedNa
+	b3tEe0xr9gNOhZC4qRJlAodEf0tgFdSZOP6KbblXWTMphH9/6T5oFLuXhtt0bixIBLypGgv/8o0EV
+	fX1kwzc+zPLKL+hUTKMQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x1zuZ-0000000GO20-3FLs;
-	Thu, 03 Sep 2026 05:22:55 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
-	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x1zuY-0000000GO1a-2k2B;
-	Thu, 03 Sep 2026 05:22:54 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id BED0D43E73;
-	Thu,  3 Sep 2026 05:22:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 8164BC2BCFA;
-	Thu,  3 Sep 2026 05:22:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1788412973;
-	bh=s/o95S4FhU+jC7Wmsq/nZVakaBKql9Q4l/U0A1Bd3rU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=EnCS3hNofvaVajEFNKVq9X2rBDS45/aUsA514D5snmoM3f/fl4cDVYPM9iOjM1UGG
-	 t86C3HXN13X1D807cDg/mzc90wF6Jp2QXUkxVreMzZuMKObzbuNfb0qDwWBNyy94yM
-	 x77P1fVlaiTghacRVmgY6/FqxbgyWmOW8KZBTkx/Uxfpq5WpjvM5Cba1FsSPBcs/8h
-	 4grKowt9Y0nmWa+W1JZtZxC65EzuTeepc7IXSsI7Km3PEZ8XlqvkiYQOjA4KOw7OHU
-	 u11QAUiUORMKul/1J3uSQ2CcOuW+0fHYfQOWAM6MhYoFGy5dfCCxy/vRWFdAVSz977
-	 j7vY2L78g3w2w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 63810C624D6;
-	Thu,  3 Sep 2026 05:22:53 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Thu, 03 Sep 2026 05:22:45 +0000
-Subject: [PATCH v3 2/2] arm64: dts: amlogic: a9: Add IR controller support
+	id 1x21ac-0000000GX2e-2u3r;
+	Thu, 03 Sep 2026 07:10:26 +0000
+Received: from hqu.edu.cn ([210.34.240.11])
+	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
+	id 1x21aY-0000000GWyz-2RTk;
+	Thu, 03 Sep 2026 07:10:25 +0000
+Received: from [127.0.1.1] (unknown [27.42.228.181])
+	by cmweb (Coremail) with SMTP id C_Ai0gD3WtpGHZlqUQYHAA--.14782S3;
+	Thu, 03 Sep 2026 15:10:01 +0800 (CST)
+From: YuChia-Kan <raspberrykan@stu.hqu.edu.cn>
+Date: Thu, 03 Sep 2026 15:09:54 +0800
+Subject: [PATCH 1/2] dt-bindings: arm: amlogic: add Xiaomi Mi Box 4
 MIME-Version: 1.0
-Message-Id: <20260903-a9-ir-v3-2-cd471c667c15@amlogic.com>
-References: <20260903-a9-ir-v3-0-cd471c667c15@amlogic.com>
-In-Reply-To: <20260903-a9-ir-v3-0-cd471c667c15@amlogic.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+Message-Id: <20260903-mibox4-dt-v1-1-f29f1e828ca3@stu.hqu.edu.cn>
+References: <20260903-mibox4-dt-v1-0-f29f1e828ca3@stu.hqu.edu.cn>
+In-Reply-To: <20260903-mibox4-dt-v1-0-f29f1e828ca3@stu.hqu.edu.cn>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Neil Armstrong <neil.armstrong@linaro.org>, 
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1788412970; l=2026;
- i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=4XM6Y1ImcmUqhmzv2hftpr5nRrtgzRpUB7Li778elRM=;
- b=63m9tnftXu5IZ+wc3ZuSf+gJWRg95a1PrbZQBSsS44TEYCK0CguzK5jTIGsxhYlPlS5WEpG9S
- qkNSVznkurZC0y+XvOknrPY98hnowgM0KwsF4nYIDl4+wR/u7Srobnn
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
- auth_id=578
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+ YuChia-Kan <raspberrykan@stu.hqu.edu.cn>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=771;
+ i=raspberrykan@stu.hqu.edu.cn; h=from:subject:message-id;
+ bh=kzaphFFUobmSgrEhjROTSnnHhHp0e4xJhaI3eW9w61s=;
+ b=owEBbQKS/ZANAwAKAZoNcluxItUHAcsmYgBqmR1Hkh01cUEP+VKy7kBwlGhOZClOR748koflm
+ m6ENovs0O6JAjMEAAEKAB0WIQTDd02egjFwFlgfDD2aDXJbsSLVBwUCapkdRwAKCRCaDXJbsSLV
+ BwiqEACW8EBPaN6mO3vJNaEz0CeCsOiit5fDRy4EnauaYenGrEY5WdZG/HE+yzAGmgDIZHFFkNz
+ qfgGNrGbIHqILOZN2EVy7KsVUX7KdGFsJjofkcc7X2C2CJqZU+d5RU2YPWCM3H8Fm4eQsmwXGRK
+ PC1i6qK+mSZ4JoTZMmoxi1HUjHQfm085m948/u8ae3AgFxMXoF4fZM+WvlwuVqs8MELwnlceFt5
+ H4U0htTTcd2aKdhXu3LUwbnacgsm7MuNCWDIOsBqVpSTvIJXN1iXWGCUBNEsFMtHlglDos4EICg
+ s92Ary7roibJBroUXtQ5yqny6xxZ1oTs6x7SF//5BHxMtU8kHqRvGFUmE8WWotHGjbOUn66Ngma
+ awxnMCDbYR/p88cE85CMJIl13Ts334ymN/pmg11FLe8kv+t5lyEw6UhKgKtCCIltMv77VpxH0FM
+ dA6N0mMpp5xENf29oZRQ9xfsg2uLEF4vkRJblHyLGxp39anhw5m2ZY9N8UZ12gAeo6lnDCH+OxO
+ CNHw9NOqINZW/NUvKFHgsBBfOUdkX+3etCq7PXcjcoc1Qc8nCoNyVnDHk0ty5V0ixSM11I890kt
+ TNUgWbW3pGommqwytAfEAdOUx1EWNHNpRZOXBNtwAp/sBdJQ6LSj7LHjJ37EpxPxOJ7SuQKI1i9
+ qJNkOhx7eJBEoOw==
+X-Developer-Key: i=raspberrykan@stu.hqu.edu.cn; a=openpgp;
+ fpr=C3774D9E82317016581F0C3D9A0D725BB122D507
+X-CM-TRANSID: C_Ai0gD3WtpGHZlqUQYHAA--.14782S3
+X-Coremail-Antispam: 1UD129KBjvdXoW7GryUurykCr1rXry5Jw1fZwb_yoW3JFc_Ga
+	yxAa1DuF95tF9YgrZ8ZrZ3KFy5Ja13Crn7Zwn8tFn5A342vrZ8WFZ7K3y3A34xua17u3W8
+	uF4xGryqg3Z7GjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJTRUUUbk8FF20E14v26ryj6rWUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI8067AKxVWUGwA2048vs2IY02
+	0Ec7CjxVAFwI0_JFI_Gr1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
+	wVC0I7IYx2IY67AKxVWUJVWUCwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
+	x0Y4vEx4A2jsIE14v26r4j6F4UM28EF7xvwVC2z280aVCY1x0267AKxVW8JVW8Jr1le2I2
+	62IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcV
+	AFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG
+	0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2ka0xkIwI
+	1lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_
+	Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17
+	CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0
+	I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I
+	8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73
+	UjIFyTuYvjfU0ksgUUUUU
+X-CM-SenderInfo: ysvskiyqsqlko6vw3hxktxhvlgxou0/1tbiAQASBGqYO2MCFAABsq
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260903_001023_103707_34BB8AEA 
+X-CRM114-Status: UNSURE (   6.64  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,76 +96,34 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Add the Xiaomi Mi Box 4 (MDZ-21-AA), based on the Amlogic S905L
+SoC, to the list of supported Amlogic boards.
 
-Add the IR controller node for the Amlogic A9 SoC and describe the
-corresponding remote input pin configuration.
-
-Enable the IR controller on the Amlogic A9 A311Y3 BY401 board with the
-proper pinctrl setting.
-
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Signed-off-by: YuChia-Kan <raspberrykan@stu.hqu.edu.cn>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts |  6 ++++++
- arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi             | 14 ++++++++++++++
- 2 files changed, 20 insertions(+)
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts b/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts
-index a6b380ca47a5..389c9de3dc3c 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts
-@@ -38,3 +38,9 @@ secmon_reserved: secmon@5000000 {
- &uart_b {
- 	status = "okay";
- };
-+
-+&ir {
-+	status = "okay";
-+	pinctrl-0 = <&remote_input_ao_pins>;
-+	pinctrl-names = "default";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
-index b0e0fadeed82..790109aa7c9c 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
-@@ -241,6 +241,13 @@ test_n: gpio@c0 {
- 					#gpio-cells = <2>;
- 					gpio-ranges = <&aobus_pinctrl 0 (AMLOGIC_GPIO_TEST_N<<8) 1>;
- 				};
-+
-+				func-ir-in {
-+					remote_input_ao_pins: group-remote-input-ao-pins {
-+						pinmux = <AML_PINMUX(AMLOGIC_GPIO_D, 5, 1)>;
-+						bias-disable;
-+					};
-+				};
- 			};
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 9f73a0054fb2..96e207572d98 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -120,6 +120,7 @@ properties:
+         items:
+           - enum:
+               - amlogic,p271
++              - xiaomi,mibox4
+           - const: amlogic,s905l
+           - const: amlogic,meson-gxlx
  
- 			gpio_ao_intc: interrupt-controller@4080 {
-@@ -254,6 +261,13 @@ gpio_ao_intc: interrupt-controller@4080 {
- 					394 395 396 397 398 399 400 401 402 403>;
- 			};
- 
-+			ir: ir@14080 {
-+				compatible = "amlogic,a9-ir", "amlogic,meson-s4-ir";
-+				reg = <0x0 0x14080 0x0 0x30>;
-+				interrupts = <GIC_SPI 413 IRQ_TYPE_EDGE_RISING>;
-+				status = "disabled";
-+			};
-+
- 			uart_b: serial@1e000 {
- 				compatible = "amlogic,a9-uart",
- 					     "amlogic,meson-s4-uart";
 
 -- 
-2.52.0
-
+2.53.0
 
 
 _______________________________________________
