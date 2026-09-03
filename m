@@ -4,86 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7257FC624DA
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Sep 2026 10:19:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B552C61DD3
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Sep 2026 12:58:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OW8bNkigZTmgIZcueSPlW5+ZUHhpuL64qs/t003Rm70=; b=bKcZDxqIow7quq
-	HTIqfb+rtZNj3k2LmEhzkZ/yAinAIxX4Qf06H+8OKqh5MnR/wnTTcaf/1rsXl3yRVM8QWGC9NPlpC
-	MrqzF+l8YlpgUCaCMg6Bjdi3TI+B7DLL4H/gnHulPbHxwAJilXhXlgqkfxT4zyFP5r+mpco8isfD4
-	4M1klJGvrq6H/wOxq1H5Bh69Gg2pfVnnGgfpX0mCx7bu/FLVOCPM+YnCuG/rGVHS0mYsh+JhNGw1m
-	AX/VErOF0XU3CZRBro3Org4+5WUnEhAJNBZl0y7qPPS1Vtr0+DIx1cVpTIa3p8qZtUBdJAZWO0RXG
-	Dq9qsCwwmylqEgO8yQ0w==;
+	List-Owner; bh=UoPOD4mPdNe0oljiHsm5qFWlOQHeyECl8trh8Yyyqs8=; b=s9mdP6uiNcZexG
+	/PUR+ZG0BHPo3qr+Sv5O8BZp0Xr++buQkgkEnC0O7SeDCrxYVVmuTbEacizIdvy1r6JIJpVyNjfCZ
+	ph2XmK+xtEULEfcERrjkhgc91+ptRVwSYULOeEbLk/YjkvgVtxkBYxBZpsQq7uxHxo9mKqFPd30Tv
+	c7VY2n3DuFwif5yklxunN2zl6Qs67+Cxb+6E1Hrjgxf/lGrKaA5QCjCTvUXH9Nntj24uY+03TFvCV
+	J/38yqTvZqe4kkVNJEqH062pOWS71ZwGludAzda3hHWfFS7ujI1uP/mwa2RcVSDEHZPV12DEeTtOa
+	QHVZwbMHm2rJnrA2ZUtA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x24X8-0000000H43b-0B55;
-	Thu, 03 Sep 2026 10:19:02 +0000
-Received: from hqu.edu.cn ([210.34.240.11])
-	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x24X2-0000000H41W-467Y;
-	Thu, 03 Sep 2026 10:19:00 +0000
-Received: from [127.0.1.1] (unknown [27.42.228.181])
-	by cmweb (Coremail) with SMTP id C_Ai0gAXe9qFSZlqyEUHAA--.14896S4;
-	Thu, 03 Sep 2026 18:18:49 +0800 (CST)
-From: YuChia-Kan <raspberrykan@stu.hqu.edu.cn>
-Date: Thu, 03 Sep 2026 18:18:46 +0800
-Subject: [PATCH v3 2/2] arm64: dts: amlogic: add Xiaomi Mi Box 4 support
+	id 1x271r-0000000HMjS-4BNf;
+	Thu, 03 Sep 2026 12:58:55 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
+	id 1x271o-0000000HMiC-1epE
+	for linux-amlogic@lists.infradead.org;
+	Thu, 03 Sep 2026 12:58:54 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-499b2981a7bso24630015e9.3
+        for <linux-amlogic@lists.infradead.org>; Thu, 03 Sep 2026 05:58:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1788440330; x=1789045130; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=fUOhnrIRug8NhLOWvB+hNSnIHP5x1LfuWaznHtYn7Ag=;
+        b=KfW0BCOUKBL0QhxB+zHqIFqWIcCwwGE+QIPrrP+7/GF3BbOatWZTTdSFOxrdbBg3GI
+         saFFF6qNxKO7hSTFBCs1g4QGI3HdR79fnxUjEb2+2nMsGJC8tVduDQiuRooa9fA6R77k
+         vzcH/6ybauoclfoZMIbNkuqcwNvAtGWSY3Xn2xld+wSQUTTiXctpRhs/67FRv+qAW8F2
+         rHV9n6rPWRPNsj2vxcSWrVimWZVetTZ7U1PdRglllO2Qkfg19WASqbCsfOV073zFlHZv
+         Ju2rCb+RsVn885Bsf1YfSLKMprww7cW/hZoeDt9j2qI3tzjSx/WAf1Eoqekd7+G6zrEQ
+         msgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1788440330; x=1789045130;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :references:in-reply-to:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=fUOhnrIRug8NhLOWvB+hNSnIHP5x1LfuWaznHtYn7Ag=;
+        b=lWDGoeayetYMSpy/s1970ZwSyY+uvP5DQAuYw3p4F6OWMNKjqkdUxxk3BDPMNUBFt1
+         TLLa4PAg+dM7H1OyLsRRO2xBXM6XzXG219bC/q5PWwNixumtEllt6TDaxe6gbIznedRZ
+         AleIClCuTbWOIAT3wss2DTMrXSpcvExB0KxeREMJR+j8rfgAHCQqMTEPqUogqtLLqFf2
+         JBSoFFORz+4A8dHxiiq4SPB9mKK4ElG80S2CuCkr2/QXzLLH/UxDV8rH/hVHHjQcM/tZ
+         LBfbjd+5KVaE98/mCCT1EfcS65yRhh5aj+HqNG2H+ipQrk0ajAeLKviguPVwDeu4jHMc
+         R9wA==
+X-Forwarded-Encrypted: i=1; AKwUvByBALPLS3Yya7Ai6LtfyoilptK6V6YUqpoMnoEUJJ8fhA4V7goVyNjBnSZD7+l6Wq9eG9PajREhiaJrDPAa@lists.infradead.org
+X-Gm-Message-State: AFuF++k+hfd20mUvpa2sEFShXwZYRbIdURDJGwCXazioKBcY6370wO12
+	26I7cXbAlF4rlEWQn4GYMjqZqSa8Yta7+RIaa2zgnsnhV192FpCVEa/cse8yI5Pq0TE=
+X-Gm-Gg: AYBFou1KMQesOXi9htc90kWDzeoUgNdiiSggvz1avLReB+9ce3c8kXorAoUYb2djSD8
+	TGpVNCgRiL7BeDEGpiQ/3L/NxqjI+cQs3iJIh80bgIGSdjKsSWjbdKC0a6DBSH4x3b8zgQ6c91m
+	DhwPiUBUUfkJvbb3MMkfookZwLb6MRPfG+/GpFMlSqCBDXbjfuT/clt+0T3lmzKEzutDUUoUBo7
+	RbI39tR2xBagdwLOi5c2W77BJMvRjUom7H2g0u52MN8n3Rf/hzJ5kUOFWwn+XNL6rgQaacN/qTg
+	TIHFPw5//dByNHPV/Gp7dMiE1flAXnpS2eyoNBBGfhE/Kox45ICCTz1HWkzyCYII4phKFAGAJ4U
+	3hYvAl0bvfp1unP29090kRG6tOW50jyl+bEOPUi6wERNc//GwxM3RGAyJtC93MVS9nH0dz3x4yG
+	b/RI/+FHRt4zdOMkYGRSMl0ySB7vsfWnY+Gj/EcZEjRWRBmQfNr3jJ4bS4v1TMat5KWzsGFJ4lI
+	RmmoT8=
+X-Received: by 2002:a05:600c:83c8:b0:49c:d52e:d0ea with SMTP id 5b1f17b1804b1-49ce581779dmr225433345e9.4.1788440330042;
+        Thu, 03 Sep 2026 05:58:50 -0700 (PDT)
+Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-49cee6023edsm67989285e9.7.2026.09.03.05.58.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Sep 2026 05:58:48 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: tanure@linux.com, Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, Jian Hu
+ <jian.hu@amlogic.com>, Ronald Claveau <linux-kernel-dev@aliel.fr>, Brian
+ Masney <bmasney@redhat.com>, Chuan Liu <chuan.liu@amlogic.com>,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org
+Subject: Re: (subset) [PATCH 0/4] arm64: amlogic: t7: describe the VIM4
+ supplies and keep the fabric clocks running
+In-Reply-To: <CAJX_Q+17CLQ_4-rcj0KD6kzPWnChQfD3irCR7-h1bGH9hWiD7A@mail.gmail.com>
+References: <20260829094758.23248-1-tanure@linux.com>
+ <178818026093.2318126.3676223463693214854.b4-ty@b4>
+ <CAJX_Q+17CLQ_4-rcj0KD6kzPWnChQfD3irCR7-h1bGH9hWiD7A@mail.gmail.com>
+Date: Thu, 03 Sep 2026 14:58:47 +0200
+Message-ID: <1jecfa8pa0.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Message-Id: <20260903-mibox4-dt-v3-2-1a8e395d923c@stu.hqu.edu.cn>
-References: <20260903-mibox4-dt-v3-0-1a8e395d923c@stu.hqu.edu.cn>
-In-Reply-To: <20260903-mibox4-dt-v3-0-1a8e395d923c@stu.hqu.edu.cn>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- YuChia-Kan <raspberrykan@stu.hqu.edu.cn>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8548;
- i=raspberrykan@stu.hqu.edu.cn; h=from:subject:message-id;
- bh=LnzK8gFs/Iazf1bdID7yRRgNAasKpTbjzZbyQSH29AI=;
- b=owEBbQKS/ZANAwAKAZoNcluxItUHAcsmYgBqmUmGypy5D9yCWC93pMRJ4UjBpMwzSNiysRXPv
- V9XlGYVs9uJAjMEAAEKAB0WIQTDd02egjFwFlgfDD2aDXJbsSLVBwUCaplJhgAKCRCaDXJbsSLV
- B5W9D/4jPftTnYI7mJ0nKhjgQwDASUiM9mb+hUiQOr3K+kMrWdzNOPJB/XgdQTk9/kAemnWLgqK
- sgDxsd6hXeRzyRbUg5nlFZ+Eqz/UL7b+gGpjcBCa3PWIVakqp/zBRSIXFcyDZ3NwXy+LmC5jZnb
- THxsB+vvMMsC6VsZqvwqIrXmdHaaTREn2t8Jy4rTxxTDptztwkXCYREAjvZ6ykL1UiIgxk6EYcJ
- iBta0G03ZEYKZRwPiA7idzGyoXBr68ORri+skhA/SQJLeFYJsZ9Y8Jf02xdttdByoLyu8KQa0c8
- azhvq4IU6T4RuB8MzKZk/j7K0bI+WUVhbXnPmi3Y9ZEEkMK1zGZHyrl98jB8bsRm/IMLxQoAFMG
- Q5xdH8WHffgkDTjRMUMmpxeppN9ffwIeTUaYSixXa5RzzetBikONiAH7V1qnSgFxQePxlyTr/i7
- J26+cq84Aoa7Jts8pK2G0YYdKtExIhEvLly9ulG0bh4lj+L9N3xX1C9ahzS1XhHENazATHazh19
- 1/opn8xuIGuoQieywYTd0JGWG/5A4WLElJwJIEcHba/lXZI447iN761F6xjuR5sK5Td1vt2TVQb
- qgntU6QSz+wWg5htvF2eqlgoVTRrqL127oB0bTG7ZEM1BIou54xMifv4nejnloBb0rb5wR62sIC
- Tf08b1egC3e8X0g==
-X-Developer-Key: i=raspberrykan@stu.hqu.edu.cn; a=openpgp;
- fpr=C3774D9E82317016581F0C3D9A0D725BB122D507
-X-CM-TRANSID: C_Ai0gAXe9qFSZlqyEUHAA--.14896S4
-X-Coremail-Antispam: 1UD129KBjvJXoWxtw1DGr4DtF47Kry8uw1kAFb_yoW3tFWfpF
-	n7Crs5GFWfZryjk3y5Z3yIyFs5Gw1kCFZ7Cr1DWFWrCrWv9FyDK34xtr93ZFn5Wrs7Xw43
-	JrWDAry7tF1ag3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUPKb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26rWj6s0DM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI
-	8067AKxVWUXwA2048vs2IY020Ec7CjxVAFwI0_Gr0_Xr1l8cAvFVAK0II2c7xJM28CjxkF
-	64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVWUJVWUCwA2z4x0Y4vE2Ix0cI8IcV
-	CY1x0267AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIE14v26F4j6r4UJwA2z4x0Y4vEx4A2jsIE
-	c7CjxVAFwI0_Gr1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzV
-	Aqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S
-	6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JM4IIrI8v6xkF7I0E8cxan2IY04v7Mx
-	kF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4U
-	MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67
-	AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0
-	cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z2
-	80aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIdaVFxhVjvjDU
-	0xZFpf9x07b2739UUUUU=
-X-CM-SenderInfo: ysvskiyqsqlko6vw3hxktxhvlgxou0/1tbiAQASBGqYO2MCOAALsM
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260903_031857_515145_BED2E4D1 
-X-CRM114-Status: GOOD (  11.15  )
+X-CRM114-CacheID: sfid-20260903_055852_449868_1576D173 
+X-CRM114-Status: GOOD (  21.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,380 +105,62 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add initial device tree support for the Xiaomi Mi Box 4
-(MDZ-21-AA), based on the Amlogic S905L SoC.
-
-Enable the main on-board peripherals including eMMC, Wi-Fi,
-HDMI, CEC, USB, audio, power LED, GPU and video decoder.
-
-Signed-off-by: YuChia-Kan <raspberrykan@stu.hqu.edu.cn>
----
- arch/arm64/boot/dts/amlogic/Makefile               |   1 +
- .../dts/amlogic/meson-gxlx-s905l-xiaomi-mibox4.dts | 333 +++++++++++++++++++++
- 2 files changed, 334 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 57bc440fa55c..ad6ab4216083 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -72,6 +72,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-vero4k.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxlx-s905l-p271.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxlx-s905l-xiaomi-mibox4.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-gt1-ultimate.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-khadas-vim2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-mecool-kiii-pro.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-xiaomi-mibox4.dts b/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-xiaomi-mibox4.dts
-new file mode 100644
-index 000000000000..3b293dc31086
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-xiaomi-mibox4.dts
-@@ -0,0 +1,333 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+// Copyright (c) 2026 YuChia-Kan <mail@raspberrykan.dev>
-+
-+/dts-v1/;
-+
-+#include "meson-gxl-s905x.dtsi"
-+
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/sound/meson-aiu.h>
-+
-+/ {
-+	compatible = "xiaomi,mibox4", "amlogic,s905l", "amlogic,meson-gxlx";
-+	model = "Xiaomi Mi Box 4 (MDZ-21-AA)";
-+
-+	aliases {
-+		serial0 = &uart_AO;
-+		mmc0 = &sd_emmc_c;
-+		mmc1 = &sd_emmc_a;
-+		/delete-property/ mmc2;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	av_mute: analog-audio-mute {
-+		compatible = "simple-audio-amplifier";
-+		sound-name-prefix = "AV";
-+		enable-gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x80000000>;
-+	};
-+
-+	hdmi_connector: hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+
-+	cvbs_connector: cvbs-connector {
-+		compatible = "composite-video-connector";
-+
-+		port {
-+			cvbs_connector_in: endpoint {
-+				remote-endpoint = <&cvbs_vdac_out>;
-+			};
-+		};
-+	};
-+
-+	hdmi_usb_5v: regulator-hdmi-usb-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "HDMI_USB_5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vddio_boot: regulator-vddio-boot {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_BOOT";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	vddao_3v3: regulator-vddao-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	vddio_ao18: regulator-vddio-ao18 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_AO18";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	vcc_3v3: regulator-vcc-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	wifi32k: wifi32k {
-+		compatible = "pwm-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		pwms = <&pwm_ef 0 30518 0>;
-+	};
-+
-+	wifi_pwrseq: wifi-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio GPIOX_9 GPIO_ACTIVE_LOW>;
-+		clocks = <&wifi32k>;
-+		clock-names = "ext_clock";
-+		post-power-on-delay-ms = <200>;
-+	};
-+
-+	leds: leds {
-+		compatible = "gpio-leds";
-+
-+		power_led: power-led {
-+			color = <LED_COLOR_ID_WHITE>;
-+			function = LED_FUNCTION_POWER;
-+			gpios = <&gpio GPIOX_6 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+		};
-+	};
-+
-+	sound {
-+		compatible = "amlogic,gx-sound-card";
-+		model = "Xiaomi-Mi-Box-4";
-+		audio-aux-devs = <&av_mute>;
-+		audio-widgets = "Line", "Lineout";
-+		audio-routing = "AV INL", "ACODEC LOLN",
-+				"AV INR", "ACODEC LORN",
-+				"Lineout", "AV OUTL",
-+				"Lineout", "AV OUTR";
-+
-+		clocks = <&clkc CLKID_MPLL0>,
-+			 <&clkc CLKID_MPLL1>,
-+			 <&clkc CLKID_MPLL2>;
-+		assigned-clocks = <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>,
-+				  <&clkc CLKID_MPLL2>;
-+		assigned-clock-rates = <294912000>, <270950400>, <393216000>;
-+
-+		dai-link-0 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
-+			dai-format = "i2s";
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&aiu AIU_ACODEC CTRL_I2S>;
-+			};
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+
-+		dai-link-3 {
-+			sound-dai = <&aiu AIU_ACODEC CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&acodec>;
-+			};
-+		};
-+	};
-+};
-+
-+&acodec {
-+	AVDD-supply = <&vddio_ao18>;
-+	status = "okay";
-+};
-+
-+&aiu {
-+	status = "okay";
-+};
-+
-+&cec_AO {
-+	status = "okay";
-+	pinctrl-0 = <&ao_cec_pins>;
-+	pinctrl-names = "default";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&cvbs_vdac_port {
-+	cvbs_vdac_out: endpoint {
-+		remote-endpoint = <&cvbs_connector_in>;
-+	};
-+};
-+
-+/*
-+ * The Mi Box 4 uses a custom efuse layout extracted from the
-+ * original firmware.
-+ */
-+
-+/delete-node/ &eth_mac;
-+/delete-node/ &sn;
-+/delete-node/ &bid;
-+
-+&efuse {
-+	eth_mac: mac-address@0 {
-+		reg = <0x00 0x06>;
-+	};
-+
-+	bt_mac: mac-address@6 {
-+		reg = <0x06 0x06>;
-+	};
-+
-+	wifi_mac: mac-address@c {
-+		reg = <0x0c 0x06>;
-+	};
-+
-+	usid: serial-number@12 {
-+		reg = <0x12 0x10>;
-+	};
-+};
-+
-+&ethmac {
-+	status = "disabled";
-+};
-+
-+&hdmi_tx {
-+	status = "okay";
-+	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
-+	pinctrl-names = "default";
-+	hdmi-supply = <&hdmi_usb_5v>;
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
-+&pwm_ef {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_e_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&saradc {
-+	compatible = "amlogic,meson-gxlx-saradc", "amlogic,meson-saradc";
-+	status = "okay";
-+	vref-supply = <&vddio_ao18>;
-+};
-+
-+&sd_emmc_a {
-+	status = "okay";
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	cap-sdio-irq;
-+	max-frequency = <50000000>;
-+	non-removable;
-+	no-mmc;
-+	no-sd;
-+	disable-wp;
-+	keep-power-in-suspend;
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddio_boot>;
-+
-+	rtl8723ds: wifi@1 {
-+		reg = <1>;
-+		nvmem-cells = <&wifi_mac>;
-+		nvmem-cell-names = "mac-address";
-+		interrupt-parent = <&gpio_intc>;
-+		interrupts = <GPIOX_7 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-names = "host-wake";
-+	};
-+};
-+
-+&sd_emmc_b {
-+	status = "disabled";
-+};
-+
-+&sd_emmc_c {
-+	status = "okay";
-+	pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	max-frequency = <100000000>;
-+	non-removable;
-+	disable-wp;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	mmc-hs400-1_8v;
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&vddio_boot>;
-+};
-+
-+&uart_AO {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_a_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&usb {
-+	status = "okay";
-+	dr_mode = "host";
-+};
-+
-+&usb2_phy0 {
-+	phy-supply = <&hdmi_usb_5v>;
-+};
-+
-+&vdec {
-+	compatible = "amlogic,gxlx-vdec", "amlogic,gx-vdec";
-+};
-
--- 
-2.53.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gamV1LiAwMyBzZXB0LiAyMDI2IGF0IDExOjA1LCBMdWNhcyBUYW51cmUgPHRhbnVyZUBsaW51
+eC5jb20+IHdyb3RlOgoKPiBPbiBNb24sIEF1ZyAzMSwgMjAyNiBhdCAxOjQ04oCvUE0gTmVpbCBB
+cm1zdHJvbmcKPiA8bmVpbC5hcm1zdHJvbmdAbGluYXJvLm9yZz4gd3JvdGU6Cj4+Cj4+IEhpLAo+
+Pgo+PiBPbiBTYXQsIDI5IEF1ZyAyMDI2IDEwOjQ3OjU0ICswMTAwLCBMdWNhcyBUYW51cmUgd3Jv
+dGU6Cj4+ID4gVGhlIEtoYWRhcyBWSU00IGhhcyBuZWVkZWQgY2xrX2lnbm9yZV91bnVzZWQgdG8g
+Ym9vdCByZWxpYWJseS4gV2l0aG91dCBpdAo+PiA+IHRoZSBib2FyZCBoYW5ncyBhdCByYW5kb20s
+IGxvc2VzIHN0b3JhZ2UgYW5kIGNvcnJ1cHRzIG1lbW9yeSwgYW5kIHRoZQo+PiA+IGZhaWx1cmVz
+IG1vdmUgYXJvdW5kIGZyb20gYm9vdCB0byBib290Lgo+PiA+Cj4+ID4gU2l4IG9mIHRoZSBTb0Mn
+cyBQV00gb3V0cHV0cyBkcml2ZSB0aGUgYm9hcmQncyB2b2x0YWdlIHJlZ3VsYXRvcnM6IHRoZQo+
+PiA+IGFsd2F5cy1vbiBkb21haW4sIGJvdGggQ1BVIGNsdXN0ZXJzLCB0aGUgR1BVLCB0aGUgTlBV
+IGFuZCB0aGUgRFJBTS4gTm9uZQo+PiA+IG9mIHRoZW0gd2VyZSBkZXNjcmliZWQsIHNvIExpbnV4
+IHNhdyB0aGUgb3V0cHV0cyBhcyB1bnVzZWQgYW5kIHN3aXRjaGVkCj4+ID4gdGhlbSBvZmYgYWJv
+dXQgYSBzZWNvbmQgaW50byBib290LiBUaGUgcmVndWxhdG9ycyB0aGVuIGRyaWZ0ZWQgYXdheSBm
+cm9tCj4+ID4gdGhlIGxldmVscyB0aGUgYm9vdGxvYWRlciBoYWQgc2V0LCB3aGljaCBpcyB3aGVy
+ZSB0aGUgY29ycnVwdGlvbiBhbmQgdGhlCj4+ID4gcmFuZG9tIGhhbmdzIGNhbWUgZnJvbS4KPj4g
+PiBUaGFua3MgdG8gQ2h1YW4gTGl1IGZyb20gQW1sb2dpYyBmb3IgaGVscGluZyBtZSBpbmRldGlm
+eSB3aGljaCBjbG9ja3MgYXJlCj4+ID4gY3JpdGljYWwuCj4+ID4KPj4gPiBbLi4uXQo+Pgo+PiBU
+aGFua3MsIEFwcGxpZWQgdG8gaHR0cHM6Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tl
+cm5lbC9naXQvYW1sb2dpYy9saW51eC5naXQgKHY3LjMvZml4ZXMpCj4+Cj4+IFsyLzRdIGFybTY0
+OiBkdHM6IGFtbG9naWM6IHQ3OiBmaXggdGhlIHBpbiBncm91cHMgb2YgdHdvIFBXTSBvdXRwdXRz
+Cj4+ICAgICAgIGh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvYW1sb2dpYy9jL2FlN2JlNWM1OGE4MTky
+NTllNWViOThhM2FiZmE2MDg0MjQ3OGYyYWUKPj4gWzMvNF0gYXJtNjQ6IGR0czogYW1sb2dpYzog
+dDc6IGtoYWRhcy12aW00OiBhZGQgdGhlIFBXTS1kcml2ZW4gc3VwcGxpZXMKPj4gICAgICAgaHR0
+cHM6Ly9naXQua2VybmVsLm9yZy9hbWxvZ2ljL2MvMWU1YTUzYmQxNmFjNTAxZTY4NDYzZTg0MDIz
+ZDFiZmY1NDNjYzY5Ngo+PiBbNC80XSBhcm02NDogZHRzOiBhbWxvZ2ljOiB0NzogZml4IHRoZSBw
+aW4gZ3JvdXBzIG9mIHRoZSB2c3luYyBQV00KPj4gICAgICAgaHR0cHM6Ly9naXQua2VybmVsLm9y
+Zy9hbWxvZ2ljL2MvNDA2MjkyZmQ3NWY5NWFhMzAxMGZlYzk1YjViZWI1YThiN2UzYmEzYQo+Pgo+
+PiBUaGVzZSBjaGFuZ2VzIGhhcyBiZWVuIGFwcGxpZWQgb24gdGhlIGludGVybWVkaWF0ZSBnaXQg
+dHJlZSBbMV0uCj4+Cj4+IFRoZSB2Ny4zL2ZpeGVzIGJyYW5jaCB3aWxsIHRoZW4gYmUgc2VudCB2
+aWEgYSBmb3JtYWwgUHVsbCBSZXF1ZXN0IHRvIHRoZSBMaW51eCBTb0MgbWFpbnRhaW5lcnMKPj4g
+Zm9yIGluY2x1c2lvbiBpbiB0aGVpciBpbnRlcm1lZGlhdGUgZ2l0IGJyYW5jaGVzIGluIG9yZGVy
+IHRvIGJlIHNlbnQgdG8gTGludXMgZHVyaW5nCj4+IHRoZSBuZXh0IG1lcmdlIHdpbmRvdywgb3Ig
+c29vbmVyIGlmIGl0J3MgYSBzZXQgb2YgZml4ZXMuCj4+Cj4+IEluIHRoZSBjYXNlcyBvZiBmaXhl
+cywgdGhvc2Ugd2lsbCBiZSBtZXJnZWQgaW4gdGhlIGN1cnJlbnQgcmVsZWFzZSBjYW5kaWRhdGUK
+Pj4ga2VybmVsIGFuZCBhcyBzb29uIHRoZXkgYXBwZWFyIG9uIHRoZSBMaW51eCBtYXN0ZXIgYnJh
+bmNoIHRoZXkgd2lsbCBiZQo+PiBiYWNrcG9ydGVkIHRvIHRoZSBwcmV2aW91cyBTdGFibGUgYW5k
+IExvbmctU3RhYmxlIGtlcm5lbHMgWzJdLgo+Pgo+PiBUaGUgaW50ZXJtZWRpYXRlIGdpdCBicmFu
+Y2hlcyBhcmUgbWVyZ2VkIGRhaWx5IGluIHRoZSBsaW51eC1uZXh0IHRyZWUgWzNdLAo+PiBwZW9w
+bGUgYXJlIGVuY291cmFnZWQgdGVzdGluZyB0aGVzZSBwcmUtcmVsZWFzZSBrZXJuZWxzIGFuZCBy
+ZXBvcnQgaXNzdWVzIG9uIHRoZQo+PiByZWxldmFudCBtYWlsaW5nLWxpc3RzLgo+Pgo+PiBJZiBw
+cm9ibGVtcyBhcmUgZGlzY292ZXJlZCBvbiB0aG9zZSBjaGFuZ2VzLCBwbGVhc2Ugc3VibWl0IGEg
+c2lnbmVkLW9mZi1ieSByZXZlcnQKPj4gcGF0Y2ggZm9sbG93ZWQgYnkgYSBjb3JyZWN0aXZlIGNo
+YW5nZXNldC4KPj4KPj4gWzFdIGh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3NjbS9saW51eC9r
+ZXJuZWwvZ2l0L2FtbG9naWMvbGludXguZ2l0Cj4+IFsyXSBodHRwczovL2dpdC5rZXJuZWwub3Jn
+L3B1Yi9zY20vbGludXgva2VybmVsL2dpdC9zdGFibGUvbGludXguZ2l0Cj4+IFszXSBodHRwczov
+L2dpdC5rZXJuZWwub3JnL3B1Yi9zY20vbGludXgva2VybmVsL2dpdC9uZXh0L2xpbnV4LW5leHQu
+Z2l0Cj4+Cj4+IC0tCj4+IE5laWwKPj4KPiBIaSwKPiBQbGVhc2UgZG9uJ3QgdGFrZSB0aGlzLiBJ
+IHdpbGwgc3VibWl0IGEgYmV0dGVyIHZlcnNpb24uCj4gc3lzX2FtcGlwZV9uYW5kIHNob3VsZCBu
+b3QgYmUgY3JpdGljYWwuCgpQbGVhc2Ugc3VibWl0IGEgZml4dXAgY2hhbmdlIG9uIHRvcCBvZiB3
+aGF0IHlvdSd2ZSBhbHJlYWR5IHNlbnQsIHdpdGgKdGhlIHByb3BlciAnRml4ZXM6JyB0YWcuCgo+
+Cj4gVGhhbmtzLAo+IEx1Y2FzCgotLSAKSmVyb21lCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1h
+bWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
