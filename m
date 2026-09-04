@@ -4,90 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42998C61DD6
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2026 10:48:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EA63C61DD6
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2026 10:49:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=vmjoKgUBfaiMxUx8MaKUBbbRDO14kRzNuEq/+7V1DsQ=; b=5EGqq4lybaiGbX
-	Np9ZXzxOfSsiYKvFZfLRWph1Hz/HzumlNGm3E8cHkkOX6/+tBJE+KpnNObMwysrpcVF3LchVsEzCs
-	Y73f+llveQlAlgCvPrfLIZLHm26csDGGQWBcJn+qlC7ApzHzjLUxjvECTgyUSjwCJ2nf5QXQm1X+L
-	MiqwYJ/eH7RYOsJ1G6NKCtvaQF6aT8M6jGIEk0vENDVh/kVKsWMk1/6Swkn5mabSjcjNoYcL15hYq
-	EH2ETsg874zwP9xzFBPNcyBez+0tVFcNdwyLl+v9XTwAqyHcjyjaW78nFshwK9fgujHtAOmvrSNsp
-	t32SSj0VgZk6O1eA/S6Q==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=T7X4z0bVP3mEWJL/kibPk7s5/5DtdsutVEYlkZIIpJk=; b=gF2KSU6lG1Ixhp
+	X50svBpC4TJQlNyLwY4oykk0iBisHPBpINt3AVcQsTvYtTVJjMcGM1MSSNlGUcLdBjIpqIOfmGrff
+	HvXBaD/lhQq6f+GyoJ4UQYduffmEv8vt9PWMZM/umKJbwqsIsrs7jkn9W9Lj3ILXsGw21r4OPooy4
+	AT95l7Tvg4s9WQ3dWmJ9RXqJGhEo4DA1kDR6S8WpYq/JhT/oDxll11TBolLX17GxDIzeEJoBM947Z
+	5n+2OxaZvAV8gPl+P76xq/Z3yw9u7CFlAt3bGs2bQnKvLPdETAWhtIGtiF6dyQwhPSw4rbwDzWR/M
+	ZnN7yWR6YXgT8mhlCZJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x2RSq-00000001j7Z-42V9;
-	Fri, 04 Sep 2026 10:48:08 +0000
-Received: from mail-oo1-xc33.google.com ([2607:f8b0:4864:20::c33])
+	id 1x2RUb-00000001jRT-0zPS;
+	Fri, 04 Sep 2026 10:49:57 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x2RSo-00000001j6g-1bIW
+	id 1x2RUZ-00000001jRB-3NEi
 	for linux-amlogic@lists.infradead.org;
-	Fri, 04 Sep 2026 10:48:07 +0000
-Received: by mail-oo1-xc33.google.com with SMTP id 006d021491bc7-6b7b4b08d78so232407eaf.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 04 Sep 2026 03:48:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1788518885; x=1789123685; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=V2A0zeO3ugV0JUUNHg2Amdc4tuaijpGdF0pZT16CH0g=;
-        b=kpG+AcWQsS6H8bqLWRBHQgRE7OvAxL5dSISyVh/IXESBUuV1XBkm/MM8HU5Wf6Y+DT
-         yVdbyZy58OIOWnueclkfY0S5xJUyiq7kdz7JJ4o/qo2va3Xmhdqj58KkR9RBOaVi9WFC
-         CmauC+VSifBkNl0F7mIB7jDWDk4rXsBjEj+Ogl+X2kLLCOOMqQUdqc/0tWKQu2Pzf/Qr
-         o44hHTxFi69JW5qXHQkSAbkASR1wbeOBR25/UWHlRDF8u7zVNgZV+QIQI2nN9tNuWaBR
-         NENDmj6F/WmAWHheHeUTssdokkK7OsJUsKrxRDcIIz2+IJu0At5LLoZvK7ELsL784lqz
-         rsmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1788518885; x=1789123685;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=V2A0zeO3ugV0JUUNHg2Amdc4tuaijpGdF0pZT16CH0g=;
-        b=oe85gISW3Sb/PH6HuGtn/BNuMrizIYShk5UoQ0D5pbIbD0AY9cKdMdxPqjwB0sTo5d
-         3c4Fy/PrVBJb9Q5PJWgzXQoA70X16ls/hAB6ez5Up1QPLoQ9gnYUqXnJdGm7gvAbckEZ
-         X8eQ3AuW2aOeP4PyIJU2/me26/YAv8lI9NRh7KzHRIyGw5apNremSkRQNfwzTeJ9mDU6
-         FB9KSLNBLGEDlWJQqUVGAuxXKGIOwuA5E2WeUMUZdLFRhUSIhe435JUMdZHRxp2ojtIG
-         zPPiQiQl+3q6iPv5hsmIHNr+zElNwTO9dGsRVOa5Os3la7/KJfgJ2gzjsSrVI6pHhi5R
-         ZECw==
-X-Forwarded-Encrypted: i=1; AKwUvBziletdYK3Vfbf6isFybcFXBHake80i4yz2GpoDKZIMtCsiJxz8aI9ObdOQEOC2WSlbFAllqHzOHE6MKwld@lists.infradead.org
-X-Gm-Message-State: AFuF++kLdI/3CiqWn4nJnQtmRjfqjQ+dmD9FjdBkZNLzCCFkidRWTFd3
-	UWBQ3o3VudG/GVXpiZujvWjVTmy8hp42rPzsQGE9blf7m/IfHnCbRrPm
-X-Gm-Gg: AYBFou1ec312iWg5K/GNP+ujf5I99Zh0747TyAMPBrnThBFyiz+Ux2i2/gK2e5z3C7J
-	kbspULxK1bmWsLV3JpVTWRnkqMBGDWwJJBtXWV3TPvD859xrNqJ8uKLchF3qqHotBqHiKYbDclq
-	tGvJ4XuDPsKHsRmk436+n2OfMHNdzJF+emm2iphjA9VZ17wyTT8oShD9vr+dj2ZfTF4vDQJdmDE
-	Xa83olQmgIQNNO1DkD1UCvHa847yYk5BLL8A/aWCkzDn85Vyj7h6xxzYafgZASPIIITwdz14JJG
-	1+VpYyGy0lEUVDhXarBvm8aYo4i7PGSpGVQIH2vA4MdSCVAIQsxI7/7V+inHnyy5UjpaitStPzU
-	iVcK26/99tqJ700yL7kq5h3uraHvwm6iOz0KN4e1/mlyU5VrYeaEuoz/cNd5Jf1noVZ402WwL1I
-	0AypTz9wXS2TVQAt9amWxKZXqufmBcQFW44Gz2QbnhzHxplluuNBaXaQYoQ4IVZ5X7gwC3EkLKG
-	Rz8nnyp/6v6/u0=
-X-Received: by 2002:a05:6820:809:b0:6b7:83c5:fde9 with SMTP id 006d021491bc7-6b783c6033amr1231122eaf.42.1788518885125;
-        Fri, 04 Sep 2026 03:48:05 -0700 (PDT)
-Received: from volcano9f6e-hostos.amd.com ([165.204.217.251])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-143243bfbe3sm5858825c88.11.2026.09.04.03.48.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Sep 2026 03:48:04 -0700 (PDT)
-From: Hemanth Selam <hemanth.selam@gmail.com>
-To: Joshua Kinard <linux@kumba.dev>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-kernel@vger.kernel.org,
-	linux-rtc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH] rtc: fix typos in comments
-Date: Fri,  4 Sep 2026 16:17:54 +0530
-Message-ID: <20260904104758.23905-1-hemanth.selam@gmail.com>
-X-Mailer: git-send-email 2.48.1
-MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260904_034806_426584_09AF78F4 
-X-CRM114-Status: GOOD (  18.75  )
+	Fri, 04 Sep 2026 10:49:55 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 77E7B417B1;
+	Fri,  4 Sep 2026 10:49:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 200601F00A3D;
+	Fri,  4 Sep 2026 10:49:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1788518995;
+	bh=wDTE8UxQ7qPiJOIV9b5Xg9RyGrr0Xnn94bLszWT7Td4=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=VO3ivyyFORFscHhmSU4XS9sWYRw0+5Ux50e+QuE/kFn3QWxnnVA8SZU0IQigsK3aT
+	 r8NbuWZfCEsh+NsHyf2YFt5peO73HJrG3BnLsJrkbImPOPPdDEdMQ5E2OIUCfCiWmg
+	 od1NH56kR59isTUlogfmzxAB3xTt1p8toHT48/y07LbvrhAaa8uhboIy4PoxAX0vP+
+	 3KvOruYmKMTnLjMSsgOpnKi58PIG22rZxJcB4dhXQYRj6soToYjx+/lUg5dbQtRFTN
+	 6Een3HgAixKhDzd9VC3uXCIsWDCYiYjNssc8BRvPRgi4VlIgQ66KrSf4ZmJHXVKpho
+	 mcv/9ye2BzJmQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] rtc: fix typos in comments
+To: "Hemanth Selam" <hemanth.selam@gmail.com>
+Cc: neil.armstrong@linaro.org, "Alexandre Belloni" <alexandre.belloni@bootlin.com>, linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org
+In-Reply-To: <20260904104758.23905-1-hemanth.selam@gmail.com>
+References: <20260904104758.23905-1-hemanth.selam@gmail.com>
+Date: Fri, 04 Sep 2026 10:49:54 +0000
+Message-Id: <20260904104955.200601F00A3D@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,149 +61,21 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Fix typos in comments, reported by scripts/checkpatch.pl using the
-misspelling list in scripts/spelling.txt.  Only touches comments, no code
-changes.
-
-Assisted-by: Cursor:claude-opus-5
-Signed-off-by: Hemanth Selam <hemanth.selam@gmail.com>
----
- drivers/rtc/rtc-ds1685.c   | 6 +++---
- drivers/rtc/rtc-meson.c    | 2 +-
- drivers/rtc/rtc-pcf8583.c  | 2 +-
- drivers/rtc/rtc-rk808.c    | 2 +-
- drivers/rtc/rtc-sa1100.c   | 2 +-
- drivers/rtc/rtc-spear.c    | 2 +-
- include/linux/rtc/ds1685.h | 4 ++--
- 7 files changed, 10 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/rtc/rtc-ds1685.c b/drivers/rtc/rtc-ds1685.c
-index 5fc8e36b1abf..beb987b76f24 100644
---- a/drivers/rtc/rtc-ds1685.c
-+++ b/drivers/rtc/rtc-ds1685.c
-@@ -1231,7 +1231,7 @@ ds1685_rtc_probe(struct platform_device *pdev)
- 		dev_warn(&pdev->dev,
- 			 "Main battery is exhausted! RTC may be invalid!\n");
- 
--	/* Check the auxillary battery.  It is optional. */
-+	/* Check the auxiliary battery.  It is optional. */
- 	if (!(rtc->read(rtc, RTC_EXT_CTRL_4A) & RTC_CTRL_4A_VRT2))
- 		dev_warn(&pdev->dev,
- 			 "Aux battery is exhausted or not available.\n");
-@@ -1395,7 +1395,7 @@ ds1685_rtc_poweroff(struct platform_device *pdev)
- 		rtc->write(rtc, RTC_CTRL_A, ctrla);
- 
- 		/*
--		 * Read Control 4A and check the status of the auxillary
-+		 * Read Control 4A and check the status of the auxiliary
- 		 * battery.  This must be present and working (VRT2 = 1)
- 		 * for wakeup and kickstart functionality to be useful.
- 		 */
-@@ -1407,7 +1407,7 @@ ds1685_rtc_poweroff(struct platform_device *pdev)
- 			rtc->write(rtc, RTC_EXT_CTRL_4A, ctrl4a);
- 
- 			/*
--			 * The auxillary battery is present and working.
-+			 * The auxiliary battery is present and working.
- 			 * Enable extended functions (ABE=1), enable
- 			 * wake-up (WIE=1), and enable kickstart (KSE=1)
- 			 * in Control 4B.
-diff --git a/drivers/rtc/rtc-meson.c b/drivers/rtc/rtc-meson.c
-index 21eceb9e2e13..44bcc0678dee 100644
---- a/drivers/rtc/rtc-meson.c
-+++ b/drivers/rtc/rtc-meson.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- * RTC driver for the interal RTC block in the Amlogic Meson6, Meson8,
-+ * RTC driver for the internal RTC block in the Amlogic Meson6, Meson8,
-  * Meson8b and Meson8m2 SoCs.
-  *
-  * The RTC is split in to two parts, the AHB front end and a simple serial
-diff --git a/drivers/rtc/rtc-pcf8583.c b/drivers/rtc/rtc-pcf8583.c
-index df5e20cbc26c..d0ebf4fd227b 100644
---- a/drivers/rtc/rtc-pcf8583.c
-+++ b/drivers/rtc/rtc-pcf8583.c
-@@ -7,7 +7,7 @@
-  *
-  *  Driver for PCF8583 RTC & RAM chip
-  *
-- *  Converted to the generic RTC susbsystem by G. Liakhovetski (2006)
-+ *  Converted to the generic RTC subsystem by G. Liakhovetski (2006)
-  */
- #include <linux/module.h>
- #include <linux/i2c.h>
-diff --git a/drivers/rtc/rtc-rk808.c b/drivers/rtc/rtc-rk808.c
-index 59b8e9a30fe6..718f19b5911f 100644
---- a/drivers/rtc/rtc-rk808.c
-+++ b/drivers/rtc/rtc-rk808.c
-@@ -295,7 +295,7 @@ static int rk808_rtc_alarm_irq_enable(struct device *dev,
- 
- /*
-  * We will just handle setting the frequency and make use the framework for
-- * reading the periodic interupts.
-+ * reading the periodic interrupts.
-  *
-  * @freq: Current periodic IRQ freq:
-  * bit 0: every second
-diff --git a/drivers/rtc/rtc-sa1100.c b/drivers/rtc/rtc-sa1100.c
-index 26b2f4184ecc..144bb6fd8f6b 100644
---- a/drivers/rtc/rtc-sa1100.c
-+++ b/drivers/rtc/rtc-sa1100.c
-@@ -228,7 +228,7 @@ int sa1100_rtc_init(struct platform_device *pdev, struct sa1100_rtc *info)
- 	 * initialization is unknown and could in principle happen during
- 	 * normal processing.
- 	 *
--	 * Notice that clearing bit 1 and 0 is accomplished by writting ONES to
-+	 * Notice that clearing bit 1 and 0 is accomplished by writing ONES to
- 	 * the corresponding bits in RTSR. */
- 	writel_relaxed(RTSR_AL | RTSR_HZ, info->rtsr);
- 
-diff --git a/drivers/rtc/rtc-spear.c b/drivers/rtc/rtc-spear.c
-index 959acff8faff..74d4aa96826a 100644
---- a/drivers/rtc/rtc-spear.c
-+++ b/drivers/rtc/rtc-spear.c
-@@ -43,7 +43,7 @@
- #define YEARS_UNITS		(0xf<<16)	/* years units position */
- #define YEARS_TENS		(0xf<<20)	/* years tens position */
- #define YEARS_HUNDREDS		(0xf<<24)	/* years hundereds position */
--#define YEARS_MILLENIUMS	(0xf<<28)	/* years millenium position */
-+#define YEARS_MILLENIUMS	(0xf<<28)	/* years millennium position */
- 
- /* MASK SHIFT TIME_REG & ALARM_TIME_REG*/
- #define SECOND_SHIFT		0x00		/* seconds units */
-diff --git a/include/linux/rtc/ds1685.h b/include/linux/rtc/ds1685.h
-index 8ec0ebfaef04..55d3edc7e972 100644
---- a/include/linux/rtc/ds1685.h
-+++ b/include/linux/rtc/ds1685.h
-@@ -200,7 +200,7 @@ struct ds1685_rtc_platform_data {
-  * access to the extended NV-SRAM by automatically incrementing the address
-  * register when they are read from or written to.
-  */
--#define RTC_CTRL_4A_VRT2	BIT(7)	/* Auxillary Battery Status */
-+#define RTC_CTRL_4A_VRT2	BIT(7)	/* Auxiliary Battery Status */
- #define RTC_CTRL_4A_INCR	BIT(6)	/* Increment-in-Progress Status */
- #define RTC_CTRL_4A_PAB		BIT(3)	/* Power-Active Bar Control */
- #define RTC_CTRL_4A_RF		BIT(2)	/* RAM-Clear Flag */
-@@ -215,7 +215,7 @@ struct ds1685_rtc_platform_data {
- /*
-  * Bit names in Extended Control Register 4B.
-  */
--#define RTC_CTRL_4B_ABE		BIT(7)	/* Auxillary Battery Enable */
-+#define RTC_CTRL_4B_ABE		BIT(7)	/* Auxiliary Battery Enable */
- #define RTC_CTRL_4B_E32K	BIT(6)	/* Enable 32.768Hz on SQW Pin */
- #define RTC_CTRL_4B_CS		BIT(5)	/* Crystal Select */
- #define RTC_CTRL_4B_RCE		BIT(4)	/* RAM Clear-Enable */
--- 
-2.48.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+PiBGaXggdHlwb3MgaW4gY29tbWVudHMsIHJlcG9ydGVkIGJ5IHNjcmlwdHMvY2hlY2twYXRjaC5w
+bCB1c2luZyB0aGUKPiBtaXNzcGVsbGluZyBsaXN0IGluIHNjcmlwdHMvc3BlbGxpbmcudHh0LiAg
+T25seSB0b3VjaGVzIGNvbW1lbnRzLCBubyBjb2RlCj4gY2hhbmdlcy4KPiAKPiBBc3Npc3RlZC1i
+eTogQ3Vyc29yOmNsYXVkZS1vcHVzLTUKPiBTaWduZWQtb2ZmLWJ5OiBIZW1hbnRoIFNlbGFtIDxo
+ZW1hbnRoLnNlbGFtQGdtYWlsLmNvbT4KClNhc2hpa28gaGFzIHJldmlld2VkIHRoaXMgcGF0Y2gg
+YW5kIGZvdW5kIG5vIGlzc3Vlcy4gSXQgbG9va3MgZ3JlYXQhCgotLSAKU2FzaGlrbyBBSSByZXZp
+ZXcgwrcgaHR0cHM6Ly9zYXNoaWtvLmRldi8jL3BhdGNoc2V0LzIwMjYwOTA0MTA0NzU4LjIzOTA1
+LTEtaGVtYW50aC5zZWxhbUBnbWFpbC5jb20/cGFydD0xCgoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGlu
+dXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3Jn
+L21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
