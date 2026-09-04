@@ -4,89 +4,119 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D8E4C624DB
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2026 02:50:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A451C79F80
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2026 06:37:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=XLoMK1zEPLba2e4qbAoNR5ODo8UULHi9vA9w+7juzWY=; b=AAPtuXjPA8snCz
-	Zfm6MWtKnGSHBUfHEuFU0u+N5pTZ/xiCIsYoSev1djPX6XR/FWJEDcEAaZDO7oMS04B1CvpNzF0s7
-	zxzqj07xdJblHlFWiBQQaAc2QeiFXIn/Q6T97+Il5du9TgjZUdoQq3BJ876/zUVf2+jpLiuk+A+ex
-	BfEOnaMHoKLCU6k4k1m++0MDgU+avAtVD8XtKBmeaZErvX2xzrGwwbTHoS0SOLH9UjsUHn5kT6F9K
-	0/EfdM1eEizd0c9wtpcp02nRwJLezj1rURBvIceMh5cqXR3nZFt+aTxLa1rEExpxsLGggYRb/6Ck+
-	WoQnBKZxptP8BvrFd/pA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=o2Y2hIJqs27fRSnjHcLgwxVG2oqJJ3KNB34p+CqVZDg=; b=ZVNHkCOiqME2YsLRsNWgukc9CH
+	pUdl59K3N3YZoR/ANRPRgvkSqQlMM3nlUDYzBVz/XbC2Dwv44/c8APlmX/XxkVkAIsGInC774NbZd
+	C9XjWAb4xRzooaN+VQvZn696BbeLXz0PWVUvr8qi3IdI+mV3yhzJTom1eO4cvwLbb/4IFaDiB9RRn
+	Ia/9gs2K/xc6XfiCt1T5focTwtjyLWYq428cHXmDVLJ1teVWlENBB0LsU51ZI8YH9KE//xggz9zAU
+	Tm5w1OIuOUFPAWPykBrcLSD27wrr4pfEewxrLJhhEw8M5Z9towvOUUdezqoNQhlU5Fg4ZmZPKNJcj
+	/Bwus4tg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x2K0D-00000000tXC-0Mx1;
-	Fri, 04 Sep 2026 02:50:05 +0000
-Received: from mail-pj1-x1034.google.com ([2607:f8b0:4864:20::1034])
+	id 1x2NYQ-0000000194l-3z8T;
+	Fri, 04 Sep 2026 06:37:38 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x2K0B-00000000tWp-01Qy
+	id 1x2NYN-0000000193x-3SuE
 	for linux-amlogic@lists.infradead.org;
-	Fri, 04 Sep 2026 02:50:04 +0000
-Received: by mail-pj1-x1034.google.com with SMTP id 98e67ed59e1d1-398e9698a70so469769a91.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 03 Sep 2026 19:50:02 -0700 (PDT)
+	Fri, 04 Sep 2026 06:37:37 +0000
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-49ccfae359fso4846215e9.3
+        for <linux-amlogic@lists.infradead.org>; Thu, 03 Sep 2026 23:37:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1788490201; x=1789095001; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=PG96oKZZP2N6Xo9cvn741u/vr6DaKEDABY2UEKMrlX4=;
-        b=HgdRBFOc/1fZJBnqzm8dgpo9aJWSrd2UUpf5NEi7XF25ZYJF7mMT64ZaCNHV1FdSH1
-         9RqW4qrCjOm6g5Zryfu2rAJcdEBh6wwK49kabVz5B5Vkw2QVOcI3zOEnNFpDxvf26mqZ
-         Xu4DcCla8TlsXjbF0EpgDdye7BrLN+0opJbWg9afGMMloI50Wu09RCqqLXCTDaO4N4TP
-         s4f31nHe/sI1Vtvyw1ZSreYEh6spbVi3CjDeZm2b+70eYzU50upXN2tSTZmeARF90bcF
-         pWjEU/K2GBPpBlhES1b3ONWhqSh8709qc81ChknRhctd6XFJOohxivqLVqJXxX3DyV5A
-         kCCg==
+        d=linaro.org; s=google; t=1788503854; x=1789108654; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:organization
+         :autocrypt:content-language:references:cc:to:subject:reply-to:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=gN/tVxMdD62h/mSsC0SLmiOrOP7gax7KrxgcdBdmMRw=;
+        b=fpTOaHjpW51/xw8MjdY/szM/jSmX7DxJ7sndVXjY0NCTLK4LCo8PQ8V/rz3D+eyA0W
+         +eYO/8ORzvbRoOHx8d/fQxVfuxdRVwkv24CYBEt6MFW4Ints+G+0OEf8oUly5AS+ZrGO
+         FFu3mZSZjGb2weutgg2wW0YxAfV7YYLDPY51Z/J2K/HZpFnbfn+fm0MdS50JT/pYdxDq
+         xef4iVOfoecsRrPhbnJ7fZcAaDl0HC8yCIqFXGQxHh0TZls1BRStSJS7WUfjcV9MWpNT
+         1pjIIGm4HxjySmnw7GFdwATTL92liL/pAriNU+5gcA82zkE8ow6miuS7Y5tqWzya3B9t
+         16UA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1788490201; x=1789095001;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=PG96oKZZP2N6Xo9cvn741u/vr6DaKEDABY2UEKMrlX4=;
-        b=D2wSU53XbQ7WDJe3K4aUZStrXBKhflI6SHzUTR4eF5HAJM8GEmd4BXh2DpQgYHkgsu
-         W27+RHML+8X0HqUMT1vLQU1/gWynsyH/rlvZUXcfmUGdG3zG31+G919HAKMUPx6R6ibv
-         RoY2/jabnJ7zPYcFD0GaCtXy+OIPJv13QnUe+aHHZGB+pQExYpHQ4YYoFAbryr7JOsfn
-         RKMAB3jltcaXs8ofGSlIhcks6gzT3HKOqGzVdXSewENjDbPXSDWZToQFAA+xJK7aRH6m
-         4c9qQRFFSv/Ag7xuoW3C4MsTCsIu9yvRxLimS1i8ysxd0U/xTujv3KHx+CYSdKmxTSLr
-         UItA==
-X-Forwarded-Encrypted: i=1; AKwUvBwFGOcT5oA1XzWkbLcwCPZmFYmfoCKclUGGykglRWH9PcEuin4nV9VZQA/qvInqF47KC5HiAXbmH5jW0yw9@lists.infradead.org
-X-Gm-Message-State: AFuF++kVbeIjw4mgBXZ721n4vVPRmx3e7zA0jlJIwdi/fRrnvZE780xV
-	EgA+oWZ3dIrWAlnLsSklA5xZ90V7nUd3wDPetvDYmEFe/X0Sgr37GRNj
-X-Gm-Gg: AYBFou0uMtRkUgKvFawpYvfGKaX9lQdeRmSULiORmiv0Mj4ft5Tl8M8HEIMibyy3mgl
-	jCByCfSXg6a7K09SFhkqjSxS4+JIscEIUn1oOX2vg3JyGj4OhYqYX3zMCZSVv5Fb1dUPrsn+Uef
-	jeWV4ValCEBSOQ5WKOb90N3jM+WQEH8gIa8GuRf9R6igYl3R9gBkCP6ozAWW56K4B1RSWFIsaZ9
-	R76h1JN/KhEdmHOFe4GhIpvApD95ZjtBOIhC2/dYU3CFXgodyS7d/cyz2lCNhP60us3MfyLEw8s
-	dEhekbIdH9ju6S0GTWGc73aNAL8FcNfV20Uv2WWVQgsKqvGj3fvWVHYWRcCnLl5Y6ZbhQFwopDb
-	r/zDCXJOF+4egVaBaHFHZRM1NsjIE31x7SFiZps1ELLEE2Ca9HRd2KQx99O3gCBRaSKYyBrBPma
-	zOqaaGyRVKeGF85LZxr/sP3/gxSobW/5U3FqQmZlGbBIAnQxO7kCb2Qjxjzgq7wVrQVIkekOvoZ
-	Ze6VHnxvrLl2o88iE4=
-X-Received: by 2002:a17:90b:4c86:b0:395:5f43:4ec4 with SMTP id 98e67ed59e1d1-39b25f78ab8mr4417800a91.0.1788490201512;
-        Thu, 03 Sep 2026 19:50:01 -0700 (PDT)
-Received: from kernel ([103.219.206.87])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3339af25062sm3762634eec.16.2026.09.03.19.49.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Sep 2026 19:50:01 -0700 (PDT)
-Date: Fri, 4 Sep 2026 08:19:53 +0530
-From: Mohamad Raizudeen <raizudeen.kerneldev@gmail.com>
-To: clabbe@baylibre.com, herbert@gondor.apana.org.au, davem@davemloft.net
-Cc: skhan@linuxfoundation.org, me@brighamcampbell.com, jkoolstra@xs4all.nl,
-	linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH 1/2] crypto: amlogic: Fix IRQ handler return value and
- fallthrough logic
-Message-ID: <apox0f2D6bYOYOnj@kernel>
-References: <20260821151243.8125-1-raizudeen.kerneldev@gmail.com>
+        d=1e100.net; s=20251104; t=1788503854; x=1789108654;
+        h=content-transfer-encoding:content-type:in-reply-to:organization
+         :autocrypt:content-language:references:cc:to:subject:reply-to:from
+         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=gN/tVxMdD62h/mSsC0SLmiOrOP7gax7KrxgcdBdmMRw=;
+        b=h+c+ZACeiz1Gl+703OeEOjNsptyE59r1/EpoOT3HMX8z1QA9cepOqm/HW8uKOeCEiZ
+         pwp3A9uKCzwa8oh1LrMlFUfFvM2yyFMN48GTTcQ+uyKoEZKLTWoIYpO6JzK7gqQzGQ6l
+         VkFxHoENRTMI5sFZmCwUcnxSMSZIJxgTL/+V4L+gRkYBGjRHq6KQz0Rgs3ECMa3JH+Le
+         jVb8qGU8cj1W0RVOA4MW0lnyHCZ7Ka8zwniqHuMilIvF+clGkbK7E5b3WzszPZs7oyrc
+         LbcoaspCtavWQPTHoJL82JBWlOi9WKNeB9ej/R1aygFx3+DyiyCaYwA0wWupDmvWIYrD
+         w3Ow==
+X-Forwarded-Encrypted: i=1; AKwUvByVwzda22z/i2pwhMe47LaZSWuji1uaRC6IuIW3YlDXcCxJf3Ykz9jTL9UmRX7IaCdl3bf4kaiclG/kqP8E@lists.infradead.org
+X-Gm-Message-State: AFuF++mZVrK5KM4kVNAr0Ylkn33fl8cQcbf8I0GHw/dM4QjPGhdcMTng
+	P+TyCbVOp6+uEMdpXOJEgM3fT/v6hzDhzeksSGby8cQBMKzT+1DiaN6cztKGZ5NRBD0=
+X-Gm-Gg: AYBFou3MqxEJRd6gWLvf+Kk9CuLfU4nRK7dxhfWTbjRW0QO/hhHe62fXXYjKx6Oyg+/
+	LRx+uQiP/KQy624mENExk/LN8x861FQsloniZRnDN9fYYOSJ7k9TJ/4JdKCsXRPXDTnYVy/2Lql
+	VqnURq2ExtbBk5d0I9I4/2phu9sg1T8Cu4hDv1d/SRdsHkKOoZvjzu7EagK64CVsuKA6TMfBxbU
+	lIp+iGNj6Ioh3EHVCjOLZxphV9jfRtvegeAIWoLuV4H4PkKFUKYLo+FYrKf0oPoT+Yd835YHR3Q
+	X6YlaSIJu0DBELxQ3o/SukFvDgBM0PTwj70senjLhQwdHhgwLvsLKXo7+rSra4fdM/qyeDrLY4y
+	pD6Ozfzt9HMUeiu8I97aVcov7ayZnwnxm/ax4sV7Teh9EEGaqx7mAAwTIFBlX0Do1bA02VMd59V
+	rkBa9ajrb6vwwr034GhtGE5EYID5ggyd1XnrUFEZoS/13Bt7fURMWgJ0AeqjfQcjzu+1b9V0CKo
+	DSIzT48Tqv1LKoQGjwwm0cPjs/0sDzL9Vv5ZWm3zq6G
+X-Received: by 2002:a05:600c:6088:b0:49c:fc6c:be15 with SMTP id 5b1f17b1804b1-49cfc6cc100mr9741345e9.27.1788503853750;
+        Thu, 03 Sep 2026 23:37:33 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:106d:1080:e8f4:b358:2087:5bd3? ([2a01:e0a:106d:1080:e8f4:b358:2087:5bd3])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-485885b405fsm3950836f8f.28.2026.09.03.23.37.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Sep 2026 23:37:33 -0700 (PDT)
+Message-ID: <94fc2be2-01a0-4d3b-8d27-a4c42d8449d4@linaro.org>
+Date: Fri, 4 Sep 2026 08:37:32 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20260821151243.8125-1-raizudeen.kerneldev@gmail.com>
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v3 2/2] arm64: dts: amlogic: add Xiaomi Mi Box 4 support
+To: YuChia-Kan <raspberrykan@stu.hqu.edu.cn>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+References: <20260903-mibox4-dt-v3-0-1a8e395d923c@stu.hqu.edu.cn>
+ <20260903-mibox4-dt-v3-2-1a8e395d923c@stu.hqu.edu.cn>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20260903-mibox4-dt-v3-2-1a8e395d923c@stu.hqu.edu.cn>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260903_195003_052136_E6F7CACE 
-X-CRM114-Status: GOOD (  20.70  )
+X-CRM114-CacheID: sfid-20260903_233735_973988_A53615C8 
+X-CRM114-Status: GOOD (  16.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,59 +128,382 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Aug 21, 2026 at 08:42:43PM +0530, Mohamad Raizudeen wrote:
-> In irqreturn_t_meson_irq_handler(), when an interrupt matches a flow
-> but the status register is empty, the driver prints an error but
-> doesn't return. It falls through the loop and incorrectly prints an
-> `unknown irq` message.
+On 9/3/26 12:18, YuChia-Kan wrote:
+> Add initial device tree support for the Xiaomi Mi Box 4
+> (MDZ-21-AA), based on the Amlogic S905L SoC.
 > 
-> Fix this by returning IRQ_HANDLED immediately after the error print.
+> Enable the main on-board peripherals including eMMC, Wi-Fi,
+> HDMI, CEC, USB, audio, power LED, GPU and video decoder.
 > 
-> Additionally, the handler returns IRQ_HANDLED for genuinely unknown
-> interrupts. This masks false interrupts and prevents the kernel from
-> detecting interrupts. Return IRQ_NONE instead for unhandled
-> interrupts.
-> 
-> Cc: stable@vger.kernel.org
-> Fixes: 48fe583fe5417 ("crypto: amlogic - Add crypto accelerator for amlogic GXL")
-> Signed-off-by: Mohamad Raizudeen <raizudeen.kerneldev@gmail.com>
+> Signed-off-by: YuChia-Kan <raspberrykan@stu.hqu.edu.cn>
 > ---
->  drivers/crypto/amlogic/amlogic-gxl-core.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>   arch/arm64/boot/dts/amlogic/Makefile               |   1 +
+>   .../dts/amlogic/meson-gxlx-s905l-xiaomi-mibox4.dts | 333 +++++++++++++++++++++
+>   2 files changed, 334 insertions(+)
 > 
-> diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
-> index 6cb33949915f..302b398405e2 100644
-> --- a/drivers/crypto/amlogic/amlogic-gxl-core.c
-> +++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
-> @@ -38,11 +38,12 @@ static irqreturn_t meson_irq_handler(int irq, void *data)
->  				return IRQ_HANDLED;
->  			}
->  			dev_err(mc->dev, "%s %d Got irq for flow %d but ctrl is empty\n", __func__, irq, flow);
-> +			return IRQ_HANDLED; 
->  		}
->  	}
->  
->  	dev_err(mc->dev, "%s %d from unknown irq\n", __func__, irq);
-> -	return IRQ_HANDLED;
-> +	return IRQ_NONE;
->  }
->  
->  static struct meson_alg_template mc_algs[] = {
-> -- 
-> 2.53.0
->
-Hi,
+> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+> index 57bc440fa55c..ad6ab4216083 100644
+> --- a/arch/arm64/boot/dts/amlogic/Makefile
+> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+> @@ -72,6 +72,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-vero4k.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxlx-s905l-p271.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-gxlx-s905l-xiaomi-mibox4.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxm-gt1-ultimate.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxm-khadas-vim2.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-gxm-mecool-kiii-pro.dtb
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-xiaomi-mibox4.dts b/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-xiaomi-mibox4.dts
+> new file mode 100644
+> index 000000000000..3b293dc31086
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxlx-s905l-xiaomi-mibox4.dts
+> @@ -0,0 +1,333 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +// Copyright (c) 2026 YuChia-Kan <mail@raspberrykan.dev>
+> +
+> +/dts-v1/;
+> +
+> +#include "meson-gxl-s905x.dtsi"
+> +
+> +#include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/sound/meson-aiu.h>
+> +
+> +/ {
+> +	compatible = "xiaomi,mibox4", "amlogic,s905l", "amlogic,meson-gxlx";
+> +	model = "Xiaomi Mi Box 4 (MDZ-21-AA)";
+> +
+> +	aliases {
+> +		serial0 = &uart_AO;
+> +		mmc0 = &sd_emmc_c;
+> +		mmc1 = &sd_emmc_a;
+> +		/delete-property/ mmc2;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	av_mute: analog-audio-mute {
+> +		compatible = "simple-audio-amplifier";
+> +		sound-name-prefix = "AV";
+> +		enable-gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
+> +	};
+> +
+> +	memory@0 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x0 0x0 0x80000000>;
+> +	};
+> +
+> +	hdmi_connector: hdmi-connector {
+> +		compatible = "hdmi-connector";
+> +		type = "a";
+> +
+> +		port {
+> +			hdmi_connector_in: endpoint {
+> +				remote-endpoint = <&hdmi_tx_tmds_out>;
+> +			};
+> +		};
+> +	};
+> +
+> +	cvbs_connector: cvbs-connector {
+> +		compatible = "composite-video-connector";
+> +
+> +		port {
+> +			cvbs_connector_in: endpoint {
+> +				remote-endpoint = <&cvbs_vdac_out>;
+> +			};
+> +		};
+> +	};
+> +
+> +	hdmi_usb_5v: regulator-hdmi-usb-5v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "HDMI_USB_5V";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		gpio = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vddio_boot: regulator-vddio-boot {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDDIO_BOOT";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +	};
+> +
+> +	vddao_3v3: regulator-vddao-3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDDAO_3V3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +	};
+> +
+> +	vddio_ao18: regulator-vddio-ao18 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDDIO_AO18";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +	};
+> +
+> +	vcc_3v3: regulator-vcc-3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC_3V3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +	};
+> +
+> +	emmc_pwrseq: emmc-pwrseq {
+> +		compatible = "mmc-pwrseq-emmc";
+> +		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
+> +	};
+> +
+> +	wifi32k: wifi32k {
+> +		compatible = "pwm-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <32768>;
+> +		pwms = <&pwm_ef 0 30518 0>;
+> +	};
+> +
+> +	wifi_pwrseq: wifi-pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> +		reset-gpios = <&gpio GPIOX_9 GPIO_ACTIVE_LOW>;
+> +		clocks = <&wifi32k>;
+> +		clock-names = "ext_clock";
+> +		post-power-on-delay-ms = <200>;
+> +	};
+> +
+> +	leds: leds {
+> +		compatible = "gpio-leds";
+> +
+> +		power_led: power-led {
+> +			color = <LED_COLOR_ID_WHITE>;
+> +			function = LED_FUNCTION_POWER;
+> +			gpios = <&gpio GPIOX_6 GPIO_ACTIVE_HIGH>;
+> +			default-state = "on";
+> +		};
+> +	};
+> +
+> +	sound {
+> +		compatible = "amlogic,gx-sound-card";
+> +		model = "Xiaomi-Mi-Box-4";
+> +		audio-aux-devs = <&av_mute>;
+> +		audio-widgets = "Line", "Lineout";
+> +		audio-routing = "AV INL", "ACODEC LOLN",
+> +				"AV INR", "ACODEC LORN",
+> +				"Lineout", "AV OUTL",
+> +				"Lineout", "AV OUTR";
+> +
+> +		clocks = <&clkc CLKID_MPLL0>,
+> +			 <&clkc CLKID_MPLL1>,
+> +			 <&clkc CLKID_MPLL2>;
+> +		assigned-clocks = <&clkc CLKID_MPLL0>,
+> +				  <&clkc CLKID_MPLL1>,
+> +				  <&clkc CLKID_MPLL2>;
+> +		assigned-clock-rates = <294912000>, <270950400>, <393216000>;
+> +
+> +		dai-link-0 {
+> +			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
+> +		};
+> +
+> +		dai-link-1 {
+> +			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
+> +			dai-format = "i2s";
+> +			mclk-fs = <256>;
+> +
+> +			codec-0 {
+> +				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
+> +			};
+> +
+> +			codec-1 {
+> +				sound-dai = <&aiu AIU_ACODEC CTRL_I2S>;
+> +			};
+> +		};
+> +
+> +		dai-link-2 {
+> +			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
+> +
+> +			codec-0 {
+> +				sound-dai = <&hdmi_tx>;
+> +			};
+> +		};
+> +
+> +		dai-link-3 {
+> +			sound-dai = <&aiu AIU_ACODEC CTRL_OUT>;
+> +
+> +			codec-0 {
+> +				sound-dai = <&acodec>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&acodec {
+> +	AVDD-supply = <&vddio_ao18>;
+> +	status = "okay";
+> +};
+> +
+> +&aiu {
+> +	status = "okay";
+> +};
+> +
+> +&cec_AO {
+> +	status = "okay";
+> +	pinctrl-0 = <&ao_cec_pins>;
+> +	pinctrl-names = "default";
+> +	hdmi-phandle = <&hdmi_tx>;
+> +};
+> +
+> +&cvbs_vdac_port {
+> +	cvbs_vdac_out: endpoint {
+> +		remote-endpoint = <&cvbs_connector_in>;
+> +	};
+> +};
+> +
+> +/*
+> + * The Mi Box 4 uses a custom efuse layout extracted from the
+> + * original firmware.
+> + */
+> +
+> +/delete-node/ &eth_mac;
+> +/delete-node/ &sn;
+> +/delete-node/ &bid;
+> +
+> +&efuse {
+> +	eth_mac: mac-address@0 {
+> +		reg = <0x00 0x06>;
+> +	};
+> +
+> +	bt_mac: mac-address@6 {
+> +		reg = <0x06 0x06>;
+> +	};
+> +
+> +	wifi_mac: mac-address@c {
+> +		reg = <0x0c 0x06>;
+> +	};
+> +
+> +	usid: serial-number@12 {
+> +		reg = <0x12 0x10>;
+> +	};
+> +};
+> +
+> +&ethmac {
+> +	status = "disabled";
+> +};
+> +
+> +&hdmi_tx {
+> +	status = "okay";
+> +	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
+> +	pinctrl-names = "default";
+> +	hdmi-supply = <&hdmi_usb_5v>;
+> +};
+> +
+> +&hdmi_tx_tmds_port {
+> +	hdmi_tx_tmds_out: endpoint {
+> +		remote-endpoint = <&hdmi_connector_in>;
+> +	};
+> +};
+> +
+> +&pwm_ef {
+> +	status = "okay";
+> +	pinctrl-0 = <&pwm_e_pins>;
+> +	pinctrl-names = "default";
+> +};
+> +
+> +&saradc {
+> +	compatible = "amlogic,meson-gxlx-saradc", "amlogic,meson-saradc";
+> +	status = "okay";
+> +	vref-supply = <&vddio_ao18>;
+> +};
+> +
+> +&sd_emmc_a {
+> +	status = "okay";
+> +	pinctrl-0 = <&sdio_pins>;
+> +	pinctrl-1 = <&sdio_clk_gate_pins>;
+> +	pinctrl-names = "default", "clk-gate";
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	bus-width = <4>;
+> +	cap-sd-highspeed;
+> +	cap-sdio-irq;
+> +	max-frequency = <50000000>;
+> +	non-removable;
+> +	no-mmc;
+> +	no-sd;
+> +	disable-wp;
+> +	keep-power-in-suspend;
+> +	sd-uhs-sdr12;
+> +	sd-uhs-sdr25;
+> +	sd-uhs-sdr50;
+> +	sd-uhs-sdr104;
+> +	mmc-pwrseq = <&wifi_pwrseq>;
+> +	vmmc-supply = <&vddao_3v3>;
+> +	vqmmc-supply = <&vddio_boot>;
+> +
+> +	rtl8723ds: wifi@1 {
+> +		reg = <1>;
+> +		nvmem-cells = <&wifi_mac>;
+> +		nvmem-cell-names = "mac-address";
+> +		interrupt-parent = <&gpio_intc>;
+> +		interrupts = <GPIOX_7 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "host-wake";
+> +	};
+> +};
+> +
+> +&sd_emmc_b {
+> +	status = "disabled";
+> +};
+> +
+> +&sd_emmc_c {
+> +	status = "okay";
+> +	pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
+> +	pinctrl-1 = <&emmc_clk_gate_pins>;
+> +	pinctrl-names = "default", "clk-gate";
+> +	bus-width = <8>;
+> +	cap-mmc-highspeed;
+> +	max-frequency = <100000000>;
+> +	non-removable;
+> +	disable-wp;
+> +	mmc-ddr-1_8v;
+> +	mmc-hs200-1_8v;
+> +	mmc-hs400-1_8v;
+> +	mmc-pwrseq = <&emmc_pwrseq>;
+> +	vmmc-supply = <&vcc_3v3>;
+> +	vqmmc-supply = <&vddio_boot>;
+> +};
+> +
+> +&uart_AO {
+> +	status = "okay";
+> +	pinctrl-0 = <&uart_ao_a_pins>;
+> +	pinctrl-names = "default";
+> +};
+> +
+> +&usb {
+> +	status = "okay";
+> +	dr_mode = "host";
+> +};
+> +
+> +&usb2_phy0 {
+> +	phy-supply = <&hdmi_usb_5v>;
+> +};
+> +
+> +&vdec {
+> +	compatible = "amlogic,gxlx-vdec", "amlogic,gx-vdec";
+> +};
+> 
 
-Just following up on this patch. Please let me know if you have any
-feedback or if further changes are needed.
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 Thanks,
-Mohamad Raizudeen
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
