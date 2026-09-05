@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BD88C624DB
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03785C79F85
 	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Sep 2026 15:32:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=snE8WZ6+YIMrM99x8pIZfMPvmBP5Bfue2H257jJSLA4=; b=YBZ7NJEE9R3qis
-	XASAdtC8naAw2m58dczlcwabrvaXtzNrPBF7ScTO9Pc1M+QQ/4O14zFdWKMdstxVfFzBKDvpuQgKx
-	vZdshjJ/Qb9xgBz3dvuNSPExF2mfz/NTRkPTaXYcK2bAcCHatKtRdRA+GEtuvwVQ5G2ZnfBee5n9P
-	C0fyaUrtRRtglIzBnqvAkGKN0IFyWp6f99VPVjFgc30Lqj6kw0x503Jobl1L1eXjYDY6lnqVyALNO
-	YqV6FcT/jVB70gQLP6cQIVDdAtXMqmfW1L1/dnsaR3Y/OfbjtuhiXyGyM+tjIuxNIrn3MJ/qkHycP
-	gkb4gUbDeT6w6MgtgJiw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=MKV4HCTTvL+76MJK48WhnTPqWWJ0z+MmEgKl1GdWLFA=; b=hstIVQv5QpvtF9
+	rcM0HJvu4dG2bkPc66WEdAHu/yepr9/yNuzt9riP77IT+UBiJB0z04zEwy9S7B8KHRwJEGj5nXs20
+	fYF++ouF8CZc87gcv/xRXVI2rSEypAydyDHtEfyIYIbUnI6XPOsK3SADSOAeMrIeZawHa88Pl8ug5
+	r8AEfqy61dLmoyCeL28Qx/1Oc54FallQPozXEdi4nf+w6a1sGIfbFQb/06gPY+qc37Q1pXhbBZ6FA
+	ZysIOHyeWT5d6gqg2y8F6oWSau2WlamqDMwmGPlruPKP5LXHUiTGWC85ManWh446zr3Fc2QE90k9t
+	KvQX/BKlsALpi8H2XxFg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x2sNl-00000004Cky-3G1w;
-	Sat, 05 Sep 2026 15:32:41 +0000
-Received: from mail-wr1-f42.google.com ([209.85.221.42])
+	id 1x2sNm-00000004Clj-3pqV;
+	Sat, 05 Sep 2026 15:32:42 +0000
+Received: from mail-wr1-f51.google.com ([209.85.221.51])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x2sNi-00000004ChW-1vWe
+	id 1x2sNj-00000004Cho-2SN4
 	for linux-amlogic@lists.infradead.org;
-	Sat, 05 Sep 2026 15:32:40 +0000
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-47de0093c42so1676187f8f.3
-        for <linux-amlogic@lists.infradead.org>; Sat, 05 Sep 2026 08:32:37 -0700 (PDT)
+	Sat, 05 Sep 2026 15:32:41 +0000
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-48589798dbbso1610334f8f.3
+        for <linux-amlogic@lists.infradead.org>; Sat, 05 Sep 2026 08:32:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1788622356; x=1789227156;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=jSU4aZpbll1PpORySxMO+b6aF9erqEZX1yTwxUGQHwY=;
-        b=JHGP3nHGJe//IOy4oIl9XNob34TG/oIPu6LpphRhVmfIUATBdpXs+LwTARsVlyYyet
-         o+m0H9YIcS+WxGgrcQvTDc7Af4H1HHPGfdL0opJhWEg8X6HMJ5IRoID2qJwefB4zU8kP
-         CyZHauh8aVA0F3v1/YD9YcJp7g8ijcxZWNc3wbK2d96w68qSNZoRLIoMvi/yLP/RwyMT
-         gHlMAm9SiP6Ze9MWglfB3W86F9Id4xPbN0huz+a8yYYJk3h+CP1uPtA0iCiOC2QsPcbz
-         CV7s99eKD9kIK/fTk2gbSfEav1weK/qQHPteyxrO4c2IGUBoul3t8rfflxk3SispYpxy
-         o07w==
-X-Forwarded-Encrypted: i=1; AKwUvBz4AL4cmdmThx/enLNJmdMfefuvF6w1YslijJDRwEYy8Dr2tqAcK8lfKoTvgnVgozPVwo1v8+hEcBF72DQy@lists.infradead.org
-X-Gm-Message-State: AFuF++kN6XVSUfDBpUNPGzmHwLey7+UdalAWGwxcfzu4p5fuviKDhd/j
-	KGJni36uJwt+rLq9V3cAPs5lx6xZcLc4Y83n/vGL/vMTHcIR2P+dcVzZ
-X-Gm-Gg: AYBFou2RVR+fLM56xMt2u1tC5C7sJAjrdojSbEkAj12wMotKbfOoadLBGWN483KIvpu
-	PASsj6W2t/R4CdgVbQvi3JvdcZ4PgEc0hF67glau7qFE1qohUaWZLwLTxlNL70DxKBD6DIOAaPm
-	pzqRMVPL+y97os990dUmFKDclHYhkR50ymp+ATgghKcHtGBBf09aiWbbHKAFxmFu4huNKwRUvVr
-	7Xxhh05EJ1CNUMayXUznfTUxYIR0oqx1Se4jmm7SfNpndnY4hbSK6aerBbODDLgNk+G5g7ogiJl
-	mdxNUaNs0amb0c6a7VuBfQjvk9PFXqFH9rF4rvea9qDNO8HclCJi9qLQSzVesWWGAGiudfEhxJR
-	aJdqHkervCWYYHRw+JAP2RdJmZezgFWry/2YdoNnfXGSmDTF7nKtmDCgurlU4fnSVRcMpVUkDCJ
-	lsEVTF2kgjRoMQTzGgnCobM05gi2mlbjwavncTz1YRHtrwG+Ol1XHRHDc8SDi7UWLiP0IDyNTw9
-	Ib0xWLvZPdF9eL7yWAOM/Z+jg==
-X-Received: by 2002:a05:6000:2287:b0:485:8b5c:da39 with SMTP id ffacd0b85a97d-4858b5ce1bdmr10859250f8f.12.1788622355807;
-        Sat, 05 Sep 2026 08:32:35 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1788622358; x=1789227158;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=6cvLPMe39R/AaBDs2Mh5u5mXzrtCLtGEuv4B7IhLgiQ=;
+        b=d94vkAh0S9zaTQLS08P6008j0HhaXm0HfIPLHuXHmAv67SD+J+51LeLRdm7FX+Ycz8
+         1T6SADrWYy484Nggej7og+yTgSIQd40JIehxzq02vFB1VWnx7B4Tit7POyxkCH4I6jd7
+         /uPpmZUKLx0k0rr4TtXyzN2IlKnYlsYey6juseYH9ROSBKc7mNHf/pn067zWyLTRRYFT
+         4eab8CWhvMIyLom33ORCX1fKqPQ3Q/Pbo4ziag2s+0hwLNnnt4krghLIEVjFz6UOtNDw
+         836ItED+GYjqXdJRhMI5j1HJaXavQgOyZXUKm2NA6P87ojqk19NsF47TTrsTsvnAoFV5
+         8VYQ==
+X-Forwarded-Encrypted: i=1; AKwUvBx0x9NbUloUbcSxqnTmahy5IDgpYjzs3xyxid00WCYT/6kgirtmR1qJIQvJZ6KKGLlFnn+E59aOkwXKspgV@lists.infradead.org
+X-Gm-Message-State: AFuF++l6YsoIFXTP7RAOm9BCww1/bb6DSnOmsQMF5JsJJk7GxHLezy4F
+	htpJX4+XUbhe32KQHvydTCYh/RgLr/q+ILPw4QepuE6trxw/WZ05THCt
+X-Gm-Gg: AYBFou0IDl207dEwWeCUkvYJnZGuG9VwkbUYzoFKP4nrCehU3M8gSljSpDDU0KWvpOp
+	1Z+I3KYKm7UMsoo1RAEA0s8+K05zqCa2v/zOT8lEiMd/b8jQNJVGuGP+ruAc/LhZ8iPeETDoTeN
+	nng265OVCjqNBk/im65ZLmVWn8HV8ehsvRzzkeUo9IHCNF6kh8JehSkb8dGx+WjN1GpOVCp9sAc
+	ZiCiavrQzCplRaFXrF3VBZxLzG6KSmgkDCf9W3lfA8KIJ2nmSYGDDxvtikl9N9LuOQAOZFpx3Q0
+	U/j7p9MnLZNEZ+1JKqUTFJCcus1AVDO1duhSE8mSkVFemwYCRr4Altt5bVNysH+HXLEoTsd9yXG
+	ZW1EaAcpgACVqte1UjQJ6GSOf/Gj16mgMCBqFAGVQHAITqJp+RgrZSf9s/KYxA+O6sZntPJJS+D
+	izFgeYtNq8lTuQ5GT+fM10IFeWYVs2TTisxKed6nsNPYzDSntqIJt2n2RmZ/nkTKoX5M4QHyzqr
+	9Vw5eh0ulfBHmFn20exvd3xdqNkg3EeEAfP
+X-Received: by 2002:a05:6000:470c:b0:485:8a46:705c with SMTP id ffacd0b85a97d-4858a4671b8mr11204628f8f.46.1788622357649;
+        Sat, 05 Sep 2026 08:32:37 -0700 (PDT)
 Received: from threads.localdomain ([84.68.179.181])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-485883c6ba4sm16691913f8f.25.2026.09.05.08.32.34
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-485883c6ba4sm16691913f8f.25.2026.09.05.08.32.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 05 Sep 2026 08:32:35 -0700 (PDT)
+        Sat, 05 Sep 2026 08:32:37 -0700 (PDT)
 From: Lucas Tanure <tanure@linux.com>
 To: Ulf Hansson <ulfh@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -78,15 +78,16 @@ Cc: Brian Masney <bmasney+clk@redhat.com>,
 	linux-amlogic@lists.infradead.org,
 	linux-clk@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 0/4] amlogic: t7: give the MMC bus pipeline clock real consumers
-Date: Sat,  5 Sep 2026 16:32:30 +0100
-Message-ID: <20260905153234.133217-1-tanure@linux.com>
+Subject: [PATCH v2 2/4] mmc: meson-gx: enable the bus pipeline clock on T7
+Date: Sat,  5 Sep 2026 16:32:32 +0100
+Message-ID: <20260905153234.133217-3-tanure@linux.com>
 X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260905153234.133217-1-tanure@linux.com>
+References: <20260905153234.133217-1-tanure@linux.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260905_083238_507121_C7787AD8 
-X-CRM114-Status: UNSURE (   9.67  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20260905_083239_638797_F7870BCD 
+X-CRM114-Status: GOOD (  14.64  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,45 +104,78 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The previous series for the intermittent boot hangs on the VIM4
-marked sys_ampipe_nand as critical. But as Chuan Liu from Amlogic
-explained, sys_ampipe_nand clocks a pipeline stage that the
-hardware design inserts in the bus path between the SD/eMMC
-controllers and the NIC_MATRIX fabric to help timing closure.
+On the T7 SoC, the bus path between the SD/eMMC controllers and the
+NIC_MATRIX fabric goes through a pipeline stage inserted by the hardware
+design to help timing closure. The stage has its own gate clock and,
+when that clock is disabled, a controller that starts a DMA transfer can
+never complete it, hanging the storage devices and, from there, the
+whole system.
 
-So the clock has real consumers: reference it from the three MMC
-controller nodes and drop CLK_IS_CRITICAL instead.
+Add a dedicated match data for the amlogic,t7-mmc compatible that makes
+the driver claim and enable the "pipeline" clock for as long as the
+device is bound.
 
-The series crosses three trees; patch 4 (clk) must only land after
-patches 1-3, otherwise the DMA hangs fixed by 43e1705ecab9 come back.
+The clock is deliberately not optional: the hardware cannot do DMA
+without it, and failing the probe with a clear error is preferable to
+booting and hitting an undiagnosable DMA hang later.
 
-Changes since v1 [3]:
- - Dropped the Fixes: tag; this series is an improvement and should not
-   be picked up by stable (Jerome Brunet)
- - Moved the patch 4 dependency note below the --- so it is not kept
-   for posterity (Jerome Brunet)
- - Dropped the e-mail address from the Assisted-by trailer, see
-   Documentation/process/coding-assistants.rst (Jerome Brunet)
- - Fixed the space-indented error path added to meson_mmc_probe() in
-   patch 2, it did not pass checkpatch
- - Dropped the CLK_PIPELINE() macro from patch 2; has_pipeline_clk is a
-   capability flag, not an SD_EMMC_CLOCK register field
+Assisted-by: Claude:claude-fable-5
+Signed-off-by: Lucas Tanure <tanure@linux.com>
+---
+ drivers/mmc/host/meson-gx-mmc.c | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-Thanks,
-Lucas
-
-Lucas Tanure (4):
-  dt-bindings: mmc: amlogic,meson-gx-mmc: document the T7 pipeline clock
-  mmc: meson-gx: enable the bus pipeline clock on T7
-  arm64: dts: amlogic: t7: add the pipeline clock to the MMC controllers
-  clk: meson: t7: don't mark sys_ampipe_nand as critical
-
- .../bindings/mmc/amlogic,meson-gx-mmc.yaml    | 29 ++++++++++++++++++-
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   | 15 ++++++----
- drivers/clk/meson/t7-peripherals.c            | 10 +++----
- drivers/mmc/host/meson-gx-mmc.c               | 20 +++++++++++++
- 4 files changed, 62 insertions(+), 12 deletions(-)
-
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index 694bb443d5f3..c0f1e929fc13 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -139,6 +139,7 @@ struct meson_mmc_data {
+ 	unsigned int always_on;
+ 	unsigned int adjust;
+ 	unsigned int irq_sdio_sleep;
++	bool has_pipeline_clk;
+ };
+ 
+ struct sd_emmc_desc {
+@@ -1204,6 +1205,15 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	if (IS_ERR(core_clk))
+ 		return PTR_ERR(core_clk);
+ 
++	if (host->data->has_pipeline_clk) {
++		struct clk *pipe_clk;
++
++		pipe_clk = devm_clk_get_enabled(&pdev->dev, "pipeline");
++		if (IS_ERR(pipe_clk))
++			return dev_err_probe(&pdev->dev, PTR_ERR(pipe_clk),
++					     "missing pipeline clock\n");
++	}
++
+ 	ret = meson_mmc_clk_init(host);
+ 	if (ret)
+ 		return ret;
+@@ -1322,12 +1332,22 @@ static const struct meson_mmc_data meson_axg_data = {
+ 	.irq_sdio_sleep	= CLK_V3_IRQ_SDIO_SLEEP,
+ };
+ 
++static const struct meson_mmc_data meson_t7_data = {
++	.tx_delay_mask	= CLK_V3_TX_DELAY_MASK,
++	.rx_delay_mask	= CLK_V3_RX_DELAY_MASK,
++	.always_on	= CLK_V3_ALWAYS_ON,
++	.adjust		= SD_EMMC_V3_ADJUST,
++	.irq_sdio_sleep	= CLK_V3_IRQ_SDIO_SLEEP,
++	.has_pipeline_clk = true,
++};
++
+ static const struct of_device_id meson_mmc_of_match[] = {
+ 	{ .compatible = "amlogic,meson-gx-mmc",		.data = &meson_gx_data },
+ 	{ .compatible = "amlogic,meson-gxbb-mmc", 	.data = &meson_gx_data },
+ 	{ .compatible = "amlogic,meson-gxl-mmc",	.data = &meson_gx_data },
+ 	{ .compatible = "amlogic,meson-gxm-mmc",	.data = &meson_gx_data },
+ 	{ .compatible = "amlogic,meson-axg-mmc",	.data = &meson_axg_data },
++	{ .compatible = "amlogic,t7-mmc",		.data = &meson_t7_data },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, meson_mmc_of_match);
 -- 
 2.55.0
 
