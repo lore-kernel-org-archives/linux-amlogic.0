@@ -4,69 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30A8FC624DE
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Sep 2026 21:52:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BD88C624DB
+	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Sep 2026 15:32:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vRN/pM8BkNVRcBI1eESnFvFQHZo90dF677YKb+L4V/s=; b=fjwn0qpvezrAC8
-	R0LetfU4hCPomWt1pAOdoKrm9LRUXmnDhnPHtuRBBIFStRa28DkZTd4SJ8dqK5lhWZ9pmsQ97IpMg
-	mzCUeGLBoPvUp3bQ1E1i9Iji/Gli5ito6vPUPc4K2xmZ3QcsnXyn0YxZFQawSj7c07fH0npiaGk7Q
-	Syf88lv8FdCV7ZBak5Ij5qz/kH/ZgmCdTFmFx3RTIHaNoQ4cJLFeyq7qO9hCbDdxf1v3IWkK5jzlU
-	HS8b7U8JW11eC4mHfG1w4eF0Y+1Pap//6MbjdL9vpN8OY93TtTBXbBVee3woePeUkCEdkEUZo8dG/
-	jzIuVtRrn71MI2l0NxbA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=snE8WZ6+YIMrM99x8pIZfMPvmBP5Bfue2H257jJSLA4=; b=YBZ7NJEE9R3qis
+	XASAdtC8naAw2m58dczlcwabrvaXtzNrPBF7ScTO9Pc1M+QQ/4O14zFdWKMdstxVfFzBKDvpuQgKx
+	vZdshjJ/Qb9xgBz3dvuNSPExF2mfz/NTRkPTaXYcK2bAcCHatKtRdRA+GEtuvwVQ5G2ZnfBee5n9P
+	C0fyaUrtRRtglIzBnqvAkGKN0IFyWp6f99VPVjFgc30Lqj6kw0x503Jobl1L1eXjYDY6lnqVyALNO
+	YqV6FcT/jVB70gQLP6cQIVDdAtXMqmfW1L1/dnsaR3Y/OfbjtuhiXyGyM+tjIuxNIrn3MJ/qkHycP
+	gkb4gUbDeT6w6MgtgJiw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x2bpq-00000003M43-40B7;
-	Fri, 04 Sep 2026 21:52:34 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1x2sNl-00000004Cky-3G1w;
+	Sat, 05 Sep 2026 15:32:41 +0000
+Received: from mail-wr1-f42.google.com ([209.85.221.42])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x2bpp-00000003M3v-2drv
+	id 1x2sNi-00000004ChW-1vWe
 	for linux-amlogic@lists.infradead.org;
-	Fri, 04 Sep 2026 21:52:33 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 65F6C41E68;
-	Fri,  4 Sep 2026 21:52:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16FF21F00A3D;
-	Fri,  4 Sep 2026 21:52:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1788558753;
-	bh=UVrkCuu11lO2jLxhwTb0RktChudHatDr/XIWbtQPRJ8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=aPgS7bnzvgxMwfa68V5kdEfcEvrZLGd4hvfezzhdeGq8+bOy1jCL4sPYm9J/EbDYF
-	 gkPn7q0PoBPXjqJV/OLTJLR4CgXgemuy9IKdOTvyPB63n4XSWlTThwOSE5s7+W+AO4
-	 bIv+8zGiCh8U7evnLU/n/w/c65lp2vTXaojCltmSWmb2X9QtXw1fg+VycJm3gKxiUN
-	 X1sa+GFQH2bCctfRLIdBVNAN6FIXAJI5hO12qx4FxiHCF0C26hofTDdKTJvgfNz/KQ
-	 QCsMajHdfNWeYy/jhZFliinQJ9jYGry2L6MBC5fdTpfgZbaN8HCnib59/nm0FHAIRt
-	 Klnr19gs2DHKg==
-From: Mark Brown <broonie@kernel.org>
-To: Sunny Luo <sunny.luo@amlogic.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-In-Reply-To: <20260731-a9-spisg-v3-0-a15da3f70029@amlogic.com>
-References: <20260731-a9-spisg-v3-0-a15da3f70029@amlogic.com>
-Subject: Re: [PATCH v3 0/4] spi: add support for Amlogic A9
-Message-Id: <178854160331.632048.14728363088107524038.b4-ty@b4>
-Date: Fri, 04 Sep 2026 18:06:43 +0100
+	Sat, 05 Sep 2026 15:32:40 +0000
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-47de0093c42so1676187f8f.3
+        for <linux-amlogic@lists.infradead.org>; Sat, 05 Sep 2026 08:32:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1788622356; x=1789227156;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=jSU4aZpbll1PpORySxMO+b6aF9erqEZX1yTwxUGQHwY=;
+        b=JHGP3nHGJe//IOy4oIl9XNob34TG/oIPu6LpphRhVmfIUATBdpXs+LwTARsVlyYyet
+         o+m0H9YIcS+WxGgrcQvTDc7Af4H1HHPGfdL0opJhWEg8X6HMJ5IRoID2qJwefB4zU8kP
+         CyZHauh8aVA0F3v1/YD9YcJp7g8ijcxZWNc3wbK2d96w68qSNZoRLIoMvi/yLP/RwyMT
+         gHlMAm9SiP6Ze9MWglfB3W86F9Id4xPbN0huz+a8yYYJk3h+CP1uPtA0iCiOC2QsPcbz
+         CV7s99eKD9kIK/fTk2gbSfEav1weK/qQHPteyxrO4c2IGUBoul3t8rfflxk3SispYpxy
+         o07w==
+X-Forwarded-Encrypted: i=1; AKwUvBz4AL4cmdmThx/enLNJmdMfefuvF6w1YslijJDRwEYy8Dr2tqAcK8lfKoTvgnVgozPVwo1v8+hEcBF72DQy@lists.infradead.org
+X-Gm-Message-State: AFuF++kN6XVSUfDBpUNPGzmHwLey7+UdalAWGwxcfzu4p5fuviKDhd/j
+	KGJni36uJwt+rLq9V3cAPs5lx6xZcLc4Y83n/vGL/vMTHcIR2P+dcVzZ
+X-Gm-Gg: AYBFou2RVR+fLM56xMt2u1tC5C7sJAjrdojSbEkAj12wMotKbfOoadLBGWN483KIvpu
+	PASsj6W2t/R4CdgVbQvi3JvdcZ4PgEc0hF67glau7qFE1qohUaWZLwLTxlNL70DxKBD6DIOAaPm
+	pzqRMVPL+y97os990dUmFKDclHYhkR50ymp+ATgghKcHtGBBf09aiWbbHKAFxmFu4huNKwRUvVr
+	7Xxhh05EJ1CNUMayXUznfTUxYIR0oqx1Se4jmm7SfNpndnY4hbSK6aerBbODDLgNk+G5g7ogiJl
+	mdxNUaNs0amb0c6a7VuBfQjvk9PFXqFH9rF4rvea9qDNO8HclCJi9qLQSzVesWWGAGiudfEhxJR
+	aJdqHkervCWYYHRw+JAP2RdJmZezgFWry/2YdoNnfXGSmDTF7nKtmDCgurlU4fnSVRcMpVUkDCJ
+	lsEVTF2kgjRoMQTzGgnCobM05gi2mlbjwavncTz1YRHtrwG+Ol1XHRHDc8SDi7UWLiP0IDyNTw9
+	Ib0xWLvZPdF9eL7yWAOM/Z+jg==
+X-Received: by 2002:a05:6000:2287:b0:485:8b5c:da39 with SMTP id ffacd0b85a97d-4858b5ce1bdmr10859250f8f.12.1788622355807;
+        Sat, 05 Sep 2026 08:32:35 -0700 (PDT)
+Received: from threads.localdomain ([84.68.179.181])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-485883c6ba4sm16691913f8f.25.2026.09.05.08.32.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 05 Sep 2026 08:32:35 -0700 (PDT)
+From: Lucas Tanure <tanure@linux.com>
+To: Ulf Hansson <ulfh@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Stephen Boyd <sboyd@kernel.org>
+Cc: Brian Masney <bmasney+clk@redhat.com>,
+	Chuan Liu <chuan.liu@amlogic.com>,
+	Jian Hu <jian.hu@amlogic.com>,
+	Ronald Claveau <linux-kernel-dev@aliel.fr>,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/4] amlogic: t7: give the MMC bus pipeline clock real consumers
+Date: Sat,  5 Sep 2026 16:32:30 +0100
+Message-ID: <20260905153234.133217-1-tanure@linux.com>
+X-Mailer: git-send-email 2.55.0
 MIME-Version: 1.0
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1649; i=broonie@kernel.org;
- h=from:subject:message-id; bh=zjdkNkDUmonpYU0Jbjz+zmmE2qaeROdmXnVtOHiS4H0=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqmz2b7imfFO58cCzluHQ/CY6Goj/swmGs9TWX0
- nLpvYPkRyuJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCaps9mwAKCRAk1otyXVSH
- 0NGaB/428q5frnEDu6OiYRheIcp0oUTfMczZRKqjcktVO1KRJV8tnPgfqRdLE+iRgJvus+Kj6KJ
- tBEAjeE0QCuEwIzvETLElAdP1QQx3LAs/bCH6zqbfpccDlzUaX3t0vwFB4qdK6ilZqA/KgSROaV
- toJ2SOywUOdqZ9Cq7yCjbIDK+FMafs7siTt24u0z9PMprkkN0EkOJxx0Eu3eGWHGGP+bxfkuwh0
- DnZ/jE66flHee/aa4OMiG4eA/K4ZkJ/log07zVQ1HHfjXPpfnhOP4F7TjqyXLsGv3XSp/oLkKXe
- zO7eI9WoP0mk/Ltl3lgZUNE0exWMa18B/RTx/9ciEePfMt3Y
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260905_083238_507121_C7787AD8 
+X-CRM114-Status: UNSURE (   9.67  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,49 +103,47 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 31 Jul 2026 09:08:24 +0000, Xianwei Zhao wrote:
-> spi: add support for Amlogic A9
-> 
-> Add bindings for A9 with some features, and driver for A9 base on A4.
-> 
-> Fix the incorrect keep_ss of the last descriptor.
-> 
-> 
-> [...]
+The previous series for the intermittent boot hangs on the VIM4
+marked sys_ampipe_nand as critical. But as Chuan Liu from Amlogic
+explained, sys_ampipe_nand clocks a pipeline stage that the
+hardware design inserts in the bus path between the SD/eMMC
+controllers and the NIC_MATRIX fabric to help timing closure.
 
-Applied to
+So the clock has real consumers: reference it from the three MMC
+controller nodes and drop CLK_IS_CRITICAL instead.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-7.4
+The series crosses three trees; patch 4 (clk) must only land after
+patches 1-3, otherwise the DMA hangs fixed by 43e1705ecab9 come back.
 
-Thanks!
-
-[1/4] spi: dt-bindings: amlogic: spisg: Document A9-specific properties
-      https://git.kernel.org/broonie/spi/c/29359ee126bd
-[2/4] spi: amlogic: spisg: Fix transfer size limit and timeout handling
-      https://git.kernel.org/broonie/spi/c/754d2bbd92f5
-[3/4] spi: amlogic: spisg: Fix the incorrect keep_ss of the last descriptor
-      https://git.kernel.org/broonie/spi/c/253dfb1839c6
-[4/4] spi: amlogic: spisg: Add support for A9 controller features
-      https://git.kernel.org/broonie/spi/c/b552119acd63
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Changes since v1 [3]:
+ - Dropped the Fixes: tag; this series is an improvement and should not
+   be picked up by stable (Jerome Brunet)
+ - Moved the patch 4 dependency note below the --- so it is not kept
+   for posterity (Jerome Brunet)
+ - Dropped the e-mail address from the Assisted-by trailer, see
+   Documentation/process/coding-assistants.rst (Jerome Brunet)
+ - Fixed the space-indented error path added to meson_mmc_probe() in
+   patch 2, it did not pass checkpatch
+ - Dropped the CLK_PIPELINE() macro from patch 2; has_pipeline_clk is a
+   capability flag, not an SD_EMMC_CLOCK register field
 
 Thanks,
-Mark
+Lucas
+
+Lucas Tanure (4):
+  dt-bindings: mmc: amlogic,meson-gx-mmc: document the T7 pipeline clock
+  mmc: meson-gx: enable the bus pipeline clock on T7
+  arm64: dts: amlogic: t7: add the pipeline clock to the MMC controllers
+  clk: meson: t7: don't mark sys_ampipe_nand as critical
+
+ .../bindings/mmc/amlogic,meson-gx-mmc.yaml    | 29 ++++++++++++++++++-
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   | 15 ++++++----
+ drivers/clk/meson/t7-peripherals.c            | 10 +++----
+ drivers/mmc/host/meson-gx-mmc.c               | 20 +++++++++++++
+ 4 files changed, 62 insertions(+), 12 deletions(-)
+
+-- 
+2.55.0
 
 
 _______________________________________________
