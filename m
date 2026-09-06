@@ -4,90 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6162DC624D6
-	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Sep 2026 15:32:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AED3C79FA0
+	for <linux-amlogic@archiver.kernel.org>; Sun,  6 Sep 2026 19:44:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xlOBeyAPPrgIeBrkTDTmRAwcbzL2txXBwOZ1t9dl7L8=; b=y6XyfQ5HS4z75m
-	FVMZXOhRUGzfjRtmTya7UAWZCOUUTWhxZD7saLWOk+rgDZfC2RqI1tva+5ogpdW+1aL1hRu+UN1zM
-	CbziCb22zWHueXcjNlLqhYbs84GUl9hIMwShhVGUla2Uyeg/BSQ7F370fHmGnIFJvL+4Usp4KO83R
-	N1KCqPXsKuZWOq1TJHhQ8pfCSHhNgZObuy2urAaXE/GoDEyAdNdfbvVcSK232AMibgb9ov+tcPPCw
-	8s9ui0ITwLO3lPYdfrNm0yP+xlk60CeF0t0e52XEa/rsR86mDJEgy0HX/pshROJZs3Xu8e75/OCNF
-	hITl/zbuLP39pmooY6yg==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=6dzCstdzW6rpDjl/GjE5aPYWK0Npa/BnBOXoH/OGth0=; b=nSMhRI7Y9Ukg1M
+	iK9DcjUfBizpfevboZF/zfgky6wx0snPqPIzfBEAU7JKaodR1FGWwtzqVt1eq45CDXqp2KzvkR3cw
+	iBxsn4eX04+2k6K4ZZi1odI8UmS4u3ZYlFcJecHRStIaWvwSJ6ccPksCm2PYS8ltdLAqc92xCaPnM
+	4hO2t4vW3TMs2CbSPq35XXO92IGfYzSpop9EAls3jmfF67G6nwtMxSHYhW5vd77WCY4JoT9Ov9N6k
+	2CQt/OwXBB6xOrvHp7qQyJOdhhpWsFfuKyevG5NcXhpNVx7pSdsmSqpnrYxGVYcCwCNAcZJJA4Rue
+	kUWeS9ITLa4i1hzg5jAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x2sNp-00000004CnZ-0Zgd;
-	Sat, 05 Sep 2026 15:32:45 +0000
-Received: from mail-wr1-f47.google.com ([209.85.221.47])
+	id 1x3ImP-00000005WPz-1qUh;
+	Sun, 06 Sep 2026 19:43:53 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x2sNi-00000004Che-2o8u
-	for linux-amlogic@lists.infradead.org;
-	Sat, 05 Sep 2026 15:32:41 +0000
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-484392e3d33so1317998f8f.2
-        for <linux-amlogic@lists.infradead.org>; Sat, 05 Sep 2026 08:32:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1788622357; x=1789227157;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=4JskkGqhdaY1l7i1ogeLg1oSPtvCeMbo2iXSDE4yNEI=;
-        b=CqHOTW8SCgv3d7w/rG4tzzvNh1dwafMn/BlDfVGd36U14opiHSPQqq6ezwXczjeQVY
-         MmUX2lic+Nu/qCuri4Sx8UC79sF/aAp4vM1Q/G/VoVCPmpRrmyh4tS+PONwpG7uaDN/X
-         84hH9QcVy9CDrqbnsanz6b2aGxeWrNNdPhxaeaSm+jCI5MD4dMODrcDDz7cMYOA6QgmH
-         +SMdPHHzX0rro0kJZdFbCtOOgVFr/dHfMCyVvxoGaLv382pdTnrC/ihw6OfgyEca/s88
-         Fqh1l+782yt3AiRxdhfcaDn4wRGmhUdlAKAdYm7vSOtIxGnTq18DQ1I33UvspA4MdaBV
-         /i3g==
-X-Forwarded-Encrypted: i=1; AKwUvBwtW0l1BgPdd52GYBpWS6hBIh/wf+/R75akL3iTcu+rtJCqD17qsINNKvqM87D16JElidntIeaZIuJIgLNS@lists.infradead.org
-X-Gm-Message-State: AFuF++nNmM0E4KQA4Ir4/CLGYIfxd6YaYVXSvBKb6fLYC39TQ+iaA5pq
-	UKeARIeExQxIHGoYzVcnEqYODoCsEpxJwBKjldpf5Pn4LKG9X6IwqOND
-X-Gm-Gg: AYBFou0umAFQ/RORZukJ3/VWq7cjLzcFLkHrCPpOoXB2/SEdiDfjndlk626paCrnFex
-	LopKC7eUC3/XmrFi20zKPK/mwfolVqyVbXAxh+Z+MQsYuprGa5fuiUgiLm26lDsVLAka/lPNPm/
-	yAeqX0nhs3pU+w0s/J7vCeSP6rH7vM/PxlxMEe1gOi5fUGaRj0XezIfdXk2G99nhzdGc6p+0zpI
-	5uJ16+yxwbZc50T3zu5O1ohup6NjiTX+0gGHFarlE4sZuTkh+5b32T2F1Bs8YgHs5k6KJ4Ubq4Y
-	xJjR0pZr+EMBhBb5xPmEuh77zywl18BP2C8Io75giWGAX97cS46hZ+K6nOaKBqaqmw8049FrVyr
-	LfEDL+hpPNBy2uRucqV+QZGd+A9hQQKzam9sO6iIKi4CEEh7a0Txr7GPXSLscEGjA2Uvn604SZ/
-	H9eP3lp99gr6S/JYPBTveOl2z3b9EA3ZQpf1UpaLXWvI667HohyzAYzFiqv2TI2Ay3bZsG1CTYY
-	l5AhYtgUn9M3PyZnN3dI1d7rZUuUDmQAik2
-X-Received: by 2002:a05:6000:2584:b0:482:b813:8315 with SMTP id ffacd0b85a97d-485872ac3b1mr16135052f8f.21.1788622356748;
-        Sat, 05 Sep 2026 08:32:36 -0700 (PDT)
-Received: from threads.localdomain ([84.68.179.181])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-485883c6ba4sm16691913f8f.25.2026.09.05.08.32.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 05 Sep 2026 08:32:36 -0700 (PDT)
-From: Lucas Tanure <tanure@linux.com>
-To: Ulf Hansson <ulfh@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Stephen Boyd <sboyd@kernel.org>
-Cc: Brian Masney <bmasney+clk@redhat.com>,
-	Chuan Liu <chuan.liu@amlogic.com>,
-	Jian Hu <jian.hu@amlogic.com>,
-	Ronald Claveau <linux-kernel-dev@aliel.fr>,
-	linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/4] dt-bindings: mmc: amlogic,meson-gx-mmc: document the T7 pipeline clock
-Date: Sat,  5 Sep 2026 16:32:31 +0100
-Message-ID: <20260905153234.133217-2-tanure@linux.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260905153234.133217-1-tanure@linux.com>
-References: <20260905153234.133217-1-tanure@linux.com>
+	id 1x3ImN-00000005WPi-2YdH;
+	Sun, 06 Sep 2026 19:43:51 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 7EE82601DE;
+	Sun,  6 Sep 2026 19:43:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 1C8ABC2BCB8;
+	Sun,  6 Sep 2026 19:43:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1788723830;
+	bh=0Z9VlpA0raG6r7XokDnQP1FPgmzr6zyFAP4bptvzFbc=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=FXgathLCtZ92nmpHgh1MgOPol30uGB1g34FojDDPo0uKFAGEp7U9lvJ2NaI6X7j+p
+	 lCH1zcv17uN6R6K4aE/UsiNIWFz9rA56TI57H7Qn5XHT1qR92dW27FpygEiZwIwc9S
+	 x8Dwn0NET3Mrik+dUAScxc/BeC6Nn5ceMYUT7erGYS2q02/4oW98CMU3mt9USm+3mC
+	 2ydKlTkvSvTTQJ40682kaw1NEKbxRXKYTpKLYCT3BgZSciPErPLBGbeyI69TrrVPXF
+	 uUVaL775VlZwB10T3nFS4CB7inmhO54DWkgDjErV5zD0dxDayiA5JPyGDGSNtHLtSZ
+	 28n8rbyNX8tCA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EC505C79FA0;
+	Sun,  6 Sep 2026 19:43:49 +0000 (UTC)
+From: Miles Krause via B4 Relay <devnull+mileskrause5200.gmail.com@kernel.org>
+Date: Sun, 06 Sep 2026 15:43:48 -0400
+Subject: [PATCH] drm/meson: fix device_node leak in
+ meson_encoder_dsi_probe()
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260905_083238_721476_06D45A24 
-X-CRM114-Status: GOOD (  11.25  )
+Message-Id: <20260906-meson-dsi-of-node-leak-v1-1-9d183560279d@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAHPCnWoC/x3MTQqAIBBA4avErBswsR+7SrSQnGqoNByIILp70
+ vJbvPeAUGIS6IsHEl0sHENGVRYwrS4shOyzQSvdKKsaPEhiQC+MccYQPeFObsPWmM5a7+q20pD
+ jM9HM9z8exvf9AD146hxoAAAA
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Nicolas Belin <nbelin@baylibre.com>, 
+ Jagan Teki <jagan@amarulasolutions.com>
+Cc: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Miles Krause <mileskrause5200@gmail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1788723828; l=1903;
+ i=mileskrause5200@gmail.com; s=20260906; h=from:subject:message-id;
+ bh=MzPOZoQJIZouNhopaY53pEz59ebt1korUstt2TswX5s=;
+ b=n7TDRXCuDuGLEEk4/VPeuku3N6NRmryW5wydClhaAsHiByeSusM+Nz8hYgNrxmDeRC7QSYUTm
+ N24E5yCU0OhCuzbiwy8lCyAhHI/GXTrgxQ923wq10hBuHkzwXY3Jr/P
+X-Developer-Key: i=mileskrause5200@gmail.com; a=ed25519;
+ pk=zcIfq4TGtPwMRJUW6WsbE2zLHvOMwk6ZyT/CGd6XzyI=
+X-Endpoint-Received: by B4 Relay for mileskrause5200@gmail.com/20260906
+ with auth_id=1010
+X-Original-From: Miles Krause <mileskrause5200@gmail.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,82 +86,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: mileskrause5200@gmail.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The SD/eMMC controllers of the T7 SoC are physically far from the
-NIC_MATRIX bus fabric, so the hardware design inserts a pipeline stage
-in the middle of the bus path to help timing closure. This stage is fed
-by its own gate clock and, when that clock is disabled, a controller
-that starts a DMA transfer can never complete it.
+From: Miles Krause <mileskrause5200@gmail.com>
 
-Allow a fourth clock entry, named "pipeline", and require it for the
-amlogic,t7-mmc compatible. The other controllers of this family keep
-the existing three clocks.
+meson_encoder_dsi_probe() looks up the DSI transceiver's device node
+with of_graph_get_remote_node() and hands it to
+of_drm_find_and_get_bridge(), but never drops the reference that the
+lookup returned.
 
-Assisted-by: Claude:claude-fable-5
-Signed-off-by: Lucas Tanure <tanure@linux.com>
+of_graph_get_remote_node() returns the node with its refcount
+incremented, and of_drm_find_and_get_bridge() takes its own reference
+on the bridge it finds, so 'remote' is leaked on every path once the
+lookup succeeds: on the -EPROBE_DEFER return taken when no bridge is
+found, and on a fully successful probe alike.
+
+The two sibling encoders in this driver already handle this correctly.
+meson_encoder_cvbs_probe() calls of_node_put(remote) immediately after
+of_drm_find_and_get_bridge(), and meson_encoder_hdmi_probe() releases
+the node both on its error path and after of_find_device_by_node().
+
+Release the reference in the same place meson_encoder_cvbs_probe()
+does, which covers both the error and the success path.
+
+Fixes: 42dcf15f901c ("drm/meson: add DSI encoder")
+Signed-off-by: Miles Krause <mileskrause5200@gmail.com>
 ---
- .../bindings/mmc/amlogic,meson-gx-mmc.yaml    | 29 ++++++++++++++++++-
- 1 file changed, 28 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/meson/meson_encoder_dsi.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-index 976f36de2091..12342b1d78e5 100644
---- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-+++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx-mmc.yaml
-@@ -15,6 +15,23 @@ maintainers:
+diff --git a/drivers/gpu/drm/meson/meson_encoder_dsi.c b/drivers/gpu/drm/meson/meson_encoder_dsi.c
+index 3e422b612f74..3fe604496294 100644
+--- a/drivers/gpu/drm/meson/meson_encoder_dsi.c
++++ b/drivers/gpu/drm/meson/meson_encoder_dsi.c
+@@ -120,6 +120,7 @@ int meson_encoder_dsi_probe(struct meson_drm *priv)
+ 	}
  
- allOf:
-   - $ref: mmc-controller.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: amlogic,t7-mmc
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 4
-+        clock-names:
-+          minItems: 4
-+    else:
-+      properties:
-+        clocks:
-+          maxItems: 3
-+        clock-names:
-+          maxItems: 3
- 
- properties:
-   compatible:
-@@ -38,13 +55,23 @@ properties:
-       - description: card detect
- 
-   clocks:
--    maxItems: 3
-+    minItems: 3
-+    items:
-+      - description: core clock
-+      - description: clock input 0 of the internal mux
-+      - description: clock input 1 of the internal mux
-+      - description:
-+          clock of the pipeline stage inserted in the bus path between
-+          the controller and the DRAM. Without it, the controller cannot
-+          complete DMA transfers.
- 
-   clock-names:
-+    minItems: 3
-     items:
-       - const: core
-       - const: clkin0
-       - const: clkin1
-+      - const: pipeline
- 
-   resets:
-     maxItems: 1
+ 	meson_encoder_dsi->bridge.next_bridge = of_drm_find_and_get_bridge(remote);
++	of_node_put(remote);
+ 	if (!meson_encoder_dsi->bridge.next_bridge)
+ 		return dev_err_probe(priv->dev, -EPROBE_DEFER,
+ 				     "Failed to find DSI transceiver bridge\n");
+
+---
+base-commit: 88405f0ad1d5c680afe3ea0ce9345fa9e1deaac8
+change-id: 20260906-meson-dsi-of-node-leak-744899da5712
+
+Best regards,
 -- 
-2.55.0
+Miles Krause <mileskrause5200@gmail.com>
+
 
 
 _______________________________________________
