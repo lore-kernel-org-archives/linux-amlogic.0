@@ -4,91 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DA28C79F82
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Sep 2026 16:01:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39583C79F99
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Sep 2026 16:04:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Vo/iy3M6+wXdF05N3WDfaQZ/aSnru2v5z9nYyJUwpgI=; b=2IYEmlnnn+NJO3
-	m4E5FaCQAdvDGDCj/KLrz1cKWkNWVf+nrtRnYE3sgZGFF59RlCf8/2eKJ1OQhIqWxtyTVX8Ty7uRu
-	Tekk4HCq0xJgiQ6d+wsX1t8E/esjBTnDfczqi+mLMcBdpIWn6tjqKmw2ZlSbQ1plClvJkLWz3Omhx
-	m5BukBR2c9PWQEBhMYSKXbBNxzdZTHvWkyvFjRjKw5f46uOjL537jHAWQDEsmEUcbQjeoxJPlcirx
-	g73iix2BnclcLkVX06fBpf9UpEaAVLtv/xNp6v8um98aA8DqlZX5t+219endKvIzf2Yj68YSfycIf
-	6mFloo0wBsXu+rbHR8Sw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=s73WJyz4Z8ZzPzi+Ilzz6NA1HZ+0T8fqH7fZoEh5na0=; b=tDoBMnOOSyrdOL
+	kpuB0KFjC1LwsJ/Vb3QqZ3NMmWbkvPUQgVz9scnPjqhHqKCChN6vtUqkZ6vqdVAVvp855DgtoxYxY
+	UWzn6ZReJ63e+mNV/FR877KsIZAWjNURYKbPZq8PFPkzpR8ldKpCD+GXuDryJYyP50B1jo+tgknWc
+	s7cfsGh/F5uab5UM7s5QuABVsnpH0rZBJGASiW0IPd5KHJV/7+D4IELMN5AiM+0tfl4L1bsfCOX2v
+	+a7tNCYUbljmWk+rESJ1nQknxJHrbjuUx8aNeSg4uBlcXil+Sad1vJfNFUtJ2y38UopYoAN4NeuOx
+	sWOGcydjEenhId/rqqhQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x3yGX-00000009a3f-1lRl;
-	Tue, 08 Sep 2026 16:01:45 +0000
-Received: from mail-ot1-x334.google.com ([2607:f8b0:4864:20::334])
+	id 1x3yJO-00000009aSN-0KcI;
+	Tue, 08 Sep 2026 16:04:42 +0000
+Received: from mail-pj1-x1033.google.com ([2607:f8b0:4864:20::1033])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x3yGV-00000009a3F-0QOx
+	id 1x3yJJ-00000009aRp-3foz
 	for linux-amlogic@lists.infradead.org;
-	Tue, 08 Sep 2026 16:01:44 +0000
-Received: by mail-ot1-x334.google.com with SMTP id 46e09a7af769-7f4f53975e6so4547144a34.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 08 Sep 2026 09:01:39 -0700 (PDT)
+	Tue, 08 Sep 2026 16:04:39 +0000
+Received: by mail-pj1-x1033.google.com with SMTP id 98e67ed59e1d1-398b3d66515so4643183a91.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 08 Sep 2026 09:04:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1788883298; x=1789488098; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=1HavqBuvOK9+7hkcuCpVB9Cv/dvjoerCr3RPaWhvFOI=;
-        b=NEZW/THB4m9aYMfdgx4j684Mpl+j9fhgqjVUs1RwpTB4OKqMMzsO5ef3843zyhIXOo
-         bg8l2/sz1v36/fPkT/RgcRH/HhSR6erBJB8so0QahnD5ymH4+iTunc9+nJ/FZJ763VhX
-         dGPZ7NJRlXJ4KMODmh62BZN99fsRI1lmr+W7ntfpjobzSRVhw5URo/YCvxDF1kBnCfv4
-         /yQAwkKhLVzrd4nPbCN0pso9NCinWAOMEEhhwaHBDpOhBL+dDWPc/rPX8dOBE/BTUG5m
-         TOO4s7s3XwA9S3qo6Sje9n6kr23BVZzh287GI8BbnmEBSrk2AJbs0/+S1+6Rl4954x08
-         9/Wg==
+        d=gmail.com; s=20251104; t=1788883477; x=1789488277; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=0Tzx5UI34JujonmDJzMPjBkhAE6c2rwa6ggnBzBUQec=;
+        b=ikvFSWxpNdsgzX10TNxTQcXfIVOUsV1KcCu44OHTeF+qFJl06CMeYe+cun3NL4G0z1
+         j6drtguHe3WttDee1PukKlX5jvc1Q8MV68GyiUI9QthVj8qH0AEmDnK2tHWMSAhw9QT2
+         l+vpaORHRSqikBkkhsXNInmvpNl3pOSoRBvFR6fHnLnpNxrfCrK+OLb4RMjW7lLtHcAr
+         AkbMVZp3+0tIxRA992irlIY99BuHGpD7lP5JdmDSbJ0Vd7ukx8tF4tIkL2MkqaaMpfIz
+         KybQ4mOBErJdsJSNzpUzAre/8WVymoLkMiluqMy4uaMXIe+EPeB5rXr+/bw25ATE+3tg
+         oMPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1788883298; x=1789488098;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=1HavqBuvOK9+7hkcuCpVB9Cv/dvjoerCr3RPaWhvFOI=;
-        b=QJywCYCA5PwePpo0ihP/ajkgmU323g6Anmf1EysiVmfmGPcY6mJMlEXHRNE+b/dPvP
-         VlTEg/QiHTJdMHlvHTTv8hNXL/yna7+0M7cagzgKNKh9SzVoNpe2hgS6Yp/2nvagPeyw
-         9oNVl5jipSDgZir2QOXxxtZqbsOW74MViA4WSwCX2JJZwfg07/cpgce6/IoXKYFkY9WF
-         jfZBnzk93mAucgqEUIrkTWqXB+cpGjtKeg80NbAvgGOcSTjuD2cBkdr1sOpx1H8Utotw
-         o9xt+O8a2VmqiojDj+I4C6iMoPOrhBrkT/FffkJa8YRFDgodLpdc3kCJRg6edtpdmKnk
-         sjfw==
-X-Forwarded-Encrypted: i=1; AKwUvBwntldTCDhSbel2KBf17BFFt2KWQOOIfbSWmPgX2lTf0bma948eZd0CuWIF9ORNtZu1oKjeeSVQL07Ylgql@lists.infradead.org
-X-Gm-Message-State: AFuF++leDVlCOR8okyUInSZb9jGdSJWQbeGR85RKHzLR86XWQxG4UMG7
-	oktyEGBpO1HHxU45K5+HeFXx6YQ2Ln+iSv+sW6cxV2zi35YvNu9mfDUJ
-X-Gm-Gg: AYBFou3JA+B6bLd1Wck7o9sh1aRgCZeIvVv9UA5BEAsakfBnCc0Tuv7E8aMUuvFER6d
-	ayJ/ZK5huVE6CfAAhYVuotQUlpQk48C1BPgM8hKy8wlfzdwiplwRYhlLRoCYkT9zlYvU9rYZjIe
-	nZ0H6WEE+dSsHJ7s97kyEFD6bBtOsEJWsuDExQ3fAgoGcjPxecbeH93OYQRCsJI3Ic574utAqhC
-	A5QQ2Uz34ncLghKgueu+h1L7Uf5CInnhYWTBAQQpKEe98vA0GC/bPnCpjHzgDGc5aJMfMXn0c/N
-	7WfLCZJUOf3ziXCWFa71Ns7v0ooHfVGCKqTNIGKGg6YpTYmcfGvAurh0MgL4y6aD0SB6o006Fkn
-	3RoS8dHmbnYuLatbVxkYX5WHYV7KL36EZ/u8MwRikqKdaGTc0U7LQL+ebmLUsAeYYBjl80SY5La
-	bxMRLWFD7uTcuELMEfY4yCgOfn/sxf1FUpBeRcLqzgwpiqQ4uWqXY0BNWtFknqEsD/RJsZuUaqB
-	w8w9g9v
-X-Received: by 2002:a05:6820:6ac3:b0:6b0:4170:59ad with SMTP id 006d021491bc7-6b6fc7d1f64mr19096852eaf.24.1788883295449;
-        Tue, 08 Sep 2026 09:01:35 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1788883477; x=1789488277;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=0Tzx5UI34JujonmDJzMPjBkhAE6c2rwa6ggnBzBUQec=;
+        b=EmxeE98eedKYMMO1R2eEecvL7jOUVeCX3jt49FrWMmRorv+qakfcXBmCCSMNejKpIp
+         DyG5ZoKlu+PooCkd0cd+43LUS3U3q3aOqPhu8xeujcD4e71MOzAqXirVlrdmGL467oFs
+         NxOxhrgknr0nt7UzFEbjXVqsh+FAP7ea3WWQniuxppKVHQjNq9Adxn7DTcuXmcD8pZgh
+         GaX7DOCH5ydSgrT1KFHg/+/axr3070zL30V6tZ3g1iKBByiIrsTzKWSLx7ifiMg9bU8r
+         z0MlkTYQcdegMjsj814I9I+yi8BGQ3PGkX4e+xEOQ59ZWOey4eyjwlkLwJrRQ6aue0sD
+         /psA==
+X-Forwarded-Encrypted: i=1; AKwUvBymgI34mz1OIWIgIvH9ynVJXhAbnmwjoW91pA9UfGNwWY/Mi8AyTlBPU9lEEjfeE0uLx5Qp39rj9zFQ8suN@lists.infradead.org
+X-Gm-Message-State: AFuF++nmSCff2kvGJWae5+OEMdHnbXeqTt/LvYV8TCNxyGMR7ap6YKgI
+	fgvT9s8GLzKbOizfML7jGkMHWjP1ew/OYBZrsZ4j7K0fhllYZ41PpMai
+X-Gm-Gg: AYBFou1clwgZb7MLlizsza0cmzKCOh8z0w7gbWSmmFbMWM/o7cMG/hrn+mRjiZptzd5
+	NIj5wFc407EC4oFBu4Len8nBhnQYxKF3hNVfRM+Ebh2HdQZCvUPHao/sgs1Yrh1yINtzqKsXfJq
+	MXmVvqwelgA0hOHc/BmIWK4ZnlScR+7TMS9zvaFFpY7QjaIXlmH5AGoHIL0aI0WAEL9PAIJfUq1
+	CiEtqr1tgwlhElWI5GVAviTtgpIcKLaMoJ7I/2EBKWJVAEIB6EucP1rjkL7URSL2tkTMSN2encC
+	sFsPhMr5NHvkNNPKpCODkixmUDaaxs7i4IC9MGVktDG/vo8gNu9zBA8Irnn9FCwtdp++v01EOCo
+	mTNw4U9tsC3eAqylpdtiFPX1+taWFKdZuJL/KXpG5QfgrTXRX0wavbByv/XWWPuRlFnAkxlIwbe
+	OW539sp/2nNSvNjp51krEBiZcUJ26XfegEQ+lsgDdMU+xi8LHjxNp9/XYY/TW89PXFBBJK1q5Fb
+	lQNCK8=
+X-Received: by 2002:a17:90b:1d52:b0:398:dcef:c040 with SMTP id 98e67ed59e1d1-39b26242a20mr46112186a91.19.1788883476937;
+        Tue, 08 Sep 2026 09:04:36 -0700 (PDT)
 Received: from kernel ([45.251.35.112])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3339a534df1sm43084171eec.7.2026.09.08.09.01.30
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3339bbf1feesm37459495eec.26.2026.09.08.09.04.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Sep 2026 09:01:34 -0700 (PDT)
+        Tue, 08 Sep 2026 09:04:36 -0700 (PDT)
+Date: Tue, 8 Sep 2026 21:34:28 +0530
 From: Mohamad Raizudeen <raizudeen.kerneldev@gmail.com>
-To: herbert@gondor.apana.org.au,
-	clabbe@baylibre.com,
-	davem@davemloft.net
-Cc: skhan@linuxfoundation.org,
-	me@brighamcampbell.com,
-	jkoolstra@xs4all.nl,
-	linux-crypto@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Mohamad Raizudeen <raizudeen.kerneldev@gmail.com>,
-	stable@vger.kernel.org
-Subject: [PATCH] crypto: amlogic: Fix IRQ handler return value and fallthrough logic
-Date: Tue,  8 Sep 2026 21:31:20 +0530
-Message-ID: <20260908160120.4805-1-raizudeen.kerneldev@gmail.com>
-X-Mailer: git-send-email 2.53.0
+To: Herbert Xu <herbert@gondor.apana.org.au>
+Cc: clabbe@baylibre.com, davem@davemloft.net, skhan@linuxfoundation.org,
+	me@brighamcampbell.com, jkoolstra@xs4all.nl,
+	linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH 1/2] crypto: amlogic: Fix IRQ handler return value and
+ fallthrough logic
+Message-ID: <aqAyDJq37-mCJL-2@kernel>
+References: <20260821151243.8125-1-raizudeen.kerneldev@gmail.com>
+ <apox0f2D6bYOYOnj@kernel>
+ <ap_T2wCesl3whdJV@gondor.apana.org.au>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <ap_T2wCesl3whdJV@gondor.apana.org.au>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260908_090143_145074_A3EC5FD5 
-X-CRM114-Status: GOOD (  11.97  )
+X-CRM114-CacheID: sfid-20260908_090437_914755_BB397EEC 
+X-CRM114-Status: GOOD (  14.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,46 +106,26 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-In irqreturn_t_meson_irq_handler(), when an interrupt matches a flow
-but the status register is empty, the driver prints an error but
-doesn't return. It falls through the loop and incorrectly prints an
-`unknown irq` message.
+On Tue, Sep 08, 2026 at 07:22:35PM +1000, Herbert Xu wrote:
+> On Fri, Sep 04, 2026 at 08:19:53AM +0530, Mohamad Raizudeen wrote:
+> >
+> > Just following up on this patch. Please let me know if you have any
+> > feedback or if further changes are needed.
+> 
+> Please repost this patch by itself since it's not really part of a
+> series.
+> 
+> Thanks,
+> -- 
+> Email: Herbert Xu <herbert@gondor.apana.org.au>
+> Home Page: http://gondor.apana.org.au/~herbert/
+> PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
-Fix this by returning IRQ_HANDLED immediately after the error print.
+Hi Herbert, 
+I have reposted this patch by itself. 
 
-Additionally, the handler returns IRQ_HANDLED for genuinely unknown
-interrupts. This masks false interrupts and prevents the kernel from
-detecting interrupts. Return IRQ_NONE instead for unhandled
-interrupts.
-
-Cc: stable@vger.kernel.org
-Fixes: 48fe583fe5417 ("crypto: amlogic - Add crypto accelerator for amlogic GXL")
-Signed-off-by: Mohamad Raizudeen <raizudeen.kerneldev@gmail.com>
----
- drivers/crypto/amlogic/amlogic-gxl-core.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
-index 6cb33949915f..302b398405e2 100644
---- a/drivers/crypto/amlogic/amlogic-gxl-core.c
-+++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
-@@ -38,11 +38,12 @@ static irqreturn_t meson_irq_handler(int irq, void *data)
- 				return IRQ_HANDLED;
- 			}
- 			dev_err(mc->dev, "%s %d Got irq for flow %d but ctrl is empty\n", __func__, irq, flow);
-+			return IRQ_HANDLED; 
- 		}
- 	}
- 
- 	dev_err(mc->dev, "%s %d from unknown irq\n", __func__, irq);
--	return IRQ_HANDLED;
-+	return IRQ_NONE;
- }
- 
- static struct meson_alg_template mc_algs[] = {
--- 
-2.53.0
-
+Thanks,
+Mohamad Raizudeen
 
 _______________________________________________
 linux-amlogic mailing list
