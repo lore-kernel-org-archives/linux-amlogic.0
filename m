@@ -4,94 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C869C79FB9
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Sep 2026 07:13:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA868C79FB9
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Sep 2026 07:14:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=AG/ZmMa1+zz7/haIoxPdC/eBB5c50zEA85l6A8rUNZc=; b=uCewJnwhSgzNsXYFLh9KsELGaU
-	wCe3lK7KkIvP99bIod/qvFD+W2pv0HM7vQZ+dKwjjvatNX3XGrnHL6AArRUTxrh1yknXefj3I10n1
-	JVcCO+6MSgnZ6rHI5v1n0CgYXgWuhq1OYTGROf9I+u+F3XOvxll84k3lv3cqfjTtwodUFzMN/Saar
-	lO5rRjLqg2feQVaeb5fgwtG757ipQQcCfhPZzpk9UfPGQ7JREkVq0DJ1c+hlaUt+X7NL4ClpbfAZ0
-	+MZzQkWyV9XN7E2D6lLjC8xsBixd4wp4O2kySKo2BIyA9Fis/760KezF2cPWDslALuyr3E7HqFMg7
-	fL9OyR5Q==;
+	bh=JCwpz0GRih3kAbPMaDTRMFB+ZP1OXWKPHH4LK3qiuX8=; b=WhBqGDKuF9OiMga6GgDv59+bGU
+	Q8w5AqEf6Z9C3OWzQzeuhvxnd4auM5u9vdXKhCTsbxO76TvS7BieODP8KYSZAK95aUlWNIUOQ/Cmb
+	ll3Q3vmoWpYuKt8dimg5emNjMH+/7GP4wosRf+CTvklErplGXe9bFkUKTsV3lLpuliEqJpVo66TIX
+	Y/QkJVrfS+xx3ISIkp238Ggxb4YAQmP98GTdUjrSpVmO7L238K0uPBQoVDx+9+y36ZyirhY2cTFmV
+	Q1iOTMAYcrs0GkpBlc8qBy8haaI3q5sdEJtTrHjbFNKDyLeiVPiok+VG2+yLFW8/yOOK0knJxjQYu
+	Mua0W9sg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x4Yyn-0000000DbIc-1G7Y;
-	Thu, 10 Sep 2026 07:13:53 +0000
-Received: from mail-wm1-f53.google.com ([209.85.128.53])
+	id 1x4YzK-0000000DbU8-1tDy;
+	Thu, 10 Sep 2026 07:14:26 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x4Yyk-0000000DbGW-0TSN
+	id 1x4YzI-0000000DbTH-0NLu
 	for linux-amlogic@lists.infradead.org;
-	Thu, 10 Sep 2026 07:13:51 +0000
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-49ccfbe062eso66337055e9.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 10 Sep 2026 00:13:49 -0700 (PDT)
+	Thu, 10 Sep 2026 07:14:25 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-4843e9c5960so6340677f8f.0
+        for <linux-amlogic@lists.infradead.org>; Thu, 10 Sep 2026 00:14:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1789024428; x=1789629228; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1789024462; x=1789629262; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:in-reply-to:organization
          :autocrypt:content-language:references:cc:to:subject:reply-to:from
          :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=S9vc3vyc7s51kw3mexUDG6KTzAQ8qZ7SaFb2GyTr25M=;
-        b=SV/JsOfGfyE+XdJ0Bwq5PUNRK+8uEnl4T33b+PE0oKgLBtv3GM4WJeONKe8VpAevUX
-         Botz6nAornFqqoPSPmK/sQ49ExUq4fQWVMtE9NVjcwfivfuMaClZE645xJ2hiykWPHMd
-         5PY/F6nxtfEO4cYBTKABk0XbDXJK2ePx2zcTOZl72fuCyNFLEZOo7WR8U2PDNBuHikzI
-         oVf81+oKtCx2Pet220Ok8yEcZX3mvZyr5iSLoOowAd9iPWKNhkaWcCE9798eEIqeLFc4
-         jTu8OFDJWQ8P82ZOzbOjyMusdn0lcqQCFrMWq4mIjdg/g8Y6vQF/CbdhWI01jdz9AYYg
-         UW+A==
+        bh=JcyMbgDgyo89MWk1toywy6KeNj1X5yjPwiq8FggZGfQ=;
+        b=b1I0qHtr2qPsk/CocS+cmdj0Spr2Al8vgl0aJGXfNKSEIS7taZSMVIZe38k+zt9E2q
+         AqRPgLm/XAqC9SSWlXB3nW2jtxJcHcZUMmZBC4aY+oUfmju3yRUiqZmGCUG1Os64O5g3
+         Zkc55iE6m0FDF4Va49tOP2WNgXsJrvAYY6L21NztY99F2yw5d7eDhL6RN+1BM+P35qlZ
+         cpwfQd4IkljNWq38g0d2iR2P0HqzyQVUpszHjvqBhS9iRlefLShXtxmkQqxdQjiSIHK7
+         0LtVtwnxfNB+40GIIRQj41DR0tUqmQ5TV1048BbltwrWuLLaobsGiXpU1baWNbbGI+nR
+         UW0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1789024428; x=1789629228;
+        d=1e100.net; s=20251104; t=1789024462; x=1789629262;
         h=content-transfer-encoding:content-type:in-reply-to:organization
          :autocrypt:content-language:references:cc:to:subject:reply-to:from
          :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=S9vc3vyc7s51kw3mexUDG6KTzAQ8qZ7SaFb2GyTr25M=;
-        b=JoMyjg5rMC4TOnCtsrzAoOlJg1Z0bBXVMTZs9PC+icxJFfmbuNuvCE3RgPUQZH8RrT
-         Yua70SnRNTHhSqOdkN8WU7oEPZaHZYguFXrFyByX794ak6Q56t6Bmz31jME8/dNNwIUV
-         zxE6TNezrnMI6aMIV2I4P2GUc2ndw93uT9UFTQ7GVTOpQqvYG3Wk1MlK/rONQEehbVDG
-         7tsYAWIB+DE3+g9Dpi2XQUe2FhwvSu10jJkXUF9Cxi5cGnwfzy2CRhWp6opstDW0u9ai
-         WwW7O5bY5aomb6Hy4yAj6EDlftOlbGNeo+BN3FlTbjo7BsDsWy/bSTOjTxkIf47fa3dK
-         bVNg==
-X-Forwarded-Encrypted: i=1; AKwUvBznKdwyFGirv14ToLsu/nQcyKXNeDSFXrIcZPnTruu+gfmDA2Tle0pLTAKn08wH4pvlYVDcDK6pdDsi//HR@lists.infradead.org
-X-Gm-Message-State: AFuF++l7iu7WERg12KW1jLTFKulVDIyjvSrvgeyFa5Smk526igPyCDMj
-	wcMe3Rcmf+oBP38EJUoeB46vVFgUvAgPKnOr4NF6mN7mGLJePIoBNos9EztqQZxeKd8=
-X-Gm-Gg: AYBFou2RhYu+1QhztoSiL/BqNFClcGkG+rjvTQbLmMNHprqFBbjw4UmHSrNPJqTbgWf
-	bZ1WD10lcEtfH3iNPQxhBBKb5smByB2vssTWBttkeBxe3DQ42vKScHz0Q54fq9d3jfppYcD/g2c
-	l3X3sim8rvs0WR6QaRXk7V4GYVHiodGT5oVWpNWWlnlXhnxRxD6j6dZP2gdRDpAXh2s1+YiHRWK
-	DGHll8Kyv1fk5wrz/oK59dsc0CpSqcIwvgOVGcMeQ2kpvwYlRRLcQQ3B7Ybz9lM1HTmwSDHUzM3
-	FgC9NvyN3eeskcR2EdsWfg5dcBr8Xqi8oDDJ72U/tCeW+JMjEBt/zxtpy2WZI8V7S15zjzDSvBW
-	gOT41q4p7OsnqxQ7E6UECJBGdYEPqW7A0ullA6WN2UqAl034OpxIKuKkUlzF5ILLdwudD1hByDG
-	36Y4ESPYigbIhkqUVfab+BkKQfrg7xCz55NjzU9rtQA+U6FVNwtYF/afCXf/opqzX+zxqyvx3+E
-	D55Ci7st19Ce5E9+aZv/P1+p0k+9C0doA7iBWsdx+Ue9ER+/tmWbmLm4Fq0AKQ6mw==
-X-Received: by 2002:a05:600c:37c8:b0:49c:cee2:a508 with SMTP id 5b1f17b1804b1-49cf826c4e2mr379662315e9.16.1789024427828;
-        Thu, 10 Sep 2026 00:13:47 -0700 (PDT)
+        bh=JcyMbgDgyo89MWk1toywy6KeNj1X5yjPwiq8FggZGfQ=;
+        b=UvB9WmylZrMsXxU1j2pbviZX0EtX+b7XmlR1L5YsaMvnQBmQxG6Hv14KgK/QfjMMfl
+         G73HjCBH709V/Ppkdl4xtuK7FKcf2/4g3kkGkzMHIwpbdEYQftX52KhW3pIaoLiL8QUX
+         35bFE5rEBoGnbLvAXJG5te8NnuVr8b8KIUM952FQDn0UljvQK+wBiqwqZMNgZYT6ozca
+         6y508GyqG0xm1Q+mUSlSNCGoQA4a1+auYNS+E9EDcvryRvxgtM/+qjulSYgiEVViheWm
+         2oAbgGp8UPCSu0Y8PBcdrA6MQ463B8pB4IYS4vbWl021ewY79fgOJGgMXAzzkmZiws6o
+         eBhg==
+X-Forwarded-Encrypted: i=1; AKwUvByZcfumrqzO49MxLMpTEGUikl5CzlFLYLM99OiMlGR77+Beua39v95OkayJr2G9AmTzb3aZSlIW2Q5SggZx@lists.infradead.org
+X-Gm-Message-State: AFuF++k4upxInzpP1MSeFr5Sq9FJpb2N75HTTe+XwSyIsDAit0ZIbox9
+	TqE2fz6AJnqLwaeUVLc+BWNBXV3i756PrKelEJpQY7Y9hh/bDBg0PjSstYp4TykCI4I=
+X-Gm-Gg: AYBFou0KnEwtlPaF8qda+UumNZYc2B9JItbcmaQT6JPWhk85YnzgK6P9X62sOarK4FB
+	9Lea/NwbIhxlaSaYZ54MWakNbDz/JyDvpsDWJF/LebUMDJoj3t6ad3J6/fMoTTRsRqkOq4y/dTY
+	CY8wwNvWEaIuRSuJQ2ywItV047ybqQMt7AWHR7L6ksypGnSM2gR1c1dPx42qxFc7dhXT8km5fDx
+	VwdYTDKKvILrT9rpJ4/oyKmLQdVDpFLr2GolUzr7cCkBWS0ny/uH6FDltzDHmDipdx6gPIetOZI
+	R3Clduo0HfE7mEO9AO/RgJE3rp9IBc0bx9L1bopocH67Vmxk/IEPIeMM4YHsh5tdnsX8i9QVRuf
+	c8vyuSHfIz30O4g1YYJCgVtW8AMgAOKvDcfiYeAnO7tLZQyVHXWlVTfvBb2uX/rgdgwbwbT5Aci
+	2xAeJffzDC9JUjDhi4tnZ9jvQBRATutISTyVx8SxaoZC4J+ShJcigPExEGfx1bHbWMwSXXcfH6M
+	kPitXo4GUEpIcWzt/17l+XVtA73CcD1sexpaEecdQOBrsxjIlRBlw==
+X-Received: by 2002:a05:6000:25c9:b0:485:ac96:7264 with SMTP id ffacd0b85a97d-485ac967432mr8582029f8f.5.1789024462022;
+        Thu, 10 Sep 2026 00:14:22 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:106d:1080:3caf:d840:c911:29a9? ([2a01:e0a:106d:1080:3caf:d840:c911:29a9])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4858d312ca0sm51612002f8f.4.2026.09.10.00.13.46
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-485883a9b49sm41176221f8f.17.2026.09.10.00.14.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Sep 2026 00:13:47 -0700 (PDT)
-Message-ID: <d2e31f11-24ab-4d2e-8f49-d625e1aec930@linaro.org>
-Date: Thu, 10 Sep 2026 09:13:44 +0200
+        Thu, 10 Sep 2026 00:14:21 -0700 (PDT)
+Message-ID: <e51d62c0-7d02-4516-8f03-9d1be8c5c64b@linaro.org>
+Date: Thu, 10 Sep 2026 09:14:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 4/4] clk: meson: t7: don't mark sys_ampipe_nand as
- critical
-To: Lucas Tanure <tanure@linux.com>, Ulf Hansson <ulfh@kernel.org>,
+Subject: Re: [PATCH v3 2/2] arm64: dts: amlogic: a9: Add IR controller support
+To: xianwei.zhao@amlogic.com, Mauro Carvalho Chehab <mchehab@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Stephen Boyd <sboyd@kernel.org>
-Cc: Brian Masney <bmasney+clk@redhat.com>, Chuan Liu <chuan.liu@amlogic.com>,
- Jian Hu <jian.hu@amlogic.com>, Ronald Claveau <linux-kernel-dev@aliel.fr>,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260905153234.133217-1-tanure@linux.com>
- <20260905153234.133217-5-tanure@linux.com>
+ linux-kernel@vger.kernel.org
+References: <20260903-a9-ir-v3-0-cd471c667c15@amlogic.com>
+ <20260903-a9-ir-v3-2-cd471c667c15@amlogic.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -118,10 +114,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20260905153234.133217-5-tanure@linux.com>
+In-Reply-To: <20260903-a9-ir-v3-2-cd471c667c15@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260910_001350_176965_764226BA 
-X-CRM114-Status: GOOD (  20.29  )
+X-CRM114-CacheID: sfid-20260910_001424_158173_5361477C 
+X-CRM114-Status: GOOD (  12.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -139,51 +135,68 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 9/5/26 17:32, Lucas Tanure wrote:
-> sys_ampipe_nand clocks the pipeline stage inserted in the bus path
-> between the SD/eMMC controllers and the NIC_MATRIX fabric. It does have
-> identifiable consumers - the three MMC controllers - so marking it
-> critical was the wrong tool: the clock should be referenced from the
-> consumer nodes and claimed by the mmc driver instead.
+On 9/3/26 07:22, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > 
-> Drop the CLK_IS_CRITICAL flag and update the comment accordingly.
-> sys_am2axi0..2 remain critical as they clock the AXI DMA bus itself and
-> have no single identifiable consumer.
+> Add the IR controller node for the Amlogic A9 SoC and describe the
+> corresponding remote input pin configuration.
 > 
-> Assisted-by: Claude:claude-fable-5
-> Signed-off-by: Lucas Tanure <tanure@linux.com>
+> Enable the IR controller on the Amlogic A9 A311Y3 BY401 board with the
+> proper pinctrl setting.
+> 
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
-> This patch depends on the MMC controllers actually referencing the clock:
-> the dt-bindings, mmc driver and t7 DTS changes adding the "pipeline"
-> clock must land before this patch, otherwise the boot hangs and memory
-> corruption this clock caused are reintroduced.
+>   arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts |  6 ++++++
+>   arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi             | 14 ++++++++++++++
+>   2 files changed, 20 insertions(+)
 > 
->   drivers/clk/meson/t7-peripherals.c | 10 +++++-----
->   1 file changed, 5 insertions(+), 5 deletions(-)
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts b/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts
+> index a6b380ca47a5..389c9de3dc3c 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts
+> @@ -38,3 +38,9 @@ secmon_reserved: secmon@5000000 {
+>   &uart_b {
+>   	status = "okay";
+>   };
+> +
+> +&ir {
+> +	status = "okay";
+> +	pinctrl-0 = <&remote_input_ao_pins>;
+> +	pinctrl-names = "default";
+> +};
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
+> index b0e0fadeed82..790109aa7c9c 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
+> @@ -241,6 +241,13 @@ test_n: gpio@c0 {
+>   					#gpio-cells = <2>;
+>   					gpio-ranges = <&aobus_pinctrl 0 (AMLOGIC_GPIO_TEST_N<<8) 1>;
+>   				};
+> +
+> +				func-ir-in {
+> +					remote_input_ao_pins: group-remote-input-ao-pins {
+> +						pinmux = <AML_PINMUX(AMLOGIC_GPIO_D, 5, 1)>;
+> +						bias-disable;
+> +					};
+> +				};
+>   			};
+>   
+>   			gpio_ao_intc: interrupt-controller@4080 {
+> @@ -254,6 +261,13 @@ gpio_ao_intc: interrupt-controller@4080 {
+>   					394 395 396 397 398 399 400 401 402 403>;
+>   			};
+>   
+> +			ir: ir@14080 {
+> +				compatible = "amlogic,a9-ir", "amlogic,meson-s4-ir";
+> +				reg = <0x0 0x14080 0x0 0x30>;
+> +				interrupts = <GIC_SPI 413 IRQ_TYPE_EDGE_RISING>;
+> +				status = "disabled";
+> +			};
+> +
+>   			uart_b: serial@1e000 {
+>   				compatible = "amlogic,a9-uart",
+>   					     "amlogic,meson-s4-uart";
 > 
-> diff --git a/drivers/clk/meson/t7-peripherals.c b/drivers/clk/meson/t7-peripherals.c
-> index 55d09e78593b..2f429ea86796 100644
-> --- a/drivers/clk/meson/t7-peripherals.c
-> +++ b/drivers/clk/meson/t7-peripherals.c
-> @@ -945,13 +945,13 @@ static T7_SYS_PCLK(sys_aucpu,		SYS_CLK_EN0_REG0, 14,	0);
->   static T7_SYS_PCLK(sys_cec,		SYS_CLK_EN0_REG0, 16,	0);
->   static T7_SYS_PCLK(sys_gdc,		SYS_CLK_EN0_REG0, 17,	0);
->   static T7_SYS_PCLK(sys_deswarp,		SYS_CLK_EN0_REG0, 18,	0);
-> +static T7_SYS_PCLK(sys_ampipe_nand,	SYS_CLK_EN0_REG0, 19,	0);
-> +static T7_SYS_PCLK(sys_ampipe_eth,	SYS_CLK_EN0_REG0, 20,	0);
->   /*
-> - * NOTE: sys_ampipe_nand and sys_am2axi0..2 provide the clock to the AXI bus
-> - * used for DMA between the peripherals and the DRAM. After the clocks are
-> - * disabled, a device that starts a transfer cannot complete it.
-> + * NOTE: sys_am2axi0..2 provide the clock to the AXI bus used for DMA between
-> + * the peripherals and the DRAM. After the clocks are disabled, a device that
-> + * starts a transfer cannot complete it.
->    */
-> -static T7_SYS_PCLK(sys_ampipe_nand,	SYS_CLK_EN0_REG0, 19,	CLK_IS_CRITICAL);
-> -static T7_SYS_PCLK(sys_ampipe_eth,	SYS_CLK_EN0_REG0, 20,	0);
->   static T7_SYS_PCLK(sys_am2axi0,		SYS_CLK_EN0_REG0, 21,	CLK_IS_CRITICAL);
->   static T7_SYS_PCLK(sys_am2axi1,		SYS_CLK_EN0_REG0, 22,	CLK_IS_CRITICAL);
->   static T7_SYS_PCLK(sys_am2axi2,		SYS_CLK_EN0_REG0, 23,	CLK_IS_CRITICAL);
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
