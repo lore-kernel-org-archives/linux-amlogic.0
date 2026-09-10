@@ -4,121 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66D4AC79FB9
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Sep 2026 07:23:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77A58C79FB9
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Sep 2026 07:24:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=qG6aVtqdE50rFV9G6LApQvhgNh5CIkAosKKltpk2pK8=; b=ScoyJiPllgrAsEPELPpjeDHlMv
-	cSZ1ZZaPcLdChlJiHf7e0o3Z+/Yaa7ElYwTAL9fPIMa0BDmAlnGPkBrpRJXGlzVlwxsGq07vmZLj0
-	shHkiz/rf5OUpK46vnlnhqFya4nSdK7uO0p3K7IWPEaI6VygxOtZ/5aOoaJqV9xJ2aplt4NouQefy
-	jomrWxXGyV/Ly7dsEJ6D3icEvoQQTWe1FFh5wJBehrVldNoYykSsjDwCTeHbDxLpecRzNIdxVPoIZ
-	eprM6Ysx4oefmyC01LMWjV0gfB/uhAxslWTob7fHUkWTdnofVTPPJlAP2y1beuBy+LEQvm76lYzX2
-	hcqJ/H5g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ey3nZVG2Yqzss2rKKQWYL2LXl2r8aEFP1KDx8hQMre4=; b=kjsm8KRfcBf6JA
+	SClhx70yFxaAMucBh5nQJcuSHsW4A+eFkfdFehTM4K+8cMg2Yh/AqS+SJftZ3NhedYwELyvXQ7EEc
+	DkzWn3RPv+kMNBNYEAZAx6VzG1bt5AFRCXus9ol1Q/QKMmjf058swo8jV/b7wxP/CEeTTgNHwyUGx
+	jjYu6Pzml3DPPhLc3Plnprg1Cgh4C8jlFfxBqiOt7I/MNjhRansnz4UmpFaBbw1EFVRULDXABfP1m
+	e9qf141LllH1BNJcJ0CeAVsHZwbtAIRd2iNgbeol4vfywR3O+Wn9vQFbpf4MtxPwC87xPrEBFGqnP
+	n8+noktNHMe9x3wAARsQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x4Z8V-0000000DcRg-1BYY;
-	Thu, 10 Sep 2026 07:23:55 +0000
-Received: from mail-wr2-x10.google.com ([2a00:1450:4864:30::10])
+	id 1x4Z8w-0000000DcZd-2veI;
+	Thu, 10 Sep 2026 07:24:22 +0000
+Received: from mail-wm2-x10.google.com ([2a00:1450:4864:31::10])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x4Z8S-0000000DcQj-3OYe
+	id 1x4Z8t-0000000DcXt-3Hag
 	for linux-amlogic@lists.infradead.org;
-	Thu, 10 Sep 2026 07:23:54 +0000
-Received: by mail-wr2-x10.google.com with SMTP id ffacd0b85a97d-482f6356f6bso897791f8f.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 10 Sep 2026 00:23:52 -0700 (PDT)
+	Thu, 10 Sep 2026 07:24:21 +0000
+Received: by mail-wm2-x10.google.com with SMTP id 5b1f17b1804b1-49cd38e0e5dso12510445e9.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 10 Sep 2026 00:24:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1789025031; x=1789629831; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:organization
-         :autocrypt:content-language:references:cc:to:subject:reply-to:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+        d=baylibre.com; s=google; t=1789025058; x=1789629858; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=wMpBVc24Sz11F3KFnL8+840MzJ31UofYHjzEvyoJR1s=;
-        b=SbFwrCyhrOx8MtTpZFnMLag8/nVz+z3He+lCieupSkcwrSRiICqa89tvsuG2C5eiFC
-         EXQsEamIQGATJWONAuSYB4GJWBOvJpTTpjqUAR2efUBcygkuqf1SZlJmKk4VYAjrNmyX
-         MPyQ/wrjWUoZLWQKBKmLqSdYGZ8Q7xmXZCTxGoJ3YVry3bQbow2zO/q+p8ljYys2j/ll
-         Z2xXIz51TFZHSJCYfox5S6IDFoefxlDnDSQLMtDswxnTj8dy58CtDckJHSYusS9yiiXC
-         Kc2u8LD0nAPZu369YhrpLYUt8d9iM0xGO0eUTzaxWfCNj8c1aeNE9NhME0LkMdbt+SSN
-         rNsg==
+        bh=uPxNHkZ825vy8qHU6Jaj099Tz7xshHGr54ytMScKCjY=;
+        b=Ec/LM9Gb2dwud4UjwRoMpgNh9UsapwdBOiwWjfNvBXFdQDEXQkFBgHuc/kWvYISVpj
+         LhRO7B1gNUBLgkzSDIzKZrt7v77vO1VqsdtD7HbxBUhJoqEUCz4oqeLWJbNyUn5jD/bV
+         xyRvPICuIOn3J906xdQuOaMWXNM0wkzL093wtiyCwTBTPmpmUbHF5rNihLiWsrhOuU+9
+         NhImlKSNsx/cQujZ6zCaqcQoyyzBTHHEU4uC83orRNHbudml6R/jRPtmOP21irwZhzY9
+         nEnYOgIH0ftrtHZHpj4chIx9QatVogEsPGMZyyEdvff6cesEDgfioAO/2q07v6BLmb+Y
+         fgCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1789025031; x=1789629831;
-        h=content-transfer-encoding:content-type:in-reply-to:organization
-         :autocrypt:content-language:references:cc:to:subject:reply-to:from
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=wMpBVc24Sz11F3KFnL8+840MzJ31UofYHjzEvyoJR1s=;
-        b=RONnUxuEhWXTwCTBkAXveHnjTzgPCgNIUdbXS4Iu6x15oXRsiTBx9v0i+EO2nOhJkE
-         xQMgqIIHuYK1Ey1VN+GZldaV/U+8RnKl6w3u3aZgwFQ4pdRyKhtuex8tjv0ty+o4T8z5
-         HSZijREY0W91qdnvJfazRq3s/tb8fUNJ7JpgTepUZIz0AWmajtya0hBywHBO8St+iyfY
-         ONwN6sMSJltS2MSuJw2lOQGynRFI41jODSo74A3O3Sv66MYapiaYQJmaYkOUwD7WxFRU
-         qWl2sjT1j5djdg5bKTKt0c10mhx9BUb9SqfpcZ9hbsK1+RqyEX7EURSY6RwJH4bwukDZ
-         K6+g==
-X-Forwarded-Encrypted: i=1; AKwUvBwWVpV2hmevjsehDFeBz3t6TuUagzjdWQUGpa9hlRWrzdPlodKvSQKypFHSEKYbiDqCuspRRJlx7pa60kb6@lists.infradead.org
-X-Gm-Message-State: AFuF++kZC1VZbBTJTx6lZVebIBZHf/8YsV0UvcV7UgXdeo8EfpS/zcI/
-	mNM8Rj8e2fbJbsivxqSN4RY5+B4xIDoCvIyQ4/hYzKbTSI4cf5rmAEFlZZW6ZNG7WeQ=
-X-Gm-Gg: AYBFou2HCWWDcINetb+GXNR8Dqcrw1pi1W2ToY3L96Ek4H0UfSgeD5/aIa6T97/RUot
-	r7BG9OpFya5CZTFN7SBNbYvOXBvo0UGkSM6NWtL1RC1YjsD5K+Fq9xtWpq1HyzywMUgTLNRQXpV
-	1a9v80Id8YHGAYF0S6y4GhZv8M8lcdxoxhJ4V3F9Uf8DYtnDxe/y3D5GHRxdiT53bSxEJcHGM3C
-	jJ6oUMHStX1FMFC3sLT1TBJOfPzebgGluMQEpVNnYxszm87jZIvtAjRr7Bm80CiVK5KnjRYr0io
-	MOy3RFsg+T0clT+hTC6MPrju9a+YfiSI1oSMgBoogBy274NQu/W12sNq53QbVTyoDJ1CJr68SI3
-	LFMvyusiSPM6fpy3MbL6rFG4ipSBcqiNlsdsaSYERBDfAxCpVWIn+M7OACPbsAKpLYl3v4vD1eY
-	8tHdDpijuK3T1Wd610kUiK8ziDvdgdDzD3R4pDqL1QNmEkVfDI/8M4Wu4EIXq5XfwdctaOggZPc
-	IcEwqF0AbAB59mTwwuhmh423unx/eQ1C9g4JLKg/0tm6vYFYiZeMWAoFZsG+CY2
-X-Received: by 2002:a05:6000:2dc5:b0:485:afd8:3e42 with SMTP id ffacd0b85a97d-485c23ec07cmr11470084f8f.22.1789025030483;
-        Thu, 10 Sep 2026 00:23:50 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:106d:1080:3caf:d840:c911:29a9? ([2a01:e0a:106d:1080:3caf:d840:c911:29a9])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-485885bbb51sm51488978f8f.30.2026.09.10.00.23.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Sep 2026 00:23:41 -0700 (PDT)
-Message-ID: <ca31e73c-09be-43fe-8904-8a813152c3ca@linaro.org>
-Date: Thu, 10 Sep 2026 09:23:18 +0200
+        d=1e100.net; s=20251104; t=1789025058; x=1789629858;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=uPxNHkZ825vy8qHU6Jaj099Tz7xshHGr54ytMScKCjY=;
+        b=NOk6BNABPc28f+vMGPFRCfx1amsK5y1AAlQuyeDH/r+NXQKYprRCUAuUZcUNm8l2TW
+         ufin3CGubP0Bl+/0p/73d8h8o4+g4G7rGLj5dXUd80M/jxUdhLqMcbkPkh+4rtZzUyAU
+         tmp9x18gQrCWIlIFVUGxrRCH0lFVgX1BaFutZRi6cTai3xctzsLRhrByo+dNBzccQ4yG
+         A2bFBBFebwaFe5UGOdC5VWnuQcHwbOATue6ykHI0o2RiFva8VqSpdJ7hfb7foaxYm0qf
+         lWdiAiZiVAM29Y1FFI3kmSa/15w9x3aaOJ1Guq06uoZSIqf4QVPlNwtGKdkcCeL911EL
+         tCsA==
+X-Forwarded-Encrypted: i=1; AKwUvBzTiAOm9vwWvQDWzpWI+Fa7tnas8mUc/MoHwXRZ6mYxR5DAtnSPvb+bvscBt3iLyFxyUf/GzZnTyjbTZ/rW@lists.infradead.org
+X-Gm-Message-State: AFuF++l7oeCiTPTg0GWSn828kgbXn6F11f3Cja4FPFjTTPss4TLeV3CJ
+	hgUujHvfUTvWgh2OEbWHOzaZGc6RlK/vIPUlQejhm0UkEe6RSW5bhKdBJ1yoXLCWf3Q=
+X-Gm-Gg: AYBFou2IrTpjeQ6EcCkII/O0W2Jpmc6FEvHRWcc17IESQZC5JnOHaAmCvuoN8gib7Qm
+	+EZB9ak+sGE8fo4V4Kbt/uSD/jhdFBzVp24Q8j/OuWuNyUz7kHC1H6jEh3T4yEdM24E/tFVnWo3
+	pA2L1Cg9YF88vO+CDygV2d3QzVN98IVK5iV/jp0reYlVnA84/wep9e8Bu4I5sZtT0eNfEODLbM3
+	waxrdn2HIx++jIbWR+P7THQRjL2rw6ovcCMFffxA7h7vf2k3wDQT7ERmYz5gSE60sSyBqOLUElH
+	j6GJzZwGFb6Ib0E5HsSS2dE14D1bJ6hKs97ppAgml9ersERJPBTcjz/vjkhyGFBrpY9fsR8FiD0
+	BRqElyZcXRTR5XNfuYn6Orssxi/3djG2FuZeIGmOPB8jZAzdiZD3Y9UyO6zNNZE60d9oOfqVCYR
+	LxejJkJSfIF9X/G+X1Yz4c+rQJRKorx9mWwpz0YOvtVPuJ1246i/mpBeNJ/iLGtNClWs4AerKW3
+	4lCXwf0DYChhhR6/A==
+X-Received: by 2002:a05:600c:1d9a:b0:498:943:ccc0 with SMTP id 5b1f17b1804b1-49d258ef83amr119431425e9.6.1789025057742;
+        Thu, 10 Sep 2026 00:24:17 -0700 (PDT)
+Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-49d26bf332esm47937635e9.8.2026.09.10.00.24.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Sep 2026 00:24:17 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: stable@vger.kernel.org
+Subject: [PATCH 6.6.y] clk: meson: align gxbb_32k_clk_sel number of parents with actual count
+Date: Thu, 10 Sep 2026 09:23:47 +0200
+Message-ID: <20260910072347.317012-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <2026090928-playmate-skating-2109@gregkh>
+References: <2026090928-playmate-skating-2109@gregkh>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] drm/meson: fix device_node leak in
- meson_encoder_dsi_probe()
-To: mileskrause5200@gmail.com,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Nicolas Belin <nbelin@baylibre.com>, Jagan Teki <jagan@amarulasolutions.com>
-Cc: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260906-meson-dsi-of-node-leak-v1-1-9d183560279d@gmail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20260906-meson-dsi-of-node-leak-v1-1-9d183560279d@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260910_002352_882567_C15DF7B2 
-X-CRM114-Status: GOOD (  17.31  )
+X-CRM114-CacheID: sfid-20260910_002419_845460_86C25237 
+X-CRM114-Status: GOOD (  14.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,63 +93,97 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 9/6/26 21:43, Miles Krause via B4 Relay wrote:
-> From: Miles Krause <mileskrause5200@gmail.com>
-> 
-> meson_encoder_dsi_probe() looks up the DSI transceiver's device node
-> with of_graph_get_remote_node() and hands it to
-> of_drm_find_and_get_bridge(), but never drops the reference that the
-> lookup returned.
-> 
-> of_graph_get_remote_node() returns the node with its refcount
-> incremented, and of_drm_find_and_get_bridge() takes its own reference
-> on the bridge it finds, so 'remote' is leaked on every path once the
-> lookup succeeds: on the -EPROBE_DEFER return taken when no bridge is
-> found, and on a fully successful probe alike.
-> 
-> The two sibling encoders in this driver already handle this correctly.
-> meson_encoder_cvbs_probe() calls of_node_put(remote) immediately after
-> of_drm_find_and_get_bridge(), and meson_encoder_hdmi_probe() releases
-> the node both on its error path and after of_find_device_by_node().
-> 
-> Release the reference in the same place meson_encoder_cvbs_probe()
-> does, which covers both the error and the success path.
-> 
-> Fixes: 42dcf15f901c ("drm/meson: add DSI encoder")
-> Signed-off-by: Miles Krause <mileskrause5200@gmail.com>
-> ---
->   drivers/gpu/drm/meson/meson_encoder_dsi.c | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/gpu/drm/meson/meson_encoder_dsi.c b/drivers/gpu/drm/meson/meson_encoder_dsi.c
-> index 3e422b612f74..3fe604496294 100644
-> --- a/drivers/gpu/drm/meson/meson_encoder_dsi.c
-> +++ b/drivers/gpu/drm/meson/meson_encoder_dsi.c
-> @@ -120,6 +120,7 @@ int meson_encoder_dsi_probe(struct meson_drm *priv)
->   	}
->   
->   	meson_encoder_dsi->bridge.next_bridge = of_drm_find_and_get_bridge(remote);
-> +	of_node_put(remote);
->   	if (!meson_encoder_dsi->bridge.next_bridge)
->   		return dev_err_probe(priv->dev, -EPROBE_DEFER,
->   				     "Failed to find DSI transceiver bridge\n");
-> 
-> ---
-> base-commit: 88405f0ad1d5c680afe3ea0ce9345fa9e1deaac8
-> change-id: 20260906-meson-dsi-of-node-leak-744899da5712
-> 
-> Best regards,
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+The following out-of-bounds read has been observed by Christian on a
+GXBB WeTek Hub:
+==================================================================
+BUG: KASAN: global-out-of-bounds in __clk_register+0x1b70/0x2418
+Read of size 8 at addr ffffd66320cf88e0 by task swapper/0/1
 
-Thanks,
-Neil
+CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Not tainted 7.0.0-rc5 #1 PREEMPT
+Hardware name: WeTek Hub (DT)
+Call trace:
+ show_stack+0x14/0x20 (C)
+ dump_stack_lvl+0x74/0x94
+ print_report+0x164/0x4b0
+ kasan_report+0x98/0xd8
+ __asan_report_load8_noabort+0x1c/0x24
+ __clk_register+0x1b70/0x2418
+ devm_clk_hw_register+0x74/0x15c
+ meson_clkc_init+0xd4/0x20c
+ meson_clkc_syscon_probe+0x5c/0x94
+ platform_probe+0xbc/0x17c
+ really_probe+0x184/0x844
+ __driver_probe_device+0x154/0x35c
+ driver_probe_device+0x60/0x188
+ __driver_attach+0x168/0x4a0
+ bus_for_each_dev+0xec/0x180
+ driver_attach+0x38/0x58
+ bus_add_driver+0x238/0x4c0
+ driver_register+0x150/0x388
+ __platform_driver_register+0x54/0x7c
+ gxbb_clkc_driver_init+0x18/0x20
+ do_one_initcall+0xb8/0x340
+ kernel_init_freeable+0x49c/0x52c
+ kernel_init+0x24/0x148
+ ret_from_fork+0x10/0x20
+
+The buggy address belongs to the variable:
+ gxbb_32k_clk_parents+0x60/0x400
+
+The buggy address belongs to a vmalloc virtual mapping
+The buggy address belongs to the physical page:
+
+Memory state around the buggy address:
+ ffffd66320cf8780: 00 00 00 00 f9 f9 f9 f9 00 f9 f9 f9 f9 f9 f9 f9
+ ffffd66320cf8800: 00 04 f9 f9 f9 f9 f9 f9 00 04 f9 f9 f9 f9 f9 f9
+>ffffd66320cf8880: 00 00 00 00 00 00 00 00 00 00 00 00 f9 f9 f9 f9
+                                                       ^
+ ffffd66320cf8900: 00 01 f9 f9 f9 f9 f9 f9 00 06 f9 f9 f9 f9 f9 f9
+ ffffd66320cf8980: 00 00 02 f9 f9 f9 f9 f9 00 00 02 f9 f9 f9 f9 f9
+==================================================================
+
+Commit 7915d7d5407c ("clk: amlogic: gxbb: drop non existing 32k clock
+parent") dropped a non-existing clock parent from the gxbb_32k_clk_sel
+mux but didn't adjust the hard-coded num_parents field. Fix the actual
+number of parents of that mux by using ARRAY_SIZE instead (avoiding
+similar problems in future).
+
+Fixes: 7915d7d5407c ("clk: amlogic: gxbb: drop non existing 32k clock parent")
+Reported-by: Christian Hewitt <christianshewitt@gmail.com>
+Cc: stable@vger.kernel.org
+Tested-by: Christian Hewitt <christianshewitt@gmail.com>
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Link: https://patch.msgid.link/20260623201956.1324992-1-martin.blumenstingl@googlemail.com
+(cherry picked from commit 628b6fee9fca292f12d07f0f1bcf1edefa949d81)
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/clk/meson/gxbb.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index 00eaca92b388..a6b46ad04794 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -1305,7 +1305,7 @@ static struct clk_regmap gxbb_32k_clk_sel = {
+ 		.name = "32k_clk_sel",
+ 		.ops = &clk_regmap_mux_ops,
+ 		.parent_data = gxbb_32k_clk_parent_data,
+-		.num_parents = 4,
++		.num_parents = ARRAY_SIZE(gxbb_32k_clk_parent_data),
+ 		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
+-- 
+2.53.0
+
 
 _______________________________________________
 linux-amlogic mailing list
