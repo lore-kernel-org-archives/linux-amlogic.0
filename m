@@ -4,136 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15032C79F9F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Sep 2026 08:03:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FD8AC79F9F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Sep 2026 14:16:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=zhiT+DvEsC3GGBBnOZwXaDcDMYjOtGuhroWKKMJRSTU=; b=YgjDjf0PK6hlwGhlqYY5OzwXHp
-	XGO1IzpQXU6ZnDuXkqNA9kcPCSWBrpNUwWp6hFqG425xSL9MjWu9zsJh1K8miV77R/FLO8KxzYSaS
-	UX+0TvifqQgtwzNIrpsFgrvmXDzvMl24+F4ije1n5gyu6vJ7i6SzYL3UbtmsPZtgZo6QLrmhc+8vF
-	Kr13cgEQ5+eSYaerYDYRLGu1Z6jX8psXI3mcf1uPw072Khiqvagp1uLtFPyPcfZcvctvdKBQoxi8I
-	tyeFtyjxtxvjVMk7Ko522rhsQ3YmZIF6E3MRwXSMpR6ZWbR/oYbA+VcXE1dkQGS6GxlB+TqPJrbiE
-	1epz+bCw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=K6PYen98aNde/wNm/bZDY/FXRSuBwLhDA8rLl1zmQjM=; b=GwR4KlEJRVAggo
+	Guhr3reM4Lq4h9bK0TrpqkM0Ls2kq7qlM/hu4SJKOfZjo1uS44grHFQN65qf044CYKIiW7hNQ6TOP
+	Rh9EK+EdlWKBNtI/PpZElovT1S3r8KGDLbJ0m8x6p27GeptguPGh8n3y16SN639aZ5M6ZJ2PDmT+/
+	Fl4MWP5iOLCwTDS4iTSLf31oaYTae+LtffkbfEckxXsrSfMOetIWts2hymVeuRALsPb0qjXsNhlut
+	/XTZuMcI5/e94dOQt/qNiYH5Im6Vlyq81Icd2tMwbkeh2Mbfb1knG7h1/rdnqd7gaWhixaELU1TwC
+	Z+KKEkGvbalPVLcUeOWA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x4Zkq-0000000Dgdp-1vSZ;
-	Thu, 10 Sep 2026 08:03:32 +0000
-Received: from mail-koreacentralazon11023103.outbound.protection.outlook.com ([40.107.44.103] helo=SEYPR02CU001.outbound.protection.outlook.com)
+	id 1x4fZs-0000000EbTD-0ddE;
+	Thu, 10 Sep 2026 14:16:36 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x4Zko-0000000DgdH-0r0V
+	id 1x4fZq-0000000EbT4-3mMl
 	for linux-amlogic@lists.infradead.org;
-	Thu, 10 Sep 2026 08:03:31 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vhI7q81BWuAzRU5727v+UtfzdPda7WgbC56xGdhfNsAJHrFFSEyY85Pl9uxSTrw0Hy9lihloZNyWNVqEjbt8Hn3w7HEsDu8YAfUwJMYYU0XFQDkZ5a1S5TgQyhvSuTycPu+T3e9/u61PkrZsQwRg2t89XtfbzDS0GfIPpAWbgDTUFO3RNI9HnRE7b+F+zNjHm7YqWUfcYv2nGw3OFmtLuRSOJp+DZeSq0FFNoCV6GYfOnIhRnpKFLfgTEr7rWLV0Wv/eH3s/SnQzjBzcIezpWE1O0Na1D5XLTJExb4xtFlkggeGq5gzemwWyiMdD0Fs1AjUM5mk2Ihk+gHeBSzpJwA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=P/r4amxtseGwCzAJqRpHnfpSRofe7mcBXg/uH1pnFDs=;
- b=EwqRIeFvwK4BEwVW/pabDwqAMBLTWdW2Q1jfcJwZyR3+Yp/YdYwDQpX13udbraTf7URxA74EQc2zPEMqVNLn4PUgmJ+jwh9xd+QQ0Kyghfs95T7fCVLwyZpvLd6UZF8mgVUhZBJqiD3iNe9c35y+cRR641Rniv4fyAG/eXo3CUM67i1mjAWdopFQF3dhcCGPQ6MH60dmnlqXbTaaT5NWek9WbMj7CBP/sY1eFJz2SMbYvsWS0aMlmdCcZ8l8GPypldZD24B5u211+V3CRaVMfk5xUYFkp/DAzxRfztvLO8OF+zb4z1Y7xJubwwHc9W/Nb7O/OYssR7qaWixQLS12RA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P/r4amxtseGwCzAJqRpHnfpSRofe7mcBXg/uH1pnFDs=;
- b=QgG4YjlqzxIgUgsgLue7fJzJqFZAe9WXMKHSrseFDqBSxa4b2iSi3thwyPb4bBXQxqGgAwVSPsWywgYR1IScHCsAKPu0qCwNUYlTin0++Y9A6LnPdda8U8Z4x50czVebYA6G9QKNldjKyFzHaRNQhlqxaYGBBxP5DvxVYqLXX2CnHjY4C8xyMjtE1Ef9N5t0JcqAUStC2fc+dvdzJaJ9QVEQxu4+2H8h2ZaNdDa+RQDhOWkC3WASgs0V/tdIEC9qH0N5dCTl7pDElymyq5nfk4knw4dsSnHzUJMJlJLctQK5UbLVRmk5yPprZWAHY7O3MfN7k40yRQH8saP00iIO3Q==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by TYSPR03MB8393.apcprd03.prod.outlook.com (2603:1096:405:50::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.9; Thu, 10 Sep
- 2026 08:03:19 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::78d4:9dee:2e32:d1e4]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::78d4:9dee:2e32:d1e4%7]) with mapi id 15.21.0406.005; Thu, 10 Sep 2026
- 08:03:19 +0000
-Message-ID: <6671af4d-1229-4277-a355-71247dd696f8@amlogic.com>
-Date: Thu, 10 Sep 2026 16:03:15 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] thermal: amlogic: Add support for A9 thermal
- controller
-Content-Language: en-US
+	Thu, 10 Sep 2026 14:16:35 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 432CB43264;
+	Thu, 10 Sep 2026 14:16:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2465A1F000FF;
+	Thu, 10 Sep 2026 14:16:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1789049794;
+	bh=jlbkzOzLCW57AMblPScYBFvVgRLjuwLIep83xkYzrQ4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=F2yD8kF+q9OYuYS0oX4fpiCDyPTHf34wqe/xEFgKzjT861IRj3xpatOHJjYoUXohx
+	 SA/4rUPFoBcEWZKsLFcexsa1oqvAcuaNng49+jZBwaHDjPHrsW1pDbls7N96fHHYk5
+	 06QlQI8DjrNbBl0GjnH11/5TEjdO9HmceN7KGU5Ag9Bzy3X5Mu8++5JliknWwea62R
+	 2/lWRQX8zabsmGBe7g2hCZ0XVM1siSQ2QRLR8LV66xKxPP+an4xum1x+y/H+6sZd3l
+	 voLv0fGJPaxVF7UP0u8w/HIbLUAqQqYpEEHlSNP0w0fHWW+25bH+Eyy+be0xfK9khz
+	 8VybuPBina8Yw==
+Date: Thu, 10 Sep 2026 15:16:29 +0100
+From: Lee Jones <lee@kernel.org>
 To: sashiko-reviews@lists.linux.dev
-Cc: robh@kernel.org, neil.armstrong@linaro.org,
- linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- conor+dt@kernel.org
-References: <20260910-a9-thermal-v5-0-892d798723e1@amlogic.com>
- <20260910-a9-thermal-v5-2-892d798723e1@amlogic.com>
- <20260910070634.60B5F1F000FF@smtp.kernel.org>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <20260910070634.60B5F1F000FF@smtp.kernel.org>
-X-ClientProxiedBy: SI3PR03CA0014.apcprd03.prod.outlook.com
- (2603:1096:4:297::15) To TYZPR03MB6896.apcprd03.prod.outlook.com
- (2603:1096:400:289::14)
+Cc: Ronald Claveau <linux-kernel-dev@aliel.fr>, neil.armstrong@linaro.org,
+	linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+	mfd@lists.linux.dev, robh@kernel.org, conor+dt@kernel.org
+Subject: Re: [PATCH v11 1/6] mfd: khadas-mcu: Add per-variant configuration
+ infrastructure and VIM4 support
+Message-ID: <20260910141629.GE1051768@google.com>
+References: <20260902-add-mcu-fan-khadas-vim4-v11-0-5f1610d83bf0@aliel.fr>
+ <20260902-add-mcu-fan-khadas-vim4-v11-1-5f1610d83bf0@aliel.fr>
+ <20260902130216.55BC21F00A3A@smtp.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|TYSPR03MB8393:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9b5f2ed3-cdcf-4bb5-73e3-08df0f11f9f1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|23010399003|376014|10067099003|6133799003|3023799007|18002099003|22082099003|56012099006|4143699003|11063799006|5023799004;
-X-Microsoft-Antispam-Message-Info: ul13thWrQ2H7QGLMJpTTdtpjRcdQen40xYtyM1M9VWP6luLNfQFwZkeOEVTtqtUK9se+i19wEkYrxUIbcGmFFoFAJQu1bSotbbQHP7+MMRZmsjPvpDmaesh0XNz56txwwP8Sa/vPn8HBvPj0d20OOMHMYz/oy7NYwAsVjQraVSpsz6KYEOlz5LcV87bvhJby0C6kXnXmfVhcxjiXxLKP7qMfIM3amSnOp9IK5OSYjiYNYKdwyo/424aSB4TOlwMIXeMlfB1WlH/HMKA1y/ef6dhI5+TRPyW/tFVUzZ+hM7hcyX3a/+4ZCR3/XkjVYKXBU/ac4x8TTkPMuujEVKc7dMNl29yVURG0kH1bz3CmJFg1hosfVCVZWjkMV5/QFYTr7CDkNqw+qBTGim7qqhe/BedISqBtWQZZ4vj85TUjevH26/JlrXgGGwh4TxynQ458qM6qSAre94EgDVk1UHe0chHi9cDdrhpfwN+LM/UG60wYsikdUdCXBMOJiwQQnNjmVDi9N0z6ho7lOcnghHPhln66cUmZBevdRG8hxi63pQ9gTIvvBwk/EZZEVN7OY9FygLPbHR/utpG70EobhjG8CZ9S/eQXJQHCRHShz+ifaiw80sG9WpkjK1uji9HPHkIPOeT6qQPaH3SpqgJsDZg4kIICBb/UDJ2gFIDvgZ3DcVg=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(10067099003)(6133799003)(3023799007)(18002099003)(22082099003)(56012099006)(4143699003)(11063799006)(5023799004);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OHdjaTNFR2ZqVVovNnJyakpOVVpuUStVak9NWk0zUzZSWTZVNW5RcTZQU3dT?=
- =?utf-8?B?TUkvYnJJMlZQRjI1TjdkYmc1ZnYxWFNXK2NXWWhxZjZzUlBZYUx3a3RRejlK?=
- =?utf-8?B?S3ZUQ29LcjRhZ3kvSHIxQzBlRCtRYjFUTXNzeU1qME1GQTlwb0VPbzBlNFZH?=
- =?utf-8?B?S2RNMEtLZEFJdmVwTFR2Q2Uzb0xlUXBOWFBDWmVQYVcrM2pUTzNFQUdNUlJW?=
- =?utf-8?B?MzJTZXpJMFBqa2N4cytJbUVEZjFycmp3NHhvaTk0SGdZRE1lMTIzTlJMMTQx?=
- =?utf-8?B?b00vUWRINFFMaWhDSFlFOHlkTVI3OU44SjZvS0RQOTRvaTBZQTJTUzZJcGZU?=
- =?utf-8?B?Q0VvNVAyNHorUE43bnF2VjFETGdzTlYwS0lIaElKcmNUbnhnYlRCNHNzdnpZ?=
- =?utf-8?B?Yld1RjBoWUR1eG5FYzFDT1NJSDR2K3M2YUpwVWJsd0lUdURacDdyb0V6eGdx?=
- =?utf-8?B?RzkwSUFERzMzdGl3K0tVMlVuWlJISzB1UDBlbUdrNy9YQVBDRnFua0FPV1pY?=
- =?utf-8?B?cm5yWWMvbjB5c2dJLzN0MlkyZG05UUdhamw4RDM4NFJKNzlaMzUwL0lZc0tw?=
- =?utf-8?B?L2hwdG5kTEIyWjNsVTdzY01DTWQxMzhkR3hQT3FaWTBhQXNNZ0Z6T2RvNlR1?=
- =?utf-8?B?S2ZBdngwWjNUWld3Y2RiaWNGMWJpNWdsUGNCOWk0QUZIOEN0UlpUelJrVTVl?=
- =?utf-8?B?WHYxRzFtZmk5aGdHbHhuU1o5dG01ZnNLTysrU0g1LzdKZlpaV0Z2V1QwTlZM?=
- =?utf-8?B?by8vbG5GVlBMQzFjUDV3QWhDMWNIMEZNMmtkQnd4dmdUcDdjNThlQUtuT3FS?=
- =?utf-8?B?UW9VRDM5S3FacjFrYWVmZ2dOblRUT0FXbGl1VXBRZ1l2dHZpSEE5UFYxQVRy?=
- =?utf-8?B?MXc0UU9MU3h4eFR5Q21kaldrVjZPOGFVVGRwQVZKTDZIZ1pabXVkSUtOSVNZ?=
- =?utf-8?B?eUxHZ2djc2M3OHBSRFBHSzByYlRPejFPSnEzbll5aHNhRlRZdDlpdWxZOHN0?=
- =?utf-8?B?cndiMklIVlBYTjExWEg3ZjJwMXFUemtyQlEvZXVHMzdRQXpFOXk5RDdycEkx?=
- =?utf-8?B?cGV5VGdtb3V0K2h5U1hnbTEwNUNZejd5TmRpRko1WTY0cGdMYzBiNnNxU0xX?=
- =?utf-8?B?c2dpV1N4QnJ3NTdSVjVXZmw0NU5QVFR4WlEvdFVFTCttOTFDK1NLenErc1Nx?=
- =?utf-8?B?cjJDODBWTStFczllaDZZc0pXM3ZHSEZGOTRxQ0kwMUV2cWM5dDVpMGt2NU83?=
- =?utf-8?B?UjQzcHM3d3YwWnlBbDdZQTZqRkdHUytkMVJYVXg3RW1CWkpUMkpPVDcxK1ph?=
- =?utf-8?B?ZHcrVHUvVjhlclZGaWtmM0FMUlI2Q0xLbnVVQVJrS000UkZWeUs1R1NBRURD?=
- =?utf-8?B?MzZkdHZ1d1lmSUJmWFVhTGxhSmM5cFllMC96SUF1L0ZiR2VHM2xmcnN3b0h2?=
- =?utf-8?B?ZHpoMHJPSmluR1RXMzd4S1JpQTc5eWRWaFc3RXhTN0d1d0E2U1lubjMrV0FT?=
- =?utf-8?B?RmM5d1NmK2crbHlNMnFWTU10VUlkOTZKck1YSFQrZUVKT0xQbEtQb1B2OWpQ?=
- =?utf-8?B?UnRTVEw1bmlFVjZ3S054cFJMeWFKU0lhVG56VG1kQUtMQ1UwRGQzWERmWWJT?=
- =?utf-8?B?UjdIYWkvM2RreTYvRXdRUXNtUUhXRTg5ZjJhQmVhNmdaMm5JbDJRbi9Ed2ox?=
- =?utf-8?B?bGdOZWIyMXU5ak1Mb3Rjc3lZSFJYVVhYWjZmTHdsS1hNM0Y0bnR2SEFMTTNK?=
- =?utf-8?B?ZHBMWC9HcWRQV1hneU90ZnhXNTREbmw1NWlvVnl4c0JWOGNHQW1YZExYVDY1?=
- =?utf-8?B?Vks4VUdMWW1oVTdyMk56TGZFZ0srcWRtcHJlU2w2blptejl2U01QZk1id3lv?=
- =?utf-8?B?UUF3VzZoTTRibDRIY1lsb0JwaFpjcCsyQWR2SWx4K0xTV3F5aHpaT0pUbWY4?=
- =?utf-8?B?K0RtbXJqMTJXRnZsU0Q1cFZFMXBodDNJN1MrSktJQ0xJWTRvdlZMdE1WQnNj?=
- =?utf-8?B?aGVOeEtFbzFxZk1qOUVoeFZtK3FKaWV6MC9WZEtXVlA4bUx1aHJCN0EyRkpQ?=
- =?utf-8?B?dmszdU5CZVVvWTVmdUNXM0hobWdPVmhENlk3SFVsZW1QU29JZWE3Y0dBOFA3?=
- =?utf-8?B?SmZHUUoxa1lYWlVKV3RjZ1ZYL2M0Qm5OL1BpMHZsb1ZIM0QwSFlZbDEvR3pp?=
- =?utf-8?B?ZmMzWXJVMEY4aDU4R01tR1JIMzNISWpPNmQ4bVpNMzlPYjhsem5tWGVzYzI2?=
- =?utf-8?B?b3ZrNCtRaWJXc2hEVWxRTUhYRjl1emFMdVFndzE0TDcyTnp2Skpzc2lBNndM?=
- =?utf-8?B?cnMxY0o0VFFQc3ZOY21LVmh2bncxVjdVWFU3ZVJqbkh5TTIwUmI4Zz09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9b5f2ed3-cdcf-4bb5-73e3-08df0f11f9f1
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2026 08:03:19.3229
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: z6ECT8018JXHtqwajk1o6FUrFwDTODFim88otxcsCVPppvoExGoTe37WhEQmLHaxC/V3XX4xvuPEEx+d0NL2SEHhrPPeZj8cz8nr9tpRoe8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR03MB8393
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260910_010330_396727_A6C965AA 
-X-CRM114-Status: GOOD (  34.10  )
+Content-Disposition: inline
+In-Reply-To: <20260902130216.55BC21F00A3A@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -145,188 +68,68 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Wed, 02 Sep 2026, sashiko-bot@kernel.org wrote:
 
-
-On 2026/9/10 15:06, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 4 potential issue(s) to consider:
-> 
-> New issues:
-> - [Critical] The A9-specific hardware over-temperature reset mechanism is enabled unconditionally on all SoCs, causing unclocked MMIO accesses and undefined register writes that will crash existing platforms (e.g., G12A) on resume.
-> 
-> Pre-existing issues:
-> - [High] This problem wasn't introduced by this patch, but the thermal zone and hwmon sysfs interfaces are registered before the hardware and clocks are fully initialized, creating a race condition that leads to unclocked MMIO reads.
-> - [High] This problem wasn't introduced by this patch, but incorrect sign extension of a bitwise NOT operation on a 32-bit unsigned mask causes massively inflated negative trim values on 32-bit architectures, breaking thermal calibration.
-> - [High] This problem wasn't introduced by this patch, but disabling hardware clocks in `remove()` before the devres-managed thermal zone is unregistered introduces a use-after-disable race condition that can crash the system.
+> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> - [Low] Parent MFD driver introduces child-specific private resources (fan configuration) via a platform data struct in a global MFD header, violating MFD separation and coupling principles.
 > --
 > 
-> commit c409169ce8a3938d784d6682dd656715a5d6d606
-> Author: Xianwei Zhao<xianwei.zhao@amlogic.com>
+> commit 85d716a1f91fa9e8e2f48479df8c7b07e0cf0279
+> Author: Ronald Claveau <linux-kernel-dev@aliel.fr>
 > 
-> thermal: amlogic: Add support for A9 thermal controller
+> mfd: khadas-mcu: Add per-variant configuration infrastructure and VIM4 support
 > 
-> Add support for the Amlogic A9 thermal controller.
+> This commit introduces per-variant configuration structures for the KHADAS MCU
+> driver, adding support for VIM4 specific registers. It also introduces an enum
+> for variant matching and a fan platform data struct to pass fan configuration
+> to a sub-driver.
 > 
-> The A9 thermal controller uses different calibration parameters, requires
-> separate core and bus clocks, and supports a hardware over-temperature
-> reset mechanism. It also restores the hardware reset configuration after
-> resume.
-> 
->> diff --git a/drivers/thermal/amlogic_thermal.c b/drivers/thermal/amlogic_thermal.c
->> index a0b530624b60c..e7cedb9443151 100644
->> --- a/drivers/thermal/amlogic_thermal.c
->> +++ b/drivers/thermal/amlogic_thermal.c
-> [ ... ]
->> @@ -138,6 +158,51 @@ static int amlogic_thermal_code_to_millicelsius(struct amlogic_thermal *pdata,
->>        return temp;
->>   }
->>
->> +/*
->> + * Calculate a temperature code from a temperature value .
->> + * The unit of the temperature is degree milliCelsius.
->> + */
->> +static u32 amlogic_thermal_millicelsius_to_code(struct amlogic_thermal *pdata, int millicelsius)
->> +{
->> +     const struct amlogic_thermal_soc_calib_data *param =
->> +                                     pdata->data->calibration_parameters;
->> +     s64 factor, uptat, uefuse;
->> +     u32 temp_code;
->> +
->> +     uefuse = pdata->trim_info & TSENSOR_TRIM_SIGN_MASK ?
->> +                          ~(pdata->trim_info & TSENSOR_TRIM_TEMP_MASK) + 1 :
->> +                          (pdata->trim_info & TSENSOR_TRIM_TEMP_MASK);
-> [Severity: High]
-> This is a pre-existing issue, but by copying this logic from
-> amlogic_thermal_code_to_millicelsius(), the new function inherits a sign
-> extension bug.
-> 
-> When the hardware provides a negative trim value (bit 15 set in trim_info),
-> the bitwise NOT operation on the 32-bit unsigned TSENSOR_TRIM_TEMP_MASK mask
-> evaluates to a large positive value on 32-bit systems (e.g., 0xFFFFFFFF).
-> 
-> When this is assigned to the s64 uefuse variable, C promotion rules
-> zero-extend it to 4294967295 rather than sign-extending to -1.
-> 
-> This breaks thermal calibration for hardware instances with negative factory
-> calibration offsets, rendering those devices unusable.
-> 
-> Could we fix this integer conversion so that the negative value is properly
-> sign-extended into the s64 variable?
+> > diff --git a/include/linux/mfd/khadas-mcu.h b/include/linux/mfd/khadas-mcu.h
+> > index a99ba2ed0e4e0..7a9980ea63e7e 100644
+> > --- a/include/linux/mfd/khadas-mcu.h
+> > +++ b/include/linux/mfd/khadas-mcu.h
 > 
 > [ ... ]
->> @@ -346,6 +440,17 @@ static int amlogic_thermal_probe(struct platform_device *pdev)
->>
->>        devm_thermal_add_hwmon_sysfs(&pdev->dev, pdata->tzd);
->>
-> [Severity: High]
-> This isn't a bug introduced by this patch, but registering the thermal zone
-> device here before the hardware clocks are fully initialized creates a race
-> condition.
 > 
-> The thermal core invokes the .get_temp callback immediately upon registration
-> to establish the initial temperature state.
+> > @@ -88,4 +95,21 @@ struct khadas_mcu {
+> >  	struct regmap *regmap;
+> >  };
+> >  
+> > +/**
+> > + * struct khadas_mcu_fan_pdata - fan sub-driver configuration
+> > + * @fan_reg: register address to write the fan level
+> > + * @levels: table mapping logical cooling-device states to raw fan levels
+> > + * @nlevels: number of entries in @levels
+> > + */
+> > +struct khadas_mcu_fan_pdata {
+> > +	unsigned int fan_reg;
+> > +	const unsigned int *levels;
+> > +	unsigned int nlevels;
+> > +};
 > 
-> If the driver is built as a loadable module and loaded after boot, when
-> bootloader-enabled clocks have already been disabled by the clock framework's
-> late init, the .get_temp call will attempt to read from the hardware before
-> its clock is prepared and enabled.
+> [Severity: Low]
+> Does this struct introduce child-specific private configuration into the core
+> MFD driver?
 > 
-> Will this result in an unclocked MMIO read and subsequent bus fault?
+> By defining khadas_mcu_fan_pdata to pass thermal cooling state levels, it
+> appears the parent MFD driver will be forced to handle configurations specific
+> to a single sub-driver. The MFD subsystem principles indicate that the core
+> driver should only handle shared core resources, while child drivers should
+> manage their own private configurations.
 > 
->> +     if (pdata->data->reset_temp) {
->> +             reset_temp = pdata->data->reset_temp;
->> +     } else {
->> +             dev_dbg(dev, "using default hardware reset temperature\n");
->> +             reset_temp = TSENSOR_HW_RESET_DEFAULT_TEMP;
->> +     }
->> +
->> +     pdata->temp_code = amlogic_thermal_millicelsius_to_code(pdata, reset_temp);
->> +
->> +     amlogic_tsensor_setup_hw_reset(pdata);
->> +
->>        ret = amlogic_thermal_enable(pdata);
-> [Severity: Critical]
-> Does unconditionally applying the A9-specific hardware reset setup here
-> cause issues for older non-A9 platforms?
-> 
+> Could this approach create tight coupling where any new fan variant requires
+> changes to the core MFD driver, rather than keeping those details contained
+> within the thermal driver?
 
-Non-A9 HW is support too, just that this function wasn't added before. 
-Here, the default value is used.
+Agreed.  Why can this not live in the fan driver?
 
-> For existing SoCs where has_sysclk is false, the peripheral clock (data->clk)
-> isn't enabled until amlogic_thermal_enable() is called on the next line.
-> 
-
-The existing SoCs sys clock is not control by this driver, it is enabled 
-by default.
-
-> Since the clock is physically off during probe, does this regmap_update_bits()
-> write inside amlogic_tsensor_setup_hw_reset() trigger a bus fault?
-> 
-> Also, could writing to TSENSOR_CFG_REG2 cause undefined register modification
-> on hardware that doesn't support this over-temperature reset mechanism?
-> 
-The Non-SoC has TSENSOR_CFG_REG2 regiter, the register was hidden before 
-because the related functions were not supported.
-
-> [ ... ]
->> @@ -370,7 +477,15 @@ static int amlogic_thermal_suspend(struct device *dev)
->>   static int amlogic_thermal_resume(struct device *dev)
->>   {
->>        struct amlogic_thermal *data = dev_get_drvdata(dev);
->> +     int ret;
->> +
->> +     if (data->data->has_sysclk) {
->> +             ret = clk_prepare_enable(data->sysclk);
->> +             if (ret)
->> +                     return ret;
->> +     }
->>
->> +     amlogic_tsensor_setup_hw_reset(data);
->>        return amlogic_thermal_enable(data);
-> [Severity: Critical]
-> Similarly, does this execute an MMIO write before the peripheral clock is
-> enabled during the resume path for non-A9 platforms?
-> 
-> On non-A9 platforms, data->clk is only enabled inside
-> amlogic_thermal_enable().
-> 
-
-The sysclock is keeping openning all time for other SoC.
-
-
-> If this write occurs while the clock is still physically disabled during
-> system resume, could this cause a synchronous external abort and break power
-> management completely?
-> 
-
-Non A9 clock is aways_on ,so for A9 if enable sysclock failed, it will 
-be return.
-
-> [Severity: High]
-> This is a pre-existing issue, but is there a use-after-disable race condition
-> in the driver's remove path?
-> 
-> drivers/thermal/amlogic_thermal.c:amlogic_thermal_remove() {
->      struct amlogic_thermal *data = platform_get_drvdata(pdev);
-> 
->      amlogic_thermal_disable(data);
-> }
-> 
-> Disabling the hardware clocks in remove() before the devres-managed thermal
-> zone is cleanly unregistered could crash the system.
-> 
-> Because pdata->tzd was registered with devm_thermal_of_zone_register(), it
-> remains fully active and exposed to the thermal core until the devres cleanup
-> phase, which executes after remove() returns.
-> 
-> If the thermal core's polling timer fires, or if a user reads the temperature
-> sysfs attribute during this window, amlogic_thermal_get_temp() will attempt
-> to read from the unclocked hardware.
+-- 
+Lee Jones
 
 _______________________________________________
 linux-amlogic mailing list
