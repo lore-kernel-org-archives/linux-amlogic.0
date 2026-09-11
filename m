@@ -4,80 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF683C88E4D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Sep 2026 22:15:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A2D6C88E5A
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Sep 2026 22:15:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dguF5C8XASgH3vyca0/7yISg0t3gf8SNLjX3RfNVm/w=; b=EgESNUfygKeM4M
-	IONa4XR5hUK1KAkOwKgIuFMygKB4JJ8YAK17gKiTRDxJYY7ze73iWbp8CVkAfdwNdCkTgBKmdQrkE
-	XOJVDfiimOF9xuCo3XAhNJztJ8wZD2Sx8Ka5y6XTohfVIDb0W8WrGKlAUx7InRHgDAQ7X2daRDsR4
-	J/iH5pIjeiP/6aFJqgMATvS78OhNMGuuHb2IVqQn2PRfS/D1utMX3kdnIy7NEXbamzy6Yvdnpwmrw
-	trY0SRcHPXq4OoAUfcDWMkUa7/Yob5VKtQdBFGtH93AIpvkhprLXCyxdNTrfaUK6I2HvufM8klpj5
-	tNa3PAmJrbmQe/8Sec8g==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=I9zKUlnSMBwe64pnNR5m7jObA4kIwQmHWLOwzTHY5y4=; b=x5B9B0SGfMV5YV
+	NZHhG8J96YkHEC8c8Ws6yRmeT1mhw3qZVvoHxu5xEfl2DrGi5m1MtBu7cMsbefBWiq0/kMrVcyBfL
+	kUE1iqDGj4/rOBUx3JU3SrPysquOOYxrlxPkVkwaiuaCp/KWwlz/qCOZsaOukSJbJT9wp8fWzXwta
+	tOGfDux9vJyWpLDsxfxLQQtSjRcbqkrwltjHeyvfZkfT6im1Dq7BCCEKYu9dUZcqB1YXwusEJjFkQ
+	0aJC/JXGNQITZedhJW61kJTKjAuc8mD7TntVvT9ZMIj8ZgNY2+dswNgfxnAEUoAS06URxkxM9Q/S9
+	YCY0U9q0YWRwE9gwAXQA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x59Wm-00000000FJn-3a7G;
+	id 1x59Wm-00000000FJs-3vwX;
 	Fri, 11 Sep 2026 22:15:24 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+Received: from mail-wm2-x10.google.com ([2a00:1450:4864:31::10])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x59Wb-00000000FC2-3b6J
+	id 1x59Wb-00000000FBw-2pgx
 	for linux-amlogic@lists.infradead.org;
 	Fri, 11 Sep 2026 22:15:16 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-49d0da752ffso17610695e9.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 11 Sep 2026 15:15:13 -0700 (PDT)
+Received: by mail-wm2-x10.google.com with SMTP id 5b1f17b1804b1-49d1fb0cf5eso2894675e9.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 11 Sep 2026 15:15:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1789164912; x=1789769712; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=Jhj+D3u1Hdp6k7FiJv/1raAGblq3kkIePMv8OFR20rM=;
-        b=R0dkAuPEcuyg3TQlIPQWsA2cI5dIIndkrMc9ZAbugzu+/qaN7381eeIzhYJ5FniC6n
-         wJgM5Eq1OeZofSEZVzjIwF6cR1w0G+owNsTzubTM1MG/soswBejnPsOzSGWGYxztA3IX
-         lZhL5y1Zj+CePVP6oYS8jIjy+KZgtquy7k1Y5GzBNw9Ruk1Y2h8SckscrUxxNzG4gEM7
-         /6Ard2RrhvW03BIEpr5PZuaXQoifKfQxkP65ffrJG4RSP6fRQ6C+KBYPKurjw2CjQ2yw
-         ZnOzw6m/4UUcPW01fCoiL4zT5N9Wj3m9l2LCV1rzdN3fxHr5NaekAniJDNy3NxgpJxc0
-         7bJQ==
+        d=baylibre.com; s=google; t=1789164911; x=1789769711; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=srhabopEjDrPGbNiaixTBBq3q3UYUb7b5seSM2Uisn8=;
+        b=HAWIMcGrAUb+covAW6bygnX9li1krdshYcGyoEHrtNwHWTyv3n9nBz0rsYRIqIOizM
+         drNSpL1AXjNwvsaIYOuEyj+BjOULwgT3MBmIGrQ1NRgxoyl0eRzlK6vMdIb3lOkvk+bj
+         DObSKARgfBAceMqUtiJ1bvVeKdgp1y4xa9qhNLoMDb0F33XF3feZDEq5pp/F1qSDRi9y
+         +9ZZc2d+W50f+AAvmy2cK52mQIZl+1/Lxrgu1LTEeJXjU1kbhHsB2PBYmzl7fKzPdci4
+         rOlTInpxUUlYIl93sHUmnzzJjVOsA8B+fpKjsVXhPp8Ac2M7N5NUbIjlp3Rf/c3jTUu+
+         Bt+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1789164912; x=1789769712;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=Jhj+D3u1Hdp6k7FiJv/1raAGblq3kkIePMv8OFR20rM=;
-        b=pnsxIuffgQ0bc0TTNKELYd473nIQmqf3hZ3jRIWfvFRogSwaPhTsdHp3CPJwURlvzA
-         iJl4JZEH+9Yj4DfnntmgdhBB4vUR3MxQLwOS/BE986wixG/Ui7rlxV710TXMCSQ9G2qx
-         TnDNC/qNov/zFyM9NZCLwbChBzX65CiQs/M889CUTj+4bBtZvn0KDh6h3ntXyr0DVReT
-         zFANP8ZCgkuyHwwUbevhhQvxOTI9Ij8SEFGxd2g7Qjx9LRzcyr5+Jw1Razs1Jq9LHc+p
-         +3la2HrwQofkBKgqJ+9wYM/TqgDCpZ0rbY6UUO3ex7vicDcFAfyZavkf2/PNpoXz1BTU
-         LiJA==
-X-Forwarded-Encrypted: i=1; AKwUvByzSJ7++v6Titr0Axo8qy+CG9aezD8UnwX4qKOzqVxhZdUAKMsSll+o2A08Xxs2fJdLknJbM0+331Gaj0hz@lists.infradead.org
-X-Gm-Message-State: AFuF++lg88H5fvdWxRQ3BzajDrIZ1OMyMxlPa1iZ5e9LBHeBxXbj5mt4
-	LwbUmO2+T9mj3nw0p/9nIDc4CanNuFMh4+06JLpOeNsGlUtlD9PPhgofeum8A8+V30Q=
-X-Gm-Gg: AYBFou2GVcSQlR5jn+/pCJ2kHGbiCd14LX83S4AVMsrGrMEDPR0KCDgAFGypjtZ6qn2
-	zRf3LhSQ/AHi5+z+JV4dFra1Kmq63SAQzRHC6U2eUS2r2pBoqIel837c8KT72RH1TwBhzD40ctM
-	/erHhUO9y9JtuEHMFy2y6JLnQcYXdFCZY8DiO3ylp2sF1gxE7U1WND85hYBAbo2hW7wKKZE/Usz
-	pzXv/qsqzBCVA4hdFHO+rVv0SlUoAJOVEFEgRPv1+mw65LykANA62zCWU2EFRSW2qJuawR40cKC
-	TOTgYUQezteEcpk6lQVBTIg3lkldm8wItXQfmXShv8dwLIrsTwmWl++HwRgBrQi/MTQTsxU1mu3
-	DMrsvkxrmZ9aT8YZqGN5dQzYOUMGqJWt/SairKOmDr9yZ57GfEAMuTT/yETKK0OyYWlyuj9DYRX
-	Lmfmlo7SovzKwVjmMmTbxzMGKDidZYppC9qNWMCuhmumtSjb5zzJn9gNnz6T/DFlf5WzY=
-X-Received: by 2002:a05:600c:3b90:b0:49d:16df:8521 with SMTP id 5b1f17b1804b1-49e619805f1mr71228535e9.4.1789164912040;
-        Fri, 11 Sep 2026 15:15:12 -0700 (PDT)
-Received: from [127.0.1.1] ([151.42.87.32])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-49d26c2a419sm202882745e9.7.2026.09.11.15.15.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        d=1e100.net; s=20251104; t=1789164911; x=1789769711;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=srhabopEjDrPGbNiaixTBBq3q3UYUb7b5seSM2Uisn8=;
+        b=aUWGz8n2PIa8+bhQd2Df6Om0YEqBTXcnMrhLaXFgX3YYCt83iDyn+z8mD0cEiqemAz
+         /hRmIEAADTDQtvIHSW1tjgltxQFuNQGSZDnKMDWSzPj9jFJUzBmumpyEEwPQksHOETKd
+         jUnQpKiACx3YYVyoDCtb1vL8gPbQidhrBHhM614WjdtzN4/sZgm+/LWNmm2oLR2HvaeE
+         FI+M6EIiRSiFBk4GIbELV6/l779tfvdB/0qzSzNTfokkID8ToFOmEs/Qt29zM41+69Cl
+         8ls5djI/x2n5w+ByUufM//V1tO1zVb66WjPWXOzBmj0Zab/NHR1Ja6GsnyQP5mWCzn79
+         liFg==
+X-Forwarded-Encrypted: i=1; AKwUvBywAx19G7vRfKs64I6caot2BailrWkKzp7UeL8I80HGqyKU4tPhgzm0Aa4DM2TE8N04Iw5cAjGi+3kZ1oIg@lists.infradead.org
+X-Gm-Message-State: AFuF++kLAeCXGQrwm0QJpX/w9W6dNk3MkGvOnxK+uXsHHPl51Y0plDKN
+	dRdNhEsbVyAj8LpIijm7AOMO4bbHAQzS6Y0Ho1B405SWPVt1G7tXwntTTGjhsWF9ebg=
+X-Gm-Gg: AYBFou16DB82g1bffEpB4DyAYHDWMKng6cFbjMIz34ER0+WPh1tHrBh02alc1bRi5Cy
+	2W/ya89zHazHieBrmoS+FOcQi0rVyzgKKlDo/0uCurBZ5cZxxGw+R4zi6ki1Y9YDw4cTOzxXKoB
+	mPYfCtvKe7lnuk0aPkd40OQzj37iM8LR2l1SD9B3deV46tpu8g4P2Tv0AuROInWzyf4GYiUz7ju
+	3t5+NoXi6NxTOzpFkj+u1veqty9UXDUMYJiIcexaF4dXP+Ebj++iZz9XWUtgM38yLsgPa2IdSnM
+	CXu2rx8Cp/N044ONbtcAYoCd4OZ5znEfAsRa67v/Lwd9GnaDUleF021nWteFvJqU3CKL/rga964
+	wkIRXBrJ8D+aZiIJiPR4ZkJRKBdR7F8vIKE9F6nQt5z+godDj8IGrOJ5b8rlEgdWfExQpsbLXpI
+	a6wfJzJFsihuN3xiv4jVKBxKc16bJbn3ZGpBMNxeJFohMFcS8/lOjHrpKdLiBM2JM53fvRRMgZS
+	U00
+X-Received: by 2002:a05:600c:3513:b0:493:f140:c3fb with SMTP id 5b1f17b1804b1-49e619c0357mr123658065e9.7.1789164911027;
         Fri, 11 Sep 2026 15:15:11 -0700 (PDT)
+Received: from [127.0.1.1] ([151.42.87.32])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-49d26c2a419sm202882745e9.7.2026.09.11.15.15.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Sep 2026 15:15:10 -0700 (PDT)
 From: Valerio Setti <vsetti@baylibre.com>
-Date: Sat, 12 Sep 2026 00:14:31 +0200
-Subject: [PATCH 1/6] dt-bindings: sound: amlogic: add schemas for audin
- components
+Subject: [PATCH 0/6] ASoC: meson: gx: add base support for I2S audio input
+Date: Sat, 12 Sep 2026 00:14:30 +0200
+Message-Id: <20260912-audin-v1-0-7fbefe928711@baylibre.com>
 MIME-Version: 1.0
-Message-Id: <20260912-audin-v1-1-7fbefe928711@baylibre.com>
-References: <20260912-audin-v1-0-7fbefe928711@baylibre.com>
-In-Reply-To: <20260912-audin-v1-0-7fbefe928711@baylibre.com>
+X-B4-Tracking: v=1; b=H4sIAEZ9pGoC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDC2ND3cTSlMw8XcvkxKQkE1OD5GRLEyWg2oKi1LTMCrA50bEQfnFpUlZ
+ qcglIs1JtLQAVIgntaQAAAA==
+X-Change-ID: 20260831-audin-9cabb450cc94
 To: Jerome Brunet <jbrunet@baylibre.com>, 
  Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -90,17 +91,17 @@ Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
  linux-kernel@vger.kernel.org, Valerio Setti <vsetti@baylibre.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4740; i=vsetti@baylibre.com;
- h=from:subject:message-id; bh=i49CtTXNdvPDqvnQKB6P/xRaXz9o1Ta+9uCeSBaVc0w=;
- b=owGbwMvMwCV2z3ty7kUrRgbG02pJDFlLanP2vC7jUtmx8nOMoSnL/n7eYv7T77p3MbO/WOa1R
- I4zY41CRykLgxgXg6yYIgvL9Hu/C0rVHhonnCyAmcPKBDKEgYtTACaS4cjI8O2H11KTH4lLvz75
- d6vg/NE7jSITaxbxdc8+yuUbvl2vLZThf13JYasN5lfkroRGnjyXdSuEN6S8xlJh3qkENf4/OmW
- fOQA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3226; i=vsetti@baylibre.com;
+ h=from:subject:message-id; bh=PWDc5RQ3INoxq0fo7alWh++0I6W5IGuIRf0MFpXSV8s=;
+ b=owGbwMvMwCV2z3ty7kUrRgbG02pJDFlLanOaRdZMWiury/nzTfOTv99ijh7ZIG6rNWFa9b6ZK
+ 3/UeT+M6ChlYRDjYpAVU2RhmX7vd0Gp2kPjhJMFMHNYmUCGMHBxCsBEAo8x/A/Z9ERcTLvnivwC
+ h9+mV8XKT96fcuzu+WOqXI3LGX5Jh01m+J9+cd8XMRsXcV1mrd9NDN5LohSW15geuMURO3uHM5d
+ TDjcA
 X-Developer-Key: i=vsetti@baylibre.com; a=openpgp;
  fpr=0497DEFB707526E13360C970DE4B936DD13A0100
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260911_151513_929684_8B6B886D 
-X-CRM114-Status: GOOD (  13.08  )
+X-CRM114-CacheID: sfid-20260911_151513_733524_657DCE19 
+X-CRM114-Status: GOOD (  14.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,178 +118,71 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add schemas for "amlogic,meson-gx-audin" and "amlogic,meson-gx-audin-fifo".
-They provide I2S audio input support to the Meson GX platforms (GXBB/GXL).
+This series is the 2nd part of the initial RFC [1] proposed to add audio
+input support to the Meson GX SoCs. After the AIU reshaping series [2] that
+has recently been merged, this one adds the audio input path itself.
+
+The biggest change from the RFC concerns the I2S data formatter. Previously
+it was a DT node owning a single register, which was deemed an invalid
+binding. There is now a single audin node owning the whole audio input
+register range; it instantiates the widget for the I2S data formatter,
+following the solution already used by AIU, and then probes its DT child
+nodes implementing the FIFOs. This lets the three FIFO instances share
+one driver.
+
+Resulting capture topology is:
+  pads --> AIU I2S Encoder -> AUDIN I2S Formatter -> AUDIN FIFO -> RAM
+
+This series includes all the changes related to this work (dt-bindings,
+drivers and device-tree) in order to give the full picture in one single
+place.
+
+Unfortunately, since no Meson GXBB/GXL board available in the tree feature
+an I2S capture capable codec, this work cannot be directly tested out of
+the box. To test it an external codec must be connected to the SoC.
+When working on this series, a custom hat board with an NXP SGTL5000 codec
+has been plugged on top of an Odroid-C2 (GXBB). The last commit of this
+series fully details all the device-tree changes which are required to
+finalize the support for this scenario.
+With this hardware configuration it has been possible to succeffully
+validate the implementation with:
+- alsa tools (arecord)
+- pcm-tests
+
+[1]: https://lore.kernel.org/linux-sound/20260411-audin-rfc-v2-0-4c8a6ec5fcab@baylibre.com/
+[2]: https://lore.kernel.org/linux-sound/20260610-reshape-aiu-as-axg-v2-0-cac3663a8b51@baylibre.com/
 
 Signed-off-by: Valerio Setti <vsetti@baylibre.com>
 ---
- .../sound/amlogic,meson-gx-audin-fifo.yaml         | 52 ++++++++++++
- .../bindings/sound/amlogic,meson-gx-audin.yaml     | 96 ++++++++++++++++++++++
- 2 files changed, 148 insertions(+)
+Valerio Setti (6):
+      dt-bindings: sound: amlogic: add schemas for audin components
+      ASoC: meson: add audin main module and I2S formatter
+      ASoC: meson: add audin FIFO driver
+      ASoC: meson: aiu: add I2S Capture DAI
+      ASoC: meson: gx-card: add support for audin FIFO
+      arm64: dts: amlogic: gx: add nodes for audin and its FIFOs
 
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,meson-gx-audin-fifo.yaml b/Documentation/devicetree/bindings/sound/amlogic,meson-gx-audin-fifo.yaml
-new file mode 100644
-index 000000000000..a01fe22b9786
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/amlogic,meson-gx-audin-fifo.yaml
-@@ -0,0 +1,52 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/amlogic,meson-gx-audin-fifo.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Amlogic GX AUDIN FIFO controller
-+
-+maintainers:
-+  - Valerio Setti <vsetti@baylibre.com>
-+
-+description: |-
-+  AUDIN FIFO receives audio data from backend interfaces (ex: I2S, SPDIF),
-+  stores them into a FIFO in a configurable way and then bulk copies all the
-+  data in RAM when the FIFO is full.
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  $nodename:
-+    pattern: "^audio-controller@[0-9a-f]+$"
-+
-+  compatible:
-+    items:
-+      - enum:
-+          - amlogic,meson-gxbb-audin-fifo
-+          - amlogic,meson-gxl-audin-fifo
-+      - const: amlogic,meson-gx-audin-fifo
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#sound-dai-cells"
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    audio-controller@80 {
-+      compatible = "amlogic,meson-gxbb-audin-fifo",
-+                   "amlogic,meson-gx-audin-fifo";
-+      reg = <0x80 0x1c>;
-+      #sound-dai-cells = <0>;
-+      sound-name-prefix = "AUDIN FIFO0";
-+    };
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,meson-gx-audin.yaml b/Documentation/devicetree/bindings/sound/amlogic,meson-gx-audin.yaml
-new file mode 100644
-index 000000000000..d8dceaf28957
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/amlogic,meson-gx-audin.yaml
-@@ -0,0 +1,96 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/amlogic,meson-gx-audin.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Amlogic GX AUDIN
-+
-+maintainers:
-+  - Valerio Setti <vsetti@baylibre.com>
-+
-+description: |-
-+  AUDIN provides audio input support for the Amlogic GX based platforms
-+  (GXBB/GXL). DT-wise it acts as parent node for FIFO child nodes, whereas
-+  from sound subsystem point of view it is a component providing data
-+  formatting widgets.
-+  Supported audio formats are: I2S, SPDIF and PCM.
-+
-+allOf:
-+  - $ref: component-common.yaml#
-+
-+properties:
-+  $nodename:
-+    pattern: "^audio-controller@[0-9a-f]+$"
-+
-+  compatible:
-+    items:
-+      - enum:
-+          - amlogic,meson-gxbb-audin
-+          - amlogic,meson-gxl-audin
-+      - const: amlogic,meson-gx-audin
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+  ranges: true
-+
-+  resets:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: AUDIN peripheral clock
-+
-+patternProperties:
-+  "^audio-controller@[0-9a-f]+$":
-+    type: object
-+    $ref: amlogic,meson-gx-audin-fifo.yaml#
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#address-cells"
-+  - "#size-cells"
-+  - resets
-+  - interrupts
-+  - ranges
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/gxbb-clkc.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/reset/amlogic,meson-gxbb-reset.h>
-+
-+    audio-controller@a000 {
-+      compatible = "amlogic,meson-gxbb-audin", "amlogic,meson-gx-audin";
-+      reg = <0xa000 0x308>;
-+      #address-cells = <1>;
-+      #size-cells = <1>;
-+      ranges = <0x0 0xa000 0x308>;
-+      resets = <&reset RESET_AUDIN>;
-+      interrupts = <GIC_SPI 7 IRQ_TYPE_EDGE_RISING>;
-+      sound-name-prefix = "AUDIN";
-+      clocks = <&clkc CLKID_I2S_SPDIF>;
-+
-+      audio-controller@80 {
-+        compatible = "amlogic,meson-gxbb-audin-fifo",
-+                     "amlogic,meson-gx-audin-fifo";
-+        reg = <0x80 0x1c>;
-+        #sound-dai-cells = <0>;
-+        sound-name-prefix = "AUDIN FIFO0";
-+      };
-+    };
+ .../sound/amlogic,meson-gx-audin-fifo.yaml         |  52 +++
+ .../bindings/sound/amlogic,meson-gx-audin.yaml     |  96 +++++
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi          |  35 ++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |  22 +
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         |  22 +
+ sound/soc/meson/Kconfig                            |  14 +
+ sound/soc/meson/Makefile                           |   5 +
+ sound/soc/meson/aiu.c                              |   7 +
+ sound/soc/meson/audin-fifo.c                       | 466 +++++++++++++++++++++
+ sound/soc/meson/audin-formatter-i2s.c              | 174 ++++++++
+ sound/soc/meson/audin.c                            | 109 +++++
+ sound/soc/meson/audin.h                            |  14 +
+ sound/soc/meson/gx-card.c                          |  16 +-
+ 13 files changed, 1025 insertions(+), 7 deletions(-)
+---
+base-commit: cee9395acd8043be0644b25c34bfa86623f2b935
+change-id: 20260831-audin-9cabb450cc94
 
--- 
-2.47.3
+Best regards,
+--  
+Valerio Setti <vsetti@baylibre.com>
 
 
 _______________________________________________
