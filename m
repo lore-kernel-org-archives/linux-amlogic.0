@@ -4,53 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20516C88E50
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Sep 2026 13:34:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26BBAC88E45
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Sep 2026 13:48:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=D2QsV7P9MImS+FbDsPN3F0iTJ386VNu/snbCLbeht0g=; b=0obgEMRA1g8kyq
-	dMZKOPZjk+lCm6NM3y7jtuuqzEksLcSlGuN5v1P4qGuZD5sEX95PV7LynvIPnIEU52uobCtirVHFo
-	BvQIztoBW8Jpgt4FB/ewJFkCqyDIXHoct3W3yQupoYcIKzQaObozfuMoRbA1IoczNGW+v8TziPiul
-	gNBUgA7vua4whoLNnmL9vJ6WqC7NUX8onGpCLYlMBKeCP4xnE5yZLclxsW/XQn/QTYXTV82YftdTo
-	0/bCKhVpE8/6Pyq78/nlzcsd1IaVwn80lcv1w1Zsr5/u/IZp/owxN1DG1fcwA3g7XQXolro/s3Mme
-	B/VkfTzQEyORfUJDG+Rw==;
+	List-Owner; bh=uPkBGVQDjKZMEZhqSS+aOADGMXo2e2BUJcrHOK4qLsU=; b=xiDluhuyNHI5+e
+	qqgFUb/e6TylcNPNyL04VzC/IuAVIBigH2I3GF4nmIuY2woF8aFYfc6ozEQqaUHw2xYWWr067Gd44
+	XWfO1Ho87HArMgXwnrTtnVgwxXRdw0pxNn4RAC+5xwVy0GWw7I+46ct+4qIr5iPV6AXgP8P8ZpKzG
+	QRws5LYL+zy31g7fsxw0xoc9APUA42YKg5NmSHK4lwRhOmE0JLr7hpXmOzZs9ssiulbbjQ5PU8mnn
+	cHxThoAEImEs/tBSE2HIvRpqkcATPweAljw5O677cE4dycTwHi3zYVMSPET5AnUxOTQQC8aqM/Tw/
+	FqtDjgwAHOpMTq5hCzuw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x51OP-0000000Gl8x-3wNJ;
-	Fri, 11 Sep 2026 13:34:13 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1x51bw-0000000GnH2-3OKL;
+	Fri, 11 Sep 2026 13:48:12 +0000
+Received: from m16.mail.163.com ([220.197.31.3])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x51OO-0000000Gl8a-2J7y
+	id 1x51bt-0000000GnGG-2iw8
 	for linux-amlogic@lists.infradead.org;
-	Fri, 11 Sep 2026 13:34:12 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id BC8926020C;
-	Fri, 11 Sep 2026 13:34:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B4521F00893;
-	Fri, 11 Sep 2026 13:34:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1789133651;
-	bh=AXJnD8SqAd+lgdllVDPl41ewp9+1MSyYX93crRy87Tg=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=PmghyJo0eW0cJTaF84qlDFeARkAZTw8y8k2mtd2MJnMgc5TqB6pbZOVQbbzNReMO5
-	 CNTQQVQ2PTtlVX5QGpY7rO/XSSAmsM1ozVv+FVga2yMJUMe7G8tTYXehHrX16tRJ+d
-	 llKaSiO4xx+vvAXr6fA9bl2faktVS1ND40pd8+77wMSn54xOKsB5qC1MTtsNEqFQnW
-	 CTH9w1lNl/lPNmQccvrz8jmJOz/8tZAG3Vs0DDfgdsZbubHqOxgITzFRW7kRrq1u51
-	 gy/G3bARp0TvmHveRcEGRMB1OQIDcvO48squqxhqygJJDFH82JcDpweUl3sU+kPVpx
-	 Biw2h29OJ0hOg==
-From: sashiko-bot@kernel.org
+	Fri, 11 Sep 2026 13:48:11 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=zsdqYu79SdDj0gicUYOLPKVlZ/Oun8ugKeMddZdiBng=;
+	b=FUfCq0Cu2gKEeCD74R2bFW4nf+9fGbuprY3qvjN3rwdMfw9qCojAJGIy8Vfanv
+	DjHLlXjMQvUo+rSyVm2qxYu52Aw/u1JXhannF5Ep0vzhMcCkOE8ngDjErkFgrRY3
+	vO3pbsmRE5qsAAHrjzvquSO7LKVeLROExuYtdMbFhTCVE=
+Received: from [IPV6:240e:b8f:91b3:d000:8f8f:b76e:3756:1454] (unknown [])
+	by gzga-smtp-mtada-g0-0 (Coremail) with SMTP id _____wD3J+WQBqRqWFdKAA--.50611S2;
+	Fri, 11 Sep 2026 21:48:01 +0800 (CST)
+Message-ID: <e6600201-9743-44a4-aa1c-f03fc11c09de@163.com>
+Date: Fri, 11 Sep 2026 21:48:00 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v8 2/2] PCI: dwc: Remove redundant MPS configuration
-To: "Hans Zhang" <18255117159@163.com>
-Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org, linux-pci@vger.kernel.org
-In-Reply-To: <20260911132145.211380-3-18255117159@163.com>
+To: sashiko-reviews@lists.linux.dev
+Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org,
+ linux-pci@vger.kernel.org
 References: <20260911132145.211380-1-18255117159@163.com>
  <20260911132145.211380-3-18255117159@163.com>
-Date: Fri, 11 Sep 2026 13:34:10 +0000
-Message-Id: <20260911133411.3B4521F00893@smtp.kernel.org>
+ <20260911133411.3B4521F00893@smtp.kernel.org>
+Content-Language: en-US
+From: Hans Zhang <18255117159@163.com>
+In-Reply-To: <20260911133411.3B4521F00893@smtp.kernel.org>
+X-CM-TRANSID: _____wD3J+WQBqRqWFdKAA--.50611S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxurWUWw4fuw43Zry5Kw1Dtrb_yoWrCw4DpF
+	W5XF45CF45Jr45Wr1qkan5CFWxta93CF13JFnxG3ySvasIyFnrXa42yay5CayxXr4DK3Wv
+	vrWDKryFv3WYyrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0ziWlkfUUUUU=
+X-Originating-IP: [240e:b8f:91b3:d000:8f8f:b76e:3756:1454]
+X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbC6xFpDWqkBpH40wAA3s
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260911_064810_099430_BB9580BA 
+X-CRM114-Status: GOOD (  21.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,82 +71,136 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MyBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpOZXcgaXNzdWVzOgotIFtMb3ddIFVu
-dXNlZCBtYWNyb3MgUENJRV9DQVBfTUFYX1BBWUxPQURfU0laRSBhbmQgTUFYX1BBWUxPQURfU0la
-RSBsZWZ0IGJlaGluZCBhZnRlciByZW1vdmluZyB0aGUgTVBTIGNvbmZpZ3VyYXRpb24gZnVuY3Rp
-b24uCi0gW0xvd10gTWlzbGVhZGluZyBmdW5jdGlvbiBuYW1lIGFuZCB3YXJuaW5nIG1lc3NhZ2Ug
-Zm9yIE1SUlMgY2FsY3VsYXRpb24gYWZ0ZXIgcmVtb3ZpbmcgTVBTIGNvbmZpZ3VyYXRpb24uCgpQ
-cmUtZXhpc3RpbmcgaXNzdWVzOgotIFtIaWdoXSAzMi1iaXQgcmVhZC1tb2RpZnktd3JpdGUgb2Yg
-UENJX0VYUF9ERVZDVEwgaW5hZHZlcnRlbnRseSBjbGVhcnMgVzFDIGVycm9yIGJpdHMgaW4gUENJ
-X0VYUF9ERVZTVEEuCi0tCgpjb21taXQgM2ZmNzkwNjNkOTdjYjBmMjY1ZWZhYWI2NWJhYjY5ZmYy
-YzUxMmEzZApBdXRob3I6IEhhbnMgWmhhbmcgPDE4MjU1MTE3MTU5QDE2My5jb20+CgpQQ0k6IGR3
-YzogUmVtb3ZlIHJlZHVuZGFudCBNUFMgY29uZmlndXJhdGlvbgoKVGhlIE1lc29uIFBDSWUgY29u
-dHJvbGxlciBkcml2ZXIgbWFudWFsbHkgY29uZmlndXJlcyBtYXhpbXVtIHBheWxvYWQKc2l6ZSAo
-TVBTKSB0aHJvdWdoIG1lc29uX3NldF9tYXhfcGF5bG9hZCwgZHVwbGljYXRpbmcgZnVuY3Rpb25h
-bGl0eSBub3cKY2VudHJhbGl6ZWQgaW4gdGhlIFBDSSBjb3JlLiAgRGVwcmVjYXRpbmcgcmVkdW5k
-YW50IGNvZGUgc2ltcGxpZmllcyB0aGUKZHJpdmVyIGFuZCBhbGlnbnMgaXQgd2l0aCB0aGUgY29u
-c29saWRhdGVkIE1QUyBtYW5hZ2VtZW50IHN0cmF0ZWd5LAppbXByb3ZpbmcgbG9uZy10ZXJtIG1h
-aW50YWluYWJpbGl0eS4KCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdj
-L3BjaS1tZXNvbi5jIGIvZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNpLW1lc29uLmMKPiBp
-bmRleCA4NTU5ZDEzMmRjZGU4Li44YzE3NmY3ODk1M2U5IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMv
-cGNpL2NvbnRyb2xsZXIvZHdjL3BjaS1tZXNvbi5jCj4gKysrIGIvZHJpdmVycy9wY2kvY29udHJv
-bGxlci9kd2MvcGNpLW1lc29uLmMKPiBAQCAtMjczLDIyICsyNzMsNiBAQCBzdGF0aWMgaW50IG1l
-c29uX3NpemVfdG9fcGF5bG9hZChzdHJ1Y3QgbWVzb25fcGNpZSAqbXAsIGludCBzaXplKQo+ICAJ
-cmV0dXJuIGZscyhzaXplKSAtIDg7Cj4gIH0KCltTZXZlcml0eTogTG93XQpXaXRoIHRoZSByZW1v
-dmFsIG9mIHRoZSBwYXlsb2FkIGNvbmZpZ3VyYXRpb24gZnVuY3Rpb24sIHRoaXMgaGVscGVyIGlz
-IG5vdwpleGNsdXNpdmVseSBjYWxsZWQgYnkgbWVzb25fc2V0X21heF9yZF9yZXFfc2l6ZSgpIHRv
-IGNhbGN1bGF0ZSB0aGUgTWF4IFJlYWQKUmVxdWVzdCBTaXplIChNUlJTKS4KCkRvZXMgdGhpcyBm
-dW5jdGlvbiBuYW1lIGFuZCBpdHMgaW50ZXJuYWwgbG9nIG1lc3NhZ2U6CgoJZGV2X3dhcm4oZGV2
-LCAicGF5bG9hZCBzaXplICVkLCBzZXQgdG8gZGVmYXVsdCAyNTZcbiIsIHNpemUpOwoKbmVlZCB0
-byBiZSB1cGRhdGVkIHRvIHJlZmxlY3QgdGhhdCBpdCBpcyBjYWxjdWxhdGluZyBNUlJTPyBMZWF2
-aW5nIGl0IGFzLWlzCm1pZ2h0IGNhdXNlIGNvbmZ1c2lvbiBmb3IgZnV0dXJlIG1haW50YWluZXJz
-LgoKPiAgCj4gLXN0YXRpYyB2b2lkIG1lc29uX3NldF9tYXhfcGF5bG9hZChzdHJ1Y3QgbWVzb25f
-cGNpZSAqbXAsIGludCBzaXplKQo+IC17Cj4gLQlzdHJ1Y3QgZHdfcGNpZSAqcGNpID0gJm1wLT5w
-Y2k7Cj4gLQl1MzIgdmFsOwo+IC0JdTE2IG9mZnNldCA9IGR3X3BjaWVfZmluZF9jYXBhYmlsaXR5
-KHBjaSwgUENJX0NBUF9JRF9FWFApOwo+IC0JaW50IG1heF9wYXlsb2FkX3NpemUgPSBtZXNvbl9z
-aXplX3RvX3BheWxvYWQobXAsIHNpemUpOwo+IC0KPiAtCXZhbCA9IGR3X3BjaWVfcmVhZGxfZGJp
-KHBjaSwgb2Zmc2V0ICsgUENJX0VYUF9ERVZDVEwpOwo+IC0JdmFsICY9IH5QQ0lfRVhQX0RFVkNU
-TF9QQVlMT0FEOwo+IC0JZHdfcGNpZV93cml0ZWxfZGJpKHBjaSwgb2Zmc2V0ICsgUENJX0VYUF9E
-RVZDVEwsIHZhbCk7Cj4gLQo+IC0JdmFsID0gZHdfcGNpZV9yZWFkbF9kYmkocGNpLCBvZmZzZXQg
-KyBQQ0lfRVhQX0RFVkNUTCk7Cj4gLQl2YWwgfD0gUENJRV9DQVBfTUFYX1BBWUxPQURfU0laRSht
-YXhfcGF5bG9hZF9zaXplKTsKCltTZXZlcml0eTogTG93XQpTaG91bGQgdGhlIGRlZmluaXRpb24g
-b2YgUENJRV9DQVBfTUFYX1BBWUxPQURfU0laRSBiZSByZW1vdmVkIGFzIHdlbGw/IFNpbmNlCml0
-IGlzIG5vIGxvbmdlciB1c2VkIGFmdGVyIHJlbW92aW5nIHRoaXMgZnVuY3Rpb24sIGl0IGFwcGVh
-cnMgdG8gYmUgZGVhZApjb2RlIG5vdy4KCj4gLQlkd19wY2llX3dyaXRlbF9kYmkocGNpLCBvZmZz
-ZXQgKyBQQ0lfRVhQX0RFVkNUTCwgdmFsKTsKPiAtfQo+IC0KPiAgc3RhdGljIHZvaWQgbWVzb25f
-c2V0X21heF9yZF9yZXFfc2l6ZShzdHJ1Y3QgbWVzb25fcGNpZSAqbXAsIGludCBzaXplKQo+ICB7
-Cj4gIAlzdHJ1Y3QgZHdfcGNpZSAqcGNpID0gJm1wLT5wY2k7CgpbU2V2ZXJpdHk6IEhpZ2hdClRo
-aXMgaXMgYSBwcmUtZXhpc3RpbmcgaXNzdWUsIGJ1dCBkb2VzIG1lc29uX3NldF9tYXhfcmRfcmVx
-X3NpemUoKQppbmFkdmVydGVudGx5IGNsZWFyIFcxQyBlcnJvciBiaXRzIGluIFBDSV9FWFBfREVW
-U1RBPwoKVGhpcyBmdW5jdGlvbiBwZXJmb3JtcyBhIDMyLWJpdCByZWFkLW1vZGlmeS13cml0ZSBv
-biBQQ0lfRVhQX0RFVkNUTDoKCgl2YWwgPSBkd19wY2llX3JlYWRsX2RiaShwY2ksIG9mZnNldCAr
-IFBDSV9FWFBfREVWQ1RMKTsKCXZhbCAmPSB+UENJX0VYUF9ERVZDVExfUkVBRFJROwoJZHdfcGNp
-ZV93cml0ZWxfZGJpKHBjaSwgb2Zmc2V0ICsgUENJX0VYUF9ERVZDVEwsIHZhbCk7CgpCZWNhdXNl
-IHRoaXMgMzItYml0IGFjY2VzcyBjb3ZlcnMgYm90aCB0aGUgMTYtYml0IFBDSV9FWFBfREVWQ1RM
-IGFuZCB0aGUKYWRqYWNlbnQgMTYtYml0IFBDSV9FWFBfREVWU1RBLCBpdCBmZXRjaGVzIGJvdGgu
-IFBDSV9FWFBfREVWU1RBIGNvbnRhaW5zCm11bHRpcGxlIFdyaXRlLTEtdG8tQ2xlYXIgKFcxQykg
-ZXJyb3IgZmxhZ3MuIFdyaXRpbmcgdGhlIGVudGlyZSAzMi1iaXQgdmFsdWUKYmFjayBtZWFucyBh
-bnkgVzFDIGJpdCBpbiBERVZTVEEgcmVhZCBhcyAnMScgaXMgd3JpdHRlbiBhcyAnMScsIGluYWR2
-ZXJ0ZW50bHkKY2xlYXJpbmcgdGhlIGVycm9yIHN0YXR1cyBhbmQgbWFza2luZyBoYXJkd2FyZSBm
-YXVsdHMuCgpTaG91bGQgdGhpcyBiZSB1cGRhdGVkIHRvIHVzZSBkd19wY2llX3JlYWR3X2RiaSgp
-IGFuZCBkd19wY2llX3dyaXRld19kYmkoKQppbnN0ZWFkPwoKWyAuLi4gXQoKPiBAQCAtMzYzLDcg
-KzM0Nyw2IEBAIHN0YXRpYyBpbnQgbWVzb25fcGNpZV9ob3N0X2luaXQoc3RydWN0IGR3X3BjaWVf
-cnAgKnBwKQo+ICAKPiAgCXBwLT5icmlkZ2UtPm9wcyA9ICZtZXNvbl9wY2lfb3BzOwo+ICAKPiAt
-CW1lc29uX3NldF9tYXhfcGF5bG9hZChtcCwgTUFYX1BBWUxPQURfU0laRSk7CgpbU2V2ZXJpdHk6
-IExvd10KU2hvdWxkIHRoZSBNQVhfUEFZTE9BRF9TSVpFIG1hY3JvIGJlIHJlbW92ZWQgYXMgd2Vs
-bD8gU2luY2UgaXRzIHVzYWdlIGlzCnJlbW92ZWQgaGVyZSwgbGVhdmluZyB0aGUgbWFjcm8gYmVo
-aW5kIGxlYXZlcyBkZWFkIGNvZGUuCgo+ICAJbWVzb25fc2V0X21heF9yZF9yZXFfc2l6ZShtcCwg
-TUFYX1JFQURfUkVRX1NJWkUpOwo+ICAKPiAgCXJldHVybiAwOwoKLS0gClNhc2hpa28gQUkgcmV2
-aWV3IMK3IGh0dHBzOi8vc2FzaGlrby5kZXYvIy9wYXRjaHNldC8yMDI2MDkxMTEzMjE0NS4yMTEz
-ODAtMS0xODI1NTExNzE1OUAxNjMuY29tP3BhcnQ9MgoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgt
-YW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21h
-aWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+
+
+On 9/11/26 21:34, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 3 potential issue(s) to consider:
+> 
+> New issues:
+> - [Low] Unused macros PCIE_CAP_MAX_PAYLOAD_SIZE and MAX_PAYLOAD_SIZE left behind after removing the MPS configuration function.
+> - [Low] Misleading function name and warning message for MRRS calculation after removing MPS configuration.
+> 
+> Pre-existing issues:
+> - [High] 32-bit read-modify-write of PCI_EXP_DEVCTL inadvertently clears W1C error bits in PCI_EXP_DEVSTA.
+> --
+> 
+> commit 3ff79063d97cb0f265efaab65bab69ff2c512a3d
+> Author: Hans Zhang <18255117159@163.com>
+> 
+> PCI: dwc: Remove redundant MPS configuration
+> 
+> The Meson PCIe controller driver manually configures maximum payload
+> size (MPS) through meson_set_max_payload, duplicating functionality now
+> centralized in the PCI core.  Deprecating redundant code simplifies the
+> driver and aligns it with the consolidated MPS management strategy,
+> improving long-term maintainability.
+> 
+>> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+>> index 8559d132dcde8..8c176f78953e9 100644
+>> --- a/drivers/pci/controller/dwc/pci-meson.c
+>> +++ b/drivers/pci/controller/dwc/pci-meson.c
+>> @@ -273,22 +273,6 @@ static int meson_size_to_payload(struct meson_pcie *mp, int size)
+>>   	return fls(size) - 8;
+>>   }
+> 
+> [Severity: Low]
+> With the removal of the payload configuration function, this helper is now
+> exclusively called by meson_set_max_rd_req_size() to calculate the Max Read
+> Request Size (MRRS).
+
+Hi,
+
+Will add 0003 patch to rename function name.
+s/meson_size_to_payload/meson_size_to_mrrs/
+
+> 
+> Does this function name and its internal log message:
+> 
+> 	dev_warn(dev, "payload size %d, set to default 256\n", size);
+> 
+> need to be updated to reflect that it is calculating MRRS? Leaving it as-is
+> might cause confusion for future maintainers.
+> 
+>>   
+>> -static void meson_set_max_payload(struct meson_pcie *mp, int size)
+>> -{
+>> -	struct dw_pcie *pci = &mp->pci;
+>> -	u32 val;
+>> -	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+>> -	int max_payload_size = meson_size_to_payload(mp, size);
+>> -
+>> -	val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
+>> -	val &= ~PCI_EXP_DEVCTL_PAYLOAD;
+>> -	dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
+>> -
+>> -	val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
+>> -	val |= PCIE_CAP_MAX_PAYLOAD_SIZE(max_payload_size);
+> 
+> [Severity: Low]
+> Should the definition of PCIE_CAP_MAX_PAYLOAD_SIZE be removed as well? Since
+> it is no longer used after removing this function, it appears to be dead
+> code now.
+
+The next version will remove:
+
+#define PCIE_CAP_MAX_PAYLOAD_SIZE(x)	((x) << 5)
+#define MAX_PAYLOAD_SIZE		256
+
+
+Best regards,
+Hans
+
+> 
+>> -	dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
+>> -}
+>> -
+>>   static void meson_set_max_rd_req_size(struct meson_pcie *mp, int size)
+>>   {
+>>   	struct dw_pcie *pci = &mp->pci;
+> 
+> [Severity: High]
+> This is a pre-existing issue, but does meson_set_max_rd_req_size()
+> inadvertently clear W1C error bits in PCI_EXP_DEVSTA?
+> 
+> This function performs a 32-bit read-modify-write on PCI_EXP_DEVCTL:
+> 
+> 	val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
+> 	val &= ~PCI_EXP_DEVCTL_READRQ;
+> 	dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
+> 
+> Because this 32-bit access covers both the 16-bit PCI_EXP_DEVCTL and the
+> adjacent 16-bit PCI_EXP_DEVSTA, it fetches both. PCI_EXP_DEVSTA contains
+> multiple Write-1-to-Clear (W1C) error flags. Writing the entire 32-bit value
+> back means any W1C bit in DEVSTA read as '1' is written as '1', inadvertently
+> clearing the error status and masking hardware faults.
+> 
+> Should this be updated to use dw_pcie_readw_dbi() and dw_pcie_writew_dbi()
+> instead?
+> 
+> [ ... ]
+> 
+>> @@ -363,7 +347,6 @@ static int meson_pcie_host_init(struct dw_pcie_rp *pp)
+>>   
+>>   	pp->bridge->ops = &meson_pci_ops;
+>>   
+>> -	meson_set_max_payload(mp, MAX_PAYLOAD_SIZE);
+> 
+> [Severity: Low]
+> Should the MAX_PAYLOAD_SIZE macro be removed as well? Since its usage is
+> removed here, leaving the macro behind leaves dead code.
+> 
+>>   	meson_set_max_rd_req_size(mp, MAX_READ_REQ_SIZE);
+>>   
+>>   	return 0;
+> 
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
