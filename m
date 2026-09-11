@@ -4,79 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DA8DC88E5A
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Sep 2026 13:22:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FBB2C88E50
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Sep 2026 13:33:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wzO35pCY/MlDxnmvH4OZxFsHnGOcPHsmlGoZ81ySBe4=; b=sDqXWDaRc2Pte/
-	hxWm/Y3qYMQ4e4VQZ3iuudRJ+FkCger3UjwhqoqUyOqLSoN/0oBacEUdIDWs9QgQdvRruaZHeYs1c
-	yF2IstM2c+lgHZD72MhElRYIqd9gZXo8abd2v3M4g6aPN2FkMQ0BX/ECjIZcYhhBdUqETzqtLBa82
-	rlkhKR/+P1oJGvf4bAQXiuezTMn0tYeeE1dFOFGRuMm/RfKClchVAU3M0UFQybTmp1GdCoh+jsY7v
-	DF3mtnn43RLJTOMHYGzeYdk0aF8VA2/JB/HSnlL+QAq+qKLB1nszxro9eu4De8QlBGFHgyPFZtKpu
-	u5aJNpQnn1O6hJI2hvOQ==;
+	List-Owner; bh=HQvssO9GgInrSmkCfzlvzSEyzY45rADsCv2i8+25KeE=; b=Bc4ylPkiGUe0Uf
+	197xOcz+FCWXm3pnMfgW1vGX+7eOpn79b2Dih7Mer+dM6S+CDxWmCukpjTvOpP+irZq7IRUjoYcaG
+	afhXZmv99RQT+FQ9w/PFB5oqjdBIPVz381Sp2UPBfHvmGVVACChuYjBKk6UIVT3z1PlOgE3x7cAR8
+	ojmwno0abSgWXWxIPJfmk8LDKsPeFGkUZpcC0Gqe9MAb4PjhZVQ8id+DQdo0R7X5atDMZPkkdiC/L
+	+BBRA8eAV3bQid4+tXWGAGQSOBDBWcJbKcfzscCd8Xhzc0NM53pEuIMokG5JlZS7y9h5FLg+Sm5ir
+	dXx2pktygdH/u3ZazvZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x51DK-0000000GjcE-0wt9;
-	Fri, 11 Sep 2026 13:22:46 +0000
-Received: from [117.135.210.2] (helo=m16.mail.163.com)
+	id 1x51Nr-0000000Gl4H-3aIt;
+	Fri, 11 Sep 2026 13:33:39 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x51DD-0000000GjV8-3g3k;
-	Fri, 11 Sep 2026 13:22:41 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=tV
-	nKxjEqjL5K9MQsTn8DQ/hXl6/AJIPEzzM3B7nx2sM=; b=StNdYO1CVQDdyUpXBZ
-	cc7FLd0UxaTVrpzO2tWV9G0Kbpcn40nJAv6rbS4GW9/3cl4PAt//+NAcjkq5+WJr
-	qSE+YZ2vg2GMi4zIXNk5N0GYbwhTzcsac0vH65Y5unt7LxuhrxQ2qvG2zSyUFB7K
-	OznMTxnssA8Fz7XboP3SyHP74=
-Received: from zhb.. (unknown [])
-	by gzsmtp4 (Coremail) with SMTP id PygvCgAHqBJmAKRqYh6mRA--.52761S3;
-	Fri, 11 Sep 2026 21:21:46 +0800 (CST)
-From: Hans Zhang <18255117159@163.com>
-To: lpieralisi@kernel.org,
-	kwilczynski@kernel.org,
-	bhelgaas@google.com,
-	helgaas@kernel.org,
-	heiko@sntech.de,
-	mani@kernel.org,
-	yue.wang@Amlogic.com
-Cc: pali@kernel.org,
-	neil.armstrong@linaro.org,
-	robh@kernel.org,
-	jingoohan1@gmail.com,
-	khilman@baylibre.com,
-	jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com,
-	cassel@kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	Hans Zhang <18255117159@163.com>,
-	Mahesh Vaidya <mahesh.vaidya@altera.com>,
-	Ricardo Pardini <ricardo@pardini.net>,
-	Shawn Lin <shawn.lin@rock-chips.com>
-Subject: [PATCH v8 1/2] PCI: Configure Root Port MPS during host probing
-Date: Fri, 11 Sep 2026 21:21:44 +0800
-Message-Id: <20260911132145.211380-2-18255117159@163.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260911132145.211380-1-18255117159@163.com>
+	id 1x51Nq-0000000Gl3n-0Pvb
+	for linux-amlogic@lists.infradead.org;
+	Fri, 11 Sep 2026 13:33:38 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id F08DC60A62;
+	Fri, 11 Sep 2026 13:33:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 647411F000FF;
+	Fri, 11 Sep 2026 13:33:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1789133615;
+	bh=UQmLf39egxouHqGaoPY1W2b4Ke71vmpsB1o38cIZnUc=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=DMAQ5KRGVCC+1MMFeLnPAyCNuAYz/hxYmepO6VeZS5zCUVkAL6XvtneJZb8gdEJDI
+	 RYVZUOz6ajsZT445z02/dzhVfTAagJ9G4IcRHDO0kIODPiWHdpTChOhd0W0BqJkmDy
+	 FdVp+bPlKAL2NQ0geE6kZaMw8fsJ4YN3Pj0G7VnZpRFH37okgBqdWk1h4bEB0gfWcw
+	 6Quy1lT6pcYsM+9WwWdP0nTyyh/pogvRgEd5YUH+mHn7F9vrtOhP0AYYbBmty4gEmG
+	 UFy7duMFi8EQ1jq9RdCJ7amTdJ32o6RWEGtfgMQfF+9iEtCoxgpR1R4oJK32364o8j
+	 Lh7tgcyahz4jg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v8 1/2] PCI: Configure Root Port MPS during host probing
+To: "Hans Zhang" <18255117159@163.com>
+Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org, linux-pci@vger.kernel.org
+In-Reply-To: <20260911132145.211380-2-18255117159@163.com>
 References: <20260911132145.211380-1-18255117159@163.com>
-MIME-Version: 1.0
-X-CM-TRANSID: PygvCgAHqBJmAKRqYh6mRA--.52761S3
-X-Coremail-Antispam: 1Uf129KBjvJXoW7WF1DCr43Xr1rAr4DKFy7Awb_yoW5JFWxpa
-	yUWanYyFs7GF4fZFsrZ3WFvFyYqF93ZrW3GrZYv34qvan8AryDJrW5ta95Jw1kGrZ29Fya
-	vFn8tryxu3ZIvFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0piGNtfUUUUU=
-X-Originating-IP: [240e:b8f:91b3:d000:8f8f:b76e:3756:1454]
-X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbCxArdgWqkAGrXVAAA31
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260911_062240_393007_6F82790A 
-X-CRM114-Status: GOOD (  11.27  )
+ <20260911132145.211380-2-18255117159@163.com>
+Date: Fri, 11 Sep 2026 13:33:34 +0000
+Message-Id: <20260911133335.647411F000FF@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,73 +62,71 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Current PCIe initialization logic may leave Root Ports operating with
-non-optimal Maximum Payload Size (MPS) settings. The existing code in
-pci_configure_mps() returns early for devices without an upstream bridge
-which includes Root Ports, so their MPS values remain at firmware
-defaults. This fails to utilize the controller's full capabilities,
-leading to suboptimal data transfer efficiency across the PCIe hierarchy.
-
-With this patch, during the host controller probing phase:
-- When PCIe bus tuning is enabled (not PCIE_BUS_TUNE_OFF) and not
-  PCIE_BUS_PEER2PEER (which requires the default 128 bytes for optimal
-  peer-to-peer operation), and
-- The device is a Root Port, the Root Port's MPS is set to its maximum
-  supported value.
-
-Note that this initial maximum MPS setting may be reduced later, during
-downstream device enumeration, if any downstream device does not support
-the Root Port's maximum MPS.
-
-This change ensures Root Ports are initialized to their maximum MPS before
-downstream devices negotiate MPS, while maintaining backward compatibility
-via the PCIE_BUS_TUNE_OFF check and not interfering with the
-PCIE_BUS_PEER2PEER strategy.
-
-Suggested-by: Niklas Cassel <cassel@kernel.org>
-Suggested-by: Manivannan Sadhasivam <mani@kernel.org>
-Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
-Signed-off-by: Hans Zhang <18255117159@163.com>
-Tested-by: Mahesh Vaidya <mahesh.vaidya@altera.com>
-Tested-by: Ricardo Pardini <ricardo@pardini.net> # on Odroid-HC4 
-Tested-by: Shawn Lin <shawn.lin@rock-chips.com>
----
- drivers/pci/probe.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-index 27008e2ea5af..dc4747858918 100644
---- a/drivers/pci/probe.c
-+++ b/drivers/pci/probe.c
-@@ -2229,6 +2229,18 @@ static void pci_configure_mps(struct pci_dev *dev)
- 		return;
- 	}
- 
-+	/*
-+	 * Unless MPS strategy is PCIE_BUS_TUNE_OFF (don't touch MPS at all) or
-+	 * PCIE_BUS_PEER2PEER (use minimum MPS for peer-to-peer), set Root Ports'
-+	 * MPS to their maximum supported value. Depending on the MPS strategy
-+	 * and MPSS of downstream devices, a Root Port's MPS may be reduced
-+	 * later during device enumeration.
-+	 */
-+	if (pci_pcie_type(dev) == PCI_EXP_TYPE_ROOT_PORT &&
-+	    pcie_bus_config != PCIE_BUS_TUNE_OFF &&
-+	    pcie_bus_config != PCIE_BUS_PEER2PEER)
-+		pcie_set_mps(dev, 128 << dev->pcie_mpss);
-+
- 	if (!bridge || !pci_is_pcie(bridge))
- 		return;
- 
--- 
-2.34.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MiBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0hpZ2hdIExvZ2ljIEVycm9yIC8g
+UENJZSBNUFMgTWlzbWF0Y2guIFVuY29uZGl0aW9uYWxseSBjb25maWd1cmluZyB0aGUgUm9vdCBQ
+b3J0IE1QUyB0byBpdHMgbWF4aW11bSBzdXBwb3J0ZWQgdmFsdWUgYnJlYWtzIGRldmljZXMgY29u
+bmVjdGVkIHZpYSBQQ0llIHN3aXRjaGVzIHVuZGVyIHRoZSBkZWZhdWx0IE1QUyBzdHJhdGVneSAo
+UENJRV9CVVNfREVGQVVMVCkuCi0gW01lZGl1bV0gTWlzc2luZyBFcnJvciBIYW5kbGluZzogVGhl
+IHJldHVybiB2YWx1ZSBvZiBgcGNpZV9zZXRfbXBzKClgIGlzIHNpbGVudGx5IGlnbm9yZWQgd2hl
+biBjb25maWd1cmluZyB0aGUgUm9vdCBQb3J0IE1QUy4KLS0KCmNvbW1pdCAxMzgxNmRmMGNhMmZl
+MzA3MGY2NDRkNGJiZjM1ZmQ3MTJiZTIyMjg1CkF1dGhvcjogSGFucyBaaGFuZyA8MTgyNTUxMTcx
+NTlAMTYzLmNvbT4KClBDSTogQ29uZmlndXJlIFJvb3QgUG9ydCBNUFMgZHVyaW5nIGhvc3QgcHJv
+YmluZwoKQ3VycmVudCBQQ0llIGluaXRpYWxpemF0aW9uIGxvZ2ljIG1heSBsZWF2ZSBSb290IFBv
+cnRzIG9wZXJhdGluZyB3aXRoCm5vbi1vcHRpbWFsIE1heGltdW0gUGF5bG9hZCBTaXplIChNUFMp
+IHNldHRpbmdzLiBUaGlzIGNoYW5nZSBlbnN1cmVzClJvb3QgUG9ydHMgYXJlIGluaXRpYWxpemVk
+IHRvIHRoZWlyIG1heGltdW0gTVBTIGJlZm9yZSBkb3duc3RyZWFtIGRldmljZXMKbmVnb3RpYXRl
+IE1QUywgd2hpbGUgbm90IGludGVyZmVyaW5nIHdpdGggdGhlIFBDSUVfQlVTX1BFRVIyUEVFUiBz
+dHJhdGVneS4KCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcGNpL3Byb2JlLmMgYi9kcml2ZXJzL3Bj
+aS9wcm9iZS5jCj4gaW5kZXggMjcwMDhlMmVhNWFmYy4uZGM0NzQ3ODU4OTE4MiAxMDA2NDQKPiAt
+LS0gYS9kcml2ZXJzL3BjaS9wcm9iZS5jCj4gKysrIGIvZHJpdmVycy9wY2kvcHJvYmUuYwo+IEBA
+IC0yMjI5LDYgKzIyMjksMTggQEAgc3RhdGljIHZvaWQgcGNpX2NvbmZpZ3VyZV9tcHMoc3RydWN0
+IHBjaV9kZXYgKmRldikKPiAgCQlyZXR1cm47Cj4gIAl9Cj4gIAo+ICsJLyoKPiArCSAqIFVubGVz
+cyBNUFMgc3RyYXRlZ3kgaXMgUENJRV9CVVNfVFVORV9PRkYgKGRvbid0IHRvdWNoIE1QUyBhdCBh
+bGwpIG9yCj4gKwkgKiBQQ0lFX0JVU19QRUVSMlBFRVIgKHVzZSBtaW5pbXVtIE1QUyBmb3IgcGVl
+ci10by1wZWVyKSwgc2V0IFJvb3QgUG9ydHMnCj4gKwkgKiBNUFMgdG8gdGhlaXIgbWF4aW11bSBz
+dXBwb3J0ZWQgdmFsdWUuIERlcGVuZGluZyBvbiB0aGUgTVBTIHN0cmF0ZWd5Cj4gKwkgKiBhbmQg
+TVBTUyBvZiBkb3duc3RyZWFtIGRldmljZXMsIGEgUm9vdCBQb3J0J3MgTVBTIG1heSBiZSByZWR1
+Y2VkCj4gKwkgKiBsYXRlciBkdXJpbmcgZGV2aWNlIGVudW1lcmF0aW9uLgo+ICsJICovCj4gKwlp
+ZiAocGNpX3BjaWVfdHlwZShkZXYpID09IFBDSV9FWFBfVFlQRV9ST09UX1BPUlQgJiYKPiArCSAg
+ICBwY2llX2J1c19jb25maWcgIT0gUENJRV9CVVNfVFVORV9PRkYgJiYKPiArCSAgICBwY2llX2J1
+c19jb25maWcgIT0gUENJRV9CVVNfUEVFUjJQRUVSKQo+ICsJCXBjaWVfc2V0X21wcyhkZXYsIDEy
+OCA8PCBkZXYtPnBjaWVfbXBzcyk7CgpbU2V2ZXJpdHk6IEhpZ2hdCkRvZXMgdW5jb25kaXRpb25h
+bGx5IHNldHRpbmcgdGhlIFJvb3QgUG9ydCBNUFMgdG8gbWF4aW11bSBicmVhayBkZXZpY2VzCmNv
+bm5lY3RlZCB2aWEgUENJZSBzd2l0Y2hlcyB1bmRlciB0aGUgZGVmYXVsdCBNUFMgc3RyYXRlZ3kg
+KFBDSUVfQlVTX0RFRkFVTFQpPwoKSWYgYSBzeXN0ZW0gaGFzIGEgUENJZSBzd2l0Y2ggYW5kIHRo
+ZSBSb290IFBvcnQgc3VwcG9ydHMgYSBsYXJnZXIgTVBTCihlLmcuLCAyNTZCKSB0aGFuIHRoZSBl
+bmRwb2ludCBiZWhpbmQgdGhlIHN3aXRjaCAoZS5nLiwgMTI4QiksIGl0IGFwcGVhcnMgdGhpcwp3
+b3VsZCBjYXVzZSBhIG1pc21hdGNoLgoKRHVyaW5nIHRvcC1kb3duIGVudW1lcmF0aW9uLCB0aGlz
+IG5ldyBjb2RlIHVuY29uZGl0aW9uYWxseSBzZXRzIHRoZSBSb290IFBvcnQKTVBTIHRvIG1heCAo
+MjU2QiksIGFuZCB0aGUgc3dpdGNoIHBvcnRzIGluaGVyaXQgMjU2Qi4gV2hlbiB0aGUgZW5kcG9p
+bnQgaXMKbGF0ZXIgZW51bWVyYXRlZCBpbiBwY2lfY29uZmlndXJlX21wcygpLCBpdCBoaXRzIHRo
+aXMgcHJlLWV4aXN0aW5nIGxvZ2ljCmZ1cnRoZXIgZG93biBpbiB0aGUgZnVuY3Rpb246CgogICAg
+bXBzcyA9IDEyOCA8PCBkZXYtPnBjaWVfbXBzczsKICAgIGlmIChtcHNzIDwgcF9tcHMgJiYgcGNp
+X3BjaWVfdHlwZShicmlkZ2UpID09IFBDSV9FWFBfVFlQRV9ST09UX1BPUlQpIHsKICAgICAgICBw
+Y2llX3NldF9tcHMoYnJpZGdlLCBtcHNzKTsKCkJlY2F1c2UgdGhlIHVwc3RyZWFtIGJyaWRnZSBp
+cyBhIFN3aXRjaCBEb3duc3RyZWFtIFBvcnQgYW5kIG5vdCBhIFJvb3QgUG9ydCwKdGhlIGNvbmRp
+dGlvbiBwY2lfcGNpZV90eXBlKGJyaWRnZSkgPT0gUENJX0VYUF9UWVBFX1JPT1RfUE9SVCBldmFs
+dWF0ZXMgdG8KZmFsc2UuCgpTaW5jZSB0aGUgTVBTIHJlZHVjdGlvbiBzdHJpY3RseSBsaW1pdHMg
+aXRzZWxmIHRvIFJvb3QgUG9ydHMsIHRoZSBNUFMgb2YgdGhlCnN3aXRjaCBpcyBub3QgcmVkdWNl
+ZCwgbGVhdmluZyBpdCBhdCAyNTZCLiBUaGUgZW5kcG9pbnQgdGhlbiBmYWlscyB0byBzZXQgaXRz
+Ck1QUyB0byAyNTZCLCByZXR1cm5pbmcgLUVJTlZBTCBhbmQgcGVybWFuZW50bHkgbGVhdmluZyBh
+IG1pc21hdGNoIHdoaWNoIGNvdWxkCmxlYWQgdG8gZHJvcHBlZCBwYWNrZXRzIGFzIE1hbGZvcm1l
+ZCBUTFBzLgoKW1NldmVyaXR5OiBNZWRpdW1dCkFyZSB3ZSBtaXNzaW5nIGFuIGVycm9yIGNoZWNr
+IGhlcmU/CgpJZiB0aGUgY29uZmlndXJhdGlvbiB3cml0ZSBmYWlscyBkdWUgdG8gaGFyZHdhcmUg
+cXVpcmtzIG9yIGFuIGludmFsaWQgdmFsdWUsCnRoZSByZXR1cm4gdmFsdWUgb2YgcGNpZV9zZXRf
+bXBzKCkgaXMgc2lsZW50bHkgaWdub3JlZCwgdW5saWtlIHNpbWlsYXIgY2FsbHMKaW4gcGNpX2Nv
+bmZpZ3VyZV9tcHMoKSB3aGljaCBsb2cgYSB3YXJuaW5nIG9yIGhhbmRsZSB0aGUgZmFpbHVyZS4K
+Cj4gKwo+ICAJaWYgKCFicmlkZ2UgfHwgIXBjaV9pc19wY2llKGJyaWRnZSkpCj4gIAkJcmV0dXJu
+Owo+CgotLSAKU2FzaGlrbyBBSSByZXZpZXcgwrcgaHR0cHM6Ly9zYXNoaWtvLmRldi8jL3BhdGNo
+c2V0LzIwMjYwOTExMTMyMTQ1LjIxMTM4MC0xLTE4MjU1MTE3MTU5QDE2My5jb20/cGFydD0xCgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxv
+Z2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDov
+L2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
