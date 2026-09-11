@@ -4,89 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04296C88E4D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Sep 2026 13:08:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BE44C88E4D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Sep 2026 13:22:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Vndv/QXbG0qtjdL0n01P+bVDdqBrBmfTLZxKVNkaiME=; b=JhFNR6WA/5SzTo
-	NP7oBCjvgdM7/bswpJ1z7XunOMVmSogGRNKN8mGKgjdVAWDVkyP6bKNDNHYjIjCB3fjFKMTrjhYlC
-	AyVOpA9G/T3crtPquCV9bKR8orR732WSsGaJLVcC46aaDKi01s5Xj6SkDFBNAkmEnUgwosvhKuPdj
-	kQZwHFh7pV/tlkmAJZOMJasKhhwKjnGuUyhQVFOFgUvr0FxEAp0jgtkehz4svHeBMfLvdsDyWZSyk
-	X10YbZl/b7kyRnSdodDSctmbUxqd81Zsx7RQbGjxygaMYEOjkQ76idVowd3SoE8l0kKejOyj4mXLE
-	vlfeNBGF4iOlhNKeYDXg==;
+	List-Owner; bh=Gclx2co3GBKKDlhX9ahPl7b+j5uZebNAk4aTcezxQJU=; b=A+Y0PqI4lYXKmr
+	sOYCQvBJ6tExmgwz3dTdP1r3zv6r2R3yEFhZdpgoqeyk9B78Inh+7Xol4PWV8tqBc+v6Gw7oM3iiy
+	q7kS5A3z7WKsqB3k6cfC3xNnalpi5xADP8E1LN5nqw8mRUQGFL6U4UbEfXHYXqARu4vAthl43WLzF
+	GVDgLI+y7+Zg5rtggPe9x7MV1t136JWkrwRKqr9KMlRFb2CaG9/n4b7XXLXcmuqgXBhOv15C1r/yh
+	uphT/X8BcdZPV7HeKiVI6PDAUkU4xcrfGhApq/vNUkzGp2wBx2c4v0jV+SWfs7lbYGa+GBSIo2n1P
+	2OupyHtLqWmLr02CTKdg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x50z4-0000000GiKt-43pg;
-	Fri, 11 Sep 2026 13:08:02 +0000
-Received: from mail-wr2-x10.google.com ([2a00:1450:4864:30::10])
+	id 1x51DA-0000000GjUo-03lR;
+	Fri, 11 Sep 2026 13:22:36 +0000
+Received: from m16.mail.163.com ([220.197.31.4])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x50z0-0000000GiKN-2QEs
-	for linux-amlogic@lists.infradead.org;
-	Fri, 11 Sep 2026 13:08:00 +0000
-Received: by mail-wr2-x10.google.com with SMTP id ffacd0b85a97d-4843c2790ccso526228f8f.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 11 Sep 2026 06:07:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1789132076; x=1789736876; darn=lists.infradead.org;
-        h=content-type:mime-version:message-id:date:references:in-reply-to
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=FjoAmWwMqjNrukHJpUAIw9xx0LKAxeIKQlZUt5PjQgU=;
-        b=C9j84nyq7RuSAvgFfbKoRTttbuglV5yNMIYEf7ATvEHnHXF15MiEJ4asrIAUnFMwi6
-         VpcA53hgpgw0ybZKJHnrQ7KYpwziVuIp7hXxa5M+WUJK5ZD0QnOKoG266lFonwHt1fAN
-         KbtHBZ+3No0ebJIcYOh8CnqJczj0HrhbNW/eRvjWZfNqBrS44/Sc+F2C0GeOErHuVUAk
-         0Mk7hqUf5OGPCa+qSDNuGpreNyjCHYCGdrvfUSbmadIG0bAiOUhRQKBAo1WpEDgiu5CZ
-         ZZgFA4sTr5DxjirO0EZxKW8TLJIhYZso64TrO9Qovc1wIdyzMKqsg5tFXFzlrn8Vt4+a
-         SDnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1789132076; x=1789736876;
-        h=content-type:mime-version:message-id:date:references:in-reply-to
-         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=FjoAmWwMqjNrukHJpUAIw9xx0LKAxeIKQlZUt5PjQgU=;
-        b=Ir3Oo3JvmVe7TeG2L1NP1qXs24aJ0qRV0Z0wWxf/kIe87LGWOYeL3t4C+r0m/9e0F9
-         +qNmoKtfa+tudSTPA4iHB4UY3vCrjZ3GNBVnR652miR52ixdhoqPu0RO+WwRUcIVXRVa
-         2hHeQvG8LW8N8qABR2szieG1rXx7PuXTMS6ifkIzc1RNybN+1loVtppdg+KXoZIoJIMs
-         iZfU2gsQZVEG204BhJaWH3p8xZ6Np3LGYvqBPmq50LH9UuHy3J6YvBO9PSpW6zXDGSkz
-         lGGWzrYNDL0p7y7/ApE/+5F40wWV1Ix9eSpNOerDsLoVt2zJtAET17ZFg7Chf4CBcGeQ
-         RuTQ==
-X-Forwarded-Encrypted: i=1; AKwUvBzizWtruR0jOjuLmZDmFjeeyVsnjpQjxFsuK1BqwAKBALgvBnzl/rtSeDdJRpv85LUKYUXwApB9gsbhZ/XR@lists.infradead.org
-X-Gm-Message-State: AFuF++lPM7YC1ZUQXxFLVDlSr0vvq7Hnt7T8Evx6pwA9HpftXvZt3JZP
-	jzyR4nfXZTaeAX6ARNY65Gj9P1kvek1q3GKF1HHEqRLXpG86mD7v1Xx4/eDz+t28zkMOeDWjqRo
-	tP4P/DTg=
-X-Gm-Gg: AYBFou39WE24VgYYX8JogAZkWRqeuTfiB9rtH8ll3YqYzAmv+iK70Ed04qu8g+ZuLYz
-	9sQSm4S40eQBzvN8HsocD2qihIFI5kMxqJQMJk68gEERnq8h6yuBc/0Dvll6feoSXvBP0sH0cHp
-	swXYD+P6+A7aAFlnPjFznFZHYyOWooEPKmOhPe5lbKOxZBXS5UlvyCVPBN+4k9NI2sHgfo6ChPE
-	3ofui9Ae4qH6VRHej0FjmimOPhDCiOO3Ir7lYh9iLVUtES81146pgIIP9R9LGHi63UifHC933ll
-	wWRW4yOPOCS9Fh8Xk/xkJFCqEzin3tIyl4zytL/WqYTm+UQYU+Z78CcjbmTjMqTnErpbd4/1STP
-	Ipw9/FutalfpOl6JmdrIJF/wsuBWXiYUKKCHMELxsRbXv4s8TAARwSQuIU17BlIDr+j1XEUvSO/
-	LfIX1ytBU/xv8JZs1xoGS7QpysLxEqicLFaTTK5LMhGF57V3YLHDAAf9lqr6YnuS6Mx47MGSsuN
-	6NE8JW0KnnJTSZDJzKicvZipi3h
-X-Received: by 2002:a05:6000:454f:b0:485:acfd:4fa2 with SMTP id ffacd0b85a97d-486eb35833cmr6218006f8f.28.1789132076602;
-        Fri, 11 Sep 2026 06:07:56 -0700 (PDT)
-Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-486eb350686sm6121441f8f.27.2026.09.11.06.07.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Sep 2026 06:07:55 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Sasha Levin <sashal@kernel.org>, stable@vger.kernel.org
-Cc: Sasha Levin <sashal@kernel.org>, Neil Armstrong
- <neil.armstrong@linaro.org>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 6.12.y] clk: meson: align gxbb_32k_clk_sel number of
- parents with actual count
-In-Reply-To: <daily-reply-0030-re-clk-meson-gxbb-6-12@kernel.org>
-References: <20260910072139.313775-1-jbrunet@baylibre.com>
- <daily-reply-0030-re-clk-meson-gxbb-6-12@kernel.org>
-Date: Fri, 11 Sep 2026 15:07:54 +0200
-Message-ID: <1jik4c6imt.fsf@starbuckisacylon.baylibre.com>
+	id 1x51D6-0000000GjTM-3fcP;
+	Fri, 11 Sep 2026 13:22:34 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=OI
+	sUx7nMMQlkeFKpM8gAScZQgZyPRlwMhcDfH/nmyv0=; b=OEEJs0xKqTdaEACBFY
+	OvQo9keaV6MNorLF+0yB5BG7seiXYBtQ+pHzql4gPB2cL5AVipJ6U6z1n2/jJRLl
+	dC8rkIYkUol5YEAfIFH/2y2Ycr3NF/YQCOgGEG80Uqi2AgnenLftppMgD8LyIkqH
+	Fv3+OhRp7QGwHPUOVKuRVschQ=
+Received: from zhb.. (unknown [])
+	by gzsmtp4 (Coremail) with SMTP id PygvCgAHqBJmAKRqYh6mRA--.52761S4;
+	Fri, 11 Sep 2026 21:21:47 +0800 (CST)
+From: Hans Zhang <18255117159@163.com>
+To: lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	bhelgaas@google.com,
+	helgaas@kernel.org,
+	heiko@sntech.de,
+	mani@kernel.org,
+	yue.wang@Amlogic.com
+Cc: pali@kernel.org,
+	neil.armstrong@linaro.org,
+	robh@kernel.org,
+	jingoohan1@gmail.com,
+	khilman@baylibre.com,
+	jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com,
+	cassel@kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Hans Zhang <18255117159@163.com>
+Subject: [PATCH v8 2/2] PCI: dwc: Remove redundant MPS configuration
+Date: Fri, 11 Sep 2026 21:21:45 +0800
+Message-Id: <20260911132145.211380-3-18255117159@163.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260911132145.211380-1-18255117159@163.com>
+References: <20260911132145.211380-1-18255117159@163.com>
 MIME-Version: 1.0
+X-CM-TRANSID: PygvCgAHqBJmAKRqYh6mRA--.52761S4
+X-Coremail-Antispam: 1Uf129KBjvJXoW7KF4xuw4xXFWDJw43WF4xtFb_yoW8CF43pF
+	y3XFsa9F48Ar45WF4qkan5CayfJasxCry7JF9xW34SvFyayF47Xa4ayFWSkryxXrWj9Fna
+	krs8Kw48u3W5trDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pEVyIbUUUUU=
+X-Originating-IP: [240e:b8f:91b3:d000:8f8f:b76e:3756:1454]
+X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbCxAvdgWqkAGvXbQAA3M
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260911_060758_626349_7E9E659E 
-X-CRM114-Status: UNSURE (   8.21  )
+X-CRM114-CacheID: sfid-20260911_062233_363816_1B49BC43 
+X-CRM114-Status: UNSURE (   7.92  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -104,36 +91,56 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On ven. 11 sept. 2026 at 07:20, Sasha Levin <sashal@kernel.org> wrote:
+The Meson PCIe controller driver manually configures maximum payload
+size (MPS) through meson_set_max_payload, duplicating functionality now
+centralized in the PCI core.  Deprecating redundant code simplifies the
+driver and aligns it with the consolidated MPS management strategy,
+improving long-term maintainability.
 
->> The following out-of-bounds read has been observed by Christian on a
->> GXBB WeTek Hub:
->
-> Queued for 6.12, thanks.
+Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
+Signed-off-by: Hans Zhang <18255117159@163.com>
+---
+ drivers/pci/controller/dwc/pci-meson.c | 17 -----------------
+ 1 file changed, 17 deletions(-)
 
-Hello Sasha,
-
-In those instance where exact same backport applies to multiple versions
-how do you prefer to handle things ?
-
-* Just replying 5 times as I did ?
-* Just reply once with a note explaining that it applies to other version ?
-
-Thanks
-Cheers
-
->
-> -- 
-> Thanks,
-> Sasha
->
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
+diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+index 8559d132dcde..8c176f78953e 100644
+--- a/drivers/pci/controller/dwc/pci-meson.c
++++ b/drivers/pci/controller/dwc/pci-meson.c
+@@ -273,22 +273,6 @@ static int meson_size_to_payload(struct meson_pcie *mp, int size)
+ 	return fls(size) - 8;
+ }
+ 
+-static void meson_set_max_payload(struct meson_pcie *mp, int size)
+-{
+-	struct dw_pcie *pci = &mp->pci;
+-	u32 val;
+-	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+-	int max_payload_size = meson_size_to_payload(mp, size);
+-
+-	val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
+-	val &= ~PCI_EXP_DEVCTL_PAYLOAD;
+-	dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
+-
+-	val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
+-	val |= PCIE_CAP_MAX_PAYLOAD_SIZE(max_payload_size);
+-	dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
+-}
+-
+ static void meson_set_max_rd_req_size(struct meson_pcie *mp, int size)
+ {
+ 	struct dw_pcie *pci = &mp->pci;
+@@ -363,7 +347,6 @@ static int meson_pcie_host_init(struct dw_pcie_rp *pp)
+ 
+ 	pp->bridge->ops = &meson_pci_ops;
+ 
+-	meson_set_max_payload(mp, MAX_PAYLOAD_SIZE);
+ 	meson_set_max_rd_req_size(mp, MAX_READ_REQ_SIZE);
+ 
+ 	return 0;
 -- 
-Jerome
+2.34.1
+
 
 _______________________________________________
 linux-amlogic mailing list
