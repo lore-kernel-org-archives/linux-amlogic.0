@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17A3AC88E4A
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Sep 2026 11:21:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93766C88E4C
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Sep 2026 11:21:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cRayCOiU2h8H6w9UoZYTHy5VZZVJDOZVDly7TrBlzjw=; b=DMaMYwFsKR0Uv6
-	MwFlnNLC4fQ29u+Db6dRnhQYsKlr+Iml5MztFK35fIHiblWOEyu67mud0STOaKZsDFgnEfwRYTVzV
-	FB9NC03ksCeOzSatghaC731XSmooS8V73lyZbx24JaW8yiwuPezOFlw0ZEAKGZDRDNh7tB5Kqjyqy
-	x3Em18ZmoczHQT4DGKitOR6nJgnql45ONJzlEUV/e/3euiDMttAxVz1IQRQWSerh3epRzZsGsoslq
-	YnfeQnamsu5+HPOFtyjuWXiXUaphqKpkkL+gb87wLmH3l2uexmQ+eM2c9w3JZego/x41d5EbC9bHX
-	7Fs/WLdBuUw5gS01vsrQ==;
+	List-Owner; bh=omuhg3uBUFgFufRN1LdG2lwur0f/oX5D67B5pkkHHAU=; b=QeyBKI4TK4xqvF
+	4heyJ0qmnNdDkQt6e0UKYYwAftALwe7X/RbJ9yDfP6REcBvEqIIo89dLXgY+bwjtQA3u6/yKg+fbH
+	UHtNrA6qMjOCnlouGY+9FZeW/MuW8zLDJNUkMZKf9SvgBy7ihRHO4dVZ87wG1F2tS9f4hAMLuQQgV
+	y47Hzel/jFkWRnVdHqj4cwQ0mJ53b+gFjKTUNDQ8nlP7Q8gp4RGJnL0hGMUe/5+teYq8ugCiM7i5Z
+	q40I2RKrSJOvUx0GGCtUKyUk5+iuEIn1nqny57cBWPG/zjslDd6C+tXLWVr7HrwaTuilUUH+qktHt
+	13LGiGjj8Hg0UZ86H6yQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x4zK3-0000000GU5i-3MAH;
-	Fri, 11 Sep 2026 11:21:35 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
-	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x4zK1-0000000GU5E-2BI2
-	for linux-amlogic@lists.infradead.org;
+	id 1x4zK1-0000000GU5F-2A17;
 	Fri, 11 Sep 2026 11:21:33 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
+	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
+	id 1x4zJz-0000000GU4R-1AFU
+	for linux-amlogic@lists.infradead.org;
+	Fri, 11 Sep 2026 11:21:31 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id EE8E4602C2;
-	Fri, 11 Sep 2026 11:21:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB29A1F0089E;
-	Fri, 11 Sep 2026 11:21:31 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 9CFA54450D;
+	Fri, 11 Sep 2026 11:21:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6F0D1F00899;
+	Fri, 11 Sep 2026 11:21:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1789125692;
-	bh=8XDMnyUmoPxzFs0KDbpvtdyvol8xfdQdSsxVWCm3ZR4=;
+	s=k20260515; t=1789125688;
+	bh=4pe+LR7D9aXkKO93/gzkVICF9QA1eqK2Dqa7ejkk/S8=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=aaeUVIx1xO1DM5m4PLwQlG0K2urXU8SGwnNoLN9DOl5ffZ2L6wjhdz6OnCqSrugbj
-	 7IK6pdSmFZVrXBAvRx4aVAh9kkG5ZaMiNq/2jAxx1RQgpoVZ3YYUdPZZU6pZRT7ip/
-	 8EauHuUBQ7ipMSHNsD8GyT8KratAks7IWWotm1BaUt/MD52ib0OyRjeJbMKiFnh8Ia
-	 SThHNJyAiEq75iFvFyzxiQ7tP6Ial0M/XQzhMoLoqcNQIYKlq7Cceuhm/z2w687AJh
-	 tFrD7TFEbd52v9/syuTgOT4qw6QH7bdtloSUpqs4KlhWI8nknvPX2LWUAfeB2M8Quj
-	 IRMLM2f4+G1aQ==
+	b=mKfIYhb05XlOxrEiAbcxFKTLlqo3aZYp0P8h9hUpTaN06tExLZU7hkke71gyvBcd/
+	 loQb6A1izRDhZpTzaPmuUXidLx/iU6Jhen4qTsV228Sj8k5f/8dSn2GkBHnFZgopIU
+	 P+QS2IdBFQfzKnsyqis5zmMc6jZx1/BuSBLo0V6P9Gl2MtP7yugakDcjB1VAhtned7
+	 SY73V3ApHx8RpoA7uCL6/Wwp+5SY7XIFYsjjJSJZCQ87rBIqbLw0wdHpzuyBKIVtvT
+	 /w6QiZ99hkkAscckXB/KGy9vlJxlofMu9wWicRBzdhQbMRa15AwVgC1rZ4B/08s2WL
+	 zIsisl1RySu9Q==
 From: Sasha Levin <sashal@kernel.org>
 To: stable@vger.kernel.org
-Subject: Re: [PATCH 5.10.y] clk: meson: align gxbb_32k_clk_sel number of parents with actual count
-Date: Fri, 11 Sep 2026 07:20:53 -0400
-Message-ID: <daily-reply-0034-re-clk-meson-gxbb-5-10@kernel.org>
+Subject: Re: [PATCH 6.12.y] clk: meson: align gxbb_32k_clk_sel number of parents with actual count
+Date: Fri, 11 Sep 2026 07:20:49 -0400
+Message-ID: <daily-reply-0030-re-clk-meson-gxbb-6-12@kernel.org>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260910072814.334323-1-jbrunet@baylibre.com>
-References: <20260910072814.334323-1-jbrunet@baylibre.com>
+In-Reply-To: <20260910072139.313775-1-jbrunet@baylibre.com>
+References: <20260910072139.313775-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -71,7 +71,7 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 > The following out-of-bounds read has been observed by Christian on a
 > GXBB WeTek Hub:
 
-Queued for 5.10, thanks.
+Queued for 6.12, thanks.
 
 -- 
 Thanks,
