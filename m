@@ -4,60 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C00DAC88E56
-	for <linux-amlogic@archiver.kernel.org>; Sun, 13 Sep 2026 09:04:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98BD4C88E40
+	for <linux-amlogic@archiver.kernel.org>; Sun, 13 Sep 2026 09:38:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eB2LiYDmxGevDXh6t6yprXy7nXnChqNNvG0V+/7qPUc=; b=Xz9CxqWq0UQzEe
-	WRKtqz2231w2t4xMV2FyHOqCmteFoipvw0rg2zGxBWbSmN4/l3k4Vn6lc1sI4O8rWKT9yEYZ+RyOO
-	Ax1Q/hDOxHgieSCbA88cGr/mN9SHL+7+Okaa/+opXFsBV0o6RlR069ksHxZjzqEnBdTotPZCCsvGg
-	k/0DMafztoXP+nv3Pbnit6fHNrWkpAKAggVlU7drW378rsqgQXOfs9atWI2X2pefcmsixy/9wBnyT
-	V7Ne2uGTfh8e24krvNY5L85yUP3+61eNIQcdKMlSyf1Fed7fO35pKK8o9jKqzZDCErWET2jMOPhuE
-	TZqjw0x+gvK6+/74K6uw==;
+	List-Owner; bh=LQel4pYgroMBf2XNB4pbsgQZ034vTE2nHEdpN36jRxs=; b=SSN2fVzEohPDAN
+	nkO9a7hoN2stjiutMNpe1XQRmu49WtVspcqJTJheK5wXsEvufH+9/ZJ9UaMiFej3oFrwzRNKtKbKg
+	6lOcWUMNxyd1XbPOu3QlMEmbTASbo1QDBfDYwZXQwVVm2qQc+xtWlUL5se2FAry0Quj2KYLgz+b+R
+	RXHUSOG3NVC28zJdmEQSTqsXqA7YxTbmPGHc5qPRHHTORqCrKFz22o4xToVVC70umcN35AEQTUV2s
+	RY8B0ozQNQXyY781a/m6hoYMZGBbnKCTeaufv9ccy7f0k1brqVjJL1ZkkyJUSo/B9YMxPlUkOK7fw
+	dc+aMaZPoInmpgzC0Dtw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x5g7y-00000001XOF-3JVD;
-	Sun, 13 Sep 2026 09:03:58 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1x5gfd-00000001YVN-0cAM;
+	Sun, 13 Sep 2026 09:38:45 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x5g7w-00000001XO6-088h;
-	Sun, 13 Sep 2026 09:03:57 +0000
+	id 1x5gfc-00000001YV7-03Py;
+	Sun, 13 Sep 2026 09:38:44 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7564543C0B;
-	Sun, 13 Sep 2026 09:03:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDE8C1F000FF;
-	Sun, 13 Sep 2026 09:03:54 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 361D160AAB;
+	Sun, 13 Sep 2026 09:38:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 243121F000FF;
+	Sun, 13 Sep 2026 09:38:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1789290235;
-	bh=HOCVCoUbZ3n/ApxFbJdyqu/tiiYlAtevu9P9fyqmEWo=;
+	s=k20260515; t=1789292322;
+	bh=ZR8/XvZpu6CEn400z/4mVVRkUpepYVnx7Lvac3s0vvM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=DA8LP5lleW298yNT/I3q4vqLVtG60kVYWFGIdHbGeitPHZw3N5aKTd5JB7sIfLcjd
-	 23xpU5kKtO2bqa3Ln4h+0HEQUHddp8GSNcvJ7kvJ9n+TiCkKQmKdLrkuWRU+LduKiN
-	 0/P4yuP1kiB1cmlamRZbZQme2JRS7tIKOU+1wrPhzCRtpLfJh/28vGKBk3drZPkHlR
-	 jqjza0d7Hs/rVd7dLsmqmDPuvVeAMHLze7SEp+fOJJvTly682/m6scTeR5d/V3GYNt
-	 YJ5A0ytlK0m1B6rCm1CrazlfXBX8yMXN04s39tCVkE8LpMcFplVkQ6JMAlpx1FPeXb
-	 ci2rgPu86TapQ==
-Date: Sun, 13 Sep 2026 11:03:52 +0200
+	b=QJmaS8OG0bH7S2h3wqWn9dtxr8SOpQ/+1/1NLiaXS2NWnK2JrqYGm2rbzaifGM8p5
+	 iX4acB3B6f96E/kHzvxLTZJD7Gao4XLu/MNKF5CYD7CH2xdHFO5Z58Lwpf0kb02sSE
+	 Pe+QHtniBCzc/2I/P99ibYawHmkFl4CIdX4Wihu0/g9JuzJ4LsWL+tmLl5uF6SsIsY
+	 i0mBzLGuyYUDkzMk58xCwN2Q03TJ6VT0pqYvDQHQL4rG1efuamOMNB+Bzo69DzOqvo
+	 bGUBJLI5zjiSoBwzRSTkCfa+OzrgFUU0t1W9AknLtxT7i24RhUT0QuVqYLSXnv0Xhr
+	 swPWCjDGoFxhA==
+Date: Sun, 13 Sep 2026 11:38:39 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Chuan Liu <chuan.liu@amlogic.com>
-Cc: Rob Herring <robh@kernel.org>, 
+To: Valerio Setti <vsetti@baylibre.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
 	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
 	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 01/10] dt-bindings: soc: amlogic: Add compatible to
- support more SoCs
-Message-ID: <20260913-resilient-terrier-of-sympathy-e50c85@quoll>
-References: <20260911-more-socs-to-support-clk_measure-v1-0-940e269aa52f@amlogic.com>
- <20260911-more-socs-to-support-clk_measure-v1-1-940e269aa52f@amlogic.com>
+Subject: Re: [PATCH 1/6] dt-bindings: sound: amlogic: add schemas for audin
+ components
+Message-ID: <20260913-sophisticated-musical-grebe-6e7e42@quoll>
+References: <20260912-audin-v1-0-7fbefe928711@baylibre.com>
+ <20260912-audin-v1-1-7fbefe928711@baylibre.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20260911-more-socs-to-support-clk_measure-v1-1-940e269aa52f@amlogic.com>
+In-Reply-To: <20260912-audin-v1-1-7fbefe928711@baylibre.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,31 +75,98 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Sep 11, 2026 at 04:28:28PM +0800, Chuan Liu wrote:
-> Add clk-measure compatible for amlogic A5, A4, S7, S7D, S6 and A9 SoCs.
+On Sat, Sep 12, 2026 at 12:14:31AM +0200, Valerio Setti wrote:
+> Add schemas for "amlogic,meson-gx-audin" and "amlogic,meson-gx-audin-fifo".
+> They provide I2S audio input support to the Meson GX platforms (GXBB/GXL).
 > 
-> Although the clk-measure IP itself has little hardware difference across
-> SoCs, the clock inputs connected to the clk-measure block vary between
-> SoCs. Therefore, it is difficult to fall back to the configuration used
-> by previous SoCs.
-> 
-> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
-> ---
->  .../bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml          | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
-> index b1200e6940ac..125be01e3b2c 100644
-> --- a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
-> +++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
-> @@ -26,6 +26,12 @@ properties:
->        - amlogic,s4-clk-measure
->        - amlogic,a1-clk-measure
->        - amlogic,t7-clk-measure
-> +      - amlogic,a5-clk-measure
 
-Why is a5 after a1? Are you all adding here to the end of the list all
-the time?
+A nit, subject: drop second/last, redundant "schemas for". The
+"dt-bindings" prefix is already stating that these are bindings so
+schemas.
+See also:
+https://elixir.bootlin.com/linux/v7.1-rc7/source/Documentation/devicetree/bindings/submitting-patches.rst#L23
+
+OTOH, subject prefix is incorrect.
+
+Please use subject prefixes matching the subsystem. You can get them for
+example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+
+> Signed-off-by: Valerio Setti <vsetti@baylibre.com>
+> ---
+>  .../sound/amlogic,meson-gx-audin-fifo.yaml         | 52 ++++++++++++
+>  .../bindings/sound/amlogic,meson-gx-audin.yaml     | 96 ++++++++++++++++++++++
+>  2 files changed, 148 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/amlogic,meson-gx-audin-fifo.yaml b/Documentation/devicetree/bindings/sound/amlogic,meson-gx-audin-fifo.yaml
+> new file mode 100644
+> index 000000000000..a01fe22b9786
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/amlogic,meson-gx-audin-fifo.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/amlogic,meson-gx-audin-fifo.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic GX AUDIN FIFO controller
+> +
+> +maintainers:
+> +  - Valerio Setti <vsetti@baylibre.com>
+> +
+> +description: |-
+
+Drop |-
+
+> +  AUDIN FIFO receives audio data from backend interfaces (ex: I2S, SPDIF),
+> +  stores them into a FIFO in a configurable way and then bulk copies all the
+> +  data in RAM when the FIFO is full.
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^audio-controller@[0-9a-f]+$"
+> +
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - amlogic,meson-gxbb-audin-fifo
+> +          - amlogic,meson-gxl-audin-fifo
+> +      - const: amlogic,meson-gx-audin-fifo
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#sound-dai-cells"
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    audio-controller@80 {
+> +      compatible = "amlogic,meson-gxbb-audin-fifo",
+> +                   "amlogic,meson-gx-audin-fifo";
+
+What sort of Spc is amlogic,meson-gx? git grep gives me zero (and family
+names are not allowed, see writing bindings).
+
+> +      reg = <0x80 0x1c>;
+
+Are you sure a few registers are a separate device? No other resources
+here and this is child of audin, so really does not look like a
+separate device.
+
 
 Best regards,
 Krzysztof
