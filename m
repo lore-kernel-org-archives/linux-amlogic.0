@@ -4,94 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1A88C88E40
-	for <linux-amlogic@archiver.kernel.org>; Sun, 13 Sep 2026 03:42:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18040C88E56
+	for <linux-amlogic@archiver.kernel.org>; Sun, 13 Sep 2026 03:52:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Tui//yVFXD0G4uDp6jO3DNlNMb8I/TDBm5Wi6qRLCSc=; b=gArdlWtSUZiNsb
-	BX3uSLJi44dyeFueuQZS10se+c28tMpILBt5GBklGcMlfszAjH2nLnKv9RqXfNQbJZ1syzWS5d3ox
-	bZRh+7h+w34rIxYMH12Pc9PKG81lnBJ7az4KR1P9CkTxPZq7HRgN4WSqsC5XE+1mpKn5bR+Ox73FR
-	ydpoqrXTwKkWt8uxi/ZqU6OYOxmIej1mI9f9TMWVJWQVkxjZC0oNrgzAlA/UBcYR6iH/p+e1RZBHa
-	moNKLGBEPW8tGQbbLL90V/Bw//Aq6/8LaSsiX5iGYEqscHcYLdeMTaPSj4c6UiclrEv8M4Mr1JD7m
-	YQSvzXvYD1A8tFFCbjIA==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=E090rwNcVMaoG+/O+6NeMaZvyXkRq4kL8EOqYoRgkk4=; b=0Zy6Sa67F2mz8n
+	ilcqjBtcFYaR4Ucgdc0ZLOI8QRP+XuU5xKfkrEWFCZVz5DnJVT/KWO5WXQ2g3drC6DjwbbPoQkjrl
+	M+CmadADifQRYKKRF/647TYTeIIt2BD1UWVbIYg+nWkMddkcdZkYYHiK5o3E1YkFXRNa8ehzx6yhM
+	GeqKuVH9q+iDlvwYLc8X6THb9/9HAye2SCmiiGcbUHbHPff4oLr1UhbJ6gEICmkugsMGkhVl/27OT
+	e4N647zHk/fzLTeyc1Gr+55Nyn4E/psPs/fugGEJFUHQQ2h/dJuTQ8QFjpsbC0Qgu+9QCSQF7UiTm
+	sAemVDkMw2Jkzc+MJdIw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x5b6R-00000001LbN-05gZ;
-	Sun, 13 Sep 2026 03:42:03 +0000
-Received: from mail-qk2-x11.google.com ([2607:f8b0:4864:34::11])
+	id 1x5bGQ-00000001LsW-0DI1;
+	Sun, 13 Sep 2026 03:52:22 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x5b6N-00000001Lac-3KGV
+	id 1x5bGP-00000001LsP-0S9u
 	for linux-amlogic@lists.infradead.org;
-	Sun, 13 Sep 2026 03:42:01 +0000
-Received: by mail-qk2-x11.google.com with SMTP id af79cd13be357-93a135ffb08so53516785a.2
-        for <linux-amlogic@lists.infradead.org>; Sat, 12 Sep 2026 20:41:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1789270918; x=1789875718; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=uJp5ud/myTFefNhCI2ZzWiRr2kbld/3n70B98OUzWtQ=;
-        b=IRvbPHjUaz7RVl3xOsUibO4c0bRAoIS8JeIHC5zcDuFVOXrsluAeXuxNc0Hf2JU7T5
-         MlHCbnlIugVo7YbmDx1NWkUN0vWlU/naOwLFXPgvC8mdo4APrZMtJyxwxjHVY4D2+G+a
-         yircdHs4AefNtIXhRgLIk8tm+VPOe2Ib9x1WGVofFQAF2bOidmiN3/T3X4kZ92+qdAhv
-         hD1rM5y4I9hM5g8hk46PBehwlFRycsBKKNdXvNGFa++aByFkYPtNcvWzULVdmCTP+eFN
-         DsgBSO6qYaNoMnvh+nMtKPSLARISZ+n2kbjrt9sqpPDQHtV4U/pTggMGIRPHVDrH8Tq2
-         1PwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1789270918; x=1789875718;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=uJp5ud/myTFefNhCI2ZzWiRr2kbld/3n70B98OUzWtQ=;
-        b=UQ4wJR3c+qeKwokvGEbTRt/sZZ05o7L3+V+pS/e3wgeak+Nkdi8C1WMDunkv1RVkVD
-         XjDgir4PHpeXy4H3OMIXCtWD8FQbAFxdHpNpp6Fwme0FL4+OpwfTSrIztqRv8SqqzoOf
-         WD2n2QMwldyBTkuQReROnbx+fisxkd4/jOyJoeYG6x7LC/UFnfKg/WxEnq9erw98qrLc
-         F3bcKu03+civVThhepf/6363kv0HtzEsDkiXE22+3TBVDtYTaPr60tkM276GghoRqRVY
-         N1804KhwhiJgBp3V6ln+ix4K/inRO8EltI7+yKiD/i3OVUAkDnFzjFcbqVy7KuQOcYZm
-         1qgQ==
-X-Forwarded-Encrypted: i=1; AKwUvByqoSZQARd/CYcVgebAw6tei1YATQWS7/qjwBTpXKFz9gENbqSIV22GJGcVmh9oUQJO9tyK2HyFQtHucvsF@lists.infradead.org
-X-Gm-Message-State: AFuF++nFpR9tqTq/Jv+q0a3sclxdPbKFjPJICojcdo0/At6WzHwBOopX
-	/F2A0BRbO3pDuC7dWabLDEzHZaDS+Ad2ZWhsrOm2wI7XdmVqPH8aVZE=
-X-Gm-Gg: AYBFou3csgr6o1SsbXeNyapWVMGMlMpd5mbLHMgjoxluI3VKsteO+8OyavxixXbf+NZ
-	H7QViIyVtBhSbFWzeciRysh0efTwvEdQwbvk26bxw5QXy776mSEDCB/Aws/HugRW5RHlye6xLSJ
-	djg+lvcDrxdqJYBWZ66aYJ0SR3tGH+pQNb7H8QfhXxMnJbKriQ6p4ou+8OFwfcHEwJwGWYKYU6e
-	yZ8lF55wChi+lAbw7qk4CLHhB3vQ3Ze3R+Yapxdx7K+EGKqOeZIyIbmz7ynwoUUwnrGntyqoVFI
-	1BHTwngU0uRxXPQ0ruH4L9UYABG3z1/OY8epCvZuJV7eyAmZISj8bs1fmeW/qUdHOsMjreIlTuE
-	b2N72FyRpclM8RklNw30A7I+B04pfwf+caJPooVe13mV+4zIFQhxlcgoTl2FtTfbhCcCUNVPj49
-	x3lCo5W4VJ5xT68Vh62zRauElh/Y854CRw15goSYg6quneSb3R7Ip6rftyUMhnMFDQkPv2Ashk2
-	eiLU6mcfuZ0caErx7tUJ3IeTPip8S02IFbi2Q+7g65C0dcYMTpn/MdywjX3Hx9fbikIgLNkG/Zp
-	7/QT3pdy/jvXXGWlI2wYdtCngh8S
-X-Received: by 2002:a05:620a:d8d:b0:939:597:e7af with SMTP id af79cd13be357-93a038fa617mr775671985a.35.1789270918119;
-        Sat, 12 Sep 2026 20:41:58 -0700 (PDT)
-Received: from localhost.localdomain ([104.39.73.78])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-939e80d453esm652916385a.38.2026.09.12.20.41.56
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Sat, 12 Sep 2026 20:41:57 -0700 (PDT)
-From: Myeonghun Pak <mhun512@gmail.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-	linux-serial@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org,
-	Ijae Kim <ae878000@gmail.com>
-Subject: [PATCH] tty: serial: meson: fix UART driver lifetime
-Date: Sat, 12 Sep 2026 23:41:48 -0400
-Message-ID: <20260913034148.15068-1-mhun512@gmail.com>
-X-Mailer: git-send-email 2.50.1
-MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260912_204159_851107_FD059A0B 
-X-CRM114-Status: GOOD (  18.99  )
+	Sun, 13 Sep 2026 03:52:21 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 7FDB741A6C;
+	Sun, 13 Sep 2026 03:52:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3592B1F000FF;
+	Sun, 13 Sep 2026 03:52:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1789271540;
+	bh=1cOrmSi2NyE9JElwHhzAoGiv+iu3+GnIhqFNrKO4cuw=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=QMReP78NAoNenof2BnVtMMqNCIUO8s/kZFZyQlmLhcp0UrgMT7gRDvBP0ZMOsu8pi
+	 xGXhzfThe7qcAsuFE2r+MJNoPrr3+TzRcBPSuNs0yE5oBLZumtSn5v/vsD0vnZk/GH
+	 4E0b8NGm+E+aZZkCGjdBcnRwEJyfNx3bnpe382VjsM9Q2n5pyq4av5YoVJ4yeHatzV
+	 xMhCNXC1EoBW7dXbYJ8ilXrYlWKAO7z+eww0Z9z2LEfi2zSuFs2EoW2Af0l3pzIhKj
+	 31BkzRBfD6IxOw7pGMpD91kyqHhgu9ejjVHXKGa2YVc0rfjGQcEHuD1AFfovGHBoiy
+	 Tla5UL1NcsXtA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] tty: serial: meson: fix UART driver lifetime
+To: "Myeonghun Pak" <mhun512@gmail.com>
+Cc: linux-serial@vger.kernel.org, neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
+In-Reply-To: <20260913034148.15068-1-mhun512@gmail.com>
+References: <20260913034148.15068-1-mhun512@gmail.com>
+Date: Sun, 13 Sep 2026 03:52:19 +0000
+Message-Id: <20260913035220.3592B1F000FF@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,162 +61,58 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Moving Amlogic UART registration into probe left the first driver
-registration behind if uart_add_one_port() failed. Adding the separate
-ttyS driver later also exposed a global last-port test: removing the last
-port of one driver kept it registered whenever the other had a port.
-
-Track whether probe registered the driver and undo it when port addition
-fails. On remove, retain the current driver only if a remaining port maps
-to that driver. Serialize the shared lifecycle decisions against parallel
-probe and remove operations.
-
-This issue was identified during our ongoing static-analysis research while
-reviewing kernel code.
-
-Fixes: bcb5645f99ef ("tty: serial: meson: redesign the module to platform_driver")
-Fixes: e71aab9d6132 ("tty: serial: meson: apply ttyS devname instead of ttyAML for new SoCs")
-Cc: stable@vger.kernel.org
-Assisted-by: OpenAI:GPT-5.6
-Co-developed-by: Ijae Kim <ae878000@gmail.com>
-Signed-off-by: Ijae Kim <ae878000@gmail.com>
-Signed-off-by: Myeonghun Pak <mhun512@gmail.com>
----
- drivers/tty/serial/meson_uart.c | 52 +++++++++++++++++++++++++--------
- 1 file changed, 40 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-index a6cb2a535..4bd9d9826 100644
---- a/drivers/tty/serial/meson_uart.c
-+++ b/drivers/tty/serial/meson_uart.c
-@@ -12,6 +12,7 @@
- #include <linux/io.h>
- #include <linux/iopoll.h>
- #include <linux/module.h>
-+#include <linux/mutex.h>
- #include <linux/kernel.h>
- #include <linux/of.h>
- #include <linux/platform_device.h>
-@@ -80,6 +81,7 @@ static struct uart_driver meson_uart_driver_ttyAML;
- static struct uart_driver meson_uart_driver_ttyS;
- 
- static struct uart_port *meson_ports[AML_UART_PORT_NUM];
-+static DEFINE_MUTEX(meson_uart_mutex);
- 
- struct meson_uart_data {
- 	struct uart_driver *uart_driver;
-@@ -692,6 +694,16 @@ static struct uart_driver *meson_uart_current(const struct meson_uart_data *pd)
- 		pd->uart_driver : &meson_uart_driver_ttyAML;
- }
- 
-+static bool meson_uart_has_ports(struct uart_driver *uart_driver)
-+{
-+	for (int id = 0; id < AML_UART_PORT_NUM; id++)
-+		if (meson_ports[id] &&
-+		    meson_uart_current(meson_ports[id]->private_data) == uart_driver)
-+			return true;
-+
-+	return false;
-+}
-+
- static int meson_uart_probe(struct platform_device *pdev)
- {
- 	const struct meson_uart_data *priv_data;
-@@ -702,6 +714,7 @@ static int meson_uart_probe(struct platform_device *pdev)
- 	int ret = 0;
- 	int irq;
- 	bool has_rtscts;
-+	bool registered = false;
- 
- 	if (pdev->dev.of_node)
- 		pdev->id = of_alias_get_id(pdev->dev.of_node, "serial");
-@@ -731,11 +744,6 @@ static int meson_uart_probe(struct platform_device *pdev)
- 	of_property_read_u32(pdev->dev.of_node, "fifo-size", &fifosize);
- 	has_rtscts = of_property_read_bool(pdev->dev.of_node, "uart-has-rtscts");
- 
--	if (meson_ports[pdev->id]) {
--		return dev_err_probe(&pdev->dev, -EBUSY,
--				     "port %d already allocated\n", pdev->id);
--	}
--
- 	port = devm_kzalloc(&pdev->dev, sizeof(struct uart_port), GFP_KERNEL);
- 	if (!port)
- 		return -ENOMEM;
-@@ -748,11 +756,22 @@ static int meson_uart_probe(struct platform_device *pdev)
- 
- 	uart_driver = meson_uart_current(priv_data);
- 
-+	mutex_lock(&meson_uart_mutex);
-+
-+	if (meson_ports[pdev->id]) {
-+		ret = dev_err_probe(&pdev->dev, -EBUSY,
-+				    "port %d already allocated\n", pdev->id);
-+		goto out_unlock;
-+	}
-+
- 	if (!uart_driver->state) {
- 		ret = uart_register_driver(uart_driver);
--		if (ret)
--			return dev_err_probe(&pdev->dev, ret,
--					     "can't register uart driver\n");
-+		if (ret) {
-+			ret = dev_err_probe(&pdev->dev, ret,
-+					    "can't register uart driver\n");
-+			goto out_unlock;
-+		}
-+		registered = true;
- 	}
- 
- 	port->iotype = UPIO_MEM;
-@@ -781,9 +800,14 @@ static int meson_uart_probe(struct platform_device *pdev)
- 	}
- 
- 	ret = uart_add_one_port(uart_driver, port);
--	if (ret)
-+	if (ret) {
- 		meson_ports[pdev->id] = NULL;
-+		if (registered)
-+			uart_unregister_driver(uart_driver);
-+	}
- 
-+out_unlock:
-+	mutex_unlock(&meson_uart_mutex);
- 	return ret;
- }
- 
-@@ -794,15 +818,19 @@ static void meson_uart_remove(struct platform_device *pdev)
- 
- 	port = platform_get_drvdata(pdev);
- 	uart_driver = meson_uart_current(port->private_data);
-+
-+	mutex_lock(&meson_uart_mutex);
- 	uart_remove_one_port(uart_driver, port);
- 	meson_ports[pdev->id] = NULL;
- 
--	for (int id = 0; id < AML_UART_PORT_NUM; id++)
--		if (meson_ports[id])
--			return;
-+	if (meson_uart_has_ports(uart_driver))
-+		goto out_unlock;
- 
- 	/* No more available uart ports, unregister uart driver */
- 	uart_unregister_driver(uart_driver);
-+
-+out_unlock:
-+	mutex_unlock(&meson_uart_mutex);
- }
- 
- static struct meson_uart_data meson_g12a_uart_data = {
--- 
-2.47.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpQcmUtZXhpc3RpbmcgaXNzdWVzOgot
+IFtIaWdoXSBGYWlsdXJlIHRvIG1hcCBkZXZpY2UgbWVtb3J5IGR1cmluZyBwb3J0IGNvbmZpZ3Vy
+YXRpb24gY2F1c2VzIGEgbnVsbCBwb2ludGVyIGRlcmVmZXJlbmNlIGR1cmluZyBVQVJUIHN0YXJ0
+dXAuCi0tCgpjb21taXQgZjE0MjE5MGUxMTVkNGEwYjk5NjlkMmRkOGJkNGQ5NDYxYzAxZjE1YQpB
+dXRob3I6IE15ZW9uZ2h1biBQYWsgPG1odW41MTJAZ21haWwuY29tPgoKICAgIHR0eTogc2VyaWFs
+OiBtZXNvbjogZml4IFVBUlQgZHJpdmVyIGxpZmV0aW1lCgogICAgTW92aW5nIEFtbG9naWMgVUFS
+VCByZWdpc3RyYXRpb24gaW50byBwcm9iZSBsZWZ0IHRoZSBmaXJzdCBkcml2ZXIKICAgIHJlZ2lz
+dHJhdGlvbiBiZWhpbmQgaWYgdWFydF9hZGRfb25lX3BvcnQoKSBmYWlsZWQuIFRyYWNrIHdoZXRo
+ZXIgcHJvYmUKICAgIHJlZ2lzdGVyZWQgdGhlIGRyaXZlciBhbmQgdW5kbyBpdCB3aGVuIHBvcnQg
+YWRkaXRpb24gZmFpbHMuIFNlcmlhbGl6ZQogICAgdGhlIHNoYXJlZCBsaWZlY3ljbGUgZGVjaXNp
+b25zIGFnYWluc3QgcGFyYWxsZWwgcHJvYmUgYW5kIHJlbW92ZQogICAgb3BlcmF0aW9ucy4KCj4g
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvdHR5L3NlcmlhbC9tZXNvbl91YXJ0LmMgYi9kcml2ZXJzL3R0
+eS9zZXJpYWwvbWVzb25fdWFydC5jCj4gaW5kZXggYTZjYjJhNTM1ZjlkYy4uNGJkOWQ5ODI2OGI0
+MyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL3R0eS9zZXJpYWwvbWVzb25fdWFydC5jCj4gKysrIGIv
+ZHJpdmVycy90dHkvc2VyaWFsL21lc29uX3VhcnQuYwpbIC4uLiBdCj4gQEAgLTc4MSw5ICs4MDAs
+MTQgQEAgc3RhdGljIGludCBtZXNvbl91YXJ0X3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2Ug
+KnBkZXYpCj4gIAl9Cj4gIAo+ICAJcmV0ID0gdWFydF9hZGRfb25lX3BvcnQodWFydF9kcml2ZXIs
+IHBvcnQpOwoKW1NldmVyaXR5OiBIaWdoXQpUaGlzIGlzbid0IGEgYnVnIGludHJvZHVjZWQgYnkg
+dGhpcyBwYXRjaCwgYnV0IEkgbm90aWNlZCBhIHByZS1leGlzdGluZyBpc3N1ZQp3aGVyZSBmYWls
+dXJlIHRvIG1hcCBkZXZpY2UgbWVtb3J5IGR1cmluZyBwb3J0IGNvbmZpZ3VyYXRpb24gY2F1c2Vz
+IGEgbnVsbApwb2ludGVyIGRlcmVmZXJlbmNlIGR1cmluZyBVQVJUIHN0YXJ0dXAuCgpJZiBkZXZt
+X3JlcXVlc3RfbWVtX3JlZ2lvbigpIG9yIGRldm1faW9yZW1hcCgpIGZhaWxzIGR1cmluZwptZXNv
+bl91YXJ0X3JlcXVlc3RfcG9ydCgpICh3aGljaCBpcyBjYWxsZWQgdmlhIHRoZSAuY29uZmlnX3Bv
+cnQgY2FsbGJhY2sKZHVyaW5nIHVhcnRfYWRkX29uZV9wb3J0KSwgdGhlIGZhaWx1cmUgaXMgc2ls
+ZW50bHkgaWdub3JlZDoKCmRyaXZlcnMvdHR5L3NlcmlhbC9tZXNvbl91YXJ0LmM6bWVzb25fdWFy
+dF9jb25maWdfcG9ydCgpIHsKCWlmIChmbGFncyAmIFVBUlRfQ09ORklHX1RZUEUpIHsKCQlwb3J0
+LT50eXBlID0gUE9SVF9NRVNPTjsKCQltZXNvbl91YXJ0X3JlcXVlc3RfcG9ydChwb3J0KTsKCX0K
+fQoKQmVjYXVzZSBwb3J0LT50eXBlIGlzIHVuY29uZGl0aW9uYWxseSBzZXQgdG8gUE9SVF9NRVNP
+TiwgdGhlIHNlcmlhbCBjb3JlCmJlbGlldmVzIHRoZSBwb3J0IGlzIHN1Y2Nlc3NmdWxseSBjb25m
+aWd1cmVkLiBXaGVuIHVzZXIgc3BhY2Ugc3Vic2VxdWVudGx5Cm9wZW5zIHRoZSBjb3JyZXNwb25k
+aW5nIHR0eSBkZXZpY2UsIG1lc29uX3VhcnRfc3RhcnR1cCgpIGlzIGludm9rZWQgYW5kCmV4ZWN1
+dGVzOgoKZHJpdmVycy90dHkvc2VyaWFsL21lc29uX3VhcnQuYzptZXNvbl91YXJ0X3N0YXJ0dXAo
+KSB7Cgl1YXJ0X3BvcnRfbG9ja19pcnFzYXZlKHBvcnQsICZmbGFncyk7CgoJdmFsID0gcmVhZGwo
+cG9ydC0+bWVtYmFzZSArIEFNTF9VQVJUX0NPTlRST0wpOwoJLi4uCn0KClNpbmNlIHBvcnQtPm1l
+bWJhc2UgaXMgTlVMTCwgdGhpcyByZWFkbCgpIGNhdXNlcyBhbiBpbW1lZGlhdGUga2VybmVsIHBh
+bmljIG9uCmRldmljZSBvcGVuLgoKQ291bGQgbWVzb25fdWFydF9jb25maWdfcG9ydCgpIGJlIHVw
+ZGF0ZWQgdG8gb25seSBzZXQgcG9ydC0+dHlwZSBpZgptZXNvbl91YXJ0X3JlcXVlc3RfcG9ydCgp
+IHN1Y2NlZWRzLCBwcmV2ZW50aW5nIHRoZSBzZXJpYWwgY29yZSBmcm9tIHVzaW5nIGFuCnVuY29u
+ZmlndXJlZCBwb3J0PwoKPiAtCWlmIChyZXQpCj4gKwlpZiAocmV0KSB7Cj4gIAkJbWVzb25fcG9y
+dHNbcGRldi0+aWRdID0gTlVMTDsKPiArCQlpZiAocmVnaXN0ZXJlZCkKPiArCQkJdWFydF91bnJl
+Z2lzdGVyX2RyaXZlcih1YXJ0X2RyaXZlcik7Cj4gKwl9Cj4gIAo+ICtvdXRfdW5sb2NrOgo+ICsJ
+bXV0ZXhfdW5sb2NrKCZtZXNvbl91YXJ0X211dGV4KTsKPiAgCXJldHVybiByZXQ7Cj4gIH0KCi0t
+IApTYXNoaWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nhc2hpa28uZGV2LyMvcGF0Y2hzZXQvMjAy
+NjA5MTMwMzQxNDguMTUwNjgtMS1taHVuNTEyQGdtYWlsLmNvbT9wYXJ0PTEKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGlu
+ZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5m
+cmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
