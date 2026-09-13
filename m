@@ -4,53 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2629C88E56
-	for <linux-amlogic@archiver.kernel.org>; Sun, 13 Sep 2026 04:49:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C00DAC88E56
+	for <linux-amlogic@archiver.kernel.org>; Sun, 13 Sep 2026 09:04:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NOsXsOSR7dF1OeQQ1vzPGH5ciBa7IFeJucW7jbvsba8=; b=s6qrkm4f3JFDs+
-	agxFVR5PmTLaDapW9noiaMfwgJuv44/Zdbt4e+bzevOMpeVh/ZR4T5J7q/4mcjc8LLCRTm7AitFpT
-	YWL92ECJILJ3+zquKbSDBl78G7c1WIhpeu38PTgFvxsiD0HVCTqz/AuAb6k4TGOcw4u2azssW/bph
-	dKnbDXVnPWzldABIjy7130y71olPK4BsszQPJxSLkBFupf73UC5gqW3Yeq7a8n98fMhi9GI5tTQ7o
-	+NK8gE7fqSdnh7ajYMyJ92tcb26Jo8ia7nOSbpazoYZ9H0kXPjN12BK3J3KJs18hE1VIVubTLVus1
-	fHJ/ZMsB2n3cXi23GaWQ==;
+	List-Owner; bh=eB2LiYDmxGevDXh6t6yprXy7nXnChqNNvG0V+/7qPUc=; b=Xz9CxqWq0UQzEe
+	WRKtqz2231w2t4xMV2FyHOqCmteFoipvw0rg2zGxBWbSmN4/l3k4Vn6lc1sI4O8rWKT9yEYZ+RyOO
+	Ax1Q/hDOxHgieSCbA88cGr/mN9SHL+7+Okaa/+opXFsBV0o6RlR069ksHxZjzqEnBdTotPZCCsvGg
+	k/0DMafztoXP+nv3Pbnit6fHNrWkpAKAggVlU7drW378rsqgQXOfs9atWI2X2pefcmsixy/9wBnyT
+	V7Ne2uGTfh8e24krvNY5L85yUP3+61eNIQcdKMlSyf1Fed7fO35pKK8o9jKqzZDCErWET2jMOPhuE
+	TZqjw0x+gvK6+/74K6uw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x5cA0-00000001PqS-0vlS;
-	Sun, 13 Sep 2026 04:49:48 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1x5g7y-00000001XOF-3JVD;
+	Sun, 13 Sep 2026 09:03:58 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x5c9z-00000001PqI-2WYn
-	for linux-amlogic@lists.infradead.org;
-	Sun, 13 Sep 2026 04:49:47 +0000
+	id 1x5g7w-00000001XO6-088h;
+	Sun, 13 Sep 2026 09:03:57 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 6FF0B60A6A;
-	Sun, 13 Sep 2026 04:49:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3F1F1F000FF;
-	Sun, 13 Sep 2026 04:49:44 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 7564543C0B;
+	Sun, 13 Sep 2026 09:03:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDE8C1F000FF;
+	Sun, 13 Sep 2026 09:03:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1789274985;
-	bh=350ft7fF6VvSj3WuoUi5rD8VjNvUyV7E79TtW6Qhy7A=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=EOlz6kTLw0eqHC8/GjFfyRfwLHA/AhuqvI75N+Gpi5OlAOQWSlkehgvd1CMrKGbj8
-	 vlkHUo50MPenzre5ZbZFecNXHbO9LAA1IlmtK5nI/wHXrPzQTPwLKwV80pIqfV1lzO
-	 wCSbSCrGixuTiIvj77p+f5r7np9nC5xEcxPzc/LkRPYShIXBKKvYDEIHJIStUMXcw1
-	 5fHfd9XofcbfAx1S6FrwIxFUEvnmIKif+n2j+xcp9GVRA3j9+pc9rkXnUd/vwbe+YV
-	 uxHr1cYiZ5mzrs755ZM9kVw5qCy8LIsmgrU1/HB7TXu70PJItdgBMUdrvXLCc2B/C3
-	 xgJBLx1pQ9zZw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] spi: amlogic-spisg: Balance runtime PM and clock
- cleanup
-To: "Myeonghun Pak" <mhun512@gmail.com>
-Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
-In-Reply-To: <20260913043745.35022-1-mhun512@gmail.com>
-References: <20260913043745.35022-1-mhun512@gmail.com>
-Date: Sun, 13 Sep 2026 04:49:44 +0000
-Message-Id: <20260913044944.E3F1F1F000FF@smtp.kernel.org>
+	s=k20260515; t=1789290235;
+	bh=HOCVCoUbZ3n/ApxFbJdyqu/tiiYlAtevu9P9fyqmEWo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=DA8LP5lleW298yNT/I3q4vqLVtG60kVYWFGIdHbGeitPHZw3N5aKTd5JB7sIfLcjd
+	 23xpU5kKtO2bqa3Ln4h+0HEQUHddp8GSNcvJ7kvJ9n+TiCkKQmKdLrkuWRU+LduKiN
+	 0/P4yuP1kiB1cmlamRZbZQme2JRS7tIKOU+1wrPhzCRtpLfJh/28vGKBk3drZPkHlR
+	 jqjza0d7Hs/rVd7dLsmqmDPuvVeAMHLze7SEp+fOJJvTly682/m6scTeR5d/V3GYNt
+	 YJ5A0ytlK0m1B6rCm1CrazlfXBX8yMXN04s39tCVkE8LpMcFplVkQ6JMAlpx1FPeXb
+	 ci2rgPu86TapQ==
+Date: Sun, 13 Sep 2026 11:03:52 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Chuan Liu <chuan.liu@amlogic.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 01/10] dt-bindings: soc: amlogic: Add compatible to
+ support more SoCs
+Message-ID: <20260913-resilient-terrier-of-sympathy-e50c85@quoll>
+References: <20260911-more-socs-to-support-clk_measure-v1-0-940e269aa52f@amlogic.com>
+ <20260911-more-socs-to-support-clk_measure-v1-1-940e269aa52f@amlogic.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20260911-more-socs-to-support-clk_measure-v1-1-940e269aa52f@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,76 +69,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MyBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6CgpQcmUtZXhpc3RpbmcgaXNzdWVzOgot
-IFtIaWdoXSBUaGUgSVJRIGhhbmRsZXIgYWNjZXNzZXMgaGFyZHdhcmUgcmVnaXN0ZXJzIHdpdGhv
-dXQgdmVyaWZ5aW5nIHRoZSBkZXZpY2UncyBydW50aW1lIFBNIHN0YXRlLgotIFtIaWdoXSBEaXZp
-c2lvbiBieSB6ZXJvIGluIGFtbF9zcGlzZ19zZXR1cF90cmFuc2ZlciB3aGVuIGJpdHNfcGVyX3dv
-cmQgaXMgbGVzcyB0aGFuIDguCi0gW0xvd10gVGhlIGRldl9wbV9vcHMgc3RydWN0dXJlIGlzIHVu
-Y29uZGl0aW9uYWxseSBhc3NpZ25lZCB0byB0aGUgZHJpdmVyIHN0cnVjdHVyZSwgdmlvbGF0aW5n
-IHN1YnN5c3RlbSBndWlkZWxpbmVzIGZvciBjb25kaXRpb25hbCBjb21waWxhdGlvbiBvZiBQTSBj
-YWxsYmFja3MuCi0tCgpjb21taXQgOWFkOTBkMTA0ZGYzYmZkOTFlMmZiMzA2MzJjN2UyZTNkN2Fi
-MjgxYwpBdXRob3I6IE15ZW9uZ2h1biBQYWsgPG1odW41MTJAZ21haWwuY29tPgpTdWJqZWN0OiBz
-cGk6IGFtbG9naWMtc3Bpc2c6IEJhbGFuY2UgcnVudGltZSBQTSBhbmQgY2xvY2sgY2xlYW51cAoK
-VGhpcyBjb21taXQgZXhwbGljaXRseSBtYW5hZ2VzIHRoZSBjb3JlIGFuZCBzY2xrIGVuYWJsZSBy
-ZWZlcmVuY2VzIGZvciB0aGUKQW1sb2dpYyBTUElTRyBkcml2ZXIuIEl0IGNoZWNrcyBwbV9ydW50
-aW1lX3NldF9hY3RpdmUoKSBhbmQgaG9sZHMgYSBuby1yZXN1bWUKcmVmZXJlbmNlIGJlZm9yZSBl
-bmFibGluZyBydW50aW1lIFBNLCBiYWxhbmNpbmcgdGhhdCByZWZlcmVuY2UgZHVyaW5nIHByb2Jl
-CmZhaWx1cmUgYW5kIHRlYXJkb3duLgoKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9zcGkvc3BpLWFt
-bG9naWMtc3Bpc2cuYyBiL2RyaXZlcnMvc3BpL3NwaS1hbWxvZ2ljLXNwaXNnLmMKPiBpbmRleCAx
-YjAwZjM0ZTllOTMxLi4zM2M1Y2JmNTdjYjg3IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvc3BpL3Nw
-aS1hbWxvZ2ljLXNwaXNnLmMKPiArKysgYi9kcml2ZXJzL3NwaS9zcGktYW1sb2dpYy1zcGlzZy5j
-ClsgLi4uIF0KPiBAQCAtODMyLDkgKzg0MSwxMyBAQCBzdGF0aWMgaW50IGFtbF9zcGlzZ19wcm9i
-ZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQpbIC4uLiBdCj4gKwkvKiBDbG9jayBpbml0
-aWFsaXphdGlvbiBoYXMgYWxyZWFkeSBwb3dlcmVkIHVwIHRoZSBjb250cm9sbGVyLiAqLwo+ICsJ
-cG1fcnVudGltZV9nZXRfbm9yZXN1bWUoZGV2KTsKPiArCXBtX3J1bnRpbWVfZW5hYmxlKGRldik7
-Cj4gIAo+ICAJY3Rsci0+bnVtX2NoaXBzZWxlY3QgPSA0Owo+ICAJY3Rsci0+bW9kZV9iaXRzID0g
-U1BJX0NQSEEgfCBTUElfQ1BPTCB8IFNQSV9MU0JfRklSU1QgfAoKW1NldmVyaXR5OiBIaWdoXQpU
-aGlzIGlzIGEgcHJlLWV4aXN0aW5nIGlzc3VlLCBidXQgZG9lcyBmYWlsaW5nIHRvIGluaXRpYWxp
-emUKY3Rsci0+Yml0c19wZXJfd29yZF9tYXNrIGhlcmUgYnlwYXNzIGNvcmUgdmFsaWRhdGlvbj8K
-CkJlY2F1c2UgdGhlIG1hc2sgaXMgMCwgX19zcGlfdmFsaWRhdGVfYml0c19wZXJfd29yZCgpIGlu
-IHRoZSBTUEkgY29yZSBhbGxvd3MKYXJiaXRyYXJ5IHNpemVzLiBJZiBhIHVzZXIgc2V0cyBiaXRz
-X3Blcl93b3JkIHRvIGEgdmFsdWUgbGlrZSA0IHZpYSB0aGUKU1BJX0lPQ19XUl9CSVRTX1BFUl9X
-T1JEIGlvY3RsLCBjb3VsZCB0aGlzIHRyaWdnZXIgYSBkaXZpc2lvbiBieSB6ZXJvIGluCmFtbF9z
-cGlzZ19zZXR1cF90cmFuc2ZlcigpIHdoZW4gc2hpZnRpbmcgcmlnaHQgYnkgMz8KCmRyaXZlcnMv
-c3BpL3NwaS1hbWxvZ2ljLXNwaXNnLmM6YW1sX3NwaXNnX3NldHVwX3RyYW5zZmVyKCkgewoJLi4u
-CglibG9ja19zaXplID0geGZlci0+Yml0c19wZXJfd29yZCA+PiAzOwoJYmxvY2tzID0geGZlci0+
-bGVuIC8gYmxvY2tfc2l6ZTsKCS4uLgp9Cgo+IEBAIC04NTYsMjIgKzg2OSwyNiBAQCBzdGF0aWMg
-aW50IGFtbF9zcGlzZ19wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQo+ICAJcmV0
-ID0gZGV2bV9yZXF1ZXN0X2lycSgmcGRldi0+ZGV2LCBpcnEsIGFtbF9zcGlzZ19pcnEsIDAsIE5V
-TEwsIHNwaXNnKTsKCltTZXZlcml0eTogSGlnaF0KVGhpcyBpcyBhIHByZS1leGlzdGluZyBpc3N1
-ZSwgYnV0IGNhbiBzcHVyaW91cyBJUlFzIGNhdXNlIGEgY3Jhc2ggaGVyZSBpZiB0aGUKZGV2aWNl
-IGlzIHN1c3BlbmRlZD8KCkxvb2tpbmcgYXQgYW1sX3NwaXNnX2lycSgpLCB0aGUgaGFuZGxlciBh
-Y2Nlc3NlcyBoYXJkd2FyZSByZWdpc3RlcnMgd2l0aG91dAp2ZXJpZnlpbmcgdGhlIHJ1bnRpbWUg
-UE0gc3RhdGU6Cgpkcml2ZXJzL3NwaS9zcGktYW1sb2dpYy1zcGlzZy5jOmFtbF9zcGlzZ19pcnEo
-KSB7CgkuLi4KCXNwaXNnLT5zdGF0dXMgPSAwOwoJcmVnbWFwX3JlYWQoc3Bpc2ctPm1hcCwgU1BJ
-U0dfUkVHX0lSUV9TVFMsICZzdHMpOwoJLi4uCn0KCklmIHRoZSBpbnRlcnJ1cHQgZmlyZXMgd2hp
-bGUgdGhlIGRldmljZSBpcyBpbiBSUE1fU1VTUEVOREVEICh3aGVyZSBib3RoIHNjbGsKYW5kIGNv
-cmUgY2xvY2tzIGFyZSBkaXNhYmxlZCksIGNvdWxkIHJlYWRpbmcgdGhpcyBNTUlPIHJlZ2lzdGVy
-IGNhdXNlIGEKc3luY2hyb25vdXMgZXh0ZXJuYWwgYWJvcnQgb3IgYnVzIGhhbmc/IFNob3VsZCB3
-ZSB1c2UKcG1fcnVudGltZV9nZXRfaWZfYWN0aXZlKCkgYmVmb3JlIGFjY2Vzc2luZyBoYXJkd2Fy
-ZSByZWdpc3RlcnMgaW4gdGhlIElSUQpoYW5kbGVyPwoKWyAuLi4gXQo+IEBAIC04ODIsMTEgKzg5
-OSwxNSBAQCBzdGF0aWMgdm9pZCBhbWxfc3Bpc2dfcmVtb3ZlKHN0cnVjdCBwbGF0Zm9ybV9kZXZp
-Y2UgKnBkZXYpClsgLi4uIF0KPiAgc3RhdGljIGludCBzcGlzZ19zdXNwZW5kX3J1bnRpbWUoc3Ry
-dWN0IGRldmljZSAqZGV2KQoKW1NldmVyaXR5OiBMb3ddClRoaXMgaXMgYSBwcmUtZXhpc3Rpbmcg
-aXNzdWUsIGJ1dCBpcyBpdCBzYWZlIHRvIGFzc2lnbiB0aGUgcG0gb3BlcmF0aW9ucwp1bmNvbmRp
-dGlvbmFsbHk/CgpMb29raW5nIGF0IHRoZSBkcml2ZXIgZGVmaW5pdGlvbjoKCmRyaXZlcnMvc3Bp
-L3NwaS1hbWxvZ2ljLXNwaXNnLmM6YW1sb2dpY19zcGlzZ19kcml2ZXIgewoJLi4uCgkuZHJpdmVy
-ID0gewoJCS5uYW1lID0gImFtbG9naWMtc3Bpc2ciLAoJCS5wbSA9ICZhbWxvZ2ljX3NwaXNnX3Bt
-X29wcywKCQkub2ZfbWF0Y2hfdGFibGUgPSBhbWxfc3Bpc2dfb2ZfbWF0Y2gsCgkuLi4KfQoKV2hl
-biBDT05GSUdfUE0gaXMgZGlzYWJsZWQsIGFtbG9naWNfc3Bpc2dfcG1fb3BzIGFuZCBpdHMgY2Fs
-bGJhY2tzIHJlbWFpbgpsaW5rZWQgaW50byB0aGUga2VybmVsIGFzIGRlYWQgY29kZS4gU2hvdWxk
-IHRoaXMgYmUgd3JhcHBlZCB3aXRoIHRoZSBwbV9wdHIoKQptYWNybyB0byBhdm9pZCB3YXN0aW5n
-IG1lbW9yeSB3aGVuIHBvd2VyIG1hbmFnZW1lbnQgaXMgZGlzYWJsZWQ/CgotLSAKU2FzaGlrbyBB
-SSByZXZpZXcgwrcgaHR0cHM6Ly9zYXNoaWtvLmRldi8jL3BhdGNoc2V0LzIwMjYwOTEzMDQzNzQ1
-LjM1MDIyLTEtbWh1bjUxMkBnbWFpbC5jb20/cGFydD0xCgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51
-eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On Fri, Sep 11, 2026 at 04:28:28PM +0800, Chuan Liu wrote:
+> Add clk-measure compatible for amlogic A5, A4, S7, S7D, S6 and A9 SoCs.
+> 
+> Although the clk-measure IP itself has little hardware difference across
+> SoCs, the clock inputs connected to the clk-measure block vary between
+> SoCs. Therefore, it is difficult to fall back to the configuration used
+> by previous SoCs.
+> 
+> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+> ---
+>  .../bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml          | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
+> index b1200e6940ac..125be01e3b2c 100644
+> --- a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
+> +++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-clk-measure.yaml
+> @@ -26,6 +26,12 @@ properties:
+>        - amlogic,s4-clk-measure
+>        - amlogic,a1-clk-measure
+>        - amlogic,t7-clk-measure
+> +      - amlogic,a5-clk-measure
+
+Why is a5 after a1? Are you all adding here to the end of the list all
+the time?
+
+Best regards,
+Krzysztof
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
