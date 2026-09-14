@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0869C88E6C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC7E5C88E6A
 	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Sep 2026 08:10:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,43 +12,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eARRte7t7EnPO8sme+eVlJ56EP71ERmBoGB6CcFylpI=; b=dijRk0tJQUgxfm
-	JWZ/CLrFpAeoSPNJwZQIaaiXhKqlEDtMyVxRyGdKA0MJ83vyW2n5bLxAmYirX7CiPwlSI9ytwaGV9
-	2OKFsy0fdV5R6fSTaGnXZw2nDT991WxOmU0eN43DUyvOrLeq61Mkbr14VIbyjy1xFP0Vx0MpopTXS
-	DsNcDrlP5aYMyL0XJtoh+M5GdcoJJgodqqvvrYwtRPoOPGeGsSiQGPnzBajXRI3EyKuCLjIaenK6t
-	jYv6wSZ5ZGk/s3U6j9MVfYBPvi30uzybVQdecjykQaTmMo9N+CwrG10OHsDm0On56J7Lhiq4lC6YU
-	drSeQIY3euoMaTgmWHTA==;
+	List-Owner; bh=4qk3551AIxpz5tteTMN0VbHt6R8X81m50cgs0bJrRfo=; b=X1tDx7UO7CkjbF
+	wVgkg4i6WkG9smZ+yHkMaM5n/wsIA02K7/+ivzLtFYyOadYdaLpy2H0vOzlIuO9AgKR6ZayrqQV3d
+	Qt0pdXZYXXaH4nGikchYWcV7rsTOMzlqEztfowOD9Y7SuRLFawGbAaJKY7Ica2q7I0pxoxbQD82wr
+	NwANve7hjsgOkoVX7ybx/vwoGnfQqINxg/kZ50kEAy48als4Dwu97zZ1BqPUmZK9MF2qqCJAtT2/I
+	aspRw8TRtkceuft0sg6/uEwlYg5n5MDRnLW5myXPJqRKO2MkuVXixwncf+3jRDOr7jopip7ppt0lR
+	GcTjzLaDnCSA+tE2WoXw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x61lk-00000002fWZ-0z8x;
-	Mon, 14 Sep 2026 08:10:28 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1x61lj-00000002fVm-1eLW;
+	Mon, 14 Sep 2026 08:10:27 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x61li-00000002fUt-2gdr;
+	id 1x61li-00000002fUq-1zYW;
 	Mon, 14 Sep 2026 08:10:26 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 19CB8436F9;
+	by sea.source.kernel.org (Postfix) with ESMTP id 08C8F436EA;
 	Mon, 14 Sep 2026 08:10:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D63B0C2BCFD;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CA4A3C2BCFB;
 	Mon, 14 Sep 2026 08:10:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1789373425;
-	bh=WMDu7hmwn0wxcSQNgHL+hxWiOm7hrCLH+YH4Lp/DEBM=;
+	bh=WUzJAYQHchFad4GvLC0D7YFZzyv0eyNbhdVP3Of0Nvo=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=jwr2u+azwwcEEKxSv+1G4KJ57GtSAFRcyTWCoDKGsYwaGR27Kv5a4v6FkCKL6HJEk
-	 uysEh7/0cvCk88nGWVl601anVkyUVR8PsmHUaxTgSinFGIK21hKUG1JZq5hOOwc59p
-	 z5PsJXXxBUZQWobL2y8A4pyOWuCXBLhNH8I1yXQn1OsKvVNazQ57qdUF4DAG9eMd65
-	 ZeC2J9w22OF0vuN3Fnw6ShhjbfnKBoSt6swUcA1nRzKZYHUTI6u2+y9YcpkAlgy3mS
-	 P7tXEghqzZUfdu9IaL97L84UQaz/GweCm4nRgVyAjpbik2nJYhbBdiCRaMQBogLDRF
-	 YWTnnrIErsv2g==
+	b=dr4CLSDW2+UAYmQbe6jSwerL7aaGf8Cd5cnGqr/wwa/9VbscfrDmv3Y7glir9irHp
+	 DQhHgf8l2KS+UO0FnTvvbm9HOsFAFTQpB8YDCjGIoiaSiFtlP5RiLzzIbsrLzRXt6e
+	 NTcmtvvKdTHAO8Hsa5KxFh84tCC5F8sdWcTPxfavPEYcYgVpdqBVBpz7oaY4Wc3z0b
+	 SRNczY/GO27cQc8uvJqu1bRY2BQ691uWQUr0DBE98VBzHk+2dnAIFxDx0dDhCX6LKG
+	 0VjK1k0BFP4M6ccDUTaPdlJK7N4lLURF1jqvZU/2KWL6vl9eV8aoWFmnGmQ3y0nreR
+	 ntsPlgA2I/HdQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BA4FAC88E6B;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ABEC2C88E67;
 	Mon, 14 Sep 2026 08:10:25 +0000 (UTC)
 From: Zhentao Guo via B4 Relay <devnull+zhentao.guo.amlogic.com@kernel.org>
-Date: Mon, 14 Sep 2026 16:10:20 +0800
-Subject: [PATCH v9 3/6] media: dt-bindings: Add Amlogic V4L2 video decoder
+Date: Mon, 14 Sep 2026 16:10:19 +0800
+Subject: [PATCH v9 2/6] firmware: meson: sm: Add video firmware loading SMC
+ call
 MIME-Version: 1.0
-Message-Id: <20260914-b4-s4-vdec-upstream-v9-3-72fdb0d71b02@amlogic.com>
+Message-Id: <20260914-b4-s4-vdec-upstream-v9-2-72fdb0d71b02@amlogic.com>
 References: <20260914-b4-s4-vdec-upstream-v9-0-72fdb0d71b02@amlogic.com>
 In-Reply-To: <20260914-b4-s4-vdec-upstream-v9-0-72fdb0d71b02@amlogic.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -61,11 +62,11 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
  devicetree@vger.kernel.org, Zhentao Guo <zhentao.guo@amlogic.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1789373423; l=3671;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1789373423; l=711;
  i=zhentao.guo@amlogic.com; s=20251024; h=from:subject:message-id;
- bh=7vozstjjFiy9xe9/mDTnfaFlZZulH4Nh8D2wH1GAvPY=;
- b=Otfe+b5ikXKIT71bp/VH6TapDIEIH4IRb4J8UnjbW3LoKihHaShQZbO3lBKXzxmHjTrvYLTD/
- I321/Piv+LwDxnXPjjgnwjxvsinHLGvvhN+Q55XAW0MEmRiix51XXVF
+ bh=wZ/Fw+jH+tOBVIXbBc8zSjH7Kx36sATJ09qPRAeyKKk=;
+ b=6a6vcr/1/i15cVXNcQOCcfEyW7CalVIRWjB7s7DzD+OJARsLBZwWseTJRygUKM38rlX733dvq
+ 6cbImGWloiODaisCxkVEhAsQlKw8Kz/IBOq5WhnsFfFzalvBf3oUTFP
 X-Developer-Key: i=zhentao.guo@amlogic.com; a=ed25519;
  pk=5yfDKrjreXwcAoEUsdtWafy6YN500upXp/CgtnXjLVU=
 X-Endpoint-Received: by B4 Relay for zhentao.guo@amlogic.com/20251024 with
@@ -90,134 +91,26 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Zhentao Guo <zhentao.guo@amlogic.com>
 
-Describe the initial support for the V4L2 stateless video decoder
-driver used with the Amlogic S4 (S805X2) platform.
+Add SM_LOAD_VIDEO_FW at SMC ID 0xb200000f in the command
+table to load video firmware.
 
 Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
 ---
- .../devicetree/bindings/media/amlogic,s4-vdec.yaml | 114 +++++++++++++++++++++
- 1 file changed, 114 insertions(+)
+ drivers/firmware/meson/meson_sm.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml b/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml
-new file mode 100644
-index 000000000000..d350b3e68a38
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml
-@@ -0,0 +1,114 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2025 Amlogic, Inc. All rights reserved
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/amlogic,s4-vdec.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Amlogic Video Decode Accelerator
-+
-+maintainers:
-+  - Zhentao Guo <zhentao.guo@amlogic.com>
-+
-+description:
-+  The Video Decoder Accelerator present on Amlogic SOCs.
-+  It supports stateless h264 decoding.
-+
-+properties:
-+  compatible:
-+    const: amlogic,s4-vdec
-+
-+  reg:
-+    maxItems: 2
-+
-+  reg-names:
-+    items:
-+      - const: dos
-+      - const: dmc
-+
-+  interrupts:
-+    maxItems: 2
-+
-+  interrupt-names:
-+    items:
-+      - const: core_hvdec
-+      - const: core_vdec
-+
-+  clocks:
-+    items:
-+      - description: Clock for dos core
-+      - description: Clock for vdec core
-+      - description: Clock for hvdec core
-+
-+  clock-names:
-+    items:
-+      - const: dos
-+      - const: core_v
-+      - const: core_h
-+
-+  power-domains:
-+    maxItems: 2
-+
-+  power-domain-names:
-+    items:
-+      - const: dos_v
-+      - const: dos_h
-+
-+  resets:
-+    maxItems: 1
-+
-+  amlogic,canvas:
-+    description: Canvas maintains an index-to-physical-address
-+     mapping table that allows the 16-bit AMRISC decoder core
-+     to access 32-bit or 64-bit physical address.
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+  amlogic,secure-monitor:
-+    description: Used to decrypt and load the signed decoder
-+     firmware through ARM SMC (Secure Monitor Call).
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - power-domains
-+  - power-domain-names
-+  - resets
-+  - amlogic,canvas
-+  - amlogic,secure-monitor
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
-+    #include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
-+    #include <dt-bindings/power/meson-s4-power.h>
-+    #include <dt-bindings/reset/amlogic,meson-s4-reset.h>
-+    video-codec@fe320000 {
-+      compatible = "amlogic,s4-vdec";
-+      reg = <0xfe320000 0x10000>,
-+            <0xfe036000 0x20>;
-+      reg-names = "dos",
-+                  "dmc";
-+      interrupts = <GIC_SPI 91 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 92 IRQ_TYPE_EDGE_RISING>;
-+      clocks = <&clkc_periphs CLKID_DOS>,
-+               <&clkc_periphs CLKID_VDEC_SEL>,
-+               <&clkc_periphs CLKID_HEVCF_SEL>;
-+      clock-names = "dos",
-+                    "core_v",
-+                    "core_h";
-+      power-domains = <&pwrc PWRC_S4_DOS_VDEC_ID>,
-+                      <&pwrc PWRC_S4_DOS_HEVC_ID>;
-+      power-domain-names = "dos_v",
-+                           "dos_h";
-+      resets = <&reset RESET_DOS>;
-+      amlogic,canvas = <&canvas>;
-+      amlogic,secure-monitor = <&sm>;
-+    };
+diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/meson_sm.c
+index ab9751a59b55..887caa5c625d 100644
+--- a/drivers/firmware/meson/meson_sm.c
++++ b/drivers/firmware/meson/meson_sm.c
+@@ -48,6 +48,7 @@ static const struct meson_sm_chip gxbb_chip = {
+ 		CMD(SM_THERMAL_CALIB_READ,	0x82000047),
+ 		CMD(SM_A1_PWRC_SET,		0x82000093),
+ 		CMD(SM_A1_PWRC_GET,		0x82000095),
++		CMD(SM_LOAD_VIDEO_FW,		0xb200000f),
+ 		{ /* sentinel */ },
+ 	},
+ };
 
 -- 
 2.42.0
