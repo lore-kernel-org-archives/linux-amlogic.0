@@ -4,68 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FB54C88E50
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Sep 2026 08:39:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A12BC88E64
+	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Sep 2026 08:56:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0sDbTCN/z4ZAMnJbeP9hVLMAIamzmv239JjHRQ3U5fk=; b=LWziERtWLbs0Vw
-	klTJs5GS3yvCnSzH/M0fUehf7jkn1ut6uVupm+EeAevw1ff6XZg7ubIThKoqwKmYtxrJ+WI+hhNgD
-	WJSRrwraJ9QNrU6BnTzCj7p8qaLcmq/Vlc6ukt4eGlVz6Tg6/aCa18k68BbwkyJYLyr6kpKBPtj7p
-	gaRCwrXmKOsDgOG+gz2fF4wlHxJwr4oToi5tbOluLjrJFf0L/PGlO1jXLkYOEqZQTW0QchtL9Yt3T
-	oa3u+Y4VZqDiuMjhp1BF03kaWST0oudPYYfpGDY9pQSzuVfpFRmf63B7Ps0i7bBXkO0E9IltDS0bK
-	4n3wJoIFQ6JiBYB90wzg==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=UPULz865BhBbq9uToewAC/mcFysEM1Yvu9G6g89dAuQ=; b=1/PVJHHVuMaaIG
+	xAO3xh/zXh2toQ30FNFYWnQvTj+4nduQSVfAWaju4rWBPSgRFKrM7gNfvFJZPi1ekAjASi9dg8Sxl
+	1jgpSX42GDRgLHJAK8Zx341nT7+k6yL2M5j6PiKRTV9asbXDz6MfnvWsCl//+S0W4fFuek5hO3EdG
+	EV67Fy74fnG6f2cfzslxsqI2wuCIeH1nTE25CtM0Hq9BqDqDgSInAU0WQ90YlXiaP9na9JLxMaqvW
+	1gOTP0f4AQdiCiAB0kObszwraJ6+LJaSRnOnvoaag31EySBQ/Z7W6Fuey1XvjjvHaXP3KbAtkW28D
+	wMAraZ3t8E+tHUKg/wsw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x62EB-00000002mFA-0dyO;
-	Mon, 14 Sep 2026 08:39:51 +0000
+	id 1x62U4-00000002qBZ-2eZO;
+	Mon, 14 Sep 2026 08:56:16 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x62E6-00000002mCy-37VO
-	for linux-amlogic@lists.infradead.org;
-	Mon, 14 Sep 2026 08:39:49 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 531F14175C
-	for <linux-amlogic@lists.infradead.org>; Mon, 14 Sep 2026 08:39:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37BD61F00899
-	for <linux-amlogic@lists.infradead.org>; Mon, 14 Sep 2026 08:39:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1789375186;
-	bh=BUCr1hCoUskeeRd1t0HVarnyydWOErIB1Udlw4P/HQo=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=JbTP3wcYks75Mjgv5GfkFxY4k1AJjcMpSMFg3kCfhpyE4EzTcZO0ftMWrxxbbuu2m
-	 u1r+DcPPXzlBvpiUg+eLw0fy+Rf7votcjMMjziDvtnF69VUC/6RysdYev0VC1luuFZ
-	 GtUL3kVNRee8rwX11kVCcZjL9qh9pajKXwBhJ1JVPbjVJ1snNSzoAinZ8fiNgGeLtk
-	 LOOhmVztA1B2bs1pwxysJXWFxiZHiqlhugWARM/qcw8DF8aERknttF5BNE3tW/1i0f
-	 RT1RnJaR3Ww83frfhNV6V/iT9TO357gEWMfpvXDUClFilxgTadKdAG829A5nvwOE6t
-	 kIiERIlbTSebw==
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5b5e907853eso3104411e87.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 14 Sep 2026 01:39:46 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AKwUvBzvCsCTmCCmhUvYqOdxHwNg6q5qeRzK1wDupS9LtMRM3EtGZABpM87xbpKtdZ5Ktx7lChhZuzgwDRFOmrkn@lists.infradead.org
-X-Gm-Message-State: AFuF++kuEgGmjV6jJ+MApeRspCGAd/WoUquh5Evse/DZzKLp3ACGKACh
-	SFP/QDko0G6k9aNZkoNnK1wh1BpGiO1rOeZ0zN5LS/z2cGWu12Ck/mN8EB1Qf9zZjxkQy8omthC
-	LqOmZmxHHb+8Blv65aCaAI2qqOtIxiG8=
-X-Received: by 2002:a05:6512:128b:b0:5b6:4ae:d87 with SMTP id
- 2adb3069b0e04-5b8ae66d39cmr415473e87.27.1789375184969; Mon, 14 Sep 2026
- 01:39:44 -0700 (PDT)
+	id 1x62U1-00000002qAz-3u7T;
+	Mon, 14 Sep 2026 08:56:14 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 9348B43949;
+	Mon, 14 Sep 2026 08:56:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 680CFC2BCFA;
+	Mon, 14 Sep 2026 08:56:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1789376171;
+	bh=g8oyk3TCILBAAOWteUVeFqKgN/1URJtIvaVbACJ+PS8=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=k7E/xtZ8b2NHxh4+EAg6leFeRbPz3dVBRKi5cumiPMzyt95oQByeg6KOd5EZua1QL
+	 4QR85isOq9GRtw5cNy57i/sPsM8UmmRJx+up0qQSKAOi/6E9JqppBXcMfFA+VnVDku
+	 mhlefujzwsXEdr5JPOOzxDsfWaGpMWor9kQyzKapcX89m8B2MQvhjCI8ANEEyCkCtR
+	 s4s7Xcho/vCYVBThN2u93EUBWQ5LPMJmEJhP3L5qzhE4u37+fVZYlmFDkFrqXP9NrL
+	 8HK/n9rghCMMXmw1JJro0ZvTejaIjXE7iq/DziG0cwzzv811H9B1B1oZ1sGNE7MZ4C
+	 /c3zYrOmSkEJw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 43D22C88E6A;
+	Mon, 14 Sep 2026 08:56:11 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Mon, 14 Sep 2026 08:56:08 +0000
+Subject: [PATCH] pmdomain: amlogic: Keep Amlogic A9 ETH domain always on
 MIME-Version: 1.0
-References: <20260817162212.1890616-1-sanderson@brivo.com>
-In-Reply-To: <20260817162212.1890616-1-sanderson@brivo.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Mon, 14 Sep 2026 10:39:33 +0200
-X-Gmail-Original-Message-ID: <CAD++jLkWtC=ZOX13azEEk0haZHfk3ZRJE=i3hDRY_xcPddA_9w@mail.gmail.com>
-X-Gm-Features: AcwNN1UCot4Htkr3dgs4fFXOL_85ODTx5oGWTY6F54hzJDKQ7exHT5L-odqwr7M
-Message-ID: <CAD++jLkWtC=ZOX13azEEk0haZHfk3ZRJE=i3hDRY_xcPddA_9w@mail.gmail.com>
-Subject: Re: [PATCH] pinctrl: meson: Fix typo in s4 group name
-To: Sean Anderson <sanderson@brivo.com>
-Cc: Kevin Hilman <khilman@baylibre.com>, linux-gpio@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-arm-kernel@lists.infradead.org, 
-	Neil Armstrong <neil.armstrong@linaro.org>, linux-kernel@vger.kernel.org, 
-	Qianggui Song <qianggui.song@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>
+Message-Id: <20260914-a9-pwr-eth-v1-1-752005131135@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAKe2p2oC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDS0MT3URL3YLyIt3UkgxdM0MD0zQL8zTLNNNUJaCGgqLUtMwKsGHRsbW
+ 1AJXB/KxcAAAA
+X-Change-ID: 20260914-a9-pwr-eth-6105f87f9f5e
+To: Ulf Hansson <ulfh@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Qingpeng Yang <qingpeng.yang@amlogic.com>, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1789376170; l=1200;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=9qMUad9FU6+wYS82AvwnPOBXh42Rv4up5LorY693ESs=;
+ b=tko0/R7PKuB0XsbGu+238gRyuJkZ2G0grG4LU/4gsM3oPW9tHndYA+300KtG/VVqHOmAvMpir
+ Ar8z80zCKuDA/0AtjPVCXmk62hTUOYWVdPHEIVkPGRlzYqNptAjkhl8
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,19 +83,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gTW9uLCBBdWcgMTcsIDIwMjYgYXQgNjoyMuKAr1BNIFNlYW4gQW5kZXJzb24gPHNhbmRlcnNv
-bkBicml2by5jb20+IHdyb3RlOgoKPiBPbmUgb2YgdGhlIGkyYyBwaW4gZ3JvdXBzIGhhcyBzb21l
-IGp1bmsgYXQgdGhlIGVuZC4gVGhlIG5hbWUgc2hvdWxkIGJlCj4gaTJjMl9zY2xfaDEsIGFuZCBp
-bmRlZWQgdGhhdCdzIHRoZSBuYW1lIHVzZWQgYnkgaTJjMl9waW5zMyBpbgo+IG1lc29uLXM0LmR0
-c2kuCj4KPiBGaXhlczogNzc1MjE0ZDM4OWMyNSAoInBpbmN0cmw6IG1lc29uOiBhZGQgcGluY3Ry
-bCBkcml2ZXIgc3VwcG9ydCBmb3IgTWVzb24tUzQgU29jIikKPiBTaWduZWQtb2ZmLWJ5OiBTZWFu
-IEFuZGVyc29uIDxzYW5kZXJzb25AYnJpdm8uY29tPgoKUGF0Y2ggYXBwbGllZCBmb3IgZml4ZXMs
-IHNvcnJ5IGZvciBzbG93IG1haWwgcmVhZGluZyA6LwoKWW91cnMsCkxpbnVzIFdhbGxlaWoKCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9n
-aWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8v
-bGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+From: Qingpeng Yang <qingpeng.yang@amlogic.com>
+
+Mark the A9 ethernet power domain as always-on since it is required
+for ethernet online wakeup and must not be powered down.
+
+Signed-off-by: Qingpeng Yang <qingpeng.yang@amlogic.com>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Keep Amlogic A9 ETH domain always on.
+---
+ drivers/pmdomain/amlogic/meson-secure-pwrc.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/pmdomain/amlogic/meson-secure-pwrc.c b/drivers/pmdomain/amlogic/meson-secure-pwrc.c
+index 133549956efa..daf09cf86335 100644
+--- a/drivers/pmdomain/amlogic/meson-secure-pwrc.c
++++ b/drivers/pmdomain/amlogic/meson-secure-pwrc.c
+@@ -196,7 +196,8 @@ static const struct meson_secure_pwrc_domain_desc a9_pwrc_domains[] = {
+ 	SEC_PD(A9_VICP,		0),
+ 	SEC_PD(A9_SD_EMMC_A,	0),
+ 	SEC_PD(A9_SD_EMMC_B,	0),
+-	SEC_PD(A9_ETH,		0),
++	/* ETH is for ethernet online wakeup, and should be always on */
++	SEC_PD(A9_ETH,		GENPD_FLAG_ALWAYS_ON),
+ 	SEC_PD(A9_PCIE_A,	0),
+ 	SEC_PD(A9_PCIE_B,	0),
+ 	SEC_PD(A9_NNA_4T,	0),
+
+---
+base-commit: 26b9ea4f00732908c4f87501483c20ecaaf4eca5
+change-id: 20260914-a9-pwr-eth-6105f87f9f5e
+
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
