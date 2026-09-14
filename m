@@ -4,86 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CEF2C88E73
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Sep 2026 21:48:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9605C88E72
+	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Sep 2026 23:16:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KTYAoUmP7Fmxla3nLD13DmNZVdycVK9cZHTJxfCE5ps=; b=wxWnuQ0AP6hoII
-	xymQ/KjuWpXvmoUUjP7tqCkjnrnU/lHwf1ZHXgxw2kU5PlDy+043HRg9VCYuK2dYIuKH3mlTna3mU
-	aJFRBE42xAQmEPzV6OV3Cejs/axlW5WVA4lY3SlxgyQ6wWLH7nNdpdPQcOvRAJDvMHeZ0bZJ0CVaF
-	hwWDncHDHlwx5vSwKgwuSjmBj9Rk5+qmOX7yb8uLX4afqEj5rX2TCYqaUu4LprOZw2TQARkM+aSUd
-	7D0w7EGYsx2rIcwTkZ/UnjB3/PfryTp6SU+RRTh/ArygYtxylnLVpIw8k3QYW8NGumUBHHvVqu4na
-	elwKVVvhtSwDAi/0dPRg==;
+	List-Owner; bh=crBVo4ix2hZe6Mj8QSFDiiHCNfcpMKIroawUbskTa8w=; b=3ID30JVbWyz2qC
+	AU5Z+l2c8blm4jo4I+50Cp/GVal1otJi5XmPUbvekXpaYUUh648ZZIT7vzJ50ob63co2q6tB4S5tn
+	dgNm7pTjGT7bqRsQm7/N+xtvBIukCoMWxotFEQfot9EPvj4ShWsmS75SskqBcrrlR8bqFAJ8Xp6sp
+	AjU3W+GN15uUZVBNkpx+Q22wREUmn+8dBW5QKS2G4DLPTBid8GwoeGcUU8XnkQyYDz0jC1Kc1A0dR
+	WJ9hzNHmMP6n/H8M4oMUiJcqfhyXQTzERLOAHcdaj0o0uGsVEiKRxhfHquZ6JW2ptGTTz0ZvrKl1v
+	8ZfIkSDBq0l3b+qCp4Cw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x6EXR-00000004k3e-23f2;
-	Mon, 14 Sep 2026 21:48:33 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1x6Fu7-00000004px0-2kRp;
+	Mon, 14 Sep 2026 23:16:03 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x6EXQ-00000004k39-16jS;
-	Mon, 14 Sep 2026 21:48:32 +0000
+	id 1x6Fu6-00000004pwB-3TcR;
+	Mon, 14 Sep 2026 23:16:02 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 19E4460252;
-	Mon, 14 Sep 2026 21:48:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4FA91F00893;
-	Mon, 14 Sep 2026 21:48:22 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id D0D3B60267;
+	Mon, 14 Sep 2026 23:16:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C80E21F008A1;
+	Mon, 14 Sep 2026 23:15:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1789422510;
-	bh=SBHcf90QGFGcIYG/cUb7fQxxtoQCAIZ3J+Opp8tgy6Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=Wi4si0r4dmniuHpIV9joqWTaYufMct/7D1pcFxGcFthlhyl/Y/Pk9uqFP7LLCo6b0
-	 FeOa/UjMae0fRJYkBbG7BH2pD+BWKBOSrddaaMBn3hqGCnNvsfTRe+8tMM8CaGwD3X
-	 fPrLkJW47Mtr3kVVS05hfziHPV3/oXd4mH8G0eax9MH+vC/1FFfiwpwBxrIM4G4jgU
-	 rwi/PgJ8qUex3v29gS2LMMCdEB0Xs553vr704EbEWkGi2YP/HnEbK1Nzikxv90WEmw
-	 GhwNbPiH9o5XmzhzkYUHy7HcYduqw8SrHG/xNQmP+QEvAiqU0UE3V+WsQTv3uC+W0D
-	 8Xl2JLh6VsTZQ==
-Message-ID: <a1488d9d-3014-44ea-a0d7-6ab99fedccc9@kernel.org>
-Date: Mon, 14 Sep 2026 22:48:21 +0100
+	s=k20260515; t=1789427761;
+	bh=7A8bsZwZtUn262lTk7IyubDp7W1YXYAVchUWgLtGXAY=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=goQyM3FMdS+4uy3kh/E+DEd0gKrJrl1LoJbQcpJPU0pkEDMFeumZC0rXeero67oLZ
+	 UL22IAP3R+QJtqR6PvhWIJJA3dMSY7jor7+OdCVkVXX/HUTwXZeks/ARs7R8amjpzU
+	 /nLqxAwDyW2bcL8Yiu/0tJt+BmpW3pIU98xbnXJk5yIY/wKim2uozigmulByf4m96K
+	 R0gMPMCCcgbMv/YbH9fcjrxymwylQyIaSMwpBxJWvY5FypWkbAgT9akEKa/7+4I+bN
+	 hpuH7Uj2RH2iVoUjp5iUdWOU8/IztdooqGpHc4UgbVf7nwH7MhceescwmwNPEEvzt7
+	 ueVIITBb+cGfw==
+From: Jakub Kicinski <kuba@kernel.org>
+To: bartosz.golaszewski@oss.qualcomm.com
+Cc: Jakub Kicinski <kuba@kernel.org>,
+	andersson@kernel.org,
+	konradybcio@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	pabeni@redhat.com,
+	mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com,
+	vkoul@kernel.org,
+	peppe.cavallaro@st.com,
+	wens@kernel.org,
+	jernej.skrabec@gmail.com,
+	neil.armstrong@linaro.org,
+	khilman@baylibre.com,
+	jbrunet@baylibre.com,
+	shawnguo@kernel.org,
+	festevam@gmail.com,
+	jan.petrous@oss.nxp.com,
+	s32@nxp.com,
+	mohd.anwar@oss.qualcomm.com,
+	romain.gantois@bootlin.com,
+	geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	mripard@kernel.org,
+	christophe.roullier@foss.st.com,
+	brgl@kernel.org,
+	radu@rendec.net,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	dfustini@tenstorrent.com,
+	linux-sunxi@lists.linux.dev,
+	linux-amlogic@lists.infradead.org,
+	linux-mips@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-renesas-soc@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	sophgo@lists.linux.dev,
+	linux-riscv@lists.infradead.org,
+	bartosz.golaszewski@linaro.org
+Subject: Re: [PATCH net-next v14 01/10] net: phy: aquantia: fix system interface type not updated in forced mode
+Date: Mon, 14 Sep 2026 16:14:47 -0700
+Message-ID: <20260914231447.702704-1-kuba@kernel.org>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260908-qcom-sa8255p-emac-v14-1-ec212b747a7d@oss.qualcomm.com>
+References: <20260908-qcom-sa8255p-emac-v14-1-ec212b747a7d@oss.qualcomm.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] nvmem: core: deprecate reg_write callback with
- reg_write_const
-To: Link Mauve <linkmauve@linkmauve.fr>,
- Srinivas Kandagatla <srini@kernel.org>
-Cc: Sasha Finkelstein <k@chaosmail.tech>,
- Andy Shevchenko <andriy.shevchenko@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
- Neal Gompa <neal@gompa.dev>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Vladimir Zapolskiy <vz@mleia.com>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Orson Zhai <orsonzhai@gmail.com>, Baolin Wang
- <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Kalyani Akula <kalyani.akula@amd.com>, Michal Simek <michal.simek@amd.com>,
- Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Tamir Duberstein <tamird@kernel.org>, Alexandre Courbot
- <acourbot@nvidia.com>, =?UTF-8?Q?Onur_=C3=96zkan?= <work@onurozkan.dev>,
- Johan Hovold <johan@kernel.org>, Ronald Claveau <linux-kernel-dev@aliel.fr>,
- Daniel Lezcano <daniel.lezcano@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, asahi@lists.linux.dev, imx@lists.linux.dev,
- linux-arm-msm@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- rust-for-linux@vger.kernel.org
-References: <20260804135940.2378737-1-linkmauve@linkmauve.fr>
- <20260804135940.2378737-3-linkmauve@linkmauve.fr>
-Content-Language: en-US
-From: Srinivas Kandagatla <srini@kernel.org>
-In-Reply-To: <20260804135940.2378737-3-linkmauve@linkmauve.fr>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,186 +113,108 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+This is an AI-generated review of your patch. The human sending this
+email has considered the AI review valid, or at least plausible.
+---
+net: phy: aquantia: fix system interface type not updated in forced mode
 
+This drops the phydev->autoneg == AUTONEG_DISABLE test from the early
+return in aqr_gen1_read_status(), so that MDIO_PHYXS_VEND_IF_STATUS is
+decoded into phydev->interface whenever the link is up. The commit is
+marked for stable and carries Fixes: 110a2432c520 ("net: phy: aquantia:
+add downshift support").
 
-On 8/4/26 2:59 PM, Link Mauve wrote:
-> This callback used to take a mutable void * for no reason, which causes
-> the compiler to be unaware that the val buffer should never be modified
-> by the callback.
-> 
-> This was found while drafting the nvmem-provider Rust abstraction.
-> 
-> Signed-off-by: Link Mauve <linkmauve@linkmauve.fr>
-> ---
->  drivers/nvmem/core.c           | 28 ++++++++++++++++------------
->  drivers/nvmem/internals.h      |  1 +
->  include/linux/nvmem-provider.h |  6 +++++-
->  3 files changed, 22 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-> index 0556d140170a..08f235874ce0 100644
-> --- a/drivers/nvmem/core.c
-> +++ b/drivers/nvmem/core.c
-> @@ -66,19 +66,22 @@ static int __nvmem_reg_read(struct nvmem_device *nvmem, unsigned int offset,
->  }
->  
->  static int __nvmem_reg_write(struct nvmem_device *nvmem, unsigned int offset,
-> -			     void *val, size_t bytes)
-> +			     const void *val, size_t bytes)
->  {
->  	struct nvmem_operations *ops = nvmem->ops;
->  	int ret, wr_ok;
->  
-> -	if (!ops->reg_write)
-> +	if (!ops->reg_write && !ops->reg_write_const)
->  		return -EOPNOTSUPP;
->  
->  	ret = gpiod_set_value_cansleep(nvmem->wp_gpio, 0);
+> diff --git a/drivers/net/phy/aquantia/aquantia_main.c b/drivers/net/phy/aquantia/aquantia_main.c
+> index e95d391a6dc23..b720e4e9028cc 100644
+> --- a/drivers/net/phy/aquantia/aquantia_main.c
+> +++ b/drivers/net/phy/aquantia/aquantia_main.c
+> @@ -544,7 +544,7 @@ static int aqr_gen1_read_status(struct phy_device *phydev)
 >  	if (ret)
 >  		return ret;
 >  
-> -	wr_ok = ops->reg_write(nvmem->priv, offset, val, bytes);
-> +	if (ops->reg_write_const)
-> +		wr_ok = ops->reg_write_const(nvmem->priv, offset, val, bytes);
-> +	else
-> +		wr_ok = ops->reg_write(nvmem->priv, offset, (void *)val, bytes);
+> -	if (!phydev->link || phydev->autoneg == AUTONEG_DISABLE)
+> +	if (!phydev->link)
+>  		return 0;
 >  
->  	ret = gpiod_set_value_cansleep(nvmem->wp_gpio, 1);
->  	if (ret)
-> @@ -111,7 +114,7 @@ static int nvmem_access_with_keepouts(struct nvmem_device *nvmem,
->  			kend = min(end, keepout->start);
->  			ksize = kend - offset;
->  			if (write)
-> -				rc = __nvmem_reg_write(nvmem, offset, val, ksize);
-> +				rc = __nvmem_reg_write(nvmem, offset, (const void *)val, ksize);
+>  	/* The status register is not immediately correct on line side link up.
 
-these casts are redundant all such instances should be fixed.
+[Severity: Medium]
+This early return was also gating the rest of aqr_gen1_read_status(), not
+just the MDIO_PHYXS_VEND_IF_STATUS decode. With the autoneg test gone, the
+tail of the function now runs in forced mode too:
 
->  			else
->  				rc = __nvmem_reg_read(nvmem, offset, val, ksize);
->  
-> @@ -143,7 +146,7 @@ static int nvmem_access_with_keepouts(struct nvmem_device *nvmem,
->  	if (offset < end) {
->  		ksize = end - offset;
->  		if (write)
-> -			return __nvmem_reg_write(nvmem, offset, val, ksize);
-> +			return __nvmem_reg_write(nvmem, offset, (const void *)val, ksize);
->  		else
->  			return __nvmem_reg_read(nvmem, offset, val, ksize);
->  	}
-> @@ -164,7 +167,7 @@ static int nvmem_reg_write(struct nvmem_device *nvmem, unsigned int offset,
->  			   void *val, size_t bytes)
->  {
->  	if (!nvmem->nkeepout)
-> -		return __nvmem_reg_write(nvmem, offset, val, bytes);
-> +		return __nvmem_reg_write(nvmem, offset, (const void *)val, bytes);
->  
->  	return nvmem_access_with_keepouts(nvmem, offset, val, bytes, true);
->  }
-> @@ -299,7 +302,7 @@ static umode_t nvmem_bin_attr_get_umode(struct nvmem_device *nvmem)
->  	if (!nvmem->read_only)
->  		mode |= 0200;
->  
-> -	if (!ops->reg_write)
-> +	if (!ops->reg_write && !ops->reg_write_const)
->  		mode &= ~0200;
->  
->  	if (!ops->reg_read)
-> @@ -336,13 +339,13 @@ static umode_t nvmem_attr_is_visible(struct kobject *kobj,
->  	struct nvmem_operations *ops = nvmem->ops;
->  
->  	/*
-> -	 * If the device has no .reg_write operation, do not allow
-> -	 * configuration as read-write.
-> +	 * If the device has no .reg_write or .reg_write_const operation, do
-> +	 * not allow configuration as read-write.
->  	 * If the device is set as read-only by configuration, it
->  	 * can be forced into read-write mode using the 'force_ro'
->  	 * attribute.
->  	 */
-> -	if (attr == &dev_attr_force_ro.attr && !ops->reg_write)
-> +	if (attr == &dev_attr_force_ro.attr && !ops->reg_write && !ops->reg_write_const)
->  		return 0;	/* Attribute not visible */
->  
->  	return attr->mode;
-> @@ -893,7 +896,7 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
->  	if (!config->dev)
->  		return ERR_PTR(-EINVAL);
->  
-> -	if (!config->reg_read && !config->reg_write)
-> +	if (!config->reg_read && !config->reg_write && !config->reg_write_const)
->  		return ERR_PTR(-EINVAL);
->  
->  	nvmem = kzalloc_obj(*nvmem);
-> @@ -937,6 +940,7 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
->  
->  	ops->reg_read = config->reg_read;
->  	ops->reg_write = config->reg_write;
-> +	ops->reg_write_const = config->reg_write_const;
->  
->  	nvmem->owner = config->owner;
->  	if (!nvmem->owner && config->dev->driver)
-> @@ -972,7 +976,7 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
->  		goto err_put_device;
->  
->  	nvmem->read_only = device_property_present(config->dev, "read-only") ||
-> -			   config->read_only || !ops->reg_write;
-> +			   config->read_only || (!ops->reg_write && !ops->reg_write_const);
->  
->  #ifdef CONFIG_NVMEM_SYSFS
->  	nvmem->dev.groups = nvmem_dev_groups;
-> diff --git a/drivers/nvmem/internals.h b/drivers/nvmem/internals.h
-> index 4e610deeaa7b..c1766f8fa482 100644
-> --- a/drivers/nvmem/internals.h
-> +++ b/drivers/nvmem/internals.h
-> @@ -11,6 +11,7 @@
->  struct nvmem_operations {
->  	nvmem_reg_read_t	reg_read;
->  	nvmem_reg_write_t	reg_write;
-> +	nvmem_reg_write_const_t	reg_write_const;
->  };
->  
->  struct nvmem_device {
-> diff --git a/include/linux/nvmem-provider.h b/include/linux/nvmem-provider.h
-> index 6063fe5b7784..e944530999b4 100644
-> --- a/include/linux/nvmem-provider.h
-> +++ b/include/linux/nvmem-provider.h
-> @@ -20,6 +20,8 @@ typedef int (*nvmem_reg_read_t)(void *priv, unsigned int offset,
->  				void *val, size_t bytes);
->  typedef int (*nvmem_reg_write_t)(void *priv, unsigned int offset,
->  				 void *val, size_t bytes);
-> +typedef int (*nvmem_reg_write_const_t)(void *priv, unsigned int offset,
-> +				       const void *val, size_t bytes);
->  /* used for vendor specific post processing of cell data */
->  typedef int (*nvmem_cell_post_process_t)(void *priv, const char *id, int index,
->  					 unsigned int offset, void *buf,
-> @@ -93,7 +95,8 @@ struct nvmem_cell_info {
->   * @root_only:	Device is accessibly to root only.
->   * @of_node:	If given, this will be used instead of the parent's of_node.
->   * @reg_read:	Callback to read data; return zero if successful.
-> - * @reg_write:	Callback to write data; return zero if successful.
-> + * @reg_write:	**DEPRECATED** - please use reg_write_const instead.
+drivers/net/phy/aquantia/aquantia_main.c:aqr_gen1_read_status() {
+	...
+	phydev->interface = aqr_translate_interface(phydev, interface);
 
-Marking here as deprecated is total waste as no one will read it, May be
-move this message to the core while registering.
+	/* Read rate from vendor register */
+	return aqr_gen1_read_rate(phydev);
+}
 
+aqr_gen1_read_rate() overwrites both speed and duplex unconditionally from
+the autoneg MMD vendor register:
 
-> + * @reg_write_const:	Callback to write data; return zero if successful.
->   * @size:	Device size.
->   * @word_size:	Minimum read/write access granularity.
->   * @stride:	Minimum read/write access stride.
-> @@ -128,6 +131,7 @@ struct nvmem_config {
->  	struct device_node	*of_node;
->  	nvmem_reg_read_t	reg_read;
->  	nvmem_reg_write_t	reg_write;
+drivers/net/phy/aquantia/aquantia_main.c:aqr_gen1_read_rate() {
+	val = phy_read_mmd(phydev, MDIO_MMD_AN, MDIO_AN_TX_VEND_STATUS1);
+	if (val < 0)
+		return val;
 
-flag this with compile time __deprecated flag.
+	if (val & MDIO_AN_TX_VEND_STATUS1_FULL_DUPLEX)
+		phydev->duplex = DUPLEX_FULL;
+	else
+		phydev->duplex = DUPLEX_HALF;
 
-> +	nvmem_reg_write_const_t	reg_write_const;
->  	int	size;
->  	int	word_size;
->  	int	stride;
+	switch (FIELD_GET(MDIO_AN_TX_VEND_STATUS1_RATE_MASK, val)) {
+	case MDIO_AN_TX_VEND_STATUS1_10BASET:
+		phydev->speed = SPEED_10;
+	...
+	default:
+		phydev->speed = SPEED_UNKNOWN;
+	}
+}
 
+In forced mode the speed and duplex were just established from the PMA by
+aqr_read_status() -> genphy_c45_read_status() -> genphy_c45_read_pma(),
+which reads the PMA MDIO_CTRL1 speed select and sets DUPLEX_FULL. Is
+MDIO_AN_TX_VEND_STATUS1 still maintained by the firmware after
+genphy_c45_an_disable_aneg() (called from genphy_c45_pma_setup_forced()
+and aqr105_setup_forced())?
+
+If it is not, a zeroed or stale rate field decodes as SPEED_10 with
+DUPLEX_HALF, and an unrecognised code as SPEED_UNKNOWN, so a forced
+1000BASE-T full duplex link would be reported to phylink at the wrong
+rate and duplex. There is no validity qualifier and no "leave unchanged"
+path in aqr_gen1_read_rate().
+
+On gen2 parts a wrong or unknown speed also feeds the rate matching
+lookup, which silently keeps the previous value when nothing matches:
+
+drivers/net/phy/aquantia/aquantia_main.c:aqr_gen2_read_status() {
+	for (i = 0; i < AQR_NUM_GLOBAL_CFG; i++) {
+		struct aqr_global_syscfg *syscfg = &priv->global_cfg[i];
+
+		if (syscfg->speed != phydev->speed)
+			continue;
+		...
+			phydev->rate_matching = RATE_MATCH_PAUSE;
+	...
+}
+
+The guard being removed came from the Fixes: commit 110a2432c520, where it
+was added to keep the autoneg vendor rate handling out of the forced path.
+Would it work to move the AUTONEG_DISABLE check onto the
+aqr_gen1_read_rate() call instead of deleting it, so the interface decode
+is always done but speed and duplex keep coming from the PMA in forced
+mode? Alternatively, could the commit message state that
+MDIO_AN_TX_VEND_STATUS1 is valid with autoneg disabled, since the message
+currently only argues this for MDIO_PHYXS_VEND_IF_STATUS:
+
+    MDIO_PHYXS_VEND_IF_STATUS is set by the PHY firmware based on the
+    negotiated link speed, not based on whether autoneg was used to reach
+    it.
+
+This matters for the stable backport since the change is larger than the
+one described.
 
 _______________________________________________
 linux-amlogic mailing list
