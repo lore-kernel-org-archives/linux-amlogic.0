@@ -4,99 +4,112 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A60BAC88E75
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Sep 2026 23:16:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FA87C88E53
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Sep 2026 07:16:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YtLfKoS6w7XeKiyYbGVwWfBJ+CKpHMacOZHA6PZCHug=; b=MvQwtrK4p+hYy4
-	jOQqs5pXP+r8Ik7RJtkDSgRwSUCz1OfbyZRKWA3Msf/ICiECPICbgvJNB2qQgau3h+JDT8Zx/qK/w
-	JV+7XEQssSWZ/neHITJWIOvR5684zQzJCMAB51dNs2j6Qt8ByNhKyYky9Xw2iLY/CMF5Sl0PWwZn4
-	4xCvFULDcClrDwLbOcJSy1YZqoGmrO2OQcVhLm1y5Wx7qRKSx3ZwSRpvyFbwSQla4juNmBRax6BKG
-	VORiwt6U+AoSFc94oYOWP+6/78ZSfC+DfyDI/UFEODPjNZW7R8MicZwH9lkp+aIyJFmRJ7UX29TQs
-	PNtgevEdtSp2liUn7Kpg==;
+	List-Owner; bh=AkoNHowkq8+AAr5b3n1pmvCamx5bH3y731GfKfTrr0E=; b=Xs4tJsH86Ct1yL
+	nG5Rzu2Fkar+hq1Th8H7mkIYZQgQA242/JcdZJecVQYhdxrG2Raf2RzNB11JtLm/W9KYaquuNFl1A
+	+2Ykj+DHGHTerqEclhswvwCXxN+Vy0exY39CVZtJTItHsA2v7Iw1oH6AK4wDGAwIJqvfkJ9ijHjbO
+	UBYwx8iLU+V24LOa8PQ4C9gl7HUFh5KrT72uQPseIoYQZTzCEj8Srxohr0Ke8iuRPSNgcuZGxr0gZ
+	kg/xHtzwQTdtN2p2kH1TwF/t99LD2UgWoZwf0iKDfmNyEMTL+lPW7Vj72pE55OKRvFGxPI6Zegmup
+	JJvm69bTeXdT6ELBxwhQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x6FuW-00000004qKa-2XHx;
-	Mon, 14 Sep 2026 23:16:28 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1x6NOT-00000005RCp-2tj8;
+	Tue, 15 Sep 2026 07:15:53 +0000
+Received: from mgamail.intel.com ([192.198.163.16])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x6FuL-00000004q9c-0Ulu;
-	Mon, 14 Sep 2026 23:16:17 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id D4F6942A28;
-	Mon, 14 Sep 2026 23:16:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 586901F000FF;
-	Mon, 14 Sep 2026 23:16:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1789427776;
-	bh=tIIjh/Uf6BNc6qFW23Fkd03LNzbGrXqGSgv6kpFBBBk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=Z0MKwixYFejC9aXB2ou9gDyVgw+IXUfla6yha+G1h+pdjyd9O2GMLR6rfbmVCIqRh
-	 qnCgaS96Y5zdrUGXyZHeCOvJUyELkRb+9fGwuS5j2u7zwvM0KNnIOldogKIDh75OXI
-	 UU1X49g4kycw28XdTtqVEurHf9Wwkc//rViLO6ZtoDml0qlU8ptCINWW4hrt54jJG2
-	 hAPr0WuTs5yk74shR3GBcrH+k1Xa8WmdEfWKZAyL5keV+wX4e0ljXisLoEP1cRbpgh
-	 4LO1uDw+LaWAO/9Fcz1VWy59hEVIdQMtiu7jS8LG28h+tTb8lnAcVAxnFEOPTpkgHm
-	 sgjmnSADR5CMg==
-From: Jakub Kicinski <kuba@kernel.org>
-To: bartosz.golaszewski@oss.qualcomm.com
-Cc: Jakub Kicinski <kuba@kernel.org>,
-	andersson@kernel.org,
-	konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	pabeni@redhat.com,
-	mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com,
-	vkoul@kernel.org,
-	peppe.cavallaro@st.com,
-	wens@kernel.org,
-	jernej.skrabec@gmail.com,
-	neil.armstrong@linaro.org,
-	khilman@baylibre.com,
-	jbrunet@baylibre.com,
-	shawnguo@kernel.org,
-	festevam@gmail.com,
-	jan.petrous@oss.nxp.com,
-	s32@nxp.com,
-	mohd.anwar@oss.qualcomm.com,
-	romain.gantois@bootlin.com,
-	geert+renesas@glider.be,
-	magnus.damm@gmail.com,
-	mripard@kernel.org,
-	christophe.roullier@foss.st.com,
-	brgl@kernel.org,
-	radu@rendec.net,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
+	id 1x6NOQ-00000005RC3-1dXz;
+	Tue, 15 Sep 2026 07:15:51 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1789456550; x=1820992550;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+hFmXzfeob24QkbjYP8iQSqL7rHNCW4SoAluNe2Mtzo=;
+  b=SqTPGq1/wIAt9oHS4ekKDbtM/G4Ocj3SZMwt0/NBaW1JmxQb5STj2vgF
+   EUI19h3YNhp+CgoentcZiZFmvRElTAipytatNsq/Ai6mc7N4l+8SD9OHM
+   NPjZlQ7A2uHGNx/i2EEi+7ZxXX7HQOa1KzrZnPUqt3uxaPwOiqVs69dyo
+   KjlFTby+Ol7uNVYWfX4aTBx15PnJ0CEVVNfxOVaZQtv8kA3yWJr4Gh59s
+   bWk+D3oWw+dZlEyhkWtmc2hWQdQT/jsUZElIISdLLZh5PLJyfRcIX4H9C
+   a8BWJKM4Wkx4uV8SHLJUUXbk/ZhtMJChv+tjzlZRLMKc0XYtk+PJHWSal
+   A==;
+X-CSE-ConnectionGUID: NbIW9kUsSw+Vm0GcbJ19pw==
+X-CSE-MsgGUID: lHDkDJ2iSI6DNlBTXCwZ2Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="77372791"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
+   d="scan'208";a="77372791"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Sep 2026 00:15:49 -0700
+X-CSE-ConnectionGUID: jCoR3+hhS+iTfoVrXV+ydQ==
+X-CSE-MsgGUID: EtpDa52ZR/agKBjetRCxuQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
+   d="scan'208";a="268588584"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.203])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Sep 2026 00:15:38 -0700
+Date: Tue, 15 Sep 2026 10:15:36 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Srinivas Kandagatla <srini@kernel.org>
+Cc: Link Mauve <linkmauve@linkmauve.fr>,
+	Sasha Finkelstein <k@chaosmail.tech>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
+	Neal Gompa <neal@gompa.dev>, Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Vladimir Zapolskiy <vz@mleia.com>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Kalyani Akula <kalyani.akula@amd.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
+	Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Daniel Almeida <daniel.almeida@collabora.com>,
+	Tamir Duberstein <tamird@kernel.org>,
+	Alexandre Courbot <acourbot@nvidia.com>,
+	Onur =?iso-8859-1?Q?=D6zkan?= <work@onurozkan.dev>,
+	Johan Hovold <johan@kernel.org>,
+	Ronald Claveau <linux-kernel-dev@aliel.fr>,
+	Daniel Lezcano <daniel.lezcano@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
-	dfustini@tenstorrent.com,
-	linux-sunxi@lists.linux.dev,
-	linux-amlogic@lists.infradead.org,
-	linux-mips@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-renesas-soc@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	sophgo@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
-	bartosz.golaszewski@linaro.org
-Subject: Re: [PATCH net-next v14 07/10] net: stmmac: qcom-ethqos: fix SGMII loopback not set on resume after speed change
-Date: Mon, 14 Sep 2026 16:16:13 -0700
-Message-ID: <20260914231614.704318-1-kuba@kernel.org>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260908-qcom-sa8255p-emac-v14-7-ec212b747a7d@oss.qualcomm.com>
-References: <20260908-qcom-sa8255p-emac-v14-7-ec212b747a7d@oss.qualcomm.com>
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+	asahi@lists.linux.dev, imx@lists.linux.dev,
+	linux-arm-msm@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH v5 2/3] nvmem: core: deprecate reg_write callback with
+ reg_write_const
+Message-ID: <aqjwmMn7GkAoxsu2@ashevche-desk.local>
+References: <20260804135940.2378737-1-linkmauve@linkmauve.fr>
+ <20260804135940.2378737-3-linkmauve@linkmauve.fr>
+ <a1488d9d-3014-44ea-a0d7-6ab99fedccc9@kernel.org>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <a1488d9d-3014-44ea-a0d7-6ab99fedccc9@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260915_001550_585261_6F6996DE 
+X-CRM114-Status: GOOD (  11.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,71 +121,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhpcyBpcyBhbiBBSS1nZW5lcmF0ZWQgcmV2aWV3IG9mIHlvdXIgcGF0Y2guIFRoZSBodW1hbiBz
-ZW5kaW5nIHRoaXMKZW1haWwgaGFzIGNvbnNpZGVyZWQgdGhlIEFJIHJldmlldyB2YWxpZCwgb3Ig
-YXQgbGVhc3QgcGxhdXNpYmxlLgotLS0KbmV0OiBzdG1tYWM6IHFjb20tZXRocW9zOiBmaXggU0dN
-SUkgbG9vcGJhY2sgbm90IHNldCBvbiByZXN1bWUgYWZ0ZXIgc3BlZWQgY2hhbmdlCgpUaGlzIGV4
-dGVuZHMgdGhlIGd1YXJkIGluIHFjb21fZXRocW9zX3NldF9zZ21paV9sb29wYmFjaygpIHNvIHRo
-YXQgdGhlIE1BQwp3cmFwcGVyIFRYLXRvLVJYIGxvb3BiYWNrIGlzIGFsc28gYXJtZWQgd2hlbiBl
-dGhxb3MtPnBoeV9tb2RlIGhvbGRzClBIWV9JTlRFUkZBQ0VfTU9ERV9TR01JSSwgbm90IG9ubHkg
-UEhZX0lOVEVSRkFDRV9NT0RFXzI1MDBCQVNFWC4gV2l0aG91dAp0aGUgbG9vcGJhY2ssIGR3bWFj
-NF9kbWFfcmVzZXQoKSBwb2xscyBhbiBSWCBjbG9jayB0aGF0IG5ldmVyIHRvZ2dsZXMgYW5kCnRp
-bWVzIG91dC4KCk5vIExpbms6IHRhZ3Mgd2VyZSBwcmVzZW50IGluIHRoZSBjb21taXQgaGVhZGVy
-LgoKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQvZXRoZXJuZXQvc3RtaWNyby9zdG1tYWMvZHdt
-YWMtcWNvbS1ldGhxb3MuYyBiL2RyaXZlcnMvbmV0L2V0aGVybmV0L3N0bWljcm8vc3RtbWFjL2R3
-bWFjLXFjb20tZXRocW9zLmMKPiBpbmRleCBmZDc0MTRhNTBlYjRlLi5lMDY3Y2VlZTAxNjIxIDEw
-MDY0NAo+IC0tLSBhL2RyaXZlcnMvbmV0L2V0aGVybmV0L3N0bWljcm8vc3RtbWFjL2R3bWFjLXFj
-b20tZXRocW9zLmMKPiArKysgYi9kcml2ZXJzL25ldC9ldGhlcm5ldC9zdG1pY3JvL3N0bW1hYy9k
-d21hYy1xY29tLWV0aHFvcy5jCj4gQEAgLTE5MCw3ICsxOTAsOCBAQCBzdGF0aWMgdm9pZAo+ICBx
-Y29tX2V0aHFvc19zZXRfc2dtaWlfbG9vcGJhY2soc3RydWN0IHFjb21fZXRocW9zICpldGhxb3Ms
-IGJvb2wgZW5hYmxlKQo+ICB7Cj4gIAlpZiAoIWV0aHFvcy0+bmVlZHNfc2dtaWlfbG9vcGJhY2sg
-fHwKPiAtCSAgICBldGhxb3MtPnBoeV9tb2RlICE9IFBIWV9JTlRFUkZBQ0VfTU9ERV8yNTAwQkFT
-RVgpCj4gKwkgICAgKGV0aHFvcy0+cGh5X21vZGUgIT0gUEhZX0lOVEVSRkFDRV9NT0RFXzI1MDBC
-QVNFWCAmJgo+ICsJICAgICBldGhxb3MtPnBoeV9tb2RlICE9IFBIWV9JTlRFUkZBQ0VfTU9ERV9T
-R01JSSkpCj4gIAkJcmV0dXJuOwoKW1NldmVyaXR5OiBNZWRpdW1dClNob3VsZCB0aGlzIGh1bmsg
-YmUgc3F1YXNoZWQgaW50byB0aGUgcHJlY2VkaW5nIHBhdGNoIG9mIHRoZSBzZXJpZXMsIG9yIGF0
-CmxlYXN0IGNhcnJ5IGEgRml4ZXM6IHRhZyBuYW1pbmcgaXQ/CgpUaGUgY29tbWl0IG1lc3NhZ2Ug
-c2F5cyAibWFjX2ZpbmlzaCgpIG5vdyB1cGRhdGVzIHBoeV9tb2RlIHRvIHRoZQpydW50aW1lLXJl
-c29sdmVkIGludGVyZmFjZSIsIHdoaWNoIGlzIHRoZSBjaGFuZ2UgbWFkZSBvbmUgcGF0Y2ggZWFy
-bGllciBpbgp0aGlzIHNhbWUgc2VyaWVzOgoKICBmNDBlNzJkNTdiY2IzOCAoIm5ldDogc3RtbWFj
-OiBxY29tLWV0aHFvczogdXBkYXRlIHBoeV9tb2RlIHRvIHRoZQogIHJlc29sdmVkIGludGVyZmFj
-ZSBpbiBtYWNfZmluaXNoKCkiKQoKZ2l0IGJsYW1lIGF0IHRoaXMgY29tbWl0IHNob3dzIHRoZSBh
-c3NpZ25tZW50IGluIGV0aHFvc19tYWNfZmluaXNoX3NlcmRlcygpOgoKCWV0aHFvcy0+cGh5X21v
-ZGUgPSBpbnRlcmZhY2U7CgpjYW1lIGZyb20gZjQwZTcyZDU3YmNiMzguIEJlZm9yZSB0aGF0LCBl
-dGhxb3MtPnBoeV9tb2RlIHdhcyB3cml0dGVuIG9ubHkKb25jZSwgaW4gcWNvbV9ldGhxb3NfcHJv
-YmUoKSBmcm9tIHRoZSBEVCBwaHktbW9kZSBwcm9wZXJ0eSwgc28gdGhlCjI1MDBCQVNFWC1vbmx5
-IGd1YXJkIGNvdWxkIG5vdCBnbyBzdGFsZSBhdCBydW50aW1lIGFuZCB0aGUgRE1BIHJlc2V0CnRp
-bWVvdXQgZGVzY3JpYmVkIGhlcmUgZGlkIG5vdCBleGlzdC4KCkRvZXMgdGhhdCBsZWF2ZSBmNDBl
-NzJkNTdiY2IzOCBicm9rZW4gb24gaXRzIG93biwgZS5nLiBhcyBhIGJpc2VjdCBwb2ludCBvcgph
-IHN0YWJsZSBiYWNrcG9ydD8gT24gYSBuZWVkc19zZ21paV9sb29wYmFjayBwbGF0Zm9ybSAoZW1h
-Y192NF8wXzBfZGF0YSkKd2l0aCBEVCBwaHktbW9kZSAiMjUwMGJhc2UteCIgd2hvc2UgbGluayBy
-ZXNvbHZlcyB0byAxRyBTR01JSToKCiAgZXRocW9zX21hY19maW5pc2hfc2VyZGVzKCkgICAgICAt
-PiBldGhxb3MtPnBoeV9tb2RlID0gUEhZX0lOVEVSRkFDRV9NT0RFX1NHTUlJCiAgc3VzcGVuZCAv
-IGlmZG93bgogIHJlc3VtZSAvIGlmdXAKICBldGhxb3NfY2xrc19jb25maWcoZXRocW9zLCB0cnVl
-KQogICAgcWNvbV9ldGhxb3Nfc2V0X3NnbWlpX2xvb3BiYWNrKGV0aHFvcywgdHJ1ZSkKICAgICAg
-aWYgKC4uLiBldGhxb3MtPnBoeV9tb2RlICE9IFBIWV9JTlRFUkZBQ0VfTU9ERV8yNTAwQkFTRVgp
-CiAgICAgICAgICAgICAgcmV0dXJuOyAgICAgICAgICAgICAgICAgLyogbG9vcGJhY2sgbmV2ZXIg
-ZW5hYmxlZCAqLwogIGR3bWFjNF9kbWFfcmVzZXQoKSAgICAgICAgICAgICAgICAgIC8qIHBvbGxz
-IGEgbm9uLXRvZ2dsaW5nIGNsb2NrLCB0aW1lcyBvdXQgKi8KCkFsc28sIHRoZSBzdWJqZWN0IGxp
-bmUgcmVhZHMgYXMgYSBzdGFuZGFsb25lIGZpeCBmb3IgYSBwcmUtZXhpc3RpbmcKcHJvYmxlbSwg
-d2hpY2ggaGlkZXMgdGhlIGRlcGVuZGVuY3kgb24gdGhlIHByZXZpb3VzIHBhdGNoLiBXb3VsZCBl
-aXRoZXIKc3F1YXNoaW5nIHRoZSBndWFyZCBjaGFuZ2UgaW50byBmNDBlNzJkNTdiY2IzOCwgb3Ig
-YWRkaW5nCgogIEZpeGVzOiBmNDBlNzJkNTdiY2IzOCAoIm5ldDogc3RtbWFjOiBxY29tLWV0aHFv
-czogdXBkYXRlIHBoeV9tb2RlIHRvIHRoZSByZXNvbHZlZCBpbnRlcmZhY2UgaW4gbWFjX2Zpbmlz
-aCgpIikKCm1ha2UgdGhlIG9yZGVyaW5nIHJlcXVpcmVtZW50IGV4cGxpY2l0PwoKT25lIG1vcmUg
-bm90ZSBvbiB0aGUgY29tbWl0IG1lc3NhZ2Ugd29yZGluZzogdGhlIHNlY29uZCBwYXJhZ3JhcGgg
-cmVhZHMKInFjb21fZXRocW9zX3NldF9zZ21paV9sb29wYmFjaygpIGdhdGVzIHRoaXMgb24gcGh5
-X21vZGUgYmVpbmcgMjUwMEJBU0VYLgptYWNfZmluaXNoKCkgbm93IHVwZGF0ZXMgcGh5X21vZGUg
-dG8gdGhlIHJ1bnRpbWUtcmVzb2x2ZWQgaW50ZXJmYWNlLCBhbnkKc3Vic2VxdWVudCByZXN1bWUg
-d2l0aCBhIDFHIFNHTUlJIGxpbmsgc2tpcHMgdGhlIGxvb3BiYWNrIHNldHVwIiDigJQgdGhlCnNl
-bnRlbmNlIGpvaW5pbmcgaXMgbWlzc2luZyBhIGNvbm5lY3RvciBzdWNoIGFzICJzbyB0aGF0IiBv
-ciAiYW5kIHNpbmNlIiwKd2hpY2ggbWFrZXMgdGhlIGNhdXNhbCByZWxhdGlvbnNoaXAgaGFyZCB0
-byBmb2xsb3cuCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVh
-ZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1h
-bWxvZ2ljCg==
+On Mon, Sep 14, 2026 at 10:48:21PM +0100, Srinivas Kandagatla wrote:
+> On 8/4/26 2:59 PM, Link Mauve wrote:
+
+...
+
+> > - * @reg_write:	Callback to write data; return zero if successful.
+> > + * @reg_write:	**DEPRECATED** - please use reg_write_const instead.
+> 
+> Marking here as deprecated is total waste as no one will read it,
+
+This is still okay as we have many such things in the kernel (during the time).
+
+> May be move this message to the core while registering.
+
+No objections here.
+
+...
+
+> >  	nvmem_reg_read_t	reg_read;
+> >  	nvmem_reg_write_t	reg_write;
+> 
+> flag this with compile time __deprecated flag.
+
+__deprecated is DEPRECATED :-)
+No new code should use it.
+
+include/linux/compiler_attributes.h:110: * Don't. Just don't. See commit 771c035372a0 ("deprecate the '__deprecated'
+
+> > +	nvmem_reg_write_const_t	reg_write_const;
+
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
