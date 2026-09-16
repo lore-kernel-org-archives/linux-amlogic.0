@@ -4,34 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5828C88E7F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2026 17:49:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71FEDC982C9
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2026 17:51:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=wBHuejwIYQmOlhjdDG4j5hg0V258nTUKWcJhMq6Bnz4=; b=KhqEs32J+pEsft
-	1wRvgft5z79546vPQmuo1jiAO9OXBja6p4WoSgvcpgRXQYymjJLbSTKIsw+4Zghsw4bdI+3kDwSiD
-	vRK2grxMFpWldstDHQJMaGVYa20EpZgX/7hgD4DAIacdFzQVrk8ym1KO6enuaPVMQ3fHKbef8z0/5
-	pWxnJLTdePaAYGdoAV2ROcHqMdud6mUn/MJyW0K3bRysm5Cx4PYF8OKMdfx/NkGDP78DDqn4OAA7C
-	glq4eFugKrT89An+it7wyV/fCakctk0viySNH0iJW3Wm4LIjeCWKjUrhGlQk3AMAY591ADafXrsk/
-	WGX+dXGq2Kl2GPEjMaIg==;
+	List-Owner; bh=KphINyfIHZW/c+EhE3ByOVT3aIaZM4jmdM+slxMdO/Q=; b=l+pXX7/h9UMg6R
+	QoTnbxGuw+fLc91OhON24JApmM28DYqSpf43it2fAsYkBsCdmTOx3ExKw4WUqGcsUGHATG7cNjygH
+	RcC9r+6Fy5fz5QQWzEmvaCcd+kz6OQWz8kYA2n+pX9e0f9RW3AQLtMwM/12IA5RLzG3ouIyjUeMzd
+	pr1XSRJEZEW6wf6MLzfAOusD7xFoBWtJJcWgmGlsDYHEe1oJYIEcWcG3aH1JwRadKhBcNUgBReWVD
+	7e2xCoMqdr/43WDa6EJk6eqdxAYMZhRjbYcEA6i3p5nFrCGtrjEPU+TtPy3MPrMwN8E3UNYXGZugB
+	hzg/hZr8WAcA40zfFq6Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x6tl1-00000009tzd-3sXr;
-	Wed, 16 Sep 2026 17:49:19 +0000
+	id 1x6tma-00000009uEA-0iba;
+	Wed, 16 Sep 2026 17:50:56 +0000
 Received: from smtp25.cstnet.cn ([159.226.251.25] helo=cstnet.cn)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x6tky-00000009tyu-1sOF;
-	Wed, 16 Sep 2026 17:49:18 +0000
+	id 1x6tmX-00000009uD7-1O1b;
+	Wed, 16 Sep 2026 17:50:55 +0000
 Received: from dfae2b116770.home.arpa (unknown [36.110.52.2])
-	by APP-05 (Coremail) with SMTP id zQCowABn0TuT1qpqQOZuCA--.23890S2;
-	Thu, 17 Sep 2026 01:49:07 +0800 (CST)
+	by APP-05 (Coremail) with SMTP id zQCowACnETzz1qpqsexuCA--.46259S2;
+	Thu, 17 Sep 2026 01:50:43 +0800 (CST)
 From: Wentao Liang <vulab@iscas.ac.cn>
 To: airlied@gmail.com
 Cc: dri-devel@lists.freedesktop.org,
+	jagan@amarulasolutions.com,
 	jbrunet@baylibre.com,
 	khilman@baylibre.com,
 	linux-amlogic@lists.infradead.org,
@@ -40,39 +41,39 @@ Cc: dri-devel@lists.freedesktop.org,
 	maarten.lankhorst@linux.intel.com,
 	martin.blumenstingl@googlemail.com,
 	mripard@kernel.org,
+	nbelin@baylibre.com,
 	neil.armstrong@linaro.org,
-	sam@ravnborg.org,
 	simona@ffwll.ch,
 	tzimmermann@suse.de,
 	Wentao Liang <vulab@iscas.ac.cn>,
 	stable@vger.kernel.org
-Subject: [PATCH] drm/meson: Fix platform device reference leak in meson_encoder_hdmi_probe()
-Date: Wed, 16 Sep 2026 17:48:39 +0000
-Message-Id: <20260916174839.2089240-1-vulab@iscas.ac.cn>
+Subject: [PATCH] drm/meson: Fix remote device node leak in meson_encoder_dsi_probe()
+Date: Wed, 16 Sep 2026 17:50:15 +0000
+Message-Id: <20260916175015.2089358-1-vulab@iscas.ac.cn>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-CM-TRANSID: zQCowABn0TuT1qpqQOZuCA--.23890S2
-X-Coremail-Antispam: 1UD129KBjvdXoWrZryDCFWrGr4UZF1rWw18uFg_yoWktrXEgw
-	10kas7ur1xKFs7Kw17ArW3uFs2yFnxuay09rsFqFWfta4rZr9rXFW7CrykXr4ava4fCayD
-	J340gF1FgFn7KjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUb-xFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+X-CM-TRANSID: zQCowACnETzz1qpqsexuCA--.46259S2
+X-Coremail-Antispam: 1UD129KBjvdXoW7GrWkXw47Jr4kAr1DZr17GFg_yoWkWFb_X3
+	WrAFyDAr1UtrZrtr47CrWxCFZ2y3W5uF4093ZrJayfCFyYyr17Xay7uF1kXF17ur9xCa1D
+	J34rXr1fuF1xKjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJTRUUUb-xFF20E14v26ryj6rWUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
 	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
-	A2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j
+	A2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j
 	6F4UJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26F
 	4UJVW0owAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv
-	7VC0I7IYx2IY67AKxVWUAVWUtwAv7VC2z280aVAFwI0_Cr0_Gr1UMcvjeVCFs4IE7xkEbV
+	7VC0I7IYx2IY67AKxVWUtVWrXwAv7VC2z280aVAFwI0_Cr0_Gr1UMcvjeVCFs4IE7xkEbV
 	WUJVW8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7Cj
-	xVA2Y2ka0xkIwI1lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4I
+	xVA2Y2ka0xkIwI1lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4I
 	kC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWU
 	WwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_JF
 	I_Gr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4UJVWxJr1lIxAIcVCF04k26cxKx2IYs7xG
 	6r1j6r1xMIIF0xvEx4A2jsIE14v26F4j6r4UJwCI42IY6I8E87Iv6xkF7I0E14v26F4UJV
-	W0obIYCTnIWIevJa73UjIFyTuYvjfUw5l8UUUUU
+	W0obIYCTnIWIevJa73UjIFyTuYvjTRRD7VDUUUU
 X-Originating-IP: [36.110.52.2]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiDAIMA2qqpO9tdQAAsS
+X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiDAQMA2qqpO9uFwAAs1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260916_104916_850805_0DC4A4B5 
-X-CRM114-Status: UNSURE (   7.88  )
+X-CRM114-CacheID: sfid-20260916_105053_746240_8B035D1E 
+X-CRM114-Status: UNSURE (   6.76  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -90,33 +91,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-of_find_device_by_node() takes a reference on the HDMI transceiver
-device, but the successful probe path never releases it; the reference
-is only dropped when cec_notifier_conn_register() fails. The CEC
-notifier keeps the device as a lookup key without taking a reference of
-its own, so put the device right after the registration.
+The device node returned by of_graph_get_remote_node() is never
+released. of_drm_find_and_get_bridge() only uses it as a lookup key and
+takes its own reference on the bridge, so drop the node reference once
+the lookup is done, as meson_encoder_cvbs_probe() already does.
 
-Fixes: 0af5e0b41110 ("drm/meson: encoder_hdmi: switch to bridge DRM_BRIDGE_ATTACH_NO_CONNECTOR")
+Fixes: 42dcf15f901c ("drm/meson: add DSI encoder")
 Cc: stable@vger.kernel.org
 Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
 ---
- drivers/gpu/drm/meson/meson_encoder_hdmi.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/meson/meson_encoder_dsi.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-index 1abb0572bb5f..8e727f0a7a8c 100644
---- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-@@ -472,6 +472,9 @@ int meson_encoder_hdmi_probe(struct meson_drm *priv)
- 		}
- 
- 		meson_encoder_hdmi->cec_notifier = notifier;
-+
-+		/* The notifier keeps the device only as a lookup key */
-+		put_device(&pdev->dev);
+diff --git a/drivers/gpu/drm/meson/meson_encoder_dsi.c b/drivers/gpu/drm/meson/meson_encoder_dsi.c
+index 5f2eeeaf93b8..4e1ebe617e49 100644
+--- a/drivers/gpu/drm/meson/meson_encoder_dsi.c
++++ b/drivers/gpu/drm/meson/meson_encoder_dsi.c
+@@ -120,6 +120,7 @@ int meson_encoder_dsi_probe(struct meson_drm *priv)
  	}
  
- 	priv->encoders[MESON_ENC_HDMI] = meson_encoder_hdmi;
+ 	meson_encoder_dsi->bridge.next_bridge = of_drm_find_and_get_bridge(remote);
++	of_node_put(remote);
+ 	if (!meson_encoder_dsi->bridge.next_bridge)
+ 		return dev_err_probe(priv->dev, -EPROBE_DEFER,
+ 				     "Failed to find DSI transceiver bridge\n");
 -- 
 2.34.1
 
