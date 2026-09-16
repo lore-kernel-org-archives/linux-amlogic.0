@@ -4,52 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5721EC982C9
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2026 15:57:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B0DCC982CD
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2026 16:01:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=T66ewRze+4v1u8aiC1m1iUkBvvR5V6LpPlLwoWdXrWw=; b=LbBZVYJDxmLxNB
-	dAc6xR1TruSdMsI0vIq9L2CU1DqBWwUVrMZGmDmI5EpIuMjnItjYfbE/gRxbAfOR9Sbhv6OQTQ2Yi
-	MV7+PHYwk1DNCeFXM0EpicLWIaMK+Lc1a2z9Lu/gqP+ph/IKMSWR61P7PVExLiXVssxqUu9zLqf65
-	XKUWismRhH8kmtg4mvDtBRGRvzeNCOnYGwEIGoPmZNyfP+y+imckZleLz2r0oVXxe0PWtAtdu6e/S
-	8AHmBS+W08US/yjE5jjAC9RLAU+jp++HPAW8iW71j6gfBd4cowhYhMcjvanaUGKDjoCcgErPUc1g1
-	zsq1GY0nEew8df6Ifpjg==;
+	List-Owner; bh=zhecs3+ZFZN4s1M/vwGO/Uton40NxrvE7hQ1ww+jCMI=; b=CaO/lKpeneGde6
+	m7TuAzdMPEUj/ztWg3o4tSVNWbk5rQVokGsCqDRCx6jhd6W5GGl6OYrr49PSW8QrX/F4DJvi+2eLE
+	vSqxJolqnYhHIe2mTYKRnjsVov32HXN2wPYKBRCXQ/Fpxer5PtkogoUzIz1ac5bnSg36JhYk2Cqgy
+	Hg0DY5AvCCEkA7jOsoUFmdpk1FRR33fCfS980hvSRyFXu8LCqr36UTTQGg5XifKMInUZpM7MpmPIw
+	/YmDvMNZvFOjylYvzr2wRTPsJBMynPmM5/z+mi8nl3OHxsKJUXWUjKDuG8MahGfCPJpBsZ31njltB
+	9JkTTfoywNes8Z17DM6A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x6s1C-00000009fCt-46R4;
-	Wed, 16 Sep 2026 15:57:54 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1x6s48-00000009fhn-3bZZ;
+	Wed, 16 Sep 2026 16:00:56 +0000
+Received: from m16.mail.163.com ([117.135.210.4])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x6s1B-00000009fCU-3bQg
+	id 1x6s42-00000009fbr-1MBH
 	for linux-amlogic@lists.infradead.org;
-	Wed, 16 Sep 2026 15:57:53 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 46A2F6020C;
-	Wed, 16 Sep 2026 15:57:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB1CB1F000FF;
-	Wed, 16 Sep 2026 15:57:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1789574273;
-	bh=aq+nROvdH4rzDo1uL5NtNNjAm96E3mKYq/jHAusbQ4k=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Pfl2padV85dbFC5LksxJmwL5BmLUpFtWcjWMcZVce/d+vyASX9b//4oIpwXDyVg7D
-	 nlli8vOybzUz1ARrKF0R1KRSF4OG/Byjd+s+0Vjrxqrh+moYbmfDa88ja0VSpUa4Yb
-	 TTuZoa3ivo03Oc4FDDeTgWuJL3epC3SyhZwRmY2RJzQXMdQtGXyCEhvT2NQ5qW6PW+
-	 q1IzdEmDJkBwnGBAL9YSKUU/+sNcf74OhF7O3ChK8Ob+cmRISG4l0FumJbSdV/riiu
-	 RKRdI4zSyMsLvXc9yNtMKfUze4i+26E2U0HP3+PYYFitI+ytX7liZnb2oSUcH2xDzO
-	 YvHmcxYN+cT/Q==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3] crypto/amlogic: Use devm APIs for clock management
-To: "Mohamad Raizudeen" <raizudeen.kerneldev@gmail.com>
-Cc: linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org
-In-Reply-To: <20260916154941.7254-1-raizudeen.kerneldev@gmail.com>
-References: <20260916154941.7254-1-raizudeen.kerneldev@gmail.com>
-Date: Wed, 16 Sep 2026 15:57:52 +0000
-Message-Id: <20260916155752.BB1CB1F000FF@smtp.kernel.org>
+	Wed, 16 Sep 2026 16:00:52 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=yAL2lM24N2c7+9aduKXD74ve9wflnU4W1RARVreAXIM=;
+	b=gFPzrwkE9fHkklMKKW9o+xKAmNFcYkGioWWn1Ll4E/KY3tYXPQ5Uy/Jrl1LEIg
+	Ess0cLLgrFMK2ltKMfXV3wqrb7VIIv+d2SqdgEj7z6WQEGC8tpDt8/0gHUeX6X+1
+	HzgKXeeBWYSMYfpw4bIpXXXbeZ9cxoVE3et4/oejLmRZ4=
+Received: from [IPV6:240e:b8f:91b3:d000:a95a:12fc:887a:b0f1] (unknown [])
+	by gzga-smtp-mtada-g0-0 (Coremail) with SMTP id _____wD3X2sqvapqHFkTBA--.34803S2;
+	Thu, 17 Sep 2026 00:00:42 +0800 (CST)
+Message-ID: <d8e6c9be-ee1d-4426-9595-faf655ba0306@163.com>
+Date: Thu, 17 Sep 2026 00:00:42 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 1/3] PCI: Match the hierarchy's MPS to a device's MPSS
+ as necessary
+To: sashiko-reviews@lists.linux.dev
+Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org,
+ linux-pci@vger.kernel.org
+References: <20260916153907.60344-1-18255117159@163.com>
+ <20260916153907.60344-2-18255117159@163.com>
+ <20260916155239.06ECC1F000FF@smtp.kernel.org>
+Content-Language: en-US
+From: Hans Zhang <18255117159@163.com>
+In-Reply-To: <20260916155239.06ECC1F000FF@smtp.kernel.org>
+X-CM-TRANSID: _____wD3X2sqvapqHFkTBA--.34803S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW3JFW8WrWUuw1fWw4kur1UAwb_yoW7Zw1DpF
+	WDGF9Yyr4DJryUta1DZ3WrZr95GFs3ZayrJr90k34Iva45CryrKryYyr43Gw4xJrZxGFyj
+	yr1qq34xX3Z8taDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRO18PUUUUU=
+X-Originating-IP: [240e:b8f:91b3:d000:a95a:12fc:887a:b0f1]
+X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbC6wq+YmqqvSo1HAAA3D
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260916_090050_830222_AF55D419 
+X-CRM114-Status: GOOD (  30.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,59 +72,160 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MiBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0hpZ2hdIGNyeXB0bzogYW1sb2dp
-YzogbWVtb3J5IGxlYWsgYW5kIFVBRiBvbiBwcm9iZSBlcnJvciBwYXRoCi0gW0xvd10gY3J5cHRv
-OiBhbWxvZ2ljOiBidWlsZCBmYWlsdXJlIGR1ZSB0byBtaXNzcGVsbGVkIG1lc29uX2FsbG9jYXRl
-X2NoYWlubGlzdAotLQoKY29tbWl0IDc5OGU3OGMzMTQ3M2NhNmJlOGNhOWQzODczOWY0M2I2NjUz
-MzA3YjYKQXV0aG9yOiBNb2hhbWFkIFJhaXp1ZGVlbiA8cmFpenVkZWVuLmtlcm5lbGRldkBnbWFp
-bC5jb20+CgpjcnlwdG8vYW1sb2dpYzogVXNlIGRldm0gQVBJcyBmb3IgY2xvY2sgbWFuYWdlbWVu
-dAoKVGhpcyBjb21taXQgY29udmVydHMgdGhlIGRyaXZlciB0byB1c2UgZGV2bV9jbGtfZ2V0X2Vu
-YWJsZWQgaW5zdGVhZCBvZgptYW51YWxseSBnZXR0aW5nIGFuZCBlbmFibGluZyB0aGUgY29yZSBj
-bG9jay4gVGhpcyBjaGFuZ2UgYWxsb3dzIHRoZSByZW1vdmFsCm9mIG1hbnVhbCBjbGVhbnVwIGNv
-ZGUgaW4gdGhlIGVycm9yIHBhdGhzIGFuZCBzaW1wbGlmaWVzIHRoZSBwcm9iZSBmdW5jdGlvbi4K
-CkNsb3NlczogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvb2Uta2J1aWxkLWFsbC8yMDI2MDgzMTAz
-MjkuUWd4Q0NNczEtbGtwQGludGVsLmNvbS8KCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvY3J5cHRv
-L2FtbG9naWMvYW1sb2dpYy1neGwtY29yZS5jIGIvZHJpdmVycy9jcnlwdG8vYW1sb2dpYy9hbWxv
-Z2ljLWd4bC1jb3JlLmMKPiBpbmRleCAxNjljNmVlYjUxZTUxLi5kMmQyM2E0NDNjNTNmIDEwMDY0
-NAo+IC0tLSBhL2RyaXZlcnMvY3J5cHRvL2FtbG9naWMvYW1sb2dpYy1neGwtY29yZS5jCj4gKysr
-IGIvZHJpdmVycy9jcnlwdG8vYW1sb2dpYy9hbWxvZ2ljLWd4bC1jb3JlLmMKWyAuLi4gXQo+IEBA
-IC0yNDMsMTMgKzI0MywxNyBAQCBzdGF0aWMgaW50IG1lc29uX2NyeXB0b19wcm9iZShzdHJ1Y3Qg
-cGxhdGZvcm1fZGV2aWNlICpwZGV2KQo+ICAJaWYgKElTX0VSUihtYy0+YmFzZSkpCj4gIAkJcmV0
-dXJuIFBUUl9FUlIobWMtPmJhc2UpOwo+ICAKPiAtCW1jLT5idXNjbGsgPSBkZXZtX2Nsa19nZXQo
-JnBkZXYtPmRldiwgImJsa212Iik7Cj4gKwltYy0+YnVzY2xrID0gZGV2bV9jbGtfZ2V0X2VuYWJs
-ZWQoJnBkZXYtPmRldiwgImJsa212Iik7Cj4gIAlpZiAoSVNfRVJSKG1jLT5idXNjbGspKSB7Cj4g
-IAkJZXJyID0gUFRSX0VSUihtYy0+YnVzY2xrKTsKPiAtCQlkZXZfZXJyKCZwZGV2LT5kZXYsICJD
-YW5ub3QgZ2V0IGNvcmUgY2xvY2sgZXJyPSVkXG4iLCBlcnIpOwo+ICsJCWRldl9lcnIoJnBkZXYt
-PmRldiwgIkNhbm5vdCBnZXQvZW5hYmxlIGNvcmUgY2xvY2sgZXJyPSVkXG4iLCBlcnIpOwo+ICAJ
-CXJldHVybiBlcnI7Cj4gIAl9Cj4gIAo+ICsJZXJyID0gbWVzb25fYWxsb2NhdGVfY2hhaW5saXN0
-KG1jKTsKICAgICAgICAgICAgICAgXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eCgpbU2V2ZXJpdHk6
-IExvd10KSXMgdGhlcmUgYSB0eXBvIGluIHRoZSBmdW5jdGlvbiBuYW1lIG1lc29uX2FsbG9jYXRl
-X2NoYWlubGlzdD8KCj4gKwlpZiAoZXJyKQo+ICsJCXJldHVybiBlcnI7Cj4gKwo+ICAJZm9yIChp
-ID0gMDsgaSA8IE1BWEZMT1c7IGkrKykgewo+ICAJCW1jLT5pcnFzW2ldID0gcGxhdGZvcm1fZ2V0
-X2lycShwZGV2LCBpKTsKPiAgCQlpZiAobWMtPmlycXNbaV0gPCAwKQo+ICAJCQlyZXR1cm4gbWMt
-PmlycXNbaV07CgpbU2V2ZXJpdHk6IEhpZ2hdClNpbmNlIHRoZSBhbGxvY2F0aW9uIG9mIGNoYW5s
-aXN0IHdhcyBtb3ZlZCBiZWZvcmUgdGhpcyBsb29wLCBpZgpwbGF0Zm9ybV9nZXRfaXJxIGZhaWxz
-LCBkb2VzIHJldHVybmluZyBkaXJlY3RseSBoZXJlIGJ5cGFzcyB0aGUgY2xlYW51cCBvZgpyZXNv
-dXJjZXMgYWxsb2NhdGVkIGJ5IG1lc29uX2FsbG9jYXRlX2NoYW5saXN0PwoKSWYgdGhpcyBjbGVh
-bnVwIGlzIGJ5cGFzc2VkLCBjb3VsZCBpdCBjYXVzZSBhIHVzZS1hZnRlci1mcmVlIHdoZW4gb3Jw
-aGFuZWQKa3RocmVhZHMgYXR0ZW1wdCB0byBhY2Nlc3MgdGhlIGRldm0tbWFuYWdlZCBlbmdpbmUg
-c3RydWN0dXJlcyBhZnRlciB0aGV5IGFyZQpmcmVlZD8KCj4gIAo+ICAJCWVyciA9IGRldm1fcmVx
-dWVzdF9pcnEoJnBkZXYtPmRldiwgbWMtPmlycXNbaV0sIG1lc29uX2lycV9oYW5kbGVyLCAwLAo+
-ICAJCQkJICAgICAgICJneGwtY3J5cHRvIiwgbWMpOwo+ICAJCWlmIChlcnIgPCAwKQo+ICAJCQly
-ZXR1cm4gZXJyOwoKW1NldmVyaXR5OiBIaWdoXQpTaW1pbGFybHksIGlmIGRldm1fcmVxdWVzdF9p
-cnEgZmFpbHMsIGRvZXMgcmV0dXJuaW5nIGRpcmVjdGx5IGhlcmUgYnlwYXNzCmNsZWFudXAsIGxl
-YWtpbmcgRE1BIGNvaGVyZW50IG1lbW9yeSBhbmQgbGVhdmluZyBjcnlwdG9fZW5naW5lIGt0aHJl
-YWRzCnJ1bm5pbmc/CgotLSAKU2FzaGlrbyBBSSByZXZpZXcgwrcgaHR0cHM6Ly9zYXNoaWtvLmRl
-di8jL3BhdGNoc2V0LzIwMjYwOTE2MTU0OTQxLjcyNTQtMS1yYWl6dWRlZW4ua2VybmVsZGV2QGdt
-YWlsLmNvbT9wYXJ0PTEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5m
-cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xp
-bnV4LWFtbG9naWMK
+Hi,
+
+Thanks for the review.
+
+On 9/16/26 23:52, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 3 potential issue(s) to consider:
+> - [Critical] pci: pci_walk_bus() modifies MPS of active devices causing Malformed TLPs
+> - [High] pci: dynamically modified MPS in pcie_set_mps() is lost on system resume
+> - [High] pci: unlocked RMW of PCI_EXP_DEVCTL in pcie_set_mps() causes data races
+> --
+> 
+> commit 5af1f52d57f95fe2335fa9124a2d504949bbc917
+> Author: Hans Zhang <18255117159@163.com>
+> 
+> PCI: Match the hierarchy's MPS to a device's MPSS as necessary
+> 
+> When a device's MPSS is too small to match the upstream bridge,
+> pci_configure_mps() now walks the hierarchy from the Root Port down
+> and reduces every device that is above the new value to avoid
+> Malformed TLPs on Switch egress ports.
+> 
+>> diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
+>> index 27008e2ea5afc..232bce2819f06 100644
+>> --- a/drivers/pci/probe.c
+>> +++ b/drivers/pci/probe.c
+>> @@ -2200,9 +2200,28 @@ int pci_setup_device(struct pci_dev *dev)
+>>   	return 0;
+>>   }
+>>   
+>> +static int pcie_reduce_mps(struct pci_dev *dev, void *data)
+>> +{
+>> +	int mps = *(int *)data;
+>> +	int ret;
+>> +
+>> +	/* MPS is of type 'RsvdP' for VFs */
+>> +	if (!pci_is_pcie(dev) || dev->is_virtfn)
+>> +		return 0;
+>> +
+>> +	if (pcie_get_mps(dev) > mps) {
+>> +		ret = pcie_set_mps(dev, mps);
+>                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> [Severity: High]
+> Does bypassing the PM software save state here cause the dynamically modified
+> MPS to be lost on system resume?
+> 
+> If the sibling driver previously called pci_save_state() during its probe,
+> dev->state_saved becomes true. During the next suspend, the PM core skips
+> saving the new hardware state. On resume, the old, larger MPS would be
+> restored, potentially desynchronizing the hierarchy.
+> 
+
+pci_save_state() is called from the driver's probe path, which runs 
+after enumeration has completed.  pcie_reduce_mps() runs during 
+enumeration, i.e. before any driver can have called pci_save_state(). 
+The saved state therefore already contains the reduced MPS and it is 
+restored correctly on resume.
+
+
+> [Severity: High]
+> Also, does modifying the hardware MPS of active third-party endpoints using
+> an unlocked Read-Modify-Write of PCI_EXP_DEVCTL cause data races?
+> 
+> pcie_set_mps() performs an unlocked RMW of PCI_EXP_DEVCTL. If the sibling
+> driver or userspace (via VFIO) modifies the same register concurrently
+> (e.g., via pcie_set_readrq()), could it corrupt the configuration state of
+> active endpoints?
+
+
+pcie_set_mps() does not perform an unlocked RMW.  It calls
+pcie_capability_clear_and_set_word(), which serializes config space
+access through pci_lock.  Concurrent access from userspace (VFIO) or 
+from pcie_set_readrq() cannot corrupt PCI_EXP_DEVCTL.
+
+> 
+>> +		if (ret)
+>> +			dev_warn(&dev->dev, "failed to set MPS\n");
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>   static void pci_configure_mps(struct pci_dev *dev)
+>>   {
+>>   	struct pci_dev *bridge = pci_upstream_bridge(dev);
+> 
+> [ ... ]
+> 
+>> @@ -2252,10 +2271,21 @@ static void pci_configure_mps(struct pci_dev *dev)
+>>   		return;
+>>   
+>>   	mpss = 128 << dev->pcie_mpss;
+>> -	if (mpss < p_mps && pci_pcie_type(bridge) == PCI_EXP_TYPE_ROOT_PORT) {
+>> -		pcie_set_mps(bridge, mpss);
+>> -		pci_info(dev, "Upstream bridge's Max Payload Size set to %d (was %d, max %d)\n",
+>> -			 mpss, p_mps, 128 << bridge->pcie_mpss);
+>> +	rp = pcie_find_root_port(bridge);
+>> +	if (mpss < p_mps && rp) {
+>> +		/*
+>> +		 * dev cannot be programmed to the MPS already in use above
+>> +		 * it, so reduce the hierarchy to what dev supports.  A Switch
+>> +		 * may not repackage TLPs, so reducing only the upstream
+>> +		 * bridge is not enough: every port up to the Root Port has to
+>> +		 * come down as well, and so do the devices already programmed
+>> +		 * below that Root Port, which would otherwise be left sending
+>> +		 * TLPs too large for their egress port.
+>> +		 */
+>> +		pcie_reduce_mps(rp, &mpss);
+>> +		pci_walk_bus(rp->subordinate, pcie_reduce_mps, &mpss);
+>                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> [Severity: Critical]
+> Does unconditionally walking the bus and dynamically reducing the MPS of active
+> siblings cause Malformed TLPs?
+> 
+> PCIe specifications prohibit changing MPS while a device is active. Active
+> devices will continue generating TLPs based on their driver's internal state
+> (or previously negotiated packet sizes). When these larger TLPs hit the
+> dynamically reduced upstream bridge, won't they be dropped as Malformed
+> TLPs, potentially leading to a system crash or bus reset?
+
+The concern is valid in principle, but pci_configure_mps() is only
+called from pci_configure_device() during pci_setup_device(), i.e. while
+the device is being enumerated and before its driver has probed.  No
+device below the Root Port can be actively driving TLPs at that point,
+so the "active NIC or early firmware-driven display controller" scenario
+does not apply on this path.
+
+The same applies to the hotplug case: the newly added device goes 
+throughpci_setup_device() and pci_configure_mps() before it is bound to 
+a driver.  Reducing the Root Port's MPS when a downstream device has a
+smaller MPSS is also pre-existing behaviour from 9f0e89359775; this
+series extends it to Switch ports and already-programmed siblings, which
+is required to fix the Switch mismatch reported in v8.  I will document
+this precondition in the commit message.
+
+
+
+
+Best regards,
+Hans
+
+> 
+>> +		pci_info(dev, "Max Payload Size of %s hierarchy set to %d (was %d)\n",
+>> +			 pci_name(rp), mpss, p_mps);
+>>   		p_mps = pcie_get_mps(bridge);
+>>   	}
+> 
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
