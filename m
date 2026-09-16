@@ -4,60 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 257C9C88E5C
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2026 09:01:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08748C88E77
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2026 09:50:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tos5YlLlXAPZ4wsWmKOVLzhfsXyE4rdf+N9YR7rB6yQ=; b=bE9xYRU0L2vJ0I
-	JdzggAxlbpdDvboLL0NR9crTKehHkz8tEZC31l5Q6t/cAonsx297ZfN2Xwcwp+8CBiFQAdvIYDARm
-	uRH4aY0dxQatr0/CYUcrjbybvqaFc3l09r3J2KU+MaOTVQdjh146bf2XYDlS6Smb4MGiVk4AIl3YH
-	o384NcViy3FwINDRrVYpVmfnFS+Bz7HX1eQyaW1iEyw25aDmU74PdfCBMnHEyqNFvjFLrtbzuHbg/
-	tHu4OoHsLCZvJFuRAs5FJOemTHxZekSeIxdWpg10CU/cJZZe0os8/fZWdCKEPraGEETJNrs9MHNuU
-	U882M3isXzoq6XGAs1Ng==;
+	List-Owner; bh=HMc7/OyUtnxE9zz4t5wAo2QX/nbQCSOnxX3Zkdw2PeI=; b=mlHxLzuA4BNGrV
+	z0fHJO2NjXdpEaswZbsQ7btDKWuAv7M0FT/ESlk0VOjSBBvCPIoELgJ7gWJNckDCV8+b95IajlL6s
+	UUvC9jN3IhDOWaz7zpT7iWVQB47jW4TMGguGGhEMpFc9HdkJh1GBL11Twwk/HZpCE7NXSIF/9KWsS
+	wJ+lSyaeKuWNCT6fgjfnmh3/IlBf35sJTBmBh8kYiKFXp3aJm6Ui+m2K20QByQtpGkZfwIsBRmBJ9
+	MKU5wFQl9xaYULrEw46b6uHXP0V3HAUC4lXMrJPCeRiou4IdGyrwE25svleJdEh+Bscw6y54l4IV/
+	/FxWStbIncPxGGQdkhPg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x6lVt-00000008mqU-2uJA;
-	Wed, 16 Sep 2026 09:01:10 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1x6mH8-00000008tOh-221D;
+	Wed, 16 Sep 2026 09:49:58 +0000
+Received: from abb.hmeau.com ([180.181.231.80])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x6lVs-00000008mqD-3lV2;
-	Wed, 16 Sep 2026 09:01:08 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 4478743A51;
-	Wed, 16 Sep 2026 09:01:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5292E1F0089A;
-	Wed, 16 Sep 2026 09:01:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1789549268;
-	bh=ndY4ZVKXn4jYxy2ap4ChhJIz6Pf0w0TMQtMwao0c/s4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=AumnpGhaRDz4R/OANmzzZG+60wVb7KKHlLqeRbzur2rPpJXJ+bSfzUwzzC5ntEdX/
-	 k2O4TX/o4wTaK24YTKSYeDi6Z1xNup/y0HiQJJ2Kirvk2xH1IykfBjzRH7zSIZhCnx
-	 14SA24CeuBJNR7vqi3LN0PN7V6vbfiG4TeJclZxgNbq67C9nYZtqbsId6UYS/rI812
-	 vxYfu77u3+0mr3rF9Q+LebrLCvhnssBgk+1qvFZ432Xmwj5afxGwOgyvOEKV+f+jSJ
-	 haZpG5Fi0eQOBUyRRKs7NdnL98JJ+LP/kj+7kvjJ+sSbl9do4hVO0z4dIomZJ4r7AG
-	 v1guUypbrXsUQ==
-Date: Wed, 16 Sep 2026 11:01:03 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Zhentao Guo <zhentao.guo@amlogic.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v9 3/6] media: dt-bindings: Add Amlogic V4L2 video decoder
-Message-ID: <20260916-fat-enthusiastic-termite-44b2e2@quoll>
-References: <20260914-b4-s4-vdec-upstream-v9-0-72fdb0d71b02@amlogic.com>
- <20260914-b4-s4-vdec-upstream-v9-3-72fdb0d71b02@amlogic.com>
+	id 1x6mH4-00000008tMV-0McK
+	for linux-amlogic@lists.infradead.org;
+	Wed, 16 Sep 2026 09:49:55 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=gondor.apana.org.au; s=h01; h=In-Reply-To:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:cc:to:subject:message-id:date:
+	from:content-type:reply-to; bh=njikc4nORIsTPxlkCFcPQm3BO/kRWtHCUlB4reb5W0w=; 
+	b=NetxLrsx/2fBWdXmzAZ44G444i0SA0dSDU6XvfWx6LY9NeKda8ptCKgQ0fTVgPwKcOJnIO0rxkJ
+	wWmbTCu/15PZVHNApw6jkFEozSWa4KLcNS6OtPLgjOn69LBn5xv6LIRfNSwKv8GsoFrps7mnFwxTB
+	dYm9vsv+TZqk2o6CVAK2cVSk4bJgBKDsGLMi3QPlpOHfrFULTuNrZdCJT7qreP5smQtnjKCXXYBVG
+	xlrcbl1LJ/JqLTx4CEtlBg7YTFgPURsqjTIwg44CW2ObZA4ca+Gh2C3fne+PfBheL1iYer0tXmzBI
+	xiSACKUIijQnwlojV/kbYlOB8Ru+HNgZti7Q==;
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+	by formenos.hmeau.com with smtp (Exim 4.98.2 #2 (Debian))
+	id 1x6mGx-0000000EYyY-0Ta6;
+	Wed, 16 Sep 2026 17:49:48 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Wed, 16 Sep 2026 19:49:47 +1000
+Date: Wed, 16 Sep 2026 19:49:47 +1000
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: Mohamad Raizudeen <raizudeen.kerneldev@gmail.com>
+Cc: clabbe@baylibre.com, davem@davemloft.net, linux-crypto@vger.kernel.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+	skhan@linuxfoundation.org, jkoolstra@xs4all.nl, lkp@intel.com
+Subject: Re: [PATCH v2] crypto/amlogic: Use devm APIs for clock management
+Message-ID: <aqpmOzURNFOm78ls@gondor.apana.org.au>
+References: <20260901024302.5407-1-raizudeen.kerneldev@gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20260914-b4-s4-vdec-upstream-v9-3-72fdb0d71b02@amlogic.com>
+In-Reply-To: <20260901024302.5407-1-raizudeen.kerneldev@gmail.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260916_024954_130097_E6FC61D0 
+X-CRM114-Status: GOOD (  14.43  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,130 +72,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Sep 14, 2026 at 04:10:20PM +0800, Zhentao Guo wrote:
-> Describe the initial support for the V4L2 stateless video decoder
-> driver used with the Amlogic S4 (S805X2) platform.
-
-Drop driver. Describe the hardware instead.
-
+On Tue, Sep 01, 2026 at 08:12:52AM +0530, Mohamad Raizudeen wrote:
+> The driver currently gets the core clock and manually enables it using
+> clk_prepare_enable(). This requires matching calls to
+> clk_disable_unprepare() in the error paths and remove function.
 > 
-> Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
+> Switch to devm_clk_get_enabled() instead. This lets the kernel handle
+> enabling and disabling the clock automatically, which allow us to drop
+> the manual cleanup code and keeps the probe function simple.
+> 
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202608310329.QgxCCMs1-lkp@intel.com/
+> Signed-off-by: Mohamad Raizudeen <raizudeen.kerneldev@gmail.com>
 > ---
->  .../devicetree/bindings/media/amlogic,s4-vdec.yaml | 114 +++++++++++++++++++++
->  1 file changed, 114 insertions(+)
+> Changes in v2:
+> - Dropped the devm_crypto_engine_alloc_init() change due to build
+>   failure reported by the kernel test robot.
+> - Kept the devm_clk_get_enabled() clock cleanup as the sole focus of
+>   this patch.
+> - Link to v1: https://lore.kernel.org/linux-crypto/20260821151303.8150-1-raizudeen.kerneldev@gmail.com/T/#u
 > 
-> diff --git a/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml b/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml
-> new file mode 100644
-> index 000000000000..d350b3e68a38
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml
-> @@ -0,0 +1,114 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2025 Amlogic, Inc. All rights reserved
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/amlogic,s4-vdec.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic Video Decode Accelerator
-> +
-> +maintainers:
-> +  - Zhentao Guo <zhentao.guo@amlogic.com>
-> +
-> +description:
-> +  The Video Decoder Accelerator present on Amlogic SOCs.
-> +  It supports stateless h264 decoding.
-> +
-> +properties:
-> +  compatible:
-> +    const: amlogic,s4-vdec
-> +
-> +  reg:
-> +    maxItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: dos
-> +      - const: dmc
-> +
-> +  interrupts:
-> +    maxItems: 2
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: core_hvdec
-> +      - const: core_vdec
+>  drivers/crypto/amlogic/amlogic-gxl-core.c | 16 +++-------------
+>  1 file changed, 3 insertions(+), 13 deletions(-)
 
-Drop "core_" from both... or rather some consistency would be more
-useful. Below you call them core_v and core_h, but there is also:
+Please take a look at
 
-> +
-> +  clocks:
-> +    items:
-> +      - description: Clock for dos core
+https://sashiko.dev/#/patchset/20260901024302.5407-1-raizudeen.kerneldev%40gmail.com
 
-core dos?
-
-> +      - description: Clock for vdec core
-> +      - description: Clock for hvdec core
-> +
-> +  clock-names:
-> +    items:
-> +      - const: dos
-> +      - const: core_v
-
-hvdec?
-
-> +      - const: core_h
-
-vdec? to keep the naming and order of interrupts?
-
-> +
-> +  power-domains:
-> +    maxItems: 2
-> +
-> +  power-domain-names:
-> +    items:
-> +      - const: dos_v
-> +      - const: dos_h
-
-So there is also dos variant v and h?
-
-Pretty confusing.
-
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  amlogic,canvas:
-> +    description: Canvas maintains an index-to-physical-address
-> +     mapping table that allows the 16-bit AMRISC decoder core
-> +     to access 32-bit or 64-bit physical address.
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +
-> +  amlogic,secure-monitor:
-> +    description: Used to decrypt and load the signed decoder
-> +     firmware through ARM SMC (Secure Monitor Call).
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +  - power-domain-names
-> +  - resets
-> +  - amlogic,canvas
-> +  - amlogic,secure-monitor
-> +
-> +additionalProperties: false
-
-Best regards,
-Krzysztof
-
+Thanks,
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
 _______________________________________________
 linux-amlogic mailing list
