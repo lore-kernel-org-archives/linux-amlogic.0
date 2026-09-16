@@ -4,63 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 026BFC88E77
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2026 13:02:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD6BAC982CC
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2026 15:39:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+SMRzE+PhKZB8ht7dpFOlIbv3IiXMXlk5Q6W6Fzofm0=; b=ZEGbMkUCxggMlL
-	YxvQwMgfc/Ik6FC7IVc1XterJu7P6/WHa+aRleqe5tKzncOqMQQy7nGjK3B2dxlJIJmTBRHZ6TSN+
-	RDRdaDhHssTt5gwPlQzfg9+M4RIk1usaOaypB+cqC6XVSzgum3Ijoi0LQHtlKFWnnEPzNZkMcQ4YH
-	lH5Osc8PFnMgHO+N4wLFSzIa7GF6rHmvCG0/OUs77NHlxeaJSdnzFkaSg9FaBRjyclXr+YIN0gFf0
-	864j6e8bA6xIkqh4tk8DRi9fU+6tBOO1G0iYKywM2gjg69VguGdUBlKq0Ae9qpG0agrcTN6wE2KHc
-	W7q/b1T1UAws9t0gHvZQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=RwupNP5NnCfJ1z+NY4OfTAKbeNR3rqHxtoGQvE7UQFg=; b=u+CwpwEt1DGBXN
+	W1RgPXGxHL/F85N5Chk9m67C327ZSCIMF51BW5U0aWPh8yyhbRXVVwNdSVvX2p85AwOY3XOKFJVXu
+	YNr9kQKWfLf/TT5j2hp9tfrNeGrpmXECTTj+LucaiPlgvXVRaalKMNl+gPAXrMPj7o3RE8o8cR4Ib
+	dLdo90oJcXDRYr+XhcG2FVNB/1K4DREMJANWpjEDPqJJs8ZMhNuaxJjc6zyt7AN9d1hu2rcDYGXom
+	gAtJrTYSI1qaZKJ0ZvYIfiz3bAEVcNnXn3GbUkK6XXtogXB6L6r6+JjbUjY3EGmEvdX2bKnYX03yl
+	pntLmQnvTAeo7k43pzSQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x6pGx-00000009E5T-3bRC;
-	Wed, 16 Sep 2026 13:02:00 +0000
-Received: from courrier.aliel.fr ([2a01:4f9:c011:1c83::1])
+	id 1x6rji-00000009bnb-37sO;
+	Wed, 16 Sep 2026 15:39:50 +0000
+Received: from m16.mail.163.com ([220.197.31.5])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x6pGu-00000009E4e-47sT;
-	Wed, 16 Sep 2026 13:01:58 +0000
-Message-ID: <b391c2d1-4a76-4419-b76b-4246f1363bc7@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1789563712;
-	bh=rrewkVtepVS6AYm0+2LOcrtcOwzSIbzO1eGTDAZuq8A=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To;
-	b=WoidFiOnKLfiITb4eYcrjoEaeAziA7/vtvJDXzP3+ZiDXkdbBHeqRx2yfBRYtS43y
-	 J6PiUTC/baX6P9S9pyNcIKFLEIgD82S9StKPdifg1FSZ3WvIJtadT/xnEGYVvTY4n8
-	 bDAwA+56/f7JZgXmvr3AZ55QEMVv1XKudZQPEaD0=
-Date: Wed, 16 Sep 2026 15:01:42 +0200
+	id 1x6rjg-00000009bm9-03y1;
+	Wed, 16 Sep 2026 15:39:49 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=iW
+	vwV0Yb3kbxokRESrXjcOjAU5pqGLAd63JQ2bS+4jo=; b=QS0V/U/giChb2KR5sQ
+	V+yWTFSjAoudfwbEijimVCSMr1afHSjxX/Tyb23a+NMLNa8yXADc5efgLNfbdm7A
+	8EBmG0hGd+7ZXkpBhhJ/IXV+EnjCbX2b8Zl1Nm0H8ZS3iXCHiB3k6rG7AONIgcNe
+	jVpFfRN1d7XtvxD4j5slmRFq8=
+Received: from zhb.. (unknown [])
+	by gzga-smtp-mtada-g1-1 (Coremail) with SMTP id _____wDnbxQduKpqGzAlBA--.54876S2;
+	Wed, 16 Sep 2026 23:39:10 +0800 (CST)
+From: Hans Zhang <18255117159@163.com>
+To: lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	bhelgaas@google.com,
+	helgaas@kernel.org,
+	heiko@sntech.de,
+	mani@kernel.org,
+	yue.wang@Amlogic.com
+Cc: pali@kernel.org,
+	neil.armstrong@linaro.org,
+	robh@kernel.org,
+	jingoohan1@gmail.com,
+	khilman@baylibre.com,
+	jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com,
+	cassel@kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Hans Zhang <18255117159@163.com>
+Subject: [PATCH v9 0/3] PCI: Configure Root Port MPS during host probing
+Date: Wed, 16 Sep 2026 23:39:04 +0800
+Message-Id: <20260916153907.60344-1-18255117159@163.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-From: linux-kernel-dev@aliel.fr
-Subject: Re: [PATCH v11 3/6] mfd: khadas-mcu: Add support for VIM4 MCU variant
-To: Lee Jones <lee@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Beniamino Galvani <b.galvani@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-pm@vger.kernel.org, mfd@lists.linux.dev
-References: <20260902-add-mcu-fan-khadas-vim4-v11-0-5f1610d83bf0@aliel.fr>
- <20260902-add-mcu-fan-khadas-vim4-v11-3-5f1610d83bf0@aliel.fr>
- <20260910142153.GF1051768@google.com>
-Content-Language: en-US
-In-Reply-To: <20260910142153.GF1051768@google.com>
+X-CM-TRANSID: _____wDnbxQduKpqGzAlBA--.54876S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxZrWUZr4xKry7trW8JrWfAFb_yoWrCryUpF
+	WFqFsagrs7Gry3Ga17Cw42kFyYgws3A3y5Jw45K34fZF4YvF1jqrWv9F4Fvry7Xr4ag3WI
+	qFZFq34Fkw1jvaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pi0JP_UUUUU=
+X-Originating-IP: [240e:b8f:91b3:d000:a95a:12fc:887a:b0f1]
+X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbCxB56HmqquB5tiAAA39
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260916_060157_488912_1C70933B 
-X-CRM114-Status: GOOD (  21.27  )
+X-CRM114-CacheID: sfid-20260916_083948_458646_F7083C67 
+X-CRM114-Status: GOOD (  14.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,224 +88,105 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 9/10/26 4:21 PM, Lee Jones wrote:
-> On Wed, 02 Sep 2026, Ronald Claveau via B4 Relay wrote:
-> 
->> From: Ronald Claveau <linux-kernel-dev@aliel.fr>
->>
->> Refactor probe() to use per-variant values
->> instead of hardcoded globals.
->>
->> Add dedicated regmap configuration for the VIM4 MCU,
->> with its own volatile/writeable registers.
->>
->> Introduce struct khadas_mcu_fan_pdata to pass the fan
->> control register and duty-cycle levels per variant.
->> VIM4 uses a different register and level set (0-100)
->>  declared as a list (0, 30, 40, 55, 75, 100) compared
->>  to previous boards (0-3).
->>
->> Add a new compatible string "khadas,vim4-mcu".
->>
->> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
->> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
-> 
-> Generally fine.
-> 
->> ---
->>  drivers/mfd/khadas-mcu.c | 120 +++++++++++++++++++++++++++++++++++++++++------
->>  1 file changed, 106 insertions(+), 14 deletions(-)
->>
->> diff --git a/drivers/mfd/khadas-mcu.c b/drivers/mfd/khadas-mcu.c
->> index 0e74efe14f367..4cb305ac915e1 100644
->> --- a/drivers/mfd/khadas-mcu.c
->> +++ b/drivers/mfd/khadas-mcu.c
->> @@ -75,47 +75,138 @@ static const struct regmap_config khadas_mcu_regmap_config = {
->>  	.cache_type	= REGCACHE_MAPLE,
->>  };
->>  
->> +static const unsigned int khadas_mcu_fan_levels[] = {
->> +	0, 1, 2, 3,
->> +};
->> +
->> +static const struct khadas_mcu_fan_pdata khadas_mcu_fan_pdata = {
->> +	.fan_reg	= KHADAS_MCU_CMD_FAN_STATUS_CTRL_REG,
->> +	.levels		= khadas_mcu_fan_levels,
->> +	.nlevels	= ARRAY_SIZE(khadas_mcu_fan_levels),
->> +};
-> 
-> I still don't think these belong in here.
-> 
+Current PCIe enumeration configures each device's Maximum Payload Size
+(MPS) top-down to match its upstream bridge.  Root Ports, however, return
+early from pci_configure_mps() because they have no upstream bridge, so
+their MPS may remain at firmware defaults and fail to use the controller's
+full capability.
 
-I will move it to the fan driver.
+There is also a hierarchy problem when a device's MPS Supported (MPSS) is
+smaller than the MPS already programmed above it.  The existing reduction
+only lowers a Root Port.  If a Switch is in between, the Switch ports keep
+the larger MPS and the endpoint is left mismatched, which can cause
+Malformed TLPs.
 
->>  static const struct mfd_cell khadas_mcu_fan_cells[] = {
->>  	/* VIM1/2 Rev13+ and VIM3 only */
->> -	MFD_CELL_NAME("khadas-mcu-fan-ctrl"),
->> +	MFD_CELL_BASIC("khadas-mcu-fan-ctrl", NULL, &khadas_mcu_fan_pdata,
->> +		       sizeof(khadas_mcu_fan_pdata), 0),
->>  };
->>  
->>  static const struct mfd_cell khadas_mcu_cells[] = {
->>  	MFD_CELL_NAME("khadas-mcu-user-mem"),
->>  };
->>  
->> +static bool khadas_mcu_vim4_reg_volatile(struct device *dev, unsigned int reg)
->> +{
->> +	switch (reg) {
->> +	case KHADAS_MCU_PWR_OFF_CMD_REG:
->> +	case KHADAS_MCU_VIM4_REST_CONF_REG:
->> +	case KHADAS_MCU_WOL_INIT_START_REG:
->> +	case KHADAS_MCU_VIM4_LED_ON_RAM_REG:
->> +	case KHADAS_MCU_VIM4_FAN_CTRL_REG:
->> +	case KHADAS_MCU_VIM4_WDT_EN_REG:
->> +	case KHADAS_MCU_VIM4_SYS_RST_REG:
->> +		return true;
->> +	default:
->> +		return false;
->> +	}
->> +}
->> +
->> +static bool khadas_mcu_vim4_reg_writeable(struct device *dev, unsigned int reg)
->> +{
->> +	switch (reg) {
->> +	case KHADAS_MCU_VERSION_0_REG:
->> +	case KHADAS_MCU_VERSION_1_REG:
->> +	case KHADAS_MCU_SHUTDOWN_NORMAL_STATUS_REG:
->> +		return false;
->> +	default:
->> +		return true;
->> +	}
->> +}
->> +
->> +static const struct regmap_config khadas_mcu_vim4_regmap_config = {
->> +	.reg_bits	= 8,
->> +	.reg_stride	= 1,
->> +	.val_bits	= 8,
->> +	.max_register	= KHADAS_MCU_VIM4_SYS_RST_REG,
->> +	.volatile_reg	= khadas_mcu_vim4_reg_volatile,
->> +	.writeable_reg	= khadas_mcu_vim4_reg_writeable,
->> +	.cache_type	= REGCACHE_MAPLE,
->> +};
->> +
->> +static const unsigned int khadas_mcu_vim4_fan_levels[] = {
->> +	0, 30, 40, 55, 75, 100,
->> +};
->> +
->> +static const struct khadas_mcu_fan_pdata khadas_mcu_vim4_fan_pdata = {
->> +	.fan_reg	= KHADAS_MCU_VIM4_FAN_CTRL_REG,
->> +	.levels		= khadas_mcu_vim4_fan_levels,
->> +	.nlevels	= ARRAY_SIZE(khadas_mcu_vim4_fan_levels),
->> +};
->> +
->> +static const struct mfd_cell khadas_mcu_vim4_fan_cells[] = {
->> +	MFD_CELL_BASIC("khadas-mcu-fan-ctrl", NULL, &khadas_mcu_vim4_fan_pdata,
->> +		       sizeof(khadas_mcu_vim4_fan_pdata), 0),
->> +};
->> +
->>  static int khadas_mcu_probe(struct i2c_client *client)
->>  {
->> +	const struct mfd_cell *cells, *fan_cells;
->> +	const struct regmap_config *regmap_cfg;
->>  	struct device *dev = &client->dev;
->> +	int ncells, nfan_cells, ret;
->>  	struct khadas_mcu *ddata;
->> -	int ret;
->> +	const void *match;
->>  
->>  	ddata = devm_kzalloc(dev, sizeof(*ddata), GFP_KERNEL);
->>  	if (!ddata)
->>  		return -ENOMEM;
->>  
->> +	match = i2c_get_match_data(client);
-> 
-> The nomenclature can be improved here.
-> 
-> What are these?  Device ID?  Chip ID?  Revision?
-> 
+This series addresses both issues:
 
-I will change this to 'mcu_variant'
+1. Patch 1 fixes pci_configure_mps() so that when a device's MPSS is
+   smaller than the MPS already in use above it, the whole Root Port
+   hierarchy is reduced as necessary, including Switch ports and
+   already-programmed sibling devices.
 
->> +	if (!match)
->> +		return -ENODEV;
->> +
->> +	switch ((uintptr_t)match) {
->> +	case KHADAS_MCU_GENERIC:
->> +		regmap_cfg	= &khadas_mcu_regmap_config;
->> +		cells		= khadas_mcu_cells;
->> +		ncells		= ARRAY_SIZE(khadas_mcu_cells);
->> +		fan_cells	= khadas_mcu_fan_cells;
->> +		nfan_cells	= ARRAY_SIZE(khadas_mcu_fan_cells);
->> +		break;
->> +	case KHADAS_MCU_VIM4:
->> +		regmap_cfg	= &khadas_mcu_vim4_regmap_config;
->> +		cells		= NULL;
->> +		ncells		= 0;
->> +		fan_cells	= khadas_mcu_vim4_fan_cells;
->> +		nfan_cells	= ARRAY_SIZE(khadas_mcu_vim4_fan_cells);
->> +		break;
->> +	default:
->> +		return -ENODEV;
->> +	}
->> +
->>  	i2c_set_clientdata(client, ddata);
->>  
->>  	ddata->dev = dev;
->>  
->> -	ddata->regmap = devm_regmap_init_i2c(client, &khadas_mcu_regmap_config);
->> +	ddata->regmap = devm_regmap_init_i2c(client, regmap_cfg);
->>  	if (IS_ERR(ddata->regmap)) {
->>  		ret = PTR_ERR(ddata->regmap);
->> -		dev_err(dev, "Failed to allocate register map: %d\n", ret);
->> -		return ret;
->> +		return dev_err_probe(dev, ret, "Failed to allocate register map\n");
->>  	}
->>  
->> -	ret = devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
->> -				   khadas_mcu_cells,
->> -				   ARRAY_SIZE(khadas_mcu_cells),
->> -				   NULL, 0, NULL);
->> -	if (ret)
->> -		return ret;
->> +	if (cells && ncells) {
->> +		ret = devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
->> +					   cells,
->> +					   ncells,
->> +					   NULL, 0, NULL);
->> +		if (ret)
->> +			return ret;
->> +	}
->>  
->>  	if (of_property_present(dev->of_node, "#cooling-cells"))
->>  		return devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
->> -					    khadas_mcu_fan_cells,
->> -					    ARRAY_SIZE(khadas_mcu_fan_cells),
->> +					    fan_cells,
->> +					    nfan_cells,
->>  					    NULL, 0, NULL);
->>  
->>  	return 0;
->> @@ -123,7 +214,8 @@ static int khadas_mcu_probe(struct i2c_client *client)
->>  
->>  #ifdef CONFIG_OF
->>  static const struct of_device_id khadas_mcu_of_match[] = {
->> -	{ .compatible = "khadas,mcu", },
->> +	{ .compatible = "khadas,mcu", .data = (void *)KHADAS_MCU_GENERIC },
->> +	{ .compatible = "khadas,vim4-mcu", .data = (void *)KHADAS_MCU_VIM4 },
->>  	{},
->>  };
->>  MODULE_DEVICE_TABLE(of, khadas_mcu_of_match);
->>
->> -- 
->> 2.49.0
->>
->>
-> 
+2. Patch 2 safely initializes Root Port MPS to its maximum supported value
+   during host probing.  Patch 1 ensures this larger initial value is
+   reduced again when downstream devices require a smaller MPS.
+   PCIE_BUS_TUNE_OFF and PCIE_BUS_PEER2PEER are left untouched.
+
+3. Patch 3 removes the now-redundant Meson PCIe driver MPS programming and
+   cleans up the resulting dead macros and misleading MRRS helper name.
+
+---
+Changes in v9:
+- Add patch 1 to reduce the whole Root Port hierarchy when a downstream device
+  has a smaller MPSS, addressing the Switch case reported by sashiko.
+- Patch 2 keeps the Root Port max-MPS initialization, adds error handling, and
+  relies on patch 1 for later reduction.
+- Patch 3 drops PCIE_CAP_MAX_PAYLOAD_SIZE and MAX_PAYLOAD_SIZE, renames
+  meson_size_to_payload() to meson_size_to_mrrs(), and updates the warning.
+
+Changes in v8:
+https://patchwork.kernel.org/project/linux-pci/patch/20260911132145.211380-1-18255117159@163.com/
+
+- Rebase to v7.3-rc1.
+
+Changes in v7:
+https://patchwork.kernel.org/project/linux-pci/cover/20251127170908.14850-1-18255117159@163.com/
+
+- Exclude PCIE_BUS_PEER2PEER mode from Root Port MPS configuration
+- Remove redundant check for upstream bridge (Root Ports don't have one)
+- Improve commit message and code comments as per Bjorn.
+
+Changes for v6:
+https://patchwork.kernel.org/project/linux-pci/patch/20251104165125.174168-1-18255117159@163.com/
+
+- Modify the commit message and comments. (Bjorn)
+- Patch 1/2 code logic: Add !bridge check to configure MPS only for Root Ports
+  without an upstream bridge (root bridges), avoiding incorrect handling of
+  non-root-bridge Root Ports (Niklas).
+
+Changes for v5:
+https://patchwork.kernel.org/project/linux-pci/patch/20250620155507.1022099-1-18255117159@163.com/
+
+- Use pcie_set_mps directly instead of pcie_write_mps.
+- The patch 1 commit message were modified.
+
+Changes for v4:
+https://patchwork.kernel.org/project/linux-pci/patch/20250510155607.390687-1-18255117159@163.com/
+
+- The patch [v4 1/2] add a comment to explain why it was done this way.
+- The patch [v4 2/2] have not been modified.
+- Drop patch [v3 3/3]. The Maintainer of the pci-aardvark.c file suggests
+  that this patch cannot be submitted. In addition, Mani also suggests
+  dropping this patch until this series of issues is resolved.
+
+Changes for v3:
+https://patchwork.kernel.org/project/linux-pci/patch/20250506173439.292460-1-18255117159@163.com/
+
+- The new split is patch 2/3 and 3/3.
+- Modify the patch 1/3 according to Niklas' suggestion.
+
+Changes for v2:
+https://patchwork.kernel.org/project/linux-pci/patch/20250425095708.32662-1-18255117159@163.com/
+
+- According to the Maintainer's suggestion, limit the setting of MPS
+  changes to platforms with controller drivers.
+- Delete the MPS code set by the SOC manufacturer.
+---
+
+Hans Zhang (3):
+  PCI: Match the hierarchy's MPS to a device's MPSS as necessary
+  PCI: Configure Root Port MPS during host probing
+  PCI: dwc: Remove redundant MPS configuration
+
+ drivers/pci/controller/dwc/pci-meson.c | 25 ++----------
+ drivers/pci/probe.c                    | 53 ++++++++++++++++++++++++--
+ 2 files changed, 52 insertions(+), 26 deletions(-)
 
 
+base-commit: 08df884136f1c1197bab2a27814404fd329d9aac
 -- 
-Best regards,
-Ronald
+2.34.1
+
 
 _______________________________________________
 linux-amlogic mailing list
