@@ -4,53 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD704C88E7F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2026 17:57:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56032C982C9
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Sep 2026 20:37:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=IE+QUurgN2IEW5YzPhz9mr/f6HMKXWbbr1Ws1Xju8VM=; b=af/US8PqXdi/VW
-	L7MWJHOP0jJODqEgPRgVI60zqWx0IFYUZ0fTJjG4jyV84dSQy24GlV4IbPUzCBr6y+1B6KFVehbJS
-	HjopJNFhsvXp+yF13pcjdxhB7u7TpYBDM8oT/fflDk0OJUCkJEmWEWsrm5+9uT5kd1+QVx6lClc6T
-	idqtMLZ7DKjfCFr584rCqHW/GFTMRRe3KTN/jQSxStCmDfVU2aS7KpW0q6VFkAJwqOroxFW/Voaa2
-	i3hhFxi4mtKYhQAg2qcB6tbQDaZbRnGQD8y5GSDI5RanbWuvm7Tq1PG2gTkqbcyk1GxdLnB9KS+0z
-	vlrHKxmzhmn5s6vL365w==;
+	List-Owner; bh=ClJ1Z3vGeHfdB3yy9ZnHDDqXq4MnjrLRARCNsy8E6KQ=; b=y5b0ZxR5QqXEkp
+	JnUJxy1ezMPB7wInVPx3pm+YYBJsUBHcEek00swcZNnho7RbZao6VYWwnZbCYlk1AB0nolKcRZAHF
+	ecT576OEsiOhR2YUCly2qXL9ES+9pP+PfM1yDQThs2mK1oBrza8tng5rF//wEkOw77is/29sHdpWo
+	O986ZBkGqwwNSgGLPrD5HUn8qYPTTV+eABS78KeGnnMrMSIvcxwZl4oDwIU7YAuN4GPLa4RDH9Ye2
+	aWgpwMlqv2/d/V8PRLxkYkyruupujQDi+KFq/vmzfPKuPCVyW6KWjmAjnr0PHyALL+G52YjCqlqol
+	PZc7hpBn2hP/JHXfOQEQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x6tsW-00000009uiS-3Vdo;
-	Wed, 16 Sep 2026 17:57:04 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1x6wNN-0000000A5Ly-0hz3;
+	Wed, 16 Sep 2026 20:37:05 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x6tsW-00000009uiB-0knT
-	for linux-amlogic@lists.infradead.org;
-	Wed, 16 Sep 2026 17:57:04 +0000
+	id 1x6wNL-0000000A5Lo-3Nr3;
+	Wed, 16 Sep 2026 20:37:03 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 47A9A601FD;
-	Wed, 16 Sep 2026 17:57:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B32161F000FF;
-	Wed, 16 Sep 2026 17:57:02 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 22E8040951;
+	Wed, 16 Sep 2026 20:37:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C23B21F0089A;
+	Wed, 16 Sep 2026 20:37:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1789581423;
-	bh=Rxf52q7m0XLLaGWl95zuXypp2FtwcdsJBVE4lvNVpCw=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Ll6H4fbznSI7mNLP1pLgKpFGoUnNVytKimGf/ORTpIx5kyOXc9nhP68m4+k766wMD
-	 9mHP+E1CA25rsjH47vXpij+1LWNaMjLis9cCM34zmqcmeo5jCCaa7MH+SveIdWUSrH
-	 wTm6ZujhmJPrtFxPKDNkjtaunKcjo1fx3Sy5bbLDBGjKQJ6mPLE909unDz9fJ9MXmu
-	 K07+wpBS1TMePRdP0tneIz70+IbGUiqn1rSMetsIWOgyBC3HboGPRrEk7CHzOseEzQ
-	 KAqdOd/UHrsoVCHB0MluQ5WkXP235WMSJgRT+yReaRiIL3w8Wkx5y0j43OfVs0al65
-	 b3mx1fRw3dbXw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] drm/meson: Fix next_bridge reference leak in
- meson_encoder_dsi_probe()
-To: "Wentao Liang" <vulab@iscas.ac.cn>
-Cc: neil.armstrong@linaro.org, dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org
-In-Reply-To: <20260916174543.2089062-1-vulab@iscas.ac.cn>
-References: <20260916174543.2089062-1-vulab@iscas.ac.cn>
-Date: Wed, 16 Sep 2026 17:57:02 +0000
-Message-Id: <20260916175702.B32161F000FF@smtp.kernel.org>
+	s=k20260515; t=1789591023;
+	bh=6Q+WxJ3NRja0iBPcIiZmImtHqJDLGM4eQtUUFwXaPYY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=Uh5q2N24aFNHTWnB3epmA4lJx/1BpqXxOK7L4BmjoHwTjr7WZBrDuBJbcer01hS7d
+	 fcM/NqYm6+/NvJjcYh1n7uKGG6InZ0Hh0O9mHIBH8b0ZfYQMY64iHK1rzezMZw9mrm
+	 ApKQvd4tcoBWBbvvSJpg7xSdTXor2cYCPgsd2jYXwfhFsNZv9B7lrFQAkhsc2MdS2X
+	 mrG4ReyXYbmKH4HQkNLS0WuU3QTC2ldbvUqwGv+XZlVqBCIZEYf+gzh0kQ8YrYsDSS
+	 qc7cWFEDnQLb9VisRvMzpLvgb7scq20xovhWsQVBFT6AWbmB4vmljcUiYO+ZKcIRrq
+	 0FOGWqpT6HbWA==
+Date: Wed, 16 Sep 2026 15:37:01 -0500
+From: Rob Herring <robh@kernel.org>
+To: Lucas Tanure <tanure@linux.com>
+Cc: Ulf Hansson <ulfh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Chuan Liu <chuan.liu@amlogic.com>, Jian Hu <jian.hu@amlogic.com>,
+	Ronald Claveau <linux-kernel-dev@aliel.fr>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: mmc: amlogic,meson-gx-mmc: document
+ the T7 pipeline clock
+Message-ID: <20260916203701.GA1463751-robh@kernel.org>
+References: <20260905153234.133217-1-tanure@linux.com>
+ <20260905153234.133217-2-tanure@linux.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20260905153234.133217-2-tanure@linux.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,58 +77,28 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW01lZGl1bV0gZHJtL21lc29uOiBp
-bmNvcnJlY3QgZml4IGNyZWF0ZXMgbGF0ZW50IGRvdWJsZS1wdXQgb2YgbmV4dF9icmlkZ2UKLS0K
-CmNvbW1pdCAzZmY3NTdjZTQ2ODFmYzhlZTQ5MTU3OTEzNTQyYWYzNDNmZDNlMDIxCkF1dGhvcjog
-V2VudGFvIExpYW5nIDx2dWxhYkBpc2Nhcy5hYy5jbj4KCmRybS9tZXNvbjogRml4IG5leHRfYnJp
-ZGdlIHJlZmVyZW5jZSBsZWFrIGluIG1lc29uX2VuY29kZXJfZHNpX3Byb2JlKCkKClRoZSBjb21t
-aXQgYXR0ZW1wdHMgdG8gZml4IGEgcmVmZXJlbmNlIGxlYWsgb24gdGhlIG5leHQgYnJpZGdlIGJ5
-IG1hbnVhbGx5CmNhbGxpbmcgZHJtX2JyaWRnZV9wdXQoKSBvbiBlcnJvciBwYXRocyB3aGVuIGRy
-bV9zaW1wbGVfZW5jb2Rlcl9pbml0KCkKb3IgZHJtX2JyaWRnZV9hdHRhY2goKSBmYWlscy4KCj4g
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl9lbmNvZGVyX2RzaS5jIGIv
-ZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29uX2VuY29kZXJfZHNpLmMKPiBpbmRleCAzZTQyMmI2
-MTJmNzRiLi40MzY3MTQ1ZDM3NzUzIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9tZXNv
-bi9tZXNvbl9lbmNvZGVyX2RzaS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29u
-X2VuY29kZXJfZHNpLmMKPiBAQCAtMTM1LDE3ICsxMzUsMjEgQEAgaW50IG1lc29uX2VuY29kZXJf
-ZHNpX3Byb2JlKHN0cnVjdCBtZXNvbl9kcm0gKnByaXYpCj4gIAkvKiBFbmNvZGVyICovCj4gIAly
-ZXQgPSBkcm1fc2ltcGxlX2VuY29kZXJfaW5pdChwcml2LT5kcm0sICZtZXNvbl9lbmNvZGVyX2Rz
-aS0+ZW5jb2RlciwKPiAgCQkJCSAgICAgIERSTV9NT0RFX0VOQ09ERVJfRFNJKTsKPiAtCWlmIChy
-ZXQpCj4gKwlpZiAocmV0KSB7Cj4gKwkJZHJtX2JyaWRnZV9wdXQobWVzb25fZW5jb2Rlcl9kc2kt
-PmJyaWRnZS5uZXh0X2JyaWRnZSk7CgpbU2V2ZXJpdHk6IE1lZGl1bV0KRG9lcyB0aGlzIG1hbnVh
-bCBwdXQgaW5jb3JyZWN0bHkgY2lyY3VtdmVudCB0aGUgYnJpZGdlIGxpZmVjeWNsZSBBUEkgaW5z
-dGVhZApvZiBwcm9wZXJseSByZW1vdmluZyB0aGUgbWFpbiBicmlkZ2U/CgpUaGUgY29ycmVjdCB3
-YXkgdG8gbWFuYWdlIHRoaXMgcmVmZXJlbmNlIGlzIHZpYSB0aGUgbWFpbiBicmlkZ2UncyBsaWZl
-Y3ljbGUsCmFzIF9fZHJtX2JyaWRnZV9mcmVlKCkgYXV0b21hdGljYWxseSBkcm9wcyB0aGUgbmV4
-dF9icmlkZ2UgcmVmZXJlbmNlIHdoZW4gdGhlCm1haW4gYnJpZGdlIGlzIGZyZWVkLiBCZWNhdXNl
-IHRoZSBwYXRjaCBuZWdsZWN0cyB0byBjYWxsIGRybV9icmlkZ2VfcmVtb3ZlKCkKZm9yIHRoZSBt
-YWluIGJyaWRnZSAod2hpY2ggaXMgd2h5IG5leHRfYnJpZGdlIHdhcyBsZWFraW5nIGluIHRoZSBm
-aXJzdCBwbGFjZSksCnRoZSBtYWluIGJyaWRnZSBpcyBsZWZ0IGxlYWtpbmcgaW4gdGhlIGdsb2Jh
-bCBicmlkZ2VfbGlzdC4KCklmIHRoZSBtYWluIGJyaWRnZSBsZWFrIGlzIGV2ZXIgcHJvcGVybHkg
-Zml4ZWQgaW4gdGhlIGZ1dHVyZSAoZS5nLiwgYnkgYWRkaW5nCmRybV9icmlkZ2VfcmVtb3ZlKCkg
-b3IgdXNpbmcgZGV2bV9kcm1fYnJpZGdlX2FkZCgpKSwgdGhlIG1hbnVhbApkcm1fYnJpZGdlX3B1
-dCgpIGludHJvZHVjZWQgaGVyZSB3aWxsIHJlc3VsdCBpbiBhIGRvdWJsZS1wdXQgYW5kCnVzZS1h
-ZnRlci1mcmVlLgoKPiAgCQlyZXR1cm4gZGV2X2Vycl9wcm9iZShwcml2LT5kZXYsIHJldCwKPiAg
-CQkJCSAgICAgIkZhaWxlZCB0byBpbml0IERTSSBlbmNvZGVyXG4iKTsKPiArCX0KPiAgCj4gIAlt
-ZXNvbl9lbmNvZGVyX2RzaS0+ZW5jb2Rlci5wb3NzaWJsZV9jcnRjcyA9IEJJVCgwKTsKPiAgCj4g
-IAkvKiBBdHRhY2ggRFNJIEVuY29kZXIgQnJpZGdlIHRvIEVuY29kZXIgKi8KPiAgCXJldCA9IGRy
-bV9icmlkZ2VfYXR0YWNoKCZtZXNvbl9lbmNvZGVyX2RzaS0+ZW5jb2RlciwgJm1lc29uX2VuY29k
-ZXJfZHNpLT5icmlkZ2UsIE5VTEwsIDApOwo+IC0JaWYgKHJldCkKPiArCWlmIChyZXQpIHsKPiAr
-CQlkcm1fYnJpZGdlX3B1dChtZXNvbl9lbmNvZGVyX2RzaS0+YnJpZGdlLm5leHRfYnJpZGdlKTsK
-CltTZXZlcml0eTogTWVkaXVtXQpDYW4gdGhpcyBzZWNvbmQgbWFudWFsIGNsZWFudXAgYWxzbyBh
-Y3QgYXMgYSBsYXRlbnQgZG91YmxlLXB1dCB0cmFwPwoKVGhpcyBhcHBsaWVzIHRoZSBzYW1lIGlu
-Y29ycmVjdCBtYW51YWwgY2xlYW51cCBvbiB0aGUgc2Vjb25kIGVycm9yIHBhdGguCgo+ICAJCXJl
-dHVybiBkZXZfZXJyX3Byb2JlKHByaXYtPmRldiwgcmV0LAo+ICAJCQkJICAgICAiRmFpbGVkIHRv
-IGF0dGFjaCBicmlkZ2VcbiIpOwo+ICsJfQoKLS0gClNhc2hpa28gQUkgcmV2aWV3IMK3IGh0dHBz
-Oi8vc2FzaGlrby5kZXYvIy9wYXRjaHNldC8yMDI2MDkxNjE3NDU0My4yMDg5MDYyLTEtdnVsYWJA
-aXNjYXMuYWMuY24/cGFydD0xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3Rz
-LmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9saW51eC1hbWxvZ2ljCg==
+On Sat, Sep 05, 2026 at 04:32:31PM +0100, Lucas Tanure wrote:
+> The SD/eMMC controllers of the T7 SoC are physically far from the
+> NIC_MATRIX bus fabric, so the hardware design inserts a pipeline stage
+> in the middle of the bus path to help timing closure. This stage is fed
+> by its own gate clock and, when that clock is disabled, a controller
+> that starts a DMA transfer can never complete it.
+> 
+> Allow a fourth clock entry, named "pipeline", and require it for the
+> amlogic,t7-mmc compatible. The other controllers of this family keep
+> the existing three clocks.
+
+Did the SD controller not work without this clock? If it did, then this 
+is an ABI break which is evident by the current warning in linux-next.
+
+Rob
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
