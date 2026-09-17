@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EBB6C982DA
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AAFCC982D2
 	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Sep 2026 21:02:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,69 +12,71 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QMBMiOoinV/BR7B4GhvzYDxcRxj8h019L1u4mFOZZfE=; b=G+tlZr0Bsjx8BT
-	of4kDXqMhsFKueV8lokGmwbixE6MomRM3MIY6RK9khr3sGdfOQItp2pcRiH0rPnKillEb8LMzQZZx
-	CSy0v/9JxLsT4kI71qG0qKoPcQz+aTSiVWKEZ7Ir+8LIYOOjbUWyN4lvJeY8N+91Wb02KuyrGM2l0
-	S0enFoEmDYsuOHaEP/jvPIon7nIAsKvyV6E/LEMAemAmRIAgKokeXfiHmnVv0gYMS0AL7wvmQsdyT
-	DNZzC3HkyOHNJQ7ZB7QcpS6Sj/UKxnKBn0x/4waPmmRM2PspmOzuGCAKPWXfx8i7yiheTxSA8TkNG
-	+03ozXrp4Ls+Jf2Bjk3w==;
+	List-Owner; bh=wDzScwBS0izC88gYQm2u2juQKGOrw29HMjq+CyXwP4w=; b=FgE2YCfhzXe2U7
+	R5T+shMGgFfVeXA3zm09b7S7mQdaZXqX0i8vHmUrt6kCcO0onJ3a7aGe+8ED0mnoF28q2TNp9rg3U
+	HvPPXPBj+Dy8+wueEAq/IGo6CHQVu1AhBf5EXGeLUg+kVtT0NYQFcAG0zk4gCKcZ6EGh0rUojZIVt
+	R+LWbMr9nF5PfmwBE9Sq5ecilMNqhkZVKOavCzISOEqgov+p4VntalQKIOMeAIK64EfouTc/owlzQ
+	dUBT6jn5a91+qV8n1/Qkbu6uKuvBKa6MK0MHVxUukalGQvxUyrrZdNDfnGrEGMFHAxi4rEbcddkLm
+	+3JCZ1F9RjL4/0/6Zrtg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x7JFr-0000000CW94-3mhT;
+	id 1x7JFr-0000000CW8g-3G5F;
 	Thu, 17 Sep 2026 21:02:51 +0000
-Received: from mail-wm2-x10.google.com ([2a00:1450:4864:31::10])
+Received: from mail-wm2-f13.google.com ([74.125.225.141])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x7JFm-0000000CW5R-2MXV
+	id 1x7JFm-0000000CW4o-0S2z
 	for linux-amlogic@lists.infradead.org;
 	Thu, 17 Sep 2026 21:02:47 +0000
-Received: by mail-wm2-x10.google.com with SMTP id 5b1f17b1804b1-49b912e4ad9so375485e9.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 17 Sep 2026 14:02:46 -0700 (PDT)
+Received: by mail-wm2-f13.google.com with SMTP id 5b1f17b1804b1-49e7bcb94d3so470155e9.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 17 Sep 2026 14:02:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1789678965; x=1790283765; darn=lists.infradead.org;
+        d=baylibre.com; s=google; t=1789678964; x=1790283764; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=pQfq1mATHoXVEi2yZgGnZpynXkHV46ypp/DnWHom6Nw=;
-        b=A7KVN2E2E60TcnyG0bw/dOw9l08mQoJ5wWDaDjAEbjyrTfLj/YjaAu7je0fXNayCvD
-         tL41gM6Y648GpmR3PYetTytr5mdNcJxdqmeIUVKeJIVd5iL8e6dOr8MzFsC7Upm36ae/
-         /961NjiDPJlLDqU50XCrPbKEBRUueauWJ/dfFaT6kc47GHzDnaOxU1mgcTSQJXa313YA
-         QGIlJ+ok0FM3vWi/hJpwA4cAoxekJvtl7D1x7RV+doJoBmeYd3bu37UXdwfgogbvXIga
-         q8ruMnmYYBh8RdIp9BEhJOi3OGHGOsrMjNo2gVshKMpMSvlxSyV7WMgzZU1057qeqIY0
-         YVVw==
+        bh=0a21Y1nKSOFECTC5sqA3T0CqQ+Krc+hIIInAv6Qgnz4=;
+        b=Fri6vILQeIxSVyF6ZSidChpOk0aiH6elTWzmVj/RrMPL4p85UTDEtpUjNqdxj7fu4N
+         gpjM82GlrUIB4/5XNhKVhysSAYVDOJnXiFAVAvwimDl4J0x3+BedKnDasb8i7Qt1r8k5
+         dox5MItBXka4qystK09qa6YTJ6klsHWOZ0l99Gffyq1It+duGGMlWidhLhDyiiJl3X80
+         m7MTSPGdyS90AxQjAKraIAjnNq3blbvEJksOD2hBA/x+zMY5TIpHDB77S0OihvYc+kow
+         E6hqoCjKTfXaAePmKLaW7pBkKYiDzTW2UjSZV/GA6vCsHhplQAQG1Dk1Y5O5o/+wIeqi
+         1tIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1789678965; x=1790283765;
+        d=1e100.net; s=20260707; t=1789678964; x=1790283764;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=pQfq1mATHoXVEi2yZgGnZpynXkHV46ypp/DnWHom6Nw=;
-        b=RByZ6fVzJPbhBCfdKUgjX+xBJKrOc416jcgXRWxBh9d2CZkGuLE4TU3zVBGRDaNvGu
-         9vT8mxgjiU9lJDPmJiVyM/YwPrhc7aA7O27Mo5j1F4BvER2/pByoV0fJ7+fFF3/fTZCW
-         4GyQH/dudkvrxLOKTaSerSUJ2BagW5iFet9kLsD10WNKSye26jHApyC3kjeANWS1/YLX
-         UqB00TQWs9S4P3nGLZRkkhc/Lj1LKYK6P5DJHgbDaTdnyhuSUtMwKfggvfPuJDoFEpj2
-         yIFKMtdcfwquGI3Me+s/JRI9S1eZ8bg2Gmwtu7G/7wlr/Iy34Hb7Y0nWHjm+VvCDImVw
-         JR8w==
-X-Forwarded-Encrypted: i=1; AKwUvBx0i2YC56lteufcvPIe+LCP4MFAEZ7Txb10P2AH9wj+eMb3G5KhCye6OrCn/i0x3FdZkyRYY9r6Kwk0l5SY@lists.infradead.org
-X-Gm-Message-State: AFuF++nr+d/J46SZ+B8XOVQd+TNJesj5kzake26j2iuEpMUxghtm9RrN
-	hMkOkWuUt0SvMDsd0YZqOdYQ8wwN/25DG5rDm9PT/vskZj5jIpihN1cumz2JkmM4Esk=
-X-Gm-Gg: AYBFou3accb/qK/z/Ux51Y33y+UYhC5NzVk/3l7cO9AN6wwXAni+7Xx+w7FNunQxvJL
-	QbykhI24ADbEQj3F4Xp8lhY3bVd7i6q4yfgSE2+oxH38UdMg2LRPNzGqlN5XmuFu9ix7FN/EVFY
-	AwV/edI6JLjtnoQP7Q9lP0r+QomzOAwwZ/ypYUxyqjjt3bUkMg/Tjvw3Ft03A7Sujegn/g7jtob
-	obgB4G2X9HNZiEEXzV+OwgUU1rzrGG+NgSRiGkLhOGL2ops7SRKHYgo2fQ/UJ/Beb6afPtr64sq
-	utNGnKEsDSgXKfUYsV/AYPWpf60hzm05RiPUgj97TwOsA2N+fT73BETsAoT0F2qwGYTB164Quvs
-	fAQS5x24ePsHaxzy1NrrVaGxUCrrHuCJUDwM8a5EalkH0uZBUJdEq8gAE5uGTw2+Y70AhC/eoyH
-	e0jULelua7hrWS//oVphvqfZQcbxyigWSr+za3RJJk3d0JzK7u4yMZkhzQP7T453Qt0g==
-X-Received: by 2002:a05:600c:3b98:b0:49d:1f10:8b9f with SMTP id 5b1f17b1804b1-49fc56dba0dmr2100645e9.7.1789678964981;
-        Thu, 17 Sep 2026 14:02:44 -0700 (PDT)
+        bh=0a21Y1nKSOFECTC5sqA3T0CqQ+Krc+hIIInAv6Qgnz4=;
+        b=U10QfcLXRqpuIeQX52T5z6gYn5+tNS04nebsxfqIytu9lbk3Lry0r4bKwXP7SKu/Cl
+         tYN1tn7986tIV4DZrpxoGn8yA+Tfrfspp+ouMzMZm5LTixvQvq/hoqPGT0kzdJ8VWgyM
+         LTrd4Mza2kpDu5XA7aB9PQ5LZCaNXkvLBm0i/lCuE41JH4MLg/3kwIbjQfmCSgPv5Z1r
+         Ct0lijVYoigj/MrIRLPvDf3kd6D2h6UnKsBitSnGVPdHEBc2LPlIJVvlOkT04iAwV8Cl
+         oB/2MVMM4bh08PqOFvMZK5oJ0LiHreWAnSLOY6jIcDDZ6cO+a+TLoFW2Neo3c5AZD4fg
+         alkg==
+X-Forwarded-Encrypted: i=1; AKwUvByBfWHfILSOnuRP6FWawIQHqsBjBE8rI26+wbS4s3iKsMw4Cv13t+X3BBPyxyi+xq0kvKu5nhQHh9j2y84p@lists.infradead.org
+X-Gm-Message-State: AFuF++kSeGTfTWGDmr8JpbkQmtZMyJvp0WwAKq+GMPvzmxMmvNek/iRN
+	fM4CTCGAW5WD/oVNZ0VUWWLiajFiliTfCcR/kBWJFPHS7a1672FxYihpRcbGEeWGVOUkJEwkBdQ
+	xLBjexWeUUA==
+X-Gm-Gg: AYBFou3T6QHYF3szNnrNDcv9144/7cdFv55pkJHeEYX/KgXLj+SuYTPqn/i1otattUG
+	weeZDpgl4n4GTelZXLSJENGjQEGV1KyOJ9EvGwGT5r0lqXOh70rrF2W/4qZXNvv3LcGuvC4YFJr
+	DE0cotaGyWKg8FraNPWyrA0+FvGI8Toq4GHWDUwDcs6G7hTiPncHcGoIW2sPN3ydX1B//db53Fg
+	EzqTUlqNj7Ez5oOvTerE167CjbonIpUlKM/3kDvQwkVwTrnghdF2bMvxDdDifD0HClQuXnnYJDk
+	GA/YccZ6lGzHIm7LYYTezZRjMx1z+W312KJCGqfQGCT/E8TPjYRbSA3VFClBcQ/daD1mQzGINXd
+	GQQ639q1ydaESQuphQnch8koHDCBFdDZMeBR39kDzHvuyzxLAp7Tfoxi2WylX+ytaY6B+/gZrJ4
+	cU450ANYBdl44vK0j8sAQ8d3r6ChdpdmmhnrXMjrmK3LqA9Ja9e+27nwSe9VR0D7cM3qD82YhpX
+	ppRhQ==
+X-Received: by 2002:a05:600c:198b:b0:49c:fc6e:8cbd with SMTP id 5b1f17b1804b1-49fc574f05dmr1574425e9.33.1789678963884;
+        Thu, 17 Sep 2026 14:02:43 -0700 (PDT)
 Received: from [127.0.1.1] ([151.42.87.32])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-49fc5755c40sm3106095e9.3.2026.09.17.14.02.44
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-49fc5755c40sm3106095e9.3.2026.09.17.14.02.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Sep 2026 14:02:44 -0700 (PDT)
+        Thu, 17 Sep 2026 14:02:43 -0700 (PDT)
 From: Valerio Setti <vsetti@baylibre.com>
-Date: Thu, 17 Sep 2026 23:02:35 +0200
-Subject: [PATCH v2 5/6] ASoC: meson: gx-card: add support for audin FIFO
+Date: Thu, 17 Sep 2026 23:02:34 +0200
+Subject: [PATCH v2 4/6] ASoC: meson: aiu: add I2S Capture DAI
 MIME-Version: 1.0
-Message-Id: <20260917-audin-v2-5-38de4bc1de34@baylibre.com>
+Message-Id: <20260917-audin-v2-4-38de4bc1de34@baylibre.com>
 References: <20260917-audin-v2-0-38de4bc1de34@baylibre.com>
 In-Reply-To: <20260917-audin-v2-0-38de4bc1de34@baylibre.com>
 To: Jerome Brunet <jbrunet@baylibre.com>, 
@@ -89,17 +91,17 @@ Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
  linux-kernel@vger.kernel.org, Valerio Setti <vsetti@baylibre.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2156; i=vsetti@baylibre.com;
- h=from:subject:message-id; bh=vu+Bm1uBGIa5rQR0KJvCXwwxy1648qk7OnTjRUBnopY=;
- b=owGbwMvMwCV2z3ty7kUrRgbG02pJDFlrQnNvBO8UVQ8+9qB99/VbLAl3fB9mMG7qDv2Yxp5U5
- frLok6to5SFQYyLQVZMkYVl+r3fBaVqD40TThbAzGFlAhnCwMUpABMJ0mZkWOu4oW5S2wKu3Rzr
- Q+/P8zi2ftoWrZUGXCl7/jeey3uy8inD//RNdj9qdysuEMmYfGw9S67zmvPuhY+4dB5MXj71EvO
- So3wA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1725; i=vsetti@baylibre.com;
+ h=from:subject:message-id; bh=Uvy6WjK33Ql5QDc+7YeTX2qUEcUUi+n12SinkXVNwt4=;
+ b=owGbwMvMwCV2z3ty7kUrRgbG02pJDFlrQnPVXXIkF19akM2yaANzTvkv5SwOwx05M15mSF780
+ rfPiNOso5SFQYyLQVZMkYVl+r3fBaVqD40TThbAzGFlAhnCwMUpABM59ZLhf0BKUawkm9T3o373
+ JU4++fdX5HWgZ7tPR4R6xFNtM3WhnQz/TBt0/F/LRDzrEImSn2DTeaBkfTLbsZcn2dRi5yVor2h
+ mAgA=
 X-Developer-Key: i=vsetti@baylibre.com; a=openpgp;
  fpr=0497DEFB707526E13360C970DE4B936DD13A0100
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260917_140246_621260_AA4807F0 
-X-CRM114-Status: GOOD (  12.16  )
+X-CRM114-CacheID: sfid-20260917_140246_162651_341254FD 
+X-CRM114-Status: GOOD (  12.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,61 +118,50 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Slightly modify "gx_card_cpu_identify()" by making the compatible matching
-string an input parameter. This allows to easily support also AUDIN's FIFO
-with minimal changes.
+Add capture stream to CPU_I2S_ENCODER making it able to handle both
+playback and capture streams. Captured data is formatted from
+"audin-formatter-i2s" widget, buffered from "audin-fifo" into an internal
+FIFO and then bulk transmitted into RAM when the FIFO is full.
+
+As for the naming of the stream "I2S Encoder" is kept as base following
+the same pattern used for the playback stream and with the goal to minimize
+changes.
+
+Supported format for capture is currently limited to S16_LE because it's
+the only one that has been tested. According to the manual also S24_LE
+should be supported, but this is kept as follow-up.
+
+This capture support also takes advantage of the following commits that
+has recently been merged:
+
+commit df3c987ab3d7 ("ASoC: meson: aiu-encoder-i2s: reflect bs quirk in hw constraints")
+commit e82159384a50 ("ASoC: meson: aiu-encoder-i2s: use the core symmetric_rate handling")
+
+They ensure bs_quirk and rate symmetry across playback and capture streams.
 
 Signed-off-by: Valerio Setti <vsetti@baylibre.com>
 ---
- sound/soc/meson/gx-card.c | 16 +++++++++-------
- 1 file changed, 9 insertions(+), 7 deletions(-)
+ sound/soc/meson/aiu.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/sound/soc/meson/gx-card.c b/sound/soc/meson/gx-card.c
-index 932be0a09306..35bc47254752 100644
---- a/sound/soc/meson/gx-card.c
-+++ b/sound/soc/meson/gx-card.c
-@@ -66,10 +66,10 @@ static int gx_card_parse_i2s(struct snd_soc_card *card,
- }
- 
- static int gx_card_cpu_identify(struct snd_soc_dai_link_component *c,
--				char *match)
-+				const char *compatible_match, const char *dai_match)
- {
--	if (of_device_is_compatible(c->of_node, DT_PREFIX "aiu")) {
--		if (strstr(c->dai_name, match))
-+	if (of_device_is_compatible(c->of_node, compatible_match)) {
-+		if (strstr(c->dai_name, dai_match))
- 			return 1;
- 	}
- 
-@@ -96,21 +96,23 @@ static int gx_card_add_link(struct snd_soc_card *card, struct device_node *np,
- 	if (ret)
- 		return ret;
- 
--	if (gx_card_cpu_identify(dai_link->cpus, "FIFO"))
--		return  meson_card_set_fe_link(card, dai_link, np, true);
-+	if (gx_card_cpu_identify(dai_link->cpus, DT_PREFIX "aiu", "FIFO"))
-+		return meson_card_set_fe_link(card, dai_link, np, true);
-+	if (gx_card_cpu_identify(dai_link->cpus, DT_PREFIX "gx-audin", "FIFO"))
-+		return meson_card_set_fe_link(card, dai_link, np, false);
- 
- 	ret = meson_card_set_be_link(card, dai_link, np);
- 	if (ret)
- 		return ret;
- 
- 	/* Or apply codec to codec params if necessary */
--	if (gx_card_cpu_identify(dai_link->cpus, "CODEC CTRL")) {
-+	if (gx_card_cpu_identify(dai_link->cpus, DT_PREFIX "aiu", "CODEC CTRL")) {
- 		dai_link->c2c_params = &codec_params;
- 		dai_link->num_c2c_params = 1;
- 	} else {
- 		dai_link->no_pcm = 1;
- 		/* Check if the cpu is the i2s encoder and parse i2s data */
--		if (gx_card_cpu_identify(dai_link->cpus, "I2S Encoder"))
-+		if (gx_card_cpu_identify(dai_link->cpus, DT_PREFIX "aiu", "I2S Encoder"))
- 			ret = gx_card_parse_i2s(card, np, index);
- 	}
- 
+diff --git a/sound/soc/meson/aiu.c b/sound/soc/meson/aiu.c
+index 535fbf7c1639..14d0e20a4bd6 100644
+--- a/sound/soc/meson/aiu.c
++++ b/sound/soc/meson/aiu.c
+@@ -153,6 +153,13 @@ static struct snd_soc_dai_driver aiu_cpu_dai_drv[] = {
+ 			.rates = SNDRV_PCM_RATE_8000_192000,
+ 			.formats = AIU_FORMATS,
+ 		},
++		.capture = {
++			.stream_name = "I2S Encoder Capture",
++			.channels_min = 2,
++			.channels_max = 2,
++			.rates = SNDRV_PCM_RATE_8000_192000,
++			.formats = SNDRV_PCM_FMTBIT_S16_LE,
++		},
+ 		.ops = &aiu_encoder_i2s_dai_ops,
+ 		.symmetric_rate = 1,
+ 	},
 
 -- 
 2.47.3
