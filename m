@@ -4,52 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BB11C982D6
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Sep 2026 14:45:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7DF8C88E72
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Sep 2026 15:17:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FkDJ+cgoEvUQlkj5KipgWUBFeKaP/7EuhuVjnSPnrI0=; b=LIiZc951aq0QsU
-	Ps8XlNspKr9yF9aJVd0eqDuoJX5pO1NWM5dKcTERcI3VuLI986uhxb0YWh+XT7suOQKgDg7mBQaX/
-	X3LI4j024JK6RWJ17eglfb/ebvUJuM03oeLzFyHp8SL0iGQotbls5DTe/xVAn0Dpesp4HBUQlJzD+
-	A5jtkj9e2cuiwN4JStFwAQxNGSPrj6pe2TVc9/qYMsWVoK2B7QsU0VcPxvm94ESjFMsDU283YIipx
-	qEHYE4O2xsJEvCsUjBiSz1Yfa/V432MdmPTctHuP0/XBfykLV4hGru54ZiH+FCReZhCDQZpkdEO83
-	0LnfBVIwfySAuneulTUg==;
+	List-Owner; bh=dZMS4WHdcy1rUmmm8d9kDXnF9OAj9duhSDnH+XU6SkI=; b=4NYsni9hN+PwCh
+	rm2CgMEURX4p9X3/8QvoP5dOGB64FgRytZdkHRvrX/bEKOMY9SKM72w6BOmoYALy4+0JUWIAlzv4Z
+	cmUYWb/inLKvK9/m0GQM0LDtzv+GNd8UT2mpt7TLHuKwvpJrShlnYAk+7ky1SpERijD1Cbskyfwhw
+	WTtq8PfVeP/nkivVtz7bQOZLRdB/P0AyBEyGo4fnX4bQnAfASsnhXctbZnl5m7o+pIQIoDJUOKXNZ
+	a8dEpjWR0j4XU9pHq8kkHbYTaY6A3xoy3sMBCOb1boCMyOtnmSVk3Jgw9pdrb+OZ278rXXslEpQ3k
+	/0NGgAH7SBwgqw1li5/w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x7DMr-0000000Ba0o-3ERH;
-	Thu, 17 Sep 2026 14:45:41 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1x7DrM-0000000Belv-2nye;
+	Thu, 17 Sep 2026 15:17:12 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x7DMq-0000000Ba0f-1sGy;
-	Thu, 17 Sep 2026 14:45:40 +0000
+	id 1x7DrK-0000000BelT-3Bp0
+	for linux-amlogic@lists.infradead.org;
+	Thu, 17 Sep 2026 15:17:10 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id C7B1160211;
-	Thu, 17 Sep 2026 14:45:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6AAB1F000FF;
-	Thu, 17 Sep 2026 14:45:38 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 606D544004
+	for <linux-amlogic@lists.infradead.org>; Thu, 17 Sep 2026 15:17:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4883C1F00893
+	for <linux-amlogic@lists.infradead.org>; Thu, 17 Sep 2026 15:17:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1789656339;
-	bh=OVMVIJn5nMOZzweOgd1xg0Nt+XzwpkYXftf6T3uN2Vk=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=hObebb6Njl+aMQPvDaLBuCCz10f6UsKYlR6VnRmPSt9zIhITEsaEoakBRUGLOeg0h
-	 aahh3Aw0pt34976yeOqXvdRCaTv7jAjzA91gG65xSs1QWy1czKhHLU2YSV+8hnoZlr
-	 bx7jk39pQIsYRsg3DA1cY5asJXsXQLszE0QKEWLc+v9BsMoVm6e2ULcIR5/gsEcDvV
-	 +4uafWI+yAm89CZUGw34CZb6ENpxTGFMslcxdlIkcOFlZbYqy1P7hdtL+JI50ktV+N
-	 wFq9b3udFP4rqhchqDecNM6FkXwPeSkAPd1fsvyLn8+FRl2o9LF9RFsYn3w3w5kj5T
-	 EykWa0yIU6WFQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] dt-bindings: Expand flow lists to block lists
-To: "Daniel Matyas" <matyasdaniel006@gmail.com>
-Cc: vkoul@kernel.org, robh@kernel.org, mfd@lists.linux.dev, "Alexandre
- Belloni" <alexandre.belloni@bootlin.com>, neil.armstrong@linaro.org, linux-pci@vger.kernel.org, linux-rtc@vger.kernel.org, linux-phy@lists.infradead.org, conor+dt@kernel.org, devicetree@vger.kernel.org, olteanv@gmail.com, linux-watchdog@vger.kernel.org, linux-perf-users@vger.kernel.org, linux-amlogic@lists.infradead.org, lee@kernel.org
-In-Reply-To: <20260917144134.459819-1-matyasdaniel006@gmail.com>
+	s=k20260515; t=1789658230;
+	bh=yokcjFoYaQjb2AXJXwiS2CgA9icNw4hd0m3OmDjYLh0=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=baYHiQhLKHIXv5JcbsYM8h8jWAIdy60s6NhCh0ZGU54W95BOiAuC94Ol2AcpHo47g
+	 xOJkjhXStRdOshTWhG385se+mN0mwxSalEgzP9JG2PQIOLJ/oHEIVw0zHQeJ6cCyxv
+	 qfvHypAZ4Aa+PBTDs1xGLwk8gxllOPs9TBclUTaLcaptPXVE/nH6o6dNw9fmKr/Ga+
+	 euX0r0XKcn50B8jtWh1/A5rkcHzzpSCbjKD97mWUlLgkoyhoofyCpgqfsFLMmV7xqx
+	 ARc5Jnmu7agtqFNmn3zlh9R+1V4XybdteMzm34GCd9fCbp5oeKdHFvfY4O6Spsy5NH
+	 56pQ+Rtftr60g==
+Received: by mail-ed2-f12.google.com with SMTP id 4fb4d7f45d1cf-6a996c8adf3so1647092a12.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 17 Sep 2026 08:17:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AKwUvBz7E4KRK4dkRhPr3IJJlf3em99o4ocvFBBnl53uuR2P/eFYvSp5PUdFjeHVoAGn7uiwLj3NFUR7DDodSNPq@lists.infradead.org
+X-Gm-Message-State: AFuF++kGjaedhceC+984HHef1q2WTzkWzQsZoKY4peC7VkU+0fXo+cbl
+	JIEudMzFgWLKTfVT/Wjf+W+FJjZENfRqqOCyB0WX5xo9flCmNyiLNLUD3TNsH+kDfXM96JQx4lz
+	5AsYEax6KMWDsiI7v2y2NBA7+5iHSJA==
+X-Received: by 2002:a05:6402:460c:b0:6a6:8dd:c76b with SMTP id
+ 4fb4d7f45d1cf-6aa22247992mr11552271a12.1.1789658228391; Thu, 17 Sep 2026
+ 08:17:08 -0700 (PDT)
+MIME-Version: 1.0
 References: <20260917144134.459819-1-matyasdaniel006@gmail.com>
-Date: Thu, 17 Sep 2026 14:45:38 +0000
-Message-Id: <20260917144538.B6AAB1F000FF@smtp.kernel.org>
+In-Reply-To: <20260917144134.459819-1-matyasdaniel006@gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 17 Sep 2026 10:16:56 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLyPK2rJVAyzCtGtrBSTwOKRZ_EAmE1Xd++9DFaxrrmDw@mail.gmail.com>
+X-Gm-Features: AcwNN1WrkKsI-hJClnXnbb72poP7rLqVHTc23ccK3T-HSnvYyjsVzuH4L2tWH2Y
+Message-ID: <CAL_JsqLyPK2rJVAyzCtGtrBSTwOKRZ_EAmE1Xd++9DFaxrrmDw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Expand flow lists to block lists
+To: Daniel Matyas <matyasdaniel006@gmail.com>
+Cc: Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>, Baojun Xu <baojun.xu@ti.com>, 
+	Sen Wang <sen@ti.com>, Peter Huewe <peterhuewe@gmx.de>, Jarkko Sakkinen <jarkko@kernel.org>, 
+	Jason Gunthorpe <jgg@ziepe.ca>, Chunfeng Yun <chunfeng.yun@mediatek.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Wim Van Sebroeck <wim@linux-watchdog.org>, Dharma Balasubiramani <dharma.b@microchip.com>, 
+	Jeff LaBundy <jeff@labundy.com>, Simon Glass <sjg@chromium.org>, Linus Walleij <linusw@kernel.org>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Atish Patra <atishp@rivosinc.com>, 
+	Shawn Guo <shawn.guo@linaro.org>, Dmitry Osipenko <digetx@gmail.com>, 
+	Ibrahim Tilki <Ibrahim.Tilki@analog.com>, Okan Sahin <Okan.Sahin@analog.com>, 
+	devicetree@vger.kernel.org, linux-rtc@vger.kernel.org, 
+	Ricard Wanderlof <ricardw@axis.com>, patches@opensource.cirrus.com, 
+	Lukas Wunner <lukas@wunner.de>, Eugen Hristev <ehristev@kernel.org>, mfd@lists.linux.dev, 
+	linux-samsung-soc@vger.kernel.org, linux-mmc@vger.kernel.org, 
+	linux-mtd@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	netdev@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-perf-users@vger.kernel.org, linux-phy@lists.infradead.org, 
+	linux-tegra@vger.kernel.org, linux-sound@vger.kernel.org, 
+	linux-integrity@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org, linux-watchdog@vger.kernel.org
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,24 +93,25 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-PiBSdW5uaW5nIGR0X2JpbmRpbmdzX2NoZWNrIHJldHVybmVkOgo+IFtlcnJvcl0gc3RyaW5nIHZh
-bHVlIGlzIHJlZHVuZGFudGx5IHF1b3RlZCB3aXRoIGFueSBxdW90ZXMgKHF1b3RlZC1zdHJpbmdz
-KQo+IAo+IFRoZSBmaWxlcyB1c2VkIHF1b3RhdGlvbiBtYXJrcyBpbiBmbG93IGxpc3RzIGJlY2F1
-c2UgdGhlIHN0cmluZ3MgaGFkCj4gY29tbWFzIGFuZCB0aGVzZSBjb21tYXMgd2VyZSBpbnRlcnBy
-ZXRlZCBhcyBzZXBhcmF0b3JzLiBDb252ZXJ0IGZsb3cKPiBzdHlsZSBsaXN0cyB0byBibG9jayBz
-dHlsZSBsaXN0cywgc28gdGhhdCB0aGVyZSBpcyBubyBwcm9ibGVtcyB3aXRoIHRoZQo+IGNvbW1h
-cy4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgTWF0eWFzIDxtYXR5YXNkYW5pZWwwMDZAZ21h
-aWwuY29tPgoKU2FzaGlrbyBoYXMgcmV2aWV3ZWQgdGhpcyBwYXRjaCBhbmQgZm91bmQgbm8gaXNz
-dWVzLiBJdCBsb29rcyBncmVhdCEKCi0tIApTYXNoaWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nh
-c2hpa28uZGV2LyMvcGF0Y2hzZXQvMjAyNjA5MTcxNDQxMzQuNDU5ODE5LTEtbWF0eWFzZGFuaWVs
-MDA2QGdtYWlsLmNvbT9wYXJ0PTEKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxp
-c3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9saW51eC1hbWxvZ2ljCg==
+T24gVGh1LCBTZXAgMTcsIDIwMjYgYXQgOTo0MeKAr0FNIERhbmllbCBNYXR5YXMgPG1hdHlhc2Rh
+bmllbDAwNkBnbWFpbC5jb20+IHdyb3RlOgo+Cj4gUnVubmluZyBkdF9iaW5kaW5nc19jaGVjayBy
+ZXR1cm5lZDoKPiBbZXJyb3JdIHN0cmluZyB2YWx1ZSBpcyByZWR1bmRhbnRseSBxdW90ZWQgd2l0
+aCBhbnkgcXVvdGVzIChxdW90ZWQtc3RyaW5ncykKPgoKVGhhdCBmYWxzZSBwb3NpdGl2ZSBpcyBm
+aXhlZCBpbiBuZXdlciB2ZXJzaW9ucyBvZiB5YW1sbGludCBzaW5jZSBhdApsZWFzdCBhIHllYXIg
+YW5kIGEgaGFsZiBhZ28uIFRoZXJlJ3MgYWxzbyBzb21lIG90aGVyIHF1b3RpbmcgY2hlY2tzCkkn
+ZCBsaWtlIHRvIHR1cm4gb24sIGJ1dCB0aGF0IGJ1bXBzIHRoZSBtaW5pbXVtIHZlcnNpb24gc2lu
+Y2UgdW5rbm93bgpjaGVja3MgYXJlIGFuIGVycm9yIGluIHlhbWxsaW50LgoKPiBUaGUgZmlsZXMg
+dXNlZCBxdW90YXRpb24gbWFya3MgaW4gZmxvdyBsaXN0cyBiZWNhdXNlIHRoZSBzdHJpbmdzIGhh
+ZAo+IGNvbW1hcyBhbmQgdGhlc2UgY29tbWFzIHdlcmUgaW50ZXJwcmV0ZWQgYXMgc2VwYXJhdG9y
+cy4gQ29udmVydCBmbG93Cj4gc3R5bGUgbGlzdHMgdG8gYmxvY2sgc3R5bGUgbGlzdHMsIHNvIHRo
+YXQgdGhlcmUgaXMgbm8gcHJvYmxlbXMgd2l0aCB0aGUKPiBjb21tYXMuCgpJZiB3ZSB3YW50ZWQg
+dG8gZml4IGxpa2UgdGhpcywgd2Ugc2hvdWxkIHByb2JhYmx5IGp1c3QgcmVxdWlyZSBibG9jawpz
+dHlsZSBldmVyeXdoZXJlLCBidXQgSSBkb24ndCB0aGluayB3ZSBzaG91bGQgZG8gdGhhdC4KClJv
+YgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgt
+YW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0
+dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
