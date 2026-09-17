@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A97CC982C1
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Sep 2026 08:03:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EEFFC982C1
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Sep 2026 08:06:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
 	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fg3zqdmFbiHKT3c4h30/ZAUdo5Q0XLiKrbCbNfS4TlQ=; b=4HkgMSBRtsAVHM
-	p/TXnyEmnaUdI1eQK9pvQi4jPWEKRSGkbJPbvRVaAqmW9lItpww0KPkpmPPWkyczwy3Plv7US/Uai
-	TpL3GMPT7TJinX/tRCBkC94QMYX6GpEO2YpIiDz7N3Oh4xpfijYydbqzF55hEwkgxwJQPPMuXAJzZ
-	qRBEp/28Hf85YWz829YIO5IhVtrR4REAh5erwb4OqRIfiBFerMMJogj3G6KgqTm/DhVNoDwOtyH2/
-	7XNlW5YWy33T7f0WI/Ad2kB/pEIApubvWTIEVZ2IwXaqQpSm7bMoBKQ9urTvWJaeUmQPvpWmW18nL
-	E9YVnNPM4goVds6Hna2g==;
+	List-Owner; bh=8Q7M2+F1moBZuf51qgO0ks//ao37/F4G/DoJerehH4U=; b=fBBIIQEOiXNUDt
+	k0Xx0b7Eoxmwj29lTTU4FHRB15UrznBuJG4wEsYIdMPv5KuprdoXu1vb02OAVZxwdXGKbbl3LPqW7
+	0M2fvJg3j8vm8zZTtue7LJcOmSnb3Z43cczGJBDpE23Ibu+WvphBkB3Ogp3M8V6Bk5SfR5/RSvAIY
+	0IGSCTeIaHXS2sHm/f1X/EVfxOSnaXGqYM9CC9XU5roBSC7EgAOMGu95vXVtLDMmTj0eQIKfiP82k
+	f7CivsieNXJvygZz7DI3klpK7YOnTMNV+Fa+PtRmXp6g/lWN0iz29wTHsgsrIAIPruq64SI6t8ARJ
+	oCESUJnBWz751qrMix5g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x775F-0000000AqDf-23lZ;
-	Thu, 17 Sep 2026 08:03:05 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1x778U-0000000Aqf7-0acO;
+	Thu, 17 Sep 2026 08:06:26 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x775E-0000000AqCk-0MIu
+	id 1x778T-0000000Aqf1-385c
 	for linux-amlogic@lists.infradead.org;
-	Thu, 17 Sep 2026 08:03:04 +0000
+	Thu, 17 Sep 2026 08:06:25 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 40F9A600D4;
-	Thu, 17 Sep 2026 08:03:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CE8B1F000FF;
-	Thu, 17 Sep 2026 08:03:02 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 2919B414AC;
+	Thu, 17 Sep 2026 08:06:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A4941F000FF;
+	Thu, 17 Sep 2026 08:06:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1789632183;
-	bh=ZlFX6GelQIinsFXpTfI6KjNrtNTvj73kGqZgHZK3U3w=;
+	s=k20260515; t=1789632385;
+	bh=8Gz1O6bHK+/l82isF+y+AHNB5tc3EmVfPqm7/H+Yw3o=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=X2LkboOwwYh5GahcClbDH57vrPTfotCR90jFKUL5rxBNZuxHtrQGCx3H7sLmVvYZh
-	 tASnR57Ypl96IVWgWzpARo+aw7xKa6EqlBE0jMxNunGCCIcLSBXtAOTu89u55DrHJc
-	 ys7aP71B4GgiXGIsL9tve706aBNcllGl1MpOXTGmiaRlVe+SQ0TKNAZ8XLyGiBCS6Q
-	 G+peCueFqTSvqYEHbJHNtadFxeZffh8i5FJEttN858K/ZE8xot7aPF36SgcDhPvJ4V
-	 +1EBERwvq8qkPpe7S+kTR36IkiY5+FUdjBBznfzhlAwQDkiEMA5yih2ukZQ0oyfN1T
-	 rK+utb531tIog==
+	b=IF4neACBWwrNk+ePNZLETHyxTyuUnMkvG+G6qraDKU8w+91rG8M+ZXkfD4LVAFq/+
+	 yWt2MG6oW0HHGHkhSiF9ZlmfqlT3iukHkYyzFeJz2w/a6JEgl2pn/rrAwU0KNAR5tA
+	 V0yB2nnm7R/RtS0A0uT6WayAYA4/iUNR4LGH0TR9vj+uBhl//n+jMutVWMR/HO+vBB
+	 TjQydHBxxkpFhnm22B0yWFGN2QwW3NkxnZ5EtoM4+q+/oepTkU3AMZ2woeApaLU3hb
+	 EQh+pF7UsnjPczZIhBa8cjzNW6HBSO8l0MBeYZx4vYTxuqU9HQ0ZzGfHKalIp8wpNU
+	 jp4kKrBwtbwPw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v12 5/6] arm64: dts: amlogic: t7: Add i2c controller
- node
+Subject: Re: [PATCH v12 1/6] mfd: khadas-mcu: Add per-variant configuration
+ infrastructure and VIM4 support
 To: "Ronald Claveau" <linux-kernel-dev@aliel.fr>
-Cc: devicetree@vger.kernel.org, mfd@lists.linux.dev, robh@kernel.org, lee@kernel.org, neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org, conor+dt@kernel.org
-In-Reply-To: <20260917-add-mcu-fan-khadas-vim4-v12-5-497cd543a148@aliel.fr>
+Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, conor+dt@kernel.org, robh@kernel.org, lee@kernel.org, mfd@lists.linux.dev, neil.armstrong@linaro.org
+In-Reply-To: <20260917-add-mcu-fan-khadas-vim4-v12-1-497cd543a148@aliel.fr>
 References: <20260917-add-mcu-fan-khadas-vim4-v12-0-497cd543a148@aliel.fr>
- <20260917-add-mcu-fan-khadas-vim4-v12-5-497cd543a148@aliel.fr>
-Date: Thu, 17 Sep 2026 08:03:01 +0000
-Message-Id: <20260917080302.7CE8B1F000FF@smtp.kernel.org>
+ <20260917-add-mcu-fan-khadas-vim4-v12-1-497cd543a148@aliel.fr>
+Date: Thu, 17 Sep 2026 08:06:24 +0000
+Message-Id: <20260917080624.9A4941F000FF@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,17 +70,19 @@ Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-PiBGcm9tOiBSb25hbGQgQ2xhdmVhdSA8bGludXgta2VybmVsLWRldkBhbGllbC5mcj4KPiAKPiBB
-ZGQgdGhlIFQ3IGkyYyBjb250cm9sbGVyIG5vZGUgdXNlZCBieSB0aGUgS2hhZGFzIFZJTTQKPiBm
-b3IgTUNVIGNvbW11bmljYXRpb24uCj4gCj4gVXNlIGFtbG9naWMsbWVzb24tYXhnLWkyYyBhcyBm
-YWxsYmFjayBjb21wYXRpYmxlLgo+IAo+IFJldmlld2VkLWJ5OiBOZWlsIEFybXN0cm9uZyA8bmVp
-bC5hcm1zdHJvbmdAbGluYXJvLm9yZz4KPiBSZXZpZXdlZC1ieTogTWFydGluIEJsdW1lbnN0aW5n
-bCA8bWFydGluLmJsdW1lbnN0aW5nbEBnb29nbGVtYWlsLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBS
-b25hbGQgQ2xhdmVhdSA8bGludXgta2VybmVsLWRldkBhbGllbC5mcj4KClNhc2hpa28gaGFzIHJl
-dmlld2VkIHRoaXMgcGF0Y2ggYW5kIGZvdW5kIG5vIGlzc3Vlcy4gSXQgbG9va3MgZ3JlYXQhCgot
-LSAKU2FzaGlrbyBBSSByZXZpZXcgwrcgaHR0cHM6Ly9zYXNoaWtvLmRldi8jL3BhdGNoc2V0LzIw
-MjYwOTE3LWFkZC1tY3UtZmFuLWtoYWRhcy12aW00LXYxMi0wLTQ5N2NkNTQzYTE0OEBhbGllbC5m
-cj9wYXJ0PTUKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVh
-ZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1h
-bWxvZ2ljCg==
+PiBGcm9tOiBSb25hbGQgQ2xhdmVhdSA8bGludXgta2VybmVsLWRldkBhbGllbC5mcj4KPiAKPiBT
+b21lIHZhbHVlcyBjaGFuZ2UgcGVyIHZhcmlhbnQsIGFkZCB0aGUgc3RydWN0dXJlIHRvIG1hbmFn
+ZSBpdC4KPiAKPiBBZGQgVklNNCBzcGVjaWZpYyByZWdpc3RlcnMgZG9uZSBmb3IgYSBzdWJzZXF1
+ZW50IHBhdGNoLCB3aGljaCB3aWxsIHVzZSBhCj4gbmV3IGNvbXBhdGlibGUgZXNwZWNpYWxseSB0
+byBnZXQgdGhlIHJpZ2h0IHJlZ21hcCBjb25maWcuCj4gCj4gQWRkIGFuIGVudW0ga2hhZGFzX21j
+dV90eXBlIHVzZWQgYXMgdmFsdWUgdG8gbWF0Y2guCj4gCj4gQWxzbyBmaXggYSBrZXJuZWwtZG9j
+IHdhcm5pbmcgZm9yIHRoZSBraGFkYXNfbWN1IHN0cnVjdC4KPiAKPiBSZXZpZXdlZC1ieTogTmVp
+bCBBcm1zdHJvbmcgPG5laWwuYXJtc3Ryb25nQGxpbmFyby5vcmc+Cj4gU2lnbmVkLW9mZi1ieTog
+Um9uYWxkIENsYXZlYXUgPGxpbnV4LWtlcm5lbC1kZXZAYWxpZWwuZnI+CgpTYXNoaWtvIGhhcyBy
+ZXZpZXdlZCB0aGlzIHBhdGNoIGFuZCBmb3VuZCBubyBpc3N1ZXMuIEl0IGxvb2tzIGdyZWF0IQoK
+LS0gClNhc2hpa28gQUkgcmV2aWV3IMK3IGh0dHBzOi8vc2FzaGlrby5kZXYvIy9wYXRjaHNldC8y
+MDI2MDkxNy1hZGQtbWN1LWZhbi1raGFkYXMtdmltNC12MTItMC00OTdjZDU0M2ExNDhAYWxpZWwu
+ZnI/cGFydD0xCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRl
+YWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgt
+YW1sb2dpYwo=
