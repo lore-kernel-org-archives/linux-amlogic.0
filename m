@@ -4,60 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C681BC88E75
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Sep 2026 08:52:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0B79C982D2
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Sep 2026 08:54:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=H5DpCZYOVP9zU8ogmFhYPxCIelLhodmoToArk8ZKkpQ=; b=0sLI0fCiJCDyb/
-	k4v2HVZbSlSpjXg0VyK+8flmDEsed+TUXXYPsTXyo8CM1RLSTM9zOBIlgtxg7VQhnynJwTQdxMn57
-	EWmlpDOz3dXasFYyxPy8vf+oaZXMtTbYX9llP8zcXnPgWtZurnIXR0oRn5AztjPU4EQKmJWVgIypQ
-	DsSh+XKB1TeNi31HFRLySuNZhbc1Jmr6VNfe3cKSYw/hP21M5wI3d8qedIPUTLMKOiEP6tRKb0beY
-	QPbszxwrRldtpLlRqnwEUMsyx6mywPLctfLXrE/Oq1bJM/xlh8f0L6jhGZ6leWVthIGsIEMwzyj1C
-	3pUhPewANBKRrr4azHzQ==;
+	List-Owner; bh=Rlflbz1aVqQ96IslMEOAaqrxRW3UZsftrag2NWgf9+w=; b=Gb6DWbgm5xGMPi
+	zjCZuxCW7ydyYO1VnQNKgE570c1yfJqlYdPFn+4SkLmHzE30qYpR8O3cCkea2CcsNS+RB+5EKYtrW
+	b2l/Miob1WygYfJw/WgPBuDqD9srUUUR2Ga2GjQ/AAOfvg2etfZQwo1d5iBbTLM3AoRzV0HTOfU0P
+	P1RVUc8U2/1xZ6XEja3jdvHI5a5XR3n04bS5LjGIg0Fa9d1Hoh8Zg8Njt/PSz1L4tLmIKeE0OslS/
+	D6wyizqUm1rnnzCSaUsRta0kl01e4BEfpLndesAKdbTPZNu8hEqpGtiwOKpvnfRZQItlpLfLCmqKl
+	hWc2htdmZeQDpPv/9iag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x7UKe-0000000DrjE-1Stu;
-	Fri, 18 Sep 2026 08:52:32 +0000
-Received: from abb.hmeau.com ([180.181.231.80])
+	id 1x7UMn-0000000Drug-1DTW;
+	Fri, 18 Sep 2026 08:54:45 +0000
+Received: from courrier.aliel.fr ([2a01:4f9:c011:1c83::1])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x7UKa-0000000DriQ-3Syq
+	id 1x7UMj-0000000DrtT-0hSF
 	for linux-amlogic@lists.infradead.org;
-	Fri, 18 Sep 2026 08:52:30 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=gondor.apana.org.au; s=h01; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:cc:to:subject:message-id:date:
-	from:content-type:reply-to; bh=jZLW6WJFVhU+LLcc0daYjVscse94JVPYOxGjDJR0vBY=; 
-	b=rXjMkOHsvMByvr71y5p+y0r71KilPSIYOu8eNXw4WC11O8yYs1nKEia7AM4+cPvShrLMqUt47Q0
-	sJa7OEkh787LVVtCyhijiuxdIwOQeh8O0hVjbVKxIXQ2dm69mDKnkR+ARJBt1342sfRUfT9ZO59iT
-	24+C/ghYXwyoFhtEhtgYrX1CqN89hUlOxKK4yznXp4/2eGCh1qO/9vNZcm0AufNs8x+c8dq4c2Au+
-	7bTxnzb5LskhfBBGYPcZ1fq9XHORGFwA1EAZEaJBK1LRYQ0yoGeM7Vdy4rnGR0IvzZxnYyxUtpv1E
-	eJfVXsCJg8gmkGo69Oexa/aZDUYaV2R9pTNg==;
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.98.2 #2 (Debian))
-	id 1x7UKD-0000000FKg2-0EvH;
-	Fri, 18 Sep 2026 16:52:06 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 18 Sep 2026 18:52:05 +1000
-Date: Fri, 18 Sep 2026 18:52:05 +1000
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Mohamad Raizudeen <raizudeen.kerneldev@gmail.com>
-Cc: clabbe@baylibre.com, davem@davemloft.net, skhan@linuxfoundation.org,
-	me@brighamcampbell.com, jkoolstra@xs4all.nl,
-	linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH] crypto: amlogic: Fix IRQ handler return value and
- fallthrough logic
-Message-ID: <aqz7tT10SEMCrwV4@gondor.apana.org.au>
-References: <20260908160120.4805-1-raizudeen.kerneldev@gmail.com>
+	Fri, 18 Sep 2026 08:54:43 +0000
+Message-ID: <1a28af11-54b9-48c3-a31c-85d9edb74af6@aliel.fr>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1789721675;
+	bh=wootcnjICb9Pb80ss9CdhfZQ+wLHzPPOFwtZ9cXT/hM=;
+	h=Date:From:Subject:To:Cc:References:In-Reply-To;
+	b=In82j0zvEK3hJimjjrv+sWhPH5Uwgst67ZnXmyNOvLFZyUMYAywbwQQfCDN8CqyEM
+	 1S+ORVhzruWrMHbMyESVCSuRDtdR1SWIfaz3kHwoGcG/B7MeUFk0aHNTFdngobTFG+
+	 9gD+vlf+4IBApqaTyruXJ56OjFFsMNzbq9h9mwIQ=
+Date: Fri, 18 Sep 2026 10:54:24 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20260908160120.4805-1-raizudeen.kerneldev@gmail.com>
+User-Agent: Mozilla Thunderbird Beta
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Subject: Re: [PATCH v12 4/6] thermal: khadas-mcu-fan: Add fan config from
+ platform data Add regulator support
+To: sashiko-reviews@lists.linux.dev
+Cc: linux-amlogic@lists.infradead.org, conor+dt@kernel.org, robh@kernel.org,
+ lee@kernel.org, mfd@lists.linux.dev, devicetree@vger.kernel.org,
+ neil.armstrong@linaro.org
+References: <20260917-add-mcu-fan-khadas-vim4-v12-0-497cd543a148@aliel.fr>
+ <20260917-add-mcu-fan-khadas-vim4-v12-4-497cd543a148@aliel.fr>
+ <20260917081309.8FBD21F000FF@smtp.kernel.org>
+Content-Language: en-US
+In-Reply-To: <20260917081309.8FBD21F000FF@smtp.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260918_015228_886572_D370A277 
-X-CRM114-Status: GOOD (  11.84  )
+X-CRM114-CacheID: sfid-20260918_015442_536272_4A46E1E0 
+X-CRM114-Status: GOOD (  17.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,35 +69,58 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Sep 08, 2026 at 09:31:20PM +0530, Mohamad Raizudeen wrote:
-> In irqreturn_t_meson_irq_handler(), when an interrupt matches a flow
-> but the status register is empty, the driver prints an error but
-> doesn't return. It falls through the loop and incorrectly prints an
-> `unknown irq` message.
+On 9/17/26 10:13 AM, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> - [Medium] thermal: khadas-mcu-fan: OF node reference leak in probe
+> --
 > 
-> Fix this by returning IRQ_HANDLED immediately after the error print.
+> commit c3a0644be46518f47124644a90235d26979c4299
+> Author: Ronald Claveau <linux-kernel-dev@aliel.fr>
 > 
-> Additionally, the handler returns IRQ_HANDLED for genuinely unknown
-> interrupts. This masks false interrupts and prevents the kernel from
-> detecting interrupts. Return IRQ_NONE instead for unhandled
-> interrupts.
+> thermal: khadas-mcu-fan: Add fan config from platform data Add regulator support
 > 
-> Cc: stable@vger.kernel.org
-> Fixes: 48fe583fe5417 ("crypto: amlogic - Add crypto accelerator for amlogic GXL")
-> Signed-off-by: Mohamad Raizudeen <raizudeen.kerneldev@gmail.com>
-> ---
->  drivers/crypto/amlogic/amlogic-gxl-core.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+> This commit introduces variant-specific platform data including control
+> registers and duty-cycle levels, while also bumping the maximum level.
+> It optionally acquires and enables a fan regulator supply at probe time
+> to handle boards that gate fan power.
+> 
+>> diff --git a/drivers/thermal/khadas_mcu_fan.c b/drivers/thermal/khadas_mcu_fan.c
+>> index 21b3d0a71bd0d..1da639d054971 100644
+>> --- a/drivers/thermal/khadas_mcu_fan.c
+>> +++ b/drivers/thermal/khadas_mcu_fan.c
+> [ ... ]
+>> @@ -76,22 +82,71 @@ static const struct thermal_cooling_device_ops khadas_mcu_fan_cooling_ops = {
+>>  static int khadas_mcu_fan_probe(struct platform_device *pdev)
+>>  {
+>> +	const struct platform_device_id *id = platform_get_device_id(pdev);
+>>  	struct khadas_mcu *mcu = dev_get_drvdata(pdev->dev.parent);
+>>  	struct thermal_cooling_device *cdev;
+>>  	struct device *dev = &pdev->dev;
+>>  	struct khadas_mcu_fan_ctx *ctx;
+>>  	int ret;
+>>  
+>> +
+>> +	if (!dev->of_node)
+>> +		dev->of_node = of_node_get(dev->parent->of_node);
+> 
+> [Severity: Medium]
+> Does this leak the OF node reference? The probe function explicitly
+> acquires the node with of_node_get() and assigns it to dev->of_node,
+> but there is no corresponding cleanup mechanism.
+> 
+> Since there is no .remove callback or devm action registered to call
+> of_node_put(), and the driver core does not automatically drop
+> references assigned directly to dev->of_node in this manner, the
+> reference count appears to leak every time the driver is unbound.
+> 
 
-Please check
+The if statement make it safe to not be incremented when not needed. At
+the end the `platform_device_release` will call the `of_node_put`.
 
-https://sashiko.dev/#/patchset/20260908160120.4805-1-raizudeen.kerneldev%40gmail.com
 
-Thanks,
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Best regards,
+Ronald
 
 _______________________________________________
 linux-amlogic mailing list
