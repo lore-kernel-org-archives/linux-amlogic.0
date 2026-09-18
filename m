@@ -4,89 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93330C982D7
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Sep 2026 09:56:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6145C982D9
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Sep 2026 11:05:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=u1hR9SdAqX9xaGOx768ZGtxw3o4bo3zkVa4qPh/INAQ=; b=4BsZrZr39cY52F
-	A6jn1oeGiEpzTGZvYOzNHHlKyA5Cgexk6Dh0REfwRZwtFOqTVOkNWUt760av/S+b1j3GeZR49OfM6
-	E7rbXddkyTXW43SZbOUlBPLiAOrXI2jtJCaGLA7lA8tAqesR9DHB/u1gu9bChwdvy7q5ZJdLOMC0E
-	lIPPfo3tRO72ZpRjiHsPvyk4QNdxbnvsSS+Pw9v6w8xFwztHXQbGj7MxmB4Jn73kPUzOElhUPjbGx
-	rs5ut44DdOTSq536b+7kz9dLpEfTspu8pl42DCHJ7e+yc4OeMi6edUVKiw/2C363E37rdO30uhC26
-	5pLBosJVJrL5iTXUI/oQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=bf6YzPfKHK+1Nj+XM2s0SJ604yJm8fUwtQeFQFmpQ2o=; b=W3G5yKXuz+0gpE
+	asexoof8y9tSOaHDKmspBy8EMWfhtxhQzrbQVq0VJ3iJBLpJfCz9kaeXwX26YO8EVLmoSvyDT9Qt7
+	D3F2xLC/vd90oy+9WO+3ZHLKTlx7CI4ybwW8kZBQDJRPHcL87N0FkNNlFFEyGPh4uHhKD04PrnmL8
+	YmM+YAyDhxlmMsSm5PHxN/yLXF79Myxqo+nWGDB24J7ewSdDu4c0hHMpAdosVGxRF7DLeEfgrFmA3
+	wKLbplDnN5yF1zDDgXFSZ/WrGq83c4SrQ7/iXnOusdJgwiIru1bSH2p7R7Z6i43I0Ma8MNeMwCb/u
+	/B2adISmIo81QRxc4LVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x7VKa-0000000E11c-1n0R;
-	Fri, 18 Sep 2026 09:56:32 +0000
-Received: from mail-wr2-x10.google.com ([2a00:1450:4864:30::10])
+	id 1x7WPA-0000000EB5G-0W7U;
+	Fri, 18 Sep 2026 11:05:20 +0000
+Received: from mail-pj2-x0f.google.com ([2607:f8b0:4864:39::f])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x7VKX-0000000E10U-25j2
+	id 1x7WP7-0000000EB4u-1u33
 	for linux-amlogic@lists.infradead.org;
-	Fri, 18 Sep 2026 09:56:30 +0000
-Received: by mail-wr2-x10.google.com with SMTP id ffacd0b85a97d-482f635552aso415192f8f.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 18 Sep 2026 02:56:29 -0700 (PDT)
+	Fri, 18 Sep 2026 11:05:18 +0000
+Received: by mail-pj2-x0f.google.com with SMTP id d9443c01a7336-2d747ee1f38so5401825ad.2
+        for <linux-amlogic@lists.infradead.org>; Fri, 18 Sep 2026 04:05:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1789725388; x=1790330188; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from:references
-         :cc:to:content-language:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Pwt6VmdbigODlTJ+4GTZarReJSK6366BuVdXf1H3UUQ=;
-        b=nnhNJsdmd6HpG1uPS+ml+BXUJic9xrir2M/yEAG2XiRQvpOQPFTFNcLOvUiSYcW6oI
-         0accfQONTmxbzbE49VLjjUOtHek71sBz7l+ny2mic67GFqTYApqmwxn+VjCAbN35bXWu
-         DCyHjHceGRgthLLvz13ARu9XIR4TgFF6e+8Elb9h0jc+ahF3hsXDPxtafO8x9C1fFoVC
-         jBi763Q3Gpiu9qXwj+KbuxiTHLffhTPLglP0OjilOwU3cUA+b8h54OJrLQwe/k5SGxWm
-         bDs2JEm1sEO8xgtuau7b8OqHzK39hfOTIwzo09IYZvluPmokoOTPZ7AyyViy2rrsZpwX
-         bKiQ==
+        d=gmail.com; s=20251104; t=1789729517; x=1790334317; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=Df5rt+V5n08gio2qwrmwg+kssDbj2qjq7f0a+gBkW+g=;
+        b=miAwrpsAA4PWDJyD3o29USi2WX7U1wgDYc7cCOKoBrgzbmi2oDW53wY+4V/eWyVGmc
+         ISZhvCNSBDOLWCYl1Be7/hHsZaKev40d2lCYoSWJUe7tSc2Le7XTIbYsJTdMFC5EtUOB
+         QhL4+bcUV0Xdcq/oyeI/U75ulNu6O75IrUaHDJDMdPoV64Xdmi6y/s8/KOL1JCYkPp4l
+         xcqNp1Vl4Wl+hXAT6a2VQSRK1n3Zjr8OKtmucHn8PhU5oYHixM5yLkZKeuYTcKaCvlKM
+         bsHzY7IzJRvnUf6XK9QsdZs9qafzPl2YWXf5uHi8TohHEysSArZvMaAdVzuXrIX3x+de
+         Atng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1789725388; x=1790330188;
-        h=content-transfer-encoding:content-type:in-reply-to:from:references
-         :cc:to:content-language:subject:user-agent:mime-version:date
-         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20260707; t=1789729517; x=1790334317;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Pwt6VmdbigODlTJ+4GTZarReJSK6366BuVdXf1H3UUQ=;
-        b=BqWA3FIxGushVwXO76yldCsGBwyht40d76ZWgzsPyuACw7dzaaYjO2gst9HAsSjHmR
-         3SzL765+MhxH/EXITWuBsQONNgClIEPid0HN7H9pSTjTIGAWh7enJHu17c+MdfA+yWQk
-         rcEKJxrUZC3P/uaT9cQUt6gpYRDsS0qHmEJEZoqYJKiAYd/fClvwOvoRlPx5fCvRU+a2
-         VXBsj6MGDTVzP4K3vgrGd6VgWOaeLfJC0wB3PeC0n9/3L8db/sLNzPYqgvuXSnLG7n2s
-         HjVdW1hL1Fn41IrBlQCNOKzdc0x3pnhS5Aj+cV0184cnTeFBKpQ4g4+K7VQAG87HJSml
-         1Vyw==
-X-Forwarded-Encrypted: i=1; AKwUvBw2NE2urBUMDwAO62MA6sLK41ZBVqnxBAc81Ft3mAVTJsXrHvuwkc+ToPg/m+gmWZ3RXQIK3fI0h6IEIUrP@lists.infradead.org
-X-Gm-Message-State: AFuF++npJOl962p3iHbuMRtLy4fyGmtw7fwKpydtPgaS8j5UeA/XdS3D
-	oc3eP8g1zHRNsPsLJ2RIn3JW/GLrMplWIhP5wbpIWRi257yaeDw1XZeKpxjSnr6KI70=
-X-Gm-Gg: AYBFou0NI1iYLwvf2qaTq78Ht/7tZ4k+/tjcq6DSYxZG/Zz8o8eAzKTEfoUVmy9qPTF
-	IELzqRnIEbKWSPwmZPditVOy7oac/CfaqErg5P19NWNXvBtSiWLyGQUnBqODOIzUf4337AbpajL
-	Rvo1wd7fiY0yresDVN33CujCZTBO+zOj/zLPtA1qenVI6t9DUGY0WunxIrLwktv8GgFOZLfUyw/
-	8Zk2NlKgl0NtQVR/W+dW9VXUk1n3OwZnEwD06SdyY0FHDgNpdA+mVignjrxWPsEDCNcfawlk7RA
-	uxz28d1G0FwAaO7y4SsuhKSnk0dYTdrgDviDmim3gs+ZAzFtwzqLac/8uk/ErYLbSTp51o3iW6f
-	V4oadx94Fx2vGNTNQlZDJrgVWZCcwHyRK0OcZIuTMqH5kE9xYcW2wQ6ns2ytfb4n2DXoMvwXRK2
-	ggeSocuIaIa2qzaS+N69pXrj2CV5/Ocq86ujgmUOyymygPmQo0pgKHKvo4y1wM+a6T1e1sljc=
-X-Received: by 2002:adf:e011:0:20b0:487:219e:5e20 with SMTP id ffacd0b85a97d-487219e5fe1mr667041f8f.51.1789725387833;
-        Fri, 18 Sep 2026 02:56:27 -0700 (PDT)
-Received: from [192.168.3.100] ([151.42.87.32])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4872008fe3csm2829597f8f.37.2026.09.18.02.56.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Sep 2026 02:56:27 -0700 (PDT)
-Message-ID: <7da24c37-3f6a-4a85-a06c-3d587f6ed4e5@baylibre.com>
-Date: Fri, 18 Sep 2026 11:56:26 +0200
+        bh=Df5rt+V5n08gio2qwrmwg+kssDbj2qjq7f0a+gBkW+g=;
+        b=j3rEQNplsEXKnygThqb4VviEr4khTfWQJLYaA81W22yffoxZRJMSoQTgMzY200XKX6
+         Se1a4m5QcZxmVaDsNmAOZpEJg3ois8bNUnfe9t1QnJoSbX4S1Od9xTTTHHtmCcPNNEkH
+         b5okqDdnk9N1y91OfBZPW8YvTlxfTtBkSFsruSqB1KjbZe2y+OKzhZG4HMaYq92j/yp/
+         7gbrw2F86mI0l1a4sfCs1h6uJG2hnNd/oF7X9gs5ZvAR6qyvujnI9OLUElE31E6OrE2p
+         GdI+uMcwcVbDDQwsVWavWzzfnSp9bGXXqAz70GTG3Bp3vdq9J4gmfwU3cIeBN4ZjamTu
+         eqXw==
+X-Forwarded-Encrypted: i=1; AKwUvBy31Aw5yGLb/pYLdZg0cWkD3xQZvlZhkRBT86SrskfYUCFRgSnLktI7Vk+zJ25vqSM6BORYIZjMKCxow774@lists.infradead.org
+X-Gm-Message-State: AFuF++mOwdtdmDDZRqgAdYbG18yJY4BK65lwwEVTqXIp1o+GTLpcQASR
+	kio08DTqpZj+eKcruKUpHc6keo9E5efZmqJnA5s2SAxJsP4Nnjju/7YN
+X-Gm-Gg: AYBFou39M5a85u6OYSlGNLa3WHUfMUiv4r3aFeOvQpFUUalNfeT/h72/rkBp1OHNjc0
+	ZdvsB4jkL/Z+Y/fudOtaI80wOA4A8JDd0s7FO+u1MKhUYV6LPhhugDTc5ca1hdq4JA/9LopBCIW
+	zC+vMiceetaL52ig9XgCIoCXghmQIc9bMK6U/9eXEQElr5+eG2XKr+l8LAnEQSGQ2SRzBpmJbjA
+	Be57KNmt/cvimnLHXEgWDXmzab2KmhdinKSo37YtBFV71RKwfLeaB1ZTur7VNT/1MEm8yrFk2CK
+	Yw9nlZgsZGcbZGZddQiKPygij1xOmFz/rxrNnzar8L1CSYxqjPZkUMF5FV/pLVPcGnXz1ZYlRq5
+	BaJ/5xCGdfEhqfgjrpqYOT2sZzKTSRgfyTBxcRPgHHEvxxcXnvMc3NGWXhPMUAbMQzC5+7Ll6rY
+	sKF+M7RPwFg/bKZLTwOleRxGdsfhwqKVfrZ+L6RJJQPeaTnLDTRa+2MuKJz8mZNvrlKoCt5141x
+	/F+CQpraEJ0z43HG8E=
+X-Received: by 2002:a17:903:3d06:b0:2dd:ad73:5b73 with SMTP id d9443c01a7336-2ddb1d5bd18mr43767255ad.35.1789729516398;
+        Fri, 18 Sep 2026 04:05:16 -0700 (PDT)
+Received: from kernel ([103.219.206.97])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-33c28180a4dsm4721501eec.0.2026.09.18.04.05.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Sep 2026 04:05:15 -0700 (PDT)
+From: Mohamad Raizudeen <raizudeen.kerneldev@gmail.com>
+To: herbert@gondor.apana.org.au,
+	davem@davemloft.net
+Cc: clabbe@baylibre.com,
+	skhan@linuxfoundation.org,
+	me@brighamcampbell.com,
+	jkoolstra@xs4all.nl,
+	linux-crypto@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Mohamad Raizudeen <raizudeen.kerneldev@gmail.com>,
+	stable@vger.kernel.org
+Subject: [PATCH v2] crypto: amlogic: Fix IRQ handler return value and fallthrough logic
+Date: Fri, 18 Sep 2026 16:35:04 +0530
+Message-ID: <20260918110504.7207-1-raizudeen.kerneldev@gmail.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/6] ASoC: meson: aiu: add I2S Capture DAI
-Content-Language: en-US
-To: sashiko-reviews@lists.linux.dev
-Cc: robh@kernel.org, linux-amlogic@lists.infradead.org,
- neil.armstrong@linaro.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-References: <20260917-audin-v2-0-38de4bc1de34@baylibre.com>
- <20260917-audin-v2-4-38de4bc1de34@baylibre.com>
- <20260917212019.4ECE61F00893@smtp.kernel.org>
-From: Valerio Setti <vsetti@baylibre.com>
-In-Reply-To: <20260917212019.4ECE61F00893@smtp.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260918_025629_556598_7F640837 
-X-CRM114-Status: GOOD (  10.92  )
+X-CRM114-CacheID: sfid-20260918_040517_705142_6023E3F6 
+X-CRM114-Status: GOOD (  18.07  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,44 +100,129 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+In meson_irq_handler(), when an interrupt matches a flow but the status
+register is empty, the driver prints an error but doesn't return. It
+falls through the loop and incorrectly prints an `unknown irq` message.
 
-> 
-> [Severity: High]
-> Does adding this capture stream introduce a permanent clock divider leak when
-> hw_free is explicitly called?
-> 
-> Now that both playback and capture streams can be active simultaneously,
-> snd_soc_dai_active(dai) can evaluate to 2.
-> 
-> In sound/soc/meson/aiu-encoder-i2s.c:aiu_encoder_i2s_hw_free():
-> 
->      if (snd_soc_dai_active(dai) <= 1)
->          aiu_encoder_i2s_divider_enable(component, 0);
-> 
-> If a user opens both streams so snd_soc_dai_active(dai) evaluates to 2, and
-> explicitly calls SNDRV_PCM_IOCTL_HW_FREE before closing them,
-> snd_soc_dai_active(dai) remains 2. This skips disabling the clock divider.
-> 
-> When the streams are subsequently closed, the ALSA core skips invoking hw_free
-> again because the state was already changed to SNDRV_PCM_STATE_OPEN. This
-> would leave the clock divider permanently enabled, potentially draining battery
-> or blocking system suspend.
-> 
+Fix this by returning immediately. For empty status registers, return
+IRQ_NONE instead of IRQ_HANDLED to avoid masking spurious interrupts and
+allow the kernel to detect interrupt storms. Also use
+dev_err_ratelimited() to prevent console lockups during an interrupt
+storm.
 
-Oh, this seems to be a right claim. I can use 'ts->clk_enabled' for this 
-and gate the call to 'aiu_encoder_i2s_divider_enable' based on what both 
-streams are doing.
+Additionally, the handler return IRQ_HANDLED for genuinely unknown
+interrupts. Return IRQ_NONE instead for unhandled interrupts.
 
-Let's wait a bit for other comments (if any) to show up, then I can 
-prepare a v3 to fix this.
+Cc: stable@vger.kernel.org
+Fixes: 48fe583fe5417 ("crypto: amlogic - Add crypto accelerator for amlogic GXL")
+Signed-off-by: Mohamad Raizudeen <raizudeen.kerneldev@gmail.com>
+---
+I have addressed the IRQ specific issues in this v2. The other
+pre-existing issues mentioned by Sashiko are already addressed in my
+separate patch.
 
+Changes in v2:
+- Return IRQ_NONE instead of IRQ_HANDLED when status register is empty
+  to avoid masking spurious interrupts.
+- Use dev_err_ratelimited() to prevent console lockups.
+
+ drivers/crypto/amlogic/amlogic-gxl-core.c | 38 ++++++++++-------------
+ 1 file changed, 16 insertions(+), 22 deletions(-)
+
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
+index 169c6eeb51e5..d5d84524c110 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-core.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
+@@ -37,12 +37,13 @@ static irqreturn_t meson_irq_handler(int irq, void *data)
+ 				complete(&mc->chanlist[flow].complete);
+ 				return IRQ_HANDLED;
+ 			}
+-			dev_err(mc->dev, "%s %d Got irq for flow %d but ctrl is empty\n", __func__, irq, flow);
++			dev_err_ratelimited(mc->dev, "%s %d Got irq for flow %d but ctrl is empty\n", __func__, irq, flow);
++			return IRQ_NONE;
+ 		}
+ 	}
+ 
+-	dev_err(mc->dev, "%s %d from unknown irq\n", __func__, irq);
+-	return IRQ_HANDLED;
++	dev_err_ratelimited(mc->dev, "%s %d from unknown irq\n", __func__, irq);
++	return IRQ_NONE;
+ }
+ 
+ static struct meson_alg_template mc_algs[] = {
+@@ -243,34 +244,30 @@ static int meson_crypto_probe(struct platform_device *pdev)
+ 	if (IS_ERR(mc->base))
+ 		return PTR_ERR(mc->base);
+ 
+-	mc->busclk = devm_clk_get(&pdev->dev, "blkmv");
++	mc->busclk = devm_clk_get_enabled(&pdev->dev, "blkmv");
+ 	if (IS_ERR(mc->busclk)) {
+ 		err = PTR_ERR(mc->busclk);
+-		dev_err(&pdev->dev, "Cannot get core clock err=%d\n", err);
++		dev_err(&pdev->dev, "Cannot get/enable core clock err=%d\n", err);
+ 		return err;
+ 	}
+ 
++	err = meson_allocate_chanlist(mc);
++	if (err)
++		return err;
++
+ 	for (i = 0; i < MAXFLOW; i++) {
+ 		mc->irqs[i] = platform_get_irq(pdev, i);
+-		if (mc->irqs[i] < 0)
+-			return mc->irqs[i];
++		if (mc->irqs[i] < 0) {
++			err = mc->irqs[i];
++			goto error_chanlist;
++		}
+ 
+ 		err = devm_request_irq(&pdev->dev, mc->irqs[i], meson_irq_handler, 0,
+ 				       "gxl-crypto", mc);
+ 		if (err < 0)
+-			return err;
+-	}
+-
+-	err = clk_prepare_enable(mc->busclk);
+-	if (err != 0) {
+-		dev_err(&pdev->dev, "Cannot prepare_enable busclk\n");
+-		return err;
++			goto error_chanlist;
+ 	}
+ 
+-	err = meson_allocate_chanlist(mc);
+-	if (err)
+-		goto error_flow;
+-
+ 	err = meson_register_algs(mc);
+ 	if (err)
+ 		goto error_alg;
+@@ -289,9 +286,8 @@ static int meson_crypto_probe(struct platform_device *pdev)
+ 	return 0;
+ error_alg:
+ 	meson_unregister_algs(mc);
++error_chanlist:
+ 	meson_free_chanlist(mc, MAXFLOW - 1);
+-error_flow:
+-	clk_disable_unprepare(mc->busclk);
+ 	return err;
+ }
+ 
+@@ -306,8 +302,6 @@ static void meson_crypto_remove(struct platform_device *pdev)
+ 	meson_unregister_algs(mc);
+ 
+ 	meson_free_chanlist(mc, MAXFLOW - 1);
+-
+-	clk_disable_unprepare(mc->busclk);
+ }
+ 
+ static const struct of_device_id meson_crypto_of_match_table[] = {
 -- 
-Valerio
+2.53.0
 
 
 _______________________________________________
