@@ -4,91 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2D10C982DC
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Sep 2026 12:00:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43545C982D7
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Sep 2026 19:22:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=NNmpIbzw7rPDt62Ntbh2GXbm/s2g1y3xBE7Yh54pP+c=; b=4Xw5RVFd9qmGj6
-	8S03PVatPZIryFtnTs9J9Zlvq5oBHAecBywH8VVdT1e5EIIgnqZKykj1m36mTVWrAZkv96n8ffTcS
-	T3Ndl19+KMk3yItVxV2TZH942UVef1OhTNFztiJqpT++b1n/Q5iKAblknzipGBoDIZmGpBCzMkDnc
-	QNwc0liA3EPecwppXlmKCeF4ENpZ1EU8OMYnHtFn7M8hsyzLqhK/JcDJI86Lse9YiE5l3dl1n4n38
-	IIoHG0zSEhtR0NYye8CLm4Kw5mE7FnNrI9Cth9unT07SGf6gSe7e9SDEg9XsiigTSojThnLNkCDB8
-	q/kYH88R8DVuVbivSWRw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=WOGIpl0ddnjnH53AvX05F4q5PJkNLHyQ245r0GBCMNA=; b=rm04HjkPCL1v9x
+	TMS2TV1BToGl349yLVyts8LsbQA1qOvhrWCCNCseNGdkf/PhFA8clGLRfGGHOnf4brdUjWOVFBZ80
+	IS3/eyUMCKnoLQ9ipSyBNo+3mzwY3/4z+Pz/zDG+ZUU9kpHPrpIJYxMsoey1FLhV36x087BpUDMuZ
+	EbWA5OYVXaHqgHkrJCRUfos8AGZ4AHdXbdz47FMJX6sVrO0s2jdfhLKg0eLza/MdPUykGWJ6PA5g5
+	QkAHeRubpPslLpRbGWuxZe/r2ASHS/5YiG4i4BVXy2KKnpRrG0nMEWkFyRfjmsm4kDsNoLgFs1unh
+	lHulC2PSamaVKqGuW14A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x7XG9-0000000EJQ0-0Wag;
-	Fri, 18 Sep 2026 12:00:05 +0000
-Received: from mail-pj2-x11.google.com ([2607:f8b0:4864:39::11])
+	id 1x7e9l-0000000FPAD-141Q;
+	Fri, 18 Sep 2026 19:21:57 +0000
+Received: from fout-a2-smtp.messagingengine.com ([103.168.172.145])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x7XG5-0000000EJPD-1WZP
-	for linux-amlogic@lists.infradead.org;
-	Fri, 18 Sep 2026 12:00:03 +0000
-Received: by mail-pj2-x11.google.com with SMTP id d9443c01a7336-2d747ed6d6eso6301755ad.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 18 Sep 2026 05:00:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1789732800; x=1790337600; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=xYcJRra+LcCNHLwBdH8ymzEfMxOB7CWtfUUDK8cCiZQ=;
-        b=HvpssqwM56zEG8SzqZXT/uiP+HBlc6Zsr83oPxnL98GQ6CUwX0cUQ4jMfiXRHSOIpP
-         uFGndCMZkdbbaX9F6Z6ZGIol8VfrrbY877W36HEsthVlCN4Kl+rV6VQ7Az7LJpWEn9XI
-         FGN47ZNngHgpqeS8tPmgVytwlUvYG58FmdVaYOyIUnkoUC7w+N06th0OTZSPg+BYJAvY
-         Egizw5WgVUrsAjQvivWkrwgWvcF4t/TQBPIPM3R491YmBD7A3UCxLggmGEcf1rByyxpg
-         pY9RG+4wPZu3uzRf4oq+8jn0e3BnmooqmNTYHsOK/F8MSPbZR4Y6tIcOsau+DEMhDDcR
-         yMmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1789732800; x=1790337600;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=xYcJRra+LcCNHLwBdH8ymzEfMxOB7CWtfUUDK8cCiZQ=;
-        b=EaWUxlrzT67QaZVy0sY4QR0wQx4ASbkzAVKo5H9M5kTTfln6LtNBRSOZaC5mlNMJQZ
-         Uu5LtugNW8C+AsWPsRFIuZ6H3xYD3tU2uT22A7w7y5e6m6I2SU+qgWflZ6zXVLNBSsDG
-         EItH6QwEmWbBwy/nczrq6VdFPeXq/zfW+T3FJYBw7vvlB+c2OOOpb4T9zZlKkhVFRpG3
-         +AKOO3hPIv3nJN7i9+ic4x+U5lwWezKVZE/LPYHlz+hbqYHtQ58j35CJ147Ll+aNuAF9
-         BQ7LYNcIfayzLlL//i/uEkMTFJp8fmrHipXyVmyRuBxeALWEAq5h3tdu2LAXl8qgG0LX
-         d0/A==
-X-Forwarded-Encrypted: i=1; AKwUvByK/2m33EDKntjXYJRUWtVJwUZCmLSTaGNvlNz9Zx6/f8QYZd7OgZ5GnorBLTVWZNGG7IDGhi+hw4Oa9Y/T@lists.infradead.org
-X-Gm-Message-State: AFuF++lx0Xg98lp6+kF0HP/Z1O0giPS2pe6qNyfkwjf/Lphf/cc82zsW
-	1kpowkgtpxswChewDLjnNx2iGQUQjjLevvCfoFYB05uVmQvpI1dD81Is
-X-Gm-Gg: AYBFou1/oRQoeLXCrm+aV3JSlxuMMBlZCPRo4yhRoFcbOXD6pVgty5RVhuopuKcltqn
-	eB7U8GxqvrRQiEue6K22M6g040pqGe2uH/tMHvWLEKi+0M4LjflhC6ROPI4BxXvXyjVD0TWZtn/
-	U4XzHEYcv3lMRU9LresO6f4XD1oYqrLTxMdyrk1Sh84m3mQPeRnSEPIImvcGGZZlLe8/ooyWhu1
-	wyNGRkqvofhldbu2j0GDlAHU/PKYHhksVIUjvPblyCEV20pKfoqJZZ6cGh/ggNjwNO1Nnbv0pjf
-	R4EVLSa+nAshMqNE99BLvj3Bxh3u2wN5gm64s8UFUxtLpkTSldS26S6bL31wmVKCfikR3hMBtrt
-	Zr0o9jw7D/xilV30MmvxNMpGoSX2k4Lj3mBi/TDaDagRmtbvNb7gHoOOUWdvr9AH5bTQw+5ZNwz
-	4ghmaDxl4bWgxFm4T2D8fF0t+04R6w6r18PqXbcF6hwNjAycTLgmM40WwiDj8ZgUJtfA67m3WTC
-	yegNpxGc4fkyboMudc=
-X-Received: by 2002:a17:90b:4b87:b0:39e:345b:3323 with SMTP id 98e67ed59e1d1-39e54fb121dmr4831022a91.22.1789732800428;
-        Fri, 18 Sep 2026 05:00:00 -0700 (PDT)
-Received: from kernel ([103.219.206.97])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-33c2876a52esm4179626eec.20.2026.09.18.04.59.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Sep 2026 04:59:59 -0700 (PDT)
-From: Mohamad Raizudeen <raizudeen.kerneldev@gmail.com>
-To: herbert@gondor.apana.org.au,
-	davem@davemloft.net
-Cc: clabbe@baylibre.com,
-	skhan@linuxfoundation.org,
-	me@brighamcampbell.com,
-	jkoolstra@xs4all.nl,
-	linux-crypto@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Mohamad Raizudeen <raizudeen.kerneldev@gmail.com>,
-	stable@vger.kernel.org
-Subject: [PATCH v3] crypto: amlogic: Fix IRQ handler return value and fallthrough logic
-Date: Fri, 18 Sep 2026 17:29:50 +0530
-Message-ID: <20260918115950.9121-1-raizudeen.kerneldev@gmail.com>
-X-Mailer: git-send-email 2.53.0
+	id 1x7e9i-0000000FP9T-0Oem;
+	Fri, 18 Sep 2026 19:21:55 +0000
+Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
+	by mailfout.phl.internal (Postfix) with ESMTP id 113C7EC011F;
+	Fri, 18 Sep 2026 15:21:50 -0400 (EDT)
+Received: from phl-frontend-03 ([10.202.2.162])
+  by phl-compute-05.internal (MEProxy); Fri, 18 Sep 2026 15:21:50 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kumba.dev; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1789759310;
+	 x=1789845710; bh=+f/z0JP+U4EtOy/3h9UdmQJB7RkUpXUnEhmZ55aJB1w=; b=
+	Ohu7+E0X13bssI57AEV35UM19qwkKlVHxVKz5/OJt+5uWA2bgwvwe3I65n8Jhf4H
+	XLDByqkG4j8ffDCVs/Q6xYzKUa6ZT/YkddC6XEQthEIMEjXIosyRKdOol9cPjkW0
+	GVWBl9QS+kojtveKPxHjj9PW4MilZbXXa46XS05slNK38qsInjQFKZg2FMWnePDl
+	A3FZe2wvO4EDRwxbbsML/nBzWsfmJ0cMuhNNKW1i/h+IlVrPgcUUVLwrVbZx6b5b
+	zZVHADvusGbai2aK8rsNU3PGynlPKv8S1H9/t09am0oBZh5swBsqCKlZ8SGQO7+2
+	XBPWq+3T1OZp13yyfz4pqw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1789759310; x=
+	1789845710; bh=+f/z0JP+U4EtOy/3h9UdmQJB7RkUpXUnEhmZ55aJB1w=; b=K
+	r1ckQYrv3A14SBmzHUCbHcRHG+KEhtOeOtoMjBTC8ne+iBRnbL4+9+K5ap5YeO8j
+	o/fol20VTErYRDRisbqjD+ll6e1wb40zlKq3vt2BWX+5nWnI1kMqFUXXzyXRrxSG
+	FPE1Sbsfx1LGe+gExUOUcieKNDliLJE6zQefD7TGMyHm/6Mgl2Fg5KPtqq9IBEJ4
+	JKm3V1NyFS5gNeuJo1x0Yw6cU0A7mEy14Zu2rT8bg1/Q75DqPhBBXxsdUknnzIQU
+	J63jJ9wvl6eeLU6oQCwoc1EbnEDXin/yGS7uXopJ5I0pw3NVkybUX9nS+Dby1et8
+	tEmRHbdM/DKb5ime9EeTw==
+X-ME-Sender: <xms:TY-takZVLWMmtCpYhAQ3_6ZGp5fO9istKWENaeAQpssek2wJNCtRtw>
+    <xme:TY-tanlD5AcIn-tdu0_0iK8re9JAWHeyTVHplTp_TiRzh8I_I_k5ug03Hc8Mng4l8
+    mYAc6sTIbQeEQXp6_xJeAt2x6cku5s41YBtwE5g2_ul0EAUI7j1U1zE>
+X-ME-Received: <xmr:TY-taqgy1hsAGPCnB-K3cyoyrCABuJ8xH7xb4x3i31tmVH3BAjUgbg80bKajcooU0JJsnmP-UX0rnugrhtZM2iX4kOg5v4tAIQMLHydhZqQl5o8>
+X-ME-Proxy-Cause: dmFkZTEsnz2aMme9OvfQGG5Y8GSqHa68DLZlnr4e8JXNRIraPpfK2AhpuQYaQCdLuH4d4E
+    LCf7BP7IA/lS6ef53ADgoMj+JJ/mfoIxRWkwLbNogOo65dFObknUvCBwx3CuljCtfTjYt5
+    u8IgnSBS9MIdBJMYMpSU/2MI1Ww4O+I1oZuH5uDhV+KS5+9j2MZtNCFl8UITbzpMHz6hTx
+    WzNUI4GZ1f2aO6SUmft1nX6DFK0J3tXJBGRZ4ohV661vDuOQcfX53XrGmz+XUAmSLgNImo
+    TrAj3oMzAniMrTHGv2RdwVs4cQhQXPQQnkWU+5lZA5CRqlCfrOtrKugQ6Czie/gtclxKD8
+    8rCP1K1Oo295ye6IuknLXJz1K/9UvCX5a810NWifNAJj+yurGPJEHYnpxeSOJGdFMXUxpb
+    ZytZ2qLoMQaDQmUM+ymJHefuhzMvLzSspTnlPXRp/4LWi+9btixsrf33AsUTSZAdqUSmag
+    OQwv1XbeAFsqLjbamfIsE3Azyfr64SvJrmRkVvE/Xan0gCN60uC+eAOwoXV1xyrRjCHFcv
+    qnWEU87JqoV8Rp7+EzTjfxXqQEMX7CZxTCblmv49QPBahF/oz8T/VjEliwx7Ieh1t4F2x9
+    YP/g6ppWTbIgI2vFYObaMJ5WXLoyJCMyeMdxZGv7xik33Mv5KnCFg1za4wqQ
+X-ME-Proxy: <xmx:TY-tapQHDxEi6e7ZtWDdsVH1sBd4vGJpqgRHDJowfKqzhy1cAaBPyQ>
+    <xmx:TY-tarZ18w-SrJXRqbH8Lj9ezP2RFuzVHePc-gMghlMoqJBuzgQgig>
+    <xmx:TY-tamR1F9UYLt1Lxh_23KhO1spvkajFI5M-KhZjmmibFzU4npXRDg>
+    <xmx:TY-taq_ub46dhJx8_55xxaTJxPT5nq2DesWDiSk6-dB1hPvt1yJwAA>
+    <xmx:To-taqhcKck-bj2gDgjmyLIOWtaag69IjTaZXEJs5PhQYsLZefvKSQys>
+Feedback-ID: if8114916:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 18 Sep 2026 15:21:49 -0400 (EDT)
+Message-ID: <c4a61df3-6786-446c-96cf-ebff064b9c46@kumba.dev>
+Date: Fri, 18 Sep 2026 15:21:48 -0400
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] rtc: fix typos in comments
+To: Hemanth Selam <hemanth.selam@gmail.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+References: <20260904104758.23905-1-hemanth.selam@gmail.com>
+Content-Language: en-US
+From: Joshua Kinard <linux@kumba.dev>
+In-Reply-To: <20260904104758.23905-1-hemanth.selam@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260918_050001_408455_63AB0997 
-X-CRM114-Status: GOOD (  13.07  )
+X-CRM114-CacheID: sfid-20260918_122154_477463_75BD3655 
+X-CRM114-Status: GOOD (  19.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,69 +107,89 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-In meson_irq_handler(), when an interrupt matches a flow but the status
-register is empty, the driver prints an error but doesn't return. It
-falls through the loop and incorrectly prints an `unknown irq` message.
+On 09/04/2026 06:47, Hemanth Selam wrote:
+> Fix typos in comments, reported by scripts/checkpatch.pl using the
+> misspelling list in scripts/spelling.txt.  Only touches comments, no code
+> changes.
+> 
+> Assisted-by: Cursor:claude-opus-5
+> Signed-off-by: Hemanth Selam <hemanth.selam@gmail.com>
+> ---
+>   drivers/rtc/rtc-ds1685.c   | 6 +++---
+>   drivers/rtc/rtc-meson.c    | 2 +-
+>   drivers/rtc/rtc-pcf8583.c  | 2 +-
+>   drivers/rtc/rtc-rk808.c    | 2 +-
+>   drivers/rtc/rtc-sa1100.c   | 2 +-
+>   drivers/rtc/rtc-spear.c    | 2 +-
+>   include/linux/rtc/ds1685.h | 4 ++--
+>   7 files changed, 10 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/rtc/rtc-ds1685.c b/drivers/rtc/rtc-ds1685.c
+> index 5fc8e36b1abf..beb987b76f24 100644
+> --- a/drivers/rtc/rtc-ds1685.c
+> +++ b/drivers/rtc/rtc-ds1685.c
+> @@ -1231,7 +1231,7 @@ ds1685_rtc_probe(struct platform_device *pdev)
+>   		dev_warn(&pdev->dev,
+>   			 "Main battery is exhausted! RTC may be invalid!\n");
+>   
+> -	/* Check the auxillary battery.  It is optional. */
+> +	/* Check the auxiliary battery.  It is optional. */
+>   	if (!(rtc->read(rtc, RTC_EXT_CTRL_4A) & RTC_CTRL_4A_VRT2))
+>   		dev_warn(&pdev->dev,
+>   			 "Aux battery is exhausted or not available.\n");
+> @@ -1395,7 +1395,7 @@ ds1685_rtc_poweroff(struct platform_device *pdev)
+>   		rtc->write(rtc, RTC_CTRL_A, ctrla);
+>   
+>   		/*
+> -		 * Read Control 4A and check the status of the auxillary
+> +		 * Read Control 4A and check the status of the auxiliary
+>   		 * battery.  This must be present and working (VRT2 = 1)
+>   		 * for wakeup and kickstart functionality to be useful.
+>   		 */
+> @@ -1407,7 +1407,7 @@ ds1685_rtc_poweroff(struct platform_device *pdev)
+>   			rtc->write(rtc, RTC_EXT_CTRL_4A, ctrl4a);
+>   
+>   			/*
+> -			 * The auxillary battery is present and working.
+> +			 * The auxiliary battery is present and working.
+>   			 * Enable extended functions (ABE=1), enable
+>   			 * wake-up (WIE=1), and enable kickstart (KSE=1)
+>   			 * in Control 4B.
+> diff --git a/include/linux/rtc/ds1685.h b/include/linux/rtc/ds1685.h
+> index 8ec0ebfaef04..55d3edc7e972 100644
+> --- a/include/linux/rtc/ds1685.h
+> +++ b/include/linux/rtc/ds1685.h
+> @@ -200,7 +200,7 @@ struct ds1685_rtc_platform_data {
+>    * access to the extended NV-SRAM by automatically incrementing the address
+>    * register when they are read from or written to.
+>    */
+> -#define RTC_CTRL_4A_VRT2	BIT(7)	/* Auxillary Battery Status */
+> +#define RTC_CTRL_4A_VRT2	BIT(7)	/* Auxiliary Battery Status */
+>   #define RTC_CTRL_4A_INCR	BIT(6)	/* Increment-in-Progress Status */
+>   #define RTC_CTRL_4A_PAB		BIT(3)	/* Power-Active Bar Control */
+>   #define RTC_CTRL_4A_RF		BIT(2)	/* RAM-Clear Flag */
+> @@ -215,7 +215,7 @@ struct ds1685_rtc_platform_data {
+>   /*
+>    * Bit names in Extended Control Register 4B.
+>    */
+> -#define RTC_CTRL_4B_ABE		BIT(7)	/* Auxillary Battery Enable */
+> +#define RTC_CTRL_4B_ABE		BIT(7)	/* Auxiliary Battery Enable */
+>   #define RTC_CTRL_4B_E32K	BIT(6)	/* Enable 32.768Hz on SQW Pin */
+>   #define RTC_CTRL_4B_CS		BIT(5)	/* Crystal Select */
+>   #define RTC_CTRL_4B_RCE		BIT(4)	/* RAM Clear-Enable */
 
-Fix this by returning immediately. For empty status registers, return
-IRQ_NONE instead of IRQ_HANDLED to avoid masking spurious interrupts and
-allow the kernel to detect interrupt storms. Also use
-dev_err_ratelimited() to prevent console lockups during an interrupt
-storm.
+Huh, I am honestly now wondering how I made such simple typos all those 
+years ago, and why it took an AI agent to find them.  At least I was 
+consistent in making them, so that's gotta amount to something.
 
-Additionally, the handler returned IRQ_HANDLED for genuinely unknown
-interrupts. Return IRQ_NONE instead for unhandled interrupts.
+Thanks!
 
-Cc: stable@vger.kernel.org
-Fixes: 48fe583fe5417 ("crypto: amlogic - Add crypto accelerator for amlogic GXL")
-Signed-off-by: Mohamad Raizudeen <raizudeen.kerneldev@gmail.com>
----
-I have addressed the IRQ specific issues in this v3. The other
-pre-exisiting issues mentioned by Sashiko are already addressed in my
-separate patch.
-
-Changes in v3:
-- Revert accidental clock management changes that were squashed into v2.
-
-Changes in v2:
-- Return IRQ_NONE instead of IRQ_HANDLED when status register is empty
-  to avoid masking spurious interrupts.
-- Use dev_err_ratelimited() to prevent console lockups.
-
-Link to v2: https://lore.kernel.org/all/20260918110504.7207-1-raizudeen.kerneldev@gmail.com/T/
-
- drivers/crypto/amlogic/amlogic-gxl-core.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
-index 169c6eeb51e5..09d3ccd92b80 100644
---- a/drivers/crypto/amlogic/amlogic-gxl-core.c
-+++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
-@@ -37,12 +37,13 @@ static irqreturn_t meson_irq_handler(int irq, void *data)
- 				complete(&mc->chanlist[flow].complete);
- 				return IRQ_HANDLED;
- 			}
--			dev_err(mc->dev, "%s %d Got irq for flow %d but ctrl is empty\n", __func__, irq, flow);
-+			dev_err_ratelimited(mc->dev, "%s %d Got irq for flow %d but ctrl is empty\n", __func__, irq, flow);
-+			return IRQ_NONE;
- 		}
- 	}
- 
--	dev_err(mc->dev, "%s %d from unknown irq\n", __func__, irq);
--	return IRQ_HANDLED;
-+	dev_err_ratelimited(mc->dev, "%s %d from unknown irq\n", __func__, irq);
-+	return IRQ_NONE;
- }
- 
- static struct meson_alg_template mc_algs[] = {
--- 
-2.53.0
-
+Acked-by: Joshua Kinard <linux@kumba.dev>
 
 _______________________________________________
 linux-amlogic mailing list
