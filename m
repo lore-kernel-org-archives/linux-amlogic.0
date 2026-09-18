@@ -4,89 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67A30C982D0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Sep 2026 02:17:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C354BC88E75
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Sep 2026 08:48:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WPGMVr+InkTSU1DBqtJ+UsgF+hTDxibQdEZudc8e4sY=; b=iVE3lEzumNGeD6
-	OU1aKfxkwbOgQ3RazgZHVbJBvCqe0Agcfcu8o24JYu9UqtRCFX9hUALIIJuRUdSldl66bAQW0+N7D
-	parqi4pcJ4HRCRduivdxuYk2AR8CMA+vXDgW0O56LBhP7pJ8MwPqHreZA15qtMOy4QkrL7FFjCxV5
-	OnJ1Y2AgOIfhbHiQmBaXdJ21Tp7EzYLcZfuyfSiZ7WP03JyYmbeZxNEVDooI22IEChxdVPjpV/FHj
-	hYl2nnC7ENn5a34qfj4+dMzoTcJX/mkjSf2IaXgA0V0mK/+ErmbI+bTdqh9X4tGwUlMCB28Xvx3cd
-	DFxXxcFpqR+ilXtZFevQ==;
+	List-Owner; bh=dymjR9juu3UXCdRAP3okwqb5O0FZ73mWyrJH/ga5tmg=; b=HcDysbDQs8tjc/
+	TIblJOIXY4RUiTSZnvA3WrCM5TXf4t1oCJxC9xiFp6CQSLT6xjfppIq0BBWkrfcVVFnanuucCWIly
+	9HOTJVXwi0zfSZGwmXmwFCGG+wuTJQS3VwdaqGTZz4r9BJP8d2VJOIBV7kgwc05w99ep66y7kKYZE
+	Dn2piG9hjDRS0FmTOx8qQ8mDbsM1s3xwthF0xhWgLyChPP208DAuFaSU3+p5+tqSQUJ2MK3bPJP1n
+	op6YXQN+QTDbk6DFnTB5C40IU2ouBTA2Leo50miRfccYZzKGAyKmAyXCkjKkHjx6G7hVaHSsZ2FcJ
+	rrUyWrIjUyqsX4OomqDA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x7OA4-0000000DHrs-2eY5;
-	Fri, 18 Sep 2026 02:17:12 +0000
-Received: from mail-pz2-x10.google.com ([2607:f8b0:4864:3b::10])
+	id 1x7UG9-0000000Dr9p-3TQ4;
+	Fri, 18 Sep 2026 08:47:54 +0000
+Received: from courrier.aliel.fr ([2a01:4f9:c011:1c83::1])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x7OA0-0000000DHrD-440P
+	id 1x7UG6-0000000Dr8c-3Z0R
 	for linux-amlogic@lists.infradead.org;
-	Fri, 18 Sep 2026 02:17:10 +0000
-Received: by mail-pz2-x10.google.com with SMTP id 41be03b00d2f7-cc1cea50dc1so95034a12.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 17 Sep 2026 19:17:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1789697827; x=1790302627; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=vW0Y3swTiioWAd7nzTHn4G51gEl3jxVd3j9M10H0xqA=;
-        b=LWR11x64FYWkAwPsas/zmjeCwcKwBXjy2p1L3780YbYHCMBwsLhqjDQDwBQxVlFatn
-         Zufb9EeRZQZ8hnImP+EjjWzghbwXcaXBgAoTpf4M1ItJp5CPf+bIteFiuiPdD4l1BGeu
-         2doUTAM/6E7od8Jh+77ulg8w4g8QXTgkt+EekBMSGNRIy/yindDTdg3Tm5pjjSzLTIsX
-         2V2BmhF1Dq03R+ZSauxZi4yA4Vb2jUI+7mZxLSwOAQ6SFnOI2zVYD9yhnidGpNgNd2Aj
-         b7l3ylY7aBcLpnAQjH9kuZ6TbPk6lAaxzFUMONJVtXYsKwrTnxzK0Fmpctc9MK12Bm97
-         buAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1789697827; x=1790302627;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=vW0Y3swTiioWAd7nzTHn4G51gEl3jxVd3j9M10H0xqA=;
-        b=Qityg1GSo9R+YkG38dc80BMqA7rvAEh0/5yHtcP+HmFRCL7yaspeasPtZpeA7B5tsy
-         jx6YsYZB8YrDFtabE9Z/3s0uO3yeJdehvE7YsnzAMl2VrTuFxKhTDi1ApNHQCahPv734
-         adpFgRyPx8ITGH4a0sBkg7VUlyjUG0IC5S5JZVQ8iIXhyR1TwgutqFFs1v4Swu2g1SNs
-         ZHPKJ80zTXuFwF45+3x6pBPIgx4nnvjxmWJC3oon5CU2BxjvT9NVhM8sFnECi8A6xGsP
-         9jf98BjiiiU0O+RaXJ2R3dm4IipqjRiAcawzHfBYWf1uMycfGjgb/JKn5UnU+CaS6Csl
-         T/YA==
-X-Forwarded-Encrypted: i=1; AKwUvBzYXpOT3z+khCoYyeTvLNZQhs3GVeDcF0wq+omR/rylguBPnwxMQEJVosftx/M/PUndJGbGLiOkHvDUxb8Y@lists.infradead.org
-X-Gm-Message-State: AFuF++ki6w+OLDMJKhogNbQGrO4gt5Gq6BeQQ3frO/nk0ITFc8uiLmda
-	vclje/+SLp9kTWcnJ7HeOMOI6cV+PUao6swuKirgsgB6QMdLrPMTsS1Qz13gcJOO
-X-Gm-Gg: AYBFou1BtzTfXmXyhKqf2xqtsRn2FlVnpuowwadN0tbz2A3Rw3Mva31rfy7wTe5y74O
-	DYb29VqZ5gLv/VH3jeogmCKk1RdyW8077Xmx3o6Aj65GXNX9bUuf014T1vc7/vIgRY/0G8i4xA8
-	jRI6Vogog26aKlSiIRPH0fBqj4PhLX7eLOVSLLvwqH41nGjuRKMBPMyV+6rVkW4yFXhnEu3s+jy
-	L+XrJi5Xg9yms6n3fRQGQ3sif7fSsbauM4On5IiK138fyGeaa895CONyL0GZ8yiapDG13+F5cNO
-	OCpuxH8oRPR9+UVtg8KRDC+FcICpCRE/X3gZQNxiSrCKOVk461FCo6Y7t4kcYW6VCT2qJLxgmnn
-	TCngO5UcecERGf/l5u4s0Sp2vx30CA4hpZgtwCB9Bpg8ufTD1FpFevawrxKUhORQw5vweb4VDsK
-	9g+EVv1RxcZ2DBpOFUmU8zvtRGLMYs21TDeq8vOimPhopKsYR7I2nA8La8udYlr/5gM+5bJYot3
-	As/G9Ob4iAnQx/EtMPV
-X-Received: by 2002:a17:90a:d443:b0:398:d132:ba76 with SMTP id 98e67ed59e1d1-39e54f9c08bmr2061562a91.21.1789697827210;
-        Thu, 17 Sep 2026 19:17:07 -0700 (PDT)
-Received: from kernel ([103.219.206.124])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-144cdfc2346sm715786c88.4.2026.09.17.19.17.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Sep 2026 19:17:06 -0700 (PDT)
-Date: Fri, 18 Sep 2026 07:47:00 +0530
-From: Mohamad Raizudeen <raizudeen.kerneldev@gmail.com>
-To: Herbert Xu <herbert@gondor.apana.org.au>
-Cc: clabbe@baylibre.com, davem@davemloft.net, linux-crypto@vger.kernel.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	skhan@linuxfoundation.org, jkoolstra@xs4all.nl, lkp@intel.com
-Subject: Re: [PATCH v2] crypto/amlogic: Use devm APIs for clock management
-Message-ID: <aqyfHB1xBWFSvOl9@kernel>
-References: <20260901024302.5407-1-raizudeen.kerneldev@gmail.com>
- <aqpmOzURNFOm78ls@gondor.apana.org.au>
+	Fri, 18 Sep 2026 08:47:52 +0000
+Message-ID: <374d55f4-d6fe-4819-adea-cdf87f067e92@aliel.fr>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1789721262;
+	bh=uzDOTI5KVAzWKNu0eBTWVl0dvaIek3tznA94L1LoMqA=;
+	h=Date:From:Subject:To:Cc:References:In-Reply-To;
+	b=P8TRtR9Yde9QOQE4ih8DvAskLhk5y4qGQiFjytQGZ7ceAoA0LRl59r+IfEoDkIzeJ
+	 /JM5hvKWdPhmEKfyRB7Je/urGx+vfFG3CKwRLdIQJuzeHNOXuT1eRO/2uhV1NiquJt
+	 CQwDyPsvSpJHnBbQzzDqivLooWhZOAeGiMoyG10M=
+Date: Fri, 18 Sep 2026 10:46:15 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <aqpmOzURNFOm78ls@gondor.apana.org.au>
+User-Agent: Mozilla Thunderbird Beta
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Subject: Re: [PATCH v12 3/6] mfd: khadas-mcu: Add support for VIM4 MCU variant
+To: sashiko-reviews@lists.linux.dev
+Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org, mfd@lists.linux.dev, robh@kernel.org,
+ lee@kernel.org, conor+dt@kernel.org
+References: <20260917-add-mcu-fan-khadas-vim4-v12-0-497cd543a148@aliel.fr>
+ <20260917-add-mcu-fan-khadas-vim4-v12-3-497cd543a148@aliel.fr>
+ <20260917081118.835FA1F000FF@smtp.kernel.org>
+Content-Language: en-US
+In-Reply-To: <20260917081118.835FA1F000FF@smtp.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260917_191709_008911_D2896F4C 
-X-CRM114-Status: GOOD (  20.22  )
+X-CRM114-CacheID: sfid-20260918_014751_352149_71FC192D 
+X-CRM114-Status: GOOD (  11.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,47 +68,49 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Sep 16, 2026 at 07:49:47PM +1000, Herbert Xu wrote:
-> On Tue, Sep 01, 2026 at 08:12:52AM +0530, Mohamad Raizudeen wrote:
-> > The driver currently gets the core clock and manually enables it using
-> > clk_prepare_enable(). This requires matching calls to
-> > clk_disable_unprepare() in the error paths and remove function.
-> > 
-> > Switch to devm_clk_get_enabled() instead. This lets the kernel handle
-> > enabling and disabling the clock automatically, which allow us to drop
-> > the manual cleanup code and keeps the probe function simple.
-> > 
-> > Reported-by: kernel test robot <lkp@intel.com>
-> > Closes: https://lore.kernel.org/oe-kbuild-all/202608310329.QgxCCMs1-lkp@intel.com/
-> > Signed-off-by: Mohamad Raizudeen <raizudeen.kerneldev@gmail.com>
-> > ---
-> > Changes in v2:
-> > - Dropped the devm_crypto_engine_alloc_init() change due to build
-> >   failure reported by the kernel test robot.
-> > - Kept the devm_clk_get_enabled() clock cleanup as the sole focus of
-> >   this patch.
-> > - Link to v1: https://lore.kernel.org/linux-crypto/20260821151303.8150-1-raizudeen.kerneldev@gmail.com/T/#u
-> > 
-> >  drivers/crypto/amlogic/amlogic-gxl-core.c | 16 +++-------------
-> >  1 file changed, 3 insertions(+), 13 deletions(-)
+On 9/17/26 10:11 AM, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> - [Low] mfd: Incorrect writeable registers in VIM4 regmap config
+> --
 > 
-> Please take a look at
+> commit fc44329d7ee6d12a0077930b2632df3554d1e38f
+> Author: Ronald Claveau <linux-kernel-dev@aliel.fr>
 > 
-> https://sashiko.dev/#/patchset/20260901024302.5407-1-raizudeen.kerneldev%40gmail.com
+> mfd: khadas-mcu: Add support for VIM4 MCU variant
 > 
-> Thanks,
-> -- 
-> Email: Herbert Xu <herbert@gondor.apana.org.au>
-> Home Page: http://gondor.apana.org.au/~herbert/
-> PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+> This commit adds support for the VIM4 MCU variant by refactoring the
+> probe function to use per-variant values. It introduces a dedicated 
+> regmap configuration for the VIM4 MCU, with its own volatile and 
+> writeable register checks.
+> 
+>> diff --git a/drivers/mfd/khadas-mcu.c b/drivers/mfd/khadas-mcu.c
+>> index 0e74efe14f367..4b37e74e2b04a 100644
+>> --- a/drivers/mfd/khadas-mcu.c
+>> +++ b/drivers/mfd/khadas-mcu.c
+> 
+> [ ... ]
+> 
+>> +static bool khadas_mcu_vim4_reg_writeable(struct device *dev, unsigned int reg)
+>> +{
+>> +	switch (reg) {
+>> +	case KHADAS_MCU_VERSION_0_REG:
+>> +	case KHADAS_MCU_VERSION_1_REG:
+>> +	case KHADAS_MCU_SHUTDOWN_NORMAL_STATUS_REG:
+>> +		return false;
+>> +	default:
+>> +		return true;
+> 
+> [Severity: Low]
+> Does this function omit multiple known read-only registers defined for the MCU,
+> such as KHADAS_MCU_MAC_0_REG and KHADAS_MCU_USID_0_REG?
+> 
 
-Hi,
-Thank you for pointing me to the sashiko review. I have addressed those
-issues and a couple of other bugs the bot found in v3 and sent the v4
-here: https://lore.kernel.org/all/20260916174227.5581-1-raizudeen.kerneldev@gmail.com/
+Those registers does not exist on VIM4 MCU variant. So it's free to
+ignore in my opinion.
 
-Thanks,
-Mohamad Raizudeen
+-- 
+Best regards,
+Ronald
 
 _______________________________________________
 linux-amlogic mailing list
