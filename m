@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE1E8C982DA
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 664D2C982EB
 	for <linux-amlogic@archiver.kernel.org>; Sun, 20 Sep 2026 10:25:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,44 +12,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fBi3/39fy9tC1nzGsmpQUvVu0gHPrlHnY5nH/umWDfw=; b=NKy7xbnZADL8hv
-	28+uUbDu2T1NpLPXrIzByKR/OQvli9age7oFWL1HsKfNtYk0iqoUb746JzxS0ZzXax2WbY8I/D6Ye
-	85lflg6XGCDkuCFZdQCunAd57rn8J4BpzycgcNQ6Sh0s4nuxj6vw2cTVbJCV9bzDE1Ys3VHPurdgw
-	HHUBB6DUiRhMiREW9AxJVEDrkWTrH+kfWL0J7gZ2qbpqj0sRqAY6nmlvqe0buxwSKTjbP+QXOsx/y
-	h6vLKzpH/1pyD3Rfyu3NzJDgr7/UrHzewFrk7dG85XY9hlyAHCrtPzeGc9cDtAx4KZvWOh/KRHrJe
-	tTZTXkYLSNNkOW+zsFXQ==;
+	List-Owner; bh=w8tOxBKd87ClQiy5tQ9z4ZKw2HcFBVq4wgBhvkmAn/Q=; b=VAnX+v1mEw8ijM
+	E0zoHGEckk1a6yydxbZs+TPHOZLZvbmlNFPqnT+LSxcD5N0wdkorxIdrYDTcGJgGZcAqobdfMgbqx
+	HVlZo75KTGVa5Wqg22A862uhQPJvfMzdyWwmfMH+avrRS4idvjT6wkw4IYEXEGajof2JsRQlL0Vch
+	XGfbcUm5zkPI3y9oyHcvwYtAslDmVzPEB0n8PyXpXzsnMmN+wC2MikkSKcDTGzlAclEXBuwQWRTGo
+	+kSpLoTEA2r1LSYgHeUwHwJkD9rj6QWU9nR1Lu9pynS4CKvQfG4mHnXxvOK6bzpcgVFoy0Xk38QBZ
+	xu2pb4U/YbiGqmKUZowg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x8Ejf-0000000HFgp-3dAl;
+	id 1x8Ejf-0000000HFgd-2jYl;
 	Sun, 20 Sep 2026 10:25:27 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x8EjM-0000000HFPD-29IE;
+	id 1x8EjM-0000000HFPB-29I5;
 	Sun, 20 Sep 2026 10:25:08 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id A679A60AAE;
+	by tor.source.kernel.org (Postfix) with ESMTP id A175460AA6;
 	Sun, 20 Sep 2026 10:25:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2BE55C2BCFF;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 66D80C4AF15;
 	Sun, 20 Sep 2026 10:25:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1789899907;
-	bh=DiPGG6/1y2xmrETzC91peDuTfVXoxRXsfQ56MzCZN9c=;
+	bh=7yUvmIDMbzfZAF93qAmLa8Oi5bfk4s5SvGz6m0eGErI=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=JlhulgHzo1Uq8xQaSeaE5yFJFwQW7NePZQkWKJkruilbtLTRcHXx/cp7o7VjfGipk
-	 z7rqIcr2TNtgBkprIB+Rb3laIxnm7PWZb+ZrwxycbY3h71sE2/D69ERUKnHizuuotH
-	 G+Y6SDbtkR8pjeOr3SMxeD6inzNYZNx9fCKiqvF3WdkmMMAAvPpk4ZpghQk1j/Tqrz
-	 YPVuymCUqpCvVno+UjLJ7NtQk4S7/8HVAp3QVGEGaAFUc8ntxO2UZjc8vvAgpm9R6m
-	 rWr32FbbkJCKtOP70xGRLig8U6POIyyQ+yfCPI71ZP0TYb4BaW4sZk/t3TqUKB7031
-	 pzr9TZGMs1S9w==
+	b=X1mMz0CUbvKFxWP0aC3JYkN+k5/UVO7mRy2B09flWVK8uZl2sNFXMJBuE3qCklLXN
+	 ltgm4CYfOOQ2t0SPI4X7Inlfy9+l/WtTOqO+bxXtfKo1h4Yb39q8ulk8d3Yp9Ikzjh
+	 B4gzTtdVpAsFIon/Z3v3nYifUTZfC+WOFsAydSq0J2ZGzeUiMR0WsZmWZapLP1DjnU
+	 bkC+MDpwFc+zyeRIflWpMeJ8TuTOoAdm5Qid9lb+HQYFpUhzP5936UPXesXRgG/aPh
+	 +/GA8tPymbT98h+IjFeu26RxMSxO0jQ39I1SrjwqgfbCnPmfUdtmhpp7mIFRCqGaX7
+	 zElaDQUPJwtlw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0DD46C982EA;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 53585C982D0;
 	Sun, 20 Sep 2026 10:25:07 +0000 (UTC)
 From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Sun, 20 Sep 2026 18:25:05 +0800
-Subject: [PATCH v2 03/12] soc: amlogic: clk-measure: Support more
- measurement channels
+Date: Sun, 20 Sep 2026 18:25:09 +0800
+Subject: [PATCH v2 07/12] arm64: dts: amlogic: a5: Add clk-measure
+ controller node
 MIME-Version: 1.0
-Message-Id: <20260920-more-socs-to-support-clk_measure-v2-3-224382a429e8@amlogic.com>
+Message-Id: <20260920-more-socs-to-support-clk_measure-v2-7-224382a429e8@amlogic.com>
 References: <20260920-more-socs-to-support-clk_measure-v2-0-224382a429e8@amlogic.com>
 In-Reply-To: <20260920-more-socs-to-support-clk_measure-v2-0-224382a429e8@amlogic.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -61,11 +61,11 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Chuan Liu <chuan.liu@amlogic.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1789899904; l=1344;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1789899904; l=735;
  i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=e2ydz5bLAgoXoKx1id6ARA1Qq/OeV3kWw0wR36wz9Ks=;
- b=0kYDHEMG2Lp7QnH8bZMG7IEpHfqcExl7IxtSh1NJ7/jFnZZd25yFr5rPr/Shj3vXkPwRQToqb
- ToqAllBeLgqDOBiXdUwNPvAWnYcmFcsm3DtvKuF6qferH0spzUEEvv/
+ bh=m5R5k55AN/MNKbp84EDgUAXLk3E5z1TMK4ptSdMbBlo=;
+ b=o3JaiEL+aRnvotUYIh5NHQ4EnpH4qmkpE6JzCCATMhxdOCOaG7hehas2rqKuMAtfPA4g4UuMZ
+ PQAEVnxwnclBeLHFj3pU7h7mPupa7IL+eH9R6QsEr5XfdqWGnrWdSp4
 X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
  pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
 X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
@@ -90,36 +90,27 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Chuan Liu <chuan.liu@amlogic.com>
 
-On S4 and C3, as well as later SoCs, the clk-measure IP expands the
-number of supported measurement channels from 128 to 256. Accordingly,
-the MSR_CLK_SRC field in the register is extended from 7 bits to 8 bits.
-
-To support both the old and new implementations, the driver now
-uniformly defines the valid MSR_CLK_SRC field as bits[27:20].
-
-For SoCs where MSR_CLK_SRC is only 7 bits wide, the driver never sets
-bit27, and on those SoCs bit27 is read-only. Therefore, using
-bits[27:20] as the unified field definition does not introduce any
-behavioral change or compatibility issue for existing SoCs.
+Add the clk-measure controller node for A5 SoC family.
 
 Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 ---
- drivers/soc/amlogic/meson-clk-measure.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/soc/amlogic/meson-clk-measure.c b/drivers/soc/amlogic/meson-clk-measure.c
-index 8a1a9fed0e74..0d4ba2555d17 100644
---- a/drivers/soc/amlogic/meson-clk-measure.c
-+++ b/drivers/soc/amlogic/meson-clk-measure.c
-@@ -20,7 +20,7 @@ static DEFINE_MUTEX(measure_lock);
- #define MSR_CONT		BIT(17) /* continuous measurement */
- #define MSR_INTR		BIT(18) /* interrupts */
- #define MSR_RUN			BIT(19)
--#define MSR_CLK_SRC		GENMASK(26, 20)
-+#define MSR_CLK_SRC		GENMASK(27, 20)
- #define MSR_BUSY		BIT(31)
- 
- #define MSR_VAL_MASK		GENMASK(15, 0)
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
+index 2b12d8284594..0be176ace337 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
+@@ -157,4 +157,9 @@ gpio_intc: interrupt-controller@4080 {
+ 		amlogic,channel-interrupts =
+ 			<10 11 12 13 14 15 16 17 18 19 20 21>;
+ 	};
++
++	clk_msr: clock-measure@48000 {
++		compatible = "amlogic,a5-clk-measure";
++		reg = <0x0 0x48000 0x0 0x1c>;
++	};
+ };
 
 -- 
 2.42.0
