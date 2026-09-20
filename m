@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B40F1C982E6
-	for <linux-amlogic@archiver.kernel.org>; Sun, 20 Sep 2026 11:10:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BEB5C982DA
+	for <linux-amlogic@archiver.kernel.org>; Sun, 20 Sep 2026 11:10:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=IFkAjxiCiJUkPLSWvHJQox2zk9iXHa5S9+pGqsX/nJI=; b=YptYF/hp7pDE9p
-	lDeNnsu2/hUsV5AygEve8bCefQlhoag+FjlVHeaKoFpyhW+Xd8cQb2w8otTEZbQh+RIhEvslSxjxc
-	9ncEjZJBOxeo8VVj8qZUeSOHatcm7toRHxPq2OYCc9aIk4RKXYD/AlfP2HcRCiUJyixL5MjvfGK/w
-	F0FhTbGOnfPBtpLc/8S6o1dSUhcRLlPtr/cWnCG1qC/+bU3MXbqS6b6iDv0X/Hng6aX0ESUeUsFjW
-	d74sui7+IG2nwpvmUFIDrIbKu3mTiQ8VN9xWD14dFD2+DgQO69dJsahalTW54dTtyGeEooK1j+Pyh
-	EbX141cM+FkMvuR7hlpQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=vpoc365hiVmxyHRrX1jC8Pl/pcXWUQZ1ALRrW4LDWR4=; b=06phT3/BZMpTba
+	Da9fRhirj0pWCNLRA00hOlbblrQD63QXSL3QSj87faONI0VtlHc2uhLZ3SrckuxHLdgHh3tcEDrNO
+	XUUN3Ot73pD11xboo2kKIDOSfwk2l/uG2Z+fQwsOQsAx2oRQLKOP94szQ7gCC8+v7xWKI1YAZ9JJn
+	1Z4Qrr5x5Wg1WbpPZnXV95ngf0/2giB4ObZportCD1B2snzxiAha1u146tOQ0ncgcCWRk+WjhzYuV
+	CCfV8wI/9KPXVVTVaRbwmdYuvq7SxKX9AD7mif19ePLuFBlXFaFreI1CksGELWetk2Fb1ML7sKlKH
+	FFNlvNPWVhJqjOdM34wg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x8FR6-0000000HJR3-06WG;
+	id 1x8FR6-0000000HJRd-0juK;
 	Sun, 20 Sep 2026 11:10:20 +0000
 Received: from linkmauve.fr ([82.65.109.163])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x8FQu-0000000HJML-3pMg;
+	id 1x8FQu-0000000HJMI-3pxV;
 	Sun, 20 Sep 2026 11:10:13 +0000
 Received: by linkmauve.fr (Postfix, from userid 1000)
-	id 83CB47189A5B; Sun, 20 Sep 2026 13:10:03 +0200 (CEST)
+	id 796D87189A55; Sun, 20 Sep 2026 13:10:03 +0200 (CEST)
 From: Link Mauve <linkmauve@linkmauve.fr>
 To: Srinivas Kandagatla <srini@kernel.org>
 Cc: Link Mauve <linkmauve@linkmauve.fr>,
@@ -77,16 +77,14 @@ Cc: Link Mauve <linkmauve@linkmauve.fr>,
 	linux-arm-msm@vger.kernel.org,
 	linux-stm32@st-md-mailman.stormreply.com,
 	rust-for-linux@vger.kernel.org
-Subject: [PATCH v6 2/4] nvmem: core: deprecate reg_write callback with reg_write_const
-Date: Sun, 20 Sep 2026 13:09:55 +0200
-Message-ID: <20260920111000.2404131-3-linkmauve@linkmauve.fr>
+Subject: [PATCH v6 0/4] nvmem: migrate to const void * in reg_write
+Date: Sun, 20 Sep 2026 13:09:53 +0200
+Message-ID: <20260920111000.2404131-1-linkmauve@linkmauve.fr>
 X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260920111000.2404131-1-linkmauve@linkmauve.fr>
-References: <20260920111000.2404131-1-linkmauve@linkmauve.fr>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260920_041009_110966_54CFEFAD 
-X-CRM114-Status: GOOD (  17.87  )
+X-CRM114-CacheID: sfid-20260920_041009_121410_52A809AA 
+X-CRM114-Status: GOOD (  15.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,158 +96,89 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This callback used to take a mutable void * for no reason, which causes
-the compiler to be unaware that the val buffer should never be modified
-by the callback.
-
-This was found while drafting the nvmem-provider Rust abstraction.
-
-Signed-off-by: Link Mauve <linkmauve@linkmauve.fr>
----
- drivers/nvmem/core.c           | 26 +++++++++++++++++---------
- drivers/nvmem/internals.h      |  1 +
- include/linux/nvmem-provider.h |  6 +++++-
- 3 files changed, 23 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-index 0556d140170a..a484d424119f 100644
---- a/drivers/nvmem/core.c
-+++ b/drivers/nvmem/core.c
-@@ -66,19 +66,22 @@ static int __nvmem_reg_read(struct nvmem_device *nvmem, unsigned int offset,
- }
- 
- static int __nvmem_reg_write(struct nvmem_device *nvmem, unsigned int offset,
--			     void *val, size_t bytes)
-+			     const void *val, size_t bytes)
- {
- 	struct nvmem_operations *ops = nvmem->ops;
- 	int ret, wr_ok;
- 
--	if (!ops->reg_write)
-+	if (!ops->reg_write && !ops->reg_write_const)
- 		return -EOPNOTSUPP;
- 
- 	ret = gpiod_set_value_cansleep(nvmem->wp_gpio, 0);
- 	if (ret)
- 		return ret;
- 
--	wr_ok = ops->reg_write(nvmem->priv, offset, val, bytes);
-+	if (ops->reg_write_const)
-+		wr_ok = ops->reg_write_const(nvmem->priv, offset, val, bytes);
-+	else
-+		wr_ok = ops->reg_write(nvmem->priv, offset, (void *)val, bytes);
- 
- 	ret = gpiod_set_value_cansleep(nvmem->wp_gpio, 1);
- 	if (ret)
-@@ -299,7 +302,7 @@ static umode_t nvmem_bin_attr_get_umode(struct nvmem_device *nvmem)
- 	if (!nvmem->read_only)
- 		mode |= 0200;
- 
--	if (!ops->reg_write)
-+	if (!ops->reg_write && !ops->reg_write_const)
- 		mode &= ~0200;
- 
- 	if (!ops->reg_read)
-@@ -336,13 +339,13 @@ static umode_t nvmem_attr_is_visible(struct kobject *kobj,
- 	struct nvmem_operations *ops = nvmem->ops;
- 
- 	/*
--	 * If the device has no .reg_write operation, do not allow
--	 * configuration as read-write.
-+	 * If the device has no .reg_write or .reg_write_const operation, do
-+	 * not allow configuration as read-write.
- 	 * If the device is set as read-only by configuration, it
- 	 * can be forced into read-write mode using the 'force_ro'
- 	 * attribute.
- 	 */
--	if (attr == &dev_attr_force_ro.attr && !ops->reg_write)
-+	if (attr == &dev_attr_force_ro.attr && !ops->reg_write && !ops->reg_write_const)
- 		return 0;	/* Attribute not visible */
- 
- 	return attr->mode;
-@@ -893,7 +896,7 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
- 	if (!config->dev)
- 		return ERR_PTR(-EINVAL);
- 
--	if (!config->reg_read && !config->reg_write)
-+	if (!config->reg_read && !config->reg_write && !config->reg_write_const)
- 		return ERR_PTR(-EINVAL);
- 
- 	nvmem = kzalloc_obj(*nvmem);
-@@ -937,6 +940,11 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
- 
- 	ops->reg_read = config->reg_read;
- 	ops->reg_write = config->reg_write;
-+	ops->reg_write_const = config->reg_write_const;
-+
-+	if (ops->reg_write)
-+		dev_warn(&nvmem->dev, "Usage of reg_write in nvmem is deprecated, please "
-+		                      "migrate to reg_write_const.\n");
- 
- 	nvmem->owner = config->owner;
- 	if (!nvmem->owner && config->dev->driver)
-@@ -972,7 +980,7 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
- 		goto err_put_device;
- 
- 	nvmem->read_only = device_property_present(config->dev, "read-only") ||
--			   config->read_only || !ops->reg_write;
-+			   config->read_only || (!ops->reg_write && !ops->reg_write_const);
- 
- #ifdef CONFIG_NVMEM_SYSFS
- 	nvmem->dev.groups = nvmem_dev_groups;
-diff --git a/drivers/nvmem/internals.h b/drivers/nvmem/internals.h
-index 4e610deeaa7b..c1766f8fa482 100644
---- a/drivers/nvmem/internals.h
-+++ b/drivers/nvmem/internals.h
-@@ -11,6 +11,7 @@
- struct nvmem_operations {
- 	nvmem_reg_read_t	reg_read;
- 	nvmem_reg_write_t	reg_write;
-+	nvmem_reg_write_const_t	reg_write_const;
- };
- 
- struct nvmem_device {
-diff --git a/include/linux/nvmem-provider.h b/include/linux/nvmem-provider.h
-index 6063fe5b7784..e944530999b4 100644
---- a/include/linux/nvmem-provider.h
-+++ b/include/linux/nvmem-provider.h
-@@ -20,6 +20,8 @@ typedef int (*nvmem_reg_read_t)(void *priv, unsigned int offset,
- 				void *val, size_t bytes);
- typedef int (*nvmem_reg_write_t)(void *priv, unsigned int offset,
- 				 void *val, size_t bytes);
-+typedef int (*nvmem_reg_write_const_t)(void *priv, unsigned int offset,
-+				       const void *val, size_t bytes);
- /* used for vendor specific post processing of cell data */
- typedef int (*nvmem_cell_post_process_t)(void *priv, const char *id, int index,
- 					 unsigned int offset, void *buf,
-@@ -93,7 +95,8 @@ struct nvmem_cell_info {
-  * @root_only:	Device is accessibly to root only.
-  * @of_node:	If given, this will be used instead of the parent's of_node.
-  * @reg_read:	Callback to read data; return zero if successful.
-- * @reg_write:	Callback to write data; return zero if successful.
-+ * @reg_write:	**DEPRECATED** - please use reg_write_const instead.
-+ * @reg_write_const:	Callback to write data; return zero if successful.
-  * @size:	Device size.
-  * @word_size:	Minimum read/write access granularity.
-  * @stride:	Minimum read/write access stride.
-@@ -128,6 +131,7 @@ struct nvmem_config {
- 	struct device_node	*of_node;
- 	nvmem_reg_read_t	reg_read;
- 	nvmem_reg_write_t	reg_write;
-+	nvmem_reg_write_const_t	reg_write_const;
- 	int	size;
- 	int	word_size;
- 	int	stride;
--- 
-2.55.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhpcyBjYWxsYmFjayB1c2VkIHRvIHRha2UgYSBtdXRhYmxlIHZvaWQgKiBmb3Igbm8gcmVhc29u
+LCB3aGljaCBjYXVzZXMKdGhlIGNvbXBpbGVyIHRvIGJlIHVuYXdhcmUgdGhhdCB0aGUgdmFsIGJ1
+ZmZlciBzaG91bGQgbmV2ZXIgYmUgbW9kaWZpZWQKYnkgdGhlIGNhbGxiYWNrLgoKVGhpcyB3YXMg
+Zm91bmQgd2hpbGUgZHJhZnRpbmcgdGhlIG52bWVtLXByb3ZpZGVyIFJ1c3QgYWJzdHJhY3Rpb24u
+CgpUaGFua3MgdG8gdGhlIGd1aWRhbmNlIG9mIEFuZHkgU2hldmNoZW5rbywgdGhpcyBub3cgaW50
+cm9kdWNlcyBhIG5ldwpjYWxsYmFjayBhbmQgZGVwcmVjYXRlcyB0aGUgZXhpc3Rpbmcgb25lLCB3
+aXRoIHRoZSBnb2FsIG9mIHJlbmFtaW5nIHRoZQpuZXcgb25lIGludG8gdGhlIG9sZCBvbmUgb25j
+ZSBubyB1c2VyIHJlbWFpbnMgaW4gdGhlIGtlcm5lbC4KCkNoYW5nZXMgc2luY2UgdjU6Ci0gTGlu
+ayB0byB2NToKICBodHRwczovL2xvcmUua2VybmVsLm9yZy9ydXN0LWZvci1saW51eC8yMDI2MDgw
+NDEzNTk0MC4yMzc4NzM3LTEtbGlua21hdXZlQGxpbmttYXV2ZS5mci9ULwotIEFkZCBhIGRldl93
+YXJuKCkgd2hlbiByZWdpc3RlcmluZyBhIG52bWVtIGRyaXZlciB3aXRoIGEgZGVwcmVjYXRlZAog
+IHJlZ193cml0ZSBjYWxsYmFjay4KLSBBZGQgYSBmb3VydGggcGF0Y2ggZW5hYmxpbmcgQ09NUElM
+RV9URVNUIG9uIHRocmVlIG1vcmUgbnZtZW0gZHJpdmVycywKICB3aGljaCBmb3Jnb3QgdG8gZGVw
+ZW5kIG9uIHRoYXQgY29uZmlnLgotIFJlbW92ZSBhIGZldyB1bm5lZWRlZCAodm9pZCAqKSBhbmQg
+KGNvbnN0IHZvaWQgKikgY2FzdHMgaW4gY29yZS5jLgoKQ2hhbmdlcyBzaW5jZSB2NDoKLSBMaW5r
+IHRvIHY0OgogIGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL3J1c3QtZm9yLWxpbnV4LzIwMjYwNzI2
+MTMxNzI0LjE1Mjk5LTEtbGlua21hdXZlQGxpbmttYXV2ZS5mci9ULwotIFJlYmFzZSBvbiB0b3Ag
+b2YgbGludXgtbmV4dCAyMDI2MDgwMywgdGhlIHByZXZpb3VzIHNlcmllcyBkaWRu4oCZdCBhcHBs
+eQogIGFueSBtb3JlIGR1ZSB0byBjaGFuZ2VzIGluIGNvcmUuYy4KLSBBbHNvIGNvbnZlcnQgdGhl
+IGF0MjQsIGF0MjUsIGVlcHJvbV85M3h4NDYgYW5kIG0yNGxyIGRyaXZlcnMgdG8gdGhlCiAgbmV3
+IHJlZ193cml0ZV9jb25zdCBjYWxsYmFjaywgdGhlc2Ugd2VyZSBtaXNzZWQgYmVjYXVzZSB0aGV5
+IGdvdCBtb3ZlZAogIHRvIHRoZSBudm1lbSBkaXJlY3RvcnkgaW4gbGludXgtbmV4dCBiZXR3ZWVu
+IHYzIGFuZCB2NC4KCkNoYW5nZXMgc2luY2UgdjM6Ci0gTGluayB0byB2MzoKICBodHRwczovL2xv
+cmUua2VybmVsLm9yZy9ydXN0LWZvci1saW51eC8yMDI2MDcxNjE0MjQxNS4yODcxOC0xLWxpbmtt
+YXV2ZUBsaW5rbWF1dmUuZnIvVC8KLSBEcm9wIEFwcGxlIFNQTUkgcGF0Y2gsIHdoaWNoIGhhZCBh
+bHJlYWR5IGJlZW4gaW5kZXBlbmRlbnRseSBpbmNsdWRlZAogIGluIGxpbnV4LW5leHQgYXMgNzA4
+OTE3MGUxZGYxNjBmNWY4ZmIzOTViYzVhYTJlMjY5N2I0ZTg5Ni4KLSBSZXdvcmQgdGhlIGNvdmVy
+IGxldHRlcuKAmXMgc3ViamVjdC4KLSBSZW9yZGVyIHRoZSBtZXNvbiBmaXJtd2FyZSBwYXRjaCBi
+ZWZvcmUgdGhlIG90aGVyIG9uZXMsIHNvIHRoYXQgZXZlcnkKICBjb21taXQgaXMgYWx3YXlzIHdv
+cmtpbmcgY29ycmVjdGx5LgoKQ2hhbmdlcyBzaW5jZSB2MjoKLSBMaW5rIHRvIHYyOgogIGh0dHBz
+Oi8vbG9yZS5rZXJuZWwub3JnL3J1c3QtZm9yLWxpbnV4L2FsakFxQk5WWFYxYVZKcXhAbHVuYS9U
+LwotIFJlYmFzZSBvbiB0b3Agb2YgbGludXgtbmV4dC9tYXN0ZXIuCi0gRml4IGxvZ2ljIGVycm9y
+IHdoaWNoIG1hZGUgYWxsIGRldmljZXMgcmVhZC1vbmx5LgotIFJlbW92ZSBhIGJsYW5rZXQgY2Fz
+dCBvZiBmdW5jdGlvbiBwb2ludGVycyB0byB2b2lkICogaW4KICBhcHBsZS1zcG1pLW52bWVtIChw
+YXRjaCAzKS4KLSBBbHNvIGZpeCBjb25zdG5lc3Mgb2Ygd3JpdGUgYnVmZmVyIGluIGZpcm13YXJl
+OiBtZXNvbiwgd2hpY2ggaXMgdXNlZAogIGV4Y2x1c2l2ZWx5IGJ5IG1lc29uLWVmdXNlIChwYXRj
+aCA0KS4KLSBSZS1yZXZpZXcgYWxsIGNoYW5nZXMgdG8gbWFrZSBzdXJlIHRoZSBwYXNzZWQgdHlw
+ZXMgYXJlIG1vcmUgY29ycmVjdAogIHRoYW4gdGhleSB3ZXJlIGJlZm9yZS4KLSBBY3R1YWxseSB0
+ZXN0IHdpdGggQ09NUElMRV9URVNULCB3aGljaCBJIGZvcmdvdCB0byBlbmFibGUgYmVmb3Jl4oCm
+CgpDaGFuZ2VzIHNpbmNlIHYxOgotIExpbmsgdG8gdjE6CiAgaHR0cHM6Ly9sb3JlLmtlcm5lbC5v
+cmcvcnVzdC1mb3ItbGludXgvMjAyNjA3MTUxNzUyMjkuMjQ2NzItMS1saW5rbWF1dmVAbGlua21h
+dXZlLmZyLwotIFJlbW92ZWQgYWxsIGNoYW5nZXMgdG8gb3RoZXIgc3Vic3lzdGVtcyB0aGFuIG52
+bWVtLgotIEFkZGVkIGEgbmV3IHJlZ193cml0ZV9jb25zdCBjYWxsYmFjayBpbnN0ZWFkIG9mIGNo
+YW5naW5nIHRoZSBleGlzaXRuZwogIHJlZ193cml0ZS4KLSBEZXByZWNhdGVkIHRoZSBleGlzdGlu
+ZyByZWdfd3JpdGUgY2FsbGJhY2ssIGl0IHdpbGwgZ2V0IHJlbW92ZWQgb25jZQogIGFsbCB1c2Vy
+cyBpbiB0aGUga2VybmVsIHdpbGwgYmUgZG9uZSBtaWdyYXRpbmcgdG8gdGhlIG5ldyBvbmUuCgpM
+aW5rIE1hdXZlICg0KToKICBmaXJtd2FyZTogbWVzb246IHBhc3MgYSBjb25zdCBidWZmZXIgdG8g
+bWVzb25fc21fY2FsbF93cml0ZSgpCiAgbnZtZW06IGNvcmU6IGRlcHJlY2F0ZSByZWdfd3JpdGUg
+Y2FsbGJhY2sgd2l0aCByZWdfd3JpdGVfY29uc3QKICBudm1lbTogbWFrZSBhbGwgcmVnX3dyaXRl
+IGNhbGxiYWNrcyB0YWtlIGNvbnN0IHZvaWQgKgogIG52bWVtOiBlbmFibGUgQ09NUElMRV9URVNU
+IGZvciBtb3JlIGRyaXZlcnMKCiBkcml2ZXJzL2Zpcm13YXJlL21lc29uL21lc29uX3NtLmMgICAg
+ICAgfCAgMiArLQogZHJpdmVycy9udm1lbS9LY29uZmlnICAgICAgICAgICAgICAgICAgIHwgIDYg
+KysrLS0tCiBkcml2ZXJzL252bWVtL2FwcGxlLXNwbWktbnZtZW0uYyAgICAgICAgfCAgNCArKy0t
+CiBkcml2ZXJzL252bWVtL2F0MjQuYyAgICAgICAgICAgICAgICAgICAgfCAgNiArKystLS0KIGRy
+aXZlcnMvbnZtZW0vYXQyNS5jICAgICAgICAgICAgICAgICAgICB8ICA0ICsrLS0KIGRyaXZlcnMv
+bnZtZW0vYmNtLW9jb3RwLmMgICAgICAgICAgICAgICB8ICA4ICsrKystLS0tCiBkcml2ZXJzL252
+bWVtL2NvcmUuYyAgICAgICAgICAgICAgICAgICAgfCAyNiArKysrKysrKysrKysrKysrLS0tLS0t
+LS0tCiBkcml2ZXJzL252bWVtL2VlcHJvbV85M3h4NDYuYyAgICAgICAgICAgfCAgNiArKystLS0K
+IGRyaXZlcnMvbnZtZW0vaW14LW9jb3RwLXNjdS5jICAgICAgICAgICB8ICA2ICsrKy0tLQogZHJp
+dmVycy9udm1lbS9pbXgtb2NvdHAuYyAgICAgICAgICAgICAgIHwgIDYgKysrLS0tCiBkcml2ZXJz
+L252bWVtL2ludGVybmFscy5oICAgICAgICAgICAgICAgfCAgMSArCiBkcml2ZXJzL252bWVtL2xh
+bjk2NjItb3RwYy5jICAgICAgICAgICAgfCAgNiArKystLS0KIGRyaXZlcnMvbnZtZW0vbHBjMTh4
+eF9lZXByb20uYyAgICAgICAgICB8ICA2ICsrKy0tLQogZHJpdmVycy9udm1lbS9tMjRsci5jICAg
+ICAgICAgICAgICAgICAgIHwgIDQgKystLQogZHJpdmVycy9udm1lbS9tYXg3Nzc1OS1udm1lbS5j
+ICAgICAgICAgIHwgIDQgKystLQogZHJpdmVycy9udm1lbS9tZXNvbi1lZnVzZS5jICAgICAgICAg
+ICAgIHwgIDggKysrKy0tLS0KIGRyaXZlcnMvbnZtZW0vcWNvbS1zcG1pLXNkYW0uYyAgICAgICAg
+ICB8ICA2ICsrKy0tLQogZHJpdmVycy9udm1lbS9xZnByb20uYyAgICAgICAgICAgICAgICAgIHwg
+IDYgKysrLS0tCiBkcml2ZXJzL252bWVtL3JhdmUtc3AtZWVwcm9tLmMgICAgICAgICAgfCAgNiAr
+KystLS0KIGRyaXZlcnMvbnZtZW0vc252c19scGdwci5jICAgICAgICAgICAgICB8ICA0ICsrLS0K
+IGRyaXZlcnMvbnZtZW0vc3ByZC1lZnVzZS5jICAgICAgICAgICAgICB8ICA2ICsrKy0tLQogZHJp
+dmVycy9udm1lbS9zdG0zMi1ic2VjLW9wdGVlLXRhLmMgICAgIHwgIDIgKy0KIGRyaXZlcnMvbnZt
+ZW0vc3RtMzItYnNlYy1vcHRlZS10YS5oICAgICB8ICA0ICsrLS0KIGRyaXZlcnMvbnZtZW0vc3Rt
+MzItcm9tZW0uYyAgICAgICAgICAgICB8IDEwICsrKysrLS0tLS0KIGRyaXZlcnMvbnZtZW0venlu
+cW1wX252bWVtLmMgICAgICAgICAgICB8ICA2ICsrKy0tLQogaW5jbHVkZS9saW51eC9maXJtd2Fy
+ZS9tZXNvbi9tZXNvbl9zbS5oIHwgIDIgKy0KIGluY2x1ZGUvbGludXgvbnZtZW0tcHJvdmlkZXIu
+aCAgICAgICAgICB8ICA2ICsrKysrLQogMjcgZmlsZXMgY2hhbmdlZCwgODcgaW5zZXJ0aW9ucygr
+KSwgNzQgZGVsZXRpb25zKC0pCgoKYmFzZS1jb21taXQ6IDNmMjQyNWY1YjViYmJkZDk5MWNhOWNk
+ZmQ1NTAyZTY4ZDg4OTU5OTgKLS0gCjIuNTUuMAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFt
+bG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
