@@ -4,98 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43545C982D7
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Sep 2026 19:22:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1FBCC982D0
+	for <linux-amlogic@archiver.kernel.org>; Sun, 20 Sep 2026 08:13:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WOGIpl0ddnjnH53AvX05F4q5PJkNLHyQ245r0GBCMNA=; b=rm04HjkPCL1v9x
-	TMS2TV1BToGl349yLVyts8LsbQA1qOvhrWCCNCseNGdkf/PhFA8clGLRfGGHOnf4brdUjWOVFBZ80
-	IS3/eyUMCKnoLQ9ipSyBNo+3mzwY3/4z+Pz/zDG+ZUU9kpHPrpIJYxMsoey1FLhV36x087BpUDMuZ
-	EbWA5OYVXaHqgHkrJCRUfos8AGZ4AHdXbdz47FMJX6sVrO0s2jdfhLKg0eLza/MdPUykGWJ6PA5g5
-	QkAHeRubpPslLpRbGWuxZe/r2ASHS/5YiG4i4BVXy2KKnpRrG0nMEWkFyRfjmsm4kDsNoLgFs1unh
-	lHulC2PSamaVKqGuW14A==;
+	List-Owner; bh=39URIN9MtisTExPVyDMr72V8z5X9qgz9iGpuG+H7HVA=; b=XrtvVhVNbQJLZX
+	5v4AY5eJpnKkEUds2I5RBzy4gnCYJ+J1tHEeF9R3QFkfZHDbRCFOpybSW4NzovHCTXmkXuQhZ9vdv
+	Y54C4pEdTsuFWKG6cMVGI5RFG0+WGxmhPk07mcUnGQLRuiNd8hRSywdDqP5s7/hz1uft6KIJTcAcx
+	yRi8Ty7bGlS0R+ZOTwKOOpK/XQ46VBgXQuZVIdTi+7VWFfKjAbHCRbjnjF80BOB1/vrOjww64mfKo
+	jILsfQ0lOYSuYPtq89fUkW0r+6cTS4h9SFmYJ9G1TL/XItgB5QXEuj54CbnoL8+b5AOPqfvQw268x
+	82bnY8pbEnH53RB7+Q9g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x7e9l-0000000FPAD-141Q;
-	Fri, 18 Sep 2026 19:21:57 +0000
-Received: from fout-a2-smtp.messagingengine.com ([103.168.172.145])
+	id 1x8Cg3-0000000H5f5-2NDN;
+	Sun, 20 Sep 2026 08:13:35 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x7e9i-0000000FP9T-0Oem;
-	Fri, 18 Sep 2026 19:21:55 +0000
-Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
-	by mailfout.phl.internal (Postfix) with ESMTP id 113C7EC011F;
-	Fri, 18 Sep 2026 15:21:50 -0400 (EDT)
-Received: from phl-frontend-03 ([10.202.2.162])
-  by phl-compute-05.internal (MEProxy); Fri, 18 Sep 2026 15:21:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kumba.dev; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1789759310;
-	 x=1789845710; bh=+f/z0JP+U4EtOy/3h9UdmQJB7RkUpXUnEhmZ55aJB1w=; b=
-	Ohu7+E0X13bssI57AEV35UM19qwkKlVHxVKz5/OJt+5uWA2bgwvwe3I65n8Jhf4H
-	XLDByqkG4j8ffDCVs/Q6xYzKUa6ZT/YkddC6XEQthEIMEjXIosyRKdOol9cPjkW0
-	GVWBl9QS+kojtveKPxHjj9PW4MilZbXXa46XS05slNK38qsInjQFKZg2FMWnePDl
-	A3FZe2wvO4EDRwxbbsML/nBzWsfmJ0cMuhNNKW1i/h+IlVrPgcUUVLwrVbZx6b5b
-	zZVHADvusGbai2aK8rsNU3PGynlPKv8S1H9/t09am0oBZh5swBsqCKlZ8SGQO7+2
-	XBPWq+3T1OZp13yyfz4pqw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1789759310; x=
-	1789845710; bh=+f/z0JP+U4EtOy/3h9UdmQJB7RkUpXUnEhmZ55aJB1w=; b=K
-	r1ckQYrv3A14SBmzHUCbHcRHG+KEhtOeOtoMjBTC8ne+iBRnbL4+9+K5ap5YeO8j
-	o/fol20VTErYRDRisbqjD+ll6e1wb40zlKq3vt2BWX+5nWnI1kMqFUXXzyXRrxSG
-	FPE1Sbsfx1LGe+gExUOUcieKNDliLJE6zQefD7TGMyHm/6Mgl2Fg5KPtqq9IBEJ4
-	JKm3V1NyFS5gNeuJo1x0Yw6cU0A7mEy14Zu2rT8bg1/Q75DqPhBBXxsdUknnzIQU
-	J63jJ9wvl6eeLU6oQCwoc1EbnEDXin/yGS7uXopJ5I0pw3NVkybUX9nS+Dby1et8
-	tEmRHbdM/DKb5ime9EeTw==
-X-ME-Sender: <xms:TY-takZVLWMmtCpYhAQ3_6ZGp5fO9istKWENaeAQpssek2wJNCtRtw>
-    <xme:TY-tanlD5AcIn-tdu0_0iK8re9JAWHeyTVHplTp_TiRzh8I_I_k5ug03Hc8Mng4l8
-    mYAc6sTIbQeEQXp6_xJeAt2x6cku5s41YBtwE5g2_ul0EAUI7j1U1zE>
-X-ME-Received: <xmr:TY-taqgy1hsAGPCnB-K3cyoyrCABuJ8xH7xb4x3i31tmVH3BAjUgbg80bKajcooU0JJsnmP-UX0rnugrhtZM2iX4kOg5v4tAIQMLHydhZqQl5o8>
-X-ME-Proxy-Cause: dmFkZTEsnz2aMme9OvfQGG5Y8GSqHa68DLZlnr4e8JXNRIraPpfK2AhpuQYaQCdLuH4d4E
-    LCf7BP7IA/lS6ef53ADgoMj+JJ/mfoIxRWkwLbNogOo65dFObknUvCBwx3CuljCtfTjYt5
-    u8IgnSBS9MIdBJMYMpSU/2MI1Ww4O+I1oZuH5uDhV+KS5+9j2MZtNCFl8UITbzpMHz6hTx
-    WzNUI4GZ1f2aO6SUmft1nX6DFK0J3tXJBGRZ4ohV661vDuOQcfX53XrGmz+XUAmSLgNImo
-    TrAj3oMzAniMrTHGv2RdwVs4cQhQXPQQnkWU+5lZA5CRqlCfrOtrKugQ6Czie/gtclxKD8
-    8rCP1K1Oo295ye6IuknLXJz1K/9UvCX5a810NWifNAJj+yurGPJEHYnpxeSOJGdFMXUxpb
-    ZytZ2qLoMQaDQmUM+ymJHefuhzMvLzSspTnlPXRp/4LWi+9btixsrf33AsUTSZAdqUSmag
-    OQwv1XbeAFsqLjbamfIsE3Azyfr64SvJrmRkVvE/Xan0gCN60uC+eAOwoXV1xyrRjCHFcv
-    qnWEU87JqoV8Rp7+EzTjfxXqQEMX7CZxTCblmv49QPBahF/oz8T/VjEliwx7Ieh1t4F2x9
-    YP/g6ppWTbIgI2vFYObaMJ5WXLoyJCMyeMdxZGv7xik33Mv5KnCFg1za4wqQ
-X-ME-Proxy: <xmx:TY-tapQHDxEi6e7ZtWDdsVH1sBd4vGJpqgRHDJowfKqzhy1cAaBPyQ>
-    <xmx:TY-tarZ18w-SrJXRqbH8Lj9ezP2RFuzVHePc-gMghlMoqJBuzgQgig>
-    <xmx:TY-tamR1F9UYLt1Lxh_23KhO1spvkajFI5M-KhZjmmibFzU4npXRDg>
-    <xmx:TY-taq_ub46dhJx8_55xxaTJxPT5nq2DesWDiSk6-dB1hPvt1yJwAA>
-    <xmx:To-taqhcKck-bj2gDgjmyLIOWtaag69IjTaZXEJs5PhQYsLZefvKSQys>
-Feedback-ID: if8114916:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 18 Sep 2026 15:21:49 -0400 (EDT)
-Message-ID: <c4a61df3-6786-446c-96cf-ebff064b9c46@kumba.dev>
-Date: Fri, 18 Sep 2026 15:21:48 -0400
+	id 1x8Cg3-0000000H5eW-0WA2;
+	Sun, 20 Sep 2026 08:13:35 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 8233443BB6;
+	Sun, 20 Sep 2026 08:13:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4A3D2C2BCC7;
+	Sun, 20 Sep 2026 08:13:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1789892014;
+	bh=A7pJRhG7NpywLWWaoMaC1pUfWSZ7AsdAS4qYr97/LYU=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=RKuN9OfJVAus+x3GncSlKwUHl9Jtko/fukCDXJ+70KNll5EXk00FkE2C20JnVbxw+
+	 wMcffUT9/jByMBDcOBNcvWYq2kW+AbkgU120JuRSrAaVqiwlO7SOXv3peHPcruxlKT
+	 0IORh6+QxIx/PVer5OYX5XVlTI+xY/tlM2q/7s6h9OUQLIgysUziOpTwQFB4qCq69g
+	 bHrB9rVevcfe8CQSgpjWQhjRgDZr3V8N/VAP2MUbiGT5jyQF+oMFTafM5bhcH7ixGo
+	 UGX9kgt9HcpkhHcbqrvB3OHfMXFD5tlFcZm+94ocOBa+VzmMNuR2KGh6LtMgsOH4Ht
+	 S2Zh7iyctz67Q==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2A1A2C982D0;
+	Sun, 20 Sep 2026 08:13:34 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Sun, 20 Sep 2026 08:13:28 +0000
+Subject: [PATCH 1/3] spi: dt-bindings: amlogic,meson-gx-spicc: add T7
+ compatible
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] rtc: fix typos in comments
-To: Hemanth Selam <hemanth.selam@gmail.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-References: <20260904104758.23905-1-hemanth.selam@gmail.com>
-Content-Language: en-US
-From: Joshua Kinard <linux@kumba.dev>
-In-Reply-To: <20260904104758.23905-1-hemanth.selam@gmail.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260918_122154_477463_75BD3655 
-X-CRM114-Status: GOOD (  19.26  )
+Message-Id: <20260920-t7-node-new-v1-1-e6e0840c1b0b@amlogic.com>
+References: <20260920-t7-node-new-v1-0-e6e0840c1b0b@amlogic.com>
+In-Reply-To: <20260920-t7-node-new-v1-0-e6e0840c1b0b@amlogic.com>
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1789892012; l=1575;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=Cr+H2n7PINWdLBG8TQcHVSgRz7Rd2HsUY6kC9/oqBVw=;
+ b=tvbgHwq2gJbM4TNfbjMX2pQyDPUy7YneptKtaRKwB+1ToDgPQfn2smAZdxJQlQTmvbLiyZ26l
+ 5k6PyShz8JiAVIWTe2aD7LDqHucFpEQa9OIFmg0XQui91Nck4YQpAmm
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,89 +87,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 09/04/2026 06:47, Hemanth Selam wrote:
-> Fix typos in comments, reported by scripts/checkpatch.pl using the
-> misspelling list in scripts/spelling.txt.  Only touches comments, no code
-> changes.
-> 
-> Assisted-by: Cursor:claude-opus-5
-> Signed-off-by: Hemanth Selam <hemanth.selam@gmail.com>
-> ---
->   drivers/rtc/rtc-ds1685.c   | 6 +++---
->   drivers/rtc/rtc-meson.c    | 2 +-
->   drivers/rtc/rtc-pcf8583.c  | 2 +-
->   drivers/rtc/rtc-rk808.c    | 2 +-
->   drivers/rtc/rtc-sa1100.c   | 2 +-
->   drivers/rtc/rtc-spear.c    | 2 +-
->   include/linux/rtc/ds1685.h | 4 ++--
->   7 files changed, 10 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/rtc/rtc-ds1685.c b/drivers/rtc/rtc-ds1685.c
-> index 5fc8e36b1abf..beb987b76f24 100644
-> --- a/drivers/rtc/rtc-ds1685.c
-> +++ b/drivers/rtc/rtc-ds1685.c
-> @@ -1231,7 +1231,7 @@ ds1685_rtc_probe(struct platform_device *pdev)
->   		dev_warn(&pdev->dev,
->   			 "Main battery is exhausted! RTC may be invalid!\n");
->   
-> -	/* Check the auxillary battery.  It is optional. */
-> +	/* Check the auxiliary battery.  It is optional. */
->   	if (!(rtc->read(rtc, RTC_EXT_CTRL_4A) & RTC_CTRL_4A_VRT2))
->   		dev_warn(&pdev->dev,
->   			 "Aux battery is exhausted or not available.\n");
-> @@ -1395,7 +1395,7 @@ ds1685_rtc_poweroff(struct platform_device *pdev)
->   		rtc->write(rtc, RTC_CTRL_A, ctrla);
->   
->   		/*
-> -		 * Read Control 4A and check the status of the auxillary
-> +		 * Read Control 4A and check the status of the auxiliary
->   		 * battery.  This must be present and working (VRT2 = 1)
->   		 * for wakeup and kickstart functionality to be useful.
->   		 */
-> @@ -1407,7 +1407,7 @@ ds1685_rtc_poweroff(struct platform_device *pdev)
->   			rtc->write(rtc, RTC_EXT_CTRL_4A, ctrl4a);
->   
->   			/*
-> -			 * The auxillary battery is present and working.
-> +			 * The auxiliary battery is present and working.
->   			 * Enable extended functions (ABE=1), enable
->   			 * wake-up (WIE=1), and enable kickstart (KSE=1)
->   			 * in Control 4B.
-> diff --git a/include/linux/rtc/ds1685.h b/include/linux/rtc/ds1685.h
-> index 8ec0ebfaef04..55d3edc7e972 100644
-> --- a/include/linux/rtc/ds1685.h
-> +++ b/include/linux/rtc/ds1685.h
-> @@ -200,7 +200,7 @@ struct ds1685_rtc_platform_data {
->    * access to the extended NV-SRAM by automatically incrementing the address
->    * register when they are read from or written to.
->    */
-> -#define RTC_CTRL_4A_VRT2	BIT(7)	/* Auxillary Battery Status */
-> +#define RTC_CTRL_4A_VRT2	BIT(7)	/* Auxiliary Battery Status */
->   #define RTC_CTRL_4A_INCR	BIT(6)	/* Increment-in-Progress Status */
->   #define RTC_CTRL_4A_PAB		BIT(3)	/* Power-Active Bar Control */
->   #define RTC_CTRL_4A_RF		BIT(2)	/* RAM-Clear Flag */
-> @@ -215,7 +215,7 @@ struct ds1685_rtc_platform_data {
->   /*
->    * Bit names in Extended Control Register 4B.
->    */
-> -#define RTC_CTRL_4B_ABE		BIT(7)	/* Auxillary Battery Enable */
-> +#define RTC_CTRL_4B_ABE		BIT(7)	/* Auxiliary Battery Enable */
->   #define RTC_CTRL_4B_E32K	BIT(6)	/* Enable 32.768Hz on SQW Pin */
->   #define RTC_CTRL_4B_CS		BIT(5)	/* Crystal Select */
->   #define RTC_CTRL_4B_RCE		BIT(4)	/* RAM Clear-Enable */
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Huh, I am honestly now wondering how I made such simple typos all those 
-years ago, and why it took an AI agent to find them.  At least I was 
-consistent in making them, so that's gotta amount to something.
+Add the Amlogic T7 SPICC compatible to the device tree binding.
 
-Thanks!
+The T7 controller is compatible with the existing G12A SPICC
+implementation, so require amlogic,meson-g12a-spicc as a fallback
+compatible for T7 devices.
 
-Acked-by: Joshua Kinard <linux@kumba.dev>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ .../devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml     | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml b/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
+index 4e28e6e9d8e0..f0ba15402a4c 100644
+--- a/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
++++ b/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
+@@ -16,10 +16,15 @@ description: |
+ 
+ properties:
+   compatible:
+-    enum:
+-      - amlogic,meson-gx-spicc # SPICC controller on Amlogic GX and compatible SoCs
+-      - amlogic,meson-axg-spicc # SPICC controller on Amlogic AXG and compatible SoCs
+-      - amlogic,meson-g12a-spicc # SPICC controller on Amlogic G12A and compatible SoCs
++    oneOf:
++      - items:
++          - enum:
++              - amlogic,t7-spicc
++          - const: amlogic,meson-g12a-spicc
++      - enum:
++          - amlogic,meson-gx-spicc # SPICC controller on Amlogic GX and compatible SoCs
++          - amlogic,meson-axg-spicc # SPICC controller on Amlogic AXG and compatible SoCs
++          - amlogic,meson-g12a-spicc # SPICC controller on Amlogic G12A and compatible SoCs
+ 
+   interrupts:
+     maxItems: 1
+
+-- 
+2.52.0
+
+
 
 _______________________________________________
 linux-amlogic mailing list
