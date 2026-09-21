@@ -4,53 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4D95C982E1
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Sep 2026 08:14:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FAA5C982EE
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Sep 2026 19:02:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ALU7XpLK2CagdnJmRCudPCaNDmknwf8srJ0K8olO2is=; b=jAI0ZwuEGVmIPL
-	u61gQg3EMq82w5sMhnqvnyR4+nu7qxwINy3j1ssjLSmJA9w4HAIViM/WUT3K7H+oPUl22r+/oO3zI
-	LkvJE8N1y2YYzqiSu6UzU5frLZObg2AHzl2s895bkK8Kx1oCptHSx8keBF/thsHwVY+KhYk+9agEI
-	z+/zVpQg7LCgEc07ipdQg2KMTb7PRjpoTHUX6VJcyCTmIIjuT9tcngSuNYLmMWPYXBsbLLFsCnSuB
-	ySdVfT1752YJTaFHA1Pplb3wesMVlZGRQkDyWhMDkRwg5YGNPp2xoSULR1fP7x1nmCsoSL45y/So+
-	Da4u/gZAg9LQriNNpSeQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Subject:Cc:To:From:MIME-Version:Date:Message-ID:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=AKbWCCDMDPpgF3kTtFDYmoZS7fyOGji9KA5arjjudjs=; b=cMYswyLm4WrVb8Lf/TgRqWryEr
+	o/0px2eOA1FvW9c6BOSqHMlbRez/FARBmyuouMosOtaZ6kDlauiezh5CnRtLeLgMysSMxCCK0Qtg5
+	kwfp9GR7fPSxAIG95b8SXOUPgElxJK1FPssOs5PlzKGgJu92gOIczqhr7X9bcpuJ+pYnjU66QUd2X
+	/azAil+5CpUvBsVGJTdViqefxq18PSTOm/S3mgK4jIgzzdPfOSeFPWouZYPdE2bkAwIEDLZpD86H8
+	3YMeOl2R9lWbn/+ro2eGPO6DzZd8BLE2CsB9ewQvc5GVka7YcBmpE4rWyaWNk/Gia+tyhX1e1UR80
+	puiWGtng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x8Z9x-00000001JVY-2Apm;
-	Mon, 21 Sep 2026 08:13:57 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1x8jHY-00000003CW4-0LUD;
+	Mon, 21 Sep 2026 19:02:28 +0000
+Received: from mail-vs2-x0c.google.com ([2a00:1450:4864:3a::c])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x8Z9v-00000001JVI-3IV3
+	id 1x8jHV-00000003CUO-49l1
 	for linux-amlogic@lists.infradead.org;
-	Mon, 21 Sep 2026 08:13:55 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8B89440E56;
-	Mon, 21 Sep 2026 08:13:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B4951F00893;
-	Mon, 21 Sep 2026 08:13:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1789978435;
-	bh=kmLTRNY1kc2se1JCA9fEugMVStcIxV4+UhGwHWOQnwo=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=dIHtaix/nXCu2qX9GynTmq3EQFPMc4tQtf2tl+VArguVtyLE+vbrx/JdNNb7xIY25
-	 tQ9eQI1Em3gSTQ77xsmzIOhA0u4iApHYk/+8TwcjM23ZGfQtynLHXOlOassCHnArpB
-	 IN14WIvm4m10MfgbUwZ/QERrfQD0KWLmlhQIfvN4/DA1BK8j4TlCp10ss88ehXLCKh
-	 phRW6kqQXMzpx8J0XV4U0XDEwSqm9pIM4ZGSxamw4S/2kpm7G96tRFTyDNjf4DhscI
-	 zihoiYtucIssNEMNPNcaUaGi2LhaVhSgbrwC2yJ9uIoX71bFr2d+UVufH7JIeQtU9r
-	 X+Nm0MQAmI7Vw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 3/3] arm64: dts: amlogic: add T7 peripheral nodes
-To: "Xianwei Zhao" <xianwei.zhao@amlogic.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org, neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
-In-Reply-To: <20260920-t7-node-new-v1-3-e6e0840c1b0b@amlogic.com>
-References: <20260920-t7-node-new-v1-0-e6e0840c1b0b@amlogic.com>
- <20260920-t7-node-new-v1-3-e6e0840c1b0b@amlogic.com>
-Date: Mon, 21 Sep 2026 08:13:54 +0000
-Message-Id: <20260921081355.1B4951F00893@smtp.kernel.org>
+	Mon, 21 Sep 2026 19:02:27 +0000
+Received: by mail-vs2-x0c.google.com with SMTP id ada2fe7eead31-7a05d236f53so1850943137.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 21 Sep 2026 12:02:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brivo.com; s=google; t=1790017341; x=1790622141; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:subject:cc:to:from
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=GFcZ8v2IrQlVXsS28/gxish2Yf7RjcBy4ak1q2e8MoU=;
+        b=TeUb+zLDainnTPmwidcu5AyEbVIi2NBOMovX78I9YxRy02b7gq43725/HA4rk3zszP
+         Spmp7RMxYMoyyHMTTAN96FtJexRSqq2LJmxhuNsucPShsEmvbeW0gKuJVj1gybbtuQ5R
+         sWgJmudaE3b8UWUnsYTLEx2ujxBjW9Z/xxP1Op4OGzQaHMQQsjsl8MRrFSYW/sJhSMFz
+         Cx4aBNAZ+kBbpl2A/Bwr3PB5/VZrbbxSQAtXYAOr6re7AhKP7rC4XKqaOw6q55nbcAa/
+         TnV5H7EUpZjkivONkibzkxJdRK6SIbYUu7jYvKyIgIIOSrwQh08OzKa5FC1gJEigI6yS
+         OIxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1790017341; x=1790622141;
+        h=content-transfer-encoding:content-type:subject:cc:to:from
+         :content-language:user-agent:mime-version:date:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=GFcZ8v2IrQlVXsS28/gxish2Yf7RjcBy4ak1q2e8MoU=;
+        b=Bs84O8tsHjwAM1nSNF3Lrb0oxz7/okFPxBPkmFTGhAndeZeiHwAu3WTz3TKiKi2Etw
+         mibqSTTGOhy8qwOpu0PtGS6R2XN0eqZbhKLBjepDv8Gm4bRl7LAYPZOGJxbYEnceDI/L
+         9pk4RNWUkkfgRy/EXr6vDSO10iL3+EI+FJZRSPgEa2vwaISjLRdoppoouRYaz3raNQOx
+         YBVrDwV9RR53L0r6mDE7Wj3vjssqxsLnpXtdu4ZbkpAETSc7xwmwLP7oQv519gTvRszi
+         kglakWgDOs4I90oy53pmrLB8yeAo1dEA9rZjEnX5KK9nTFYPnqodBRSXe3qBf6CnqJ5N
+         3qUA==
+X-Forwarded-Encrypted: i=1; AKwUvBzAwZHWP2wnQpwJV6nK3UYf0TpYHuMNHmF/kUPXgZGy9D9UIIyEHOv39zNaz2CBO7Fmc8VoKxeFUNMeYE+6@lists.infradead.org
+X-Gm-Message-State: AFuF++kezG//hn1WYPkpbmK+zdo6Gq9as32ghXKzVkuyznYsLfU2FWNs
+	AyJgRsXPVaZCOnEg5gICor+lE9v4Zj9aP4xs7BALjUswdmi+B+ai+78nk3o1MUNk0yIRbmCls2F
+	QOE4n3yGCWUqoDUqWWVqEWlpeMHmoe+s68pzTwDAw/djwyX1e8oTWOZqLTmgQemTxzA==
+X-Gm-Gg: AYBFou0zsf70MawpluhgslrkM2O4+s1gY4X4bHKwIT2A5VNHubrQP6er6WMTwyTTi3B
+	oVlY7xko0WamPGy1aBjk6PQqwOQeaQziQF+orr57EuuozMsovUs3dVPlzaokUzKSFpQU9IWozaW
+	sDn2DsCVIevPyoKXA7THb+rSN+Sxq5TL4sUVQHcY9lD8roImhlyOXEj0nRP3w8uRZMUnmTnSzqy
+	Jwp2lOcdIwxETFUQUaeaulyUaoFrMq/Xp94/4NrlR+Dl+8ppUw2MOUBqk45z4dTFz2XEvco7fns
+	MeA1SezpMinRIU8qP0st/6PJnEKbambx9Z5kIPmWJhjDFaVCQhrDHwY0sqr9PGnTLKxErnSkHAK
+	rabQ2/331lfiZegwfs+GS9ZWvpSnstMSn3FIkXAJoJGNEhLvQ1uWedEm+50ViwSu4rD9nAcYa8K
+	e1TcSPP5qiCssMITdX3nZzQAsgKu1oJUMQOJzzzdiFMfpsU6wKspk3S4Je2k1ti2hU0hfoatMWJ
+	XQm
+X-Received: by 2002:a05:6102:2922:b0:7a3:4e75:d1f0 with SMTP id ada2fe7eead31-7a55d38b2b7mr6284952137.23.1790017341074;
+        Mon, 21 Sep 2026 12:02:21 -0700 (PDT)
+Received: from [10.200.233.210] ([71.163.254.246])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-7aad2e36ea7sm8429137.4.2026.09.21.12.02.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Sep 2026 12:02:20 -0700 (PDT)
+Message-ID: <d90c0eec-728b-4607-b480-86b2534559c4@brivo.com>
+Date: Mon, 21 Sep 2026 15:02:19 -0400
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+From: Sean Anderson <sanderson@brivo.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ linux-pwm@vger.kernel.org
+Cc: Brian Masney <bmasney@redhat.com>, linux-kernel@vger.kernel.org,
+ Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+Subject: Potential deadlock in clk-pwm
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260921_120226_051286_0A606D01 
+X-CRM114-Status: GOOD (  15.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,83 +102,187 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-NCBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW01lZGl1bV0gZHQ6IGkyYzIgbm9k
-ZSBpcyB1bmNvbmRpdGlvbmFsbHkgZW5hYmxlZCBpbiBTb0MgZHRzaQotIFtMb3ddIGR0OiBldGhl
-cm5ldC1waHkgbm9kZSBuYW1lIHZpb2xhdGVzIHNjaGVtYSAodXNlcyB1bmRlcnNjb3JlKQotIFtM
-b3ddIGR0OiBmaXhlZCByZWd1bGF0b3JzIGRlZmluZSBlbmFibGUtYWN0aXZlLWhpZ2ggd2l0aG91
-dCBncGlvCi0gW0xvd10gZHQ6IG5ldyBVQVJUIG5vZGVzIG9taXQgbWFuZGF0b3J5IGNsb2NrcyBw
-cm9wZXJ0aWVzCi0tCgpjb21taXQgNmZhOTYyMDAwM2QyZTk5YWRlZTBlMWNkMTA2NDUwYjlkMGFh
-YmIyZApBdXRob3I6IFhpYW53ZWkgWmhhbyA8eGlhbndlaS56aGFvQGFtbG9naWMuY29tPgoKYXJt
-NjQ6IGR0czogYW1sb2dpYzogYWRkIFQ3IHBlcmlwaGVyYWwgbm9kZXMKCkFkZCBkZXZpY2UgdHJl
-ZSBkZXNjcmlwdGlvbnMgZm9yIHRoZSBwZXJpcGhlcmFscyBvbiB0aGUgQW1sb2dpYyBUNwpTb0Mg
-YW5kIHRoZSBUNyBBMzExRDIgQU40MDAgYm9hcmQuCgpBZGQgc3VwcG9ydCBmb3IgdGhlIFQ3IEV0
-aGVybmV0IGNvbnRyb2xsZXIsIFNQSSBjb250cm9sbGVycywgSTJDCmNvbnRyb2xsZXJzLCBVQVJU
-cywgcGluY3RybCBncm91cHMsIHJlZ3VsYXRvcnMsIGFuZCByZXNlcnZlZCBtZW1vcnkuCkFsc28g
-ZW5hYmxlIHRoZSBFdGhlcm5ldCBjb250cm9sbGVyIG9uIHRoZSBBTjQwMCBib2FyZC4KCj4gZGlm
-ZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9hbWxvZ2ljLXQ3LWEzMTFkMi1h
-bjQwMC5kdHMgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvYW1sb2dpYy10Ny1hMzExZDIt
-YW40MDAuZHRzCj4gaW5kZXggY2E3NTM2Zjc3MmZmMS4uZGZkODIxNDgxNzliMCAxMDA2NDQKPiAt
-LS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvYW1sb2dpYy10Ny1hMzExZDItYW40MDAu
-ZHRzCj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL2FtbG9naWMtdDctYTMxMWQy
-LWFuNDAwLmR0cwoKWyAuLi4gXQoKPiArCXZkZGFvXzN2MzogcmVndWxhdG9yLXZkZGFvLTN2MyB7
-Cj4gKwkJdmluLXN1cHBseSA9IDwmZGNfaW4+Owo+ICsJCWNvbXBhdGlibGUgPSAicmVndWxhdG9y
-LWZpeGVkIjsKPiArCQlyZWd1bGF0b3ItbmFtZSA9ICJWRERBT18zVjMiOwo+ICsJCXJlZ3VsYXRv
-ci1taW4tbWljcm92b2x0ID0gPDMzMDAwMDA+Owo+ICsJCXJlZ3VsYXRvci1tYXgtbWljcm92b2x0
-ID0gPDMzMDAwMDA+Owo+ICsJCXN0YXJ0dXAtZGVsYXktdXMgPSA8NzAwMDA+Owo+ICsJCWVuYWJs
-ZS1hY3RpdmUtaGlnaDsKCltTZXZlcml0eTogTG93XQpEb2VzIHRoaXMgcmVndWxhdG9yIGFjdHVh
-bGx5IG5lZWQgdGhlIGVuYWJsZS1hY3RpdmUtaGlnaCBwcm9wZXJ0eT8gV2l0aG91dApzcGVjaWZ5
-aW5nIGEgZ3BpbywgdGhpcyBwcm9wZXJ0eSB3aWxsIG5vdCBoYXZlIGEgZnVuY3Rpb25hbCBlZmZl
-Y3QuCgo+ICsJCXJlZ3VsYXRvci1ib290LW9uOwo+ICsJCXJlZ3VsYXRvci1hbHdheXMtb247Cj4g
-Kwl9OwoKWyAuLi4gXQoKPiArCXZkZF9kZHI6IHJlZ3VsYXRvci12ZGQtZGRyIHsKPiArCQl2aW4t
-c3VwcGx5ID0gPCZkY19pbj47Cj4gKwkJY29tcGF0aWJsZSA9ICJyZWd1bGF0b3ItZml4ZWQiOwo+
-ICsJCXJlZ3VsYXRvci1uYW1lID0gIlZERF9ERFIiOwo+ICsJCXJlZ3VsYXRvci1taW4tbWljcm92
-b2x0ID0gPDgwMDAwMD47Cj4gKwkJcmVndWxhdG9yLW1heC1taWNyb3ZvbHQgPSA8ODAwMDAwPjsK
-PiArCQlzdGFydHVwLWRlbGF5LXVzID0gPDcwMDAwPjsKPiArCQllbmFibGUtYWN0aXZlLWhpZ2g7
-CgpbU2V2ZXJpdHk6IExvd10KU2ltaWxhciB0byB2ZGRhb18zdjMgYWJvdmUsIGRvZXMgdGhpcyBy
-ZWd1bGF0b3IgbmVlZCBlbmFibGUtYWN0aXZlLWhpZ2gKd2l0aG91dCBhIGdwaW8gcHJvcGVydHk/
-Cgo+ICsJCXJlZ3VsYXRvci1ib290LW9uOwo+ICsJCXJlZ3VsYXRvci1hbHdheXMtb247Cj4gKwl9
-Owo+ICB9OwoKWyAuLi4gXQoKPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9hbWxv
-Z2ljL2FtbG9naWMtdDcuZHRzaSBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9hbWxvZ2lj
-LXQ3LmR0c2kKPiBpbmRleCA4ZjNmMWMwNTc5YTBmLi5hNGNhM2JlMzU4NDI5IDEwMDY0NAo+IC0t
-LSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9hbWxvZ2ljLXQ3LmR0c2kKPiArKysgYi9h
-cmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvYW1sb2dpYy10Ny5kdHNpCgpbIC4uLiBdCgo+ICsJ
-CQl1YXJ0X2I6IHNlcmlhbEA3YTAwMCB7Cj4gKwkJCQljb21wYXRpYmxlID0gImFtbG9naWMsdDct
-dWFydCIsICJhbWxvZ2ljLG1lc29uLXM0LXVhcnQiOwo+ICsJCQkJcmVnID0gPDB4MCAweDdhMDAw
-IDB4MCAweDE4PjsKPiArCQkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAxNjkgSVJRX1RZUEVfRURH
-RV9SSVNJTkc+Owo+ICsJCQkJc3RhdHVzID0gImRpc2FibGVkIjsKPiArCQkJfTsKCltTZXZlcml0
-eTogTG93XQpJcyB0aGlzIG5vZGUgbWlzc2luZyBpdHMgY2xvY2tzIGFuZCBjbG9jay1uYW1lcyBw
-cm9wZXJ0aWVzPyBPbWl0dGluZyB0aGVtIGhlcmUKbWlnaHQgZm9yY2UgYm9hcmQgZmlsZXMgdG8g
-ZHVwbGljYXRlIHRoZSBjbG9jayBjb25maWd1cmF0aW9ucy4KClsgLi4uIF0KCj4gKwkJCQlpbnRf
-bWRpbzogbWRpb0AxIHsKPiArCQkJCQlyZWcgPSA8MT47Cj4gKwkJCQkJI2FkZHJlc3MtY2VsbHMg
-PSA8MT47Cj4gKwkJCQkJI3NpemUtY2VsbHMgPSA8MD47Cj4gKwo+ICsJCQkJCWludGVybmFsX2Vw
-aHk6IGV0aGVybmV0X3BoeUA4IHsKCltTZXZlcml0eTogTG93XQpDb3VsZCB0aGlzIG5vZGUgYmUg
-bmFtZWQgZXRoZXJuZXQtcGh5QDggaW5zdGVhZD8gVXNpbmcgYW4gdW5kZXJzY29yZSB2aW9sYXRl
-cwp0aGUgbWRpby55YW1sIHNjaGVtYSwgd2hpY2ggZXhwZWN0cyBuYW1lcyBtYXRjaGluZyBeZXRo
-ZXJuZXQtcGh5KEBbYS1mMC05XSspPyQuCgo+ICsJCQkJCQljb21wYXRpYmxlID0gImV0aGVybmV0
-LXBoeS1pZDAxODAuMzMwMSIsCj4gKwkJCQkJCQkgICAgICJldGhlcm5ldC1waHktaWVlZTgwMi4z
-LWMyMiI7Cj4gKwkJCQkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAzNDAgSVJRX1RZUEVfTEVWRUxf
-SElHSD47Cj4gKwkJCQkJCXJlZyA9IDw4PjsKPiArCQkJCQkJbWF4LXNwZWVkID0gPDEwMD47Cj4g
-KwkJCQkJfTsKPiArCQkJCX07Cj4gKwkJCX07CgpbIC4uLiBdCgo+ICsJCQlpMmMyOiBpMmNANmEw
-MDAgewo+ICsJCQkJY29tcGF0aWJsZSA9ICJhbWxvZ2ljLHQ3LWkyYyIsICJhbWxvZ2ljLG1lc29u
-LWF4Zy1pMmMiOwo+ICsJCQkJcmVnID0gPDB4MCAweDZhMDAwIDB4MCAweDQ4PjsKPiArCQkJCWlu
-dGVycnVwdHMgPSA8R0lDX1NQSSAxNjIgSVJRX1RZUEVfRURHRV9SSVNJTkc+Owo+ICsJCQkJI2Fk
-ZHJlc3MtY2VsbHMgPSA8MT47Cj4gKwkJCQkjc2l6ZS1jZWxscyA9IDwwPjsKPiArCQkJCWNsb2Nr
-cyA9IDwmY2xrY19wZXJpcGhzIENMS0lEX1NZU19JMkNfTV9DPjsKPiArCQkJCXN0YXR1cyA9ICJv
-a2F5IjsKCltTZXZlcml0eTogTWVkaXVtXQpTaG91bGQgdGhpcyBub2RlIGJlIHNldCB0byBzdGF0
-dXMgPSAiZGlzYWJsZWQiIGJ5IGRlZmF1bHQ/IEVuYWJsaW5nIGl0CnVuY29uZGl0aW9uYWxseSBp
-biB0aGUgU29DIGR0c2kgbWlnaHQgbGVhZCB0byBwcm9iZSBmYWlsdXJlcyBvciBoYXJkd2FyZQpj
-b25mbGljdHMgb24gYm9hcmRzIHRoYXQgZG8gbm90IHVzZSB0aGlzIGNvbnRyb2xsZXIuCgo+ICsJ
-CQl9OwoKLS0gClNhc2hpa28gQUkgcmV2aWV3IMK3IGh0dHBzOi8vc2FzaGlrby5kZXYvIy9wYXRj
-aHNldC8yMDI2MDkyMC10Ny1ub2RlLW5ldy12MS0wLWU2ZTA4NDBjMWIwYkBhbWxvZ2ljLmNvbT9w
-YXJ0PTMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxp
-bnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9y
-ZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9n
-aWMK
+Hi,
+
+I found a potential deadlock in clk-pwm with lockdep. The problem occurs
+when a multi-channel PWM calls a clock function (such as clk_get_rate) in
+its apply callback. If one channel of the PWM is used for a clk-pwm, and
+another channel is used for some other purpose, then the following deadlock
+can occur:
+
+CPU0                        CPU1
+====================== =========================
+pwm_get_state_hw(chip)
+  guard(pwmchip)(chip)
+		       clk_get_scaled_duty_cycle(clkb)
+		        clk_prepare_lock()
+		        clk_pwm_get_duty_cycle(clkb)
+		         pwm_get_state_hw(chip)
+		          guard(pwmchip)(chip)
+  chip->get_state()
+   clk_get_rate(clka)
+    clk_prepare_lock()
+
+The same scenario can play out with apply instead of get_state.  I don't
+think this can really be fixed in clk-pwm. That driver doesn't have control
+over whether it's called with prepare_lock held or not, and it has to call
+into the PWM API in order to do anything.
+
+One approach could be to convert the PWM drivers to avoid calling any
+(sleeping) clock functions from apply. Fortunately, it seems like there are
+not that many drivers used in-tree:
+
+- pwm-imx27
+- pwm-meson (by far the most prolific user)
+- pwm-renesas-tpu
+- pwm-tiecap (doesn't call any clock functions from apply/get_state)
+
+and none of the in-tree users use any of the other channels AFAICT.
+
+Unfortunately, converting these drivers to be atomic is non-trivial.
+All of them enable/prepare their parent clock only when necessary to save
+power. Converting them to prepare/disable in request/free could result
+in increased power usage if the parent turns on in prepare instead of
+enable. Additionally, pwm-meson also sets the clock rate for improved
+accuracy, and this would have to be removed.
+
+I suspect that removing these features to fix a bug that can't occur on
+existing hardware would be well-received. On the other hand, pwms are
+exposed to userspace, so I think a privileged user could deadlock the
+system just by reading /sys/kernel/debug/pwm and
+/sys/kernel/debug/clk/<name>/clk_duty_cycle repeatedly.
+
+Does anyone have better ideas? I don't know if there's a way to catch this
+bug at runtime without lockdep. Non-atomic drivers are still OK as long as
+they don't take prepare_lock.
+
+--Sean
+
+======================================================
+WARNING: possible circular locking dependency detected
+6.18.52-yocto-standard-00169-gbc0cb063dbe7-dirty #1 Not tainted
+------------------------------------------------------
+kworker/u16:2/47 is trying to acquire lock:
+ffff8000827d8968 (prepare_lock){+.+.}-{4:4}, at: clk_prepare_lock (drivers/clk/clk.c:228)
+
+but task is already holding lock:
+c5ff000002bc77c8 (&chip->nonatomic_lock){+.+.}-{4:4}, at: pwm_apply_might_sleep (drivers/pwm/core.c:43 drivers/pwm/core.c:54 drivers/pwm/core.c:747)
+
+which lock already depends on the new lock.
+
+
+the existing dependency chain (in reverse order) is:
+
+-> #1 (&chip->nonatomic_lock){+.+.}-{4:4}:
+        __mutex_lock (kernel/locking/mutex.c:598 kernel/locking/mutex.c:760)
+        mutex_lock_nested (kernel/locking/mutex.c:812 (discriminator 1))
+        pwm_get_state_hw (drivers/pwm/core.c:43 drivers/pwm/core.c:54 drivers/pwm/core.c:812)
+        clk_pwm_get_duty_cycle (drivers/clk/clk-pwm.c:71)
+        clk_core_update_duty_cycle_nolock (drivers/clk/clk.c:3095)
+        __clk_register (drivers/clk/clk.c:4032 drivers/clk/clk.c:4380)
+        devm_clk_hw_register (drivers/clk/clk.c:4460 (discriminator 1) drivers/clk/clk.c:4684 (discriminator 1))
+        clk_pwm_probe (drivers/clk/clk-pwm.c:152)
+        platform_probe (drivers/base/platform.c:1377)
+        really_probe (drivers/base/dd.c:640 drivers/base/dd.c:718)
+        __driver_probe_device (drivers/base/dd.c:880)
+        driver_probe_device (drivers/base/dd.c:910)
+        __device_attach_driver (drivers/base/dd.c:1038)
+        bus_for_each_drv (drivers/base/bus.c:462)
+        __device_attach (drivers/base/dd.c:1110)
+        device_initial_probe (drivers/base/dd.c:1159)
+        bus_probe_device (drivers/base/bus.c:583)
+        deferred_probe_work_func (drivers/base/dd.c:124)
+        process_one_work (kernel/workqueue.c:3294)
+        worker_thread (kernel/workqueue.c:3377 kernel/workqueue.c:3458)
+        kthread (kernel/kthread.c:432)
+        ret_from_fork (/usr/src/debug/linux-yocto/6.18.52+git/arch/arm64/kernel/entry.S:860)
+
+-> #0 (prepare_lock){+.+.}-{4:4}:
+        __lock_acquire (kernel/locking/lockdep.c:3167 kernel/locking/lockdep.c:3286 kernel/locking/lockdep.c:3910 kernel/locking/lockdep.c:5239)
+        lock_acquire (kernel/locking/lockdep.c:5872 kernel/locking/lockdep.c:5829)
+        __mutex_lock (kernel/locking/mutex.c:598 kernel/locking/mutex.c:760)
+        mutex_lock_nested (kernel/locking/mutex.c:812 (discriminator 1))
+        clk_prepare_lock (drivers/clk/clk.c:228)
+        clk_set_rate (drivers/clk/clk.c:2592 drivers/clk/clk.c:2584)
+        meson_pwm_enable.isra.0 (drivers/pwm/pwm-meson.c:235)
+        meson_pwm_apply (drivers/pwm/pwm-meson.c:328)
+        __pwm_apply (drivers/pwm/core.c:707)
+        pwm_apply_might_sleep (drivers/pwm/core.c:761)
+        pwm_adjust_config (drivers/pwm/core.c:897)
+        pwm_regulator_probe (drivers/regulator/pwm-regulator.c:403)
+        platform_probe (drivers/base/platform.c:1377)
+        really_probe (drivers/base/dd.c:640 drivers/base/dd.c:718)
+        __driver_probe_device (drivers/base/dd.c:880)
+        driver_probe_device (drivers/base/dd.c:910)
+        __device_attach_driver (drivers/base/dd.c:1038)
+        bus_for_each_drv (drivers/base/bus.c:462)
+        __device_attach_async_helper (drivers/base/dd.c:1067)
+        async_run_entry_fn (kernel/async.c:129)
+        process_one_work (kernel/workqueue.c:3294)
+        worker_thread (kernel/workqueue.c:3377 kernel/workqueue.c:3458)
+        kthread (kernel/kthread.c:432)
+        ret_from_fork (/usr/src/debug/linux-yocto/6.18.52+git/arch/arm64/kernel/entry.S:860)
+
+other info that might help us debug this:
+
+  Possible unsafe locking scenario:
+
+        CPU0                    CPU1
+        ----                    ----
+   lock(&chip->nonatomic_lock);
+                                lock(prepare_lock);
+                                lock(&chip->nonatomic_lock);
+   lock(prepare_lock);
+
+  *** DEADLOCK ***
+
+4 locks held by kworker/u16:2/47:
+  #0: 81ff0000003dc948 ((wq_completion)async){+.+.}-{0:0}, at: process_one_work (kernel/workqueue.c:3268)
+  #1: 02ff800083a37d10 ((work_completion)(&entry->work)){+.+.}-{0:0}, at: process_one_work (kernel/workqueue.c:3269 (discriminator 1))
+  #2: afff000000a57140 (&dev->mutex){....}-{4:4}, at: __device_attach_async_helper (include/linux/device.h:1013 drivers/base/dd.c:1053)
+  #3: c5ff000002bc77c8 (&chip->nonatomic_lock){+.+.}-{4:4}, at: pwm_apply_might_sleep (drivers/pwm/core.c:43 drivers/pwm/core.c:54 drivers/pwm/core.c:747)
+
+stack backtrace:
+CPU: 3 UID: 0 PID: 47 Comm: kworker/u16:2 Not tainted 6.18.52-yocto-standard-00169-gbc0cb063dbe7-dirty #1 PREEMPT
+Hardware name: Blaze Edge 3.0 (DT)
+Workqueue: async async_run_entry_fn
+Call trace:
+  show_stack (arch/arm64/kernel/stacktrace.c:499) (C)
+  dump_stack_lvl (lib/dump_stack.c:94 lib/dump_stack.c:120)
+  dump_stack (lib/dump_stack.c:129)
+  print_circular_bug (kernel/locking/lockdep.c:2045)
+  check_noncircular (kernel/locking/lockdep.c:2177)
+  __lock_acquire (kernel/locking/lockdep.c:3167 kernel/locking/lockdep.c:3286 kernel/locking/lockdep.c:3910 kernel/locking/lockdep.c:5239)
+  lock_acquire (kernel/locking/lockdep.c:5872 kernel/locking/lockdep.c:5829)
+  __mutex_lock (kernel/locking/mutex.c:598 kernel/locking/mutex.c:760)
+  mutex_lock_nested (kernel/locking/mutex.c:812 (discriminator 1))
+  clk_prepare_lock (drivers/clk/clk.c:228)
+  clk_set_rate (drivers/clk/clk.c:2592 drivers/clk/clk.c:2584)
+  meson_pwm_enable.isra.0 (drivers/pwm/pwm-meson.c:235)
+  meson_pwm_apply (drivers/pwm/pwm-meson.c:328)
+  __pwm_apply (drivers/pwm/core.c:707)
+  pwm_apply_might_sleep (drivers/pwm/core.c:761)
+  pwm_adjust_config (drivers/pwm/core.c:897)
+  pwm_regulator_probe (drivers/regulator/pwm-regulator.c:403)
+  platform_probe (drivers/base/platform.c:1377)
+  really_probe (drivers/base/dd.c:640 drivers/base/dd.c:718)
+  __driver_probe_device (drivers/base/dd.c:880)
+  driver_probe_device (drivers/base/dd.c:910)
+  __device_attach_driver (drivers/base/dd.c:1038)
+  bus_for_each_drv (drivers/base/bus.c:462)
+  __device_attach_async_helper (drivers/base/dd.c:1067)
+  async_run_entry_fn (kernel/async.c:129)
+  process_one_work (kernel/workqueue.c:3294)
+  worker_thread (kernel/workqueue.c:3377 kernel/workqueue.c:3458)
+  kthread (kernel/kthread.c:432)
+  ret_from_fork (/usr/src/debug/linux-yocto/6.18.52+git/arch/arm64/kernel/entry.S:860)
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
