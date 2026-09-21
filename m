@@ -4,93 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FAA5C982EE
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Sep 2026 19:02:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20A58C982EE
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Sep 2026 19:13:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Subject:Cc:To:From:MIME-Version:Date:Message-ID:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=AKbWCCDMDPpgF3kTtFDYmoZS7fyOGji9KA5arjjudjs=; b=cMYswyLm4WrVb8Lf/TgRqWryEr
-	o/0px2eOA1FvW9c6BOSqHMlbRez/FARBmyuouMosOtaZ6kDlauiezh5CnRtLeLgMysSMxCCK0Qtg5
-	kwfp9GR7fPSxAIG95b8SXOUPgElxJK1FPssOs5PlzKGgJu92gOIczqhr7X9bcpuJ+pYnjU66QUd2X
-	/azAil+5CpUvBsVGJTdViqefxq18PSTOm/S3mgK4jIgzzdPfOSeFPWouZYPdE2bkAwIEDLZpD86H8
-	3YMeOl2R9lWbn/+ro2eGPO6DzZd8BLE2CsB9ewQvc5GVka7YcBmpE4rWyaWNk/Gia+tyhX1e1UR80
-	puiWGtng==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=3TkFRSLia/RnXkEXod+cM2OosbVjvrYOfgi+raC9zKE=; b=yl7NDld2G8jKuO
+	NGtsf9jPh1pMef/DzWUmDnXkvxWC2hD4d0Hs2YuyjnQWZPlglZVF7e+g+3Lx6DZTIR7zWiKpoX5Lj
+	SOVRBO1nenBs4LMCq59W8n+aIUf8jn/Ed9OUweaSovDr6nLGxNXAQw6uDGaudIzABZmNthJlNSd9u
+	RuCuwF2ZUPEV2Ids/vXOIM1go1sgiYDy1L1KxylSqNogOdyxExPhtj3Rv+r6RKEzSMp9xxfackM6V
+	Cg5VVpY9lNhemTpAz232zRT/tnnqhS286rE4GGEmF9Cdg+ft2QkeBvy//PPmBrBnLGSVJ3r3TtrGA
+	XROR2685yLZJGwj3zGfQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x8jHY-00000003CW4-0LUD;
-	Mon, 21 Sep 2026 19:02:28 +0000
-Received: from mail-vs2-x0c.google.com ([2a00:1450:4864:3a::c])
+	id 1x8jSR-00000003DBL-2u0T;
+	Mon, 21 Sep 2026 19:13:43 +0000
+Received: from mail-qv2-x10.google.com ([2607:f8b0:4864:33::10])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x8jHV-00000003CUO-49l1
+	id 1x8jSO-00000003D9w-2w1a
 	for linux-amlogic@lists.infradead.org;
-	Mon, 21 Sep 2026 19:02:27 +0000
-Received: by mail-vs2-x0c.google.com with SMTP id ada2fe7eead31-7a05d236f53so1850943137.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 21 Sep 2026 12:02:22 -0700 (PDT)
+	Mon, 21 Sep 2026 19:13:42 +0000
+Received: by mail-qv2-x10.google.com with SMTP id 6a1803df08f44-9107051ba26so22816416d6.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 21 Sep 2026 12:13:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brivo.com; s=google; t=1790017341; x=1790622141; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:subject:cc:to:from
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=GFcZ8v2IrQlVXsS28/gxish2Yf7RjcBy4ak1q2e8MoU=;
-        b=TeUb+zLDainnTPmwidcu5AyEbVIi2NBOMovX78I9YxRy02b7gq43725/HA4rk3zszP
-         Spmp7RMxYMoyyHMTTAN96FtJexRSqq2LJmxhuNsucPShsEmvbeW0gKuJVj1gybbtuQ5R
-         sWgJmudaE3b8UWUnsYTLEx2ujxBjW9Z/xxP1Op4OGzQaHMQQsjsl8MRrFSYW/sJhSMFz
-         Cx4aBNAZ+kBbpl2A/Bwr3PB5/VZrbbxSQAtXYAOr6re7AhKP7rC4XKqaOw6q55nbcAa/
-         TnV5H7EUpZjkivONkibzkxJdRK6SIbYUu7jYvKyIgIIOSrwQh08OzKa5FC1gJEigI6yS
-         OIxQ==
+        d=brivo.com; s=google; t=1790018019; x=1790622819; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=rgouXHW55aIbAEz+yxgGnRtHE3IVMg92WaPFZm2OsIo=;
+        b=tNbuP18+ggdvHeod17x1GzIxVCEV4OVFmU7piyxZgzmp+DgiwKtrvbvWu8zr9NIDZ1
+         exf1o0kC39E4hB7svOCnHkvIghw4uhCbD2dc2XemuAQndf053nj6XSBR/JNHpfl93fg6
+         KYxz8UQiK6VuOCO52C1acdm2Givxk1uHIy4dIEYs+v2p1SNrQEHyV57h3ENhs1uMh8Xe
+         6T/oy+k+chvtT+exCyNXbKuTVtnuXOGw66Y4Yof+Ge+MT1TjhLiVmareZOVrvYRX3I6Y
+         mjg42kV0586oFEPU+BD2pNYKTVb8/fj4i4kT5HXR9B6xTuLAN0mSJvnLYn0YuFl3xe0B
+         8S/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1790017341; x=1790622141;
-        h=content-transfer-encoding:content-type:subject:cc:to:from
-         :content-language:user-agent:mime-version:date:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=GFcZ8v2IrQlVXsS28/gxish2Yf7RjcBy4ak1q2e8MoU=;
-        b=Bs84O8tsHjwAM1nSNF3Lrb0oxz7/okFPxBPkmFTGhAndeZeiHwAu3WTz3TKiKi2Etw
-         mibqSTTGOhy8qwOpu0PtGS6R2XN0eqZbhKLBjepDv8Gm4bRl7LAYPZOGJxbYEnceDI/L
-         9pk4RNWUkkfgRy/EXr6vDSO10iL3+EI+FJZRSPgEa2vwaISjLRdoppoouRYaz3raNQOx
-         YBVrDwV9RR53L0r6mDE7Wj3vjssqxsLnpXtdu4ZbkpAETSc7xwmwLP7oQv519gTvRszi
-         kglakWgDOs4I90oy53pmrLB8yeAo1dEA9rZjEnX5KK9nTFYPnqodBRSXe3qBf6CnqJ5N
-         3qUA==
-X-Forwarded-Encrypted: i=1; AKwUvBzAwZHWP2wnQpwJV6nK3UYf0TpYHuMNHmF/kUPXgZGy9D9UIIyEHOv39zNaz2CBO7Fmc8VoKxeFUNMeYE+6@lists.infradead.org
-X-Gm-Message-State: AFuF++kezG//hn1WYPkpbmK+zdo6Gq9as32ghXKzVkuyznYsLfU2FWNs
-	AyJgRsXPVaZCOnEg5gICor+lE9v4Zj9aP4xs7BALjUswdmi+B+ai+78nk3o1MUNk0yIRbmCls2F
-	QOE4n3yGCWUqoDUqWWVqEWlpeMHmoe+s68pzTwDAw/djwyX1e8oTWOZqLTmgQemTxzA==
-X-Gm-Gg: AYBFou0zsf70MawpluhgslrkM2O4+s1gY4X4bHKwIT2A5VNHubrQP6er6WMTwyTTi3B
-	oVlY7xko0WamPGy1aBjk6PQqwOQeaQziQF+orr57EuuozMsovUs3dVPlzaokUzKSFpQU9IWozaW
-	sDn2DsCVIevPyoKXA7THb+rSN+Sxq5TL4sUVQHcY9lD8roImhlyOXEj0nRP3w8uRZMUnmTnSzqy
-	Jwp2lOcdIwxETFUQUaeaulyUaoFrMq/Xp94/4NrlR+Dl+8ppUw2MOUBqk45z4dTFz2XEvco7fns
-	MeA1SezpMinRIU8qP0st/6PJnEKbambx9Z5kIPmWJhjDFaVCQhrDHwY0sqr9PGnTLKxErnSkHAK
-	rabQ2/331lfiZegwfs+GS9ZWvpSnstMSn3FIkXAJoJGNEhLvQ1uWedEm+50ViwSu4rD9nAcYa8K
-	e1TcSPP5qiCssMITdX3nZzQAsgKu1oJUMQOJzzzdiFMfpsU6wKspk3S4Je2k1ti2hU0hfoatMWJ
-	XQm
-X-Received: by 2002:a05:6102:2922:b0:7a3:4e75:d1f0 with SMTP id ada2fe7eead31-7a55d38b2b7mr6284952137.23.1790017341074;
-        Mon, 21 Sep 2026 12:02:21 -0700 (PDT)
-Received: from [10.200.233.210] ([71.163.254.246])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-7aad2e36ea7sm8429137.4.2026.09.21.12.02.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Sep 2026 12:02:20 -0700 (PDT)
-Message-ID: <d90c0eec-728b-4607-b480-86b2534559c4@brivo.com>
-Date: Mon, 21 Sep 2026 15:02:19 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
+        d=1e100.net; s=20260707; t=1790018019; x=1790622819;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=rgouXHW55aIbAEz+yxgGnRtHE3IVMg92WaPFZm2OsIo=;
+        b=BwaNipdEkda3QXgqg7JFqbGq4npfavJV1Wb1IAQP2zy+bSEGV6s46VUsnAZf1gg06f
+         68vvfQsePb3QV6hpuy7B2n50oF7cG8JZqQtvsvQ6em+l65pebjwoJPDyY7dS92i1yayr
+         Jhpc14W++A4fIF34qh3wpM6NckXvcvLlEqfTLTDQtKtYfMpGIpvDExeTBa5Yf4IzyENi
+         2X/TTy5hj/kkowgRWmU0cF/3rZ/MPvLPbL7zzcIz6S8QE32elT12lFDXY5aU+A27H2mY
+         0axM1KjaPJFExU1Gqti9vUpsMYH82PVMMvw+hCjqeFJ2PZXB/XuAd48KtovKDTqZT8uC
+         wvvw==
+X-Forwarded-Encrypted: i=1; AKwUvBzyM6w84XZD9RVmqX3P0P3h0YLXzZLJygzNXIYYD1gJgQU+kh4B3CTWcLGbdpFmiIe5jAkgthlmo/TgFHvg@lists.infradead.org
+X-Gm-Message-State: AFuF++k/vq0RWPc8CgJfMZMzqPB+sZQuujRJeg57id+XzCsImqrwPLPe
+	slwS94sa6ZmareBw4hHNhrm1Wyet4b066QmOtectV8/v2fK5vFysDr0RRp/2WhhtaWppUobB1ON
+	Pfzg760ShPK5Re7lVj26DbBQdC1JC14SDaktG3gEZQfCTJh8r2robUMnKfvmse9A8Gg==
+X-Gm-Gg: AYBFou19u9PDAK+YDUOf2w7ycH72ET2S1GMH8Jb1PiuykzCxNLX6z/5P9cbAx7UkafK
+	7xKydM9BFWmWiiZFncK592VzskLYrGEzw7VC8R/9UPOLqHn0FIVG0Hznua5Te0TrbNRhPpWUHbK
+	7wvDBnKxv1QiiRyXrAh9lXO7DpTInyxe+42swq1o7gbMt4PvxLfVrkDlMEHx5aKk5El46+k/Biq
+	6WRpkWYEggjO0Iw2ERJizLR2DD6hCQ84cTMir2mduwipZwTHEgOnyIZ6WO2uZ1aYk/EO7NMTbvG
+	BN/woFbA/a53yNio6lua8Fux1NHifiO5BVT7immOo6pNjO2POy61SN/qJt4gsLmoMnakqTBCJMe
+	cs3U5aS2ocN31DCJFECVnG0zErHLJuEVXzs0SOuecav27/zxxDT0qY/pLJGOS2jlKLlHWudvhXk
+	vsvBzZvjz1Eu8332Qva7SJY0V9HGAe3Lu/EEJNfXXo1i/rRZUU5nH8OYjvFPIk7Q5HJYhypofr1
+	A==
+X-Received: by 2002:a05:6214:19cc:b0:912:12cf:f6b7 with SMTP id 6a1803df08f44-913fc8a23f8mr21513036d6.7.1790018019138;
+        Mon, 21 Sep 2026 12:13:39 -0700 (PDT)
+Received: from strozzi ([66.193.28.125])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-91260a61570sm75443526d6.23.2026.09.21.12.13.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Sep 2026 12:13:38 -0700 (PDT)
 From: Sean Anderson <sanderson@brivo.com>
-To: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- linux-pwm@vger.kernel.org
-Cc: Brian Masney <bmasney@redhat.com>, linux-kernel@vger.kernel.org,
- Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-Subject: Potential deadlock in clk-pwm
+To: Ulf Hansson <ulfh@kernel.org>,
+	linux-mmc@vger.kernel.org
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	Sean Anderson <sanderson@brivo.com>
+Subject: [PATCH] mmc: meson-gx: Convert host->lock to raw spinlock
+Date: Mon, 21 Sep 2026 15:13:08 -0400
+Message-ID: <20260921191326.2146363-1-sanderson@brivo.com>
+X-Mailer: git-send-email 2.53.0
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260921_120226_051286_0A606D01 
-X-CRM114-Status: GOOD (  15.22  )
+X-CRM114-CacheID: sfid-20260921_121340_750970_603D4272 
+X-CRM114-Status: GOOD (  11.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,185 +101,76 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+The primary handler for IRQF_ONESHOT interrupts is always run without
+threading, even on PREEMPT_RT. Therefore, we must use a raw spinlock,
+which will never sleep (even on PREEMPT_RT).
 
-I found a potential deadlock in clk-pwm with lockdep. The problem occurs
-when a multi-channel PWM calls a clock function (such as clk_get_rate) in
-its apply callback. If one channel of the PWM is used for a clk-pwm, and
-another channel is used for some other purpose, then the following deadlock
-can occur:
+Fixes: 066ecde6d826 ("mmc: meson-gx: add SDIO interrupt support")
+Signed-off-by: Sean Anderson <sanderson@brivo.com>
+---
 
-CPU0                        CPU1
-====================== =========================
-pwm_get_state_hw(chip)
-  guard(pwmchip)(chip)
-		       clk_get_scaled_duty_cycle(clkb)
-		        clk_prepare_lock()
-		        clk_pwm_get_duty_cycle(clkb)
-		         pwm_get_state_hw(chip)
-		          guard(pwmchip)(chip)
-  chip->get_state()
-   clk_get_rate(clka)
-    clk_prepare_lock()
+ drivers/mmc/host/meson-gx-mmc.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-The same scenario can play out with apply instead of get_state.  I don't
-think this can really be fixed in clk-pwm. That driver doesn't have control
-over whether it's called with prepare_lock held or not, and it has to call
-into the PWM API in order to do anything.
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index 694bb443d5f3f..d5365c0404cb9 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -176,7 +176,7 @@ struct meson_host {
+ 
+ 	bool needs_pre_post_req;
+ 
+-	spinlock_t lock;
++	raw_spinlock_t lock;
+ };
+ 
+ #define CMD_CFG_LENGTH_MASK GENMASK(8, 0)
+@@ -953,10 +953,10 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+ 	cmd = host->cmd;
+ 
+ 	if (status & IRQ_SDIO) {
+-		spin_lock(&host->lock);
++		raw_spin_lock(&host->lock);
+ 		__meson_mmc_enable_sdio_irq(host->mmc, 0);
+ 		sdio_signal_irq(host->mmc);
+-		spin_unlock(&host->lock);
++		raw_spin_unlock(&host->lock);
+ 		status &= ~IRQ_SDIO;
+ 		if (!status)
+ 			return IRQ_HANDLED;
+@@ -1112,9 +1112,9 @@ static void meson_mmc_enable_sdio_irq(struct mmc_host *mmc, int enable)
+ 	struct meson_host *host = mmc_priv(mmc);
+ 	unsigned long flags;
+ 
+-	spin_lock_irqsave(&host->lock, flags);
++	raw_spin_lock_irqsave(&host->lock, flags);
+ 	__meson_mmc_enable_sdio_irq(mmc, enable);
+-	spin_unlock_irqrestore(&host->lock, flags);
++	raw_spin_unlock_irqrestore(&host->lock, flags);
+ }
+ 
+ static void meson_mmc_ack_sdio_irq(struct mmc_host *mmc)
+@@ -1225,7 +1225,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto err_init_clk;
+ 
+-	spin_lock_init(&host->lock);
++	raw_spin_lock_init(&host->lock);
+ 
+ 	if (host->dram_access_quirk) {
+ 		/* Limit segments to 1 due to low available sram memory */
+---
+base-commit: 587858367581b9c55c3690f4e63382ad622719d4
+branch: meson_mmc_raw
 
-One approach could be to convert the PWM drivers to avoid calling any
-(sleeping) clock functions from apply. Fortunately, it seems like there are
-not that many drivers used in-tree:
+-- 
+2.53.0
 
-- pwm-imx27
-- pwm-meson (by far the most prolific user)
-- pwm-renesas-tpu
-- pwm-tiecap (doesn't call any clock functions from apply/get_state)
-
-and none of the in-tree users use any of the other channels AFAICT.
-
-Unfortunately, converting these drivers to be atomic is non-trivial.
-All of them enable/prepare their parent clock only when necessary to save
-power. Converting them to prepare/disable in request/free could result
-in increased power usage if the parent turns on in prepare instead of
-enable. Additionally, pwm-meson also sets the clock rate for improved
-accuracy, and this would have to be removed.
-
-I suspect that removing these features to fix a bug that can't occur on
-existing hardware would be well-received. On the other hand, pwms are
-exposed to userspace, so I think a privileged user could deadlock the
-system just by reading /sys/kernel/debug/pwm and
-/sys/kernel/debug/clk/<name>/clk_duty_cycle repeatedly.
-
-Does anyone have better ideas? I don't know if there's a way to catch this
-bug at runtime without lockdep. Non-atomic drivers are still OK as long as
-they don't take prepare_lock.
-
---Sean
-
-======================================================
-WARNING: possible circular locking dependency detected
-6.18.52-yocto-standard-00169-gbc0cb063dbe7-dirty #1 Not tainted
-------------------------------------------------------
-kworker/u16:2/47 is trying to acquire lock:
-ffff8000827d8968 (prepare_lock){+.+.}-{4:4}, at: clk_prepare_lock (drivers/clk/clk.c:228)
-
-but task is already holding lock:
-c5ff000002bc77c8 (&chip->nonatomic_lock){+.+.}-{4:4}, at: pwm_apply_might_sleep (drivers/pwm/core.c:43 drivers/pwm/core.c:54 drivers/pwm/core.c:747)
-
-which lock already depends on the new lock.
-
-
-the existing dependency chain (in reverse order) is:
-
--> #1 (&chip->nonatomic_lock){+.+.}-{4:4}:
-        __mutex_lock (kernel/locking/mutex.c:598 kernel/locking/mutex.c:760)
-        mutex_lock_nested (kernel/locking/mutex.c:812 (discriminator 1))
-        pwm_get_state_hw (drivers/pwm/core.c:43 drivers/pwm/core.c:54 drivers/pwm/core.c:812)
-        clk_pwm_get_duty_cycle (drivers/clk/clk-pwm.c:71)
-        clk_core_update_duty_cycle_nolock (drivers/clk/clk.c:3095)
-        __clk_register (drivers/clk/clk.c:4032 drivers/clk/clk.c:4380)
-        devm_clk_hw_register (drivers/clk/clk.c:4460 (discriminator 1) drivers/clk/clk.c:4684 (discriminator 1))
-        clk_pwm_probe (drivers/clk/clk-pwm.c:152)
-        platform_probe (drivers/base/platform.c:1377)
-        really_probe (drivers/base/dd.c:640 drivers/base/dd.c:718)
-        __driver_probe_device (drivers/base/dd.c:880)
-        driver_probe_device (drivers/base/dd.c:910)
-        __device_attach_driver (drivers/base/dd.c:1038)
-        bus_for_each_drv (drivers/base/bus.c:462)
-        __device_attach (drivers/base/dd.c:1110)
-        device_initial_probe (drivers/base/dd.c:1159)
-        bus_probe_device (drivers/base/bus.c:583)
-        deferred_probe_work_func (drivers/base/dd.c:124)
-        process_one_work (kernel/workqueue.c:3294)
-        worker_thread (kernel/workqueue.c:3377 kernel/workqueue.c:3458)
-        kthread (kernel/kthread.c:432)
-        ret_from_fork (/usr/src/debug/linux-yocto/6.18.52+git/arch/arm64/kernel/entry.S:860)
-
--> #0 (prepare_lock){+.+.}-{4:4}:
-        __lock_acquire (kernel/locking/lockdep.c:3167 kernel/locking/lockdep.c:3286 kernel/locking/lockdep.c:3910 kernel/locking/lockdep.c:5239)
-        lock_acquire (kernel/locking/lockdep.c:5872 kernel/locking/lockdep.c:5829)
-        __mutex_lock (kernel/locking/mutex.c:598 kernel/locking/mutex.c:760)
-        mutex_lock_nested (kernel/locking/mutex.c:812 (discriminator 1))
-        clk_prepare_lock (drivers/clk/clk.c:228)
-        clk_set_rate (drivers/clk/clk.c:2592 drivers/clk/clk.c:2584)
-        meson_pwm_enable.isra.0 (drivers/pwm/pwm-meson.c:235)
-        meson_pwm_apply (drivers/pwm/pwm-meson.c:328)
-        __pwm_apply (drivers/pwm/core.c:707)
-        pwm_apply_might_sleep (drivers/pwm/core.c:761)
-        pwm_adjust_config (drivers/pwm/core.c:897)
-        pwm_regulator_probe (drivers/regulator/pwm-regulator.c:403)
-        platform_probe (drivers/base/platform.c:1377)
-        really_probe (drivers/base/dd.c:640 drivers/base/dd.c:718)
-        __driver_probe_device (drivers/base/dd.c:880)
-        driver_probe_device (drivers/base/dd.c:910)
-        __device_attach_driver (drivers/base/dd.c:1038)
-        bus_for_each_drv (drivers/base/bus.c:462)
-        __device_attach_async_helper (drivers/base/dd.c:1067)
-        async_run_entry_fn (kernel/async.c:129)
-        process_one_work (kernel/workqueue.c:3294)
-        worker_thread (kernel/workqueue.c:3377 kernel/workqueue.c:3458)
-        kthread (kernel/kthread.c:432)
-        ret_from_fork (/usr/src/debug/linux-yocto/6.18.52+git/arch/arm64/kernel/entry.S:860)
-
-other info that might help us debug this:
-
-  Possible unsafe locking scenario:
-
-        CPU0                    CPU1
-        ----                    ----
-   lock(&chip->nonatomic_lock);
-                                lock(prepare_lock);
-                                lock(&chip->nonatomic_lock);
-   lock(prepare_lock);
-
-  *** DEADLOCK ***
-
-4 locks held by kworker/u16:2/47:
-  #0: 81ff0000003dc948 ((wq_completion)async){+.+.}-{0:0}, at: process_one_work (kernel/workqueue.c:3268)
-  #1: 02ff800083a37d10 ((work_completion)(&entry->work)){+.+.}-{0:0}, at: process_one_work (kernel/workqueue.c:3269 (discriminator 1))
-  #2: afff000000a57140 (&dev->mutex){....}-{4:4}, at: __device_attach_async_helper (include/linux/device.h:1013 drivers/base/dd.c:1053)
-  #3: c5ff000002bc77c8 (&chip->nonatomic_lock){+.+.}-{4:4}, at: pwm_apply_might_sleep (drivers/pwm/core.c:43 drivers/pwm/core.c:54 drivers/pwm/core.c:747)
-
-stack backtrace:
-CPU: 3 UID: 0 PID: 47 Comm: kworker/u16:2 Not tainted 6.18.52-yocto-standard-00169-gbc0cb063dbe7-dirty #1 PREEMPT
-Hardware name: Blaze Edge 3.0 (DT)
-Workqueue: async async_run_entry_fn
-Call trace:
-  show_stack (arch/arm64/kernel/stacktrace.c:499) (C)
-  dump_stack_lvl (lib/dump_stack.c:94 lib/dump_stack.c:120)
-  dump_stack (lib/dump_stack.c:129)
-  print_circular_bug (kernel/locking/lockdep.c:2045)
-  check_noncircular (kernel/locking/lockdep.c:2177)
-  __lock_acquire (kernel/locking/lockdep.c:3167 kernel/locking/lockdep.c:3286 kernel/locking/lockdep.c:3910 kernel/locking/lockdep.c:5239)
-  lock_acquire (kernel/locking/lockdep.c:5872 kernel/locking/lockdep.c:5829)
-  __mutex_lock (kernel/locking/mutex.c:598 kernel/locking/mutex.c:760)
-  mutex_lock_nested (kernel/locking/mutex.c:812 (discriminator 1))
-  clk_prepare_lock (drivers/clk/clk.c:228)
-  clk_set_rate (drivers/clk/clk.c:2592 drivers/clk/clk.c:2584)
-  meson_pwm_enable.isra.0 (drivers/pwm/pwm-meson.c:235)
-  meson_pwm_apply (drivers/pwm/pwm-meson.c:328)
-  __pwm_apply (drivers/pwm/core.c:707)
-  pwm_apply_might_sleep (drivers/pwm/core.c:761)
-  pwm_adjust_config (drivers/pwm/core.c:897)
-  pwm_regulator_probe (drivers/regulator/pwm-regulator.c:403)
-  platform_probe (drivers/base/platform.c:1377)
-  really_probe (drivers/base/dd.c:640 drivers/base/dd.c:718)
-  __driver_probe_device (drivers/base/dd.c:880)
-  driver_probe_device (drivers/base/dd.c:910)
-  __device_attach_driver (drivers/base/dd.c:1038)
-  bus_for_each_drv (drivers/base/bus.c:462)
-  __device_attach_async_helper (drivers/base/dd.c:1067)
-  async_run_entry_fn (kernel/async.c:129)
-  process_one_work (kernel/workqueue.c:3294)
-  worker_thread (kernel/workqueue.c:3377 kernel/workqueue.c:3458)
-  kthread (kernel/kthread.c:432)
-  ret_from_fork (/usr/src/debug/linux-yocto/6.18.52+git/arch/arm64/kernel/entry.S:860)
 
 _______________________________________________
 linux-amlogic mailing list
