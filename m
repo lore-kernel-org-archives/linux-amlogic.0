@@ -4,77 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60EFFC98302
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Sep 2026 16:01:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3FA9C9830B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Sep 2026 16:01:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QMBMiOoinV/BR7B4GhvzYDxcRxj8h019L1u4mFOZZfE=; b=CNhdQ+lvZxyB1T
-	mGtjvWve/9I+0Y1GrlaMCf58ZiQAogNNExB5aW22GGh1yKnF2UeREBilWpsC+20j8WIXogJTuFi0Q
-	dmrI6/uhZd4eAJOYl2s+ybByw+2T9ibIOzQCyOkejUZO8E3NDuiLNokzFpxcuASspG1VUWaA2SUZc
-	5nRBkntaEMlDKNFdVxvyey2M4bVfE2aCl8xRfzRcyKR27JPQ1AWsCGS8msFM6QwxK2U2hzwbpYYvh
-	genCJQVo0bm5koEi7LjHqKsNwzdwMkGa6BbOJ+I//aVAPX9zMVJX9fEIB+Rg2oR+pm7rBEYoHyCzf
-	rtE/6e2vVKQh98EUO3bQ==;
+	List-Owner; bh=d8GI57VjcgpTQtqLqO9r/KYgSVZOLwm9TgczNNDoAx4=; b=rA+37b9LpCK4s0
+	DgOB7PqUU3Js3eztHZ3RROO5YfHOj3vsHgvCDp1h1wlfJYVWeYxcOVt9FUW0cIIWuhgHl0tr+NsKk
+	0wx8hD135WhkGTDu6cB/Cyx3vxaBzc2ECuAevhtAyjiHm2caoPYWWjub9gfbmDcVCbZRTGzK8MprJ
+	8HXTt4PdNLg09Pdz+2eAazOVcoUmpKKJ6AeOoM3pQrvl0/+JGYkCRNw6DZF4ZvzM5v9QcrMHnXosD
+	om20XQybS3ONM3+8aqIKqMjo2fKgppNI/eiEHklWp9kvkcnpB2Igyf+G3rvQYJANZJZzt/AMc16or
+	VTkDlDv1/UXHs9G1sUoQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x92wN-00000005yfh-3Cow;
-	Tue, 22 Sep 2026 16:01:55 +0000
-Received: from mail-wr2-x10.google.com ([2a00:1450:4864:30::10])
+	id 1x92wO-00000005yhE-0woK;
+	Tue, 22 Sep 2026 16:01:56 +0000
+Received: from mail-wm2-x11.google.com ([2a00:1450:4864:31::11])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x92w7-00000005yXl-05Tq
+	id 1x92w7-00000005yYf-3r9d
 	for linux-amlogic@lists.infradead.org;
-	Tue, 22 Sep 2026 16:01:40 +0000
-Received: by mail-wr2-x10.google.com with SMTP id ffacd0b85a97d-482f633ecdeso77407f8f.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 22 Sep 2026 09:01:38 -0700 (PDT)
+	Tue, 22 Sep 2026 16:01:41 +0000
+Received: by mail-wm2-x11.google.com with SMTP id 5b1f17b1804b1-49cd4ba9f68so57835705e9.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 22 Sep 2026 09:01:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1790092897; x=1790697697; darn=lists.infradead.org;
+        d=baylibre.com; s=google; t=1790092898; x=1790697698; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=pQfq1mATHoXVEi2yZgGnZpynXkHV46ypp/DnWHom6Nw=;
-        b=EHiq/oLofesx1lhyYiCRTFhSWQtkWB9t4gqWV5hvHf0kT1j05/dUa3yNsHJ/jaiZdI
-         4v6RQUHbvYcIwl3zO5pX9Yu5uBHd/hq2cB6x0ip5DqBj1jvnza/VqceFtjgRS8FQJqrH
-         LnLiFTqVE3jfLV0rXVTBEZjjDVKk9afsyzKpeM78Sc2XU391GmTL4kN7MP5aiKwqkd+W
-         hQTRLwZu+ixi9bflN1T0FcytmXTbRWT8jakUkbbnJ7fvxBA8YV13VXQOEIDwqj6SkLxa
-         dOatdkKE6+WeLwzVz0oL7RzLCp1+hAqKNbnH75kGJCi9N/eMHEKogHCI/LUwPgr4Mo+4
-         T5lw==
+        bh=OrTs8R98RYpxja2qfNL5l+wSlcq0HfU9S2hHFoYZzL8=;
+        b=h/bCMJ1hAxbl/X6hL4a18uqwDOLjk5uvZzAK4PmT8VXa/ghymmBNdGBj3K74oTrLbF
+         DL27WIjTbF8EV7bdp8ngc1zaRcHmt8f7n1RovS0i6gMsQt9t/GHMGhJVKaT8cGybSRls
+         4fmfzOMuDaocCBoTck+kMq54TDtqWgqPm3a2BfyXlV/fsLM9VeMAvd1hmSlW670W67L+
+         K1cpqRlTBOy+A1OCTxZ62R40xFVTwdgd1DVKhgPcYiem5ng9R7R2u2vwgiw5Rn5Zmrgm
+         FeiXBosMSIlU+EqYd88pBJBrkG9Zh6BTCUmp3RbNsMrR4G4ukPgF9SOcoq9HyQRHSadl
+         HudA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1790092897; x=1790697697;
+        d=1e100.net; s=20260707; t=1790092898; x=1790697698;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=pQfq1mATHoXVEi2yZgGnZpynXkHV46ypp/DnWHom6Nw=;
-        b=heF7bbj8dLDx/SyM2sQZjqJziysSzs0u3oLEoyTeXiQDsPWRyGdqjoDI2ZQRlBU7R1
-         QCkc8U3cwKsKUQuqM84TlfMWlzLkVkPtJwWt+VkzJ0L8jk60Pif+ui/Y3GEhOOn6Xg1i
-         R/moZElTxWtnWfBpi8hgOKOcIGGSa04sCifANLZ6vpg77uk8gz8n90Kr1uMXh/CgwUVa
-         MhODSHILUMpBN+0DCbLpFJ2vRVdZ4h0pJm5+aox0qWhCHk88vna3LmcwXKijk0Re2vO4
-         VtqXFGl6MCqoh1RCc/h5KEtLHhU7UrQHCFuYSkvblVoJjZrkY7F9HqYYjDcLF7ENzdUk
-         Wckg==
-X-Forwarded-Encrypted: i=1; AKwUvByXbA5qQVtPtH/CC0YofZACKgtoZenqyvEmQMvsqa6zYpBxtX++vCApY2ip3pX88slobcmc9etvrwXHDL3B@lists.infradead.org
-X-Gm-Message-State: AFuF++l+vAXkDKHkYoEaZDVWIrGE4qqQvV5hzm7cfuRkC7qcrcZTYz9q
-	CvTNG06pC5jDG/AC2ZmrnBfvmpCPttk18iiRzP5ZpeINKqx1GMIwtPgWDj8CUIe3WbY=
-X-Gm-Gg: AYBFou0GPhuZ9xAx9U3L6RpgEk2gO+i4TAsCNsEP0eo0VEIBgV5K6QogILBPW6GpMCq
-	XLRzNSj2XpJrqCGYy4cvCwAnxaO7Ux+pRI9/X60HEOZytjAt/FFcwAF/N6NWn81Zorxv9yRuelZ
-	Vhba/l/taiI1JqghFkEDZzuOn4vJJHdxwMIx5xJj9JCHRb5lkSd33iEq3fXlZIZTUc025H42UmW
-	eoIj9TpMlW7QdfM379DF5Mu+ElLQxDthEIGbVDJMFiNAQCTrqHSSAHtYxkHa4n56Hy5C+qBTulB
-	ofXzD5zx5ocf1nJQf3UaB/SbVJ2Njg0bFdvtxOHOR9HuHJax8mql0bEyFOpfV5lAuiWvHsdqcpr
-	yokbOClPphuSjoXciO1a5Oaq2o2YGYORkvFlXG4IYeAqTfLr1uENxFjZR/xNDqAvWQfJ+om4zfA
-	NUaLFtJ+hveejhTbUhEzeBSg/coYve34oOTQ1oaCCwU2+hMGdYQbWkZAvRRqo+kFPBiA==
-X-Received: by 2002:a05:6000:400c:b0:487:951:20 with SMTP id ffacd0b85a97d-4886709c990mr52052f8f.46.1790092897354;
-        Tue, 22 Sep 2026 09:01:37 -0700 (PDT)
+        bh=OrTs8R98RYpxja2qfNL5l+wSlcq0HfU9S2hHFoYZzL8=;
+        b=cC/E99HjAIxPrgzVMBb5Ln9eNIP6bAoWA/DYQL/uvjfqnC/+cLuZI1LVSEciDiQ1T0
+         ILfIvFFJlkvd8bbzky/ZaziYUoID0/Vs8CFqnifnbC3IVTMV1W8TtZwC7SFQa/hOaEIM
+         fY8JFkz1Uam0lHGXzMEEhwg3UpYh+c1Pfnzki1XP99/1I6inC2ZKcId0ny9GJjdy+SKe
+         0Zcg+Vh2R0y21hJfSweh+3p+jYxcg20wWQ+u8XjXLqZ7s1WYwtzKIeltMMFrxxLDVExm
+         rV71I+8wJEHW5pScmN57ddRaRSf2Jk/zSMvbEK0sc5IvSWqJUEcYSvdZ3n7p279A9pl7
+         lncw==
+X-Forwarded-Encrypted: i=1; AKwUvBxwEfUa5IfoH9NgAPameUsen8s941H5jh/vxN73iAz8x9dCNY3J3SfqJm/42Aap0QYTqIqN/bvIH6yC6jyC@lists.infradead.org
+X-Gm-Message-State: AFuF++kq+icpRCR9BDzA6oYUg5ONiusxk7FIEAN9rGhaLQ1ScPIgBoj0
+	8y0dv/8QEIkO8sY+/YxAOcZlhuSdAzF80C20ysfoEonTM7fXTwHi148XkKBb4NbPOPA=
+X-Gm-Gg: AYBFou3Rt+Rs/nxRkDF/79PcDM4gSqjAW5EvGwBItjaudiNN5SOveRTzuY+ya97QAYJ
+	dPbaoiPeqcj8nSLLHZYvvrIjFlPGgRuENjhNAXb8Q+ab5iah83mK3Bc9bqOy+FGuzjFPM+MK7tf
+	POpWhdZS5ByUHKlIR5yd2rX35P2t/IPj97TzcnMAOeUzDOMkbSUv7ReIHQMV+JdbIXCqy/50mOo
+	tDRoI32Gk+cA5DvNeaMHMJmJV33/cIyiCH/Z5ybiL03RjsC0vAsBlrwz8V/zRQENRwCMdwaogCr
+	qJlH7fo4ZY7+S0iq6V1+J+6SywIuZKUJzbY45vlZ/cZ2Cx1YKSXf/Ikyy09vz0Bh/XYrDoWS0W2
+	M2vACAeNO5iyK5UpqpTzcxRmPi8umVE7+EPRS5EjHw5e8voDI5KsYhvzGvZZ50Rh9LLvc+oz4Cl
+	0eMeuHEYXnIqEFtjh/P2Ot/bDa+K4Jav/EGWRqMdWJbeF8Bwe0HAhUY+nlVXFkb8xrCw==
+X-Received: by 2002:a05:600c:37ce:b0:49e:799a:8952 with SMTP id 5b1f17b1804b1-49fc5743c81mr211815845e9.26.1790092898289;
+        Tue, 22 Sep 2026 09:01:38 -0700 (PDT)
 Received: from [127.0.1.1] ([151.42.87.32])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48862786dc2sm6118020f8f.25.2026.09.22.09.01.36
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48862786dc2sm6118020f8f.25.2026.09.22.09.01.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Sep 2026 09:01:37 -0700 (PDT)
+        Tue, 22 Sep 2026 09:01:38 -0700 (PDT)
 From: Valerio Setti <vsetti@baylibre.com>
-Date: Tue, 22 Sep 2026 18:00:51 +0200
-Subject: [PATCH v3 6/7] ASoC: meson: gx-card: add support for audin FIFO
+Date: Tue, 22 Sep 2026 18:00:52 +0200
+Subject: [PATCH v3 7/7] arm64: dts: amlogic: gx: add AUDIN node
 MIME-Version: 1.0
-Message-Id: <20260922-audin-v3-6-a760312c076c@baylibre.com>
+Message-Id: <20260922-audin-v3-7-a760312c076c@baylibre.com>
 References: <20260922-audin-v3-0-a760312c076c@baylibre.com>
 In-Reply-To: <20260922-audin-v3-0-a760312c076c@baylibre.com>
 To: Jerome Brunet <jbrunet@baylibre.com>, 
@@ -89,17 +89,17 @@ Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
  linux-kernel@vger.kernel.org, Valerio Setti <vsetti@baylibre.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2156; i=vsetti@baylibre.com;
- h=from:subject:message-id; bh=vu+Bm1uBGIa5rQR0KJvCXwwxy1648qk7OnTjRUBnopY=;
- b=owGbwMvMwCV2z3ty7kUrRgbG02pJDFmblkV9nDbpoPCsi3wfGe85eb//3veLqzqv8vL9f77H5
- Bb1XNC36ShlYRDjYpAVU2RhmX7vd0Gp2kPjhJMFMHNYmUCGMHBxCsBEnh5jZJh8PLx+x5Kkf4En
- tx3hcQq7ZN6dfHP+huW255scDDPPzZrM8M/y5f8Fz2ObGJ+5Zcr1de14Pev+GRfHepXq9HTff82
- 2HxgB
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3080; i=vsetti@baylibre.com;
+ h=from:subject:message-id; bh=TZWXiYpGe3PgSXyHXeQpQDxriAYLZIkbRgm507qkSqQ=;
+ b=owGbwMvMwCV2z3ty7kUrRgbG02pJDFmblkUluVq2notODD5885mM8wnW4gkfrmuWbj2g/WZV3
+ jkRm4BbHaUsDGJcDLJiiiws0+/9LihVe2iccLIAZg4rE8gQBi5OAZgI30GGf/YJqwxtZTav1WHf
+ IHpv+n120WDjmKciN9d/vhsdFxNpacfwV6bGgXeD9emgB0cmu0q4L9Q0DGix8TRbL1T96nVa9Jf
+ jbAA=
 X-Developer-Key: i=vsetti@baylibre.com; a=openpgp;
  fpr=0497DEFB707526E13360C970DE4B936DD13A0100
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260922_090139_125934_A5549B69 
-X-CRM114-Status: GOOD (  12.48  )
+X-CRM114-CacheID: sfid-20260922_090140_019291_4EAFD45B 
+X-CRM114-Status: GOOD (  10.43  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,61 +116,101 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Slightly modify "gx_card_cpu_identify()" by making the compatible matching
-string an input parameter. This allows to easily support also AUDIN's FIFO
-with minimal changes.
+AUDIN provides audio input support to Amlogic Meson GXBB/GXL platforms.
+
+What's missing after this to get capture support working is to connect a
+capture capable codec to the SoC. For example to test these changes an
+NXP SGTL5000 chip has been connected to an OdroidC2 (Meson GXBB) board
+using a custom hat board.
+
+The following additions/overlay are required on top of
+'amlogic/meson-gxbb-odroidc2.dts' to make that hat board to work:
+
+    &sound {
+            audio-routing = "AUDIN I2S Formatter", "AIU I2S Encoder Capture";
+
+            dai-link-1 {
+                    codec-1 {
+                            sound-dai = <&sgtl5000>;
+                    };
+            };
+
+            dai-link-3 {
+                    sound-dai = <&audin 0>;
+            };
+    };
+
+    &audin {
+            status = "okay";
+    };
+
+Then, from userspace:
+
+    $ amixer sset 'AUDIN FIFO0 SRC SEL' 'I2S'
+    $ arecord -l  # find the "FIFO Capture" device
+    $ arecord -D hw:0,<N> -f S16_LE -r 48000 -c 2 /tmp/in.wav
 
 Signed-off-by: Valerio Setti <vsetti@baylibre.com>
 ---
- sound/soc/meson/gx-card.c | 16 +++++++++-------
- 1 file changed, 9 insertions(+), 7 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi   | 9 +++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 6 ++++++
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 6 ++++++
+ 3 files changed, 21 insertions(+)
 
-diff --git a/sound/soc/meson/gx-card.c b/sound/soc/meson/gx-card.c
-index 932be0a09306..35bc47254752 100644
---- a/sound/soc/meson/gx-card.c
-+++ b/sound/soc/meson/gx-card.c
-@@ -66,10 +66,10 @@ static int gx_card_parse_i2s(struct snd_soc_card *card,
- }
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+index c1d8e81d95cb..54b6cc0bb8ff 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+@@ -436,6 +436,15 @@ watchdog@98d0 {
+ 				reg = <0x0 0x098d0 0x0 0x10>;
+ 				clocks = <&xtal>;
+ 			};
++
++			audin: audio-controller@a000 {
++				compatible = "amlogic,gx-audin";
++				reg = <0x0 0xa000 0x0 0x148>;
++				interrupts = <GIC_SPI 7 IRQ_TYPE_EDGE_RISING>;
++				sound-name-prefix = "AUDIN";
++				#sound-dai-cells = <1>;
++				status = "disabled";
++			};
+ 		};
  
- static int gx_card_cpu_identify(struct snd_soc_dai_link_component *c,
--				char *match)
-+				const char *compatible_match, const char *dai_match)
- {
--	if (of_device_is_compatible(c->of_node, DT_PREFIX "aiu")) {
--		if (strstr(c->dai_name, match))
-+	if (of_device_is_compatible(c->of_node, compatible_match)) {
-+		if (strstr(c->dai_name, dai_match))
- 			return 1;
- 	}
+ 		gic: interrupt-controller@c4301000 {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index a9c830a570cc..7ad69992a226 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -84,6 +84,12 @@ &aiu {
+ 	resets = <&reset RESET_AIU>;
+ };
  
-@@ -96,21 +96,23 @@ static int gx_card_add_link(struct snd_soc_card *card, struct device_node *np,
- 	if (ret)
- 		return ret;
++&audin {
++	compatible = "amlogic,gxbb-audin", "amlogic,gx-audin";
++	clocks = <&clkc CLKID_I2S_SPDIF>;
++	resets = <&reset RESET_AUDIN>;
++};
++
+ &aobus {
+ 	pinctrl_aobus: pinctrl@14 {
+ 		compatible = "amlogic,meson-gxbb-aobus-pinctrl";
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+index d5e0f72892f8..9181eba81eb7 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+@@ -100,6 +100,12 @@ &aiu {
+ 	resets = <&reset RESET_AIU>;
+ };
  
--	if (gx_card_cpu_identify(dai_link->cpus, "FIFO"))
--		return  meson_card_set_fe_link(card, dai_link, np, true);
-+	if (gx_card_cpu_identify(dai_link->cpus, DT_PREFIX "aiu", "FIFO"))
-+		return meson_card_set_fe_link(card, dai_link, np, true);
-+	if (gx_card_cpu_identify(dai_link->cpus, DT_PREFIX "gx-audin", "FIFO"))
-+		return meson_card_set_fe_link(card, dai_link, np, false);
- 
- 	ret = meson_card_set_be_link(card, dai_link, np);
- 	if (ret)
- 		return ret;
- 
- 	/* Or apply codec to codec params if necessary */
--	if (gx_card_cpu_identify(dai_link->cpus, "CODEC CTRL")) {
-+	if (gx_card_cpu_identify(dai_link->cpus, DT_PREFIX "aiu", "CODEC CTRL")) {
- 		dai_link->c2c_params = &codec_params;
- 		dai_link->num_c2c_params = 1;
- 	} else {
- 		dai_link->no_pcm = 1;
- 		/* Check if the cpu is the i2s encoder and parse i2s data */
--		if (gx_card_cpu_identify(dai_link->cpus, "I2S Encoder"))
-+		if (gx_card_cpu_identify(dai_link->cpus, DT_PREFIX "aiu", "I2S Encoder"))
- 			ret = gx_card_parse_i2s(card, np, index);
- 	}
- 
++&audin {
++	compatible = "amlogic,gxl-audin", "amlogic,gx-audin";
++	clocks = <&clkc CLKID_I2S_SPDIF>;
++	resets = <&reset RESET_AUDIN>;
++};
++
+ &apb {
+ 	usb2_phy0: phy@78000 {
+ 		compatible = "amlogic,meson-gxl-usb2-phy";
 
 -- 
 2.47.3
