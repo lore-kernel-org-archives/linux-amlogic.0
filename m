@@ -4,77 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2AFDC982FA
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Sep 2026 11:16:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CAF9C982EA
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Sep 2026 11:24:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
-	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=2dWxy66DL6ZQOEpUY3a01AiL5fJlvAN6E66brqR1EoQ=; b=NVmXOS/HM5EN4S
-	zBoHmIlwDDunHUoaRalSjuwJNEXTHC3oWBiacKa/txIZYpacjdQ3ZGucV4pSkQNcx7EBZglpSUCet
-	KEscaeZ2MI/AXLAmfEvG/e9lwExqilED5/DvbrMFwtzZzN6BwEADs2ZMIJ+tJo9SP/M5MFYXDypfu
-	oIa5YlBQuotu+IGbFkyXlmZJl3wBFYi84ndTYs50qwBvo/hrGHkfDJOPj98YJ8gdQqWAxvwHFHTww
-	smL11ez+IclHTEBL2Ab/kNUXt+yA38yTBD68r3AJP4rnaCwlGYZPQXsPKyGbxDSrmKYzJSvEWrH2O
-	040WNks/1BZqCvucQLjA==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=+jPulJaYG2fHPboNE5FVeX4MlFLXYKZlZqO+CO3yEQU=; b=tZGZ4/hYWgAXOb
+	DGvb3dNtqDO+KVJ0QFlqPa64CAVx7iaIKminoG3ylo2de0Yr7y5gUFBOYX6CBYipvThag5X3+/8sJ
+	7S17gl+f2BkyWJlFsP5DlRPZhPn2HdhFf3l4K516ixrf8j4aVaQIrHRZj5W9Z/terZeqZxISBeez2
+	9In5/SsIrPDT8qUYWFSq2eQc1eh1CuaU/G57gf3puhYELwn3JvFiBSwlauWmv0dvdemJop/TQ28+z
+	XGclo47eyCmOTxRaoTSR8hCHY9qiSwy54GKhovI/H5ILQZ4RfjDMHZ2+6uESXQdA6hrudPcYRnYby
+	XNAKtxK9PkR9z5QPgtng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x9KxC-000000081Xf-26fN;
-	Wed, 23 Sep 2026 11:15:58 +0000
+	id 1x9L5X-000000083lE-04NQ;
+	Wed, 23 Sep 2026 11:24:35 +0000
 Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x9Kx0-000000081Oq-1zS6;
-	Wed, 23 Sep 2026 11:15:46 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id BF5A660200;
-	Wed, 23 Sep 2026 11:15:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 52392C2BCB8;
-	Wed, 23 Sep 2026 11:15:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1790162145;
-	bh=HRSub+QE/8D3AF670B+wnGCu13xlGmfbVGSfPKurvgI=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=U1Brx+dIs/rBOG68GdLQVFs34oyrCQfA+VCmiI0y2UP+0mNrIvkAk+GelnloSJbb2
-	 XtttRHED30bJW6YeCchI4c6SvIxsXhMxMk2imVl9TB2Eka4MN62qXyS2xzTE2WGcAz
-	 /MNxxgBeLxRmo7eZ6+r32SclvBJoxkFhdpaG0NjMt5LT1s0TmVL2V9v4iFsJJK1ArG
-	 J5LzMQFwmoOZF7WzuB3n6g2uWxhbKF+3bzsOpLenaWkdJGr6VP838tTJRJJBxg4IqS
-	 TfHQw78fZjJ9nBlRiC/EwXzAsjA2QZxBrhfqGZNEEiqzTCKmT1cbydFPgsaG3p+n21
-	 3RGSofjz9ctbg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 24286C982EA;
-	Wed, 23 Sep 2026 11:15:45 +0000 (UTC)
-From: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
-Subject: [PATCH RFC 0/3] clk: meson: Refactor PLL pre-divider as a divider
- clock
-Date: Wed, 23 Sep 2026 19:14:46 +0800
-Message-Id: <20260923-meson_refactor_n-v1-0-3a8ce27121a2@amlogic.com>
-MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAKa0s2oC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDSyNj3dzU4vy8+KLUtMTkkvyi+DzdVPM0I1NLA5NUU2MzJaC2AqBcZgX
- YyGilIDdnpdjaWgDD1C+zZwAAAA==
-X-Change-ID: 20260923-meson_refactor_n-e7f25904e536
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jerome Brunet <jbrunet@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
- Brian Masney <bmasney+clk@redhat.com>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Jian Hu <jian.hu@amlogic.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1790162143; l=2037;
- i=jian.hu@amlogic.com; s=20260415; h=from:subject:message-id;
- bh=HRSub+QE/8D3AF670B+wnGCu13xlGmfbVGSfPKurvgI=;
- b=qmDP/SwmQ069y+a6xgYtXYhqff3EX/JqLT+8cgk6vr/IkknbC3kUvbzBiRxk5cunM2tXxSIMv
- CjmByR+ELneCRuqA5hTYSvE1SKb6yGQPrMwT8FtnqnIASFrSeV1OIXM
-X-Developer-Key: i=jian.hu@amlogic.com; a=ed25519;
- pk=zHUE+rNtH9z+Sb8au1/elWknjFQmy5QDVkBoxleuOIA=
-X-Endpoint-Received: by B4 Relay for jian.hu@amlogic.com/20260415 with
- auth_id=735
-X-Original-From: Jian Hu <jian.hu@amlogic.com>
+	id 1x9L5V-000000083kt-0Vw9
+	for linux-amlogic@lists.infradead.org;
+	Wed, 23 Sep 2026 11:24:33 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 45BD0601FB;
+	Wed, 23 Sep 2026 11:24:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 925B71F00893;
+	Wed, 23 Sep 2026 11:24:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1790162672;
+	bh=J9g2a92wrndbH9rSV6qvGEKxGUNXcugHf6a+Io4Iz8E=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=KyJ8rRaILNB9t8PP3PtkE1Rg/mUv+22FzJBP2/s2DM/QQgO9rcw6ZVTaI45/Rvx8S
+	 CShvtx94RNl7mBFLzM+u5VmLjpX5jf6R0kHeyJVc1XdE/18Zw3Y6uGz/VljEXmQ0z1
+	 hn3FNbdFyqvt/5iBQVRP7zeREDztcINP4MLpKvstPOZtWccYCY/+vG3m0NUh3bwwp1
+	 N68fSlPLtI4q1W/5+ixgndvUEPaDG3wP5+QJaJLmL2Y/7I7J/LgaySl6bJvQWoziSF
+	 Gis2eTOXqphk/GMbT6eZ0aqWgegMNId+NtFKvetgr0AHlmoU+acT1NE3iEcgrYl5ox
+	 2DTx3o9qgxeeg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH RFC 1/3] clk: meson: pll: Remove the dedicated n
+ parameter
+To: "Jian Hu" <jian.hu@amlogic.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, linux-clk@vger.kernel.org, neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
+In-Reply-To: <20260923-meson_refactor_n-v1-1-3a8ce27121a2@amlogic.com>
+References: <20260923-meson_refactor_n-v1-0-3a8ce27121a2@amlogic.com>
+ <20260923-meson_refactor_n-v1-1-3a8ce27121a2@amlogic.com>
+Date: Wed, 23 Sep 2026 11:24:31 +0000
+Message-Id: <20260923112431.925B71F00893@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,64 +63,85 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: jian.hu@amlogic.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This series refactors the Meson PLL framework to remove the dedicated
-PLL pre-divider (N) parameter from the PLL implementation and model it
-as a separate divider clock.
-
-Currently, the Meson PLL framework models the PLL pre-divider using a
-dedicated n field in struct meson_clk_pll_data. This makes the
-pre-divider part of the PLL-specific implementation, although the
-Common Clock Framework already provides a generic divider clock.
-
-This series separates the pre-divider from the PLL and makes the PLL
-DCO take the pre-divider clock as its parent. This allows the
-pre-divider to be modeled using the standard CCF divider implementation
-and simplifies the PLL framework.
-
-The series currently covers T7 as an RFC to get feedback on the
-framework design before applying the same approach to other SoCs.
-
-Series:
-clk: meson: pll: Remove the dedicated n parameter
-dt-bindings: clock: amlogic: Add T7 pre-divider clock IDs
-clk: meson: t7: Model PLL pre-divider as a divider clock
-
-The other Meson SoCs will be converted separately after the T7 PLL
-framework refactoring has been reviewed and the overall approach is
-agreed upon.
-
-Any feedback on the proposed clock hierarchy and the separation of the
-PLL pre-divider from the PLL itself would be appreciated.
-
-Signed-off-by: Jian Hu <jian.hu@amlogic.com>
----
-Jian Hu (3):
-      clk: meson: pll: Remove the dedicated n parameter
-      dt-bindings: clock: amlogic: Add T7 pre-divider clock IDs
-      clk: meson: t7: Model PLL pre-divider as a divider clock
-
- drivers/clk/meson/clk-pll.c                     | 178 +++++------------------
- drivers/clk/meson/clk-pll.h                     |  13 --
- drivers/clk/meson/t7-pll.c                      | 183 ++++++++++++++++++------
- include/dt-bindings/clock/amlogic,t7-pll-clkc.h |   6 +
- 4 files changed, 181 insertions(+), 199 deletions(-)
----
-base-commit: 43e1705ecab981c66baee89041e6f728c0436f19
-change-id: 20260923-meson_refactor_n-e7f25904e536
-
-Best regards,
--- 
-Jian Hu <jian.hu@amlogic.com>
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MyBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0NyaXRpY2FsXSBjbGs6IG1lc29u
+OiBzdHJ1Y3QgbWVzb25fY2xrX3BsbF9kYXRhIHJlbW92YWwgb2YgJ24nIGJyZWFrcyBjb21waWxh
+dGlvbgotIFtIaWdoXSBjbGs6IG1lc29uOiBwbGwgdW5jb25kaXRpb25hbGx5IHJlcXVpcmVzIHJh
+bmdlLCBicmVha2luZyB0YWJsZS1iYXNlZCBQTExzCi0gW0hpZ2hdIGNsazogbWVzb246IGV4dGVy
+bmFsIHByZS1kaXZpZGVyIHZpb2xhdGVzIFBMTCBkaXNhYmxlL3Jlc2V0IHNlcXVlbmNpbmcKLS0K
+CmNvbW1pdCA5YTBkOWViMDc1NTc2ZDI0NGMxNjFmNjIxMzQxMDlhZDIzNTNhOGI3CkF1dGhvcjog
+SmlhbiBIdSA8amlhbi5odUBhbWxvZ2ljLmNvbT4KCmNsazogbWVzb246IHBsbDogUmVtb3ZlIHRo
+ZSBkZWRpY2F0ZWQgbiBwYXJhbWV0ZXIKClRoZSBNZXNvbiBQTEwgZnJhbWV3b3JrIG1vZGVscyB0
+aGUgUExMIHByZS1kaXZpZGVyIChOKSB1c2luZyBhIGRlZGljYXRlZApmaWVsZCBpbiBzdHJ1Y3Qg
+bWVzb25fY2xrX3BsbF9kYXRhLiBTaW5jZSB0aGUgY29tbW9uIGNsb2NrIGZyYW1ld29yayBhbHJl
+YWR5CnByb3ZpZGVzIGEgZ2VuZXJpYyBkaXZpZGVyIGltcGxlbWVudGF0aW9uLCB0aGlzIHBhdGNo
+IHJlbW92ZXMgdGhlIGRlZGljYXRlZApuIHBhcmFtZXRlciBmcm9tIHRoZSBmcmFtZXdvcmsgYW5k
+IHNpbXBsaWZpZXMgdGhlIFBMTCByYXRlIGNhbGN1bGF0aW9uLgoKPiAtLS0gYS9kcml2ZXJzL2Ns
+ay9tZXNvbi9jbGstcGxsLmMKPiArKysgYi9kcml2ZXJzL2Nsay9tZXNvbi9jbGstcGxsLmMKWyAu
+Li4gXQo+IEBAIC0xMTksMTQ1ICsxMDcsNDggQEAgc3RhdGljIHVuc2lnbmVkIGludCBfX3BsbF9w
+YXJhbXNfd2l0aF9mcmFjKHVuc2lnbmVkIGxvbmcgcmF0ZSwKWyAuLi4gXQo+IC1zdGF0aWMgaW50
+IG1lc29uX2Nsa19nZXRfcGxsX3RhYmxlX2luZGV4KHVuc2lnbmVkIGludCBpbmRleCwKPiAtCQkJ
+CQkgdW5zaWduZWQgaW50ICptLAo+IC0JCQkJCSB1bnNpZ25lZCBpbnQgKm4sCj4gLQkJCQkJIHN0
+cnVjdCBtZXNvbl9jbGtfcGxsX2RhdGEgKnBsbCkKPiArc3RhdGljIGludCBtZXNvbl9jbGtfZ2V0
+X3BsbF9tdWx0aXBsaWVyKHVuc2lnbmVkIGxvbmcgcmF0ZSwKPiArCQkJCQl1bnNpZ25lZCBsb25n
+IHBhcmVudF9yYXRlLAo+ICsJCQkJCXVuc2lnbmVkIGludCAqbSwKPiArCQkJCQlzdHJ1Y3QgbWVz
+b25fY2xrX3BsbF9kYXRhICpwbGwpCj4gIHsKPiAtCWlmICghcGxsLT50YWJsZVtpbmRleF0ubikK
+PiArCWlmICghcGxsLT5yYW5nZSkKPiAgCQlyZXR1cm4gLUVJTlZBTDsKCltTZXZlcml0eTogSGln
+aF0KRG9lcyB0aGlzIHVuY29uZGl0aW9uYWxseSByZWplY3QgYW55IFBMTCB0aGF0IGxhY2tzIGEg
+LnJhbmdlIGRlZmluaXRpb24/CgpNYW55IHRhYmxlLWJhc2VkIFBMTHMgaW4gTWVzb24gU29DIGRy
+aXZlcnMgKGxpa2UgYXhnX2dwMF9wbGxfZGNvKSBsZWF2ZQoucmFuZ2UgYXMgTlVMTCBhbmQgcmVs
+eSBzdHJpY3RseSBvbiAudGFibGUuIFdpdGhvdXQgLnJhbmdlLCByYXRlIGNhbGN1bGF0aW9ucwpm
+b3IgdGhlc2UgUExMcyB3aWxsIGRldGVybWluaXN0aWNhbGx5IGZhaWwgYXQgcnVudGltZS4KClsg
+Li4uIF0KPiBAQCAtNDIwLDcgKzMxMSw3IEBAIHN0YXRpYyBpbnQgbWVzb25fY2xrX3BsbF9zZXRf
+cmF0ZShzdHJ1Y3QgY2xrX2h3ICpodywgdW5zaWduZWQgbG9uZyByYXRlLApbIC4uLiBdCj4gIAll
+bmFibGVkID0gbWVzb25fcGFybV9yZWFkKGNsay0+bWFwLCAmcGxsLT5lbik7Cj4gIAlpZiAoZW5h
+YmxlZCkKPiAgCQltZXNvbl9jbGtfcGxsX2Rpc2FibGUoaHcpOwo+ICAKPiAtCW1lc29uX3Bhcm1f
+d3JpdGUoY2xrLT5tYXAsICZwbGwtPm4sIG4pOwoKW1NldmVyaXR5OiBIaWdoXQpEb2VzIHN0cmlw
+cGluZyB0aGUgd3JpdGUgdG8gdGhlIE4gcHJlLWRpdmlkZXIgZnJvbSB0aGlzIHByb3RlY3RlZCBh
+dG9taWMKc2VjdGlvbiB2aW9sYXRlIHRoZSBoYXJkd2FyZSByZXF1aXJlbWVudCB0byBwbGFjZSB0
+aGUgUExMIGluIGEgZGlzYWJsZWQgYW5kCnJlc2V0IHN0YXRlIGJlZm9yZSBpdHMgaW5wdXQgZnJl
+cXVlbmN5IGNoYW5nZXM/CgpCeSBtb2RlbGxpbmcgdGhlIHByZS1kaXZpZGVyIGFzIGFuIGV4dGVy
+bmFsIGdlbmVyaWMgQ0NGIGNsa19kaXZpZGVyLAppdHMgLnNldF9yYXRlIHdpbGwgbW9kaWZ5IHRo
+ZSBoYXJkd2FyZSByZWdpc3RlciBpbW1lZGlhdGVseSB3aXRob3V0Cm5vdGlmeWluZyB0aGUgcnVu
+bmluZyBkb3duc3RyZWFtIFBMTC4gQ2FuIHRoaXMgY2F1c2UgdGhlIGFjdGl2ZSBQTEwgdG8KbG9z
+ZSBsb2NrIGFuZCBwcm9kdWNlIGFuIHVuc3RhYmxlIGNsb2NrLCBwb3RlbnRpYWxseSBsb2NraW5n
+IHVwIHRoZSBzeXN0ZW0/Cgo+ICAJbWVzb25fcGFybV93cml0ZShjbGstPm1hcCwgJnBsbC0+bSwg
+bSk7Cj4gIAo+ICAJaWYgKE1FU09OX1BBUk1fQVBQTElDQUJMRSgmcGxsLT5mcmFjKSkgewo+IC0t
+LSBhL2RyaXZlcnMvY2xrL21lc29uL2Nsay1wbGwuaAo+ICsrKyBiL2RyaXZlcnMvY2xrL21lc29u
+L2Nsay1wbGwuaAo+IEBAIC0xMSwyOSArMTEsMTcgQEAKPiAgI2luY2x1ZGUgPGxpbnV4L3JlZ21h
+cC5oPgo+ICAjaW5jbHVkZSAicGFybS5oIgo+ICAKPiAtc3RydWN0IHBsbF9wYXJhbXNfdGFibGUg
+ewo+IC0JdW5zaWduZWQgaW50CW07Cj4gLQl1bnNpZ25lZCBpbnQJbjsKPiAtfTsKPiAtCgpbU2V2
+ZXJpdHk6IEhpZ2hdCkRvZXMgcmVtb3ZpbmcgcGxsX3BhcmFtc190YWJsZSBhbHNvIHJlbW92ZSB0
+aGUgZnJhbWV3b3JrJ3MgY2FwYWJpbGl0eSB0bwplbmZvcmNlIG5vbi1jb250aWd1b3VzIFBMTCBt
+dWx0aXBsaWVyIHJ1bGVzPwoKPiAgc3RydWN0IHBsbF9tdWx0X3JhbmdlIHsKPiAgCXVuc2lnbmVk
+IGludAltaW47Cj4gIAl1bnNpZ25lZCBpbnQJbWF4Owo+ICB9OwpbIC4uLiBdCj4gIHN0cnVjdCBt
+ZXNvbl9jbGtfcGxsX2RhdGEgewo+ICAJc3RydWN0IHBhcm0gZW47Cj4gIAlzdHJ1Y3QgcGFybSBt
+Owo+IC0Jc3RydWN0IHBhcm0gbjsKCltTZXZlcml0eTogQ3JpdGljYWxdCkRvZXMgcmVtb3Zpbmcg
+dGhlIG4gYW5kIHRhYmxlIGZpZWxkcyBmcm9tIHN0cnVjdCBtZXNvbl9jbGtfcGxsX2RhdGEgYnJl
+YWsKdGhlIGJ1aWxkIGZvciB1bnRvdWNoZWQgU29DIHBsYXRmb3JtIGRyaXZlcnM/CgpEcml2ZXJz
+IHN1Y2ggYXMgYXhnLmMgY29udGludWUgdG8gaW5pdGlhbGl6ZSB0aGVzZSBmaWVsZHMgaW4gdGhl
+aXIgc3RhdGljIFBMTApkZWZpbml0aW9ucyAobGlrZSBheGdfc3lzX3BsbF9kY28pOgoKc3RhdGlj
+IHN0cnVjdCBjbGtfcmVnbWFwIGF4Z19zeXNfcGxsX2RjbyA9IHsKCS5kYXRhID0gJihzdHJ1Y3Qg
+bWVzb25fY2xrX3BsbF9kYXRhKXsKCQkuLi4KCQkubiA9IHsKCQkJLnJlZ19vZmYgPSBISElfU1lT
+X1BMTF9DTlRMLAoJCQkuc2hpZnQgICA9IDksCgkJCS53aWR0aCAgID0gNSwKCQl9LAoKVGhpcyB3
+aWxsIGNhdXNlIGFuIGltbWVkaWF0ZSBjb21waWxlciBlcnJvciBiZWNhdXNlIHRoZSB0eXBlcyBo
+YXZlIGJlZW4KcmVtb3ZlZC4gV2lsbCB0aGlzIGJyZWFrYWdlIHBlcnNpc3QgYW5kIGJyZWFrIGdp
+dCBiaXNlY3Q/Cgo+ICAJc3RydWN0IHBhcm0gZnJhYzsKPiAgCXN0cnVjdCBwYXJtIGw7Cj4gIAlz
+dHJ1Y3QgcGFybSByc3Q7ClsgLi4uIF0KPiBAQCAtNDEsNyArMjksNiBAQCBzdHJ1Y3QgbWVzb25f
+Y2xrX3BsbF9kYXRhIHsKPiAgCXN0cnVjdCBwYXJtIGxfZGV0ZWN0Owo+ICAJY29uc3Qgc3RydWN0
+IHJlZ19zZXF1ZW5jZSAqaW5pdF9yZWdzOwo+ICAJdW5zaWduZWQgaW50IGluaXRfY291bnQ7Cj4g
+LQljb25zdCBzdHJ1Y3QgcGxsX3BhcmFtc190YWJsZSAqdGFibGU7Cj4gIAljb25zdCBzdHJ1Y3Qg
+cGxsX211bHRfcmFuZ2UgKnJhbmdlOwo+ICAJdW5zaWduZWQgaW50IGZyYWNfbWF4Owo+ICAJdTgg
+ZmxhZ3M7CgotLSAKU2FzaGlrbyBBSSByZXZpZXcgwrcgaHR0cHM6Ly9zYXNoaWtvLmRldi8jL3Bh
+dGNoc2V0LzIwMjYwOTIzLW1lc29uX3JlZmFjdG9yX24tdjEtMC0zYThjZTI3MTIxYTJAYW1sb2dp
+Yy5jb20/cGFydD0xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJh
+ZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51
+eC1hbWxvZ2ljCg==
