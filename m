@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72EC0C98319
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FD62C98318
 	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Sep 2026 07:55:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,44 +12,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8nFb6wChIOH+eIVvl6YY+dPnxCWUrjYc3DNhgy2XPx8=; b=S372Fzc7NmEqIl
-	KRJohEjGSUWW03M3q5r8NkhRtU2caUTNUiTn7upwN6pyn6lBMullX43mWnEhdaP99W7PC4Z+QQg/4
-	T4em0mpyGBasJbcuVP9V5CLAiHbmL9G2K7JTiUzlS/ZEpGGH83ShMhY3sSgUS7c7BTQU4mad3cjQ3
-	Ya884K/laqfUDaHd/pdOUGDsfmy3omiFKUcngJXbBmKX1X1q/VI86cQbvtVt4oCXvnDZUDbWH3gsV
-	tEEoPmhR4iAv9vHaKcNdGNu9rR8gvKO06FEiKP9DF/VfHcppbnUgRXY9n2HYb4LMKghGG8MUZ1tj9
-	En0mNQPyEozW72zQYxHw==;
+	List-Owner; bh=4qk3551AIxpz5tteTMN0VbHt6R8X81m50cgs0bJrRfo=; b=qyB0YG3t+zUeuj
+	6DlO460K+IfPk4UZrWLcjvQEDzmhs7ZbUzhPvvLO1fuEv79iynYLMc4qQgTaYd6ShAwJCaXDfilHE
+	qI7IoGeXweC8/7r6frxfDG2dMyotC4eZ6N8uoNensTi2o8NCb90FwcyP8pzKA0hskfpyQd9p94mom
+	RIPsOYyiNAz7GD8mDoopMO/Hx34WKR/ODkQ4Eu3yyk232DMrx/oig8jgsHmeOM1hsjLCtgBF0+uVj
+	yO6LdSGbgeaMt5lpVLqQ2ZG3oXPoD5NHU/9gc6kJ03u0MRWadCyyp4a0+kTCRgltkQM5KpCzMPsjP
+	U/dAYPKdo2fGewibIqFA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x9eIh-0000000AMDZ-1qFs;
-	Thu, 24 Sep 2026 07:55:27 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
-	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x9eIe-0000000AM9F-0YAF;
+	id 1x9eIe-0000000AMA6-2p7s;
 	Thu, 24 Sep 2026 07:55:24 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
+	id 1x9eId-0000000AM88-1aCm;
+	Thu, 24 Sep 2026 07:55:23 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 78FAD602C3;
+	by sea.source.kernel.org (Postfix) with ESMTP id 25B2544000;
 	Thu, 24 Sep 2026 07:55:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2ADC3C2BD01;
-	Thu, 24 Sep 2026 07:55:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id ED4E5C2BCFA;
+	Thu, 24 Sep 2026 07:55:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1790236523;
-	bh=N7Lv5ZvVnfmc8YhjtdO0ynxxHEUuhEVfylq50/tI/yA=;
+	bh=WUzJAYQHchFad4GvLC0D7YFZzyv0eyNbhdVP3Of0Nvo=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=PmMHAHabQ3Z92hA2f5WVGj/GOx3FUqqKgoSIRP1GD1EU83P97O6u7FLzjBzwJKRqs
-	 jnlFE6ddDDk9eOthU03GPvDKuOzHiK9yEwA1QrAsMCjUiX3NdudSPsKng0zLvbsibk
-	 WLxqG8iabbxPDKYDtXBnb80mvhlPvEj1Pep3oWci2J5wMu8rWheb3Qkjo1uF1MloHk
-	 qmdFQWir29NDaJkbkQ3phE3RBW6HPpoufuCL3dUR7EtosJ9veSY7SPaiIclIj7y7eP
-	 iUgM7o3uyHnLR8g69+O/W1OyI79i/b2lDv4VQkVxuzkQWuhvK2IzS6Hh+7yPWSze8o
-	 7qp9P6P3S+dCA==
+	b=bm3F16PoDRNEYRV2YzJsdOhgCmNvWVNNgL+CPGZDJP90Dsb0EKWFMJokP3YJcIdqq
+	 pHrCrfsfCU68duxrwatiZ+ydB6oBdB4jWJ3JDRE3b2EyBnud4RqX+Ln4zH9405NeGE
+	 4cLo6uUppGc4Bn6t7z/nzeIgXx7Y8xDF7NYsJHx8LW4rsNYR4rNd4Q2AUPwEz7dp4D
+	 G/PdH4fYAwjPxoGG6nJNy+Tn/SEaxsaaWlbifkgpByZxXTSKPrbnoGbMqIPqxta3h5
+	 N3JczI49qY4j4csb1zTnzwo2AvwRZu2VwXf2Ey9/XOBZOXlTggFwPXBVkX7XA/vibz
+	 zUe0PRsAPE1Jg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 18145C98318;
-	Thu, 24 Sep 2026 07:55:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CC4EDC98317;
+	Thu, 24 Sep 2026 07:55:22 +0000 (UTC)
 From: Zhentao Guo via B4 Relay <devnull+zhentao.guo.amlogic.com@kernel.org>
-Date: Thu, 24 Sep 2026 15:55:12 +0800
-Subject: [PATCH v10 5/6] arm64: dts: amlogic: Add video decoder driver
- support for S4 SOCs
+Date: Thu, 24 Sep 2026 15:55:09 +0800
+Subject: [PATCH v10 2/6] firmware: meson: sm: Add video firmware loading
+ SMC call
 MIME-Version: 1.0
-Message-Id: <20260924-b4-s4-vdec-upstream-v10-5-1289303a58a4@amlogic.com>
+Message-Id: <20260924-b4-s4-vdec-upstream-v10-2-1289303a58a4@amlogic.com>
 References: <20260924-b4-s4-vdec-upstream-v10-0-1289303a58a4@amlogic.com>
 In-Reply-To: <20260924-b4-s4-vdec-upstream-v10-0-1289303a58a4@amlogic.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -62,11 +62,11 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
  devicetree@vger.kernel.org, Zhentao Guo <zhentao.guo@amlogic.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1790236515; l=1805;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1790236515; l=711;
  i=zhentao.guo@amlogic.com; s=20251024; h=from:subject:message-id;
- bh=6mvln4gF/Xr6GIzNj9H9+pGxV5CsOeJcJGZ1vZicQxY=;
- b=faBz9U3pQ3gGMhcO6UDvCnuCBusZ+3DrvKrGcCQ10HES5y5h1GFXUm0EjHNcZlwKk1q1maxdK
- niCyYZcD/oxCoMztV7guvSswihBOsokNYeRxbdrNKST9o4gGXEBgc+1
+ bh=wZ/Fw+jH+tOBVIXbBc8zSjH7Kx36sATJ09qPRAeyKKk=;
+ b=Tbz+uK0VYas3dUMYvy3qBCJhbR2BH18XolHwGco5EnlwVvMkzc9vIC5pdcYmCWSqMmMnOIaSn
+ fUo/GQfWPMkAIExPvZR3bNvoztCjpFcs3UVHGvbqKenx2tJd9SbfHvN
 X-Developer-Key: i=zhentao.guo@amlogic.com; a=ed25519;
  pk=5yfDKrjreXwcAoEUsdtWafy6YN500upXp/CgtnXjLVU=
 X-Endpoint-Received: by B4 Relay for zhentao.guo@amlogic.com/20251024 with
@@ -91,64 +91,25 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Zhentao Guo <zhentao.guo@amlogic.com>
 
-Add vdec node to enable Amlogic V4L2 stateless video decoder
-support. Since the video fw needs to be loaded via TEE helpers,
-enable the optee node in this patch.
+Add SM_LOAD_VIDEO_FW at SMC ID 0xb200000f in the command
+table to load video firmware.
 
 Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 33 +++++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+ drivers/firmware/meson/meson_sm.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index 2a6fbd530836..7a1dcb3951c8 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -80,6 +80,11 @@ pwrc: power-controller {
- 				#power-domain-cells = <1>;
- 			};
- 		};
-+
-+		optee {
-+			compatible = "linaro,optee-tz";
-+			method = "smc";
-+		};
- 	};
- 
- 	saradc: adc@fe026000 {
-@@ -907,5 +912,33 @@ emmc: mmc@fe08c000 {
- 			assigned-clocks = <&clkc_periphs CLKID_SD_EMMC_C>;
- 			assigned-clock-rates = <24000000>;
- 		};
-+
-+		canvas: video-lut@fe036048 {
-+			compatible = "amlogic,canvas";
-+			reg = <0x0 0xfe036048 0x0 0x14>;
-+		};
-+
-+		video-codec@fe320000 {
-+			compatible = "amlogic,s4-vdec";
-+			reg = <0x0 0xfe320000 0x0 0x10000>,
-+			      <0x0 0xfe036000 0x0 0x20>;
-+			reg-names = "dos",
-+				    "dmc";
-+			interrupts = <GIC_SPI 91 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 92 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&clkc_periphs CLKID_DOS>,
-+				 <&clkc_periphs CLKID_VDEC_SEL>,
-+				 <&clkc_periphs CLKID_HEVCF_SEL>;
-+			clock-names = "dos",
-+				      "vdec",
-+				      "hvdec";
-+			power-domains = <&pwrc PWRC_S4_DOS_VDEC_ID>,
-+					<&pwrc PWRC_S4_DOS_HEVC_ID>;
-+			power-domain-names = "vdec",
-+					     "hvdec";
-+			resets = <&reset RESET_DOS>;
-+			amlogic,canvas = <&canvas>;
-+			amlogic,secure-monitor = <&sm>;
-+		};
- 	};
+diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/meson_sm.c
+index ab9751a59b55..887caa5c625d 100644
+--- a/drivers/firmware/meson/meson_sm.c
++++ b/drivers/firmware/meson/meson_sm.c
+@@ -48,6 +48,7 @@ static const struct meson_sm_chip gxbb_chip = {
+ 		CMD(SM_THERMAL_CALIB_READ,	0x82000047),
+ 		CMD(SM_A1_PWRC_SET,		0x82000093),
+ 		CMD(SM_A1_PWRC_GET,		0x82000095),
++		CMD(SM_LOAD_VIDEO_FW,		0xb200000f),
+ 		{ /* sentinel */ },
+ 	},
  };
 
 -- 
