@@ -4,77 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1480C9830E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Sep 2026 15:15:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5368C9830E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Sep 2026 15:15:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Zo2z6UZrmcvV0KYCelYdBQuzdq4V4G4swOzB6Z9M70Q=; b=CrSfFC+DiFxyjy
-	UDO9+e3Uspez2JqKwgxH5mOuA1xl8u443SUbmhjnklFF+4EBxF493mv2q25/33SdxMxj7Yt2mvNnI
-	ro9bhsJCMDR6qfPWyns+zuOffddYgtGSIClTHrLSIWRad/tllpAimpU8EKXzs6nRKqZRsPac+ZIf3
-	romDrtAvITc7phL8BrbeL2QM+TMs2uBNsSYnzSEquLDEDcoTOkfkRRKfMlm2So5vL+HJkefbD2s3k
-	OfK+6SujNiGzLDf7aCkQr/sonJxcY9dIwumMKmDVP+nF9kS3EWSP19Vv/73t++EjTFA3PEDlZAf79
-	r4+nuoKmLFaYivRQd1NQ==;
+	List-Owner; bh=5B3F6uQV91l6hi5bVCfDxAxaYeCzrkqM8U6L1vFL8Rc=; b=nMM+/Qyu7A10vC
+	8Um6W2oN0Pfds++NbJg6CTkrsU6QhrJYDJ4JL8eMfguVWH/48czIVF0EbfwiO/58enESwXzm4B9d2
+	9Bef5k9rRDjY5TrNEvZY+HgUnrL3ZcKcewz35Ue65NFEdRxLNqFfd7swPi3/cmzYyWveZVuMQdqP3
+	rcbN9qrtHeG8Ho0CW43+vCCJvpt1ubdY5Vu4inqBCrdp1LTYD2O762VjG1QP0Ad+BSJ2xm7UIIZKC
+	oUh2EYvRfFmnqYkKnsVJSxgVtoSHtNTXq/Gh2SvFJaY5K+A3vN/WXN7L5fAjssHsOsqxdoT4SGIQF
+	dKg6j5eybEaQThXFtY/Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x9lAI-0000000BM3S-3io2;
-	Thu, 24 Sep 2026 15:15:14 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1x9lAl-0000000BMMR-3X4z;
+	Thu, 24 Sep 2026 15:15:43 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1x9lAH-0000000BM25-2imf;
-	Thu, 24 Sep 2026 15:15:13 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id EFB9844504;
-	Thu, 24 Sep 2026 15:15:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D11F9C2BCFD;
-	Thu, 24 Sep 2026 15:15:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1790262912;
-	bh=mys8d0QyT1jeqfYTCqWxqyuhDyI86uP8AaBBHLjc8CU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=GLcv5zNEzPO2gi90jXUd2VHnrxBDTuvDNerSCbLCXaezFQ/uj+q9oTmyqN/nI2MRz
-	 ZbY1RA3914RyPqpTUI1Zx6/ux5U9M4aorEA0fanq/CRpPqCPK4x8RWqGL6kFGDFDdr
-	 4kVaCeOXl0WEp5iMG4UrZiqsoRY053tUJlKrm7fgoUGj9oi5Wvk0X/nWgpXvXLLWTA
-	 dRnb4A2aULq2wM7whNtepfsEEig/KNemcYc6ew+9eZk9slXEJLsHnK7Nx3tFjyIhA9
-	 k1yVZ+im+niSwZQ47ab9O2RxzmUkXPzUrt1JcGhq4MCN5cJjEQQSaaD0xaKPnb0LTf
-	 J++hWGiqJ1SRg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B4633C9830E;
-	Thu, 24 Sep 2026 15:15:12 +0000 (UTC)
-From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Thu, 24 Sep 2026 17:14:30 +0200
-Subject: [PATCH 3/3] arm64: dts: amlogic: t7: Add core clock to PWM
- controller nodes
-MIME-Version: 1.0
-Message-Id: <20260924-add-t7-sys-pwm-clk-v1-3-05b91e87f0a9@aliel.fr>
-References: <20260924-add-t7-sys-pwm-clk-v1-0-05b91e87f0a9@aliel.fr>
-In-Reply-To: <20260924-add-t7-sys-pwm-clk-v1-0-05b91e87f0a9@aliel.fr>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3527;
- i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=iQJmhI6/rtcZ/olaoAWuBun4MGQh6or5yJDIWByo+Dg=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ9ZWu5oJNSeOKn6LOfv3f4uUkMLnoCN/9Zo0pVNPv1+zn
- f9D2p3qjlIWBjEuBlkxRZb+uZYn3l0+eubrHvUUmDmsTCBDGLg4BWAilm8ZGe54Bpl9538c7vxM
- yuCD7IKqg5e8nXc8f83a9pMx4NZk5nSG/6Ws5c/5AxtVKi2NmyU3bpO3qSv8Meva6umsy6rWWTV
- v4AQA
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
- fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
-X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
- auth_id=744
-X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+	id 1x9lAk-0000000BMKd-0088
+	for linux-amlogic@lists.infradead.org;
+	Thu, 24 Sep 2026 15:15:42 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id A1B69601DE;
+	Thu, 24 Sep 2026 15:15:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE6971F000FF;
+	Thu, 24 Sep 2026 15:15:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1790262940;
+	bh=JwwZRz8sSOWRBKYYcGRM4YkpiNNFFtx8DJIpCtAC0yg=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=Zs7FvQ15l/ZK2znr4hR6MWOpLAm3Vmwa+wFo/UQ+qkXWonmFGNFUiTubXEMA3qwNG
+	 FE1UcJFowrUx2t0cR1WZRS4foRCdU2qRyJccRgChM1aq64Tl6S382vBkyg5gm3vSpb
+	 mMrf6i/O0ti0bTiekt5TW5nTbOcNJ5TyGEamqQtsgMSYoT3qeju+7vq2T412gXhPS8
+	 xJ4KnZhLddL9wMwi2w/JPkMHulRG+fNdUYz1pOY5wbCaRs6Ik5vk58XrGvirY+2XhS
+	 hvFLGqbSDnD0TEWASnH0dDbSZgW32RB0s+UzbDjqf88gJIU95lgl1OqOaKOe3gFOlH
+	 DoFQ5g9w8C84g==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH net-next v15 4/9] dt-bindings: net: qcom: document the
+ ethqos device for SCMI-based systems
+To: "Bartosz Golaszewski" <bartosz.golaszewski@oss.qualcomm.com>
+Cc: robh@kernel.org, linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org, wsa+renesas@sang-engineering.com, conor+dt@kernel.org, linux-sunxi@lists.linux.dev, Frank.Li@kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org
+In-Reply-To: <20260923-qcom-sa8255p-emac-v15-4-e82f33720737@oss.qualcomm.com>
+References: <20260923-qcom-sa8255p-emac-v15-0-e82f33720737@oss.qualcomm.com>
+ <20260923-qcom-sa8255p-emac-v15-4-e82f33720737@oss.qualcomm.com>
+Date: Thu, 24 Sep 2026 15:15:39 +0000
+Message-Id: <20260924151539.CE6971F000FF@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,111 +63,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: linux-kernel-dev@aliel.fr
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-
-Describe the system clock of each PWM controller (CLKID_SYS_PWM_*) as a
-third clock, and add the clock-names property expected by the updated
-binding: "clk_a", "clk_b" and "core".
-
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 28 +++++++++++++++++++++-------
- 1 file changed, 21 insertions(+), 7 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index 8f3f1c0579a0f..83c597d418875 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -692,7 +692,9 @@ pwm_ao_ef: pwm@30000 {
- 				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
- 				reg = <0x0 0x30000 0x0 0x24>;
- 				clocks = <&clkc_periphs CLKID_PWM_AO_E>,
--					 <&clkc_periphs CLKID_PWM_AO_F>;
-+					 <&clkc_periphs CLKID_PWM_AO_F>,
-+					 <&clkc_periphs CLKID_SYS_PWM_AO_EF>;
-+				clock-names = "clk_a", "clk_b", "core";
- 				#pwm-cells = <3>;
- 				status = "disabled";
- 			};
-@@ -701,7 +703,9 @@ pwm_ao_gh: pwm@32000 {
- 				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
- 				reg = <0x0 0x32000 0x0 0x24>;
- 				clocks = <&clkc_periphs CLKID_PWM_AO_G>,
--					 <&clkc_periphs CLKID_PWM_AO_H>;
-+					 <&clkc_periphs CLKID_PWM_AO_H>,
-+					 <&clkc_periphs CLKID_SYS_PWM_AO_GH>;
-+				clock-names = "clk_a", "clk_b", "core";
- 				#pwm-cells = <3>;
- 				status = "disabled";
- 			};
-@@ -715,7 +719,9 @@ pwm_ab: pwm@58000 {
- 				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
- 				reg = <0x0 0x58000 0x0 0x24>;
- 				clocks = <&clkc_periphs CLKID_PWM_A>,
--					 <&clkc_periphs CLKID_PWM_B>;
-+					 <&clkc_periphs CLKID_PWM_B>,
-+					 <&clkc_periphs CLKID_SYS_PWM_AB>;
-+				clock-names = "clk_a", "clk_b", "core";
- 				#pwm-cells = <3>;
- 				status = "disabled";
- 			};
-@@ -724,7 +730,9 @@ pwm_cd: pwm@5a000 {
- 				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
- 				reg = <0x0 0x5a000 0x0 0x24>;
- 				clocks = <&clkc_periphs CLKID_PWM_C>,
--					 <&clkc_periphs CLKID_PWM_D>;
-+					 <&clkc_periphs CLKID_PWM_D>,
-+					 <&clkc_periphs CLKID_SYS_PWM_CD>;
-+				clock-names = "clk_a", "clk_b", "core";
- 				#pwm-cells = <3>;
- 				status = "disabled";
- 			};
-@@ -733,7 +741,9 @@ pwm_ef: pwm@5c000 {
- 				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
- 				reg = <0x0 0x5c000 0x0 0x24>;
- 				clocks = <&clkc_periphs CLKID_PWM_E>,
--					 <&clkc_periphs CLKID_PWM_F>;
-+					 <&clkc_periphs CLKID_PWM_F>,
-+					 <&clkc_periphs CLKID_SYS_PWM_EF>;
-+				clock-names = "clk_a", "clk_b", "core";
- 				#pwm-cells = <3>;
- 				status = "disabled";
- 			};
-@@ -742,7 +752,9 @@ pwm_ao_ab: pwm@5e000 {
- 				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
- 				reg = <0x0 0x5e000 0x0 0x24>;
- 				clocks = <&clkc_periphs CLKID_PWM_AO_A>,
--					 <&clkc_periphs CLKID_PWM_AO_B>;
-+					 <&clkc_periphs CLKID_PWM_AO_B>,
-+					 <&clkc_periphs CLKID_SYS_PWM_AO_AB>;
-+				clock-names = "clk_a", "clk_b", "core";
- 				#pwm-cells = <3>;
- 				status = "disabled";
- 			};
-@@ -751,7 +763,9 @@ pwm_ao_cd: pwm@60000 {
- 				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
- 				reg = <0x0 0x60000 0x0 0x24>;
- 				clocks = <&clkc_periphs CLKID_PWM_AO_C>,
--					 <&clkc_periphs CLKID_PWM_AO_D>;
-+					 <&clkc_periphs CLKID_PWM_AO_D>,
-+					 <&clkc_periphs CLKID_SYS_PWM_AO_CD>;
-+				clock-names = "clk_a", "clk_b", "core";
- 				#pwm-cells = <3>;
- 				status = "disabled";
- 			};
-
--- 
-2.49.0
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0xvd10gZHQtYmluZGluZ3M6IHVs
+dHJhcmlzYyxkcDEwMDAtZ21hYzogbWlzc2luZyBwb3dlci1kb21haW5zIG1heEl0ZW1zIGNvbnN0
+cmFpbnQKLS0KCmNvbW1pdCBlMzBjYzA2MjYxNzgxMTdmYmJlZWVkMzhmZmU0NTVkYjE1ZDQ5NzNi
+CkF1dGhvcjogQmFydG9zeiBHb2xhc3pld3NraSA8YnJnbEBrZXJuZWwub3JnPgoKZHQtYmluZGlu
+Z3M6IG5ldDogcWNvbTogZG9jdW1lbnQgdGhlIGV0aHFvcyBkZXZpY2UgZm9yIFNDTUktYmFzZWQg
+c3lzdGVtcwoKRGVzY3JpYmUgdGhlIGZpcm13YXJlLW1hbmFnZWQgdmFyaWFudCBvZiB0aGUgUUNv
+bSBEZXNpZ25XYXJlIE1BQy4gQXMgdGhlCnByb3BlcnRpZXMgaGVyZSBkaWZmZXIgYSBsb3QgZnJv
+bSB0aGUgSExPUy1tYW5hZ2VkIHZhcmlhbnQsIGxldHMgcHV0IGl0CmluIGEgc2VwYXJhdGUgZmls
+ZS4gU2luY2Ugd2UgbmVlZCB0byB1cGRhdGUgdGhlIG1heGltdW0gbnVtYmVyIG9mIHBvd2VyCmRv
+bWFpbnMsIGxldCdzIHVwZGF0ZSBleGlzdGluZyBiaW5kaW5ncyByZWZlcmVuY2luZyB0aGUgdG9w
+LWxldmVsCnNucHMsZHdtYWMueWFtbCBhbmQgbGltaXQgdGhlaXIgbWF4SXRlbXMgZm9yIHBvd2Vy
+LWRvbWFpbnMgdG8gMS4KCj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
+aW5kaW5ncy9uZXQvc25wcyxkd21hYy55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL25ldC9zbnBzLGR3bWFjLnlhbWwKPiBpbmRleCAwZmY5ZTMyODRhMDYxLi4xZjJlZTY4
+NGRjMzkxIDEwMDY0NAo+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9u
+ZXQvc25wcyxkd21hYy55YW1sCj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL25ldC9zbnBzLGR3bWFjLnlhbWwKClsgLi4uIF0KCj4gQEAgLTE4Niw3ICsxODcsOCBAQCBw
+cm9wZXJ0aWVzOgo+ICAgICAgICAgICAgLSBlbnVtOiBbYWhiLCBzdG1tYWNldGgtb2NwXQo+ICAK
+PiAgICBwb3dlci1kb21haW5zOgo+IC0gICAgbWF4SXRlbXM6IDEKPiArICAgIG1pbkl0ZW1zOiAx
+Cj4gKyAgICBtYXhJdGVtczogMgo+ICAKPiAgICBtYWMtbW9kZToKPiAgICAgICRyZWY6IGV0aGVy
+bmV0LWNvbnRyb2xsZXIueWFtbCMvcHJvcGVydGllcy9waHktY29ubmVjdGlvbi10eXBlCgpbU2V2
+ZXJpdHk6IExvd10KRG9lcyB0aGlzIHVuaW50ZW50aW9uYWxseSByZWxheCB2YWxpZGF0aW9uIGZv
+ciB0aGUgdWx0cmFyaXNjLGRwMTAwMC1nbWFjCmNvbXBhdGlibGUgc3RyaW5nPwoKVGhlIGNvbW1p
+dCBtZXNzYWdlIG1lbnRpb25zIHVwZGF0aW5nIGV4aXN0aW5nIGJpbmRpbmdzIHRoYXQgcmVmZXJl
+bmNlCnNucHMsZHdtYWMueWFtbCB0byBsaW1pdCBwb3dlci1kb21haW5zIG1heEl0ZW1zIHRvIDEu
+IEhvd2V2ZXIsIGl0IGFwcGVhcnMKRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL25l
+dC91bHRyYXJpc2MsZHAxMDAwLWdtYWMueWFtbCBpcyBtaXNzaW5nCmEgbG9jYWwgb3ZlcnJpZGUg
+YW5kIHdpbGwgbm93IGluaGVyaXQgdGhpcyBuZXcgbWF4SXRlbXM6IDIgY29uc3RyYWludC4KClNo
+b3VsZCB1bHRyYXJpc2MsZHAxMDAwLWdtYWMueWFtbCBhbHNvIGJlIHVwZGF0ZWQgdG8gbGltaXQg
+bWF4SXRlbXMgdG8gMT8KCi0tIApTYXNoaWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nhc2hpa28u
+ZGV2LyMvcGF0Y2hzZXQvMjAyNjA5MjMtcWNvbS1zYTgyNTVwLWVtYWMtdjE1LTAtZTgyZjMzNzIw
+NzM3QG9zcy5xdWFsY29tbS5jb20/cGFydD00CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxv
+Z2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
