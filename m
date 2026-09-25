@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D493C98325
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24EB4C98328
 	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2026 15:14:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,43 +12,43 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5uMXAiu6blM0i+dbQyM6OQMktDYZE8kR9+gDmgQgeTQ=; b=4uEs5f90U6ZjXp
-	REmcnO3IxmavaU1APgNc9IsWbdWFJNuE1WHsqTvIoolVgFLq9SVypC3uvjHUmU59jUUASMj5HKNre
-	2qk27rMF6413ggs+BUVtyRUVDb7mI50tf6BSb61QFDVevLyC0Tty562m5MaK2lqY18d9SrljTzDL5
-	ndu7+OvN1qua1+dV6bm+zGmFYuIo8VljFc1aYleVMgNOrzIp0HlRpkTXRRkW8xGttmEqmRf34gI8X
-	DL7YkdXX6oeNmjGzxsgA2VRdmouy9HW6Zk4tyHJCDlRE5yF3oEquTKcJtUPpqmUOrDFdU+aRGINDg
-	CqKlyntC9su0ax2CLUFg==;
+	List-Owner; bh=VezQpINnU77T5JAwyi/wRH+4yeXYCtIXvijJGYPxSLI=; b=OGcBt83oFwAIpo
+	ec5BJT2dkmGRSX8XzRXooZjnwYGXMfZO7kNTEboX41XVg4Biy5VTPwyAUC5Kic4G1Jon5A+dmQqHs
+	x2k/UMt1ooHQz1vGHVAaQu+ra23PN08Us+kvgmJfx5kosipkS7/DaJBHrlOumbIta8xKn5h6cTj3Y
+	zlUNQsPmZQvnEpKVD6RqJiFX++lgAIRfw23HIP9UIFxNDmz5wK0OoKVdIi1e8CgLDbazjM9frNfGP
+	0MLWM08GOwDxw2TUIhBy7s7I/HRlfj7UHbmTLbFBGVEnWEUo2J9r1DgGqcIs4xsQyxRGFI7S8VLjK
+	sQx4xIOeU+9p8JVUsktQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xA7d4-0000000DjBH-0aNB;
-	Fri, 25 Sep 2026 15:14:26 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xA7d6-0000000DjED-328s;
+	Fri, 25 Sep 2026 15:14:28 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xA7d3-0000000DjAW-0G9P;
-	Fri, 25 Sep 2026 15:14:25 +0000
+	id 1xA7d4-0000000DjBI-3K3i;
+	Fri, 25 Sep 2026 15:14:26 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id CC68C4166C;
+	by tor.source.kernel.org (Postfix) with ESMTP id B9CBA602C8;
 	Fri, 25 Sep 2026 15:14:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6EFB3C2BCF7;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 5E89DC2BCB8;
 	Fri, 25 Sep 2026 15:14:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1790349264;
-	bh=C204W/yB+PghlPEk0hny36BOqfLvlmVXE04baWTGylE=;
+	bh=m9d4wVem58v8DsnpYMJqcpiHnmAE/BxUBPN1Xs7PVkk=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=lRsnudaIYCMidNHuZ3i8rRatw47HUPehg/ZNYKyEZvHs+010uBNLhi/w28vXaldv9
-	 TyllWcgf/UdlOskuhS+8EqcHRevV4FM8LdjsUifKSYAzDruGrHR351Y+vVdOBnC6Nk
-	 qdu/0d3oGu38zPj2Ab2o3dWV1th9B33uGFHOHPA2NnWpsQlM9FUpO7RfhG8g8/+Uso
-	 qp70gWQYx67deIxLOqXdCNO2rFpABKCcRpvWe07QQIKkUj5sXzBIFZWE8CZi7FVUlz
-	 rqipIrB3uTtQ3saEkUcAJ9EiEptGcMkbNNK/PHF6ts0TgKlyZK2ERX7SMobM5CDI8b
-	 wRq8jhsiWjoXA==
+	b=uKdVdV8xGTbMVqd4tzgVuE0ngb41r7aHYK8hOtg5dpygd9s5GVMmwsocEl8YPODQQ
+	 X6HxYJ/8Hr7BKvSrJ6rWrpUcCEcI3weGOd2IJR8hnktXRhmG4kJpUosnI7F33hVod0
+	 gNL35mutbXRS/AVefrr3HQuLYZOFDMTdi0sRHa7ZCpaRJOJIcYolcwr7ATslrwd2Re
+	 W09pdwL8EA9N9n7i19XGxkb8SORUYQ0jki8U7E9ygSmjik/5kpQ7+DbUgFiF+8qpPo
+	 TJFnnK1b35OWSnjxJ3l8gUO8dYb09AB6j/eUjiJHRz/Uxt775D1CUMB0rUkb1eYDXf
+	 mKBok39IToq4g==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 50B12C98328;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3EA0CC98321;
 	Fri, 25 Sep 2026 15:14:24 +0000 (UTC)
 From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Fri, 25 Sep 2026 17:13:29 +0200
-Subject: [PATCH v2 2/3] pwm: meson: Add optional core clock for S4 PWM
+Date: Fri, 25 Sep 2026 17:13:28 +0200
+Subject: [PATCH v2 1/3] dt-bindings: pwm: amlogic: Add core clock for T7
 MIME-Version: 1.0
-Message-Id: <20260925-add-t7-sys-pwm-clk-v2-2-f23a22b71a5c@aliel.fr>
+Message-Id: <20260925-add-t7-sys-pwm-clk-v2-1-f23a22b71a5c@aliel.fr>
 References: <20260925-add-t7-sys-pwm-clk-v2-0-f23a22b71a5c@aliel.fr>
 In-Reply-To: <20260925-add-t7-sys-pwm-clk-v2-0-f23a22b71a5c@aliel.fr>
 To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
@@ -62,13 +62,13 @@ Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-amlogic@lists.infradead.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1224;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2352;
  i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=38T10zBYHuRS2HPS8ZW7iUWdDAPvTmkAaZ2SgSI77jU=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ9a2/mPpR6amTjZuU+G/t6spqfSS8Zxn3uFvc+6nJuxgt
- k5Sj9/RUcrCIMbFICumyNI/1/LEu8tHz3zdo54CM4eVCWQIAxenAEzEiZvhf4TepQLOxFdtfZPX
- +sfPW9uaLPRwouiEUxK+ds4FmSraexkZTvGvnb3rvndrVYlGlkhAkC9rdvqVS2Xb+vI27I+Zdyq
- HEQA=
+ bh=75yNudVNuwQ3zdJGU8ivK4ndnUVyoW5jHITfU7O4bG4=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ9a2/kOCizR8E88omVy2KIs9p79i96lthj+PlV7u33mb+
+ fqaWXZPO0pZGMS4GGTFFFn651qeeHf56Jmve9RTYOawMoEMYeDiFICJGMkzMvwUXRpb3HAw7neO
+ xqHs5e1Lj1tIbZ20xiEyq2Zpkkit6jNGhtlfaj5u3/ZAUzcyLlLcyNG8ZfqHkmV/wqY1FS4OXzV
+ xDScA
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
  fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
 X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
@@ -93,37 +93,85 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 
-On some SoCs (e.g. T7), the PWM controller has a system clock that must
-be enabled to access its registers, in addition to the per-channel
-input clocks.
+The T7, A1, C3, and S4 PWM controllers have a system clock in
+addition to the two input clocks of channels A and B.
 
-Get and enable it with devm_clk_get_optional_enabled() using the
-"core" name. The clock is optional, so existing SoCs and device trees
-that do not provide it keep working unchanged.
+The channel clocks are acquired by index in the pwm driver,
+where the core clock is fetched by name, with optional get
+which is silent when not provided.
+
+Require clock-names and minimum 3 items for T7, where the
+PWM devices do not work without all 3 clocks.
+
+Add an example showing T7 usage with its fallback to
+amlogic,meson-s4-pwm.
 
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- drivers/pwm/pwm-meson.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ .../devicetree/bindings/pwm/pwm-amlogic.yaml       | 33 ++++++++++++++++++++--
+ 1 file changed, 31 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index 20e6cd07127c4..5ab07322e8d15 100644
---- a/drivers/pwm/pwm-meson.c
-+++ b/drivers/pwm/pwm-meson.c
-@@ -508,8 +508,13 @@ static int meson_pwm_init_channels_s4(struct pwm_chip *chip)
- 	struct device *dev = pwmchip_parent(chip);
- 	struct device_node *np = dev->of_node;
- 	struct meson_pwm *meson = to_meson_pwm(chip);
-+	struct clk *core_clk;
- 	int i, ret;
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+index c337d85da40f1..59320f288552b 100644
+--- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
++++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+@@ -62,7 +62,7 @@ properties:
  
-+	core_clk = devm_clk_get_optional_enabled(dev, "core");
-+	if (IS_ERR(core_clk))
-+		return dev_err_probe(dev, PTR_ERR(core_clk), "Failed to get core clock\n");
+   clock-names:
+     minItems: 1
+-    maxItems: 2
++    maxItems: 3
+ 
+   power-domains:
+     maxItems: 1
+@@ -140,13 +140,34 @@ allOf:
+     then:
+       properties:
+         clocks:
++          minItems: 2
+           items:
+             - description: input clock of PWM channel A
+             - description: input clock of PWM channel B
+-        clock-names: false
++            - description: gate clock for the PWM controller
++        clock-names:
++          minItems: 2
++          items:
++            - const: channel-a
++            - const: channel-b
++            - const: core
+       required:
+         - clocks
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: amlogic,t7-pwm
++    then:
++      properties:
++        clocks:
++          minItems: 3
++        clock-names:
++          minItems: 3
++      required:
++        - clock-names
 +
- 	for (i = 0; i < MESON_NUM_PWMS; i++) {
- 		meson->channels[i].clk = of_clk_get(np, i);
- 		if (IS_ERR(meson->channels[i].clk))
+   - if:
+       properties:
+         compatible:
+@@ -182,3 +203,11 @@ examples:
+       clocks = <&pwm_src_a>, <&pwm_src_b>;
+       #pwm-cells = <3>;
+     };
++  - |
++    pwm@60000 {
++      compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
++      reg = <0x60000 0x24>;
++      clocks = <&channel_a>, <&channel_b>, <&core>;
++      clock-names = "channel-a", "channel-b", "core";
++      #pwm-cells = <3>;
++    };
 
 -- 
 2.49.0
