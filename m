@@ -4,76 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24EB4C98328
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2026 15:14:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B8ECC98321
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2026 16:41:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VezQpINnU77T5JAwyi/wRH+4yeXYCtIXvijJGYPxSLI=; b=OGcBt83oFwAIpo
-	ec5BJT2dkmGRSX8XzRXooZjnwYGXMfZO7kNTEboX41XVg4Biy5VTPwyAUC5Kic4G1Jon5A+dmQqHs
-	x2k/UMt1ooHQz1vGHVAaQu+ra23PN08Us+kvgmJfx5kosipkS7/DaJBHrlOumbIta8xKn5h6cTj3Y
-	zlUNQsPmZQvnEpKVD6RqJiFX++lgAIRfw23HIP9UIFxNDmz5wK0OoKVdIi1e8CgLDbazjM9frNfGP
-	0MLWM08GOwDxw2TUIhBy7s7I/HRlfj7UHbmTLbFBGVEnWEUo2J9r1DgGqcIs4xsQyxRGFI7S8VLjK
-	sQx4xIOeU+9p8JVUsktQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=qPeWMXULaHNxhYjS73VlgdxgNK3nvdOhswewdKQ2k/Y=; b=dVUtCJayc9bm3cHcokS38ZFrft
+	zUFVyaWTHsnxY3FwBQ6NheWEpipJeb5fDv2VrDcfyl3ohR5SzW0TrNAxTnSeZeG292quYyBUsxIS5
+	qg01SAFbta1eLqAU4ppvq+IqGjnWHVzbFingDKhZYvDxnrh8VIJsOE33mJ89TpeF3S9hwKYvK9tbv
+	ELgg7shY3EreGr3ia/ydy950Wq76+az16YwQ6ggOLhdeCchQkqqy+Ci2YsUgi8hN8w+2SJdTT9J3/
+	V48U1sB05PUrQVD5/E9sLOJQQTwtwdrm2aaYsAlGQLAqYH0IsInC3J2WYvwv+eFzwoy/hdzl9ZFlj
+	VuiYlP1g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xA7d6-0000000DjED-328s;
-	Fri, 25 Sep 2026 15:14:28 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xA8zG-0000000DyUs-2djL;
+	Fri, 25 Sep 2026 16:41:26 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xA7d4-0000000DjBI-3K3i;
-	Fri, 25 Sep 2026 15:14:26 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id B9CBA602C8;
-	Fri, 25 Sep 2026 15:14:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 5E89DC2BCB8;
-	Fri, 25 Sep 2026 15:14:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1790349264;
-	bh=m9d4wVem58v8DsnpYMJqcpiHnmAE/BxUBPN1Xs7PVkk=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=uKdVdV8xGTbMVqd4tzgVuE0ngb41r7aHYK8hOtg5dpygd9s5GVMmwsocEl8YPODQQ
-	 X6HxYJ/8Hr7BKvSrJ6rWrpUcCEcI3weGOd2IJR8hnktXRhmG4kJpUosnI7F33hVod0
-	 gNL35mutbXRS/AVefrr3HQuLYZOFDMTdi0sRHa7ZCpaRJOJIcYolcwr7ATslrwd2Re
-	 W09pdwL8EA9N9n7i19XGxkb8SORUYQ0jki8U7E9ygSmjik/5kpQ7+DbUgFiF+8qpPo
-	 TJFnnK1b35OWSnjxJ3l8gUO8dYb09AB6j/eUjiJHRz/Uxt775D1CUMB0rUkb1eYDXf
-	 mKBok39IToq4g==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3EA0CC98321;
-	Fri, 25 Sep 2026 15:14:24 +0000 (UTC)
-From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Fri, 25 Sep 2026 17:13:28 +0200
-Subject: [PATCH v2 1/3] dt-bindings: pwm: amlogic: Add core clock for T7
-MIME-Version: 1.0
-Message-Id: <20260925-add-t7-sys-pwm-clk-v2-1-f23a22b71a5c@aliel.fr>
+	id 1xA8zF-0000000DyUC-0dm1;
+	Fri, 25 Sep 2026 16:41:25 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id DE6544062B;
+	Fri, 25 Sep 2026 16:41:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F342A1F000FF;
+	Fri, 25 Sep 2026 16:41:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1790354484;
+	bh=WIumMAJNznQ9DrE7dU0GPomzZVcUJ+5wdY/jveeHliU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=AiqBTp5PJEFtVAgYEhZK1Kr/gPKKEYAFDuCmfKxZCB8XSEC2czAdfJwAUmVGRKUCH
+	 YDg/+OaB1pAejuH7Rlp6FuiXTjZoVUOBcdbGxCJ0adMEhg1ARtGJgWt1sTRhVw80wd
+	 D/glrHY73t8EcqAuZZlmOi9FQJEDABL2PQ4TRzi7xJm5w5qRCGWfaSEnqb5WTmbhEB
+	 3XS+TSWamdY6KcEGUaqgp3ixqzCkwuB8/spe5u7Ry8Lw/h9Fo92pGwsRZ8sJs8CBdA
+	 4NwoxU7Epd9fSPjbk9OAHiCbxC7creNtk39j4zTormttPoibj/plyefNMlqq0ltDOL
+	 Vtcb/JgEyz1Pw==
+Date: Fri, 25 Sep 2026 17:41:20 +0100
+From: Conor Dooley <conor@kernel.org>
+To: linux-kernel-dev@aliel.fr
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: pwm: amlogic: Add core clock for T7
+Message-ID: <20260925-facial-follow-032de22361c1@spud>
 References: <20260925-add-t7-sys-pwm-clk-v2-0-f23a22b71a5c@aliel.fr>
-In-Reply-To: <20260925-add-t7-sys-pwm-clk-v2-0-f23a22b71a5c@aliel.fr>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2352;
- i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=75yNudVNuwQ3zdJGU8ivK4ndnUVyoW5jHITfU7O4bG4=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ9a2/kOCizR8E88omVy2KIs9p79i96lthj+PlV7u33mb+
- fqaWXZPO0pZGMS4GGTFFFn651qeeHf56Jmve9RTYOawMoEMYeDiFICJGMkzMvwUXRpb3HAw7neO
- xqHs5e1Lj1tIbZ20xiEyq2Zpkkit6jNGhtlfaj5u3/ZAUzcyLlLcyNG8ZfqHkmV/wqY1FS4OXzV
- xDScA
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
- fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
-X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
- auth_id=744
-X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+ <20260925-add-t7-sys-pwm-clk-v2-1-f23a22b71a5c@aliel.fr>
+MIME-Version: 1.0
+In-Reply-To: <20260925-add-t7-sys-pwm-clk-v2-1-f23a22b71a5c@aliel.fr>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,100 +73,137 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: linux-kernel-dev@aliel.fr
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============7597169833410852514=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+--===============7597169833410852514==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="i1HZVlWbgy+JhL9b"
+Content-Disposition: inline
 
-The T7, A1, C3, and S4 PWM controllers have a system clock in
-addition to the two input clocks of channels A and B.
+--i1HZVlWbgy+JhL9b
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The channel clocks are acquired by index in the pwm driver,
-where the core clock is fetched by name, with optional get
-which is silent when not provided.
+On Fri, Sep 25, 2026 at 05:13:28PM +0200, Ronald Claveau via B4 Relay wrote:
+> From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+>=20
+> The T7, A1, C3, and S4 PWM controllers have a system clock in
+> addition to the two input clocks of channels A and B.
+>=20
+> The channel clocks are acquired by index in the pwm driver,
+> where the core clock is fetched by name, with optional get
+> which is silent when not provided.
+>=20
+> Require clock-names and minimum 3 items for T7, where the
+> PWM devices do not work without all 3 clocks.
+>=20
+> Add an example showing T7 usage with its fallback to
+> amlogic,meson-s4-pwm.
+>=20
+> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+> ---
+>  .../devicetree/bindings/pwm/pwm-amlogic.yaml       | 33 ++++++++++++++++=
+++++--
+>  1 file changed, 31 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Doc=
+umentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> index c337d85da40f1..59320f288552b 100644
+> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> @@ -62,7 +62,7 @@ properties:
+> =20
+>    clock-names:
+>      minItems: 1
+> -    maxItems: 2
+> +    maxItems: 3
+> =20
+>    power-domains:
+>      maxItems: 1
+> @@ -140,13 +140,34 @@ allOf:
+>      then:
+>        properties:
+>          clocks:
+> +          minItems: 2
+>            items:
+>              - description: input clock of PWM channel A
+>              - description: input clock of PWM channel B
+> -        clock-names: false
+> +            - description: gate clock for the PWM controller
+> +        clock-names:
+> +          minItems: 2
+> +          items:
+> +            - const: channel-a
+> +            - const: channel-b
+> +            - const: core
+>        required:
+>          - clocks
+> =20
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: amlogic,t7-pwm
 
-Require clock-names and minimum 3 items for T7, where the
-PWM devices do not work without all 3 clocks.
+Shouldn't this (based on your reply on the previous version) be s4?
 
-Add an example showing T7 usage with its fallback to
-amlogic,meson-s4-pwm.
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 3
+> +        clock-names:
+> +          minItems: 3
+> +      required:
+> +        - clock-names
+> +
+>    - if:
+>        properties:
+>          compatible:
+> @@ -182,3 +203,11 @@ examples:
+>        clocks =3D <&pwm_src_a>, <&pwm_src_b>;
+>        #pwm-cells =3D <3>;
+>      };
+> +  - |
+> +    pwm@60000 {
+> +      compatible =3D "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
+> +      reg =3D <0x60000 0x24>;
+> +      clocks =3D <&channel_a>, <&channel_b>, <&core>;
+> +      clock-names =3D "channel-a", "channel-b", "core";
+> +      #pwm-cells =3D <3>;
+> +    };
+>=20
+> --=20
+> 2.49.0
+>=20
+>=20
 
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
- .../devicetree/bindings/pwm/pwm-amlogic.yaml       | 33 ++++++++++++++++++++--
- 1 file changed, 31 insertions(+), 2 deletions(-)
+--i1HZVlWbgy+JhL9b
+Content-Type: application/pgp-signature; name=signature.asc
 
-diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-index c337d85da40f1..59320f288552b 100644
---- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-+++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-@@ -62,7 +62,7 @@ properties:
- 
-   clock-names:
-     minItems: 1
--    maxItems: 2
-+    maxItems: 3
- 
-   power-domains:
-     maxItems: 1
-@@ -140,13 +140,34 @@ allOf:
-     then:
-       properties:
-         clocks:
-+          minItems: 2
-           items:
-             - description: input clock of PWM channel A
-             - description: input clock of PWM channel B
--        clock-names: false
-+            - description: gate clock for the PWM controller
-+        clock-names:
-+          minItems: 2
-+          items:
-+            - const: channel-a
-+            - const: channel-b
-+            - const: core
-       required:
-         - clocks
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: amlogic,t7-pwm
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 3
-+        clock-names:
-+          minItems: 3
-+      required:
-+        - clock-names
-+
-   - if:
-       properties:
-         compatible:
-@@ -182,3 +203,11 @@ examples:
-       clocks = <&pwm_src_a>, <&pwm_src_b>;
-       #pwm-cells = <3>;
-     };
-+  - |
-+    pwm@60000 {
-+      compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
-+      reg = <0x60000 0x24>;
-+      clocks = <&channel_a>, <&channel_b>, <&core>;
-+      clock-names = "channel-a", "channel-b", "core";
-+      #pwm-cells = <3>;
-+    };
+-----BEGIN PGP SIGNATURE-----
 
--- 
-2.49.0
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCarakLwAKCRB4tDGHoIJi
+0o/hAPwOcNkaCJn01XPDJCbfkxs1yGaXBarwQvpIKVoyDyubpgEA1j5tZeRZl1nk
+y633urYORlZkdOprR8rhmpHztGEV/AQ=
+=noe3
+-----END PGP SIGNATURE-----
+
+--i1HZVlWbgy+JhL9b--
 
 
+--===============7597169833410852514==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============7597169833410852514==--
+
