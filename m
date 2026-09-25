@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB54DC98321
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4CECC9830E
 	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2026 15:14:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fUxkPNDFDVbVX8bqC7iAm3Xlojsm6V4ftGpKtLDcSkk=; b=Qe6QSuy4tx+zoy
-	RdEOs1xKTC9SG9yfpb/xE3QI0ve18wBvoa7ekzEocqdW8PA9HWJVoBoxq4Sb0sPfnHywZDWyp/Abm
-	bxxo0Uh3PKRCCaBhPT9b1xaYfYolynwxKKsaHxnHnmGDnZ0vGcMzDVq+tHR+V65WI3JSKL3YC3o1P
-	aA4DPKIyOSd7RbzGsZQ3wSCbPOrLPyPSagJIi5v0+MGuLm4lEeWPnYJZO3xIIZY5GqOAAFzsuuhMO
-	bkL9BWn6WskKNp7tHrKtPob430nv37kPNTwJZLi3Ok9qsl1wLiEAcOnyGYPrv9A7Byn1St9+orsux
-	gy+5aiGI88Q02WzHWBVQ==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ldtzIUX+3PLzixv2NOK1m2xGoltXaxIMItDpO1U6ZSE=; b=vtibpOoD7tmEBc
+	iYdtJydRzh2YV/VXYev2M61GhphgCVVNA2YzJXy7yGiWkALjkh72tglR680n9vweq3hmjpRIn+S76
+	WPjMCm8mQ+6HunxjbveS6z90ZRXfBPGdKtmffJOdWN/IcqLpU69hJoH9m0p+iz/7xZhRZY319Q8Fh
+	AoUhnHU1bf9pHssYmLb4Z/SZmbWrU0ZG3UunJ89cCsITzk13HtqLAArQtJ0iJ6EXYOtqTF6yEuFBU
+	3XwMOQkSysiLyUN2RmOrVvpXUVPjPyZh1ttktQUz7BNNUz8tx1C1G6+6BA1gqxBroIBKpLP4sbtlm
+	PVvtZbx55BAWeYbbQMjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xA7d4-0000000DjBW-1dNy;
+	id 1xA7d4-0000000DjBD-0Mfd;
 	Fri, 25 Sep 2026 15:14:26 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xA7d3-0000000DjAZ-0mAW;
+	id 1xA7d2-0000000DjAS-4Ble;
 	Fri, 25 Sep 2026 15:14:25 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id D2C7441A9D;
+	by sea.source.kernel.org (Postfix) with ESMTP id 7F5A740726;
 	Fri, 25 Sep 2026 15:14:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 7D19BC2BCFD;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 51B6BC2BCF6;
 	Fri, 25 Sep 2026 15:14:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1790349264;
-	bh=kQfdRN/i4Z3SlisQXBw7Wzn7cfV+/k7tlS4rExvzHyA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=DA/ZYjihlxAU2A1fLasUMTVV/wxyvCwTeq9HlQ/U8fwbhBg39RGQyEFMw4B+alGHu
-	 tJwJG1pyPTwmTMgFEQIHpkIK5/BUb0NIW1L3A26cnqF/faTjT0hcmOrQf8g+deXc7h
-	 4HVCH4z4h6Zv/jO7ia8ntMIsWEoA3rJOqKc8n7+2ToWjc9nHrrgsg/k21zjvbekZJ3
-	 H7uoGceM1S0w/x6K0TTHqb443pEOkLLMuKxx4b3nNFvQZt/wAGJ9ZxD8pB8tYbe28I
-	 pdlbsf9Q1KtbYPgazco/UgxBERlhWIKt0qa/TDa7KDiTDJ7yINUwMjcE7V/AKReViF
-	 O7BslIUu9AhTA==
+	bh=BvV2GQqzvOzgjsW3tDmxKxPUarEcjrPWBP2eqzE21fM=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=HJPhbiGCgTKJl9zwGOsbB3OCygkhlc0nDWIjZ+o81/WAbXfGsCZuxVe6slSQTokBd
+	 Afww3f7JtX/TYaE9uC9UydeWe6Xm7ULlFYVZ6K460HaUYbY9uhYrFwY3jzPiBdHVNl
+	 69XG6E4H08RTz4ayDTzSUTkAPS5+47D9uNW9+bd7GqbiqMdisnrvmoT2JiyXUYYKFS
+	 XhQBDPHGXsCokS1B59tHuYDKWf11axooYcWXIRicqUbCfTtt0ErVBCtribbBT3ibHw
+	 jv7SkN5i4civLMmYuBSuHbatIyz7gTqq/lFze0RnX2KOus8v8Pu6Npp2dDepB0DI5/
+	 dpLfR2Orl5SKQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 60EBDC9830E;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2D1BEC98325;
 	Fri, 25 Sep 2026 15:14:24 +0000 (UTC)
 From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Fri, 25 Sep 2026 17:13:30 +0200
-Subject: [PATCH v2 3/3] arm64: dts: amlogic: t7: Add core clock to PWM
- controller nodes
+Subject: [PATCH v2 0/3] Add T7 PWM core clock support
+Date: Fri, 25 Sep 2026 17:13:27 +0200
+Message-Id: <20260925-add-t7-sys-pwm-clk-v2-0-f23a22b71a5c@aliel.fr>
 MIME-Version: 1.0
-Message-Id: <20260925-add-t7-sys-pwm-clk-v2-3-f23a22b71a5c@aliel.fr>
-References: <20260925-add-t7-sys-pwm-clk-v2-0-f23a22b71a5c@aliel.fr>
-In-Reply-To: <20260925-add-t7-sys-pwm-clk-v2-0-f23a22b71a5c@aliel.fr>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/32NQQ6CMBBFr0Jm7Zi2UaGuvIdhUehUJlYgLakS0
+ rtbOYDL95L//gaRAlOEa7VBoMSRp7GAOlTQD2Z8ELItDEqoi9DqhMZaXGqMa8T5/cLeP9EJcq6
+ RHZGSUIZzIMefPXpvCw8clyms+0eSP/s3lyQKFOdOS2pqJ4y+Gc/kjy5Am3P+AkX83omzAAAA
+X-Change-ID: 20260924-add-t7-sys-pwm-clk-f0eff81bee21
 To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
@@ -63,13 +64,13 @@ Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-amlogic@lists.infradead.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3591;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2113;
  i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=3G9/eYnBRh9iA/u73I8YTMVuprzZp3+23k69ia8bbDM=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ9a2/tOprKKfNlksPmkk2Gnku4Uh/cv0x61ajf1C7w9ve
- /a4Y9G8jlIWBjEuBlkxRZb+uZYn3l0+eubrHvUUmDmsTCBDGLg4BWAiv54z/BVinBEX9UfBbOIJ
- oV3KmdmXJJ5c/q9Skrm1K2KeLtPJ+ZsZGX486U4NUovUlLzAsfJuRqLJ2/VyDUdOS9t9ijnDfH3
- uDFYA
+ bh=BvV2GQqzvOzgjsW3tDmxKxPUarEcjrPWBP2eqzE21fM=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ9a2/l2i6w8dObVVRbIk5sXWuS//fDL1KMnwNvgg+Nppg
+ 8mzr3t8O0pZGMS4GGTFFFn651qeeHf56Jmve9RTYOawMoEMYeDiFICJeKcxMhzofRLKF3mzWUP3
+ 6iQV97xpf3bvcxA7fktmUcQ883mNfEUM/2P/RN7w3ty3Nf/rlZwv9+Y9CklbxLbw27Vqnj+HGzb
+ ceMMOAA==
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
  fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
 X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
@@ -92,101 +93,55 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+The PWM controllers on the Amlogic T7 SoC have a system clock that
+controls access to the controller, in addition to the two input
+clocks of channels A and B.
 
-Describe the system clock of each PWM controller (CLKID_SYS_PWM_*) as a
-third clock, and add the clock-names property expected by the updated
-binding: "channel-a", "channel-b" and "core".
+It is currently not described in the device tree, so it is neither
+referenced nor enabled by the driver.
+
+This series adds support for it:
+
+  - patch 1 extends the binding with a third "core" clock for
+    amlogic,t7-pwm, and makes clocks/clock-names required for it;
+  - patch 2 makes the driver get and enable the optional "core"
+    clock, leaving other SoCs unaffected;
+  - patch 3 describes the system clock (CLKID_SYS_PWM_*) in the T7
+    device tree for all the PWM controllers.
+
+`dt_binding_check DT_SCHEMA_FILES=pwm-amlogic.yaml` test is ok
+
+  CHKDT   ./Documentation/devicetree/bindings
+warning: python package 'yamllint' not installed, skipping
+  STYLE   ./Documentation/devicetree/bindings
+  DTEX    Documentation/devicetree/bindings/pwm/pwm-amlogic.example.dts
+  DTC [C] Documentation/devicetree/bindings/pwm/pwm-amlogic.example.dtb
 
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 28 +++++++++++++++++++++-------
- 1 file changed, 21 insertions(+), 7 deletions(-)
+Changes in v2:
+- PATCH 1: Permits to use "core" clock on S4 SoC and all the ones that fallback to it.
+           Rename "clk_a" and "clk_b" to "channel-a" and "channel-b". Thx to Conor's feedback.
+- PATCH 3: Rename channel clock-names as done on patch 1.
+- Link to v1: https://lore.kernel.org/r/20260924-add-t7-sys-pwm-clk-v1-0-05b91e87f0a9@aliel.fr
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index 8f3f1c0579a0f..8a148af5ed442 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -692,7 +692,9 @@ pwm_ao_ef: pwm@30000 {
- 				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
- 				reg = <0x0 0x30000 0x0 0x24>;
- 				clocks = <&clkc_periphs CLKID_PWM_AO_E>,
--					 <&clkc_periphs CLKID_PWM_AO_F>;
-+					 <&clkc_periphs CLKID_PWM_AO_F>,
-+					 <&clkc_periphs CLKID_SYS_PWM_AO_EF>;
-+				clock-names = "channel-a", "channel-b", "core";
- 				#pwm-cells = <3>;
- 				status = "disabled";
- 			};
-@@ -701,7 +703,9 @@ pwm_ao_gh: pwm@32000 {
- 				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
- 				reg = <0x0 0x32000 0x0 0x24>;
- 				clocks = <&clkc_periphs CLKID_PWM_AO_G>,
--					 <&clkc_periphs CLKID_PWM_AO_H>;
-+					 <&clkc_periphs CLKID_PWM_AO_H>,
-+					 <&clkc_periphs CLKID_SYS_PWM_AO_GH>;
-+				clock-names = "channel-a", "channel-b", "core";
- 				#pwm-cells = <3>;
- 				status = "disabled";
- 			};
-@@ -715,7 +719,9 @@ pwm_ab: pwm@58000 {
- 				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
- 				reg = <0x0 0x58000 0x0 0x24>;
- 				clocks = <&clkc_periphs CLKID_PWM_A>,
--					 <&clkc_periphs CLKID_PWM_B>;
-+					 <&clkc_periphs CLKID_PWM_B>,
-+					 <&clkc_periphs CLKID_SYS_PWM_AB>;
-+				clock-names = "channel-a", "channel-b", "core";
- 				#pwm-cells = <3>;
- 				status = "disabled";
- 			};
-@@ -724,7 +730,9 @@ pwm_cd: pwm@5a000 {
- 				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
- 				reg = <0x0 0x5a000 0x0 0x24>;
- 				clocks = <&clkc_periphs CLKID_PWM_C>,
--					 <&clkc_periphs CLKID_PWM_D>;
-+					 <&clkc_periphs CLKID_PWM_D>,
-+					 <&clkc_periphs CLKID_SYS_PWM_CD>;
-+				clock-names = "channel-a", "channel-b", "core";
- 				#pwm-cells = <3>;
- 				status = "disabled";
- 			};
-@@ -733,7 +741,9 @@ pwm_ef: pwm@5c000 {
- 				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
- 				reg = <0x0 0x5c000 0x0 0x24>;
- 				clocks = <&clkc_periphs CLKID_PWM_E>,
--					 <&clkc_periphs CLKID_PWM_F>;
-+					 <&clkc_periphs CLKID_PWM_F>,
-+					 <&clkc_periphs CLKID_SYS_PWM_EF>;
-+				clock-names = "channel-a", "channel-b", "core";
- 				#pwm-cells = <3>;
- 				status = "disabled";
- 			};
-@@ -742,7 +752,9 @@ pwm_ao_ab: pwm@5e000 {
- 				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
- 				reg = <0x0 0x5e000 0x0 0x24>;
- 				clocks = <&clkc_periphs CLKID_PWM_AO_A>,
--					 <&clkc_periphs CLKID_PWM_AO_B>;
-+					 <&clkc_periphs CLKID_PWM_AO_B>,
-+					 <&clkc_periphs CLKID_SYS_PWM_AO_AB>;
-+				clock-names = "channel-a", "channel-b", "core";
- 				#pwm-cells = <3>;
- 				status = "disabled";
- 			};
-@@ -751,7 +763,9 @@ pwm_ao_cd: pwm@60000 {
- 				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
- 				reg = <0x0 0x60000 0x0 0x24>;
- 				clocks = <&clkc_periphs CLKID_PWM_AO_C>,
--					 <&clkc_periphs CLKID_PWM_AO_D>;
-+					 <&clkc_periphs CLKID_PWM_AO_D>,
-+					 <&clkc_periphs CLKID_SYS_PWM_AO_CD>;
-+				clock-names = "channel-a", "channel-b", "core";
- 				#pwm-cells = <3>;
- 				status = "disabled";
- 			};
+---
+Ronald Claveau (3):
+      dt-bindings: pwm: amlogic: Add core clock for T7
+      pwm: meson: Add optional core clock for S4 PWM
+      arm64: dts: amlogic: t7: Add core clock to PWM controller nodes
 
+ .../devicetree/bindings/pwm/pwm-amlogic.yaml       | 33 ++++++++++++++++++++--
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        | 28 +++++++++++++-----
+ drivers/pwm/pwm-meson.c                            |  5 ++++
+ 3 files changed, 57 insertions(+), 9 deletions(-)
+---
+base-commit: a8c591ed6b672915e0be57843f943a2a723aff40
+change-id: 20260924-add-t7-sys-pwm-clk-f0eff81bee21
+
+Best regards,
 -- 
-2.49.0
+Ronald Claveau <linux-kernel-dev@aliel.fr>
 
 
 
