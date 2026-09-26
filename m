@@ -4,64 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B8ECC98321
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Sep 2026 16:41:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D994EC98318
+	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Sep 2026 09:44:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=qPeWMXULaHNxhYjS73VlgdxgNK3nvdOhswewdKQ2k/Y=; b=dVUtCJayc9bm3cHcokS38ZFrft
-	zUFVyaWTHsnxY3FwBQ6NheWEpipJeb5fDv2VrDcfyl3ohR5SzW0TrNAxTnSeZeG292quYyBUsxIS5
-	qg01SAFbta1eLqAU4ppvq+IqGjnWHVzbFingDKhZYvDxnrh8VIJsOE33mJ89TpeF3S9hwKYvK9tbv
-	ELgg7shY3EreGr3ia/ydy950Wq76+az16YwQ6ggOLhdeCchQkqqy+Ci2YsUgi8hN8w+2SJdTT9J3/
-	V48U1sB05PUrQVD5/E9sLOJQQTwtwdrm2aaYsAlGQLAqYH0IsInC3J2WYvwv+eFzwoy/hdzl9ZFlj
-	VuiYlP1g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=1scIaSS9zFH4Q2teFmhP/HXowEbr0GTYwmCfYyvH4MM=; b=rS56pCmghE1EUW
+	V0bz8tmrJW2iD50yf1YZKzo0q3x+jbp7B+QRcSQMraqoFx2xBy39YemcGs+v1eVb/zds+0ltimd66
+	ozb5boQNszbjUtGI1vEkrpg5uzmf0PZ67zE3DMmeEtdncmFsgzknNhmwF/qT7Cdb1okR8Zgp0xY3O
+	3UAVFCapPAzq4phLdZ1TCCyKUP0r32HUemgAKaaGizD/7aMyzMXJj8wYAwHNsSiG7Wgsab/1nqCIb
+	WbGcUnV/Ks+yr/sANnfctuKNTRV7AKz76aGgQOKQVfc4iold8qc59F752Zm+Gcv5Fng2pvqF2ly3X
+	PA5NbJtUUnoeimqbynvQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xA8zG-0000000DyUs-2djL;
-	Fri, 25 Sep 2026 16:41:26 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xAOxZ-0000000FEPs-0Izp;
+	Sat, 26 Sep 2026 09:44:45 +0000
+Received: from courrier.aliel.fr ([65.21.61.41])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xA8zF-0000000DyUC-0dm1;
-	Fri, 25 Sep 2026 16:41:25 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id DE6544062B;
-	Fri, 25 Sep 2026 16:41:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F342A1F000FF;
-	Fri, 25 Sep 2026 16:41:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1790354484;
-	bh=WIumMAJNznQ9DrE7dU0GPomzZVcUJ+5wdY/jveeHliU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=AiqBTp5PJEFtVAgYEhZK1Kr/gPKKEYAFDuCmfKxZCB8XSEC2czAdfJwAUmVGRKUCH
-	 YDg/+OaB1pAejuH7Rlp6FuiXTjZoVUOBcdbGxCJ0adMEhg1ARtGJgWt1sTRhVw80wd
-	 D/glrHY73t8EcqAuZZlmOi9FQJEDABL2PQ4TRzi7xJm5w5qRCGWfaSEnqb5WTmbhEB
-	 3XS+TSWamdY6KcEGUaqgp3ixqzCkwuB8/spe5u7Ry8Lw/h9Fo92pGwsRZ8sJs8CBdA
-	 4NwoxU7Epd9fSPjbk9OAHiCbxC7creNtk39j4zTormttPoibj/plyefNMlqq0ltDOL
-	 Vtcb/JgEyz1Pw==
-Date: Fri, 25 Sep 2026 17:41:20 +0100
-From: Conor Dooley <conor@kernel.org>
-To: linux-kernel-dev@aliel.fr
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
+	id 1xAOxW-0000000FEP8-2ZBp;
+	Sat, 26 Sep 2026 09:44:44 +0000
+Message-ID: <8e23838a-da5e-499c-a8be-3e2a7a0939e7@aliel.fr>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1790415876;
+	bh=mNlV9athUZVILYw+C+CAVpi7ggsaI9JdHFx+6wEkvVM=;
+	h=Date:From:Subject:To:Cc:References:In-Reply-To;
+	b=mrwZa9xzT1YkJ2pZFvLb8A/cm94js4G0nXfiyARNuhOOAnoumXHd5GT+BChB1+CUq
+	 IfGC0YBLSlNnMSM6LEcGBaSzpKizXVvTGbZ4qcjR108IDBpiITDGhqfUpZuzx9xBUI
+	 t1nZkILFNOeMAAHiaTpkG8hJFkKJaOROUTm3+4Jg=
+Date: Sat, 26 Sep 2026 11:43:20 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird Beta
+From: linux-kernel-dev@aliel.fr
 Subject: Re: [PATCH v2 1/3] dt-bindings: pwm: amlogic: Add core clock for T7
-Message-ID: <20260925-facial-follow-032de22361c1@spud>
+To: Conor Dooley <conor@kernel.org>
+Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
 References: <20260925-add-t7-sys-pwm-clk-v2-0-f23a22b71a5c@aliel.fr>
  <20260925-add-t7-sys-pwm-clk-v2-1-f23a22b71a5c@aliel.fr>
-MIME-Version: 1.0
-In-Reply-To: <20260925-add-t7-sys-pwm-clk-v2-1-f23a22b71a5c@aliel.fr>
+ <20260925-facial-follow-032de22361c1@spud>
+Content-Language: en-US
+In-Reply-To: <20260925-facial-follow-032de22361c1@spud>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260926_024443_112359_1813B7B7 
+X-CRM114-Status: GOOD (  17.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,137 +68,117 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7597169833410852514=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
---===============7597169833410852514==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="i1HZVlWbgy+JhL9b"
-Content-Disposition: inline
+On 9/25/26 6:41 PM, Conor Dooley wrote:
+> On Fri, Sep 25, 2026 at 05:13:28PM +0200, Ronald Claveau via B4 Relay wrote:
+>> From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+>>
+>> The T7, A1, C3, and S4 PWM controllers have a system clock in
+>> addition to the two input clocks of channels A and B.
+>>
+>> The channel clocks are acquired by index in the pwm driver,
+>> where the core clock is fetched by name, with optional get
+>> which is silent when not provided.
+>>
+>> Require clock-names and minimum 3 items for T7, where the
+>> PWM devices do not work without all 3 clocks.
+>>
+>> Add an example showing T7 usage with its fallback to
+>> amlogic,meson-s4-pwm.
+>>
+>> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+>> ---
+>>  .../devicetree/bindings/pwm/pwm-amlogic.yaml       | 33 ++++++++++++++++++++--
+>>  1 file changed, 31 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+>> index c337d85da40f1..59320f288552b 100644
+>> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+>> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+>> @@ -62,7 +62,7 @@ properties:
+>>  
+>>    clock-names:
+>>      minItems: 1
+>> -    maxItems: 2
+>> +    maxItems: 3
+>>  
+>>    power-domains:
+>>      maxItems: 1
+>> @@ -140,13 +140,34 @@ allOf:
+>>      then:
+>>        properties:
+>>          clocks:
+>> +          minItems: 2
+>>            items:
+>>              - description: input clock of PWM channel A
+>>              - description: input clock of PWM channel B
+>> -        clock-names: false
+>> +            - description: gate clock for the PWM controller
+>> +        clock-names:
+>> +          minItems: 2
+>> +          items:
+>> +            - const: channel-a
+>> +            - const: channel-b
+>> +            - const: core
+>>        required:
+>>          - clocks
+>>  
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: amlogic,t7-pwm
+> 
+> Shouldn't this (based on your reply on the previous version) be s4?
+> 
 
---i1HZVlWbgy+JhL9b
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The change above is for S4 and SOCs which fallback to S4. It allows the
+third clock but let the schema validation compatible with two clocks
+existing DTS. Here for the T7, I add requirement for the exact 3 clocks.
 
-On Fri, Sep 25, 2026 at 05:13:28PM +0200, Ronald Claveau via B4 Relay wrote:
-> From: Ronald Claveau <linux-kernel-dev@aliel.fr>
->=20
-> The T7, A1, C3, and S4 PWM controllers have a system clock in
-> addition to the two input clocks of channels A and B.
->=20
-> The channel clocks are acquired by index in the pwm driver,
-> where the core clock is fetched by name, with optional get
-> which is silent when not provided.
->=20
-> Require clock-names and minimum 3 items for T7, where the
-> PWM devices do not work without all 3 clocks.
->=20
-> Add an example showing T7 usage with its fallback to
-> amlogic,meson-s4-pwm.
->=20
-> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
-> ---
->  .../devicetree/bindings/pwm/pwm-amlogic.yaml       | 33 ++++++++++++++++=
-++++--
->  1 file changed, 31 insertions(+), 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Doc=
-umentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-> index c337d85da40f1..59320f288552b 100644
-> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-> @@ -62,7 +62,7 @@ properties:
-> =20
->    clock-names:
->      minItems: 1
-> -    maxItems: 2
-> +    maxItems: 3
-> =20
->    power-domains:
->      maxItems: 1
-> @@ -140,13 +140,34 @@ allOf:
->      then:
->        properties:
->          clocks:
-> +          minItems: 2
->            items:
->              - description: input clock of PWM channel A
->              - description: input clock of PWM channel B
-> -        clock-names: false
-> +            - description: gate clock for the PWM controller
-> +        clock-names:
-> +          minItems: 2
-> +          items:
-> +            - const: channel-a
-> +            - const: channel-b
-> +            - const: core
->        required:
->          - clocks
-> =20
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: amlogic,t7-pwm
+Do you recommend to require the 3 clocks for all S4 and S4 fallback, and
+update the associated dtsi files ?
 
-Shouldn't this (based on your reply on the previous version) be s4?
-
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 3
-> +        clock-names:
-> +          minItems: 3
-> +      required:
-> +        - clock-names
-> +
->    - if:
->        properties:
->          compatible:
-> @@ -182,3 +203,11 @@ examples:
->        clocks =3D <&pwm_src_a>, <&pwm_src_b>;
->        #pwm-cells =3D <3>;
->      };
-> +  - |
-> +    pwm@60000 {
-> +      compatible =3D "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
-> +      reg =3D <0x60000 0x24>;
-> +      clocks =3D <&channel_a>, <&channel_b>, <&core>;
-> +      clock-names =3D "channel-a", "channel-b", "core";
-> +      #pwm-cells =3D <3>;
-> +    };
->=20
-> --=20
-> 2.49.0
->=20
->=20
-
---i1HZVlWbgy+JhL9b
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCarakLwAKCRB4tDGHoIJi
-0o/hAPwOcNkaCJn01XPDJCbfkxs1yGaXBarwQvpIKVoyDyubpgEA1j5tZeRZl1nk
-y633urYORlZkdOprR8rhmpHztGEV/AQ=
-=noe3
------END PGP SIGNATURE-----
-
---i1HZVlWbgy+JhL9b--
+>> +    then:
+>> +      properties:
+>> +        clocks:
+>> +          minItems: 3
+>> +        clock-names:
+>> +          minItems: 3
+>> +      required:
+>> +        - clock-names
+>> +
+>>    - if:
+>>        properties:
+>>          compatible:
+>> @@ -182,3 +203,11 @@ examples:
+>>        clocks = <&pwm_src_a>, <&pwm_src_b>;
+>>        #pwm-cells = <3>;
+>>      };
+>> +  - |
+>> +    pwm@60000 {
+>> +      compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
+>> +      reg = <0x60000 0x24>;
+>> +      clocks = <&channel_a>, <&channel_b>, <&core>;
+>> +      clock-names = "channel-a", "channel-b", "core";
+>> +      #pwm-cells = <3>;
+>> +    };
+>>
+>> -- 
+>> 2.49.0
+>>
+>>
 
 
---===============7597169833410852514==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+Best regards,
+Ronald
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============7597169833410852514==--
-
