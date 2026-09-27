@@ -4,66 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33844C9832A
-	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Sep 2026 18:06:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B05BC9830E
+	for <linux-amlogic@archiver.kernel.org>; Sun, 27 Sep 2026 12:09:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=T7e6iO2v2NleQ2POznK9RZA4rdDHr5Kmiayx6a66BcU=; b=Xt+ZzxiWCqagWNwIMFWvMKCxDF
-	7bGXR7BF9+yL+vHa/a3nsVLmciwoaC7CHFK2UeQ1m87E7t/AH+TkKAD5lsF5xBT8g3ZSJAIbMVtpC
-	JR4FvDSVGGA8UhVZIiAyQxEzG5lwueZOOiYHnYSIzoyWnUPrYv5mcL/Hz516l6H8vIzYAZk+2rgsU
-	Hsdq6cuVjnpHbvD0B4d0ameWonT+ZvepEan0Ae4wmQvBcQTrlafKI0WliVj94EhQSl4s5qYTVQ2tr
-	1FahLGSgb9N0xcyIC0g7hqr74AqEKwieF4joA/j3nH3ak1VzsHcv+AhDUY7PWo03MW5MTvA3uywo5
-	wFHzA+Sw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=UzzHSvrNZ6ZmZqIBV0816OUw5tKqlzZ6hc+dEpEvCHQ=; b=sY6F695UhSIcXN
+	wniey0kgZwckMZVjoC+nlvSzLvsoXAmDB5y2cOGYppi9xwg6seb4+GNtalPUcAJ4JXz4DPZkZ+E3C
+	jC5l6YustXaiKaOpDBO+lH28nzSvRCCh1YoervRj7sk1sGN1sYRNpqdA3J8jhxLAbkZbplALx+4Y3
+	idzl1WmODqmenyIYQSarpJMLQi0zL3OE0UFzpwqsLhHuf5076+P036J43JiCvZDlV/u0IRqUqeLyd
+	nGi2dZhPDOBeDjijc4JHxXepqLTqi2lfdng/sTr/iBdXGTHyPRxah7+jm9oN9dfQaz6a36ycKEwr+
+	7/yfk1bma3xYR++6oucA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xAWmt-0000000FhM3-0yBP;
-	Sat, 26 Sep 2026 18:06:15 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xAngg-0000000GIIU-3t8G;
+	Sun, 27 Sep 2026 12:08:58 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xAWmr-0000000FhLu-23S2;
-	Sat, 26 Sep 2026 18:06:13 +0000
+	id 1xAngg-0000000GIIO-0c0P
+	for linux-amlogic@lists.infradead.org;
+	Sun, 27 Sep 2026 12:08:58 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id A31C9415AB;
-	Sat, 26 Sep 2026 18:06:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACD071F000FF;
-	Sat, 26 Sep 2026 18:06:09 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 433E360AAE;
+	Sun, 27 Sep 2026 12:08:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F32321F000FF;
+	Sun, 27 Sep 2026 12:08:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1790445972;
-	bh=wYYaiwkOPUjr+j4UaQRgxxzscg0L0EnuNJCXdqEfXQA=;
+	s=k20260515; t=1790510936;
+	bh=rcdgXK0+/7Z3a45Y7RvKNKnFXrswv/Vtt6X/xMOE8Mw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=C3PKcs1G4z0FBX4/p60m8PgMsiYXohlNrKywBMGRldUPqllqJx0F14cckjHQvfkG8
-	 QCW+MZ5gc3DA1+BJteWB9rZx/KBR1o/BTKZkhAbaJwZ5LAf6aHKvt/XCSEF3WtqQQ6
-	 on5j+9CYViLcFfz0F+OTSvy8Lc1eXPnmkQyP64+tpawKHo0+KdG6dntzT8pU/XWgcp
-	 Fy25Fuz46gPGN+/NavM4wGEmi3M3Cqzf9AEEqk/S/1xp2OS5aW1m2YqZnyTUdYJshq
-	 xipS//mCqGJk+0DVEmnG/7MK9EqtWjtMf4rAZEJn8GVQX4R7xb6amKddJagXh/ISBY
-	 F7si8ncPH5aHQ==
-Date: Sat, 26 Sep 2026 19:06:07 +0100
-From: Conor Dooley <conor@kernel.org>
-To: linux-kernel-dev@aliel.fr
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: pwm: amlogic: Add core clock for T7
-Message-ID: <20260926-landless-prowess-df404db4d910@spud>
-References: <20260925-add-t7-sys-pwm-clk-v2-0-f23a22b71a5c@aliel.fr>
- <20260925-add-t7-sys-pwm-clk-v2-1-f23a22b71a5c@aliel.fr>
- <20260925-facial-follow-032de22361c1@spud>
- <8e23838a-da5e-499c-a8be-3e2a7a0939e7@aliel.fr>
+	b=jPqsnKUvX6X7CHH8Y/NNNye+Xs8G4JdMvmlSM5tdvWOrEG6s6dQnvHPEL0kCYvIy6
+	 NWbqIbkPWehnuTcR5ZdBWlIdEbBnTcQOiO534/FewHSU1jQGK/CZl4nV04WYNdvP2G
+	 N7H545RQ8Hc0Hw5xrcRsElvfo3iKZjynTJ2mz4OKSjGfVFMAcw50gKY5Hjc653Qu/Y
+	 2RYtJlUwNWKVpopIvVwxo5K1VcKZwW9A8Vo/42E+WzF8oUAt454IRwhrKwyOTmRZ3E
+	 4kl7lQnMwZ9xWR+a7yZcxQxQrn+zSn3XROnvoZlpDVoiFHMEmR4aQm3p6pSBJJjdlS
+	 pNqNL8XOxq5vw==
+Date: Sun, 27 Sep 2026 14:08:52 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: xianwei.zhao@amlogic.com
+Cc: Junyi Zhao <junyi.zhao@amlogic.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Xianwei Zhao <xianwei.zhaol@amlogic.com>, Junyi Zhao <junyi.zhaol@amlogic.com>, linux-i2c@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] i2c: amlogic: Add Amlogic A9 I2C controller driver
+Message-ID: <arkDNC8st4Nsqu1C@zenone.zhora.eu>
+References: <20260924-a9-i2c-v1-0-b8ad9b46f4a8@amlogic.com>
+ <20260924-a9-i2c-v1-2-b8ad9b46f4a8@amlogic.com>
 MIME-Version: 1.0
-In-Reply-To: <8e23838a-da5e-499c-a8be-3e2a7a0939e7@aliel.fr>
+Content-Disposition: inline
+In-Reply-To: <20260924-a9-i2c-v1-2-b8ad9b46f4a8@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,160 +67,216 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============3854256220800294016=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
---===============3854256220800294016==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="LVLyBwFl5JS2r2Gm"
-Content-Disposition: inline
+Hi Xianwei,
 
---LVLyBwFl5JS2r2Gm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+...
 
-On Sat, Sep 26, 2026 at 11:43:20AM +0200, linux-kernel-dev@aliel.fr wrote:
-> On 9/25/26 6:41 PM, Conor Dooley wrote:
-> > On Fri, Sep 25, 2026 at 05:13:28PM +0200, Ronald Claveau via B4 Relay w=
-rote:
-> >> From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-> >>
-> >> The T7, A1, C3, and S4 PWM controllers have a system clock in
-> >> addition to the two input clocks of channels A and B.
-> >>
-> >> The channel clocks are acquired by index in the pwm driver,
-> >> where the core clock is fetched by name, with optional get
-> >> which is silent when not provided.
-> >>
-> >> Require clock-names and minimum 3 items for T7, where the
-> >> PWM devices do not work without all 3 clocks.
-> >>
-> >> Add an example showing T7 usage with its fallback to
-> >> amlogic,meson-s4-pwm.
-> >>
-> >> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
-> >> ---
-> >>  .../devicetree/bindings/pwm/pwm-amlogic.yaml       | 33 +++++++++++++=
-+++++++--
-> >>  1 file changed, 31 insertions(+), 2 deletions(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/=
-Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-> >> index c337d85da40f1..59320f288552b 100644
-> >> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-> >> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-> >> @@ -62,7 +62,7 @@ properties:
-> >> =20
-> >>    clock-names:
-> >>      minItems: 1
-> >> -    maxItems: 2
-> >> +    maxItems: 3
-> >> =20
-> >>    power-domains:
-> >>      maxItems: 1
-> >> @@ -140,13 +140,34 @@ allOf:
-> >>      then:
-> >>        properties:
-> >>          clocks:
-> >> +          minItems: 2
-> >>            items:
-> >>              - description: input clock of PWM channel A
-> >>              - description: input clock of PWM channel B
-> >> -        clock-names: false
-> >> +            - description: gate clock for the PWM controller
-> >> +        clock-names:
-> >> +          minItems: 2
-> >> +          items:
-> >> +            - const: channel-a
-> >> +            - const: channel-b
-> >> +            - const: core
-> >>        required:
-> >>          - clocks
-> >> =20
-> >> +  - if:
-> >> +      properties:
-> >> +        compatible:
-> >> +          contains:
-> >> +            const: amlogic,t7-pwm
-> >=20
-> > Shouldn't this (based on your reply on the previous version) be s4?
-> >=20
->=20
-> The change above is for S4 and SOCs which fallback to S4. It allows the
-> third clock but let the schema validation compatible with two clocks
-> existing DTS. Here for the T7, I add requirement for the exact 3 clocks.
->=20
-> Do you recommend to require the 3 clocks for all S4 and S4 fallback, and
-> update the associated dtsi files ?
+> +config I2C_AMLOGIC_A9
+> +	tristate "Amlogic new I2C controller"
+> +	depends on ARCH_MESON || COMPILE_TEST
+> +	depends on COMMON_CLK
+> +	help
+> +	  If you say yes to this option, support will be included for the
+> +	  I2C interface on the new Amlogic family of SoCs.
+> +
+> +
 
-Yes, I think so. Sounds to me like they only work because of the
-CLK_IGNORE_UNUSED set in their clock controller drivers, so the correct
-thing to do is make them all require the third clock.
+Please, remove this extra line
 
-Chers,
-Conor.
->=20
-> >> +    then:
-> >> +      properties:
-> >> +        clocks:
-> >> +          minItems: 3
-> >> +        clock-names:
-> >> +          minItems: 3
-> >> +      required:
-> >> +        - clock-names
-> >> +
-> >>    - if:
-> >>        properties:
-> >>          compatible:
-> >> @@ -182,3 +203,11 @@ examples:
-> >>        clocks =3D <&pwm_src_a>, <&pwm_src_b>;
-> >>        #pwm-cells =3D <3>;
-> >>      };
-> >> +  - |
-> >> +    pwm@60000 {
-> >> +      compatible =3D "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
-> >> +      reg =3D <0x60000 0x24>;
-> >> +      clocks =3D <&channel_a>, <&channel_b>, <&core>;
-> >> +      clock-names =3D "channel-a", "channel-b", "core";
-> >> +      #pwm-cells =3D <3>;
-> >> +    };
-> >>
-> >> --=20
-> >> 2.49.0
-> >>
-> >>
->=20
->=20
-> --=20
-> Best regards,
-> Ronald
+>  config I2C_MICROCHIP_CORE
+>  	tristate "Microchip FPGA I2C controller"
+>  	depends on ARCH_MICROCHIP_POLARFIRE || COMPILE_TEST
 
---LVLyBwFl5JS2r2Gm
-Content-Type: application/pgp-signature; name=signature.asc
+...
 
------BEGIN PGP SIGNATURE-----
+> +#include <linux/clk.h>
+> +#include <linux/completion.h>
+> +#include <linux/i2c.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pinctrl/consumer.h>
+> +#include <linux/delay.h>
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCargJjwAKCRB4tDGHoIJi
-0hGlAPwPcQT485NFPVpsmaLttMgeXLihgXcxvovjhjL6RFevHAEAhbpFtA4RAfsa
-N/8aLtpv423553Psdr1Wrc70RFZcTwA=
-=Qo82
------END PGP SIGNATURE-----
+Please sort the above in alphabetic order.
 
---LVLyBwFl5JS2r2Gm--
+> +/* Amlogic I2C register map */
+> +#define REG_CFG_RDY		0x00
+> +#define REG_CFG_I2C		0x04
+> +#define REG_CFG_START		0x08
+> +#define REG_CFG_BUS		0x0c
+> +#define REG_TX_RD_ADDR		0x10
+> +#define REG_TX_WR_ADDR		0x14
+> +#define REG_RX_RD_ADDR		0x18
+> +#define REG_RX_WR_ADDR		0x1c
+> +#define REG_CGF_TX		0x20
+> +#define REG_CGF_RX		0x24
+> +#define REG_CGF_IRQ_STATE	0x30
+> +#define REG_CGF_IRQ_ENABLE	0x34
+> +#define REG_SHAKE_BLK_CNT	0x38
+> +
+> +/* CFG RDY fields */
+> +#define RDY_TEE_ONLY		BIT(1)
+> +#define RDY_IF			BIT(0)
+> +
+> +/* CFG I2C fields */
+> +#define I2C_RX_THR		GENMASK(23, 16)
+> +#define I2C_TX_THR		GENMASK(15, 8)
+> +
+> +/* CFG BUS fields */
+> +#define BUS_NO_STOP		BIT(18)
+> +#define BUS_SPEED_MODE		BIT(17)
+> +#define BUS_SLAVE_MODE		BIT(16)
+> +#define BUS_FILTER_MASK		GENMASK(15, 12)
+> +/* SCL = clk/b_ratio	if b_ratio<=8, SCL = clk/8 */
+> +#define BUS_RATIO_MASK		GENMASK(11, 0)
+> +
+> +/* CFG START fields */
+> +#define START_START		BIT(31)
+> +#define START_LEN		GENMASK(23, 12)
+> +#define START_LEN_SHIFT		12
+> +#define START_SLAVE_ADDR	GENMASK(10, 1)
+> +#define START_READ		BIT(0)
+> +
+> +/* CFG TX_RX fields */
+> +#define TX_RX_EMPTY		BIT(9)
+> +#define TX_RX_FULL		BIT(8)
+> +#define TX_RX_DATA		GENMASK(7, 0)
+> +
+> +/*CGF IRQ fields */
+> +#define IRQ_ALL_MASK		0xffff
+> +#define A9_NCK_ERROR		BIT(0)
+> +#define A9_RX_EMPTY		BIT(1)
+> +#define A9_RX_FULL		BIT(2)
+> +#define A9_TX_EMPTY		BIT(3)
+> +#define A9_TX_FULL		BIT(4)
+> +#define A9_RX_THRESH_READ	BIT(5)
+> +#define A9_TX_THRESH_WRITE	BIT(6)
+> +#define A9_PHY_DONE		BIT(7)
+> +#define A9_TASK_DONE		BIT(8)
+> +#define A9_ALL_DONE		BIT(9)
+> +
+> +#define A9_TRANS_DONE		(A9_PHY_DONE | A9_NCK_ERROR)
+> +#define A9_TRANS_ERROR		(A9_NCK_ERROR)
+> +#define A9_ENABLE_IRQ_BIT	(A9_NCK_ERROR | A9_PHY_DONE)
+> +#define THRESH_MODE		(A9_RX_THRESH_READ | A9_TX_THRESH_WRITE)
+> +
+> +#define A9_I2C_FIFO_DEPTH	32
+> +#define A9_I2C_HALF_FIFO	(A9_I2C_FIFO_DEPTH >> 1)
+> +
+> +#define I2C_TIMEOUT_MS		500
+> +
+> +enum {
+> +	STATE_IDLE,
+> +	STATE_READ,
+> +	STATE_WRITE,
+> +};
+> +
+> +enum fifo_fill_mode {
+> +	FIFO_FILL_FULL,
+> +	FIFO_FILL_HALF,
+> +};
 
+For all the enums and defines above, please use the prefix of the
+driver name, A9, I guess.
 
---===============3854256220800294016==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+...
+
+> +static void aml_i2c_put_data(struct aml_i2c *i2c, char *buf, int len)
+> +{
+> +	int i;
+> +
+> +	/* this i2c module when trans 0 byte, must put at least 1.
+> +	 */
+
+Please use the kernel style commenting format, I think checkpatch
+would have had raised this.
+
+> +	if (!i2c->msg->len) {
+> +		writel(0x00, i2c->regs + REG_CGF_TX);
+> +		return;
+> +	}
+> +
+> +	for (i = 0; i < len; i++, buf++)
+> +		writel(*buf, i2c->regs + REG_CGF_TX);
+> +}
+> +
+> +static void aml_i2c_prepare_xfer(struct aml_i2c *i2c, enum fifo_fill_mode mode)
+> +{
+> +	bool write = !(i2c->msg->flags & I2C_M_RD);
+> +
+> +	if (write) {
+
+you can revert the logic here with if (!write) return; to save a
+level of indentation.
+
+> +		if (mode == FIFO_FILL_FULL)
+> +			i2c->count = min(i2c->msg->len - i2c->pos, A9_I2C_FIFO_DEPTH);
+> +		else
+> +			i2c->count = min(i2c->msg->len - i2c->pos, A9_I2C_HALF_FIFO);
+> +		aml_i2c_put_data(i2c, i2c->msg->buf + i2c->pos, i2c->count);
+> +	}
+> +}
+
+...
+
+> +static int aml_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num)
+> +{
+> +	struct aml_i2c *i2c = adap->algo_data;
+> +	int i, ret = 0;
+> +
+> +	for (i = 0; i < num; i++) {
+> +		ret = aml_i2c_xfer_msg(i2c, msgs + i, i == num - 1);
+> +		if (ret)
+> +			break;
+
+you can save some code here by doing
+
+	for (...) {
+		int ret;
+
+		ret = aml_i2c_xfer_msg(...);
+		if (ret)
+			return ret;
+	}
+
+	return i;
+
+> +	}
+> +
+> +	return ret ?: i;
+> +}
+
+...
+
+> +static int aml_i2c_probe(struct platform_device *pdev)
+> +{
+> +	struct device_node *np = pdev->dev.of_node;
+> +	struct aml_i2c *i2c;
+
+...
+
+> +	i2c->clk = devm_clk_get(&pdev->dev, NULL);
+> +	if (IS_ERR(i2c->clk)) {
+> +		dev_err(&pdev->dev, "can't get device clock\n");
+> +		return PTR_ERR(i2c->clk);
+> +	}
+
+Please use return dev_err_probe(...);
+
+Andi
+
+> +
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============3854256220800294016==--
-
