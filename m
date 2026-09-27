@@ -4,55 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC663C98332
-	for <linux-amlogic@archiver.kernel.org>; Sun, 27 Sep 2026 15:14:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45E2DCA5FA3
+	for <linux-amlogic@archiver.kernel.org>; Sun, 27 Sep 2026 16:29:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ClZUSNUqkiIBoLu9k4o2avjUsoDleQsWZDKNmlo9uKw=; b=Jz1iuW9fPumLC7
-	fakoC2WwQ+sauJ/ICbTqj1lLRFhNbRVzn0TADel2C8nQHNHeh6q++x7UBbvJXOaYJUpI/6mZvrCUv
-	TMXcFue9hFl45v0ciWNi/DQU6P48ZqgiFRoi089sqbqiDhndJQb2DpwkfoTvqI2zI0I9TSZLy4nj2
-	JdaZ8hwHAQB1Ni7FoA54bRw1Sz2MJtw3O611iHPoPXjSjlzB6Q4fVgjv0ILauxwn9to2wFO+16azC
-	CE4yov5nr+p2jpJdoSxSQipE8ydLEcD+BNEP2cSlXc2Ftzpa1ALQ5yBrTyfIWeCIrPgisr10EajSs
-	I6ZpV1qo/Ah1CtVi1tJg==;
+	List-Owner; bh=wn8DvozMG9u0ksMWDMaWgqU0ae4b0Kd3qE0x4B2x0tQ=; b=N3lgwfVWvKIOgG
+	P7laJGQsQS0UPet5GBgT/gA7dxJAKoQxpFtPHMxagaf6bvLQZ3yc40DJBKFZxNJFl3TxnP90pNKT8
+	LkK4LXzjb1191qIjGbcqMKYioWXuWfyawvYVGpGshZKSx3goahmcbqr0rMFXZWPe331CTuU/q2Rir
+	j5JA4k7H5w5FK3Y5Wk3CBe+5VQogeIWWRRyneEwzXkAbsEkYo8HhBprzJDmbxvaOzYVgJTm8Fe4zP
+	izkq9vJMfA3HoJmzs6UN7gB0b8leG1obJhRm4p3hSnNTWHYXFAeA8E98Lz9dVRJwfr3vlizMUVWeL
+	XL+7ou+WoZDMAkLSz7bg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xAqaC-0000000GVVf-3rD9;
-	Sun, 27 Sep 2026 15:14:28 +0000
-Received: from courrier.aliel.fr ([65.21.61.41])
+	id 1xArkS-0000000GYt0-1O8T;
+	Sun, 27 Sep 2026 16:29:08 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xAqa8-0000000GVV6-3GtH
-	for linux-amlogic@lists.infradead.org;
-	Sun, 27 Sep 2026 15:14:26 +0000
-Message-ID: <c93092bb-e3f7-462f-aa8f-a09dbb2946e9@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1790522058;
-	bh=hsCJIQkqYuxFzzbKYzyukNxXPC64YPMx0HDRYYGxtJA=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To;
-	b=eMsUfNsi9SLtEDWRzSc6H2xwtcuEkvZM0fjvkGTmN3kyBg48Jq1TeTFreNDZioqbx
-	 fUO3oePYrrKsJZlUfDnsoMK28FzwbUsl7R3BJG7f1/+N2nClkuk3RTFDpxqD7WDlPZ
-	 gqKY+99yDBieJS6MuqfPndZ28xeSCHaB1QJllZN0=
-Date: Sun, 27 Sep 2026 17:14:17 +0200
+	id 1xArkQ-0000000GYsW-3vUC;
+	Sun, 27 Sep 2026 16:29:06 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 997DE40187;
+	Sun, 27 Sep 2026 16:29:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 002D31F000FF;
+	Sun, 27 Sep 2026 16:29:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1790526546;
+	bh=lMcI0XjYXxee6gQybGjy+nF52Zob3DzrgHJzmXEp8fc=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=IggNfbCOWc3Qu2tHK8WHnDs24hP2X51WEjGQiUMCT3DAKwlWx+bJ2owge4SRyItne
+	 p/YpydwrSEs+xZKdAH785auXYfIjvrNKDIDBUAxAo/fiCqY00BehgZU5c54oX8hC6K
+	 K9jCzqmBItHAHdjk8iSth2KVRjfPInxo3/LlNMAG2uthWkQ0tLYPpdGi3TJsngGu/y
+	 w8Vx/fxAHLAzMU15096FUduU0PNkJDGiVCemZpXViZtmcBbX7bDWUs6r7rFjhsykYP
+	 RZxgnrIIqHOLoUnECh48i98eyWQRZi62VyGfLtyp9IkvBhsi4xxoVEGsUWWYjDTz2y
+	 xDD4ugM5ILP0w==
+Subject: Re: [PATCH net-next v15 2/9] dt-bindings: phy: document the serdes
+ PHY on sa8255p
+From: netdev-bot+sashiko@kernel.org
+To: bartosz.golaszewski@oss.qualcomm.com
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, andrew+netdev@lunn.ch,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, vkoul@kernel.org,
+ peppe.cavallaro@st.com, wens@kernel.org, jernej.skrabec@gmail.com,
+ neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ shawnguo@kernel.org, festevam@gmail.com, jan.petrous@oss.nxp.com, s32@nxp.com,
+ mohd.anwar@oss.qualcomm.com, romain.gantois@bootlin.com,
+ geert+renesas@glider.be, magnus.damm@gmail.com, mripard@kernel.org,
+ christophe.roullier@foss.st.com, brgl@kernel.org, radu@rendec.net,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, dfustini@tenstorrent.com,
+ linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org,
+ linux-mips@vger.kernel.org, imx@lists.linux.dev,
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ sophgo@lists.linux.dev, linux-riscv@lists.infradead.org,
+ bartosz.golaszewski@linaro.org
+Date: Sun, 27 Sep 2026 16:29:03 +0000
+Message-ID: <179052654351.2160803.11432185989352625433@kernel.org>
+In-Reply-To: <20260923-qcom-sa8255p-emac-v15-2-e82f33720737@oss.qualcomm.com>
+References: <20260923-qcom-sa8255p-emac-v15-2-e82f33720737@oss.qualcomm.com>
+X-sashiko-severity: Low
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Subject: Re: [PATCH v3 1/3] dt-bindings: pwm: amlogic: Add core clock for S4
- like
-To: sashiko-reviews@lists.linux.dev
-Cc: neil.armstrong@linaro.org, conor+dt@kernel.org,
- linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- robh@kernel.org
-References: <20260927-add-t7-sys-pwm-clk-v3-0-18d66abea4d1@aliel.fr>
- <20260927-add-t7-sys-pwm-clk-v3-1-18d66abea4d1@aliel.fr>
- <20260927143733.DA8151F000FF@smtp.kernel.org>
-Content-Language: en-US
-In-Reply-To: <20260927143733.DA8151F000FF@smtp.kernel.org>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260927_081425_278014_43BEF1D8 
-X-CRM114-Status: GOOD (  14.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -64,103 +81,57 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 9/27/26 4:37 PM, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Medium] dt-bindings: pwm-amlogic: missing minItems allows validation bypass
-> --
-> 
-> commit 359e122eac15df570817ba590b91f8958522a038
-> Author: Ronald Claveau <linux-kernel-dev@aliel.fr>
-> 
-> dt-bindings: pwm: amlogic: Add core clock for S4 like
->     
-> This commit adds a third system core clock to the Amlogic PWM controller 
-> bindings for S4 and related devices. It updates the conditionals for the 
-> S4 compatible string to require three clocks instead of two, and updates 
-> the examples to match.
-> 
->> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->> index c337d85da40f1..e9cd5f1fdf264 100644
->> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
-> 
-> [ ... ]
-> 
->> @@ -143,9 +143,15 @@ allOf:
->>            items:
->>              - description: input clock of PWM channel A
->>              - description: input clock of PWM channel B
->> -        clock-names: false
->> +            - description: gate clock for the PWM controller
-> 
-> [Severity: Medium]
-> Will dt-schema successfully enforce the minimum 3 items requirement intended 
-> by the commit message?
-> 
-> Because the global `clocks` property definition has `minItems: 1` and JSON 
-> Schema's `items` keyword only validates elements that are actually present, a 
-> device tree node with `compatible = "amlogic,meson-s4-pwm"` and only 1 or 2 
-> clocks will silently pass validation.
-> 
-> Does this block need an explicit `minItems: 3`?
-> 
-
-If I remove one clock, the validation fails
-
-```
-  CHKDT   ./Documentation/devicetree/bindings
-  LINT    ./Documentation/devicetree/bindings
-  STYLE   ./Documentation/devicetree/bindings
-  DTEX    Documentation/devicetree/bindings/pwm/pwm-amlogic.example.dts
-  DTC [C]
-Documentation/devicetree/bindings/thermal/amlogic,thermal.example.dtb
-  DTC [C] Documentation/devicetree/bindings/pwm/pwm-amlogic.example.dtb
-/home/*redacted*/linux/Documentation/devicetree/bindings/pwm/pwm-amlogic.example.dtb:
-pwm@1000 (amlogic,meson-s4-pwm): clock-names: ['channel-a', 'channel-b']
-is too short
-	from schema $id: http://devicetree.org/schemas/pwm/pwm-amlogic.yaml
-/home/*redacted*/linux/Documentation/devicetree/bindings/pwm/pwm-amlogic.example.dtb:
-pwm@1000 (amlogic,meson-s4-pwm): clocks: [[4294967295], [4294967295]] is
-too short
-	from schema $id: http://devicetree.org/schemas/pwm/pwm-amlogic.yaml
-/home/*redacted*/linux/Documentation/devicetree/bindings/pwm/pwm-amlogic.example.dtb:
-pwm@60000 (amlogic,t7-pwm): clock-names: ['channel-a', 'channel-b'] is
-too short
-	from schema $id: http://devicetree.org/schemas/pwm/pwm-amlogic.yaml
-/home/*redacted*/linux/Documentation/devicetree/bindings/pwm/pwm-amlogic.example.dtb:
-pwm@60000 (amlogic,t7-pwm): clocks: [[4294967295], [4294967295]] is too
-short
-	from schema $id: http://devicetree.org/schemas/pwm/pwm-amlogic.yaml
-```
-
->> +        clock-names:
->> +          items:
->> +            - const: channel-a
->> +            - const: channel-b
->> +            - const: core
-> 
-> [Severity: Medium]
-> Does this also require `minItems: 3`?
-> 
-> Supplying just "channel-a" and "channel-b" will still validate successfully 
-> without a `minItems` constraint here.
-> 
->>        required:
->>          - clocks
->> +        - clock-names
-> 
-
-
--- 
-Best regards,
-Ronald
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+bW9yZSBzZXZlcmUKaXNzdWUocykgaW4gb3RoZXIgcGF0Y2hlcyBvZiB0aGlzIHNlcmllcy4gVGhp
+cyBtYWlsIGlzIG9ubHkgYW4gRllJLCBpbiBjYXNlCnlvdSB3YW50IHRvIGFkZHJlc3MgdGhlIG5p
+dCBwaWNrcyBiZWxvdyB3aGVuIHlvdSByZXNwaW4uCgpMb3cgcHJpb3JpdHkgLyBuaXQgcGlja3Mg
+Zm9yIHlvdXIgY29uc2lkZXJhdGlvbjoKCi0gW0xvd10gSW4gdGhlIG5ldyBiaW5kaW5nCiAgRG9j
+dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BoeS9xY29tLHNhODI1NXAtZHdtYWMtc2dt
+aWkt4oCmCgotLQoKZHQtYmluZGluZ3M6IHBoeTogZG9jdW1lbnQgdGhlIHNlcmRlcyBQSFkgb24g
+c2E4MjU1cAoKVGhpcyBjb21taXQgYWRkcyBhIG5ldyBiaW5kaW5nIGZvciB0aGUgU0dNSUkvU2Vy
+RGVzIFBIWSBvbiBRdWFsY29tbSBzYTgyNTVwCnBsYXRmb3Jtcy4gVGhlIGhhcmR3YXJlIGlzIHRo
+ZSBzYW1lIGFzIHNhODc3NXAgcmV2MywgYnV0IGhlcmUgZmlybXdhcmUKbWFuYWdlcyB0aGUgUEhZ
+IG92ZXIgU0NNSS4KCj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
+aW5ncy9waHkvcWNvbSxzYTgyNTVwLWR3bWFjLXNnbWlpLXBoeS55YW1sIGIvRG9jdW1lbnRhdGlv
+bi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BoeS9xY29tLHNhODI1NXAtZHdtYWMtc2dtaWktcGh5Lnlh
+bWwKPiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+IGluZGV4IDAwMDAwMDAwMDAwMDAuLjllODQ2ZTM4
+MTU1NTUKPiAtLS0gL2Rldi9udWxsCj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL3BoeS9xY29tLHNhODI1NXAtZHdtYWMtc2dtaWktcGh5LnlhbWwKClsgLi4uIF0KCj4g
+KyAgcG93ZXItZG9tYWluczoKPiArICAgIG1heEl0ZW1zOiAxCj4gKwo+ICsgIHBvd2VyLWRvbWFp
+bi1uYW1lczoKPiArICAgIG1heEl0ZW1zOiAxCgpbU2V2ZXJpdHk6IExvd10KVGhpcyBpc24ndCBh
+IGJ1ZywgYnV0IHNob3VsZCBwb3dlci1kb21haW4tbmFtZXMgcGluIGl0cyB2YWx1ZSBoZXJlPwoK
+VGhlIHByb3BlcnR5IGlzIGxpc3RlZCB1bmRlciByZXF1aXJlZCwgYW5kIHRoZSBleGFtcGxlIHVz
+ZXMgInNlcmRlcyIuCkhvd2V2ZXIsIHRoZSBvbmx5IGNvbnN0cmFpbnQgaXMgbWF4SXRlbXM6IDEu
+IEEgbm9kZSB3aXRoCnBvd2VyLWRvbWFpbi1uYW1lcyA9ICJmb28iIHdvdWxkIHN0aWxsIHBhc3Mg
+ZHRfYmluZGluZ19jaGVjaywgc28gdGhlIHZhbHVlCm9mIGEgcmVxdWlyZWQgcHJvcGVydHkgaXMg
+bGVmdCB1bmRlZmluZWQgaW4gdGhlIEFCSS4KClRoZSBvdGhlciBmaXJtd2FyZS1tYW5hZ2VkIHNh
+ODI1NXAgYmluZGluZ3MgZml4IHRoZWlyIG5hbWVzIHdpdGggY29uc3QKZW50cmllcy4gRm9yIGV4
+YW1wbGUsIHFjb20sc2E4MjU1cC1nZW5pLWkyYy55YW1sIGhhczoKCiAgcG93ZXItZG9tYWluLW5h
+bWVzOgogICAgaXRlbXM6CiAgICAgIC0gY29uc3Q6IHBvd2VyCiAgICAgIC0gY29uc3Q6IHBlcmYK
+CnFjb20sc2E4MjU1cC1ldGhxb3MueWFtbCwgYWRkZWQgbGF0ZXIgaW4gdGhpcyBzZXJpZXMsIGRv
+ZXMgdGhlIHNhbWUgd2l0aApjb3JlIGFuZCBtZGlvLgoKcG93ZXItZG9tYWlucyBhbHNvIGhhcyBu
+byBkZXNjcmlwdGlvbiwgc28gdGhlIGJpbmRpbmcgZG9lc24ndCBzYXkgd2hhdCB0aGUKc2luZ2xl
+IGRvbWFpbiByZXByZXNlbnRzLgoKQ291bGQgdGhpcyB1c2UgaXRlbXM6IC0gY29uc3Q6IHNlcmRl
+cyBmb3IgcG93ZXItZG9tYWluLW5hbWVzLCBhbmQgYWRkIGFuCml0ZW1zOiAtIGRlc2NyaXB0aW9u
+OiBlbnRyeSBmb3IgcG93ZXItZG9tYWlucz8gQW5vdGhlciBvcHRpb24gaXMgdG8gZHJvcApwb3dl
+ci1kb21haW4tbmFtZXMsIHNpbmNlIHRoZXJlIGlzIG9ubHkgb25lIGVudHJ5LgoKVGhlIGRyaXZl
+ciBhZGRlZCBsYXRlciBpbiB0aGUgc2VyaWVzIChwaHktcWNvbS1zZ21paS1ldGgtc2NtaS5jKSBk
+b2Vzbid0Cmxvb2sgdGhlIGRvbWFpbiB1cCBieSBuYW1lLiBUaGUgZHJpdmVyIGNvcmUgYXR0YWNo
+ZXMgdGhlIHNpbmdsZSBkb21haW4KYXV0b21hdGljYWxseSwgc28gYW4gdW5leHBlY3RlZCBuYW1l
+IGNhdXNlcyBubyBydW50aW1lIGZhaWx1cmUuIFRoZSBjb25jZXJuCmlzIGxpbWl0ZWQgdG8gdGhl
+IHNjaGVtYSBhbmQgdGhlIEFCSSBkZWZpbml0aW9uLgoKPiArCj4gKyAgIiNwaHktY2VsbHMiOgo+
+ICsgICAgY29uc3Q6IDAKPiArCj4gK3JlcXVpcmVkOgo+ICsgIC0gY29tcGF0aWJsZQo+ICsgIC0g
+cmVnCj4gKyAgLSAiI3BoeS1jZWxscyIKPiArICAtIHBvd2VyLWRvbWFpbnMKPiArICAtIHBvd2Vy
+LWRvbWFpbi1uYW1lcwoKWyAuLi4gXQoKPiArICAgICAgICBwb3dlci1kb21haW5zID0gPCZzY21p
+N19kdmZzIDA+Owo+ICsgICAgICAgIHBvd2VyLWRvbWFpbi1uYW1lcyA9ICJzZXJkZXMiOwo+ICsg
+ICAgfTsKCi0tIApTYXNoaWtvIEFJIHJldmlldyDCtyBodHRwczovL25ldGRldi1haS5ib3RzLmxp
+bnV4LmRldi9zYXNoaWtvLyMvcGF0Y2hzZXQvMjAyNjA5MjMtcWNvbS1zYTgyNTVwLWVtYWMtdjE1
+LTAtZTgyZjMzNzIwNzM3JTQwb3NzLnF1YWxjb21tLmNvbQoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGlu
+dXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3Jn
+L21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
