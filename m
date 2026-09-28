@@ -4,60 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C873EC9833E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Sep 2026 09:54:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA9C3C9833E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Sep 2026 10:58:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Szkjy9j8cdhTI0XXUVY5tgvBab+w+yEmjacOkYqnRGU=; b=wKAAG+8GVxZDQR
-	jT/kZC+A9DoEiwCKXgUmVEHKgOi6rnQt84OKdUFvrNflbEdu8WYlTSMPqXaK4vraypg67cDmcxPiC
-	0gkZGIkewgSVzNXMjOaC1d5ujLac5GEofmNnPYiQxprKwm1nuOPV6Ypq5k4tA6eIQuT2iXtHZRmrl
-	9boo7uRK4/E/Gwr033Jeryfx4+7tWAqYLrfGndOw7+mh2Vo0xEM74nsGTrGhdGJ0cW2tU4Y9AzCBP
-	9xSAah7Pxb58pv0wdWvxWJcHvyzIqlGZitc0oM6GhK0M05JRqeeEEa71g0uHX9GRqRptQ3uLTrbcG
-	AnjX7NdgVA+sj9IGjs6A==;
+	List-Owner; bh=uH711lsK8XxUQw/4KIGDRQDf9nGJa4KY/aOgQgCLmPI=; b=avAuEKYaExbKrM
+	Tfpv9RJGyOlKPX5c3er2/GvxI6q4MdVFc5tk+/q0q3+LRtkjbGJ6Z3nnn8qrhAeV15WinoDIGdskz
+	R7Wpbd0G2y4geHTzG4cGA58UXQDdhXsK88Q7FOT6M10t4n5I7wfyvid0hdqGboAOE+G3UyuYkcyO4
+	i37OgEDf5Al3KC8aToRwCp7uurGrPNgUt3T/VfqJ9M8kZp3SuNLv0+PkWlG6UBHDd5o3MfDh90SZC
+	+lLI0qtzLw7jQ0QgCvvXWDxjieRJYG9zGMXDX4i1bYi+W8oPt3Gf/CZCuZcOc/6c9owZfTz+Nl69S
+	fNK5ARE99hR8jZpnk7Tw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xB842-00000000Hg5-1QNW;
-	Mon, 28 Sep 2026 09:54:26 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xB947-00000000PK2-2NEi;
+	Mon, 28 Sep 2026 10:58:35 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xB840-00000000Hfn-3PpZ;
-	Mon, 28 Sep 2026 09:54:24 +0000
+	id 1xB946-00000000PJi-2JFV;
+	Mon, 28 Sep 2026 10:58:34 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id C38CA600CB;
-	Mon, 28 Sep 2026 09:54:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79B5C1F000FF;
-	Mon, 28 Sep 2026 09:54:22 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id D547143CBF;
+	Mon, 28 Sep 2026 10:58:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E95101F0089C;
+	Mon, 28 Sep 2026 10:58:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1790589263;
-	bh=w2RS/xxMW4j685aSXnFhy/xzBc7bDP8enBoN/0ACKJA=;
+	s=k20260515; t=1790593113;
+	bh=X6BqH/yZqqamfLVukmDf/rY/Qu5OyQBwyrHbGMFypLk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=V6UgGT3CwHGxbXbyaMm95Dd2M0CFYObVt+NXiWGsFTlgNyvSbWHgXO7aWe26u4Ysn
-	 HzwHZRNKIv6FJ3NBppiWG8pOmbimiifGTh+LiYoDYBOtE2MGNw61EspchSys3XtvT6
-	 2rrvzdUGVI9VyvUamONwZzizucrdTCDxSYrYXWMJt76W34hdZojhu+x4Ui/ZFRo2Kr
-	 1yA93pP+W62cMq66RTnV0RrLlqm8NhKGN3OZG2iR6elSwOTjaJx3D6bucCJJV2vyaC
-	 RIhpixdNKImcpWr1/0xSyplSB37d/LuhfpMrID1UxgkIRixgJpSml3YfpTXiIBBKYR
-	 Jka52ZRFXJ2ew==
-Date: Mon, 28 Sep 2026 11:54:19 +0200
+	b=Ns+HJAuX8MZW2S8YIT3Le/zJN+nCV8ge55j9YedS41I99A+PRZUK6XvaZlLSyjC+8
+	 JU8YRnfm082rBhoRP7YHW6ngTNMi8IARYyvLtBDsj6O5HnKesAnfg+huj010/ndQDZ
+	 ylgLp/WSGZCTmgwonyDVpaKaKL4PvgoEl8+0oIYkL5FiL6HOIfxXIHpi6Oqb+k6OAR
+	 lH+jQdrjtPwNbHEJbGirAXXNZGPuYe1mIK+qKmZVCALDw0cO5kiOVxVifuUwQwEzMm
+	 Nt5J1/ZnwytNKmrt7kUiCIgoB04VZ0q1VpzbhGOlfcW90j6ByErEShHlCxSJc2Lqlw
+	 5Q8c2JE6hJGYA==
+Date: Mon, 28 Sep 2026 12:58:29 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Valerio Setti <vsetti@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/7] ASoC: dt-bindings: amlogic,gx-audin: add schema
-Message-ID: <20260928-native-hornet-of-luxury-81edcc@quoll>
-References: <20260922-audin-v3-0-a760312c076c@baylibre.com>
- <20260922-audin-v3-1-a760312c076c@baylibre.com>
+To: Zhentao Guo <zhentao.guo@amlogic.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v10 3/6] media: dt-bindings: Add Amlogic V4L2 video
+ decoder
+Message-ID: <20260928-efficient-secret-manatee-2fcca6@quoll>
+References: <20260924-b4-s4-vdec-upstream-v10-0-1289303a58a4@amlogic.com>
+ <20260924-b4-s4-vdec-upstream-v10-3-1289303a58a4@amlogic.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20260922-audin-v3-1-a760312c076c@baylibre.com>
+In-Reply-To: <20260924-b4-s4-vdec-upstream-v10-3-1289303a58a4@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,24 +75,44 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Sep 22, 2026 at 06:00:46PM +0200, Valerio Setti wrote:
-> AUDIN provides I2S audio input support to the Meson GX platforms
-> (GXBB/GXL).
+On Thu, Sep 24, 2026 at 03:55:10PM +0800, Zhentao Guo wrote:
+> Add bindings for Amlogic hardware decoder accelerator.
 > 
-> Note: GXBB and GXL are not known to differ so the driver binds on the
-> 'amlogic,gx-audin' fallback.
+> Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
+> ---
+>  .../devicetree/bindings/media/amlogic,s4-vdec.yaml | 114 +++++++++++++++++++++
+>  1 file changed, 114 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml b/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml
+> new file mode 100644
+> index 000000000000..751043c3d9cc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml
+> @@ -0,0 +1,114 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2025 Amlogic, Inc. All rights reserved
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/amlogic,s4-vdec.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Video Decode Accelerator
+> +
+> +maintainers:
+> +  - Zhentao Guo <zhentao.guo@amlogic.com>
+> +
+> +description:
+> +  The Video Decoder Accelerator present on Amlogic SOCs.
+> +  It supports stateless h264 decoding.
+> +
+> +properties:
+> +  compatible:
+> +    const: amlogic,s4-vdec
+> +
+> +  reg:
+> +    minItems: 2
 
-What the driver does is usually less relevant. Here, completely
-irrelevant. Explain the compatibility between hardware.
-
-OTOH, you cannot have family compatibles (clearly documented and
-explained on every beginners talk), so what is the GX?
-
-And I already asked for this:
-https://lore.kernel.org/all/20260913-inventive-millipede-of-certainty-dd58ce@quoll/
-
-We have it extensively documented - in tree, in talks, in existing
-examples - how this is handled.
+What is happening here? Previous version was different.
 
 Best regards,
 Krzysztof
