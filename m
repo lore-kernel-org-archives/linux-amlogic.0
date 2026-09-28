@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 634D6CA5FA2
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Sep 2026 03:10:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C873EC9833E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Sep 2026 09:54:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=p2HXZUvDfgNZ4pMYMtuwhCWPMueqsgmkjXnWq5NvGPU=; b=hiKDlJz7URDGXS
-	pAIgB3A8tshZcahLEEeT5sdFtzOZaJBl3U7DA9wafcrvQ6TxmtaRya6KfrFJARdhd//uHiUOHc5Dr
-	fFmTGWQ6uUJUWYjeGvE0w9O5WHb7EW83Q+g7HR0bISTH2/8/+zIn/DSbd8wcyBdtZXrl8JzR7XOwP
-	CLKlmoO76UMrexkofU+JGcKiQpZyTEtRPfLx4uV8OzkGu4iR2rxUkj9c6L5awkGbUS8rWJE8PZlVs
-	K1VyHE0NRo+UzWMhWtmd2GhjD2PLbvCGYeWxyXbOH+V4uGhTYPah/kTYaEwKIu3E89zMrDgClQCRL
-	0P2Yfg/0j6/ExAPD32Xw==;
+	List-Owner; bh=Szkjy9j8cdhTI0XXUVY5tgvBab+w+yEmjacOkYqnRGU=; b=wKAAG+8GVxZDQR
+	jT/kZC+A9DoEiwCKXgUmVEHKgOi6rnQt84OKdUFvrNflbEdu8WYlTSMPqXaK4vraypg67cDmcxPiC
+	0gkZGIkewgSVzNXMjOaC1d5ujLac5GEofmNnPYiQxprKwm1nuOPV6Ypq5k4tA6eIQuT2iXtHZRmrl
+	9boo7uRK4/E/Gwr033Jeryfx4+7tWAqYLrfGndOw7+mh2Vo0xEM74nsGTrGhdGJ0cW2tU4Y9AzCBP
+	9xSAah7Pxb58pv0wdWvxWJcHvyzIqlGZitc0oM6GhK0M05JRqeeEEa71g0uHX9GRqRptQ3uLTrbcG
+	AnjX7NdgVA+sj9IGjs6A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xB1kr-0000000HELp-2Ucr;
-	Mon, 28 Sep 2026 03:10:13 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xB842-00000000Hg5-1QNW;
+	Mon, 28 Sep 2026 09:54:26 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xB1kq-0000000HELd-0Ikz;
-	Mon, 28 Sep 2026 03:10:12 +0000
+	id 1xB840-00000000Hfn-3PpZ;
+	Mon, 28 Sep 2026 09:54:24 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 2587D42A4E;
-	Mon, 28 Sep 2026 03:10:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D4031F000FF;
-	Mon, 28 Sep 2026 03:10:05 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id C38CA600CB;
+	Mon, 28 Sep 2026 09:54:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79B5C1F000FF;
+	Mon, 28 Sep 2026 09:54:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1790565011;
-	bh=572ZApzffR2V5WVZZG923BXMb95uxq8rXlHIXJhmvi4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=e5D282Bw7e+LCL3BfaBn/xHL5axhjK4+/hI1+KnHpF0fOc4M9VGiMkah8tqedfPPl
-	 4VozO5QljckrQqi8d0htX/SoPJlvWkhnhUZYftpsleLPSrpkm19v4PDxW1CzQfvcEI
-	 vDlTuAQ30QQ7t83WpGIWk0dgxvid1/E1R01F0+s1m5/lpAf311A+12PDXutGyY3ySF
-	 y8/WERcDxVbsK1VAZBfzo4ai8jbwwRtZApBBw0wZwMKn6B589YPSX9y97ceVN87k4O
-	 u2invxepd54ZbZSaXlzT5kqIp5XK1U8UbNev8wcVzBZdFcoBOesOvJYB4qAGxkQiLq
-	 bdH8j9IeCzd4w==
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: lpieralisi@kernel.org, kwilczynski@kernel.org, bhelgaas@google.com, 
- helgaas@kernel.org, heiko@sntech.de, yue.wang@Amlogic.com, 
- Hans Zhang <18255117159@163.com>
-Cc: pali@kernel.org, neil.armstrong@linaro.org, robh@kernel.org, 
- jingoohan1@gmail.com, khilman@baylibre.com, jbrunet@baylibre.com, 
- martin.blumenstingl@googlemail.com, cassel@kernel.org, 
- linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-rockchip@lists.infradead.org
-In-Reply-To: <20260911162537.469018-1-18255117159@163.com>
-References: <20260911162537.469018-1-18255117159@163.com>
-Subject: Re: [PATCH 0/2] PCI: dwc: Clean up DWC PCIe register macros
-Message-Id: <179056500511.302500.18235445992989185257.b4-ty@b4>
-Date: Mon, 28 Sep 2026 05:10:05 +0200
+	s=k20260515; t=1790589263;
+	bh=w2RS/xxMW4j685aSXnFhy/xzBc7bDP8enBoN/0ACKJA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=V6UgGT3CwHGxbXbyaMm95Dd2M0CFYObVt+NXiWGsFTlgNyvSbWHgXO7aWe26u4Ysn
+	 HzwHZRNKIv6FJ3NBppiWG8pOmbimiifGTh+LiYoDYBOtE2MGNw61EspchSys3XtvT6
+	 2rrvzdUGVI9VyvUamONwZzizucrdTCDxSYrYXWMJt76W34hdZojhu+x4Ui/ZFRo2Kr
+	 1yA93pP+W62cMq66RTnV0RrLlqm8NhKGN3OZG2iR6elSwOTjaJx3D6bucCJJV2vyaC
+	 RIhpixdNKImcpWr1/0xSyplSB37d/LuhfpMrID1UxgkIRixgJpSml3YfpTXiIBBKYR
+	 Jka52ZRFXJ2ew==
+Date: Mon, 28 Sep 2026 11:54:19 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Valerio Setti <vsetti@baylibre.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/7] ASoC: dt-bindings: amlogic,gx-audin: add schema
+Message-ID: <20260928-native-hornet-of-luxury-81edcc@quoll>
+References: <20260922-audin-v3-0-a760312c076c@baylibre.com>
+ <20260922-audin-v3-1-a760312c076c@baylibre.com>
 MIME-Version: 1.0
-X-Mailer: b4 0.15.2
+Content-Disposition: inline
+In-Reply-To: <20260922-audin-v3-1-a760312c076c@baylibre.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,26 +69,35 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Ck9uIFNhdCwgMTIgU2VwIDIwMjYgMDA6MjU6MzUgKzA4MDAsIEhhbnMgWmhhbmcgd3JvdGU6Cj4g
-VGhpcyBzZXJpZXMgY2xlYW5zIHVwIHRoZSBEV0MgUENJZSBjb250cm9sbGVyIHJlZ2lzdGVyIG1h
-Y3JvcyB0byBiZXR0ZXIKPiBtYXRjaCB0aGUgU3lub3BzeXMgRGVzaWduV2FyZSBQQ0llIENvbnRy
-b2xsZXIgUmVmZXJlbmNlIE1hbnVhbCwgYW5kCj4gcmVtb3ZlcyBhbiB1bnVzZWQgc2V0IG9mIGlB
-VFUgdW5yb2xsIHJlZ2lzdGVyIGRlZmluaXRpb25zLgo+IAo+IFBhdGNoIDEgcmVuYW1lcyB2YXJp
-b3VzIHJlZ2lzdGVyIGFuZCBmaWVsZCBtYWNyb3MsIGRyb3BwaW5nIHJlZHVuZGFudAo+IFBDSUVf
-IHByZWZpeGVzIGFuZCB1c2luZyBkb2N1bWVudGVkIGJhc2UgbmFtZXMuICBGaWVsZCBtYWNyb3Mg
-YXJlCj4gcmVuYW1lZCBjb25zaXN0ZW50bHkgc28gdGhlaXIgcmVnaXN0ZXIgYXNzb2NpYXRpb24g
-aXMgY2xlYXIuICBObwo+IGZ1bmN0aW9uYWwgY2hhbmdlIGludGVuZGVkLgo+IAo+IFsuLi5dCgpB
-cHBsaWVkLCB0aGFua3MhCgpbMS8yXSBQQ0k6IGR3YzogQWxpZ24gcmVnaXN0ZXIgbWFjcm9zIHdp
-dGggU3lub3BzeXMgZG9jdW1lbnRhdGlvbgogICAgICBjb21taXQ6IGYyOTcxOWI1MDY0YzA3Y2Vj
-MjNjOTI4MDU1ZGYzMDIxODEzNzRkZjUKWzIvMl0gUENJOiBkd2M6IFJlbW92ZSB1bnVzZWQgUENJ
-RV9BVFVfVU5SXyogcmVnaXN0ZXIgZGVmaW5pdGlvbnMKICAgICAgY29tbWl0OiA0OTk2MzY0YTQ2
-ZTczOGNjNDU1ZjVmYTliOGIwOWYyZjMzNDhiY2M5CgpCZXN0IHJlZ2FyZHMsCi0tIArgrq7grqPg
-rr/grrXgrqPgr43grqPgrqngr40g4K6a4K6k4K6+4K6a4K6/4K614K6u4K+NCgoKCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFp
-bGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMu
-aW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On Tue, Sep 22, 2026 at 06:00:46PM +0200, Valerio Setti wrote:
+> AUDIN provides I2S audio input support to the Meson GX platforms
+> (GXBB/GXL).
+> 
+> Note: GXBB and GXL are not known to differ so the driver binds on the
+> 'amlogic,gx-audin' fallback.
+
+What the driver does is usually less relevant. Here, completely
+irrelevant. Explain the compatibility between hardware.
+
+OTOH, you cannot have family compatibles (clearly documented and
+explained on every beginners talk), so what is the GX?
+
+And I already asked for this:
+https://lore.kernel.org/all/20260913-inventive-millipede-of-certainty-dd58ce@quoll/
+
+We have it extensively documented - in tree, in talks, in existing
+examples - how this is handled.
+
+Best regards,
+Krzysztof
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
