@@ -4,108 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AA27C9832A
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2026 05:40:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A420CA5FA1
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2026 05:46:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DgAMllok2phsl4P9luzwO/vMKcw3KJjZDwAkRWBZGZY=; b=Ej6g7hpPFICS+/
-	A6m4Ulylbb27fvRcrfWT+KMrpenTLHS2SfhldkWnm6BHIYa665YiG8DWeUPhE3FeUquu2t2h0fbyz
-	VHOeKLOlMGlOuAgGbCxJyZclGMmS+ZOEVvWPlcnqBxTikXwxhBSZmVjL80toZxsnxfwFmKow7PoJi
-	p4ADdqI/IHK1mk4Eko3XkZZK0C41cs/AOmyGq9d0j4UvL0wfaPqKVtOSaujpesOD3Dr+tFsb8vcxl
-	tdAI0yO6TjkhrCv595B5dTx+RWgiGD3tiDez1x8NI7zM+zw8abylqXBn0RJHVe3yTzedDyQ5clVp0
-	8uOkU8o1PW+v5Er4q85w==;
+	List-Owner; bh=bG2mj07NKUOITrrLKT3ZatX0YJBQAwGNiCWCMN4y0ZY=; b=bCSUmG7OocbUnH
+	LbGLAFLjMvABB1rgzJiREzToeE9YiAw+YZxX/ihfhHQgrLVw0IrkGPk9VAGcsFGWFwXDI5Y7034BF
+	aMxh/KLVrBTtvoFdBKxy1oNB5NYFm1ugYq94tom0ojSIbmQgav5d535y2ooqg7Kjv10d4D1fIjpXy
+	Y4OR6ZUOYPBxkJSuCqVaz5/2inoKl3ig4p4hhFSM2yLEZS4IIngp0PxLMNHJTU2f5zWfKa0/T17IJ
+	wbh0qcnaBeibkx863lyklSod/XdXZAe27kgAWHw7YjArXGrJMq1E33nFCJmWdEQ/rClQf+/PMD1Rf
+	XRoQTT4AUzJTz3YJ2bpw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xBQaA-00000002NZZ-0eP9;
-	Tue, 29 Sep 2026 05:40:50 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xBQg3-00000002O2r-0bor;
+	Tue, 29 Sep 2026 05:46:55 +0000
+Received: from mail-wm2-x10.google.com ([2a00:1450:4864:31::10])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xBQa9-00000002NZI-32C1;
-	Tue, 29 Sep 2026 05:40:49 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id D7A0C60210;
-	Tue, 29 Sep 2026 05:40:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4F2B1F000FF;
-	Tue, 29 Sep 2026 05:40:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1790660448;
-	bh=EulcM3Sez+szsCjpIOBGwG5tjCkG7m4d88gy5OahXvI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=TjWVifi50PlhyMwHlCn+/EPVWx27OtgK+/1gaxTsveJKzQf/197wj5N1N0Ka/xo8R
-	 NlVCpjlnX1m502N9OcsE8jGrPQwj9RZV+loFmPoW1YDM4nlsqzBDfXlfHi0mVppWFn
-	 9PzIUJl/KVw4TZ+pkrU3/b1fmqIkk5Ws9lVI42N0uQNml6dFBlkykZXdGognVBl6rY
-	 v8c7XxE2uJZ0VgbcqsLZ38To98Cy1u0Ex5jMy27/EqCxgFhVdPQ9yGNSol4Zg2dFfd
-	 qxNtjH4csoJtHc6nLycXLfAL/Gs1L7/19KLnL8uMIuh7BhzxLkBk3x967t8irQBroi
-	 Jpl4iZKdug4vQ==
-Message-ID: <33499600-5df7-48fb-a2ac-5a703df8dc2d@kernel.org>
-Date: Tue, 29 Sep 2026 07:40:42 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 3/6] media: dt-bindings: Add Amlogic V4L2 video
- decoder
-To: Zhentao Guo <zhentao.guo@amlogic.com>
+	id 1xBQg0-00000002O1n-3dPa
+	for linux-amlogic@lists.infradead.org;
+	Tue, 29 Sep 2026 05:46:54 +0000
+Received: by mail-wm2-x10.google.com with SMTP id 5b1f17b1804b1-49ffed768deso3873085e9.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 28 Sep 2026 22:46:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1790660810; x=1791265610; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=cHaIQHQAzypExf5bg6wFndJXSrqRhD8ZT8crEHQrTnE=;
+        b=A96DTktHjXgoufi9b4GqaukPGOgQMNe5KjuaGpcFPypzIScIDbMHtU0cOwRU8x6OFK
+         HYjVh9f/x2XW5d3hGFfTtF3DMDVRe8V+mQXXNRGlQkEdDbg5mUtYSJ614Cyv3qDfcy61
+         y8oxustKhRH9BNj8yADec7U3/rzgGggKEcBNDEIkRBeRZa9RrSWJne91A/EgCpljtrFH
+         6RmJrmr6LrPhvaU3yuShjbPEZF/BBNcMNJaxtvVnR7nNQJAl6V4IjmoU+Hhq92k9EPdV
+         Rq1+du3p+KnY/cIr7yqF4LtLIzpIcUoFkqGXJIFyA9JRhZNlZx9L/z2ONk7eg7a933Xd
+         bMng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1790660810; x=1791265610;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=cHaIQHQAzypExf5bg6wFndJXSrqRhD8ZT8crEHQrTnE=;
+        b=vM3VzAWYVCBJ4Cp3YmllyWYdLsKbs+N7LdzYDvaHJu92S4dr6ek9D3AYXLd3RmU3r0
+         +XoyQ0O6fHljSqp3Gyb6CWUwerS+JMKsJ+le2HvsFID3DWO13aHzM9oiOVDiwsE5e6LT
+         vjiE47vndwy8OfLMqFGAfnEvbo17bczyCO0w4dG+1r8zh3vQWotr27hh0l5yaNenMxWl
+         udu4SL5RmpgPKFFIbX8eYb5/MdyYzFydRw+PoYwmNJnUo10QrCuooh7xeN4cvrJzY8/d
+         o5MdSaajsEZoRwClVwEqtK5x9+0elZFTT7cFpiGFlETIDl0jR2BZ/REyruy5dEJKAanp
+         WNwQ==
+X-Forwarded-Encrypted: i=1; AKwUvBzoCiLEjM53H2Tq2iTqO7/FYvjDX5CHD+2xJVA+S6Hvnlds9DTrABzbENSOfvd55TSbi6ydC6jk9zuaipxM@lists.infradead.org
+X-Gm-Message-State: AFuF++lBoW6S9SQ13C202e9YgJ4t2vo2cpVO1Ta6F1I2tFPsw8uHiMQi
+	a2pxEFY6SIBrI5P+7xZtb6l1k0TV+wzl6vhPDzlUuVonKKq38Xx79Tmk
+X-Gm-Gg: AYBFou1DAlVHApQmI+QJZ4927Na87avpEWIU2JErUIup16aVg5v56J7mkColM3Q92mx
+	yQRsn2p8DToZDYtkkfY8VRVBhKSbzDNK4htG8VNV3tVG73MvoUMWnsH7nmSx2m6nTPdAI32A1cr
+	YRqAIzC3WCG4WhzvbWIMvjREf2GPMe8J3qdmVaNMrEsy+aE60PXyv1xjQF5N4yMyYZ5SYdoZ+xZ
+	j6RTTAz1TJXz9pa1u9TsD1ubxVa7G6QAOFrRDaSVeVXwLk7xYT9Z9FdVmF4p5PWOpeQ9ilrMNiv
+	bjlNhxa3cUgxwme4wB15f+6Ci90NEPnMepkAA1VI0+eahY6K01gIM+W2gFN37xYszluav6Z6OzT
+	o4vjaLuD5IDdXHt09r5RpunuKNTs8pTRzk5tz2hbyZ+u4ArLSJ4l7LMWMtxf0hWZhCApLQHmKsP
+	QeqI/ssAz2W4CZZB2t8vGLxtNwGC0fh63LiCYRLbI/SzvBiXH9P9eRijbOa8sA4abhfsg=
+X-Received: by 2002:a05:600c:1550:b0:49f:fefc:7d01 with SMTP id 5b1f17b1804b1-4a00d778f09mr19426275e9.15.1790660810212;
+        Mon, 28 Sep 2026 22:46:50 -0700 (PDT)
+Received: from localhost ([2c0f:3d00:6be:8900:ce5e:9212:ea4b:f30])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4a00d45ce1csm32021415e9.3.2026.09.28.22.46.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Sep 2026 22:46:49 -0700 (PDT)
+Date: Tue, 29 Sep 2026 08:46:45 +0300
+From: Dan Carpenter <error27@gmail.com>
+To: Michael Freidkin <freidkin@gmail.com>
 Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20260924-b4-s4-vdec-upstream-v10-0-1289303a58a4@amlogic.com>
- <20260924-b4-s4-vdec-upstream-v10-3-1289303a58a4@amlogic.com>
- <20260928-efficient-secret-manatee-2fcca6@quoll>
- <7fe35ef7-e894-4137-975a-9a5f621a8156@amlogic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <7fe35ef7-e894-4137-975a-9a5f621a8156@amlogic.com>
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-staging@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] media: meson: vdec: size capture planes from the aligned
+ canvas
+Message-ID: <artQxRR3kJUv-mBF@stanley.mountain>
+References: <20260928165045.642354-1-freidkin@gmail.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20260928165045.642354-1-freidkin@gmail.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260928_224652_915171_CBF80F13 
+X-CRM114-Status: GOOD (  16.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -122,62 +108,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 29/09/2026 04:59, Zhentao Guo wrote:
-> Hi Krzysztof,
+On Mon, Sep 28, 2026 at 07:50:45PM +0300, Michael Freidkin wrote:
+> The decoder writes a whole canvas of ALIGN(width, 32) x ALIGN(height, 32)
+> (amvdec_set_canvases()) and reports bytesperline = ALIGN(width, 32), but
+> get_output_size() derives sizeimage from the raw width x height.
 > 
->> On Thu, Sep 24, 2026 at 03:55:10PM +0800, Zhentao Guo wrote:
->>> Add bindings for Amlogic hardware decoder accelerator.
->>>
->>> Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
->>> ---
->>>   .../devicetree/bindings/media/amlogic,s4-vdec.yaml | 114 +++++++++++++++++++++
->>>   1 file changed, 114 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml b/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml
->>> new file mode 100644
->>> index 000000000000..751043c3d9cc
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml
->>> @@ -0,0 +1,114 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +# Copyright (C) 2025 Amlogic, Inc. All rights reserved
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/media/amlogic,s4-vdec.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Amlogic Video Decode Accelerator
->>> +
->>> +maintainers:
->>> +  - Zhentao Guo <zhentao.guo@amlogic.com>
->>> +
->>> +description:
->>> +  The Video Decoder Accelerator present on Amlogic SOCs.
->>> +  It supports stateless h264 decoding.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: amlogic,s4-vdec
->>> +
->>> +  reg:
->>> +    minItems: 2
->> What is happening here? Previous version was different.
+> When the width is not a multiple of 32 the planes are too small for the
+> advertised stride: for 720x360 NV12M the luma plane is 262144 bytes while
+> 736 * 360 = 264960 are needed (282624 for the canvas the firmware fills).
+> The decoder writes past the buffer, and importing the capture dma-buf
+> into DRM fails: drmModeAddFB2() returns -EINVAL, so e.g. Kodi plays the
+> sound over a black screen. 1280x720 and 1920x1080 are not affected.
 > 
-> maxItems: 2 implies that a single items is also allowed,but the hardware actually requires at least two register regions (dos 
-
-Since when?
-
-> and dmc) to work, so minItems:2 makes sense here.
+> Size the planes from the aligned canvas the hardware actually uses.
 > 
-> The same applies to |power-domain| and |interrupts| below. At least 2 
-> power-domains to make the hardware work, and at least 2 interrupts 
-> needed for the two sub-cores.
+> Tested on an S905X (GXL p212) board with LibreELEC 12 (6.16.0-rc3):
+> 720x360 and 1920x1080 H.264 play through V4L2 m2m + DRM PRIME with no
+> AddFB2 errors.
+> 
+> Fixes: 3e7f51bd9607 ("media: meson: add v4l2 m2m video decoder driver")
+> Signed-off-by: Michael Freidkin <freidkin@gmail.com>
 
+Reviewed-by: Dan Carpenter <error27@gmail.com>
 
+It would probably be more reliable to just ALIGN() the width and
+height at the start so we don't have to do it over and over again.
 
+regards,
+dan carpenter
 
-Best regards,
-Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
