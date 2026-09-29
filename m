@@ -4,62 +4,138 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E67B0CA5FA3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Sep 2026 21:51:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4250CA5FA1
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Sep 2026 03:00:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-	List-Owner; bh=3NVxI+959yT6dw+HBeVcU4BJ6hFV3Rs++O+CokBCmME=; b=42kRiJfkjCtCHE
-	Jao0Ro29psISlHqwL4AsZcSB/t093MdJsoocMwoHjhHRmGLyZ+EmL2FIZlJclWt48JHmBAUPGghIm
-	sXnbg+PVWt8zd2/CfIonpfT77RI9p5PWxKlloHsIp/AMM2HDBB+iZ9yuTG7JHYsKillrg/YANpkS5
-	TWXQmchWnPlzBuUhHB8agWV0iPVIEnALUfd0JJyAshKp/zjK2nkLsTWwviC5UQ/BKnjhew6yUe/WC
-	9NItqs3/FrOvQGH7nUnO+eM3dPZ3xV39xhBBW7egWIYF9voQsmygthPgcs2Rvr/X3Bl7PswdHR/fT
-	L+mHIafbgEzOh5qWPGpQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Ab0O1XNxK6PfAO5XzEejlEwTq0PkLJTjRAoiUsj70PE=; b=OrZRtFyc3a3ZR7jEzlvVyp8ClB
+	8l/u0FpcO7mDd3tQZiFjbJxqhhRpCRewXSva2Q16OOLP8Ailj0GwiuYxgGWdIrW6wEsZYvq5AlWd5
+	/cIwrw/OVEBRRuF4ccyrXKmTAPSOb/ROVKVoRvTgj6vZQT1+sLctuXVgV2CjPXnBuVp92F2QY0KYl
+	Nf3095enO78MgyNi9pxkCVVN4aMvAGvB3VdFkThDLWvbPYK1pB1vRpobYodTmIm+U0qxSFI5vlZ5T
+	AVHCFq/truT2fTcE2O7ZnP2oaRZktnnp+9i93Dsu+ftvkJaVRrKzk10JPBdHuvy6+Ofziu/d74lqu
+	6tTizgxA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xBJFi-00000001iHr-0Qap;
-	Mon, 28 Sep 2026 21:51:14 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xBO4O-00000002AQ4-2nLR;
+	Tue, 29 Sep 2026 02:59:52 +0000
+Received: from mail-japaneastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c405::7] helo=TYDPR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xBJFh-00000001iHY-08Ew;
-	Mon, 28 Sep 2026 21:51:13 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 066BA60219;
-	Mon, 28 Sep 2026 21:51:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84E961F00898;
-	Mon, 28 Sep 2026 21:51:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1790632271;
-	bh=8omIOHhw+uZwY84ggyKbDZolc6RD3clHULLyKqCQ5H4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To;
-	b=I6Avh3cjEKRwD9CabIrOhx9ysMlXH8SxulnHRCFe9AGF3GpLfHLPDI86yu6BE9yiK
-	 xrcDpTUPHThX3Nba7GaBRLnOntDkIRZImQgFOiHMYqfRFuoPdH6LqqdLERewePmUDZ
-	 VT9flbNSKsNTClvkLK5PfhZcqPDUxhH8WnKLu+5F3ZXSVc3Nj4li6GU/HxcoathddL
-	 iRE0idYGJtkcPgvaVmrmjAE/ALJNWC7XhGogquYF4bYTeLBhu665rRmXY4+kcRcbCa
-	 IRQI98ieNBG3SKokpLxosPgO6xP47mtQXuNR8MTbzMcu2MIzaoZz5nkl+06XTPuKnx
-	 rjlan8ve1mp+w==
-Date: Mon, 28 Sep 2026 16:51:10 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Hans Zhang <18255117159@163.com>
-Cc: lpieralisi@kernel.org, kwilczynski@kernel.org, bhelgaas@google.com,
-	heiko@sntech.de, mani@kernel.org, yue.wang@amlogic.com,
-	pali@kernel.org, neil.armstrong@linaro.org, robh@kernel.org,
-	jingoohan1@gmail.com, khilman@baylibre.com, jbrunet@baylibre.com,
-	martin.blumenstingl@googlemail.com, cassel@kernel.org,
-	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	Feizhou Yu <yufeizhou201@163.com>
-Subject: Re: [PATCH 1/2] PCI: dwc: Align register macros with Synopsys
- documentation
-Message-ID: <20260928215110.GA2266447@bhelgaas>
+	id 1xBO4K-00000002AL2-14Oz;
+	Tue, 29 Sep 2026 02:59:50 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tDwYSIknUwsCUnw5X55p+7pRHwfALHvI9Hmg4oxJMsKjiqTa4i89wS8ib1F8aoWeFv69bvMrtSsvmg2LxcVHuPx3FeK6l3fOa8vuCFCcL6ItzhwiPX78ifrF+uErQHdcoT678LcYgoHnR29xWyqWr5zkyMMHYB/OdlNovtLi9n6O50qjAzmC3w8W/fUq+3Rs20vo8/TgzT+WeclsA63fVWwoLRm8KrD+UCPB8GGfedP1X6wq6rQ4Ty6HwlAfm9a/0+QZB63oqpf/pO/u9p2mKzP030k4d5KNuxUgBqXwPdXPzV6r0mx+7ZWRr6TFSsX4a5scKaqQ85JpY/4aMDbxNQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZsbcHVia1hxStiuTeGCUCg09j6EKpDAowVYIdUerERM=;
+ b=rNOR7sHk56hWzGV957YPMj/akK56f72/UaMzJ/+CM2eAepPC7b6u3jqHeOAy4MOYvAtmukNTLcvhZ3qtztJiPe1+/EDxUbrD/O+XsXdhTg/pjYYdU+qT4MAggF0CaZQRRALW5s6ZZ5XXTGqsLSy31s/IDdfSLDdNq4nZG7NJ+vOAzJusVzie+ILz6ES6kNLLfUihxFyVSlPhWy/HZc/WP7opW14hKajRPpmeQwlnVi5ciWN9Y5duKb4VoLtRhEtKjbmsyRTIIPelVaz9x109EjQ7bzlCnjhLhf2UStVhAE3GeJl0oQqup1w+K1Alxacc86Fpro7J0jRxWfwKrucmUQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZsbcHVia1hxStiuTeGCUCg09j6EKpDAowVYIdUerERM=;
+ b=kNVTP3+ConzAOAZ40q6HNGbwen2K62RkN73ZQBp/Z6LznVnUX/ZxvulhyCAECThhYfp3wIzm5pCwm06Tn3qOzI08oPzxm1iPACi6Tm0r7Q4Pdje9DNa/qXvnIwdC+dP2okVj8884DaxMWC7VyWKW9tvvomPWFmWqcy8p9PLsxM8ulD25JxgV6hS4hN6t1TeeVezXsZPbmya6yIkP7ojx1evl/hkRHwzvRh6RyQHYTUpD1a7nLVRZaS99oIG2UPSSdRmFarRMUHfwZx7TeyE2FMJMMkWQtDSQdR5Ba89Et52BKBCpZqZE4He5MRwQy+Xemm65rdX3u7zua1VuJsWDyA==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from KL1PR03MB5521.apcprd03.prod.outlook.com (2603:1096:820:51::12)
+ by TYZPR03MB7460.apcprd03.prod.outlook.com (2603:1096:400:427::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.24; Tue, 29 Sep
+ 2026 02:59:31 +0000
+Received: from KL1PR03MB5521.apcprd03.prod.outlook.com
+ ([fe80::f12b:85e:f95c:191e]) by KL1PR03MB5521.apcprd03.prod.outlook.com
+ ([fe80::f12b:85e:f95c:191e%3]) with mapi id 15.21.0451.022; Tue, 29 Sep 2026
+ 02:59:31 +0000
+Message-ID: <7fe35ef7-e894-4137-975a-9a5f621a8156@amlogic.com>
+Date: Tue, 29 Sep 2026 10:59:29 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 3/6] media: dt-bindings: Add Amlogic V4L2 video
+ decoder
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20260924-b4-s4-vdec-upstream-v10-0-1289303a58a4@amlogic.com>
+ <20260924-b4-s4-vdec-upstream-v10-3-1289303a58a4@amlogic.com>
+ <20260928-efficient-secret-manatee-2fcca6@quoll>
+From: Zhentao Guo <zhentao.guo@amlogic.com>
+In-Reply-To: <20260928-efficient-secret-manatee-2fcca6@quoll>
+X-ClientProxiedBy: SG2P153CA0038.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c6::7)
+ To KL1PR03MB5521.apcprd03.prod.outlook.com (2603:1096:820:51::12)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20260928215007.GA2264960@bhelgaas>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: KL1PR03MB5521:EE_|TYZPR03MB7460:EE_
+X-MS-Office365-Filtering-Correlation-Id: 12f5d16d-0d63-46f6-8dc1-08df1dd5aedc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|7416014|23010399003|10067099003|56012099006|11063799006|4143699003|3023799007|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: sBgRjFkaRAu1cMNXU7oX3fsFhL5CljWH8E85DdPdaQMvdHQ46EoRFAdSHDQEh0nUZEXAeBjMpRu+xCNSuvUeU+2fIc12DUrYB5S2fDRU4H4lo8j2Bfis4Jghy74Mc8VMy9Zp+exZlGm/DjCdawyz90Ohd2xLLyyyMnMecjtxPBEDMsu4RX5UjhJkthF89uBryuNUyA9b11R0x9S1bTjtvarMkbFI/b9GxznzorM61G1S1K6N2woh/4omn7kZUozyp0Frp4dsgFszb3MzsCdM8kvL/IDwE6R1d+PomBwA0qtL0W8iB2AFfOlxv+jAfk0llGM79dBG/w77mPW4/EBMuUqg0Y4gT1li10pksdo8YOjI2pPWFl6C9AoMjTjNRPsBhRVle7dH903OVVMY7C88xGKLvKk02yxMRNyItRIvMI7e5VmAbYQb4HrLdh5IVt1macdHTcOpR+6FTIao9WH6kaDExirdbARQnbBweRuT8uBEAdzeiBwhBNN/X5C6OnKnxgTuUbuHUh7zIi+NF6HUErV3Iqyn9v8Hyc7eS0Pf67vuq7+XUwVPm+N3TTmQzJvd8K9Slyw8Oz/UkXNXddcQZsN3p5oceSehSJVRqDkJUbIG/XTcGRwXMUgaOa57LR86
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5521.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(7416014)(23010399003)(10067099003)(56012099006)(11063799006)(4143699003)(3023799007)(22082099003)(18002099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S0VvNHArQ2NiN0VwQmRjTFZQVmRmc1ByQTA1UFVHMjdRbDB0cW1hN1pIUHA4?=
+ =?utf-8?B?MktscGdMdi9vVWY2QXA1ME9Yb1J4ODZQMHR0c0ZlMi9oZ2grYk1OUjFRRVA3?=
+ =?utf-8?B?ZUdJWXVvUnJiVkVGcjl2eDJ2SlJ0TnU1THZlRTFLMVhPbnIvalN1dnN1TTlj?=
+ =?utf-8?B?L2c1VzEvYjZHOTBZblo1c2Q5MkJNUU1vaGMyaWt3MmtYOE9ieXZlVlVCbWFP?=
+ =?utf-8?B?UkNESWpqRUk2aEpUMVFwY1IrN2ZyVjFibzVuY2hyWnp4cGJEUTRmYnFxRVh0?=
+ =?utf-8?B?TGpsNUhkUXA2Nmx4TUQyZGdCUDQ2cFF5VE9UbWc1WDdyem9KdnEwVytteHEx?=
+ =?utf-8?B?ZDBDMXBxZVlDaFh4N2ZkRHhoVmxiN1BvbkZYU2JIYVIyQVR4Mjlld2pReFBu?=
+ =?utf-8?B?RGMwbEJFcHhJN29KaUlNUlpCSTUxczZLODJSWmNyRUlnUmZwZjNVTUdkbDdu?=
+ =?utf-8?B?Snl3eW4rMG5NUmsraHpGeW5Hb3VVbXFISVdpWSthVUVSVE1EYWpGUzhZNzQ5?=
+ =?utf-8?B?QjQ2YXJob0RrdWR4YW1aOXNFbEpDRVl6MmQ3SEJXeG4zTHNkTFlxTWNvRW1y?=
+ =?utf-8?B?L1dRdUFrRGFnbUVyUDIxV05BeDBUZG4zQU9Jc3U0VCsvTEFRTy8xbkpCVVVF?=
+ =?utf-8?B?ZVBZcmNTYjNhMGFTQ3M0SzNEeFJQYVhDTENpQ1ZHVnZ0TEEwMEhBNTdoK1Iv?=
+ =?utf-8?B?dnppckVrVkZjQnp6UUZDZlBXN090bmFHZ1ZMcS9wWTNGcTNGZDgyNW9nQTE1?=
+ =?utf-8?B?MnFwWE5vemFqblc1cndXR08yWEZtb3pYN1JIa1FpVlphL3pGaVBaWUVBdnY3?=
+ =?utf-8?B?ZzEwNzhWMU03OVVNUG92R2xqQWZ2S0g0OFgrb2tBM0hSeHBnUTUyVDhRemlL?=
+ =?utf-8?B?NWorRjltNHNGTVcxbGxWaHdFeGs4TjJiUVNvYUZWczh3MEw0dTd3b0lNYlRD?=
+ =?utf-8?B?Wjh4TFVoaFlENEhnMjFMakdpYXhFWHZNaWZSOVpKR3A4ei91ZkNoOHRUSnc4?=
+ =?utf-8?B?dTZVQU9Fa2V6NmhkdjAxTHRPVTJsQ2o5TER0anZyc3NnZUYxY09mMTBTT3A2?=
+ =?utf-8?B?U0MrUFJoQlhPSWhmandEK1dyU3RrSks2bE5DYUN4Wi8wSStKYTVIV1I2VC9Z?=
+ =?utf-8?B?NFRxMFBMOTd1ZHlpaUxzUjJrRERId3pHZkhNSG5JSk05bU5iLys0M3pJLzlD?=
+ =?utf-8?B?R29PUUJSU0hVL0pYS1RoWVdjeThoNzlKajVSYVFPUDUrN1ZlczZHQjgwQ1pG?=
+ =?utf-8?B?RGxRTmRoZXlMbGl1MGMzQ3BYWnN1bnFCdlhLY3UwQ3R6TXYzdXYrWnc4K25v?=
+ =?utf-8?B?Q1VjbzVYZkU4NVM2SHI2SlFiUDFDYWZWTjhKSjN3bU5HUHJGWGY4U3ZadWtU?=
+ =?utf-8?B?Y25ockR3dm9PeG9jbzZTQTZzQWZDM1dlZFFLQU1GS1VaV1FkMDNDT05sY3Fa?=
+ =?utf-8?B?Wm1IN21sS0d6UzZoZEVUVldwa01MZ3kxQjZQc1Z2QSs3aWlSeXJIOUpUdjNm?=
+ =?utf-8?B?VTU1cTlaTVRvME94czVpVzU5NFBONEk4OFpGdisySGcyNWlhdGgzSHZxUUt2?=
+ =?utf-8?B?Sk9ieFRIOUFtVmZaUnJydGcxTmJqWmJJeXZndGRCUlB4YW1ZeXRhZko0TkV2?=
+ =?utf-8?B?b01Rb2FDQ2ZuV3RsWHUvaVZpeVNJc0hwMmRla05yN1pnZnRiQWNQS3ZwYjJR?=
+ =?utf-8?B?UWlFQTlMdDROVy9BMmpXV2graElyNitXeXBtNGcrZ3FodTlhZ1BjaDlHSFp1?=
+ =?utf-8?B?Y25PK2RUMWlPTjMvaFlEam1KNnpkUkw1NmNSVC9jU0xnK3RlV2FKbWUzZnJD?=
+ =?utf-8?B?RDM4M0VlWGpjcmZkWEd1bXFzeVdpTUIreDc0aW1BbXZKTkpzWkpEYzVaU2Ex?=
+ =?utf-8?B?TUdxTkpKaVBxNzRLR1d6RVFtbXZYc3BUbGlFWmE0Qk5QK0diaytac1hrWWsr?=
+ =?utf-8?B?US9McmtDZ3lsTC9vRUVEZGRMYlk0Z3F2Wko1aVVQTGRCTCtyaVlDNkhHc2d4?=
+ =?utf-8?B?TFZ4TURTS2lXWjc1S1dZSFJZcG5HcFZEakJuT0pFWVlKL1RZQjNjRmdwMnNm?=
+ =?utf-8?B?ZHZXYnluVjVabjY0Nko4YlYwT2ZHVVViR2VoN0NMUlZydTJvMHRvdjZmajR5?=
+ =?utf-8?B?T3lIdlNtYjlLUlhsODlJdEF1K3FIZkdXbStHajVIRmd4SjFGdHVSYVcwUTdU?=
+ =?utf-8?B?UHppMjA3L3FSZHRJN1pXQkRGRm5saHcxNjhrVmVNSXN0VFYvTEowV0RrV1Nm?=
+ =?utf-8?B?dFdmNmpFaTBsMjJiMUQwYUhrdXgrVWhBTDdiUmZJdTBZaUJmRnBnN1RuZjA0?=
+ =?utf-8?B?a2VNMzlUZDdFb3lvZlc4dmUzTDBmcktvU3ZjSGZyZEFLaEtHZlBCQT09?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 12f5d16d-0d63-46f6-8dc1-08df1dd5aedc
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5521.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2026 02:59:31.1992
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZRG6uCZy5Z465s5l/cTqG0oZWIrxBss14ERMMy4RJAPsdoyqLpaTqxB/sD2R69mPlwXAM77o+3xGLLRuCoebGw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB7460
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20260928_195948_323281_D18688B4 
+X-CRM114-Status: GOOD (  13.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,53 +147,66 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Sep 28, 2026 at 04:50:09PM -0500, Bjorn Helgaas wrote:
-> On Sat, Sep 12, 2026 at 12:25:36AM +0800, Hans Zhang wrote:
-> > The DWC PCIe register and field macros are inconsistently named and
-> > often do not match the Synopsys DesignWare PCIe Controller Reference
-> > Manual.  This makes it harder to cross-reference the code with the
-> > documentation when debugging or maintaining the driver.
-> 
-> > +#define  PORT_AFAC_L0S_ELS		24		/* L0s Entrance Latency shift */
-> > +#define  PORT_AFAC_L0S_ELM		GENMASK(26, 24)	/* L0s Entrance Latency mask */
-> > +#define  PORT_AFAC_L1_ELS		27		/* L1 Entrance Latency shift */
-> > +#define  PORT_AFAC_L1_ELM		GENMASK(29, 27)	/* L1 Entrance Latency mask */
-> 
-> Surely we don't need both the shift and the mask?  Maybe a separate
-> patch convert to FIELD_PREP()?
+Hi Krzysztof,
 
-Oops, sorry, didn't notice that Mani had already applied these.  This
-could be material for follow-on patches.
+> On Thu, Sep 24, 2026 at 03:55:10PM +0800, Zhentao Guo wrote:
+>> Add bindings for Amlogic hardware decoder accelerator.
+>>
+>> Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
+>> ---
+>>   .../devicetree/bindings/media/amlogic,s4-vdec.yaml | 114 +++++++++++++++++++++
+>>   1 file changed, 114 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml b/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml
+>> new file mode 100644
+>> index 000000000000..751043c3d9cc
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/amlogic,s4-vdec.yaml
+>> @@ -0,0 +1,114 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +# Copyright (C) 2025 Amlogic, Inc. All rights reserved
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/media/amlogic,s4-vdec.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Amlogic Video Decode Accelerator
+>> +
+>> +maintainers:
+>> +  - Zhentao Guo <zhentao.guo@amlogic.com>
+>> +
+>> +description:
+>> +  The Video Decoder Accelerator present on Amlogic SOCs.
+>> +  It supports stateless h264 decoding.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: amlogic,s4-vdec
+>> +
+>> +  reg:
+>> +    minItems: 2
+> What is happening here? Previous version was different.
 
-> > +#define  GEN3_CTRL_RATE_SHADOW_SEL_SHIFT 24		/* Rate Shadow Select shift */
-> > +#define  GEN3_CTRL_RATE_SHADOW_SEL_MASK	GENMASK(25, 24)	/* Rate Shadow Select mask */
-> 
-> Ditto.
-> 
-> > +#define MSIX_DOORBELL			0x948
-> > +#define  MSIX_DOORBELL_PF_SHIFT		24
-> 
-> Probably would be better to define a mask so we have the position
-> *and* the width.
-> 
-> > @@ -621,15 +621,15 @@ static inline u32 event_counter_prog(struct tegra_pcie_dw *pcie, u32 event)
-> >  	u32 val;
-> >  
-> >  	val = dw_pcie_readl_dbi(&pcie->pci, pcie->ras_des_cap +
-> > -				PCIE_RAS_DES_EVENT_COUNTER_CONTROL);
-> > +				RAS_DES_EVENT_COUNTER_CONTROL);
-> >  	val &= ~(EVENT_COUNTER_EVENT_SEL_MASK << EVENT_COUNTER_EVENT_SEL_SHIFT);
-> >  	val |= EVENT_COUNTER_GROUP_5 << EVENT_COUNTER_GROUP_SEL_SHIFT;
-> >  	val |= event << EVENT_COUNTER_EVENT_SEL_SHIFT;
-> >  	val |= EVENT_COUNTER_ENABLE_ALL << EVENT_COUNTER_ENABLE_SHIFT;
-> 
-> Probably a good chance to convert these to FIELD_PREP() etc. as well,
-> maybe in a separate patch.
+maxItems: 2 implies that a single items is also allowed,but the hardware actually requires at least two register regions (dos 
+and dmc) to work, so minItems:2 makes sense here.
+
+The same applies to |power-domain| and |interrupts| below. At least 2 
+power-domains to make the hardware work, and at least 2 interrupts 
+needed for the two sub-cores.
+
+>
+> Best regards,
+> Krzysztof
+
+Best regards,
+
+Zhentao
+
 
 _______________________________________________
 linux-amlogic mailing list
