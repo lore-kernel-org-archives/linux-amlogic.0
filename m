@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C19C0CA5FC5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Sep 2026 14:50:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 407A0CA5FC7
+	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Sep 2026 14:51:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=a/fuAabTbHCWkppH/feSJRGu0Y4lEW3RvibOr/jYrhM=; b=rkKwN5QHQ2WXVF
-	poBdJE3ZBIMWOOWc/PZcT3etodOJpoJLGWnxVsEAtrLea+FJoa5haRjFl6FQgSmBtvEmn+PYYyH2B
-	F5TfhuIxXEYHBCfsvfIxdN4fKUQfGjJG2OgNmTrP54ZBudqSx2AEig3wuI4uME0uoRnlNYJLEoGRM
-	OP+/NDD5ywsZHUksGJbPPowSJaHOGO+f/eicJ1xGZaDskzDk7+zKui4mlpwJPcVks0m5sAE9GOfCJ
-	+m/KvLXLyTjaYri/QykqKWHbqhoatETjj3VCYmDwqv4VQMuFnQ/O5vqCEefNJ9GmjLALbgwD+/6Rk
-	U8UtUvzEAQ1y1ZPK1pPw==;
+	List-Owner; bh=eXEwfPgUXI3MvMA3r1HA357hjNZ4olVw1vNQvm6ZbNo=; b=mOBKTdIaonX6ux
+	/mxbLPTgmc65lVPsbMWErYxAeK6kcetZXsKdKtlW8oDTIXnSYlZUjk3i9PZUgufi4Xc0W+2eZAdWx
+	+2w/Axd5kSQUly/bTOKHYzgBoCqMQ/6ABySbBt3DS15/zWJRUvC607FqY34sMkApwM74BapVWtbAz
+	2o3E1xIGqCuu6d5FwQ3I7iA4DIcvKcW00ZNDJ5+D9bEEjadnvGroV+CcFolfzkKsFFky3mM7/Xa5i
+	pFXfRTh2tvkwUALVV76ptY9obZHXKvbYzt/OW8GajeIb/l3ilFxsOm0n95g/ee+m/DvMoi4pKbvlp
+	8XxdKs6tkKEw3VvlAxkw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xBvdp-00000006NFy-1Mik;
-	Wed, 30 Sep 2026 14:50:41 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xBve9-00000006NRk-0tFS;
+	Wed, 30 Sep 2026 14:51:01 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xBvdn-00000006NEQ-0gyj;
-	Wed, 30 Sep 2026 14:50:39 +0000
+	id 1xBvdv-00000006NIT-20gz;
+	Wed, 30 Sep 2026 14:50:47 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id BB66843DEA;
-	Wed, 30 Sep 2026 14:50:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D02721F00898;
-	Wed, 30 Sep 2026 14:50:32 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 5AAA7601DE;
+	Wed, 30 Sep 2026 14:50:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D76D1F0089B;
+	Wed, 30 Sep 2026 14:50:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1790779838;
-	bh=pLddcdeVhe5dBvuz28Kf0fu3WIAs8MgosfUWOghTQPI=;
+	s=k20260515; t=1790779845;
+	bh=TSwgvDJ8bCkdzK3KRzsQi4XHuw+AgxkAx3ktEHZzz7A=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=gk5ij4ujsCezLMd8CRsnjZtyu6WtHMKifO3zWhhWbyCcuZb1xH6plVtyyKB5xEfU2
-	 czjGmI+kF7/iR51RMqdllhlUhnl15DOWTHTg5d4d+ktjJD1R6iPiauNf0yNnfyfOuG
-	 nYzDjnWbEsc/vmy4DIHJWEIoHvNpW1POLHvx6Cmzr50A1HyIMCGMJac34fbjMxhdY0
-	 B84UqzmA7lAfozDdGgoO3tFygGfbjQ2RDkAmgEd8xdKWIaUqOmQ/pbjQYhosj4Bd7Y
-	 xDAO46+5NuN9i0Kt3/SU7AQcMBSVbxga3GpYyDySZqEuH56JqX2xA4oj3YiXu0RFqw
-	 FCqcoX5bXRlKw==
+	b=UF03NQeeQFakrobM0QKdTXcDNv/0m37rMtVFftS14c7N/Iz9vdXCdLy3k1wzBufA/
+	 4cwrlObdOz/8fAOCtop9P+R1hPV5Krr0NmQqrZtbReTPhGNQeXHV2hLRpZ9osCgT21
+	 WfNDEAWsfA/nGinp0bmHQ7TZldMoAoj1b/xOT6u2Ziode0StIC5SbFj7Pd5tqzPglD
+	 2//t26pkX5Pi8BZtjWwmNAviV1bR8bAQmKOwytLtKgj3tj/OD6ioRtBLw/ZM/LaPBe
+	 dbKg+AnOGhBTmFWoMifEeLSKpS1gAiN6iIiD/c9ZBhW81s56nMGc/gvzJtRgc/AOBx
+	 /9I6LCo0E/FVw==
 From: Niklas Cassel <cassel@kernel.org>
 To: Bjorn Helgaas <bhelgaas@google.com>,
 	Bjorn Helgaas <helgaas@kernel.org>,
@@ -50,13 +50,13 @@ To: Bjorn Helgaas <bhelgaas@google.com>,
 	Heiko Stuebner <heiko@sntech.de>,
 	Yue Wang <yue.wang@Amlogic.com>,
 	Hans Zhang <18255117159@163.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
-	Frank Li <Frank.Li@nxp.com>
+	Myron Stowe <myron.stowe@redhat.com>,
+	Jon Mason <jdmason@kudzu.us>
 Cc: Keith Busch <kbusch@kernel.org>,
 	mx2pg@pm.me,
 	dlemoal@kernel.org,
-	Niklas Cassel <cassel@kernel.org>,
 	Lukas Wunner <lukas@wunner.de>,
+	Frank Li <Frank.Li@nxp.com>,
 	Mahesh Vaidya <mahesh.vaidya@altera.com>,
 	Ricardo Pardini <ricardo@pardini.net>,
 	Shawn Lin <shawn.lin@rock-chips.com>,
@@ -67,21 +67,20 @@ Cc: Keith Busch <kbusch@kernel.org>,
 	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Myron Stowe <myron.stowe@redhat.com>,
-	Jon Mason <jdmason@kudzu.us>,
 	linux-pci@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: [RFC PATCH 1/4] PCI: Update saved Max Payload Size in pcie_set_mps()
-Date: Wed, 30 Sep 2026 16:50:18 +0200
-Message-ID: <20260930145017.1356088-7-cassel@kernel.org>
+	linux-rockchip@lists.infradead.org,
+	Niklas Cassel <cassel@kernel.org>
+Subject: [RFC PATCH 2/4] PCI: Match the hierarchy's MPS to a device's MPSS as necessary
+Date: Wed, 30 Sep 2026 16:50:19 +0200
+Message-ID: <20260930145017.1356088-8-cassel@kernel.org>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260930145017.1356088-6-cassel@kernel.org>
 References: <20260930145017.1356088-6-cassel@kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2978; i=cassel@kernel.org; h=from:subject; bh=rlNDwOLzu7ttLsyeROV+rK+yucTFtmlzkPThqRA5V+Q=; b=owGbwMvMwCV2MsVw8cxjvkWMp9WSGLL2Kq48tTfu/UbLknfnnk+PVxez+Tfn/E3Tlcd6TH1E4 rfH9W+f11HKwiDGxSArpsji+8Nlf3G3+5TjindsYOawMoEMYeDiFICJJHkyMtxY37952cWwRSpv ouRPL9nM/tK0IXbCyUbzI8Yc782TFwcwMuyf/ziqUM25YJvDnq1p32Rz16XOrq2WePze0yayadK hg5wA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5641; i=cassel@kernel.org; h=from:subject; bh=BT88USuGeykL9B1sorUB9b03FNnb7Rs3jMpDLquVOTo=; b=owGbwMvMwCV2MsVw8cxjvkWMp9WSGLL2Kq66Uhy8PPC02t7wDNP/+w0sozSl5rziN/lYU6n+Y a2upMy2jlIWBjEuBlkxRRbfHy77i7vdpxxXvGMDM4eVCWQIAxenAExkWSfD/5xLLDPfl0bL7rwR f/BnPOdDnhbh9Wz8VVuXX97o+tHLy4iR4X3kRDelhOb7+85veLHOQKWmvyJn0uabbAUchs9XWjG sYAcA
 X-Developer-Key: i=cassel@kernel.org; a=openpgp; fpr=5ADE635C0E631CBBD5BE065A352FE6582ED9B5DA
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -99,79 +98,143 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-pcie_set_mps() changes the Max Payload Size (MPS) in the Device Control
-register but leaves the copy saved by pci_save_state() alone, so the next
-pci_restore_state() puts back the old value.
+From: Hans Zhang <18255117159@163.com>
 
-The PCI core does change the MPS of devices whose state has already been
-saved: pci_configure_mps() reduces a Root Port's MPS when a device with a
-smaller MPS Supported is hot-added directly below it (commit 9f0e89359775
-("PCI: Match Root Port's MPS to endpoint's MPSS as necessary")), and with
-"pci=pcie_bus_safe", pcie_bus_configure_settings() can do the same when
-pciehp calls it after a hot-add.  The Root Port's state was saved when it
-was added and again when portdrv probed it.
+pci_configure_mps() enumerates top-down and programs each device's Maximum
+Payload Size (MPS) to match its upstream bridge.  When a device's MPS
+Supported (MPSS) is too small to match, commit 9f0e89359775 ("PCI: Match
+Root Port's MPS to endpoint's MPSS as necessary") reduces the upstream
+bridge instead, but only when that bridge is a Root Port.
 
-Since commit 3fc686d550f6 ("PCI/ERR: Add support for resetting the Root
-Ports in a platform-specific way"), pcibios_reset_secondary_bus() restores
-that saved state, without saving it first, after host->reset_root_port()
-has reset the Root Port, e.g. during AER recovery or on Link Down with the
-qcom and Rockchip DWC drivers.  The Root Port then goes back to the old,
-larger MPS while the device below it is restored to the smaller one, so
-the Root Port may send TLPs that the device treats as Malformed.
+That covers an endpoint directly below a Root Port and nothing else.  With
+a Switch in between, the Switch ports have already inherited the Root
+Port's larger MPS, the reduction is skipped because the upstream bridge is
+a Switch Downstream Port, and pcie_set_mps() then fails with -EINVAL for
+the endpoint.  The endpoint is left below a port programmed for a larger
+MPS, so any larger TLP it receives is treated as Malformed.
 
-Update the saved copy of Device Control when pcie_set_mps() changes the
-MPS, like commit 909f7bf9b080 ("PCI: Update saved_config_space upon
-resource assignment") does for BARs.
+Multi-function devices hit the same hole from the other direction:
+reducing the Root Port for a function with a small MPSS leaves the sibling
+functions already programmed to the larger value.
 
-Fixes: 3fc686d550f6 ("PCI/ERR: Add support for resetting the Root Ports in a platform-specific way")
+Walk the hierarchy from the Root Port down and reduce every device that is
+above the new value.  Reducing only the ports between the device and the
+Root Port is not sufficient, because a Switch does not split TLPs: an
+already programmed sibling left at the larger MPS could emit a TLP too
+large for its egress port.  As a result, a single device with a small MPSS
+now lowers the MPS of every device below its Root Port.
+
+Only do this while no device below the Root Port has been added or made
+available for driver binding, i.e., during the initial scan, or when
+devices are hot-added or rescanned into an empty hierarchy such as a slot
+directly below the Root Port.  Such devices may have drivers bound and DMA
+in flight, so their MPS can't be changed safely.  This is the same
+constraint that makes PCIE_BUS_SAFE limit fabrics with hotplug bridges
+below a Root Port to 128 bytes in pcie_find_smpss().  A device
+added next to devices that are already in use is left at its current MPS
+and pci_configure_mps() warns and suggests "pci=pcie_bus_safe", which is
+what already happens below a Switch today.
+
+This only affects PCIE_BUS_DEFAULT.  PCIE_BUS_SAFE, PCIE_BUS_PERFORMANCE
+and PCIE_BUS_PEER2PEER program MPS in pcie_bus_configure_settings() and
+PCIE_BUS_TUNE_OFF doesn't touch it, so all of them return before this
+point.
+
+Fixes: 9f0e89359775 ("PCI: Match Root Port's MPS to endpoint's MPSS as necessary")
+Signed-off-by: Hans Zhang <18255117159@163.com>
 Assisted-by: LLM
+Co-developed-by: Niklas Cassel <cassel@kernel.org>
 Signed-off-by: Niklas Cassel <cassel@kernel.org>
 ---
- drivers/pci/pci.c | 24 +++++++++++++++++++++++-
- 1 file changed, 23 insertions(+), 1 deletion(-)
+ drivers/pci/probe.c | 66 ++++++++++++++++++++++++++++++++++++++++++---
+ 1 file changed, 62 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
-index b2879a6be5f8..5b126cd342ca 100644
---- a/drivers/pci/pci.c
-+++ b/drivers/pci/pci.c
-@@ -1736,6 +1736,24 @@ static void pci_restore_pcie_state(struct pci_dev *dev)
- 	pcie_capability_write_word(dev, PCI_EXP_SLTCTL2, cap[i++]);
+diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
+index 27008e2ea5af..d8e58e5ef730 100644
+--- a/drivers/pci/probe.c
++++ b/drivers/pci/probe.c
+@@ -2200,9 +2200,49 @@ int pci_setup_device(struct pci_dev *dev)
+ 	return 0;
  }
  
-+/*
-+ * Update the saved copy of the Device Control register after changing it, so
-+ * that pci_restore_state() doesn't put back a stale value.  Device Control is
-+ * the first register saved by pci_save_pcie_state().
-+ */
-+static void pcie_update_saved_devctl(struct pci_dev *dev, u16 clear, u16 set)
++static int pcie_reduce_mps(struct pci_dev *dev, void *data)
 +{
-+	struct pci_cap_saved_state *save_state;
-+	u16 *devctl;
++	int mps = *(int *)data;
++	int ret;
 +
-+	save_state = pci_find_saved_cap(dev, PCI_CAP_ID_EXP);
-+	if (!save_state)
-+		return;
++	/* MPS is of type 'RsvdP' for VFs */
++	if (!pci_is_pcie(dev) || dev->is_virtfn)
++		return 0;
 +
-+	devctl = (u16 *)&save_state->cap.data[0];
-+	*devctl = (*devctl & ~clear) | set;
-+}
-+
- static int pci_save_pcix_state(struct pci_dev *dev)
- {
- 	int pos;
-@@ -5970,8 +5988,12 @@ int pcie_set_mps(struct pci_dev *dev, int mps)
- 
- 	ret = pcie_capability_clear_and_set_word(dev, PCI_EXP_DEVCTL,
- 						  PCI_EXP_DEVCTL_PAYLOAD, v);
-+	if (ret)
-+		return pcibios_err_to_errno(ret);
- 
--	return pcibios_err_to_errno(ret);
-+	pcie_update_saved_devctl(dev, PCI_EXP_DEVCTL_PAYLOAD, v);
++	if (pcie_get_mps(dev) > mps) {
++		ret = pcie_set_mps(dev, mps);
++		if (ret)
++			pci_warn(dev, "can't set Max Payload Size to %d; if necessary, use \"pci=pcie_bus_safe\" and report a bug\n",
++				 mps);
++	}
 +
 +	return 0;
- }
- EXPORT_SYMBOL(pcie_set_mps);
++}
++
++static int pci_dev_check_in_use(struct pci_dev *dev, void *data)
++{
++	bool *in_use = data;
++
++	*in_use = pci_dev_is_added(dev) || !pci_dev_binding_disallowed(dev);
++	return *in_use;
++}
++
++/*
++ * Return true if any device on or below @bus has been added or made available
++ * for driver binding, i.e., may have a driver bound and DMA in flight.
++ */
++static bool pci_bus_in_use(struct pci_bus *bus)
++{
++	bool in_use = false;
++
++	pci_walk_bus(bus, pci_dev_check_in_use, &in_use);
++	return in_use;
++}
++
+ static void pci_configure_mps(struct pci_dev *dev)
+ {
+ 	struct pci_dev *bridge = pci_upstream_bridge(dev);
++	struct pci_dev *rp;
+ 	int mps, mpss, p_mps, rc;
+ 
+ 	if (!pci_is_pcie(dev))
+@@ -2252,10 +2292,28 @@ static void pci_configure_mps(struct pci_dev *dev)
+ 		return;
+ 
+ 	mpss = 128 << dev->pcie_mpss;
+-	if (mpss < p_mps && pci_pcie_type(bridge) == PCI_EXP_TYPE_ROOT_PORT) {
+-		pcie_set_mps(bridge, mpss);
+-		pci_info(dev, "Upstream bridge's Max Payload Size set to %d (was %d, max %d)\n",
+-			 mpss, p_mps, 128 << bridge->pcie_mpss);
++	rp = pcie_find_root_port(bridge);
++	if (mpss < p_mps && rp && !pci_bus_in_use(rp->subordinate)) {
++		/*
++		 * dev cannot be programmed to the MPS already in use above
++		 * it, so reduce the hierarchy to what dev supports.  A Switch
++		 * does not split TLPs, so reducing only the upstream bridge
++		 * is not enough: every port up to the Root Port has to come
++		 * down as well, and so do the devices already programmed
++		 * below that Root Port, which would otherwise be left sending
++		 * TLPs too large for their egress port.
++		 *
++		 * Only do this while no device below the Root Port has been
++		 * added or made available for driver binding, e.g., during
++		 * the initial scan or when hot-adding into a slot directly
++		 * below the Root Port.  Such devices may have drivers bound
++		 * and DMA in flight, so their MPS can't be changed safely
++		 * (see pcie_find_smpss()).
++		 */
++		pcie_reduce_mps(rp, &mpss);
++		pci_walk_bus(rp->subordinate, pcie_reduce_mps, &mpss);
++		pci_info(dev, "Max Payload Size of %s hierarchy set to %d (was %d)\n",
++			 pci_name(rp), mpss, p_mps);
+ 		p_mps = pcie_get_mps(bridge);
+ 	}
  
 -- 
 2.55.0
