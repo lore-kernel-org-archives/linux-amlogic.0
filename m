@@ -4,54 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB466CA5FC7
-	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Sep 2026 15:06:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FEF3CA5FC4
+	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Sep 2026 16:52:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Cc:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QeLAeJpdY2YTiwC+JDXtubO1WjY+YvHyrdK8TuDxyxA=; b=Rd6aeai094HLHm
-	Yc/1EZe+vuPEXaV5X3aHEV2aYamZRb/YRkNJ5OhNnkhcTcBkT3QGbXz8nCOjU5iop6XxJXpWTf3jO
-	svfKAL14JD/Mr4JwYdMn4xNsikLI2tFjP7fs7EM40WNJdCN+tcxHFGNEMXDW3+9+e0iSbHqyMvsCC
-	JIIoiOq13h3XejmSqaqPARWH20cAn3nxNAEMPWCwXfXEHukPrdUGrReBYaklGPnDC/SbKn4Rs9kI/
-	JPNkJJtnRjgnQ9152+jH93QxTopHmzZxQ85owyYGaCTHYNuQcwdEvAr2YS4uev+RIsZ7jD8G2/0NS
-	pCETCNdXvmV2ifaj9THg==;
+	List-Owner; bh=yrXl8dezKPhGjvp/yfAE8uvK8j7Srdztsr8ilKoRze4=; b=J+PtAp3X2wbcLP
+	CZQ7ZykLlF040PxTuEwAofEgiTlwJ3xPZAkO62+jumHfNZgPgRCmPKWcfk7QUn88Db81Sgf5OUcUi
+	F/9ZeqnYgoXvZV+vDsprYfyQVD4Wb+MVUt2SaJfS5THnxZYb+scFrhCh+sJsbklag6CQYIn/fVA8s
+	i7mPE+YFMopQHQ4oyyYuPTH3rT5gs7heg0Xu+b9KAG7BsC+FFM1KjMiTkYyOn+XqxbqxtBJsOjRmF
+	YVpoKGcVOcV/KOadgwPKqfBNQFb4/Pj9+GCCmkZRC6Jh08oKsZOtemLp3X1GfFP6XgyR83L3iGLfi
+	jAOGkzECeAfAqsxWPo4w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xBvsy-00000006QQe-16Uv;
-	Wed, 30 Sep 2026 15:06:20 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xBxXd-00000006kXa-0jaG;
+	Wed, 30 Sep 2026 16:52:25 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xBvsx-00000006QQU-1Ewj
-	for linux-amlogic@lists.infradead.org;
-	Wed, 30 Sep 2026 15:06:19 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 65E1660008;
-	Wed, 30 Sep 2026 15:06:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE88A1F000FF;
-	Wed, 30 Sep 2026 15:06:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1790780778;
-	bh=Q9QfSuVvRZW99z8e8L2TYXnqUAq9jufmC8kej6tIPIE=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Z2OfiafdlavXjAQ7CGObUxCzd7UylPzkKcsrMOwQSmT/e5iXr2t5yYawJP3kP39PD
-	 4+XeSJBWw9JuT5A3t91wYtKnFjKzycfiT+OjLPSZNb+ErowS/IMUDHJlodeHZg2Hiz
-	 HBX5CWYmFQqhP7+AWgBrExZi8LLcbyJ93fATJwmXh7uzdoW83R73T2Pse0jMjeyXpF
-	 6PHTEwavz2VIlKuNx+IapQJmScmaRCMyqtpXlsI6ZC6Kvvr+jwUGDhICT6GRF79gqH
-	 0im1Rq/UxgF0PaX3hOg1HoKO0uBx3atekRLQ5MluhxCUHWpK8vXtNziBktO8Hdn9X7
-	 R6B95rJqhfF4A==
-From: sashiko-bot@kernel.org
-Subject: Re: [RFC PATCH 3/4] PCI: Configure Root Port MPS after scanning its
- hierarchy
-To: "Niklas Cassel" <cassel@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org, linux-pci@vger.kernel.org
-In-Reply-To: <20260930145017.1356088-9-cassel@kernel.org>
-References: <20260930145017.1356088-6-cassel@kernel.org>
- <20260930145017.1356088-9-cassel@kernel.org>
-Date: Wed, 30 Sep 2026 15:06:17 +0000
-Message-Id: <20260930150617.CE88A1F000FF@smtp.kernel.org>
+	id 1xBxXY-00000006kWa-2Mck;
+	Wed, 30 Sep 2026 16:52:22 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id DFFAF6053A;
+	Wed, 30 Sep 2026 16:52:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 5A797C4AF13;
+	Wed, 30 Sep 2026 16:52:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1790787139;
+	bh=f/PpISk6g+62l+NZnebi+m8lkyLjsj4FeTpom7vbKjQ=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=sY0pnqyF8/s6VHRIeJv7BYYFbow+9oPipA5lk+cKbbk/AyRwZq0iPBkiRWJb5D/mw
+	 RGQBu2ZX2XSPrqLqrcF1De7TMcZ6gK223XxSTYLiIjkYa3hIJPZgoi6jBs2G8hobw7
+	 ws701xHbcVC57dkb5R74szktohsobdrswe3KppD+vdVBHSV55mxbtvKM7N/Mi/lDgV
+	 N9ysUpWVcZ7+0ekwDHTMTmrm7EeQshtlW0NNAUmKV3D4E99xfHoWbRzmx3x3M7xmap
+	 JbgW4k6qaxp263Gnlcc9SwOYgFjEB+9nny1OvdBsTv5VGldJFkRHm1zfC1thGqnKn/
+	 pYBBRCQDBoixA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 48DDDCA5FCB;
+	Wed, 30 Sep 2026 16:52:19 +0000 (UTC)
+From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
+Date: Wed, 30 Sep 2026 16:52:15 +0000
+Subject: [PATCH 2/2] arm64: dts: amlogic: meson-sm1-odroid-hc4: run the SPI
+ NOR at 40 MHz
+MIME-Version: 1.0
+Message-Id: <20260930-hc4-spi-nor-v1-2-9a3351e2984e@iav.lv>
+References: <20260930-hc4-spi-nor-v1-0-9a3351e2984e@iav.lv>
+In-Reply-To: <20260930-hc4-spi-nor-v1-0-9a3351e2984e@iav.lv>
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1395; i=iav@iav.lv;
+ h=from:subject:message-id;
+ bh=EpGmYpLlMviVEwXG8x1TChGxSFfpKyMpVV1+YR4B4L0=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDFl77RwN7TTrC1x5sp0jGAySzj6IuL8++L9j51HN4mebL
+ dffPMLSUcrCIMbFICumyDLhkMatjCVX//p7mD+AmcPKBDKEgYtTACZSfojhf26vZp+N08/3J6ea
+ mM6a5NhaxmwYmqr+Yu+zNctWLzS+U8fwz+7+31+tU4/uPjcne4p3tcAhr8PauWK30/wkUp1V3to
+ t5AAA
+X-Developer-Key: i=iav@iav.lv; a=openpgp;
+ fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
+X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
+X-Original-From: Igor Velkov <iav@iav.lv>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,62 +78,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: iav@iav.lv
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Igor Velkov <iav@iav.lv>, linux-amlogic@lists.infradead.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW01lZGl1bV0gcGNpOiBpZ25vcmlu
-ZyBwY2llX3NldF9tcHMoKSBmYWlsdXJlcyBjYXVzZXMgaWxsZWdhbCBNUFMgdG9wb2xvZ3kKLS0K
-CmNvbW1pdCA2ZGFjOTlmNDc2ZmY3MzBhYjdkZDE0MDUxYjYyZTk0MDI4MDZiMzM5CkF1dGhvcjog
-TmlrbGFzIENhc3NlbCA8Y2Fzc2VsQGtlcm5lbC5vcmc+CgpQQ0k6IENvbmZpZ3VyZSBSb290IFBv
-cnQgTVBTIGFmdGVyIHNjYW5uaW5nIGl0cyBoaWVyYXJjaHkKClRoaXMgY29tbWl0IGludHJvZHVj
-ZXMgbG9naWMgdG8gcmFpc2UgdGhlIE1heGltdW0gUGF5bG9hZCBTaXplIChNUFMpIGZvciBSb290
-ClBvcnRzIGFuZCB0aGVpciBkb3duc3RyZWFtIGhpZXJhcmNoaWVzIHRvIHRoZSBsYXJnZXN0IHN1
-cHBvcnRlZCB2YWx1ZSBkdXJpbmcKc2Nhbm5pbmcgb3IgcmVzY2FuLiBJdCBhcHBsaWVzIHRvIFBD
-SUVfQlVTX0RFRkFVTFQgY29uZmlndXJhdGlvbnMgdG8gaW1wcm92ZQplZmZpY2llbmN5LiBJdCBh
-bHNvIGVuYWJsZXMgdGhlIEludGVsIHJlYWQgY29tcGxldGlvbiBjb2FsZXNjaW5nIHF1aXJrIGZv
-ciB0aGUKZGVmYXVsdCBNUFMgc3RyYXRlZ3kuCgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9w
-cm9iZS5jIGIvZHJpdmVycy9wY2kvcHJvYmUuYwo+IGluZGV4IGQ4ZTU4ZTVlZjczMDkuLjVmMzdi
-NDgwYjUxZGYgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9wY2kvcHJvYmUuYwo+ICsrKyBiL2RyaXZl
-cnMvcGNpL3Byb2JlLmMKClsgLi4uIF0KCj4gQEAgLTMwODMsNiArMzA4Myw4MiBAQCBzdGF0aWMg
-aW50IHBjaWVfYnVzX2NvbmZpZ3VyZV9zZXQoc3RydWN0IHBjaV9kZXYgKmRldiwgdm9pZCAqZGF0
-YSkKPiAgCXJldHVybiAwOwo+ICB9Cj4gIAo+ICtzdGF0aWMgaW50IHBjaWVfcmFpc2VfbXBzKHN0
-cnVjdCBwY2lfZGV2ICpkZXYsIHZvaWQgKmRhdGEpCj4gK3sKPiArCWludCBtcHMgPSAqKGludCAq
-KWRhdGE7Cj4gKwo+ICsJLyogTVBTIGlzIG9mIHR5cGUgJ1JzdmRQJyBmb3IgVkZzICovCj4gKwlp
-ZiAoIXBjaV9pc19wY2llKGRldikgfHwgZGV2LT5pc192aXJ0Zm4pCj4gKwkJcmV0dXJuIDA7Cj4g
-Kwo+ICsJaWYgKHBjaWVfZ2V0X21wcyhkZXYpIDwgbXBzICYmIHBjaWVfc2V0X21wcyhkZXYsIG1w
-cykpCj4gKwkJcGNpX2VycihkZXYsICJjYW4ndCBzZXQgTWF4IFBheWxvYWQgU2l6ZSB0byAlZFxu
-IiwgbXBzKTsKPiArCj4gKwlyZXR1cm4gMDsKPiArfQoKW1NldmVyaXR5OiBNZWRpdW1dCldoZW4g
-cGNpZV9zZXRfbXBzKCkgZmFpbHMgaW4gcGNpZV9yYWlzZV9tcHMoKSwgdGhpcyBlcnJvciBpcyBs
-b2dnZWQgYnV0CnN3YWxsb3dlZCBieSByZXR1cm5pbmcgMCB0byB0aGUgcGNpX3dhbGtfYnVzKCkg
-Y2FsbGJhY2sgbG9vcC4gRG9lcyB0aGlzIGFsbG93CnRoZSBsb29wIHRvIGNvbnRpbnVlIGFuZCBw
-b3RlbnRpYWxseSBjcmVhdGUgYW4gaWxsZWdhbCBNUFMgdG9wb2xvZ3kgd2hlcmUgYQpkb3duc3Ry
-ZWFtIGRldmljZSBpbmhlcml0cyBhIGxhcmdlciBNUFMgdGhhbiBpdHMgdXBzdHJlYW0gYnJpZGdl
-PwoKPiArCj4gKy8qCj4gKyAqIFdpdGggUENJRV9CVVNfREVGQVVMVCwgcGNpX2NvbmZpZ3VyZV9t
-cHMoKSBvbmx5IG1hdGNoZXMgZWFjaCBkZXZpY2UgdG8gaXRzCgpbIC4uLiBdCgo+ICsgKiBsZWF2
-ZSBoaWVyYXJjaGllcyBhbG9uZSBvbmNlIGFueSBvZiB0aGVpciBkZXZpY2VzIG1heSBoYXZlIGEg
-ZHJpdmVyIGJvdW5kLgo+ICsgKi8KPiArc3RhdGljIHZvaWQgcGNpZV9idXNfcmFpc2VfZGVmYXVs
-dF9tcHMoc3RydWN0IHBjaV9idXMgKmJ1cykKPiArewo+ICsJc3RydWN0IHBjaV9kZXYgKnJwID0g
-YnVzLT5zZWxmOwo+ICsJdTggc21wc3MgPSBycC0+cGNpZV9tcHNzOwo+ICsJaW50IG1wcywgb2xk
-X21wczsKPiArCj4gKwlpZiAocGNpX3BjaWVfdHlwZShycCkgIT0gUENJX0VYUF9UWVBFX1JPT1Rf
-UE9SVCB8fAo+ICsJICAgIGxpc3RfZW1wdHkoJmJ1cy0+ZGV2aWNlcykgfHwgcGNpX2J1c19pbl91
-c2UoYnVzKSkKPiArCQlyZXR1cm47Cj4gKwo+ICsJcGNpX3dhbGtfYnVzKGJ1cywgcGNpZV9maW5k
-X3NtcHNzLCAmc21wc3MpOwo+ICsJbXBzID0gMTI4IDw8IHNtcHNzOwo+ICsJb2xkX21wcyA9IHBj
-aWVfZ2V0X21wcyhycCk7Cj4gKwlpZiAobXBzIDw9IG9sZF9tcHMpCj4gKwkJcmV0dXJuOwo+ICsK
-PiArCXBjaWVfcmFpc2VfbXBzKHJwLCAmbXBzKTsKPiArCXBjaV93YWxrX2J1cyhidXMsIHBjaWVf
-cmFpc2VfbXBzLCAmbXBzKTsKCltTZXZlcml0eTogTWVkaXVtXQpJZiB0aGUgY2FsbCB0byBwY2ll
-X3JhaXNlX21wcygpIGZvciB0aGUgUm9vdCBQb3J0IChycCkgZmFpbHMgdG8gc2V0IGl0cyBNUFMs
-CmRvZXMgdGhpcyBkYW5nZXJvdXNseSBwcm9jZWVkIHRvIGNhbGwgcGNpX3dhbGtfYnVzKCkgYW5k
-IHNldCB0aGUgTVBTIG9mCmRvd25zdHJlYW0gZGV2aWNlcyBhbnl3YXk/IENvdWxkIHRoaXMgcmVz
-dWx0IGluIGEgUENJZSBwcm90b2NvbCB2aW9sYXRpb24KbGVhZGluZyB0byBNYWxmb3JtZWQgVExQ
-IGVycm9ycyBhbmQgcGFja2V0IGRyb3BzPwoKPiArCXBjaV9pbmZvKHJwLCAiTWF4IFBheWxvYWQg
-U2l6ZSBvZiBoaWVyYXJjaHkgc2V0IHRvICVkICh3YXMgJWQpXG4iLAo+ICsJCSBtcHMsIG9sZF9t
-cHMpOwo+ICt9CgotLSAKU2FzaGlrbyBBSSByZXZpZXcgwrcgaHR0cHM6Ly9zYXNoaWtvLmRldi8j
-L3BhdGNoc2V0LzIwMjYwOTMwMTQ1MDE3LjEzNTYwODgtNi1jYXNzZWxAa2VybmVsLm9yZz9wYXJ0
-PTMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4
-LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpo
-dHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+From: Igor Velkov <iav@iav.lv>
+
+At 104 MHz, reads return corrupted data: bit 0 of the first byte of a
+transfer flips from 0 to 1 part of the time. The same byte read as the
+second byte of a transfer was correct in all 100 reads. One 4 KiB block
+read 200 times came back wrong 157 times. Writes are unaffected.
+
+flashcp verifies while it writes, so a bootloader update erases blocks
+it should skip and can abort halfway, with the flash half written.
+
+The Hardkernel vendor device tree for this board uses 40 MHz. At 40 MHz
+the same tests pass: 200 block reads with no mismatch, and 14 flashcp
+runs with no block erased.
+
+Tested on ODROID-HC4 with an XT25F128B.
+
+Fixes: 7178f340e929 ("arm64: dts: meson-sm1-odroid-hc4: add spifc node to ODROID-HC4")
+Assisted-by: LLM
+Signed-off-by: Igor Velkov <iav@iav.lv>
+---
+ arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
+index 5ce76a1bfe02..8f09f2b74bdd 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
+@@ -144,7 +144,7 @@ flash@0 {
+ 		#size-cells = <1>;
+ 		compatible = "jedec,spi-nor";
+ 		reg = <0>;
+-		spi-max-frequency = <104000000>;
++		spi-max-frequency = <40000000>;
+ 	};
+ };
+ 
+
+-- 
+2.43.0
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
