@@ -4,121 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C0D7CA5FBE
-	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Sep 2026 13:23:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66BD5CA5FC5
+	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Sep 2026 14:50:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=SVAS1ZMYP0E+tIPmnQkBHXchLOJfuz2RrAMaMxbLbLg=; b=IUFF5PW7kdWWWvEaM2rhstDsUq
-	1xRyiYiqLYjR5RSRYG00LoyO0DxFNLnHL0p+omxPAx0LBmoVQwrXGIT1rMRwUh8hrVeRaZlrO34mm
-	JtmRdQuIheLJlonFWW0K6FT6QqA7fghdaQdMaAashYPC5rvuosKb5XmumEecFHRBkEw75EaaSDPt3
-	/5uHFK47jTqThgqLCFaxMrnIjTbUVBzPyq1eK2rdN6iTXQZg2uoMGOLf95niJFWm0vvw7E0MAZRsG
-	SU98ZSb0XH0HbffUTykGt25CoMesHHIiL7rMLH7WeWSeVw/ux/qObk1fCx1iFd7k1q9zy7JOyHOYH
-	6etvNeqg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=so9MTyfPXWVa7kl+lAvtC3ZTi2rNwj7XQipb0eU3Fro=; b=VuIA+1DFJPwwZA
+	GBwy/e0d74r6W+tOfTxZdmrPiVQcjXlUkNSGF4/tcXBA4x1cG/kXoB4DS5P8uy5ooPO1aAEW9rrUE
+	W2xlLXbBPDSVbQLbMW+ciPbtU0uvqbnqkxkEvQqK/C5APu4G0fZQ+N5QFgsYElSG0MTsJ7i8vaRRj
+	pA0b2XVlg03RH6iR47udQFpR9cpKT9xp+MyyrU6GgEM6vF3dmgqemfFXoH5VTRs9fDuvBM1Y+AswV
+	IQu7lRCL9PghBGFbth0eRrJaYXjoBExj0Vs71KiD6FxBB4/3FqnRuAxtbu9KUU9UNlJ/T4mYrJDS6
+	daXqifvpFtqFkAy01Hag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xBuGm-000000067V5-0QPn;
-	Wed, 30 Sep 2026 13:22:48 +0000
-Received: from mail-qk2-x0e.google.com ([2607:f8b0:4864:34::e])
+	id 1xBvdi-00000006NCx-0reC;
+	Wed, 30 Sep 2026 14:50:34 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xBuGj-000000067UV-0Rep
-	for linux-amlogic@lists.infradead.org;
-	Wed, 30 Sep 2026 13:22:46 +0000
-Received: by mail-qk2-x0e.google.com with SMTP id af79cd13be357-93be29bb454so748866185a.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 30 Sep 2026 06:22:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1790774563; x=1791379363; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:organization
-         :autocrypt:content-language:references:cc:to:subject:reply-to:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=WjNzOSbZhH3UC1XcZKT+Hgp+Sdib45z8YSE/jOVoT0c=;
-        b=z4uv43wuGdIE3Rk1Ij1ZwvbSZYf1ThnhLTBlI66QbKSXQD6Z0jQaXcQRDppePyoTb9
-         5D8JDhrz64p3iBThDZcYMOqZr/Ruvl/ccGUJhXbi8c+WsDtg/2+Ys6osopjviB2WnP30
-         /V9CKJqrjC0esc8Klb7cpPnG2taovnoWFKjpISwcg0kw9io5qitekAmVfCyHDotZT8ix
-         5gRrBXvGV1pGt99TSgtv3bei7bCHs/HLghJwOsre5y8Zvnq7jwJgrRA6T+cwDGQrHhVX
-         PB5jAqvVAitjYvn9l/MkjQ2qcKZ39rU4B7tWlztjEot2lYd31mtJF1cuudkj3NE8oQgQ
-         KUug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1790774563; x=1791379363;
-        h=content-transfer-encoding:content-type:in-reply-to:organization
-         :autocrypt:content-language:references:cc:to:subject:reply-to:from
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=WjNzOSbZhH3UC1XcZKT+Hgp+Sdib45z8YSE/jOVoT0c=;
-        b=GY9CLl0quxtsE8d7jaSWjWpL+ve1xtGBxyYiXrHbVjlppPdJEWvXEvm0bf+0VymALa
-         P9vb9uY9km8kOtR7+4Rvt7dvQUzb8NcDZgBN0ginJPsTtcXNQRcLOouDgkq1Nl22dcG5
-         Q256cALLFTgP//BtbLOAohEK2gPmIYizg+iCfFEcNK8lszddr7S+wsq56CWZ/yiX0ByB
-         jPm4Plp6Y7SdKg0zXi2FexwOXwAs6/LKFIEYhAHa1rIghElheNV4NppBdnnQvlDytQrY
-         qQrg4iUiodGnQvQTfZtrXg5I/d7ThwxGo0VjXROIqFSLuVh72HGcLb+/vqkH1HBHrGLD
-         Zd8w==
-X-Forwarded-Encrypted: i=1; AKwUvBwLtbzThG/qjuj3hbh3hyaE0DilKHrxK6P63nnU2UersDR4Zhbn7nDhExiy2onJJ03nReMJxw8ZnsNNveQQ@lists.infradead.org
-X-Gm-Message-State: AFuF++kcyxZpZCdnxper7CzqYVwvZ+VepdNxRDPkLq0RCh7EgR3qGocj
-	Y7FHozu70pKDcW8jtldO1EFEVqY7LkN4ohF92uh08VfM9AOYbhcA5fbnvTj5ib30FEUOE8NphT+
-	JXVz9AfB04Q==
-X-Gm-Gg: AYBFou2I8ba+pazbGj8DH4Kvegf5F6IQ+v6iAhjpACoV/RNfPGfykxsq1KKeUmYWhX7
-	HV1y1SGOI4lM+U+jKj3qbY2J+4cShRKO+0TekP9gFunv2LoU8HOHBWUkYEiiubC7j8w10D3YJEH
-	AgPoQvf7YVcZGzc+wNQXMquhxGYIQRcPe8Ejq+4KQRF1FEenUCuBW2MUnUh8YSKGRurzlgo3PHV
-	tIJq/IK76ej68NGmKXo0LPrE4UbQJC4qBUFKRO4pwsoda7Vx2dDYVou0UjBPYiJ7VYIm1n1QDEx
-	XTXWS6YTmBl0ywLdoxna3VqYOzoSAMLVO5fp/uxM5L9aAZh+BDmU/GrY5zhcttJt/U5I9PI/gp0
-	0aOMaxY74eOhs5QHnzW5jaG3hUwmAZALQp5tvA8Stbh5KG59GR5eWnJ1V/0hPKnLQjS4/JNyA8C
-	3hMs1h8MdjkB9lW+i0PBFrqiU3YYE85CeyabnC9gdsBvpZZPNBhw7XqaVz8p34Q5chxONU8nuzR
-	xqBcbfdJdC/X/vdZGVMTyOPAKjN4ah8r9Cwl+M5nyKUUf00OXwCOE8P81SfGQc2opgqW6plsqY3
-	wOIoqaM=
-X-Received: by 2002:a05:620a:2717:b0:939:97bc:5645 with SMTP id af79cd13be357-93ca96b53e8mr222317685a.31.1790774562686;
-        Wed, 30 Sep 2026 06:22:42 -0700 (PDT)
-Received: from [10.21.51.184] (ipagstaticip-88fc351e-cb28-db3e-3f52-ad13c70f08da.sdsl.bell.ca. [142.127.77.63])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-93ca82a87f4sm114784985a.20.2026.09.30.06.22.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Sep 2026 06:22:41 -0700 (PDT)
-Message-ID: <a51f9814-fe65-4a2c-92df-cbc3f00036fc@linaro.org>
-Date: Wed, 30 Sep 2026 15:22:40 +0200
+	id 1xBvdh-00000006NCg-0gI1;
+	Wed, 30 Sep 2026 14:50:33 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 5F41B60008;
+	Wed, 30 Sep 2026 14:50:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44EF21F000FF;
+	Wed, 30 Sep 2026 14:50:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1790779832;
+	bh=MpMdRzzckzLQv6ms4O5nsBqMxlFgsrLRkIfljQLs9Uo=;
+	h=From:To:Cc:Subject:Date;
+	b=N7RAmTcLq87p7qZDbuXnNjnG1RznhM5UmBdBEcMKoI5LVS/lZ8cTa2b3kFLDJ5oDz
+	 AEAZSkIcThy9/b7CEFMYVsihwPFiVDS07+AzAUwMWs+bPN4cJ108GwbkhroG9wXQX1
+	 RzKMuhcPwgHs8gVxU/k8GUTPCnGHh8rU+x2k6iFZbh2I0MenctauenfS4Cmskf0M/k
+	 +vVuALf2MdOpJKAxWZ/uNyoCCrQQK143aefTvtFC4rxiOSBROo2Jn6Dy/3kjmNKcF6
+	 0rg1FROGhMsOXFkKI/O+0jbdvrgBOF+/fCGoMM421QlpivyaHgzOJt3rWJ91af4bp9
+	 nkJ3KlMoH5/Hg==
+From: Niklas Cassel <cassel@kernel.org>
+To: Bjorn Helgaas <bhelgaas@google.com>,
+	Bjorn Helgaas <helgaas@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Yue Wang <yue.wang@Amlogic.com>,
+	Hans Zhang <18255117159@163.com>,
+	Rob Herring <robh@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Myron Stowe <myron.stowe@redhat.com>,
+	Jon Mason <jdmason@kudzu.us>
+Cc: Keith Busch <kbusch@kernel.org>,
+	mx2pg@pm.me,
+	dlemoal@kernel.org,
+	Niklas Cassel <cassel@kernel.org>,
+	Lukas Wunner <lukas@wunner.de>,
+	Mahesh Vaidya <mahesh.vaidya@altera.com>,
+	Ricardo Pardini <ricardo@pardini.net>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	=?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	linux-pci@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Subject: [RFC PATCH 0/4] PCI: Fix and improve default MPS configuration
+Date: Wed, 30 Sep 2026 16:50:17 +0200
+Message-ID: <20260930145017.1356088-6-cassel@kernel.org>
+X-Mailer: git-send-email 2.55.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 00/12] soc: amlogic: clk-measure: Add support for more
- SoCs
-To: chuan.liu@amlogic.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260920-more-socs-to-support-clk_measure-v2-0-224382a429e8@amlogic.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20260920-more-socs-to-support-clk_measure-v2-0-224382a429e8@amlogic.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20260930_062245_174712_2469EC4C 
-X-CRM114-Status: GOOD (  21.10  )
+X-Developer-Signature: v=1; a=openpgp-sha256; l=14974; i=cassel@kernel.org; h=from:subject; bh=4f/zH8Vejg6Bbx/LyQB/pVdfyu+jeCAEK50lJV8X280=; b=owGbwMvMwCV2MsVw8cxjvkWMp9WSGLL2Kq78+pRbuntpZ1tKtdrhOLUi/5VRnVrGdRz622fPC JwvvvZBRykLgxgXg6yYIovvD5f9xd3uU44r3rGBmcPKBDKEgYtTACaSz8PIMGNZ5D8xiVq5x1fO nff5xFZqa/Bub6QA/1bRiINPgjIYLRgZdjGfSVBL0Vnq9H8tW2yG0oHJkxb1uUnVXTkdt//FIo1 53AA=
+X-Developer-Key: i=cassel@kernel.org; a=openpgp; fpr=5ADE635C0E631CBBD5BE065A352FE6582ED9B5DA
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,82 +92,317 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 9/20/26 12:25, Chuan Liu via B4 Relay wrote:
-> This patch series adds clk-measure support for the Amlogic A5, A4, S7,
-> S7D, S6 and A9 SoCs, listed in the order of their release.
-> 
-> The clock names for the clk-measure channels are kept consistent with
-> those used by the clock driver as much as possible, making it easier to
-> identify the relationship between the clk-measure channels and the
-> corresponding clocks in the clock driver.
-> 
-> This patchset also includes an additional patch to optimize memory usage:
->    - soc: amlogic: clk-measure: Optimize CLK_MSR_ID to reduce memory usage
-> 
-> To avoid requiring everyone to spend additional effort on a separate
-> patchset, I have included it in this series. Please feel free to point
-> out if this is not appropriate for this series.
-> 
-> To improve maintainability, this patchset also includes a patch to reorder
-> the dt-binding and the compatible entries in the driver.
-> 
-> To minimize unrelated changes, the existing clk-measure channel tables in
-> the driver are left in their original order. The tables for the newly
-> supported SoCs are ordered alphabetically.
-> 
-> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
-> ---
-> Changes in v2:
-> - Reorder the dt-binding and the compatible entries in the driver
->    alphabetically.
-> - Order the clk-measure channel tables for the newly supported SoCs
->    alphabetically.
-> - Add the const qualifier to the A9 clk-measure channel table.
-> - Rename "exit_Tsin_B_CLK_IN" to "ext_Tsin_B_CLK_IN" in the A9 clk-measure
->    channel table.
-> - Link to v1: https://lore.kernel.org/r/20260911-more-socs-to-support-clk_measure-v1-0-940e269aa52f@amlogic.com
-> 
-> ---
-> Chuan Liu (12):
->        dt-bindings: soc: amlogic: Reordering compatible of clk-measure
->        dt-bindings: soc: amlogic: Add clk-measure compatible to support more SoCs
->        soc: amlogic: clk-measure: Support more measurement channels
->        soc: amlogic: clk-measure: Align compatible entries with DT bindings
->        soc: amlogic: clk-measure: Add support for more SoCs
->        soc: amlogic: clk-measure: Optimize CLK_MSR_ID to reduce memory usage
->        arm64: dts: amlogic: a5: Add clk-measure controller node
->        arm64: dts: amlogic: a4: Add clk-measure controller node
->        arm64: dts: amlogic: s7: Add clk-measure controller node
->        arm64: dts: amlogic: s7d: Add clk-measure controller node
->        arm64: dts: amlogic: s6: Add clk-measure controller node
->        arm64: dts: amlogic: a9: Add clk-measure controller node
-> 
->   .../soc/amlogic/amlogic,meson-gx-clk-measure.yaml  |  16 +-
->   arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        |   5 +
->   arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        |   5 +
->   arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi        |   5 +
->   arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi        |   5 +
->   arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi        |   5 +
->   arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi       |   5 +
->   drivers/soc/amlogic/meson-clk-measure.c            | 927 ++++++++++++++++++++-
->   8 files changed, 953 insertions(+), 20 deletions(-)
-> ---
-> base-commit: a2530c83c458a503e55219966217dfd1c36a385e
-> change-id: 20260710-more-socs-to-support-clk_measure-c826f8ab9e68
-> 
-> Best regards,
+This RFC reworks Hans's series "PCI: Configure Root Port MPS during host
+probing" (v9, link below).  Besides configuring Root Ports, which that
+series was about, it fixes other problems in how mainline programs the
+Maximum Payload Size (MPS), and lists the problems it doesn't fix.
 
-For the whole serie:
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+It is an RFC because it changes the default MPS policy, see "Open
+questions" below, and because it has only been build-tested so far.
 
-Thanks,
-Neil
+Background
+==========
+
+A PCIe device must not send a TLP with a payload larger than the MPS it
+is programmed with, and a receiver treats a TLP larger than its own MPS
+as Malformed, so all devices on a path need compatible MPS settings.
+
+Unless a "pci=pcie_bus_*" option is given, the kernel uses the default
+strategy, PCIE_BUS_DEFAULT: pci_configure_mps() programs each device, as
+it is enumerated, to the MPS of its upstream bridge.  If the device's MPS
+Supported (MPSS) is smaller and the upstream bridge is a Root Port, the
+Root Port is lowered instead (9f0e89359775).  The other strategies either
+configure whole hierarchies in pcie_bus_configure_settings()
+(pcie_bus_safe, pcie_bus_perf, pcie_bus_peer2peer) or don't touch MPS at
+all (pcie_bus_tune_off).
+
+Problems found in mainline
+==========================
+
+Enumeration:
+
+1. The saved MPS goes stale.  Fixed by patch 1.
+
+   pcie_set_mps() changes Device Control, but not the copy saved by
+   pci_bus_add_device() and the port driver.  The core changes the MPS
+   of ports whose state has been saved: pci_configure_mps() lowers a
+   Root Port when a device that supports less is hot-added below it,
+   and with pci=pcie_bus_safe, pcie_bus_configure_settings() can do the
+   same after a hot-add.  Drivers do it too, e.g. hfi1 on its upstream
+   bridge.
+
+   Since v7.3-rc1 (3fc686d550f6), a Root Port reset through
+   host->reset_root_port(), e.g. on AER recovery or Link Down with the
+   qcom and Rockchip DWC drivers, restores the Root Port's saved state
+   without saving it first.  The Root Port goes back to the old, larger
+   MPS while the device below it is restored to the smaller one, and the
+   device may receive TLPs that it treats as Malformed.
+
+2. Root Ports keep whatever MPS they came up with.  Fixed by patch 3.
+
+   Root Ports have no upstream bridge, so pci_configure_mps() never
+   configures them, and every hierarchy inherits the MPS that firmware or
+   the hardware reset left in its Root Port.  On platforms whose firmware
+   doesn't configure MPS, which is typical for DT-based systems with
+   native host controller drivers, every hierarchy runs at the 128-byte
+   reset value even if the Root Port and all devices below it support
+   more, at a cost in throughput.  Host controller drivers work around
+   this: the Meson driver programs its Root Port to 256 bytes itself,
+   regardless of what the devices below it support, which patch 4
+   removes.
+
+3. Lowering the MPS only works directly below a Root Port.  Fixed by
+   patch 2.
+
+   - Below a Switch, the Switch ports keep the larger MPS, and a device
+     that supports less is left mismatched with a "use
+     pci=pcie_bus_safe" warning.  This happens at boot whenever firmware
+     or a host controller driver programmed a larger MPS than a device
+     below a Switch supports.  It has been a known limitation since the
+     default strategy was introduced (27d868b5e6cf).
+
+   - For a multi-function device directly below a Root Port, function 0
+     is programmed to the Root Port's MPS first.  If function 1 supports
+     less, the Root Port is lowered, but function 0 is left at the larger
+     value and can send TLPs larger than the Root Port now accepts.  Only
+     an informational message about the Root Port is printed.  This was
+     introduced by 9f0e89359775.
+
+Hotplug and rescan:
+
+4. A device hot-added directly below a Root Port.  Fixed by patches 1-3.
+
+   If the device supports less than the Root Port's MPS, the Root Port
+   is lowered, with the multi-function problem from 3 and the stale
+   saved state from 1.  If it supports more, it is only matched to the
+   Root Port's current MPS: a Root Port is never raised again, e.g.
+   after a device that supported less has been replaced, and without
+   firmware MPS setup it stays at 128 bytes.  Devices found by a rescan
+   below an empty Root Port slot behave the same.
+
+5. A Switch hot-added directly below a Root Port.  Fixed by patch 2.
+
+   The Upstream Port can lower the Root Port, but the Downstream Ports
+   and the devices below them are only matched to their upstream bridge,
+   and any of them that supports less is left mismatched with a warning.
+   With patch 2, nothing below the Root Port is in use yet, so the whole
+   new hierarchy is lowered.  Devices hot-added below the new Switch
+   later are subject to 6.
+
+6. A device hot-added below a Switch.  Not addressed.
+
+   The Switch ports are in use and can't be lowered, so a device that
+   supports less than their MPS, e.g. less than what firmware
+   programmed, is left mismatched with a warning.  pcie_bus_safe avoids
+   this by limiting hierarchies with hotplug-capable Switch ports to 128
+   bytes.  Patch 3 doesn't raise hierarchies with hotplug-capable Switch
+   ports, so it doesn't make this more likely on hot-add, but a device
+   that shows up below a Switch without hotplug support, e.g. found by a
+   rescan, can hit it after patch 3 has raised the hierarchy.
+
+7. A Switch hot-added below another Switch.  Not addressed.
+
+   Same as 6, for every port and device of the new Switch that supports
+   less than the Downstream Port it is plugged into, e.g. when chaining
+   Thunderbolt devices.
+
+8. A device added next to devices already in use below the same Root
+   Port, e.g. a new function found by a rescan while function 0 is
+   bound.  Only partly addressed.
+
+   Mainline lowers the Root Port below the active function, which is
+   left at the larger MPS.  With patch 2, the hierarchy isn't changed,
+   and the new function is left mismatched with a warning instead.
+
+Other:
+
+9. With pci=pcie_bus_safe or pcie_bus_perf, devices found by a rescan
+   aren't configured at all: pci_configure_mps() leaves them to
+   pcie_bus_configure_settings(), which the rescan helpers don't call.
+   This doesn't affect the default strategy, where pci_configure_mps()
+   configures each device as it's enumerated.  Calling
+   pcie_bus_configure_settings() from the rescan helpers wouldn't fix
+   this safely, since those strategies reprogram every device of the
+   hierarchy, including ones in use.  Not addressed.
+
+Approach
+========
+
+Two constraints drive the design:
+
+- The MPS of a device that may have a driver bound can't be changed
+  safely: the device may have DMA in flight, its driver may have cached
+  the value, and the core's read-modify-write of Device Control isn't
+  serialized against the driver's own updates of that register.
+  Changes to a hierarchy are therefore limited to hierarchies in which
+  no device below the Root Port has been added or made available for
+  driver binding yet, i.e. during the initial scan, or when devices are
+  hot-added or rescanned into an empty hierarchy, such as a slot directly
+  below a Root Port.  As today, the Root Port itself may still be
+  changed.
+
+- A device hot-added below a Switch later can't lower the MPS of a
+  hierarchy in use, so it only works if it supports the MPS the
+  hierarchy already runs at (6).
+
+A better solution would be to quiesce the drivers of all devices below
+the Root Port, e.g. the way a reset does with ->reset_prepare() and
+->reset_done(), change the MPS of the whole hierarchy, and then resume
+them.  That would allow changing the MPS of a system that is in use,
+including when a device that supports less is hot-added below a Switch
+(6, 7) or next to devices in use (8), and patch 3 could then also raise
+hierarchies with hotplug-capable Switch ports.  It requires every
+affected driver to support being quiesced and to cope with a changed
+MPS, e.g. drivers that cache it, which is beyond this series.
+
+Only PCIE_BUS_DEFAULT changes; the other strategies are unchanged.
+
+Why the Root Port MPS is set from pcie_bus_configure_settings()
+===============================================================
+
+v9 raised each Root Port to its maximum MPS when pci_configure_mps() ran
+for the Root Port itself, and relied on lowering it again as devices
+below it were enumerated.  At that point, nothing below the Root Port
+has been enumerated yet, so the kernel can't know the smallest MPSS
+below it, whether the hierarchy has hotplug-capable Switch ports, or
+whether the slot is empty.  Raising the Root Port there:
+
+- raises hierarchies with hotplug-capable Switch ports, which can't be
+  lowered again once a device that supports less is hot-added below the
+  Switch (6).  Undoing the raise for them would mean remembering the
+  previous MPS of every Root Port;
+
+- raises empty slots, so a Switch hot-added into one later inherits the
+  raised MPS;
+
+- happens only once, since a Root Port isn't enumerated again on
+  hot-add, so the Root Port can't be raised again after a device that
+  supported less has been replaced (4).
+
+pcie_bus_configure_settings() runs after the hierarchy below a Root Port
+has been scanned and before its drivers are bound: from pci_host_probe()
+and the ACPI and arch-specific root bus scans, and from pciehp, acpiphp
+and shpchp after a hot-add.  It is where the other strategies already
+configure MPS for a whole hierarchy, and pcie_find_smpss() already
+computes the smallest MPSS of a hierarchy, returning 128 bytes for
+hierarchies with a hotplug bridge other than the Root Port.  Since patch
+3 only raises, such hierarchies keep their MPS without any extra state.
+An empty slot isn't raised until something is hot-added or rescanned
+there, and every hot-add directly below a Root Port re-evaluates its
+hierarchy.  The rescan helpers don't call pcie_bus_configure_settings(),
+so patch 3 adds the same raise there.
+
+Configuring the MPS in pci_bus_add_device() instead would also run after
+the scan, but once per device rather than once per hierarchy, and it
+would move all of the default MPS configuration into the driver binding
+path.
+
+Behavior changes
+================
+
+- With firmware that programs MPS, e.g. on x86, a hierarchy may now run
+  at a larger MPS than firmware chose, and different Root Port
+  hierarchies may end up with different values.  This could matter for
+  peer-to-peer DMA between devices below different Root Ports, unless
+  the Root Complex splits such TLPs.  pci=pcie_bus_peer2peer remains
+  available for that case.
+
+- A single device with a small MPSS found during enumeration lowers the
+  MPS of every device below its Root Port.
+
+- A device that shows up later below a Switch without hotplug support,
+  e.g. found by a rescan, may find its hierarchy raised by patch 3, and
+  is left mismatched with a warning if it supports less (6).
+
+- Read completion coalescing is now also disabled on Intel 5000/5100 in
+  the default mode (quirk_intel_mc_errata()), since the default mode can
+  now raise MPS above what firmware programmed.
+
+- Scan paths that call neither pcie_bus_configure_settings() nor the
+  rescan helpers, mostly legacy ones or ones without Root Ports, don't
+  raise anything, just as today.
+
+Open questions
+==============
+
+1. Is raising a hierarchy above what firmware programmed acceptable for
+   PCIE_BUS_DEFAULT, or should the raise be limited, e.g. to Root Ports
+   that are still at the 128-byte reset value?
+
+2. Hierarchies with hotplug-capable Switch ports keep their current MPS,
+   so hot-add below a Switch behaves as today (6, 7).  The alternative is
+   to limit such hierarchies to 128 bytes, like pcie_bus_safe does, which
+   makes every hot-added device work, but costs performance where
+   firmware programmed more.  Which is preferred?
+
+3. Should a device that can't match a hierarchy in use (6, 7, 8) keep
+   being bound with a warning, as today, or be left without a driver?
+
+Testing
+=======
+
+Build-tested only: each patch builds without warnings with W=1 (x86_64
+defconfig plus COMPILE_TEST and PCI_MESON), and checkpatch --strict is
+clean.
+
+Mahesh, Ricardo, Shawn: patch 3 is a new implementation, so I dropped
+your Tested-by tags.  A re-test would be much appreciated.
+
+---
+Changes compared to v9:
+- New patch 1: Update the saved MPS in pcie_set_mps(), so that a Root Port
+  reset through host->reset_root_port() doesn't restore a stale MPS.
+- Patch 2 (was 1): Only lower the hierarchy while no device below the
+  Root Port has been added or made available for driver binding.  v9 also
+  did it when a device was hot-added or rescanned below a Switch, changing
+  the MPS of devices that may have drivers bound and DMA in flight, with
+  an unserialized read-modify-write of Device Control that could race
+  with their drivers' own updates (reported by sashiko-bot:
+  https://lore.kernel.org/linux-pci/20260916155239.06ECC1F000FF@smtp.kernel.org/).
+- Patch 2: Use pci_warn() with the same message as the rest of
+  pci_configure_mps(), and reword the comment and commit message.
+- Patch 3 (was 2): Reimplemented.  Instead of raising each Root Port to
+  its maximum MPS during enumeration, raise the whole hierarchy after it
+  has been scanned, from pcie_bus_configure_settings() and the rescan
+  helpers, and only with PCIE_BUS_DEFAULT.  Hierarchies with a hotplug
+  bridge other than the Root Port, and hierarchies in use, are left alone,
+  so hot-add below a Switch keeps working as before.  v9 also changed the
+  other strategies and could leave a rescanned Root Port above the MPS of
+  the devices below it with pci=pcie_bus_safe.
+- Patch 3: Apply the Intel 5000/5100 read completion coalescing quirk to
+  PCIE_BUS_DEFAULT too, since it can now raise MPS above what firmware
+  programmed.
+- Patch 3: New subject and author, with Hans as co-developer, and dropped
+  the Reviewed-by and Tested-by tags, since the implementation changed.
+- Patch 4 (was 3): Use the "PCI: meson:" subject prefix.
+- Rebase on v7.3-rc5.
+
+v9: https://lore.kernel.org/linux-pci/20260916153907.60344-1-18255117159@163.com/
+
+Hans Zhang (2):
+  PCI: Match the hierarchy's MPS to a device's MPSS as necessary
+  PCI: meson: Remove redundant MPS configuration
+
+Niklas Cassel (2):
+  PCI: Update saved Max Payload Size in pcie_set_mps()
+  PCI: Configure Root Port MPS after scanning its hierarchy
+
+ drivers/pci/controller/dwc/pci-meson.c |  25 +----
+ drivers/pci/pci.c                      |  24 +++-
+ drivers/pci/probe.c                    | 149 ++++++++++++++++++++++++-
+ drivers/pci/quirks.c                   |   3 +-
+ 4 files changed, 172 insertions(+), 29 deletions(-)
+
+
+base-commit: 72d3fcf802c45d00b300f25b848a93c3a2bd7c7e
+-- 
+2.55.0
+
 
 _______________________________________________
 linux-amlogic mailing list
