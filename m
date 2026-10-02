@@ -4,73 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AE7CCA5FC4
-	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Oct 2026 09:27:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4D8ACA5FD4
+	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Oct 2026 09:28:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
 	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iBEUb/skmAffuocWXCT1Dp2E+hidYFtBOvfEn9iuZpk=; b=G38F5emAJWJKgG
-	Tk/mYYc566oApS0xsiIjMoKOni855yGQ8FDsyuuQUbVEkHLQzTPNVvUpEWTTXGMNSkGt4RyfobUsI
-	QFZiMdXD30kb237jSoAs6/6/WWysN6yFAiEPGvV3aYTLynNarxJeJyGMe/23TygtmvL9HXOBPes9Q
-	H/6FwQv7V2ujflNbsNEXrWIR1CCu1EuSH0BaqgS0mc6TW5MK4QhvyCn/rdGZE4LWu/AaOHVOW/BT2
-	K7DiC+7+Jf6geJbk76iscWcrppdzViR+/Y7R1k7/sQE4BSUmFIbc8+7/5/Q5wtcZ/B0p+16qOzZqs
-	zArCdcCHptNp0iGPbJNg==;
+	List-Owner; bh=RP3TYX1uY2V4PxKate+2YEnjfXzDzkCBwU8djeWj71U=; b=QNzbGV1Odp3wYT
+	UvXVcGvvSatGQXjm8jqWqo2qX5438t5m21ZhxH1t/yfLmOr2gM6486IbB9b9yWtQsBTu2/VShHy/i
+	Y9t3xwGylxKjpWr4wj+FTu6nbK/go8LAPI/w9HaTKD+DxPVWlyq5kgKXQu5w7VXWPBneTak8OjwZu
+	PoKcOUSs0VvSm9m8SlA4DAHaCZnB84o7d38QU01swWCqKLJm8tjRGgpGTrP6VuRn6bTdKjxxkroy9
+	YFd72sjJ+I2svMFeX9DByLOwXupY29I0wWCoNIFr7w+eHAAKOnEt6kNw39fsnOSj+XKL876N8d1VN
+	ZRzo6wS2umS1Cjv/uA/w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xCZYI-0000000B8ow-3xG8;
-	Fri, 02 Oct 2026 09:27:38 +0000
-Received: from mail-wm2-x10.google.com ([2a00:1450:4864:31::10])
+	id 1xCZZ6-0000000B93k-1Ym7;
+	Fri, 02 Oct 2026 09:28:28 +0000
+Received: from mail-wm2-x11.google.com ([2a00:1450:4864:31::11])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xCZYF-0000000B8nn-41vG
+	id 1xCZZ4-0000000B91m-1TGd
 	for linux-amlogic@lists.infradead.org;
-	Fri, 02 Oct 2026 09:27:38 +0000
-Received: by mail-wm2-x10.google.com with SMTP id 5b1f17b1804b1-49b912d822dso55195215e9.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 02 Oct 2026 02:27:35 -0700 (PDT)
+	Fri, 02 Oct 2026 09:28:27 +0000
+Received: by mail-wm2-x11.google.com with SMTP id 5b1f17b1804b1-49e6c0fce17so40980415e9.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 02 Oct 2026 02:28:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1790933254; x=1791538054; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1790933304; x=1791538104; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:mime-version:date:message-id
          :subject:references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Wv+98DicCIRnEF3119JyH5gfzpLGnB1aciy5iGQ8ki4=;
-        b=kaWi+t3LqfOHusmZUkkfRwXhcnaRcdwZiSM13QQCMMcYdQfPcd7M7tf0esKded5dM2
-         81LnZjL/5WtJU3tJRTG5BV8AIANWC1T8LVUuUFTNP9DG1XD/YZPc/lWRsyz+V1s0VPbW
-         8KocfocwxBjeMZdwMbEPhOzGfwtmDZ0wI1DM9duy4WdPe0rkeAYPn2BoFmt6r9HqNuk6
-         9kJeTg0LOci3v/zGWQjbEr1/g201TmkMau+08v2n1h2cyL5b/brgeE1j5N84ZAL3QTvw
-         FgCCZc1EahK7rORMqsVjmov7i4PF4DvqMVjldbAYtIR+yDUfhIMqrSvb2gaKerLsnJed
-         PUsQ==
+        bh=9/xGjEmegI8pTO7Ox5jxESlFHhUmyOfP4GxHY3lbaDc=;
+        b=vm0GYr5KV7cUN9BeiLDmaShrjgRvnc9A3aavmC7pKXEe37V/bSHcCLIUfQYGNE3DYs
+         Jwwc9jOM5zkGh6gthtk7FpOlGnv7uY19Ul3NNuIJ3PXea7SZWycyRS6sN79PiBfseoEW
+         jjsLIPtgyo1eqz/XeE4McHLNXryzPgE+qpAMjJlnW48xgJFR/KfxpgyQCKtu9jHfhe0X
+         5L0YUcrSMrKN4euLNlk8hNW0S2HqHEuQWUSPa55YgLwTerOcrJDisSmVAT+5Z4dnXkKx
+         mcvHliN/h2xl4/f7C6UNtBf2RZT4acrpah1Z6tEmbpHFxS5CXSjhNFeBUFzgzFjnKntL
+         HH7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1790933254; x=1791538054;
+        d=1e100.net; s=20260707; t=1790933304; x=1791538104;
         h=content-transfer-encoding:content-type:mime-version:date:message-id
          :subject:references:in-reply-to:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Wv+98DicCIRnEF3119JyH5gfzpLGnB1aciy5iGQ8ki4=;
-        b=hlyZTQP/VxDIvzKbHziAkgq6FRiRY4LgaoINvVx2vOf6xuB1T4OgRPTJrZFyXt4Sme
-         y8q28dw3RWgXTsyg5wxpDY09cz9AEhgVqIsKPwKd7LUZjK34tqcXvNRaEMO8lNaZ9ydn
-         hu1QMR2sVKFtLBqGelWPYKllTxyv2pqFlDDssCRnU828ArGALaww53GPY18WxyFkHL7A
-         IW4DRgsDFdZVml2NqPo0H4amm8ZFivSrp5cRo7jnE7dnUD46vAVwvjmJ9pE6HKm9N5Xc
-         zZqeyVUI1CmfX5bZesKBwsp5zrjh6vXAtuP0WoVYTRZnAEr+zI6DtpOgZTByMhI8vnH6
-         YyLg==
-X-Forwarded-Encrypted: i=1; AKwUvBw6NPXo63GC//CmqyyeqXpzl08n+yO+FNCXUSUZHkual3tf93kvcnkJZ4XhMgPPvqlEDJme1fujqGPCZdv7@lists.infradead.org
-X-Gm-Message-State: AFuF++l1zHrAqLLR0QaPvnws6rdnBdkcNI8pXfzPSWpnJONNxxKLEPo7
-	gYv8juyX8Z4wuGpogJI2TJCw2nfPuAgX6m1ivkCpa+bJhCNi+xeAsk4fnJGi/8O/KeU=
-X-Gm-Gg: AYBFou16dUpPXKUGSQLq9IctW+sIDsgQJIX24GHd/9dZ2pnUOA1KpfSSXJoixU3JAbg
-	ZXmlNGvEtkDgiQsOfTe6Ug4FRfO4+8KTtBUkDMdgr0+jSMq5mcw1cb3r5i4NQa93O+iSRaFz8MM
-	Sg5ardZ/CmmSsNAa8G6muQeMU2LMysYRPW0S7EyReHH6RfMVC6JWNTdx1YYs+ONeG6YLGYgGcMf
-	LDS1WtzvwCftfEYiTP9Uc5PAi+0kd71VRmUtPRov1ZMzIUnkg2KqThOlRGD/9nWQZYzzUp/dtgl
-	lPguo8bV7IMy1AuAcs+U9gCEm4Yu/xaXawI2rjVdZy4I9ss6S0aBFSxmXlK2nd5G8PC3VqmOR4D
-	BOBAHU9vxVNGSYrpopA5Mv94yGWp4JKfhlv3sXKYizylwGSxhvsrHfOAeHvYyLK9ShbxirXqshN
-	9xxpEOaBsUNiXDmyz/RcYHOg0azE/zQgWW4s7fQ9YMrx+DuOsiUG1o+cIiIJosndfRkjKjQBBou
-	rYi/GNjFaQOxt02I0BsnR+RJSz88LrbwHVILXn7
-X-Received: by 2002:a05:600c:3501:b0:49d:2562:d670 with SMTP id 5b1f17b1804b1-4a02757ab71mr39372915e9.14.1790933253544;
-        Fri, 02 Oct 2026 02:27:33 -0700 (PDT)
+        bh=9/xGjEmegI8pTO7Ox5jxESlFHhUmyOfP4GxHY3lbaDc=;
+        b=nEIxQAipdA7fOBE0Nm8VBbfsOWPvPFea0CLfs/UC8VWw5Di7q/yjN+C7E3j1VDuTt4
+         TsSefmOQPwO3j5xcwyafijn+HduTTMjZDMICMoGldLM++MdTzPNuA9VNNjOI4EzO/7Vh
+         ZfqvXRUa42WawtURZ2G5N2mJ56v7SvTQpWoxzBOVOS238RgrW1VswL6p7vboA3edGYfQ
+         MZHuBaywLnf39mc4mjukAoDcjd1Jthmbkh980qr3wCrmuf3TkpbzRRTTaVC2tmzrVAZI
+         CbJTH69+jmOTS5bL8UHqBtV8hYVnlQzpdZ6ILJO0BZxPObrz0hAYafdx1g6LhkMcVwwO
+         7y+w==
+X-Forwarded-Encrypted: i=1; AKwUvBzsbEWo2gKJiIY6uWWo3qmzyzOdWsmXs3eXOKzr6NJbWyfg5F5AEIUyheLh7NGWYUWpQhXINzOe0yUV9FRR@lists.infradead.org
+X-Gm-Message-State: AFuF++nR+Q9QeBG9HHqCqDCU0Tfq8e1WMpbLtFQ6n616dei4dKmx5l6Q
+	RabnyoUVQJzLJMhkUB3abDDGY4bBiSv2zKguPSiJpLkTqR3r31EkFQUYAFZI/onZE6E=
+X-Gm-Gg: AYBFou1UsAVSvgJN9CmjXLg+odRel666dJ1gycmMEt6+JXGl2RXQtYhnqLR85d96wvD
+	7dWl0+0l7vahKroN/DKFMQE7oNlxynWFOt5/POqXkhHNeIdc6idpUbV0/D90sICNsBvxDdy7xBp
+	YwEd6pFadliy5lYFQPTuuC7r4uqRLsws1Wr5z21lsL5rG24LtyVr8i6gpMr11+EdjXgT70rciL3
+	ct+7pfUs2+q9QebZXxeKc8GU0bDeEukCK8c4G9ncHS69Y1P6qKz5kt0CN0pyWwp2w9OAFlsbuef
+	ZqbD+DIgU1geqw7AMhKUiTHrLtfv0Ma72IKqP+RVYKQU3WcgtCknl9fMJ0R7s5DT0+PUMlyVULp
+	j0684wqos03UQmdJqVhFtSUeuuf0lKjqODXZuADhejkgUjOHuzWOS0sR3AFeeUWqGsMITc5vs5B
+	AWYaepcHGxYw2VGSTuZs7tNJFBRyHUDTejN8wm5Lgs0UiF8AnSRociitAclh14duSGPixrcgzUe
+	I7k5D0eDCwQlJIh+zc=
+X-Received: by 2002:a05:600c:840e:b0:49c:fc6e:a3dc with SMTP id 5b1f17b1804b1-4a0276ea428mr38917245e9.27.1790933304386;
+        Fri, 02 Oct 2026 02:28:24 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4a03ff6a82esm22443785e9.4.2026.10.02.02.27.31
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4a03950375dsm22989995e9.1.2026.10.02.02.28.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Oct 2026 02:27:32 -0700 (PDT)
+        Fri, 02 Oct 2026 02:28:23 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
@@ -83,13 +83,13 @@ In-Reply-To: <20260920-more-socs-to-support-clk_measure-v2-0-224382a429e8@amlogi
 References: <20260920-more-socs-to-support-clk_measure-v2-0-224382a429e8@amlogic.com>
 Subject: Re: (subset) [PATCH v2 00/12] soc: amlogic: clk-measure: Add
  support for more SoCs
-Message-Id: <179093325187.2295112.1596878747647292092.b4-ty@b4>
-Date: Fri, 02 Oct 2026 11:27:31 +0200
+Message-Id: <179093330346.2296861.8852172233922608550.b4-ty@b4>
+Date: Fri, 02 Oct 2026 11:28:23 +0200
 MIME-Version: 1.0
 X-Mailer: b4 0.15.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261002_022736_029052_B37A2993 
-X-CRM114-Status: GOOD (  14.08  )
+X-CRM114-CacheID: sfid-20261002_022826_413859_B2F4D4A2 
+X-CRM114-Status: GOOD (  14.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,24 +119,24 @@ On Sun, 20 Sep 2026 18:25:02 +0800, Chuan Liu wrote:
 > 
 > [...]
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v7.4/arm64-dt)
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v7.4/drivers)
 
-[07/12] arm64: dts: amlogic: a5: Add clk-measure controller node
-        https://git.kernel.org/amlogic/c/b937611475a0ac7e272881cdacebbeee70378ff0
-[08/12] arm64: dts: amlogic: a4: Add clk-measure controller node
-        https://git.kernel.org/amlogic/c/a108ff38da17eab6b0ad9b0fe989c1be57a96d0e
-[09/12] arm64: dts: amlogic: s7: Add clk-measure controller node
-        https://git.kernel.org/amlogic/c/16bdad08362bdd71b868dd02bfd19b0df99c0e97
-[10/12] arm64: dts: amlogic: s7d: Add clk-measure controller node
-        https://git.kernel.org/amlogic/c/6eb7132c8fdbc84b659f919d22d988e57728aa66
-[11/12] arm64: dts: amlogic: s6: Add clk-measure controller node
-        https://git.kernel.org/amlogic/c/fcc9787c5835325d89522eabaae5e2ee71fc22af
-[12/12] arm64: dts: amlogic: a9: Add clk-measure controller node
-        https://git.kernel.org/amlogic/c/520766a407c236b462c59d69b3923bd30fc3b20b
+[01/12] dt-bindings: soc: amlogic: Reordering compatible of clk-measure
+        https://git.kernel.org/amlogic/c/b6dd5a5465bb1c24279c1b18d9ee738c996f9ec6
+[02/12] dt-bindings: soc: amlogic: Add clk-measure compatible to support more SoCs
+        https://git.kernel.org/amlogic/c/668232197683898b1dbab05d6f1e7f93084160c1
+[03/12] soc: amlogic: clk-measure: Support more measurement channels
+        https://git.kernel.org/amlogic/c/abb63af22300c59e0e8dca322c21ed186ba7e51f
+[04/12] soc: amlogic: clk-measure: Align compatible entries with DT bindings
+        https://git.kernel.org/amlogic/c/8c6e2215b7ce72901e6aa2fecc4166d75e60c7e8
+[05/12] soc: amlogic: clk-measure: Add support for more SoCs
+        https://git.kernel.org/amlogic/c/5508eab53e4b79a1b45f78713cab6e7154131800
+[06/12] soc: amlogic: clk-measure: Optimize CLK_MSR_ID to reduce memory usage
+        https://git.kernel.org/amlogic/c/a848d72aab71e19ea78180f2502ad7d12818723f
 
 These changes has been applied on the intermediate git tree [1].
 
-The v7.4/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+The v7.4/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
 for inclusion in their intermediate git branches in order to be sent to Linus during
 the next merge window, or sooner if it's a set of fixes.
 
