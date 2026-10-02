@@ -4,86 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BCAECA5FC4
-	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Oct 2026 09:22:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70115CA5FD4
+	for <linux-amlogic@archiver.kernel.org>; Fri,  2 Oct 2026 09:23:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Cc:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:Subject:From:
 	MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=VmlYunEpq7Br9PKbUDYeAlEQweB/DYrdMp1FDcN4z3Q=; b=kDLCAjo05zt/+edahhp4cTBazv
-	CUD9A1WuRfUpfEwzBFYWnfY3r/fbqC96oUBknIoeh5rCWnhSE/DMQXJYx+eTJzNA6uaMo8sn1qBry
-	mmhe1xw5EYHx+9NmOIR6u1TI0Hhjmws2FPGh2bZhKJ4kxNi0uvfHIBApFTe37yD57iadV6eT+u3xo
-	ePDTvjEPn/Q3XC6gEv+wMGhGq/q7PiyETfYCIvkKNhKoDTZDmf8iYttRy3XubiDRIC6tVrehAgBM8
-	EcTw24TbOXL4nYZJhHeRul4LMSfswTTyANOsnLPBzgU8H1+bphsEK4uBcQrFjMm2N56T0edTZTlgK
-	VnwaK1+Q==;
+	bh=ODlGZPRBbwAeoWopA/ALfS0YepSQmnnSKGSf6olaSV0=; b=x4z6vmZKcM22i30zZF3qHFk0EY
+	jK1fHpa8M5LWFAibgM/RahOWsNIE43Gf45Asv7TvUDkzd/hq9XqkC/gRw6TYz0SC+p9uAYQWZ4oOJ
+	qIQxwrcpUilL8HZ/+CsVGPGajg2GrP6d3Q0r6Y5jwX/etM/APbdTIPDcZ4RAAE4Got4MRqZyhEYif
+	hnCQ0qhIoD0DKP6L94z8m7Shy1ggIyhwNVqIRcHTA/nu0I6VZTF/zaVX9C+KZTRJQN1prv0S6Cssh
+	UNwvN95R5cJMKQCp2rbxq8XpM1T/S/g01I0+F0eb60wSp6HPsJRHCiJNEoum3lZg5ct3wBDf0OS0Q
+	Q5Xz20tA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xCZTE-0000000B7o8-1040;
-	Fri, 02 Oct 2026 09:22:24 +0000
-Received: from mail-wm2-x10.google.com ([2a00:1450:4864:31::10])
+	id 1xCZUO-0000000B8Am-498D;
+	Fri, 02 Oct 2026 09:23:36 +0000
+Received: from mail-wm2-x11.google.com ([2a00:1450:4864:31::11])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xCZTB-0000000B7n8-2vbk
+	id 1xCZUM-0000000B88t-06xa
 	for linux-amlogic@lists.infradead.org;
-	Fri, 02 Oct 2026 09:22:23 +0000
-Received: by mail-wm2-x10.google.com with SMTP id 5b1f17b1804b1-4a01ff8c098so11134975e9.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 02 Oct 2026 02:22:20 -0700 (PDT)
+	Fri, 02 Oct 2026 09:23:36 +0000
+Received: by mail-wm2-x11.google.com with SMTP id 5b1f17b1804b1-49e7d2bb404so15636825e9.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 02 Oct 2026 02:23:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1790932939; x=1791537739; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1790933012; x=1791537812; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:in-reply-to:organization
          :autocrypt:content-language:references:cc:to:subject:reply-to:from
          :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=sisy7zZIPgc2KpxP76gexIt4R+mmsTYOynHiu3xxYkg=;
-        b=nx6pwCEQhZAFtHQqwz0UD6wgibNhs98HBCeqthST0p+Vy1hXDM7HhMe4HU6UggSPxq
-         aULs0NLVHdvWjIqM4qVpbrSpnUu6R5sbO/3LD6aw6KGnuPqhdFS/oEVNgXeg4cbYar4q
-         zzxrHMZ/8q4+3siHUsW2wBlyQUKPOpw1WTU6z0dRLTa0N/wkzmIOYH/EwUIu0jZS1ZXf
-         IdeWbUngQBsSTpaML+R1LJ1RdWe2snoRUSiZs1m/xrIZ5B/qBLOMjWTnlbljvUCoBVOJ
-         jH4PJ0o882fNRyphtBJ36IUkw460c38fGdXyU4grhM3tQ7RWAHQXycVEbda6bvEdn2+H
-         ljCA==
+        bh=KH+uJZ38NeAYqKlocKuGqs/9s/QvL8xhydhkHOyMLZ4=;
+        b=ns/GFQW9kNb3syXhq7acYFEQoJRr1ftGvn3B+Tr8NURTTAdvQsEjIUR/2+LCROw/1W
+         IlNsdG7A9Y4rYxcLCDAornWzSXHm0XPFXKXeQ5YLUSJS7rcu92RzQZhoutESoIfOctHt
+         FKP+Xjv+7+ahGWr9+7XbrWQsKRZebkWztGIi6ODurVr1mCW3dtYqTt0GfbgpbJL6G7XT
+         9wnqlveiHk8RZihyvByRCfQiYN5EDLu8iqF7buq5PPBqHrh2YgV3KkMjoyaCfD2vLYF+
+         w7/LRq1JEPr2iRGzI8+6yp8sSJTxXCK+3/n+13BvvoFGYc74pyb++woxTyfBTOl2BsBI
+         L6xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1790932939; x=1791537739;
+        d=1e100.net; s=20260707; t=1790933012; x=1791537812;
         h=content-transfer-encoding:content-type:in-reply-to:organization
          :autocrypt:content-language:references:cc:to:subject:reply-to:from
          :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=sisy7zZIPgc2KpxP76gexIt4R+mmsTYOynHiu3xxYkg=;
-        b=CsvjteGXJefobyn8jkKA30Ctd5yuVOkkr7MOaMynn+GRcIX+cm1IaJ/e5pF0VchyAT
-         jF2aPnubj0yh3GVjfksQrd6zYkCEG+TlyaX1SkJT0MAtVKc98AyIoW7VdAW+rDRereZu
-         BaDK0BKrnNGtxSkWG9BuHykf/+x9jj4KTw1bnd6s8Ljb2xtkjjU88l9aqTo6snwa75wY
-         pXrrKogPQmRbXxl54sktUcNiJlwLi4mw8HQNTl9AYySC9p/MqcpqGVM151DAZzyB4mMR
-         7vg6yaDH8qjkzlBvPKG/FETs2Xwc5ZPM7rfzogm3wNUovn9HvaxHUqvJ1ak5eBN3vclq
-         cGbg==
-X-Forwarded-Encrypted: i=1; AKwUvBxfQ9k1ZgkltLLjSPBHAD6Z1gNnCxSjaoUlzV0lz36RASnXrJVyqUZUQwEsVKW8ANLMIffPriMs26P927gf@lists.infradead.org
-X-Gm-Message-State: AFuF++nHLADQcLdxAcfQ3Leu4M2F3nwECFuBMLz2//g9q/wpFoEKxhI2
-	aotlFHvcR6EdTN0Q/mDmlM5mkKN7JwNT6BaCL71UA8BjJTiR9fvNSnuD+Np5nXDpU9M=
-X-Gm-Gg: AYBFou3FRIs5k3ky3iTmwZRsHOewGcszq4gaVC2g8FtaHYUUnA6ZJ0aW+J+EnzLFXi/
-	wSMK6a5n3IgE7HcQnRkgFHL4ravTsroO1nH0fNEobxWxT5d7DaNHYIkf8byCs8zwVwDclAATloQ
-	zxOOatvitJBwqNkNueXwCZMBKiS4pNKe3b7TOBJzLPmtcOHAB1dGrvENRA9kzDTRDUcZHvmBcrC
-	/o3OGliaEBVKhCACzfdgvHL7fRk5ax5RGxZqJaEMIZsPwYdvEaHJay/EP8eY6SLhZ2t5WhUuinn
-	TAzpu50j54wNzC5gO6Ym9KaRQYE7IMp5NezB467MtADevOrJe2PkpJ6DaT+IyWC2Q5r+MIH6YRa
-	NHzNs8r2eGHPf++BP8CLnyg0qRbTNT4MxhXfA2syVwp3CNNAnuChaaf4ut8U0jv0FK7wBc3cPgd
-	7kXSsZRauYpXr6+p2ovMKV72UW7xKUzp4FcfxZbpr595vgT2vwH4XX5Pg3qXVMD6rb1EWPyBaoI
-	iCsI1xGfA7tBuTgl11SoULzvXXrvXAU90P88ZzOFWoV76xlaHy+6oaK8DR3zZ8=
-X-Received: by 2002:a05:600c:3152:b0:4a0:2500:2cd0 with SMTP id 5b1f17b1804b1-4a0275977eamr36418335e9.18.1790932939327;
-        Fri, 02 Oct 2026 02:22:19 -0700 (PDT)
+        bh=KH+uJZ38NeAYqKlocKuGqs/9s/QvL8xhydhkHOyMLZ4=;
+        b=lXlpKxfOJDKbw8Q6kA9NRrg+FPrEVLdL0Go+RZH2flwt+N81l0aXjS1cTUMzQ2+VTN
+         e/9S2aHFuqGCDwTlkgBapkWuXbaI83ug4oN5y1MrQYlDy+JyflmTi8W1oVDCimzTuowV
+         ZbtDvxhNWPgcBN99VbZO6xqwrx/f+EnM9zDj5QzfY4I8cGM6X6DVsdpnY2/fonQjJ820
+         xJrxbAl7WKRBnm/M6TaHVJJDT7ohWeIBfCPxqP0ZawHVLwqPGsx/Tb7T51cXbu/jVnNU
+         U4LqV/OHK8LIr1bYlAJdPbeDOXInN4eTzL3+HY1XSjAxJBs9+pLw8pT+fQEU+GkMmFgx
+         GNvA==
+X-Forwarded-Encrypted: i=1; AKwUvBwpaSGWQR+Z6WJGyqA48tGA8Babt2wG0lzCy5PvUbATlA/YVzJBRhV2oDZ3VrO3a+0N70tOVULNM2vVcfFW@lists.infradead.org
+X-Gm-Message-State: AFuF++mGchSxm8hIInYZ4Y5LHU4kCadgAB0K6LVYID+nySVe04c+jrJ8
+	zNkYldR4PGEIbea/36GuBSNoQiYkiB1+G29nVwGxdzpvR8qZUmxPVLLUSovvlNeiuYDz8fiDhxD
+	o6+oM
+X-Gm-Gg: AYBFou3CXFHGsAQJhit7mod53yP1wtSV9adqXkxstnF17V44i4TTHf/3EPpXvoG4D10
+	pLNPn+MbTa27LtJYHMYAI7c6ZFBCqrAtx27pnyzolwGgz23Soc6X/U+Uvk6jWC879/Jdw0Ibnn0
+	/kOQxN8LV0Q0Hhjo7NqMAN2SeP0gwu73/Cbodsw5vjBPFs1983M03xhSvKC38OTTC3Yz8hJt0aw
+	KZIwrrOIZIWuDM4UQkGISK8BXQW6Ggi3IOZm0sCb7Fa4QwCS02j1hYPjaUvhwCNncy7HEe2rDdF
+	B1uY86/eKicD8MPLc+gO45JJL9ayJAb8ichl4z6hsTFGdT03UXe7BCLTI6AypDREsh5cQ2GgLj0
+	cwzAyJvX07yOsSuWYZ+CGfelBIW+l1rwRViXH5MU2sxJfut08CxtOO7n5Gg5RQi+WLo8t6MYkmK
+	EeU6ZkIC9vBhoaxu7yXJYJg/S4hK98tCHVemAo90aSTn0RBgWZLI07K7d9ii4GGzx9gMfpJOobi
+	4B1/8024D7i7887F4bLxhMaunSNOoHB4ZvgAk5/poDa1RIZbgJ93sZJSxcLnw==
+X-Received: by 2002:a05:600c:19cd:b0:4a0:22d5:21af with SMTP id 5b1f17b1804b1-4a027564f48mr41402045e9.15.1790933011804;
+        Fri, 02 Oct 2026 02:23:31 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:106d:1080:2f62:6d3:721b:8c9e? ([2a01:e0a:106d:1080:2f62:6d3:721b:8c9e])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4a0280d924asm71505645e9.14.2026.10.02.02.22.16
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4a0276fa954sm68526245e9.3.2026.10.02.02.23.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Oct 2026 02:22:18 -0700 (PDT)
-Message-ID: <97e7014e-69a1-4ac8-8278-9e3795b05553@linaro.org>
-Date: Fri, 2 Oct 2026 11:22:16 +0200
+        Fri, 02 Oct 2026 02:23:31 -0700 (PDT)
+Message-ID: <143f8d6b-7c11-4a63-9c9b-36758b3ef635@linaro.org>
+Date: Fri, 2 Oct 2026 11:23:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 2/2] arm64: dts: amlogic: meson-sm1-odroid-hc4: run the
- SPI NOR at 40 MHz
+Subject: Re: [PATCH 1/2] arm64: dts: amlogic: meson-sm1-odroid-hc4: mux the
+ SPI NOR HOLD# and WP# pins
 To: iav@iav.lv, Kevin Hilman <khilman@baylibre.com>,
  Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 References: <20260930-hc4-spi-nor-v1-0-9a3351e2984e@iav.lv>
- <20260930-hc4-spi-nor-v1-2-9a3351e2984e@iav.lv>
+ <20260930-hc4-spi-nor-v1-1-9a3351e2984e@iav.lv>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -110,10 +111,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20260930-hc4-spi-nor-v1-2-9a3351e2984e@iav.lv>
+In-Reply-To: <20260930-hc4-spi-nor-v1-1-9a3351e2984e@iav.lv>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261002_022221_778129_5E480CF4 
-X-CRM114-Status: GOOD (  17.52  )
+X-CRM114-CacheID: sfid-20261002_022334_108827_3515E8AE 
+X-CRM114-Status: GOOD (  19.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -135,43 +136,55 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 On 9/30/26 18:52, Igor Velkov via B4 Relay wrote:
 > From: Igor Velkov <iav@iav.lv>
 > 
-> At 104 MHz, reads return corrupted data: bit 0 of the first byte of a
-> transfer flips from 0 to 1 part of the time. The same byte read as the
-> second byte of a transfer was correct in all 100 reads. One 4 KiB block
-> read 200 times came back wrong 157 times. Writes are unaffected.
+> The SPI NOR flash uses six lines, but nor_pins covers only four: data,
+> clock and chip select. Nothing claims HOLD# (BOOT_3) and WP# (BOOT_7),
+> so they keep the boot ROM setting. After a boot from SPI they are in
+> the nor function and the flash works. After a boot from SD with the
+> button under the board, they stay eMMC data lines pulled low, and
+> spi-nor reports "unrecognized JEDEC id bytes: 00 00 00 00 00 00".
 > 
-> flashcp verifies while it writes, so a bootloader update erases blocks
-> it should skip and can abort halfway, with the flash half written.
+> Mux them in a board-local group. nor_pins is shared with boards that
+> use BOOT_0..7 for eMMC, and the HC4 has eMMC disabled.
 > 
-> The Hardkernel vendor device tree for this board uses 40 MHz. At 40 MHz
-> the same tests pass: 200 block reads with no mismatch, and 14 flashcp
-> runs with no block erased.
-> 
-> Tested on ODROID-HC4 with an XT25F128B.
+> Tested on ODROID-HC4: after a boot from SD past the SPI, the flash
+> probes as a 16 MiB mtd0 and reads back correctly.
 > 
 > Fixes: 7178f340e929 ("arm64: dts: meson-sm1-odroid-hc4: add spifc node to ODROID-HC4")
 > Assisted-by: LLM
 > Signed-off-by: Igor Velkov <iav@iav.lv>
 > ---
->   arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>   arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts | 12 +++++++++++-
+>   1 file changed, 11 insertions(+), 1 deletion(-)
 > 
 > diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-> index 5ce76a1bfe02..8f09f2b74bdd 100644
+> index 3ece30a0a1ff..5ce76a1bfe02 100644
 > --- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
 > +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-> @@ -144,7 +144,7 @@ flash@0 {
->   		#size-cells = <1>;
->   		compatible = "jedec,spi-nor";
->   		reg = <0>;
-> -		spi-max-frequency = <104000000>;
-> +		spi-max-frequency = <40000000>;
->   	};
+> @@ -124,9 +124,19 @@ &sd_emmc_c {
+>   	status = "disabled";
 >   };
 >   
-> 
+> +&periphs_pinctrl {
+> +	hc4_nor_hold_wp_pins: nor-hold-wp {
+> +		mux {
+> +			groups = "nor_hold", "nor_wp";
+> +			function = "nor";
+> +			bias-disable;
+> +		};
+> +	};
+> +};
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Could you move this to meson-g12-common.dtsi instead ?
+
+> +
+>   &spifc {
+>   	status = "okay";
+> -	pinctrl-0 = <&nor_pins>;
+> +	pinctrl-0 = <&nor_pins>, <&hc4_nor_hold_wp_pins>;
+>   	pinctrl-names = "default";
+>   
+>   	flash@0 {
+> 
 
 Thanks,
 Neil
