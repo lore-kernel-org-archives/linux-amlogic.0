@@ -4,70 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61DDDCA5FDD
-	for <linux-amlogic@archiver.kernel.org>; Sat,  3 Oct 2026 03:15:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9F67CA5FE3
+	for <linux-amlogic@archiver.kernel.org>; Sat,  3 Oct 2026 03:22:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:To:Message-Id:MIME-Version:
-	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=fRVAAGLSrM7ZrW9U7DpRVSZQq32VgNm2IuoYivSE3fU=; b=m4dzFPZyFvplgZ
-	eBlC6CHhq80CLFFfrKqSXpW3IriJJNxVEjVRYxEpXaKvCkJQ/eiTLizrgInAJhO6EtkNK+rXsKVm4
-	ZAbqyeDTwIf9Wjq5cS0Md5Lx16fSGf6QlG36KaKXtOvcA9fTIRDXkxKoSU0NOCtCsEotFqNyhmhjd
-	Clmc//tmHqWlaif+z/9GggORgpXlQ/EUGOrSVKPXh6kXxs3iLoArI14Wxg1XfFOXQXGPKj035UZKY
-	imPgYl7IGjYQh/CRKV9jJ/h0fFBq2L7vV6RgfimdFsNpuf8T0A1wbXHPT+8A/W0jdZKBflskR3MfL
-	7U3fuibffz8TICIJJvfA==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	References:In-Reply-To:Cc:To:Subject:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=OGufiRWPSLcxTGCO7D0C0pTnqIVUyr0fulJi0GIaZy8=; b=MNViejFDs7F5VE
+	PHFAewlEyvJiqmY3eZeKuYHcTwbXF394RMcwTysyuxycOAryGmsG9PFDIe8XNMRKNO0NM+0z5FFi5
+	KMpWb7CixWwDGIjTMFTOfUfqaBx8NfOZIeEI1hQ8IQRVYiJ3zmV3VuovejHRSAp0l0IMiB0dEi8UZ
+	W/NqCJqTvDOTJqb6PeRMA6+KX1nWq8buwtdppFuLdWU9YD1Y0mD3Zyo2NMPmQUkOQNmZ5/9ziMhkN
+	nWirvcK4d5W6IC6AtEKGhB94Kg1gFTk0+bPaMe3urzCSeTqRE+cqfR00BARDPPpWYwiSnsDLTrgcH
+	JAUTllfDXYuu7RIpAn/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xCqDN-0000000CzG7-3E1r;
-	Sat, 03 Oct 2026 03:15:09 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xCqKd-0000000CzTA-2MQ4;
+	Sat, 03 Oct 2026 03:22:39 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xCqDM-0000000CzFw-2YDy;
-	Sat, 03 Oct 2026 03:15:08 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5DAB860AAF;
-	Sat,  3 Oct 2026 03:15:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 02881C2BCF4;
-	Sat,  3 Oct 2026 03:15:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1790997307;
-	bh=5T+24V9e8z5HCcVYrnNkaJSm+elLVTowiHzkPZ1WEDA=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=BDYztaxF0fBSUzUoc0fJ88KeJqIG+gyLyxHi70UVRctQQOlJKx/MC3CPhFeOhvjiE
-	 UO00/4ZwEqSHbnf+C5dkGgrP+L2HeEcB/3kexFjQjmZqOzWmvIZm3AmxAWpM+EP8Xu
-	 d7/4F6cQVeEmSECs2BHdPIY+rPgG9dikpBilfFfWl0Nf/9VdsHWVCoLfz52ylWLVKO
-	 n/AqN0YxVsjrR/DHcfVzhkUTDNBBMv7o79DHmMXr8wlvn6nCEwwb5i8Yy40ivmpBKr
-	 yuod/wkn4msxyz/AOeGYU+FSdxD+oXmPTT3Z9foe2wYoTZMDfnyObppnE+eG7viX87
-	 j7tlyF/njuN7w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E19C1CA5FDD;
-	Sat,  3 Oct 2026 03:15:06 +0000 (UTC)
-From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Sat, 03 Oct 2026 06:15:05 +0300
-Subject: [PATCH] arm64: dts: amlogic: meson-sm1-odroid: let the SD card be
- powered down
-MIME-Version: 1.0
-Message-Id: <20261003-hc4-sd-power-off-v1-1-f7ffba01b348@iav.lv>
-X-B4-Tracking: v=1; b=H4sIADhzwGoC/x3MTQqAIBBA4avErBvQ7I+uEi1CZ2o2KgoVSHdPW
- n6L9wpkSkIZlqZAokuyBF+h2wbsufuDUFw1dKobtVIGT9tjdhjDTQkDM46TMzzMrI3qoWYxEcv
- zL9ftfT8AAcz0YgAAAA==
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1814; i=iav@iav.lv;
- h=from:subject:message-id;
- bh=DXX3IOmUgvr4GKV8MwPySwGHNkc4UtI5AabTLkv0Z0E=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDFkHii1ZN5pd3bp57Xa/9BMGS0Q/Nyxizfx87ucKy5m/h
- LYd9XL63VHKwiDGxSArpsgy4ZDGrYwlV//6e5g/gJnDygQyhIGLUwAm8siT4RdTE0fb5E2HJZm/
- t+actL/EXKd+772c6JWvkemOi7mL+psZ/hmbnPd+9vHr6sPOBx/57bo4Rb5yZufzaUxCu65zPav
- lTGEHAA==
-X-Developer-Key: i=iav@iav.lv; a=openpgp;
- fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
-X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
-X-Original-From: Igor Velkov <iav@iav.lv>
+	id 1xCqKb-0000000CzT3-3KJ9
+	for linux-amlogic@lists.infradead.org;
+	Sat, 03 Oct 2026 03:22:37 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id E6B68406F5;
+	Sat,  3 Oct 2026 03:22:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 604EE1F000FF;
+	Sat,  3 Oct 2026 03:22:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1790997756;
+	bh=EP7E1etbmbXCWkaG/mUP1Rr2jtYhV8xPQuM6X0GDUM4=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=LP66Oe2ljUk0zpDG33XyDZosWF7jof8xRLmgwQ0vaxQHt+D4g0hhDdgANDi8TZYcl
+	 Wbo7YaFnvpwzBcBWt94djRa7pKjpR8G+nh/Exn3MSk6P4vrrUSVqbCZMIo1tve+cWf
+	 GETTCrP4c2QTOCOqZDXS5C3RzohPMDSBZLTxU1cECxR3Ynhqggttlv+/otqDqpGIUT
+	 cg9Ca3V/Przj+OwYGmkg+3hF+RXv355cWkqrqehPKPI3MFQ6jGP+QGUR28FWWmfsIC
+	 LhEoKUnu9M1k9LAI9YaWe2xdMRI6UxbmjGHo1MwPBeL+vMbnuQI34kpG9uFQm/ZG/f
+	 2Fumxuv1EvQDw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] arm64: dts: amlogic: meson-sm1-odroid: let the SD card
+ be powered down
+To: "Igor Velkov" <iav@iav.lv>
+Cc: robh@kernel.org, neil.armstrong@linaro.org, devicetree@vger.kernel.org, conor+dt@kernel.org, linux-amlogic@lists.infradead.org
+In-Reply-To: <20261003-hc4-sd-power-off-v1-1-f7ffba01b348@iav.lv>
+References: <20261003-hc4-sd-power-off-v1-1-f7ffba01b348@iav.lv>
+Date: Sat, 03 Oct 2026 03:22:35 +0000
+Message-Id: <20261003032236.604EE1F000FF@smtp.kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,65 +62,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: iav@iav.lv
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Eric Neulight <Eric.Neulight@linuxdev.slmail.me>, Igor Velkov <iav@iav.lv>, Dongjin Kim <tobetter@gmail.com>, linux-amlogic@lists.infradead.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Igor Velkov <iav@iav.lv>
-
-A warm reboot leaves the ODROID-HC4 in the bootloader: the card is still
-detected - CID and CSD read fine - but data transfers fail, and both
-U-Boot and the boot ROM give up on CMD18. A cold power cycle always
-recovers it.
-
-The card is left in UHS mode at 1.8 V, and nothing after Linux brings it
-back to 3.3 V: the bootloader resets the controller, not the card. The
-kernel does try to cut the power on the way out - mmc_bus_shutdown() ends
-in _mmc_sd_suspend(), which calls mmc_power_off(), and meson-gx-mmc then
-disables the vmmc regulator - but TFLASH_VDD is marked
-regulator-always-on, so the regulator core keeps it enabled and the card
-keeps its supply.
-
-Drop the property. The regulator has a consumer that manages it, and
-regulator-boot-on already describes the state it comes up in.
-
-Tested on ODROID-HC4 with a card that reproduces the failure. Not tested
-on ODROID-C4, which shares this file.
-
-Fixes: 326e57518b0d ("arm64: dts: meson-sm1: add support for Hardkernel ODROID-C4")
-Assisted-by: LLM
-Signed-off-by: Igor Velkov <iav@iav.lv>
----
- arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-index e6f02d738a21..7dbc75bfaea2 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-@@ -38,7 +38,6 @@ tflash_vdd: regulator-tflash-vdd {
- 		gpio = <&gpio_ao GPIOAO_3 GPIO_OPEN_DRAIN>;
- 		enable-active-high;
- 		regulator-boot-on;
--		regulator-always-on;
- 	};
- 
- 	tf_io: gpio-regulator-tf-io {
-
----
-base-commit: b44e2be772f866985cafdf90355285069ea68495
-change-id: 20261003-hc4-sd-power-off-67d3f58f1304
-
-Best regards,
--- 
-Igor Velkov <iav@iav.lv>
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0hpZ2hdIGR0czogYW1sb2dpYzog
+U0QgY2FyZCBiYWNrcG93ZXJpbmcgZHVlIHRvIHVucG93ZXJlZCBWTU1DIHdpdGggcG93ZXJlZCBW
+UU1NQwotLQoKY29tbWl0IDRmNDQzN2FiZjU3MTM4ZjE5OGM0MDU3ZjY3MGM2YTVjMjNjM2FmNjEK
+QXV0aG9yOiBJZ29yIFZlbGtvdiA8aWF2QGlhdi5sdj4KCmFybTY0OiBkdHM6IGFtbG9naWM6IG1l
+c29uLXNtMS1vZHJvaWQ6IGxldCB0aGUgU0QgY2FyZCBiZSBwb3dlcmVkIGRvd24KClRoaXMgY29t
+bWl0IGRyb3BzIHRoZSByZWd1bGF0b3ItYWx3YXlzLW9uIHByb3BlcnR5IGZyb20gdGhlIFNEIGNh
+cmQncyBWTU1DCnN1cHBseSAodGZsYXNoX3ZkZCkgdG8gYWxsb3cgaXQgdG8gYmUgcG93ZXJlZCBk
+b3duIGR1cmluZyBhIHdhcm0gcmVib290LgoKRml4ZXM6IDMyNmU1NzUxOGIwZCAoImFybTY0OiBk
+dHM6IG1lc29uLXNtMTogYWRkIHN1cHBvcnQgZm9yIEhhcmRrZXJuZWwgT0RST0lELUM0IikKCj4g
+ZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1zbTEtb2Ryb2lk
+LmR0c2kgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tc20xLW9kcm9pZC5kdHNp
+Cj4gaW5kZXggZTZmMDJkNzM4YTIxZi4uN2RiYzc1YmZhZWEyNSAxMDA2NDQKPiAtLS0gYS9hcmNo
+L2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tc20xLW9kcm9pZC5kdHNpCj4gKysrIGIvYXJj
+aC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLXNtMS1vZHJvaWQuZHRzaQo+IEBAIC0zOCw3
+ICszOCw2IEBAIHRmbGFzaF92ZGQ6IHJlZ3VsYXRvci10Zmxhc2gtdmRkIHsKPiAgCQlncGlvID0g
+PCZncGlvX2FvIEdQSU9BT18zIEdQSU9fT1BFTl9EUkFJTj47Cj4gIAkJZW5hYmxlLWFjdGl2ZS1o
+aWdoOwo+ICAJCXJlZ3VsYXRvci1ib290LW9uOwo+IC0JCXJlZ3VsYXRvci1hbHdheXMtb247Cj4g
+IAl9Owo+ICAKPiAgCXRmX2lvOiBncGlvLXJlZ3VsYXRvci10Zi1pbyB7CgpbU2V2ZXJpdHk6IEhp
+Z2hdCkRvZXMgcmVtb3ZpbmcgcmVndWxhdG9yLWFsd2F5cy1vbiBmcm9tIHRmbGFzaF92ZGQgY2F1
+c2UgdGhlIFNEIGNhcmQgdG8gYmUKYmFja3Bvd2VyZWQgZHVyaW5nIHNodXRkb3duIG9yIHdhcm0g
+cmVib290PwoKTG9va2luZyBhdCB0aGUgc2RfZW1tY19iIG5vZGUsIHRmX2lvIGlzIGNvbmZpZ3Vy
+ZWQgYXMgdGhlIHZxbW1jLXN1cHBseQphbG9uZ3NpZGUgdGZsYXNoX3ZkZDoKCiZzZF9lbW1jX2Ig
+ewoJLi4uCgl2bW1jLXN1cHBseSA9IDwmdGZsYXNoX3ZkZD47Cgl2cW1tYy1zdXBwbHkgPSA8JnRm
+X2lvPjsKfTsKCkhvd2V2ZXIsIHRoZSB0Zl9pbyBub2RlIHN0aWxsIHJldGFpbnMgaXRzIHJlZ3Vs
+YXRvci1hbHdheXMtb24gcHJvcGVydHk6CgoJdGZfaW86IGdwaW8tcmVndWxhdG9yLXRmLWlvIHsK
+CQkuLi4KCQllbmFibGUtYWN0aXZlLWhpZ2g7CgkJcmVndWxhdG9yLWJvb3Qtb247CgkJcmVndWxh
+dG9yLWFsd2F5cy1vbjsKCX07CgpXaGVuIG1tY19wb3dlcl9vZmYoKSBkaXNhYmxlcyBWTU1DICh0
+Zmxhc2hfdmRkKSwgVk1NQyB3aWxsIGRyb3AgdG8gMFYuCkJlY2F1c2UgdGZfaW8gaXMgYWx3YXlz
+LW9uLCB0aGUgcmVndWxhdG9yIGNvcmUgd2lsbCBpZ25vcmUgdGhlIHJlcXVlc3QgdG8KZGlzYWJs
+ZSBWUU1NQy4KCkNhbiB0aGlzIGxlYXZlIHRoZSBJL08gbGluZXMgZHJpdmVuIHdoaWxlIHRoZSBj
+b3JlIHBvd2VyIGlzIHJlbW92ZWQsIGxlYWRpbmcKdG8gYW4gdW5wb3dlcmVkIFZNTUMgd2l0aCBh
+IHBvd2VyZWQgVlFNTUM/CgotLSAKU2FzaGlrbyBBSSByZXZpZXcgwrcgaHR0cHM6Ly9zYXNoaWtv
+LmRldi8jL3BhdGNoc2V0LzIwMjYxMDAzLWhjNC1zZC1wb3dlci1vZmYtdjEtMS1mN2ZmYmEwMWIz
+NDhAaWF2Lmx2P3BhcnQ9MQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5p
+bmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8v
+bGludXgtYW1sb2dpYwo=
