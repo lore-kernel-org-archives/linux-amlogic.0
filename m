@@ -4,229 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BFFDCA5FE2
-	for <linux-amlogic@archiver.kernel.org>; Sat,  3 Oct 2026 01:26:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61DDDCA5FDD
+	for <linux-amlogic@archiver.kernel.org>; Sat,  3 Oct 2026 03:15:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
-	References:Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EFCaYbCTrKV5NHyTm0YKh0WYE1fxMhJNkapuFtG5mjI=; b=Kl0FhA86eIqKoT
-	CN6Ij3huU5yP4NXh630GEi17sOoTG2YoHU7+T5anwq7PEUqCsLvF8Kt3emtLuk8vmsPKmaMMmzXRm
-	a5Hr+RiOqdF5AkxQ2jFngv+3GpgUW9hQmSi8wCfhaU1D5+E5roUMyfy5LGrDshvSaRb7qQSiiV03Z
-	uy19msWR7MvVW54t+CD/Nn3hQfyBkn02WIfMARx9SOFBheJ7QV3f6tqBuY3vR9l5F/ywq3b9hcVCn
-	VASZdHRmjVDGAlpePs2xVE4DRN9KtCwmMwkpRS4Mgsp0ut0W9mva+/YSFY+n+b+5pNmHc9Vq9n8j3
-	pH2Ert9PuHiBybB0xSLg==;
+	Content-Transfer-Encoding:Content-Type:Cc:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:To:Message-Id:MIME-Version:
+	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=fRVAAGLSrM7ZrW9U7DpRVSZQq32VgNm2IuoYivSE3fU=; b=m4dzFPZyFvplgZ
+	eBlC6CHhq80CLFFfrKqSXpW3IriJJNxVEjVRYxEpXaKvCkJQ/eiTLizrgInAJhO6EtkNK+rXsKVm4
+	ZAbqyeDTwIf9Wjq5cS0Md5Lx16fSGf6QlG36KaKXtOvcA9fTIRDXkxKoSU0NOCtCsEotFqNyhmhjd
+	Clmc//tmHqWlaif+z/9GggORgpXlQ/EUGOrSVKPXh6kXxs3iLoArI14Wxg1XfFOXQXGPKj035UZKY
+	imPgYl7IGjYQh/CRKV9jJ/h0fFBq2L7vV6RgfimdFsNpuf8T0A1wbXHPT+8A/W0jdZKBflskR3MfL
+	7U3fuibffz8TICIJJvfA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xCoWI-0000000CsZw-0vne;
-	Sat, 03 Oct 2026 01:26:34 +0000
-Received: from mx0b-00230701.pphosted.com ([148.163.158.9])
+	id 1xCqDN-0000000CzG7-3E1r;
+	Sat, 03 Oct 2026 03:15:09 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xCoWA-0000000CsYl-3D4n;
-	Sat, 03 Oct 2026 01:26:31 +0000
-Received: from pps.filterd (m0098572.ppops.net [127.0.0.1])
-	by mx0b-00230701.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 692Nf7Px993883;
-	Fri, 2 Oct 2026 18:26:19 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=synopsys.com; h=
-	cc:content-id:content-transfer-encoding:content-type:date:from
-	:in-reply-to:message-id:mime-version:references:subject:to; s=
-	pfptdkimsnps; bh=7TUFi/Fndb+BM3Ota6qIKqPaa27ggyyG9Qa8ww+oQvw=; b=
-	nd38419dTJEily+FTazTOPzwitFU9Q9RH5jRQl13zHzL+BII9UYduhytt8I4FK2V
-	H7/a6fbFaCVnnznPtNbgcFHKoX7VRcNulGcFFk0lm/qsprz+046w+YWtypNiizvZ
-	yH5GpJDCkMta/7PN9nwyyTH+vz/nVZ4k8hw2+1ExW1HUaZu9LZ1q6w271PzaP1WO
-	I8m4Tg0R/7Luz807zDKXXsZ+DkbIhzi6VC4cbO3fi8c/NxvQ6BhEV7OdSGP4VM7w
-	GDLPiv7QQsx0HNTDa4B1RtEMz9spM690c29vmtpaveLgHukZmc1/98Zfh0rdCrg5
-	ZaJlIr4SdcjtGlva/6GFnQ==
-Received: from smtprelay-out1.synopsys.com (smtprelay-out1.synopsys.com [149.117.73.133])
-	by mx0b-00230701.pphosted.com (PPS) with ESMTPS id 4h28qyp137-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 02 Oct 2026 18:26:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
-	t=1790990778; bh=7TUFi/Fndb+BM3Ota6qIKqPaa27ggyyG9Qa8ww+oQvw=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=QF75H0bNb5qrUKA4Htq7z4VFJDmPmVyD0VQlyQw1zSwEvdXKllJVciUHTA6KIU3eD
-	 jRAJjiZmMg3Am1f6KIwD62TIBG6CNlLdHlcS7VzoAyOesHIcLYyXhKcb0df5dWZnKw
-	 nE4smih5hBMAGPUa0KUnGk7L9MXX3atdLwWZK0wSqbx5DldQsdxYqBSDeLDQMn99Wx
-	 gWyGCbkiz+81fnzPBa1vvcIMkapV9d6cfh2WzIndGBCtPcmox1PpnwgT9ofhEE1zah
-	 1mAvBLnDjiPRM+b5y635+qV2gpS5pqGWZAI/7gmoeBvIPrkxnLchPkVzyCoyF3FvUP
-	 G0eRiYRRTzmzQ==
-Received: from mailhost.synopsys.com (sv1-mailhost1.synopsys.com [10.205.2.131])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits)
-	 client-signature RSA-PSS (2048 bits))
-	(Client CN "mailhost.synopsys.com", Issuer "SNPSica2" (verified OK))
-	by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 2D1CE401C7;
-	Sat,  3 Oct 2026 01:26:18 +0000 (UTC)
-Received: from o365relay-in.synopsys.com (sv2-o365relay3.synopsys.com [10.202.1.139])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits)
-	 client-signature RSA-PSS (2048 bits))
-	(Client CN "o365relay-in.synopsys.com", Issuer "Sectigo Public Server Authentication CA OV R36" (not verified))
-	by mailhost.synopsys.com (Postfix) with ESMTPS id E1C2CA0822;
-	Sat,  3 Oct 2026 01:26:17 +0000 (UTC)
-Authentication-Results: o365relay-in.synopsys.com; dmarc=pass (p=reject dis=none) header.from=synopsys.com
-Authentication-Results: o365relay-in.synopsys.com; spf=pass smtp.mailfrom=synopsys.com
-Authentication-Results: o365relay-in.synopsys.com;
-	dkim=pass (1024-bit key; unprotected) header.d=synopsys.com header.i=@synopsys.com header.a=rsa-sha256 header.s=selector1 header.b=ubdxEuwk;
-	dkim-atps=neutral
-Received: from SN1PR07CU001.outbound.protection.outlook.com (mail-sn1pr07cu00104.outbound.protection.outlook.com [40.93.14.100])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256
-	 client-signature RSA-PSS (2048 bits) client-digest SHA256)
-	(Client CN "mail.protection.outlook.com", Issuer "DigiCert SHA2 Secure Server CA" (not verified))
-	by o365relay-in.synopsys.com (Postfix) with ESMTPS id AD6864044C;
-	Sat,  3 Oct 2026 01:26:15 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KWUzfYcIAS5LO3KN2+AjJ1zvanJFj+bJz3Xkxwg9Sin6NbF9QIegKvzALmcHFFvQSSrqjK1zVJJVrxSZkNW+Twi03iIq05uXAEUmlZmIoZNcT763fz7KMduMwQsVeRFNvPPiwvfWFkeGN2UHwpHFCgFAzgs5Pa7lapm/y7fiv0+IBjTiKtytVEOvekAofUKK2TZ7uUsiWjOBjAI6qyUF6DnLrSEtY4Dzus69NrTQ/4ENe1S2b7d5sSMgFh+0bQoJtQTQZu24I7VfW91xYNi17TJXcQynjBD0rjUbtGRg0s1FJMBNKa9yfcXsYTVRI1C1vpJZugCxvwuy3XbdRH0fHA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7TUFi/Fndb+BM3Ota6qIKqPaa27ggyyG9Qa8ww+oQvw=;
- b=jUL4t2QDpwQaL3lI+A0d4uwOYg7zxqw6IeR4T0dHxrsKiExlGdZsHx2BarukNC5D3B8gr/UfoAeZtrJN9K39HNjzCAYkTVwdNk5wjP8oUAO2vyseF+ZwKDD85Z9jCJzO8Sli/D0isxv9Dv3/9ip61bmNI672jVyDeNQDuLkUowMeT8V5ZP9IL/sq02E4h3+65xcGWuKQD6apXCwE6i3/IRBcXA7n5AVMxZf0DJ1vOpNJ6gO9A3+N+Dvjpnu1FzRAxaaJHvjIkhc/6ZWD3/hnlkrSoS4CUKPsydZBlD5ylM7dwW7e/eS7phbn3Lr8XVavXh4LesHaVtaCs2kCkbJ5Sg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synopsys.com; dmarc=pass action=none header.from=synopsys.com;
- dkim=pass header.d=synopsys.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=synopsys.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7TUFi/Fndb+BM3Ota6qIKqPaa27ggyyG9Qa8ww+oQvw=;
- b=ubdxEuwknWPIzr96PdMmswKFUksvJgxMTd+b5jUVxVj9hsT8q1WkEklntsFyTAKwN5B8S7IxLiy9Ue3Hw19ZYzo2DP0OEMaYEafYSpRh/PXUUQHqr2JZgjVEw5fHeWm87ue+olnbWDYNfMB5lkaZZkxkizt2/NX/5fEfpFOeVUQ=
-Received: from PH0PR12MB7486.namprd12.prod.outlook.com (2603:10b6:510:1e9::6)
- by PH7PR12MB6833.namprd12.prod.outlook.com (2603:10b6:510:1af::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.25; Sat, 3 Oct
- 2026 01:26:11 +0000
-Received: from PH0PR12MB7486.namprd12.prod.outlook.com
- ([fe80::7df9:b25e:9216:f109]) by PH0PR12MB7486.namprd12.prod.outlook.com
- ([fe80::7df9:b25e:9216:f109%6]) with mapi id 15.21.0472.016; Sat, 3 Oct 2026
- 01:26:11 +0000
-X-SNPS-Relay: synopsys.com
-From: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-To: "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
-CC: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Guangshuo Li <lgs201920130244@gmail.com>,
-        "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-        "khilman@baylibre.com" <khilman@baylibre.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-        "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
-        "martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
-        "felipe.balbi@linux.intel.com" <felipe.balbi@linux.intel.com>
-Subject: Re: [PATCH] usb: dwc3: meson-g12a: disable VBUS regulator on remove
-Thread-Topic: [PATCH] usb: dwc3: meson-g12a: disable VBUS regulator on remove
-Thread-Index: AQHdTBSBrY/eWidA/UeuDfRugteRWLbpoSOAgABnnQCAAQs/gA==
-Date: Sat, 3 Oct 2026 01:26:11 +0000
-Message-ID: <asBZRy_kNaEP9WGs@vbox>
-References: <20260924110429.1557653-1-lgs201920130244@gmail.com>
- <ar8iVIgFdBpIbCsl@vbox> <2026100239-swarm-hacked-015e@gregkh>
-In-Reply-To: <2026100239-swarm-hacked-015e@gregkh>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=synopsys.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH0PR12MB7486:EE_|PH7PR12MB6833:EE_
-x-ms-office365-filtering-correlation-id: a388f9c2-e8d0-497e-33c6-08df20ed4f15
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|1800799024|366016|23010399003|7416014|56012099006|10067099003|4143699003|11063799006|18002099003|22082099003|38070700021;
-x-microsoft-antispam-message-info: ZeAzDku238cj4TKzorjs1IrvOzOXWAHc5PxJIqLGkAuJzVQ2/hu1xuEmsKXZsFBKdK2nBRwpvtpi/ad2GMM5CZI0F84ReFEao92upjTp9n14ZGN2Pm+UucUdrGxyM/VbtIU6pBFw0okK/I6DUxi3jvhUc8sCy9swu6Wszoz43d2oFbbuXu7VHCTXmvdYa8AhI4205QQqyC3ANP4IRNoiNZd7gzNEqv9qrkTN3g1mzBUIoRNTGmcaLreQotLauxcBEFnssfHr4b8l6zHQ1xJN68SMAqsHPw+r0pYFeQJuxK8aT3wcFLe3FH62BRKaypKUUMsyBaA7X5ivJXYrr34mD8FjtINJxkmKqovLJMZTD3LtZyHG9tpTP982FNejdZKRLBBENNbnHcz5pjfBgtlyWDDKKUZTE+t8pFIU6bS5NNKnFSq3clgmCOV8NXeJEEv+WDRbHS+RAtO2SU4oOX+Wmx/vayt5GmRT3fQl+PjOD4e/Yk+kCWuf5qJ7LyXYRk2NSuW3Lr7o8557QasemC/dPJ40WNGapy1Y+NqpyXPuWLSrfm4KfPUW6BYO83EaWBzoVss8rf3SkVKSwrnVpOc+8Qp8NjVZIg5lhxuRy2C4Oli4wqDkCsKh94Sj2GjHPlZqLZEdEL4r13QXIOO1LHPN18Gr58/IRL6yw6/h4PWdTMZ1uz+KJMEkismC0vZsasle0QPJkORAkMbdWYq2hvvfCu5pBgGvJqZwbovAj3E2BVM=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR12MB7486.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(23010399003)(7416014)(56012099006)(10067099003)(4143699003)(11063799006)(18002099003)(22082099003)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?d0lvTlFKZmdMWjVwNGh5ZTFVcUowaFdzcVZHVWczN3dvTjFTSWEwNHdVOXFC?=
- =?utf-8?B?cEFqLzhyN3JaVjJ4YnhYaTV3aXNxaVlyUlBjQU0wcVV6YW96OFR3Qmd1dVg0?=
- =?utf-8?B?anZaN3hnNFV3OUNYUE9tUW1jQUJwWHR3QXN3SklmQzlYZW52cFNTNzdHOEVu?=
- =?utf-8?B?K3JIenc1dHp2bVozTWVseTZxb25ydEQvR1hFVkRZeGlIMmZaeksrYmVyWGMy?=
- =?utf-8?B?SmxMR0F0OUQwa1FjUUFpbXkyallqdFhTSW5tS3BWaXR3azdlWW14dWRvSHlK?=
- =?utf-8?B?Rm5oeitYaEpjM3diNHQ3ZEYyQUozSlo4NWRBaE9CVkNFU2V1UTR1WUczbi8v?=
- =?utf-8?B?NzJ0U3lFbWpSY3VKR3AyTWlUM3JnY3p6bW1PSS9EZEFJbGZSbDNJdnlpbm9Q?=
- =?utf-8?B?eE5CRm1QNnRXamtiR3V1RGg1RFhrSzFFdzBvQ2l5VDhIZWloaFBxbmhmUXNJ?=
- =?utf-8?B?NGhoMjl2QnR0U0NXR1ZZeDVjaGpKdWdhbUdYamN4T2toTmNJakUwd0hXdWFm?=
- =?utf-8?B?aVR4RXFseUtncEpGOTRjcGo0TkdsV0pxMVhRSjQrMEE1Sll6YkFEdXNhbkNG?=
- =?utf-8?B?Mlh0VnlmamxVbjJFZ3hJTU95ZWF5MWloKzk5a0s4a2c0bU5Jd1U5aHFhUlRY?=
- =?utf-8?B?SkVxZThxeTFhOUlYS3ZqSnVydzYrMkJ3bjVjT3d3aGZXNHh2NEJrRmYxblNz?=
- =?utf-8?B?b0czdmNLeTM0ejExMW1hNk5wcmpFdVczNGFpVVVjc1JCeEx1ZXN4Q2tpaTBT?=
- =?utf-8?B?L1ZyUmNqSU9xR2FDRXppU1VJSzZZMWJvaDlmdWZ4UUhUNVF5Sy9FVkt6M3lQ?=
- =?utf-8?B?VVdoY09zTjJjN0g4RkVOM1JFZ3lDYWp2Tld1V05RREk0cEtrSjg4Q2NaNzh2?=
- =?utf-8?B?ZUNKSEQ2RDhpM3c2RkJ4UnFsdU9sMmhrOFh3L3RiczhNOEhMbXJqalVvVTBl?=
- =?utf-8?B?RmpoNnVjKzR0N2ZTWUpaRUlhbGtsYUhrYm5VNWJjcjJGNDFGMFE0djErdlps?=
- =?utf-8?B?S3dibkhkc2JYNWJwMHVqblJNTWViNmZldFFKMjJocFhpb1I3SFdORGhETzM4?=
- =?utf-8?B?Mkg2emE3WnhKK3FXdEUyd0NoNHJDV0hIR3U2UHNHNkl1aDlNZjhwbDhwRmxF?=
- =?utf-8?B?ZDZRWlBlNktTdXRqVTJqTjR5YjNOWlorT0I2VVFnNHlQelQvTkZRaC95c2VD?=
- =?utf-8?B?QnVwL2JESDB6V1BIV1dTQWZvSXQ1a25qdzB4T3RERlduWmk4MUNScDRxcnE5?=
- =?utf-8?B?cUZFYVBtbGk1Y1ZpUURDRHdQbEc4em16MUd2ZmE4Y0ZKQlp1SnJ1VU5XS1Jw?=
- =?utf-8?B?b0w5aFF5eCtsUnl2SktJR0ViRmh6eEJNRkZxQ1VSRHY4SUtURkx3Q2d3YVBn?=
- =?utf-8?B?VXQ1b1hLMUsvOE9WSlBnRmhDMlFnWnRtb2g3U2hFSm5WTnlVYkhpa0dpK2RN?=
- =?utf-8?B?SEZhT2VYa3ZxWVlZUTlKaDVxMjh6Vy9vaWtIZTFVOXFNTEdsYlB3M2tjSUVV?=
- =?utf-8?B?K01lamxTN1pZYU1GMjVuNzNNTGlLbnBBOW50OEU5V0JzMnFDdno1dFRCWERm?=
- =?utf-8?B?OWdpRVlXeFkyODRYeHNVM01qdE9NNDgrRkNhNkNkMWhOenlhSk1vU3UxR3Z6?=
- =?utf-8?B?WldJc2NaZC9UZlI1dFVOdGk5NzJ0OU1ETUFraHNMc3NOeTJDcEtRYm1SRjBl?=
- =?utf-8?B?Q1V2amVXVHdPNGovZzJ1cnozU3l6ZUF6NzR4b3hXdE9TVFVXQnN6Y1QvTStw?=
- =?utf-8?B?YjFZWjZTQVJXMTlYUzRQY2hOZVVhbkJiTXZ2TWlLUSsxNlFXcGZFaUJYenlB?=
- =?utf-8?B?QkFUU1ZyVnBxaUxWNkEyOFRMaTNEUXVvWVZKNm52YWh6OS9jY1ZTazkwMUlX?=
- =?utf-8?B?ZHN6VForMjl6ZmNPL2R0cVBBd21LN0U2Wmh6Y2FRalIxSEdTM1J0RlpNUHpm?=
- =?utf-8?B?cVlISWcyampkVVZPclBUZGdEc1I5ZkpVb0dWQkVZQXFBVVBxeHBkNFplamRC?=
- =?utf-8?B?WXR6WUdEQUdGc25XaVJQdlpsekZseEJlbExVZGhSUi9hbmVOT3FLNUVTOTJI?=
- =?utf-8?B?ZnlVQUF6bXFnUUhKblN3eWRXRmRRbDFhNW1mVDBKZUxBS2Vqa3ZLdHlrZE1S?=
- =?utf-8?B?Z3BlL3JIR2ZxMklCQjBHaUlhQXZIenFJbFo2QllJS2VBY1IxUThVNDF6S2hS?=
- =?utf-8?B?SWFqL1Y1R2RPcldsOVlFYnhJOUh2Q1hzbFVxS2NJWmxtdzVkT005RHIrTE5Q?=
- =?utf-8?B?bE5XNUFjL1YwM0RFUCtXMlNudFFQSHFnY0loanc5RldlWC9heTB0OEY4dVFU?=
- =?utf-8?B?OVdNNyt0QUFLMlRRaEJqdU5rc2R4amdHS1lUVDcweFBqejdtbUJKZz09?=
-Content-ID: <828B93ABC3297F43A1654F7855FB6EFB@namprd12.prod.outlook.com>
+	id 1xCqDM-0000000CzFw-2YDy;
+	Sat, 03 Oct 2026 03:15:08 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 5DAB860AAF;
+	Sat,  3 Oct 2026 03:15:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 02881C2BCF4;
+	Sat,  3 Oct 2026 03:15:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1790997307;
+	bh=5T+24V9e8z5HCcVYrnNkaJSm+elLVTowiHzkPZ1WEDA=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=BDYztaxF0fBSUzUoc0fJ88KeJqIG+gyLyxHi70UVRctQQOlJKx/MC3CPhFeOhvjiE
+	 UO00/4ZwEqSHbnf+C5dkGgrP+L2HeEcB/3kexFjQjmZqOzWmvIZm3AmxAWpM+EP8Xu
+	 d7/4F6cQVeEmSECs2BHdPIY+rPgG9dikpBilfFfWl0Nf/9VdsHWVCoLfz52ylWLVKO
+	 n/AqN0YxVsjrR/DHcfVzhkUTDNBBMv7o79DHmMXr8wlvn6nCEwwb5i8Yy40ivmpBKr
+	 yuod/wkn4msxyz/AOeGYU+FSdxD+oXmPTT3Z9foe2wYoTZMDfnyObppnE+eG7viX87
+	 j7tlyF/njuN7w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E19C1CA5FDD;
+	Sat,  3 Oct 2026 03:15:06 +0000 (UTC)
+From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
+Date: Sat, 03 Oct 2026 06:15:05 +0300
+Subject: [PATCH] arm64: dts: amlogic: meson-sm1-odroid: let the SD card be
+ powered down
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: I/3pnshmkMOjfAFllxcY03mRlpV0VEJ6wPjfJenv4EqAbo5c1yKXbEMyIVdse9dge2Pv4FxJr8E9rWqv38HlIobsmNC6GH7WmlVY8D3dVHw9kTRbmR57lD6tWgVr5xN2JgPNzXHvaVsT0X5Qd7pguDfmdDUmZrFWgpJlBDRIa1Z++fAV9tKSL+6GbTX70B9EqFKvQcOR/vD6yFayIGhhQToQCnjboobh6UMRLIAHVTVbcQoRoOuLg7HavRimqXQqPnAIl/cKh0LoLGkvOVNeB8+S4Q+OTYyGWA4fyjHZj/F1JTN8RgW4OpoF5zDfQcOEh8FIE/nVhf+PYJONF8Yt5Q==
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: t6ynWgcnNPcHibjEP5JwJmBhUAWbsA4FvXhbfu1Z8j6FtOsINVfCd7JmPv++rVY1RanJK8AbXM5cGonlecVz3KpATjuMXqBrRDDNPDIUZbWWwzCUc/r0/oyqzGHzuh5wUR69VJCR5luv63sH+ToP/lAutyQnPmV1SwN2lvRQYC8RC9EhNvgMDu70U7N72miIcGISWdYeM7/jB5AG0B1cJOa7/D/j3eyP/8rymYsnXkRuvaN35j7HAj94Nu1NlFqur9Nq64j+py8gyR7H/s3r6Nlw/seoJCYmQSmsN25oiDTKhf37pba3nD/jkF2thVtVKf0KF8PwsyvBi2INCkZrgUDCJqEyhh9Qbks4lU5Z3q7eJ8eIQPkCOkyEelGiOcIP+7wzV4lyg7uWnDSEQjivzPD8U/z9UY5G5U/3iFzYsmj25g7cLr/Tk4yjjoJkW1aR+7HXDaua6BMk8lwQvR4jUUHMdhdRZNvttaas4xRP/kQ144vC9zEPdcOSxd3GTZisiO+JqR/m8UZ3fMIJTpUn7TCPyStUZae0IsC9PHFiSePaqthm06Hj7xjV6TQFDheO4V3vdlI+M+3OKn+odfDqDzo/+OqFPtnkYR2jcGW21GRCm2SMf0rfKbkmT+2N5oqHLoamN8b/OzkqONfjG8GUzg==
-X-OriginatorOrg: synopsys.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR12MB7486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a388f9c2-e8d0-497e-33c6-08df20ed4f15
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Oct 2026 01:26:11.5774
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: c33c9f88-1eb7-4099-9700-16013fd9e8aa
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: wYlKthW3ApEvyfpwqGZ0u7fCwFxm7saNI0bjdf+OR7Wqhu6y0MoJJcMJLWBp6LC2N6gaoYb1s61WPspAdc0iVA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6833
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMDAzMDAwNSBTYWx0ZWRfX2Z5sRlmEHUly
- C6rU/mV/PPtnDsO5RpaYEFOz/14WokU/8pbaMcUUfSj8NL3NolVXDF0USiCxfPcKQizBBrv9o2z
- fqCXqYySj+HlYBL5PW8S8B+a4oC5BEE=
-X-Proofpoint-ORIG-GUID: 2Nw5UyooprrHlHwfEWrcFOfJyp19l-zO
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMDAzMDAwNSBTYWx0ZWRfX3GaaWz6UEMrD
- jTyP+0wolKw+woNmPmKFZnxJpbu0+JX+afVgNkwRoqdTA8kn584H9GaPbEOt+Vt5qyEYXPhrUvh
- L8ghBdJz61wbPzKzhGW/YsoA3kiOVoojCs1picdTi7hxSGsJj9x0q7s94Yy7uDgOUGjQPX+lRG+
- AzsoF/0FI1pXkptj0xEPMinoNXpdua3R7qkM3eQTmfuN56p082jCVYuDXIeFim4CjQSbL2HEmCT
- wfyl15F9Lgr030+Z3Ly91lbEKr9nQ14A7bQMNv5tTPNbhrclhD2lJ6TK2ldPfsjqkDvMB2zz7Mz
- L/dy3ODijxMUTCfnQlx5Pp5uzD8+7e3Wt32tbmApdlW6Ds5u4Q4c6LOYJPLMwg63SeLAp1O3RS4
- LbeA4i2ZPJhGVcLF3H1R2FY6hPLqzPpnxZKa0W0DNgDseFi8/0i435+Ycvic3rf8JtsZ9CX6fht
- 2iALiJc+GSnK49D07Ag==
-X-Authority-Analysis: v=2.4 cv=Vrm2kO2n c=1 sm=1 tr=0 ts=6ac059bb cx=c_pps
- a=8EbXvwLXkpGsT4ql/pYRAw==:117 a=8EbXvwLXkpGsT4ql/pYRAw==:17
- a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
- a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=660iZSQnnn4A:10 a=qPHU084jO2kA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=tU_645BZ7FZt8VqRJtHG:22 a=jSPayVjLy6xbsuKauFBc:22
- a=ag1SF4gXAAAA:8 a=eei9o5xOzoxCoDFOK54A:9 a=QEXdDO2ut3YA:10
- a=Yupwre4RP9_Eg_Bd0iYG:22
-X-Proofpoint-GUID: 2Nw5UyooprrHlHwfEWrcFOfJyp19l-zO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-10-02_07,2026-10-02_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_active_cloned_notspam
- policy=outbound_active_cloned score=0 spamscore=0 phishscore=0
- lowpriorityscore=0 clxscore=1015 impostorscore=0 priorityscore=1501
- suspectscore=0 malwarescore=0 adultscore=0 bulkscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.22.0-2609040000 definitions=main-2610030005
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261002_182629_493579_A37F1CD2 
-X-CRM114-Status: UNSURE (   7.98  )
-X-CRM114-Notice: Please train this message.
+Message-Id: <20261003-hc4-sd-power-off-v1-1-f7ffba01b348@iav.lv>
+X-B4-Tracking: v=1; b=H4sIADhzwGoC/x3MTQqAIBBA4avErBvQ7I+uEi1CZ2o2KgoVSHdPW
+ n6L9wpkSkIZlqZAokuyBF+h2wbsufuDUFw1dKobtVIGT9tjdhjDTQkDM46TMzzMrI3qoWYxEcv
+ zL9ftfT8AAcz0YgAAAA==
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1814; i=iav@iav.lv;
+ h=from:subject:message-id;
+ bh=DXX3IOmUgvr4GKV8MwPySwGHNkc4UtI5AabTLkv0Z0E=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDFkHii1ZN5pd3bp57Xa/9BMGS0Q/Nyxizfx87ucKy5m/h
+ LYd9XL63VHKwiDGxSArpsgy4ZDGrYwlV//6e5g/gJnDygQyhIGLUwAm8siT4RdTE0fb5E2HJZm/
+ t+actL/EXKd+772c6JWvkemOi7mL+psZ/hmbnPd+9vHr6sPOBx/57bo4Rb5yZufzaUxCu65zPav
+ lTGEHAA==
+X-Developer-Key: i=iav@iav.lv; a=openpgp;
+ fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
+X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
+X-Original-From: Igor Velkov <iav@iav.lv>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -238,34 +79,64 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: iav@iav.lv
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Eric Neulight <Eric.Neulight@linuxdev.slmail.me>, Igor Velkov <iav@iav.lv>, Dongjin Kim <tobetter@gmail.com>, linux-amlogic@lists.infradead.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Oct 02, 2026, gregkh@linuxfoundation.org wrote:
-> On Fri, Oct 02, 2026 at 03:18:38AM +0000, Thinh Nguyen wrote:
-> > On Thu, Sep 24, 2026, Guangshuo Li wrote:
-> > > dwc3_meson_g12a_probe() enables priv->vbus when the optional regulator is
-> > > present, but dwc3_meson_g12a_remove() does not perform the matching
-> > > regulator_disable(). The probe error path already disables the regulator
-> > > before rearming the reset control.
-> > > 
-> > > Disable priv->vbus in the remove path before reset_control_rearm() to
-> > > match the cleanup performed by the probe error path.
-> > > 
-> > > Fixes: c99993376f72 ("usb: dwc3: Add Amlogic G12A DWC3 glue")
-> > 
-> > We should also include Cc stable.
-> 
-> Maybe if the sashiko results are fixed first, this is dropped from my
-> review queue.
-> 
+From: Igor Velkov <iav@iav.lv>
 
-I need to get Sashiko to Cc me in the future... 
+A warm reboot leaves the ODROID-HC4 in the bootloader: the card is still
+detected - CID and CSD read fine - but data transfers fail, and both
+U-Boot and the boot ROM give up on CMD18. A cold power cycle always
+recovers it.
 
-Thanks for the catch,
-Thinh
+The card is left in UHS mode at 1.8 V, and nothing after Linux brings it
+back to 3.3 V: the bootloader resets the controller, not the card. The
+kernel does try to cut the power on the way out - mmc_bus_shutdown() ends
+in _mmc_sd_suspend(), which calls mmc_power_off(), and meson-gx-mmc then
+disables the vmmc regulator - but TFLASH_VDD is marked
+regulator-always-on, so the regulator core keeps it enabled and the card
+keeps its supply.
+
+Drop the property. The regulator has a consumer that manages it, and
+regulator-boot-on already describes the state it comes up in.
+
+Tested on ODROID-HC4 with a card that reproduces the failure. Not tested
+on ODROID-C4, which shares this file.
+
+Fixes: 326e57518b0d ("arm64: dts: meson-sm1: add support for Hardkernel ODROID-C4")
+Assisted-by: LLM
+Signed-off-by: Igor Velkov <iav@iav.lv>
+---
+ arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+index e6f02d738a21..7dbc75bfaea2 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+@@ -38,7 +38,6 @@ tflash_vdd: regulator-tflash-vdd {
+ 		gpio = <&gpio_ao GPIOAO_3 GPIO_OPEN_DRAIN>;
+ 		enable-active-high;
+ 		regulator-boot-on;
+-		regulator-always-on;
+ 	};
+ 
+ 	tf_io: gpio-regulator-tf-io {
+
+---
+base-commit: b44e2be772f866985cafdf90355285069ea68495
+change-id: 20261003-hc4-sd-power-off-67d3f58f1304
+
+Best regards,
+-- 
+Igor Velkov <iav@iav.lv>
+
+
+
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
