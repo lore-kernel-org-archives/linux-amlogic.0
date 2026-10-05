@@ -4,90 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F9CDCA5FF0
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Oct 2026 10:04:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E502CA5FFD
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Oct 2026 10:40:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7KaKqgBOOMukNOrYeK0FM5tlz0qUGtbGzB3dGwIbaxE=; b=UTNVGN9X8ZIMti
-	KlVMYgPGJLcPkyv26OHUUt8D5DLXP/3Ht8q3hc6xqQhMTQFaE83oW3V2h54egMGP+S2KRJI5kwriV
-	eUk+Ui4it7ALNZ91KoMkBiE98jTscvpa+UI5RakIsD/dJ0EvGZXHRCbwCTxSCZp3gsTgsrdaRnw0I
-	p4jIxvECoqXW5aocPR+vwXJ7MMprFr3KkHBiPlaXd6m5AgHQ37S57V273ZfmeOyMg9nUFLKLrIryP
-	x1G6I6zm0wBRE2nnmKrbv8L4/CNEofwfcIQcjGKy1Xyp+o8+VyGXtMxafcECEpbn0tsWVcj32QvNO
-	0NPJ/UAMAz6Cl+b+3YsQ==;
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=7C+4BK8oMxPbLeevSYIy47MEORcxQ5ekNCiCXsRRP+I=; b=AscnlT46s4JU+pw7x/BqNlE9nC
+	0clrP4djRgeQWD3pGZBxzs79dcfsNkStIAFnxycYH3kS6Ew/+lZvPaO3QeYLr56BAbdfFnHCmPORB
+	7q0GVVDLXFUrxnposyOpmDcphz+wIpISTdAYIiJjOEhllU6OXuUaedf/N3+5FeAq+hM5s26BUTHAn
+	zNanP+AoUZyJ5MPgtYjtOkVD/B5bczMPd7gabqz+IZQMMlinksR/NCUHYoNVJvSm9122GV2SG+1ck
+	kXfNpif6nwkk60LSrmncljij/j7Z0GfPkk30CIO27E4kAil9VN2C+g0AfW+pJh3twA5uqpX2eWDtP
+	cL5KtMBQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xDfYi-0000000G7LV-1rFe;
-	Mon, 05 Oct 2026 10:04:36 +0000
-Received: from mail-ed1-f42.google.com ([209.85.208.42])
+	id 1xDg6z-0000000GCkb-0J5c;
+	Mon, 05 Oct 2026 10:40:01 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xDfYb-0000000G7Jm-2BgS
-	for linux-amlogic@lists.infradead.org;
-	Mon, 05 Oct 2026 10:04:35 +0000
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-6af9befd04cso2170305a12.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 05 Oct 2026 03:04:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791194667; x=1791799467;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=LFDKBytFqpiCAKHq7794WGTm1eiUeSTtEFvwUnjGNk4=;
-        b=r8JNwOb4MIR9EPa+11VuysHIbwNu/zSzrL/tYDKB+AZbyNxf/dz6M7TIcy4BAz01sH
-         I+07kZ3devO5vCtXGJJKP8FdeDZEFCzCVpwWG0A7TR63diemRRxPVo7b6VoSL+YZqEKV
-         KV8s/EO4c3R0XH1Ll5wdxR5Yz58ifxiYitrJlbzIBuB5XL50/u/nzpoOYiOkJz0/s5mk
-         GuXMYYdRhiRPOT7HZX3sCiJFdVZlUymypsecosiM8nS4LRykphfFKm5Wb4xgEXzUUtC4
-         diJqFKIovgn+/MHsxy3Ls2joUI7Yt7+lsg/UUtgy3oQzmXy1eIcgE8X5R1nW+QBB6ZF8
-         3mOg==
-X-Forwarded-Encrypted: i=1; AKwUvBwD2Je6lyUJCnJbkd7HrmUy+8mactYjkYaZe99T2xsCSI4SyubjytWEgYPXZB+nkCrsRS5LVTuouQsB5gr2@lists.infradead.org
-X-Gm-Message-State: AFq9FYKm/Xuiyqd86scMkzeMiWpdVWNRO+Xg3jNKkTpMTiY29oNq4TWZ
-	OdC/Ev+kzwpLK3dVoOaipmiKJPWmkC5++bCRO3BSYP7JFnQj9mjJOvKb
-X-Gm-Gg: AYBFou1Fql/Se8+ZFt9ZDkOadbtENdr9s4wy2B9yX65IJKR4X2VvxFEzNjTVQTbSmJv
-	ZV1+ykKgM74VZgSXPFOP8cmyK9FkCj7yusYWOxsZ7T4hwX85LjaQdRhMPnZv8AVkRpurovwtHLK
-	gBQc2yL1kfs6Rd2VEr0PQcFBoyscWjFEYoQY9yP4WD2rIPDd+1ahswlpN3RNUtC9eIUsPf46HFq
-	VWTPwcdUTNjWjtjFaoz/4FYQ9Rdmxucc44Ncqme2hzHD1hegzhEbjexSOTmRMBpPD5eyJ0s0C7f
-	l9L/VUHKj+D2zoo2DLAAo+9H78DdHpW01LdIRebOyxR309OTFcD2aVi0kRiI0Nx9LebYQMeOi9/
-	BXjszSchBi+mxr1M56n8zKm01LtcnKToK1wJr/UXFL2EhCNE9IP8N/uMhXapFklhjmKVosg1Tdq
-	OGnGCmyC54dVn+O6q5KXBdAL/Ey0v3boy6o+VkXwALwrbfJpcpo0pp7ax2PXkKxQR8lLpeaaXfL
-	LihyUuIRSVRkisSxMjUUM1Dtccu
-X-Received: by 2002:a05:6402:2421:b0:6ac:6968:9424 with SMTP id 4fb4d7f45d1cf-6afada1af02mr6404847a12.33.1791194667149;
-        Mon, 05 Oct 2026 03:04:27 -0700 (PDT)
-Received: from [192.168.1.135] ([84.68.183.72])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6afb020bdb9sm3060982a12.23.2026.10.05.03.04.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Oct 2026 03:04:26 -0700 (PDT)
-Message-ID: <f246ff74-a30e-4381-a6a0-ab51261f9e90@linux.com>
-Date: Mon, 5 Oct 2026 11:04:25 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 6/6] arm64: dts: amlogic: t7: khadas-vim4: enable the
- ethernet port
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>,
- xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+	id 1xDg6x-0000000GCkB-3xB1;
+	Mon, 05 Oct 2026 10:40:00 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 32EDC60A86;
+	Mon,  5 Oct 2026 10:39:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 710861F00893;
+	Mon,  5 Oct 2026 10:39:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1791196798;
+	bh=nMK/a6cWnmvDlye2LBu5j5oGE2wSUys+6jVH5716V10=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=gKuSy4G0Mnv9EWI5RFrLWNfQpP55o5UjiR6eXzW0p3HIBnTQA77MkfxfahjlLm+Tw
+	 Y30HMkEAMQpbTnDrLrYyE87XglxHbjT7zEGWZsDLDYuzeX23zyadDlR2OumCEvhqkC
+	 Bp+U81p5OGw+hK3jlGLdOrQ6frStfbM7zGAA539h0DKLyVEn9UtpMjUJbGDnGfBZMV
+	 uPuAermznBjYpKdkzCopmYhX6B1Xt7ryCR+XS+XzJzFL2CSm0/ebe4LEIh4O81v634
+	 mHlj6YiA5rRKlRlhfvUQ0iOi2CdY41/fO8qhn9eLS28gNm2XsPYLHnierVaQwM++d3
+	 +JYL699chO7ow==
+Date: Mon, 5 Oct 2026 11:39:52 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Lucas Tanure <tanure@linux.com>
+Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [RFC PATCH 1/6] dt-bindings: net: amlogic,meson-dwmac: spell out
+ the compatible combinations
+Message-ID: <asN-d_p6RUFfVHdE@squawk>
 References: <20261004144046.391444-1-tanure@linux.com>
- <20261004144046.391444-7-tanure@linux.com>
- <d1ae6c21-72a9-4bc7-aaaf-9051d0f6b1b0@bootlin.com>
-Content-Language: en-US
-From: Lucas Tanure <tanure@linux.com>
-In-Reply-To: <d1ae6c21-72a9-4bc7-aaaf-9051d0f6b1b0@bootlin.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261005_030429_598684_B3A0F561 
-X-CRM114-Status: GOOD (  24.49  )
+ <20261004144046.391444-2-tanure@linux.com>
+MIME-Version: 1.0
+In-Reply-To: <20261004144046.391444-2-tanure@linux.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,107 +81,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============4667835273243233015=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 04/10/2026 21:58, Maxime Chevallier wrote:
-> Hi Lucas,
-> 
-> On 10/4/26 16:40, Lucas Tanure wrote:
->> The board carries a Realtek RTL8211F gigabit PHY on the external
->> management bus, connected to the MAC over RGMII.
->>
->> Enable the controller, hand it the ethernet pins and point it at the
->> PHY. The clock delays RGMII needs are supplied by the MAC rather than
->> the PHY: 2ns on transmit and 2000ps on receive, the values the vendor
->> kernel programs.
->>
->> The PHY interrupt output is wired to GPIOH_6, so describe it and let
->> link changes be reported instead of polled. The PHY reset pin is driven
->> by an RC network on the board, not by the SoC, so there is no reset line
->> to describe.
->>
->> Tested at 930Mbit/s sustained receive over a minute, with no MAC error
->> counters moving in either direction.
->>
->> Assisted-by: LLM
->> Signed-off-by: Lucas Tanure <tanure@linux.com>
->> ---
->>   .../amlogic/amlogic-t7-a311d2-khadas-vim4.dts | 28 +++++++++++++++++++
->>   1 file changed, 28 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
->> index 0fa83362b417..5d0365ddde72 100644
->> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
->> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
->> @@ -14,6 +14,7 @@ / {
->>   	compatible = "khadas,vim4", "amlogic,a311d2", "amlogic,t7";
->>   
->>   	aliases {
->> +		ethernet0 = &ethmac;
->>   		serial0 = &uart_a;
->>   		mmc0 = &sd_emmc_c;
->>   		mmc1 = &sd_emmc_b;
->> @@ -256,6 +257,33 @@ xtal: xtal-clk {
->>   	};
->>   };
->>   
->> +&ethmac {
->> +	status = "okay";
->> +	pinctrl-0 = <&eth_pins>, <&eth_rgmii_pins>;
->> +	pinctrl-names = "default";
->> +
->> +	/*
->> +	 * The RGMII clock delays are added by the MAC, so the PHY is
->> +	 * asked for the mode that adds none.
->> +	 */
->> +	phy-mode = "rgmii";
-> 
-> In devicetree, "rgmii" means that the delays are inserted at the hardware
-> level, i.e. with longer PCB traces for the clock. With the above comment,
-> this is therefore wrong.
-> 
-> As a rule of thumb, "phy-mode = rgmii" is almost always wrong.
-> 
-> The right behaviour here is to represent the HW as it is, that is to say
-> pass phy-mode = "rgmii-id"; delays are internal. In DT we don't say who
-> inserts the delays (MAC or PHY), that's for the drive to figure out.
-> 
-> If the MAC inserts the delays, then it needs to fixup the mode passed to the PHY so that
-> they follow this doc :
-> 
-> https://www.kernel.org/doc/html/v7.2/networking/phy.html#rg-mii-electrical-interface-considerations
-> 
-> Maxime
-Hi Maxime,
+--===============4667835273243233015==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ATxczT9S6yADiUYP"
+Content-Disposition: inline
 
-Thanks for the review. You are right about what the mode names mean,
-but after a few tests I do not think this board can follow it. I tried
-all three:
+--ATxczT9S6yADiUYP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-   rgmii-id    23 of 23 received frames had a bad CRC, DHCP never
-               completes.
-   rgmii-txid  receive becomes perfect, but then the peer sees nothing
-               we send, not even an error counter.
-   rgmii       1Gbit/s, 930Mbit/s sustained, no error counter moving.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-There was nothing to tune on the PHY side either: the RTL8211F delays
-are single enable bits, TXCR bit 8 and RXCR bit 3, on or off.
+--ATxczT9S6yADiUYP
+Content-Type: application/pgp-signature; name=signature.asc
 
-The modes whose names promise internal delays are the same ones where
-the glue switches its own off, so there is no value that is both right
-by phy.rst and working here. Keeping "rgmii" and the comment, so the
-next person sees why before trying it. Glad to help test and convert
-this board if the driver's phy-mode handling is ever reworked along
-with the other Amlogic boards.
+-----BEGIN PGP SIGNATURE-----
 
-Thanks,
-Lucas
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCasN+dwAKCRB4tDGHoIJi
+0kGKAPkBwMPVmHK5gi5+GGmq50tiKHRI64sQpVCtLBiim0uKvwEA+im/zIRf96O+
+sVDm/6scRn1Ei8lICBXZw/R/5hf23A4=
+=Ico9
+-----END PGP SIGNATURE-----
 
+--ATxczT9S6yADiUYP--
+
+
+--===============4667835273243233015==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4667835273243233015==--
+
