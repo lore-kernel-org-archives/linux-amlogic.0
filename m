@@ -4,54 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D758ACA5FF0
-	for <linux-amlogic@archiver.kernel.org>; Sun,  4 Oct 2026 21:13:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F9CDCA5FF0
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Oct 2026 10:04:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VjKKDvdZSOlksWPjUicZHzD0Pve+SXakRCYiL9Dpa1U=; b=0l6G/YHcxOEotG
-	KED9VQIdsxIDwELmaS5HEp7skm5RA/3zo47CyCUgbrAIIdeyup7cwOLsjHdxq5Q+wZ2Ei/w7jlgRr
-	UP2CAD6qHCtgx0+WVUMjBTyHf4OXWq7haDXdiUep8B2fQBS2AQ1q7+gk5PVFjHKB40jCZVMQw4e/N
-	c3wD4uTQG5gtJtHJXVRWe3pxox29WlpGEWRee+bEqX6f2FXA3DvSx9GaJvgoiBxFiEERmrjC2+fMj
-	Q9902WyooQ1410Rfn3R3DYHvx1B3GXlhloKbRVbgustNaRUhyEkj68V3pq0N7ZGs5aX3HNJBX3QOD
-	U5v2vCIIqO4gSsa8eVUA==;
+	List-Owner; bh=7KaKqgBOOMukNOrYeK0FM5tlz0qUGtbGzB3dGwIbaxE=; b=UTNVGN9X8ZIMti
+	KlVMYgPGJLcPkyv26OHUUt8D5DLXP/3Ht8q3hc6xqQhMTQFaE83oW3V2h54egMGP+S2KRJI5kwriV
+	eUk+Ui4it7ALNZ91KoMkBiE98jTscvpa+UI5RakIsD/dJ0EvGZXHRCbwCTxSCZp3gsTgsrdaRnw0I
+	p4jIxvECoqXW5aocPR+vwXJ7MMprFr3KkHBiPlaXd6m5AgHQ37S57V273ZfmeOyMg9nUFLKLrIryP
+	x1G6I6zm0wBRE2nnmKrbv8L4/CNEofwfcIQcjGKy1Xyp+o8+VyGXtMxafcECEpbn0tsWVcj32QvNO
+	0NPJ/UAMAz6Cl+b+3YsQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xDTWi-0000000FKh7-3FTW;
-	Sun, 04 Oct 2026 21:13:44 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+	id 1xDfYi-0000000G7LV-1rFe;
+	Mon, 05 Oct 2026 10:04:36 +0000
+Received: from mail-ed1-f42.google.com ([209.85.208.42])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xDTWg-0000000FKgZ-02vA;
-	Sun, 04 Oct 2026 21:13:43 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 252944E41168;
-	Sun,  4 Oct 2026 21:13:39 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id D2DFD604FE;
-	Sun,  4 Oct 2026 21:13:38 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DD9731032820F;
-	Sun,  4 Oct 2026 23:13:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1791148417; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=nXPXirW3eRDsSI9mvG4DFF7E3a00ea/RwmInqyXUVd4=;
-	b=kCUsydxHi1pBYG/VMU/FQcimtNJep3NIuesye/jvgOjSjEhH/76NRdMy4W334dzAh2mwqL
-	NAJrzK4xjqvAQEWVQPuKKWXqgC7W993Gfw7IanqW/t0bd2hSCIZ8YHThNyq8lPs7XLmL+c
-	sj8d3hdOigyOeVezUEzMB0h6XSzD+4RUTVJHTD+EoVPHOHXabzSdpDL6RrFoqjTImoGhlX
-	xk6jjh850A9O8vO5ZjhDzfrhIrbACQKXO3O/G6ycuany91IVzTe3wlEXh6S7EltG9da2Eo
-	INQJBZJLmavvZBTml0LeAhLl7Mt9OxbwWQKNXhSHnfHzXN3ud2jt/NntjLibew==
-Message-ID: <aafea01f-546e-47de-9e1d-e404450e78c5@bootlin.com>
-Date: Sun, 4 Oct 2026 23:13:29 +0200
+	id 1xDfYb-0000000G7Jm-2BgS
+	for linux-amlogic@lists.infradead.org;
+	Mon, 05 Oct 2026 10:04:35 +0000
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-6af9befd04cso2170305a12.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 05 Oct 2026 03:04:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1791194667; x=1791799467;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=LFDKBytFqpiCAKHq7794WGTm1eiUeSTtEFvwUnjGNk4=;
+        b=r8JNwOb4MIR9EPa+11VuysHIbwNu/zSzrL/tYDKB+AZbyNxf/dz6M7TIcy4BAz01sH
+         I+07kZ3devO5vCtXGJJKP8FdeDZEFCzCVpwWG0A7TR63diemRRxPVo7b6VoSL+YZqEKV
+         KV8s/EO4c3R0XH1Ll5wdxR5Yz58ifxiYitrJlbzIBuB5XL50/u/nzpoOYiOkJz0/s5mk
+         GuXMYYdRhiRPOT7HZX3sCiJFdVZlUymypsecosiM8nS4LRykphfFKm5Wb4xgEXzUUtC4
+         diJqFKIovgn+/MHsxy3Ls2joUI7Yt7+lsg/UUtgy3oQzmXy1eIcgE8X5R1nW+QBB6ZF8
+         3mOg==
+X-Forwarded-Encrypted: i=1; AKwUvBwD2Je6lyUJCnJbkd7HrmUy+8mactYjkYaZe99T2xsCSI4SyubjytWEgYPXZB+nkCrsRS5LVTuouQsB5gr2@lists.infradead.org
+X-Gm-Message-State: AFq9FYKm/Xuiyqd86scMkzeMiWpdVWNRO+Xg3jNKkTpMTiY29oNq4TWZ
+	OdC/Ev+kzwpLK3dVoOaipmiKJPWmkC5++bCRO3BSYP7JFnQj9mjJOvKb
+X-Gm-Gg: AYBFou1Fql/Se8+ZFt9ZDkOadbtENdr9s4wy2B9yX65IJKR4X2VvxFEzNjTVQTbSmJv
+	ZV1+ykKgM74VZgSXPFOP8cmyK9FkCj7yusYWOxsZ7T4hwX85LjaQdRhMPnZv8AVkRpurovwtHLK
+	gBQc2yL1kfs6Rd2VEr0PQcFBoyscWjFEYoQY9yP4WD2rIPDd+1ahswlpN3RNUtC9eIUsPf46HFq
+	VWTPwcdUTNjWjtjFaoz/4FYQ9Rdmxucc44Ncqme2hzHD1hegzhEbjexSOTmRMBpPD5eyJ0s0C7f
+	l9L/VUHKj+D2zoo2DLAAo+9H78DdHpW01LdIRebOyxR309OTFcD2aVi0kRiI0Nx9LebYQMeOi9/
+	BXjszSchBi+mxr1M56n8zKm01LtcnKToK1wJr/UXFL2EhCNE9IP8N/uMhXapFklhjmKVosg1Tdq
+	OGnGCmyC54dVn+O6q5KXBdAL/Ey0v3boy6o+VkXwALwrbfJpcpo0pp7ax2PXkKxQR8lLpeaaXfL
+	LihyUuIRSVRkisSxMjUUM1Dtccu
+X-Received: by 2002:a05:6402:2421:b0:6ac:6968:9424 with SMTP id 4fb4d7f45d1cf-6afada1af02mr6404847a12.33.1791194667149;
+        Mon, 05 Oct 2026 03:04:27 -0700 (PDT)
+Received: from [192.168.1.135] ([84.68.183.72])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6afb020bdb9sm3060982a12.23.2026.10.05.03.04.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Oct 2026 03:04:26 -0700 (PDT)
+Message-ID: <f246ff74-a30e-4381-a6a0-ab51261f9e90@linux.com>
+Date: Mon, 5 Oct 2026 11:04:25 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 3/6] net: stmmac: dwmac-meson8b: add support for the
- Amlogic T7
-To: Lucas Tanure <tanure@linux.com>, xianwei.zhao@amlogic.com,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
+Subject: Re: [RFC PATCH 6/6] arm64: dts: amlogic: t7: khadas-vim4: enable the
+ ethernet port
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
  Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>,
@@ -64,14 +80,14 @@ Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
 References: <20261004144046.391444-1-tanure@linux.com>
- <20261004144046.391444-4-tanure@linux.com>
+ <20261004144046.391444-7-tanure@linux.com>
+ <d1ae6c21-72a9-4bc7-aaaf-9051d0f6b1b0@bootlin.com>
 Content-Language: en-US
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-In-Reply-To: <20261004144046.391444-4-tanure@linux.com>
-X-Last-TLS-Session-Version: TLSv1.3
+From: Lucas Tanure <tanure@linux.com>
+In-Reply-To: <d1ae6c21-72a9-4bc7-aaaf-9051d0f6b1b0@bootlin.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261004_141342_195531_CA67C175 
-X-CRM114-Status: GOOD (  14.66  )
+X-CRM114-CacheID: sfid-20261005_030429_598684_B3A0F561 
+X-CRM114-Status: GOOD (  24.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,73 +99,105 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Lucas,
-
-On 10/4/26 16:40, Lucas Tanure wrote:
-> The glue registers on the T7 are laid out exactly as the G12A ones, RX
-> delay field included, so the T7 can reuse the G12A settings.
+On 04/10/2026 21:58, Maxime Chevallier wrote:
+> Hi Lucas,
 > 
-> What the T7 does not share is how the controller reaches DRAM: the bus
-> path goes through a pipeline stage with a gate of its own, and no device
-> other than the controller has any use for that gate. Claim it and hold
-> it enabled for as long as the controller is bound, otherwise it is
-> switched off as unused and a transfer that has been started can never
-> complete.
+> On 10/4/26 16:40, Lucas Tanure wrote:
+>> The board carries a Realtek RTL8211F gigabit PHY on the external
+>> management bus, connected to the MAC over RGMII.
+>>
+>> Enable the controller, hand it the ethernet pins and point it at the
+>> PHY. The clock delays RGMII needs are supplied by the MAC rather than
+>> the PHY: 2ns on transmit and 2000ps on receive, the values the vendor
+>> kernel programs.
+>>
+>> The PHY interrupt output is wired to GPIOH_6, so describe it and let
+>> link changes be reported instead of polled. The PHY reset pin is driven
+>> by an RC network on the board, not by the SoC, so there is no reset line
+>> to describe.
+>>
+>> Tested at 930Mbit/s sustained receive over a minute, with no MAC error
+>> counters moving in either direction.
+>>
+>> Assisted-by: LLM
+>> Signed-off-by: Lucas Tanure <tanure@linux.com>
+>> ---
+>>   .../amlogic/amlogic-t7-a311d2-khadas-vim4.dts | 28 +++++++++++++++++++
+>>   1 file changed, 28 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
+>> index 0fa83362b417..5d0365ddde72 100644
+>> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
+>> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
+>> @@ -14,6 +14,7 @@ / {
+>>   	compatible = "khadas,vim4", "amlogic,a311d2", "amlogic,t7";
+>>   
+>>   	aliases {
+>> +		ethernet0 = &ethmac;
+>>   		serial0 = &uart_a;
+>>   		mmc0 = &sd_emmc_c;
+>>   		mmc1 = &sd_emmc_b;
+>> @@ -256,6 +257,33 @@ xtal: xtal-clk {
+>>   	};
+>>   };
+>>   
+>> +&ethmac {
+>> +	status = "okay";
+>> +	pinctrl-0 = <&eth_pins>, <&eth_rgmii_pins>;
+>> +	pinctrl-names = "default";
+>> +
+>> +	/*
+>> +	 * The RGMII clock delays are added by the MAC, so the PHY is
+>> +	 * asked for the mode that adds none.
+>> +	 */
+>> +	phy-mode = "rgmii";
 > 
-> Give the T7 match data of its own so that only it looks the clock up,
-> and require the clock instead of treating it as optional: the controller
-> cannot do DMA without it, and failing the probe with a clear message
-> beats booting and hitting an undiagnosable hang later.
+> In devicetree, "rgmii" means that the delays are inserted at the hardware
+> level, i.e. with longer PCB traces for the clock. With the above comment,
+> this is therefore wrong.
 > 
-> Assisted-by: LLM
-> Signed-off-by: Lucas Tanure <tanure@linux.com>
-> ---
+> As a rule of thumb, "phy-mode = rgmii" is almost always wrong.
+> 
+> The right behaviour here is to represent the HW as it is, that is to say
+> pass phy-mode = "rgmii-id"; delays are internal. In DT we don't say who
+> inserts the delays (MAC or PHY), that's for the drive to figure out.
+> 
+> If the MAC inserts the delays, then it needs to fixup the mode passed to the PHY so that
+> they follow this doc :
+> 
+> https://www.kernel.org/doc/html/v7.2/networking/phy.html#rg-mii-electrical-interface-considerations
+> 
+> Maxime
+Hi Maxime,
 
-[...]
+Thanks for the review. You are right about what the mode names mean,
+but after a few tests I do not think this board can follow it. I tried
+all three:
 
->  
-> +static const struct meson8b_dwmac_data meson_t7_dwmac_data = {
-> +	.set_phy_mode = meson_axg_set_phy_mode,
-> +	.has_prg_eth1_rgmii_rx_delay = true,
+   rgmii-id    23 of 23 received frames had a bad CRC, DHCP never
+               completes.
+   rgmii-txid  receive becomes perfect, but then the peer sees nothing
+               we send, not even an error counter.
+   rgmii       1Gbit/s, 930Mbit/s sustained, no error counter moving.
 
-Hmpf sorry this falls onto your series, but looking at the code it seems
-that this glue has the RGMII handling backwards...
+There was nothing to tune on the PHY side either: the RTL8211F delays
+are single enable bits, TXCR bit 8 and RXCR bit 3, on or off.
 
-In meson8b_init_rgmii_delays :
+The modes whose names promise internal delays are the same ones where
+the glue switches its own off, so there is no value that is both right
+by phy.rst and working here. Keeping "rgmii" and the comment, so the
+next person sees why before trying it. Glad to help test and convert
+this board if the driver's phy-mode handling is ever reworked along
+with the other Amlogic boards.
 
-         switch (dwmac->phy_mode) {                           
-         case PHY_INTERFACE_MODE_RGMII:                       
-                 delay_config = tx_dly_config | rx_adj_config;
-                 break;                                       
-         case PHY_INTERFACE_MODE_RGMII_RXID:                  
-                 delay_config = tx_dly_config;                
-                 cfg_rxclk_dly = 0;                           
-                 break;                                       
-         case PHY_INTERFACE_MODE_RGMII_TXID:                  
-                 delay_config = rx_adj_config;                
-                 break;                                       
-         case PHY_INTERFACE_MODE_RGMII_ID:                    
-         case PHY_INTERFACE_MODE_RMII:                        
-                 delay_config = 0;                            
-                 cfg_rxclk_dly = 0;                           
+Thanks,
+Lucas
 
-This is the behaviour one would expect from a PHY perspective.
-
-And indeed, 66 amlogic dts have "phy-mode = rgmii".
-
-grep "phy-mode = \"rgmii\"" $(find arch/ | grep amlogic) | wc -l
-66
-
-I really think all these 66 "rgmii" instance should have been "rgmii-id"...
-
-It's probably too late to change that though :(
-
-Maxime
 
 _______________________________________________
 linux-amlogic mailing list
