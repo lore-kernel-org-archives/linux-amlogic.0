@@ -4,71 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03638CA5FCE
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Oct 2026 10:46:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BC99CA5FF0
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Oct 2026 15:43:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=LHyGGj+YdmK/H8JfTDqJP5Lhju8BY4F9OvisvUXy0N4=; b=TY7YRDbrvrCsBPcBzI7vLNTVYO
-	HbGLnMLdkGbl+NHEjqXut4AS9+x4Tb2GrROlvQ9r60LxwstBfmz4T/7c5UhA3Cyg5hDp0cr0NuwTb
-	cmWctySvPtjIk+QA6M1N9pRrO88v5MTxGZjhPS9O2KnzaiFTt0ds/18KWtQe41R8RhREd/fMAudt5
-	tGc0yrJn3AMrGuJXfoNIn+FYFZxSVSTCgPnfP0TW7UUbvNIAXoNCG8MVod1JqLW8hZGdDeROBDTD4
-	1a8P2XJIpK2/kmzjpgc40kHrii0l8NIRxui7B5S58+vH9z575+oVPBPhvzojABDFkbFrcc8UfqrOd
-	aHNCMT4A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=yCg2NPQGdFR1jzOjwfSMPlWbpZBiFpyjTuUUjioArbI=; b=FrSNnUmPFxDcsr
+	+ny8C5rUJf650UqtPwf5qGUnsMAA4wyrZUpjHPyxD0tuXUuBN1L5dQElDkYcm6rfZmLc1hlnGngRm
+	CyPK8bWzAQI3UIPj8vGUkdc81X5F1+PVDTs1rpLKOOCMyXrjmRsXDt89wSlmiipqkJFK8LqFzVrEO
+	bm2hfPhFmJAUbXUZ5X601xUFh6e8bG2R64mxplh4UlCmtpcn4wU1lXRud7bhne8QDGqOg/9sr24AO
+	Z8fzHgUgnfjuYHY7w39TwOlRK8N445BYEZbfZgXopQ3lfMymqbiZTnUL9PohSxJMxMTJGaNM9rGDx
+	0czUOUx2gaXtvHNLRJLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xDgDD-0000000GDT0-46fp;
-	Mon, 05 Oct 2026 10:46:27 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xDkqO-0000000GmJs-0R2g;
+	Mon, 05 Oct 2026 15:43:12 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xDgDC-0000000GDSg-1naC;
-	Mon, 05 Oct 2026 10:46:26 +0000
+	id 1xDkqM-0000000GmIq-018u
+	for linux-amlogic@lists.infradead.org;
+	Mon, 05 Oct 2026 15:43:11 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 314B740573;
-	Mon,  5 Oct 2026 10:46:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99F9D1F00893;
-	Mon,  5 Oct 2026 10:46:21 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 2F9C260A9D;
+	Mon,  5 Oct 2026 15:43:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F076F1F00899;
+	Mon,  5 Oct 2026 15:43:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1791197186;
-	bh=/d8LfWyLYdaFbqA2Zb7PPVzA3eT0mVZ68XMXAvLeC0g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Bcun3XAstKR5IyK7IU9Nfj+U15NzNKZwLn5GhGzfSHOfATfiIPYoSMvvmSUe6in/h
-	 lAbpP66YUjBUB6fAdtJhFkLYxx2LYFqfjhKwjTlpZQrgPmyNsoq0A1BuvskXwdrXDq
-	 oR9U1vkXfbQuxfNwMCAUx1R1BA2OIDcL+9ANhlnCW9qfS9Ih6UZnNDv+JUYEN9lCw1
-	 Lr9LQalvJRFbQdxbL86oUuKjJM/gn/TmSfk5cY36e72pDeP3g0/c/uxDOiJrTvS3Jv
-	 ltuxqcVz2cDdjvMGrCHYNvdMuXwo6egJ38MQLg4oW5pMWQ0LY6go7qxYpE/h/eeSDt
-	 lxzPLwmmYOmoA==
-Date: Mon, 5 Oct 2026 11:46:19 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Lucas Tanure <tanure@linux.com>
-Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@kernel.org>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [RFC PATCH 2/6] dt-bindings: net: amlogic,meson-dwmac: add
- amlogic,t7-dwmac
-Message-ID: <asN_-5zalENhkdVA@squawk>
-References: <20261004144046.391444-1-tanure@linux.com>
- <20261004144046.391444-3-tanure@linux.com>
+	s=k20260515; t=1791214988;
+	bh=Q1Vfx7NrxHZYYW5wQYD7P1oRNFAFAgPBJklq3qG+Db8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=QZ8VS3DlM0nG+JWTLc1DKFMUZcfUCJzceZk2H1N9tb5uP4m/xH6GS1DKTl/6q+0Xw
+	 Rsdc3xKVZnMgeMbB+iCO1HnRnhRX/zFf7H3cC2TJB/s5sPJ3Rs9qt4cefXKoKIIlsA
+	 ev7ZcFrqmwtmjyHnlVO7rDhJsuul/aI+oOoQtCVC6ifhFg9NtPOmtRFXAF7ZPDIQUC
+	 fJ4kQam4r4tRpn7mOJz45gDnkFVpEIc+KAbBlN32G1QlPJgClFjzeZM0RSh2pnCcXz
+	 Zd47isaxvvS92HMx2+x1A53HJFtmn4oPkimxfHPPxBK5MGqSU1pwNZ0XcA0hJ8UilY
+	 mYFyRGyTc4ZIA==
+From: Vinod Koul <vkoul@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+ Frank Li <Frank.Li@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Frank Li <Frank.Li@nxp.com>
+In-Reply-To: <20260903-amlogic-dma-v12-0-f769bc344056@amlogic.com>
+References: <20260903-amlogic-dma-v12-0-f769bc344056@amlogic.com>
+Subject: Re: [PATCH v12 0/3] Add Amlogic general DMA
+Message-Id: <179121498561.358863.6559293781501344071.b4-ty@kernel.org>
+Date: Mon, 05 Oct 2026 17:43:05 +0200
 MIME-Version: 1.0
-In-Reply-To: <20261004144046.391444-3-tanure@linux.com>
+X-Mailer: b4 0.14.3
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,170 +70,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============9075740942830003317=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
---===============9075740942830003317==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="JIUT8vrAkNrJ90Yp"
-Content-Disposition: inline
 
---JIUT8vrAkNrJ90Yp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, 03 Sep 2026 07:38:27 +0000, Xianwei Zhao wrote:
+> Add DMA driver and bindigns for the Amlogic SoCs.
+> 
+> 
 
-On Sun, Oct 04, 2026 at 03:40:42PM +0100, Lucas Tanure wrote:
-> The T7 has the same ethernet glue as the G12A, but the controller
-> reaches DRAM through a pipeline stage that the hardware design inserts
-> in the bus path. That stage has a gate of its own, which no other member
-> of the family has. Nothing else in Linux claims the gate, so it is
-> switched off as unused and the port can then no longer complete a
-> transfer.
->=20
-> Describing it means a fourth clock, and the fourth clock of the existing
-> list is the one driving the timing adjustment logic. The T7 applies the
-> RGMII RX delay through PRG_ETH1 and never enables that logic, so it has
-> no use for that clock. Give the T7 a list of its own with the pipeline
-> gate as the fourth entry, under the same name the SD/eMMC controllers of
-> this SoC already use for the equivalent stage on their own bus path. All
-> four entries are required, since the port cannot move data without any
-> of them.
->=20
-> The RX delay range is the one the G12A has, since it is the same
-> register field.
->=20
-> The compatible pairs the T7 name with the 5.10a Synopsys core the MAC
-> reports, and with the generic fallback.
->=20
-> Assisted-by: LLM
-> Signed-off-by: Lucas Tanure <tanure@linux.com>
-> ---
->  .../bindings/net/amlogic,meson-dwmac.yaml     | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.ya=
-ml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-> index 90ef79161ab1..96118b4d1560 100644
-> --- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-> @@ -23,6 +23,7 @@ select:
->            - amlogic,meson-gxbb-dwmac
->            - amlogic,meson-axg-dwmac
->            - amlogic,meson-g12a-dwmac
-> +          - amlogic,t7-dwmac
->    required:
->      - compatible
-> =20
-> @@ -57,6 +58,47 @@ allOf:
->              - const: clkin1
->              - const: timing-adjustment
-> =20
-> +  # The T7 applies the RGMII RX delay through PRG_ETH1 and never enables=
- the
-> +  # timing adjustment logic, so it has no timing-adjustment clock. What =
-it does
-> +  # need is the gate of the pipeline stage the controller reaches DRAM t=
-hrough.
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: amlogic,t7-dwmac
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: GMAC main clock
-> +            - description: First parent clock of the internal mux
-> +            - description: Second parent clock of the internal mux
-> +            - description:
-> +                clock of the pipeline stage inserted in the bus path bet=
-ween
-> +                the controller and the DRAM. Without it, the controller =
-cannot
-> +                complete DMA transfers.
+Applied, thanks!
 
-Have you checked that this actually works as a limiter to only 4 clocks?
-There's an additionalItems: true in the snps,dwmac.yaml that I don't
-know if will permit random additional items here.
+[1/3] dt-bindings: dma: Add Amlogic A9 SoC DMA
+      commit: 9d79e5efaf7b908fd3eea1a6afb34fc06dfa1d7e
+[2/3] dmaengine: amlogic: Add general DMA driver for A9
+      commit: b84b5197e344e2d378a9edf5d782b6fbddff8d06
+[3/3] MAINTAINERS: Add an entry for Amlogic DMA driver
+      commit: a5b2763df36b5c8ca0927f24ee97d9617e4eb6eb
 
-Cheers,
-Conor.
-
-> +
-> +        clock-names:
-> +          items:
-> +            - const: stmmaceth
-> +            - const: clkin0
-> +            - const: clkin1
-> +            - const: pipeline
-> +
-> +  # Delay definitions for Meson8b and newer (including T7)
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - amlogic,meson8b-dwmac
-> +              - amlogic,meson8m2-dwmac
-> +              - amlogic,meson-gxbb-dwmac
-> +              - amlogic,meson-axg-dwmac
-> +              - amlogic,meson-g12a-dwmac
-> +              - amlogic,t7-dwmac
-> +    then:
-> +      properties:
->          amlogic,tx-delay-ns:
->            enum: [0, 2, 4, 6]
->            default: 2
-> @@ -106,6 +148,7 @@ allOf:
->            contains:
->              enum:
->                - amlogic,meson-g12a-dwmac
-> +              - amlogic,t7-dwmac
->      then:
->        properties:
->          rx-internal-delay-ps:
-> @@ -143,6 +186,10 @@ properties:
->                - amlogic,meson6-dwmac
->                - amlogic,meson8m2-dwmac
->            - const: snps,dwmac
-> +      - items:
-> +          - const: amlogic,t7-dwmac
-> +          - const: snps,dwmac-5.10a
-> +          - const: snps,dwmac
-> =20
->    reg:
->      items:
-> --=20
-> 2.56.0
->=20
-
---JIUT8vrAkNrJ90Yp
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCasN/+wAKCRB4tDGHoIJi
-0oDyAP4+IQpTnFmpW2yrTw+Bsr5db2sboD7vx1z7xYwq24/bEgEAgceiW2kGrrqP
-RgLSuoYLpe5+tAKurXzLtYmc7bAuaQs=
-=bcjg
------END PGP SIGNATURE-----
-
---JIUT8vrAkNrJ90Yp--
+Best regards,
+-- 
+~Vinod
 
 
---===============9075740942830003317==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============9075740942830003317==--
-
