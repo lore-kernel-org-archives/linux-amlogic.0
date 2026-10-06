@@ -4,71 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7156CA5FFE
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Oct 2026 15:56:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 084F6CA5FFE
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Oct 2026 04:07:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=E8fJiJhc56OrstNaVGxEFthxzY+Xvxy0XQAo9jOl8pQ=; b=O63KqNnTIYPryw
-	duKagbW9eE5/3pBBOWHDPRAguFp3XbgOcvON0qNy0Q5URuwYR9XClJ8NlokjBZuytMAl97tzyxF5d
-	QV2TXDziYm4aQK59Wk98xdv0O2XH+mnTAXgMXOitXTcVKPo7RhdBX2PzQ+l+a5OyJLGxu0ykOD6IX
-	oW1jtgxab+FcU8aqSz+KOsWruDpcZCvmsz/0z64yJVbQ1+ReQ3BLYtaX7/wvAIvSTMXkb6MGnx6qE
-	LCi+RYCJ4XZojUrOvhLkgU7B1HecNB9M9yDbkGSftl77LSRJ9wu4kD2q/gBUQeY8EGOhwcg++eF+t
-	NsthPhxzn4mdXg7HIVoA==;
+	Content-Transfer-Encoding:Content-Type:Cc:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:To:Message-Id:MIME-Version:
+	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Wso1OEAtVm/TZzkqyb3eMsXbEraWJRZiJlTHDGBUf2M=; b=36p/y517xSthR6
+	saVlsBDzDW3OHMEga3RLI+1VDRFkwtoY1i9WxjSw4p2zuoe8bxh/CQaxpw6bgYroOlPpDDXH23KLT
+	7u4hTnuJmovuAenlp/yvq1dgzRCfA793fMoFkcYP34EV6huZlwog60N+6zHEO5XCh3WjW5KPPnabv
+	UpUURAJ+JzjJNxtOXDxbK6DVK3XxM4swrrcLXuUou2dZ9Hr9KoepDEN1ZFrn0/zHB/1rbWz+8w/JW
+	lYC8iiN5mfm+hwmZ3ODzbahlokhJPXjNQBD0n2Nkvb12Hlqgpf/C1Sv0l3WFV29aIQ0FGxGN1P3vT
+	WAa8yHyIR6v6Qstoqd9w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xDl3J-0000000GnqA-3Zvw;
-	Mon, 05 Oct 2026 15:56:33 +0000
-Received: from vps0.lunn.ch ([156.67.10.101])
+	id 1xDwSv-0000000005n-25wu;
+	Tue, 06 Oct 2026 04:07:45 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xDl3E-0000000GnpL-3636;
-	Mon, 05 Oct 2026 15:56:30 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=ozhBT/7/VytNYmqj1zwDdXmvQwSa3zBNWtW17/LMIWQ=; b=zTyc7cz1q7j3w9ngmTqOhART3N
-	rDVPcD7swj8UOMFW8VMtjNSo4ZTuRdPjrFArrsvpF4nhjAUhmdv0u2x69X24n09PVFNPcHuZqzr8b
-	B1RyomobMnaKwerkCSZvH3rQQZzRO8ByKM6tz95/sg1CvFMC1R/qfQrPCbDM6LsmNPuI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1xDl2p-0094h1-93; Mon, 05 Oct 2026 17:56:03 +0200
-Date: Mon, 5 Oct 2026 17:56:03 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Lucas Tanure <tanure@linux.com>
-Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@kernel.org>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [RFC PATCH 6/6] arm64: dts: amlogic: t7: khadas-vim4: enable the
- ethernet port
-Message-ID: <f282770c-2238-4a1b-b811-c0c483fa7681@lunn.ch>
-References: <20261004144046.391444-1-tanure@linux.com>
- <20261004144046.391444-7-tanure@linux.com>
+	id 1xDwSu-0000000005b-0wJ5;
+	Tue, 06 Oct 2026 04:07:44 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id A8F084171C;
+	Tue,  6 Oct 2026 04:07:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7C2F1C4AF0B;
+	Tue,  6 Oct 2026 04:07:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1791259663;
+	bh=IuRMhv2jXOqbgtx7SlN/iDd6kXreksPF+78GGWe3Akk=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=F8hHQHIWrM6FkMdjsU9ZukyWBirQYIxjm+BQuAKWOhTtsQsqm0UvMLJogTMaJKpeP
+	 lWIWrsJ3QkIQ+XNCymgvjEc5udI9zDDHpeTSDtsj9jd3xE7SBkG3GtRyCBQezo9fWd
+	 EwxFl054u4AxiUJ1qRm3u+NukYZvejoMaZnm0Fgj/Me0AdqM8pA5krEBr2YVsyPEhC
+	 AIFMYEkl4X8889NTXWOD8gu9wZ7oMXeRUDK6P3/5TJ2xaWnQ9H/OOpR68lqGH8xebd
+	 zhpuLKkkzMrSBi6gJBDt7HmQzg4hgwrHMrrufbEa6s/PiEXBHnsAoRY5vLKWoPiReo
+	 cByD0GQNF+NGw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 523B4CA5FFE;
+	Tue,  6 Oct 2026 04:07:43 +0000 (UTC)
+From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
+Date: Tue, 06 Oct 2026 07:07:41 +0300
+Subject: [PATCH] arm64: dts: amlogic: meson-sm1-odroid-hc4: add the fan
+ tachometer
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20261004144046.391444-7-tanure@linux.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261005_085629_196791_473E3CA9 
-X-CRM114-Status: GOOD (  12.29  )
+Message-Id: <20261006-hc4-fan-tach-v1-1-4e7cecf0b45b@iav.lv>
+X-B4-Tracking: v=1; b=H4sIAAx0xGoC/x3MMQqAMAxA0atIZgOpBBWvIg61RpulSisilN7d4
+ viG/zMkiSoJpiZDlEeTnqHCtA04b8MhqFs1dNT1hqhH7xh3G/C2ziMzObOOA1tiqMkVZdf3381
+ LKR+zsn5WXgAAAA==
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1206; i=iav@iav.lv;
+ h=from:subject:message-id;
+ bh=RH2EmPkCmqpHmBH5/Nm+KxSPkZ0CLeL9qNXnqDOExA8=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDFlHSnjrMq7GmxkqKHTf/7Dr0qH5Lo/TzkdMu9G00Ug3u
+ ef4ZKbzHaUsDGJcDLJiiiwTDmncylhy9a+/h/kDmDmsTCBDGLg4BWAi9w4w/JUwXLBOWb/u8/mI
+ RW1/1N66emlnWgYLWV532RWbHxQuVsnwP3ZCR5ru+QlMVm+KzjjLxl27KMF8McCl7snvo8uz1hv
+ c5AcA
+X-Developer-Key: i=iav@iav.lv; a=openpgp;
+ fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
+X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
+X-Original-From: Igor Velkov <iav@iav.lv>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,48 +79,53 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: iav@iav.lv
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Igor Velkov <iav@iav.lv>, linux-amlogic@lists.infradead.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-> +&ethmac {
-> +	status = "okay";
-> +	pinctrl-0 = <&eth_pins>, <&eth_rgmii_pins>;
-> +	pinctrl-names = "default";
-> +
-> +	/*
-> +	 * The RGMII clock delays are added by the MAC, so the PHY is
-> +	 * asked for the mode that adds none.
-> +	 */
-> +	phy-mode = "rgmii";
-> +	phy-handle = <&external_phy>;
-> +	amlogic,tx-delay-ns = <2>;
-> +	rx-internal-delay-ps = <2000>;
+From: Igor Velkov <iav@iav.lv>
 
-I agree with Maxime here, rgmii is wrong. We really need to understand
-what is going on here, especially since you are asking for the MAC to
-do the usual 2ns, nothing special.
+The fan connector routes the fan's tachometer output to GPIOX_7, but
+the fan node does not describe it. pwm-fan therefore registers no
+fan1_input, and the fan speed cannot be read.
 
-Is the PHY not actually inserting the correct delay? What does the
-datasheet say?
+Describe the line as the fan's interrupt.
 
-Also, we have one vendor property and one generic property. Can
-amlogic,tx-delay-ns be replaced by tx-internal-delay-ps? But that
-comes later, once we have determined these properties really must be
-used.
+Tested on ODROID-HC4: fan1_input reads 0 with the fan stopped and
+rises with the duty cycle, to about 4400 rpm at full speed.
 
-Humm, what is meson8b_init_rgmii_delays() doing?  What is
-phydev->interface in the PHY driver.
+Assisted-by: LLM
+Signed-off-by: Igor Velkov <iav@iav.lv>
+---
+ arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Please take a read on:
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
+index 5f15c2299509..261a42560a5e 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
+@@ -21,6 +21,8 @@ fan0: pwm-fan {
+ 		#cooling-cells = <2>;
+ 		cooling-levels = <0 120 170 220>;
+ 		pwms = <&pwm_cd 1 40000 0>;
++		interrupt-parent = <&gpio_intc>;
++		interrupts = <IRQID_GPIOX_7 IRQ_TYPE_EDGE_FALLING>;
+ 	};
+ 
+ 	leds {
 
-https://elixir.bootlin.com/linux/v6.15/source/Documentation/devicetree/bindings/net/ethernet-controller.yaml#L287
+---
+base-commit: b44e2be772f866985cafdf90355285069ea68495
+change-id: 20261006-hc4-fan-tach-440c1b874a04
 
-and figure out what is going on here, because at a first look, it
-seems broken.
+Best regards,
+-- 
+Igor Velkov <iav@iav.lv>
 
-      Andrew
+
 
 _______________________________________________
 linux-amlogic mailing list
