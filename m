@@ -4,64 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B9EACA6004
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Oct 2026 21:06:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F112CA6002
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Oct 2026 21:55:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4SrdqCdPH9ek+kUmlSZtfjAwdPHHuy3UYRWysFNSmeY=; b=Y3SlQuSo7lqTRA
-	DW6yve68fNC5drxrKUXLv694VeMAejFAo2ZQv/TUyqSWf5YWBWfmvpGx32VcZ2fywibT2+kOV9/1n
-	AcQQKJXW6QeaNtofhlI8SaJLZqp0wU6RPxWGTPqQP87fFmuOwtstIfX9K2/BKan142OjQWwU3I0S0
-	Dderrc3+hL+BK7RvHGQmH9YNikcZjqj0po/6B4mbtCGUrsjiak8o/Vx+nLKXDe7Bqqz+oTypo6hpp
-	NkDLIHwrXaYgUx1VqtpqBwFHOysDEXqLnzXXJLGE7Fsm3vy/iEIhBvOkzEl6yUDCwZllBzV82C7w+
-	KvETDbw0geUnsJ7kd1bw==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=zB/h+Y/4i0HXwd3cPtEad3h/WuZTx+MKW/7YvhLGWJg=; b=x0KJ/8gXsRkws3
+	7OUgAWVy+WPvXqOGh5QUEFGoWtebJD1GD4lm+DfS8nQ1XipHunEHyNz+2Tn23Is9B9DfKdvHAWQYm
+	hF755iOqBO7I2DJwWhnxZ2RjQaPMmcyEP56W3dyEpeSosIeeMPcToFBNsIe1vrXo9Yj2o5QIbsMqw
+	Wlun0102gooWbr5tdb7WBfxzwKkC0PfFuFA9rgm6qY7JLctIg78xHNKFDp7qUc5s+MuyqoTFv1h+p
+	uuOgjRmep3SDJgzsFNYHpgElj3MwQDUbQR/j5jiyIISyiX2PTddSWu1sW93GkzCpWwSq9INy9JOL6
+	ouR+QtYRH417bZsJu1DQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xEYqV-00000003Ah4-3LlS;
-	Wed, 07 Oct 2026 21:06:39 +0000
-Received: from sender-op-o17.zoho.eu ([136.143.169.17])
+	id 1xEZbu-00000003Dnn-1nMo;
+	Wed, 07 Oct 2026 21:55:38 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xEYqS-00000003Afp-46D0;
-	Wed, 07 Oct 2026 21:06:38 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1791407187; cv=none; 
-	d=zohomail.eu; s=zohoarc; 
-	b=YX7Vu4/jgW15llxosNuC6hNEUR5ce4IaDj3sXJPihNyzrxd3E4OWgVCQYOCgNJt3ywLue+rW7Uqpp/9ALnJ4jgLE2kNWNw05aD+c1RMoZZiX7VJ1Ug7ACvAn9JdkI5L7Sg4NMbRfo1xMKe5moG36f2vEvEOnP/2uE36fNHWSIlM=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
-	t=1791407187; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=4IVYMqtKHxu96uoD6/LMPh8YyKZYkylDuLrOfkixS8w=; 
-	b=FmIY7qZQXxnzh/JY5D5XzcggDmBUxokqseenxNoXKkERDGKoeKoSjfYVcm8EUW8zTQhmXhYMd3sBOspTYDKM+OGPW9BTjyidDJC15cc5rk6qIwXO+sfCuyIIxq21ECZ9z7z9Sf+65IdhzTvoSiOZR68Zk6ZKczdvQA+4Mq4T1OI=
-ARC-Authentication-Results: i=1; mx.zohomail.eu;
-	dkim=pass  header.i=iav.lv;
-	spf=pass  smtp.mailfrom=iav@iav.lv;
-	dmarc=pass header.from=<iav@iav.lv>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1791407187;
-	s=zoho; d=iav.lv; i=iav@iav.lv;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:In-Reply-To:Date:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=4IVYMqtKHxu96uoD6/LMPh8YyKZYkylDuLrOfkixS8w=;
-	b=B76ge9EWdGLH2Ptmuz/xdysPq9CJEHrkOfEIv5YQBh3GDMaBNqxgz/ZxGuuFcdCP
-	bMudmmXQtwMMmgTp3tE1wawTeSXjSQsdGywAPhc7GZSBQ4xAZhDFvtGNlSx190egYo0
-	GB1osx1W/XG1qINXvRUMncKowIGkLgWNuJn5kLiM=
-Received: by smtp.zoho.eu with SMTPS id 1791407184521227.33749622375103;
-	Wed, 7 Oct 2026 23:06:24 +0200 (CEST)
-From: Igor Velkov <iav@iav.lv>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH] arm64: dts: amlogic: meson-sm1-odroid: let the SD card be
- powered down
-In-Reply-To: <179100548183.3372253.2014593916926884551@iav.lv>
-References: <20261003-hc4-sd-power-off-v1-1-f7ffba01b348@iav.lv>
- <179100548183.3372253.2014593916926884551@iav.lv>
-Date: Thu, 08 Oct 2026 00:05:50 +0300
-Message-ID: <179140715034.293470.4459182430175564610@iav.lv>
+	id 1xEZbs-00000003DnV-3Z02;
+	Wed, 07 Oct 2026 21:55:36 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 3B70843D46;
+	Wed,  7 Oct 2026 21:55:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0778DC2BCB9;
+	Wed,  7 Oct 2026 21:55:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1791410136;
+	bh=NLC2QIUzt+qhz7otktUSqYZ4ASAjZabeK/4gxWnvzW8=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=qYfSCFNvtjLOgWVLTbeQxM4/i3wFLl2umQ2ZqgnZWwHoLHLQKI3lcLtQh2mIlQKoN
+	 oTohF24r79qoVI8iaIf4QLqdKche1gr9QUI6k+GzPazdVOMC0WxY1+ToNF0c8HAKvs
+	 nhVzNUmwiqd2exckMTH2GORSXxYra928rEksphLZ6DnQL21vjlJYKju6HNym6RbiXe
+	 +6Aku001AfkGfwe6QnRX1PWHLd7hgDHy1pB7gCINIpqM5uSQHVCbyaNqbYxBmiWE37
+	 lkKqRZVMSwTehWPGWwd/0rzxbHPgYwAs9E+mAS06r3DtPGiHEOlBQmgZJRLgChbQLD
+	 dTG19IoEn7i3Q==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D4936CA6002;
+	Wed,  7 Oct 2026 21:55:35 +0000 (UTC)
+From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
+Date: Thu, 08 Oct 2026 00:55:29 +0300
+Subject: [PATCH] irqchip/meson-gpio: Allow the GPIO interrupts to wake the
+ system
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261007_140637_299051_0C3AE4C7 
-X-CRM114-Status: UNSURE (   6.82  )
-X-CRM114-Notice: Please train this message.
+Message-Id: <20261008-meson-gpio-wake-v1-1-b0af1598d469@iav.lv>
+X-B4-Tracking: v=1; b=H4sIANG/xmoC/x3MQQqAIBBA0avIrBswo4iuEi3GGmuIVBQqiO6et
+ HyL/x/InIQzDOqBxKdkCb6grhTMG/mVUZZiMNp0tdY9HpyDxzVKwIt2RtdYR421hluCUsXETu7
+ /OE7v+wFOugp4YQAAAA==
+To: Thomas Gleixner <tglx@kernel.org>
+Cc: Radu Rendec <radu@rendec.net>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Igor Velkov <iav@iav.lv>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1395; i=iav@iav.lv;
+ h=from:subject:message-id;
+ bh=HcsigEkp72ihfLJvHs4V//Nip0TbJcUATNxrvhUqbWw=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDFnH9l+apeY931DihQ7Xu415qeIblhlLWrwI2dnDb/OFV
+ UZe+F98RykLgxgXg6yYIsuEQxq3MpZc/evvYf4AZg4rE8gQBi5OAZhIVArDf4fUj2pHdd156xuD
+ Lyq5Xqv+lalXu0faTC08KDis/PbiRwx/Rc+5bVc/wa3b29O2wi5/hVP/afYFC+K+ZN3uvCgSOiG
+ BHQA=
+X-Developer-Key: i=iav@iav.lv; a=openpgp;
+ fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
+X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
+X-Original-From: Igor Velkov <iav@iav.lv>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,27 +83,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, linux-mmc@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>, Eric Neulight <Eric.Neulight@linuxdev.slmail.me>, linux-kernel@vger.kernel.org, Igor Velkov <iav@iav.lv>, Dongjin Kim <tobetter@gmail.com>, linux-amlogic@lists.infradead.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
+Reply-To: iav@iav.lv
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Follow-up to the dropped patch.
+From: Igor Velkov <iav@iav.lv>
 
-An out-of-tree restart handler [1] power-cycles the card: it drives
-TFLASH_VDD and both tf_io lines low for 100 ms, then releases them and
-the card is powered again. With the SPI flash erased, ODROID-HC4 boots
-from SD after a warm reboot 5/5 on 6.18, 7.2 and 7.3-rc5. Without the
-handler the boot stalls in the ROM or in U-Boot.
+meson_gpio_irq_chip has neither .irq_set_wake nor IRQCHIP_SKIP_SET_WAKE,
+so enable_irq_wake() fails with -ENXIO for every interrupt routed through
+it. Such an interrupt cannot wake the system from suspend.
 
-Where should this live upstream: the mmc core on restart, meson-gx-mmc,
-or a board driver like this one?
+Set IRQCHIP_SKIP_SET_WAKE, like the other hierarchical irqchips with a
+GIC parent. The GIC sets the same flag, so irq_chip_set_wake_parent()
+would end there anyway.
 
-[1] https://github.com/armbian/build/blob/main/patch/kernel/archive/meson64-7.3/meson64-reboot-02-port-to-gpiod.patch
+Tested on ODROID-HC4 with the PCF8563 alarm interrupt routed through this
+controller: the alarm wakes the board from s2idle 4/4, and 0/1 without
+this change.
 
---
-Igor Velkov
+Assisted-by: LLM
+Signed-off-by: Igor Velkov <iav@iav.lv>
+---
+ drivers/irqchip/irq-meson-gpio.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
+index 91a9c337fe6d..e0329ef5e4a2 100644
+--- a/drivers/irqchip/irq-meson-gpio.c
++++ b/drivers/irqchip/irq-meson-gpio.c
+@@ -538,7 +538,7 @@ static struct irq_chip meson_gpio_irq_chip = {
+ #ifdef CONFIG_SMP
+ 	.irq_set_affinity	= irq_chip_set_affinity_parent,
+ #endif
+-	.flags			= IRQCHIP_SET_TYPE_MASKED,
++	.flags			= IRQCHIP_SET_TYPE_MASKED | IRQCHIP_SKIP_SET_WAKE,
+ };
+ 
+ static int meson_gpio_irq_domain_translate(struct irq_domain *domain,
+
+---
+base-commit: a90ee4305c4a5df72c11b31dacfdc76e00fcf78a
+change-id: 20261008-meson-gpio-wake-f3bfa3bb2e5a
+
+Best regards,
+-- 
+Igor Velkov <iav@iav.lv>
+
+
 
 _______________________________________________
 linux-amlogic mailing list
