@@ -4,74 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B067CA6009
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Oct 2026 21:55:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28A28CA6002
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Oct 2026 22:04:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
-	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=zB/h+Y/4i0HXwd3cPtEad3h/WuZTx+MKW/7YvhLGWJg=; b=lbRC3CAexTzCNk
-	y43qdqw6DRIJ4N2L36RgDzPxw7K7yZolLhI6k/GetgQ+dFaQZ4+eNTQtpZmka0MnAKq3JRwFMaa98
-	CdKcAkqXfuYSYGTz+6rWlbWioo4XxSGX/9JIvnBO5LTF2eJlnWsZ0ffqknzuOMtQtybUmmf4cPuCU
-	Bipib5lM90z1nsi2EqhIeywjtD79YEL7jXCTZSDKijB10P9G3qewZrdxnxJXchMdCd7wYirDqupJ8
-	CaFDCvdbKcxjPcIK8yVjhwX2Urz4DkXDLAp2MlEmDlRd1beVxaSKOUrDHNensUGqvVznhVzAvOKAX
-	F8TlpCqLtIgMrKgRgtIQ==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:References:
+	In-Reply-To:Cc:To:Subject:From:Message-ID:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=F+/DosiIN5UOO+rbkt5OZug42/ymGKPVzHDlEGqVpm8=; b=23cJtovWLWNiGy
+	NrMDop8Qe3TE72le5/UpGdeSpn8mBJImsGLYCiTi/dUdszpTPcKubBoSM6YQ0YobCQZS0IBh6t4lU
+	qHWWeIw9GQBefQVRzNG0WcrmYctLox20GAhARjPd+HZk7ztg7alTgtYKkWQFpEuP8iilVjSSTaDH1
+	OcGWDGn6VsNs4oESepwE6L3MIzFvdQxwipeDCFP428yug40YL2TXbBLuv8uN52a0MBTQfOxIm/glK
+	JJ6gaM2ohZgKya0OhGkjNkpC3w6zdFjSvMPz9fzAYh+aKvVE4m0/s5Do2rBqrLC2NcpmkwPeSZHAd
+	Ua6cPPPFxvUFXIIspgKg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xEZbv-00000003Dnw-2Toi;
-	Wed, 07 Oct 2026 21:55:39 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xEZkX-00000003ELz-0eck;
+	Wed, 07 Oct 2026 22:04:33 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xEZbt-00000003Dne-3vow;
-	Wed, 07 Oct 2026 21:55:37 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5582941146;
-	Wed,  7 Oct 2026 21:55:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 37A3DC2BCFB;
-	Wed,  7 Oct 2026 21:55:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1791410137;
-	bh=NLC2QIUzt+qhz7otktUSqYZ4ASAjZabeK/4gxWnvzW8=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=sJI4cK+JHp2KDLkdWbxoCn9biWb4HZqSufQg/cYFFE6JRf74b3cFnyBeZYZ225xTg
-	 i9YVhzcfZD2yoMJb3h7rJ/jp6pzoHqHTNfunqR7gw/qKrRAGNqMVrIPhfMcbOX7VGB
-	 LYEtHrqW3JX85EDhcGRuR7gylYjbf3MLpCtk7TZVf6HvwEF9e9U9D7J9zxBa6hdjns
-	 w7uOxUmIN4iqXsTMhZOVkcp6Jbku2Fy/RMG420RBgK/wkfJYkQ70vVq8furKpcu8wi
-	 BAkO9aGY66vqgu7b/1ilEoQQfeS4EAfkGhzSTGAsg2bIomLdOzY4I+4npAfVX6DOux
-	 u1ZKREcFHLySg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2737BCA6009;
-	Wed,  7 Oct 2026 21:55:37 +0000 (UTC)
-From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Thu, 08 Oct 2026 00:55:32 +0300
-Subject: [PATCH] irqchip/meson-gpio: Allow the GPIO interrupts to wake the
- system
-MIME-Version: 1.0
-Message-Id: <20261008-meson-gpio-wake-v1-1-fec8a1f5d830@iav.lv>
-X-B4-Tracking: v=1; b=H4sIANO/xmoC/x3MQQqAIBBA0avIrBswo4iuEi3GGmuIVBQqiO6et
- HyL/x/InIQzDOqBxKdkCb6grhTMG/mVUZZiMNp0tdY9HpyDxzVKwIt2RtdYR421hluCUsXETu7
- /OE7v+wFOugp4YQAAAA==
-To: Thomas Gleixner <tglx@kernel.org>
-Cc: Radu Rendec <radu@rendec.net>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Igor Velkov <iav@iav.lv>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1395; i=iav@iav.lv;
- h=from:subject:message-id;
- bh=HcsigEkp72ihfLJvHs4V//Nip0TbJcUATNxrvhUqbWw=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDFnH9l/pZ85tm2nLyu50TOLVtKnaz3tEPY70ltbM+qZpI
- G+b73y8o5SFQYyLQVZMkWXCIY1bGUuu/vX3MH8AM4eVCWQIAxenAEzkYCjDf/d/t1oNFjL82nnr
- j23GvtndbQwHt6mkNZfs/CZ3MPv/xBcM/4wmNt1m03hw8uOFju43ef4LLzStXt9Qv1fLaO+EppJ
- psswA
-X-Developer-Key: i=iav@iav.lv; a=openpgp;
- fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
-X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
-X-Original-From: Igor Velkov <iav@iav.lv>
+	id 1xEZkV-00000003ELl-1YVV
+	for linux-amlogic@lists.infradead.org;
+	Wed, 07 Oct 2026 22:04:31 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 807B960A6D;
+	Wed,  7 Oct 2026 22:04:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AF4A1F000FF;
+	Wed,  7 Oct 2026 22:04:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1791410670;
+	bh=yI7nQnMjEbfJQs/jv1OqMyoTBJx/JTdne94uTy4f1R4=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=kvaYBk44ySy2QjwaCgUtX0F9cysYIulVzsXslM2o6se08zkHraOBKPpSyZDO+ahoB
+	 An3V2v8w42LyiknEGNG7qs9ra9r0oofx7nvlTG7eRLIMd6E93NkeKNkpUTBOwzJHCC
+	 f9B6QUdEvBNCpf91mLbPCKnfNMKyTmmWeuOBRj1InXYnYCCaSq8dw4ex7b4pU7qI2C
+	 g2Twpjh6G8iYDyZpwZkrgLKSwmmY6AqWC5nn+6kA6kew4QbsfugKp7rMq6LIXbqN8Z
+	 YbCB6YLq8mpkUdw43nSThGGLi4J/P88FbXeMMj+z4UidAkmOtcW7sYDkOuI2X6qosu
+	 cy65on3fAjb3A==
+Message-ID: <sashiko-outbox-163402@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] irqchip/meson-gpio: Allow the GPIO interrupts to wake
+ the system
+To: "Igor Velkov" <iav@iav.lv>
+Cc: neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
+In-Reply-To: <20261008-meson-gpio-wake-v1-1-fec8a1f5d830@iav.lv>
+References: <20261008-meson-gpio-wake-v1-1-fec8a1f5d830@iav.lv>
+Date: Wed, 07 Oct 2026 22:04:29 +0000
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,57 +62,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: iav@iav.lv
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Igor Velkov <iav@iav.lv>
-
-meson_gpio_irq_chip has neither .irq_set_wake nor IRQCHIP_SKIP_SET_WAKE,
-so enable_irq_wake() fails with -ENXIO for every interrupt routed through
-it. Such an interrupt cannot wake the system from suspend.
-
-Set IRQCHIP_SKIP_SET_WAKE, like the other hierarchical irqchips with a
-GIC parent. The GIC sets the same flag, so irq_chip_set_wake_parent()
-would end there anyway.
-
-Tested on ODROID-HC4 with the PCF8563 alarm interrupt routed through this
-controller: the alarm wakes the board from s2idle 4/4, and 0/1 without
-this change.
-
-Assisted-by: LLM
-Signed-off-by: Igor Velkov <iav@iav.lv>
----
- drivers/irqchip/irq-meson-gpio.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
-index 91a9c337fe6d..e0329ef5e4a2 100644
---- a/drivers/irqchip/irq-meson-gpio.c
-+++ b/drivers/irqchip/irq-meson-gpio.c
-@@ -538,7 +538,7 @@ static struct irq_chip meson_gpio_irq_chip = {
- #ifdef CONFIG_SMP
- 	.irq_set_affinity	= irq_chip_set_affinity_parent,
- #endif
--	.flags			= IRQCHIP_SET_TYPE_MASKED,
-+	.flags			= IRQCHIP_SET_TYPE_MASKED | IRQCHIP_SKIP_SET_WAKE,
- };
- 
- static int meson_gpio_irq_domain_translate(struct irq_domain *domain,
-
----
-base-commit: a90ee4305c4a5df72c11b31dacfdc76e00fcf78a
-change-id: 20261008-meson-gpio-wake-f3bfa3bb2e5a
-
-Best regards,
--- 
-Igor Velkov <iav@iav.lv>
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW01lZGl1bV0gaXJxY2hpcDogbWVz
+b24tZ3Bpbzogc3B1cmlvdXMgd2FrZXVwcyBkdWUgdG8gbWlzc2luZyBJUlFDSElQX01BU0tfT05f
+U1VTUEVORAotLQoKY29tbWl0IDM5Y2U2OTUxODhmMDA2MTdkMzU5N2ZkMjU2YzEwM2E0ZGY3NDI4
+ZjcKQXV0aG9yOiBJZ29yIFZlbGtvdiA8aWF2QGlhdi5sdj4KCmlycWNoaXAvbWVzb24tZ3Bpbzog
+QWxsb3cgdGhlIEdQSU8gaW50ZXJydXB0cyB0byB3YWtlIHRoZSBzeXN0ZW0KClRoaXMgY29tbWl0
+IGFkZHMgdGhlIElSUUNISVBfU0tJUF9TRVRfV0FLRSBmbGFnIHRvIHRoZSBtZXNvbl9ncGlvX2ly
+cV9jaGlwCmRlZmluaXRpb24uIFRoaXMgcHJldmVudHMgZW5hYmxlX2lycV93YWtlKCkgZnJvbSBm
+YWlsaW5nIGFuZCBhbGxvd3MgR1BJTwppbnRlcnJ1cHRzIHJvdXRlZCB0aHJvdWdoIHRoaXMgY29u
+dHJvbGxlciB0byB3YWtlIHRoZSBzeXN0ZW0gZnJvbSBzdXNwZW5kLgoKPiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9pcnFjaGlwL2lycS1tZXNvbi1ncGlvLmMgYi9kcml2ZXJzL2lycWNoaXAvaXJxLW1l
+c29uLWdwaW8uYwo+IGluZGV4IDkxYTljMzM3ZmU2ZDkuLmUwMzI5ZWY1ZTRhMjEgMTAwNjQ0Cj4g
+LS0tIGEvZHJpdmVycy9pcnFjaGlwL2lycS1tZXNvbi1ncGlvLmMKPiArKysgYi9kcml2ZXJzL2ly
+cWNoaXAvaXJxLW1lc29uLWdwaW8uYwo+IEBAIC01MzgsNyArNTM4LDcgQEAgc3RhdGljIHN0cnVj
+dCBpcnFfY2hpcCBtZXNvbl9ncGlvX2lycV9jaGlwID0gewo+ICAjaWZkZWYgQ09ORklHX1NNUAo+
+ICAJLmlycV9zZXRfYWZmaW5pdHkJPSBpcnFfY2hpcF9zZXRfYWZmaW5pdHlfcGFyZW50LAo+ICAj
+ZW5kaWYKPiAtCS5mbGFncwkJCT0gSVJRQ0hJUF9TRVRfVFlQRV9NQVNLRUQsCj4gKwkuZmxhZ3MJ
+CQk9IElSUUNISVBfU0VUX1RZUEVfTUFTS0VEIHwgSVJRQ0hJUF9TS0lQX1NFVF9XQUtFLAoKW1Nl
+dmVyaXR5OiBNZWRpdW1dCldpbGwgdGhpcyBjYXVzZSBzcHVyaW91cyB3YWtldXBzIGZyb20gbm9u
+LXdha2V1cCBHUElPIGludGVycnVwdHMgZHVyaW5nCnN5c3RlbSBzdXNwZW5kPwoKRHVyaW5nIHN1
+c3BlbmQsIHN1c3BlbmRfZGV2aWNlX2lycXMoKSBsYXppbHkgZGlzYWJsZXMgbm9uLXdha2V1cCBp
+bnRlcnJ1cHRzCmJ5IHNldHRpbmcgSVJRRF9JUlFfRElTQUJMRUQsIGJ1dCB3aXRob3V0IGNhbGxp
+bmcgLmlycV9tYXNrKCkgYmVjYXVzZSB0aGUKcGFyZW50IEdJQyBsYWNrcyBhbiAuaXJxX2Rpc2Fi
+bGUoKSBjYWxsYmFjay4gVGhlIGNvcmUgSVJRIHBvd2VyIG1hbmFnZW1lbnQKY29kZSBvbmx5IHBo
+eXNpY2FsbHkgbWFza3MgdGhlIGludGVycnVwdCBpZiB0aGUgdG9wLWxldmVsIGlycV9jaGlwIHBy
+b3ZpZGVzCnRoZSBJUlFDSElQX01BU0tfT05fU1VTUEVORCBmbGFnLgoKU2luY2UgbWVzb25fZ3Bp
+b19pcnFfY2hpcCBkb2VzIG5vdCBzZXQgSVJRQ0hJUF9NQVNLX09OX1NVU1BFTkQsIG5vbi13YWtl
+dXAKR1BJTyBpbnRlcnJ1cHRzIG1pZ2h0IHJlbWFpbiB1bm1hc2tlZCBhdCB0aGUgR0lDIGxldmVs
+LiBJZiBhIG5vbi13YWtldXAKaW50ZXJydXB0IHRyaWdnZXJzIHdoaWxlIHRoZSBzeXN0ZW0gaXMg
+YXNsZWVwLCB0aGUgR0lDIHdpbGwgZm9yd2FyZCBpdCB0bwp0aGUgQ1BVLCBwb3RlbnRpYWxseSBs
+ZWFkaW5nIHRvIGFuIHVuaW50ZW5kZWQgd2FrZXVwIGFuZCBwb3dlciBkcmFpbi4KCkRvZXMgdGhp
+cyBmbGFnIGRlZmluaXRpb24gbmVlZCB0byBpbmNsdWRlIElSUUNISVBfTUFTS19PTl9TVVNQRU5E
+IGFzIHdlbGw/Cgo+ICB9Owo+ICAKPiAgc3RhdGljIGludCBtZXNvbl9ncGlvX2lycV9kb21haW5f
+dHJhbnNsYXRlKHN0cnVjdCBpcnFfZG9tYWluICpkb21haW4sCgotLSAKU2FzaGlrbyBBSSByZXZp
+ZXcgwrcgaHR0cHM6Ly9zYXNoaWtvLmRldi8jL3BhdGNoc2V0LzIwMjYxMDA4LW1lc29uLWdwaW8t
+d2FrZS12MS0xLWZlYzhhMWY1ZDgzMEBpYXYubHY/cGFydD0xCgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdAps
+aW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
