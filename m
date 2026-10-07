@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F112CA6002
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B067CA6009
 	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Oct 2026 21:55:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,45 +12,45 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
 	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=zB/h+Y/4i0HXwd3cPtEad3h/WuZTx+MKW/7YvhLGWJg=; b=x0KJ/8gXsRkws3
-	7OUgAWVy+WPvXqOGh5QUEFGoWtebJD1GD4lm+DfS8nQ1XipHunEHyNz+2Tn23Is9B9DfKdvHAWQYm
-	hF755iOqBO7I2DJwWhnxZ2RjQaPMmcyEP56W3dyEpeSosIeeMPcToFBNsIe1vrXo9Yj2o5QIbsMqw
-	Wlun0102gooWbr5tdb7WBfxzwKkC0PfFuFA9rgm6qY7JLctIg78xHNKFDp7qUc5s+MuyqoTFv1h+p
-	uuOgjRmep3SDJgzsFNYHpgElj3MwQDUbQR/j5jiyIISyiX2PTddSWu1sW93GkzCpWwSq9INy9JOL6
-	ouR+QtYRH417bZsJu1DQ==;
+	List-Owner; bh=zB/h+Y/4i0HXwd3cPtEad3h/WuZTx+MKW/7YvhLGWJg=; b=lbRC3CAexTzCNk
+	y43qdqw6DRIJ4N2L36RgDzPxw7K7yZolLhI6k/GetgQ+dFaQZ4+eNTQtpZmka0MnAKq3JRwFMaa98
+	CdKcAkqXfuYSYGTz+6rWlbWioo4XxSGX/9JIvnBO5LTF2eJlnWsZ0ffqknzuOMtQtybUmmf4cPuCU
+	Bipib5lM90z1nsi2EqhIeywjtD79YEL7jXCTZSDKijB10P9G3qewZrdxnxJXchMdCd7wYirDqupJ8
+	CaFDCvdbKcxjPcIK8yVjhwX2Urz4DkXDLAp2MlEmDlRd1beVxaSKOUrDHNensUGqvVznhVzAvOKAX
+	F8TlpCqLtIgMrKgRgtIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xEZbu-00000003Dnn-1nMo;
-	Wed, 07 Oct 2026 21:55:38 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xEZbv-00000003Dnw-2Toi;
+	Wed, 07 Oct 2026 21:55:39 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xEZbs-00000003DnV-3Z02;
-	Wed, 07 Oct 2026 21:55:36 +0000
+	id 1xEZbt-00000003Dne-3vow;
+	Wed, 07 Oct 2026 21:55:37 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3B70843D46;
-	Wed,  7 Oct 2026 21:55:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 0778DC2BCB9;
-	Wed,  7 Oct 2026 21:55:36 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 5582941146;
+	Wed,  7 Oct 2026 21:55:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 37A3DC2BCFB;
+	Wed,  7 Oct 2026 21:55:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1791410136;
+	s=k20201202; t=1791410137;
 	bh=NLC2QIUzt+qhz7otktUSqYZ4ASAjZabeK/4gxWnvzW8=;
 	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=qYfSCFNvtjLOgWVLTbeQxM4/i3wFLl2umQ2ZqgnZWwHoLHLQKI3lcLtQh2mIlQKoN
-	 oTohF24r79qoVI8iaIf4QLqdKche1gr9QUI6k+GzPazdVOMC0WxY1+ToNF0c8HAKvs
-	 nhVzNUmwiqd2exckMTH2GORSXxYra928rEksphLZ6DnQL21vjlJYKju6HNym6RbiXe
-	 +6Aku001AfkGfwe6QnRX1PWHLd7hgDHy1pB7gCINIpqM5uSQHVCbyaNqbYxBmiWE37
-	 lkKqRZVMSwTehWPGWwd/0rzxbHPgYwAs9E+mAS06r3DtPGiHEOlBQmgZJRLgChbQLD
-	 dTG19IoEn7i3Q==
+	b=sJI4cK+JHp2KDLkdWbxoCn9biWb4HZqSufQg/cYFFE6JRf74b3cFnyBeZYZ225xTg
+	 i9YVhzcfZD2yoMJb3h7rJ/jp6pzoHqHTNfunqR7gw/qKrRAGNqMVrIPhfMcbOX7VGB
+	 LYEtHrqW3JX85EDhcGRuR7gylYjbf3MLpCtk7TZVf6HvwEF9e9U9D7J9zxBa6hdjns
+	 w7uOxUmIN4iqXsTMhZOVkcp6Jbku2Fy/RMG420RBgK/wkfJYkQ70vVq8furKpcu8wi
+	 BAkO9aGY66vqgu7b/1ilEoQQfeS4EAfkGhzSTGAsg2bIomLdOzY4I+4npAfVX6DOux
+	 u1ZKREcFHLySg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D4936CA6002;
-	Wed,  7 Oct 2026 21:55:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2737BCA6009;
+	Wed,  7 Oct 2026 21:55:37 +0000 (UTC)
 From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Thu, 08 Oct 2026 00:55:29 +0300
+Date: Thu, 08 Oct 2026 00:55:32 +0300
 Subject: [PATCH] irqchip/meson-gpio: Allow the GPIO interrupts to wake the
  system
 MIME-Version: 1.0
-Message-Id: <20261008-meson-gpio-wake-v1-1-b0af1598d469@iav.lv>
-X-B4-Tracking: v=1; b=H4sIANG/xmoC/x3MQQqAIBBA0avIrBswo4iuEi3GGmuIVBQqiO6et
+Message-Id: <20261008-meson-gpio-wake-v1-1-fec8a1f5d830@iav.lv>
+X-B4-Tracking: v=1; b=H4sIANO/xmoC/x3MQQqAIBBA0avIrBswo4iuEi3GGmuIVBQqiO6et
  HyL/x/InIQzDOqBxKdkCb6grhTMG/mVUZZiMNp0tdY9HpyDxzVKwIt2RtdYR421hluCUsXETu7
  /OE7v+wFOugp4YQAAAA==
 To: Thomas Gleixner <tglx@kernel.org>
@@ -64,10 +64,10 @@ X-Mailer: b4 0.13.0
 X-Developer-Signature: v=1; a=openpgp-sha256; l=1395; i=iav@iav.lv;
  h=from:subject:message-id;
  bh=HcsigEkp72ihfLJvHs4V//Nip0TbJcUATNxrvhUqbWw=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDFnH9l+apeY931DihQ7Xu415qeIblhlLWrwI2dnDb/OFV
- UZe+F98RykLgxgXg6yYIsuEQxq3MpZc/evvYf4AZg4rE8gQBi5OAZhIVArDf4fUj2pHdd156xuD
- Lyq5Xqv+lalXu0faTC08KDis/PbiRwx/Rc+5bVc/wa3b29O2wi5/hVP/afYFC+K+ZN3uvCgSOiG
- BHQA=
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDFnH9l/pZ85tm2nLyu50TOLVtKnaz3tEPY70ltbM+qZpI
+ G+b73y8o5SFQYyLQVZMkWXCIY1bGUuu/vX3MH8AM4eVCWQIAxenAEzkYCjDf/d/t1oNFjL82nnr
+ j23GvtndbQwHt6mkNZfs/CZ3MPv/xBcM/4wmNt1m03hw8uOFju43ef4LLzStXt9Qv1fLaO+EppJ
+ psswA
 X-Developer-Key: i=iav@iav.lv; a=openpgp;
  fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
 X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
