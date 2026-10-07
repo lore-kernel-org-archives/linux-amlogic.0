@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7F7ECA5FFC
-	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Oct 2026 13:01:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6942CA5FFC
+	for <linux-amlogic@archiver.kernel.org>; Wed,  7 Oct 2026 13:06:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Tv1l22jW2UaoI7Yq23O/YXn6+c/EGLlOSVFchaEh0n8=; b=NdFNlD4xowFnHS
-	LahougUzfiimrXgnN5Okf+FqrCXsATskzCFKGpT+co7AioxjY9NCuq2jCs8E1dzaNt3y5ZDPDnxf1
-	TIFVp5Z/Uq3SZv6bO/x156DTQG7g212swVhqfXN4He4gEChMe/HkpOp51coFXHDtThViTq8V0S1eM
-	Cix4WOJEV0VyDz2OGl5YARvvMhwRewq1vvzJDhmCCz3M0M+spKj38Y6V1ekkKBO0xKtt1DmBHdfHg
-	2CqSiQEwkqRAOdxBkhrSQFwdopesOO+fOkj/tCbLAj/3lnCAYXdxgVP+v9t2vMQ4PsaDpu/xlF5RQ
-	hc7JvXpBGQZHagEQclqg==;
+	List-Owner; bh=IyCjhzVbmZ+dPDbOi6pm2HqtF0snMyEAlkBSJudDla8=; b=wf0Taa+0Ga+ccE
+	B5jnSOVzw1KGzi2G61oE7xyjYm/tJOoDBE/JDaASedyYSVbvXGzSMjEc41vas29Y8FZVU5wOnHIkU
+	dJAOKN5aRwDvJ/JomyHr9ddYxeW97inN1pUsXOTsuHB7w1sA+3H8ewN+NkgRy5L1+LtcDdRQPn56m
+	yCuSVLQXTRlTgJ3K0j2T/4U64FeDbdAbpmEnu/GMjkfhRu8uVIiwSERYYDyTQgchZdAugxElDWDJ3
+	vVwOKT/v+KCatjTJetu2GE8RGWJvgp+33XBLfh+fxX7CrugLOvdRMqB8NWYfd+P9npl+siaNIcr3H
+	f4jkedFZZiAiNEtymD8g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xERHI-00000002Ujg-0ydh;
-	Wed, 07 Oct 2026 13:01:48 +0000
+	id 1xERLc-00000002VKE-3MZ6;
+	Wed, 07 Oct 2026 13:06:16 +0000
 Received: from vps0.lunn.ch ([156.67.10.101])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xERHF-00000002Uiq-16qD;
-	Wed, 07 Oct 2026 13:01:46 +0000
+	id 1xERLa-00000002VIa-07wk;
+	Wed, 07 Oct 2026 13:06:15 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=6YP3nrzHNBPV4laVHmTWlcL0xqJ7r23M87T5OozmfTM=; b=zU5ZvP25ND/Pnn0/1VuaJCdY08
-	UffRk45r/0Ba3w0c/7bsl2unFhNjUeFg2U6bjfHSZQJ2YWsy5NRyJ0lHPQf/MGkB1x1tfw2JhHfqv
-	A6/GJqeHG0rX5ehWSZOIH50Z9Nqq1h5uwQKXKf/XKsPTMyi4U8RPjpSiNQSlK+gCOSjw=;
+	bh=dM8Ub3SEr1kn1ORAaVqDqRmpkV1kv8aYkI640BFSIsY=; b=vxCdmjaO7QZi+Fum3RHxWGGW/O
+	f3nVrVz45O9O7GHhJuuD1yk6uNnxxTwSBzklwEg/niuUSTt0Ipxes2p8OYbLsTbhbWG2Z1ANWpMsH
+	1JZ9L3YdexYCnlV9dajqVdpTLndChmSFUBehbecdg8sNwAbYViijrq6DaqpPNE7+LVPs=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1xERGy-009SZ2-8w; Wed, 07 Oct 2026 15:01:28 +0200
-Date: Wed, 7 Oct 2026 15:01:28 +0200
+	id 1xERLO-009Scc-Ku; Wed, 07 Oct 2026 15:06:02 +0200
+Date: Wed, 7 Oct 2026 15:06:02 +0200
 From: Andrew Lunn <andrew@lunn.ch>
 To: Lucas Tanure <tanure@linux.com>
 Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>,
@@ -57,15 +57,17 @@ Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>,
 	netdev@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v2 0/7] Add ethernet support for the Amlogic T7
-Message-ID: <d23dfdf3-5837-459f-afd6-6c198a05c13c@lunn.ch>
+Subject: Re: [RFC PATCH v2 3/7] dt-bindings: net: amlogic,meson-dwmac: add
+ amlogic,t7-dwmac
+Message-ID: <ba762ae7-db95-41da-bb77-b72b85b68334@lunn.ch>
 References: <20261007082627.63807-1-tanure@linux.com>
+ <20261007082627.63807-4-tanure@linux.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20261007082627.63807-1-tanure@linux.com>
+In-Reply-To: <20261007082627.63807-4-tanure@linux.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261007_060145_302388_054B09E9 
-X-CRM114-Status: GOOD (  13.79  )
+X-CRM114-CacheID: sfid-20261007_060614_193554_2BE597F5 
+X-CRM114-Status: GOOD (  17.07  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,25 +84,41 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Oct 07, 2026 at 09:26:20AM +0100, Lucas Tanure wrote:
-> The T7 pairs a Synopsys gigabit MAC with the same glue registers the
-> G12A has, but nothing described it. This adds the binding, the driver
-> support and the device tree nodes, and enables the port on the Khadas
-> VIM4.
+On Wed, Oct 07, 2026 at 09:26:23AM +0100, Lucas Tanure wrote:
+> The T7 has the same ethernet glue as the G12A, but the controller
+> reaches memory through a pipeline stage that this SoC inserts in the
+> bus path. That stage has a gate of its own, which no other member of
+> the family has, and nothing else in Linux claims it. It is therefore
+> switched off as unused, and the port can then no longer finish a
+> transfer.
 > 
-> Unlike the G12A, the controller reaches DRAM through a pipeline stage
-> with a gate of its own, sys_ampipe_eth. Nothing else claims it, so
-> clk_disable_unused switches it off and transfers stop.
+> Describing it needs a fourth clock, and the fourth clock of the
+> existing list drives the timing adjustment logic, which the T7 never
+> uses. So the T7 gets a list of its own with the gate in that place,
+> under the name the SD and eMMC controllers already use.
 > 
-> v2 changes the RGMII delays, after review. phy-mode describes the
-> board, not which chip adds the delay, so this board is rgmii-id.
-> dwmac-meson8b did the opposite, and ignored the *-internal-delay-ps
-> properties. Patch 1 fixes that. The VIM4 needs it because the RTL8211F
-> transmit delay does not work here.
+> Assisted-by: LLM
+> Signed-off-by: Lucas Tanure <tanure@linux.com>
+> ---
+>  .../bindings/net/amlogic,meson-dwmac.yaml     | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+> index 90ef79161ab1..96118b4d1560 100644
+> --- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+> @@ -23,6 +23,7 @@ select:
+>            - amlogic,meson-gxbb-dwmac
+>            - amlogic,meson-axg-dwmac
+>            - amlogic,meson-g12a-dwmac
+> +          - amlogic,t7-dwmac
 
-What is special about the RTL8211F?
+Since you are adding a new compatible, lets cleanly fix up the RGMII
+delay mess for this compatible. Skip all the existing code touching
+RGMII delays and add new code which is invoked when this compatible is
+seen.
 
-     Andrew
+	Andrew
 
 _______________________________________________
 linux-amlogic mailing list
