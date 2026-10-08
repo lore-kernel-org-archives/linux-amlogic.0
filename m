@@ -4,61 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32CE3CA600C
-	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Oct 2026 14:20:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EC86CA600C
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Oct 2026 14:28:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Subject:Cc:To:From:Message-ID:Date:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ajbdTpa3jWfgDROFp2L78Kscsi7BRImRA6XmanwDiaA=; b=XKSBBZe25Huz14
-	s0yeLim0N3zxCMVOBh5ZKxH+tRFg70rv/7ImkHQiDlXA0rZtNMzgma+Y/hGGP7kj2gJHUwaL80lmm
-	Ea3WR/czpyGEYLSqHn97RSm93v0Ov6YshbaqP0Q7OU0JvLJUDAWGiAqDR7WgZ760GzncRSahDD+b2
-	mVXBoxiF4SuYI5QJKsf0Cc26ofzxvNjTRu8VAw2i+bB9kgQiqJ9+l+gxWa7IXa0qirSozhw3+vFUO
-	Kq2VmHZnungqeadGWGN4Ab9F/TONTZ4YZfRh0Nsx7TafsKm+ybmUtgX+mCILme3wGApunKRWE5zK/
-	iLnuvo/sTVajuWn+xpTw==;
+	List-Owner; bh=zx54egpuQhYeHaVy7pZynUbrjaAnXgtLuOLeIBkD+Kw=; b=tCcZ+20OUU3dXl
+	jAnjOcemMXHz27J4KM2OlGoYrHfNIvEtHFFHnupPsKTyZtHISwFCGglrg4dfvT9vi/mhUzYSEmwQh
+	LbO47txYDEWwzEJKAXBQTgR78qjCxTFuL5MmjSIaqaR8q1GlNcM/5q5PJBT+9yuMJ1SVX43fXX5oS
+	t49pLurz0JI4j4gqMriBic9Ae4nuRr/hs7CFujShE2AXbMYVBbR0gahj5lqpUAmLVy1LWTl9ol+uG
+	J1OFad6PCW8Or9nt9FibfsvSzCcyPKJmSHXdpO7F+Dguijacz3w70H/326YF8jAImvsyiH3XI2iKd
+	DJ/M3NNWmIQpP72gvAwA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xEoyh-00000004Woo-2OA8;
-	Thu, 08 Oct 2026 14:20:11 +0000
-Received: from sender-op-o15.zoho.eu ([136.143.169.15])
+	id 1xEp6P-00000004X8c-1u7n;
+	Thu, 08 Oct 2026 14:28:09 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xEoye-00000004Wnw-2WQL;
-	Thu, 08 Oct 2026 14:20:09 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1791469199; cv=none; 
-	d=zohomail.eu; s=zohoarc; 
-	b=B9eUFbUFWwy+2EylRYhJhGUtWUmB8HuyzXWW0t6BvoWrSKpDj1lgBTy/WOJoyy0dclVDPeyKiwtvUFT8Kk0kc3WbGwheHcHfcAiD6vXUktcDDPbpUM+9tOYxhesMzB7yKULBDZbKfAgNGFvzLtE0N+keg/qqnAXXvdlL5/PJhe8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
-	t=1791469199; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=7H7GHV2tpd9DQz0mx8nIagNiDC6A1GJJbocolPx7T98=; 
-	b=fpfGEzomxY5Qk7S8L75uDxyhpCXzletoUou2RkZ+uAmi5yDgow/Wlne75r2uXzGrmMbaSPwguXRQo/PQGSe45/THWial4zGM4rx8SLt+YiWTiqDv83+1awd8x4SWJu6hKR35jjnZ4sWWABqWTyIFypzbq8GSOcWbu406R49Z3p4=
-ARC-Authentication-Results: i=1; mx.zohomail.eu;
-	dkim=pass  header.i=iav.lv;
-	spf=pass  smtp.mailfrom=iav@iav.lv;
-	dmarc=pass header.from=<iav@iav.lv>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1791469199;
-	s=zoho; d=iav.lv; i=iav@iav.lv;
-	h=Date:Date:Message-ID:From:From:To:To:Cc:Cc:Subject:Subject:In-Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=7H7GHV2tpd9DQz0mx8nIagNiDC6A1GJJbocolPx7T98=;
-	b=PWfaoUeh8JsfEE2VS9gnSMNZgcBJuy0C8d6EJrBqI1DjFTk4lyxYG4Hk1KKAB/xz
-	IWUyL4reb45QH+TTHeV1JPQx11dbrbixSf6Hq8ca0OYuO/xab5LgIO+joINrUcVgpQI
-	Y5fIxXl9rDD0/GnvDx1P4pFcvcvlFV9/BWjiRCr4=
-Received: by smtp.zoho.eu with SMTPS id 1791469196359881.6653594573447;
-	Thu, 8 Oct 2026 16:19:56 +0200 (CEST)
-Date: Thu, 08 Oct 2026 17:19:54 +0300
-Message-ID: <a12a6d283cd8382311117c6b95bfee23.iav@iav.lv>
-From: Igor Velkov <iav@iav.lv>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, iav@iav.lv
-Subject: Re: [PATCH] irqchip/meson-gpio: Allow the GPIO interrupts to wake the system
-In-Reply-To: <70897195-0ffc-4d80-80d4-e60f87c6101e@linaro.org>
-References: <20261008-meson-gpio-wake-v1-1-b0af1598d469@iav.lv> <70897195-0ffc-4d80-80d4-e60f87c6101e@linaro.org>
+	id 1xEp6N-00000004X7v-1j50;
+	Thu, 08 Oct 2026 14:28:07 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id CB70843CDE;
+	Thu,  8 Oct 2026 14:28:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id AA84CC2BCFD;
+	Thu,  8 Oct 2026 14:28:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1791469686;
+	bh=aob2hi/UbUSMrfIwQ3spIcIL9xjNoG64Kt0jPa/1Hdg=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=Q+RqM+NbUEJxveSOoTdzCUdYh2kgAkG4Snqm3rLEuZ4ZrPVh6eVjt9BnEC4lUH6vb
+	 z5bDMtbcWxoOwDZ7QZO5IPKBW6EwUqvCamLsJPUzirIuTaXFnePUnyg40961abxBhI
+	 sEIvf66Sbw/Nv5iG5c92rLB8wANrj9pk4qA6cwE+mqVmm/stlYd3jbI4BiSyY3LT/o
+	 Y+nG7txJXvT85iIfB2NxgmnVn9W2mGiksO7ftL2ETE5sJXv3Uo7xveJ7jObGgexZPu
+	 Xt9sCRDZzk34v+TUvdsX6M4L/wKKOfizwYrXIt8VXMrwoHpFJthnB25mzFtHBlk3kG
+	 PuKd6vZWgovcA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7AFC8CA600D;
+	Thu,  8 Oct 2026 14:28:06 +0000 (UTC)
+From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
+Date: Thu, 08 Oct 2026 14:28:00 +0000
+Subject: [PATCH v2 2/3] mmc: meson-gx: honour the busy timeout for R1b
+ commands
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261008_072008_922797_BF922093 
-X-CRM114-Status: UNSURE (   9.96  )
-X-CRM114-Notice: Please train this message.
+Message-Id: <20261008-meson-gx-busy-timeout-v2-2-8bde1adfb5b4@iav.lv>
+References: <20261008-meson-gx-busy-timeout-v2-0-8bde1adfb5b4@iav.lv>
+In-Reply-To: <20261008-meson-gx-busy-timeout-v2-0-8bde1adfb5b4@iav.lv>
+To: Ulf Hansson <ulfh@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ linux-mmc@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Igor Velkov <iav@iav.lv>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2127; i=iav@iav.lv;
+ h=from:subject:message-id;
+ bh=9xGrDCPi8rJjeIzvAyq5Lt1wlFmJSZrwiazD8/BoI9g=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDFnHV5R0Zt1sTva8kntm1fkyxsgPc/LOLty0zGkma0Z6K
+ O/ty3/vdZSyMIhxMciKKbJMOKRxK2PJ1b/+HuYPYOawMoEMYeDiFICJzDFhZLgwbbrvk6kLdXcu
+ /GMVEry2SHbzsTcqb/PWMjoVPOTcYOXByHDArvTjzrxV37mmtXS3BJ1tEnh88mxp4Ca5GUtObWO
+ zmM4GAA==
+X-Developer-Key: i=iav@iav.lv; a=openpgp;
+ fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
+X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
+X-Original-From: Igor Velkov <iav@iav.lv>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,38 +82,73 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: iav@iav.lv
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 08.10.2026 10:36, Neil Armstrong wrote:
-> The code sound valid but the this paragraph means nothing, adding or removing
-> IRQCHIP_SKIP_SET_WAKE should not change the fact PCF8563 would wake up the ODROID-HC4
-> since the BL301 firmware hardcodes which gpio can wakeup.
+From: Igor Velkov <iav@iav.lv>
 
-The test was suspend-to-idle, not mem. The SoC never enters the firmware
-suspend there, so BL301 does not pick the wakeup source: the CPUs sit in
-cpuidle and any interrupt left enabled in the GIC brings them out.
+For a command without data the driver programs a fixed 1024 ms into the
+CMD_CFG timeout field, and for R1b the controller waits for the card to
+release busy within that time. The core sends erase and cache flush as
+R1b with busy timeouts of up to 60 s and 30 s, and the controller gives
+up after one second:
 
-Whether that wakes the *system* is decided by genirq. suspend_device_irqs()
-keeps an interrupt enabled only when irqd_is_wakeup_set(), and that is what
-enable_irq_wake() sets. Without the flag enable_irq_wake() fails with
--ENXIO, the interrupt is suspended, and when it fires the flow handler
-masks it (irq_can_handle_actions(): irqd_irq_disabled -> IRQS_PENDING,
-mask_irq()). The alarm fires once, nothing calls pm_system_irq_wakeup(),
-s2idle carries on and the board stays asleep until a power cycle. With the
-flag the interrupt is armed, pm_system_irq_wakeup() ends s2idle, and
-/sys/power/pm_wakeup_irq shows the alarm. That is the 4/4 against 0/1.
+  mmc_erase: erase error -110, status 0x0
+  mmc1: cache flush error -110
 
-> I guess this flag simply removes an error when setting the gpio as wakeup source
-> which means nothing in this platform anyway. So please rephrase.
+Program the timeout from cmd->busy_timeout, rounded up to a power of
+two and kept within 1024..32768 ms, the range the field holds. sdhci
+takes its command timeout from cmd->busy_timeout in the same way.
 
-For mem you are right: the firmware chooses the wakeup sources and this
-flag changes nothing there. v2 will say s2idle explicitly and describe the
-mechanism above.
+Fixes: 51c5d8447bd7 ("MMC: meson: initial support for GX platforms")
+Assisted-by: LLM
+Signed-off-by: Igor Velkov <iav@iav.lv>
+---
+ drivers/mmc/host/meson-gx-mmc.c | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
 
-Igor
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index 06479ba38525..dd7d3d67f029 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -216,6 +216,20 @@ static unsigned int meson_mmc_get_timeout_msecs(struct mmc_data *data)
+ 	return min_t(unsigned int, timeout, SD_EMMC_CMD_TIMEOUT_MAX);
+ }
+ 
++/* For R1b the controller waits for busy to be released within this timeout. */
++static unsigned int meson_mmc_get_cmd_timeout_msecs(struct mmc_command *cmd)
++{
++	unsigned int timeout = cmd->busy_timeout;
++
++	if (!timeout)
++		return SD_EMMC_CMD_TIMEOUT;
++
++	timeout = roundup_pow_of_two(timeout);
++
++	return clamp_t(unsigned int, timeout, SD_EMMC_CMD_TIMEOUT,
++		       SD_EMMC_CMD_TIMEOUT_MAX);
++}
++
+ static struct mmc_command *meson_mmc_get_next_command(struct mmc_command *cmd)
+ {
+ 	if (cmd->opcode == MMC_SET_BLOCK_COUNT && !cmd->error)
+@@ -842,7 +856,7 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
+ 		cmd_data = host->bounce_dma_addr & CMD_DATA_MASK;
+ 	} else {
+ 		cmd_cfg |= FIELD_PREP(CMD_CFG_TIMEOUT_MASK,
+-				      ilog2(SD_EMMC_CMD_TIMEOUT));
++				      ilog2(meson_mmc_get_cmd_timeout_msecs(cmd)));
+ 	}
+ 
+ 	/* Last descriptor */
+
+-- 
+2.43.0
+
+
 
 _______________________________________________
 linux-amlogic mailing list
