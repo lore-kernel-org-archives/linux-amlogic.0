@@ -4,103 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D037FCA6002
-	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Oct 2026 00:07:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2642CCA6002
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Oct 2026 04:27:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:Cc:Date:
-	In-Reply-To:From:Subject:Mime-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=IRnSn4IONiseBiLYlxIWgkd8VgeNHbydGq6f7oJvgyM=; b=lZ7GxBnuRtuwfK
-	vwe4tf4V1UZQqpXAKSOW1UdRlKwFtbrdv8ScPyq6vWI3HzcF0ou2mT8GmPmNZIrjRjNuP1+3hga9T
-	NTlHqkM6oYoSyEcVH2XzVmkDi/cl6XMoRka3sJTqpckTq46ebD3/5eo+LZNa5Ehwh83EHXzUOAOQC
-	3HV9sqF7HfHCedrB8YN7/JrwoOW4YTGj/m6+U9CKCFSyNny+4P3G15opNwvjAjZccGflFil4HLT+7
-	bB188nAtNmRBsozBDeW+cDO16oy0CDi91lzmAzxl2hpH0H1E9c66Qh84i8OgBo2KjJdo96dFzIK+j
-	2f/u2cPmh+CbHyg/OrYw==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=iu65jWv9Y8pliRrC8gYnHNqz9XEhWFxKF7XMqr1M9Oc=; b=o8XbUvNxCusjFt
+	YjPtQx/9uwzeLCvuHK73wLimPKLd0sdFJlEGrtYLk+xf8KGQOCRBcMnzcoCdZw89eym+RypfJAoMP
+	lFPbndIKjyigzjLKvqbkKHD3k1DxeS2T/8+ETMrtUQDT0jukgN9sx1jH5wf8dCoO5Y0dMrngEv5WK
+	axPNsvfPmfcvhXpGDHlo/96Ffr27Vat/dCawz2QE72vEtLJTZfDvjKvea5Qb+7pM0Wjy3pYc5n6aZ
+	XsdTLeN0gdJaYsJxoy12HBInk9rl1dMh2OuyEJXbtcA/KFM8A20esYKonNOyLQoGOL4lmJVraoIo1
+	bLPz/asRPqBKzI2dGlag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xEbfk-00000003JJT-0f2K;
-	Thu, 08 Oct 2026 00:07:44 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1xEfif-00000003VEk-3asq;
+	Thu, 08 Oct 2026 04:27:01 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xEbfh-00000003JIU-1CE3
-	for linux-amlogic@lists.infradead.org;
-	Thu, 08 Oct 2026 00:07:43 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-48b0ef9c76eso3717208f8f.0
-        for <linux-amlogic@lists.infradead.org>; Wed, 07 Oct 2026 17:07:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1791418059; x=1792022859; darn=lists.infradead.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:content-type:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=izMm3ub5pHWSzU9B5+I9vrWo+LdhgWZ+NZKCaQYUlMA=;
-        b=HdkiTn240CkDnLB/3DQrr0XTXY3GzXB6Ard4umLEOwv2OJkSA6q8t1SRzQCzu8OfWe
-         43D/PMpHJ1mdXxTrcu2y1WiISWdCX99YVIuLTwoQ8fM3jfQPpALizCm6Q2rRnKW0Hkio
-         Zbu9aFk+RQYSFOSYyZRomOIiWNk+xexmobHmNs2bRtUYFtCuFOtfWCzeTdH9FfETCZWr
-         G/oByvjg4OGWcNnNVHHUfDGpKwkDY4wU5v7beeaTh7xu2oJFW7WkJW50ScCGpargur/Z
-         G8horgdUqostwA0u/FHOEyt4XVAh2QT4wdKa+ArKDZcog2deL4TAmcFVU2Q9gP8HQLMM
-         dQZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791418059; x=1792022859;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:content-type:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=izMm3ub5pHWSzU9B5+I9vrWo+LdhgWZ+NZKCaQYUlMA=;
-        b=bINL1qdkCKsPL7GtTLY9ygjLuWfY71jilAz+LwCdtpyGiWbHH+ODHElSjuxnMnzZmr
-         O0x9NnJK4/znKEK90eiQxfvZ5j6/Je26TdysZz2OyEe6/LogYMzyDs64sZDLD0dM8x79
-         R5YfcAsqFQGlSXuvQhxejnfvXFKTQkVwpGGSLHx5x/fFgQFOX2kkHUJi7NxLLJ6Hw6AN
-         aAbR5xFPafF34OfTHbhEgK6MFmBuINtf9weV+DSqlgw0oHWZZBFVEOCqpMjsF04ylHkv
-         T8pN6MFPQAiNFvyoXU0G5ThxKGcU0nw9dA6tkmvqoj944dHK/Hxp8JfW1wWCcDvXmpGn
-         lR5w==
-X-Forwarded-Encrypted: i=1; AKwUvBzcX8lmczkHSFE63bUZdIeAhubVzZE7/X3CKZENKVng0wnrplL56Cl+k5v8MfYv0VmOOQzlNQqzSLG8u6UQ@lists.infradead.org
-X-Gm-Message-State: AFq9FYJVWMTbatxclAWm3lBn/Cf3CtkNgKZesGYejgRex1ZiMYTLyoAH
-	+EEcyZE86CAdMR1x06xazZ/wOQgPR/pKes5dqTJIAeO1tEXtWjyBUZND
-X-Gm-Gg: AYBFou0Rd8/2VV8vdmoTx67E3QePP9NTKiGxDdS48gnDr53HLlzKPLyJq9J7jWSV4OT
-	EFRPek6kd04ACiTsbg4JVTSBic33InQqeespOBXKX6tTZftsAZNfjsAGMnnTC4pmNLGU0UNJSgN
-	q9oQrBMt5OdGA1AgIfhUb+kCwm1nVBLELyRQwX2BscHvDEYVk9qO+gWM7abcDRCgDLnFx1AB30I
-	noWTArZVW2eRMd5bk4/L7s31BC3N1HWkNL3gPhP5d2vR2XYeHI9zXvn19gIzA+3qmPUNef+AhTl
-	QV9h6HRkXHVgmOQTeHWtTtSuNZx3FXUibfDxmaR3N5lrlQQr+nDOJuoK+/WG1tuR7wC4201ARu3
-	VByTfv90oo9yn+1+iH1mcfW125JP8lyxF2dE728iSUEjdniBQZw6BqdTKxF36PHbYxyIg+GHJJH
-	XpSL2IY2cr/NEXRPME8ISjUE/wcUCm31svwAK/LErIQMouPJxnHMyrxywHzWoLzHPLTGtkoj3EY
-	O4pMLN+3TSr/Ql5G44u3ajOD7dA
-X-Received: by 2002:a05:6000:4818:b0:488:8751:e78e with SMTP id ffacd0b85a97d-48c72788373mr6736354f8f.16.1791418058790;
-        Wed, 07 Oct 2026 17:07:38 -0700 (PDT)
-Received: from smtpclient.apple ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48c7fb9eda1sm1040996f8f.7.2026.10.07.17.07.35
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 07 Oct 2026 17:07:38 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3864.700.51.1.3\))
-Subject: Re: [PATCH] arm64: dts: amlogic: meson-sm1-odroid: let the SD card be
- powered down
-From: Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <179140715034.293470.4459182430175564610@iav.lv>
-Date: Thu, 8 Oct 2026 04:07:23 +0400
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Ulf Hansson <ulf.hansson@linaro.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Dongjin Kim <tobetter@gmail.com>,
- Eric Neulight <Eric.Neulight@linuxdev.slmail.me>,
- linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Message-Id: <AD1E9AE8-8FA9-4CC2-AED8-AB2F455FA8E2@gmail.com>
-References: <20261003-hc4-sd-power-off-v1-1-f7ffba01b348@iav.lv>
- <179100548183.3372253.2014593916926884551@iav.lv>
- <179140715034.293470.4459182430175564610@iav.lv>
-To: Igor Velkov <iav@iav.lv>
-X-Mailer: Apple Mail (2.3864.700.51.1.3)
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261007_170741_343386_032D1875 
-X-CRM114-Status: GOOD (  16.71  )
+	id 1xEfie-00000003VEL-2jSr;
+	Thu, 08 Oct 2026 04:27:00 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 1DF6640C3C;
+	Thu,  8 Oct 2026 04:27:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E3D3EC2BCF5;
+	Thu,  8 Oct 2026 04:26:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1791433620;
+	bh=l27bWrfddOJK7P2yJT5xwUQcpylWpGnEOKiwyAdUIkU=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=cCcCRqfvfa/h3DRWRyaPgsZmk6wWeTvf/yEDFpzxIypnWX/GJJSLtR8VHmxuYpECy
+	 nHbtD1pWuMiS0+m27dBbRCA3CENC5D7XLv5nHbWOGxsSSDvYnx8lOIzT0oKR4jIpfz
+	 AjW7qB0HzmkQrATgkRNu0N8HRako5tJshcPPKVQnF+uLt+B3fBovdiNg0sRlunK9Or
+	 6wcXO1gBaonR+W3m/8soG1GSl22VjaQ36afbj2TBmKiN7iQZ7shUkunP6mDPEH0deC
+	 +y8/ss28nrHOW7qr8V5jQyNyhwV5FEqQSP6bwN+Ik0q3YRaGTThDuNEbGTZZGd6Jjh
+	 0cYWVhfR4fE4w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B5EA0CA6002;
+	Thu,  8 Oct 2026 04:26:59 +0000 (UTC)
+From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
+Date: Thu, 08 Oct 2026 07:26:56 +0300
+Subject: [PATCH] mmc: meson-gx: honour the busy timeout for R1b commands
+MIME-Version: 1.0
+Message-Id: <20261008-meson-gx-busy-timeout-v1-1-d92f3c68c409@iav.lv>
+X-B4-Tracking: v=1; b=H4sIAI8bx2oC/x3MSwqEMBBF0a1IjS2IhtamtyIO/Dy1BiaSMqKIe
+ +/g8AzuvUkRBEq/7KaAQ1S8SyjyjIalczNYxmQqTVkVxnx4hXrH88l91It3WeHjzjW+sNM49Ba
+ WUrsFTHK+36Z9nj8F1fTsZwAAAA==
+To: Ulf Hansson <ulfh@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ linux-mmc@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Igor Velkov <iav@iav.lv>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3870; i=iav@iav.lv;
+ h=from:subject:message-id;
+ bh=T7oobr9NpP0BRx9jjcdEGQ9sD4psJISkXHbN62KiO2U=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDFnHpSe9NV/Q+DxiwluPyffc47acXirLP3tx2Rl21gdl6
+ TPWBr237ShlYRDjYpAVU2SZcEjjVsaSq3/9PcwfwMxhZQIZwsDFKQATufaAkeFG2p0pt2wvqLDX
+ LL+q6Ne3cYG+pnV6ecrBjpcvpDwmRnMw/A9nsoy8N+dx0Dpukd91x6dIz9w7hdvgxC4rxU32+84
+ 9duEEAA==
+X-Developer-Key: i=iav@iav.lv; a=openpgp;
+ fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
+X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
+X-Original-From: Igor Velkov <iav@iav.lv>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,39 +82,110 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: iav@iav.lv
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-PiBPbiA4IE9jdCAyMDI2LCBhdCAxOjA14oCvYW0sIElnb3IgVmVsa292IDxpYXZAaWF2Lmx2PiB3
-cm90ZToKPiAKPiBGb2xsb3ctdXAgdG8gdGhlIGRyb3BwZWQgcGF0Y2guCj4gCj4gQW4gb3V0LW9m
-LXRyZWUgcmVzdGFydCBoYW5kbGVyIFsxXSBwb3dlci1jeWNsZXMgdGhlIGNhcmQ6IGl0IGRyaXZl
-cwo+IFRGTEFTSF9WREQgYW5kIGJvdGggdGZfaW8gbGluZXMgbG93IGZvciAxMDAgbXMsIHRoZW4g
-cmVsZWFzZXMgdGhlbSBhbmQKPiB0aGUgY2FyZCBpcyBwb3dlcmVkIGFnYWluLiBXaXRoIHRoZSBT
-UEkgZmxhc2ggZXJhc2VkLCBPRFJPSUQtSEM0IGJvb3RzCj4gZnJvbSBTRCBhZnRlciBhIHdhcm0g
-cmVib290IDUvNSBvbiA2LjE4LCA3LjIgYW5kIDcuMy1yYzUuIFdpdGhvdXQgdGhlCj4gaGFuZGxl
-ciB0aGUgYm9vdCBzdGFsbHMgaW4gdGhlIFJPTSBvciBpbiBVLUJvb3QuCj4gCj4gV2hlcmUgc2hv
-dWxkIHRoaXMgbGl2ZSB1cHN0cmVhbTogdGhlIG1tYyBjb3JlIG9uIHJlc3RhcnQsIG1lc29uLWd4
-LW1tYywKPiBvciBhIGJvYXJkIGRyaXZlciBsaWtlIHRoaXMgb25lPwo+IAo+IFsxXSBodHRwczov
-L2dpdGh1Yi5jb20vYXJtYmlhbi9idWlsZC9ibG9iL21haW4vcGF0Y2gva2VybmVsL2FyY2hpdmUv
-bWVzb242NC03LjMvbWVzb242NC1yZWJvb3QtMDItcG9ydC10by1ncGlvZC5wYXRjaAoKSeKAmXZl
-IGJlZW4gZG9pbmcgc29tZSBicmluZy11cCB3b3JrIG9uIFM0IHN1cHBvcnQgd2l0aCBhIFZJTTFT
-IGJvYXJkCmFuZCBDbGF1ZGUgaW5pdGlhbGx5IHN1Z2dlc3RlZCBhIHUtYm9vdCB2YXJpYW50IG9m
-IHRoZSBzYW1lIHBhdGNoIFsxXQp3aGljaCBpbXByb3ZlZCBidXQgZGlkIG5vdCBmdWxseSByZXNv
-bHZlIHRoZSBzaXR1YXRpb24uIEkgd2FzIGFsc28gbm90CmFibGUgdG8gZXhwbGFpbiB3aHkgYXBw
-bHlpbmcgdGhlIHNhbWUgY2hhbmdlIHZpYSB0aGUgTGludXggZGV2aWNlLXRyZWUKdGhhdCB1LWJv
-b3QgY29uc3VtZXMgZGlkbuKAmXQgaGF2ZSB0aGUgc2FtZSBlZmZlY3QgYXMgZXNzZW50aWFsbHkg
-dGhlCnNhbWUgY2hhbmdlIGluIHRoZSB1LWJvb3QgZHRzaSBmaWxlLgoKQ2xhdWRlIHN1YnNlcXVl
-bnRseSBhZGRlZCBhIHNlY29uZCBwYXRjaCBbMl0gd2hpY2ggcmVzdWx0ZWQgaW4gMTAwJQpyZWxp
-YWJsZSBib290LiBIb3dldmVyIHRoYXQgYWxsb3dlZCBtZSB0byBtb3ZlIGZvcndhcmRzIHdpdGgg
-a2VybmVsCndvcmsgYW5kIEkgaGF2ZW7igJl0IHlldCBjaXJjbGVkIGJhY2sgdG8gdS1ib290IHRv
-IHJ1biBhbiBleHBlcmltZW50CndpdGhvdXQgdGhlIGZpcnN0IHBhdGNoLgoKWzFdIGh0dHBzOi8v
-Z2l0aHViLmNvbS9jaGV3aXR0L3UtYm9vdC9jb21taXQvMGEzZjU2OTNhNGZmMTkyZWIwNDRmYzRj
-NWE0MzQ3NzBkZTA1MzgzNQpbMl0gaHR0cHM6Ly9naXRodWIuY29tL2NoZXdpdHQvdS1ib290L2Nv
-bW1pdC84ZTY2MzYzMmJjNTAwZWU2YTgzYTg0NmJjZDMyNDIyMzFjMzNhYTQzCgpBcyB1c3VhbCBi
-b3RoIG9mIENsYXVkZeKAmXMgYXV0aG9yaXRhdGl2ZWx5IHdvcmRlZCBkZXNjcmlwdGlvbnMgc291
-bmQKY29udmluY2luZ2x5IG9yIGNvbnZlbmllbnRseSBnb29kIDopCgpDaHJpc3RpYW4KCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2lj
-IG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xp
-c3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+From: Igor Velkov <iav@iav.lv>
+
+For a command without data the driver programs a fixed 1024 ms into the
+CMD_CFG timeout field, and for R1b the controller waits for the card to
+release busy within that time. The driver does not set max_busy_timeout,
+so the core sends erase and cache flush as R1b with busy timeouts of up
+to 60 s and 30 s, and the controller gives up after one second:
+
+  mmc_erase: erase error -110, status 0x0
+  mmc1: cache flush error -110
+
+Program the timeout from cmd->busy_timeout, rounded up to a power of
+two and kept within 1024..32768 ms, and report 32768 ms, the largest
+value the field holds, as max_busy_timeout. The core then sizes discards
+to fit and, for a longer wait, sends R1 and polls for busy itself.
+sdhci takes its command timeout from cmd->busy_timeout in the same way.
+
+Fixes: 51c5d8447bd7 ("MMC: meson: initial support for GX platforms")
+Assisted-by: LLM
+Signed-off-by: Igor Velkov <iav@iav.lv>
+---
+Tested on ODROID-N2+ (S922X), 256 GB eMMC, btrfs root with discard=async, Armbian builds in docker as load.
+Without the patch (7.3-rc6): 262 errors in 3 h and 68 in 2.5 h in two runs; the first came 4 and 43 min into the build.
+With the patch (7.3-rc6): 0 in 2.4 h.
+On 7.1 with the previous eMMC module, a synthetic test (20 GiB write + fstrim) gave 48 errors without the patch, 0 and 0 with it.
+
+The timeout is rounded up to a power of two: the field holds powers of two only, and the timeout is a lower bound.
+MMC_CAP_WAIT_WHILE_BUSY is not set: I have not checked that the controller waits for busy on every R1b command, HS400 switches included.
+---
+ drivers/mmc/host/meson-gx-mmc.c | 22 ++++++++++++++++++++--
+ 1 file changed, 20 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index 7ef16d7c03cb..8de3eb65ccb0 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -125,6 +125,7 @@
+ #define SD_EMMC_CFG_RESP_TIMEOUT 256 /* in clock cycles */
+ #define SD_EMMC_CMD_TIMEOUT 1024 /* in ms */
+ #define SD_EMMC_CMD_TIMEOUT_DATA 4096 /* in ms */
++#define SD_EMMC_CMD_TIMEOUT_MAX 32768 /* in ms, 2^15: limit of CMD_CFG_TIMEOUT_MASK */
+ #define SD_EMMC_CFG_CMD_GAP 16 /* in clock cycles */
+ #define SD_EMMC_DESC_BUF_LEN PAGE_SIZE
+ 
+@@ -212,7 +213,21 @@ static unsigned int meson_mmc_get_timeout_msecs(struct mmc_data *data)
+ 
+ 	timeout = roundup_pow_of_two(timeout);
+ 
+-	return min(timeout, 32768U); /* max. 2^15 ms */
++	return min_t(unsigned int, timeout, SD_EMMC_CMD_TIMEOUT_MAX);
++}
++
++/* For R1b the controller waits for busy to be released within this timeout. */
++static unsigned int meson_mmc_get_cmd_timeout_msecs(struct mmc_command *cmd)
++{
++	unsigned int timeout = cmd->busy_timeout;
++
++	if (!timeout)
++		return SD_EMMC_CMD_TIMEOUT;
++
++	timeout = roundup_pow_of_two(timeout);
++
++	return clamp_t(unsigned int, timeout, SD_EMMC_CMD_TIMEOUT,
++		       SD_EMMC_CMD_TIMEOUT_MAX);
+ }
+ 
+ static struct mmc_command *meson_mmc_get_next_command(struct mmc_command *cmd)
+@@ -841,7 +856,7 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
+ 		cmd_data = host->bounce_dma_addr & CMD_DATA_MASK;
+ 	} else {
+ 		cmd_cfg |= FIELD_PREP(CMD_CFG_TIMEOUT_MASK,
+-				      ilog2(SD_EMMC_CMD_TIMEOUT));
++				      ilog2(meson_mmc_get_cmd_timeout_msecs(cmd)));
+ 	}
+ 
+ 	/* Last descriptor */
+@@ -1168,6 +1183,9 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 
+ 	mmc->caps |= MMC_CAP_CMD23;
+ 
++	/* The longest busy wait the CMD_CFG timeout field can hold. */
++	mmc->max_busy_timeout = SD_EMMC_CMD_TIMEOUT_MAX;
++
+ 	if (mmc->caps & MMC_CAP_SDIO_IRQ)
+ 		mmc->caps2 |= MMC_CAP2_SDIO_IRQ_NOTHREAD;
+ 
+
+---
+base-commit: fd9af27f6c2319713bb23832066585f8a59a1771
+change-id: 20261005-meson-gx-busy-timeout-7e8e3fdcb3e3
+
+Best regards,
+-- 
+Igor Velkov <iav@iav.lv>
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
