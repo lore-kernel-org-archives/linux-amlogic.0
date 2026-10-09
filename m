@@ -4,71 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A883CA6019
-	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Oct 2026 12:13:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B0FDCA9EBE
+	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Oct 2026 17:03:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Dli2km3x1kTTYq1EbKvw8m9vwqQKxUhcnPgGLT/WGKU=; b=zDN2sLGgLufYdh
-	35/pL+gfg/KxhD1aiSx1ltFX7FNXK6zq3z3njeSY2U+fOet8+A6+wTS2xetQSIjK+3muO4fVlywuw
-	ZmKFEvri2iqlml+Z+mDhC05hWYqG7gsEFeixkY1dgVBoHPKAxxKDKQK+JQGvICDN9HjfTp8dGOFPv
-	dEYbCSiCBwtphZsr3u99EQT95cYDlMqpYqxyZHkob6aENiLMJCalGSU1ZbSNF9W2w+Pj66d4Szzps
-	5KGYOB5atuOWJISPAExdX3MkxE7GY97wUtrepmgFCPXbSb9o7Aq1GSvOduU+uh4GDnLMWGMjp88GB
-	ZHggJwOgp3T97EnntLNw==;
+	List-Owner; bh=hwKuhuTTf/VnVJoZPC3lC5YWGTEWN3gQ/rSW60FgoNs=; b=sP8z1ErMXMxqHO
+	6/qMSDBa9SmVn0Q+POt/i8mj0n5Td4pRPLHHm+tH2/q7CrNP+xIFrte5B9xgY34+GUZcdcjfX7xnu
+	Z8fxfrNHjis3s0KWTay0zk2zE8IqVR7I2O57zXG6iaL5En8HOA97oj0bwogrlIZNwZZyr+cJzEt4O
+	P9zqPEkwV43hPrAt7nyaXmaEwJTF0j8DmnOUHaPPU9cBEXCzPpxe7HcRuTAboeryj+Dg99GRNeorq
+	tX1+KUgoVJ/IDt+NKx9Ah/JlPb39Qj4rq38AtGA5eEJW3LxvmYyuN1DZPPoWf9XcWBPA4d0TO4mCy
+	+GC5iYzKm4T12A7vwPtA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xF9Tr-00000006Gd3-0lXX;
-	Fri, 09 Oct 2026 12:13:43 +0000
-Received: from vps0.lunn.ch ([156.67.10.101])
+	id 1xFE0C-00000006kYX-0k6j;
+	Fri, 09 Oct 2026 17:03:27 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xF9Tp-00000006GcS-2ctK;
-	Fri, 09 Oct 2026 12:13:42 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=iYqcn+lw0qC/zQadO5fheUsN/NkKlBYECjVpCgptZMM=; b=tz
-	eHbJbfn2hJXhR7bctqrOQsxWGFsATvqH5M7FqEGjCw/KIWeIC4TlP70keu4PnxMShE7R1Ghh/x90I
-	4T5wSY81La24TnQgk+SKelca7e0mnBsktaMOF1VvENjiTXcdre/8LuPXR37vafMP1+H1RTzD2lY6Y
-	X4HQUO3qpsENWVI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1xF9TY-009mY5-CL; Fri, 09 Oct 2026 14:13:24 +0200
-Date: Fri, 9 Oct 2026 14:13:24 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Lucas Tanure <tanure@linux.com>
-Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@kernel.org>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v2 0/7] Add ethernet support for the Amlogic T7
-Message-ID: <3a037c87-e4c5-4a4e-9522-cf505e1c6399@lunn.ch>
-References: <20261007082627.63807-1-tanure@linux.com>
- <d23dfdf3-5837-459f-afd6-6c198a05c13c@lunn.ch>
- <CAJX_Q+2au4x99kj=UBqn4joQCM3-D2kbaJ0zro9Y4RXka7ePvQ@mail.gmail.com>
+	id 1xFE0A-00000006kXm-2R3V;
+	Fri, 09 Oct 2026 17:03:22 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 43F8E436EF;
+	Fri,  9 Oct 2026 17:03:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 21AAFC2BCFD;
+	Fri,  9 Oct 2026 17:03:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1791565402;
+	bh=5DwUWAKSr1Fz3uVRimgAXIltZpEF1NVgVNHWQpWXomw=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=oFO+oIqEISM77myiwY+C0bbGF0hGdh3Wyc11/cWL19O+52g3ytciQBjw0uzDVDzc2
+	 jpJaj3X+v/K+SojmVnGKsd7F+iALAxt2306CaHkwUQiyU7Y4CAd4bNZuu0bwk4HjyX
+	 suAM63pHhOucvlp5q6vJLyTHtEZhThgeXCLEQiDf8YMC5ZYYmCtg07iEop5u8rwCx3
+	 Wblo/4Ca9FEhCjZo/bon+OrenzRss72IyA/HFC+S5NbNC7+Z9udwKMKLBnflqqlFyy
+	 o/vvIvXw2AS6KZbewp+kaYb0yqqnT1kQwOMsD1eExj78TDsGXdJ8mgm/c5QLQ67AzB
+	 iua6eHbGmgiGA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 03E49CA9EC0;
+	Fri,  9 Oct 2026 17:03:22 +0000 (UTC)
+From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
+Date: Fri, 09 Oct 2026 17:02:59 +0000
+Subject: [PATCH v3 3/4] mmc: meson-gx: report busy from DAT0 alone
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAJX_Q+2au4x99kj=UBqn4joQCM3-D2kbaJ0zro9Y4RXka7ePvQ@mail.gmail.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261009_051341_663261_54374FBA 
-X-CRM114-Status: GOOD (  18.25  )
+Message-Id: <20261009-meson-gx-busy-timeout-v3-3-67d0db3a8328@iav.lv>
+References: <20261009-meson-gx-busy-timeout-v3-0-67d0db3a8328@iav.lv>
+In-Reply-To: <20261009-meson-gx-busy-timeout-v3-0-67d0db3a8328@iav.lv>
+To: Ulf Hansson <ulfh@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ linux-mmc@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Igor Velkov <iav@iav.lv>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1695; i=iav@iav.lv;
+ h=from:subject:message-id;
+ bh=jh1AZNUCPxbuGI+CXY/RnKTV+4AipmL8U9W5vOACE7M=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDFkn5cK3HWOXEvz5MMZ9x4c7XzquWghoLu0puGMyUTNgt
+ 9+aDf7TOkpZGMS4GGTFFFkmHNK4lbHk6l9/D/MHMHNYmUCGMHBxCsBEzvgz/JWt3DTB9fS0P/xZ
+ t0Svie3YJ6PS5fBE+GXBup9/ztz+8f4aw//SGVzaTmGBu89MnnThzfpuz/qED///qB04tfL+qiL
+ nlmlsAA==
+X-Developer-Key: i=iav@iav.lv; a=openpgp;
+ fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
+X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
+X-Original-From: Igor Velkov <iav@iav.lv>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,34 +81,58 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: iav@iav.lv
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gRnJpLCBPY3QgMDksIDIwMjYgYXQgMDY6NTk6NDlBTSArMDEwMCwgTHVjYXMgVGFudXJlIHdy
-b3RlOgo+IE9uIFdlZCwgT2N0IDcsIDIwMjYgYXQgMjowMeKAr1BNIEFuZHJldyBMdW5uIDxhbmRy
-ZXdAbHVubi5jaD4gd3JvdGU6Cj4gPgo+ID4gT24gV2VkLCBPY3QgMDcsIDIwMjYgYXQgMDk6MjY6
-MjBBTSArMDEwMCwgTHVjYXMgVGFudXJlIHdyb3RlOgo+ID4gPiBUaGUgVDcgcGFpcnMgYSBTeW5v
-cHN5cyBnaWdhYml0IE1BQyB3aXRoIHRoZSBzYW1lIGdsdWUgcmVnaXN0ZXJzIHRoZQo+ID4gPiBH
-MTJBIGhhcywgYnV0IG5vdGhpbmcgZGVzY3JpYmVkIGl0LiBUaGlzIGFkZHMgdGhlIGJpbmRpbmcs
-IHRoZSBkcml2ZXIKPiA+ID4gc3VwcG9ydCBhbmQgdGhlIGRldmljZSB0cmVlIG5vZGVzLCBhbmQg
-ZW5hYmxlcyB0aGUgcG9ydCBvbiB0aGUgS2hhZGFzCj4gPiA+IFZJTTQuCj4gPiA+Cj4gPiA+IFVu
-bGlrZSB0aGUgRzEyQSwgdGhlIGNvbnRyb2xsZXIgcmVhY2hlcyBEUkFNIHRocm91Z2ggYSBwaXBl
-bGluZSBzdGFnZQo+ID4gPiB3aXRoIGEgZ2F0ZSBvZiBpdHMgb3duLCBzeXNfYW1waXBlX2V0aC4g
-Tm90aGluZyBlbHNlIGNsYWltcyBpdCwgc28KPiA+ID4gY2xrX2Rpc2FibGVfdW51c2VkIHN3aXRj
-aGVzIGl0IG9mZiBhbmQgdHJhbnNmZXJzIHN0b3AuCj4gPiA+Cj4gPiA+IHYyIGNoYW5nZXMgdGhl
-IFJHTUlJIGRlbGF5cywgYWZ0ZXIgcmV2aWV3LiBwaHktbW9kZSBkZXNjcmliZXMgdGhlCj4gPiA+
-IGJvYXJkLCBub3Qgd2hpY2ggY2hpcCBhZGRzIHRoZSBkZWxheSwgc28gdGhpcyBib2FyZCBpcyBy
-Z21paS1pZC4KPiA+ID4gZHdtYWMtbWVzb244YiBkaWQgdGhlIG9wcG9zaXRlLCBhbmQgaWdub3Jl
-ZCB0aGUgKi1pbnRlcm5hbC1kZWxheS1wcwo+ID4gPiBwcm9wZXJ0aWVzLiBQYXRjaCAxIGZpeGVz
-IHRoYXQuIFRoZSBWSU00IG5lZWRzIGl0IGJlY2F1c2UgdGhlIFJUTDgyMTFGCj4gPiA+IHRyYW5z
-bWl0IGRlbGF5IGRvZXMgbm90IHdvcmsgaGVyZS4KPiA+Cj4gPiBXaGF0IGlzIHNwZWNpYWwgYWJv
-dXQgdGhlIFJUTDgyMTFGPwo+IE1heWJlIG5vdGhpbmcsIGl0IG1heSBiZSB0aGlzIGJvYXJkLiBJ
-IGNhbm5vdCB0ZWxsIGZyb20gaGVyZS4KClllcywgbG9vayBhdCBteSBvdGhlciByZXBseS4gVGhl
-IFJUTDgyMTFGIGlzIHZlcnkgbGlrZWx5IGNvcnJlY3QuIEl0CmlzIHRoZSBNQUMgZHJpdmVycyBo
-YW5kbGluZyBvZiBkZWxheXMgd2hpY2ggaXMgYnJva2VuLiBZb3UgZ2V0IHRvIGZpeAppdCBmb3Ig
-dGhpcyBuZXcgZGV2aWNlLgoKICAgQW5kcmV3CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxv
-Z2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+From: Igor Velkov <iav@iav.lv>
+
+meson_mmc_card_busy() reports busy only while DAT0..3 are all low. A
+busy card drives DAT0 low and leaves DAT1..3 to the pull-ups, and the
+callback is defined as "Check if the card is pulling dat[0] low". So a
+busy card is reported free, and the core, which prefers card_busy over
+CMD13 in mmc_busy_cb(), stops polling after CMD6 and erase at once. The
+controller hides this on R1b commands, where it waits for busy itself.
+Once max_busy_timeout is reported, the core sends the longer waits, the
+120 s BKOPS and 240 s sanitize switches among them, as R1 and has only
+the polling left.
+
+Look at DAT0 only, as sdhci_card_busy() does. The checks around the
+voltage switch in mmc_set_uhs_voltage() still hold: the card drives
+DAT0..3 low together after CMD11 and keeps them low together on
+failure.
+
+Fixes: 186cd8b7f586 ("mmc: meson-gx: implement card_busy callback")
+Assisted-by: LLM
+Signed-off-by: Igor Velkov <iav@iav.lv>
+---
+ drivers/mmc/host/meson-gx-mmc.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index dd246ad63653..abdb12e5f997 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -1095,8 +1095,8 @@ static int meson_mmc_card_busy(struct mmc_host *mmc)
+ 
+ 	regval = readl(host->regs + SD_EMMC_STATUS);
+ 
+-	/* We are only interrested in lines 0 to 3, so mask the other ones */
+-	return !(FIELD_GET(STATUS_DATI, regval) & 0xf);
++	/* The card signals busy on DAT0 alone. */
++	return !(FIELD_GET(STATUS_DATI, regval) & BIT(0));
+ }
+ 
+ static int meson_mmc_voltage_switch(struct mmc_host *mmc, struct mmc_ios *ios)
+
+-- 
+2.43.0
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
