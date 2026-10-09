@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 259E6CA5FED
-	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Oct 2026 03:17:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD7ECCA6018
+	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Oct 2026 03:17:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QtyqnXSYFFd/8LHnf6kMTsBHfXIri37leOkFiJR6AT4=; b=3FeN7ZyNUHkBCN
-	fXWaqnt/j9Z04ya3XqXR36NkB8W3z+mFRFWNV2DyYDFAYKhFR8MpQe3Do6QfToT4EcEmDvtg7+mCR
-	RFO8z53mSLUWjOQlKUn/0Sr3QJCcOmkBhtwUsVBZCGzy0VTafUAHsjF/xbZjg2yCI7gZ02bgtIefl
-	AbMnv8itL73HINDR1/aXVZEw+9elXna5pLN/ntBxSWpd1Bc+8CWFZz1Y+IsRc+apR9kO8L/ZbUmHP
-	/QAMX1nMZ8JiLeYtgfJ4jwaVTO7P6Op8G1NaTx1Tbz/xSE46HVaWzVhUU4LS+6RXMmtkaF+srW1W1
-	vBGTYDV9guWM+yhDDFRg==;
+	List-Owner; bh=+DsP/DNt1ju3CyCUgqikK0cJK52tlzr7XR+r0GOaGC0=; b=SA3+XvbvpbJ6yx
+	RaJmEx7we7ppmMvjMaYRfupiDN5MRfxhDPOYejC/H028LhrQBQlFhPn7vcD9dtgD9w5a8MKdr898J
+	rbKAG4CAOZCUg3IAieIqdHtMDaNA6MwyRKe9/kqK2DJnx9erTIdXnJpf0QVBdLj7jBp3YFC+/JNUK
+	PVXEKwXnUQJZeTP4BQC2DreqXb122jBaragPD783z/wgiGHx71W+Forc4iO8x2WgTN3FygHsZa4P+
+	bsVYSPGI9p25So6IEknKf7Fy880/bPa28JsvtuuqSAu0a/fe1X6BaBVHluNTW4uf3VhTTwXJ3GR3n
+	TNX+aGXobWcHJoc2Ztpg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xF179-00000005K4P-4AJg;
-	Fri, 09 Oct 2026 03:17:43 +0000
-Received: from bg1.exmail.qq.com ([114.132.124.171])
+	id 1xF17C-00000005K5N-0EGT;
+	Fri, 09 Oct 2026 03:17:46 +0000
+Received: from smtpbgau2.qq.com ([54.206.34.216])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xF177-00000005K3W-2m32
+	id 1xF178-00000005K1X-3U12
 	for linux-amlogic@lists.infradead.org;
-	Fri, 09 Oct 2026 03:17:43 +0000
-X-QQ-mid: zesmtpip2t1791515842t5bf99465
-X-QQ-Originating-IP: EPo9yvjcUKSxfds5pH10PS+8bETia1Xjr/JTyOz/FM8=
+	Fri, 09 Oct 2026 03:17:44 +0000
+X-QQ-mid: zesmtpip2t1791515826t0fda5ad6
+X-QQ-Originating-IP: 1m0x0heME81gQiDrvyw1IQiDZIStO9MbFOMmJ8xkQy4=
 Received: from [192.168.30.32] ( [localhost])
 	by bizesmtp.qq.com (ESMTP) with 
-	id ; Fri, 09 Oct 2026 11:17:19 +0800 (CST)
+	id ; Fri, 09 Oct 2026 11:17:03 +0800 (CST)
 X-QQ-SSF: 0000000000000000000000000000000
 X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 1232975757929523936
-EX-QQ-RecipientCnt: 30
+X-BIZMAIL-ID: 359533307684351837
+EX-QQ-RecipientCnt: 29
 From: Xilin Wu <sophon@radxa.com>
-Date: Fri, 09 Oct 2026 11:15:57 +0800
-Subject: [PATCH v2 05/20] drm/msm/dp: Support multiple generic SDP slots
+Date: Fri, 09 Oct 2026 11:15:53 +0800
+Subject: [PATCH v2 01/20] drm/atomic: Handle max bpc properties before
+ connector state allocation
 MIME-Version: 1.0
-Message-Id: <20261009-msm-dp-hdr10-v2-5-1835d4966da3@radxa.com>
+Message-Id: <20261009-msm-dp-hdr10-v2-1-1835d4966da3@radxa.com>
 References: <20261009-msm-dp-hdr10-v2-0-1835d4966da3@radxa.com>
 In-Reply-To: <20261009-msm-dp-hdr10-v2-0-1835d4966da3@radxa.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -61,41 +62,39 @@ To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
 Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
  linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, 
  dragon@radxa.com, Xilin Wu <sophon@radxa.com>, 
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3697; i=sophon@radxa.com;
- h=from:subject:message-id; bh=zp9J/I3KL2ekRKRZ8uv9r2FRGz6DzqPhr0mZSqbj3oI=;
- b=owGbwMvMwCVmdFg0fe08Iz/G02pJDFknYlaUy17ccsbAemrHk8quDZmxgcmqxgUGifWiH5n5U
- npr6zg7SlkYxLgYZMUUWRTiGeayV+ZeeypWqgczh5UJZAgDF6cATCTQieGf9Z2fvZMTV6QYZqeY
- /Zq5b2t2t484/6WsjY57l7PdbmYyYGT40DnzKPOMH7vyVOX3uR+sWjfrsf6yWzX65TofD67zZc1
- lAwA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5131; i=sophon@radxa.com;
+ h=from:subject:message-id; bh=iY5Uc1xTCGczUi0dqQkmwt1qtcO7yk+6gKr9GQ/UnJk=;
+ b=owGbwMvMwCVmdFg0fe08Iz/G02pJDFknYlZs31B1zKVURPdXms5Xgb0XHiqV7Y54feWedc4eE
+ SZm2Uy+jlIWBjEuBlkxRRaFeIa57JW5156KlerBzGFlAhnCwMUpABMR2cDwh/NZnu31jX6Lqxll
+ dy98ejFAjcdId0Nq03nWSoMXD6eo1DEy9O14VH7ZRCs32K2i/e82Dim96YFzGE+Z+7k7n9y4mTO
+ eFQA=
 X-Developer-Key: i=sophon@radxa.com; a=openpgp;
  fpr=205F009D07796DD6E516752E32C31567AD9E324E
 X-QQ-SENDSIZE: 520
 Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz3b-0
-X-QQ-XMAILINFO: NMDsnXof05FG0W9l1NoTqTZ1r92JkcZomcgWpXeUzMRWBra7D23xcqAW
-	Jq2n05lnc2cW5rSU5oMC+GzbpScXF72bGtXTVV4QExUqG+NmU8e0H3Ba5MEudsmlRer0KIi
-	tBWKFWEX30c/5ZL8m2SA7Nixbg8JRPpwD9JP5BdQCYsY40ZICWO2okr6C9uIHSP/SQcyU/L
-	XkVQ1YOazwuX44b7Ni6+HhoWkshjClKqY4NAH8nrWyKb1yxm74rGd6BbCPN5fRp5KrTqOk3
-	Cxq3RwSGvX/SORO3967M3DOlSWNyyUBgLWlpuufDSkfPyvusgFdqKSF1veRev5F7fJI6bfi
-	j0wv3v8MvvMnvlMDbxUKnVXzwKlCP56NUMPtgPbyAtChh6mczxeMiBnFt5yk8AzYcFknKcq
-	+BBr35JFNSkDmucKtgsI7j5NKXO7CtcY0kMyRiN0zJjfnDtXP+OSoxfqZERaqWwo7uS9s0m
-	0oAIuVGhYNtPQJ/DFWa2xirR6m7RP4CAClpboptK1vhcW3u2n1xUskzdIujPGpeHOvRYZvl
-	x97Brnw7MNyh5yeG3Anq79rmQmcxIjGgtU7pRICvl3TZbGvs9HwT6U44hTNIk5dlxpRtt5C
-	gPG2Kh6ppRogaUAl9Z9GDh5/pIFFyZEX+52YFti0rXc/pYVgDx0AAF2YyNLk3QiyqQ0hhDc
-	jsjv30bjqKtYo4KDWXHu9cM/b691hwg4/E60XAY/3QgwmpDbCAvd7Fc6413X2cLGE4sUq2Q
-	JU9mwduJ7PLwOC9ImfuiHfzSWr4LrRmmFoIF3HOK97+rzFoj8CVV1gnVI2ELsjnNDvABvtm
-	L+RsXm8XZLpNhINKzx4FYh9ajmeRiDBj3XV9alTQ9qfsXpBcodecFXoZWJsDGuz7jGLy6aU
-	QO+N0u9DrIvmIkAF+2ecxO1DuL50ny54uheVyLqnzMSMdlwS1YkAgNQ2XwDKcgo5pIldQbJ
-	7u99oPTr8AaABxADYWxyHcYt8CDXTUfVRYgr1kd7LMMQfB+gezPJBcXXPa/SGS+bdrOGN1m
-	GkPlwqbROAhveidBa0j0JCmMS9ypp5IOWxq6JtVRsg9q5ciFNG1rxyg0zdM/HG3/9ZfFARh
-	Q==
-X-QQ-XMRINFO: NS+P29fieYNwqS3WCnRCOn9D1NpZuCnCRA==
+X-QQ-XMAILINFO: N2V5A3LHll/od67rKIY1HBORMD+ciF1lTCNZDEWT2wOAG619NlDKvNC8
+	VwI2PxkXTJP5TqjbfVfiLtxA62MISUxDDmzPZn5vcuguvJHlRI/dU36bErJOMZR2rug/7mu
+	zQhO3XPZw+T47jzBVO6gDa30zRwtgvZJ3ihRlWk04Ri2LfekUBmCs4yHmiGhcwahkltA48Z
+	n2hkeGYyp63IvSo/FciIsynkcx3MpaOehnEWNFIp4H/U1+HMgtyiLi+x84grSZWymg4SoSU
+	VaRKL+aTjGnjfNHUBaxwZ3hMghiDCAC+2nUNeqehNkKu0eAdNew/hKdvUIfH0VBo76ro1N/
+	oR7Wf2LUkEuq4/Ir6on6eJMth4y7RFZlEkWaW6SmowqgKx1S8KhRs82CsTCMtKGAOtMt7+x
+	uSbX3wnlV6P2ffM9u3stixQ1gvcdTxAjkrk/m94Mq2cD/RGbFmwJCCIIQmsMWtqppWtvQmu
+	RQYhPogB3VkD/sJ4yQQDq7kggkcLsVjGxCJ6Yf0CNeQ+yaPCwhU+2ektVuC8YyatdEEDkFF
+	2/rz2jNF3TSxbLBLc+7pC1CMPSse6kM3Bel/aN8N5jLYn2/j6H3juwmGsIDzCMAVyBRRufM
+	VlqiIzNC8E/p3yY2Z2wU6WGyuhXyBCB3uyeDayoUhReSY3xxo9zwd3Y3ywdnjOqriKCNRDD
+	XX3usTZqofq6HxHmAk4cGhWGxaogWhsACNiEXYa76qqnwVmwou55b/a24DKlBgk521Z9cIk
+	c7kp4tTnL1yOdgJA0mBbnC/aVWxmvAeFMnJWiE6hvKbAPXcZmGm3GkfD+XdLbmYDqMs9i1C
+	N2F40tAqhM2uZpZdE1XO1XJnxVvfDjickaw38srUG47kVq3WZ/RcpHx03dOtnXhL9491M/A
+	337UlqPY3I5zcCQJcXEkUvAkAwVfVZzYJm8U/h9BbmhnSMKvDL9iK7ZVLyPw8MYLj6vGToN
+	pguNSdo6gXXFf7eRdW68dVWPf1hA1EdXyJ8DLGl9GJ4wXjhP8pJ3OPJghSaqVd+bxh74OMH
+	zeqG8Kss0YPSrUdzlLi/BT1kI1kHUeCJPm8Vz3fg==
+X-QQ-XMRINFO: NyFYKkN4Ny6FuXrnB5Ye7Aabb3ujjtK+gg==
 X-QQ-RECHKSPAM: 0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261008_201742_022680_0368CE0D 
-X-CRM114-Status: GOOD (  11.24  )
+X-CRM114-CacheID: sfid-20261008_201743_364542_B3A371E7 
+X-CRM114-Status: GOOD (  12.76  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,103 +111,135 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The SDP writer currently targets Generic0 for VSC packets. Static HDR
-metadata needs a separate slot so that both packets can be sent on the
-same stream.
+Allow drivers to attach the max bpc property before allocating connector
+state, as needed by the upcoming non-HDMI bridge connector support.
+Only update the current state when one exists.
 
-Allow the SDP writer to address a generic packet slot, and define the
-Generic2 registers needed for static HDR metadata. Use unaligned
-little-endian loads for the payload words.
+Initialize max_requested_bpc and max_bpc from the attached property default
+when creating connector state. Use drm_object_property_get_default_value()
+rather than the range maximum so that state creation and subsequent resets
+restore the value chosen when attaching the property.
 
-The existing VSC packet continues to use Generic0 without changing its
-layout or enable sequence.
+Cover deferred allocation, existing state and restoration of a default
+that differs from the range maximum in the connector KUnit tests.
 
 Assisted-by: LLM
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 Signed-off-by: Xilin Wu <sophon@radxa.com>
 ---
- drivers/gpu/drm/msm/dp/dp_panel.c | 22 ++++++++++------------
- drivers/gpu/drm/msm/dp/dp_reg.h   |  4 ++++
- 2 files changed, 14 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/drm_atomic_state_helper.c  |  8 +++++
+ drivers/gpu/drm/drm_connector.c            |  6 ++--
+ drivers/gpu/drm/tests/drm_connector_test.c | 53 ++++++++++++++++++++++++++++++
+ 3 files changed, 65 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/dp/dp_panel.c b/drivers/gpu/drm/msm/dp/dp_panel.c
-index e76dad0f6663..fdf1a3f437ba 100644
---- a/drivers/gpu/drm/msm/dp/dp_panel.c
-+++ b/drivers/gpu/drm/msm/dp/dp_panel.c
-@@ -14,6 +14,7 @@
- 
- #include <linux/io.h>
- #include <linux/types.h>
-+#include <linux/unaligned.h>
- #include <asm/byteorder.h>
- 
- #define DP_INTF_CONFIG_DATABUS_WIDEN     BIT(4)
-@@ -442,22 +443,19 @@ void msm_dp_panel_clear_dsc_dto(struct msm_dp_panel *msm_dp_panel)
- 	msm_dp_write_p0(panel, MMSS_DP_DSC_DTO, 0x0);
- }
- 
--static void msm_dp_panel_send_vsc_sdp(struct msm_dp_panel_private *panel, struct dp_sdp *vsc_sdp)
-+static void msm_dp_panel_send_sdp(struct msm_dp_panel_private *panel,
-+				  const struct dp_sdp *sdp, u32 base)
+diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/drm/drm_atomic_state_helper.c
+index a2ef272e9f27..8352b5a9097a 100644
+--- a/drivers/gpu/drm/drm_atomic_state_helper.c
++++ b/drivers/gpu/drm/drm_atomic_state_helper.c
+@@ -494,7 +494,15 @@ void
+ __drm_atomic_helper_connector_state_init(struct drm_connector_state *conn_state,
+ 					 struct drm_connector *connector)
  {
- 	u32 header[2];
--	u32 val;
- 	int i;
- 
--	msm_dp_utils_pack_sdp_header(&vsc_sdp->sdp_header, header);
-+	msm_dp_utils_pack_sdp_header(&sdp->sdp_header, header);
-+	msm_dp_write_link(panel, base, header[0]);
-+	msm_dp_write_link(panel, base + 4, header[1]);
- 
--	msm_dp_write_link(panel, MMSS_DP_GENERIC0_0, header[0]);
--	msm_dp_write_link(panel, MMSS_DP_GENERIC0_1, header[1]);
--
--	for (i = 0; i < sizeof(vsc_sdp->db); i += 4) {
--		val = ((vsc_sdp->db[i]) | (vsc_sdp->db[i + 1] << 8) | (vsc_sdp->db[i + 2] << 16) |
--		       (vsc_sdp->db[i + 3] << 24));
--		msm_dp_write_link(panel, MMSS_DP_GENERIC0_2 + i, val);
--	}
-+	for (i = 0; i < sizeof(sdp->db); i += 4)
-+		msm_dp_write_link(panel, base + 8 + i,
-+				  get_unaligned_le32(&sdp->db[i]));
- }
- 
- static void msm_dp_panel_update_sdp(struct msm_dp_panel_private *panel)
-@@ -487,7 +485,7 @@ void msm_dp_panel_enable_vsc_sdp(struct msm_dp_panel *msm_dp_panel, struct dp_sd
- 	cfg2 |= GENERIC0_SDPSIZE_VALID;
- 	msm_dp_write_link(panel, MMSS_DP_SDP_CFG2, cfg2);
- 
--	msm_dp_panel_send_vsc_sdp(panel, vsc_sdp);
-+	msm_dp_panel_send_sdp(panel, vsc_sdp, MMSS_DP_GENERIC0_0);
- 
- 	/* indicates presence of VSC (BIT(6) of MISC1) */
- 	misc |= DP_MISC1_VSC_SDP;
-diff --git a/drivers/gpu/drm/msm/dp/dp_reg.h b/drivers/gpu/drm/msm/dp/dp_reg.h
-index dda4b642c81b..6767a215b662 100644
---- a/drivers/gpu/drm/msm/dp/dp_reg.h
-+++ b/drivers/gpu/drm/msm/dp/dp_reg.h
-@@ -232,10 +232,12 @@
- #define MMSS_DP_AUDIO_CTRL_RESET		(0x00000214)
- 
- #define MMSS_DP_SDP_CFG				(0x00000228)
-+#define GEN2_SDP_EN				BIT(19)
- #define GEN0_SDP_EN				(0x00020000)
- #define MMSS_DP_SDP_CFG2			(0x0000022C)
- #define MMSS_DP_AUDIO_TIMESTAMP_0		(0x00000230)
- #define MMSS_DP_AUDIO_TIMESTAMP_1		(0x00000234)
-+#define GENERIC2_SDPSIZE_VALID			BIT(20)
- #define GENERIC0_SDPSIZE_VALID			(0x00010000)
- 
- #define MMSS_DP_AUDIO_STREAM_0			(0x00000240)
-@@ -291,6 +293,8 @@
- #define MMSS_DP_GENERIC1_8			(0x00000348)
- #define MMSS_DP_GENERIC1_9			(0x0000034C)
- 
-+#define MMSS_DP_GENERIC2_0			(0x000003D8)
++	u64 val;
 +
- #define MMSS_DP_VSCEXT_0			(0x000002D0)
- #define MMSS_DP_VSCEXT_1			(0x000002D4)
- #define MMSS_DP_VSCEXT_2			(0x000002D8)
+ 	conn_state->connector = connector;
++	if (connector->max_bpc_property &&
++	    !drm_object_property_get_default_value(&connector->base,
++						   connector->max_bpc_property, &val)) {
++		conn_state->max_requested_bpc = val;
++		conn_state->max_bpc = val;
++	}
+ }
+ EXPORT_SYMBOL(__drm_atomic_helper_connector_state_init);
+ 
+diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+index 8b4baed060f3..34c30469f405 100644
+--- a/drivers/gpu/drm/drm_connector.c
++++ b/drivers/gpu/drm/drm_connector.c
+@@ -2886,8 +2886,10 @@ int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
+ 	}
+ 
+ 	drm_object_attach_property(&connector->base, prop, max);
+-	connector->state->max_requested_bpc = max;
+-	connector->state->max_bpc = max;
++	if (connector->state) {
++		connector->state->max_requested_bpc = max;
++		connector->state->max_bpc = max;
++	}
+ 
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/tests/drm_connector_test.c b/drivers/gpu/drm/tests/drm_connector_test.c
+index beb1d50a6646..1174607441b9 100644
+--- a/drivers/gpu/drm/tests/drm_connector_test.c
++++ b/drivers/gpu/drm/tests/drm_connector_test.c
+@@ -12,6 +12,7 @@
+ #include <drm/drm_file.h>
+ #include <drm/drm_kunit_helpers.h>
+ #include <drm/drm_modes.h>
++#include <drm/drm_property.h>
+ 
+ #include <drm/display/drm_hdmi_helper.h>
+ 
+@@ -187,7 +188,59 @@ KUNIT_ARRAY_PARAM(drm_connector_init_type_valid,
+ 		  drm_connector_init_type_valid_tests,
+ 		  drm_connector_init_type_desc);
+ 
++/* The attached default need not equal the upper end of the property range. */
++static void drm_test_connector_max_bpc_default(struct kunit *test)
++{
++	struct drm_connector_init_priv *priv = test->priv;
++	struct drm_connector *connector = &priv->connector;
++	struct drm_property *prop;
++	int ret;
++
++	ret = drmm_connector_init(&priv->drm, connector, &dummy_funcs,
++				  DRM_MODE_CONNECTOR_DisplayPort, NULL);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++
++	prop = drm_property_create_range(&priv->drm, 0, "max bpc", 6, 12);
++	KUNIT_ASSERT_NOT_NULL(test, prop);
++	connector->max_bpc_property = prop;
++	ret = drm_connector_attach_max_bpc_property(connector, 6, 10);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++	KUNIT_EXPECT_NULL(test, connector->state);
++
++	drm_mode_config_reset(&priv->drm);
++	KUNIT_ASSERT_NOT_NULL(test, connector->state);
++	KUNIT_EXPECT_EQ(test, connector->state->max_requested_bpc, 10);
++	KUNIT_EXPECT_EQ(test, connector->state->max_bpc, 10);
++
++	connector->state->max_requested_bpc = 8;
++	connector->state->max_bpc = 8;
++	drm_mode_config_reset(&priv->drm);
++	KUNIT_ASSERT_NOT_NULL(test, connector->state);
++	KUNIT_EXPECT_EQ(test, connector->state->max_requested_bpc, 10);
++	KUNIT_EXPECT_EQ(test, connector->state->max_bpc, 10);
++}
++
++static void drm_test_connector_max_bpc_existing_state(struct kunit *test)
++{
++	struct drm_connector_init_priv *priv = test->priv;
++	struct drm_connector *connector = &priv->connector;
++	int ret;
++
++	ret = drmm_connector_init(&priv->drm, connector, &dummy_funcs,
++				  DRM_MODE_CONNECTOR_DisplayPort, NULL);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++	drm_mode_config_reset(&priv->drm);
++	KUNIT_ASSERT_NOT_NULL(test, connector->state);
++
++	ret = drm_connector_attach_max_bpc_property(connector, 6, 10);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++	KUNIT_EXPECT_EQ(test, connector->state->max_requested_bpc, 10);
++	KUNIT_EXPECT_EQ(test, connector->state->max_bpc, 10);
++}
++
+ static struct kunit_case drmm_connector_init_tests[] = {
++	KUNIT_CASE(drm_test_connector_max_bpc_default),
++	KUNIT_CASE(drm_test_connector_max_bpc_existing_state),
+ 	KUNIT_CASE(drm_test_drmm_connector_init),
+ 	KUNIT_CASE(drm_test_drmm_connector_init_null_ddc),
+ 	KUNIT_CASE_PARAM(drm_test_drmm_connector_init_type_valid,
 
 -- 
 2.56.0
