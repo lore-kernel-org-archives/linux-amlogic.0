@@ -4,54 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7C79CA9EBD
-	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Oct 2026 17:03:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CF0CCA9EC0
+	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Oct 2026 17:03:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RpxIDh41ljb6kSF5wIbLVMzMqt+SuymDTMl0beS1KWc=; b=cLwtaOeJ/mJdev
-	lyrR3d/wWAKEDcBEtwcGGdQkipd97Ip1MyG3DTk643OfTptoakDaf8sirKWzHcFokvH3JQ9JgeZz4
-	wZnYrG87CGH5dNLBJHvy3U8g/eM/FtEEVxQvRt0P1feXF0r0ALn9KhnKW2udfiqtFFSKooEh+LGfI
-	Q6/lEIiHm02V8u28SrfTKmwBD2vzbUUfRH2le4tZrS8kGIG8kNhmuDM7LPlGITCPhEbj3tyNcyYMl
-	+PDd+dlXruQVyMscz0A7UZkzkRMA9RqnKLAXExXlKmfJOfgSmFWG7QjE/jjvnfi/JGknYQzpckcOP
-	0r9ADZ6xCKZsFEV5++Rg==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=hMCXm1uVQZlJ4ZFz3QIm5i8JCbMutuSVDUfVXu8BJyo=; b=WAQEiM02ruM5vT
+	qZA1VqASxECf3+UbdSRwx0u/PlZ3BclZ9pHK3H76C43WYoR+e8j7Vf13vWseki1//ffeCOadCnLoP
+	puNgxdmLGpremzcYwl8OyPIlfwXLI9bsLfnivUoNb8pzNOwZKDaRsYsWbUsULENugXN+oym6UxZgz
+	dxrCAhXfgxm1adBuOLecpOzpWVyO/j1pSgPEhlpvj4dTDrqREuXLet1yR4qSN0FbHaQkOd2a+kLOn
+	oUsxvxzhFmCFA+2E7CX6jCqI85gmR0mxHT+7CBMk4/Tk7rKp3cR13fCM2vt6HmjFO4NiIBITLyJq4
+	RBHcUWx2FnEGbHSLx7ww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFE0F-00000006kYq-1pUw;
+	id 1xFE0F-00000006kZ6-3Woo;
 	Fri, 09 Oct 2026 17:03:27 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFE0A-00000006kXn-3CfW;
+	id 1xFE0A-00000006kXl-3Clq;
 	Fri, 09 Oct 2026 17:03:22 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 4FED143D63;
+	by sea.source.kernel.org (Postfix) with ESMTP id 26F2640AF8;
 	Fri,  9 Oct 2026 17:03:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2A578C2BCFF;
-	Fri,  9 Oct 2026 17:03:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id F16DCC2BCF4;
+	Fri,  9 Oct 2026 17:03:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1791565402;
-	bh=6f1LpMsqYdXKKTwjt33dDc9gd5rIMbQHizaUf5m5oHU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=qdoBGbBQ6L1e7NCwyAParYqJLZUYJSqENhm8CpY+rQdxUGchaCI8+Byc/q6HnKOxN
-	 TQBpQQI6pnDOoHVr3vI1NNP26A4/jP8ivMuOJg/iOoNz0YVn636zO+Y3/sDppiY+oh
-	 ZdpFIkTOGg5KkMmKxMD6WxLE7fkSfJHRMniOizJwkeAyB4hApGZo0sNthiEZjzc7Do
-	 W03KmJAa/2wp96p0n2omEzhZwcom1ZGXm5ob72dfN2rRoN09/U0fqa9B+qoI5kC5Ai
-	 SwIv5BqUgATaBeHMi3aFDTJGCb9vIuOxjEiQ4OlKA29tVK8U42YFR6DAtry+sAlokG
-	 QKNZsLgyaIG6Q==
+	bh=sLav8eVPxAn6w8jYJTPMsF+9TZLNLRgeAX9kWkuT/Pk=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=tP9aM3nTPaiAMpsUMrLLUazJoaiKDtWUXYsHyDlaWUFlN6MB4qN8vAqiGgvBSpy3+
+	 dxD6cpiWW7n/gFCA1Z7UHec/poM0fnkB159uZ0tFaVOPAl9qPDGV3WT0l/xrJOuAOs
+	 Qzii4RILLXc8K+9kx0bSWFlqYxFGk0ug7K86Y1zsNg582eEYJZaxfIh3FCU3i1yo9L
+	 SuM2DTYharxz/q4g/9/gOE2IwfGlpyVQS7HmqNEVO1K89fT9GF+7Yc29yNqgYQZLGa
+	 G8QeBrBe9ozHe0KgnBpG3tRdonGJTtZ7Lzm0iB82QTWpm9SWkgw/pMgU9IADJ0eteu
+	 qmvpowWhQZIuw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 11C34CA9EC1;
-	Fri,  9 Oct 2026 17:03:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C9D39CA9EBD;
+	Fri,  9 Oct 2026 17:03:21 +0000 (UTC)
 From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Fri, 09 Oct 2026 17:03:00 +0000
-Subject: [PATCH v3 4/4] mmc: meson-gx: report the longest busy wait the
- controller can do
+Subject: [PATCH v3 0/4] mmc: meson-gx: honour the busy timeout for R1b
+ commands
+Date: Fri, 09 Oct 2026 17:02:56 +0000
+Message-Id: <20261009-meson-gx-busy-timeout-v3-0-67d0db3a8328@iav.lv>
 MIME-Version: 1.0
-Message-Id: <20261009-meson-gx-busy-timeout-v3-4-67d0db3a8328@iav.lv>
-References: <20261009-meson-gx-busy-timeout-v3-0-67d0db3a8328@iav.lv>
-In-Reply-To: <20261009-meson-gx-busy-timeout-v3-0-67d0db3a8328@iav.lv>
+X-B4-Tracking: v=1; b=H4sIAEAeyWoC/43NTQqDMBCG4atI1p2SH7Wxq96jdGGSUQPVlESDI
+ t69UWh3hS7fD+aZlQT0FgO5ZivxGG2wbkghThnRXT20CNakJpzyklFaQI/BDdDOoKawwGh7dNM
+ IF5QoGqOVQEHS7ctjY+fDvT9SdzaMzi/Hm8j29SPKH2JkwMBUvBG6lDqn1c3W8fyMZOci/4vgQ
+ EEqg6w2jSpU/iW2bXsD4Tt9U/oAAAA=
 To: Ulf Hansson <ulfh@kernel.org>
 Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
@@ -60,13 +62,13 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Igor Velkov <iav@iav.lv>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1174; i=iav@iav.lv;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2782; i=iav@iav.lv;
  h=from:subject:message-id;
- bh=TPNNS8dR7nsAXzxzryfYbpCXwKfJ5cMjVjbSsbsPxOY=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDFkn5cJP7UhOvhl3pJC5+q+JlMjNHnf9cjaBTye3+HiX3
- PK5PF24o5SFQYyLQVZMkWXCIY1bGUuu/vX3MH8AM4eVCWQIAxenAEzk6B9Ghm36Cqdmbo/T2LWZ
- //H6+Y9mpC1xXH1ukvTRtjRztfV/HiQxMuzR9vGeeOt7c96zj4WrlI16ZQUUF7EFKx9U3CD583n
- vBh4A
+ bh=sLav8eVPxAn6w8jYJTPMsF+9TZLNLRgeAX9kWkuT/Pk=;
+ b=kA0DAAoWMpeVi+pfeQMByyZiAGrJHlagWzI7bo5Nt+cNtDkGkwDWm1o1hF1//qB+AOiI7bqty
+ 4h1BAAWCgAdFiEEkMIo2mik1f1PSDfgMpeVi+pfeQMFAmrJHlYACgkQMpeVi+pfeQM10AD9Fk2Q
+ i6ybpTs0fXmxG8U7wBgxv6DUPPE5GlAwmmM+/bMBAOGy8JM66cY7bKUQyOqzIcqUuHnAR9YJDra
+ 33NnskfwG
 X-Developer-Key: i=iav@iav.lv; a=openpgp;
  fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
 X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
@@ -88,40 +90,66 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Igor Velkov <iav@iav.lv>
+For a command without data the driver programs a fixed 1024 ms into the
+CMD_CFG timeout field and does not tell the core how long the controller
+can wait for busy. Erase and cache flush then fail with -110 on eMMC.
+Patch 3 fixes card_busy, which reported a busy card free; patch 4 makes
+the core rely on it.
 
-The driver does not set max_busy_timeout, so the core takes the host
-for one that can wait for busy indefinitely and sends erase and cache
-flush as R1b with busy timeouts of up to 60 s and 30 s. The CMD_CFG
-timeout field holds at most 32768 ms, so the controller times out first.
+Tested on ODROID-N2+ (S922X), 256 GB eMMC, btrfs root with discard=async,
+Armbian builds in docker as load. Without the series (7.3-rc6): 262
+errors in 3 h and 68 in 2.5 h in two runs; the first came 4 and 43 min
+into the build. With v1 (7.3-rc6): 0 in 16 h, 2.4 h of it under the
+build. With v3: 0 in a 37 min kernel build and in a 20 GiB write +
+fstrim; a sanitize went out as R1 and the core polled DAT0 for 523 ms
+until the card was back in TRAN. On 7.1 with the previous eMMC module
+a synthetic test (20 GiB write + fstrim) gave 48 errors without the
+patches, 0 and 0 with them.
 
-Report 32768 ms as max_busy_timeout. The core then sizes discards to
-fit and, for a longer wait, sends R1 and polls for busy itself.
+ODROID-N2 (S922X), 128 GB Kingston eMMC, 20 GiB write + fstrim:
+without the series an erase hit the 1024 ms limit and failed with -110
+in 3 of 3 runs. With v3, in 3 such runs and a fill of the card to 85 %
+with rm + fstrim, 5 erases took over 1024 ms, up to 1219 ms, and
+completed; 0 errors.
 
-Fixes: 51c5d8447bd7 ("MMC: meson: initial support for GX platforms")
-Assisted-by: LLM
-Signed-off-by: Igor Velkov <iav@iav.lv>
+ODROID-HC4, SD card in SDR104 at 1.8 V: 0 errors in 5 boots.
+
+The timeout is rounded up to a power of two: the field holds powers of
+two only, and the timeout is a lower bound. MMC_CAP_WAIT_WHILE_BUSY is
+not set: I have not checked that the controller waits for busy on every
+R1b command, HS400 switches included.
+
 ---
- drivers/mmc/host/meson-gx-mmc.c | 3 +++
- 1 file changed, 3 insertions(+)
+Changes in v3:
+- Clamp cmd->busy_timeout to the range of the field before rounding it
+  up to a power of two: the rounding of a value above 2^31 overflowed
+  unsigned int (Sashiko).
+- New patch 3: card_busy reports busy from DAT0 alone. It required
+  DAT0..3 all low and reported a busy card free (Sashiko).
+- Link to v2: https://lore.kernel.org/r/20261008-meson-gx-busy-timeout-v2-0-8bde1adfb5b4@iav.lv
 
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index abdb12e5f997..49df33bbd8e5 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -1183,6 +1183,9 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 
- 	mmc->caps |= MMC_CAP_CMD23;
- 
-+	/* The longest busy wait the CMD_CFG timeout field can hold. */
-+	mmc->max_busy_timeout = SD_EMMC_CMD_TIMEOUT_MAX;
-+
- 	if (mmc->caps & MMC_CAP_SDIO_IRQ)
- 		mmc->caps2 |= MMC_CAP2_SDIO_IRQ_NOTHREAD;
- 
+Changes in v2:
+- Split into three patches, as Neil asked: name the limit of the
+  timeout field, program the R1b timeout from cmd->busy_timeout, report
+  max_busy_timeout.
+- Link to v1: https://lore.kernel.org/r/20261008-meson-gx-busy-timeout-v1-1-d92f3c68c409@iav.lv
 
+---
+Igor Velkov (4):
+      mmc: meson-gx: name the limit of the CMD_CFG timeout field
+      mmc: meson-gx: honour the busy timeout for R1b commands
+      mmc: meson-gx: report busy from DAT0 alone
+      mmc: meson-gx: report the longest busy wait the controller can do
+
+ drivers/mmc/host/meson-gx-mmc.c | 26 ++++++++++++++++++++++----
+ 1 file changed, 22 insertions(+), 4 deletions(-)
+---
+base-commit: fd9af27f6c2319713bb23832066585f8a59a1771
+change-id: 20261005-meson-gx-busy-timeout-7e8e3fdcb3e3
+
+Best regards,
 -- 
-2.43.0
+Igor Velkov <iav@iav.lv>
 
 
 
