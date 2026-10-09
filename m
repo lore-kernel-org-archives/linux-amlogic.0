@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE723CA6015
-	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Oct 2026 03:19:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D703FCA6015
+	for <linux-amlogic@archiver.kernel.org>; Fri,  9 Oct 2026 03:19:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5G+m7qh1I91i72d79QvBYqrmAZLsDMZdVbG979DUxqI=; b=XCsagG20n6ZUW7
-	hae876CFBQG2hTpyMUB0yupXwDyGS/AxUlonDPjJ/GI7JYXUrY7RKXZ+2SG/IpbI4qPOxEMd8Hiqp
-	7hsf/eylz8LwBNeFpySfjm5I3iaqJF0LCvHVT06Uk8TJLXp+j3oZ5tu1PUsRqIgWQt4lbL8A3oLjp
-	RZagvXFLwH551ng5qUJZ+05MIvNcTRfdA1of0jNxyubW/8V+oHunMV9gzVBulM9mXi6L29Q+5kHub
-	PgAqpT47MEwtjHTIG32+Cnryov2xPEJQD59YHuj/IQwObaoLYsOctE2yH09ZIFH957aW9VTI0Ii/6
-	swEJ+IcfT7oS6SejY9kg==;
+	List-Owner; bh=BskEH3rp2UBGTlJePaqsYK2pu9iTtDnA41X7CJhKfzM=; b=TSvj3GOD6ipbvd
+	mV6l3AwS24R29Ej5eRPEg6Qu1wxh4SiC8zpiKxIxPJmm6BKoeMikC/cOzELN7JdypCeFbkW2yA8X1
+	kQ6jtpdEo1ucffC7Pp2dTFOnrdFyp9UlPEp6W59JSKTm1UZIQYIs1Jk73NdjpSH4zcZ0vw87EqOKg
+	723dHDwGsw9BOVAvv10wikEnZI9CYYkq7oq2BntxiqvsU2cNK5LlV2Y4dZZsoURtElxUxle9WT3fI
+	/OvHVPGUiySI7XfW8tUaQKgLtzLYQWJt2U4JjdYJ75293D3cKnc87SoWFtQyCpodlCWBggt1ch745
+	u1ukr/AnB8AgswdZUTGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xF18w-00000005LBl-3GOB;
-	Fri, 09 Oct 2026 03:19:34 +0000
-Received: from smtpbguseast3.qq.com ([54.243.244.52])
+	id 1xF195-00000005LIz-3bpC;
+	Fri, 09 Oct 2026 03:19:43 +0000
+Received: from bg1.exmail.qq.com ([114.132.67.179])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xF18t-00000005Kot-3LQj
+	id 1xF192-00000005LFU-20Xd
 	for linux-amlogic@lists.infradead.org;
-	Fri, 09 Oct 2026 03:19:33 +0000
-X-QQ-mid: zesmtpip2t1791515886ta7242542
-X-QQ-Originating-IP: l+W6hRlVtBHQfDWT8V5zz4miNkGZI0SAE1TvYswxTT0=
+	Fri, 09 Oct 2026 03:19:42 +0000
+X-QQ-mid: zesmtpip2t1791515897t3bb15f3d
+X-QQ-Originating-IP: 4IO4EU9rcZ+ALtRpgY5n+TUnjtG5ZsnojYZCSVOLSzQ=
 Received: from [192.168.30.32] ( [localhost])
 	by bizesmtp.qq.com (ESMTP) with 
-	id ; Fri, 09 Oct 2026 11:18:03 +0800 (CST)
+	id ; Fri, 09 Oct 2026 11:18:14 +0800 (CST)
 X-QQ-SSF: 0000000000000000000000000000000
 X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 9731896443966331316
+X-BIZMAIL-ID: 4378160521373157400
 EX-QQ-RecipientCnt: 29
 From: Xilin Wu <sophon@radxa.com>
-Date: Fri, 09 Oct 2026 11:16:08 +0800
-Subject: [PATCH v2 16/20] drm/msm/dp: Disable PSR for YUV420 streams
+Date: Fri, 09 Oct 2026 11:16:11 +0800
+Subject: [PATCH v2 19/20] drm/msm/dp: Serialize video test state changes
 MIME-Version: 1.0
-Message-Id: <20261009-msm-dp-hdr10-v2-16-1835d4966da3@radxa.com>
+Message-Id: <20261009-msm-dp-hdr10-v2-19-1835d4966da3@radxa.com>
 References: <20261009-msm-dp-hdr10-v2-0-1835d4966da3@radxa.com>
 In-Reply-To: <20261009-msm-dp-hdr10-v2-0-1835d4966da3@radxa.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -63,38 +63,38 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  dragon@radxa.com, Xilin Wu <sophon@radxa.com>, 
  linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5080; i=sophon@radxa.com;
- h=from:subject:message-id; bh=UjFIXijNr1pzmNLWjNFf1sbanjbBvQlfCd9rr2qiLaU=;
- b=owGbwMvMwCVmdFg0fe08Iz/G02pJDFknYlZVBVVpuU+p3cWf4v31vXBZ2o2ZVZOu5KW/T5Lf2
- Kllzvu6o5SFQYyLQVZMkUUhnmEue2XutadipXowc1iZQIYwcHEKwEQezGBkuNjxsdN1b9v61IvP
- p8347R0Z2LJhgUqx5G7G5T+e2LCuqWH4Zx+yY1LK+o/czg7rD5ikq+X4mXud4tH/Gu8eftVm1vp
- ENgA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=9106; i=sophon@radxa.com;
+ h=from:subject:message-id; bh=KHKSAyzs833Ln6l0U/jy+twU04WRde5GQcn9QfB/NEA=;
+ b=owGbwMvMwCVmdFg0fe08Iz/G02pJDFknYlbrKIifiN0XwmVUVz5/+hL9zessIxMOnD0R4vuA1
+ aa2/6txRykLgxgXg6yYIotCPMNc9srca0/FSvVg5rAygQxh4OIUgIn032P4X7vC3u3MZssTOsuW
+ 5CUp/r5ueKatSTBR+VyRUs+u3vY1iQz/dOM1H6+Ml3UqKpy5U2rmF80Vho4vtH3N1u4IEpCSfG3
+ JCQA=
 X-Developer-Key: i=sophon@radxa.com; a=openpgp;
  fpr=205F009D07796DD6E516752E32C31567AD9E324E
 X-QQ-SENDSIZE: 520
 Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz3b-0
-X-QQ-XMAILINFO: MN7J+qOXnZ1LDH2Nj3Cy8EmdqsBlYTKsQ30UcFhZ9dD8ZxYdG4lCGiQL
-	AkEDrVv5lQOTiGvLBmKCBNmIXiDWg+PawGqzwAEK1ZJcHUwjjmuIGCNDCK/cWpcFaua/hwZ
-	PnW/qsM1BxgpXUSd1J5WM8bPvTX6pV1wPOcNXGoSLKkXkdS6mp/1Fgp2Oqa8GtzKqRngNfc
-	Bp5u8bTkziOIvTF/9YfOiE5yj01Fonre1FEBlrSZCQ2glEybwSFqpJPKFs/HZkep47wx6al
-	xfQnh02Gt1/o+TaokaAaGF3rbzRLiQz8jTVDhEqnOh3NurJd0hMMAFWeI97lksE0ex+Q3Z+
-	H6iFGVDLh3O4UdM/mkPDp9u/5cx+hPDPc8RH+9tqnX1DjJiRQOW0Ae+uDOKfTovD9pHbWBm
-	5KyRI8DSb6sX8voL/Ia7hSwLfDYjIE+DwuOrxUDSsDTzzJpEKtcE5ThM5vvr+gRIuF+6Llv
-	jvwQvLzZX8E5G5A3lL73MgrwILKBroNcbyTfYZydYaDZyA4txfC9kDDFv9W+ebPHjpLpuuU
-	UtEwl4p5LAZXrzl5lHeOFYrVLJU5JMNamEwPLx39vUOQG9gpu33pnib+pwUeLvqvd/KRyEx
-	IB1YFpRZdareiRrBKYXhEx+KsEb1WA+jGCIXI/mON2/tKFWjOuAUZOXLvpddONbbqJRwJFk
-	PS6+yttkjmA4vLL8Syln9mNUTuU99deN7TlAfK7tGLG1oaf2mC+HoU40A+uv/837BRrcig2
-	BIVvAZ1u4DtqXC2uUuRRKUgrVswGgTOjp4VWHNVoQXQynmJ8mC9l/CAY0SZa8c/2yomtU7t
-	TB9txQjJEhkVKrFZM3vnYCkZBk3heunNIez07p46oCtGbZkV7Y+q1ZlQusiAEbbL8YpzgWr
-	iBX2UBqAGruooa1l1OyQ/5wrhZZpJz2m46lcLJU/Eq1sICRZEHfdwOI7F7f6yVUi91Fg77A
-	EBil8LIbkm77/ZfxhhwbKh0L638EjJcWquDFu3XYF3ii9sBH5u/6u8s0iCQT2wwQWmryhtV
-	jhk5YQQ97cFRH+h3OL5QD8Am32A7iA08R4PPMCxUGFggSY+ReCmDR3z2gnJE+mT1ejPe1Tk
-	q1g/RrBdT8l
-X-QQ-XMRINFO: Mp0Kj//9VHAxzExpfF+O8yhSrljjwrznVg==
+X-QQ-XMAILINFO: MjtcwOZJa0njp5YNPszYOqnsolhOWplUQa7jmmT/BT6sjBCxnyhMDHy/
+	Oh9c2eZ2E0vfZ1ZFe8nGn+vodwbnV3RBU2cHy/2KNFI1NtJv/LS7dHhViDKmT0gDOrOwlm6
+	i+bgcl62SbiWhrwfDNwPGG4uakBnew6VaM4jNMxv0ieYN/iE2rHY5nNOmYD9UNitvZPdeGw
+	XhRZU3gD+1BF/m8KpRcpeSocxzvbVJziAiTQGWDtnW2yGtq4caI0BgjYEczV+zNv9FaChVI
+	90U5YgS1+OYTAISOe2EuSeJFBe969cD8r5RMls2Tt0XZuu21iUe9sp8K7QZmWCovJEmo04r
+	DKRTWvXkhi7jpQKD8ZXVc2oNmVP+CdHpLJyMB4UseYvzjbLahVDK/URC7t8n15zhNvmDtHr
+	PiE74pPCpR5C62cBocrot+E7G3x5euUnkOdzSR3XxAdLU3V8st/Ejcw+7lS/nC/FaShO8R+
+	1YPRqvLDazQUVv5nAWoJXo1KwU+VlOhTSbmTcA2kmX+pj6Nacef/LW9OZpE/NlJfhpoiSMu
+	yvcXzxcse6AQRJM1WKvhry6FRszLrBxAb/ctZ9OestGwzfjOZytBHPpXzjJVnOCp/zEKqgf
+	ZSQWyH7ubHgXpew18iY4LCz31GHtjFSYZHyzWdB6cK2/DF4ug+otQgyAkWbZYlrEGO3te3a
+	MNTsxm94ORSavqEmvkg00m4EosFXlFB7L5Y7d1XMcP7cVObAULVDeFf4qytGVH8OnQ3iNmd
+	mo/kIcD3q/5c6nSt/T7RVg+JvDCqa4xfMfwy8sgpZAtR8cViE6GfU72IR5msDCwDzuO/Vj7
+	9I9+dfp9HDFq+fKXuHTVek/Ll2yejMLA7NM0kvRo2ippv6XuJRFbW9oja6X6ftkWya4abV8
+	8fc4LscLZsrruhbKfR4ifp2Pfkw/rrFJ00HBg04GWBQTEF5g7K5mCMKfcemoYOrjOuUNqL+
+	LfyfKbLYhDU9bf9dMp6oPgP9nCacR3171xjcAz8s1AZ0yrJnHl70KdzWkfWgYiNOgTwgDP7
+	y9EZtd/FEJ8W2EkrPXqvKFTdOOIeNoRmetZfrnEz8zCQwq1zEnWi/xAwmf1nYydUisIpo/E
+	Q==
+X-QQ-XMRINFO: NS+P29fieYNwqS3WCnRCOn9D1NpZuCnCRA==
 X-QQ-RECHKSPAM: 0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261008_201932_381029_B12405D9 
-X-CRM114-Status: GOOD (  13.87  )
+X-CRM114-CacheID: sfid-20261008_201940_884957_8850910F 
+X-CRM114-Status: GOOD (  20.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,134 +111,250 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-YUV420 uses colorimetry VSC packets, which cannot share the automatic
-PSR packet generator. Do not advertise self-refresh eligibility for
-these streams while disabling PSR in the controller and sink.
+The debugfs test control writes video_test directly, racing HPD handling
+and mode programming. Reading the test flag and its requested depth in
+separate calls also allows those values to change between the reads.
 
-Compute eligibility after the common atomic check and reject an
-incompatible self-refresh entry. Clear the automatic VSC generation bit
-for YUV420 and restore PSR configuration when returning to RGB.
+Route test state access through the display and use plugged_lock for both
+HPD and debugfs updates. Hold the same lock while selecting the test depth
+and installing the mode. Pass the display instance to debugfs for access
+to its connector and the serialized test controls.
+
+Preserve the existing SDR test behavior. The shared setter provides the
+entry point for rejecting incompatible tests when HDR is added.
 
 Assisted-by: LLM
 Signed-off-by: Xilin Wu <sophon@radxa.com>
 ---
- drivers/gpu/drm/msm/dp/dp_ctrl.c    | 19 ++++++++++++-------
- drivers/gpu/drm/msm/dp/dp_ctrl.h    |  2 +-
- drivers/gpu/drm/msm/dp/dp_display.c |  3 ++-
- drivers/gpu/drm/msm/dp/dp_drm.c     | 16 ++++++++++++----
- 4 files changed, 27 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/msm/dp/dp_debug.c   | 27 ++++++++++++++-------------
+ drivers/gpu/drm/msm/dp/dp_debug.h   |  8 +++++---
+ drivers/gpu/drm/msm/dp/dp_display.c | 34 ++++++++++++++++++++++------------
+ drivers/gpu/drm/msm/dp/dp_display.h |  2 +-
+ 4 files changed, 42 insertions(+), 29 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/dp/dp_ctrl.c b/drivers/gpu/drm/msm/dp/dp_ctrl.c
-index 783cafb22374..82ef8e405543 100644
---- a/drivers/gpu/drm/msm/dp/dp_ctrl.c
-+++ b/drivers/gpu/drm/msm/dp/dp_ctrl.c
-@@ -411,7 +411,7 @@ static void msm_dp_ctrl_config_ctrl_streams(struct msm_dp_ctrl_private *ctrl,
+diff --git a/drivers/gpu/drm/msm/dp/dp_debug.c b/drivers/gpu/drm/msm/dp/dp_debug.c
+index 00fb1a7ba40e..c26b356f998a 100644
+--- a/drivers/gpu/drm/msm/dp/dp_debug.c
++++ b/drivers/gpu/drm/msm/dp/dp_debug.c
+@@ -21,7 +21,7 @@
+ struct msm_dp_debug_private {
+ 	struct msm_dp_link *link;
+ 	struct msm_dp_panel *panel;
+-	struct drm_connector *connector;
++	struct msm_dp *dp;
+ };
  
- 	config |= tbd << DP_CONFIGURATION_CTRL_BPC_SHIFT;
- 
--	if (msm_dp_panel->psr_cap.version)
-+	if (msm_dp_panel->psr_cap.version && !msm_dp_panel->msm_dp_mode.out_fmt_is_yuv_420)
- 		config |= DP_CONFIGURATION_CTRL_SEND_VSC;
- 
- 	drm_dbg_dp(ctrl->drm_dev, "stream DP_CONFIGURATION_CTRL=0x%x\n", config);
-@@ -1914,7 +1914,7 @@ static void msm_dp_ctrl_psr_exit(struct msm_dp_ctrl_private *ctrl)
- }
- 
- void msm_dp_ctrl_config_psr(struct msm_dp_ctrl *msm_dp_ctrl,
--			    struct msm_dp_panel *panel)
-+			    struct msm_dp_panel *panel, bool enable)
+ static int msm_dp_debug_show(struct seq_file *seq, void *p)
+@@ -89,7 +89,7 @@ DEFINE_SHOW_ATTRIBUTE(msm_dp_debug);
+ static int msm_dp_test_data_show(struct seq_file *m, void *data)
  {
- 	struct msm_dp_ctrl_private *ctrl = container_of(msm_dp_ctrl,
- 			struct msm_dp_ctrl_private, msm_dp_ctrl);
-@@ -1923,15 +1923,20 @@ void msm_dp_ctrl_config_psr(struct msm_dp_ctrl *msm_dp_ctrl,
- 	if (!panel->psr_cap.version)
- 		return;
+ 	const struct msm_dp_debug_private *debug = m->private;
+-	const struct drm_connector *connector = debug->connector;
++	const struct drm_connector *connector = debug->dp->connector;
+ 	u32 bpc;
  
--	/* enable PSR1 function */
-+	/* Colorimetry VSC packets cannot share the PSR packet generator. */
- 	cfg = msm_dp_read_link(ctrl, REG_PSR_CONFIG);
--	cfg |= PSR1_SUPPORTED;
-+	if (enable)
-+		cfg |= PSR1_SUPPORTED;
-+	else
-+		cfg &= ~PSR1_SUPPORTED;
- 	msm_dp_write_link(ctrl, REG_PSR_CONFIG, cfg);
+ 	if (connector->status == connector_status_connected) {
+@@ -111,7 +111,7 @@ DEFINE_SHOW_ATTRIBUTE(msm_dp_test_data);
+ static int msm_dp_test_type_show(struct seq_file *m, void *data)
+ {
+ 	const struct msm_dp_debug_private *debug = m->private;
+-	const struct drm_connector *connector = debug->connector;
++	const struct drm_connector *connector = debug->dp->connector;
  
--	msm_dp_ctrl_config_psr_interrupt(ctrl);
--	msm_dp_ctrl_enable_sdp(ctrl);
-+	if (enable) {
-+		msm_dp_ctrl_config_psr_interrupt(ctrl);
-+		msm_dp_ctrl_enable_sdp(ctrl);
-+	}
+ 	if (connector->status == connector_status_connected)
+ 		seq_printf(m, "%02x", DP_TEST_LINK_VIDEO_PATTERN);
+@@ -133,7 +133,7 @@ static ssize_t msm_dp_test_active_write(struct file *file,
+ 	int val = 0;
  
--	cfg = DP_PSR_ENABLE;
-+	cfg = enable ? DP_PSR_ENABLE : 0;
- 	drm_dp_dpcd_write(ctrl->aux, DP_PSR_EN_CFG, &cfg, 1);
- }
+ 	debug = ((struct seq_file *)file->private_data)->private;
+-	connector = debug->connector;
++	connector = debug->dp->connector;
  
-diff --git a/drivers/gpu/drm/msm/dp/dp_ctrl.h b/drivers/gpu/drm/msm/dp/dp_ctrl.h
-index 42c5f847cb02..4dd604ef9f1b 100644
---- a/drivers/gpu/drm/msm/dp/dp_ctrl.h
-+++ b/drivers/gpu/drm/msm/dp/dp_ctrl.h
-@@ -46,7 +46,7 @@ void msm_dp_ctrl_irq_phy_exit(struct msm_dp_ctrl *msm_dp_ctrl);
- void msm_dp_ctrl_set_psr(struct msm_dp_ctrl *msm_dp_ctrl,
- 			 struct msm_dp_panel *panel, bool enable);
- void msm_dp_ctrl_config_psr(struct msm_dp_ctrl *msm_dp_ctrl,
--			    struct msm_dp_panel *panel);
-+			    struct msm_dp_panel *panel, bool enable);
+ 	if (len == 0)
+ 		return 0;
+@@ -154,10 +154,11 @@ static ssize_t msm_dp_test_active_write(struct file *file,
+ 		/* To prevent erroneous activation of the compliance
+ 		 * testing code, only accept an actual value of 1 here
+ 		 */
+-		if (val == 1)
+-			debug->panel->video_test = true;
+-		else
+-			debug->panel->video_test = false;
++		status = msm_dp_display_set_video_test(debug->dp, val == 1);
++		if (status) {
++			kfree(input_buffer);
++			return status;
++		}
+ 	}
+ 	kfree(input_buffer);
  
- int msm_dp_ctrl_core_clk_enable(struct msm_dp_ctrl *msm_dp_ctrl);
- void msm_dp_ctrl_core_clk_disable(struct msm_dp_ctrl *msm_dp_ctrl);
+@@ -168,10 +169,10 @@ static ssize_t msm_dp_test_active_write(struct file *file,
+ static int msm_dp_test_active_show(struct seq_file *m, void *data)
+ {
+ 	struct msm_dp_debug_private *debug = m->private;
+-	struct drm_connector *connector = debug->connector;
++	struct drm_connector *connector = debug->dp->connector;
+ 
+ 	if (connector->status == connector_status_connected) {
+-		if (debug->panel->video_test)
++		if (msm_dp_display_check_video_test(debug->dp))
+ 			seq_puts(m, "1");
+ 		else
+ 			seq_puts(m, "0");
+@@ -200,12 +201,12 @@ static const struct file_operations test_active_fops = {
+ 
+ int msm_dp_debug_init(struct device *dev, struct msm_dp_panel *panel,
+ 		  struct msm_dp_link *link,
+-		  struct drm_connector *connector,
++		  struct msm_dp *dp,
+ 		  struct dentry *root, bool is_edp)
+ {
+ 	struct msm_dp_debug_private *debug;
+ 
+-	if (!dev || !panel || !link) {
++	if (!dev || !panel || !link || !dp || !dp->connector) {
+ 		DRM_ERROR("invalid input\n");
+ 		return -EINVAL;
+ 	}
+@@ -216,7 +217,7 @@ int msm_dp_debug_init(struct device *dev, struct msm_dp_panel *panel,
+ 
+ 	debug->link = link;
+ 	debug->panel = panel;
+-	debug->connector = connector;
++	debug->dp = dp;
+ 
+ 	debugfs_create_file("dp_debug", 0444, root,
+ 			debug, &msm_dp_debug_fops);
+diff --git a/drivers/gpu/drm/msm/dp/dp_debug.h b/drivers/gpu/drm/msm/dp/dp_debug.h
+index a90083fec856..430891e110fb 100644
+--- a/drivers/gpu/drm/msm/dp/dp_debug.h
++++ b/drivers/gpu/drm/msm/dp/dp_debug.h
+@@ -9,6 +9,8 @@
+ #include "dp_panel.h"
+ #include "dp_link.h"
+ 
++struct msm_dp;
++
+ #if defined(CONFIG_DEBUG_FS)
+ 
+ /**
+@@ -17,7 +19,7 @@
+  * @dev: device instance of the caller
+  * @panel: instance of panel module
+  * @link: instance of link module
+- * @connector: double pointer to display connector
++ * @dp: display instance owning the connector and video test state
+  * @root: connector's debugfs root
+  * @is_edp: set for eDP connectors / panels
+  * return: pointer to allocated debug module data
+@@ -27,7 +29,7 @@
+  */
+ int msm_dp_debug_init(struct device *dev, struct msm_dp_panel *panel,
+ 		  struct msm_dp_link *link,
+-		  struct drm_connector *connector,
++		  struct msm_dp *dp,
+ 		  struct dentry *root,
+ 		  bool is_edp);
+ 
+@@ -36,7 +38,7 @@ int msm_dp_debug_init(struct device *dev, struct msm_dp_panel *panel,
+ static inline
+ int msm_dp_debug_init(struct device *dev, struct msm_dp_panel *panel,
+ 		  struct msm_dp_link *link,
+-		  struct drm_connector *connector,
++		  struct msm_dp *dp,
+ 		  struct dentry *root,
+ 		  bool is_edp)
+ {
 diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-index 486348113b8a..234cb2373451 100644
+index 34e1c48cdd79..c51d033598a5 100644
 --- a/drivers/gpu/drm/msm/dp/dp_display.c
 +++ b/drivers/gpu/drm/msm/dp/dp_display.c
-@@ -822,7 +822,8 @@ static int msm_dp_display_post_enable(struct msm_dp *msm_dp_display)
- 	msm_dp_display_handle_plugged_change(msm_dp_display, true);
- 
- 	if (msm_dp_display->psr_supported)
--		msm_dp_ctrl_config_psr(dp->ctrl, dp->panel);
-+		msm_dp_ctrl_config_psr(dp->ctrl, dp->panel,
-+				       !dp->panel->msm_dp_mode.out_fmt_is_yuv_420);
- 
- 	return 0;
+@@ -435,10 +435,20 @@ static void msm_dp_display_host_deinit(struct msm_dp_display_private *dp)
+ 	dp->core_initialized = false;
  }
-diff --git a/drivers/gpu/drm/msm/dp/dp_drm.c b/drivers/gpu/drm/msm/dp/dp_drm.c
-index 9f1aa87a3687..6b01eeeb1aef 100644
---- a/drivers/gpu/drm/msm/dp/dp_drm.c
-+++ b/drivers/gpu/drm/msm/dp/dp_drm.c
-@@ -204,19 +204,27 @@ static int msm_edp_bridge_atomic_check(struct drm_bridge *drm_bridge,
- 				   struct drm_connector_state *conn_state)
- {
- 	struct msm_dp *dp = to_dp_bridge(drm_bridge)->msm_dp_display;
-+	int ret;
  
- 	if (WARN_ON(!conn_state))
- 		return -ENODEV;
- 
--	conn_state->self_refresh_aware = dp->psr_supported;
--
-+	conn_state->self_refresh_aware = false;
- 	if (!conn_state->crtc || !crtc_state)
- 		return 0;
- 
--	if (crtc_state->self_refresh_active && !dp->psr_supported)
-+	ret = msm_dp_bridge_atomic_check(drm_bridge, bridge_state, crtc_state, conn_state);
-+	if (ret)
-+		return ret;
++static int msm_dp_display_set_video_test_locked(struct msm_dp_display_private *dp,
++						bool enable)
++{
++	lockdep_assert_held(&dp->plugged_lock);
 +
-+	/* Match the PSR configuration applied when enabling this stream. */
-+	conn_state->self_refresh_aware = dp->psr_supported &&
-+		!drm_mode_is_420_only(&conn_state->connector->display_info,
-+				    &crtc_state->adjusted_mode);
-+	if (crtc_state->self_refresh_active && !conn_state->self_refresh_aware)
- 		return -EINVAL;
- 
--	return msm_dp_bridge_atomic_check(drm_bridge, bridge_state, crtc_state, conn_state);
++	dp->panel->video_test = enable;
 +	return 0;
++}
++
+ static void msm_dp_display_handle_video_request(struct msm_dp_display_private *dp)
+ {
+ 	if (dp->link->sink_request & DP_TEST_LINK_VIDEO_PATTERN) {
+-		dp->panel->video_test = true;
++		if (msm_dp_display_set_video_test_locked(dp, true))
++			dp->link->test_response = DP_TEST_NAK;
+ 		msm_dp_link_send_test_response(dp->link);
+ 	}
+ }
+@@ -689,8 +699,10 @@ static int msm_dp_display_set_mode(struct msm_dp *msm_dp_display,
+ 
+ 	dp = container_of(msm_dp_display, struct msm_dp_display_private, msm_dp_display);
+ 
+-	if (msm_dp_display_check_video_test(msm_dp_display))
+-		bpp = msm_dp_display_get_test_bpp(msm_dp_display);
++	guard(mutex)(&dp->plugged_lock);
++
++	if (dp->panel->video_test)
++		bpp = msm_dp_link_bit_depth_to_bpp(dp->link->test_video.test_bit_depth);
+ 	else
+ 		bpp = state->bpp;
+ 
+@@ -974,22 +986,20 @@ bool msm_dp_display_check_video_test(struct msm_dp *dp)
+ 
+ 	msm_dp_display = container_of(dp, struct msm_dp_display_private, msm_dp_display);
+ 
++	guard(mutex)(&msm_dp_display->plugged_lock);
++
+ 	return msm_dp_display->panel->video_test;
  }
  
- static void msm_edp_bridge_atomic_enable(struct drm_bridge *drm_bridge,
+-int msm_dp_display_get_test_bpp(struct msm_dp *dp)
++int msm_dp_display_set_video_test(struct msm_dp *dp, bool enable)
+ {
+ 	struct msm_dp_display_private *msm_dp_display;
+ 
+-	if (!dp) {
+-		DRM_ERROR("invalid params\n");
+-		return 0;
+-	}
+-
+ 	msm_dp_display = container_of(dp, struct msm_dp_display_private, msm_dp_display);
+ 
+-	return msm_dp_link_bit_depth_to_bpp(
+-		msm_dp_display->link->test_video.test_bit_depth);
++	guard(mutex)(&msm_dp_display->plugged_lock);
++
++	return msm_dp_display_set_video_test_locked(msm_dp_display, enable);
+ }
+ 
+ void msm_dp_snapshot(struct msm_disp_state *disp_state, struct msm_dp *dp)
+@@ -1604,7 +1614,7 @@ void msm_dp_display_debugfs_init(struct msm_dp *msm_dp_display, struct dentry *r
+ 	dp = container_of(msm_dp_display, struct msm_dp_display_private, msm_dp_display);
+ 	dev = &dp->msm_dp_display.pdev->dev;
+ 
+-	rc = msm_dp_debug_init(dev, dp->panel, dp->link, dp->msm_dp_display.connector, root, is_edp);
++	rc = msm_dp_debug_init(dev, dp->panel, dp->link, msm_dp_display, root, is_edp);
+ 	if (rc)
+ 		DRM_ERROR("failed to initialize debug, rc = %d\n", rc);
+ }
+diff --git a/drivers/gpu/drm/msm/dp/dp_display.h b/drivers/gpu/drm/msm/dp/dp_display.h
+index 6a77e5952530..ac64c1d3227a 100644
+--- a/drivers/gpu/drm/msm/dp/dp_display.h
++++ b/drivers/gpu/drm/msm/dp/dp_display.h
+@@ -30,7 +30,7 @@ struct msm_dp {
+ 
+ int msm_dp_display_get_modes(struct msm_dp *msm_dp_display);
+ bool msm_dp_display_check_video_test(struct msm_dp *msm_dp_display);
+-int msm_dp_display_get_test_bpp(struct msm_dp *msm_dp_display);
++int msm_dp_display_set_video_test(struct msm_dp *dp, bool enable);
+ void msm_dp_display_signal_audio_start(struct msm_dp *msm_dp_display);
+ void msm_dp_display_signal_audio_complete(struct msm_dp *msm_dp_display);
+ void msm_dp_display_set_psr(struct msm_dp *dp, bool enter);
 
 -- 
 2.56.0
