@@ -4,74 +4,113 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00FCBCA9EC0
-	for <linux-amlogic@archiver.kernel.org>; Sat, 10 Oct 2026 18:20:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3555CCA9ECA
+	for <linux-amlogic@archiver.kernel.org>; Sat, 10 Oct 2026 21:49:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
-	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=3qG2BgTpw656rUFQW++ncf3Qwq8/+FSCmRh92VBw1i8=; b=pwygiueNKzAwOq
-	uQDm6HiS/QiOo2b85dxRJIw6S7hXSRNXM4f4d1myx4+hnMmQ03682R1o1S16dVSbAY7lD7U9aFzGR
-	4ulDRlIl4C0GwThOx/ar4oPkVxNv4Cc295VrpiPeIEreWhc63QIyxeNu39QNvJJtZbYoMQ8vDHFvJ
-	MNLsYpKT4tDFKQbalA6eamd7cxRcLvLFJXCADx30e7LN5d5HPr4cqRu644zObfAcKYeWIKwwki+r2
-	jCfpJTW+HOVVnxD5liebohDx0TpThcZUT3XjFwE58086jb2EK+4IBzDin5Alnz3SjdaPvT+J5RB8R
-	RBbVe9ixwEDLWG6OFEpQ==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=90u5kocfK/HFJqhrQWx7ofMZagNRVqiA33bntEPzzmE=; b=Tzz+/YZTQFinDP
+	qBqWB/CE+4obJnyt42Tt85hv9149YNR6TLwfWbFuI3eucLdDB7un9UgPv6htHNVW0vQO2Z/8YOY6K
+	87pum4gX0PayfpGN1wstys1GiQutvDhPfJ7omSpVq5dc9mThgXfkuPqh3sseHyF6RWwXpfFycPnr+
+	aqBu0F+oC8Xhu8DxeQpijgtxyGevKUo8YvZQIhPtf5LTOmLL1yyK1MmeOK+Z5msFNYIavbOY4nqeo
+	DTY4TiGhK58p7BofJ9iN1LaDS0hlmQMPx8ivZH7rByeVYDQ5s2qURoO8ea1KGKufYCS1/eKFEdG+U
+	0Warl+NsgVPL4RPYWENg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFbgb-00000008N5v-34yT;
-	Sat, 10 Oct 2026 18:20:45 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xFewd-00000008Soq-3qoc;
+	Sat, 10 Oct 2026 21:49:31 +0000
+Received: from mail-yx1-xb132.google.com ([2607:f8b0:4864:20::b132])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFbgX-00000008N5R-2A64;
-	Sat, 10 Oct 2026 18:20:44 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 471BE40AE7;
-	Sat, 10 Oct 2026 18:20:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 1A69AC2BCB9;
-	Sat, 10 Oct 2026 18:20:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1791656441;
-	bh=bvBLwSNHfpqFuBgPMxJgODmhyMsa4KrzMFEKnO7uof0=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=Ssz8PXRwBYeglSPrVy5yI/PIRHELiZF3DF1GQ2qJsybHJ/GJzNFEtOfT8IwDebvXa
-	 GiZBJbXGBwYJOuOuOjFBBUsK6OhEupBtWX6jZ+ULO2hocuo0l5nTbpFGD3Lg7+aQRx
-	 /74en2NV8oT4cxiFKRk5yx8bBgxigw0jg+H8kZ3Bg6YQyfA5iNUdv5he/fzucvTGrf
-	 NjCV1X9yvynZByPCNcAgYX4HQRq5Ok/gf3RbtnsSX8duiGshQo4ORpYsE5VF3A3Uvt
-	 CoTxbsWX9B1EXBa7OJ3um5S+6Jm+evhXJV1+M/DB+KwjqSDgWcllly9tFjkSQ8n299
-	 CBnjDOO0HJVEA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 069EDCA6017;
-	Sat, 10 Oct 2026 18:20:41 +0000 (UTC)
-From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Sat, 10 Oct 2026 18:20:30 +0000
-Subject: [PATCH v2] irqchip/meson-gpio: Allow the GPIO interrupts to wake
- the system
+	id 1xFewa-00000008So4-2SyQ
+	for linux-amlogic@lists.infradead.org;
+	Sat, 10 Oct 2026 21:49:30 +0000
+Received: by mail-yx1-xb132.google.com with SMTP id 956f58d0204a3-677d35fd168so536111d50.3
+        for <linux-amlogic@lists.infradead.org>; Sat, 10 Oct 2026 14:49:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1791668967; cv=none;
+        d=google.com; s=arc-20260327;
+        b=nkUZ6Ehv23mMLZdNdDf7tZTUSRFkSdOK1iFqXqp4mrenBBtXeVeWYPpizuJ1Wn1lfW
+         YX5lU+szNSMeew7eCiwn04J7lCjrHSB+5xU4NJgXZRg7DxcDRk0PV1n5dnYsVb0gwzl5
+         /wbca/yRQDIFcyJ713fvfuRvAvz2PX6MUU/bQfTIQRAjnW0CfMoHpFR8eWv12f5buyOq
+         aBN8T56EdQBK/kmDdA7ONoHIj3pKIqoNLr3xf2K885unhkFHh0S7KCfZHvTBP43mVBvL
+         lPsvWlspJSWKJR4V6qFeSDAPL4ChZajH5Cq+nVKiBq+yMEp+88V/z1wHR1rkIRGNOsYJ
+         6v5w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=Q6dC4+3uJJpM8gLS0TL3OI4kuVTFqrUhEB2NtLiC1S8=;
+        fh=sSJSPDOd+WdSxuCEEx3Fdd+oFrI+FV+SzMhDJ72vJv4=;
+        b=h669nqzPvAkgq9l/kzFbwdVJcHrPwcpoDcE/vqg+d320dX9DOYf/KnJepqWVsgPBWz
+         qqANA87u887sFJJZgxFj4br3SVvd4smm+l10loC6CA7N5Ezc9VYllvRc7qX/PgTTn5Pz
+         c26fNLp22wU4sD3LaMkLgGumF0I7qsesQMY/SOcxjgkNglGe9AMyAbBc5kyVwrI+FBiL
+         O3MQpenGn35x3dPsYXFEngHxBVUs7faYxH96ifrDGRT7ILNdyAn8VaPfURifRyiBXnWZ
+         iebCVJyi2Lq6RNbGw7dVqJvtfpt0NLX1z0VLKb+SO8lSKqlNGl6AsbxRiLDalttGXJ3G
+         Sjrg==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20251104; t=1791668967; x=1792273767; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=Q6dC4+3uJJpM8gLS0TL3OI4kuVTFqrUhEB2NtLiC1S8=;
+        b=TDpq895xFFqLnS+glWCa9hZlfkLYPD6xY9rZzVZVj2cH+sA760cXYZ3hQc18BjO0gy
+         2l1EbjKSa1hjpYGtRIeA84cgUO2SJDiYvg9i6CW4qOoH4WgyjvTB2qaD4P5mt+lkx8fg
+         cAvsrC630LCp3+lm7gfHLJ6TDiS0qj85PtuWOx38d/9G9A6A1JVXBcZIQUsLhT0Gytsd
+         CXnuvgMauC3pdvoKIotGlL+yOT2b37RFZOqfuEMtBTM0uxYCqPoSZCNrzEuzM5fVNp5N
+         B7qzvGsDZldYyWQJHIX2Z53Sxbjn/TxrhMcE8c7NJGW3gls6nDGHayANtl8fA0BVwbHS
+         KPiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1791668967; x=1792273767;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Q6dC4+3uJJpM8gLS0TL3OI4kuVTFqrUhEB2NtLiC1S8=;
+        b=cO0Br0YSaRPurSpsVhgvZY8vrkxxLFbhrnotT+F4UkUjGPQL1Qvox6uN7YDdHJPGFN
+         G/efCnGBjPKK4dQeyKkXMLwzZ7ZTuNhtZRDyVpcvkDWmNdGjUQ0jAyl3SoM/DMz1zZH2
+         IJ3p+Iy5SKJQqjE8h3zY56KTNfb8tHUe2Y/uaB25AHdnC5sO5S6Bw1vL/NdN5r4lX1Ei
+         na+AdfPyI3zamVM2Zo7QxaxWss6IcXpfUPv2y1wztXre7Xtdol2JIg6xWw/cNjgYor11
+         da9SdAat2NoqY4lSNqESQM6MV2tLkhyPw3Eb6iUmoz5fEyxLPLCJryp3QIOIFxlQ1EDf
+         7lzA==
+X-Forwarded-Encrypted: i=1; AKwUvByRExctIQskOdzcsz5cx8DKDiFlKn7cO24oz1g32Zq+uh8MzqcTHtDoq5kuqAMH7+W+tQsSXhkdTPFqlQxm@lists.infradead.org
+X-Gm-Message-State: AFq9FYIELdGAiKrEyeHTYreNypzMwts6FxWiPS0+HzjBclSbAMKzCb0o
+	uDIw00uxYkhaMwNGmsBmtF8vPxmbWNXxmLqxM47ZW8oD8p5uJ0X2K7kDqss0gfUuj3MTUrzbNgW
+	vDPROn32TIJDrHfH/d55oBUVuhtzekVw=
+X-Gm-Gg: AYBFou22zNa6HL1ovPObaF2cdXwZyALzhAeHCMi3cu073TojwOSWf/6QrUl3f0h+krT
+	LnGLXYtHfgbn59VSmtyg33m6gTcxolAhbInaNFDtzNA3BKyyapD/tRouYAgx2C5KS554mC4C3lL
+	NA+2EoZxNMDGKTpoZSfOUpDsp0P7fib8xtHXNIjQanuo3bsjDIoanvtT/GUxy/0/dqjUv6jDOoD
+	FBtv//6s46Jn3oWS3pBoF8UHPPwDoen2Zne4ZpgP8gXdCCY0GCoJnGJOz+RXcL+fZucld/f3b18
+	B0N/57oLsOt9/ylUDHK3Dj+vQEjeDDSN/EZk96yb/YUpuTc7nEM6jUbC++jUAJzLhnYW3vah6fm
+	Pt63BxXrDO8/A
+X-Received: by 2002:a05:690e:5:b0:674:17ca:25dd with SMTP id
+ 956f58d0204a3-679362cb227mr1431918d50.78.1791668966625; Sat, 10 Oct 2026
+ 14:49:26 -0700 (PDT)
 MIME-Version: 1.0
-Message-Id: <20261010-meson-gpio-wake-v2-1-790ecc6df792@iav.lv>
-X-B4-Tracking: v=1; b=H4sIAO6BymoC/3WNQQ6CMBBFr0Jm7Zi2CAFX3MOwaGUKE7Ulraka0
- rtb2bt8L/nvbxApMEU4VxsEShzZuwLqUMF10W4m5KkwKKFaKUSHD4re4byyx5e+EdraWF0bo6j
- RUFZrIMvvvXgZCy8cnz589oMkf/Z/K0mUaIS2sum76dT2A+t0vCcYc85fCTMS8qsAAAA=
-To: Thomas Gleixner <tglx@kernel.org>
-Cc: Radu Rendec <radu@rendec.net>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Igor Velkov <iav@iav.lv>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2264; i=iav@iav.lv;
- h=from:subject:message-id;
- bh=fZVoG9f36dKIjewDv5ebdz4lu+bdjQGttrwUIvjhrKc=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDFmnGj9LxAQuU8/rZlmZEzdbce2SpXrqKytf31krzLY7o
- +5E+ZGbHaUsDGJcDLJiiiwTDmncylhy9a+/h/kDmDmsTCBDGLg4BWAisYIMfzhKL3ycwCTj22+V
- VCtte5Ff6a3srUyu9s9MEYWPLFpOv2ZkOL523iR5c9aHx5TXntruJMCs863WyzaJRS1NqoGFoy2
- fBQA=
-X-Developer-Key: i=iav@iav.lv; a=openpgp;
- fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
-X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
-X-Original-From: Igor Velkov <iav@iav.lv>
+References: <20261010105900.247342-1-tanure@linux.com> <20261010105900.247342-5-tanure@linux.com>
+In-Reply-To: <20261010105900.247342-5-tanure@linux.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sat, 10 Oct 2026 23:49:15 +0200
+X-Gm-Features: AclHuK8jJjUAGUEE_RiHqUn3ZKgg7qAYmUp7tVzhoh46a9QNl3VNEK64s0Xinno
+Message-ID: <CAFBinCCpo28jZkQnup2=iofwh02GOMzxJ82hGHWctiWzcKTxUw@mail.gmail.com>
+Subject: Re: [PATCH v3 4/8] net: stmmac: dwmac-meson8b: apply the RGMII delays
+ the T7 way
+To: Lucas Tanure <tanure@linux.com>
+Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261010_144928_644264_B2A3DCC4 
+X-CRM114-Status: GOOD (  14.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,72 +122,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: iav@iav.lv
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Igor Velkov <iav@iav.lv>
-
-meson_gpio_irq_chip has neither .irq_set_wake nor IRQCHIP_SKIP_SET_WAKE,
-so enable_irq_wake() fails with -ENXIO for every interrupt routed through
-it, and such an interrupt never gets IRQD_WAKEUP_STATE.
-
-That matters for suspend-to-idle. suspend_device_irqs() keeps only the
-wakeup interrupts enabled; the rest are suspended and masked by the flow
-handler when they first fire. A GPIO interrupt that fires during s2idle
-therefore brings a CPU out of idle once, gets masked, and the system
-sleeps on. For mem the firmware chooses the wakeup sources, and this
-flag changes nothing there.
-
-Set IRQCHIP_SKIP_SET_WAKE, like the other hierarchical irqchips with a
-GIC parent. The GIC sets the same flag, so irq_chip_set_wake_parent()
-would end there anyway.
-
-Tested on ODROID-HC4 with the PCF8563 alarm interrupt routed through this
-controller: with the flag the alarm wakes the board from s2idle 4/4, and
-/sys/power/pm_wakeup_irq names it; without the flag the board stayed in
-s2idle past the alarm until a power cycle (0/5).
-
-Assisted-by: LLM
-Signed-off-by: Igor Velkov <iav@iav.lv>
----
-Changes in v2:
-- Reworded, as Neil asked: say that the test and the effect are for
-  suspend-to-idle, describe how genirq handles the interrupt there, and
-  note that for mem the firmware picks the wakeup sources.
-- Repeated the run without the flag: 0/5 (v1 said 0/1).
-- Link to v1: https://lore.kernel.org/r/20261008-meson-gpio-wake-v1-1-b0af1598d469@iav.lv
----
- drivers/irqchip/irq-meson-gpio.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
-index 91a9c337fe6d..e0329ef5e4a2 100644
---- a/drivers/irqchip/irq-meson-gpio.c
-+++ b/drivers/irqchip/irq-meson-gpio.c
-@@ -538,7 +538,7 @@ static struct irq_chip meson_gpio_irq_chip = {
- #ifdef CONFIG_SMP
- 	.irq_set_affinity	= irq_chip_set_affinity_parent,
- #endif
--	.flags			= IRQCHIP_SET_TYPE_MASKED,
-+	.flags			= IRQCHIP_SET_TYPE_MASKED | IRQCHIP_SKIP_SET_WAKE,
- };
- 
- static int meson_gpio_irq_domain_translate(struct irq_domain *domain,
-
----
-base-commit: a90ee4305c4a5df72c11b31dacfdc76e00fcf78a
-change-id: 20261008-meson-gpio-wake-f3bfa3bb2e5a
-
-Best regards,
--- 
-Igor Velkov <iav@iav.lv>
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgTHVjYXMsCgokc3ViamVjdCBjYXVnaHQgbXkgZXllIGJlY2F1c2UgSSBkaWRuJ3QgdW5kZXJz
+dGFuZCB3aHkgdGhlcmUncyBhICJUNwp3YXkiIGZvciBhZGRpbmcgUkdNSUkgZGVsYXlzIHNpbmNl
+IHdlIHNob3VsZCBiZSBmb2xsb3dpbmcgYSBzdGFuZGFyZC4KUGF0Y2ggOC84IGluIHRoaXMgc2Vy
+aWVzIGRvY3VtZW50cyB0aGUgc3RhbmRhcmQuIENhbiB5b3UgcGxlYXNlIGZpbmQgYQptb3JlIHN1
+aXRhYmxlICRzdWJqZWN0IGZvciB0aGlzIHBhdGNoPwoKT24gU2F0LCBPY3QgMTAsIDIwMjYgYXQg
+MTI6NTnigK9QTSBMdWNhcyBUYW51cmUgPHRhbnVyZUBsaW51eC5jb20+IHdyb3RlOgpbLi4uXQo+
+ICBzdGF0aWMgaW50IG1lc29uOGJfaW5pdF9yZ21paV9kZWxheXMoc3RydWN0IG1lc29uOGJfZHdt
+YWMgKmR3bWFjKQo+ICB7Cj4gICAgICAgICB1MzIgdHhfZGx5X2NvbmZpZywgcnhfYWRqX2NvbmZp
+ZywgY2ZnX3J4Y2xrX2RseSwgZGVsYXlfY29uZmlnOwo+IEBAIC00MTEsMzIgKzQ1NSwzNCBAQCBz
+dGF0aWMgaW50IG1lc29uOGJfZHdtYWNfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRl
+dikKPiAgICAgICAgIGR3bWFjLT5kZXYgPSAmcGRldi0+ZGV2Owo+ICAgICAgICAgZHdtYWMtPnBo
+eV9tb2RlID0gcGxhdF9kYXQtPnBoeV9pbnRlcmZhY2U7Cj4KPiAtICAgICAgIC8qIHVzZSAybnMg
+YXMgZmFsbGJhY2sgc2luY2UgdGhpcyB2YWx1ZSB3YXMgcHJldmlvdXNseSBoYXJkY29kZWQgKi8K
+PiAtICAgICAgIGlmIChvZl9wcm9wZXJ0eV9yZWFkX3UzMihwZGV2LT5kZXYub2Zfbm9kZSwgImFt
+bG9naWMsdHgtZGVsYXktbnMiLAo+IC0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICZk
+d21hYy0+dHhfZGVsYXlfbnMpKQo+IC0gICAgICAgICAgICAgICBkd21hYy0+dHhfZGVsYXlfbnMg
+PSAyOwpUaGUgMm5zIGRlZmF1bHQgdmFsdWUgaW4gY2FzZSAiYW1sb2dpYyx0eC1kZWxheS1ucyIg
+aXMgYWJzZW50IGhhc24ndApiZWVuIG5lY2Vzc2FyeSBzaW5jZSBjb21taXQgMDkzZDIzZGI0ZmZm
+ICgiQVJNNjQ6IGR0czogYW1sb2dpYzogYWRkCnRoZSBldGhlcm5ldCBUWCBkZWxheSBjb25maWd1
+cmF0aW9uIikuClRoYXQgY29tbWl0IGlzIHBhcnQgb2YgdjQuMTIuIFNvIGJvYXJkcyB1c2luZyBS
+R01JSSBhbmQgYSAuZHRiIHdpdGhvdXQKdGhhdCBwcm9wZXJ0eSBoYXZlbid0IGJlZW4gdXBkYXRl
+ZCBpbiBtb3JlIHRoYW4gOSB5ZWFycy4KClsuLi5dCj4gLSAgICAgICByZXQgPSBtZXNvbjhiX2lu
+aXRfcmdtaWlfZGVsYXlzKGR3bWFjKTsKPiArICAgICAgIGlmIChkd21hYy0+ZGF0YS0+bWFjX2Fw
+cGxpZXNfZHRfZGVsYXlzKQo+ICsgICAgICAgICAgICAgICByZXQgPSBtZXNvbl9kd21hY19pbml0
+X2R0X2RlbGF5cyhkd21hYywgcGxhdF9kYXQpOwo+ICsgICAgICAgZWxzZQo+ICsgICAgICAgICAg
+ICAgICByZXQgPSBtZXNvbjhiX2luaXRfcmdtaWlfZGVsYXlzKGR3bWFjKTsKRnJvbSB0aGUgZGlz
+Y3Vzc2lvbiBpbiB2MiBJIGNvdWxkbid0IHVuZGVyc3RhbmQgdGhlIG92ZXJhbGwgd2F5IGZvcndh
+cmQuCkkgZ2V0IHRoYXQgbmV3IGNvbXBhdGlibGUgc3RyaW5ncyBzaG91bGQgbm90IHJlbHkgb24g
+b2xkLCBpbmNvcnJlY3QKYmVoYXZpb3IuIEJ1dCB3aGF0J3MgdGhlIHBhdGggZm9yd2FyZCBmb3Ig
+dGhlIG90aGVyIFNvQ3M/CgpbLi4uXQo+ICBzdGF0aWMgY29uc3Qgc3RydWN0IG1lc29uOGJfZHdt
+YWNfZGF0YSBtZXNvbl90N19kd21hY19kYXRhID0gewo+ICAgICAgICAgLnNldF9waHlfbW9kZSA9
+IG1lc29uX2F4Z19zZXRfcGh5X21vZGUsCj4gLSAgICAgICAuaGFzX3ByZ19ldGgxX3JnbWlpX3J4
+X2RlbGF5ID0gdHJ1ZSwKPiAgICAgICAgIC5oYXNfcGlwZWxpbmVfY2xrID0gdHJ1ZSwKPiArICAg
+ICAgIC5tYWNfYXBwbGllc19kdF9kZWxheXMgPSB0cnVlLApUaGlzIHNob3VsZCBiZSBhIGNhbGxi
+YWNrIGZ1bmN0aW9uIHBvaW50ZXIgKGFwcGx5X2RlbGF5cyBvciBzaW1pbGFyLAp0byBtYXRjaCBz
+ZXRfcGh5X21vZGUpIHVubGVzcyB0aGVyZSdzIGEgd2F5IHRvIG1ha2Ugb2xkZXIgU29DcyBhbHNv
+CmZvbGxvdyB0aGUgImNvcnJlY3QiIFJHTUlJIGRlbGF5IHNwZWNpZmljYXRpb24uCgoKQmVzdCBy
+ZWdhcmRzLApNYXJ0aW4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5m
+cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xp
+bnV4LWFtbG9naWMK
