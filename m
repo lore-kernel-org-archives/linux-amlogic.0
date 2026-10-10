@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 459C7CA9EC0
-	for <linux-amlogic@archiver.kernel.org>; Sat, 10 Oct 2026 10:59:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69D1ACA6004
+	for <linux-amlogic@archiver.kernel.org>; Sat, 10 Oct 2026 10:59:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Ojb007Eeyk5PPWz45sdU2rvsk5fBQBfJzdl97cv40Ns=; b=3KNq8RdMKHW6i2
-	Z1Ep501BLgXafLdnikBeEbMc2NXM3+JbnU09sp2Dg+bHCa/ogSXwKy5JkF3eT2T6Rrvij2ojMI7Pt
-	0O6w/ISr2IaU9jezAtA1XYEPiC7xgKmAVNV9EumsArTxfHegP48Wd/f2xup2krr2T5FbgVAiPJFcH
-	o2PzFgd73K5p5b7WhZZVpmuOKU1jNyKPk4odWEh+8NkG/SgAkmxvC8ppZFHw6121b6ku+siTh+xeS
-	sXnqMyB6J2pPgSi2VMcrjYMJQ0615E51tlBx0RXndzVYZ6vvlROsPhhfn76s06KLs4Bs7IRhKCuX8
-	vMgAFmPQwzNU8l0bVPrg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=zLJ7+KhE588XHbJbCI/Zy12REL/YwNC61sHxLLD3dco=; b=ZHMeHf+cl700uA
+	msZYmm9tvPGmv/vW6XDpe1emw9073HBYGC1r9CNJAFRFPOj2zLeBPH7QO03Veu4+LTFhcXwhyIs6i
+	KjMJau+quUXEho7xawlk7kZXQEDNuRVJRVpp3FxeJm8l4SOTgy2ev18GNHfvFMt0i92j6vUCiOaI3
+	WeyQ4F/vTZyAMyX1k707pdCSOzi6RI+kEmVb0WKm86VfKFUk3f0Ei4CPNj2buadge5Yc5TWTwuxl8
+	+PVTpQguW53qh/0rWqyrrrXzPVn8bQ46wfaikrDcaMB3r9ouXr8nDOeLu8zUsdckseECexyI1TkEs
+	0LpvwiXN230xXFz01XTg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFUnD-00000007s0Z-0izw;
-	Sat, 10 Oct 2026 10:59:07 +0000
-Received: from mail-wr1-f51.google.com ([209.85.221.51])
+	id 1xFUnI-00000007s6a-2gD9;
+	Sat, 10 Oct 2026 10:59:12 +0000
+Received: from mail-wr1-f44.google.com ([209.85.221.44])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFUnA-00000007rzB-3ROv
+	id 1xFUnD-00000007rzu-2Yar
 	for linux-amlogic@lists.infradead.org;
-	Sat, 10 Oct 2026 10:59:06 +0000
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-487048857f6so510264f8f.3
-        for <linux-amlogic@lists.infradead.org>; Sat, 10 Oct 2026 03:59:04 -0700 (PDT)
+	Sat, 10 Oct 2026 10:59:09 +0000
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-48c4be28b82so456648f8f.2
+        for <linux-amlogic@lists.infradead.org>; Sat, 10 Oct 2026 03:59:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791629943; x=1792234743;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=4/Tw8zZUSYGRUw5ihGSIUwYOzEBFsG+6HaKAhA2ORMw=;
-        b=mccutrWHP9602KLosUb/GfrK2t/nE1U/jRedfZkrvXFN5hh2l/A6I3UVpPRIYjq9u+
-         FxOVofegL99odfnKrJCPJmQfaMStrlEfZ73z6cZ0cgX0xF2S8o5rA7Fw/4ZJpdZAmnV9
-         +HHVZde9U9WjBhXPTnbH46CSOoc8vlkvOaPcl7mZLOHrpUJHuwbpfpjILye32y1staql
-         KQf6dJWOHyKWL63Ec8zQboWJ1GeMvKmHWswr/zwCMNPX4l5pHVmspXEMhRM+HvqU6hlr
-         8wqXPIMCYeFxQMq/YJ506oQeb/ns+48EnmListh7Hs2RzgxAZACBjuoO8Yo/H25/uiHh
-         LlPQ==
-X-Forwarded-Encrypted: i=1; AKwUvBwdbSf9kVDlMxPYUh/kuOUa9BLKRMblj08Ls0MxnDXN3o1SU2XPA96s2feA2DcA5WeVeU17LUtylHQVdByM@lists.infradead.org
-X-Gm-Message-State: AFq9FYJ5o/28Ee8WKwbGcBunEwuT2xjp7/A8khjAv2pPUE+ilWyw8GOM
-	9s11n/Sc1nyMaNGuV2hfPxcsbrLLWXZpWYUfOYg7Mb/hZ/stZmcQZddc
-X-Gm-Gg: AYBFou0NQxqvN0bnUIbNbQBRZc+47QmYpE19L+7xfe1NML2DFF8TI6cB88VurworxUv
-	LXxPcUMfUlL1oWFd2bnyGb/SehD2c5WNKGrIpj4nOMdV//FnIt6mr4BUVhrgtXewfNfd5e6G+MD
-	II71fXJhYseobjMYJaYdDj8tOUpZ9NTdvnHHD1hivneYQroJVZYQ8ZpUVnSOjLlJ2Wl13W2Np3z
-	+IxlZqWW96UE9eKdpT5Kpk563cmeAmdOl4m+gn1MRWUI9nr7P4pvczWKN5fH8/1kZKg0B1UdFbG
-	oSMT8qzKnYV7W4/tccQi7JiFqQgn3RdvnqXbHK0gPnxd5lJp8XQxEBQWa56Lmzq957XXBn+nrue
-	vQ46eFOuSOLyJ3BEpzc6l/YoeiZPeVj/VKBAPmbigk66v64p384D+WqzA75dONs4JG+WwsTLzvj
-	3UDTlJ2Am2rgLlkP9ZbNghBaoN+68r4UE1wiIfhWanCn6c7Va7IpJoC1TMEcvFilE6Obd2ilGS1
-	KLZ/lvPb/TziHSpyBKK9Icn0BDum+gD6qY=
-X-Received: by 2002:a5d:6547:0:b0:48a:fd58:a7df with SMTP id ffacd0b85a97d-48dbace0061mr6574489f8f.47.1791629942561;
-        Sat, 10 Oct 2026 03:59:02 -0700 (PDT)
+        d=1e100.net; s=20260707; t=1791629946; x=1792234746;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=U4gXjrYN0DCkNltbrRiGH9pQiOBUm1iOh6yJiBhfVz8=;
+        b=i8Jwc4pCYF1a7mBQJdSoxlJHa5krcB4fFAYA7H61bRHSoiDSeodthCDKcrkAXH20KS
+         WLpw0sRa6RgKiAkHoC4RuxxMl8dEvlyFOrF4ukgLru2Tp2jJOz8s+dlm6Xl7ssAZfeOe
+         0IkfOaAaf/zUi3p2BNPUAc7f2xkw7IWjIdVXBrwy6LaxPJqIEklNhGl8BNOk3dZC9m3M
+         pRn54quPshEzBtrY/TOiITctSNETRGcDcOdO4x26xUoVWNmLR2jyVeyH2paYNOm3XAJu
+         dbsRBg/f1RrnSwOb/OjVBmLDK8t2vjHpv1AVEzDskgrlephZxqy7uRg/owosH86MNF0n
+         5BYA==
+X-Forwarded-Encrypted: i=1; AKwUvByi6ghvyXQJRsNJ6SeMxhU9eSIMAJzp6Wfv528ECe3Fz1AWFrjwYyc9vdNz7HHfFQ0dujloSBXUi3n7oQ3r@lists.infradead.org
+X-Gm-Message-State: AFq9FYLE2dlhSOLiasPxjB7ZNRAOGggTY+QE4jeu/xdS/cX3Y1EomeJJ
+	pH24Jl9MLLz7EWuwIQR4wNQKi+UhQHR40oJXZr70lqaWjj9wH1ucqi+t
+X-Gm-Gg: AYBFou1J9h4jYV7WKCsRhNUfy9V+0mUZo1Y3B3CSMqRKOhw4Anuvcs3D+tRkj3rCoAd
+	EsFx84imLQq/uR00vLD4U794cloX8h/MmGcXsjUuCPCBR9NySgXukO9bomhK5hY6o5ivpL86kdV
+	dYqhosXco6G6Geg04xwZdr70GEEXaDYWYA7VfOCN5FT2KCZ18d186aAlz+amwyXTxvxVw0smqIT
+	+8sq0d2ULkkXDPgF2uIl7XXzWCSMDfVEossu/yMT5zUnTAOKgqXByj+rYj+/AqXXovv1s4QfSHw
+	2QhwrKno8H3sxxvQUfCDJ1m0XQNX6PWMwuweXAn43J56cLSQHCvqI3SG4bn2RCGI1xtggNFbc30
+	774tlXo4gA1rhBHHGhpzkiqetyC+yDvbqoxVt3reph4MULhGdDldRUYMWQPf4fjS7co2N4EffkJ
+	05DzfOPLeuekz6n8Wy02oZF6kzfAJLYUQfdeuplyrfScvG0hL/dv7VDtgxh6XdXx54w3sI/CxMF
+	fAg9R2GF3UYLxbPlop5VIzm6LDbBrqJ0fk=
+X-Received: by 2002:a05:6000:40ce:b0:48d:bb54:77e7 with SMTP id ffacd0b85a97d-48dbb547b24mr8860590f8f.29.1791629945711;
+        Sat, 10 Oct 2026 03:59:05 -0700 (PDT)
 Received: from threads.localdomain ([84.70.176.222])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48db9ae17e9sm8709526f8f.57.2026.10.10.03.59.01
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48db9ae17e9sm8709526f8f.57.2026.10.10.03.59.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 10 Oct 2026 03:59:01 -0700 (PDT)
+        Sat, 10 Oct 2026 03:59:05 -0700 (PDT)
 From: Lucas Tanure <tanure@linux.com>
 To: xianwei.zhao@amlogic.com,
 	Andrew Lunn <andrew+netdev@lunn.ch>,
@@ -80,14 +80,16 @@ Cc: netdev@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 0/8] Add ethernet support for the Amlogic T7
-Date: Sat, 10 Oct 2026 11:58:52 +0100
-Message-ID: <20261010105900.247342-1-tanure@linux.com>
+Subject: [PATCH v3 2/8] dt-bindings: net: amlogic,meson-dwmac: add amlogic,t7-dwmac
+Date: Sat, 10 Oct 2026 11:58:54 +0100
+Message-ID: <20261010105900.247342-3-tanure@linux.com>
 X-Mailer: git-send-email 2.56.0
+In-Reply-To: <20261010105900.247342-1-tanure@linux.com>
+References: <20261010105900.247342-1-tanure@linux.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261010_035904_863835_41DB897C 
-X-CRM114-Status: GOOD (  17.10  )
+X-CRM114-CacheID: sfid-20261010_035907_667075_E74BDEDF 
+X-CRM114-Status: GOOD (  11.64  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,88 +106,113 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The T7 pairs a Synopsys gigabit MAC with the same glue registers the
-G12A has, but nothing described it. This adds the binding, the driver
-support and the device tree nodes, and enables the port on the Khadas
-VIM4.
+The T7 has the same ethernet glue as the G12A, but needs two clocks of
+its own. The controller reaches memory through a pipeline stage with a
+gate of its own; nothing else claims it, so it is switched off as
+unused and the port can no longer finish a transfer. The glue registers
+sit in a block clocked together with the MDIO multiplexer, which only
+probes after the controller has programmed them: with the clock still
+off those writes are lost, and the port keeps whatever delays the
+bootloader left behind.
 
-Two clocks set the T7 apart from the G12A. The controller reaches DRAM
-through a pipeline stage with a gate of its own, sys_ampipe_eth;
-nothing else claims it, so clk_disable_unused switches it off and
-transfers stop. The glue registers sit in a block gated by sys_ethphy,
-so far owned only by the MDIO multiplexer, which probes after the
-controller has programmed them. Every write to PRG_ETH0/1 was lost and
-the port ran on the bootloader's values; v2 passed my tests only
-because a debug knob rewrote the register later. The T7 node now owns
-that clock as "pclk", which the stmmac core enables before any glue
-code runs.
+So the T7 gets its own clock list, without the timing adjustment clock
+it never uses. The delays follow ethernet-controller.yaml, so the
+vendor properties are not valid here.
 
-The RGMII delays stay as in v2: phy-mode describes the board, so the
-VIM4 is rgmii-id, and the controller adds the transmit delay because
-the RTL8211F transmit delay does not work on this board. A sweep of the
-controller's receive delay against the CRC counter puts the PHY receive
-delay where it should be, about 2.2ns, while the transmit side never
-gave a clean link. As Andrew asked, this logic now lives in a T7-only
-path, so no other board changes behaviour.
+Assisted-by: LLM
+Signed-off-by: Lucas Tanure <tanure@linux.com>
+---
+ .../bindings/net/amlogic,meson-dwmac.yaml     | 56 +++++++++++++++++++
+ 1 file changed, 56 insertions(+)
 
-Patch 8 is generic: a table in the informative section of
-ethernet-controller.yaml showing who adds each delay for every phy-mode
-and property combination. It is independent of the rest and can be
-taken separately.
-
-Tested on next-20261002 with "clk: meson: t7: keep the memory fabric
-clocks running" (clk-meson-next) on top: 933/935Mbit/s with iperf3,
-5s each way, no CRC error in 432k frames, nothing written by hand.
-
-Overlaps with Xianwei Zhao's "[PATCH v2 0/3] t7: add some nodes for
-Amlogc t7.", which defines amlogic,t7-dwmac with the axg fallback and
-three clocks. I will drop or rebase whatever overlaps once we agree.
-
-Changes since v2:
- - the controller-side delays are applied on a T7-only path instead of
-   changing every Amlogic board (Andrew); the PHY mode left over comes
-   from phy_fix_phy_mode_for_mac_delays() (Maxime)
- - tx-internal-delay-ps is checked against the four values the hardware
-   has, in the binding and in the driver, instead of being truncated
-   (Sashiko)
- - amlogic,tx-delay-ns and amlogic,rx-delay-ns are not valid for the T7
-   (Neil, Andrew)
- - the on-chip PHY no longer carries max-speed, phylib reads what the
-   chip reports (Andrew); same for the RTL8211F on the VIM4
- - the PHY interrupt line, GPIOH_6, is described on the VIM4 (Sashiko)
- - new: the T7 node owns sys_ethphy as "pclk", see above
- - new patch 8: the delay ownership table in ethernet-controller.yaml
- - no longer RFC
- - Conor's Acked-by dropped from patch 2 and Neil's Reviewed-by from
-   patch 6, as both patches changed. Patches 1, 3 and 5 only moved in
-   the series, so their tags stay.
-
-Changes since v1:
- - new patch 1: honour tx-internal-delay-ps and rx-internal-delay-ps in
-   the rgmii-*id modes, and pass the PHY whatever delay is left over
- - vim4: phy-mode rgmii -> rgmii-id, and amlogic,tx-delay-ns plus
-   rx-internal-delay-ps replaced by tx-internal-delay-ps = <2000>.
-   Neil's Reviewed-by dropped from this one, the change is not cosmetic
-
-Lucas Tanure (8):
-  dt-bindings: net: amlogic,meson-dwmac: list the compatible
-    combinations
-  dt-bindings: net: amlogic,meson-dwmac: add amlogic,t7-dwmac
-  net: stmmac: dwmac-meson8b: add support for the Amlogic T7
-  net: stmmac: dwmac-meson8b: apply the RGMII delays the T7 way
-  arm64: dts: amlogic: t7: add the ethernet pinctrl nodes
-  arm64: dts: amlogic: t7: add the ethernet controller
-  arm64: dts: amlogic: t7: khadas-vim4: enable the ethernet port
-  dt-bindings: net: ethernet-controller: tabulate who adds the RGMII
-    delays
-
- .../bindings/net/amlogic,meson-dwmac.yaml     |  86 ++++++++++---
- .../bindings/net/ethernet-controller.yaml     |  18 +++
- .../amlogic/amlogic-t7-a311d2-khadas-vim4.dts |  20 +++
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   |  88 +++++++++++++
- .../ethernet/stmicro/stmmac/dwmac-meson8b.c   | 120 ++++++++++++++----
- 5 files changed, 291 insertions(+), 41 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+index 90ef79161ab1..2353dd9181ed 100644
+--- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+@@ -23,6 +23,7 @@ select:
+           - amlogic,meson-gxbb-dwmac
+           - amlogic,meson-axg-dwmac
+           - amlogic,meson-g12a-dwmac
++          - amlogic,t7-dwmac
+   required:
+     - compatible
+ 
+@@ -57,6 +58,56 @@ allOf:
+             - const: clkin1
+             - const: timing-adjustment
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: amlogic,t7-dwmac
++    then:
++      properties:
++        clocks:
++          items:
++            - description: GMAC main clock
++            - description: First parent clock of the internal mux
++            - description: Second parent clock of the internal mux
++            - description:
++                clock of the pipeline stage inserted in the bus path between
++                the controller and the DRAM. Without it, the controller cannot
++                complete DMA transfers.
++            - description:
++                clock of the register block holding PRG_ETH0 and PRG_ETH1.
++                Without it, the block reads as zero and ignores writes.
++
++        clock-names:
++          items:
++            - const: stmmaceth
++            - const: clkin0
++            - const: clkin1
++            - const: pipeline
++            - const: pclk
++
++        # The TX delay is a quarter of the RGMII clock period per step,
++        # which is 2ns at 1Gbit/s.
++        tx-internal-delay-ps:
++          enum: [0, 2000, 4000, 6000]
++          default: 0
++
++        rx-internal-delay-ps:
++          default: 0
++
++  # Delay definitions for Meson8b and newer
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - amlogic,meson8b-dwmac
++              - amlogic,meson8m2-dwmac
++              - amlogic,meson-gxbb-dwmac
++              - amlogic,meson-axg-dwmac
++              - amlogic,meson-g12a-dwmac
++    then:
++      properties:
+         amlogic,tx-delay-ns:
+           enum: [0, 2, 4, 6]
+           default: 2
+@@ -106,6 +157,7 @@ allOf:
+           contains:
+             enum:
+               - amlogic,meson-g12a-dwmac
++              - amlogic,t7-dwmac
+     then:
+       properties:
+         rx-internal-delay-ps:
+@@ -143,6 +195,10 @@ properties:
+               - amlogic,meson6-dwmac
+               - amlogic,meson8m2-dwmac
+           - const: snps,dwmac
++      - items:
++          - const: amlogic,t7-dwmac
++          - const: snps,dwmac-5.10a
++          - const: snps,dwmac
+ 
+   reg:
+     items:
 -- 
 2.56.0
 
