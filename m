@@ -4,93 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8497ACA9EBE
-	for <linux-amlogic@archiver.kernel.org>; Sat, 10 Oct 2026 10:59:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00FCBCA9EC0
+	for <linux-amlogic@archiver.kernel.org>; Sat, 10 Oct 2026 18:20:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+6EM6jQE1E6/0zB+Wh3bYHhfqPfgOLfkwgUNCv0+40g=; b=4JUbxCEpbKxXgk
-	obQadsOlJvk/81O9RIR1IwdeaNJCqFEELHAbjAp/KPOaw0V2FKmAMgmzkoJ9D48CwSZjBUzdaDExd
-	V+gUmh/E+3+7KHImDtVqJyiS+Ail5pBJllrQXrKCpQ1uSjBrPNYBnjsofnYDSTsGUC9MC02+FsWVX
-	wvyGFD6uAk3u9y6Z4rCE3RLcsodjOQLYDkP/9RmDqa1hsRq/p98izjNVpeshNCROvA48eE6wW/Xt1
-	n8ZULqwovwxsWRnr4Oygx6CXcMdXQwRHPSdLc+3nWA0tF+aMgSRJcgN0hTLJLtEzXm+xZxj8tPCzw
-	+Y3uqjUkc6qZrRV7YyTA==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=3qG2BgTpw656rUFQW++ncf3Qwq8/+FSCmRh92VBw1i8=; b=pwygiueNKzAwOq
+	uQDm6HiS/QiOo2b85dxRJIw6S7hXSRNXM4f4d1myx4+hnMmQ03682R1o1S16dVSbAY7lD7U9aFzGR
+	4ulDRlIl4C0GwThOx/ar4oPkVxNv4Cc295VrpiPeIEreWhc63QIyxeNu39QNvJJtZbYoMQ8vDHFvJ
+	MNLsYpKT4tDFKQbalA6eamd7cxRcLvLFJXCADx30e7LN5d5HPr4cqRu644zObfAcKYeWIKwwki+r2
+	jCfpJTW+HOVVnxD5liebohDx0TpThcZUT3XjFwE58086jb2EK+4IBzDin5Alnz3SjdaPvT+J5RB8R
+	RBbVe9ixwEDLWG6OFEpQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFUna-00000007sVU-0DsM;
-	Sat, 10 Oct 2026 10:59:30 +0000
-Received: from mail-wr1-f42.google.com ([209.85.221.42])
+	id 1xFbgb-00000008N5v-34yT;
+	Sat, 10 Oct 2026 18:20:45 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFUnK-00000007s7A-1EAF
-	for linux-amlogic@lists.infradead.org;
-	Sat, 10 Oct 2026 10:59:16 +0000
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-48b001cd92bso319255f8f.2
-        for <linux-amlogic@lists.infradead.org>; Sat, 10 Oct 2026 03:59:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791629952; x=1792234752;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=pdKVlCj4REX0NWkQYtOCVGuCUyIjtnl9DbGH17gD2u8=;
-        b=sWCyIL5w0TWDbbvQw5l7OFelFoSX2iTF+G81/dpN4etGmWP+46Jg5F7ZDNTR2yWQjm
-         2pPdbDjJ9xAPYEL1RPFUh6X2fTuVqm4WXc8P6BRuQ/AqZk5PAKnkS6lfBhiyIqkS4gVL
-         1p3SU5jAhmO7wM1KgaV650PGzZWmUjYQImCA8B4DbLw4tbAyj4Osv8oFevTSUv2QsI9a
-         Dn9aSLOIeijRzbfr9JTGEJztRO1/JXeGeakTU30jDS2dw6kxCKZ/oJkPGqecYlEorfWe
-         5AgDpneRKavcNPRxld8JZ83UKiPc/jopHGWc9wyPti6CvQ1UQmFyJu3qAWcZUX8MeZSM
-         unZA==
-X-Forwarded-Encrypted: i=1; AKwUvByB0OzRB7e/7NMT+psvxJWi+qODmlZ1SYEnjbSpt4ombaFRAG/eCSH14HEUxDhmyrFy5x0rbPfOLTIXBPGo@lists.infradead.org
-X-Gm-Message-State: AFq9FYIGzkKrE6tdfNk3W5CZFqzwLHLhC//yjcN6zx8S74r3Ygv7yOdU
-	VA8CdzBG+pgEXyEQq5mTQobKf+Y2+uvERrT1U3mnNDdYlZHK4QlbMBNF
-X-Gm-Gg: AYBFou2Zs4OxBO41gO1os9Ao9W8dlZB2KKbSQ3azg5SxwTu757uJ/cRoWFlOoo9kl5H
-	XLwglhVbDzcL4qPcc79+BF7a7tPCDpI5z2Z0GMhAmA6gzQrjGJfV6biziBJiN50QFqcoS9D172S
-	dNt46QmhWE2ZC1b1P/pZ0sQhDbIlvKmtATdqLph5Al/9ehDfXNr7Z8Y49qfmzTJpp9J2h32EVZh
-	PU15iKXNyZSNPdW8FwBeATGolvKv4PpTfEKB0xmBLrn4/4fkL5wr3N54D5bAy0wut84QzF66Rjt
-	D8ShrQa6+5UaDw+Db5YI54LafWJB5U/fg3rg0IA2aWMoVr6+tmueUjfdFbIIaBJp2QANtOhK4QK
-	9ARBelvqBbLdfFS14+UZ9XBfCK8Vkn/etmdMjt1yCI0HrRHxmaheyAlYWCN1BGolvh/1mqgnykq
-	NLwKF1vfQR7fpDvkBvfYVip7zz3c22eEPuyrkdmAUrxjwtOs+w8SvEijUEpTUDYQRDGig84+L1s
-	fRuj7EjYdH/IWPB7rUmvjbTc6F3eEs8vWc=
-X-Received: by 2002:a05:6000:2dc5:b0:48b:2a1:dfe3 with SMTP id ffacd0b85a97d-48dbace3b32mr6883381f8f.41.1791629952539;
-        Sat, 10 Oct 2026 03:59:12 -0700 (PDT)
-Received: from threads.localdomain ([84.70.176.222])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48db9ae17e9sm8709526f8f.57.2026.10.10.03.59.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 10 Oct 2026 03:59:12 -0700 (PDT)
-From: Lucas Tanure <tanure@linux.com>
-To: xianwei.zhao@amlogic.com,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@kernel.org>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 8/8] dt-bindings: net: ethernet-controller: tabulate who adds the RGMII delays
-Date: Sat, 10 Oct 2026 11:59:00 +0100
-Message-ID: <20261010105900.247342-9-tanure@linux.com>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261010105900.247342-1-tanure@linux.com>
-References: <20261010105900.247342-1-tanure@linux.com>
+	id 1xFbgX-00000008N5R-2A64;
+	Sat, 10 Oct 2026 18:20:44 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 471BE40AE7;
+	Sat, 10 Oct 2026 18:20:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 1A69AC2BCB9;
+	Sat, 10 Oct 2026 18:20:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1791656441;
+	bh=bvBLwSNHfpqFuBgPMxJgODmhyMsa4KrzMFEKnO7uof0=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=Ssz8PXRwBYeglSPrVy5yI/PIRHELiZF3DF1GQ2qJsybHJ/GJzNFEtOfT8IwDebvXa
+	 GiZBJbXGBwYJOuOuOjFBBUsK6OhEupBtWX6jZ+ULO2hocuo0l5nTbpFGD3Lg7+aQRx
+	 /74en2NV8oT4cxiFKRk5yx8bBgxigw0jg+H8kZ3Bg6YQyfA5iNUdv5he/fzucvTGrf
+	 NjCV1X9yvynZByPCNcAgYX4HQRq5Ok/gf3RbtnsSX8duiGshQo4ORpYsE5VF3A3Uvt
+	 CoTxbsWX9B1EXBa7OJ3um5S+6Jm+evhXJV1+M/DB+KwjqSDgWcllly9tFjkSQ8n299
+	 CBnjDOO0HJVEA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 069EDCA6017;
+	Sat, 10 Oct 2026 18:20:41 +0000 (UTC)
+From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
+Date: Sat, 10 Oct 2026 18:20:30 +0000
+Subject: [PATCH v2] irqchip/meson-gpio: Allow the GPIO interrupts to wake
+ the system
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261010_035914_556570_72770D53 
-X-CRM114-Status: UNSURE (   9.51  )
-X-CRM114-Notice: Please train this message.
+Message-Id: <20261010-meson-gpio-wake-v2-1-790ecc6df792@iav.lv>
+X-B4-Tracking: v=1; b=H4sIAO6BymoC/3WNQQ6CMBBFr0Jm7Zi2CAFX3MOwaGUKE7Ulraka0
+ rtb2bt8L/nvbxApMEU4VxsEShzZuwLqUMF10W4m5KkwKKFaKUSHD4re4byyx5e+EdraWF0bo6j
+ RUFZrIMvvvXgZCy8cnz589oMkf/Z/K0mUaIS2sum76dT2A+t0vCcYc85fCTMS8qsAAAA=
+To: Thomas Gleixner <tglx@kernel.org>
+Cc: Radu Rendec <radu@rendec.net>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Igor Velkov <iav@iav.lv>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2264; i=iav@iav.lv;
+ h=from:subject:message-id;
+ bh=fZVoG9f36dKIjewDv5ebdz4lu+bdjQGttrwUIvjhrKc=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDFmnGj9LxAQuU8/rZlmZEzdbce2SpXrqKytf31krzLY7o
+ +5E+ZGbHaUsDGJcDLJiiiwTDmncylhy9a+/h/kDmDmsTCBDGLg4BWAisYIMfzhKL3ycwCTj22+V
+ VCtte5Ff6a3srUyu9s9MEYWPLFpOv2ZkOL523iR5c9aHx5TXntruJMCs863WyzaJRS1NqoGFoy2
+ fBQA=
+X-Developer-Key: i=iav@iav.lv; a=openpgp;
+ fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
+X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
+X-Original-From: Igor Velkov <iav@iav.lv>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,58 +83,69 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: iav@iav.lv
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The informative section explains in prose how phy-mode, the delay
-properties in the MAC node and the mode handed to the PHY fit together,
-and says itself that developers often get this wrong. A reader has to
-work through several paragraphs before answering the one question they
-usually have: for this phy-mode and these properties, which part adds
-which delay.
+From: Igor Velkov <iav@iav.lv>
 
-Add a table that answers it at a glance, with one row for every
-combination the properties allow.
+meson_gpio_irq_chip has neither .irq_set_wake nor IRQCHIP_SKIP_SET_WAKE,
+so enable_irq_wake() fails with -ENXIO for every interrupt routed through
+it, and such an interrupt never gets IRQD_WAKEUP_STATE.
+
+That matters for suspend-to-idle. suspend_device_irqs() keeps only the
+wakeup interrupts enabled; the rest are suspended and masked by the flow
+handler when they first fire. A GPIO interrupt that fires during s2idle
+therefore brings a CPU out of idle once, gets masked, and the system
+sleeps on. For mem the firmware chooses the wakeup sources, and this
+flag changes nothing there.
+
+Set IRQCHIP_SKIP_SET_WAKE, like the other hierarchical irqchips with a
+GIC parent. The GIC sets the same flag, so irq_chip_set_wake_parent()
+would end there anyway.
+
+Tested on ODROID-HC4 with the PCF8563 alarm interrupt routed through this
+controller: with the flag the alarm wakes the board from s2idle 4/4, and
+/sys/power/pm_wakeup_irq names it; without the flag the board stayed in
+s2idle past the alarm until a power cycle (0/5).
 
 Assisted-by: LLM
-Signed-off-by: Lucas Tanure <tanure@linux.com>
+Signed-off-by: Igor Velkov <iav@iav.lv>
 ---
- .../bindings/net/ethernet-controller.yaml      | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+Changes in v2:
+- Reworded, as Neil asked: say that the test and the effect are for
+  suspend-to-idle, describe how genirq handles the interrupt there, and
+  note that for mem the firmware picks the wakeup sources.
+- Repeated the run without the flag: 0/5 (v1 said 0/1).
+- Link to v1: https://lore.kernel.org/r/20261008-meson-gpio-wake-v1-1-b0af1598d469@iav.lv
+---
+ drivers/irqchip/irq-meson-gpio.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-index 1bafd687dcb1..bba27a9feb61 100644
---- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-+++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-@@ -339,6 +339,24 @@ additionalProperties: true
- # has added. Failure to remove the delay will result in a
- # non-functioning link.
- #
-+# Put together, with the two properties in the MAC node, this is who
-+# adds each delay:
-+#
-+#   phy-mode    tx-internal-delay-ps  rx-internal-delay-ps  TX delay    RX delay
-+#   rgmii       -                     -                     PCB trace   PCB trace
-+#   rgmii-id    -                     -                     PHY         PHY
-+#   rgmii-id    present               -                     MAC         PHY
-+#   rgmii-id    -                     present               PHY         MAC
-+#   rgmii-id    present               present               MAC         MAC
-+#   rgmii-txid  -                     -                     PHY         PCB trace
-+#   rgmii-txid  present               -                     MAC         PCB trace
-+#   rgmii-rxid  -                     -                     PCB trace   PHY
-+#   rgmii-rxid  -                     present               PCB trace   MAC
-+#
-+# A property for a clock the PCB already delays is not in this table.
-+# It is either the fine tuning described next, or a mistake the MAC
-+# should report as a fatal error.
-+#
- # Sometimes there is a need to fine tune the delays. Often the MAC or
- # PHY can perform this fine tuning. In the MAC node, the Device Tree
- # properties 'rx-internal-delay-ps' and 'tx-internal-delay-ps' should
+diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
+index 91a9c337fe6d..e0329ef5e4a2 100644
+--- a/drivers/irqchip/irq-meson-gpio.c
++++ b/drivers/irqchip/irq-meson-gpio.c
+@@ -538,7 +538,7 @@ static struct irq_chip meson_gpio_irq_chip = {
+ #ifdef CONFIG_SMP
+ 	.irq_set_affinity	= irq_chip_set_affinity_parent,
+ #endif
+-	.flags			= IRQCHIP_SET_TYPE_MASKED,
++	.flags			= IRQCHIP_SET_TYPE_MASKED | IRQCHIP_SKIP_SET_WAKE,
+ };
+ 
+ static int meson_gpio_irq_domain_translate(struct irq_domain *domain,
+
+---
+base-commit: a90ee4305c4a5df72c11b31dacfdc76e00fcf78a
+change-id: 20261008-meson-gpio-wake-f3bfa3bb2e5a
+
+Best regards,
 -- 
-2.56.0
+Igor Velkov <iav@iav.lv>
+
 
 
 _______________________________________________
