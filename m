@@ -4,74 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D519CA9EBB
-	for <linux-amlogic@archiver.kernel.org>; Sat, 10 Oct 2026 02:53:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36567CA6017
+	for <linux-amlogic@archiver.kernel.org>; Sat, 10 Oct 2026 10:07:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=p+SkwxAIlcAhO/6UrBB4m7PGRHvUiSo5508w2g2Mn5s=; b=U46w0ymgUUBDpC
-	D5E4TqaRQQzQIKkffUvtOvhqUEhHiBmVE0kStwiAzMSPLpOMJkKQALMEDYupRnBcSzqlIepFgEEID
-	HHrbdvp01kH7HxAYAVqcG4E5Yj7PgmR10rVa441kd9vrjOYuJt/+kXDLACCNjRjcu7Ft3uLX1GS5x
-	Jm/PMBooLLYY2/vP9NX5eYgl/LzqdaBvZSfKYpA6oSFjRmKBV7XIkqi3W9SufTxtlbLxUwiMeTEga
-	ZB1uoYHI3ak72hcS2a9Fp392TmYbTFRhBqkJ7lZhLBvXViiI69tX8wtzrSZej5/bPvJD7klnjrWn1
-	DDfaYRKsyl4hXLqHf6Aw==;
+	List-Owner; bh=L15B0ZeNFOZtaPUlauVuyuRY3/LW7EOsl37b8LRVrjQ=; b=CmwQeRvSAo9/Wz
+	VHDspEKVa4WWkmWRvTpqF3zy0rrYXEEFiPFZTpwcBmmEAmEZZI4AL7pD6RRrs1cQLlddrKJ8yxV7X
+	2qJ8orgwXyQuFfKVEoOH9yDNHoXFlKbD95HcVE0QbvXg2DJP3mQw0KKDqeQ6EICT7U/QR8cHXA+qR
+	TUXMQq++03euwiy5dwKUQsh9zQU0WLBhinF83zmSqaK1zSrBL+f8J/buQIfJgCtE5MEY9M45VgNwf
+	ghJS375/km7J8t+MryKYcJczVwkUH0lHQkdYN3r6c+KFo1vWXzmf/ix2R6XlGoFHy4KXdNcUSJ/G4
+	OmU+TXSK1oCk8Hyz8Png==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFND7-00000007Rhc-0ETQ;
-	Sat, 10 Oct 2026 02:53:21 +0000
-Received: from mail-m127156.xmail.ntesmail.com ([115.236.127.156])
+	id 1xFTys-00000007oxC-0Ci7;
+	Sat, 10 Oct 2026 10:07:06 +0000
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFND2-00000007Rgy-2Dx3;
-	Sat, 10 Oct 2026 02:53:19 +0000
-Received: from [172.16.12.90] (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 50848de2e;
-	Sat, 10 Oct 2026 10:48:09 +0800 (GMT+08:00)
-Message-ID: <80f7ba75-d374-4eae-abfe-d53ec2deb52f@rock-chips.com>
-Date: Sat, 10 Oct 2026 10:48:06 +0800
+	id 1xFTyo-00000007ouv-2Sob
+	for linux-amlogic@lists.infradead.org;
+	Sat, 10 Oct 2026 10:07:04 +0000
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-48afcd7ba9bso267540f8f.3
+        for <linux-amlogic@lists.infradead.org>; Sat, 10 Oct 2026 03:06:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1791626818; x=1792231618; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:date:message-id
+         :subject:references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=ElWk8fKGydcvVdEATDJFrXGRGjE67AASQOUO8YEQCOc=;
+        b=fGoylwPrjG7NS2WCJiM8kJEHodZm/d5uVBitoCY9gfru9WHh4I2tjE9LnzCmDZZcXQ
+         0qiwi51yDRw9lbvpgpKJrojCRLzLCckDED4/TlpN8yrynEYa8lPF+Txs/h2+ZgtYAxo1
+         uDrrwt8mzicKr5XBudj2qOPvm2dVoI/BCMcXMsq/67RP1AFNF7DBUFpHdUxf5O/m4fKw
+         vvRrZUypI2mE7T0R+SIMXGwdVv3rAzQt4qF3RY+8yShzMwpG6V75yQbVI3rkiCBlQOe9
+         yKcxhGUmC02GAA/IBonTjZ3Oo2HzHQ+rNXuXnFA4+W+dPHteb90bzOyO01N4kUYp/Ly6
+         JMwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1791626818; x=1792231618;
+        h=content-transfer-encoding:content-type:mime-version:date:message-id
+         :subject:references:in-reply-to:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=ElWk8fKGydcvVdEATDJFrXGRGjE67AASQOUO8YEQCOc=;
+        b=w7zNixc52HevvJG6BWxesNiDFb0gO7ut098/6zbnMt95H5kMDdNg8OAteLPZPvQsJo
+         J52D+wOr3Q/+dmAkFVDhF9vy67zveSIIpoaAV+XftJ7JU215X/7M3OB2lu0wIxe/Bk1t
+         jd++uZwUlJboZssOXia0B7dJKKItyh5dSjvOoDdc2+B+OvMsWfoeijAg6v0knAmVKmZZ
+         Rc31UHhzUVd9D6Rjgk3aUM6XmZkRhi2yvclY2W1u1z3ujsUg2Ht0L29/Jdz/nmWj2+Sv
+         KP6rSodTc23J13iZezL9pQBOsor2m/CV0k2cW0GisFta12lXqWpbobSNMexcLghu4X49
+         mAjA==
+X-Forwarded-Encrypted: i=1; AKwUvBweFVUZE/Tq7Wm8kUNAkT1pHHgVl33Bw0rBU5gvAAcaXJJbUklmfST4DTJUczlr7blnlrAOqucwVugFD/uT@lists.infradead.org
+X-Gm-Message-State: AFq9FYJhualMbN+ngwhsrMiA5zgxxoSOgJOagl7oOr0uhjflKs7VKZM7
+	4vAfvdJveBcOh+pH3cekvA2qbbE9E5GJ2hIUl9mtSMn7Qq8MwFZiCnpYGfSa3TwQsrQ=
+X-Gm-Gg: AYBFou0rfi28fsJRZF8557PojqDFqSqt/cQ5sWypQz0liH9hNJj7ET34PQ0zGEPCKw8
+	CsvD4oo8Glxj+Tnb4UtLqLTiIUQn0tbmECwPxMZ+UpxO4rYgoCy4bAU2sta/WtGrJX5ocWqvrRI
+	nhybEMAmK22CdyDDnclKKZh59mAWWMFJcK0C2LXi0F92GFIPn4yuVktUBpOtDcVvhdS9bgCxC36
+	/RmSdwer2pkarGHjVuYreWRd7ynN+d2J0IsHFktrZOdbNyrAqWRHf4kdxguTffQClyEKdyAnf33
+	YQWIHMZbK4uVzFFbHufGC62HVq8WgSUEGUWObw9/Io6wjjwpmYVyofwqm+BAxzXBGLXxF0s+UUh
+	0EQSaDrPCyE7X2JpeKR2RZ63JZUCu1UjbDZ/jHRYqwZCwgT9NISj/rq/VTji9dx6VyEADnkD4Cu
+	x58ILHYQxDEEQQvPBNb5TdYxXVu4BLeAR7vSZcqkZpUfKZ7UJGy5CLdoG4TP+LB+WpU3d81BMBn
+	AIKW+EKXuF8U61EnA==
+X-Received: by 2002:adf:f2cf:0:b0:48a:fe3b:64b7 with SMTP id ffacd0b85a97d-48dbacf6ef6mr5914261f8f.53.1791626817764;
+        Sat, 10 Oct 2026 03:06:57 -0700 (PDT)
+Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48db9ac6a91sm7389151f8f.41.2026.10.10.03.06.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 10 Oct 2026 03:06:56 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Ulf Hansson <ulfh@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Lucas Tanure <tanure@linux.com>
+Cc: Brian Masney <bmasney+clk@redhat.com>, 
+ Chuan Liu <chuan.liu@amlogic.com>, Jian Hu <jian.hu@amlogic.com>, 
+ Ronald Claveau <linux-kernel-dev@aliel.fr>, linux-mmc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20260905153234.133217-1-tanure@linux.com>
+References: <20260905153234.133217-1-tanure@linux.com>
+Subject: Re: (subset) [PATCH v2 0/4] amlogic: t7: give the MMC bus pipeline
+ clock real consumers
+Message-Id: <179162681558.457042.13976808955805070898.b4-ty@b4>
+Date: Sat, 10 Oct 2026 12:06:55 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/20] drm/atomic: Handle max bpc properties before
- connector state allocation
-To: Xilin Wu <sophon@radxa.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Igor Paunovic <royalnet026@gmail.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, dragon@radxa.com,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-References: <20261009-msm-dp-hdr10-v2-0-1835d4966da3@radxa.com>
- <20261009-msm-dp-hdr10-v2-1-1835d4966da3@radxa.com>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <20261009-msm-dp-hdr10-v2-1-1835d4966da3@radxa.com>
-X-HM-Tid: 0aa123b5f22b03a7kunm6360a2b5135bed8
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCT0lCVh4eS0NISB0ZGkIZQ1YVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
-	pKQkxVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=NDDV4FoZEkpnMGy2XPGW8N+gwtaSRGLvEggg0PegiDpBP5UhKFXzFgDGs7vhPjaiOze7Fyi4/WWCLvCSyp2ikyPrx//6pcTMrtVJcxyw9Qaw1Za2AAiM6d2ZWXCVVg5KUlWFQXDDNihwmxL85/LQ5quIpkQDKNopIVW3o7xdwo0=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=XezuMrCTQbMzbi20T+1rCrxjWanYRbUDYkUJJW/TRwg=;
-	h=date:mime-version:subject:message-id:from;
+X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261009_195317_147164_36747CF1 
-X-CRM114-Status: GOOD (  22.03  )
+X-CRM114-CacheID: sfid-20261010_030702_775901_14730A16 
+X-CRM114-Status: UNSURE (   3.92  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,155 +113,15 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Xilin,
+Applied to git@github.com:BayLibre/clk-meson.git (clk-meson-next), thanks!
 
-On 10/9/2026 11:15 AM, Xilin Wu wrote:
-> Allow drivers to attach the max bpc property before allocating connector
-> state, as needed by the upcoming non-HDMI bridge connector support.
-> Only update the current state when one exists.
-> 
-> Initialize max_requested_bpc and max_bpc from the attached property default
-> when creating connector state. Use drm_object_property_get_default_value()
-> rather than the range maximum so that state creation and subsequent resets
-> restore the value chosen when attaching the property.
-> 
-> Cover deferred allocation, existing state and restoration of a default
-> that differs from the range maximum in the connector KUnit tests.
-> 
-> Assisted-by: LLM
-> Signed-off-by: Xilin Wu <sophon@radxa.com>
-> ---
->  drivers/gpu/drm/drm_atomic_state_helper.c  |  8 +++++
->  drivers/gpu/drm/drm_connector.c            |  6 ++--
->  drivers/gpu/drm/tests/drm_connector_test.c | 53 ++++++++++++++++++++++++++++++
->  3 files changed, 65 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/drm/drm_atomic_state_helper.c
-> index a2ef272e9f27..8352b5a9097a 100644
-> --- a/drivers/gpu/drm/drm_atomic_state_helper.c
-> +++ b/drivers/gpu/drm/drm_atomic_state_helper.c
-> @@ -494,7 +494,15 @@ void
->  __drm_atomic_helper_connector_state_init(struct drm_connector_state *conn_state,
->  					 struct drm_connector *connector)
->  {
-> +	u64 val;
-> +
->  	conn_state->connector = connector;
-> +	if (connector->max_bpc_property &&
-> +	    !drm_object_property_get_default_value(&connector->base,
-> +						   connector->max_bpc_property, &val)) {
-> +		conn_state->max_requested_bpc = val;
-> +		conn_state->max_bpc = val;
-> +	}
->  }
->  EXPORT_SYMBOL(__drm_atomic_helper_connector_state_init);
->  
-> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-> index 8b4baed060f3..34c30469f405 100644
-> --- a/drivers/gpu/drm/drm_connector.c
-> +++ b/drivers/gpu/drm/drm_connector.c
-> @@ -2886,8 +2886,10 @@ int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
->  	}
->  
->  	drm_object_attach_property(&connector->base, prop, max);
-> -	connector->state->max_requested_bpc = max;
-> -	connector->state->max_bpc = max;
-> +	if (connector->state) {
-> +		connector->state->max_requested_bpc = max;
-> +		connector->state->max_bpc = max;
-> +	}
-> 
+[4/4] clk: meson: t7: don't mark sys_ampipe_nand as critical
+      commit: 363f97a1ce635b86be7fd263d56a040fbd87bdbb
 
-And for patch1/2. I don't think it's right way to go.
+Best regards,
+--
+Jerome
 
-As comment said: 
-drm_connector_attach_max_bpc_property() requires the connector to have a state.
-
-There are two reasons here. First, most drivers follow the convention
-described in this comment, but you only modified some of them. Second, 
-it appears you are removing the connector state, so the 
-"if (connector->state)" check here would always evaluate to false, 
-which doesn't seem to make much sense.
-
->  	return 0;
->  }
-> diff --git a/drivers/gpu/drm/tests/drm_connector_test.c b/drivers/gpu/drm/tests/drm_connector_test.c
-> index beb1d50a6646..1174607441b9 100644
-> --- a/drivers/gpu/drm/tests/drm_connector_test.c
-> +++ b/drivers/gpu/drm/tests/drm_connector_test.c
-> @@ -12,6 +12,7 @@
->  #include <drm/drm_file.h>
->  #include <drm/drm_kunit_helpers.h>
->  #include <drm/drm_modes.h>
-> +#include <drm/drm_property.h>
->  
->  #include <drm/display/drm_hdmi_helper.h>
->  
-> @@ -187,7 +188,59 @@ KUNIT_ARRAY_PARAM(drm_connector_init_type_valid,
->  		  drm_connector_init_type_valid_tests,
->  		  drm_connector_init_type_desc);
->  
-> +/* The attached default need not equal the upper end of the property range. */
-> +static void drm_test_connector_max_bpc_default(struct kunit *test)
-> +{
-> +	struct drm_connector_init_priv *priv = test->priv;
-> +	struct drm_connector *connector = &priv->connector;
-> +	struct drm_property *prop;
-> +	int ret;
-> +
-> +	ret = drmm_connector_init(&priv->drm, connector, &dummy_funcs,
-> +				  DRM_MODE_CONNECTOR_DisplayPort, NULL);
-> +	KUNIT_ASSERT_EQ(test, ret, 0);
-> +
-> +	prop = drm_property_create_range(&priv->drm, 0, "max bpc", 6, 12);
-> +	KUNIT_ASSERT_NOT_NULL(test, prop);
-> +	connector->max_bpc_property = prop;
-> +	ret = drm_connector_attach_max_bpc_property(connector, 6, 10);
-> +	KUNIT_ASSERT_EQ(test, ret, 0);
-> +	KUNIT_EXPECT_NULL(test, connector->state);
-> +
-> +	drm_mode_config_reset(&priv->drm);
-> +	KUNIT_ASSERT_NOT_NULL(test, connector->state);
-> +	KUNIT_EXPECT_EQ(test, connector->state->max_requested_bpc, 10);
-> +	KUNIT_EXPECT_EQ(test, connector->state->max_bpc, 10);
-> +
-> +	connector->state->max_requested_bpc = 8;
-> +	connector->state->max_bpc = 8;
-> +	drm_mode_config_reset(&priv->drm);
-> +	KUNIT_ASSERT_NOT_NULL(test, connector->state);
-> +	KUNIT_EXPECT_EQ(test, connector->state->max_requested_bpc, 10);
-> +	KUNIT_EXPECT_EQ(test, connector->state->max_bpc, 10);
-> +}
-> +
-> +static void drm_test_connector_max_bpc_existing_state(struct kunit *test)
-> +{
-> +	struct drm_connector_init_priv *priv = test->priv;
-> +	struct drm_connector *connector = &priv->connector;
-> +	int ret;
-> +
-> +	ret = drmm_connector_init(&priv->drm, connector, &dummy_funcs,
-> +				  DRM_MODE_CONNECTOR_DisplayPort, NULL);
-> +	KUNIT_ASSERT_EQ(test, ret, 0);
-> +	drm_mode_config_reset(&priv->drm);
-> +	KUNIT_ASSERT_NOT_NULL(test, connector->state);
-> +
-> +	ret = drm_connector_attach_max_bpc_property(connector, 6, 10);
-> +	KUNIT_ASSERT_EQ(test, ret, 0);
-> +	KUNIT_EXPECT_EQ(test, connector->state->max_requested_bpc, 10);
-> +	KUNIT_EXPECT_EQ(test, connector->state->max_bpc, 10);
-> +}
-> +
->  static struct kunit_case drmm_connector_init_tests[] = {
-> +	KUNIT_CASE(drm_test_connector_max_bpc_default),
-> +	KUNIT_CASE(drm_test_connector_max_bpc_existing_state),
->  	KUNIT_CASE(drm_test_drmm_connector_init),
->  	KUNIT_CASE(drm_test_drmm_connector_init_null_ddc),
->  	KUNIT_CASE_PARAM(drm_test_drmm_connector_init_type_valid,
-> 
-
--- 
-Best, 
-Chaoyi
 
 _______________________________________________
 linux-amlogic mailing list
