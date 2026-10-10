@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F996CA9EBE
-	for <linux-amlogic@archiver.kernel.org>; Sat, 10 Oct 2026 10:59:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A92DCA6004
+	for <linux-amlogic@archiver.kernel.org>; Sat, 10 Oct 2026 10:59:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KfSFrupsHFShB3h47xrxlcnmXYZLNpvtUYTib9fiopk=; b=oAJSEB0Br8Saj4
-	grtzzPAiWXcjCsJu9VEMUMWgOkhnwwaA60IfeKCGmbnV7r9XIxdNq1vwrErVZvYY3XErSUd9bi/ZO
-	7q/xKP794uY4I6/LT0tWxWiXlxOK3gW8F3GT9DhsA1kGmX5/DiLp6csLAsv2x+NtwQBFuZ7aS7M+c
-	a2P6t57ifkXRuZXkDdPGq1VG53e/p04iF80TU/38Bsq425GWEyIKY4OV/gk4cjXMVb+qI5di/Z2YJ
-	r1s7J6nw6x/w5lrw5Pvh4H4GHY0OE6zft+JlO+9tA7YFw9Hp2tgAEmhtVAUEjln4ADXvfkysX7I6U
-	Jay+MfYdlzBdsrMKzv1Q==;
+	List-Owner; bh=PGb65fb45tjgQ2n6SwLWuHrbkZTdfZrO2bS7kF1tFFk=; b=ypAK73oa7NAr+X
+	ttZgUiIQEXzWzmUnxr2vW1crFXU4Vl/9/+QqpNCQh/Tivf2HtH87YaCt1qbKi6S3T8t0S08Li1kpa
+	e1D4jsnXyaiFRPhgoaR952LS802yIPndem1AAGxGQjtwJTogu24yeRC8vKllnUfdmScneHZ0eqDeD
+	a4U8aX1f2UnJGlk+lx1p0KXUWo97NMmf0OaqJMGdsdkgPMuwZ/mm5DKdiNkSi1MmodKlip4r0VUH5
+	F0RWx6ec6ASVlwDyiDcaL1kE/2lvPjXa5cqhXdI2rMcFwsIk9ytoZIIgBLo2tJgAnlvsfWR1SAyoe
+	QmipPNxA8JoSOVgdjxcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFUnK-00000007s8o-0MwV;
-	Sat, 10 Oct 2026 10:59:14 +0000
-Received: from mail-wr1-f52.google.com ([209.85.221.52])
+	id 1xFUnM-00000007sCa-2l43;
+	Sat, 10 Oct 2026 10:59:16 +0000
+Received: from mail-wr1-f43.google.com ([209.85.221.43])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFUnE-00000007s0g-1ijB
+	id 1xFUnF-00000007s1k-0Xzn
 	for linux-amlogic@lists.infradead.org;
-	Sat, 10 Oct 2026 10:59:09 +0000
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-48bbb06e746so278871f8f.3
-        for <linux-amlogic@lists.infradead.org>; Sat, 10 Oct 2026 03:59:07 -0700 (PDT)
+	Sat, 10 Oct 2026 10:59:10 +0000
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-48c4be28b82so456662f8f.2
+        for <linux-amlogic@lists.infradead.org>; Sat, 10 Oct 2026 03:59:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791629946; x=1792234746;
+        d=1e100.net; s=20260707; t=1791629947; x=1792234747;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=OAObO9x1QF4WrfdAIN5+rU7Yr3xIr5PVFD+T0h41GXs=;
-        b=KdFTgYspVvKFl4BGBe+RIuxlaj4WstXqiyKBiiB6RVAusOIPd028hiN7+HzMCQQiCZ
-         5uw4bhVcLG1H7meuljpb/CZU3rtyvD9mIRhNhPWiXHYeS2VjHBfdoxjgko71zPDnkJku
-         yFBR5ts+85M6vZlBQUViCoIuENGSIYUetNVRiklCPRW62iW6UbULyl1emrvghlOO1thM
-         iBb11tENo994tP2J2my+7Hj5pMsVgx+l8tqy6hx9cMZl8EFZRR12oowNNk3CLM4IWo6q
-         3RbF3BBkhMt79Bv981xDX8tpVId8vdYO5MNa6BM/cvMTV4jR/77H3MLpACIIo+1UiPrL
-         2exg==
-X-Forwarded-Encrypted: i=1; AKwUvBzuWrY6pLraAoDSiifGw8JPMdgz9o8WR86coUvdPVJMonZdPlZlI+pMUbKeTsuZqJvUzodkwij5AZBDLpNS@lists.infradead.org
-X-Gm-Message-State: AFq9FYIOId8xuZqLKPKflUdDXTOOLW3pXPoAqWAthxagHaja97qJaxd9
-	Qr9f8+N6lb5d5jbTO9lEUBA6cMKZSltUcPibGRk31/qr7w6UwAaZ3tRa
-X-Gm-Gg: AYBFou30oeBEC7UVAE9raToigfvsp9FZVPy6wh2kvympi/XpozX/dgnfQ1UKCCT2g3N
-	mg5AwDD/hY/qumFnpqkZ5mNBDB7I31Pqyer7zmfNxnrULRfKJNGdsMj35JjSmmFMkxG08/7gGqE
-	y036NkYa2nlEByDFWigNNbd04/aBAknqjVi0yufGMJgQba871pAY3RL9mTC4JCuVtdy6/rZRAFJ
-	BfdLDUswUbu6kQill1JxGLQEo5vfMmquKbZGQntKfpdmJyNu+o+dX10J8RE5uUITD63pWaS9vpZ
-	xPdBFDoGGkQ4XJvTv5IL3hDQ61A4L6hKGRfX71PX7RxhMqsgw6PaKeGIbEDIsgRcajbtDKgnXcq
-	VF5vOKR6y3qZfN57avIPeL0nH/W83nbRzL2jj6TOkWwjYaqvXMXGs1PuaUvuJLSbaLxFRGsnqJL
-	QHIqs4/UOue7eFKxPeMAbGqVsyLuxmaF/+w6NgGHbvKACJ8FoueghBJY+T4d02GyoKVPAl2TTCG
-	Ve+m48Z3OwQk+Zx7lBOnj5MjbD6J4ZcU3A=
-X-Received: by 2002:a05:6000:491c:b0:48c:4272:86b2 with SMTP id ffacd0b85a97d-48dba9bdcfemr8482673f8f.11.1791629946574;
-        Sat, 10 Oct 2026 03:59:06 -0700 (PDT)
+        bh=HlLKyjGQ0AAc4TW5PQo15LeRFFyi9d2wMG56ClxAqWI=;
+        b=gzN/qlXBvZ3lXdtAngVixDY9q8vwSOe8gHocgiSbx57P2qAAg2KUAfg+AY/BHljHeJ
+         jafe5aGAXW1+nbNJMLbKwjGY4WK3uMVsY6HMyOlGLrUiS8/vXqVI/IxxC6bfQ5BcPNpX
+         1g+xsW4jioSofUrnaMF2k5cIk8SQ6KecLbAUhEFber8gNqxFqzKOwj0hTo5TcJD87IFD
+         xMLUyvMn/GDlYjlhXMEO7NOZ90Zsyv8Q6rycYBZiAoT/lcLDZYdElW7KRJGeFsCyT+RP
+         F5A1zOZNI4Zh/JX0qrneYHHcno8VUIjDYHibqLl9fZxRvmu7U7ev1f4j5D/pEAYEOrMC
+         RxRQ==
+X-Forwarded-Encrypted: i=1; AKwUvBxKvSx4WxB+LpIkcB4yUCVbFQQs7mPDRuMVS0Fb35UoDjxq2nKd8GuxAbXdI2HAxPPFt9uIVGb6cPIsuYfP@lists.infradead.org
+X-Gm-Message-State: AFq9FYJikWVXa3Rks2j/5kz6U5uaQ4k8aYQ0mTLucm1+htEtvLpEsUej
+	QYZKumlfhMsnppStxWSZCu58i9jQIPkZvrEAjHR65MSGnkwgwPYHrji2
+X-Gm-Gg: AYBFou2DdfJZNzDOIvnI/Z1VIG2HeKib4d2+twexEdcI6a4nEVHwKsF7pBTm0lXXw/z
+	hJJhFfpqOBoZ9hIS/GTmxlhAC6LHimK1o8UpjlELQKpi6ZRgwqaEeYcWfljU4HVkwLjP3szGa+S
+	wrN8xAkN9uTiUmiGkWIifjjEMdzGd4BdMFef6Qnz4P8hq9MlvCL07v38vaTauQ7wNulLC9RlC/E
+	6v9ZC/zlZ3gfPYNn9LzKD7hitwLnZe9xvmPwfnLOhXIf/ek7V3wXFF38X33KF9ocYfu52SOT2t5
+	lKSmzomV13jwQUzKLCdOvxi1ioz8mGQEF37q3t2yXe3X2S+gHk5oKi2os+3EV6ut7c7iBV+euaH
+	fbLzHVoncUNaaoSGz7V94yhQx0X9slGuDMKOpkTF5oDE6TqMINXw3gGwaLGr6GlubX5ZUQKE3oA
+	IAeVm/Xsr7Tcb/2KG2xYEfzrXeWFaByaWj6B65XQH+AjnsaOkO0KGvHMsMXvqwTWf18m8Xpmph0
+	WwrjfntxDCdUvSrDlCpth1w/KFpOdMCKTk=
+X-Received: by 2002:adf:e004:0:20b0:487:88b:4681 with SMTP id ffacd0b85a97d-48dba9db07cmr6245470f8f.10.1791629947476;
+        Sat, 10 Oct 2026 03:59:07 -0700 (PDT)
 Received: from threads.localdomain ([84.70.176.222])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48db9ae17e9sm8709526f8f.57.2026.10.10.03.59.05
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48db9ae17e9sm8709526f8f.57.2026.10.10.03.59.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Sat, 10 Oct 2026 03:59:06 -0700 (PDT)
 From: Lucas Tanure <tanure@linux.com>
@@ -80,16 +80,16 @@ Cc: netdev@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 3/8] net: stmmac: dwmac-meson8b: add support for the Amlogic T7
-Date: Sat, 10 Oct 2026 11:58:55 +0100
-Message-ID: <20261010105900.247342-4-tanure@linux.com>
+Subject: [PATCH v3 4/8] net: stmmac: dwmac-meson8b: apply the RGMII delays the T7 way
+Date: Sat, 10 Oct 2026 11:58:56 +0100
+Message-ID: <20261010105900.247342-5-tanure@linux.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261010105900.247342-1-tanure@linux.com>
 References: <20261010105900.247342-1-tanure@linux.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261010_035908_508218_2A188FEB 
-X-CRM114-Status: GOOD (  15.31  )
+X-CRM114-CacheID: sfid-20261010_035909_215384_1EF956A2 
+X-CRM114-Status: GOOD (  18.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,84 +106,166 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The glue registers on the T7 are laid out exactly as the G12A ones, RX
-delay field included, so the T7 can reuse the G12A settings.
+RGMII needs a delay on each of its two clocks. phy-mode says whether
+the board provides them with longer traces, and the generic
+tx-internal-delay-ps and rx-internal-delay-ps properties say this
+controller provides them. Whatever is left is the PHY's job.
 
-What it does not share is how the controller reaches memory. That path
-runs through a pipeline stage with a gate of its own, and no other
-device has any use for that gate. Nothing claims it, so it is switched
-off as unused and a transfer that has started can never finish.
-
-Without that gate the controller cannot do DMA at all, so it is
-required rather than optional: a clear probe failure beats an
-undiagnosable hang later.
+The existing code reads phy-mode as naming the chip that adds the
+delay, which is the opposite, and it ignores both properties. Changing
+it would change every board already relying on it, so the T7 gets a
+path of its own and the rest stays as it is.
 
 Assisted-by: LLM
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
 Signed-off-by: Lucas Tanure <tanure@linux.com>
 ---
- .../ethernet/stmicro/stmmac/dwmac-meson8b.c   | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ .../ethernet/stmicro/stmmac/dwmac-meson8b.c   | 103 +++++++++++++-----
+ 1 file changed, 76 insertions(+), 27 deletions(-)
 
 diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-index e4d5c41294f4..450f7b4b29a6 100644
+index 450f7b4b29a6..1861a0d45b2d 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-@@ -81,6 +81,7 @@ struct meson8b_dwmac;
- struct meson8b_dwmac_data {
+@@ -82,6 +82,7 @@ struct meson8b_dwmac_data {
  	int (*set_phy_mode)(struct meson8b_dwmac *dwmac);
  	bool has_prg_eth1_rgmii_rx_delay;
-+	bool has_pipeline_clk;
+ 	bool has_pipeline_clk;
++	bool mac_applies_dt_delays;
  };
  
  struct meson8b_dwmac {
-@@ -384,6 +385,7 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
- 	struct plat_stmmacenet_data *plat_dat;
- 	struct stmmac_resources stmmac_res;
- 	struct meson8b_dwmac *dwmac;
-+	struct clk *pipeline_clk;
- 	int ret;
+@@ -272,6 +273,49 @@ static int meson8b_devm_clk_prepare_enable(struct meson8b_dwmac *dwmac,
+ 					meson8b_clk_disable_unprepare, clk);
+ }
  
- 	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
-@@ -443,6 +445,13 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
- 	if (IS_ERR(dwmac->timing_adj_clk))
- 		return PTR_ERR(dwmac->timing_adj_clk);
- 
-+	if (dwmac->data->has_pipeline_clk) {
-+		pipeline_clk = devm_clk_get_enabled(dwmac->dev, "pipeline");
-+		if (IS_ERR(pipeline_clk))
-+			return dev_err_probe(dwmac->dev, PTR_ERR(pipeline_clk),
-+					     "missing pipeline clock\n");
-+	}
++static int meson_dwmac_init_dt_delays(struct meson8b_dwmac *dwmac,
++				      struct plat_stmmacenet_data *plat_dat)
++{
++	struct device_node *np = dwmac->dev->of_node;
++	u32 tx_delay_ps = 0, rx_delay_ps = 0;
++	phy_interface_t phy_mode;
++	bool mac_tx, mac_rx;
 +
- 	ret = meson8b_init_rgmii_delays(dwmac);
++	mac_tx = !of_property_read_u32(np, "tx-internal-delay-ps", &tx_delay_ps);
++	mac_rx = !of_property_read_u32(np, "rx-internal-delay-ps", &rx_delay_ps);
++
++	/* one step is a quarter of the RGMII clock period, 2ns at 1Gbit/s */
++	if (tx_delay_ps > 6000 || tx_delay_ps % 2000)
++		return dev_err_probe(dwmac->dev, -EINVAL,
++				     "The RGMII TX delay must be 0, 2000, 4000 or 6000ps\n");
++
++	/* the RX delay line moves in 200ps steps and reaches 3000ps */
++	if (rx_delay_ps > 3000 || rx_delay_ps % 200)
++		return dev_err_probe(dwmac->dev, -EINVAL,
++				     "The RGMII RX delay range is 0..3000ps in 200ps steps\n");
++
++	phy_mode = phy_fix_phy_mode_for_mac_delays(dwmac->phy_mode, mac_tx,
++						   mac_rx);
++	if (phy_mode == PHY_INTERFACE_MODE_NA)
++		return dev_err_probe(dwmac->dev, -EINVAL,
++				     "Cannot provide the delays %s asks for\n",
++				     phy_modes(dwmac->phy_mode));
++
++	plat_dat->phy_interface = phy_mode;
++
++	meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_TXDLY_MASK |
++				PRG_ETH0_ADJ_ENABLE | PRG_ETH0_ADJ_SETUP |
++				PRG_ETH0_ADJ_DELAY | PRG_ETH0_ADJ_SKEW,
++				FIELD_PREP(PRG_ETH0_TXDLY_MASK,
++					   tx_delay_ps / 2000));
++
++	meson8b_dwmac_mask_bits(dwmac, PRG_ETH1, PRG_ETH1_CFG_RXCLK_DLY,
++				FIELD_PREP(PRG_ETH1_CFG_RXCLK_DLY,
++					   rx_delay_ps / 200));
++
++	return 0;
++}
++
+ static int meson8b_init_rgmii_delays(struct meson8b_dwmac *dwmac)
+ {
+ 	u32 tx_dly_config, rx_adj_config, cfg_rxclk_dly, delay_config;
+@@ -411,32 +455,34 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
+ 	dwmac->dev = &pdev->dev;
+ 	dwmac->phy_mode = plat_dat->phy_interface;
+ 
+-	/* use 2ns as fallback since this value was previously hardcoded */
+-	if (of_property_read_u32(pdev->dev.of_node, "amlogic,tx-delay-ns",
+-				 &dwmac->tx_delay_ns))
+-		dwmac->tx_delay_ns = 2;
+-
+-	/* RX delay defaults to 0ps since this is what many boards use */
+-	if (of_property_read_u32(pdev->dev.of_node, "rx-internal-delay-ps",
+-				 &dwmac->rx_delay_ps)) {
+-		if (!of_property_read_u32(pdev->dev.of_node,
+-					  "amlogic,rx-delay-ns",
+-					  &dwmac->rx_delay_ps))
+-			/* convert ns to ps */
+-			dwmac->rx_delay_ps *= 1000;
+-	}
+-
+-	if (dwmac->data->has_prg_eth1_rgmii_rx_delay) {
+-		if (dwmac->rx_delay_ps > 3000 || dwmac->rx_delay_ps % 200) {
+-			dev_err(dwmac->dev,
+-				"The RGMII RX delay range is 0..3000ps in 200ps steps");
+-			return -EINVAL;
++	if (!dwmac->data->mac_applies_dt_delays) {
++		/* use 2ns as fallback since this value was previously hardcoded */
++		if (of_property_read_u32(pdev->dev.of_node, "amlogic,tx-delay-ns",
++					 &dwmac->tx_delay_ns))
++			dwmac->tx_delay_ns = 2;
++
++		/* RX delay defaults to 0ps since this is what many boards use */
++		if (of_property_read_u32(pdev->dev.of_node, "rx-internal-delay-ps",
++					 &dwmac->rx_delay_ps)) {
++			if (!of_property_read_u32(pdev->dev.of_node,
++						  "amlogic,rx-delay-ns",
++						  &dwmac->rx_delay_ps))
++				/* convert ns to ps */
++				dwmac->rx_delay_ps *= 1000;
+ 		}
+-	} else {
+-		if (dwmac->rx_delay_ps != 0 && dwmac->rx_delay_ps != 2000) {
+-			dev_err(dwmac->dev,
+-				"The only allowed RGMII RX delays values are: 0ps, 2000ps");
+-			return -EINVAL;
++
++		if (dwmac->data->has_prg_eth1_rgmii_rx_delay) {
++			if (dwmac->rx_delay_ps > 3000 || dwmac->rx_delay_ps % 200) {
++				dev_err(dwmac->dev,
++					"The RGMII RX delay range is 0..3000ps in 200ps steps");
++				return -EINVAL;
++			}
++		} else {
++			if (dwmac->rx_delay_ps != 0 && dwmac->rx_delay_ps != 2000) {
++				dev_err(dwmac->dev,
++					"The only allowed RGMII RX delays values are: 0ps, 2000ps");
++				return -EINVAL;
++			}
+ 		}
+ 	}
+ 
+@@ -452,7 +498,10 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
+ 					     "missing pipeline clock\n");
+ 	}
+ 
+-	ret = meson8b_init_rgmii_delays(dwmac);
++	if (dwmac->data->mac_applies_dt_delays)
++		ret = meson_dwmac_init_dt_delays(dwmac, plat_dat);
++	else
++		ret = meson8b_init_rgmii_delays(dwmac);
  	if (ret)
  		return ret;
-@@ -479,6 +488,12 @@ static const struct meson8b_dwmac_data meson_g12a_dwmac_data = {
- 	.has_prg_eth1_rgmii_rx_delay = true,
+ 
+@@ -490,8 +539,8 @@ static const struct meson8b_dwmac_data meson_g12a_dwmac_data = {
+ 
+ static const struct meson8b_dwmac_data meson_t7_dwmac_data = {
+ 	.set_phy_mode = meson_axg_set_phy_mode,
+-	.has_prg_eth1_rgmii_rx_delay = true,
+ 	.has_pipeline_clk = true,
++	.mac_applies_dt_delays = true,
  };
  
-+static const struct meson8b_dwmac_data meson_t7_dwmac_data = {
-+	.set_phy_mode = meson_axg_set_phy_mode,
-+	.has_prg_eth1_rgmii_rx_delay = true,
-+	.has_pipeline_clk = true,
-+};
-+
  static const struct of_device_id meson8b_dwmac_match[] = {
- 	{
- 		.compatible = "amlogic,meson8b-dwmac",
-@@ -500,6 +515,10 @@ static const struct of_device_id meson8b_dwmac_match[] = {
- 		.compatible = "amlogic,meson-g12a-dwmac",
- 		.data = &meson_g12a_dwmac_data,
- 	},
-+	{
-+		.compatible = "amlogic,t7-dwmac",
-+		.data = &meson_t7_dwmac_data,
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, meson8b_dwmac_match);
 -- 
 2.56.0
 
