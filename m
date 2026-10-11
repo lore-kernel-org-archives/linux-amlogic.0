@@ -4,92 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E54A4CA9EBD
-	for <linux-amlogic@archiver.kernel.org>; Sun, 11 Oct 2026 14:21:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6833ACA9EC7
+	for <linux-amlogic@archiver.kernel.org>; Sun, 11 Oct 2026 17:17:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date
-	:From:In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2JHkqLVmnctbTYpWw8qk3cM5aYX3LNEOTkrDlmLsX2I=; b=ijJKbohikbM+UL
-	mpR3ot+NpO0Fo6S5XWi/5SDZ3aM/E+q4ZEaaRrpQAfpnu/zlSHVVRf8VncAS41izfHtDbR4t5VJfO
-	tXaHQk6XISBZzks9lfv0HaTx+/CkLAX5ac2J9uY0ZsRCjc9W3keK3z2Sy7iT02YT2k+ce5yHVposQ
-	tteqxG77ctoi6sBRHAUpxOzLkSKnVeuoWnuRFp6FucJO3/niKQJfOPUVROFmDz+V8V0N4Chkyf8mb
-	W9YtwriRrVCtqHRW0+p4OBzypoOCn6LIwmxCgGNxTLcjebQpLKHUffOOJof1MlEzBd5pWYHEvnGoB
-	1yhcLY5l+4yxf1lcVJ8w==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=VRPZGAK3Oslzd4SUOAsAzonV28GBZeRJPLm+3TgABJU=; b=Fy6khkaf5UrXAr
+	qlKzpLhrkjL5m+w6EXxzB9wL7TV70WLIlfq+HMA40njZ0+0bgsfUNM1PClgyesMH94Vi7zpplNhTS
+	+bjJlNRJdsdmgxpQthcHfbei/R93CQVXLhsGex6bL6DsE/oh89hDviW6+WtRuf9DhVaW4OtfExPcy
+	KX8lRe226KkvXt1jsiWeKHZtuKn+I5SfnKcNBsVsnyoJGNepLYHDWwsweI2hpa8wvT81Yu/Gnxsx/
+	ZQ0o9jjRI15kUxXWs0VTBO7+ZTvwmMbNOOFxgnoD6QhZzx4O/FJnQZivVW4jPM47o7ibLl8aNjWAG
+	3Q/ksqgDaQhyBTpNdtJw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFuQw-00000009743-2zaN;
-	Sun, 11 Oct 2026 14:21:50 +0000
-Received: from mail-yw1-f182.google.com ([209.85.128.182])
+	id 1xFxAr-00000009FG0-3EbH;
+	Sun, 11 Oct 2026 17:17:25 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFuQs-0000000972u-33Al
-	for linux-amlogic@lists.infradead.org;
-	Sun, 11 Oct 2026 14:21:49 +0000
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-8565d77c277so5473127b3.0
-        for <linux-amlogic@lists.infradead.org>; Sun, 11 Oct 2026 07:21:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791728505; x=1792333305;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:reply-to:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=KzyYwwdi+Gw4Br7ibuX1uhAgZ649p+E+2HalXmhinyI=;
-        b=Z5qt0qPW7iJrxDNSE9k7GoS6NKfB0rm8Ro5weve8z7g/d772pDAD6cm1akSKtL/81j
-         nAXrcPSI13+ITCs60xIadiKZrQHIG4DM7dNjJP8kniuNfd4n+tpCHc+vVV/CkroEkUIL
-         Fyq+Y+F+U85Gr2HGuW2ZoyvlfhL+BLbYOGTydc88GMBFcM2RQTY2uDYdpwx5yrzwZV51
-         TyLK/fMlvRp7rTKUTnlqsbC5RUo2oq6Jpx0ogLihD0IutqovQ6ahZqHr0vrTE10gBotG
-         J5PW1UqMpCJ2Jgpv1+kHLUJMkCyC2HImQXbPF31VriSQhnzpQf5QNtrX+iOpSvRuMOFC
-         paBQ==
-X-Forwarded-Encrypted: i=1; AKwUvBxrC4dBYtWB1crSTHbewy47Bi9JDt98rUGePX1SnqybVAWwRrMAo7ShOiI2CAbZjIA7gc9B7RBxln5c8VEK@lists.infradead.org
-X-Gm-Message-State: AFq9FYLQYZvVc1YTBQxzjG0W1oZmD9M4Op8m4e0FDKccwZgCxBKuTBwg
-	u3cd0NtnUmkecOCnQpojbycY76mchwO/9ZDkir481Re/+M92ysf0mqWFKF4PU3eHOeQ=
-X-Gm-Gg: AYBFou2QOikfTAo9sUYIpL3Hhq8hcwlGAV0Cp9zb8HkjmD/iHeKE70u7BHVuKTeg77m
-	j+usR8oJZjFqf4a3nslzogjHAuQauppPMvxU2UrCPnkifT+hv+XNb5z6rHJ/AhGjvFDyjPBloOe
-	glnn58Oh1VJGk2hxdlOjJR1O8IJSzJyHlJI3ln3A6RJil/iT1X+a3FVME+RlBBPHu3adOudCyfx
-	LkHJHna3+rtOXElTi6K7ryvxmR0TrmnxdMTZOQ0minstYxsJ8JrKqzIhzhn3qLwtSEl1Np0+XdJ
-	KNgXd/W2CcM0OxhiERLPHrMppeiZfzflc0+nwYCymxuQuzHRZ97KdsYlvO5qb7HdW06L0w5+7Q7
-	ArmdNB37HAGGoNwzbaoIDf4nZqul8xMKP/dxXwdSGxFVLpcSHkVrs4N2CZ/G6RqxwekooIaPWo+
-	hvvx7gfsIpMZ7EzNKXWtmPsaLduUXQaADkE+O3UuPajhzlGvvHQGZBI9qoQxhTwlnf41hqLSMAL
-	uoxuxp1QP3tK/oe1AcHLWrMcjQ7JG1Nn4cugvO7IwuYiIohm0DnzNNteEkZvHI8kSE=
-X-Received: by 2002:a05:690c:e3ea:b0:8b0:702f:320c with SMTP id 00721157ae682-8b07ed9081bmr23399267b3.12.1791728505490;
-        Sun, 11 Oct 2026 07:21:45 -0700 (PDT)
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-8b07ed0b54asm25634967b3.0.2026.10.11.07.21.44
-        for <linux-amlogic@lists.infradead.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 11 Oct 2026 07:21:44 -0700 (PDT)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-8b05bf699easo6358187b3.2
-        for <linux-amlogic@lists.infradead.org>; Sun, 11 Oct 2026 07:21:44 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AKwUvBy+t0O0dXS0i20ts8lpEpMNZj1XMRxqZg+nBz6YZpR5P3KRXUM+SUigFSJUgpT55NVw/CPAJ38jW4OeX5Ad@lists.infradead.org
-X-Received: by 2002:a05:690c:309:b0:8b0:9e1c:3148 with SMTP id
- 00721157ae682-8b09e1c33cfmr4413327b3.34.1791728503965; Sun, 11 Oct 2026
- 07:21:43 -0700 (PDT)
+	id 1xFxAq-00000009FFY-2RoV;
+	Sun, 11 Oct 2026 17:17:24 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 33BE160142;
+	Sun, 11 Oct 2026 17:17:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D0A67C2BCF5;
+	Sun, 11 Oct 2026 17:17:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1791739041;
+	bh=ae1bPrtDyGrs2a0laMfc/OYJpM4BBJvlclfzCOSwtR0=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=jB3hNoR78WKmXQ4L9Wp5ay6zJxrncwO8yUKiLo91/ijokXW1OkCpGgJK5juaHAMfU
+	 X/iVHNW4yaVbXyDOCCPVDdHoJ3TwncOBQHFliwcxhdN4gUHG5AgLXoaCk/idXTVCOn
+	 17YTgZip5W+1hw4d8+KY2IgqkcNw9YSmuHWjSsQHgVZ9WT2gcyaHp3VcxgqRUvQ0jq
+	 s71OzZTMb+FovxXwvz5HYfuhBN7sUvQ8tD8aQRooLH/F5Yh89PqO+FNxHcihf9zFgB
+	 izTgKYJD36EV88n49Vxyk3BqhrU9d9eqb1Ais8pXgsc302ymDzn1f17Txhb5+3sPks
+	 d6sCgpdAAZ3Yg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AC7C1CA9ECF;
+	Sun, 11 Oct 2026 17:17:21 +0000 (UTC)
+From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
+Subject: [PATCH 0/2] arm64: dts: meson-gxbb-odroidc2: eFuse MAC address and
+ LED properties
+Date: Sun, 11 Oct 2026 20:17:20 +0300
+Message-Id: <20261011-odroidc2-dts-v1-0-f9f0e779af88@gmail.com>
 MIME-Version: 1.0
-References: <20261010105900.247342-1-tanure@linux.com> <20261010105900.247342-3-tanure@linux.com>
- <CAFBinCA7rPu0obv+2aadxqkzMYKmd1+DLJgRe6y418v0QrwSSg@mail.gmail.com>
-In-Reply-To: <CAFBinCA7rPu0obv+2aadxqkzMYKmd1+DLJgRe6y418v0QrwSSg@mail.gmail.com>
-From: Lucas Tanure <tanure@linux.com>
-Date: Sun, 11 Oct 2026 15:21:32 +0100
-X-Gmail-Original-Message-ID: <CAJX_Q+2tBUh=xP9kzPBB0CauXFJukipnLf6D0jLMapvZOst_UQ@mail.gmail.com>
-X-Gm-Features: AclHuK90wt6EVCYdNEmq2Fhuw7FDmVki8iPk3nLcnG5vHPlk0pxu17yKPiCVT8U
-Message-ID: <CAJX_Q+2tBUh=xP9kzPBB0CauXFJukipnLf6D0jLMapvZOst_UQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/8] dt-bindings: net: amlogic,meson-dwmac: add amlogic,t7-dwmac
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261011_072148_152900_A741A236 
-X-CRM114-Status: GOOD (  12.88  )
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMQQ5AMBBA0avIrDXptFi4iljQDsZCpYNIxN0Vy
+ 7f4/wKhyCRQZxdEOlg4LAmYZ+CmbhlJsU8Go02FGlEFHwN7Z5TfRJW2031lCmsdQkrWSAOf365
+ pf8vez+S29wH3/QBRMK56cAAAAA==
+X-Change-ID: 20261011-odroidc2-dts-53a0b62433c1
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Fil Dunsky <filipp.dunsky@gmail.com>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1791739040; l=1059;
+ i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
+ bh=ae1bPrtDyGrs2a0laMfc/OYJpM4BBJvlclfzCOSwtR0=;
+ b=GVJBAWBcJccI7BftcnfSOQBKjaaNNOT8mkWe4pU5mIhBCjmUdbK1NotBESevNbZMlvCPP5WJD
+ YvfS4QJfZUVAo8pp02GouscmEfXDjIGElN+Ru7FNwfYLmLpSzeqrrLF
+X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
+ pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
+X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
+ auth_id=1085
+X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,27 +84,45 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: tanure@linux.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: filipp.dunsky@gmail.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gU2F0LCBPY3QgMTAsIDIwMjYgYXQgMTE6MTTigK9QTSBNYXJ0aW4gQmx1bWVuc3RpbmdsCjxt
-YXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPiB3cm90ZToKPgo+IEhpIEx1Y2FzLAo+
-Cj4gT24gU2F0LCBPY3QgMTAsIDIwMjYgYXQgMTI6NTnigK9QTSBMdWNhcyBUYW51cmUgPHRhbnVy
-ZUBsaW51eC5jb20+IHdyb3RlOgo+IFsuLi5dCj4gPiArICAgICAgICAjIFRoZSBUWCBkZWxheSBp
-cyBhIHF1YXJ0ZXIgb2YgdGhlIFJHTUlJIGNsb2NrIHBlcmlvZCBwZXIgc3RlcCwKPiA+ICsgICAg
-ICAgICMgd2hpY2ggaXMgMm5zIGF0IDFHYml0L3MuCj4gPiArICAgICAgICB0eC1pbnRlcm5hbC1k
-ZWxheS1wczoKPiA+ICsgICAgICAgICAgZW51bTogWzAsIDIwMDAsIDQwMDAsIDYwMDBdCj4gPiAr
-ICAgICAgICAgIGRlZmF1bHQ6IDAKPiBJcyAwIGEgdmFsaWQgdmFsdWU/IExldCdzIHNheSB3ZSBo
-YXZlOgo+ICAgICBwaHktbW9kZSA9ICJyZ21paS1pZCI7Cj4gICAgIHR4LWludGVybmFsLWRlbGF5
-LXBzID0gPDA+Cj4gICAgIHJ4LWludGVybmFsLWRlbGF5LXBzID0gPDA+Owo+IEFjY29yZGluZyB0
-byBwYXRjaCA4IHRoaXMgbWVhbnM6IE1BQyBpcyByZXNwb25zaWJsZSBmb3IgYWRkaW5nIHRoZQo+
-IGRlbGF5cyAtIGJ1dCBpdCBkb2Vzbid0IGFkZCBhbnkgZGVsYXlzLgo+IEknbSBub3Qgc3VyZSBp
-ZiB0aGlzIHBhdGNoIChyZW1vdmluZyAwIGZyb20gdGhlIGVudW0pIG9yIHBhdGNoIDggbmVlZCB1
-cGRhdGluZy4KWWVzLCB5b3UgYXJlIHJpZ2h0LiBJIHdpbGwgcmVtb3ZlIDAgYXMgYSB2YWxpZCB2
-YWx1ZSBpbiB2NC4KClRoYW5rcwpMdWNhcwo+Cj4KPiBCZXN0IHJlZ2FyZHMsCj4gTWFydGluCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxv
-Z2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDov
-L2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+Two small device-tree updates for the Hardkernel ODROID-C2, found while
+adding OpenWrt support for the board.
+
+Patch 1 wires the eth_mac eFuse nvmem cell (already described in
+meson-gx.dtsi, but so far unused) to the Ethernet controller, so the
+kernel reads the factory MAC address itself instead of relying on the
+bootloader or a random fallback.
+
+Patch 2 converts the blue status LED to the standard color/function
+properties.
+
+Both verified on ODROID-C2 hardware and rechecked against this tree
+with CHECK_DTBS=y W=1.
+
+Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
+---
+Fil Dunsky (2):
+      arm64: dts: meson-gxbb-odroidc2: read the Ethernet MAC address from eFuse
+      arm64: dts: meson-gxbb-odroidc2: use color and function for the status LED
+
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+---
+base-commit: a5ebb76233b79db01e82e061173cb73c6d2b5c6b
+change-id: 20261011-odroidc2-dts-53a0b62433c1
+
+Best regards,
+--  
+Fil Dunsky <filipp.dunsky@gmail.com>
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
