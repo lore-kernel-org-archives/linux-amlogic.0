@@ -4,92 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BB6DCA9EBD
-	for <linux-amlogic@archiver.kernel.org>; Sun, 11 Oct 2026 21:00:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E066CA9EC7
+	for <linux-amlogic@archiver.kernel.org>; Sun, 11 Oct 2026 21:14:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References:In-Reply-To:
-	Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=1NLDYAR7g4t25gfFHdR7ZiRGyETtYR7mN+FamzrIJjA=; b=vdjkJuWb8AZtcZ3T4myYJkgPu7
-	2NNbvYUKznLTVNI3DmUdhAo/WN2Fh9SnhbsoJDJkEXeJwVC79jD0FqU5Fkj92sEs1Wke7MGWIi9Ny
-	Ck8SldQwQH+bNBQKAFWMJMpGoFeTqvuew7uqnwj8OjldV+mZGqJWYdJBzzvP6b5zLWFM/RHYskodd
-	zaCOV21dIPrQ5wW3ntnZLxhhq8Ls4LY8HBR2h/vxhA+AvFzUJiz16Xb8b+yKbvQFP3H7YpjZ9PsdE
-	rQUIyYsrBzJsSsSTgYc+oX+lHxVSOvpieUOAfzeZHBbb8V/6fgf53ajDR04I3qAy0WVU2FziIWTTK
-	Pr/Z2l3A==;
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=DcMSpjUIK9uLlPR+L30kvpRCe5Mb5bWwLd4LOPNrIF0=; b=TkpbxnPdae86dURYhOVVTTpKcu
+	7/t+J1Hk1pseBQ1k/H1OPArJYc/B97eqhe4YbMkspmM1sMVhfCyHkjf8tsgzdrrA60lxcEHpoGgGt
+	/OcKz0kp6GWlHtvV68ShfVGf2hJP5aCOoIhpedynptv2nwXdMDYjdlghdp25iAV3YmjwnWKNevzpl
+	SXVp+sMTXCYdqFoYJEzCD2oTwNqNphmAIT5zJVUIYm5T0ZwzRa2VPHkf36MIdbtEfLxa92U4g+bUO
+	jVujayHWRhN5RtiKhpTmRBZkCDBenJ0u+D1oSDam4xgEjg9VeDWcFEIKw5l4fm+jqNQalQfSBpYp+
+	YIEffzcA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xG0eJ-00000009PV7-14DS;
-	Sun, 11 Oct 2026 21:00:03 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1xG0rq-00000009PsU-28wE;
+	Sun, 11 Oct 2026 21:14:02 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xG0eF-00000009PTm-3ejk
-	for linux-amlogic@lists.infradead.org;
-	Sun, 11 Oct 2026 21:00:01 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-49d0da752ffso12559625e9.3
-        for <linux-amlogic@lists.infradead.org>; Sun, 11 Oct 2026 13:59:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1791752397; x=1792357197; darn=lists.infradead.org;
-        h=content-type:mime-version:content-transfer-encoding:message-id:date
-         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=GXE8pfEZXuSFtvC6/Tl1P1F3UmZY6SoQVpTiEIRx1zo=;
-        b=hB6gXKPg4HLsgZ8NY+DMafZ0yGBStu90cKEJSzBNvASb/kyO1nBUUidaG9LYFtA9QS
-         dtlo/CK0v1/tl10uTbQMqP13ODRKOSc8vogbIzcr//e598M4dDesQtR1ehXkAFoFJu7M
-         92Zyys3JWfxWZUHbvYsdrw8sHKStR++fgJ2Gm0hmuX6Ia1fFZRKtNkKoenWd7irsup3v
-         fBGJzZ/OmyXgqAr0UsZ0V1Gf57/iA2vspFGyrP0yPJy1q0Tv+ElVqm4SGoFj/yL5GAxX
-         tkaCdb895tNobKioXytDvhoA+MJFtp8kxcKHklm6cKKb/01LR2DRwck4yldOMnNbZpCj
-         oPqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791752397; x=1792357197;
-        h=content-type:mime-version:content-transfer-encoding:message-id:date
-         :references:in-reply-to:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=GXE8pfEZXuSFtvC6/Tl1P1F3UmZY6SoQVpTiEIRx1zo=;
-        b=hUrPE8fDiuMOsNwaVri/v+7BiD0u4aLq9zue3Gj+jZx6DZTokg9Ak3YLFgXtJf6gws
-         jfLxIzUzClUnju+Pz/Vjmm/rfGbpiqktIZmvNjZJ14cTjY3lLVbWLMvo73YNMaOSaT5u
-         rPC7R3V16+uLTYvjRnp3eurGKPWKDoRhu5ODXCRfCj9cH4Q+6a0N3d3rAa4EZkVsIQbT
-         ImK2vVWcRu6OehArMaB2yzM9hnPIFmzohMB7RQ5ZmFF4uJUE6zt1a2lM5qQWZoKYQNON
-         CfvLm61tiTg4lyjr7WVikQh7WLBc8g/fxWCkw9czr1/8ZRsK4UgG+qoTRfQ+l/aVZxw3
-         dX2w==
-X-Forwarded-Encrypted: i=1; AKwUvBzWL74rvcw8VfxTFoDu5t6tQBvJBbUNJFFaLRyik2nm9cauP7gZaTOyc2MtWSic8fiw3gOiDrk5bhqMPNct@lists.infradead.org
-X-Gm-Message-State: AFq9FYIU38isVe7NrNTBLa1/2WilSkQTGAui51ei2q5lZP5PtEgGttAP
-	1T9k2As4/jCqD9CJI3r3nrcIAC9sCFBEddivZt8PVPqICrqV9ivMFcfq
-X-Gm-Gg: AYBFou2/Xs1Awx071OyJk3HC3IEm+eUTqWHGqqr929D3pKsX3TpVhuuWhMWeeeh1WA5
-	kmwJkENtIXQC4cULn4UnctdnTiaSiiiM+d4iroLKTiWzWb1acDsoblC2RpdA/ZjN7yp8QsJkNry
-	zRtK93CaAorMOV5GW6/BO6sSxnRCbQNCudbpyXFICKjLYOD9yQZZAqLxQ06M4SmNdBJ+4+hNEzF
-	qjXiqHo5VIJi8LF9LGELL0/+XHW3h7qzldmGnp5PLMk20j7jORqiV6OmIzsbEFC62UZV5tMiQ2S
-	i9mLYd9ASe3eESWxWIs7cloyFqlYQCfmH1ClrBcLfxh6lKML5Hz0bNpKSkQ8u7i/7Eb2h7ScHrS
-	/zsC5JEUJslaSIS4EKLhLwGtFtxj7Ag4NQnNxg+bC18xPIs0cWd0SrL97E6UgF/F5pxJVgqM988
-	ENYFKr4pk11Qkbd4G6qxfgNNGFYNe96PVQH45ItsznpBk47NRebjYTceX1LfL0Cy8voH9X5Ejer
-	hnL31FEQ0epD2cBbD8d9oQ/EMZtwU71E3pPZvNe9WFr7X5uPYWhAmqHYg==
-X-Received: by 2002:a05:600c:3f0f:b0:49c:ffab:551f with SMTP id 5b1f17b1804b1-4a18e4cd231mr144688665e9.22.1791752397395;
-        Sun, 11 Oct 2026 13:59:57 -0700 (PDT)
-Received: from [127.0.1.1] (ip-024-215.users.dtel.ru. [91.210.24.215])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4a19c8244edsm67465395e9.2.2026.10.11.13.59.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Oct 2026 13:59:56 -0700 (PDT)
-From: Fil Dunsky <filipp.dunsky@gmail.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] arm64: dts: meson-gxbb-odroidc2: read the Ethernet
- MAC address from eFuse
-In-Reply-To: <CAFBinCAOsJG=ROP43+pj9dqYc4yWXs4RQisRZghqzbtspp=e7A@mail.gmail.com>
-References: <20261011-odroidc2-dts-v2-0-a3a4a752f2ab@gmail.com>
- <20261011-odroidc2-dts-v2-1-a3a4a752f2ab@gmail.com>
- <CAFBinCAOsJG=ROP43+pj9dqYc4yWXs4RQisRZghqzbtspp=e7A@mail.gmail.com>
-Date: Sun, 11 Oct 2026 23:59:39 +0300
-Message-ID: <179175237937.1513478.8957286812154054574@gmail.com>
+	id 1xG0rp-00000009PsJ-07g5;
+	Sun, 11 Oct 2026 21:14:01 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id D93CD602A8;
+	Sun, 11 Oct 2026 21:13:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 743761F0089B;
+	Sun, 11 Oct 2026 21:13:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1791753239;
+	bh=cB64+7GIL/QejhQmJX5UmgahZ1S8lTXRVFKShlbGWQM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=Y9R0nBApfEq3cFVA+VsinEcrUSzp6c6bkadfZbfDy1QEQ5rg5OoIhCrczxqxVS8kT
+	 2HCmsO3+W/T1abh2B3I65X7x5vUzr6/euVpLz62Vk52UmSYp3MrIvnlOMVrfn8H8DG
+	 MpMCa6Zs5ebzHvIYHcvddVChPsaMdWP/v7H2s8fzOx0wSu9M1w5a/ugCmIJ9EgQ/nh
+	 UphV13z3PHvIvffykWUVXTGisHUO9e8mRsmH3fY+RSHQKkQCWY35rny4nZbSsQaCUz
+	 FQL35cVSIfc3jQjVf9AmhNE73CU/WhMWFD8xNuZHj+izqQ3ViEg18rZ7Q2dL7efhbW
+	 GBotapyIPL2RQ==
+Date: Sun, 11 Oct 2026 22:13:53 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Lucas Tanure <tanure@linux.com>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v3 1/8] dt-bindings: net: amlogic,meson-dwmac: list the
+ compatible combinations
+Message-ID: <20261011-starship-foyer-1105c1b35e31@spud>
+References: <20261010105900.247342-1-tanure@linux.com>
+ <20261010105900.247342-2-tanure@linux.com>
+ <CAFBinCAejxmeeHyDy+vMSg6dBm+9prhEo9qZ7FAsiWNB1W-HXw@mail.gmail.com>
+ <CAJX_Q+3JLn6oTt8qTPM-muKsY9JbTEMwqRvbamZ3vqg_Yymsmg@mail.gmail.com>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261011_135959_931272_1A51BF62 
-X-CRM114-Status: GOOD (  11.08  )
+In-Reply-To: <CAJX_Q+3JLn6oTt8qTPM-muKsY9JbTEMwqRvbamZ3vqg_Yymsmg@mail.gmail.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,42 +82,80 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="fixed"
+Content-Type: multipart/mixed; boundary="===============9220962876255431438=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
+--===============9220962876255431438==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Li4Qmgdoe6LbIUh+"
+Content-Disposition: inline
 
-On Sun, Oct 11, 2026 at 10:49 PM Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> Question to Neil: should the eth_mac node be moved from meson-gx.dtsi
-> to meson-gxbb-odroidc2.dts?
-> Odroid-C2 would be the only board using it and u-boot seems to derive
-> MAC from SoC chip ID/serial number instead of reading it from eFuse
-> (so I'm not sure about the status of MAC address in eFuse on most
-> boards).
+--Li4Qmgdoe6LbIUh+
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Some data points in case they help Neil decide:
+On Sun, Oct 11, 2026 at 03:16:18PM +0100, Lucas Tanure wrote:
+> On Sat, Oct 10, 2026 at 11:04=E2=80=AFPM Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+> >
+> > Hi Lucas and Conor,
+> >
+> > On Sat, Oct 10, 2026 at 12:59=E2=80=AFPM Lucas Tanure <tanure@linux.com=
+> wrote:
+> > [...]
+> > > +          - enum:
+> > > +              - amlogic,meson8b-dwmac
+> > > +              - amlogic,meson-gxbb-dwmac
+> > > +              - amlogic,meson-axg-dwmac
+> > > +              - amlogic,meson-g12a-dwmac
+> > > +          - const: snps,dwmac-3.70a
+> > > +          - const: snps,dwmac
+> > > +      - items:
+> > > +          - enum:
+> > > +              - amlogic,meson6-dwmac
+> > > +              - amlogic,meson8m2-dwmac
+> > Meson8m2 dwmac reports: User ID: 0x10, Synopsys ID: 0x37
+> > In case it helps I can submit a patch to change the Meson8m2 .dtsi to
+> > use "amlogic,meson8m2-dwmac", "snps,dwmac-3.70a", "snps,dwmac" - then
+> > we could move it here too.
+> > That leaves only Meson6 with a single fallback compatible. I don't
+> > have any Meson6 boards, so it'll have to stay that way.
+> Hi,
+>=20
+> Fine by me. But I think it is best to wait for this series to be merged.
 
-- Mainline U-Boot does read the eFuse first on the GX reference board
-  files: board/amlogic/p200 (used by odroid-c2_defconfig), p201, p212
-  and q200 all call meson_sm_read_efuse(EFUSE_MAC_OFFSET = 52, 6 bytes)
-  and only fall back to meson_generate_serial_ethaddr() when that does
-  not give a valid address.
+In the second sentence, you're referring to the dts patch I assume?
+IMO, you should submit a new version of this with the 8m2 moved to the
+other enum and Martin can submit the dts patch now, since the current
+binding permits using dwmac-3.70a, no need to wait for this to be
+merged.
 
-- On my ODROID-C2 the eFuse at 0x34 holds 00:1e:06:37:d9:37, i.e.
-  Hardkernel's OUI, and that is what U-Boot passes on today.
+--Li4Qmgdoe6LbIUh+
+Content-Type: application/pgp-signature; name=signature.asc
 
-I can't say how many other GX boards have the eFuse programmed, so I
-have no strong opinion on where the node should live. Happy to respin
-with the cell moved into the board file if that is preferred.
+-----BEGIN PGP SIGNATURE-----
 
-Thanks for the review,
-Fil
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCasv8EQAKCRB4tDGHoIJi
+0j98AP4rQ60xf6QZIR+UVdVPmdSR8xm6GMzsKTW5wwCVZq8gLAEAyM8L5JCUZzmE
+aBhkxeWELj13jV1WIQV+eunZ4dUaYgU=
+=+0qV
+-----END PGP SIGNATURE-----
 
+--Li4Qmgdoe6LbIUh+--
+
+
+--===============9220962876255431438==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============9220962876255431438==--
+
