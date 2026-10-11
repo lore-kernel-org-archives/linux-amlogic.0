@@ -4,109 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8765CA9ECC
-	for <linux-amlogic@archiver.kernel.org>; Sun, 11 Oct 2026 20:50:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BB6DCA9EBD
+	for <linux-amlogic@archiver.kernel.org>; Sun, 11 Oct 2026 21:00:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eub2t7f9y+MT9kJqecmEfBq7KHABIrxSFcfQYdC/zic=; b=w1e+7Zw27tGaE7
-	ciuYJPYTrTSGOzD4QTFhBcFI+QUzm5aP10tPkY77jtZmtrXMUMMrtXbzAzvev2jiPZufCc/ShseL8
-	vENoAkBzWKWNzcUlwG5/AfVBJTwteVRLzSRC9P656IeF4ueUOx5ENRR/17j/F2tL/cF3Z/XEZyu5U
-	+TvPi+kwrw8oAzlrC/NCSe2ZVLdiwFfIBWbf9xVW2hO5lQiR8kwLLK9dYuMnfj1hCE15aF34dlRtJ
-	UnL56VKN5E9UvHyvtkFtszkeYRU28aLCxQ2IBPb0lWl0gXDjzh2aHc3K+dAp0oE5IKxkMliijBehv
-	Ikodxmvrs+wVDvE+Ityw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References:In-Reply-To:
+	Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=1NLDYAR7g4t25gfFHdR7ZiRGyETtYR7mN+FamzrIJjA=; b=vdjkJuWb8AZtcZ3T4myYJkgPu7
+	2NNbvYUKznLTVNI3DmUdhAo/WN2Fh9SnhbsoJDJkEXeJwVC79jD0FqU5Fkj92sEs1Wke7MGWIi9Ny
+	Ck8SldQwQH+bNBQKAFWMJMpGoFeTqvuew7uqnwj8OjldV+mZGqJWYdJBzzvP6b5zLWFM/RHYskodd
+	zaCOV21dIPrQ5wW3ntnZLxhhq8Ls4LY8HBR2h/vxhA+AvFzUJiz16Xb8b+yKbvQFP3H7YpjZ9PsdE
+	rQUIyYsrBzJsSsSTgYc+oX+lHxVSOvpieUOAfzeZHBbb8V/6fgf53ajDR04I3qAy0WVU2FziIWTTK
+	Pr/Z2l3A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xG0Uo-00000009PAo-0WKP;
-	Sun, 11 Oct 2026 20:50:14 +0000
-Received: from mail-yx1-xb135.google.com ([2607:f8b0:4864:20::b135])
+	id 1xG0eJ-00000009PV7-14DS;
+	Sun, 11 Oct 2026 21:00:03 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xG0Um-00000009PAF-15t9
+	id 1xG0eF-00000009PTm-3ejk
 	for linux-amlogic@lists.infradead.org;
-	Sun, 11 Oct 2026 20:50:13 +0000
-Received: by mail-yx1-xb135.google.com with SMTP id 956f58d0204a3-67583c777abso1146709d50.1
-        for <linux-amlogic@lists.infradead.org>; Sun, 11 Oct 2026 13:50:11 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1791751811; cv=none;
-        d=google.com; s=arc-20260327;
-        b=hX9EP+iVgWNdnvRgEGQuKJgCgP8QVCAoLA+ztnQlfBcaUfv14tNjNM0jnKnGchVHab
-         T8ldeTax3JVOY30L84KmRp7enSuhLgFYynyqnnBA9DFYC+GbL+YOKf6Ym8YVC5LpMTC0
-         pFN8eYWPu4LtGZmCPheQBeoezgNsVvPjPJll4t/pkw57TLFjldLVu7Is96xOlt+wf4Cv
-         j3ypDgCWL8hMvgkmQXOIEs/jAWAMZGc0bPygt689g7w1/oSPZbV2KxRFrCs7+vPWdwUt
-         Mq88GfbTXzTW13Rw919tMwiJfH0ahMGv7V9tK2QvK5RRTWOmfJjiSJJgaegTRw28CX7s
-         IKRg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=Rc3F184YUjrOopP/BvFd/ZpML46lL0W1tVVXp9Yb9rU=;
-        fh=Y88QWepQ/dILd3r5o0QWTfkObyyv+yrpOmIU21ReFt0=;
-        b=Kx8lBr8xfzusygoPJ1GOtF6I+0M0Hn3rY6JS25M9HR4ekJDVWszSBI8AdcQMiLIILk
-         vEzLXzlF6Dp4npNhqXeop3zt9xvZ65karTRW5euJ3jxjbGmFHCg4lMk1MO/yQhcbPTVD
-         n3lzANAF0GUOwJnduridbVD52o0iU2nVdUctpQ88AeTQqcFaEcSzfwulJJz7eE+LZi9R
-         GeK1LRrKWgB8bRhXCgERC1+arDRcNpJrY09f0d33klW4EChMbk46FITyKWbrt/h6Nzob
-         Ra4yElZfou+Zb+vGM/pPWZoWNdnsFk63BdSyQJoz7ioO//GOYSK/MAh+t0p8CsHte5H1
-         XwXA==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	Sun, 11 Oct 2026 21:00:01 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-49d0da752ffso12559625e9.3
+        for <linux-amlogic@lists.infradead.org>; Sun, 11 Oct 2026 13:59:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20251104; t=1791751811; x=1792356611; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=Rc3F184YUjrOopP/BvFd/ZpML46lL0W1tVVXp9Yb9rU=;
-        b=Bq5cTdhCAW0nwTkmwNwdyNIonGixsxVYds2eTeGdQ2XxJW2Us7r7ki0uQpkLARrLsQ
-         73w2gEaaQrqA2PE7K/4bgvuyipHDWWonovr/kyHWsxTxxrIWHsTCaCBiCPsne/Ox073e
-         mtTRXQHxdz4blkf5hTNK6w5asjVYGKd6C65FkD71e5IYX1Aa0WynwKtm/BoEAsygEd5J
-         EIQ9dYjSWr4dNdxN+lcq0XD6A3RZJKZaGH+a19ZML04NnUmBCrBcKWhk48lqRaNbQ92u
-         1DY0Fopwm4v7QtGegoxLEN/ABEUjOAIL5XXHb2Ivu5AYWJWVgibUmdU0wktNo7qKU6+R
-         gdYw==
+        d=gmail.com; s=20251104; t=1791752397; x=1792357197; darn=lists.infradead.org;
+        h=content-type:mime-version:content-transfer-encoding:message-id:date
+         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=GXE8pfEZXuSFtvC6/Tl1P1F3UmZY6SoQVpTiEIRx1zo=;
+        b=hB6gXKPg4HLsgZ8NY+DMafZ0yGBStu90cKEJSzBNvASb/kyO1nBUUidaG9LYFtA9QS
+         dtlo/CK0v1/tl10uTbQMqP13ODRKOSc8vogbIzcr//e598M4dDesQtR1ehXkAFoFJu7M
+         92Zyys3JWfxWZUHbvYsdrw8sHKStR++fgJ2Gm0hmuX6Ia1fFZRKtNkKoenWd7irsup3v
+         fBGJzZ/OmyXgqAr0UsZ0V1Gf57/iA2vspFGyrP0yPJy1q0Tv+ElVqm4SGoFj/yL5GAxX
+         tkaCdb895tNobKioXytDvhoA+MJFtp8kxcKHklm6cKKb/01LR2DRwck4yldOMnNbZpCj
+         oPqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791751811; x=1792356611;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
+        d=1e100.net; s=20260707; t=1791752397; x=1792357197;
+        h=content-type:mime-version:content-transfer-encoding:message-id:date
+         :references:in-reply-to:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Rc3F184YUjrOopP/BvFd/ZpML46lL0W1tVVXp9Yb9rU=;
-        b=zmrgGsKfco/1JL6sGT5/dvvFecsbaDhdujImUosH9lfWKrRRFBu+4WIcfOHNbDFVKI
-         isO5K8HbmRbBYR2HGzDq0s7ZzjVs/ICip6qzdYC9oyNrntmmXuHJLLlqfD0e8RmZdgoX
-         R6izu2JMGWyzmgW8mDRoHG5vvxFLj5irpGJrOC6BOUvE9oMce5/ets4lYZqZRonyht9c
-         +zW7WfOoLCOWXunCB6ocwvjvS5ov1j+QqoY+3yNxFfdp+1q7hht80bSj4rXWhfk0Kayo
-         ecuQZza+Q/baVzTgmtmmbKiAqYEeG3UdYBAxgcPMC8qy42K3uXki0xI/JZYUgq464Kul
-         kTfw==
-X-Forwarded-Encrypted: i=1; AKwUvBwC8TVqJH7jfGFd9pGaqYL+wBtbTyeDXFEd0hdaVziGp0sHC/xt7eE6huWUXm+HNLWULxCTCV6sNzgjJx+q@lists.infradead.org
-X-Gm-Message-State: AFq9FYJrMsT7dNTAgMEq6ru/rCHtBh/bB1nGInDe2Il0cZJkW1ExQTMQ
-	y7HaTVVys3QKmaSlPGNEM9sQiBKqjjTawK99mrr/thRWnAZcjH/hYXaVIK3sWethmg0ylr2r76c
-	oHjgHxOZXJjgb2SmrMjPWockTBQBcGTg=
-X-Gm-Gg: AYBFou185R7nslRMM8XGZ3pkGJpNGVppH1aOnnfvrLM7fNxNi1fvmvz5oFgW5gOZLFo
-	GBRo0ANKcBRHdc3dWDJO9nGDX6uPOb36vRdXxLeMis2q82zm5LFKZYcvGJf2OGXL8q5L7LTt+pn
-	WzaErUb5ECAgv0/28B+9FejdQSzgZgBUGM8ceZNw9AArYq2itmjKp2R7hDT49H0nrSxvgabI4OZ
-	/jLWVF5ZEvrK5F2WoS1eCqNpojkeoKaPO4pn4AkzihMJ//5cxkcra9I5X5IsUUjcuTR8CoKMXTl
-	9ot7M73E//btGMLftZseOnL9zq5LdWX0EZ6qyMa2kOhiU+4LSg/VH3QfaaleMPPS6Ovsn3fzs1y
-	n3LZDoANMLZNx
-X-Received: by 2002:a05:690e:144a:b0:672:bd30:83bd with SMTP id
- 956f58d0204a3-679369c2fbdmr2874224d50.49.1791751810698; Sun, 11 Oct 2026
- 13:50:10 -0700 (PDT)
-MIME-Version: 1.0
-References: <20261011-odroidc2-dts-v2-0-a3a4a752f2ab@gmail.com> <20261011-odroidc2-dts-v2-1-a3a4a752f2ab@gmail.com>
-In-Reply-To: <20261011-odroidc2-dts-v2-1-a3a4a752f2ab@gmail.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 11 Oct 2026 22:49:59 +0200
-X-Gm-Features: AclHuK_PzKBu8m_ohCyUp7PhTYe_NgQTHs4WyLsmyGpLktVRlcmdBIs7NzTNljY
-Message-ID: <CAFBinCAOsJG=ROP43+pj9dqYc4yWXs4RQisRZghqzbtspp=e7A@mail.gmail.com>
+        bh=GXE8pfEZXuSFtvC6/Tl1P1F3UmZY6SoQVpTiEIRx1zo=;
+        b=hUrPE8fDiuMOsNwaVri/v+7BiD0u4aLq9zue3Gj+jZx6DZTokg9Ak3YLFgXtJf6gws
+         jfLxIzUzClUnju+Pz/Vjmm/rfGbpiqktIZmvNjZJ14cTjY3lLVbWLMvo73YNMaOSaT5u
+         rPC7R3V16+uLTYvjRnp3eurGKPWKDoRhu5ODXCRfCj9cH4Q+6a0N3d3rAa4EZkVsIQbT
+         ImK2vVWcRu6OehArMaB2yzM9hnPIFmzohMB7RQ5ZmFF4uJUE6zt1a2lM5qQWZoKYQNON
+         CfvLm61tiTg4lyjr7WVikQh7WLBc8g/fxWCkw9czr1/8ZRsK4UgG+qoTRfQ+l/aVZxw3
+         dX2w==
+X-Forwarded-Encrypted: i=1; AKwUvBzWL74rvcw8VfxTFoDu5t6tQBvJBbUNJFFaLRyik2nm9cauP7gZaTOyc2MtWSic8fiw3gOiDrk5bhqMPNct@lists.infradead.org
+X-Gm-Message-State: AFq9FYIU38isVe7NrNTBLa1/2WilSkQTGAui51ei2q5lZP5PtEgGttAP
+	1T9k2As4/jCqD9CJI3r3nrcIAC9sCFBEddivZt8PVPqICrqV9ivMFcfq
+X-Gm-Gg: AYBFou2/Xs1Awx071OyJk3HC3IEm+eUTqWHGqqr929D3pKsX3TpVhuuWhMWeeeh1WA5
+	kmwJkENtIXQC4cULn4UnctdnTiaSiiiM+d4iroLKTiWzWb1acDsoblC2RpdA/ZjN7yp8QsJkNry
+	zRtK93CaAorMOV5GW6/BO6sSxnRCbQNCudbpyXFICKjLYOD9yQZZAqLxQ06M4SmNdBJ+4+hNEzF
+	qjXiqHo5VIJi8LF9LGELL0/+XHW3h7qzldmGnp5PLMk20j7jORqiV6OmIzsbEFC62UZV5tMiQ2S
+	i9mLYd9ASe3eESWxWIs7cloyFqlYQCfmH1ClrBcLfxh6lKML5Hz0bNpKSkQ8u7i/7Eb2h7ScHrS
+	/zsC5JEUJslaSIS4EKLhLwGtFtxj7Ag4NQnNxg+bC18xPIs0cWd0SrL97E6UgF/F5pxJVgqM988
+	ENYFKr4pk11Qkbd4G6qxfgNNGFYNe96PVQH45ItsznpBk47NRebjYTceX1LfL0Cy8voH9X5Ejer
+	hnL31FEQ0epD2cBbD8d9oQ/EMZtwU71E3pPZvNe9WFr7X5uPYWhAmqHYg==
+X-Received: by 2002:a05:600c:3f0f:b0:49c:ffab:551f with SMTP id 5b1f17b1804b1-4a18e4cd231mr144688665e9.22.1791752397395;
+        Sun, 11 Oct 2026 13:59:57 -0700 (PDT)
+Received: from [127.0.1.1] (ip-024-215.users.dtel.ru. [91.210.24.215])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4a19c8244edsm67465395e9.2.2026.10.11.13.59.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Oct 2026 13:59:56 -0700 (PDT)
+From: Fil Dunsky <filipp.dunsky@gmail.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 Subject: Re: [PATCH v2 1/2] arm64: dts: meson-gxbb-odroidc2: read the Ethernet
  MAC address from eFuse
-To: filipp.dunsky@gmail.com, Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
+In-Reply-To: <CAFBinCAOsJG=ROP43+pj9dqYc4yWXs4RQisRZghqzbtspp=e7A@mail.gmail.com>
+References: <20261011-odroidc2-dts-v2-0-a3a4a752f2ab@gmail.com>
+ <20261011-odroidc2-dts-v2-1-a3a4a752f2ab@gmail.com>
+ <CAFBinCAOsJG=ROP43+pj9dqYc4yWXs4RQisRZghqzbtspp=e7A@mail.gmail.com>
+Date: Sun, 11 Oct 2026 23:59:39 +0300
+Message-ID: <179175237937.1513478.8957286812154054574@gmail.com>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261011_135012_313564_BC86F913 
-X-CRM114-Status: UNSURE (   8.61  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261011_135959_931272_1A51BF62 
+X-CRM114-Status: GOOD (  11.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,20 +101,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="fixed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIHBhdGNoIQoKT24gU3VuLCBPY3QgMTEsIDIwMjYgYXQgODozMeKA
-r1BNIEZpbCBEdW5za3kgdmlhIEI0IFJlbGF5CjxkZXZudWxsK2ZpbGlwcC5kdW5za3kuZ21haWwu
-Y29tQGtlcm5lbC5vcmc+IHdyb3RlOgpbLi4uXQo+ICsmZXRoX21hYyB7Cj4gKyAgICAgICByZWcg
-PSA8MHgzNCAweDY+Owo+ICt9OwpRdWVzdGlvbiB0byBOZWlsOiBzaG91bGQgdGhlIGV0aF9tYWMg
-bm9kZSBiZSBtb3ZlZCBmcm9tIG1lc29uLWd4LmR0c2kKdG8gbWVzb24tZ3hiYi1vZHJvaWRjMi5k
-dHM/Ck9kcm9pZC1DMiB3b3VsZCBiZSB0aGUgb25seSBib2FyZCB1c2luZyBpdCBhbmQgdS1ib290
-IHNlZW1zIHRvIGRlcml2ZQpNQUMgZnJvbSBTb0MgY2hpcCBJRC9zZXJpYWwgbnVtYmVyIGluc3Rl
-YWQgb2YgcmVhZGluZyBpdCBmcm9tIGVGdXNlCihzbyBJJ20gbm90IHN1cmUgYWJvdXQgdGhlIHN0
-YXR1cyBvZiBNQUMgYWRkcmVzcyBpbiBlRnVzZSBvbiBtb3N0CmJvYXJkcykuCgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxp
-bmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmlu
-ZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+Hi Martin,
+
+On Sun, Oct 11, 2026 at 10:49 PM Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> Question to Neil: should the eth_mac node be moved from meson-gx.dtsi
+> to meson-gxbb-odroidc2.dts?
+> Odroid-C2 would be the only board using it and u-boot seems to derive
+> MAC from SoC chip ID/serial number instead of reading it from eFuse
+> (so I'm not sure about the status of MAC address in eFuse on most
+> boards).
+
+Some data points in case they help Neil decide:
+
+- Mainline U-Boot does read the eFuse first on the GX reference board
+  files: board/amlogic/p200 (used by odroid-c2_defconfig), p201, p212
+  and q200 all call meson_sm_read_efuse(EFUSE_MAC_OFFSET = 52, 6 bytes)
+  and only fall back to meson_generate_serial_ethaddr() when that does
+  not give a valid address.
+
+- On my ODROID-C2 the eFuse at 0x34 holds 00:1e:06:37:d9:37, i.e.
+  Hardkernel's OUI, and that is what U-Boot passes on today.
+
+I can't say how many other GX boards have the eFuse programmed, so I
+have no strong opinion on where the node should live. Happy to respin
+with the cell moved into the board file if that is preferred.
+
+Thanks for the review,
+Fil
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
