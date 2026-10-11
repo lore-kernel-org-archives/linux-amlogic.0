@@ -4,57 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28BFFCA9ED0
-	for <linux-amlogic@archiver.kernel.org>; Sun, 11 Oct 2026 18:31:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B672CA9ED1
+	for <linux-amlogic@archiver.kernel.org>; Sun, 11 Oct 2026 18:31:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
-	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=uI1zEqbVFbsaqYSo4NLaYtFegVNSASNJ6crzg4ZNDSg=; b=JZfeESb6hHWWXM
-	sI7i3j8Dv9Dpl9YzOrX9hsBBjdlUnBv1cxSbWNcl1em6eIOjcfTnJ8oB2iQHywCE/WJ08M6jOYsjV
-	7udcHwksno0xi8992jEPsLcS6S+7urRNNCWPMH0A/4QXUitAo1/nI0Pb11E7oaVH9FFZWCwOVE29u
-	hHzGVU7Q4+/nxmmDx8CVGct/IIw9hjI53gYHSrFvffJT9cysZRlNa2Ohj26MNp7a3XHrI/PZVMDZf
-	Ik9qqDx7/ICZLB94Qk9aEA5bQPSuuCvt0NVieoUic/A/mTwnApJsOeW9a0JgTRiOAViOfOnAWUGNC
-	kL7jH+qha6KpeRNTSy4A==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=BVFLS7eNQpiSPPhL1IBpXLIapRJaszoUIB9gpbjWPtI=; b=ASRYJLHj5rxb0c
+	dq2KOBD5I2TjhYQgo7lIQFH7jE7lesGHW/EwABl+0TIbqYxVCtky112B7BPOT+KnidxnxsxLMup0B
+	0HdJIewUD2r1G0hN/W5fJtNaT1XRr7uf6zUrB6iKfnxtyNkOFrKN1Ms93nAZA2/2aQKaSHnNmGAhW
+	M0NxwbZTwsqOIq8tunXsgDm86YV3Mou3UErHI46p5Py9mM7kJq0yJa9If3LcbT3zaYZnuhE4xPrgG
+	HEt0Bu+tPK+dg7aoS0JPHqwAMWTPceEPN5YsApk0ruTWKMlpf7irW8EKaDYLQ7Pxm9x+eGgglj7S0
+	z9b637YJHEOUtcNbqVUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFyKl-00000009IQx-36P7;
+	id 1xFyKl-00000009IR3-3QNG;
 	Sun, 11 Oct 2026 18:31:43 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xFyKj-00000009IQE-3bEa;
+	id 1xFyKj-00000009IQG-3apA;
 	Sun, 11 Oct 2026 18:31:41 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3C3DA4115B;
+	by sea.source.kernel.org (Postfix) with ESMTP id 580C542D76;
 	Sun, 11 Oct 2026 18:31:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 10A48C2BCF5;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 2FCBFC2BCF7;
 	Sun, 11 Oct 2026 18:31:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1791743501;
-	bh=aWMsxig8K23vnf/R1OjXs+3LeoRMkfmdoowDD+N8d68=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=VvngHjUr+tDLCROIy26d14KwK7iLq63CiUC/L9ENCU5bo6He75sXXvC+EPu72rKsM
-	 lqsytBZYcnvgoZr5oa4JUu+bgDPmFl18a32e/IqaLVjqXqQ9jphEUVJpkmmFjYblRf
-	 osHa+7yKOHLuaw8iNXtzoI0QXQ72pD+nDMqL9WdrLJqwl/JOVZTRyhM0jnZm3YC8NP
-	 s/0cfG22VI7dPZr+4iOUYz31Scq06J1jbUM7rn9YB6NkJdEjekNWKLaARtg58Sfd0x
-	 dWQ0Bcw8Ci5yEGmxwQSvBH20z/MFielfWC0+9jHRL8uO0FjbC2sxTzIYeRxboR2zNL
-	 WyNqsNlZJS7IQ==
+	bh=b5WqWIpY8HetKJM8uxETc/QQ/y49qT8ER9ENAwKq5T0=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=sVPv/y3IyEH05ad8o2JJO9YXswmOnH3CfUMExD3nYiTtyNWyU3mP4tS8hWBGxut+A
+	 yT/cdBonvrjwsziTJEVbQ/jn2zoK+gi+T29vKBGk1omwtbMpwo4Q/4cUf2o32ScYqy
+	 hcQZu0tbEPxcOA4PmUz78MXlxpzixfTTB2HIFfhqUuPLYu1iEuQaGmN9YLjVvVapRr
+	 T8L5Lb5iPFzh/2HxfeywVUm+QKYebLKl2XUnZG45dS2aA8w2et0F0orIjBfvw45Kgz
+	 Iu0sZO9mS91b+A683nfRsZqK3IsbjcHyfaJrGGawsugJ3t0nlZ4nwzaIiGzbYNMKGa
+	 YEP3wWCfkhWXw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F18A2CA9EBD;
-	Sun, 11 Oct 2026 18:31:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0F0EBCA9EC7;
+	Sun, 11 Oct 2026 18:31:41 +0000 (UTC)
 From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Subject: [PATCH v2 0/2] arm64: dts: meson-gxbb-odroidc2: eFuse MAC address
- and LED properties
-Date: Sun, 11 Oct 2026 21:31:39 +0300
-Message-Id: <20261011-odroidc2-dts-v2-0-a3a4a752f2ab@gmail.com>
+Date: Sun, 11 Oct 2026 21:31:40 +0300
+Subject: [PATCH v2 1/2] arm64: dts: meson-gxbb-odroidc2: read the Ethernet
+ MAC address from eFuse
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3WNyw7CIBBFf6WZtRig2ocr/8N0QWFox9hioBJNw
- 79b6trlSc49d4WAnjDApVjBY6RAbt5AHgrQo5oHZGQ2BsllJbgQzBnvyGjJzBLYuVS8r+SpLLW
- AbfL0aOm9527dj8Orv6NeciMbI4XF+c/+F0X2/qSjYJzZ1nKs61bZprkOk6LHUbsJupTSF81Ij
- 8G6AAAA
-X-Change-ID: 20261011-odroidc2-dts-53a0b62433c1
+Message-Id: <20261011-odroidc2-dts-v2-1-a3a4a752f2ab@gmail.com>
+References: <20261011-odroidc2-dts-v2-0-a3a4a752f2ab@gmail.com>
+In-Reply-To: <20261011-odroidc2-dts-v2-0-a3a4a752f2ab@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -64,11 +61,11 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Fil Dunsky <filipp.dunsky@gmail.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1791743499; l=2030;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1791743499; l=1642;
  i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=aWMsxig8K23vnf/R1OjXs+3LeoRMkfmdoowDD+N8d68=;
- b=PY/UhwoUt2ayvSvnBN0VcVMGvOsm5rRv67RWyVsbw8k5cjG13tdXsLE9z+YkyS+AwaqE7IahB
- ICQMtjYTH4IBd8fMvhLxj0QrC+eEizoFKe9HDPV+cSV+oMGJJKr390A
+ bh=PsqvKgTZVmwNJ/75hqMs5lzb8aAfYpplhUuYDuvqmXQ=;
+ b=gqt5Pn5RDRBctoPQT0FhhHkMrtLZS+rS8WrpKx8CGMCHl/WC44eGIvR3VU++jAeOdW0x/OiO6
+ 8Ycvr/c7rGFAeDjY/tYKXbv/t7HctodE4HL9+Mtg11QzpF0JfGbz0R9
 X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
  pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
 X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
@@ -91,58 +88,57 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Two small device-tree updates for the Hardkernel ODROID-C2, found while
-adding OpenWrt support for the board.
+From: Fil Dunsky <filipp.dunsky@gmail.com>
 
-Patch 1 wires the eth_mac eFuse nvmem cell (already described in
-meson-gx.dtsi, but so far unused) to the Ethernet controller, narrowed
-to the 6 bytes of the address, so the kernel reads the factory MAC
-address itself instead of relying on the bootloader or a random
-fallback.
+The vendor programs a unique factory MAC address into the SoC eFuse at
+offset 0x34, where meson-gx.dtsi already describes the eth_mac nvmem
+cell.  Reference the cell from the Ethernet controller so the kernel
+picks up the factory address itself instead of depending on the
+bootloader to populate local-mac-address, or falling back to a random
+one when it does not.
 
-Patch 2 converts the blue status LED to the standard color/function
-properties.
+The cell is 16 bytes long in meson-gx.dtsi, while
+of_get_mac_address_nvmem() only accepts a cell of exactly ETH_ALEN
+bytes, so narrow it to the 6 bytes of the address for this board.
 
-Both verified on ODROID-C2 hardware and rechecked against this tree
-with CHECK_DTBS=y W=1.
+Tested on an ODROID-C2 with the bootloader's MAC fixup out of the way
+(ethernet0 alias removed from the DTB): with the 16-byte cell the
+driver falls back to a random address, with the 6-byte cell eth0 comes
+up with the factory address from the eFuse.
 
 Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
 ---
-Changes in v2:
-- Patch 1: narrow the eth_mac cell to 6 bytes for this board.  The
-  16-byte cell from meson-gx.dtsi is rejected by
-  of_get_mac_address_nvmem(), so v1 only appeared to work because the
-  bootloader had already fixed up local-mac-address.  Reported by the
-  Sashiko AI review.
-- Patch 1: describe the actual test setup in the commit message.
-- Link to v1: https://patch.msgid.link/20261011-odroidc2-dts-v1-0-f9f0e779af88@gmail.com
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-To: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Conor Dooley <conor+dt@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-To: Kevin Hilman <khilman@baylibre.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+index 5943bc810..3b74528ef 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+@@ -223,6 +223,10 @@ &cec_AO {
+ 	hdmi-phandle = <&hdmi_tx>;
+ };
+ 
++&eth_mac {
++	reg = <0x34 0x6>;
++};
++
+ &ethmac {
+ 	status = "okay";
+ 	pinctrl-0 = <&eth_rgmii_pins>;
+@@ -230,6 +234,9 @@ &ethmac {
+ 	phy-handle = <&eth_phy0>;
+ 	phy-mode = "rgmii";
+ 
++	nvmem-cells = <&eth_mac>;
++	nvmem-cell-names = "mac-address";
++
+ 	amlogic,tx-delay-ns = <2>;
+ 
+ 	mdio {
 
----
-Fil Dunsky (2):
-      arm64: dts: meson-gxbb-odroidc2: read the Ethernet MAC address from eFuse
-      arm64: dts: meson-gxbb-odroidc2: use color and function for the status LED
-
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
----
-base-commit: a5ebb76233b79db01e82e061173cb73c6d2b5c6b
-change-id: 20261011-odroidc2-dts-53a0b62433c1
-
-Best regards,
---  
-Fil Dunsky <filipp.dunsky@gmail.com>
+-- 
+2.53.0
 
 
 
