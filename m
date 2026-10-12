@@ -4,120 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD9A5CA9ED0
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Oct 2026 09:26:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49B44CA9ED0
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Oct 2026 12:31:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=rr5lLAiUworR/sf76nR/WEPA4B/6dRFqmc15NUrK5Hg=; b=3sx20BJJrhy9LZwWCe3qnFIGo8
-	VkyccdsYM8FyrLtxl+OY5Hq4M1mnO4b3ZoocgggE7cHDXjkl6OzUnL3TVp20om+WgIsH6kjr7IXjs
-	jUGfngRTXPgDrwoUAzSMR7YZRm3oI/ovmupM4/cFADacyrrSNPUQ5n0Jlq/IUZoT4vY5RKiuiMMly
-	Y2Kk3PCSN9SPI2icIJ8tJoguHbPbj/3LMV2unoRJaDRMcpq6D6IcBV3/cFYDgut6C2tgK0hdle0Kk
-	06oV0uvzaglhtwjW25DObN1LUjF6tz8cZrqb7rtHvBuBz+suEBewU+bIJlcIidT/+2QeajxxLEqHO
-	wfzUa9dA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=LO0Yz/MP+2OBVxgPNxHXTTIRib3WwaNbYxgT8hpX6F8=; b=QOS3VDYI0+rxGZ
+	n324rpS/xJHtrNxv1Qbo+CjvNTi/AdndsIZvqdTFdHqeVuyhh0LN5W4IHeNZl5aiRzC+hnmTGrz5y
+	cZatggAq1RaLxf+/6OhDJqqUiskrxDhRSnDyqlf5/DGylV2ibS9FM8U69rWSsiFPjEAOjTzjD4dWG
+	djeXm5yKnjXWEC8OHywa1jm39vFGGeaniEj1pAn9GoZvbAjX5quJXWF65iCiuiYeLCNL498ngwk06
+	BMSifXwDit46wUWg8Hosx+Pv/Rx34+cTnoPF7zXWC7omLwwDVE5/5zEZy/lIIaXVxs4CslIBL37O1
+	xm2OtH5hjHjW0kRSPmwQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xGCIM-0000000A3Q4-3jdK;
-	Mon, 12 Oct 2026 09:26:11 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1xGFBO-0000000ASSD-3tg7;
+	Mon, 12 Oct 2026 12:31:10 +0000
+Received: from vps0.lunn.ch ([156.67.10.101])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xGCIF-0000000A3NR-123Q
-	for linux-amlogic@lists.infradead.org;
-	Mon, 12 Oct 2026 09:26:05 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4a0e1b0681bso11713375e9.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 12 Oct 2026 02:26:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1791797161; x=1792401961; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:organization
-         :autocrypt:content-language:references:cc:to:subject:reply-to:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=Gk95jI3lhRqF+q2Y0sX+t13akZvJa78d7yUGx/ACAu4=;
-        b=poSaJ+q8Zx1cUWm0ATNJysjTKz4wbvigoTZmex39+4KzBd0oMfNlE0tzg+m022wvCt
-         PSd85djbaVOrWVrUt37xfGBWbCBV728JHrghq46xlwYmMr3vcuQPk24QxKbM+VRvUz6C
-         5v3RuWoJEKDjNfFhD8XoZZKu2QZ42S7CFmg2Y+2xEJ6k/EA14nQQ3uJclfq7tcd64PtA
-         Adqb8wAFEnNADE3oASiNNGs0je7VScuHNLlbl++gxydNzet4tmYfr9pIUNKD29QrP0xT
-         R4l2HyNC/OYcyzCPqM6OdQuNkp9DlsDnCCoMTVg5eA/yupfJ2fNGKPuy4sbnDxbADYX9
-         Sazg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791797161; x=1792401961;
-        h=content-transfer-encoding:content-type:in-reply-to:organization
-         :autocrypt:content-language:references:cc:to:subject:reply-to:from
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Gk95jI3lhRqF+q2Y0sX+t13akZvJa78d7yUGx/ACAu4=;
-        b=1zQSU96k2rL9OGQnpodMnwfSOXlNV+orXB0eYWOELxu4buRg9X4VP/u1HJMMIEPnUI
-         lWF1OFC+vOue8Wpr2eV/BaY1Ke6KhcCBJsFeBdNBJRxIPjGP9mKmOuYAXZ9aqIVT6acG
-         zMK+hxQRWI9/a9SYNHRUyTHab8UUoXE+gdtQiBA9XP8jx3gxTfME3/UlHtpwOAyEmf2C
-         VPKq8V9jyLPtlzmUIa1+4DPLcz3ZbC2gDDTbtpkCtMfwal3cIShEC83i9kfPGwkRRqpO
-         PWc1zbZAsVQKWCh2C4sj1d3CQNP++Rz+Qn2tTAhbKzaUflOcvZq5mFprisdZOhLtLpyc
-         86gw==
-X-Forwarded-Encrypted: i=1; AKwUvBxSe2wrx0w5bhklUAgO1Mtedh45gvkgInpFbJulUyRJSNUQSVfQDwet/WBhLk7HACUuSzyMjJ5wbRpSfp+L@lists.infradead.org
-X-Gm-Message-State: AFq9FYL02FJwTKbv9Ewwl8mWLFs1cAaVGXZGyiB9UPzTOZl7AQkG20uY
-	ontuXPuJexSezqRj1EPS7qWiZ1pTSwdfvzAIFrIW363nEeX6+7zknTFIw0pVJFdnXXQ=
-X-Gm-Gg: AYBFou37ZbOb2cWFpw0NOGS4HsqYYKuMFD4Ye0jUtW34f4580UyZiBrH3wF1emyYDSj
-	ZVbzjwq57sOhh3NS9sa2XjeocWkW0VkPVeV0IlcEXUfzK1Bc+Vu0QhQ98Old3Hy0VLJ3wO/fBSE
-	SxWk5dVRKQgrhE9DNMQNaEF5TGxg/fLfGXJSAp1yEAeIHpm2cZXGPITZ6z7DJIhPLg/VuxLUnbx
-	cQxKs+J6F+B7FLAIFNwV0XFbi3m8ZJuFLPqCLTkNLgl6zsy7yb79rjhGEC/8V5oDcypHdyigV83
-	BTbIqs/CcBc5vLj7yV5nPmmI024QzwSsoN7oqFsv/+kA71f6m6S1LbG9s5fHzDwVtrUinbn+CI1
-	4OOcfgcsyXn1TIoci6tUcBjWDXyOY7Kwzgd1PRNVzdpyDQ9q6U0NjAGzk71Uu9puuV25uKyCD7B
-	zfD6vAvfTheXPoKFcSba7KqE0ga8bMb3lhTsqqYAjbCSVm69KaogIVxd3YbFBlhxrBcIzRoHVvR
-	U4ImOGOi58BikfK1L2PCEkvnMVOZQ8k8shUdw7Od3mq0i9nujM=
-X-Received: by 2002:a05:600c:8b28:b0:49f:bd3c:bc1b with SMTP id 5b1f17b1804b1-4a18e499da4mr171146595e9.22.1791797160966;
-        Mon, 12 Oct 2026 02:26:00 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:106d:1080:417e:f4c4:5b8:8c48? ([2a01:e0a:106d:1080:417e:f4c4:5b8:8c48])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48db9ac6a91sm16729294f8f.41.2026.10.12.02.26.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Oct 2026 02:26:00 -0700 (PDT)
-Message-ID: <1a940a0c-0a90-4b8d-831f-300c2cf02ae0@linaro.org>
-Date: Mon, 12 Oct 2026 11:25:59 +0200
+	id 1xGFBK-0000000ASRX-3KVj;
+	Mon, 12 Oct 2026 12:31:09 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=uNBmIpHaVMdDPWDAgphNw6C+bWviKjN+J5cDaNCeyIo=; b=cVoH3PQ31cx1sQg57/ZA8m9wCK
+	PvVS1ul4HIWVPnW9Om2PVZ2B86SpoZyXddX+lTNtISRmgyR1elC3HkehvNXEEwPXdkQB0oyiGfRqA
+	szBprodQMJvDOJ6QFUYd0B3/GIhxeSf8ZSPFM3V8ViOqO+t+pg2095sMw3pKUtv4XG+M=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1xGFB3-00AJyk-VM; Mon, 12 Oct 2026 14:30:49 +0200
+Date: Mon, 12 Oct 2026 14:30:49 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Lucas Tanure <tanure@linux.com>
+Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 4/8] net: stmmac: dwmac-meson8b: apply the RGMII
+ delays the T7 way
+Message-ID: <a1c0b76b-7b67-43e9-af15-3139f17d7fe7@lunn.ch>
+References: <20261010105900.247342-1-tanure@linux.com>
+ <20261010105900.247342-5-tanure@linux.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 1/2] arm64: dts: meson-gxbb-odroidc2: read the Ethernet
- MAC address from eFuse
-To: filipp.dunsky@gmail.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20261011-odroidc2-dts-v2-0-a3a4a752f2ab@gmail.com>
- <20261011-odroidc2-dts-v2-1-a3a4a752f2ab@gmail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20261011-odroidc2-dts-v2-1-a3a4a752f2ab@gmail.com>
+Content-Disposition: inline
+In-Reply-To: <20261010105900.247342-5-tanure@linux.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261012_022603_346950_1327BE7A 
-X-CRM114-Status: GOOD (  18.57  )
+X-CRM114-CacheID: sfid-20261012_053107_489110_B6643B42 
+X-CRM114-Status: GOOD (  21.65  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,67 +79,103 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 10/11/26 20:31, Fil Dunsky via B4 Relay wrote:
-> From: Fil Dunsky <filipp.dunsky@gmail.com>
-> 
-> The vendor programs a unique factory MAC address into the SoC eFuse at
-> offset 0x34, where meson-gx.dtsi already describes the eth_mac nvmem
-> cell.  Reference the cell from the Ethernet controller so the kernel
-> picks up the factory address itself instead of depending on the
-> bootloader to populate local-mac-address, or falling back to a random
-> one when it does not.
-> 
-> The cell is 16 bytes long in meson-gx.dtsi, while
-> of_get_mac_address_nvmem() only accepts a cell of exactly ETH_ALEN
-> bytes, so narrow it to the 6 bytes of the address for this board.
-> 
-> Tested on an ODROID-C2 with the bootloader's MAC fixup out of the way
-> (ethernet0 alias removed from the DTB): with the 16-byte cell the
-> driver falls back to a random address, with the 6-byte cell eth0 comes
-> up with the factory address from the eFuse.
-> 
-> Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
-> ---
->   arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 7 +++++++
->   1 file changed, 7 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> index 5943bc810..3b74528ef 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> @@ -223,6 +223,10 @@ &cec_AO {
->   	hdmi-phandle = <&hdmi_tx>;
->   };
->   
-> +&eth_mac {
-> +	reg = <0x34 0x6>;
-> +};
-> +
->   &ethmac {
->   	status = "okay";
->   	pinctrl-0 = <&eth_rgmii_pins>;
-> @@ -230,6 +234,9 @@ &ethmac {
->   	phy-handle = <&eth_phy0>;
->   	phy-mode = "rgmii";
->   
-> +	nvmem-cells = <&eth_mac>;
-> +	nvmem-cell-names = "mac-address";
-> +
->   	amlogic,tx-delay-ns = <2>;
->   
->   	mdio {
-> 
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+> @@ -82,6 +82,7 @@ struct meson8b_dwmac_data {
+>  	int (*set_phy_mode)(struct meson8b_dwmac *dwmac);
+>  	bool has_prg_eth1_rgmii_rx_delay;
+>  	bool has_pipeline_clk;
+> +	bool mac_applies_dt_delays;
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Please can you invert this and call it broken delays.
 
-Thanks,
-Neil
+We should make it clear that new devices should not set this, because
+it wrong, broken.
+
+> +static int meson_dwmac_init_dt_delays(struct meson8b_dwmac *dwmac,
+> +				      struct plat_stmmacenet_data *plat_dat)
+> +{
+> +	struct device_node *np = dwmac->dev->of_node;
+> +	u32 tx_delay_ps = 0, rx_delay_ps = 0;
+> +	phy_interface_t phy_mode;
+> +	bool mac_tx, mac_rx;
+> +
+> +	mac_tx = !of_property_read_u32(np, "tx-internal-delay-ps", &tx_delay_ps);
+> +	mac_rx = !of_property_read_u32(np, "rx-internal-delay-ps", &rx_delay_ps);
+> +
+> +	/* one step is a quarter of the RGMII clock period, 2ns at 1Gbit/s */
+> +	if (tx_delay_ps > 6000 || tx_delay_ps % 2000)
+> +		return dev_err_probe(dwmac->dev, -EINVAL,
+> +				     "The RGMII TX delay must be 0, 2000, 4000 or 6000ps\n");
+
+tx-internal-delay is not listed in amlogic,meson-dwmac.yaml. Please
+could you add it, and list the valid values.
+
+Do you have access to the datasheet? Could you check these numbers are
+correct, because they are larger than typical. 4ns, and 6ns makes no
+sense, the RGMII standard only calls for 2ns.
+
+> +
+> +	/* the RX delay line moves in 200ps steps and reaches 3000ps */
+> +	if (rx_delay_ps > 3000 || rx_delay_ps % 200)
+> +		return dev_err_probe(dwmac->dev, -EINVAL,
+> +				     "The RGMII RX delay range is 0..3000ps in 200ps steps\n");
+
+Please could you listing these values in the binding.
+
+Also, mark that amlogic,tx-delay-ns & amlogic,rx-delay-ns are not
+valid for this compatible.
+
+> +
+> +	phy_mode = phy_fix_phy_mode_for_mac_delays(dwmac->phy_mode, mac_tx,
+> +						   mac_rx);
+
+This is not correct. This function assumes mac_tx and mac_rx are
+Boolean values, the MAC is applying the full 2ns delay. However, if
+rx-internal-delay-ps is only providing 200ps, that is not true.
+
+I would prefer you keep to the usual way of doing things. Allow the
+MAC to apply small tuning delays, but have the PHY do the 2ns. So
+don't make any modification to phy-mode.
+
+>  static int meson8b_init_rgmii_delays(struct meson8b_dwmac *dwmac)
+>  {
+>  	u32 tx_dly_config, rx_adj_config, cfg_rxclk_dly, delay_config;
+> @@ -411,32 +455,34 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
+>  	dwmac->dev = &pdev->dev;
+>  	dwmac->phy_mode = plat_dat->phy_interface;
+>  
+> -	/* use 2ns as fallback since this value was previously hardcoded */
+> -	if (of_property_read_u32(pdev->dev.of_node, "amlogic,tx-delay-ns",
+> -				 &dwmac->tx_delay_ns))
+> -		dwmac->tx_delay_ns = 2;
+> -
+> -	/* RX delay defaults to 0ps since this is what many boards use */
+> -	if (of_property_read_u32(pdev->dev.of_node, "rx-internal-delay-ps",
+> -				 &dwmac->rx_delay_ps)) {
+> -		if (!of_property_read_u32(pdev->dev.of_node,
+> -					  "amlogic,rx-delay-ns",
+> -					  &dwmac->rx_delay_ps))
+> -			/* convert ns to ps */
+> -			dwmac->rx_delay_ps *= 1000;
+> -	}
+> -
+> -	if (dwmac->data->has_prg_eth1_rgmii_rx_delay) {
+> -		if (dwmac->rx_delay_ps > 3000 || dwmac->rx_delay_ps % 200) {
+> -			dev_err(dwmac->dev,
+> -				"The RGMII RX delay range is 0..3000ps in 200ps steps");
+> -			return -EINVAL;
+> +	if (!dwmac->data->mac_applies_dt_delays) {
+
+I suggest you do this at a higher level. Either call this function if
+_broken_delay is set, or the other one.
+
+	Andrew
 
 _______________________________________________
 linux-amlogic mailing list
