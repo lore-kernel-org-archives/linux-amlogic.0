@@ -4,99 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB0D8CA9EC5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Oct 2026 15:14:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CD79CA9EC5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Oct 2026 15:26:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NleBFEuwL0dsxs2n9DEXLn3nyRb1m8VAKAxfiwbxR3E=; b=C9RJswafBgDVHX
-	bxzWfSqC634ZupcY34k4CxX6+7Z1o9fil4LILh9W882l8QPM02QzWk9qvfj4cGRqsv0w0MqgKJbyX
-	AhVTMfuepKlSsa1Apn96ZSSgIExZYsV4+UVvKzYFeEVWYqeurjrv8IkLm9lE3ZtP5W4uNGYxqr3f7
-	L1VaSV/3GbjNk6M2mInChY996yCWjybIVyC/csSPX/mipeqVelyjyHmeYUwPI9pMVYfSGyo4xjhDu
-	KmGplSRM6pRYedkroJzE3/ojb5HMBeLMb/8l95BEZ6fBrI+WoA0cdxFLlvANyw7I2DdOEkGiMpb7z
-	N9RYK23cX4K6n+aWdTTQ==;
+	List-Owner; bh=6usih0H4NlcLKMFogi38LDOlZcwWokNL5SpHRWKcxD4=; b=XXyw7hs46gHQVN
+	Oqae59zKagwmSTl+vuMCkKN8CQ1/9ZuBsSp9/GsP0Zxq94Ev2EM0aq5a3MngEPWT+6hxtbyZhkwqo
+	QvAYZdjfD48Rj1B8a3s8WF5vgaGOn+1ItCgTk4n99CjK50Liwe+pLi/CtmKRskECOly61Lam43U8p
+	4ckaig/kQICtoA77AFvncsT3ig0ENjOOcB6fo81cloZKhEMwSH6oHvjpsJTKGkFaVv4mOVR+Mjxni
+	k0RKMAPJgpaSFjTA3RVZmGPc/xCeBFcBArqunurU+JAqe6dhJRs6I0Im0IZUk7KTOlYlsR+/NnRCR
+	nIhmICtKIUoaY/c+9VfA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xGHjB-0000000AmTI-3vaa;
-	Mon, 12 Oct 2026 15:14:13 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+	id 1xGHul-0000000AnXQ-1t14;
+	Mon, 12 Oct 2026 15:26:11 +0000
+Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xGHj9-0000000AmST-1IoW
+	id 1xGHui-0000000AnWW-3VQ3
 	for linux-amlogic@lists.infradead.org;
-	Mon, 12 Oct 2026 15:14:12 +0000
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-48b03f23305so1679003f8f.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 12 Oct 2026 08:14:10 -0700 (PDT)
+	Mon, 12 Oct 2026 15:26:10 +0000
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-487049569b6so1431222f8f.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 12 Oct 2026 08:26:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1791818049; x=1792422849; darn=lists.infradead.org;
+        d=baylibre.com; s=google; t=1791818767; x=1792423567; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:in-reply-to:from:references
          :cc:to:content-language:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=O90jitIO3s38c8EG4VvKygaj1zarOwk0tQIHj8nVOYg=;
-        b=Y6edLW1VKbrPuw1iRz+buBfkMqymlcPQ4as3k1w1V1jfusJmB1Upsao+uUcWUoaHiB
-         nf7t1BbR09xLWRvK+WSmiLA88SDJy9zUzs2hgrh6M441QrQJ+qGdJVqa1zHwEpMyLH5l
-         WR2OsvHChUZE/v2lWPO2M9QFUfDN+c1Fu5Uqtj0nIT2wqMs3ucXC2sYDEazS4SBwlD9E
-         8GT2T9YWj22T9jstFmm1bg3L5PpL0LlB4p2syOvMv1+lDeeDliNsV4GsbxYrrc7O1wyV
-         +VuXR1FBWxuEyiqOGeU/SMu2YosqCwECv3xJr7dBQLEBbA3gdtELu7nSvn92uu6nzeBj
-         iMGw==
+        bh=I1MniahAvg/Rvn/u502QsbwvNOCgBbmXAK/xR/xwvXg=;
+        b=Zr9Hp/QoWOqfgn/5NjN759Y5Ax9ajFZ45xNYHGvcozHbpGSiXc/EdHDwF+THdGR2L2
+         DfZaKqstRo36Lh1Vi/KyNshr0/49S957FoBD+gnQLL7zCz/T2I7fODJ8FwKTrCLuOOkF
+         vobNN8gxVLKrtza++Pn7OElge00YARkjlEVtW1n15u/BgiZ/ZuN2bTt7GHHkLlzCDDXc
+         zomNL0v7vn0ofyjKA/Z+Q+PGWD1sqdfmjv42yRS2jvIkhDEMaoi7kurOrTw4ptcpVKZ8
+         HkrbDAEy1NCwY8us6J44Ghuf2YyAH5qIvbHw6hm42WiXnzdDghUqW0epIvISFhfUA4ZH
+         ffHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791818049; x=1792422849;
+        d=1e100.net; s=20260707; t=1791818767; x=1792423567;
         h=content-transfer-encoding:content-type:in-reply-to:from:references
          :cc:to:content-language:subject:user-agent:mime-version:date
          :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=O90jitIO3s38c8EG4VvKygaj1zarOwk0tQIHj8nVOYg=;
-        b=bwrpQygtx7ZjdO/MMjk8xG8VxDL7Zzz4bhp7QzNiuu2bq/n9wV6MojCizHVpr6yfbw
-         Le6Btj7UlbwKeW/olyBiXBm985yBvTc8zRyeMZmwo2p8+RPjvSSkT8sB4oFGO84rcwiU
-         pSYk3ypr14pxEoKXSERNrpOf8xLtwnb3tNqVGQZHcYUqPdwpDR4AWlFCR/9wKEONfmpb
-         xdodtsKB++kQVDjDiZdJpz0hEah4nqg6KJ31ArqRHoV5JHKpumOYWtUtNlcSBswuYdsP
-         lwt0Spa919077aOrFl/6Bsg3Tb0/chKGZFniSRYWrLCs4TTSGx9O4aZcx+KlNYak5NU6
-         dUAg==
-X-Forwarded-Encrypted: i=1; AKwUvBz5MkZEk3G3C7vIj1wEpNhP6S+9mdNnra/9fSG/NUZvowJY0X3tDPRji7/VHplmMqZTrU1pvbSoDhhZwCAN@lists.infradead.org
-X-Gm-Message-State: AFq9FYJWIPDVMWgQ/vEf9wZORG0n4eOZcKsltuTLDDqFOQADW8Wx3Uaj
-	r8Z2QWSAquFLPVkdjTVPT7LovHZgvNYHXXSY6nmjwUrG5S8qO70kcXuFaAATd6Uj9d0=
-X-Gm-Gg: AYBFou20I1LaxzTVgBVB3pGHKyuM5paqqp/KXEGPNr9HeN+sHcaT6s8GI7xUlok/YFP
-	qo0gNv9uPEUpiy3GNx0fjqiLt8RvXwLpyhLwJYKRwmmdf1BIpQdOilO3ooNPY+9Ntqd4xvdAKS9
-	Hjr6Xx6oUlhoRr2sqatYmCUalTlMl4HCO0N8AKskcDh1tP8CxLxuWZkR0n1aNxQp051SUTsuCbB
-	bxfltfHWTWB+IbfMaSArwOCcKm4vfRlwhLJQToovYooEKccZowOsUyNzF4vSlM1ykpmqIDEYu9X
-	eXnE3ot/UM8qOWngS6NzHocRqDAQWniMVhFRniqhJ6ony7joO5S9W12OQJhzVDm06XsSZC7i3k4
-	ULbi3/9R4cf3Nv01G9SSXVrhMW8qs3ZjgskRm2ByXv7WTGlcReRAIJMWFc2FZjrbfcH6vY7V1h4
-	Yxu63Jtlw48WZv3H6WfrE1sg+ac4w5VwlxUEsnfkybXUQOBFm0+fwxmwH/81eHQrEGlXQolN0Xn
-	Q==
-X-Received: by 2002:a5d:6f17:0:b0:485:a394:58ef with SMTP id ffacd0b85a97d-48dbaaed22bmr16768322f8f.30.1791818048717;
-        Mon, 12 Oct 2026 08:14:08 -0700 (PDT)
+        bh=I1MniahAvg/Rvn/u502QsbwvNOCgBbmXAK/xR/xwvXg=;
+        b=ecs2xNrdm32p9eT/Z+Uc40nlKAfQOk6kZiBZ2KmxP09cAnQbwT9LsCGCnOzuPmLWeA
+         XjQdn/QUiiSsiTsxaxFaDtLWlnveXOE5CnFVxnxkY/OuuVthmwcSDEweno1d0bCppEE2
+         m2q1FlDZc+2GUtbe9Qo4BXv9I2cVGMI0APvuNb/yss32RlYNrjvaUqYCe1ZPNrqqb3cx
+         tcTq8SfXWv72Crm1+ScuSqrttsWrtFEkAfhWtC3MkJ3/aweMOk+U31Ld0WEfOqpYJMOo
+         6KT++4kOeOG2zriM7XrIfbyNXT6OLneyf1tnQ7hXN0YtysAoPwMZti5cF3TGAnn3SZBs
+         L6JA==
+X-Forwarded-Encrypted: i=1; AKwUvByKiRNlkfdk/mTYo8THIXymlgIH2WQLptjSw7PC9or+LAkYre6Mb8YuMJ4/3LMHdBfk5DwwvvJaXyIUJqsW@lists.infradead.org
+X-Gm-Message-State: AFq9FYLbz7zzF+kVehTeGHv0rAUvAk8Iq0K9ziaI1DxfIoEXDYMQpqnZ
+	//X8J1IzDTj60Yf4VYtCv/Yre+5jo28CwicPpVFnDSUWUURtTf8mLizwS+qtJKdEW7s=
+X-Gm-Gg: AYBFou0iU0LxGxaybSBUT1W+KaESNb9fXkbnGXGbi5+fn6iXGLxMfYxj+UT+Lsd4FEk
+	veIvYnSCrJMQqU1+8dtthn+E+YIxgCe+aNNG++804Pf3oF6rehtrvLWkQerRTmVjXTR5uRMhyYC
+	qr19qt7xpkBlFqFiKWo/vsVQryp/1q5n1yajCQrMZohVHQcBW9nM8gbEtnuPOVGsKrS8BqpctO1
+	r8nrKRw8HrZgSR0shtCd6Kuo2ieBia270AbXs8iAE9cIL4KQ5cDl4HywCajpWHDzsPXPP+w+aWm
+	LkMtRKCO8iEiosIRxoG1J8+qQtHLf3WM6cqes+DzEMSE6Y69O4xl2nc+YVFCLbUQmz94Jr1xJrF
+	NAx/N3pRFujSiyfUyZfdXRMJCoZ8UtSx8RbqwCWGZoxDELSWPjzFrpNpJKvflE1RLiXnvl5X0qk
+	3cw1uHs31tSgAP3DsTrDtJuMbxaCyanOnuS69YFxTbTkIpUz7ePB8nfRGES5H2CxXTa08lZIsr4
+	IJx2gRsnmCd
+X-Received: by 2002:a05:6000:4553:b0:487:106f:ee31 with SMTP id ffacd0b85a97d-48dbaae8703mr13003907f8f.27.1791818766936;
+        Mon, 12 Oct 2026 08:26:06 -0700 (PDT)
 Received: from [192.168.3.100] ([37.103.126.255])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48de0aaabc3sm3653f8f.16.2026.10.12.08.14.07
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48de0ab4f34sm45018f8f.28.2026.10.12.08.26.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Oct 2026 08:14:08 -0700 (PDT)
-Message-ID: <d90324be-c43d-4d28-9f1a-e28e437031e8@baylibre.com>
-Date: Mon, 12 Oct 2026 17:14:07 +0200
+        Mon, 12 Oct 2026 08:26:06 -0700 (PDT)
+Message-ID: <37f751f6-1bf6-4e31-9439-1145d930b746@baylibre.com>
+Date: Mon, 12 Oct 2026 17:26:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/7] ASoC: meson: aiu-encoder-i2s: ensure clk divider
- gets disabled in hw_free
+Subject: Re: [PATCH v4 4/7] ASoC: meson: add AUDIN driver
 Content-Language: en-US
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
+To: sashiko-reviews@lists.linux.dev
+Cc: robh@kernel.org, neil.armstrong@linaro.org,
+ linux-amlogic@lists.infradead.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
 References: <20261001-audin-v4-0-2476646118b5@baylibre.com>
- <20261001-audin-v4-3-2476646118b5@baylibre.com>
- <1j5wzdzyqm.fsf@starbuckisacylon.baylibre.com>
+ <20261001-audin-v4-4-2476646118b5@baylibre.com>
+ <20261001162313.4333D1F000FF@smtp.kernel.org>
 From: Valerio Setti <vsetti@baylibre.com>
-In-Reply-To: <1j5wzdzyqm.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <20261001162313.4333D1F000FF@smtp.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261012_081411_364418_E8F4A2EF 
-X-CRM114-Status: GOOD (  21.55  )
+X-CRM114-CacheID: sfid-20261012_082608_913298_91C91CAF 
+X-CRM114-Status: GOOD (  20.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,62 +105,106 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi, thanks for the feedback and sorry for the late reply.
-
->> diff --git a/sound/soc/meson/aiu-encoder-i2s.c b/sound/soc/meson/aiu-encoder-i2s.c
->> index 58dce9f08c9d..70ea39c77b32 100644
->> --- a/sound/soc/meson/aiu-encoder-i2s.c
->> +++ b/sound/soc/meson/aiu-encoder-i2s.c
->> @@ -219,16 +219,14 @@ static int aiu_encoder_i2s_hw_free(struct snd_pcm_substream *substream,
->>   				   struct snd_soc_dai *dai)
->>   {
->>   	struct gx_stream *ts = snd_soc_dai_get_dma_data(dai, substream);
->> +	struct gx_stream *other = snd_soc_dai_dma_data_get(dai, !substream->stream);
-> 
-> Not sure about peeking on the other path like this :/
-
-Yeah, I know this is perhaps not the nicest approach, but it's the same 
-one I used for the bs-quirk handling (see the "startup()" and 
-"hw_params()" callbacks). Since there can only be the playback and the 
-capture stream, checking the other stream's "clk_enabled" is equivalent 
-to a user counter in "gx_iface", without adding a second piece of state 
-that has to be kept in sync with it.
-Is that acceptable to you?
-
->>   	struct snd_soc_component *component = dai->component;
->>   
->> -	/*
->> -	 * If this is the last substream being closed then disable the i2s
->> -	 * clock divider.
->> -	 */
->> -	if (snd_soc_dai_active(dai) <= 1)
->> -		aiu_encoder_i2s_divider_enable(component, 0);
->> -
->>   	if (ts->clk_enabled) {
->> +		/* Disable the clk divider only if also the other stream is not using it */
->> +		if (!other || !other->clk_enabled)
->> +			aiu_encoder_i2s_divider_enable(component, false);
+>> +static int audin_fifo_dai_trigger(struct snd_pcm_substream *substream, int cmd,
+>> +				  struct snd_soc_dai *dai)
+>> +{
+>> +	struct audin_fifo_dai_data *data = snd_soc_dai_dma_data_get_capture(dai);
+>> +	struct snd_soc_component *component = dai->component;
 >> +
+>> +	switch (cmd) {
+>> +	case SNDRV_PCM_TRIGGER_START:
+>> +	case SNDRV_PCM_TRIGGER_RESUME:
+>> +	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
+>> +		snd_soc_component_update_bits(component, dai->driver->base + AUDIN_FIFO_CTRL,
+>> +					      AUDIN_FIFO_CTRL_EN,
+>> +					      AUDIN_FIFO_CTRL_EN);
+>> +		WRITE_ONCE(data->running, true);
+>> +		hrtimer_start(&data->polling_timer,
+>> +			      audin_fifo_bytes_to_ns(data, data->period_bytes),
+>> +			      HRTIMER_MODE_REL_SOFT);
 > 
-> Looks like a race condition is possible here if one stream closes while
-> the other one starts.
+> [Severity: High]
+> Does this blindly re-enqueue the timer without synchronizing with a potentially
+> running callback?
 > 
-> I think you need a common structure between the 2 paths (with a counter
-> possibly) and it needs to be protected by a lock.
+> If a user rapidly toggles SNDRV_PCM_IOCTL_PAUSE, PAUSE_PUSH uses a
+> non-blocking hrtimer_try_to_cancel(). If the timer is running and skips
+> snd_pcm_period_elapsed() (e.g. because delta < period_bytes), it won't take
+> the PCM stream lock and will execute hrtimer_forward_now() concurrently with
+> PAUSE_RELEASE.
+> 
+> PAUSE_RELEASE then blindly calls hrtimer_start(), which enqueues the timer.
+> When the running callback in audin_fifo_timer_cb() reads running=true, it
+> returns HRTIMER_RESTART, resulting in a double enqueue of the same timer
+> which can corrupt the hrtimer rbtree.
+
+This looks correct. I will send an update for this.
+
+>> +static int audin_fifo_dai_remove(struct snd_soc_dai *dai)
+>> +{
+>> +	kfree(snd_soc_dai_dma_data_get_capture(dai));
+>> +
+>> +	return 0;
+>> +}
+> 
+> [Severity: High]
+> Does this free the DAI data without waiting for the polling timer to finish?
+> 
+> If the driver is unbound while an audio stream is open, the ALSA core triggers
+> a stream stop which uses a non-blocking hrtimer_try_to_cancel(). If the timer
+> callback is running concurrently, it will write to this freed memory.
 > 
 
-I might be wrong, but I'm not sure a race condition can happen while 
-managing these 2 clocks. Here's what I found:
-- "iface->mclk" and "i2s_divider" are enabled/disabled on 
-"prepare()"/"hw_free()" respectively.
-- when "prepare()"/"hw_free()" are called the framework holds the 
-"card->pcm_mutex".
+This and the following issue look a bit of corner case to me (i.e. 
+unbouding a driver while record is ongoing), but I agree that's a weak 
+point so I will fix it.
 
-So when one stream performs one operation, either "prepare()" or 
-"hw_free()", it can read and modify (if needed) "ts->clk_enabled" both 
-for itself and for the other stream safely.
+>> +int audin_fifo_sync_stop(struct snd_soc_component *component, struct snd_pcm_substream *substream)
+>> +{
+>> +	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
+>> +	struct snd_soc_dai *dai = snd_soc_rtd_to_cpu(rtd, 0);
+>> +	struct audin_fifo_dai_data *data = snd_soc_dai_dma_data_get_capture(dai);
+>> +
+>> +	hrtimer_cancel(&data->polling_timer);
+> 
+> [Severity: High]
+> Could this deferred callback access the freed data pointer?
+> 
+> If the driver was unbound and audin_fifo_dai_remove() freed the DAI data,
+> when the file descriptor is eventually closed this deferred sync_stop callback
+> will access the freed data pointer to cancel the timer.
+> 
+>> +	WRITE_ONCE(data->running, false);
+>> +
+>> +	return 0;
+>> +}
+>> diff --git a/sound/soc/meson/audin.c b/sound/soc/meson/audin.c
+>> new file mode 100644
+>> index 0000000000000..808e7d4fd31a2
+>> --- /dev/null
+>> +++ b/sound/soc/meson/audin.c
+> [ ... ]
+>> +static const struct regmap_config audin_regmap_cfg = {
+>> +	.reg_bits	= 32,
+>> +	.val_bits	= 32,
+>> +	.reg_stride	= 4,
+>> +	.max_register	= 0x148,
+>> +};
+> 
+> [Severity: Medium]
+> Will hardware state like the channel mask and endianness be lost across
+> system suspend and resume cycles?
+> 
+> ALSA calls the driver's prepare() callback to recover a suspended stream,
+> but not hw_params(). Because this regmap lacks a cache configuration, it
+> cannot automatically restore the register state configured during hw_params()
+> when the system resumes.
 
-Am I missing something?
+This was already answered by Jerome [1] (thanks!) so that's out of scope 
+for this series.
+
+[1]: 
+https://lore.kernel.org/all/1jbj95zz8o.fsf@starbuckisacylon.baylibre.com/
 
 -- 
 Valerio
