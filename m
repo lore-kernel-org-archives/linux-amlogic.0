@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C5DACA9ED0
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Oct 2026 19:52:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1412CA9EDE
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Oct 2026 19:52:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PQEqSma/x2h0AR3RjM0PIqMO97pynuY49ZTCuyLXjAg=; b=cUwgOrlZAbRYHt
-	onOGEQBIdwnPSybrhXJZNcFJOCJuEwFLSIlF3arDAdgcDtvZrXBe6iBQ7V5daDtZ/VWUE1IA/pTt8
-	SjHOVDOOgnT/KQOOyXsqYdZVORDUDzaLGZvvf63oiHYTXjJkmHxzBgMFWvNVVTCupXkL+ueXcBjOH
-	9aW4XraUUq3R1nZ2KChee5bxARojdw5m9tRXO9fyrwmorIJwN66b2C5r1CUBV1vIq+JjzYtnSJEwd
-	3uG0uXFQ6kE6Yp3DC/j+e681VNFdNYJ8shA6bnWv+68taIeAetHE2cILuKozDecWXCVJuhvOZUr7t
-	ZM1m2PIJZHwGloNzOLXQ==;
+	List-Owner; bh=Nvh45NxWRYkvEy2p0gyRHHKxoZ9VlnWkoU0/h14XDUs=; b=iWJSfEt0Y8cJxs
+	9vzZlCyGY2reMHiXBkOhGIu866LoLUrWExq3asQKHJ930gJX2JDzmdl+tsjBe2yjuV/tUVMZflAz7
+	bYkjkh13YJH0NA5DwVplERpFErEMZM045CID7kUyKYqsfxbLAjrqKdzLPkqcntVRYO4C5v3OhaFVN
+	iVjxueN9DknOcVx9DE0gaQS2KJ+OrwgTbaStG0ZFZzD3rB4Y7P7jEBh38DIe+KxnM4VMttA6zpRRv
+	LpJf6/JEVHn5izg/aAmTniPVbPFCFwx99MSS3iQK2HR7AyIboqEft/Y8Drx7hBHvJIJbBMyOTgwxm
+	sbqrNNu8r85N0GAm50Mw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xGM4R-0000000BQ0z-3Bpv;
+	id 1xGM4R-0000000BQ0m-27m3;
 	Mon, 12 Oct 2026 19:52:27 +0000
 Received: from linkmauve.fr ([82.65.109.163])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xGM4M-0000000BPzH-3Lyv;
+	id 1xGM4M-0000000BPzG-3WPv;
 	Mon, 12 Oct 2026 19:52:26 +0000
 Received: by linkmauve.fr (Postfix, from userid 1000)
-	id 2515A71FB39B; Mon, 12 Oct 2026 21:52:16 +0200 (CEST)
+	id 1FDD571FB397; Mon, 12 Oct 2026 21:52:16 +0200 (CEST)
 From: Link Mauve <linkmauve@linkmauve.fr>
 To: Srinivas Kandagatla <srini@kernel.org>
 Cc: Link Mauve <linkmauve@linkmauve.fr>,
@@ -77,16 +77,17 @@ Cc: Link Mauve <linkmauve@linkmauve.fr>,
 	linux-arm-msm@vger.kernel.org,
 	linux-stm32@st-md-mailman.stormreply.com,
 	rust-for-linux@vger.kernel.org
-Subject: [PATCH v7 2/3] nvmem: core: deprecate reg_write callback with reg_write_const
-Date: Mon, 12 Oct 2026 21:52:09 +0200
-Message-ID: <20261012195213.875403-3-linkmauve@linkmauve.fr>
+Subject: [PATCH v7 1/3] firmware: meson: pass a const buffer to meson_sm_call_write()
+Date: Mon, 12 Oct 2026 21:52:08 +0200
+Message-ID: <20261012195213.875403-2-linkmauve@linkmauve.fr>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261012195213.875403-1-linkmauve@linkmauve.fr>
 References: <20261012195213.875403-1-linkmauve@linkmauve.fr>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261012_125222_999892_3C7893E6 
-X-CRM114-Status: GOOD (  17.58  )
+X-CRM114-CacheID: sfid-20261012_125223_033018_11DD9028 
+X-CRM114-Status: UNSURE (   9.93  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,163 +99,57 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This callback used to take a mutable void * for no reason, which causes
-the compiler to be unaware that the val buffer should never be modified
-by the callback.
-
-This was found while drafting the nvmem-provider Rust abstraction.
-
-Signed-off-by: Link Mauve <linkmauve@linkmauve.fr>
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
----
- drivers/nvmem/core.c           | 26 +++++++++++++++++---------
- drivers/nvmem/internals.h      |  1 +
- include/linux/nvmem-provider.h |  6 +++++-
- 3 files changed, 23 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-index 7d4cce8e2742..df36ad5e9695 100644
---- a/drivers/nvmem/core.c
-+++ b/drivers/nvmem/core.c
-@@ -71,7 +71,7 @@ static int __nvmem_reg_read(struct nvmem_device *nvmem, unsigned int offset,
- }
- 
- static int __nvmem_reg_write(struct nvmem_device *nvmem, unsigned int offset,
--			     void *val, size_t bytes)
-+			     const void *val, size_t bytes)
- {
- 	struct nvmem_operations *ops;
- 	int ret, wr_ok;
-@@ -81,14 +81,17 @@ static int __nvmem_reg_write(struct nvmem_device *nvmem, unsigned int offset,
- 	if (!ops)
- 		return -ENODEV;
- 
--	if (!ops->reg_write)
-+	if (!ops->reg_write && !ops->reg_write_const)
- 		return -EOPNOTSUPP;
- 
- 	ret = gpiod_set_value_cansleep(nvmem->wp_gpio, 0);
- 	if (ret)
- 		return ret;
- 
--	wr_ok = ops->reg_write(nvmem->priv, offset, val, bytes);
-+	if (ops->reg_write_const)
-+		wr_ok = ops->reg_write_const(nvmem->priv, offset, val, bytes);
-+	else
-+		wr_ok = ops->reg_write(nvmem->priv, offset, (void *)val, bytes);
- 
- 	ret = gpiod_set_value_cansleep(nvmem->wp_gpio, 1);
- 	if (ret)
-@@ -309,7 +312,7 @@ static umode_t nvmem_bin_attr_get_umode(struct nvmem_device *nvmem)
- 	if (!nvmem->read_only)
- 		mode |= 0200;
- 
--	if (!ops->reg_write)
-+	if (!ops->reg_write && !ops->reg_write_const)
- 		mode &= ~0200;
- 
- 	if (!ops->reg_read)
-@@ -346,13 +349,13 @@ static umode_t nvmem_attr_is_visible(struct kobject *kobj,
- 	struct nvmem_operations *ops = rcu_dereference_raw(nvmem->ops);
- 
- 	/*
--	 * If the device has no .reg_write operation, do not allow
--	 * configuration as read-write.
-+	 * If the device has no .reg_write or .reg_write_const operation, do
-+	 * not allow configuration as read-write.
- 	 * If the device is set as read-only by configuration, it
- 	 * can be forced into read-write mode using the 'force_ro'
- 	 * attribute.
- 	 */
--	if (attr == &dev_attr_force_ro.attr && !ops->reg_write)
-+	if (attr == &dev_attr_force_ro.attr && !ops->reg_write && !ops->reg_write_const)
- 		return 0;	/* Attribute not visible */
- 
- 	return attr->mode;
-@@ -904,7 +907,7 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
- 	if (!config->dev)
- 		return ERR_PTR(-EINVAL);
- 
--	if (!config->reg_read && !config->reg_write)
-+	if (!config->reg_read && !config->reg_write && !config->reg_write_const)
- 		return ERR_PTR(-EINVAL);
- 
- 	nvmem = kzalloc_obj(*nvmem);
-@@ -960,6 +963,7 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
- 
- 	ops->reg_read = config->reg_read;
- 	ops->reg_write = config->reg_write;
-+	ops->reg_write_const = config->reg_write_const;
- 
- 	nvmem->owner = config->owner;
- 	if (!nvmem->owner && config->dev->driver)
-@@ -994,8 +998,12 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
- 	if (rval)
- 		goto err_put_device;
- 
-+	if (ops->reg_write)
-+		dev_warn(&nvmem->dev, "Usage of reg_write in nvmem is deprecated, please "
-+		                      "migrate to reg_write_const.\n");
-+
- 	nvmem->read_only = device_property_present(config->dev, "read-only") ||
--			   config->read_only || !ops->reg_write;
-+			   config->read_only || (!ops->reg_write && !ops->reg_write_const);
- 
- #ifdef CONFIG_NVMEM_SYSFS
- 	nvmem->dev.groups = nvmem_dev_groups;
-diff --git a/drivers/nvmem/internals.h b/drivers/nvmem/internals.h
-index bc7a99f5aefb..14243d44815d 100644
---- a/drivers/nvmem/internals.h
-+++ b/drivers/nvmem/internals.h
-@@ -12,6 +12,7 @@
- struct nvmem_operations {
- 	nvmem_reg_read_t	reg_read;
- 	nvmem_reg_write_t	reg_write;
-+	nvmem_reg_write_const_t	reg_write_const;
- };
- 
- struct nvmem_device {
-diff --git a/include/linux/nvmem-provider.h b/include/linux/nvmem-provider.h
-index 6063fe5b7784..e944530999b4 100644
---- a/include/linux/nvmem-provider.h
-+++ b/include/linux/nvmem-provider.h
-@@ -20,6 +20,8 @@ typedef int (*nvmem_reg_read_t)(void *priv, unsigned int offset,
- 				void *val, size_t bytes);
- typedef int (*nvmem_reg_write_t)(void *priv, unsigned int offset,
- 				 void *val, size_t bytes);
-+typedef int (*nvmem_reg_write_const_t)(void *priv, unsigned int offset,
-+				       const void *val, size_t bytes);
- /* used for vendor specific post processing of cell data */
- typedef int (*nvmem_cell_post_process_t)(void *priv, const char *id, int index,
- 					 unsigned int offset, void *buf,
-@@ -93,7 +95,8 @@ struct nvmem_cell_info {
-  * @root_only:	Device is accessibly to root only.
-  * @of_node:	If given, this will be used instead of the parent's of_node.
-  * @reg_read:	Callback to read data; return zero if successful.
-- * @reg_write:	Callback to write data; return zero if successful.
-+ * @reg_write:	**DEPRECATED** - please use reg_write_const instead.
-+ * @reg_write_const:	Callback to write data; return zero if successful.
-  * @size:	Device size.
-  * @word_size:	Minimum read/write access granularity.
-  * @stride:	Minimum read/write access stride.
-@@ -128,6 +131,7 @@ struct nvmem_config {
- 	struct device_node	*of_node;
- 	nvmem_reg_read_t	reg_read;
- 	nvmem_reg_write_t	reg_write;
-+	nvmem_reg_write_const_t	reg_write_const;
- 	int	size;
- 	int	word_size;
- 	int	stride;
--- 
-2.56.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhpcyB3YXMgZm91bmQgd2hpbGUgaW50cm9kdWNpbmcgdGhlIG5ldyBudm1lbS1wcm92aWRlciBy
+ZWdfd3JpdGVfY29uc3QKY2FsbGJhY2sgaW4gbWVzb25fc21fY2FsbF93cml0ZSgp4oCZcyBvbmx5
+IHVzZXIsIGluIG1lc29uLWVmdXNlLgoKU2lnbmVkLW9mZi1ieTogTGluayBNYXV2ZSA8bGlua21h
+dXZlQGxpbmttYXV2ZS5mcj4KUmV2aWV3ZWQtYnk6IEFuZHkgU2hldmNoZW5rbyA8YW5kcml5LnNo
+ZXZjaGVua29AaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZmlybXdhcmUvbWVzb24vbWVzb25fc20u
+YyAgICAgICB8IDIgKy0KIGRyaXZlcnMvbnZtZW0vbWVzb24tZWZ1c2UuYyAgICAgICAgICAgICB8
+IDQgKystLQogaW5jbHVkZS9saW51eC9maXJtd2FyZS9tZXNvbi9tZXNvbl9zbS5oIHwgMiArLQog
+MyBmaWxlcyBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25zKC0pCgpkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9maXJtd2FyZS9tZXNvbi9tZXNvbl9zbS5jIGIvZHJpdmVycy9maXJtd2Fy
+ZS9tZXNvbi9tZXNvbl9zbS5jCmluZGV4IGFiOTc1MWE1OWI1NS4uNWQ0ZGEyZTNjM2E5IDEwMDY0
+NAotLS0gYS9kcml2ZXJzL2Zpcm13YXJlL21lc29uL21lc29uX3NtLmMKKysrIGIvZHJpdmVycy9m
+aXJtd2FyZS9tZXNvbi9tZXNvbl9zbS5jCkBAIC0xOTYsNyArMTk2LDcgQEAgRVhQT1JUX1NZTUJP
+TChtZXNvbl9zbV9jYWxsX3JlYWQpOwogICoKICAqIFJldHVybjoJc2l6ZSBvZiBzZW50IGRhdGEg
+b24gc3VjY2VzcywgYSBuZWdhdGl2ZSB2YWx1ZSBvbiBlcnJvcgogICovCi1pbnQgbWVzb25fc21f
+Y2FsbF93cml0ZShzdHJ1Y3QgbWVzb25fc21fZmlybXdhcmUgKmZ3LCB2b2lkICpidWZmZXIsCitp
+bnQgbWVzb25fc21fY2FsbF93cml0ZShzdHJ1Y3QgbWVzb25fc21fZmlybXdhcmUgKmZ3LCBjb25z
+dCB2b2lkICpidWZmZXIsCiAJCQl1bnNpZ25lZCBpbnQgc2l6ZSwgdW5zaWduZWQgaW50IGNtZF9p
+bmRleCwgdTMyIGFyZzAsCiAJCQl1MzIgYXJnMSwgdTMyIGFyZzIsIHUzMiBhcmczLCB1MzIgYXJn
+NCkKIHsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvbnZtZW0vbWVzb24tZWZ1c2UuYyBiL2RyaXZlcnMv
+bnZtZW0vbWVzb24tZWZ1c2UuYwppbmRleCBkN2Y5YWM5OWEyMTIuLmY3MTg1NGY4OTk1MCAxMDA2
+NDQKLS0tIGEvZHJpdmVycy9udm1lbS9tZXNvbi1lZnVzZS5jCisrKyBiL2RyaXZlcnMvbnZtZW0v
+bWVzb24tZWZ1c2UuYwpAQCAtMjAsNyArMjAsNyBAQCBzdGF0aWMgaW50IG1lc29uX2VmdXNlX3Jl
+YWQodm9pZCAqY29udGV4dCwgdW5zaWduZWQgaW50IG9mZnNldCwKIAlzdHJ1Y3QgbWVzb25fc21f
+ZmlybXdhcmUgKmZ3ID0gY29udGV4dDsKIAlpbnQgcmV0OwogCi0JcmV0ID0gbWVzb25fc21fY2Fs
+bF9yZWFkKGZ3LCAodTggKil2YWwsIGJ5dGVzLCBTTV9FRlVTRV9SRUFELCBvZmZzZXQsCisJcmV0
+ID0gbWVzb25fc21fY2FsbF9yZWFkKGZ3LCB2YWwsIGJ5dGVzLCBTTV9FRlVTRV9SRUFELCBvZmZz
+ZXQsCiAJCQkJIGJ5dGVzLCAwLCAwLCAwKTsKIAogCXJldHVybiByZXQgPCAwID8gcmV0IDogMDsK
+QEAgLTMyLDcgKzMyLDcgQEAgc3RhdGljIGludCBtZXNvbl9lZnVzZV93cml0ZSh2b2lkICpjb250
+ZXh0LCB1bnNpZ25lZCBpbnQgb2Zmc2V0LAogCXN0cnVjdCBtZXNvbl9zbV9maXJtd2FyZSAqZncg
+PSBjb250ZXh0OwogCWludCByZXQ7CiAKLQlyZXQgPSBtZXNvbl9zbV9jYWxsX3dyaXRlKGZ3LCAo
+dTggKil2YWwsIGJ5dGVzLCBTTV9FRlVTRV9XUklURSwgb2Zmc2V0LAorCXJldCA9IG1lc29uX3Nt
+X2NhbGxfd3JpdGUoZncsIHZhbCwgYnl0ZXMsIFNNX0VGVVNFX1dSSVRFLCBvZmZzZXQsCiAJCQkJ
+ICBieXRlcywgMCwgMCwgMCk7CiAKIAlyZXR1cm4gcmV0IDwgMCA/IHJldCA6IDA7CmRpZmYgLS1n
+aXQgYS9pbmNsdWRlL2xpbnV4L2Zpcm13YXJlL21lc29uL21lc29uX3NtLmggYi9pbmNsdWRlL2xp
+bnV4L2Zpcm13YXJlL21lc29uL21lc29uX3NtLmgKaW5kZXggM2ViYzJiZDlhOTc2Li45MmNjNjFm
+M2ExYzAgMTAwNjQ0Ci0tLSBhL2luY2x1ZGUvbGludXgvZmlybXdhcmUvbWVzb24vbWVzb25fc20u
+aAorKysgYi9pbmNsdWRlL2xpbnV4L2Zpcm13YXJlL21lc29uL21lc29uX3NtLmgKQEAgLTIxLDcg
+KzIxLDcgQEAgc3RydWN0IG1lc29uX3NtX2Zpcm13YXJlOwogCiBpbnQgbWVzb25fc21fY2FsbChz
+dHJ1Y3QgbWVzb25fc21fZmlybXdhcmUgKmZ3LCB1bnNpZ25lZCBpbnQgY21kX2luZGV4LAogCQkg
+IHMzMiAqcmV0LCB1MzIgYXJnMCwgdTMyIGFyZzEsIHUzMiBhcmcyLCB1MzIgYXJnMywgdTMyIGFy
+ZzQpOwotaW50IG1lc29uX3NtX2NhbGxfd3JpdGUoc3RydWN0IG1lc29uX3NtX2Zpcm13YXJlICpm
+dywgdm9pZCAqYnVmZmVyLAoraW50IG1lc29uX3NtX2NhbGxfd3JpdGUoc3RydWN0IG1lc29uX3Nt
+X2Zpcm13YXJlICpmdywgY29uc3Qgdm9pZCAqYnVmZmVyLAogCQkJdW5zaWduZWQgaW50IGJfc2l6
+ZSwgdW5zaWduZWQgaW50IGNtZF9pbmRleCwgdTMyIGFyZzAsCiAJCQl1MzIgYXJnMSwgdTMyIGFy
+ZzIsIHUzMiBhcmczLCB1MzIgYXJnNCk7CiBpbnQgbWVzb25fc21fY2FsbF9yZWFkKHN0cnVjdCBt
+ZXNvbl9zbV9maXJtd2FyZSAqZncsIHZvaWQgKmJ1ZmZlciwKLS0gCjIuNTYuMAoKCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFp
+bGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMu
+aW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
