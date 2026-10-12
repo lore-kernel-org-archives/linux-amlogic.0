@@ -4,88 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4B49CA9ED1
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Oct 2026 09:23:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DEACCA9ED0
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Oct 2026 09:25:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=MGksaY8eh3dY0VGOuOSVAfMtPHKofuBSBIP4S5D7Kd0=; b=MvY5Je1m9HruYcm+4vBoCIYW0u
-	iM/iuD6ZvLF4MUZNZV9yCk1sF7c89bAisOOehm8ntIhdD79c4MvEKFPR1zNtHhIY6zfIrAsBm0Sk2
-	aDydukUD4816Vm+8quKxzUDWDwoUKNk60CcrsCoiHt4H96DflScICM6vNmi0dxGQbrbxAHsYlP7sI
-	+H9w3C/jmS3rCH34gnMAHLV/rMidIxDTggcEhT7TxAPauGy3n0HCyoS+wG7sX23e/kCl2gxS/OYL7
-	dVOL6ZAR6aFfQ/FAEZGDc3jpbi3JsyBBy58e+o1zcB/oiKVoHrX52wJgsZ55lkEyUYvrSmn9QeD0y
-	uk8BQ9eg==;
+	bh=KozkMX73b+QEb8fhZN/MZPMy/nsjaaywOdBM7F0WdzM=; b=lVYuWlOhRwuim7IAxz7vBalyVo
+	EZGZnOWiMjBrLBtMlyaNLKsfwBaO1xx5Nhk/fHD3vPmV/e+lzZulyu9E3AWHMzdDQKGvmLjzmZ/Ne
+	DhndXWz2D0AFsO8J+mhaNQ+OThVDtuHPkr3cnatGc2AlURnj3PqddHw7UqnqexpBa2S+5m1K2/VRw
+	ZvrwLkXRdFnzE3cT5Z75OY2yE9+oJTnhVn3ByTPUnpnBfzjEuuLSsf5KbkQ1YT5jVGSm52FEFXIUG
+	DXGNkOW7h3xefjXcppgEbfONFuNfFIxiD/vs6+60seMEz5wZiN0/ixLGQGDYX0d7NtYKHhfa6HTWB
+	+SV3QzxA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xGCFx-0000000A36J-19bb;
-	Mon, 12 Oct 2026 09:23:41 +0000
+	id 1xGCHx-0000000A3Jp-2VDg;
+	Mon, 12 Oct 2026 09:25:45 +0000
 Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xGCFu-0000000A35C-1qnZ
+	id 1xGCHu-0000000A3Is-46ta
 	for linux-amlogic@lists.infradead.org;
-	Mon, 12 Oct 2026 09:23:40 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4a022fee0caso14028855e9.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 12 Oct 2026 02:23:37 -0700 (PDT)
+	Mon, 12 Oct 2026 09:25:44 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4a061a13884so14148855e9.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 12 Oct 2026 02:25:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1791797016; x=1792401816; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1791797141; x=1792401941; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:in-reply-to:organization
          :autocrypt:content-language:references:cc:to:subject:reply-to:from
          :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=FHs5QmsAznY6JYFFT0GfFNt0MOtPZ8zk+n24R7ETBWM=;
-        b=l6EmWO/ULBSMXg9IvHY+xDiEcIfGx0McC5nkIVVb5F+UW0VjRYvY7refW6V0R2qhrg
-         h6we+O1Wu3sk3tbESnS5vJSrtMD9BM2LG+r5H2xIdZyP9BTblEgiS/9jL+hvEfTIG+Ub
-         P0qAhQphSB3zvaxkqcNi2SrPkgB8v8+qXmjmL8TyhIM0tOHOU26u6dE4q3jXcbwKOeqi
-         Pfy8CpnjE2v8IjKCcx997gz81v2tQOoSVc/uXJIzKwkvbiWoSMEJvPJaLJhTZLMfbgbP
-         IqU1UmZeK/qKXA1AtGKMiS3R8s/xda4HLvhsx2QpWw7U8FU3+nuteWQz/bLSqcRdsQ0U
-         lYug==
+        bh=lk5ih1jl7s/qnH8PsiY7GfNUNgydrjBFZI1dErLjrRU=;
+        b=f/Dpdiko/zd+ypqrFLoOyPi1S2bP4AoVOYf3HCvdieIDuqmk9ngHUItbUQcX1kBhag
+         oABl1mXxV/IrTi7naU8pmYAWFqzNqS25OnLfPn9A6sYgUPlwOFDqeQebHwIjk8SmEr9a
+         +hN6QlHQAjvIMmvW7mwKT2vGs+0q9rj3nJFD1TQOzJ4E+EIEHLVuMI6lhZptcrCyJcyC
+         tFXXHO0EK/ZILlv/8rExu3GwU+nrACyT61tFOZHVfdcTB6pGiEtUe2Pw/RdeQthHYhT6
+         BHJrWad+NoixMmiylLcWYoPYw6rOZ8Y75M6imbZfNEJ5twPDYhtQ4vfCPFaXEoMzn3Nd
+         b3tA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791797016; x=1792401816;
+        d=1e100.net; s=20260707; t=1791797141; x=1792401941;
         h=content-transfer-encoding:content-type:in-reply-to:organization
          :autocrypt:content-language:references:cc:to:subject:reply-to:from
          :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=FHs5QmsAznY6JYFFT0GfFNt0MOtPZ8zk+n24R7ETBWM=;
-        b=CK5V8P0I8NcsmxEjoudU5zOuNrAA7vPG/mObhWxNkC+PQQwtZUb+y8GqDDsD/FnI9S
-         pcyj4sSYTFv1llYwfmD8Fk8osa/w4FWAOOdYIPIEMbT0Bp0C2QC41/9FsP3cIc8rp3uc
-         savDT5/OgPgBxdwgNX8zZViYix2xFjgw1SptD7bdJpdFUDKgIS4z5ybFFK5etmBxSPpP
-         WhEkMCfKsqqDCvB9jJD7mwTD/Jm7rPK5rdzn3yNZUe1t37Ao/aJlwyS4Zh5P7BZ7DFw8
-         YTaPjxchiRD2lXb43jn1ZEH1ecHdAvr0lDsYyKX2dbDO66/bGLL2PTLAcXd2Mg0FO83g
-         k+ZA==
-X-Forwarded-Encrypted: i=1; AKwUvByj2qm/zzcOba5Zi8fBeqcSqFtrFultN+LYfWpXuSMRQCjSnP6Y+qLYHzaA5bhfbabcmZS1kA3FcqKceqL3@lists.infradead.org
-X-Gm-Message-State: AFq9FYIIX5HvFcN6Gu0+ylKP49jYVxuUZ2JSuzQ4iB4VoSV1XeXZXlXb
-	kV71DcPAJumklz+k2BfWQBa9DmenxrzkZPtr3qaIW5QbVD1Vx28xLuTJV+7sEgt4IOI=
-X-Gm-Gg: AYBFou2nrnJMyMO2BtpskujflurixdXAGM0bSx4XOT8I/7BBgMM+uvhPfG5XkXBWSVl
-	UXrE53YTyrvF5xPxYobQsWL5Qtw0OLP4CEI2btFgXBejmG6uiMwF8ZbD91W1ap+AvN9krRcGsZu
-	HG8/6NLrO3rqUMN107hwBizYPhc+GttcKuIs24m/s8kzUlEE3ZgWOpiaxEicsKpsPWSiI6ba2Hc
-	5Go+GNPZRGCszIOTCSboQVwcDQ0ZryuishlwEGXJYhz/yKCdPs47ee7ZqAKxkjHP7iL/2z8SxMR
-	xIjSps2nNVPASLmIOTcDQIlnyrxn5cKOe3OuLZIZoZo46DkZguKDnoYGzj9BXJdnN6w8TGo0plm
-	FyZuBltr2J9LjLu0XnWAPwnC813ZZdeO0IVzdUsLsM22yH93INy+fUjOf7O9mi7eIJuSH7nawiK
-	w3jdsCJ3to7aMJUVlqhUqBGtQme7fZInC+O9CGnTfu8VEKpK+CHDUN0yJttX1gIjuexyZbKt/Yd
-	iR3EFNRO72jphLkmc9MueDz2zo6sG0IMKniIRLu0+LBYd1tw1k=
-X-Received: by 2002:a05:600c:3e8d:b0:4a1:7701:f863 with SMTP id 5b1f17b1804b1-4a18e4aeae4mr156670605e9.15.1791797016157;
-        Mon, 12 Oct 2026 02:23:36 -0700 (PDT)
+        bh=lk5ih1jl7s/qnH8PsiY7GfNUNgydrjBFZI1dErLjrRU=;
+        b=CW7ZJkemKDtRoqxaFBTOTRlpXR3p4bXTnax5+LQcG6Lsac4akBwhLGX6u+SVELhj+/
+         cptTJ8XIvNVEri4Izu4gJVNf13VIscresIUCwVEqUqTJDLTDqyvloM72rHCRS/AU/rW6
+         l7Q+HKsvcYRaSbAq0wui7L5aiIF8TpjQ4v/Jz+NCqA8ofx0u1RvWMKaKGbGip//dOzPE
+         QhbTnXIn7K3xIduwmelWnAR9aqlUs/gxFfmr44kny3gGm60jZqrnGgM6F7GME1cCbT6q
+         w28bJhjmBxSf9+9Y8HbLCdzeqYCdRMJi1OGmtBUV1V2dDMiNwxDQOjIwuvXNmRntCo+X
+         e2jg==
+X-Forwarded-Encrypted: i=1; AKwUvBwfAzDTKCqPhutR0Vb0/L3XuJQykT7EYKgnUAP54vnsNvOV9Qs66l52mqwoOtDUuk9KaNfedHJU0i+BZ0sd@lists.infradead.org
+X-Gm-Message-State: AFq9FYJEtXkrbKJ87XdZAGo8oejGMzsymUTZq1LWq3DP15CU/ANva7MB
+	iknU8wg5UBxjpgOlsoS+81Ek/fnF9g3KU2ulnwFJj/hxByVN8f/XUF+0I2cblLNnJIY=
+X-Gm-Gg: AYBFou2WWa4/HgIGwmVANwtxcf7ccwFr1Iba2NhbAeitE3b5Nl1jUy1ltXPhmfM0wSi
+	u64ryH1cyZ6A1MSbNpqzH84g4llJsvkX/niBehH3lTBVXUphqWPSNaWen5512KxsS8pa9XV8j/P
+	flV1JiO4Tt37me7UuiB9Y0Bto7pZL3niDRHHyyXF3Uljctz9doRzUS3NEadgwbl1WbX4l+xhAh5
+	3e6HiRduaOJuEM1aZxvEQ/jpn1dOsOptCHLtk+0eIVMDlKETMDW28rn/V/BJZ8Z4nmmYwbNRT5Y
+	l04mBlHCv6fB6JxjD8LbljWnh6kyfM88nKQMUGQyOunpFP2lfKsv4cMke+85yseW2x9nkOZxUOj
+	TkH2AqnfIBwHd2RohpaIvuBftYiZcQbKUeiuaQOl8s1kEbOOGwrw7ng9IP2iEtqpiiHQ+tWclEQ
+	fc2KjuaKdRZkoYxLQXj1bbXB3UOiiSNqX5ljy5vr24icRV8BOevNRrzj+g4piHqF8rMRWmOx9Yk
+	Y6RzU1eR/5LJtg7Fg4akQkYqpQIyritM9wjwmGsSpZd7bKhLck=
+X-Received: by 2002:a05:600c:674a:b0:49f:f0bd:1e40 with SMTP id 5b1f17b1804b1-4a18e4afe9cmr153244585e9.23.1791797140983;
+        Mon, 12 Oct 2026 02:25:40 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:106d:1080:417e:f4c4:5b8:8c48? ([2a01:e0a:106d:1080:417e:f4c4:5b8:8c48])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4a18bb68abfsm304568075e9.0.2026.10.12.02.23.35
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4a18be8c5e7sm345518685e9.4.2026.10.12.02.25.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Oct 2026 02:23:35 -0700 (PDT)
-Message-ID: <27d5c013-9346-4159-aded-12ed8ce4e951@linaro.org>
-Date: Mon, 12 Oct 2026 11:23:34 +0200
+        Mon, 12 Oct 2026 02:25:40 -0700 (PDT)
+Message-ID: <255fe08c-8d58-441d-988c-9145f0995c6f@linaro.org>
+Date: Mon, 12 Oct 2026 11:25:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3 0/4] mmc: meson-gx: honour the busy timeout for R1b
- commands
-To: iav@iav.lv, Ulf Hansson <ulfh@kernel.org>
-Cc: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
- <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-mmc@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20261009-meson-gx-busy-timeout-v3-0-67d0db3a8328@iav.lv>
+Subject: Re: [PATCH v2 1/2] arm64: dts: meson-gxbb-odroidc2: read the Ethernet
+ MAC address from eFuse
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ filipp.dunsky@gmail.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20261011-odroidc2-dts-v2-0-a3a4a752f2ab@gmail.com>
+ <20261011-odroidc2-dts-v2-1-a3a4a752f2ab@gmail.com>
+ <CAFBinCAOsJG=ROP43+pj9dqYc4yWXs4RQisRZghqzbtspp=e7A@mail.gmail.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -112,10 +115,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20261009-meson-gx-busy-timeout-v3-0-67d0db3a8328@iav.lv>
+In-Reply-To: <CAFBinCAOsJG=ROP43+pj9dqYc4yWXs4RQisRZghqzbtspp=e7A@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261012_022338_543319_B61B7388 
-X-CRM114-Status: GOOD (  20.79  )
+X-CRM114-CacheID: sfid-20261012_022543_040889_E1678D0B 
+X-CRM114-Status: GOOD (  11.07  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,80 +131,23 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 10/9/26 19:02, Igor Velkov via B4 Relay wrote:
-> For a command without data the driver programs a fixed 1024 ms into the
-> CMD_CFG timeout field and does not tell the core how long the controller
-> can wait for busy. Erase and cache flush then fail with -110 on eMMC.
-> Patch 3 fixes card_busy, which reported a busy card free; patch 4 makes
-> the core rely on it.
-> 
-> Tested on ODROID-N2+ (S922X), 256 GB eMMC, btrfs root with discard=async,
-> Armbian builds in docker as load. Without the series (7.3-rc6): 262
-> errors in 3 h and 68 in 2.5 h in two runs; the first came 4 and 43 min
-> into the build. With v1 (7.3-rc6): 0 in 16 h, 2.4 h of it under the
-> build. With v3: 0 in a 37 min kernel build and in a 20 GiB write +
-> fstrim; a sanitize went out as R1 and the core polled DAT0 for 523 ms
-> until the card was back in TRAN. On 7.1 with the previous eMMC module
-> a synthetic test (20 GiB write + fstrim) gave 48 errors without the
-> patches, 0 and 0 with them.
-> 
-> ODROID-N2 (S922X), 128 GB Kingston eMMC, 20 GiB write + fstrim:
-> without the series an erase hit the 1024 ms limit and failed with -110
-> in 3 of 3 runs. With v3, in 3 such runs and a fill of the card to 85 %
-> with rm + fstrim, 5 erases took over 1024 ms, up to 1219 ms, and
-> completed; 0 errors.
-> 
-> ODROID-HC4, SD card in SDR104 at 1.8 V: 0 errors in 5 boots.
-> 
-> The timeout is rounded up to a power of two: the field holds powers of
-> two only, and the timeout is a lower bound. MMC_CAP_WAIT_WHILE_BUSY is
-> not set: I have not checked that the controller waits for busy on every
-> R1b command, HS400 switches included.
-> 
-> ---
-> Changes in v3:
-> - Clamp cmd->busy_timeout to the range of the field before rounding it
->    up to a power of two: the rounding of a value above 2^31 overflowed
->    unsigned int (Sashiko).
-> - New patch 3: card_busy reports busy from DAT0 alone. It required
->    DAT0..3 all low and reported a busy card free (Sashiko).
-> - Link to v2: https://lore.kernel.org/r/20261008-meson-gx-busy-timeout-v2-0-8bde1adfb5b4@iav.lv
-> 
-> Changes in v2:
-> - Split into three patches, as Neil asked: name the limit of the
->    timeout field, program the R1b timeout from cmd->busy_timeout, report
->    max_busy_timeout.
-> - Link to v1: https://lore.kernel.org/r/20261008-meson-gx-busy-timeout-v1-1-d92f3c68c409@iav.lv
-> 
-> ---
-> Igor Velkov (4):
->        mmc: meson-gx: name the limit of the CMD_CFG timeout field
->        mmc: meson-gx: honour the busy timeout for R1b commands
->        mmc: meson-gx: report busy from DAT0 alone
->        mmc: meson-gx: report the longest busy wait the controller can do
-> 
->   drivers/mmc/host/meson-gx-mmc.c | 26 ++++++++++++++++++++++----
->   1 file changed, 22 insertions(+), 4 deletions(-)
-> ---
-> base-commit: fd9af27f6c2319713bb23832066585f8a59a1771
-> change-id: 20261005-meson-gx-busy-timeout-7e8e3fdcb3e3
-> 
-> Best regards,
-
-This looks much better!
-
-For me it looks all good, so:
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-
-Thanks,
-Neil
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMTAvMTEvMjYgMjI6NDksIE1hcnRpbiBCbHVtZW5zdGluZ2wgd3JvdGU6Cj4gVGhhbmsgeW91
+IGZvciB5b3VyIHBhdGNoIQo+IAo+IE9uIFN1biwgT2N0IDExLCAyMDI2IGF0IDg6MzHigK9QTSBG
+aWwgRHVuc2t5IHZpYSBCNCBSZWxheQo+IDxkZXZudWxsK2ZpbGlwcC5kdW5za3kuZ21haWwuY29t
+QGtlcm5lbC5vcmc+IHdyb3RlOgo+IFsuLi5dCj4+ICsmZXRoX21hYyB7Cj4+ICsgICAgICAgcmVn
+ID0gPDB4MzQgMHg2PjsKPj4gK307Cj4gUXVlc3Rpb24gdG8gTmVpbDogc2hvdWxkIHRoZSBldGhf
+bWFjIG5vZGUgYmUgbW92ZWQgZnJvbSBtZXNvbi1neC5kdHNpCj4gdG8gbWVzb24tZ3hiYi1vZHJv
+aWRjMi5kdHM/Cj4gT2Ryb2lkLUMyIHdvdWxkIGJlIHRoZSBvbmx5IGJvYXJkIHVzaW5nIGl0IGFu
+ZCB1LWJvb3Qgc2VlbXMgdG8gZGVyaXZlCj4gTUFDIGZyb20gU29DIGNoaXAgSUQvc2VyaWFsIG51
+bWJlciBpbnN0ZWFkIG9mIHJlYWRpbmcgaXQgZnJvbSBlRnVzZQo+IChzbyBJJ20gbm90IHN1cmUg
+YWJvdXQgdGhlIHN0YXR1cyBvZiBNQUMgYWRkcmVzcyBpbiBlRnVzZSBvbiBtb3N0Cj4gYm9hcmRz
+KS4KCk9kcm9pZCBDMiBoYXMgYSBjdXN0b20gZWZ1c2UgbWFwcGluZyBzbyBpdCBjYW4ndCBiZSB1
+c2VkIG9uIG90aGVyIGJvYXJkcy4KCk5laWwKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9n
+aWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
