@@ -4,70 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5FADCA9ED0
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Oct 2026 19:18:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C5DACA9ED0
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Oct 2026 19:52:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=1lqhGnMNv4hTTdQ2i2H7Yog2oEaYtN4fpQP8w9jzHsw=; b=fcWhku9UB4zq2JgQaQj1uk3mzO
-	iuU9oIgRkid9xPfrMxcnZLMlTD3elLffm02RdiC7eKeWuJyPcPmS5AqpqjZa+3ofqLEkrAmn7R4P6
-	f2lqHglHV/e487Cu4CsSgHZ5G0q07rYykdpHYiRA0Q2xlDh3RXVTOKteSyA5wRFaapR9zMC/7xRrX
-	ipSBGy+/pZ+1P6E+C84zfVqWdl858LwRzHYCuOPWMSUEmKD+loJSTNVeOXySTjfHcoUjbfaprYkcg
-	3ZCq8gsmAlYWrajusRcoHA26ijoqc9Mq+HQt2+ZRYB+0kemtkKjllGDezsLlcE9dDJqq7Q461xmgl
-	WdfdD+ag==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=PQEqSma/x2h0AR3RjM0PIqMO97pynuY49ZTCuyLXjAg=; b=cUwgOrlZAbRYHt
+	onOGEQBIdwnPSybrhXJZNcFJOCJuEwFLSIlF3arDAdgcDtvZrXBe6iBQ7V5daDtZ/VWUE1IA/pTt8
+	SjHOVDOOgnT/KQOOyXsqYdZVORDUDzaLGZvvf63oiHYTXjJkmHxzBgMFWvNVVTCupXkL+ueXcBjOH
+	9aW4XraUUq3R1nZ2KChee5bxARojdw5m9tRXO9fyrwmorIJwN66b2C5r1CUBV1vIq+JjzYtnSJEwd
+	3uG0uXFQ6kE6Yp3DC/j+e681VNFdNYJ8shA6bnWv+68taIeAetHE2cILuKozDecWXCVJuhvOZUr7t
+	ZM1m2PIJZHwGloNzOLXQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xGLXn-0000000BN9z-1AkJ;
-	Mon, 12 Oct 2026 19:18:43 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xGM4R-0000000BQ0z-3Bpv;
+	Mon, 12 Oct 2026 19:52:27 +0000
+Received: from linkmauve.fr ([82.65.109.163])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xGLXm-0000000BN9n-2PVA;
-	Mon, 12 Oct 2026 19:18:42 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id A41736025F;
-	Mon, 12 Oct 2026 19:18:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B3B31F008A1;
-	Mon, 12 Oct 2026 19:18:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1791832721;
-	bh=Lh0EeRUmPO/n2sz7aHLajpNlc62AqgBNQDWR/Mouc3w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=i2ldyTvkySETYb0S2alZFc5d8JjDLNPi+DhBhyG6YldX02eACwPkuXssIqIMYugyN
-	 ZZvT5P6OQ1N9Xadzg3OZhntvoRQ0kf+6PUxFkMDiltOdaaMNN95J5inV2wSlUtnxSH
-	 4HU76tzVlXnPfFBTErIYAxTMK757kcnh0d7SErAJNvbEPoGIQPRTNeQ51HcNAC2mg4
-	 RUd81Q1pZatSeQk7opR7zRlP3xKcvmXdK45GcZmcr0pMEEAMa86QL5jUVn5Hew9Id9
-	 kthkILYOTIOMW089oC9iPcmkTGHR3GaM8IMALDRnowS8BYJzwCU6Fw2GphqcvG22EO
-	 kRF1rYYfMR9/A==
-Date: Mon, 12 Oct 2026 20:18:35 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Lucas Tanure <tanure@linux.com>
-Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@kernel.org>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+	id 1xGM4M-0000000BPzH-3Lyv;
+	Mon, 12 Oct 2026 19:52:26 +0000
+Received: by linkmauve.fr (Postfix, from userid 1000)
+	id 2515A71FB39B; Mon, 12 Oct 2026 21:52:16 +0200 (CEST)
+From: Link Mauve <linkmauve@linkmauve.fr>
+To: Srinivas Kandagatla <srini@kernel.org>
+Cc: Link Mauve <linkmauve@linkmauve.fr>,
+	Sasha Finkelstein <k@chaosmail.tech>,
+	Andy Shevchenko <andriy.shevchenko@intel.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Sven Peter <sven@kernel.org>,
+	Janne Grunau <j@jannau.net>,
+	Neal Gompa <neal@gompa.dev>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Vladimir Zapolskiy <vz@mleia.com>,
+	=?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@linaro.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
 	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
 	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	Kalyani Akula <kalyani.akula@amd.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Boqun Feng <boqun@kernel.org>,
+	Gary Guo <gary@garyguo.net>,
+	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>,
+	Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Daniel Almeida <daniel.almeida@collabora.com>,
+	Tamir Duberstein <tamird@kernel.org>,
+	Alexandre Courbot <acourbot@nvidia.com>,
+	=?UTF-8?q?Onur=20=C3=96zkan?= <work@onurozkan.dev>,
+	Johan Hovold <johan@kernel.org>,
+	Ronald Claveau <linux-kernel-dev@aliel.fr>,
+	Daniel Lezcano <daniel.lezcano@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 8/8] dt-bindings: net: ethernet-controller: tabulate
- who adds the RGMII delays
-Message-ID: <20261012-suds-karaoke-efc4acf056af@spud>
-References: <20261010105900.247342-1-tanure@linux.com>
- <20261010105900.247342-9-tanure@linux.com>
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	asahi@lists.linux.dev,
+	imx@lists.linux.dev,
+	linux-arm-msm@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	rust-for-linux@vger.kernel.org
+Subject: [PATCH v7 2/3] nvmem: core: deprecate reg_write callback with reg_write_const
+Date: Mon, 12 Oct 2026 21:52:09 +0200
+Message-ID: <20261012195213.875403-3-linkmauve@linkmauve.fr>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <20261012195213.875403-1-linkmauve@linkmauve.fr>
+References: <20261012195213.875403-1-linkmauve@linkmauve.fr>
 MIME-Version: 1.0
-In-Reply-To: <20261010105900.247342-9-tanure@linux.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261012_125222_999892_3C7893E6 
+X-CRM114-Status: GOOD (  17.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,112 +98,163 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============8652555890279828312=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
---===============8652555890279828312==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ZyeABZ831vo0PBfB"
-Content-Disposition: inline
+This callback used to take a mutable void * for no reason, which causes
+the compiler to be unaware that the val buffer should never be modified
+by the callback.
 
---ZyeABZ831vo0PBfB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This was found while drafting the nvmem-provider Rust abstraction.
 
-On Sat, Oct 10, 2026 at 11:59:00AM +0100, Lucas Tanure wrote:
-> The informative section explains in prose how phy-mode, the delay
-> properties in the MAC node and the mode handed to the PHY fit together,
-> and says itself that developers often get this wrong. A reader has to
-> work through several paragraphs before answering the one question they
-> usually have: for this phy-mode and these properties, which part adds
-> which delay.
->=20
-> Add a table that answers it at a glance, with one row for every
-> combination the properties allow.
->=20
-> Assisted-by: LLM
-> Signed-off-by: Lucas Tanure <tanure@linux.com>
+Signed-off-by: Link Mauve <linkmauve@linkmauve.fr>
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+---
+ drivers/nvmem/core.c           | 26 +++++++++++++++++---------
+ drivers/nvmem/internals.h      |  1 +
+ include/linux/nvmem-provider.h |  6 +++++-
+ 3 files changed, 23 insertions(+), 10 deletions(-)
 
-If the net guys think this is valuable,
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
+index 7d4cce8e2742..df36ad5e9695 100644
+--- a/drivers/nvmem/core.c
++++ b/drivers/nvmem/core.c
+@@ -71,7 +71,7 @@ static int __nvmem_reg_read(struct nvmem_device *nvmem, unsigned int offset,
+ }
+ 
+ static int __nvmem_reg_write(struct nvmem_device *nvmem, unsigned int offset,
+-			     void *val, size_t bytes)
++			     const void *val, size_t bytes)
+ {
+ 	struct nvmem_operations *ops;
+ 	int ret, wr_ok;
+@@ -81,14 +81,17 @@ static int __nvmem_reg_write(struct nvmem_device *nvmem, unsigned int offset,
+ 	if (!ops)
+ 		return -ENODEV;
+ 
+-	if (!ops->reg_write)
++	if (!ops->reg_write && !ops->reg_write_const)
+ 		return -EOPNOTSUPP;
+ 
+ 	ret = gpiod_set_value_cansleep(nvmem->wp_gpio, 0);
+ 	if (ret)
+ 		return ret;
+ 
+-	wr_ok = ops->reg_write(nvmem->priv, offset, val, bytes);
++	if (ops->reg_write_const)
++		wr_ok = ops->reg_write_const(nvmem->priv, offset, val, bytes);
++	else
++		wr_ok = ops->reg_write(nvmem->priv, offset, (void *)val, bytes);
+ 
+ 	ret = gpiod_set_value_cansleep(nvmem->wp_gpio, 1);
+ 	if (ret)
+@@ -309,7 +312,7 @@ static umode_t nvmem_bin_attr_get_umode(struct nvmem_device *nvmem)
+ 	if (!nvmem->read_only)
+ 		mode |= 0200;
+ 
+-	if (!ops->reg_write)
++	if (!ops->reg_write && !ops->reg_write_const)
+ 		mode &= ~0200;
+ 
+ 	if (!ops->reg_read)
+@@ -346,13 +349,13 @@ static umode_t nvmem_attr_is_visible(struct kobject *kobj,
+ 	struct nvmem_operations *ops = rcu_dereference_raw(nvmem->ops);
+ 
+ 	/*
+-	 * If the device has no .reg_write operation, do not allow
+-	 * configuration as read-write.
++	 * If the device has no .reg_write or .reg_write_const operation, do
++	 * not allow configuration as read-write.
+ 	 * If the device is set as read-only by configuration, it
+ 	 * can be forced into read-write mode using the 'force_ro'
+ 	 * attribute.
+ 	 */
+-	if (attr == &dev_attr_force_ro.attr && !ops->reg_write)
++	if (attr == &dev_attr_force_ro.attr && !ops->reg_write && !ops->reg_write_const)
+ 		return 0;	/* Attribute not visible */
+ 
+ 	return attr->mode;
+@@ -904,7 +907,7 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
+ 	if (!config->dev)
+ 		return ERR_PTR(-EINVAL);
+ 
+-	if (!config->reg_read && !config->reg_write)
++	if (!config->reg_read && !config->reg_write && !config->reg_write_const)
+ 		return ERR_PTR(-EINVAL);
+ 
+ 	nvmem = kzalloc_obj(*nvmem);
+@@ -960,6 +963,7 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
+ 
+ 	ops->reg_read = config->reg_read;
+ 	ops->reg_write = config->reg_write;
++	ops->reg_write_const = config->reg_write_const;
+ 
+ 	nvmem->owner = config->owner;
+ 	if (!nvmem->owner && config->dev->driver)
+@@ -994,8 +998,12 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
+ 	if (rval)
+ 		goto err_put_device;
+ 
++	if (ops->reg_write)
++		dev_warn(&nvmem->dev, "Usage of reg_write in nvmem is deprecated, please "
++		                      "migrate to reg_write_const.\n");
++
+ 	nvmem->read_only = device_property_present(config->dev, "read-only") ||
+-			   config->read_only || !ops->reg_write;
++			   config->read_only || (!ops->reg_write && !ops->reg_write_const);
+ 
+ #ifdef CONFIG_NVMEM_SYSFS
+ 	nvmem->dev.groups = nvmem_dev_groups;
+diff --git a/drivers/nvmem/internals.h b/drivers/nvmem/internals.h
+index bc7a99f5aefb..14243d44815d 100644
+--- a/drivers/nvmem/internals.h
++++ b/drivers/nvmem/internals.h
+@@ -12,6 +12,7 @@
+ struct nvmem_operations {
+ 	nvmem_reg_read_t	reg_read;
+ 	nvmem_reg_write_t	reg_write;
++	nvmem_reg_write_const_t	reg_write_const;
+ };
+ 
+ struct nvmem_device {
+diff --git a/include/linux/nvmem-provider.h b/include/linux/nvmem-provider.h
+index 6063fe5b7784..e944530999b4 100644
+--- a/include/linux/nvmem-provider.h
++++ b/include/linux/nvmem-provider.h
+@@ -20,6 +20,8 @@ typedef int (*nvmem_reg_read_t)(void *priv, unsigned int offset,
+ 				void *val, size_t bytes);
+ typedef int (*nvmem_reg_write_t)(void *priv, unsigned int offset,
+ 				 void *val, size_t bytes);
++typedef int (*nvmem_reg_write_const_t)(void *priv, unsigned int offset,
++				       const void *val, size_t bytes);
+ /* used for vendor specific post processing of cell data */
+ typedef int (*nvmem_cell_post_process_t)(void *priv, const char *id, int index,
+ 					 unsigned int offset, void *buf,
+@@ -93,7 +95,8 @@ struct nvmem_cell_info {
+  * @root_only:	Device is accessibly to root only.
+  * @of_node:	If given, this will be used instead of the parent's of_node.
+  * @reg_read:	Callback to read data; return zero if successful.
+- * @reg_write:	Callback to write data; return zero if successful.
++ * @reg_write:	**DEPRECATED** - please use reg_write_const instead.
++ * @reg_write_const:	Callback to write data; return zero if successful.
+  * @size:	Device size.
+  * @word_size:	Minimum read/write access granularity.
+  * @stride:	Minimum read/write access stride.
+@@ -128,6 +131,7 @@ struct nvmem_config {
+ 	struct device_node	*of_node;
+ 	nvmem_reg_read_t	reg_read;
+ 	nvmem_reg_write_t	reg_write;
++	nvmem_reg_write_const_t	reg_write_const;
+ 	int	size;
+ 	int	word_size;
+ 	int	stride;
+-- 
+2.56.0
 
-(although for something like this, us acking probably ain't needed,
-ehh?)
-
-> ---
->  .../bindings/net/ethernet-controller.yaml      | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.ya=
-ml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> index 1bafd687dcb1..bba27a9feb61 100644
-> --- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> @@ -339,6 +339,24 @@ additionalProperties: true
->  # has added. Failure to remove the delay will result in a
->  # non-functioning link.
->  #
-> +# Put together, with the two properties in the MAC node, this is who
-> +# adds each delay:
-> +#
-> +#   phy-mode    tx-internal-delay-ps  rx-internal-delay-ps  TX delay    =
-RX delay
-> +#   rgmii       -                     -                     PCB trace   =
-PCB trace
-> +#   rgmii-id    -                     -                     PHY         =
-PHY
-> +#   rgmii-id    present               -                     MAC         =
-PHY
-> +#   rgmii-id    -                     present               PHY         =
-MAC
-> +#   rgmii-id    present               present               MAC         =
-MAC
-> +#   rgmii-txid  -                     -                     PHY         =
-PCB trace
-> +#   rgmii-txid  present               -                     MAC         =
-PCB trace
-> +#   rgmii-rxid  -                     -                     PCB trace   =
-PHY
-> +#   rgmii-rxid  -                     present               PCB trace   =
-MAC
-> +#
-> +# A property for a clock the PCB already delays is not in this table.
-> +# It is either the fine tuning described next, or a mistake the MAC
-> +# should report as a fatal error.
-> +#
->  # Sometimes there is a need to fine tune the delays. Often the MAC or
->  # PHY can perform this fine tuning. In the MAC node, the Device Tree
->  # properties 'rx-internal-delay-ps' and 'tx-internal-delay-ps' should
-> --=20
-> 2.56.0
->=20
-
---ZyeABZ831vo0PBfB
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCas0yiwAKCRB4tDGHoIJi
-0pqvAPsGoQ0dZuqznMzflFnrJJONMATY3If2+uw3QIz/GHgDxAEA6x8lm1tyHUeS
-J/yJwvaHqlB8POud4yNTEmA/S8/ccQs=
-=6vsf
------END PGP SIGNATURE-----
-
---ZyeABZ831vo0PBfB--
-
-
---===============8652555890279828312==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============8652555890279828312==--
-
