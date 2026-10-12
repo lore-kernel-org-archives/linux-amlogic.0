@@ -4,54 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FB86CA9ED5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Oct 2026 07:24:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E96ECA9EC5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Oct 2026 08:00:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:References:
-	In-Reply-To:Cc:To:Subject:From:Message-ID:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HeA8A6JZGfPjGYKaZEXcIODvXMEb4W3VPaFjUvgHkqk=; b=eOiWkzQAgsE4S9
-	VJovdO9Wc6jHMOfEAwwSiSFL+wwwUVgywaQUa1P4kBAoUnvc5OXL/mu/JnAHjOjB6IAd2lezIG/Xp
-	6dU0dk1JXawSwzeW5sa1nXWr6ni6rj+QxctZ5H6s2Ydac83Ic40a5SlF5wJ0j8DTEeyJsTEw+EHiq
-	eZBmg1ywZD8qKqjkudR9nf1o8JlUYxMyDelXRnklrbvFidwYLR0ekgJPTt4qTiEI6KCYyuuXCjde7
-	zxHoCVeswNbM86E3gqTQVeM0n7PGuKZqFAnxm6ArCb3SCY+QDYkS1e3GIugsMTIg3LlTz8jw+JGXa
-	QZK0g8rEFlfp4QtrlL7Q==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=fb3eUGgrgEFHmY1lvNwRLPH4SJeoI7+X3Cmct2gYECg=; b=Jnx69F/3WRPsGZ
+	1QKGuVdPs6ahWNrnkO7jpds7xE5IqK9MNzw2xjZDd5erpwSpCsQCW9Xt+ZPAK02CxAuqV7BT2oJN/
+	iUG2HJ/odiAzuKMlnvUgsdGtVahlv371fSFoiaqi/N5BfMs2w1WL7pBrMrR4YMRX6Vs3wEcEdJn2y
+	LOBjNCjGlfWGjuexG1zrJ4ubohssTpw7Ss7gJyjt1ib2iljme7sj9ontpW2UjRbPOk0CbHQZbsjMI
+	IL5xtf3/n2nG9jxVa7zPZvRmLOt+OOJmfoCXrNrqkqOC0BlvHd0Dby8ll57xqe0MrFw8uEL9na7Dd
+	mtJpDuBSG5S3t/0pnvQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xGAOu-00000009pgW-1jKk;
-	Mon, 12 Oct 2026 07:24:49 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xGAxY-00000009skr-3Bns;
+	Mon, 12 Oct 2026 08:00:36 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xGAOs-00000009pgN-2Aty
+	id 1xGAxU-00000009skR-2w1i
 	for linux-amlogic@lists.infradead.org;
-	Mon, 12 Oct 2026 07:24:46 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 46B0441605;
-	Mon, 12 Oct 2026 07:24:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A8041F0089B;
-	Mon, 12 Oct 2026 07:24:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1791789886;
-	bh=1/KzxEJ9e8eiHinxkGhmCVdKgubpOAl+ivWXII3PIr0=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=dATnZllvMV3qTGgdd+/0F9MxOA/f7XbG3bqsd8sxe1zRPVKOwGhoDc4ponOyh09kF
-	 HINUx8Qu3+Mi2PL9JXBmE65rYd05oiHQ1QxSStlZMFG0lZPUAl7qO55z1wURz/SR2X
-	 6xbNdTuSP9IzO77vrKRjZt5aTQtAuYP49ugFLviZrQuIKCFW5wfvYEPCGe+TgWbrhn
-	 xkmid2CtzCok6n8yThDmgUs/8KIKwfIRzXXuMivOLJmRNoRMJMTfq3OxTMHsCB4YFf
-	 kx43kHFTz6MRVVAN87BPaCNl2mp8HTiaRbKLpIjxgYDE8SrQ/m5u6iARwCa7qu27JP
-	 l8Dmnp5zicy2Q==
-Message-ID: <sashiko-outbox-167786@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v11 5/6] arm64: dts: amlogic: Add video decoder driver
- support for S4 SOCs
-To: "Zhentao Guo" <zhentao.guo@amlogic.com>
-Cc: robh@kernel.org, media-ci@linuxtv.org, conor+dt@kernel.org, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org
-In-Reply-To: <20261012-b4-s4-vdec-upstream-v11-5-25939f85ada5@amlogic.com>
-References: <20261012-b4-s4-vdec-upstream-v11-0-25939f85ada5@amlogic.com>
- <20261012-b4-s4-vdec-upstream-v11-5-25939f85ada5@amlogic.com>
-Date: Mon, 12 Oct 2026 07:24:45 +0000
+	Mon, 12 Oct 2026 08:00:32 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 1A787413AF;
+	Mon, 12 Oct 2026 08:00:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E53C8C2BCF4;
+	Mon, 12 Oct 2026 08:00:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1791792032;
+	bh=5EEOw38mea9xb3fj1kLycZgwAtj5BNQt6FxpnmmIBMI=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=fpJ0m4aF8vCgc51IsuVJHu1SsLapZvZsF0eTvHu+qAvRGD7T/iPDYw0xLdYZKkhs4
+	 BowDKDK6Cwv/AhX2SYNgcKsoYQTt9dWeu3mWnqUEMNXwCLp6NbLZHl0EgbLaAqayXY
+	 D5OdCGMC8xPIzpnjxJRZIFvLviT4J0r9nmENuizaTrNzD+9ohR3wF+uyeH7p6NCL7/
+	 vTWycDpSkXzQoiDMItxlDg4dUwwVsJLwYeU1hKNAxQBp+2Ok2u+DmgHvWpypZ/GTHO
+	 K/oJS8eBWvnnrrz2SdG8+CKDCrOTwaRTYzXQxZz0EjsbvszMPK7PCCIivFy1SYzLcl
+	 pFI6/eXxtdXNg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C557ACA9ED2;
+	Mon, 12 Oct 2026 08:00:31 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Mon, 12 Oct 2026 08:00:20 +0000
+Subject: [PATCH] dma: amlogic: Fix little-endian variable operations issue
+MIME-Version: 1.0
+Message-Id: <20261012-fix-a9-dma-v1-1-2d83008f3e32@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAJOTzGoC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzNDA0Mj3bTMCt1ES92U3ERdk6RU81Qzw6REM1NjJaCGgqJUoCzYsOjY2lo
+ A/v73G1wAAAA=
+X-Change-ID: 20261012-fix-a9-dma-4be7e61ba653
+To: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, kernel test robot <lkp@intel.com>, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1791792030; l=1209;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=MGtI9iPeIcfHpSdg3DM67l61qmbOpdtXMG6n3gxJRnU=;
+ b=A+XdZzGpsG4iQCPdlMLMiPVu8hZGhXnsVB8XSC0u4KWuu7ga0GROb4VG5ZTLNWDfhZwbHUBoC
+ BjLSaoVldXKDFRgl7yrxa1fKWbIR/FNBG73mbpSEC2brRf31LP/Nu1v
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,82 +80,52 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MiBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0hpZ2hdIG1lZGlhOiBhbWxvZ2lj
-OiB2ZGVjOiBNaXNzaW5nIGxvY2tpbmcgaW4gdGhlIHRpbWVvdXQvZXJyb3IgcGF0aCBvZiBhbWxf
-aDI2NF9kZWNfcnVuKCkKLSBbSGlnaF0gbWVkaWE6IGFtbG9naWM6IHZkZWM6IEluZmluaXRlIGxv
-b3AgaW4gdGhyZWFkZWQgSVJRIGhhbmRsZXIgZHVlIHRvIDAgdGltZW91dCBpbiByZWFkX3BvbGxf
-dGltZW91dCgpCi0tCgpjb21taXQgY2FmOTBiZWVjMDM1ZjI0YWM1OTJmZDRjMjQzMjAwODEzYmIx
-ZmNjNApBdXRob3I6IFpoZW50YW8gR3VvIDx6aGVudGFvLmd1b0BhbWxvZ2ljLmNvbT4KCmFybTY0
-OiBkdHM6IGFtbG9naWM6IEFkZCB2aWRlbyBkZWNvZGVyIGRyaXZlciBzdXBwb3J0IGZvciBTNCBT
-T0NzCgpUaGlzIGNvbW1pdCBhZGRzIHRoZSB2ZGVjIG5vZGUgdG8gZW5hYmxlIHRoZSBBbWxvZ2lj
-IFY0TDIgc3RhdGVsZXNzIHZpZGVvIApkZWNvZGVyIGZvciBTNCBTT0NzLiBJdCBhbHNvIGVuYWJs
-ZXMgdGhlIG9wdGVlIG5vZGUgdG8gc3VwcG9ydCBsb2FkaW5nIHRoZQp2aWRlbyBmaXJtd2FyZSB2
-aWEgVEVFIGhlbHBlcnMuCgo+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9n
-aWMvbWVzb24tczQuZHRzaSBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1zNC5k
-dHNpCj4gaW5kZXggMmE2ZmJkNTMwODM2Mi4uN2ExZGNiMzk1MWM4MiAxMDA2NDQKPiAtLS0gYS9h
-cmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tczQuZHRzaQo+ICsrKyBiL2FyY2gvYXJt
-NjQvYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1zNC5kdHNpCgpbIC4uLiBdCgo+IEBAIC05MDcsNSAr
-OTEyLDMzIEBAIGVtbWM6IG1tY0BmZTA4YzAwMCB7CgpbIC4uLiBdCgo+ICsJCXZpZGVvLWNvZGVj
-QGZlMzIwMDAwIHsKPiArCQkJY29tcGF0aWJsZSA9ICJhbWxvZ2ljLHM0LXZkZWMiOwo+ICsJCQly
-ZWcgPSA8MHgwIDB4ZmUzMjAwMDAgMHgwIDB4MTAwMDA+LAo+ICsJCQkgICAgICA8MHgwIDB4ZmUw
-MzYwMDAgMHgwIDB4MjA+Owo+ICsJCQlyZWctbmFtZXMgPSAiZG9zIiwKPiArCQkJCSAgICAiZG1j
-IjsKPiArCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDkxIElSUV9UWVBFX0VER0VfUklTSU5HPiwK
-PiArCQkJCSAgICAgPEdJQ19TUEkgOTIgSVJRX1RZUEVfRURHRV9SSVNJTkc+Owo+ICsJCQljbG9j
-a3MgPSA8JmNsa2NfcGVyaXBocyBDTEtJRF9ET1M+LAo+ICsJCQkJIDwmY2xrY19wZXJpcGhzIENM
-S0lEX1ZERUNfU0VMPiwKPiArCQkJCSA8JmNsa2NfcGVyaXBocyBDTEtJRF9IRVZDRl9TRUw+Owo+
-ICsJCQljbG9jay1uYW1lcyA9ICJkb3MiLAo+ICsJCQkJICAgICAgInZkZWMiLAo+ICsJCQkJICAg
-ICAgImh2ZGVjIjsKPiArCQkJcG93ZXItZG9tYWlucyA9IDwmcHdyYyBQV1JDX1M0X0RPU19WREVD
-X0lEPiwKPiArCQkJCQk8JnB3cmMgUFdSQ19TNF9ET1NfSEVWQ19JRD47Cj4gKwkJCXBvd2VyLWRv
-bWFpbi1uYW1lcyA9ICJ2ZGVjIiwKPiArCQkJCQkgICAgICJodmRlYyI7Cj4gKwkJCXJlc2V0cyA9
-IDwmcmVzZXQgUkVTRVRfRE9TPjsKPiArCQkJYW1sb2dpYyxjYW52YXMgPSA8JmNhbnZhcz47Cj4g
-KwkJCWFtbG9naWMsc2VjdXJlLW1vbml0b3IgPSA8JnNtPjsKPiArCQl9OwoKW1NldmVyaXR5OiBI
-aWdoXQpFbmFibGluZyB0aGlzIGRldmljZSBleHBvc2VzIGEgbG9ja2luZyByZWdyZXNzaW9uIGlu
-IHRoZSBkcml2ZXIuIEluIHRoZQp0aW1lb3V0L2Vycm9yIHBhdGggb2YgYW1sX2gyNjRfZGVjX3J1
-bigpLCBhbWxfc3RvcF92ZGVjX2h3KCkgaXMgY2FsbGVkIHdpdGhvdXQKaG9sZGluZyBkZWNfaHct
-PmN0eF9tdXRleDoKCmRyaXZlcnMvbWVkaWEvcGxhdGZvcm0vYW1sb2dpYy92ZGVjL2gyNjQuYzph
-bWxfaDI2NF9kZWNfcnVuKCkgewouLi4KCQkvKgoJCSAqIEhhbHQgdGhlIGhhcmR3YXJlIGFuZCB3
-YWl0IG91dCBhbnkgaW4tZmxpZ2h0IHRocmVhZGVkIElSUQoJCSAqIGhhbmRsZXIgYmVmb3JlIGNs
-ZWFuaW5nIHVwLCBvdGhlcndpc2UgYm90aCBjb250ZXh0cyBtYXkgcnVuCgkJICogaDI2NF9yZWxl
-YXNlX2RlY29kZV9zcGVjKCkgY29uY3VycmVudGx5LgoJCSAqLwoJCWFtbF9zdG9wX3ZkZWNfaHco
-ZGVjX2h3KTsKCQlzeW5jaHJvbml6ZV9pcnEoZGVjX2h3LT5kZWNfaXJxKTsKCQloMjY0X3JlbGVh
-c2VfZGVjb2RlX3NwZWMoZGVjX2h3LCBjdHgpOwoJfSBlbHNlIGlmICgtRVJFU1RBUlRTWVMgPT0g
-cmV0KSB7CgkJcmV0ID0gLTE7CgkJYW1sX3N0b3BfdmRlY19odyhkZWNfaHcpOwoJCXN5bmNocm9u
-aXplX2lycShkZWNfaHctPmRlY19pcnEpOwoJCWgyNjRfcmVsZWFzZV9kZWNvZGVfc3BlYyhkZWNf
-aHcsIGN0eCk7Ci4uLgp9CgpJZiB3YWl0X2V2ZW50X2ludGVycnVwdGlibGVfdGltZW91dCgpIHRp
-bWVzIG91dCBvciBpcyBpbnRlcnJ1cHRlZCwgdGhlCnRocmVhZGVkIElSUSBoYW5kbGVyIHZkZWNf
-dGhyZWFkZWRfaXNyX2hhbmRsZXIoKSBtYXkgZXhlY3V0ZSBjb25jdXJyZW50bHkgb24KYW5vdGhl
-ciBDUFUgd2hpbGUgaG9sZGluZyBjdHhfbXV0ZXguCgpCZWNhdXNlIGFtbF9zdG9wX3ZkZWNfaHco
-KSBpcyB1bnByb3RlY3RlZCwgY2FuIGl0IHJlc2V0IHRoZSBoYXJkd2FyZQpjb25jdXJyZW50bHkg
-d2hpbGUgdGhlIElTUiBpcyBzdGlsbCBpbnRlcmFjdGluZyB3aXRoIGl0PyAKCklmIHRoZSBJU1Ig
-d3JpdGVzIHRvIERQQl9TVEFUVVNfUkVHIGFmdGVyIHRoZSByZXNldCwgaXQgY291bGQgaW5hZHZl
-cnRlbnRseQpyZXN0YXJ0IHRoZSBoYXJkd2FyZSBkZWNvZGluZyBwcm9jZXNzLiBUaGlzIG1lYW5z
-IGEgcmVzdGFydGVkIGhhcmR3YXJlIGJsb2NrCmNvdWxkIGZpcmUgYSBuZXcgaW50ZXJydXB0IGFm
-dGVyIHN5bmNocm9uaXplX2lycSgpIHJldHVybnMsIGFsbG93aW5nIGEgbmV3CklTUiB0byBydW4g
-Y29uY3VycmVudGx5IHdpdGggaDI2NF9yZWxlYXNlX2RlY29kZV9zcGVjKCkuCgpXaWxsIHRoaXMg
-bGVhZCB0byBjb25jdXJyZW50IGRvdWJsZS1mcmVlaW5nIG9mIGNhbnZhcyBpbmRpY2VzPwoKW1Nl
-dmVyaXR5OiBIaWdoXQpFbmFibGluZyB0aGlzIGRldmljZSBhbHNvIGV4cG9zZXMgYW4gaW5maW5p
-dGUgbG9vcCByaXNrIGluIHRoZSB0aHJlYWRlZCBJUlEKaGFuZGxlci4gSW4gaDI2NF9jb25maWdf
-ZGVjb2RlX2J1ZigpLCByZWFkX3BvbGxfdGltZW91dCgpIGlzIGNhbGxlZCB3aXRoIGEKdGltZW91
-dCBvZiAwOgoKZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9hbWxvZ2ljL3ZkZWMvaDI2NC5jOmgyNjRf
-Y29uZmlnX2RlY29kZV9idWYoKSB7Ci4uLgoJcmVhZF9wb2xsX3RpbWVvdXQocmVhZF9kb3NfcmVn
-LCByZWdfdmFsLAoJCQkgICEocmVnX3ZhbCAmIDB4ODAwKSwKCQkJICAxMCwgMCwgdHJ1ZSwgaHcs
-IEgyNjRfQ09fTUJfUldfQ1RMKTsKLi4uCn0KClRoZSByZWFkX3BvbGxfdGltZW91dCgpIG1hY3Jv
-IHRyZWF0cyBhIHRpbWVvdXQgb2YgMCBhcyBhbiBpbmZpbml0ZSB3YWl0LgoKU2luY2UgdGhpcyBl
-eGVjdXRlcyBpbnNpZGUgdGhlIHRocmVhZGVkIGludGVycnVwdCBoYW5kbGVyIG9uIGV2ZXJ5IEgy
-NjQgZnJhbWUKZGVjb2RlLCBpZiB0aGUgaGFyZHdhcmUgaGFuZ3Mgb3IgdGhlIHJlZ2lzdGVyIGNv
-bmRpdGlvbiBpcyBuZXZlciBtZXQsCndvdWxkIHRoZSB0aHJlYWQgc3BpbiBpbmRlZmluaXRlbHkg
-YW5kIGhhbmcgdGhlIHN5c3RlbSBvciBjb25zdW1lIDEwMCUgQ1BVIG9uCnRoZSBJUlEgdGhyZWFk
-PwoKPiAgCX07Cj4gIH07CgotLSAKU2FzaGlrbyBBSSByZXZpZXcgwrcgaHR0cHM6Ly9zYXNoaWtv
-LmRldi8jL3BhdGNoc2V0LzIwMjYxMDEyLWI0LXM0LXZkZWMtdXBzdHJlYW0tdjExLTAtMjU5Mzlm
-ODVhZGE1QGFtbG9naWMuY29tP3BhcnQ9NQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dp
-Y0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
-bGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+In dma_async_tx_descriptor function,fix the situation where the operation
+processing of the little-endian variable requires corresponding conversion.
+
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202610060235.PuCxWQdk-lkp@intel.com/
+Fixes: b84b5197e344 ("dmaengine: amlogic: Add general DMA driver for A9")
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Fix the operation little-endian variable issue.
+---
+ drivers/dma/amlogic-dma.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/dma/amlogic-dma.c b/drivers/dma/amlogic-dma.c
+index 78ee2337ae71..bbf5ae5ac705 100644
+--- a/drivers/dma/amlogic-dma.c
++++ b/drivers/dma/amlogic-dma.c
+@@ -321,7 +321,7 @@ static struct dma_async_tx_descriptor *aml_dma_prep_slave_sg
+ 
+ 	/* the last sg set eoc flag */
+ 	sg_link--;
+-	sg_link->ctl |= LINK_EOC;
++	sg_link->ctl = cpu_to_le32(le32_to_cpu(sg_link->ctl) | LINK_EOC);
+ 
+ 	return vchan_tx_prep(&aml_chan->vchan, &aml_desc->vd, flags);
+ }
+
+---
+base-commit: 42c31fec1ca76b8b5f7759def122d418dff2cd4b
+change-id: 20261012-fix-a9-dma-4be7e61ba653
+
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
