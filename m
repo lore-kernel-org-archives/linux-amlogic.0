@@ -4,156 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82E40CA9ED1
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Oct 2026 14:48:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB0D8CA9EC5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Oct 2026 15:14:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=syL1rJEPWN2rX59owSDDEFLWedBPT6/WorRrLF88ufY=; b=VjRRqJ+VefuVpA
-	tuheiWf7TrIjR2F7ZpNKt4VdEX5r8nUR9iTANZkHidSb74RKuUvCf07G7S/8qfQdvTf89OnajZX3f
-	OQqlr+BxRPSYDx/Pux/mXkUGYqMEesx9SP+HoRP0wlAtgDci3lRbq3nY8oP3aymrPCE1r9kKzM/dm
-	X6aKIFiwf1WXsRZVEoP+tPML00hgHZKbeRoES3u+Y2qdZ1+1uD0+OOlujKLADl2ki9RqAewALn2au
-	Cj9B5YpgIBJIxa61gsKXRPAnEqOqigPB1Ku+2sfS7S7wedWFGO7cFM8Q5kxlgqGs7oJQ4XmkXWRAo
-	7zBMHV6TsjpMOD7a9hHQ==;
+	List-Owner; bh=NleBFEuwL0dsxs2n9DEXLn3nyRb1m8VAKAxfiwbxR3E=; b=C9RJswafBgDVHX
+	bxzWfSqC634ZupcY34k4CxX6+7Z1o9fil4LILh9W882l8QPM02QzWk9qvfj4cGRqsv0w0MqgKJbyX
+	AhVTMfuepKlSsa1Apn96ZSSgIExZYsV4+UVvKzYFeEVWYqeurjrv8IkLm9lE3ZtP5W4uNGYxqr3f7
+	L1VaSV/3GbjNk6M2mInChY996yCWjybIVyC/csSPX/mipeqVelyjyHmeYUwPI9pMVYfSGyo4xjhDu
+	KmGplSRM6pRYedkroJzE3/ojb5HMBeLMb/8l95BEZ6fBrI+WoA0cdxFLlvANyw7I2DdOEkGiMpb7z
+	N9RYK23cX4K6n+aWdTTQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xGHKX-0000000AitB-1Eaq;
-	Mon, 12 Oct 2026 14:48:45 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1xGHjB-0000000AmTI-3vaa;
+	Mon, 12 Oct 2026 15:14:13 +0000
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xGHKU-0000000AirJ-46yF
+	id 1xGHj9-0000000AmST-1IoW
 	for linux-amlogic@lists.infradead.org;
-	Mon, 12 Oct 2026 14:48:44 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 69CC0bAi2679930
-	for <linux-amlogic@lists.infradead.org>; Mon, 12 Oct 2026 14:48:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=bpOndlgPfv1kdWQOBM72wFH+
-	Lnf26uksnJykK9/Hdy0=; b=leQ3bD+g5c4VwVA6byRTH+0bNQu9f658P3LBrm0T
-	OeuBlhUzGR7Ak7FXaNvBsYmbvOCx4iV/fyfr7g2TBld1Ih9q5tdgxeH4Zrof98pY
-	yer49v/uHQp/PuurFmz/HVauIFCeyCmNVC/UZQ3jRqT09sGtEI58x+P2uRzRufva
-	CR0Npj6JR4C31oqsUyLrqhqGA6FhBT4LJondzTSWoOOwl8JrTrYTSQW0CIP7++hE
-	XC13s1ELe1gMVTM48x+eMKyN+20CrBsX1zL+ninXNBmkvBRSoQtSIfugCPaVBVI4
-	ukHpmfzp7qGfeT6y8elgPZ7KAmFFIntQNJSm4G+aJvO6/Q==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4h8sd1tfe1-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-amlogic@lists.infradead.org>; Mon, 12 Oct 2026 14:48:41 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-91b4bf686ceso74576126d6.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 12 Oct 2026 07:48:41 -0700 (PDT)
+	Mon, 12 Oct 2026 15:14:12 +0000
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-48b03f23305so1679003f8f.1
+        for <linux-amlogic@lists.infradead.org>; Mon, 12 Oct 2026 08:14:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1791816521; x=1792421321; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=bpOndlgPfv1kdWQOBM72wFH+Lnf26uksnJykK9/Hdy0=;
-        b=EiuvBguNna9NqFDPcs84n1+vNG4Pd+C/mHJj+dfoV6EX1/0KL/r+2dT71c0jaCrn2E
-         gQcO6hyUD3r7q9uf3apgvOj1eB/Oxyl7em9bps1aTmD9fHuMfYsMi1lfZvEd1MaXFkR9
-         aIVZ1UaJFccFGr/ElDJJRVia4JRO2UJDu6vmuy110P2Pm+IEYOrE48Fd5ydu0rAeLthR
-         0wUE7S4V4FEpdi+KyMDb1fytBrjzdxHYBfi7k1k6ky7i2ucdKAczBNIbbzuQvAHPY/7b
-         8SdlzNNZzN7mQHz0P0ntaFFcqj3j5DhBz2DER2F8H5q5a7NfVmwJXlHR7CmBBGPlGT+r
-         WJxQ==
+        d=baylibre.com; s=google; t=1791818049; x=1792422849; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=O90jitIO3s38c8EG4VvKygaj1zarOwk0tQIHj8nVOYg=;
+        b=Y6edLW1VKbrPuw1iRz+buBfkMqymlcPQ4as3k1w1V1jfusJmB1Upsao+uUcWUoaHiB
+         nf7t1BbR09xLWRvK+WSmiLA88SDJy9zUzs2hgrh6M441QrQJ+qGdJVqa1zHwEpMyLH5l
+         WR2OsvHChUZE/v2lWPO2M9QFUfDN+c1Fu5Uqtj0nIT2wqMs3ucXC2sYDEazS4SBwlD9E
+         8GT2T9YWj22T9jstFmm1bg3L5PpL0LlB4p2syOvMv1+lDeeDliNsV4GsbxYrrc7O1wyV
+         +VuXR1FBWxuEyiqOGeU/SMu2YosqCwECv3xJr7dBQLEBbA3gdtELu7nSvn92uu6nzeBj
+         iMGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791816521; x=1792421321;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=bpOndlgPfv1kdWQOBM72wFH+Lnf26uksnJykK9/Hdy0=;
-        b=ilislUHH9k0Ur1jYoMqOg+mBCEibw0LKxo09RYY27JlbZilPNVp0J1H8dhG/aICBm0
-         EopZZsnXVbhVLl8XhnSQbftDsVOa1DYdOG3xUvYG8Lek7h3lA7sL8BLiDLGxbuktYq50
-         1RpTjCIstvOaC0JDqBzYfG0W+guKsaZDJpXBLhnUUJMv0DcNdsJTit4Vwc8z5MA25MDB
-         B6qMUKb2LwGN6aEPWObV0Ew6YFLdSGDRfupwnydc6i82mmXCLwhFpaq1wMuozkxu4A56
-         bGAb+bGabcu9QRDLG7vGCCwIsZKABRNNymckBLe/MWJsYmZ+EigsLdVk/SAD7eAljO1l
-         cD4A==
-X-Forwarded-Encrypted: i=1; AKwUvBxsP9UhAHAtZy8BkU4PXaqve+nA/1QrN4C1eGVSGS3Ny7gDSs8E6yTdHzvOqksgkwfcKdncHXH8Z+Mnp8Ix@lists.infradead.org
-X-Gm-Message-State: AFq9FYI5R6Ngi+hRdhC8nnjabYyyO5IeCHKevjB7tRBYBj+cYGL9IPF+
-	yG11mwC7hjU8D/ccb4Z+CusAwXIO3GnJHssi02Cv6VzJi/Z5Jslgh0C+ZIG9oWERS397+3vj8L0
-	8AgT5lRtHn9A1GyMpjYVBjfPUZA/AYUyqViY6y3YsR4pm8lQvvwIfoR8Tq5vxAt7L7pRZIvUWJQ
-	==
-X-Gm-Gg: AYBFou0XEQ2XFSWY8f9SpyC31d8FBRf+TN6zRrlXjiVFt9VSRA/lg36ltaxywbEh/fe
-	wujvb+4aE7CNdJZvZsWa4pXVl9EXj+ArJX8ZIwcu5Y5d4OUguk2twdwEETmc3Bv/8WEg2ygWSPD
-	x2VQTqJFxlv5LKKyOamK98Hl+5M7C0PksoesjX7kmtdKpJYQ01Z2+PneUN7qfWwh4GHxDeqOcCw
-	17HatDmlHlYOQHSSIxnmqDdoA08j8YvX6E3dG9cf6Q9ve+MRNuqa5yquI4GyHBtw2FPA7D4bXjc
-	Z2Aa3rRQhKcJ79HJCsGEjaPF9SXwZvCdQ+oQT4PA6nI50DCHnDXz81Dri8MTOAug7WP9GQFGKnw
-	yXAold36o7MvJfDwor9Z3uUG2NfViklifl8/KoAW80L6CarAHSCFJRDDCQxYBIRxzjunLQwCiWf
-	TkHzy4/8uySlMq
-X-Received: by 2002:a05:620a:4694:b0:93e:d1d0:67f with SMTP id af79cd13be357-93ed1d01a42mr1036815785a.51.1791816520929;
-        Mon, 12 Oct 2026 07:48:40 -0700 (PDT)
-X-Received: by 2002:a05:620a:4694:b0:93e:d1d0:67f with SMTP id af79cd13be357-93ed1d01a42mr1036807885a.51.1791816520206;
-        Mon, 12 Oct 2026 07:48:40 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3a9c3cc7689sm32134791fa.24.2026.10.12.07.48.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Oct 2026 07:48:38 -0700 (PDT)
-Date: Mon, 12 Oct 2026 17:48:36 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Xilin Wu <sophon@radxa.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
-        dragon@radxa.com, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 18/20] drm/msm/dp: Signal BT.2020 RGB on DP and eDP
-Message-ID: <kjt7k6nrlctvykvqrlvl7ftjeul6woarmjcotlvdasd4u5jb6k@oc246xwutq4h>
-References: <20261009-msm-dp-hdr10-v2-0-1835d4966da3@radxa.com>
- <20261009-msm-dp-hdr10-v2-18-1835d4966da3@radxa.com>
+        d=1e100.net; s=20260707; t=1791818049; x=1792422849;
+        h=content-transfer-encoding:content-type:in-reply-to:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=O90jitIO3s38c8EG4VvKygaj1zarOwk0tQIHj8nVOYg=;
+        b=bwrpQygtx7ZjdO/MMjk8xG8VxDL7Zzz4bhp7QzNiuu2bq/n9wV6MojCizHVpr6yfbw
+         Le6Btj7UlbwKeW/olyBiXBm985yBvTc8zRyeMZmwo2p8+RPjvSSkT8sB4oFGO84rcwiU
+         pSYk3ypr14pxEoKXSERNrpOf8xLtwnb3tNqVGQZHcYUqPdwpDR4AWlFCR/9wKEONfmpb
+         xdodtsKB++kQVDjDiZdJpz0hEah4nqg6KJ31ArqRHoV5JHKpumOYWtUtNlcSBswuYdsP
+         lwt0Spa919077aOrFl/6Bsg3Tb0/chKGZFniSRYWrLCs4TTSGx9O4aZcx+KlNYak5NU6
+         dUAg==
+X-Forwarded-Encrypted: i=1; AKwUvBz5MkZEk3G3C7vIj1wEpNhP6S+9mdNnra/9fSG/NUZvowJY0X3tDPRji7/VHplmMqZTrU1pvbSoDhhZwCAN@lists.infradead.org
+X-Gm-Message-State: AFq9FYJWIPDVMWgQ/vEf9wZORG0n4eOZcKsltuTLDDqFOQADW8Wx3Uaj
+	r8Z2QWSAquFLPVkdjTVPT7LovHZgvNYHXXSY6nmjwUrG5S8qO70kcXuFaAATd6Uj9d0=
+X-Gm-Gg: AYBFou20I1LaxzTVgBVB3pGHKyuM5paqqp/KXEGPNr9HeN+sHcaT6s8GI7xUlok/YFP
+	qo0gNv9uPEUpiy3GNx0fjqiLt8RvXwLpyhLwJYKRwmmdf1BIpQdOilO3ooNPY+9Ntqd4xvdAKS9
+	Hjr6Xx6oUlhoRr2sqatYmCUalTlMl4HCO0N8AKskcDh1tP8CxLxuWZkR0n1aNxQp051SUTsuCbB
+	bxfltfHWTWB+IbfMaSArwOCcKm4vfRlwhLJQToovYooEKccZowOsUyNzF4vSlM1ykpmqIDEYu9X
+	eXnE3ot/UM8qOWngS6NzHocRqDAQWniMVhFRniqhJ6ony7joO5S9W12OQJhzVDm06XsSZC7i3k4
+	ULbi3/9R4cf3Nv01G9SSXVrhMW8qs3ZjgskRm2ByXv7WTGlcReRAIJMWFc2FZjrbfcH6vY7V1h4
+	Yxu63Jtlw48WZv3H6WfrE1sg+ac4w5VwlxUEsnfkybXUQOBFm0+fwxmwH/81eHQrEGlXQolN0Xn
+	Q==
+X-Received: by 2002:a5d:6f17:0:b0:485:a394:58ef with SMTP id ffacd0b85a97d-48dbaaed22bmr16768322f8f.30.1791818048717;
+        Mon, 12 Oct 2026 08:14:08 -0700 (PDT)
+Received: from [192.168.3.100] ([37.103.126.255])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48de0aaabc3sm3653f8f.16.2026.10.12.08.14.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Oct 2026 08:14:08 -0700 (PDT)
+Message-ID: <d90324be-c43d-4d28-9f1a-e28e437031e8@baylibre.com>
+Date: Mon, 12 Oct 2026 17:14:07 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20261009-msm-dp-hdr10-v2-18-1835d4966da3@radxa.com>
-X-Proofpoint-ORIG-GUID: cjWDZ9oC4_KlMCZ7b_E-vWRSgjTGJm6T
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMDEyMDA1OCBTYWx0ZWRfXwcWJ5aFNOCbK
- AZ5Fx/4YGSukanfnPcX4DEg85ggVk3YeRUARDl20k9VxHCi2473FTr+34xF5lLwfDRPI6VFigQr
- Xk8a5lVN2UteR42nmlRpHGn1fe33i/Q=
-X-Authority-Analysis: v=2.4 cv=QtHLTlyd c=1 sm=1 tr=0 ts=6accf349 cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=660iZSQnnn4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22 a=ksxQWNrZAAAA:8
- a=EidWXHX74OIilm-ZvMoA:9 a=CjuIK1q_8ugA:10 a=OIgjcC2v60KrkQgK7BGD:22
- a=l7WU34MJF0Z5EO9KEJC3:22
-X-Proofpoint-GUID: cjWDZ9oC4_KlMCZ7b_E-vWRSgjTGJm6T
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMDEyMDA1OCBTYWx0ZWRfX+qy/g/Edgd3/
- 1n1zmsBI9okL6dpoLxH2hGxIRukUZjvc10iytqyNXDoy7IefkBzTkPoefH/Gx122LDQiG4QkEkw
- fDM6pPO4lj4d8suXJQDraq7G5W7B/wrGqPJAGANW0vxMcCf6MCYJGdcH2jgA5W8PIsBO07+VnhJ
- bRRDGG5h+fWRhiS8Vu5gtaBANTvPMgcHYzPQAbBB2MYnhSjH5ID1LvYGNH6iEVfAaIs8o5uLYLF
- neu0mFzjclJw5bW29ilQ2E5kJAT2uPIHqTfder1PYjY2BoVAbvj4WpDdoR1NCdrebNkfTLUZkeV
- vsKoJYF+bQ7NT9dm/YyspNskMZiRB4CLcQAVA5RXCeAHiWdNtKkbL9cbWNxQbPUuI1T4XFrVAxg
- iLxqKh24EZKQp+XvaJGwcLq1r3iiBFgjNbvoEFs/ty0Sw+xhESsgx7rnmnuNDPR6Ux078gF70No
- OM48FZLhRrdGTqvIwEA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-10-12_04,2026-10-09_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 malwarescore=0 bulkscore=0 clxscore=1015
- lowpriorityscore=0 suspectscore=0 impostorscore=0 phishscore=0 adultscore=0
- spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2610080000
- definitions=main-2610120058
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/7] ASoC: meson: aiu-encoder-i2s: ensure clk divider
+ gets disabled in hw_free
+Content-Language: en-US
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20261001-audin-v4-0-2476646118b5@baylibre.com>
+ <20261001-audin-v4-3-2476646118b5@baylibre.com>
+ <1j5wzdzyqm.fsf@starbuckisacylon.baylibre.com>
+From: Valerio Setti <vsetti@baylibre.com>
+In-Reply-To: <1j5wzdzyqm.fsf@starbuckisacylon.baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261012_074843_322866_2A5A1CE5 
-X-CRM114-Status: GOOD (  20.30  )
+X-CRM114-CacheID: sfid-20261012_081411_364418_E8F4A2EF 
+X-CRM114-Status: GOOD (  21.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -165,57 +108,71 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Oct 09, 2026 at 11:16:10AM +0800, Xilin Wu wrote:
-> Expose the standard DP Colorspace property with BT2020_RGB support and
-> carry the selected colorspace in bridge atomic state. Force a modeset
-> when it changes so the stream receives the corresponding VSC packet.
-> 
-> Signal full-range RGB to match the existing pixel path and retain CTA
-> range for YUV420. Reject BT2020_RGB with a YUV420-only mode. Reuse the
-> preceding VSC state, update and PSR handling for the new colorimetry.
-> 
-> Assisted-by: LLM
-> Signed-off-by: Xilin Wu <sophon@radxa.com>
-> ---
->  drivers/gpu/drm/msm/dp/dp_ctrl.c    |  2 +-
->  drivers/gpu/drm/msm/dp/dp_display.c |  6 ++++--
->  drivers/gpu/drm/msm/dp/dp_drm.c     |  9 ++++++++-
->  drivers/gpu/drm/msm/dp/dp_drm.h     |  1 +
->  drivers/gpu/drm/msm/dp/dp_utils.c   | 12 ++++++++++++
->  drivers/gpu/drm/msm/dp/dp_utils.h   |  3 +++
->  6 files changed, 29 insertions(+), 4 deletions(-)
-> 
-> @@ -456,11 +456,18 @@ struct drm_connector *msm_dp_drm_connector_init(struct msm_dp *msm_dp_display,
->  					    struct drm_encoder *encoder)
->  {
->  	struct drm_connector *connector = NULL;
-> +	int ret;
->  
->  	connector = drm_bridge_connector_init(msm_dp_display->drm_dev, encoder);
->  	if (IS_ERR(connector))
->  		return connector;
->  
-> +	ret = drm_mode_create_dp_colorspace_property(connector,
-> +						     BIT(DRM_MODE_COLORIMETRY_BT2020_RGB));
+Hi, thanks for the feedback and sorry for the late reply.
 
-Don't we also need BIT(DP_COLORIMETRY_DEFAULT) here?
+>> diff --git a/sound/soc/meson/aiu-encoder-i2s.c b/sound/soc/meson/aiu-encoder-i2s.c
+>> index 58dce9f08c9d..70ea39c77b32 100644
+>> --- a/sound/soc/meson/aiu-encoder-i2s.c
+>> +++ b/sound/soc/meson/aiu-encoder-i2s.c
+>> @@ -219,16 +219,14 @@ static int aiu_encoder_i2s_hw_free(struct snd_pcm_substream *substream,
+>>   				   struct snd_soc_dai *dai)
+>>   {
+>>   	struct gx_stream *ts = snd_soc_dai_get_dma_data(dai, substream);
+>> +	struct gx_stream *other = snd_soc_dai_dma_data_get(dai, !substream->stream);
+> 
+> Not sure about peeking on the other path like this :/
 
-> +	if (ret)
-> +		return ERR_PTR(ret);
-> +	drm_connector_attach_colorspace_property(connector);
-> +
->  	if (!msm_dp_display->is_edp)
->  		drm_connector_attach_dp_subconnector_property(connector);
->  
+Yeah, I know this is perhaps not the nicest approach, but it's the same 
+one I used for the bs-quirk handling (see the "startup()" and 
+"hw_params()" callbacks). Since there can only be the playback and the 
+capture stream, checking the other stream's "clk_enabled" is equivalent 
+to a user counter in "gx_iface", without adding a second piece of state 
+that has to be kept in sync with it.
+Is that acceptable to you?
+
+>>   	struct snd_soc_component *component = dai->component;
+>>   
+>> -	/*
+>> -	 * If this is the last substream being closed then disable the i2s
+>> -	 * clock divider.
+>> -	 */
+>> -	if (snd_soc_dai_active(dai) <= 1)
+>> -		aiu_encoder_i2s_divider_enable(component, 0);
+>> -
+>>   	if (ts->clk_enabled) {
+>> +		/* Disable the clk divider only if also the other stream is not using it */
+>> +		if (!other || !other->clk_enabled)
+>> +			aiu_encoder_i2s_divider_enable(component, false);
+>> +
+> 
+> Looks like a race condition is possible here if one stream closes while
+> the other one starts.
+> 
+> I think you need a common structure between the 2 paths (with a counter
+> possibly) and it needs to be protected by a lock.
+> 
+
+I might be wrong, but I'm not sure a race condition can happen while 
+managing these 2 clocks. Here's what I found:
+- "iface->mclk" and "i2s_divider" are enabled/disabled on 
+"prepare()"/"hw_free()" respectively.
+- when "prepare()"/"hw_free()" are called the framework holds the 
+"card->pcm_mutex".
+
+So when one stream performs one operation, either "prepare()" or 
+"hw_free()", it can read and modify (if needed) "ts->clk_enabled" both 
+for itself and for the other stream safely.
+
+Am I missing something?
 
 -- 
-With best wishes
-Dmitry
+Valerio
+
 
 _______________________________________________
 linux-amlogic mailing list
