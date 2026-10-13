@@ -4,113 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45FEACC6B0F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Oct 2026 07:14:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF45DCA9ED2
+	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Oct 2026 11:28:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=egxe+uIWexA+RFhVsWsO8tcg8529Gy4RCjSNh8iUWR0=; b=bjOOhG3HsK56+/
-	wpwHJcRV8yLKpIO2eyfuJbO64qOtFjSQrjFQBu2yJW/Usga8R/vLWfspLuFrk3nGL/l4SyWEcVUjA
-	EGHddzcKG2uzE2bRGmPgVvFao06mKC0WI35OfAajFl/v7fbGp53wWshfMREG8ds3mc8HnavzhWwqj
-	LFnZUoWMKgcbGIYu5nY0j2PFfr6FF37g4DkAw5yTDCzTeDoA9tP/5slQFG+lpnIh/ZQqgast7xi3N
-	9148Yh/2tVsYhWn1+0dVsnxF/1NK9Z9uLKyvIXgyeP0ALhAGNUtt9l3JhfC7CfdciCWmjHNyaS0Y3
-	zfOgn6pukMoaFUA52Bxw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=xgd0XWzzbvJ4HfLj0zNBoPeM3krYVpEkQm/s/8WVr0s=; b=WZLMsTLQgEUJ2z
+	rz4aFOr8ECmPAT3LBOBOWoOsDM+bRuyWHgRhszkGcGs5jwfGMpF3/l/qi/0BAz9UgouALrSgNgBrQ
+	SLh4VpzFSqHJRkhpzA66BwspmlX0HkuBB4OPsdIJaOjQN9WoXDn/SC8aomQJ974DIz94c9dhiEZC0
+	yljbu83TZx0hQqmDkyeG0zTK+cI5cwMoksEO2OHXtG8s9644RGpu+dfz3GwRh1jPHl8+uAZ7tX+gl
+	0wuht+I57W+8acMlkHzO9iz7Q5Q0dcIRyw4zdbUIhLef6z0g1CllouUyfRNXhB0X67nb6Jr5ZDk6S
+	KNiACJLRxlZIjHaxhAzA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xGWin-0000000CCBY-0Z1E;
-	Tue, 13 Oct 2026 07:14:49 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xGagK-0000000ChcM-3A3m;
+	Tue, 13 Oct 2026 11:28:32 +0000
+Received: from mail-gw01.astralinux.ru ([37.230.196.243])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xGWil-0000000CCAg-0h4a
-	for linux-amlogic@bombadil.infradead.org;
-	Tue, 13 Oct 2026 07:14:47 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Type:MIME-Version:Message-ID:
-	Date:References:In-Reply-To:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=N/3uZKTyrNaRvsXwszDYWZ0D2uuc7O2dM/xJ/2Buikg=; b=drfQfciOiRh5fhoq7OhAlDG13i
-	P35TARtpK6tMJ8ZpO1YFOyMjI4ER4ZKiyBQYbzij2wLuIB7V1b9FhLivsznBZKCYjYnwosavt1ViT
-	3oqDApwYq84j3gN6iRHn06VRdM7fPnhXXLAix6sgljAynehoMLnNHgMgKH7CALoQ3IVebEDEWXOO/
-	6jVDMXkbcEOMWR/1c43nNud3b7E1cvD6P557IzS3pWzedTDaN5Eyt2NfxnxiHOcSHKye3vCghtIc8
-	Hq49pi8DYtDINHSRD8watL4T2ygFP4axa2JUWZ9BnuSuUW5jzH4YWpSVnoeWVu4Zvz6h8ol9b9OWE
-	2tSjo8cA==;
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
-	by desiato.infradead.org with esmtps (Exim 4.99.5 #2 (Red Hat Linux))
-	id 1xGWig-0000000FBts-19wM
-	for linux-amlogic@lists.infradead.org;
-	Tue, 13 Oct 2026 07:14:45 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-48b03f23305so2172478f8f.1
-        for <linux-amlogic@lists.infradead.org>; Tue, 13 Oct 2026 00:14:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1791875679; x=1792480479; darn=lists.infradead.org;
-        h=content-type:mime-version:message-id:date:references:in-reply-to
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=N/3uZKTyrNaRvsXwszDYWZ0D2uuc7O2dM/xJ/2Buikg=;
-        b=laDxsnJNN4Nk1qCAFkWO+q0oHAMzGh7rsCVfmkZS4pVGrvT5xTOqgyE66Zppu/mArU
-         WaTRji54ID7WpFvjp/P20MiZ8B+E/vl9ahy7fnquJUes8xVQROwafsHz8cNasEdObX+M
-         wO1KNx41Dg3BYrwj2dh5EoiXe5TKFZbKpwlWJ6qwLw4XMeZvuWvgPK5F5QL0W8PFYvoB
-         GP1yAQadVgPO0ugL+CCrYl0G4gPqNWaYGQrbQw657n+ELptsVKgd5FfNTVWUWC6h6Cb1
-         XUA9xaZmStIONCyjj8+7PYxQDbMLDUPwlfwUb2oBwC6xd0rAgfLhDf4EpY0lWKnHm6Im
-         dsDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1791875679; x=1792480479;
-        h=content-type:mime-version:message-id:date:references:in-reply-to
-         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=N/3uZKTyrNaRvsXwszDYWZ0D2uuc7O2dM/xJ/2Buikg=;
-        b=j8HNnDM9uoQzNbk4pAt1XfciNSGILVR4EvaY2xDAQt5iSR1kd6cn9lcTNsTWXS8Nf0
-         7cAnA/J1gBLFSJz0Lk6FQkEBS3YVA5SP8CEeL8NSjzbovLT3gS/CqC31YNtB6fZ9ZIGA
-         32SAxzgmiwsNpi8X4hVgvI371up0CWqYBjLQCYVOjOwhsA6M1QwEN9LqMf3ZArTgiYup
-         0Rh0yXPv3J3zgTMIMK2wDo62+uiSZzAtsfPkmNUpbzvXvNyQe1Ki5RwJ0SoiXE5vWmNr
-         49262aZsvzyXOrFpU5Bv/gv1WmyDhTz+/cZcu3oHY80ZdCmZW0Pe+6yaYA/fuBI7/mFb
-         n+mA==
-X-Forwarded-Encrypted: i=1; AKwUvByBZ0fbLP13i5pvUkthRCA+QuuQiM7AhfnVI5HvAA2du8JeVDHyjpdHijLa3db+okfvM/qUHKnE1JPKIagr@lists.infradead.org
-X-Gm-Message-State: AFq9FYK3TVQOhR9ofg3W9z9OH+Ha+vyX6Au0JGlMO4G1VXpPamPVaMlb
-	hDJP+gjttmw+LB37NXoPkQZYaHQptEa2uqoIFeFnn8UPv8mIQ+bgQidGHP6INg9wFtw=
-X-Gm-Gg: AYBFou2wrgQWPnoaBFSPI08Tc+xUoSl6pryvKr1T/rgTbk3X5bW79klU+HSqJTiPSIz
-	GnXQ9UENEyAbB+z48XTgKeEjC89iAsdjxayMju/6/UQe03UAJ631fQMZI8eHLJTfvZSCHiEKeKS
-	8i7frSOeuf0ry20V8joKeswe08BJltcriM93Taa17C/f0Ia2on8JW69TCdvNJ+uK2WKK+AXefgJ
-	WCXDhuMQRAWl9VYwZPH6EEuiTqUIAVEIEr7SOFJmYI+I3Ao1130zymPPy65Mo4f3/fmB8RvOV2X
-	+seCWvqYn5JkKG9UnbsKQ6rKJw9YTsh+OgaD4O+ISjRU5QaEd63Leec1Mnu4DwBOcDMAYyd48uv
-	gPtbIr+sgkqunHIgMdByioeum3q688uvMErZfHvKUa8uJgh4nkPJrReVGtuMpfp55fGEVVjrREP
-	C7fxZwOt9Sw69JouL6O3LSDhTo/V7Vccpm5wZJ+hvtuyicacJRzYDKki02ueO1wBOrq5GUWKhEZ
-	T2PI7KSL3Boi+6Q9Q==
-X-Received: by 2002:a5d:5846:0:b0:48b:180:b900 with SMTP id ffacd0b85a97d-48dbaadb302mr21043691f8f.16.1791875679329;
-        Tue, 13 Oct 2026 00:14:39 -0700 (PDT)
-Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48de0ab5b03sm3925157f8f.30.2026.10.13.00.14.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Oct 2026 00:14:38 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Lucas Tanure <tanure@linux.com>, xianwei.zhao@amlogic.com, Andrew Lunn
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Neil
- Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
- <khilman@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Maxime Chevallier
- <maxime.chevallier@bootlin.com>, Maxime Coquelin
- <mcoquelin.stm32@gmail.com>, Alexandre Torgue
- <alexandre.torgue@foss.st.com>, Andrew Lunn <andrew+netdev@lunn.ch>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 8/8] dt-bindings: net: ethernet-controller: tabulate
- who adds the RGMII delays
-In-Reply-To: <20261010105900.247342-9-tanure@linux.com>
-References: <20261010105900.247342-1-tanure@linux.com>
- <20261010105900.247342-9-tanure@linux.com>
-Date: Tue, 13 Oct 2026 09:14:38 +0200
-Message-ID: <1jqzhu9in5.fsf@starbuckisacylon.baylibre.com>
+	id 1xGagF-0000000Chb9-0pLG;
+	Tue, 13 Oct 2026 11:28:32 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=astralinux.ru;
+	s=mail; t=1791890891;
+	bh=dEHHHrPNOOAJJTJA9eGfVi5bhR+iD92nK9o8n40N0oU=;
+	h=From:To:Cc:Subject:Date:From;
+	b=OwQlillw+u190RBOJivvOFNF6tQDwA9T0ewjmsMgSbUU6yedlsYnJxpH44ueiMzRg
+	 FCpZsBkvIawd7MrdE3A5wHzD9TCzJZ4XGIumBEH1KMD2lqv9/xJMC9mnCNfw8VFckh
+	 mUciXDxqVSeOKrrTyTb+E0wHpwLzopo32yW/VlfHsVAB5k6QMTbCkXLPvT08ik2PW7
+	 O4B4fL/yDHyUPM1QvdrenRuxFBO3QG1G3IZMypYfxGY2lUy/0Hp5DXgiUCxm6ROa2/
+	 Y91ZvavA8n/xwM++2fjbL7iYzTqOLPFjGaWb89V4Nr7Xs14zAt0zdLqQd/4zgPjkqo
+	 +p2jqKeN/mRkg==
+Received: from gca-sc-a-srv-ksmg01.astralinux.ru (localhost [127.0.0.1])
+	by mail-gw01.astralinux.ru (Postfix) with ESMTP id A483D24AD4;
+	Tue, 13 Oct 2026 14:28:11 +0300 (MSK)
+Received: from new-mail.astralinux.ru (unknown [10.205.207.10])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (P-256) server-digest SHA256)
+	(No client certificate requested)
+	by mail-gw01.astralinux.ru (Postfix) with ESMTPS;
+	Tue, 13 Oct 2026 14:28:09 +0300 (MSK)
+Received: from DESKTOP-D46TNHI (unknown [10.198.27.112])
+	by new-mail.astralinux.ru (Postfix) with ESMTPA id 4j3sVc5mWXz18X5;
+	Tue, 13 Oct 2026 14:26:48 +0300 (MSK)
+From: Mikhail Dmitrichenko <mdmitrichenko@astralinux.ru>
+To: stable@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Mikhail Dmitrichenko <mdmitrichenko@astralinux.ru>,
+	HyeongJun An <sammiee5311@gmail.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Neil Armstrong <narmstrong@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	alsa-devel@alsa-project.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-sound@vger.kernel.org,
+	lvc-project@linuxtesting.org
+Subject: [PATCH 5.10/5.15] ASoC: meson: aiu: Validate written enum values
+Date: Tue, 13 Oct 2026 14:26:23 +0300
+Message-ID: <20261013112625.1126-1-mdmitrichenko@astralinux.ru>
+X-Mailer: git-send-email 2.54.0.windows.1
 MIME-Version: 1.0
+X-KSMG-AntiPhishing: NotDetected, bases: 2026/10/13 10:37:00
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Envelope-From: mdmitrichenko@astralinux.ru
+X-KSMG-AntiSpam-Info: LuaCore: 127 0.3.127 0884f7b061fa529b810563f359267cd65d2ec05c, {Tracking_one_susp_tld}, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;astralinux.ru:7.1.1;new-mail.astralinux.ru:7.1.1;127.0.0.199:7.1.2;patch.msgid.link:7.1.1, FromAlignment: s
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiSpam-Lua-Profiles: 206631 [Oct 13 2026]
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Version: 6.1.1.27
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.1.0.7854, bases: 2026/10/13 04:56:00 #28679670
+X-KSMG-AntiVirus-Status: NotDetected, skipped
+X-KSMG-LinksScanning: NotDetected, bases: 2026/10/13 10:37:00
+X-KSMG-Message-Action: skipped
+X-KSMG-Rule-ID: 1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261013_081442_854879_3C3E8FAE 
-X-CRM114-Status: GOOD (  19.64  )
+X-CRM114-CacheID: sfid-20261013_042827_769055_B11BD19E 
+X-CRM114-Status: GOOD (  10.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,69 +107,60 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On sam. 10 oct. 2026 at 11:59, Lucas Tanure <tanure@linux.com> wrote:
+From: HyeongJun An <sammiee5311@gmail.com>
 
-> The informative section explains in prose how phy-mode, the delay
-> properties in the MAC node and the mode handed to the PHY fit together,
-> and says itself that developers often get this wrong. A reader has to
-> work through several paragraphs before answering the one question they
-> usually have: for this phy-mode and these properties, which part adds
-> which delay.
->
-> Add a table that answers it at a glance, with one row for every
-> combination the properties allow.
->
-> Assisted-by: LLM
-> Signed-off-by: Lucas Tanure <tanure@linux.com>
-> ---
->  .../bindings/net/ethernet-controller.yaml      | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> index 1bafd687dcb1..bba27a9feb61 100644
-> --- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> @@ -339,6 +339,24 @@ additionalProperties: true
->  # has added. Failure to remove the delay will result in a
->  # non-functioning link.
->  #
-> +# Put together, with the two properties in the MAC node, this is who
-> +# adds each delay:
-> +#
-> +#   phy-mode    tx-internal-delay-ps  rx-internal-delay-ps  TX delay    RX delay
-> +#   rgmii       -                     -                     PCB trace   PCB trace
-> +#   rgmii-id    -                     -                     PHY         PHY
-> +#   rgmii-id    present               -                     MAC         PHY
-> +#   rgmii-id    -                     present               PHY         MAC
-> +#   rgmii-id    present               present               MAC         MAC
-> +#   rgmii-txid  -                     -                     PHY         PCB trace
-> +#   rgmii-txid  present               -                     MAC         PCB trace
-> +#   rgmii-rxid  -                     -                     PCB trace   PHY
-> +#   rgmii-rxid  -                     present               PCB trace   MAC
-> +#
+commit d65adf85477247be04ac86886f8edfaa047b5d4a upstream.
 
-That would match how the HW is working on the A733 Allwinner too but I'm
-not entirely sure this is what Andrew had in mind from our previous
-discussion [1]. Adding him to the thread
+The AIU HDMI and internal codec mux put callbacks use the written enum
+value with snd_soc_enum_item_to_val() before checking whether the value is
+valid for the enumeration.
 
-[1]: https://lore.kernel.org/linux-sunxi/491f043e-6dc6-4936-a490-31a3362c5b6e@lunn.ch/
+Reject out-of-range values before converting the enum item, matching the
+validation already done by the G12A HDMI and internal codec mux controls.
 
-> +# A property for a clock the PCB already delays is not in this table.
-> +# It is either the fine tuning described next, or a mistake the MAC
-> +# should report as a fatal error.
-> +#
->  # Sometimes there is a need to fine tune the delays. Often the MAC or
->  # PHY can perform this fine tuning. In the MAC node, the Device Tree
->  # properties 'rx-internal-delay-ps' and 'tx-internal-delay-ps' should
+Fixes: b82b734c0e9a ("ASoC: meson: aiu: add hdmi codec control support")
+Fixes: 65816025d461 ("ASoC: meson: aiu: add internal dac codec control support")
+Assisted-by: Claude:claude-opus-4-8
+Signed-off-by: HyeongJun An <sammiee5311@gmail.com>
+Link: https://patch.msgid.link/20260609124317.38046-3-sammiee5311@gmail.com
+Signed-off-by: Mark Brown <broonie@kernel.org>
+Signed-off-by: Mikhail Dmitrichenko <mdmitrichenko@astralinux.ru>
+---
+Backport fix for CVE-2026-74294
+ sound/soc/meson/aiu-acodec-ctrl.c | 3 +++
+ sound/soc/meson/aiu-codec-ctrl.c  | 3 +++
+ 2 files changed, 6 insertions(+)
 
-Acked-by: Jerome Brunet <jbrunet@baylibre.com>
-
-> -- 
-> 2.56.0
->
-
+diff --git a/sound/soc/meson/aiu-acodec-ctrl.c b/sound/soc/meson/aiu-acodec-ctrl.c
+index 442c215936d9..4620a87edaea 100644
+--- a/sound/soc/meson/aiu-acodec-ctrl.c
++++ b/sound/soc/meson/aiu-acodec-ctrl.c
+@@ -38,6 +38,9 @@ static int aiu_acodec_ctrl_mux_put_enum(struct snd_kcontrol *kcontrol,
+ 	struct soc_enum *e = (struct soc_enum *)kcontrol->private_value;
+ 	unsigned int mux, changed;
+ 
++	if (ucontrol->value.enumerated.item[0] >= e->items)
++		return -EINVAL;
++
+ 	mux = snd_soc_enum_item_to_val(e, ucontrol->value.enumerated.item[0]);
+ 	changed = snd_soc_component_test_bits(component, e->reg,
+ 					      CTRL_DIN_LRCLK_SRC,
+diff --git a/sound/soc/meson/aiu-codec-ctrl.c b/sound/soc/meson/aiu-codec-ctrl.c
+index c966fc60dc73..21a37511b6f9 100644
+--- a/sound/soc/meson/aiu-codec-ctrl.c
++++ b/sound/soc/meson/aiu-codec-ctrl.c
+@@ -30,6 +30,9 @@ static int aiu_codec_ctrl_mux_put_enum(struct snd_kcontrol *kcontrol,
+ 	struct soc_enum *e = (struct soc_enum *)kcontrol->private_value;
+ 	unsigned int mux, changed;
+ 
++	if (ucontrol->value.enumerated.item[0] >= e->items)
++		return -EINVAL;
++
+ 	mux = snd_soc_enum_item_to_val(e, ucontrol->value.enumerated.item[0]);
+ 	changed = snd_soc_component_test_bits(component, e->reg,
+ 					      CTRL_DATA_SEL,
 -- 
-Jerome
+2.47.3
 
 _______________________________________________
 linux-amlogic mailing list
