@@ -4,68 +4,138 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9D04CC6B0F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 13 Oct 2026 22:51:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A98DCC6B1A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 14 Oct 2026 08:21:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=bdCaQhwC8ErpJniYwkAJEVuCwqjDWntkoXWanf7I3sI=; b=OG9nsYgSKcVWQO
-	tqHlUu34HUVyvcivLPZ2/Qh6ra+yTOz/WzukAsHSuJvywVKvdG1O+veU4qtF0OUo00kP4onLKfYD2
-	r1Nur3xTV8HEUeKDG9cjeitE3YCFVwIh4PqJZnOOHdijDs7gyd8rKo/SPSrSH7+ZfehVjg0iwT55Z
-	C+y1S+rBNKk5xyBC7xjzrAxBe/6YmIEU6plzvI1ghUwgZ0hLVN6rs2JZAB4wWxkPzPBsoeqtLeYLH
-	JWvD5rsOEJlTsbiqKuOT7/9SbNWATFNca4BEg+q7LGiT3SXsOvSes8M5KUUrDAvmqQRYFJqqtKL9A
-	J46pOQxJtZLWQmb15RgA==;
+	List-Owner; bh=t1G9VOF23KEYPQjmOT94QRVK217BFaBWFzaSgeVD/Y8=; b=yQCDNoGLSLG7VX
+	L8RtoA+cEChZn2RybOl2DE4Eyp+ERTNogS5p/FEOsVCyDrIMCf11NusHRp+DLbksBZCuuxj+4/cVi
+	7XxpCnSB51v4WYAA+Y0lPtKH6acHcUQouDMi7aSeSt1FTH8TaNUZc9pEGMFJTPr+Chcqiv87CbmPn
+	FX67jx3tkJdfv+QDHVjciZo/k04pojnlF5J2bNORfINp6BOFAOgI3UoWga8IO/ONBJAdbWLIaXp/x
+	/6wJWgrLtoV5XiNEMOEPezqEh2l2eBCZ1yqTXHeunkJqEm2dz9xdKJ0jcJAgZWqOcUNUCdQgayEpa
+	u/TQoSyHjZDLvP+blzmg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xGlKx-0000000EAtX-2TDQ;
-	Tue, 13 Oct 2026 22:51:11 +0000
-Received: from ocn-ckd-mts-205c31.ocn.ad.jp ([210.145.251.96])
+	id 1xGuEk-0000000Erwc-1gCi;
+	Wed, 14 Oct 2026 08:21:22 +0000
+Received: from mail-pj1-x102c.google.com ([2607:f8b0:4864:20::102c])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xGlKk-0000000EAsk-0bs2;
-	Tue, 13 Oct 2026 22:51:10 +0000
-Received: from ocn-spm-mts-202c1.ocn.ad.jp (ocn-spm-mts-202c1.ocn.ad.jp [210.145.246.201])
-	by ocn-ckd-mts-205c31.ocn.ad.jp (Postfix) with ESMTP id A49FC440005CC;
-	Wed, 14 Oct 2026 07:50:50 +0900 (JST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=docomonet.jp;
-	s=20240125; t=1791931850;
-	bh=hGNhfkcn2Z86vETcyytxBZgfY0XAKYhXjXZeArvSo78=;
-	h=From:To:Cc:Subject:Date:From;
-	b=ofnWzNMjQFwokily2BKozEhH8BpJDJhCwX5y/6CMkNmrWHTC3oeTcNNGntPX+cUXW
-	 aMAO8bILM1zPmda8UNPZ5CEyn8b6JGSq6jOmq0Vs6y9eItuZzbRXfjVOG/gyvx7quZ
-	 kOuFtyTMEVgzpqY8MoA1AeZQHtdBn3zhiRHGOrdA=
-Received: from ocn-vc-mts-211c1.ocn.ad.jp ([210.145.250.234])
- by ocn-spm-mts-202c1 with ngmta
- id ceeb58e3-18de38862a13c6f4; Wed, 14 Oct 2026 07:50:50 +0900
-Received: from ocn-sdpx-mts-202c1.ocn.ad.jp ([210.145.249.135])
- by ocn-vc-mts-211c1 with ngmta
- id c7b3d607-18de388603efd8c5; Wed, 14 Oct 2026 07:50:50 +0900
-Received: from X870E-AORUS-MASTER.kkp-group.com (p3688129-ipoe.ipoe.ocn.ne.jp [153.238.101.128])
-	by ocn-sdpx-mts-202c1.ocn.ad.jp (Postfix) with ESMTPA;
-	Wed, 14 Oct 2026 07:50:49 +0900 (JST)
-From: Shigeaki Asai <y-asai.0816@docomonet.jp>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	id 1xGuEh-0000000Ervi-1Gos
+	for linux-amlogic@lists.infradead.org;
+	Wed, 14 Oct 2026 08:21:21 +0000
+Received: by mail-pj1-x102c.google.com with SMTP id 98e67ed59e1d1-3ab450c0873so3211632a91.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 14 Oct 2026 01:21:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1791966078; x=1792570878; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=j8YsVbXOdF61Llj8qBDqVp2Fp9mYBbP2iNpUhV0IltE=;
+        b=lW0gA5aelr4uJmLkDKadaeYXqe7w6QnllFmwPrs/ClpPAR37xe7GdXrSDZ+TvY1sFn
+         Q8xVjo/BFgiB8IPfkZsqJEs5bSMr0j4op70/SmMR++A4L9XmHU4Rd2hOQsMdEDJBWnIs
+         4GlUqfm9q/tovgD6VkUYjG0ryklUd1JCBil8Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1791966078; x=1792570878;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=j8YsVbXOdF61Llj8qBDqVp2Fp9mYBbP2iNpUhV0IltE=;
+        b=s7v5wPhpdWFJQX0tvoutI25OSWp+1Twck+whFBG5RwYOZLEcGSJvUaY01HH4Fj6o4K
+         shbRB2rU3141Y//3+ksHuapVqz5hapYfdaV1DH+eGtfSNfBUCLCe9KwpXXDabOw3I2P3
+         hjgXJFWfVQ8PEOWEmR4SH43YUGFMS0ZAsLA2j2TlgaQL7l0ZhD6HWIQgBj0R5OswHp7v
+         Jn2eAlj2/fD5vuzqYEYcCrYcEutovCB0wPQ8anUllznyY4L8dxiI1fKRwmQJGZYNjwD1
+         uNf2wskFfEcaeFwc126O+HnPEzqqTONxY/L2gUPa3B+YCZHBpkHzz/o/ownaFm+bTCpq
+         gFrw==
+X-Forwarded-Encrypted: i=1; AKwUvBy+gZSKuDp7/IcbAonoIBNiGGPntRFRF3aMeHmWwIh+u8mQ0kGgdMXi/huUBFJygVIVkSNRvyWkXJlrcsFT@lists.infradead.org
+X-Gm-Message-State: AFq9FYI75mlJ4B0WZTMEAZ+PVlW1pjvE84YI7//8z+FVCDXE58Fb7dVb
+	QRGfqsjNi8hOKr8/jhX2REHYxdkR8CY63T9B76Qojns6qBrh5ctKS/XipLJjOjcLRQ==
+X-Gm-Gg: AYBFou3E7VLByNpZRiQ4Pp8D/lPn3u8GLNPlDWlBAys29TG/RfKTr1lC+OD1ci1DFbi
+	ZMUS/GzLsJs4zcXuMxkXzF93gkL+s0oskI0qPY+OrbQbIEjh+OHgqYYeuT4t6ijUjx7yCJRZos4
+	XXridQSncu5jIF2K1rTAdrhbQtiKFXroQFDRdlExkuk/APVQ+lQvrr51xiQLots5KRiOQf+yPH0
+	nwjfnwHYjgJ/Ra5xTS83RhhSEkP+wG5V1JKX7ukSJxgGnq6jVGwAsrP6eRCf97WVDuLzIBgZy63
+	0NNtfeDnAVCVq7AIg/mqgoLInKFXVCeDOZguSqzm0sPZs8LahLSfYQ203m/ve8ac2QACARGphxQ
+	zRSP055SqMZf9v93+Q2TzQ3ejWlsoNyfGIvtsEvbcidvrDlnBdHq2GQUa+LEh3AOH+rCHP6nvBt
+	LF+Ygk1pweKj7c0w5Rx8ggF6kpCwcptUgSXKP+8yfDz1jY2zw0a2jQr+H6R5UMLIbyPAh0xxj4a
+	8rcTD02SsCrf1Aq5uFmdDG3WlvJZrUfzl7SJP343dz9bvI3MTYi51vi8gBwB2XKmKh6
+X-Received: by 2002:a17:90b:4a45:b0:39d:f247:bab with SMTP id 98e67ed59e1d1-3ab3a2fe791mr12737876a91.6.1791966077891;
+        Wed, 14 Oct 2026 01:21:17 -0700 (PDT)
+Received: from wenst-7875.tpe.corp.google.com ([2a00:79e0:203d:7:373a:9eb7:c5ba:7b5c])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3ac5f04e324sm3682141a91.2.2026.10.14.01.21.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Oct 2026 01:21:17 -0700 (PDT)
+From: Chen-Yu Tsai <wenst@chromium.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Felipe Balbi <balbi@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Chen-Yu Tsai <wenst@chromium.org>,
+	linux-usb@vger.kernel.org,
 	devicetree@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Sven Peter <sven@kernel.org>,
+	Janne Grunau <j@jannau.net>,
+	Neal Gompa <neal@gompa.dev>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Ryan Chen <ryan_chen@aspeedtech.com>,
+	Billy Tsai <billy_tsai@aspeedtech.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	=?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+	Masami Hiramatsu <mhiramat@kernel.org>,
+	Yixun Lan <dlan@kernel.org>,
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+	Minda Chen <minda.chen@starfivetech.com>,
+	Shyam Pandey <radhey.shyam.pandey@amd.com>,
+	Wei Yang <yangwei1@eswincomputing.com>,
+	Senchuan Zhang <zhangsenchuan@eswincomputing.com>,
+	Hang Cao <caohang@eswincomputing.com>,
+	Li Jun <jun.li@nxp.com>,
+	Peng Fan <peng.fan@nxp.com>,
+	Roy Luo <royluo@google.com>,
+	Yang Xiwen <forbidden405@foxmail.com>,
+	Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
+	Robert Marko <robert.marko@sartura.hr>,
+	Xu Yang <xu.yang_2@nxp.com>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Stanley Chang <stanley_chang@realtek.com>,
+	Ze Huang <huang.ze@linux.dev>,
+	Aswath Govindraju <a-govindraju@ti.com>,
+	Roger Quadros <rogerq@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Shigeaki Asai <y-asai.0816@docomonet.jp>
-Subject: [PATCH] arm64: dts: amlogic: odroid-go-ultra: use the RK818 RTC as rtc0
-Date: Wed, 14 Oct 2026 07:49:47 +0900
-Message-ID: <20261013224947.2351049-1-y-asai.0816@docomonet.jp>
-X-Mailer: git-send-email 2.43.0
+	asahi@lists.linux.dev,
+	linux-aspeed@lists.ozlabs.org,
+	imx@lists.linux.dev,
+	linux-samsung-soc@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev
+Subject: [PATCH 0/2] dt-bindings: usb: downstream host ports for hcd and dwc3
+Date: Wed, 14 Oct 2026 16:20:34 +0800
+Message-ID: <20261014082037.1774672-1-wenst@chromium.org>
+X-Mailer: git-send-email 2.56.0.212.g129ede20d9-goog
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261013_155058_535637_27696D14 
-X-CRM114-Status: GOOD (  11.13  )
+X-CRM114-CacheID: sfid-20261014_012119_375383_E86010FE 
+X-CRM114-Status: GOOD (  15.69  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,44 +152,61 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The ODROID-GO Ultra has two PMICs with an RTC each, RK818 and RK817,
-and the SoC has the meson virtual RTC. Only vrtc has an alias, rtc0.
 
-An RTC without an alias takes the lowest free number, and the RK817
-RTC registers early, so it usually becomes rtc0, the RTC the system
-time is set from at boot. The RK817 RTC seems to run without a 32kHz
-crystal on this board: it ran about 1.5% fast while the board was on
-and 14-17% slow while it was off. The RK818 RTC keeps time well:
-with it as rtc0, the clock was off by less than a second after the
-board was off, with no charger connected, for 12 hours 40 minutes.
+Hi folks,
 
-Use the RK818 RTC as rtc0, and give the other two RTCs an alias as
-well, so that the numbering does not depend on probe order.
+I mentioned to a couple people at LPC that the USB host controller
+bindings were missing downstream port definitions, and that the ones
+used for dwc3 don't align with USB hardware port numbering.
 
-Fixes: 62e73f000696 ("arm64: dts: amlogic: add initial Odroid Go Ultra DTS")
-Assisted-by: claude-opus-5-5
-Signed-off-by: Shigeaki Asai <y-asai.0816@docomonet.jp>
----
- arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+The dwc3 discrepancy was originally noticed by Wei [1] and Konrad [2]
+while adapting my M.2 E-key USB support series [3][4] to Qualcomm devices.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts
-index 348baa4e6d84..86902f68d7d4 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-go-ultra.dts
-@@ -18,7 +18,9 @@ / {
- 
- 	aliases {
- 		serial0 = &uart_AO;
--		rtc0 = &vrtc;
-+		rtc0 = &rk818;
-+		rtc1 = &vrtc;
-+		rtc2 = &rk817;
- 	};
- 
- 	adc-joystick-left {
+Here are the binding changes. If you were CC-ed, then you were listed as
+the maintainer of any one of the dwc3 implementations or platforms using
+it. So this change would affect you.
+
+Patch 1 adds the "ports" definitions to the common USB host controller
+binding. This just follows what is used in usb-hub.yaml. Nothing
+special.
+
+Patch 2 "fixes" the port numbering used in the common dwc3 binding. The
+dwc3 includes an XHCI for host mode operation, and its port numbering
+should follow the common usb-hcd.yaml binding. This clashes with the
+existing arbitrary port numbering found in dwc3. I checked all the
+big projects, and it seems that only Linux is using them, and it doesn't
+care about the numbering anyway.
+
+So while the patches looks small, there are actually 26 other dwc3
+implementation bindings that are affected.
+
+And this series currently only has the binding changes. There are
+probably close to 500 dts files that need to be fixed as well. I asked
+LLM to help me fix the arm64 ones already, and it seemed to do a good
+job with some hand holding.
+
+Please have a look. I fully expect there to be a lot of hair pulling.
+
+
+Thanks
+ChenYu
+
+[1] https://lore.kernel.org/all/20260731073306.1895428-1-wei.deng@oss.qualcomm.com/
+[2] https://lore.kernel.org/all/c6526ba0-be08-46c6-a501-1b161939657c@oss.qualcomm.com/
+[3] v6: https://lore.kernel.org/all/20260721065413.2306137-1-wenst@chromium.org/
+[4] v9 (latest): https://lore.kernel.org/all/20260916075745.3549953-1-wenst@chromium.org/
+
+
+Chen-Yu Tsai (2):
+  dt-bindings: usb: hcd: Add downstream USB ports
+  dt-bindings: usb: snps,dwc3: Fix downstream port numbering
+
+ .../devicetree/bindings/usb/snps,dwc3-common.yaml      |  4 ++--
+ Documentation/devicetree/bindings/usb/usb-hcd.yaml     | 10 +++++++++-
+ 2 files changed, 11 insertions(+), 3 deletions(-)
+
 -- 
-2.43.0
+2.56.0.212.g129ede20d9-goog
 
 
 _______________________________________________
