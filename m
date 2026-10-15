@@ -4,67 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13E50CC6B1A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 14 Oct 2026 17:30:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED35CCC6B30
+	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Oct 2026 02:42:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eqrMAdy0KFPp4dg7EkOd0bOCl0IBATp5vZYkx95ShZc=; b=CzPjNTQbyjVes8
-	/7sgReliVfhJDVC39TSBoOr55LLZR6NvFGqa2/1IudJmJffBdAYhFh2bYhmaW2JJiHFiegznaFpLJ
-	YwducJ+psRscuWAypZdQm+XKx/cIajU8B1Dd3KJpT7m7qLCC1kNnevxGx/LmJpqa5OJd4JFEQvqdI
-	MXpgNHoUaI5A9yItAnWGhPj+m0qJ38wt1ASNBrQZ+PgANYBoJtSXkLGdegftpNySouhj4v7on21Af
-	SFZaBv/1cWA6AlG9d72UByuPEV0HwJ42I7mqesPOxwfMEmbWAODxp3rjPIFcg3Cle43ehiZR/xihX
-	ANUTTMsIbOxN2C11qd1g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=RcQNZj4iFx47/fqb3PqAXKHbV9bIjbSsh/hHZGeBTlQ=; b=ZOgru9GRz6G+ax
+	08WJmcShGp8uJ8bRe6rZO/ee/De4tCp7x5GAESIASvkxPSjyAW/1AkDOFkCQUUtD60+YsGEjb9oTX
+	2vsGdpjEA2PmzkreU7mMrGX0rfNiYpFXXPsfd7IvqHZnmEW3rhqkw0Q70zWNB71IfAGoXYe2pAapT
+	QB5nQQAK8WVVhNtg1EvFxXgGUxdby1MRj8+D5SjRDdro1EC64mIV8y/osUsMQd3OZqEyx6qjr87JN
+	ZrcnXNhW4si3yDl5MIgsuqYOCYDoOEvnVMbHp43Rx524jqoihG0j3b8a4EZDt2JEj7gL8hDpCnOga
+	qTjdyN0rLDU7PC+SZKhg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xH2oP-0000000G51b-3JCB;
-	Wed, 14 Oct 2026 17:30:45 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xHBPr-0000000GgeO-2S7O;
+	Thu, 15 Oct 2026 02:41:59 +0000
+Received: from mail-qt1-x836.google.com ([2607:f8b0:4864:20::836])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xH2oO-0000000G51P-0AKf
+	id 1xHBPo-0000000Ggdy-3Rli
 	for linux-amlogic@lists.infradead.org;
-	Wed, 14 Oct 2026 17:30:44 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 732E344781;
-	Wed, 14 Oct 2026 17:30:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C79E91F000C5;
-	Wed, 14 Oct 2026 17:30:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1791999043;
-	bh=7R/UujzdlkHZUl2pa3+Ny38x0csYsO2mqxSiJYN24f8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=FrjkMmiXwH1cJoO4QiT7c9Xf65Z+Hm4aEvvjoZfQOUBK6pugmTRkHBqGr9E65zslB
-	 l5x8Y275WLBfrK6Y91ZxzIEkBNFdEtUUHss11rNmFQCbXrS1a0k854fCQVu970HDFm
-	 kLfwFZMu6BGjAk92u1+IZh8TYcM4YlhJHpJ+M/kwzdo7TP/yQ4g57kLntRz49My/oR
-	 YjTnnqh6FOkXKyLpDZsYM+4Rv0cGgUbj6C9Qb/AgkgAR5mdIwIX7emBBVr4jaRYe+7
-	 v1HbOK+Jy76LFPniTMq1AxTDHQ8/ZgA+5MIBPDjezLwk06K9/5ZXCAvb+1Tj0zSRHD
-	 evDRqwrA5ysgQ==
-From: Maxime Ripard <mripard@kernel.org>
-Date: Wed, 14 Oct 2026 19:27:21 +0200
-Subject: [PATCH 58/75] drm/meson: Convert to atomic_create_state
+	Thu, 15 Oct 2026 02:41:58 +0000
+Received: by mail-qt1-x836.google.com with SMTP id d75a77b69052e-53396adbc53so11463641cf.3
+        for <linux-amlogic@lists.infradead.org>; Wed, 14 Oct 2026 19:41:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1792032114; x=1792636914; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=YTqPyeSiS9COwId/RRKFhimUZVSM+7caPHhUGbIiHuM=;
+        b=qI2+1Qv+gsGOGFdYydabSpvk7ghWbhf/Iukx2P9VhYkEdEE2pzEdvld9LGM/1ASWSi
+         En0FL0Cuacq/jODKuMMLvwMlPTLuHATvUYCtNkYO5PLtpwRGWrZFbE1cOqSprK/JM3J3
+         M3LmPghULyM9zVGv3qMThYDsFPQz8QgACxWkE2BoNxmXZAxv7CXnvo9pa6sry/t88kV+
+         8PnOo3FapDAfBSiEZ+14NExYH6Yl217gaH3eAqeFxBA6u1hUqEgk4WZzWBGbmrX64CgZ
+         kLfHLhU53bEXb1iM27fUtQ8tLiP3xi1VjzJeOlgtA1TI3+9irV6kpZL0qpVb0sVIO8Xq
+         mRbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1792032114; x=1792636914;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=YTqPyeSiS9COwId/RRKFhimUZVSM+7caPHhUGbIiHuM=;
+        b=PYSp9PiqUS3Roi7sqJu5eyHNPtnVhGDvmFRucJvKjDAyejsAvqN9C3WdrOQrD9GVdd
+         R7EBvEvW/vaX/iw/N+fyiWfGgYTKtBKz6lu4Vsrl6yGMuyBE3DqCdqn2322xfbJ0t7Le
+         H6pkEVmbGajZ1BXW7cJNpJSCP7ewxLO8za5HucyjctxVnae8NaqVSpXTALYHMPqtiMrv
+         46a2mOHe4QwdtPhdYpSMLcn6nDZhdi4TOCxF+Qs6cjPj2kURVIIE4C6/Z7ujRgc3AQmA
+         4QxiPAmvBdmIs3/m8ugv+abuNcE+SrjUEcdEFRFVPBAEcORLTo6/RmZ780Kc00NYMvnJ
+         HDqQ==
+X-Forwarded-Encrypted: i=1; AKwUvBwMA8Xxe5JOfOJr1z4t8AYBssNrDCtaiCGGBUyjmix/mSfGibNseJobzY7ZaNrTrg0zq+h+GZTbVApbx5nR@lists.infradead.org
+X-Gm-Message-State: AFq9FYKf3SE7h6hdqqBnJJXIR13kUQvaIBTxNdwqs2WYJeDsNknATgUN
+	GjfE9Plr0QkN4klJ5CFD/LyyBottTIN5mxiK0uGy9iJ34F05m2WLyWg=
+X-Gm-Gg: AYBFou1TrG5GKD93nWlwiN4YWN9iPdIa0EzAWGSJ6lRFF8JtVpt3xPnQXPyPAbajvEO
+	GsKK6hAjOHO6rkZ0tJ1gtt1L7gRNAPE7IAnt8Gqn1T6p23V48EEWYWC1Aox8DLCLtz1GzvNbWqk
+	XEA/ePKXsgKnpjlJemS/gRnaVNeBmgATXdWMOZAGM5UuFSsHhuD4FAuJxsZoEhfd59G2n6VBoEU
+	dx/GFSHdmRFZzgrwIbTe8DyJBOIfmW39CqaZFUeBTpNCcK+1al+oUnDeRnRKoAv4+V4OiXJTTSt
+	NKTe5fUMTNG0PRV7EvfVBimeNrxjypnd6zhNGHLNjav5IVp2Dk5w8Rp9ktFKUozXTGU0sG4hs3f
+	WTFUSdo3DAN1JHGocDBSmEHyl09hakhLMB50fhWelR4r3Y6Yic4ubRdrtPFe+ReS3uPoJAx/ZPg
+	/VQQgiYjj6ISN1ho8yIejs8XE+WM3P3i7PwYfRa2OsmaN5OtsqhmFZFTcupZYF6mct2B7xYxXwJ
+	Hbg4nHC/B5jBCvu6sglHJ/7oFR/PW3aCgj6g5WVFsn7Ez1qJSYS3JwF4J/dNtC6FFiTMv2LD5N4
+	fbo529L0O7nwuxFb9xAirYqDcHKM
+X-Received: by 2002:a05:620a:28d4:b0:93e:f5bd:7e13 with SMTP id af79cd13be357-93ef5bd7f23mr1294170685a.64.1792032114246;
+        Wed, 14 Oct 2026 19:41:54 -0700 (PDT)
+Received: from i4-gl-tmk5904-1.ad.psu.edu ([130.203.156.90])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-93ef50b6c4fsm644965685a.47.2026.10.14.19.41.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Oct 2026 19:41:53 -0700 (PDT)
+From: Myeonghun Pak <mhun512@gmail.com>
+To: Corentin Labbe <clabbe@baylibre.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>
+Cc: linux-crypto@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Ijae Kim <ae878000@gmail.com>
+Subject: [PATCH] crypto: amlogic - Free channel IRQs before disabling the clock
+Date: Wed, 14 Oct 2026 22:41:48 -0400
+Message-ID: <179203206852.2659709.13834828335447558448.G3@gmail.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Message-Id: <20261014-drm-no-more-connector-reset-v1-58-586c9c026823@kernel.org>
-References: <20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org>
-In-Reply-To: <20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- linux-amlogic@lists.infradead.org
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1868; i=mripard@kernel.org;
- h=from:subject:message-id; bh=4Aof8z3qpDFgdWxPTO9gWRMfppFmEHKKmxOj0ZdhSBA=;
- b=owGbwMvMwCmsHn9OcpHtvjLG02pJDFnndycnWMS83ySuzdXq3eO1r1e8OXdKn/72ezv833/f+
- +1l3CGBjqksDMKcDLJiiixPZMJOL29fXOVgv/IHzBxWJpAhDFycAjCRnYGM9RHzWX+9vP/p849p
- 63orMyaW5/2cnf7/mW56GjuPfNjsplibWT5KxdfSTlT+qpS24ju4i7HhsSbfmgWJMs534u4Ifrk
- 7bWoEH4tES5xCkKzF5DuqF+4+kgr5qyw/c3ef0Bejlh97f68EAA==
-X-Developer-Key: i=mripard@kernel.org; a=openpgp;
- fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261014_194156_918690_F9412E94 
+X-CRM114-Status: GOOD (  12.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,56 +104,71 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The meson HDMI encoder calls drm_atomic_helper_connector_reset()
-during connector creation to allocate an initial connector state
-needed by drm_connector_attach_max_bpc_property(). However, the
-driver only needs to allocate a pristine state, which is exactly
-what atomic_create_state provides.
+The channel IRQs are requested before the managed channel array is
+allocated. Automatic cleanup consequently frees that array before
+releasing the IRQs. An interrupt handler that has already read a channel
+completion status can still write chanlist[flow].status and complete the
+channel completion after the array is released. A cipher timeout allows
+such a late handler even after its crypto engine becomes idle.
 
-Convert to drm_atomic_helper_connector_create_state() with proper
-error handling.
+Release the IRQs explicitly before disabling the bus clock and before
+devres can release the channel array. Do this after crypto_engine_exit()
+so normal requests retain their interrupt-driven completion while the
+engines drain. Use the same cleanup on probe failures after the clock
+has been enabled, preserving the channel allocator's existing unwind.
 
-Signed-off-by: Maxime Ripard <mripard@kernel.org>
+This issue was identified as part of our ongoing research while
+reviewing kernel code.
+
+Fixes: 48fe583fe541 ("crypto: amlogic - Add crypto accelerator for amlogic GXL")
+Assisted-by: LLM
+Co-developed-by: Ijae Kim <ae878000@gmail.com>
+Signed-off-by: Ijae Kim <ae878000@gmail.com>
+Signed-off-by: Myeonghun Pak <mhun512@gmail.com>
 ---
-Cc: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org
----
- drivers/gpu/drm/meson/meson_encoder_hdmi.c | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+Compile-tested with GCC, W=1 (arm). No runtime testing.
 
-diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-index c4355c5cc340..c04e381b2c10 100644
---- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-@@ -446,11 +446,21 @@ int meson_encoder_hdmi_probe(struct meson_drm *priv)
+This bounds IRQ access to completion state and registers; hardware DMA
+handling after a cipher timeout is unchanged.
+
+ drivers/crypto/amlogic/amlogic-gxl-core.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
+index 169c6ee..333db2e 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-core.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
+@@ -136,6 +136,14 @@ static int meson_debugfs_show(struct seq_file *seq, void *v)
+ }
+ DEFINE_SHOW_ATTRIBUTE(meson_debugfs);
  
- 	/*
- 	 * drm_connector_attach_max_bpc_property() requires the
- 	 * connector to have a state.
- 	 */
--	drm_atomic_helper_connector_reset(meson_encoder_hdmi->connector);
-+	if (!meson_encoder_hdmi->connector->state) {
-+		struct drm_connector_state *conn_state;
-+		
-+		conn_state = drm_atomic_helper_connector_create_state(meson_encoder_hdmi->connector);
-+		if (IS_ERR(conn_state)) {
-+			ret = PTR_ERR(conn_state);
-+			goto err_put_node;
-+		}
++static void meson_free_irqs(struct meson_dev *mc)
++{
++	int i;
 +
-+		meson_encoder_hdmi->connector->state = conn_state;
-+	}
++	for (i = 0; i < MAXFLOW; i++)
++		devm_free_irq(mc->dev, mc->irqs[i], mc);
++}
++
+ static void meson_free_chanlist(struct meson_dev *mc, int i)
+ {
+ 	while (i >= 0) {
+@@ -291,6 +299,7 @@ static int meson_crypto_probe(struct platform_device *pdev)
+ 	meson_unregister_algs(mc);
+ 	meson_free_chanlist(mc, MAXFLOW - 1);
+ error_flow:
++	meson_free_irqs(mc);
+ 	clk_disable_unprepare(mc->busclk);
+ 	return err;
+ }
+@@ -306,6 +315,7 @@ static void meson_crypto_remove(struct platform_device *pdev)
+ 	meson_unregister_algs(mc);
  
- 	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXL) ||
- 	    meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM) ||
- 	    meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
- 		drm_connector_attach_hdr_output_metadata_property(meson_encoder_hdmi->connector);
-
--- 
-2.55.0
-
+ 	meson_free_chanlist(mc, MAXFLOW - 1);
++	meson_free_irqs(mc);
+ 
+ 	clk_disable_unprepare(mc->busclk);
+ }
 
 _______________________________________________
 linux-amlogic mailing list
