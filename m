@@ -4,55 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D6E5CC6B39
-	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Oct 2026 17:12:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46977C2D0A6
+	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Oct 2026 17:55:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=TeAHCGZUb0nlxALc7o+ncyciNqka0/9k/mNQbuqy7AE=; b=T1MW6J9B9Zn/K77qbwRvGXJzJb
-	OWjG+xhZj5oEGoAT+k1uOicvSHyV2PqU8hC/vp7JaSwCA0l/MWrstvZS0S+C8gnk7M3gj5lsHlOxD
-	PWjXCpPLjS1Q0GXUbYeBkeNLHUK6pj0ZA/s2EGpyW8vzccuQ8KRryYFriTGEfhgWOjJ8Tn/2XR85r
-	wHP9dBLeunBxyUwQjI/DJL1vd2ZdanBsEJHl9guIxJvY6dNrljF6IMcUKpZ9WF3b/pd2ximz7LwzL
-	WOhUf6lTRYg7wuM006M2ukKrG3Ja5V3LGMrmLiMabdE+pzEsKdNNdMSWI24wE5CDc3hbqCbTcwHCO
-	tfWNUHjg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=8/WYeEMNNHuJy/n1K1UYVDEmTHP08tXHFI90NRqD01M=; b=Fk7cC7WA0bQiRC
+	lCEqa7LbYq21p8C/AZzPElsb8lW3cno7Wb1AIIN23cy23Vfu8HAffi/N8bmtfiE6nXwQTpICdIWiM
+	Q/Zh4IlugwWwppNGFTxeUj4AdUtGSYkrhOk5a6SkqHZgh1hOB61h3BIQL/rnZMgtBa1r7CQi+ZAAp
+	ytrM6oxlXnP5DD/Oc/ywmd37Fc1zvMsmqLRfe4hTTSWOmDlezwEFk7xN+qtIn/qGosQ8zTl8p68Dm
+	8BteN44cqRVCFSG1xqJTGTQxyLauYeS0VQbBrTYjpF8zMb0NEacaaRxrlFF1vHpjQPl9r0Mky2ROM
+	Ww8fE9RX641i9bz0KxSg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xHP0Q-00000000xEP-0hMA;
-	Thu, 15 Oct 2026 17:12:38 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xHPfn-000000013oD-2ZBz;
+	Thu, 15 Oct 2026 17:55:23 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xHP0O-00000000xEC-3Vdl;
-	Thu, 15 Oct 2026 17:12:36 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with UTF8SMTP id F313760267;
-	Thu, 15 Oct 2026 17:12:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with UTF8SMTPSA id 29EA31F000C4;
-	Thu, 15 Oct 2026 17:12:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1792084355;
-	bh=DnnHiNAiW95Nj48NkwkHpodyvcASUuC5OMZdQ+b9tVQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=RcjbF0FIpvsaiXOIOFm5HjelbDLthaGxlgh1MkRd9B9iydwN7cX3DoP/00A2gsdYu
-	 KTwt1IJHLTERBSYcC4jBXRpSt1hJYFJxzGrFs1+3LDd9vDV1sEL93ZCKXq53LOjTxe
-	 RBQ/CBuDkDuQMPYG3ber+DjhfvcOx8ELzKfXplGkHSM05TZD4k2udjhmPz3fjYaP/d
-	 ywMVIWcBbzxUeRy/KG+ad8JmqrXemuQzzSs+dIKh3Agsc2afNmhDP4I77XwMov5bFF
-	 X68/GXa+mMpxMA51CMJGjCViJAgGOvkpa5yRyOSaGvx19c9AyrEuJBlvS3eB8XtyWf
-	 aK+AjYOweSmPg==
-Date: Thu, 15 Oct 2026 19:12:33 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Alexandre Mergnat <amergnat@baylibre.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-pwm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] pwm: meson: Convert to waveform API
-Message-ID: <atEJA3Tf_-AJL75W@monoceros>
-References: <20260717-pwm_meson_convert_to_waveform_api-v1-1-d7dbdae1318d@baylibre.com>
+	id 1xHPfl-000000013nE-2H4X;
+	Thu, 15 Oct 2026 17:55:21 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 18E5A4479B;
+	Thu, 15 Oct 2026 17:55:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CFF50C2BD00;
+	Thu, 15 Oct 2026 17:55:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1792086920;
+	bh=/JenFN3bz6fw80osHxU1tpnQrOoApF4JacLry3vDh+4=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=AE2vhVI/9pAdh1ZINwpGV4zIK71JFUY18770dsbpAbQrRPg6FYW3CYrHvgn0HhRyT
+	 gJa8eIY7XTuROSok3mukokwcBoCtNiV9m7abFY7ODAK3Q7WUU8jsXFGX41CNpdluFt
+	 bK965LhG6iLnIJuDoFdRpHhKJhmusmxmmxymgHFSeo3cIIDV1jd1jCEn+RijnhoNQR
+	 PjK5xL1QZMmTAuyjBH74Mt9p0zBLasChFdzNeSEjElJ0S2kralIV7F77x+CvBAnu1p
+	 +wZr1FbeP52eaSar+Vk5gsjyRo3x+8G7fWR21wIGJfRzIhwdypdpH2JAcQWgKJUcSL
+	 d2BhjOAOViCfg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B2FF6CCA465;
+	Thu, 15 Oct 2026 17:55:20 +0000 (UTC)
+From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
+Date: Thu, 15 Oct 2026 19:54:11 +0200
+Subject: [PATCH v6 3/4] arm64: dts: amlogic: t7: Add thermal zones
 MIME-Version: 1.0
-In-Reply-To: <20260717-pwm_meson_convert_to_waveform_api-v1-1-d7dbdae1318d@baylibre.com>
+Message-Id: <20261015-add-thermal-t7-vim4-v6-3-37d1c954390c@aliel.fr>
+References: <20261015-add-thermal-t7-vim4-v6-0-37d1c954390c@aliel.fr>
+In-Reply-To: <20261015-add-thermal-t7-vim4-v6-0-37d1c954390c@aliel.fr>
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Ronald Claveau <linux-kernel-dev@aliel.fr>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5141;
+ i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
+ bh=wIHFSWTa/ahxGaNhARxAPcmftNjWS1UV0jpS/csXAdE=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ9ZF4bqSi37ZKcwRFt7V+qZXlyzramheri+Rzd565tmm3
+ P4I/YkdpSwMYlwMsmKKLP1zLU+8u3z0zNc96ikwc1iZQIYwcHEKwEScbzIy9Mjs6Nxvtcb7cUm0
+ WQ2bqvWRVJslRWe9qvWal+qWtXS8Z/indvQPy4mFhn/Lwk7MeGKaN/WG2pMJRXI6d+1nlPPePPG
+ XGQA=
+X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
+ fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
+X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
+ auth_id=744
+X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -64,91 +83,226 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0802735805619002767=="
+Reply-To: linux-kernel-dev@aliel.fr
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 
---===============0802735805619002767==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2xg6pvfu72f3g5cg"
-Content-Disposition: inline
+Add thermal zones for all six sensors: a53, a73, gpu, nna, vpu, and hevc.
+
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+---
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 179 ++++++++++++++++++++++++++++
+ 1 file changed, 179 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+index c81632d3984e8..454a042865a5a 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+@@ -9,6 +9,7 @@
+ #include <dt-bindings/clock/amlogic,t7-scmi.h>
+ #include <dt-bindings/clock/amlogic,t7-pll-clkc.h>
+ #include <dt-bindings/clock/amlogic,t7-peripherals-clkc.h>
++#include <dt-bindings/thermal/thermal.h>
+ 
+ / {
+ 	interrupt-parent = <&gic>;
+@@ -885,6 +886,184 @@ hevc_tsensor: temperature-sensor@9a000 {
+ 				amlogic,secure-monitor = <&sm 5>;
+ 			};
+ 		};
++	};
++
++	thermal-zones {
++		a53_thermal: a53-thermal {
++			polling-delay = <1000>;
++			polling-delay-passive = <100>;
++			thermal-sensors = <&a53_tsensor>;
++
++			trips {
++				a53_passive: a53-passive {
++					temperature = <85000>; /* millicelsius */
++					hysteresis = <2000>; /* millicelsius */
++					type = "passive";
++				};
++
++				a53_hot: a53-hot {
++					temperature = <95000>; /* millicelsius */
++					hysteresis = <2000>; /* millicelsius */
++					type = "hot";
++				};
++
++				a53_critical: a53-critical {
++					temperature = <110000>; /* millicelsius */
++					hysteresis = <2000>; /* millicelsius */
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map-a53 {
++					trip = <&a53_passive>;
++					cooling-device =
++						<&cpu100 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&cpu101 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&cpu102 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&cpu103 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++
++		a73_thermal: a73-thermal {
++			polling-delay = <1000>;
++			polling-delay-passive = <100>;
++			thermal-sensors = <&a73_tsensor>;
++
++			trips {
++				a73_passive: a73-passive {
++					temperature = <85000>; /* millicelsius */
++					hysteresis = <2000>; /* millicelsius */
++					type = "passive";
++				};
+ 
++				a73_hot: a73-hot {
++					temperature = <95000>; /* millicelsius */
++					hysteresis = <2000>; /* millicelsius */
++					type = "hot";
++				};
++
++				a73_critical: a73-critical {
++					temperature = <110000>; /* millicelsius */
++					hysteresis = <2000>; /* millicelsius */
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map-a73 {
++					trip = <&a73_passive>;
++					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++
++		gpu_thermal: gpu-thermal {
++			polling-delay = <1000>;
++			polling-delay-passive = <100>;
++			thermal-sensors = <&gpu_tsensor>;
++
++			trips {
++				gpu_passive: gpu-passive {
++					temperature = <95000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				gpu_hot: gpu-hot {
++					temperature = <105000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				gpu_critical: gpu-critical {
++					temperature = <115000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++		};
++
++		hevc_thermal: hevc-thermal {
++			polling-delay = <1000>;
++			polling-delay-passive = <100>;
++			thermal-sensors = <&hevc_tsensor>;
++
++			trips {
++				hevc_passive: hevc-passive {
++					temperature = <95000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				hevc_hot: hevc-hot {
++					temperature = <105000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				hevc_critical: hevc-critical {
++					temperature = <115000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++		};
++
++		nna_thermal: nna-thermal {
++			polling-delay = <1000>;
++			polling-delay-passive = <100>;
++			thermal-sensors = <&nna_tsensor>;
++
++			trips {
++				nna_passive: nna-passive {
++					temperature = <95000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				nna_hot: nna-hot {
++					temperature = <105000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				nna_critical: nna-critical {
++					temperature = <115000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++		};
++
++		vpu_thermal: vpu-thermal {
++			polling-delay = <1000>;
++			polling-delay-passive = <100>;
++			thermal-sensors = <&vpu_tsensor>;
++
++			trips {
++				vpu_passive: vpu-passive {
++					temperature = <95000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				vpu_hot: vpu-hot {
++					temperature = <105000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				vpu_critical: vpu-critical {
++					temperature = <115000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++		};
+ 	};
+ };
+
+-- 
+2.49.0
 
 
---2xg6pvfu72f3g5cg
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH] pwm: meson: Convert to waveform API
-MIME-Version: 1.0
-
-Hello Alexandre,
-
-On Fri, Jul 17, 2026 at 09:18:17PM +0200, Alexandre Mergnat wrote:
-> The PWM subsystem introduced a new waveform abstraction that
-> describes a PWM signal by period length, duty length and duty offset
-> instead of period, duty cycle and polarity. The meson driver still
-> uses the legacy .apply() and .get_state() callbacks and does not
-> implement the waveform callbacks, so consumers cannot use the
-> pwm_*_waveform() helper functions with it.
->=20
-> Adopt the new API by implementing .round_waveform_tohw(),
-> .round_waveform_fromhw(), .read_waveform() and .write_waveform()
-> with a private meson_pwm_waveform struct holding the hardware
-> representation. The cached channel state fields (rate, hi, lo,
-> constant, inverted) are removed; counter values are now computed in
-> .round_waveform_tohw() via clk_round_rate() without register writes,
-> then committed in .write_waveform().
->=20
-> The hardware invert bit places the duty active phase at the end of the
-> period on revisions that have it. Input clock rates are kept at or
-> below 1 GHz so each counter cycle remains representable in nanoseconds
-> by .round_waveform_fromhw(). Requests for which clk_round_rate() cannot
-> provide such a rate are rejected. Otherwise, period counts above the
-> 16-bit range are clamped, while a zero count is rounded up to one and
-> signalled by .round_waveform_tohw() returning 1.
->=20
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-
-I applied your patch now to
-
-https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for-=
-nexxt
-
-as v7.5-rc1 material (sorry, I was to slow for the upcoming merge
-window, I want that patch cook in next for some time).
-
-Thanks for your patience
-Uwe
-
---2xg6pvfu72f3g5cg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmrRCX4ACgkQj4D7WH0S
-/k6TQQf/efb5VXK9xmAkdKGOSO1kf3kZYIB42Ug6bMGMo6wgaCUCsH7FfLY/qvO/
-Ltg49fEHW9Ub2pBPnhpSdqb1nPNrF0EvFCyiYxYVS0g4i4CjxnXVCmvaG/PsGzew
-ld4gXMse/qsncxe2lpFVGwDmWgx7eAVE1cOv5wN1wLn3l3MBBvWV0MarrqH2FEdC
-41AMdjDsXUgNsn8VezVhU5RgUcCp1NU6KPahjVIc51RGlVXmz6qPZLp6k4IQyJIp
-84s2qnpgbTx3xa7qvMGNzwVU/OaoIW3jawCFsocyPMM/n5NDpLP7Kz7edGO0wYFA
-kzvSf9bTVcWoZibsVu5ZgX3bejw2AA==
-=4Kmq
------END PGP SIGNATURE-----
-
---2xg6pvfu72f3g5cg--
-
-
---===============0802735805619002767==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============0802735805619002767==--
-
