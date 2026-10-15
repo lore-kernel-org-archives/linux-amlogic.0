@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02344CC6B33
-	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Oct 2026 12:41:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D6E5CC6B39
+	for <linux-amlogic@archiver.kernel.org>; Thu, 15 Oct 2026 17:12:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:References:
-	In-Reply-To:Cc:To:Subject:From:Message-ID:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5Dvkl74U8ljV1Isg3c4m86UNZkoeq577aAdSm7rlEnc=; b=w2bV715SxwM5b3
-	sTAkdSoIVoeJ9n0RdReoHMybZUADNsU1PPL7UHxixqurg04N3LTzEcMnYTsEYWCGHraVOQGsRJvrG
-	7bZ05IKJ4I+I94nIsjlU/UIwBjs/4FeCDhs2VpOtMEC/D0h+9skfskyYqrbYH0wok57Yj+Erju2ui
-	ig2Kokr1T4+2sjksQ7+bv9G/bWT05xV9e7aCQBC0j8s5w1LF9u4N8VpVw8l0E7fIv8p9PHvZoztKU
-	WkOhj/ZCiaxlEosRGXZ/kU3n6jT+gFVsKYXf4yhPQ+lyUP73vF+CZMorV01526NNULbOWaz0Xqxwp
-	BVxzD5iFDeng/4k+ZGyQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=TeAHCGZUb0nlxALc7o+ncyciNqka0/9k/mNQbuqy7AE=; b=T1MW6J9B9Zn/K77qbwRvGXJzJb
+	OWjG+xhZj5oEGoAT+k1uOicvSHyV2PqU8hC/vp7JaSwCA0l/MWrstvZS0S+C8gnk7M3gj5lsHlOxD
+	PWjXCpPLjS1Q0GXUbYeBkeNLHUK6pj0ZA/s2EGpyW8vzccuQ8KRryYFriTGEfhgWOjJ8Tn/2XR85r
+	wHP9dBLeunBxyUwQjI/DJL1vd2ZdanBsEJHl9guIxJvY6dNrljF6IMcUKpZ9WF3b/pd2ximz7LwzL
+	WOhUf6lTRYg7wuM006M2ukKrG3Ja5V3LGMrmLiMabdE+pzEsKdNNdMSWI24wE5CDc3hbqCbTcwHCO
+	tfWNUHjg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xHKlZ-000000008ts-174P;
-	Thu, 15 Oct 2026 12:41:01 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xHP0Q-00000000xEP-0hMA;
+	Thu, 15 Oct 2026 17:12:38 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xHKlX-000000008te-1fgG
-	for linux-amlogic@lists.infradead.org;
-	Thu, 15 Oct 2026 12:40:59 +0000
+	id 1xHP0O-00000000xEC-3Vdl;
+	Thu, 15 Oct 2026 17:12:36 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 8302860120;
-	Thu, 15 Oct 2026 12:40:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A93161F000C4;
-	Thu, 15 Oct 2026 12:40:57 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with UTF8SMTP id F313760267;
+	Thu, 15 Oct 2026 17:12:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with UTF8SMTPSA id 29EA31F000C4;
+	Thu, 15 Oct 2026 17:12:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1792068058;
-	bh=8mr44ruIlIuHraNgUPoKCSk1dsomii5Qenj5BOx/kFI=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=RYRTWz+mK492CPkvVk5HhwblexUlTQ+xI+DnYLJPL2am88N9UoACtYXvwGy5Y4zvR
-	 sX0zzB6cJ4ljq+xfwjxgbBjCPRCTH6xOISQQNe5HjTbYyz6M3TrSe7Lo3i35csCRLo
-	 qCERGuwFe9L8dR1FaRv35uSIp/GDgIZSlZkhHhJG2W2oKiGnrZfr8amzifvNtoLgrz
-	 LaJOiDanz56oiYFrdjTBln6ZtsSV32mMNd0DkC+Q45BpFAQEJeCs2MaG5btkmLTsHh
-	 P5Yg0Fit7U0SpzWIm1NdhbuJXeI4pV85yPdgLIMhh7JvyqNURrugntOQd02rl/k8mI
-	 cmFiU31kNNiJQ==
-Message-ID: <sashiko-outbox-172832@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v16 2/7] dt-bindings: net: qcom: document the
- ethqos device for SCMI-based systems
-To: "Bartosz Golaszewski" <bartosz.golaszewski@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org, imx@lists.linux.dev, robh@kernel.org, conor+dt@kernel.org, Frank.Li@kernel.org, neil.armstrong@linaro.org, wsa+renesas@sang-engineering.com
-In-Reply-To: <20261014-qcom-sa8255p-emac-v16-2-0266c2ead980@oss.qualcomm.com>
-References: <20261014-qcom-sa8255p-emac-v16-0-0266c2ead980@oss.qualcomm.com>
- <20261014-qcom-sa8255p-emac-v16-2-0266c2ead980@oss.qualcomm.com>
-Date: Thu, 15 Oct 2026 12:40:57 +0000
+	s=k20260515; t=1792084355;
+	bh=DnnHiNAiW95Nj48NkwkHpodyvcASUuC5OMZdQ+b9tVQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=RcjbF0FIpvsaiXOIOFm5HjelbDLthaGxlgh1MkRd9B9iydwN7cX3DoP/00A2gsdYu
+	 KTwt1IJHLTERBSYcC4jBXRpSt1hJYFJxzGrFs1+3LDd9vDV1sEL93ZCKXq53LOjTxe
+	 RBQ/CBuDkDuQMPYG3ber+DjhfvcOx8ELzKfXplGkHSM05TZD4k2udjhmPz3fjYaP/d
+	 ywMVIWcBbzxUeRy/KG+ad8JmqrXemuQzzSs+dIKh3Agsc2afNmhDP4I77XwMov5bFF
+	 X68/GXa+mMpxMA51CMJGjCViJAgGOvkpa5yRyOSaGvx19c9AyrEuJBlvS3eB8XtyWf
+	 aK+AjYOweSmPg==
+Date: Thu, 15 Oct 2026 19:12:33 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Alexandre Mergnat <amergnat@baylibre.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-pwm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] pwm: meson: Convert to waveform API
+Message-ID: <atEJA3Tf_-AJL75W@monoceros>
+References: <20260717-pwm_meson_convert_to_waveform_api-v1-1-d7dbdae1318d@baylibre.com>
+MIME-Version: 1.0
+In-Reply-To: <20260717-pwm_meson_convert_to_waveform_api-v1-1-d7dbdae1318d@baylibre.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,50 +64,91 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0802735805619002767=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0xvd10gZHQtYmluZGluZ3M6IG5l
-dDogbWlzc2VkIHBvd2VyLWRvbWFpbnMgY29uc3RyYWludCBpbiB1bHRyYXJpc2MsZHAxMDAwLWdt
-YWMueWFtbAotLQoKY29tbWl0IGVhZjc2M2IwZDBkMzA5NzU3YzZjZjdmOWZlMDY3MTU1ZWI5OWVi
-MTEKQXV0aG9yOiBCYXJ0b3N6IEdvbGFzemV3c2tpIDxicmdsQGtlcm5lbC5vcmc+CgpkdC1iaW5k
-aW5nczogbmV0OiBxY29tOiBkb2N1bWVudCB0aGUgZXRocW9zIGRldmljZSBmb3IgU0NNSS1iYXNl
-ZCBzeXN0ZW1zCgpUaGlzIGNvbW1pdCBkZXNjcmliZXMgdGhlIGZpcm13YXJlLW1hbmFnZWQgdmFy
-aWFudCBvZiB0aGUgUUNvbSBEZXNpZ25XYXJlIE1BQwppbiBhIHNlcGFyYXRlIGZpbGUuIEl0IHVw
-ZGF0ZXMgdGhlIHRvcC1sZXZlbCBzbnBzLGR3bWFjLnlhbWwgdG8gYWxsb3cgdXAgdG8KdHdvIHBv
-d2VyIGRvbWFpbnMgYW5kIHJlc3RyaWN0cyBleGlzdGluZyByZWZlcmVuY2luZyBiaW5kaW5ncyB0
-byBhIG1heGltdW0gb2YKb25lIHBvd2VyIGRvbWFpbi4KCj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50
-YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9uZXQvc25wcyxkd21hYy55YW1sIGIvRG9jdW1lbnRh
-dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL25ldC9zbnBzLGR3bWFjLnlhbWwKPiBpbmRleCAyMjE4
-YTQ5MjgxN2ZkLi4yYzQ4NDI0MDRiZjY3IDEwMDY0NAo+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2
-aWNldHJlZS9iaW5kaW5ncy9uZXQvc25wcyxkd21hYy55YW1sCj4gKysrIGIvRG9jdW1lbnRhdGlv
-bi9kZXZpY2V0cmVlL2JpbmRpbmdzL25ldC9zbnBzLGR3bWFjLnlhbWwKClsgLi4uIF0KCj4gQEAg
-LTE4Nyw3ICsxODgsOCBAQCBwcm9wZXJ0aWVzOgo+ICAgICAgICAgICAgLSBlbnVtOiBbYWhiLCBz
-dG1tYWNldGgtb2NwXQo+ICAKPiAgICBwb3dlci1kb21haW5zOgo+IC0gICAgbWF4SXRlbXM6IDEK
-PiArICAgIG1pbkl0ZW1zOiAxCj4gKyAgICBtYXhJdGVtczogMgo+ICAKPiAgICBtYWMtbW9kZToK
-PiAgICAgICRyZWY6IGV0aGVybmV0LWNvbnRyb2xsZXIueWFtbCMvcHJvcGVydGllcy9waHktY29u
-bmVjdGlvbi10eXBlCgpbU2V2ZXJpdHk6IExvd10KV2FzIERvY3VtZW50YXRpb24vZGV2aWNldHJl
-ZS9iaW5kaW5ncy9uZXQvdWx0cmFyaXNjLGRwMTAwMC1nbWFjLnlhbWwgbWlzc2VkIGluCnRoZSB1
-cGRhdGVzIHRvIG90aGVyIGJpbmRpbmdzPwoKVGhlIGNvbW1pdCBtZXNzYWdlIHN0YXRlcyB0aGUg
-aW50ZW50IHRvIHVwZGF0ZSBleGlzdGluZyBiaW5kaW5ncyByZWZlcmVuY2luZwpzbnBzLGR3bWFj
-LnlhbWwgdG8gbGltaXQgdGhlaXIgbWF4SXRlbXMgZm9yIHBvd2VyLWRvbWFpbnMgdG8gMS4gSG93
-ZXZlciwKdWx0cmFyaXNjLGRwMTAwMC1nbWFjLnlhbWwgcmVmZXJlbmNlcyBzbnBzLGR3bWFjLnlh
-bWwgdW5kZXIgaXRzIGFsbE9mIG5vZGU6CgpEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
-Z3MvbmV0L3VsdHJhcmlzYyxkcDEwMDAtZ21hYy55YW1sOgphbGxPZjoKICAtICRyZWY6IHNucHMs
-ZHdtYWMueWFtbCMKCkJlY2F1c2UgdGhlIHRvcC1sZXZlbCBzbnBzLGR3bWFjLnlhbWwgd2FzIHJl
-bGF4ZWQgdG8gYWxsb3cgMiBwb3dlciBkb21haW5zCmhlcmUsIGFuZCB1bHRyYXJpc2MsZHAxMDAw
-LWdtYWMueWFtbCBsYWNrcyBhIGxvY2FsIG92ZXJyaWRlLCBkb2VzIGl0IGltcGxpY2l0bHkKaW5o
-ZXJpdCB0aGUgbmV3bHkgcmVsYXhlZCBsaW1pdCBvZiAyPwoKQ291bGQgdGhpcyBjYXVzZSBhIHNj
-aGVtYSB2YWxpZGF0aW9uIHJlZ3Jlc3Npb24gd2hlcmUgZGV2aWNlIHRyZWVzIGZvciB0aGUKaGFy
-ZHdhcmUgY291bGQgaW5jb3JyZWN0bHkgc3BlY2lmeSB1cCB0byB0d28gcG93ZXIgZG9tYWlucyB3
-aXRob3V0IGZhaWxpbmcKdmFsaWRhdGlvbj8KCi0tIApTYXNoaWtvIEFJIHJldmlldyDCtyBodHRw
-czovL3Nhc2hpa28uZGV2LyMvcGF0Y2hzZXQvMjAyNjEwMTQtcWNvbS1zYTgyNTVwLWVtYWMtdjE2
-LTAtMDI2NmMyZWFkOTgwQG9zcy5xdWFsY29tbS5jb20/cGFydD0yCgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlz
-dApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVh
-ZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+
+--===============0802735805619002767==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="2xg6pvfu72f3g5cg"
+Content-Disposition: inline
+
+
+--2xg6pvfu72f3g5cg
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH] pwm: meson: Convert to waveform API
+MIME-Version: 1.0
+
+Hello Alexandre,
+
+On Fri, Jul 17, 2026 at 09:18:17PM +0200, Alexandre Mergnat wrote:
+> The PWM subsystem introduced a new waveform abstraction that
+> describes a PWM signal by period length, duty length and duty offset
+> instead of period, duty cycle and polarity. The meson driver still
+> uses the legacy .apply() and .get_state() callbacks and does not
+> implement the waveform callbacks, so consumers cannot use the
+> pwm_*_waveform() helper functions with it.
+>=20
+> Adopt the new API by implementing .round_waveform_tohw(),
+> .round_waveform_fromhw(), .read_waveform() and .write_waveform()
+> with a private meson_pwm_waveform struct holding the hardware
+> representation. The cached channel state fields (rate, hi, lo,
+> constant, inverted) are removed; counter values are now computed in
+> .round_waveform_tohw() via clk_round_rate() without register writes,
+> then committed in .write_waveform().
+>=20
+> The hardware invert bit places the duty active phase at the end of the
+> period on revisions that have it. Input clock rates are kept at or
+> below 1 GHz so each counter cycle remains representable in nanoseconds
+> by .round_waveform_fromhw(). Requests for which clk_round_rate() cannot
+> provide such a rate are rejected. Otherwise, period counts above the
+> 16-bit range are clamped, while a zero count is rounded up to one and
+> signalled by .round_waveform_tohw() returning 1.
+>=20
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+
+I applied your patch now to
+
+https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for-=
+nexxt
+
+as v7.5-rc1 material (sorry, I was to slow for the upcoming merge
+window, I want that patch cook in next for some time).
+
+Thanks for your patience
+Uwe
+
+--2xg6pvfu72f3g5cg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmrRCX4ACgkQj4D7WH0S
+/k6TQQf/efb5VXK9xmAkdKGOSO1kf3kZYIB42Ug6bMGMo6wgaCUCsH7FfLY/qvO/
+Ltg49fEHW9Ub2pBPnhpSdqb1nPNrF0EvFCyiYxYVS0g4i4CjxnXVCmvaG/PsGzew
+ld4gXMse/qsncxe2lpFVGwDmWgx7eAVE1cOv5wN1wLn3l3MBBvWV0MarrqH2FEdC
+41AMdjDsXUgNsn8VezVhU5RgUcCp1NU6KPahjVIc51RGlVXmz6qPZLp6k4IQyJIp
+84s2qnpgbTx3xa7qvMGNzwVU/OaoIW3jawCFsocyPMM/n5NDpLP7Kz7edGO0wYFA
+kzvSf9bTVcWoZibsVu5ZgX3bejw2AA==
+=4Kmq
+-----END PGP SIGNATURE-----
+
+--2xg6pvfu72f3g5cg--
+
+
+--===============0802735805619002767==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============0802735805619002767==--
+
