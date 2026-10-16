@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9D44CCF2C4
-	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Oct 2026 17:17:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37191CCF2C7
+	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Oct 2026 17:17:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WaGf5os+WeL9NUVUrsLToODZyxs/vFVXgddZtZ1+MQM=; b=hNRcNSFUjVSZ5B
-	RjTL7cnXpxuSdOmPLAah43SOHqhOXZsncBit2az3wz7EA11l1kEKPTySi45JAsBu81o0Qo18k2OpU
-	QNPu/0qwMCe8fErIq95SfWT5rO43AnKaV4/nBV4BFh7dd2bj9z3K3BOwoDjGuN2nyvmzVJqhvETwZ
-	V5021PcjFG9J0DCLnyziQ72Xl61x+b25uwUPm23ER6EllAMzmKJHvR6hdpbu98E0OiPdXiQGhhh4l
-	bfuiZiWG+6TZm0tVKsTcQ5Wl+/tjzZc4434RAeaDceyuS4bgHTBDogeibjgmo+uC0Zv1IDg454oZY
-	WncINLmOv36/zgwj41LA==;
+	List-Owner; bh=nk/GTS+HMuACjYr8yqrQVqcyT9cj1tXR5a/Hx1sgLRw=; b=ufxLe02Eohwy1p
+	Eq+YnkWOIpL5ZQQoRW7qB5/NRTE72sT627uAlpQt8xVP/bL8PmCpoLEdkdzwu0eC9m6M61FiEgPjf
+	ZP5Pen8Elo99Pk4USb2d1XENGPkANqR+74buO1TZrvmGemaZH7wRhJriPvfqW0j8mHLpH0YLZHuQU
+	vB6xBk0IjTH+6bo1Ey0cnpj7ALlKjVphIDxp68Sj94eYWzrzbyqH8Y3m3u3dDT/nZtVYf6psNStqi
+	Z9zIT0MLRgwD6+HxoikpOFHOo7WTWJdQF3xDJm12b4fJmOhGVS0y0jCLfvPaSCide90Q8xq5b2wqL
+	sDcntlrPaPpIffAYsP5g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xHlY7-00000003XJE-0umy;
+	id 1xHlY7-00000003XJQ-1KOC;
 	Fri, 16 Oct 2026 17:16:55 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xHlY6-00000003XIH-2MvN;
+	id 1xHlY6-00000003XIJ-2MoM;
 	Fri, 16 Oct 2026 17:16:54 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 12A5143EC4;
+	by sea.source.kernel.org (Postfix) with ESMTP id 2BD694424A;
 	Fri, 16 Oct 2026 17:16:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E0593C2BCFB;
-	Fri, 16 Oct 2026 17:16:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0870CC32781;
+	Fri, 16 Oct 2026 17:16:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1792171013;
-	bh=N8NEwzojQLQla3jklAl3N85hxfcgpsBNXfZR/hJZlhM=;
+	s=k20201202; t=1792171014;
+	bh=NNesoLElBUv09j/SE4YghbtNRl4bZejc+cTkcFayRsU=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=WZNy3kvdk9rjaubTdFjrB3M+jaV03tomFfvC/t3Jb/uVwh6aoKwTeGskC/Mvs8o4H
-	 LPRCX+o5EqaxKq+X0RwTITSB/iJG2683GpGWFyWakLn41LEdVjswHJeW6xw4xJAJXQ
-	 4FVyysetUBhbuTGb2DJLyX7eH9M+m1/JF6iAgyVs6RPEae8NKlkmulb9VUurwvi5OY
-	 LaAg3QAntgbmwa0Q2/gCsScsmb2P9ZJC//OXmSrJDQ6efcVvF8+SXjuf3Wbz7xc3p1
-	 Qf2NCvxBd4hAOGIGtMcN8mxqFkNS9J8BhAms9rgA1ovW20tUBTnTkeb1SGK4G5Mnmt
-	 KAcsfNOjKzYrA==
+	b=l4wjyq0y0CCj5Ej3wqmWhtxF8IxpQAJfdhaH5B04GNYJDeEXB7XJl+dBnmAvhO+53
+	 lk1lCStn6TgCZ1hKpcg4iNoGf/g6YHiWzSjAE5Y0vZMZE4ir2N1ZY/sSWSsS7yrajg
+	 tjYW5f9s9VhMpCv8Yy3zMtNkB2fTkqWkt5RhJQibBr9khPKBd2VXA5a99JCDNGk5ak
+	 3t317KuAslkSdhgBLetTaUqBj4vgCwjC1WGFn1RJHViRIVLwz8ZPSkJVwWqQBit9fO
+	 Evb6OgNWjCGMbRyaX+YreOL0fv/BIcrgbwoxmoO/zJmQHxdX14s5hDDhIEyeDw4jmn
+	 TCfeaQysqPLiQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BF8D9CCA462;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E5DA6CCA490;
 	Fri, 16 Oct 2026 17:16:53 +0000 (UTC)
 From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Fri, 16 Oct 2026 19:16:08 +0200
-Subject: [PATCH v7 2/4] arm64: dts: amlogic: t7: Add thermal sensor nodes
+Date: Fri, 16 Oct 2026 19:16:10 +0200
+Subject: [PATCH v7 4/4] arm64: dts: amlogic: t7: khadas-vim4: Add fan
+ cooling to thermal zones
 MIME-Version: 1.0
-Message-Id: <20261016-add-thermal-t7-vim4-v7-2-6eede5450fd4@aliel.fr>
+Message-Id: <20261016-add-thermal-t7-vim4-v7-4-6eede5450fd4@aliel.fr>
 References: <20261016-add-thermal-t7-vim4-v7-0-6eede5450fd4@aliel.fr>
 In-Reply-To: <20261016-add-thermal-t7-vim4-v7-0-6eede5450fd4@aliel.fr>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -60,13 +61,13 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3560;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2933;
  i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=rtWuGUHxUnyMFKCauIYV7dFBkIsewyYeUUnSeGS6n8c=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ9al6L9xesu5MirzSo6qR09S27CcNdhW2ED5m/SB+z+3u
- R/ZOcOvo5SFQYyLQVZMkaV/ruWJd5ePnvm6Rz0FZg4rE8gQBi5OAZhIOwfDf8+XkrzCQQn/m49f
- XtS+bvnupQ3r5TY9+p31ZrLP06ZbyVyMDOu3+ThrVf197at6tUjRYsE5/4YTO1deTLGViJrbzyC
- wlxsA
+ bh=B2WWh69HSsHWgo7xf4TXcX+65d8XeYi4tsHrfwMtAdI=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ9alGCbhuMMxewSdHW5J/bTbm3vzxt4FD3qeyHybsE3D7
+ kx7qpxuRykLgxgXg6yYIkv/XMsT7y4fPfN1j3oKzBxWJpAhDFycAjCRNGWG/ylXt64L33lEQSjl
+ j37/lOztvFMqs+0lV507tvDzp4l6kxcw/OEU8A6WvNiz+s03MW7RlUFt9185qp37p8645SNnYtf
+ tDTwA
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
  fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
 X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
@@ -84,115 +85,61 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Reply-To: linux-kernel-dev@aliel.fr
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-
-Add six temperature sensor nodes using the amlogic,t7-thermal compatible:
-a73, a53, gpu, nna, vpu, and hevc. Each sensor retrieves its calibration
-data from the secure monitor via the amlogic,secure-monitor phandle with
-the corresponding tsensor_id argument.
-
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 66 +++++++++++++++++++++++++++++
- 1 file changed, 66 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index 8aa85aab30469..c81632d3984e8 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -696,6 +696,26 @@ sec_ao: ao-secure@10220 {
- 				amlogic,has-chip-id;
- 			};
- 
-+			a73_tsensor: temperature-sensor@20000 {
-+				compatible = "amlogic,t7-thermal";
-+				reg = <0x0 0x20000 0x0 0x50>;
-+				interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clkc_periphs CLKID_SYS_TS_A73>, <&clkc_periphs CLKID_TS>;
-+				clock-names = "bus", "core";
-+				#thermal-sensor-cells = <0>;
-+				amlogic,secure-monitor = <&sm 1>;
-+			};
-+
-+			a53_tsensor: temperature-sensor@22000 {
-+				compatible = "amlogic,t7-thermal";
-+				reg = <0x0 0x22000 0x0 0x50>;
-+				interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clkc_periphs CLKID_SYS_TS_A53>, <&clkc_periphs CLKID_TS>;
-+				clock-names = "bus", "core";
-+				#thermal-sensor-cells = <0>;
-+				amlogic,secure-monitor = <&sm 2>;
-+			};
-+
- 			pwm_ao_ef: pwm@30000 {
- 				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
- 				reg = <0x0 0x30000 0x0 0x24>;
-@@ -818,6 +838,52 @@ sd_emmc_c: mmc@8c000 {
- 				assigned-clock-parents = <&xtal>;
- 				status = "disabled";
- 			};
-+
-+			gpu_tsensor: temperature-sensor@94000 {
-+				compatible = "amlogic,t7-thermal";
-+				reg = <0x0 0x94000 0x0 0x50>;
-+				interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clkc_periphs CLKID_SYS_TS_GPU>, <&clkc_periphs CLKID_TS>;
-+				clock-names = "bus", "core";
-+				power-domains = <&pwrc PWRC_T7_MALI_TOP_ID>;
-+				#thermal-sensor-cells = <0>;
-+				amlogic,secure-monitor = <&sm 3>;
-+			};
-+
-+			nna_tsensor: temperature-sensor@96000 {
-+				compatible = "amlogic,t7-thermal";
-+				reg = <0x0 0x96000 0x0 0x50>;
-+				interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clkc_periphs CLKID_SYS_TS_NNA>, <&clkc_periphs CLKID_TS>;
-+				clock-names = "bus", "core";
-+				power-domains = <&pwrc PWRC_T7_NNA_TOP_ID>;
-+				#thermal-sensor-cells = <0>;
-+				amlogic,secure-monitor = <&sm 4>;
-+			};
-+
-+			vpu_tsensor: temperature-sensor@98000 {
-+				compatible = "amlogic,t7-thermal";
-+				reg = <0x0 0x98000 0x0 0x50>;
-+				interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clkc_periphs CLKID_SYS_TS_VPU>, <&clkc_periphs CLKID_TS>;
-+				clock-names = "bus", "core";
-+				power-domains = <&pwrc PWRC_T7_VPU_HDMI_ID>;
-+				#thermal-sensor-cells = <0>;
-+				amlogic,secure-monitor = <&sm 6>;
-+			};
-+
-+			hevc_tsensor: temperature-sensor@9a000 {
-+				compatible = "amlogic,t7-thermal";
-+				reg = <0x0 0x9a000 0x0 0x50>;
-+				interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks =
-+					<&clkc_periphs CLKID_SYS_TS_HEVC>,
-+					<&clkc_periphs CLKID_TS>;
-+				clock-names = "bus", "core";
-+				power-domains = <&pwrc PWRC_T7_DOS_HEVC_ID>;
-+				#thermal-sensor-cells = <0>;
-+				amlogic,secure-monitor = <&sm 5>;
-+			};
- 		};
- 
- 	};
-
--- 
-2.49.0
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+RnJvbTogUm9uYWxkIENsYXZlYXUgPGxpbnV4LWtlcm5lbC1kZXZAYWxpZWwuZnI+CgpBZGQgYW4g
+YWN0aXZlIHRyaXAgYXQgNTDCsEMgdG8gYWxsIHNpeCB0aGVybWFsIHpvbmVzIGFuZCBtYXAgaXQg
+dG8gdGhlCmtoYWRhc19tY3UgZmFuIGNvbnRyb2xsZXIsIHVzaW5nIGNvb2xpbmcgc3RhdGVzIDEg
+dG8gNS4KClJldmlld2VkLWJ5OiBOZWlsIEFybXN0cm9uZyA8bmVpbC5hcm1zdHJvbmdAbGluYXJv
+Lm9yZz4KU2lnbmVkLW9mZi1ieTogUm9uYWxkIENsYXZlYXUgPGxpbnV4LWtlcm5lbC1kZXZAYWxp
+ZWwuZnI+Ci0tLQogLi4uL2R0cy9hbWxvZ2ljL2FtbG9naWMtdDctYTMxMWQyLWtoYWRhcy12aW00
+LmR0cyAgfCAxMDIgKysrKysrKysrKysrKysrKysrKysrCiAxIGZpbGUgY2hhbmdlZCwgMTAyIGlu
+c2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvYW1s
+b2dpYy10Ny1hMzExZDIta2hhZGFzLXZpbTQuZHRzIGIvYXJjaC9hcm02NC9ib290L2R0cy9hbWxv
+Z2ljL2FtbG9naWMtdDctYTMxMWQyLWtoYWRhcy12aW00LmR0cwppbmRleCAwZmE4MzM2MmI0MTc5
+Li45MWY4MWY3OTQ5YmY4IDEwMDY0NAotLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMv
+YW1sb2dpYy10Ny1hMzExZDIta2hhZGFzLXZpbTQuZHRzCisrKyBiL2FyY2gvYXJtNjQvYm9vdC9k
+dHMvYW1sb2dpYy9hbWxvZ2ljLXQ3LWEzMTFkMi1raGFkYXMtdmltNC5kdHMKQEAgLTI1Niw2ICsy
+NTYsNzQgQEAgeHRhbDogeHRhbC1jbGsgewogCX07CiB9OwogCismYTUzX3RoZXJtYWwgeworCXRy
+aXBzIHsKKwkJYTUzX2FjdGl2ZTogYTUzLWFjdGl2ZSB7CisJCQl0ZW1wZXJhdHVyZSA9IDw1MDAw
+MD47IC8qIG1pbGxpY2Vsc2l1cyAqLworCQkJaHlzdGVyZXNpcyA9IDwyMDAwPjsgLyogbWlsbGlj
+ZWxzaXVzICovCisJCQl0eXBlID0gImFjdGl2ZSI7CisJCX07CisJfTsKKworCWNvb2xpbmctbWFw
+cyB7CisJCW1hcCB7CisJCQl0cmlwID0gPCZhNTNfYWN0aXZlPjsKKwkJCWNvb2xpbmctZGV2aWNl
+ID0gPCZraGFkYXNfbWN1IDEgNT47CisJCX07CisJfTsKK307CisKKyZhNzNfdGhlcm1hbCB7CisJ
+dHJpcHMgeworCQlhNzNfYWN0aXZlOiBhNzMtYWN0aXZlIHsKKwkJCXRlbXBlcmF0dXJlID0gPDUw
+MDAwPjsgLyogbWlsbGljZWxzaXVzICovCisJCQloeXN0ZXJlc2lzID0gPDIwMDA+OyAvKiBtaWxs
+aWNlbHNpdXMgKi8KKwkJCXR5cGUgPSAiYWN0aXZlIjsKKwkJfTsKKwl9OworCisJY29vbGluZy1t
+YXBzIHsKKwkJbWFwIHsKKwkJCXRyaXAgPSA8JmE3M19hY3RpdmU+OworCQkJY29vbGluZy1kZXZp
+Y2UgPSA8JmtoYWRhc19tY3UgMSA1PjsKKwkJfTsKKwl9OworfTsKKworJmdwdV90aGVybWFsIHsK
+Kwl0cmlwcyB7CisJCWdwdV9hY3RpdmU6IGdwdS1hY3RpdmUgeworCQkJdGVtcGVyYXR1cmUgPSA8
+NTAwMDA+OyAvKiBtaWxsaWNlbHNpdXMgKi8KKwkJCWh5c3RlcmVzaXMgPSA8MjAwMD47IC8qIG1p
+bGxpY2Vsc2l1cyAqLworCQkJdHlwZSA9ICJhY3RpdmUiOworCQl9OworCX07CisKKwljb29saW5n
+LW1hcHMgeworCQltYXAgeworCQkJdHJpcCA9IDwmZ3B1X2FjdGl2ZT47CisJCQljb29saW5nLWRl
+dmljZSA9IDwma2hhZGFzX21jdSAxIDU+OworCQl9OworCX07Cit9OworCismaGV2Y190aGVybWFs
+IHsKKwl0cmlwcyB7CisJCWhldmNfYWN0aXZlOiBoZXZjLWFjdGl2ZSB7CisJCQl0ZW1wZXJhdHVy
+ZSA9IDw1MDAwMD47IC8qIG1pbGxpY2Vsc2l1cyAqLworCQkJaHlzdGVyZXNpcyA9IDwyMDAwPjsg
+LyogbWlsbGljZWxzaXVzICovCisJCQl0eXBlID0gImFjdGl2ZSI7CisJCX07CisJfTsKKworCWNv
+b2xpbmctbWFwcyB7CisJCW1hcCB7CisJCQl0cmlwID0gPCZoZXZjX2FjdGl2ZT47CisJCQljb29s
+aW5nLWRldmljZSA9IDwma2hhZGFzX21jdSAxIDU+OworCQl9OworCX07Cit9OworCiAmaTJjX21f
+YW9fYSB7CiAJc3RhdHVzID0gIm9rYXkiOwogCXBpbmN0cmwtMCA9IDwmaTJjMF9hb19kX3BpbnM+
+OwpAQCAtMjY5LDYgKzMzNywyMyBAQCBraGFkYXNfbWN1OiBzeXN0ZW0tY29udHJvbGxlckAxOCB7
+CiAJfTsKIH07CiAKKyZubmFfdGhlcm1hbCB7CisJdHJpcHMgeworCQlubmFfYWN0aXZlOiBubmEt
+YWN0aXZlIHsKKwkJCXRlbXBlcmF0dXJlID0gPDUwMDAwPjsgLyogbWlsbGljZWxzaXVzICovCisJ
+CQloeXN0ZXJlc2lzID0gPDIwMDA+OyAvKiBtaWxsaWNlbHNpdXMgKi8KKwkJCXR5cGUgPSAiYWN0
+aXZlIjsKKwkJfTsKKwl9OworCisJY29vbGluZy1tYXBzIHsKKwkJbWFwIHsKKwkJCXRyaXAgPSA8
+Jm5uYV9hY3RpdmU+OworCQkJY29vbGluZy1kZXZpY2UgPSA8JmtoYWRhc19tY3UgMSA1PjsKKwkJ
+fTsKKwl9OworfTsKKwogJnB3bV9hYiB7CiAJc3RhdHVzID0gIm9rYXkiOwogCXBpbmN0cmwtMCA9
+IDwmcHdtX2FfcGlucz47CkBAIC0zODksMyArNDc0LDIwIEBAICZ1YXJ0X2EgewogCWNsb2NrcyA9
+IDwmeHRhbD4sIDwmY2xrY19wZXJpcGhzIENMS0lEX1NZU19VQVJUX0E+LCA8Jnh0YWw+OwogCWNs
+b2NrLW5hbWVzID0gInh0YWwiLCAicGNsayIsICJiYXVkIjsKIH07CisKKyZ2cHVfdGhlcm1hbCB7
+CisJdHJpcHMgeworCQl2cHVfYWN0aXZlOiB2cHUtYWN0aXZlIHsKKwkJCXRlbXBlcmF0dXJlID0g
+PDUwMDAwPjsgLyogbWlsbGljZWxzaXVzICovCisJCQloeXN0ZXJlc2lzID0gPDIwMDA+OyAvKiBt
+aWxsaWNlbHNpdXMgKi8KKwkJCXR5cGUgPSAiYWN0aXZlIjsKKwkJfTsKKwl9OworCisJY29vbGlu
+Zy1tYXBzIHsKKwkJbWFwIHsKKwkJCXRyaXAgPSA8JnZwdV9hY3RpdmU+OworCQkJY29vbGluZy1k
+ZXZpY2UgPSA8JmtoYWRhc19tY3UgMSA1PjsKKwkJfTsKKwl9OworfTsKCi0tIAoyLjQ5LjAKCgoK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1s
+b2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6
+Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
