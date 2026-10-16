@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9960CCA490
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9D44CCF2C4
 	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Oct 2026 17:17:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,44 +12,43 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cE95+5eBMk620lnzRfAHeqbig7kB5wC+vTgUGl+uIKk=; b=j1RdSIYlMFcxKu
-	8MdrVDdITMstDtDKoK8TlPq9m06AJwZfLWEMegoKLcdc8I468TV/w+zSiZTIlIibJYLyvSxYb0/dZ
-	d+x+F6bPU6L61ixx2knBiz20aIRv6HXAgCMNaAmQBrqCk5Vk4OW8KpTgXMhByfn0q7/530YkkXDsW
-	i6J48771m3vTOvbAM5j1cnSmVNUMKThMCraj+7htziNSlhzib04VLVl44aroPryjnxy9bUkby1GQq
-	IBwL5GU4zv6k3vmqdP50DCP8uAwk67aPPZoBPBSTxd5MccXcoaWrP6QLD+hZWE9NzP9nASyod8oql
-	45LxvQa8PJK4tsLFGZkg==;
+	List-Owner; bh=WaGf5os+WeL9NUVUrsLToODZyxs/vFVXgddZtZ1+MQM=; b=hNRcNSFUjVSZ5B
+	RjTL7cnXpxuSdOmPLAah43SOHqhOXZsncBit2az3wz7EA11l1kEKPTySi45JAsBu81o0Qo18k2OpU
+	QNPu/0qwMCe8fErIq95SfWT5rO43AnKaV4/nBV4BFh7dd2bj9z3K3BOwoDjGuN2nyvmzVJqhvETwZ
+	V5021PcjFG9J0DCLnyziQ72Xl61x+b25uwUPm23ER6EllAMzmKJHvR6hdpbu98E0OiPdXiQGhhh4l
+	bfuiZiWG+6TZm0tVKsTcQ5Wl+/tjzZc4434RAeaDceyuS4bgHTBDogeibjgmo+uC0Zv1IDg454oZY
+	WncINLmOv36/zgwj41LA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xHlY7-00000003XJ5-0Sa3;
+	id 1xHlY7-00000003XJE-0umy;
 	Fri, 16 Oct 2026 17:16:55 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xHlY6-00000003XIG-2MwV;
+	id 1xHlY6-00000003XIH-2MvN;
 	Fri, 16 Oct 2026 17:16:54 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 03323416FE;
+	by sea.source.kernel.org (Postfix) with ESMTP id 12A5143EC4;
 	Fri, 16 Oct 2026 17:16:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id CD1D8C2BCF5;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E0593C2BCFB;
 	Fri, 16 Oct 2026 17:16:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1792171013;
-	bh=mGfO8kBmNFsGLWeCA35XjVmhXjh+nOoiN5ErDOAAE84=;
+	bh=N8NEwzojQLQla3jklAl3N85hxfcgpsBNXfZR/hJZlhM=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=MCSg+PP3lY8x8FXQYbORvXs6hcg93GFny3H7rZv2da0mUDD4+nJ3r/R0w4V63EYW6
-	 3q0zo9Z4ppKKfD6ge52M9a8jx4MwvHTxF9oAWWeVWjCKRwPv66n6if6LZj3jIpMTy1
-	 eZV9kLpkB1PVxy6V9zAkqaK2iFUr6wC4wKytrffd+Zbvf2e9Z7qIlvmIIlfEE6Saxx
-	 o8tDQTWNlXnOKxEFLEJdMMSFXdykCbjD6h8hq+rb42ewkcZ5FNNaJSZ0qqhHsD/kM6
-	 S9ORHIYcTpPnqa0jWhw/ama5LsfKqdvaMLPbVJftbAp7xETu72Jm+dMS2QL36lleik
-	 FLfwNN4EAqoNQ==
+	b=WZNy3kvdk9rjaubTdFjrB3M+jaV03tomFfvC/t3Jb/uVwh6aoKwTeGskC/Mvs8o4H
+	 LPRCX+o5EqaxKq+X0RwTITSB/iJG2683GpGWFyWakLn41LEdVjswHJeW6xw4xJAJXQ
+	 4FVyysetUBhbuTGb2DJLyX7eH9M+m1/JF6iAgyVs6RPEae8NKlkmulb9VUurwvi5OY
+	 LaAg3QAntgbmwa0Q2/gCsScsmb2P9ZJC//OXmSrJDQ6efcVvF8+SXjuf3Wbz7xc3p1
+	 Qf2NCvxBd4hAOGIGtMcN8mxqFkNS9J8BhAms9rgA1ovW20tUBTnTkeb1SGK4G5Mnmt
+	 KAcsfNOjKzYrA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AD56FCCA46C;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BF8D9CCA462;
 	Fri, 16 Oct 2026 17:16:53 +0000 (UTC)
 From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Fri, 16 Oct 2026 19:16:07 +0200
-Subject: [PATCH v7 1/4] arm64: dts: amlogic: t7: Add cooling cells to all
- CPUs
+Date: Fri, 16 Oct 2026 19:16:08 +0200
+Subject: [PATCH v7 2/4] arm64: dts: amlogic: t7: Add thermal sensor nodes
 MIME-Version: 1.0
-Message-Id: <20261016-add-thermal-t7-vim4-v7-1-6eede5450fd4@aliel.fr>
+Message-Id: <20261016-add-thermal-t7-vim4-v7-2-6eede5450fd4@aliel.fr>
 References: <20261016-add-thermal-t7-vim4-v7-0-6eede5450fd4@aliel.fr>
 In-Reply-To: <20261016-add-thermal-t7-vim4-v7-0-6eede5450fd4@aliel.fr>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -61,13 +60,13 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2150;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3560;
  i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=pWfl7HrfY/sohfU3J31MDc3TckJ5tV1lL5L4g5UHqnU=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ9al6N+1yr92ni882az69Uv5/0lzPpnc/sLz01GK0a87w
- sHP4W9fRykLgxgXg6yYIkv/XMsT7y4fPfN1j3oKzBxWJpAhDFycAjARBy+G//6ms+a/Oq/3aNM1
- pznLfs69lhsu7hnE8r7Zvq32RbLwntuMDHsyOudqbFxzP25SlHCPhc5za6df1/LDZE5KrnvL86+
- 2nRcA
+ bh=rtWuGUHxUnyMFKCauIYV7dFBkIsewyYeUUnSeGS6n8c=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ9al6L9xesu5MirzSo6qR09S27CcNdhW2ED5m/SB+z+3u
+ R/ZOcOvo5SFQYyLQVZMkaV/ruWJd5ePnvm6Rz0FZg4rE8gQBi5OAZhIOwfDf8+XkrzCQQn/m49f
+ XtS+bvnupQ3r5TY9+p31ZrLP06ZbyVyMDOu3+ThrVf197at6tUjRYsE5/4YTO1deTLGViJrbzyC
+ wlxsA
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
  fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
 X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
@@ -92,83 +91,101 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 
-Add #cooling-cells = <2> to all CPU nodes (both little and big cluster)
-to allow them to be used as cooling devices in thermal zone mappings.
+Add six temperature sensor nodes using the amlogic,t7-thermal compatible:
+a73, a53, gpu, nna, vpu, and hevc. Each sensor retrieves its calibration
+data from the secure monitor via the amlogic,secure-monitor phandle with
+the corresponding tsensor_id argument.
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 66 +++++++++++++++++++++++++++++
+ 1 file changed, 66 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index 6894c06a836bc..8aa85aab30469 100644
+index 8aa85aab30469..c81632d3984e8 100644
 --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -63,6 +63,7 @@ cpu100: cpu@100 {
- 			i-cache-size = <0x8000>;
- 			i-cache-sets = <32>;
- 			next-level-cache = <&l2_cache_l>;
-+			#cooling-cells = <2>;
+@@ -696,6 +696,26 @@ sec_ao: ao-secure@10220 {
+ 				amlogic,has-chip-id;
+ 			};
+ 
++			a73_tsensor: temperature-sensor@20000 {
++				compatible = "amlogic,t7-thermal";
++				reg = <0x0 0x20000 0x0 0x50>;
++				interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clkc_periphs CLKID_SYS_TS_A73>, <&clkc_periphs CLKID_TS>;
++				clock-names = "bus", "core";
++				#thermal-sensor-cells = <0>;
++				amlogic,secure-monitor = <&sm 1>;
++			};
++
++			a53_tsensor: temperature-sensor@22000 {
++				compatible = "amlogic,t7-thermal";
++				reg = <0x0 0x22000 0x0 0x50>;
++				interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clkc_periphs CLKID_SYS_TS_A53>, <&clkc_periphs CLKID_TS>;
++				clock-names = "bus", "core";
++				#thermal-sensor-cells = <0>;
++				amlogic,secure-monitor = <&sm 2>;
++			};
++
+ 			pwm_ao_ef: pwm@30000 {
+ 				compatible = "amlogic,t7-pwm", "amlogic,meson-s4-pwm";
+ 				reg = <0x0 0x30000 0x0 0x24>;
+@@ -818,6 +838,52 @@ sd_emmc_c: mmc@8c000 {
+ 				assigned-clock-parents = <&xtal>;
+ 				status = "disabled";
+ 			};
++
++			gpu_tsensor: temperature-sensor@94000 {
++				compatible = "amlogic,t7-thermal";
++				reg = <0x0 0x94000 0x0 0x50>;
++				interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clkc_periphs CLKID_SYS_TS_GPU>, <&clkc_periphs CLKID_TS>;
++				clock-names = "bus", "core";
++				power-domains = <&pwrc PWRC_T7_MALI_TOP_ID>;
++				#thermal-sensor-cells = <0>;
++				amlogic,secure-monitor = <&sm 3>;
++			};
++
++			nna_tsensor: temperature-sensor@96000 {
++				compatible = "amlogic,t7-thermal";
++				reg = <0x0 0x96000 0x0 0x50>;
++				interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clkc_periphs CLKID_SYS_TS_NNA>, <&clkc_periphs CLKID_TS>;
++				clock-names = "bus", "core";
++				power-domains = <&pwrc PWRC_T7_NNA_TOP_ID>;
++				#thermal-sensor-cells = <0>;
++				amlogic,secure-monitor = <&sm 4>;
++			};
++
++			vpu_tsensor: temperature-sensor@98000 {
++				compatible = "amlogic,t7-thermal";
++				reg = <0x0 0x98000 0x0 0x50>;
++				interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clkc_periphs CLKID_SYS_TS_VPU>, <&clkc_periphs CLKID_TS>;
++				clock-names = "bus", "core";
++				power-domains = <&pwrc PWRC_T7_VPU_HDMI_ID>;
++				#thermal-sensor-cells = <0>;
++				amlogic,secure-monitor = <&sm 6>;
++			};
++
++			hevc_tsensor: temperature-sensor@9a000 {
++				compatible = "amlogic,t7-thermal";
++				reg = <0x0 0x9a000 0x0 0x50>;
++				interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
++				clocks =
++					<&clkc_periphs CLKID_SYS_TS_HEVC>,
++					<&clkc_periphs CLKID_TS>;
++				clock-names = "bus", "core";
++				power-domains = <&pwrc PWRC_T7_DOS_HEVC_ID>;
++				#thermal-sensor-cells = <0>;
++				amlogic,secure-monitor = <&sm 5>;
++			};
  		};
  
- 		cpu101: cpu@101 {
-@@ -77,6 +78,7 @@ cpu101: cpu@101 {
- 			i-cache-size = <0x8000>;
- 			i-cache-sets = <32>;
- 			next-level-cache = <&l2_cache_l>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu102: cpu@102 {
-@@ -91,6 +93,7 @@ cpu102: cpu@102 {
- 			i-cache-size = <0x8000>;
- 			i-cache-sets = <32>;
- 			next-level-cache = <&l2_cache_l>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu103: cpu@103 {
-@@ -105,6 +108,7 @@ cpu103: cpu@103 {
- 			i-cache-size = <0x8000>;
- 			i-cache-sets = <32>;
- 			next-level-cache = <&l2_cache_l>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu0: cpu@0 {
-@@ -119,6 +123,7 @@ cpu0: cpu@0 {
- 			i-cache-size = <0x10000>;
- 			i-cache-sets = <64>;
- 			next-level-cache = <&l2_cache_b>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu1: cpu@1 {
-@@ -133,6 +138,7 @@ cpu1: cpu@1 {
- 			i-cache-size = <0x10000>;
- 			i-cache-sets = <64>;
- 			next-level-cache = <&l2_cache_b>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu2: cpu@2 {
-@@ -147,6 +153,7 @@ cpu2: cpu@2 {
- 			i-cache-size = <0x10000>;
- 			i-cache-sets = <64>;
- 			next-level-cache = <&l2_cache_b>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu3: cpu@3 {
-@@ -161,6 +168,7 @@ cpu3: cpu@3 {
- 			i-cache-size = <0x10000>;
- 			i-cache-sets = <64>;
- 			next-level-cache = <&l2_cache_b>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		l2_cache_l: l2-cache-cluster0 {
+ 	};
 
 -- 
 2.49.0
