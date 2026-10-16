@@ -2,110 +2,65 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BBB5606A31C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2026 14:36:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAD20606A31D
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2026 16:39:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gddtTiG4;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=ewjAmSoD
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cgpJhfiz;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HeXH2eNd
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:In-Reply-To:
-	Cc:To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=3de8Nd2/j8VuPGN6GXQpQDJviRLR50bFCYv8+MsNIfw=; b=gddtTiG4D9ium3neDJymqcrmtZ
-	dX6VBNFb6mCiAVqOwuMk+xlfUdTvU9kHMiD8HLHBXgbIq18zYWAgFXkyIbdJ8kG+pz6D9smXdvxtc
-	DDE8XMhuQgbt6+FM9/7gUuyA5beNplW9rDwyWS+/bAAPjThWkuAUHAJiJYA5oBjmdsKCXMxWLxTVA
-	X6OMiVKvxDeoQSU6NVzsZ2jLPMZUGtXdZ6XbFReV/bRb9N4o8TC9n52+7b0uV+vQyZjxjrkyFoGHs
-	phoWBlTZ6CaZlX77KFxRdgaTm6anyJdTFEZ1uCMeDiLbAp4nwTk5C6drLrepMnHQ6hQCdx227+2mJ
-	OVA9pZzQ==;
+	bh=ciY6z4fKoObzODMT4Sow58zv2qq4yFeiydQj0rrQpKU=; b=cgpJhfizA/NEUgjOadHDbNZboc
+	o7v3m22zSu0YjyKyFd9D+3eb8Vv2kJC21u6fNNLiaSfGd3YINH0vPU5bqJB2fQHAs+fBMzCj3BX9g
+	DpzzCiYoD1F3G7stNMPpESnPG/yfysQSmZTsRRtoOVnF/8cIi/x9JtyywV9TyHtubSRnWuCKOeyaH
+	kDAo8E1o6GfjGZKjA0YK5tJGNnEjWLG/hJWBYrnw/YzPyjVCA+DTBaWdNu7pJtxOfGFCKhS0aCXNk
+	dj2XozcmvM+x8Pq6vKFFfchZ+KyhboGrxJ9CG+dO8amWnssImbHgKzb6hi5e/2NtubJQU9lFKhLqz
+	nfzmQkMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMREx-00000009XJg-0rxD;
-	Thu, 29 Oct 2026 14:36:27 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMREt-00000009XIV-2njq
+	id 1xMTA0-00000009qZx-0p1W;
+	Thu, 29 Oct 2026 16:39:28 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
+	id 1xHjbu-00000003FWw-1ilo
 	for linux-amlogic@lists.infradead.org;
-	Thu, 29 Oct 2026 14:36:25 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4a1fbd52ab6so17608265e9.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 29 Oct 2026 07:36:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1793284581; x=1793889381; darn=lists.infradead.org;
-        h=message-id:date:references:in-reply-to:cc:to:from:subject
-         :content-transfer-encoding:content-type:mime-version:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=AobNRzoJo9ZhKbhwLMRuTuaSxhba9zwPGclaewwNK7o=;
-        b=ewjAmSoDLf9udMTcld3MYtODJrLZRDaQZZlcLnKpmyRB0h7VRuyj5gU70krmUpEM/f
-         ZyZKouyGgKlGd38TbT3ezEP5mUi9yTc7BTTw2yqp3KInTPDljsfJkZ2ZqZ8i60u48prb
-         1hA2xxeN6dEf0PFLfY7ckL9PmWfi+JYwys0a3JprTTbx7sN2PnC2omHzeIrteRAXVaUn
-         DZVB/qA32xfufKGXcUMzrc6FHWPtBejrLBldMyWBSV7KYYcfVvNa6EPDSTyb7jp+IxMV
-         rhO4Q3JEphqzwSvdCBHiPL68TsLd9KRsNmYDTlERAytTv3tWFCUUVyHgE9C7UhjjTzqE
-         mCxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793284581; x=1793889381;
-        h=message-id:date:references:in-reply-to:cc:to:from:subject
-         :content-transfer-encoding:content-type:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=AobNRzoJo9ZhKbhwLMRuTuaSxhba9zwPGclaewwNK7o=;
-        b=yLVVWxfB41i6+03LuG3/9z7A/vIVByGDDZlnGzK2BEsACOlPxcbnutdcdY+aH8bkcV
-         8SW2dggVko6RDXQtzoTjmEhlHxQO4/tkhBQTvbOYwvIVG3/G7PjzG0vppjiV86T28qvF
-         5KhcQC17We+/TfE+zBBzl6FBEVcLgkPGj0yJQFYtMB9FqlQsS589JRG90dGGfnbV6/yW
-         7TomC6hIkNqrJocxBO5R1WkBycaeQ8DY9fFsKvEeZ1fflcvn4mBVKlPaIf4OL1yKzOlq
-         l6HSbV7FByiC+xT5QxgygQs0YrMVf1EXUviHPHKhhks6MsXePFA6gyx/YEqMe2M+5uGp
-         wWmw==
-X-Forwarded-Encrypted: i=1; AKwUvBySoI0ww3a5BQK5oqRp4lsLZRe7+VrXwxkKkXdfxqt/D8FlS5iNMT2xJwnrJKFqJ489bJ1fsFbQZHbHc2JL@lists.infradead.org
-X-Gm-Message-State: AFq9FYKKLvVFUTdW5lAEqr5TmGEOJiiYdW4ozPQ1TOGDASbfyoEZs/Fc
-	pOfpMAxvY/QYnOUvKo55uyIeVtYGxY7APssLGtIbFp9PpAyrajwPSwv+P3iR8ldyxJJkqNVBKvj
-	IlS813nU=
-X-Gm-Gg: AYBFou2Jl0P7n2ccmHY0xfmVJ0Kx6LStjmAe0SQQvlZnHU8mWRAcy2X100s6PlT8tT3
-	3BF4OsXaEAqQLUXWLNb4ugHa9NMPDvDIJzSlOKZsJL4OD8TqnQZ+vtw6i61IvfyZJAqyl7O3ByC
-	opLIYLi0xLvFrpf2jEgNMFbcFJC8VFX1WZ22AqX9qC0YtfuYGTU7t/Bjkm8jaPkh/nk2qHYvjl5
-	XSYVb4jTW/CMt3z4GmKt0KZCgfdcc60MDxJNTcSlYKmVrYo9OYUCghhSvlQl8tjZFVYlkLgPY8J
-	suEgdNKb8TqGov+OH5dV/H1Ow9ZIbsuaj5uVpPhTyu0FZeNybcvY6rp5rNrrX0xzdChL3TH5YVi
-	8+aplv2+an9c5iMm/djJivURv/XDSjI5vwug+xRgJAXTZmIkwnvefM+3+CSD8L8wVpPJuHFY3Sm
-	MrZWV73XYpjZaiaFwq04krHPLi3HK+cvGgQOZJMCsWmabZnXYK5+VEVkCB8/z7lTXxdGoav+XEU
-	GqWgMKUNd/Umvz3pN42r5mbQoddbfncxrT4urENgVkKlInmwg3cb6dpZDueZFMfTfR959FFAZpG
-	iplDJNQSUuBXO5u+1zGqMn2le4Jd/vk70JgqDESW6Mcwawle
-X-Received: by 2002:a05:600c:6085:b0:4a1:e01e:1927 with SMTP id 5b1f17b1804b1-4a996a9e304mr115101135e9.5.1793284581222;
-        Thu, 29 Oct 2026 07:36:21 -0700 (PDT)
-Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4a96a32eef4sm80612955e9.3.2026.10.29.07.36.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Oct 2026 07:36:20 -0700 (PDT)
+	Fri, 16 Oct 2026 15:12:42 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 5F41B601FF;
+	Fri, 16 Oct 2026 15:12:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2F291F000C4;
+	Fri, 16 Oct 2026 15:12:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1792163561;
+	bh=zExOvzSfNAOGhWyHayoCJYIMW12XGItswYYl/21/DBA=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=HeXH2eNd0qTi1KJWMDpX2qurIIHfELGudDOFsBVj38SK5hgtwRmtRu++Y/B5kYqqd
+	 A4blc5Fp2xS9ugu94PJEByj6vIlDtKLwiWnVuaMsxRz0Ir4yLDMdWRBi4NsEDJfgYI
+	 dTCWHHQPHA4O4L72QOauM8WSJ4JjVCneqoIAwA1rVTR79Lh6W41DTt4LcokcrG/DS7
+	 QghFRktl0qmqBt0Q2454sV5etB2cRZSEkJVEe4jVB1iPvoqhJu/FGnl3nmWT7TfuCi
+	 kYiPGdYgWB0PP3fl0nc6yx6ZWW1MUxK7rfa2DXZnz9GRXCns4+n+2ph4Izy2R1nkwe
+	 CPOLN30xIOzMQ==
+From: Maxime Ripard <mripard@kernel.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maxime Ripard <mripard@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, Aun-Ali Zaidi <admin@kodeit.net>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>, Liviu Dudau <liviu.dudau@arm.com>, Andrew Jeffery <andrew@codeconstruct.com.au>, Joel Stanley <joel@jms.id.au>, Dave Airlie <airlied@redhat.com>, Jocelyn Falempe <jfalempe@redhat.com>, Francesco Dolcini <francesco@dolcini.it>, Ian Ray <ian.ray@gehealthcare.com>, Martyn Welch <martyn.welch@collabora.co.uk>, Peter Senna Tschudin <peter.senna@gmail.com>, Russell King <linux@armlinux.org.uk>, Alim Akhtar <alim.akhtar@samsung.com>, Inki Dae <inki.dae@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>, Kyungmin Park <kyungmin.park@samsung.com>, Peter Griffin <peter.griffin@linaro.org>, Seung-Woo Kim <sw0312.kim@samsung.com>, linux-samsung-soc@vger.kernel.org, Alison Wang <alison.wang@nxp.com>, Stefan Agner <stefan@agner.ch>, Tian Tao <tiantao6@hisilicon.com>, Xinwei Kong <kong.kongxinwei@hisilicon.com>, Yongbang Shi <shiyongbang@huawei.com>, Dexuan Cui <decui@microsoft.com>, Long Li <longli@microsoft.com>, Saurabh Sengar <ssengar@linux.microsoft.com>, linux-hyperv@vger.kernel.org, Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, Philipp Zabel <p.zabel@pengutronix.de>, Sascha Hauer <s.hauer@pengutronix.de>, imx@lists.linux.dev, Paul Kocialkowski <paulk@sys-base.io>, Huacai Chen <chenhuacai@kernel.org>, Icenowy Zheng <zhengxingda@iscas.ac.cn>, Jianmin Lv <lvjianmin@loongson.cn>, Mingcong Bai <jeffbai@aosc.io>, Qianhai Wu <wuqianhai@loongson.cn>, Xi Ruoyao <xry111@xry111.site>, Abhinav Kumar <abhinav.kumar@linux.dev>, Dmitry Baryshkov <lumag@kernel.org>, Jessica Zhang <jesszhan0024@gmail.com>, Marijn Suijten <marijn.suijten@somainline.org>, Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>, freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, Gerd Hoffmann <kraxel@redhat.com>, spice-devel@lists.freedesktop.org, virtualization@lists.linux.dev, Geert Uytterhoeven <geert+renesas@glider.be>, linux-renesas-soc@vger.kernel.org, Marcus Folkesson <marcus.folkesson@gmail.com>, Iker Pedrosa <ikerpedrosam@gmail.com>, Javier Martinez Canillas <javierm@redhat.com>, Alain Volmat <alain.volmat@foss.st.com>, Raphael Gallais-Pou <rgallaispou@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Philippe Cornu <philippe.cornu@foss.st.com>, Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>, Yannick Fertre <yannick.fertre@foss.st.com>, Chen-Yu Tsai <wens@kernel.org>, Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev, Jonathan Hunter <jonathanh@nvidia.com>, Mikko Perttunen <mperttunen@nvidia.com>, Thierry Reding <thierry.reding@kernel.org>, linux-tegra@vger.kernel.org, Alexey Brodkin <abrodkin@synopsys.com>, Hans de Goede <hansg@kernel.org>, LiangCheng Wang <zaq14760@gmail.com>, Alex Lanzano <lanzano.alex@gmail.com>, =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>, Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, Chia-I Wu <olvaffe@gmail.com>, Dmitry Osipenko <dmitry.osipenko@collabora.com>, Gurchetan Singh <gurchetansingh@chromium.org>, Haneen Mohammed <hamohammed.sa@gmail.com>, Louis Chauvet <louis.chauvet@bootlin.com>, Melissa Wen <melissa.srw@gmail.com>, Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>, Ruben Wauters <rubenru09@aol.com>, Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org, Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Danilo Krummrich <dakr@kernel.org>,
+ Lyude Paul <lyude@redhat.com>, nouveau@lists.freedesktop.org, Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, Magnus Damm <magnus.damm@gmail.com>, Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Zack Rusin <zack.rusin@broadcom.com>, Aditya Garg <aditya.garg@linux.dev>
+Subject: Re: (subset) [PATCH 00/75] drm/connector: Convert all drivers to atomic_create_state and remove reset
+Date: Fri, 16 Oct 2026 17:12:34 +0200
+Message-ID: <179216354629.2387589.2597043397406887835.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org>
+References: <20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 0/3] Fix the ENCP clock select field on GXBB, G12A and
- S4
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Carlo Caione <ccaione@baylibre.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jerome Brunet <jbrunet@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
- Brian Masney <bmasney+clk@redhat.com>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jian Hu <jian.hu@amlogic.com>, Yu Tu <yu.tu@amlogic.com>, 
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20261022-upstream-clk-encp-sel-shift-v1-0-f1b1e10a3d84@baylibre.com>
-References: <20261022-upstream-clk-encp-sel-shift-v1-0-f1b1e10a3d84@baylibre.com>
-Date: Thu, 29 Oct 2026 15:36:17 +0100
-Message-Id: <179328457778.1865333.17367903644168961694.b4-review@b4>
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=328; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=I6EvPRMH0NyoJrkviiRd+YwWhq7FQ66k6ghPBYl+JiM=;
- b=owGbwMvMwCW2VtK+WnvWU3HG02pJDFmPIx8LPbxyy0ci6kzfIiapRZva5gtGLNK0DJVjmvol9
- kQC74+rHaUsDGJcDLJiiiw13NXi7yS1vsyarnMbZg4rE8gQBi5OAZiIghojw5bD68TulT3j+8wp
- V/biuueWSxOFT7/cVbHvs/upiYzn51cwMjyJdD/z4eTLD9z51W7b7z/cIHlEU6d+n8HFS+1bvD4
- wSfEBAA==
-X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
- fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261029_073623_716903_937720A4 
-X-CRM114-Status: UNSURE (   7.64  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-Mailman-Approved-At: Thu, 29 Oct 2026 09:39:27 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,18 +80,25 @@ X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> The GXBB, G12A and S4 clock drivers describe the ENCP clock select with
-> the field of the ENCT one, VID_CLK_DIV[23:20], instead of [27:24]. Fix
-> it in the three drivers.
+On Wed, 14 Oct 2026 19:26:23 +0200, Maxime Ripard wrote:
+> This is a follow-up to the plane and CRTC reset removal series, and
+> part of a larger effort to remove the reset hook from all KMS objects.
+> 
+> The connector reset hook is overloaded: it is called both at probe
+> time to create the initial software state and during suspend/resume to
+> reset hardware and software state. These two roles have different
+> requirements, and the reset hook is not fallible, making error
+> handling difficult for the initial state allocation path.
+> 
+> [...]
 
-The commit description of patch 3 apparently does not really make sense
-in the context of the S4
+Applied to misc/kernel.git (drm-misc-next)
 
-A part from this, it looks good
+[02/75] drm/adp: Switch to drm_atomic_helper_connector_create_state
+        commit: db1de27aca30ebaad04aea74ac21e4c4fb531a37
 
--- 
-Jerome
-
+Thanks!
+Maxime
 
 _______________________________________________
 linux-amlogic mailing list
