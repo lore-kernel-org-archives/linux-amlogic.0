@@ -4,54 +4,116 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3FA5CCA462
-	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Oct 2026 17:25:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1134DCCF2C4
+	for <linux-amlogic@archiver.kernel.org>; Sat, 17 Oct 2026 04:01:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:References:
-	In-Reply-To:Cc:To:Subject:From:Message-ID:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xQMOhYNaMkChMoHogNljtlq4bxWNjsj+GvqHyUhrKkA=; b=NhIoYSPAIetT+8
-	N6+JN6rQ/6RTE6hzW45E5gxG11Aoc6x951nOSHDQhEHx4zEFhotHWp/R3xrfjs3032JctO66ZYbpl
-	yuEDR5q+LGZZuEeeZ6slgFh2Y5+n6aWAbA3uLc4e7dCuqgyZWAogfYDk24aOgF9E9cQNb50QQT3oe
-	/OAcjjmM8pZX72kUN8/x9cm9Js7fjdJ7VoS8thzGMw4FB6BubPgzbWG88LU1KQHgZpjDzdVvUwFgV
-	VnKelcQngtQA10bc5UC9QK3arAYnefW2MZ5OZu4vthRI6Evxd3PCxAbH6+iL7oFv7lDy5GxvsgFBY
-	h1QYCWdl3oVdsipohS6w==;
+	List-Owner; bh=7WSVAHf0mZoLoTwokc9AO6/kO///Bm5BKJqSRtgxxtk=; b=m9pg3fVo1tFPNS
+	QTKSjEraXRmgz4ShXtvU7YyYjwXIKZ0sf5o9r6ynLRG7kyq0cSu/fqJmSmlFmupbWPXbnuhRRiaAs
+	yxA6VN2UIsu9GuHsltJXNiN/LSrOIqeE1OTqkpWeOFYPxq/fYp46i9QdYNiyROrQP5hnCEE+ojYLN
+	x5bekVVjCGcb/CYnwv4plDWUCAokHXgNf7TKp32mR3RxqdBWu0Bx/00qOibvJN6cKZ5UCn/N8Vf4v
+	lIPTI87z8Lzl9YWBhCeYvFNGAwpJOqQNS69hhPjXbrTNQ82sYC0hSiiPHNVOAQem4pRLZlbSX/B4k
+	zeA5ExbsJv1MbUN6fIsA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xHlgU-00000003YRd-0Oy9;
-	Fri, 16 Oct 2026 17:25:34 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xHvbr-00000004Okd-2NoL;
+	Sat, 17 Oct 2026 04:01:27 +0000
+Received: from mail-japaneastazon11023112.outbound.protection.outlook.com ([52.101.127.112] helo=TYDPR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xHlgS-00000003YRJ-3iST
-	for linux-amlogic@lists.infradead.org;
-	Fri, 16 Oct 2026 17:25:32 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id CABBC60DDF;
-	Fri, 16 Oct 2026 17:25:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2915E1F000C5;
-	Fri, 16 Oct 2026 17:25:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1792171531;
-	bh=xWmWtBL11uG8RdMGj63LcIL25V809PeoKDp2Mw+6/18=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=bH9fDJY/2yT9f04u8D8RVzOYKWUIFibLFAaeeYqYFslaO+fhJeSiTYoUlK5F6b3RV
-	 XQx63qUHlqWo8wJKnuyT7LV6CK2qE/lfuFcxVEZ7g3LTnU37HYiRIVcPip7WjdVdzw
-	 2m/k5dvm1z1K8fr/bthKHPKrt6l1wzYgWYce7U8KQ5kKgU2IBZTpG8766Hjd7EwZU2
-	 Tm+NxLu2CVg+1rZiyCipHwzFNQw7Fx3Wgft8mMll7/ySf9oMA/T8E+C6wMRoc77IkE
-	 CdfXn4kW7uRn1AGXgVIgD6Rzxr5jTDMeHTds0t6S8oDULBOFJQg1wTh35Q2vW4gFpZ
-	 aT2C7lHN0JHYA==
-Message-ID: <sashiko-outbox-174722@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 2/4] arm64: dts: amlogic: t7: Add thermal sensor
- nodes
-To: "Ronald Claveau" <linux-kernel-dev@aliel.fr>
-Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org
-In-Reply-To: <20261016-add-thermal-t7-vim4-v7-2-6eede5450fd4@aliel.fr>
-References: <20261016-add-thermal-t7-vim4-v7-0-6eede5450fd4@aliel.fr>
- <20261016-add-thermal-t7-vim4-v7-2-6eede5450fd4@aliel.fr>
-Date: Fri, 16 Oct 2026 17:25:30 +0000
+	id 1xHvbp-00000004Oil-0i5N;
+	Sat, 17 Oct 2026 04:01:26 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=mMM+h6meJkYB/5dI2Qo++W1QfAkiKO7UaLinfRRuX213ys4RpqqHuYmmsyaCiewDBL21T3C3dqB1KZ2q6yql4JLyoJnXfPTCxFWmPIbXGdPwjTUgwbonaz6IzO25CGwkWJjT8WUbnmIvgEGFPrupN8EUrHqDFuqmQz6VuwS64caON26xB9i6S6WvkzzJ3e7acFIpYAZDvHCNo64JgFh0sHBZz4AanLsvQ+SvYfs0bKFsnDlFYJtEDbgmI2kNUa92DYq/SVBGnpywvYE2RWqmaLxfaBj+q1pUcyDltUocXE6I3jg3WUnT4ox3LJvT44AslZsyO/dFHt7bqpnMEZea0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nuCzbGwfzqJh7CbB2ZV6E09uNZxNfhJso8o7caEjKsQ=;
+ b=fqpm60cmuggz4ESFY9idr/G1S7FK03jC3VUBGoD9RzZwCyCzBhoh+npB33tIFBi2VIjPo1TQPjVMqQuOAo1QCcoQe3osNnEhoycdVoVU2a+uR9go+uLmYFHaDa6CgYAPxtQ/iRGCGaFv5jf7dB7oomykKUd4708b2GysmCn/TWVZolyQeTAKWNSDTJyJLW+XLhyPxF17Z+89rGCWS7pFyVdSP4EksJ7alQ8V7cP39ib0zd9nVKlB8Ptv9iTFA7zlV2XfaCtSRT+CGywRTZqf2oFaIpYSb+OtGLeeg9vFc2MPF0hVJ+vVUXVRtU9At84YLMgmf4yNmOpgBjPf5vk2yg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=khadas.com; dmarc=pass action=none header.from=khadas.com;
+ dkim=pass header.d=khadas.com; arc=none
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=khadas.com;
+Received: from KUXPR03MB10477.apcprd03.prod.outlook.com (2603:1096:d10:6e::13)
+ by TY1PPFAEA8AB8B7.apcprd03.prod.outlook.com (2603:1096:408::a66) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.522.13; Sat, 17 Oct
+ 2026 04:00:55 +0000
+Received: from KUXPR03MB10477.apcprd03.prod.outlook.com
+ ([fe80::889e:504a:790b:aa74]) by KUXPR03MB10477.apcprd03.prod.outlook.com
+ ([fe80::889e:504a:790b:aa74%3]) with mapi id 15.21.0522.016; Sat, 17 Oct 2026
+ 04:00:55 +0000
+From: Nick Xie <nick@khadas.com>
+To: neil.armstrong@linaro.org,
+	khilman@baylibre.com
+Subject: [PATCH 1/2] dt-bindings: arm: amlogic: Add Khadas VIM 5
+Date: Sat, 17 Oct 2026 12:00:37 +0800
+Message-Id: <20261017040038.3702428-2-nick@khadas.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261017040038.3702428-1-nick@khadas.com>
+References: <20261017040038.3702428-1-nick@khadas.com>
+X-ClientProxiedBy: TP0P295CA0030.TWNP295.PROD.OUTLOOK.COM
+ (2603:1096:910:5::15) To KUXPR03MB10477.apcprd03.prod.outlook.com
+ (2603:1096:d10:6e::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: KUXPR03MB10477:EE_|TY1PPFAEA8AB8B7:EE_
+X-MS-Office365-Filtering-Correlation-Id: b1afb518-60ce-48b4-5b1f-08df2c033e75
+X-LD-Processed: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|52116014|376014|1800799024|366016|7416014|23010399003|38350700014|56012099006|261009223027099003|22082099003|18002099003|10067099003;
+X-Microsoft-Antispam-Message-Info: SBq+CRkOG9AC3e/fjY04dGGKuEELhGiqZXZXwOTOAqpshHcMkpgssKoTXGTmt5mPrMorMINqZHE06QOeptAD2xDYRiOIJHhe80/TBLUy6J6fRneQx5Z5GeufFR4xLyle6uequiMFcOZ3MVaZj/5c24fINV4FKp2sOm5bi3ctQIeG4dFqxXfNNHx0dsN1h9npN7OOkHhsSlDRISUcMBMHshpn9LGeIQsY09nW/Nr9Y2kefWsYDFrN5sHsc8x5RwMNH2xo+W2jSBLTHBeYCo+Tc/Lq6IHNzv3Xc/56MovPRK9mrwzUtzQdIawEC6YJo0PYf9nb6Oc+EIlvlwa5vwgHrbrOO8CoRCOpOfcwDiLx9TwRbgjvuCoNKvoedtcGOQGPDTK5OZF+pgHWnFxh0B+08pXnM3xA4RlTKBRvEpkGpAHgs9UpD7VpFBIYlbK7eA1+I+oXRWlXMvd1z9HtrnlMrtHvHtNbcC8hJMum7HmJNgImt+UovkCEVomnC37F/rEQ73qf4xYKQS6sGiCF7OD/UDVHq++iLTBQYQCV52qjmemCKJvvYB5bhBNmIKP3gI4TDvQHj1lDoEmlISP+hsCL5jj/7aOKXwQADV5p83y6upWB5ba44OpNrnC+HLCg8coN9ic1+Mi4hypTFvbYUnMF0sl9pGkq5Upqqb4y9RL4+UAJj4zTlJ983GFDmYgS2SeaL9Qf5MozUOhnR5aibB6WJtf2U72g0IBJOeTq30616Io=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KUXPR03MB10477.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(1800799024)(366016)(7416014)(23010399003)(38350700014)(56012099006)(261009223027099003)(22082099003)(18002099003)(10067099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?r5mlR9OBxN67ihRZpa5CCD+RCo8qKACEDna9sG3UkkClbGJjSOlTOWUxfx9Q?=
+ =?us-ascii?Q?V5+psPEO+o6Ggm5gRzYnWylpiGRuehQLafUGH/dy6o7c5BfAwxBQlEdjhxrf?=
+ =?us-ascii?Q?fdORL73XI3SXCb4K2SeNJojfOk19RbE2UnuVb4oxeLCD168fkFMbc763QsBX?=
+ =?us-ascii?Q?zQQzBD45kwuMmNsBf57c3yVuB6g7q5P8Fyc2NfsM/jLnU/Lk9pTD9ZlF5pIb?=
+ =?us-ascii?Q?kUnb8ifTCcPGp4ORhgulHzaHr6qe7h4rd4ZjEShYEqvLam6rRVAAjkVWZ+gU?=
+ =?us-ascii?Q?gFssz50OJxL9SWVNYJ0P0T8zPWzdbTP6q7zPQwOuuESDiRTrJry/EjZQ4tNE?=
+ =?us-ascii?Q?NMLpgxXTWNtTpDr+8p+bIad+xjdEiTqQxfKn2Rn+fdMW2zBNfBavvG/VcHyp?=
+ =?us-ascii?Q?xUs55NwpHKwH/Zl4oxxLh0l39l2cxfWfuQwqMplrSQ6o98H9L1IOyUzSpo+g?=
+ =?us-ascii?Q?mn96z/UzKv+GLrGXwuyIod+NxiHOI1IAAMJkgR+pyQHTZGrwQ0DXWFOwug5F?=
+ =?us-ascii?Q?UTYCAGR6CGsW0LDHCr/+ajRnZe4+sHM76Na+cyMpdNetP8gu2LuK2WS6T1/G?=
+ =?us-ascii?Q?/oPqQeY+7zK5Zmz1uS3F42cpx9v9O/XvwgqIgvvInjBh9orQIImKGINJCqSF?=
+ =?us-ascii?Q?STc6vCcrPvQTGQ+1rIvX4HK39Z5AnVnN0FwygwONPdhgy0WoIVO9nBuW7e63?=
+ =?us-ascii?Q?jYa1ssEixRG3y6wcWlYZ+uAhXePjZAxc6nWsBqIRyRTfAnYzOXBKVYXnxSmo?=
+ =?us-ascii?Q?FYNKI0r8BWJ6SpnRw5TN/Oxl3GNyBGQGqaKTMMN5/j1ztu0F8MY2ew7CSuII?=
+ =?us-ascii?Q?nUkt5eNknjGBLdgBC5MXS/fdYKwOSGHe37n0sMra4wpmqkbOaE7mEhMzZCeT?=
+ =?us-ascii?Q?qGUfCkKc90byncv6vUnyHBDFJ/QL5wBHBED1FsjgjSHFqUxW8EvT0nhk/cZu?=
+ =?us-ascii?Q?4S9xXrSNEC4Ck7WbQkGgg/ga6bxvD7kED7ySBPft5hQKoDFmtorCwESbLqS5?=
+ =?us-ascii?Q?EnKknLD4dUCpLVV0dB46CQwoQM8yvGQ1S+D3ObdHIKO3iTjiz0gzu12x0gwK?=
+ =?us-ascii?Q?WDkr4z8A+a/+na+zbFXYQVKc91bEre+40zb7UT8Y1TrKQZFkLe7jJlzABHnB?=
+ =?us-ascii?Q?uIc2uCPCa0SG+g5h0ko83/+rvepnpZ1yhj0L3lsXG/Ot1oF8kU1O+tebygQT?=
+ =?us-ascii?Q?VFinLBH94HDLmzFgKUS4HK+nyMGoq9KA7v/dHCmigytSGXeww7PUkW0tfBsh?=
+ =?us-ascii?Q?5tAVU8HA2WM02BCHF2FQF+8OcGPN6mt9LYdiaMHjG9en58DFeGt0HyWarboI?=
+ =?us-ascii?Q?qlDbS5VaK8T2UQbSL9Maa7XLMRtdgsu2SRBhAE+NF5bbO8Tr7p2lxxuSrDTH?=
+ =?us-ascii?Q?wbSeWf/qapqdgms7T96JZ2A/ooRTYbVx2IGutiT6vo4NRJ0fxitGm9aTlT9I?=
+ =?us-ascii?Q?2VUnS5Qoo36tbpxV+CEfuiJAF/G5qcO2vHFAK8Smieb4vsJSJCUMd3wx3kmc?=
+ =?us-ascii?Q?JbY07Qs8YxI2zIZ4kVhofb3Z67sa2MjwcwNevnogJZp1FE18OWXilAtVcdap?=
+ =?us-ascii?Q?f+NpZMCPg0z3IaqL/oE2FcA0RKA3R9IYMaZ5NWgB7vNodNK41smLc9kTryO4?=
+ =?us-ascii?Q?NJQBRzz+THEZUlI6AHFJi9SxSu5reJDtwoL7vLWY6m0Qm5+Mz218b/rMnMYB?=
+ =?us-ascii?Q?iXoxt4ZqqSsB+zkCz9zKgHOZUIfoml0o2aqd50TD0HNGzK0X?=
+X-OriginatorOrg: khadas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b1afb518-60ce-48b4-5b1f-08df2c033e75
+X-MS-Exchange-CrossTenant-AuthSource: KUXPR03MB10477.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2026 04:00:55.6138
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +l+zlXUWg3JfdbzDi2Z3s/LNTx9+6KMXQtQfRSLsK020Gu1xGvO/Oza+YLshc9fa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PPFAEA8AB8B7
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261016_210125_205586_B477DB00 
+X-CRM114-Status: UNSURE (   7.71  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,50 +125,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, martin.blumenstingl@googlemail.com, linux-kernel@vger.kernel.org, xianwei.zhao@amlogic.com, linux-amlogic@lists.infradead.org, krzk+dt@kernel.org, xieqinick@gmail.com, linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0hpZ2hdIHRoZXJtYWw6IGFtbG9n
-aWM6IHN5c3RlbSBoYW5nIGR1ZSB0byBNTUlPIGFjY2VzcyBiZWZvcmUgY2xvY2sgZW5hYmxlCi0t
-Cgpjb21taXQgZDk0M2RlZGQ1NTA0NDFmZGY1ZWU2YjFlYjZlYjk3ZjAyYWFjMWVmNwpBdXRob3I6
-IFJvbmFsZCBDbGF2ZWF1IDxsaW51eC1rZXJuZWwtZGV2QGFsaWVsLmZyPgoKYXJtNjQ6IGR0czog
-YW1sb2dpYzogdDc6IEFkZCB0aGVybWFsIHNlbnNvciBub2RlcwoKVGhpcyBjb21taXQgYWRkcyBz
-aXggdGVtcGVyYXR1cmUgc2Vuc29yIG5vZGVzIHRvIHRoZSBkZXZpY2UgdHJlZSB1c2luZwp0aGUg
-YW1sb2dpYyx0Ny10aGVybWFsIGNvbXBhdGlibGUuIFRoZSBub2RlcyBpbmNsdWRlIHJlZmVyZW5j
-ZXMgdG8gdGhlaXIKcmVxdWlyZWQgY2xvY2tzIGFuZCBjYWxpYnJhdGlvbiBkYXRhIGZyb20gdGhl
-IHNlY3VyZSBtb25pdG9yLgoKPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9hbWxv
-Z2ljL2FtbG9naWMtdDcuZHRzaSBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9hbWxvZ2lj
-LXQ3LmR0c2kKPiBpbmRleCA4YWE4NWFhYjMwNDY5Li5jODE2MzJkMzk4NGU4IDEwMDY0NAo+IC0t
-LSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvYW1sb2dpYy9hbWxvZ2ljLXQ3LmR0c2kKPiArKysgYi9h
-cmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvYW1sb2dpYy10Ny5kdHNpCj4gQEAgLTY5Niw2ICs2
-OTYsMjYgQEAgc2VjX2FvOiBhby1zZWN1cmVAMTAyMjAgewo+ICAJCQkJYW1sb2dpYyxoYXMtY2hp
-cC1pZDsKPiAgCQkJfTsKPiAgCj4gKwkJCWE3M190c2Vuc29yOiB0ZW1wZXJhdHVyZS1zZW5zb3JA
-MjAwMDAgewo+ICsJCQkJY29tcGF0aWJsZSA9ICJhbWxvZ2ljLHQ3LXRoZXJtYWwiOwo+ICsJCQkJ
-cmVnID0gPDB4MCAweDIwMDAwIDB4MCAweDUwPjsKPiArCQkJCWludGVycnVwdHMgPSA8R0lDX1NQ
-SSAzMSBJUlFfVFlQRV9MRVZFTF9ISUdIPjsKPiArCQkJCWNsb2NrcyA9IDwmY2xrY19wZXJpcGhz
-IENMS0lEX1NZU19UU19BNzM+LCA8JmNsa2NfcGVyaXBocyBDTEtJRF9UUz47CgpbU2V2ZXJpdHk6
-IEhpZ2hdCkRvZXMgYWRkaW5nIHRoaXMgdGhlcm1hbCBzZW5zb3Igbm9kZSBleHBvc2UgYW4gaW5p
-dGlhbGl6YXRpb24gb3JkZXIgYnVnCmluIHRoZSBkcml2ZXIgdGhhdCBjYXVzZXMgYSBzeXN0ZW0g
-aGFuZz8KCkluIGRyaXZlcnMvdGhlcm1hbC9hbWxvZ2ljX3RoZXJtYWwuYzphbWxvZ2ljX3RoZXJt
-YWxfcHJvYmUoKSwgdGhlIHRoZXJtYWwKem9uZSBpcyByZWdpc3RlcmVkIGJlZm9yZSB0aGUgaGFy
-ZHdhcmUgY2xvY2tzIGFyZSBlbmFibGVkOgoKCXBkYXRhLT50emQgPSBkZXZtX3RoZXJtYWxfb2Zf
-em9uZV9yZWdpc3RlcigmcGRldi0+ZGV2LAoJCQkJCQkgICAwLAoJCQkJCQkgICBwZGF0YSwKCQkJ
-CQkJICAgJmFtbG9naWNfdGhlcm1hbF9vcHMpOwoJLi4uCglyZXQgPSBhbWxvZ2ljX3RoZXJtYWxf
-ZW5hYmxlKHBkYXRhKTsKCkR1cmluZyByZWdpc3RyYXRpb24sIHRoZSB0aGVybWFsIGNvcmUgc3lu
-Y2hyb25vdXNseSBxdWVyaWVzIHRoZSB0ZW1wZXJhdHVyZQp2aWEgdGhlIGRyaXZlcidzIC5nZXRf
-dGVtcCBjYWxsYmFjayAoYW1sb2dpY190aGVybWFsX2dldF90ZW1wKCkpLCB3aGljaApwZXJmb3Jt
-cyBhbiBNTUlPIHJlYWQgdmlhIHJlZ21hcF9yZWFkKCkgb24gVFNFTlNPUl9TVEFUMC4KClNpbmNl
-IHRoZSBkcml2ZXIgZW5hYmxlcyB0aGUgcmVxdWlyZWQgcGVyaXBoZXJhbCBjbG9ja3MgYWZ0ZXIg
-dGhlIHRoZXJtYWwKem9uZSBpcyByZWdpc3RlcmVkLCBleGVjdXRpbmcgdGhpcyBNTUlPIHJlYWQg
-YmVmb3JlIHRoZSBuZWNlc3NhcnkgYnVzIGNsb2NrcwphcmUgZW5hYmxlZCB3aWxsIHN0YWxsIHRo
-ZSBBTUJBIGJ1cyBhbmQgaGFuZyBvciByZWJvb3QgdGhlIHN5c3RlbS4KClsgLi4uIF0KCi0tIApT
-YXNoaWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nhc2hpa28uZGV2LyMvcGF0Y2hzZXQvMjAyNjEw
-MTYtYWRkLXRoZXJtYWwtdDctdmltNC12Ny0wLTZlZWRlNTQ1MGZkNEBhbGllbC5mcj9wYXJ0PTIK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFt
-bG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRw
-Oi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+The Khadas VIM 5 is a board based on the Amlogic A311Y3 SoC.
+Document its board compatible.
+
+Signed-off-by: Nick Xie <nick@khadas.com>
+---
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 9f73a0054fb21..e2b258ae8a4c6 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -238,6 +238,7 @@ properties:
+         items:
+           - enum:
+               - amlogic,by401
++              - khadas,vim-5
+           - const: amlogic,a9
+ 
+       - description: Boards with the Amlogic C3 C302X/C308L SoC
+-- 
+2.34.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
