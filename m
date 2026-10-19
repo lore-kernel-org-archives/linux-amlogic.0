@@ -2,142 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA81F606A31C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Oct 2026 20:33:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BE4B606A319
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Oct 2026 21:52:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=imJyhJxG;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=QEOJVKki
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bSj44JXo;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mia+Cm6+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bdCyLpJHzKw24jPtAZfofgPiwg4o5vWyQsJa1nv6yy4=; b=imJyhJxGqnDjeE
-	3odUns9PJXG4n3i5DQRBRPBjEUeGfTGLWdr6xWK3gKngViUSykX3lFUlAkfSnFxU+ph6wmdww+2pc
-	dqErYzHriY45914O2pEJ4812fLF5aR/3o6rqlUJ9wlxWz/RvHBPewwP2iVnUYkRx36ganJjfdYMKd
-	WRfHpL+6gflBxRzmDdj7mrjOVVM9YJ9hDL3z16KYFJdT4SfScDKMf5yh/j24mOXbz5NjoglrIAKSY
-	Zo6eAOjdzPsl2sh3pUkCu7fbwgPTRWE5vjNM/zdWYscZTLyQ8JB9VangTykeUONWMhY05FXxCqhNP
-	gpi0aXATPQo7YGnAwCBA==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Gwau5iBVstnQ2c24CKRzNQehZj8ZIhfnwlhcsubo8zU=; b=bSj44JXoXVAOGC
+	uw80mniBw3Sv1u6JIANmRT/USqyI9UczWAhVVO4nt+PwWO10My5eqOh5m/RDAWU0igwMWox+kfrpg
+	SW7IU5mbppiCte/enkgoAobXatYNJwBc3BdlEhunvjnlLT4rsAWCh056GGiZpjWGOkIu+QZN+uQ24
+	JDX4ef6qF6CMxjEvhOncojWdxWNrccgSbRqKHh988tyhK63W6Nxw64E05grF1dAXJK+wcVZm5f0M5
+	Cz5BeH+lgPzXj2Mht4t95wc/FhF3n+uA7ickyriFB2mNADVsSu+jjswzfO670tfDk39Wt1qMoNF5h
+	LG5uA6MLsUvMHpmkeQxw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xIu2S-00000008JPT-49j1;
-	Mon, 19 Oct 2026 20:32:56 +0000
-Received: from mail-francecentralazon11013053.outbound.protection.outlook.com ([40.107.162.53] helo=PA4PR04CU001.outbound.protection.outlook.com)
+	id 1xIvH3-00000008QqG-16w9;
+	Mon, 19 Oct 2026 21:52:05 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xIu2Q-00000008JOe-2MEH;
-	Mon, 19 Oct 2026 20:32:55 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HKt2Dy7G2p3m/VuaQNpSZC7N21BgzccDqsdc4DYd1fawknPwEog9YSdCYWVqPIbh9WUVd/fGxGoUOUT4bqjzsIS3AUP6piCXDQTT+3gGBmxgMl5g9gqMPcpTbd0s40jMiFVf/H0ini8WEvSmCn5DaMAghvBYQDnBwhREN7M0zQVZAx15gTJVeVsqG++ksIldfg05zcq9JTMhXVqTReaI/KL+j6FihEZS2hhTtRJPvznPDsMJhONHqYv/SylaR9JSYnlX9yWEkkjN/B5DD7e7WI55RT0mvkJiQAF0mmz02gaYHaGdXXXjK0OBPbOfLarO/dXZF7reyw7R/YW/61D1Ig==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NnZVSzSXcAj3KELfmay509eAzpFndEelCVPDyrd+ROQ=;
- b=DUQsDw9fLb1SHqv0Ql+XEwkHhZtg7bsGUT35jAXUlpuP7n7qu0lVS7t0/iLoBNcUzZzZw75TaPkv3fSrswNKBuukVoJy1kcMfLhWlBAYZ4pys/CuHxepaH1t2ywcc7jHcYs+kKq1XYLQFTdBAROB4L/qiOVJ/vhVnbDOCbaG0ax9zd4hLetZ6agc0Y8rRuBjxYW25191S5Mzj3tMejI9tbE7SYRJHnJjzGtmi4dJSj2/MZNMLzy1rEJYMHwECzRGUlz8w3t9nlid8ImddcoF9lJdWbeCxi0NBqn/gWlvVDtj1AYw7Ud0ZwiRx0Y3kUd0xLzXx+INme1fbn2G1z5gBA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NnZVSzSXcAj3KELfmay509eAzpFndEelCVPDyrd+ROQ=;
- b=QEOJVKkimIDql3c30i6gpuqhn2Re4zLf6R0vrFmK7CmjQQSkaaVJYixKvQeJJ09jZSkci5qk4vjJlJ41PJubaoeT5veclyWffie3YaLdLQvpehfLXnjs0JbKGVz56JCzcq9uzNOdtZv9bvObvOOnK8Y7np+xysn7MtMlhy/CPzdi6OwZ2lnoaSiEWpGZ/yFQ5EylSlz5lNPeND4jNknNLhBx9xjjvfXE1dRzTzuKL4HJEii8m93cGB4KaX4rr6YTof8EvqgHK06pJZvo7SA5dVp9MoBbGx1IX6ReV5vapme6x42Q6CKq3WLCJR9mafE+a1VWTYVw9rlra05PWFRUbA==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by PAXPR04MB9105.eurprd04.prod.outlook.com (2603:10a6:102:225::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.522.19; Mon, 19 Oct
- 2026 20:32:48 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%6]) with mapi id 15.21.0522.017; Mon, 19 Oct 2026
- 20:32:48 +0000
-Date: Mon, 19 Oct 2026 15:32:35 -0500
-From: Frank Li <Frank.li@oss.nxp.com>
-To: junyi.zhao@amlogic.com
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, imx@lists.linux.dev,
-	linux-hardening@vger.kernel.org, xianwei.zhao@amlogic.com,
-	Kelvin.Zhang@amlogic.com
-Subject: Re: [PATCH 1/3] i3c: master: Rework SVC I3C to support vendor glue
- layers
-Message-ID: <atZ-YyEmG-KvUZAF@SMW015318>
-References: <20261019-a9_i3c-v1-0-329d819d621f@amlogic.com>
- <20261019-a9_i3c-v1-1-329d819d621f@amlogic.com>
-Content-Disposition: inline
-In-Reply-To: <20261019-a9_i3c-v1-1-329d819d621f@amlogic.com>
-X-ClientProxiedBy: PH8P222CA0004.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:510:2d7::34) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	id 1xIvH2-00000008Qpu-0PCe;
+	Mon, 19 Oct 2026 21:52:04 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 7436C4106A;
+	Mon, 19 Oct 2026 21:52:03 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1792446723;
+	b=EcJIzq2B6Xs9kEz1rzogTOli1aPa0trk0uiZOOkz3McEK7Fr2JhCKufv0wUokndECubr
+	 Rofn1/fVtRUttl4qPv8I/HXSAdWW35do74nRshKXFyLzsW332O6laizE5V25tcSqDVX95
+	 RvchjY0UXN2KQ1Qw/w5LnYeW5f26100BEcjLkk/eKyo81X7FYYnHqQVu0wryc9pyiYYvg
+	 JhF7uaxkkvY/w773moRhaq2xa6yLG5pQ6Ew56YFlFl6w7IlKhOQpM4F1nIDtAjTUnGX3w
+	 2AhrTowmjp1fn9lD89o51ZS/tgvNDEmRywSbVtblYUXM9IhYYFZOQNjLiE/Dylzb2Sg==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1792446723;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:To:Cc:X-Mailer:X-Developer-Signature:
+	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To:
+	 Content-Transfer-Encoding;
+	bh=229bktF/t4K4pyCM5Cj95EqGyJ2vYACAnwGMT9QBk0Q=;
+	b=UaFV0fc6S6o9p0lFJQTReDB0jvO9n4mE23tio3GaQ3CJ5csvjMGjtBYFxk3G0jllr1A2
+	 2e/gAM0OtjPRDbg2jUjcM2pva7o2e5voojI5QlhZgdmw0vLlHV4mBaFIcUnjSk7tVt7to
+	 VDvKT8BH0iqQhsx5d/tS0rvAE7q78QMUUj6GJGHQLYZD+z650mwcdrfdxKF5IoZTI1F+w
+	 koYf9ng0skQNkeW/E04+OMdauT1j9eKsWqX2Icn2X8kWfcStpwyk5XcMMbX/al6GNt36Z
+	 IAGCsXeWvzYVq2vOUMp7jZrevuzUOVoeSk9PTXgSVkMnqAL2CpGII2EjJgU0FPyN1qQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id D69DB1F000CA;
+	Mon, 19 Oct 2026 21:52:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1792446723;
+	bh=229bktF/t4K4pyCM5Cj95EqGyJ2vYACAnwGMT9QBk0Q=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=mia+Cm6+HDmn9HFtdKtmEUut9YpyexTaQXadGCigrd47X/iYVEfiy4QejCTFekWWj
+	 v3JMR13M7ZTMuCUaiXVXr+F0G5UnW8X8y5R+9tXnkFksm3yUbHq20yqYLY0Ro/yahY
+	 PK2RRLX7BqwyxLyRR7OoSLrPbU3e9LWwF27pXFA9g8nuk8TXQ5b/HJ0fwOWLGTpSqE
+	 cN08f7jYioj9jtSIwnO/HCCSviFwhESFsCeBcP+AsvAZH+P2XD88pn7eHQW4/83uvY
+	 Gb3NQ8fMdm1eqgM/oa6gFPG9tp7vgzxrcQmGIF1uXXx+k4JEGmzdqOIcMtuXoffyUE
+	 7bkDqTL/fu1rw==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 6A1C6400AB;
+	Mon, 19 Oct 2026 21:52:02 +0000 (UTC)
+From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
+Date: Mon, 19 Oct 2026 21:52:01 +0000
+Subject: [PATCH] arm64: dts: amlogic: meson-sm1-odroid-hc4: wire the RTC
+ alarm interrupt
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|PAXPR04MB9105:EE_
-X-MS-Office365-Filtering-Correlation-Id: c99f35e9-54c0-49e1-ee0f-08df2e2023a4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|19092799006|1800799024|23010399003|366016|6133799003|18002099003|10067099003|22082099003|4143699003|261009223027099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: dbgPGYwX89F4FXPQGY/Mj4N21QTpE5JwwtD6zKPDn1qYgGNHHTRVdLLNjU7rcOjECU2EgZHzdHzk8Bs3s5/HGtRIuQLltpNnr7nsxq0iWr8+2xckN07z81WZFvlylOyv3WszY2azO/mWMLQv3dPaGH0/nYCSPKzstkGJBMR91DQ0igqu2HIYFinayVMdUZbFwFI/WdNgRSYRKIDqA4hOSbP0j5hq/OP2Fr+xTGuqiqqAu+TvZIzsRzM/h2VC4m0Uz+mr5cEPpCBqBdAvtFtEPvTtzIKUfNTdAcu4UHc7q3VSALT49iKANrcwqB2TlPCWFnV1GQoT2Qt2kGfZcNnX6vytuOkIPvVNmmJ3+CEfum6ad/eUTjTMb/wz6nX3ZzA+Rx/40gXkTS4eWRJO121OThJEksCs//Mvimm2l9j9vJD+NU9QMWnWM+Ab1hmK3MhCiRkeezEPEwUrh/5jB9DtOvAmqCHZ7saIkgxgxOFbG1Gh1u+jHKt/0zIVglS4jM93HQFM5sVcbDwMISuor3wCtkeUFCJNGP9Ocfx3etKhaH2vUM4pUQMvmTqovWPmn4guESSyOYfvSZj9v+yKy+Acw2tCgtQUOTDf6TrE6fyTd0j8eCgd4wKEjJBO+bYzApMGl1aXMCa9YPJGUEt+0XkMVKILVCKe8zuBq6SaSLbsUS4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(19092799006)(1800799024)(23010399003)(366016)(6133799003)(18002099003)(10067099003)(22082099003)(4143699003)(261009223027099003)(11063799006)(56012099006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Yh9oizP5hJ7Bo3Rpc/ri6d/2r/yMxrtrg7faHR4VZyIxm/HIWGnkd/38xlVE?=
- =?us-ascii?Q?mLFn1/jfVJn9zQi4xAPLIwwSBhv45qo38WhXCH6KFjttI+Hs85YIDPDV2wUh?=
- =?us-ascii?Q?qkl+e8+O9yogrNoVpPJkPXnSElBPfPteOFOnFOBicH08+AU0LisrjmEUzAwh?=
- =?us-ascii?Q?lEcBN8Dn6NmKwbXswtDALAOzd37q93DkSZYNkwD253Xw1q1OtX4VKYGg+WhO?=
- =?us-ascii?Q?CLnONv6GaOXxRxZqAaz1IdwdQACv5EAZ/vMvQ/Ny69Nb7O/bksk1ma3s/FDd?=
- =?us-ascii?Q?2x5aRkJp8PW9mpVFwrYR6Aw7+7NfEKoXmhmubH9yTNTWs76guhu+lh+M047C?=
- =?us-ascii?Q?ImppGgfVSEFJXSKD2IpUkZAV+Mqj0VUp70tBi42gXWQnk7NqZ6ch2Frp6/sV?=
- =?us-ascii?Q?0qYSnsYJAIpS1S7MejbTEHrt2VVhi41MFd5XKWjoCbBVkL1tITovmNqrN3G1?=
- =?us-ascii?Q?xz/1HAXxGuYOKJHIUiG8aK3ZxdX8CTkWfA3HE9VmiVHWZhA4zrFGGBKJM9S1?=
- =?us-ascii?Q?NwDLJd+VSZUZwIHtWNKeAZVP2gGJi1RmXUMAew6hmhIVkLaOKBCW4qxtuklL?=
- =?us-ascii?Q?AFJcFSPgxboT7qsJhaPgrFv3IPLoSvXpb/bESJez6Gsq2ZvO8KUdnlvj08Wj?=
- =?us-ascii?Q?6mahB+va0tX0kJ8s8AISNlPHnnkE05E0G+VJKkmeySpgksp7GlVG+vSstJ2c?=
- =?us-ascii?Q?Y0Ca6kJJBjsrr181nMraAEskBZ8rAptKDI5KUWYPHGf795JOvaxFVWurSGrK?=
- =?us-ascii?Q?gXJAHUv9ATUATCenQ8wVt6Y2TOrfdSZIUKUqTCtuNjrDg8b8A4SNMpWm9ufd?=
- =?us-ascii?Q?mLx8nJ7VHOAChPrSFAmaK3yLZnUw6/r/zGq0DNngzvlC1qmrRvrtWPQBdMBw?=
- =?us-ascii?Q?XZRAxaN6RcDbn8vekkxHVSpourW569ihU4C4OBB/YpLcHEh2U+QCpzZV1ooe?=
- =?us-ascii?Q?XVtvSLAvNyy9JCBKthZaOSYlckjuzWrbrjgXyL2X2meDKm506cIWf6C3z9G4?=
- =?us-ascii?Q?qqHoCH+h+NhkfZAIGAIN+9q3v1g2U4K7pS3fitBoBxSWeNCtYbh5djRSvFeP?=
- =?us-ascii?Q?TxCxchpK5gCiSYuThWJ0gr0W6IhoARg5zkBDz95UAFrDlP2yTX3hOmu+xtuX?=
- =?us-ascii?Q?HOo4EECqNQ/XmoXhZIm8zdviuyP/95wIb9Mb7/WTf1wRWSYh0cteAjg3+IKV?=
- =?us-ascii?Q?6q5OfAlgKcioGbnZnDNaIFzASYrDo16a8ebi5AzclxLaaDc23Qcxg4Ma8kFA?=
- =?us-ascii?Q?boCYTT5QL7vLqBFetb2XU5bIp2kcyYpghBYrB8FLR11lns+yCezNz2Ao9Rpr?=
- =?us-ascii?Q?KfohuVfMHWwA2GSuKWfuzbjz2NORpj7i8msEPoacUnIvUoiXu198wlphiq2i?=
- =?us-ascii?Q?PO3YwqGHvImFJpzG+AHoNimXNgTr9pNThOAW75ZaviQ6GQdSmyCknDP7M8uP?=
- =?us-ascii?Q?ucg7FhfOqX8gr8Tr/n+33fmY4/Kwy0sT3WWqHedyeViECw03g8u6ZmDvDU2m?=
- =?us-ascii?Q?nxvSyoYe0drFVyqKSAzxLfF8L0ubYuAhirVujzJeVVBDyhIJ3KAeT43mC2b4?=
- =?us-ascii?Q?nErjiuX96X+dSA5W0nx7JkyryxmyNZGzYEeG0qDCDv1JJ8DB6QKnDeA3b/7N?=
- =?us-ascii?Q?SHxZhn5tMo4oDUgiTJjzDZKVZ5yL10aoKBgiFrJXwpzL0vSqZWrKekVlBbag?=
- =?us-ascii?Q?dwZ6QPAZgJBMybcC9kLOsXFY/8d3qBb3ElHKzfYP/uK5dBjCisJxhUV+r0UQ?=
- =?us-ascii?Q?wO40kNI3kYXTJ7RLic902d7X5GVRlH89WeWh/fohvWdw1TBzwqkv?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c99f35e9-54c0-49e1-ee0f-08df2e2023a4
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2026 20:32:48.3950
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MrfLepdCehiW98B6anBCBN0ZyOXdfg52vQki4hiVQo8+RBcEXdEwNFAxNz9BrDBvCbjrgHzrYh48WMggXLtzP+5UZnXebENKzrULzPkyp+9E2poaKzDOVPldf0wyyiUc
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9105
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261019_133254_608597_E4A50E00 
-X-CRM114-Status: GOOD (  10.85  )
-X-Spam-Score: -1.9 (-)
+Message-Id: <20261019-hc4-rtc-alarm-irq-v1-1-078fc79e596f@iav.lv>
+X-B4-Tracking: v=1; b=H4sIAACR1moC/x3MTQqAIBBA4avErBtQsYiuEi3Uphrod4wIwrsnL
+ b/Fey9EEqYIbfGC0M2R9y1DlwWE2W0TIQ/ZYJSptTIK52BRroBucbIiy4ne+CbUzVDZsYLcHUI
+ jP/+z61P6ALS5vPZjAAAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Igor Velkov <iav@iav.lv>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1527; i=iav@iav.lv;
+ h=from:subject:message-id;
+ bh=gqWYjjz0xRwzUadDg123AIW6B3N3BYaR8H5aIi6Ymss=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDFnXJjIKXTE26pG/dCvY67j7dRmrhfs/i4TzbTrct3yua
+ I/1ioTnHaUsDGJcDLJiiiwTDmncylhy9a+/h/kDmDmsTCBDGLg4BWAiAacYGRq+7Jc36d0uJfho
+ TvPjvC/5dvMu+lTmaF/KDVVmvfH3z0SG//Vbzm33EYqv7Dlr5Tq91WXqRR6WnFnvZqzkf9swc51
+ 4CDMA
+X-Developer-Key: i=iav@iav.lv; a=openpgp;
+ fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
+X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
+X-Original-From: Igor Velkov <iav@iav.lv>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -147,40 +110,65 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: iav@iav.lv
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-9.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Oct 19, 2026 at 01:34:26PM +0800, Junyi Zhao via B4 Relay wrote:
-> [You don't often get email from devnull+junyi.zhao.amlogic.com@kernel.org. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
->
-> From: Junyi Zhao <junyi.zhao@amlogic.com>
->
-> The SVC I3C controller IP can be integrated into SoCs from different
-> vendors. Peripheral resources associated with the controller, such as
-> clocks, may vary between vendor implementations.
->
-> Rework the driver to separate common functionality from
-> vendor-specific extensions. The common logic is shared across all
-> implementations, while platform-dependent operations are provided
-> through vendor-specific hooks.
->
-> Also add a corresponding MAINTAINERS entry for the SILVACO I3C
-> controller.
->
-> Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
-> ---
+From: Igor Velkov <iav@iav.lv>
 
-No big difference. Needn't rework svc-i3c-master.c, you can add amlogic at
-svc-i3c-master.c directly.
+The PCF8563 on the OLED/RTC add-on board drives its interrupt output
+to GPIOX_5, pin 4 of the P1 header, but the rtc node does not describe
+it. The alarm interrupt is therefore never delivered and cannot wake
+the board.
 
-Frank
+Describe the line as a level-low interrupt of the GPIO interrupt
+controller.
+
+Tested on ODROID-HC4: the alarm interrupt fires and wakes the board
+from s2idle.
+
+Assisted-by: LLM
+Signed-off-by: Igor Velkov <iav@iav.lv>
+---
+This needs commit 5831f5fef100 ("rtc: pcf8563: pass the driver data to
+the alarm interrupt handler") in the rtc tree: without it the first
+alarm oopses. Waking from s2idle also needs commit 5b6e2a46b80d
+("irqchip/meson-gpio: Allow the GPIO interrupts to wake the system")
+in tip irq/drivers.
+---
+ arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
+index 5f15c2299509..25a8a60e152c 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
+@@ -105,6 +105,8 @@ rtc: rtc@51 {
+ 		status = "okay";
+ 		compatible = "nxp,pcf8563";
+ 		reg = <0x51>;
++		interrupt-parent = <&gpio_intc>;
++		interrupts = <IRQID_GPIOX_5 IRQ_TYPE_LEVEL_LOW>;
+ 		wakeup-source;
+ 	};
+ };
+
+---
+base-commit: b44e2be772f866985cafdf90355285069ea68495
+change-id: 20261020-hc4-rtc-alarm-irq-b2b8c68d54f5
+
+Best regards,
+-- 
+Igor Velkov <iav@iav.lv>
+
+
 
 _______________________________________________
 linux-amlogic mailing list
