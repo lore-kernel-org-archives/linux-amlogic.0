@@ -4,125 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72091CCF2D6
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Oct 2026 07:40:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A201CCF2D6
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Oct 2026 12:59:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=3g09cTYrPQX72VovgnWlo+cGM0o0vnUHvDUsYIOK5tk=; b=RE53r43Q4uLtJ3dqpFK6KGD6gR
-	ut59b6JlrCq2iFpzpGXP9i+I/FkdBz7PUoht80OdyREmmYfyziqNMKWPe3EdlhM+zjiyexN7xov0n
-	NnhPlBXQbH2kFIuBFah4+fauFdo91VZQspjBEcuVXSi6QQy47nrpToPqbW6zZvLe7CzJJnC4dRs98
-	26ubVFY4nwkfIwBpmkhaAJ2nmWs0rfqJlP7OzVRromSSgJWOZywxRs9x8buF02cGbpn4famoiKcd7
-	lF5MHDXkeyhpzfZWbE6gZjWox0WIZ9KEpqxoqF5UwIJhPcFZJqmKkeR21Q2etiqiccH+KChgD2A/K
-	pYvxD0/w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Message-Id:References:In-Reply-To:
+	MIME-Version:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=xAG+myEU1Iv1lQ28CtsYUDnrMKtxwBVTH4lU2nIypIc=; b=4/ZwtbXk4Fp8uw
+	g9Ckh/6fNgmYDgJBGjuEyrA8wTnbFdA62QNSaH/1WdiKwWhvGqbYOJdYIfPo8Qx7o27d1PTBFHS4c
+	WfWUOCBFiU/hF5no7kqHFdvo17iyN0zcni1l2KXvn6TYjsVYDzcwRtpSBa7Lg2TnyLINOElV+qq05
+	TuKAobwUR0DDwWkrYLridT3uwfOhHccltuY8VgTWd84bAOvhmUVFt5uSR7A2/uEaTY6J5ykSllHYG
+	E3pnhCZnxbBxbm91WsNkkXBYLE129Ey1ev2WX2Po2yh/tTZLptxaq651xTE2RWrON1Mcpz6gknsjF
+	dKAHkmh0tkWvhUOu5yJw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xIhyb-00000006mHV-2DbS;
-	Mon, 19 Oct 2026 07:40:09 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1xImxM-00000007Roa-2L6Z;
+	Mon, 19 Oct 2026 12:59:12 +0000
+Received: from ocn-ckd-mts-119c39.ocn.ad.jp ([122.28.130.104])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xIhyY-00000006mFf-2Olr
-	for linux-amlogic@lists.infradead.org;
-	Mon, 19 Oct 2026 07:40:08 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-48af4d4e61fso998369f8f.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 19 Oct 2026 00:40:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1792395605; x=1793000405; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:organization
-         :autocrypt:content-language:references:cc:to:subject:reply-to:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=M0SUy48Ueh56GzaTiRmwygfsPwqE3Nw6AJaFjvfAhy4=;
-        b=ke6cxNQxE3BIp2bnBP0l3SmtdZMKTgAA695y6RbBdJ4EQsHBKtwBOeCvOP/WJzLdIh
-         F/PH067+Y0YitmsPXt2EUqfe2YrWza4aEUWxT5i+RuCOXZbhuoCFkqgjj9Mia86mwumF
-         PGb4NVPS4EEwk0W5+enzf0LdYlRfNswy89lFZGqvXIPoXWa6RWrT5zAUpOGqWSwMe1Fy
-         XrtMaGIksNCv8iU9RN/qA1LDY+DSiUbj9g8UE/iv9DcU+WyvQem4njZNhf7kU0Urasu0
-         38ArGt2vUFRVzHQLHe5LkxrWBX+vDu4b20DWK1j27R3jsmTRBkXYGj/+yerPBDp5Ya48
-         phhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1792395605; x=1793000405;
-        h=content-transfer-encoding:content-type:in-reply-to:organization
-         :autocrypt:content-language:references:cc:to:subject:reply-to:from
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=M0SUy48Ueh56GzaTiRmwygfsPwqE3Nw6AJaFjvfAhy4=;
-        b=vQdeu4pCYa/pELk5F/cryr7qr1yHxyI1iDHnvgnsoNEkaHgIDPUDi5xH/ATVxXu6KI
-         U9ZXTtCfTjJ/hN/wmWDb6Qjdr8Ict642KrreO7qDEkb37h6zrneqHZWp5J0/Q0vxZN01
-         PKNfsM3uhZ4z+NGYaJXw6SDH/GYwgEaIQuhUd5irjQQpJO8djKoqywmRIIvcdaDp03uu
-         3+3n45cNbdXbDwWIv2/8WoOUlbilOYHVn9W4CfA/EqL6hT2t0jaarkXK+qMz2XEzA3rZ
-         Yxpg9lWI/T4tJbOtufjzWK598uq6QDNtqdRDXzSqeAET9it6zx43vwkPy/cQFKoMFMPd
-         TPKw==
-X-Forwarded-Encrypted: i=1; AKwUvBwYq+F3FcdJV2gx9P8ij3ZBRFO+8BqHLuFRMsADZjwmT1dPqC3cGpFrOX3Hd2kvoovhl26b3gB9m/8j80bt@lists.infradead.org
-X-Gm-Message-State: AFq9FYJn+aFHRJUF/3E0OSQp4PpnmVqkHOBc8gyLYWUqUZ4YH+ntK6OH
-	BVgPLwvWn5BeuqWLaclZqofj+GgFGYOw2BTtFlkKm5Uf51E7/spoglLzE8pHHGJ8oHs=
-X-Gm-Gg: AYBFou3p2nKaab7cFjSOMxzYyF6Vo1a2SWp+W162EfrRQZ6FODNbP76hUP9gTPKA4g6
-	XR6iU0U6NGBoAXLbb4tHC+QK/tNLm24fesabbjldET+rumYVNvWOkACYa4SCoRfhq1o0V3rHKnu
-	yrb5LLzT7/SvJ6cXq6028XSApMsimz6K5RROyWv0cSto4mU58CbWcWeOH+SAJWiWu29EcROPu6C
-	sCkJLQWqjV92/0PY472E4dInSt+BBiHoo+XBJL3xysH9LO1YPcXtMp9WDBU1MC8w0nZPwVj2CyF
-	MzPpaegtlwHIKgSxzQ74k0gnITzQ68mu+fWxydJ6GsRNC9fycWSBZXVlMhe75q4NkAoZ30dWPM2
-	BvAC3SlimqGU0T6jGQi+nAZEIoskrgW4VD95397OxJ+ifK0tbL5DvijygCNgJ0sexpBRi4RpiSo
-	OxU4+yjt6Nvo7lrGC5Y8mNHXnz/5xGfFZXrsgaDoxGvdmTF2cKhuwMlvAeiGjn0D0rGVsAgYGbR
-	Tjhq2+lCTVw01Eoxy2zucRKJMIdm7PqjEP/FXy595Bo65UrYnFj1g==
-X-Received: by 2002:a05:6000:29c6:b0:48b:5e2:52dd with SMTP id ffacd0b85a97d-48e07bbd36emr9726692f8f.11.1792395604385;
-        Mon, 19 Oct 2026 00:40:04 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:106d:1080:6674:33bf:38d6:bc10? ([2a01:e0a:106d:1080:6674:33bf:38d6:bc10])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48dfd4f8bd9sm22298261f8f.35.2026.10.19.00.40.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Oct 2026 00:40:03 -0700 (PDT)
-Message-ID: <98df3ac1-c6ae-4acb-b0ee-ddda92487660@linaro.org>
-Date: Mon, 19 Oct 2026 09:40:03 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 3/3] i3c: master: svc: Add Amlogic A9 glue layer
-To: junyi.zhao@amlogic.com, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, Frank Li <Frank.Li@nxp.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+	id 1xImxI-00000007RoB-27z9;
+	Mon, 19 Oct 2026 12:59:10 +0000
+Received: from ocn-spm-mts-104c1.ocn.ad.jp (ocn-spm-mts-104c1.ocn.ad.jp [153.128.190.232])
+	by ocn-ckd-mts-119c39.ocn.ad.jp (Postfix) with ESMTP id 42FCF340032D3;
+	Mon, 19 Oct 2026 21:59:00 +0900 (JST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=docomonet.jp;
+	s=20240125; t=1792414740;
+	bh=yTJK65vtCWoQGAdDX9KjcA0ppmoYfDkoKSIPicrNvA4=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=EEu0Ruv2yoOrQu9N3zcQHbQaBcjmQgV6wRhead7Mde7vWztBjumtNi063EO95Yfoq
+	 YlgSwrDCAf1zp2dQPZonG1C6joXrrLrn4J5FC+byIg+0C37gkRG9Km72XISExQlfkb
+	 58WD0a8EP9qw16xQAxiIspVer1ndV1xQGKN0E9H4=
+Received: from ocn-vc-mts-109c1.ocn.ad.jp ([153.149.236.232])
+ by ocn-spm-mts-104c1 with ngmta
+ id bfbdb06f-18dfefb5a722c3ca; Mon, 19 Oct 2026 21:59:00 +0900
+Received: from ocn-sdpx-mts-113c1.ocn.ad.jp ([153.128.117.211])
+ by ocn-vc-mts-109c1 with ngmta
+ id 283b07fa-18dfefb56136f94d; Mon, 19 Oct 2026 21:58:59 +0900
+Received: from docomonet.jp (p3688129-ipoe.ipoe.ocn.ne.jp [153.238.101.128])
+	by ocn-sdpx-mts-113c1.ocn.ad.jp (Postfix) with ESMTPA;
+	Mon, 19 Oct 2026 21:58:58 +0900 (JST)
+From: "Asai, Shigeaki" <y-asai.0816@docomonet.jp>
+To: iav@iav.lv,
+ Thomas Gleixner <tglx@kernel.org>
+Cc: Radu Rendec <radu@rendec.net>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
  Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>, Kees Cook <kees@kernel.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Cc: linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, imx@lists.linux.dev,
- linux-hardening@vger.kernel.org, xianwei.zhao@amlogic.com,
- Kelvin.Zhang@amlogic.com
-References: <20261019-a9_i3c-v1-0-329d819d621f@amlogic.com>
- <20261019-a9_i3c-v1-3-329d819d621f@amlogic.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20261019-a9_i3c-v1-3-329d819d621f@amlogic.com>
+ linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] irqchip/meson-gpio: Allow the GPIO interrupts to wake the system
+Date: Mon, 19 Oct 2026 21:58:58 +0900
+MIME-Version: 1.0
+X-Mailer: HidemaruMail 7.42 (WinNT,A00)
+In-Reply-To: <20261010-meson-gpio-wake-v2-1-790ecc6df792@iav.lv>
+References: <20261010-meson-gpio-wake-v2-1-790ecc6df792@iav.lv>
+Message-Id: <FDD5FC99B1D1792F3006A@docomonet.jp>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261019_004006_682044_3FA55346 
-X-CRM114-Status: GOOD (  30.70  )
+X-CRM114-CacheID: sfid-20261019_055908_925843_993F1768 
+X-CRM114-Status: UNSURE (   3.91  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -134,338 +78,27 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 10/19/26 07:34, Junyi Zhao via B4 Relay wrote:
-> From: Junyi Zhao <junyi.zhao@amlogic.com>
-> 
-> Add support for the Amlogic A9 implementation of the Silvaco
-> SVC I3C controller.
-> 
-> The glue layer provides Amlogic-specific operations and resource
-> handling while reusing the common SVC I3C core driver.
-> 
-> Add a corresponding MAINTAINERS entry for the Amlogic I3C
-> controller.
-> 
-> Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
-> ---
->   MAINTAINERS                          |   6 +
->   drivers/i3c/master/svc/Kconfig       |   7 +
->   drivers/i3c/master/svc/Makefile      |   1 +
->   drivers/i3c/master/svc/i3c-amlogic.c | 250 +++++++++++++++++++++++++++++++++++
->   4 files changed, 264 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index dffc63af2..478979446 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1398,6 +1398,12 @@ F:	Documentation/userspace-api/media/v4l/metafmt-c3-isp.rst
->   F:	drivers/media/platform/amlogic/c3/isp/
->   F:	include/uapi/linux/media/amlogic/
->   
-> +AMLOGIC I3C DRIVER
-> +M:	Junyi Zhao <junyi.zhao@amlogic.com>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/i3c/amlogic,i3c-a9.yaml
-> +F:	drivers/i3c/master/svc/i3c-amlogic.c
-> +
->   AMLOGIC MIPI ADAPTER DRIVER
->   M:	Keke Li <keke.li@amlogic.com>
->   L:	linux-media@vger.kernel.org
-> diff --git a/drivers/i3c/master/svc/Kconfig b/drivers/i3c/master/svc/Kconfig
-> index 14fa1e542..df3528bc1 100644
-> --- a/drivers/i3c/master/svc/Kconfig
-> +++ b/drivers/i3c/master/svc/Kconfig
-> @@ -18,4 +18,11 @@ config I3C_SILVACO
->   	  compatible strings such as "silvaco,i3c-master-v1" and
->   	  "nuvoton,npcm845-i3c".
->   
-> +config I3C_AMLOGIC
-> +	tristate "Amlogic I3C support"
-> +	default y
-> +	help
-> +	  This selects the Amlogic SoC glue layer support for
-> +	  the Silvaco device driver. This driver is used for A9, C5 SoCs.
-> +
->   endif # SVC_I3C
-> diff --git a/drivers/i3c/master/svc/Makefile b/drivers/i3c/master/svc/Makefile
-> index cf18c5da6..695863d1f 100644
-> --- a/drivers/i3c/master/svc/Makefile
-> +++ b/drivers/i3c/master/svc/Makefile
-> @@ -3,3 +3,4 @@
->   
->   obj-$(CONFIG_SVC_I3C)	+= i3c-main.o
->   obj-$(CONFIG_I3C_SILVACO)	+= i3c-silvaco.o
-> +obj-$(CONFIG_I3C_AMLOGIC)	+= i3c-amlogic.o
-> diff --git a/drivers/i3c/master/svc/i3c-amlogic.c b/drivers/i3c/master/svc/i3c-amlogic.c
-> new file mode 100644
-> index 000000000..82300d6ae
-> --- /dev/null
-> +++ b/drivers/i3c/master/svc/i3c-amlogic.c
-> @@ -0,0 +1,250 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
-> +/*
-> + * Copyright (C) 2026 Amlogic, Inc. All rights reserved
-> + */
-> +#include "i3c-main.h"
-> +#include <linux/math64.h>
-> +
-> +/* Amlogic specific registers */
-> +#define I3C_BG_RD_ADDR			0x200
-> +#define I3C_BG_WR_ADDR			0x204
-> +#define I3C_BG_WR_CTRL			0x208
-> +#define I3C_BG_R_TT_LEN			0x20c
-> +#define I3C_BG_X_CNT			0x210
-> +#define I3C_BUS_MON_CTRL		0x214
-> +#define I3C_BUS_MON_ADDR		0x218
-> +#define I3C_BUS_MON_DATA		0x21c
-> +#define I3C_BUS_MON_DATA_MAK		0x220
-> +#define I3C_CLK_SLOW_DIV_CTRL		0x224
-> +#define I3C_BG_R_WCNT_CLR		0x228
-> +#define I3C_DEBUG_MODIFY		0x22c
-> +
-> +#define I3C_AO_CLK_SLOW_DIV_CTRL	0x300
-> +#define I3C_AO_FCLK_DIV_CTRL		0x304
-> +#define I3C_AO_FCLK_DIV_MASK		GENMASK(7, 0)
-> +#define I3C_AO_FCLK_DIV_EN		BIT(8)
-> +#define I3C_AO_FCLK_EN			BIT(9)
-> +#define I3C_AO_DEBUG_MODIFY		0x308
-> +
-> +#define I3C_DEFAULT_FCLK_RATE		25000000UL
-> +
-> +struct amlogic_i3c_priv {
-> +	int num_clks;
-> +	struct clk_bulk_data *clks;
-> +};
-> +
-> +struct amlogic_i3c_drvdata {
-> +	int (*fclk_rate_init)(struct svc_i3c_master *master,
-> +			      struct clk *fclk, unsigned long rate);
-> +};
-> +
-> +static int default_i3c_fclk_rate_init(struct svc_i3c_master *master,
-> +				      struct clk *fclk, unsigned long rate)
-> +{
-> +	int err;
-> +
-> +	err = clk_set_rate(fclk, rate);
-> +	if (err)
-> +		return dev_err_probe(master->dev, err,
-> +				     "setting fast clock rate failed\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static int ao_i3c_fclk_rate_init(struct svc_i3c_master *master,
-> +				 struct clk *fclk, unsigned long rate)
-> +{
-> +	unsigned int div_cnt, reg_val;
-> +	unsigned long fin_freq = clk_get_rate(fclk);
-> +
-> +	if (!fin_freq)
-> +		return dev_err_probe(master->dev, -EINVAL,
-> +				     "can't get I3C fast clock rate\n");
-> +
-> +	div_cnt = div64_u64(fin_freq, rate);
-> +	if (!div_cnt || div_cnt > I3C_AO_FCLK_DIV_MASK)
-> +		return dev_err_probe(master->dev, -EINVAL,
-> +				     "requested fast clock frequency too low\n");
-> +
-> +	reg_val = I3C_AO_FCLK_DIV_EN | I3C_AO_FCLK_EN | (div_cnt - 1);
-> +	writel(reg_val, master->regs + I3C_AO_FCLK_DIV_CTRL);
-> +
-> +	return 0;
-> +}
 
-You could also create a clock divider, register it and use a common clk_set_rate()
-for both setups.
+On 10/10/26 20:20, Igor Velkov via B4 Relay wrote:
+> Set IRQCHIP_SKIP_SET_WAKE, like the other hierarchical irqchips with a
+> GIC parent.
 
-Neil
+Tested on an ODROID-GO Ultra (S922X), where the RK818 and RK817 PMIC
+interrupts come through this controller (GPIOAO_7 and GPIOAO_5).
 
-> +
-> +static int amlogic_i3c_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	const struct amlogic_i3c_drvdata *data;
-> +	struct svc_i3c_master *master;
-> +	struct amlogic_i3c_priv *priv;
-> +	struct clk *fclk;
-> +	int ret, i;
-> +
-> +	master = svc_i3c_master_alloc(dev);
-> +	if (!master)
-> +		return -ENOMEM;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	master->drvdata = of_device_get_match_data(dev);
-> +	if (!master->drvdata)
-> +		return -EINVAL;
-> +
-> +	data = master->drvdata->bsp_data;
-> +	if (!data)
-> +		return -EINVAL;
-> +
-> +	master->regs = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(master->regs))
-> +		return PTR_ERR(master->regs);
-> +
-> +	master->irq = platform_get_irq(pdev, 0);
-> +	if (master->irq < 0)
-> +		return master->irq;
-> +
-> +	priv->num_clks = devm_clk_bulk_get_all(dev, &priv->clks);
-> +	if (priv->num_clks < 0)
-> +		return dev_err_probe(dev, -EINVAL, "can't get I3C clocks\n");
-> +
-> +	for (i = 0; i < priv->num_clks; i++) {
-> +		if (!strcmp(priv->clks[i].id, "fast_clk"))
-> +			break;
-> +	}
-> +
-> +	if (i == priv->num_clks)
-> +		return dev_err_probe(dev, -EINVAL,
-> +				     "can't get I3C peripheral clock\n");
-> +
-> +	if (IS_ERR(priv->clks[i].clk))
-> +		return PTR_ERR(priv->clks[i].clk);
-> +	fclk = priv->clks[i].clk;
-> +
-> +	ret = clk_bulk_prepare_enable(priv->num_clks, priv->clks);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "can't enable I3C clocks\n");
-> +
-> +	master->dev = dev;
-> +	master->bsp_priv = priv;
-> +	ret = data->fclk_rate_init(master, fclk, I3C_DEFAULT_FCLK_RATE);
-> +	if (ret)
-> +		goto err_disable_clks;
-> +	master->fclk_rate = I3C_DEFAULT_FCLK_RATE;
-> +
-> +	pm_runtime_set_autosuspend_delay(dev, SVC_I3C_PM_TIMEOUT_MS);
-> +	pm_runtime_use_autosuspend(dev);
-> +	pm_runtime_get_noresume(dev);
-> +	pm_runtime_set_active(dev);
-> +	pm_runtime_enable(dev);
-> +
-> +	ret = svc_i3c_master_probe(pdev, master);
-> +	if (ret)
-> +		goto rpm_disable;
-> +
-> +	platform_set_drvdata(pdev, master);
-> +	pm_runtime_put_autosuspend(dev);
-> +
-> +	return 0;
-> +
-> +rpm_disable:
-> +	pm_runtime_dont_use_autosuspend(dev);
-> +	pm_runtime_put_noidle(dev);
-> +	pm_runtime_disable(dev);
-> +	pm_runtime_set_suspended(dev);
-> +
-> +err_disable_clks:
-> +	clk_bulk_disable_unprepare(priv->num_clks, priv->clks);
-> +
-> +	return ret;
-> +}
-> +
-> +static void amlogic_i3c_remove(struct platform_device *pdev)
-> +{
-> +	struct svc_i3c_master *master = platform_get_drvdata(pdev);
-> +
-> +	svc_i3c_master_remove(master);
-> +
-> +	pm_runtime_dont_use_autosuspend(&pdev->dev);
-> +	pm_runtime_disable(&pdev->dev);
-> +}
-> +
-> +static int __maybe_unused amlogic_i3c_runtime_suspend(struct device *dev)
-> +{
-> +	struct svc_i3c_master *master = dev_get_drvdata(dev);
-> +	struct amlogic_i3c_priv *priv = master->bsp_priv;
-> +
-> +	svc_i3c_save_regs(master);
-> +	clk_bulk_disable_unprepare(priv->num_clks, priv->clks);
-> +	pinctrl_pm_select_sleep_state(dev);
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused amlogic_i3c_runtime_resume(struct device *dev)
-> +{
-> +	struct svc_i3c_master *master = dev_get_drvdata(dev);
-> +	struct amlogic_i3c_priv *priv = master->bsp_priv;
-> +	int ret;
-> +
-> +	pinctrl_pm_select_default_state(dev);
-> +	ret = clk_bulk_prepare_enable(priv->num_clks, priv->clks);
-> +	if (ret)
-> +		return ret;
-> +
-> +	svc_i3c_restore_regs(master);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct dev_pm_ops amlogic_i3c_pm_ops = {
-> +	SET_NOIRQ_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
-> +				      pm_runtime_force_resume)
-> +	SET_RUNTIME_PM_OPS(amlogic_i3c_runtime_suspend,
-> +			   amlogic_i3c_runtime_resume, NULL)
-> +};
-> +
-> +static const struct amlogic_i3c_drvdata amlogic_i3c_data = {
-> +	.fclk_rate_init = default_i3c_fclk_rate_init,
-> +};
-> +
-> +static const struct amlogic_i3c_drvdata amlogic_i3c_ao_data = {
-> +	.fclk_rate_init = ao_i3c_fclk_rate_init,
-> +};
-> +
-> +static const struct svc_i3c_drvdata amlogic_a9_drvdata = {
-> +	.quirks = SVC_I3C_QUIRK_FIFO_EMPTY |
-> +		SVC_I3C_QUIRK_FALSE_SLVSTART |
-> +		SVC_I3C_QUIRK_DAA_CORRUPT,
-> +	.bsp_data = &amlogic_i3c_data,
-> +};
-> +
-> +static const struct svc_i3c_drvdata amlogic_a9_ao_drvdata = {
-> +	.quirks = SVC_I3C_QUIRK_FIFO_EMPTY |
-> +		SVC_I3C_QUIRK_FALSE_SLVSTART |
-> +		SVC_I3C_QUIRK_DAA_CORRUPT,
-> +	.bsp_data = &amlogic_i3c_ao_data,
-> +};
-> +
-> +static const struct of_device_id amlogic_i3c_of_match_tbl[] = {
-> +	{ .compatible = "amlogic,i3c-a9", .data = &amlogic_a9_drvdata },
-> +	{ .compatible = "amlogic,i3c-ao-a9", .data = &amlogic_a9_ao_drvdata },
-> +	{ /* sentinel */ },
-> +};
-> +MODULE_DEVICE_TABLE(of, amlogic_i3c_of_match_tbl);
-> +
-> +static struct platform_driver amlogic_i3c_master = {
-> +	.probe = amlogic_i3c_probe,
-> +	.remove = amlogic_i3c_remove,
-> +	.driver = {
-> +		.name = "amlogic-i3c-master",
-> +		.of_match_table = amlogic_i3c_of_match_tbl,
-> +		.pm = &amlogic_i3c_pm_ops,
-> +	},
-> +};
-> +module_platform_driver(amlogic_i3c_master);
-> +
-> +MODULE_AUTHOR("Junyi Zhao <junyi.zhao@amlogic.com>");
-> +MODULE_DESCRIPTION("Amlogic I3C master driver");
-> +MODULE_LICENSE("GPL");
-> 
+With this patch, an alarm on the RK818 RTC woke the board from s2idle
+4/4, and the power key (rk805-pwrkey on the RK817) 3/3. /proc/interrupts
+counted each wakeup on the right interrupt. Without the patch, neither
+of them woke the board from s2idle in my earlier tries.
 
+Tested-by: Shigeaki Asai <y-asai.0816@docomonet.jp>
+
+(This reply was written with the help of Claude.)
 
 _______________________________________________
 linux-amlogic mailing list
