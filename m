@@ -2,105 +2,124 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BE4B606A319
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Oct 2026 21:52:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 694FD606A31D
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2026 08:38:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bSj44JXo;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mia+Cm6+
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Zyc1jJgx;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=C+P2pkEj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
-	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Gwau5iBVstnQ2c24CKRzNQehZj8ZIhfnwlhcsubo8zU=; b=bSj44JXoXVAOGC
-	uw80mniBw3Sv1u6JIANmRT/USqyI9UczWAhVVO4nt+PwWO10My5eqOh5m/RDAWU0igwMWox+kfrpg
-	SW7IU5mbppiCte/enkgoAobXatYNJwBc3BdlEhunvjnlLT4rsAWCh056GGiZpjWGOkIu+QZN+uQ24
-	JDX4ef6qF6CMxjEvhOncojWdxWNrccgSbRqKHh988tyhK63W6Nxw64E05grF1dAXJK+wcVZm5f0M5
-	Cz5BeH+lgPzXj2Mht4t95wc/FhF3n+uA7ickyriFB2mNADVsSu+jjswzfO670tfDk39Wt1qMoNF5h
-	LG5uA6MLsUvMHpmkeQxw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=CN3VwA45TmeLwI9QSmFScVJLwO/+wCkXXJMsY+AiKQE=; b=Zyc1jJgxq7mRkoxBn2RltGvRDm
+	sle42yD7p1Zidcd02DC/Are6UVPbZ9NvWIa1RrdU5iE26SbCzVnPElb89ya4OUrGng96PGFcVYUO3
+	khh9Zatnjjnrhs9U65Xpb8kiECk/+ZFpsCbfu5TFUTYk+ekVsfK0sL9C/L5I5zh4E5es1/Tz8B393
+	cT0D6oUCKMFLwu7CDKCiL4yOQBHTj5+Ij180xyD87X6O33fJQXtKBv4ahHG/vzMb78BvokMmE9oml
+	4lpOr3+pUl3qcdjqaNG8QANwpq1RG+24j+IN7rK7UL/XkdMSjYY5/GQy90IoKZu5JXFtUYI5mQfKK
+	i8ZRGqhQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xIvH3-00000008QqG-16w9;
-	Mon, 19 Oct 2026 21:52:05 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xJ5Mu-00000009Cne-1HoC;
+	Tue, 20 Oct 2026 08:38:48 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xIvH2-00000008Qpu-0PCe;
-	Mon, 19 Oct 2026 21:52:04 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7436C4106A;
-	Mon, 19 Oct 2026 21:52:03 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1792446723;
-	b=EcJIzq2B6Xs9kEz1rzogTOli1aPa0trk0uiZOOkz3McEK7Fr2JhCKufv0wUokndECubr
-	 Rofn1/fVtRUttl4qPv8I/HXSAdWW35do74nRshKXFyLzsW332O6laizE5V25tcSqDVX95
-	 RvchjY0UXN2KQ1Qw/w5LnYeW5f26100BEcjLkk/eKyo81X7FYYnHqQVu0wryc9pyiYYvg
-	 JhF7uaxkkvY/w773moRhaq2xa6yLG5pQ6Ew56YFlFl6w7IlKhOQpM4F1nIDtAjTUnGX3w
-	 2AhrTowmjp1fn9lD89o51ZS/tgvNDEmRywSbVtblYUXM9IhYYFZOQNjLiE/Dylzb2Sg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1792446723;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:To:Cc:X-Mailer:X-Developer-Signature:
-	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To:
-	 Content-Transfer-Encoding;
-	bh=229bktF/t4K4pyCM5Cj95EqGyJ2vYACAnwGMT9QBk0Q=;
-	b=UaFV0fc6S6o9p0lFJQTReDB0jvO9n4mE23tio3GaQ3CJ5csvjMGjtBYFxk3G0jllr1A2
-	 2e/gAM0OtjPRDbg2jUjcM2pva7o2e5voojI5QlhZgdmw0vLlHV4mBaFIcUnjSk7tVt7to
-	 VDvKT8BH0iqQhsx5d/tS0rvAE7q78QMUUj6GJGHQLYZD+z650mwcdrfdxKF5IoZTI1F+w
-	 koYf9ng0skQNkeW/E04+OMdauT1j9eKsWqX2Icn2X8kWfcStpwyk5XcMMbX/al6GNt36Z
-	 IAGCsXeWvzYVq2vOUMp7jZrevuzUOVoeSk9PTXgSVkMnqAL2CpGII2EjJgU0FPyN1qQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id D69DB1F000CA;
-	Mon, 19 Oct 2026 21:52:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1792446723;
-	bh=229bktF/t4K4pyCM5Cj95EqGyJ2vYACAnwGMT9QBk0Q=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=mia+Cm6+HDmn9HFtdKtmEUut9YpyexTaQXadGCigrd47X/iYVEfiy4QejCTFekWWj
-	 v3JMR13M7ZTMuCUaiXVXr+F0G5UnW8X8y5R+9tXnkFksm3yUbHq20yqYLY0Ro/yahY
-	 PK2RRLX7BqwyxLyRR7OoSLrPbU3e9LWwF27pXFA9g8nuk8TXQ5b/HJ0fwOWLGTpSqE
-	 cN08f7jYioj9jtSIwnO/HCCSviFwhESFsCeBcP+AsvAZH+P2XD88pn7eHQW4/83uvY
-	 Gb3NQ8fMdm1eqgM/oa6gFPG9tp7vgzxrcQmGIF1uXXx+k4JEGmzdqOIcMtuXoffyUE
-	 7bkDqTL/fu1rw==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 6A1C6400AB;
-	Mon, 19 Oct 2026 21:52:02 +0000 (UTC)
-From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Mon, 19 Oct 2026 21:52:01 +0000
-Subject: [PATCH] arm64: dts: amlogic: meson-sm1-odroid-hc4: wire the RTC
- alarm interrupt
+	id 1xJ5Mr-00000009CmP-3LqV
+	for linux-amlogic@lists.infradead.org;
+	Tue, 20 Oct 2026 08:38:47 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4a01933b584so20977715e9.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 20 Oct 2026 01:38:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1792485523; x=1793090323; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:organization
+         :autocrypt:content-language:references:cc:to:subject:reply-to:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=hogL549jM3ExbqUca/Ckmvahf2uy1aT58g4/4SYGND4=;
+        b=C+P2pkEju97hNogJnVFbwOO/hFTKN09SBUMs1IMYDmlOYamJoRBxm2ElCBuCetVsnQ
+         N2MBCpb8/KUVp1E0j7MlzkqxaGH0HGg6iSVeYlHXSn+TbDTDE/KwBhNUvYkrx9+x67lJ
+         hy+yawjcVKGo6ICoSWg84LeomY/Sqk53Q4FKVXIn1I740WS7wFAkqWNpOrNpkxbPJFwY
+         2ORBxGyJAeZkGDD3uu/LsdJTViq8m/beYGQZLbPJi+JTCukrkPrZxcZ7tGIYwjboQ3kL
+         M4y1iJBrpv0r6WXQIXgERADDZ8I1pPwanIIg9xTOLSVwv/5iPbv2Z2GrpZdYkXzDQWyw
+         fxyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1792485523; x=1793090323;
+        h=content-transfer-encoding:content-type:in-reply-to:organization
+         :autocrypt:content-language:references:cc:to:subject:reply-to:from
+         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=hogL549jM3ExbqUca/Ckmvahf2uy1aT58g4/4SYGND4=;
+        b=MD19yESewbBA7L+PXNU407i4iqjFHSNxh6T9lW8MqAqzplzUYbq4+E+7gGv4HLlpI9
+         4IRw/5Oa1Dk/JSDdVi9g+d0raUGY3LfoBdrQ0iPE7n434DhmCf0MLxg6DacNhUCJwwaZ
+         EafoJ3EFH/+ac1Z4mx9AWlxEtaAUQa7ySqD+ie7iYj1pyfsEjWHVm/EnKD9G6n/HlYyO
+         XY4wO1hfYPlvIvY0OBpl1fd0Ic6TPA/jv9io/xkma5oGQaAVUVhPE55a7b2+3VjrEAXL
+         rptkdfgtU1eBn2Unztm6L9o2zC/1wXAvSkaZ9fxHcdCn/Gq10g4CKW5oyaVu4oj6Dd0M
+         tv5w==
+X-Forwarded-Encrypted: i=1; AKwUvBzOlr4wSwgtnbprEHI4qJZFuG/WNi3MekW0RMZ7OwA4JqvQXsaTfel9Kw9zoZT8w0uKQybjdq2vT8cvKVDR@lists.infradead.org
+X-Gm-Message-State: AFq9FYKCdjYxyPS9VUf6zeSLdPsMmklUWTSXiAkxfJ3jck9ugV8nZdh2
+	H3Gny+Y90vKXOPTld5DSEeh47zPW70l+/1zjNDLGfSYcoF0MfVG6tswx/WR6EwavoBg=
+X-Gm-Gg: AYBFou0Ishp1EMFqYgkb9PJfuCvX6B3Ri/4ZmpZxRbkItmwTecjxzp3huIJbKYLieTN
+	TsamPE+o/YI0xnMZG6893SvhGe8HEoDCfWUCSPAy0FM5X0o4U6SMi9ZZatgqsYIhICdZojHTc4U
+	eyffkR/VhLkpOZEXGklGQVi+k88a1sdf5wA3TXdX7tyC2X8q1TsEuQgvCxP6CW9xLFbi2WLd/tP
+	2W7CbIwxkaa9wSQLR1fVAdlwcQKjCfoqnqai4cR0gtfra8+9b622DOSODFws4cU+aUHzNFgRCTu
+	FrxcmhUGr7xyPOMElzrhflkSWdMjQmuuYZUReMa0Ih+y/oaqvHuE0mf53+xb3zo+rOHhurWydyY
+	uEbSxN84fgM7VJDEUcaAOW5rKMgZUF0BxBU30I5fc9tyT2ZEawXVbV5M4b593wwYIy1do9KkZgH
+	B4Bu1vT1A886lHgKpDFudM/IaJhkmEpcxQ0nDVwoSqH/XCkt08Wr3T6T2z8f2db23V52n84pLZT
+	bAd2BU6/ccYL+wuIKUbsFilVdWYShipM6f+L8FV0GrLo3bFBNR9Yw==
+X-Received: by 2002:a05:600c:46cf:b0:4a1:f8cb:7d70 with SMTP id 5b1f17b1804b1-4a1f8cb7ecemr12546735e9.24.1792485522235;
+        Tue, 20 Oct 2026 01:38:42 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:106d:1080:e3a1:1a65:a394:be54? ([2a01:e0a:106d:1080:e3a1:1a65:a394:be54])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4a1df370381sm163461605e9.1.2026.10.20.01.38.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Oct 2026 01:38:41 -0700 (PDT)
+Message-ID: <7ccd519c-9c45-4a3c-a0d4-2a082c4c0306@linaro.org>
+Date: Tue, 20 Oct 2026 10:38:41 +0200
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261019-hc4-rtc-alarm-irq-v1-1-078fc79e596f@iav.lv>
-X-B4-Tracking: v=1; b=H4sIAACR1moC/x3MTQqAIBBA4avErBtQsYiuEi3Uphrod4wIwrsnL
- b/Fey9EEqYIbfGC0M2R9y1DlwWE2W0TIQ/ZYJSptTIK52BRroBucbIiy4ne+CbUzVDZsYLcHUI
- jP/+z61P6ALS5vPZjAAAA
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH] arm64: dts: amlogic: meson-sm1-odroid-hc4: wire the RTC
+ alarm interrupt
+To: iav@iav.lv, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Igor Velkov <iav@iav.lv>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1527; i=iav@iav.lv;
- h=from:subject:message-id;
- bh=gqWYjjz0xRwzUadDg123AIW6B3N3BYaR8H5aIi6Ymss=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDFnXJjIKXTE26pG/dCvY67j7dRmrhfs/i4TzbTrct3yua
- I/1ioTnHaUsDGJcDLJiiiwTDmncylhy9a+/h/kDmDmsTCBDGLg4BWAiAacYGRq+7Jc36d0uJfho
- TvPjvC/5dvMu+lTmaF/KDVVmvfH3z0SG//Vbzm33EYqv7Dlr5Tq91WXqRR6WnFnvZqzkf9swc51
- 4CDMA
-X-Developer-Key: i=iav@iav.lv; a=openpgp;
- fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
-X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
-X-Original-From: Igor Velkov <iav@iav.lv>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20261019-hc4-rtc-alarm-irq-v1-1-078fc79e596f@iav.lv>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20261019-hc4-rtc-alarm-irq-v1-1-078fc79e596f@iav.lv>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261020_013845_889813_4C6E0B86 
+X-CRM114-Status: GOOD (  17.59  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,65 +129,68 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: iav@iav.lv
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Igor Velkov <iav@iav.lv>
+On 10/19/26 23:52, Igor Velkov via B4 Relay wrote:
+> From: Igor Velkov <iav@iav.lv>
+> 
+> The PCF8563 on the OLED/RTC add-on board drives its interrupt output
+> to GPIOX_5, pin 4 of the P1 header, but the rtc node does not describe
+> it. The alarm interrupt is therefore never delivered and cannot wake
+> the board.
+> 
+> Describe the line as a level-low interrupt of the GPIO interrupt
+> controller.
+> 
+> Tested on ODROID-HC4: the alarm interrupt fires and wakes the board
+> from s2idle.
+> 
+> Assisted-by: LLM
+> Signed-off-by: Igor Velkov <iav@iav.lv>
+> ---
+> This needs commit 5831f5fef100 ("rtc: pcf8563: pass the driver data to
+> the alarm interrupt handler") in the rtc tree: without it the first
+> alarm oopses. Waking from s2idle also needs commit 5b6e2a46b80d
+> ("irqchip/meson-gpio: Allow the GPIO interrupts to wake the system")
+> in tip irq/drivers.
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
+> index 5f15c2299509..25a8a60e152c 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
+> @@ -105,6 +105,8 @@ rtc: rtc@51 {
+>   		status = "okay";
+>   		compatible = "nxp,pcf8563";
+>   		reg = <0x51>;
+> +		interrupt-parent = <&gpio_intc>;
+> +		interrupts = <IRQID_GPIOX_5 IRQ_TYPE_LEVEL_LOW>;
+>   		wakeup-source;
+>   	};
+>   };
+> 
+> ---
+> base-commit: b44e2be772f866985cafdf90355285069ea68495
+> change-id: 20261020-hc4-rtc-alarm-irq-b2b8c68d54f5
+> 
+> Best regards,
 
-The PCF8563 on the OLED/RTC add-on board drives its interrupt output
-to GPIOX_5, pin 4 of the P1 header, but the rtc node does not describe
-it. The alarm interrupt is therefore never delivered and cannot wake
-the board.
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Describe the line as a level-low interrupt of the GPIO interrupt
-controller.
-
-Tested on ODROID-HC4: the alarm interrupt fires and wakes the board
-from s2idle.
-
-Assisted-by: LLM
-Signed-off-by: Igor Velkov <iav@iav.lv>
----
-This needs commit 5831f5fef100 ("rtc: pcf8563: pass the driver data to
-the alarm interrupt handler") in the rtc tree: without it the first
-alarm oopses. Waking from s2idle also needs commit 5b6e2a46b80d
-("irqchip/meson-gpio: Allow the GPIO interrupts to wake the system")
-in tip irq/drivers.
----
- arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-index 5f15c2299509..25a8a60e152c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-@@ -105,6 +105,8 @@ rtc: rtc@51 {
- 		status = "okay";
- 		compatible = "nxp,pcf8563";
- 		reg = <0x51>;
-+		interrupt-parent = <&gpio_intc>;
-+		interrupts = <IRQID_GPIOX_5 IRQ_TYPE_LEVEL_LOW>;
- 		wakeup-source;
- 	};
- };
-
----
-base-commit: b44e2be772f866985cafdf90355285069ea68495
-change-id: 20261020-hc4-rtc-alarm-irq-b2b8c68d54f5
-
-Best regards,
--- 
-Igor Velkov <iav@iav.lv>
-
-
+Thanks,
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
