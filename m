@@ -2,105 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16B82606A31D
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Oct 2026 17:30:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E018F606A32A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Oct 2026 02:20:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=r32VGQqC;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=EOrluGdR
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Y66zLNy+;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NYaa27a+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
-	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=/nOi+hx+eqjF3eD6Op9iISjGd2RZKqYv2BAXWQVP15w=; b=r32VGQqC1I4PZv
-	fN1aZoLIM+B8FDICPdWqiu9zzK8zueB4bFpki/JKMux+7z3zZQMZqoFKmz/duDfKJLk/YYXFynBr1
-	TZS/fflftMjekbgyJ1W9F+/IdRZYkMchw2t0AgFB3T2bmUhqpmcELWJJf9H6WzL7RqOCSgUU+oQ92
-	Rok+zP5OLRWyuCVSXnEkGf2qfQUO1PqNA8DZXCnbtGwn414UQs0QulmYM2v0IKCw7ihtqhPrW/8wV
-	2CcY9oB8+YYbU81CkPEO4lQaKQ5c4L8neUXFK1pr+uz8B7XVLiemoA82PJAX5ET+XfrvtmzWrgvuI
-	aOaC0LB9nf7fnNYEfdYA==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
+	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=pSCtO2sfBiiv5Cd0QYe4Vn7UzP5rTjOWA7cPBppAU3k=; b=Y66zLNy+wfEAkJ
+	NbAE39CK7O/MTJlPiwnMKt2b0T5PElWS9IxbHZhDzehe1nQruTdBPJvs9KqB1pSkM4X1N83/xz/ew
+	/e4mTDGZzkF9aGfgCys8mUu33LShWz2doDqFS2ttsipnLtnrijYspoJiX22S/cx20wXNoSOnQmeSL
+	ggc/8i1lXYHWfjpRYLDzxJxbH3lO0iuDswAONFcZQyR1XlVbgnOBhsHj7lAqeTzpEHieIgfchqy8g
+	mG3EiWpmzCnila+Ild/kWGGLwTVTV5zBFledVLxOJzlSI6ditzide9gOeaqLXI64DWRL3YbLMbiPs
+	s6imUcNFHfvbERd2bBtw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xJDf8-0000000ALKp-2Pxc;
-	Tue, 20 Oct 2026 17:30:10 +0000
+	id 1xJLw5-0000000Aw4y-3QmE;
+	Wed, 21 Oct 2026 02:20:13 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xJDf7-0000000ALKd-3jW1;
-	Tue, 20 Oct 2026 17:30:10 +0000
+	id 1xJLw4-0000000Aw4j-2zpI;
+	Wed, 21 Oct 2026 02:20:12 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id F1F8E60DEE;
-	Tue, 20 Oct 2026 17:30:08 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1792517408;
-	b=oD5s2Dvb+icY3Zgha9l7m5o2iUonODX8UgGmzHx1iglBp0OhdJfG9PDqv66FbyL2g7Mr
-	 WGkb1meOOYSQ9gyvrIEjMyglhtPGt4WiC+2uKCq3oCzeMkuOBDcqNI0J6TMJp/N7e7f8t
-	 cOueVzOQzCUuL7mHwTHsr/P2q7DmUF3/lTHQqAbpFLhbB5fbnEe/MY7m8k7z6TJm8K7AM
-	 r5yOkqM1uFn6t3Wj4TNMQXnzTWffgwtAifSINx+kjcVkWOVPuwhDjqO2F4nB9AxXlZ+P5
-	 dExBvHpSkqtstewqZyLbfTk05OiZ52kEtjYyYhQMNFDw7tVo9A51nAla9lXrlUxs9TQ==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1792517408;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:To:Cc:X-Mailer:X-Developer-Signature:
-	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To:
-	 Content-Transfer-Encoding;
-	bh=rqO/CKqWZdrB+rJyWI0tCLcDKt2oC8zbgVmrKbIOvd4=;
-	b=uIdYUBNni3nGm72thlnmwhL5fE3+q03yTG8YQHZebf0Bbaorv3zOefePghn/3e21ddSR
-	 ABFFw+QOIjm0ZSgpvoQxE+dAXZJS9NRV62uOyUhN00447eOTeSEGA5064XpvhgpHwq9kM
-	 /46jsFC7Am+N4Mq4iS9eOatnB2rQUmAMN0mOrCqKexyMFDba0QWVzhlgKarZ90+7aK15O
-	 OyIcvxgUlCa1w2SUwEmXlvqQ/cr7CZewsrhVwK063jjdHwm7dzWvViHxaZyznvZSXTa6/
-	 ee/6h3mN3eJGQi2bKLuWdl9dkjZRjqWaPiXipzYHyFm0SdFWk0lTtxtSZ6A2A9dVaSA==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 350631F000C9;
-	Tue, 20 Oct 2026 17:30:08 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 638FA60A66;
+	Wed, 21 Oct 2026 02:20:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BC5E1F000CA;
+	Wed, 21 Oct 2026 02:20:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1792517408;
-	bh=rqO/CKqWZdrB+rJyWI0tCLcDKt2oC8zbgVmrKbIOvd4=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=EOrluGdR/v719VpZIfUV74WpULIASUIPdoXL/tHyymzHUgei6uJ2jEEUSrYgyicpP
-	 dFjK2qAS0dEKXKEK2f3fa6o3dBygcZ16Mz2gghMBxgUKFU5K54IZEer0il37psDMqi
-	 26Q8yHC/PO6oyDblOCTNVnTXex3ONmBU/4XpLY3Q24uC/7EeUfqhKAs2k14ZzZM6Ys
-	 DJtlKsezM+zvfKwph6kxY1l/eXWAwrvl7VOPi8+U9AINEie1wz7VvrbVyU705GRVKA
-	 VTCWuHhBHUrGMXdWOxDDZRsInybbdw21oVW9yB4qodHx2OCp5oF6cCgnJu3xeySC7a
-	 Yml4KSVWqBAjg==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id A1E3943181;
-	Tue, 20 Oct 2026 17:30:07 +0000 (UTC)
-From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Tue, 20 Oct 2026 20:28:37 +0300
-Subject: [PATCH] watchdog: meson_gxbb_wdt: fix suspend/resume handling of
- HW_RUNNING watchdog
+	s=k20260515; t=1792549211;
+	bh=CPwgKGW+9+HgEnPqxnA55xboDkaUxoq5NKTXtZj/nJE=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc;
+	b=NYaa27a+E7gei+Ol9psKdfXfiAU6OpungqJR76z1KeeQFEFjyBLQ7xIxVzxWnluTL
+	 lv3N7b/TqCO/EiJdxHVaCU/fcS6BXhoq6fF14VrgR+8ZHJNQf46BZXs2+XZrUw9yu2
+	 /5Dr1WnBxhlBBstrX1xZ2aF6ul1B9XIocoPHlvkMtCSnKmDJeRAtjl0UvhLiY7ZJYp
+	 3UJd9MC0EZ19gJ/B5qErRGgDAFgHjiX+qs3qfbAw2AxYBptLmuv9JTlDFdtBnYRi2t
+	 k1Q1LqBg+wMQ3NJei12Fvm2YJG37ykFf7fVyuZSUo5hlj3OGXZY/EK4OAQNR3gnpqp
+	 SiLeJk2xQV++w==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id F146D3809A0D;
+	Wed, 21 Oct 2026 02:20:10 +0000 (UTC)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261020-meson-gxbb-wdt-suspend-v1-1-d5abe4340008@iav.lv>
-X-B4-Tracking: v=1; b=H4sIAMSk12oC/x3MPQ6AIAxA4auYzjZBBlCvYhxQqnYQDfWHxHh3i
- eM3vPeAUGQSaIsHIl0svIWMqixgXFyYCdlng1baVEorXEm2gHMaBrz9gXLKTsGj89ZOjTXKuBp
- yvEeaOP3jrn/fD3NgT0FoAAAA
-To: Wim Van Sebroeck <wim@linux-watchdog.org>, 
- Guenter Roeck <linux@roeck-us.net>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Philippe Boos <pboos@baylibre.com>, linux-watchdog@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Igor Velkov <iav@iav.lv>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2222; i=iav@iav.lv;
- h=from:subject:message-id;
- bh=sRv9WsAiYhuKwPOnpeKTfGsN/HKl13MoG+1oyJNF3pA=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDFnXl8oFK5/3KmUNFvRYWPXuus1sB4G68vNb+rIWO/n82
- 33zHldARykLgxgXg6yYIsuEQxq3MpZc/evvYf4AZg4rE8gQBi5OAZhIjS4jw/40D7UdWeeS+W5E
- vV3I/WNR9qIzLkabjQPjXi7ZnPHtszMjw75lBx9c6Li346oIh0Gi+p2SOFUOyR4Db82VksfSHHN
- /8gAA
-X-Developer-Key: i=iav@iav.lv; a=openpgp;
- fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
-X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
-X-Original-From: Igor Velkov <iav@iav.lv>
+Subject: Re: [PATCH net-next v16 0/7] net: stmmac: qcom-ethqos: add support
+ for
+ SCMI power domains
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: <179254920980.330607.14638814196996636300.git-patchwork-notify@kernel.org>
+Date: Wed, 21 Oct 2026 02:20:09 +0000
+References: <20261014-qcom-sa8255p-emac-v16-0-0266c2ead980@oss.qualcomm.com>
+In-Reply-To: <20261014-qcom-sa8255p-emac-v16-0-0266c2ead980@oss.qualcomm.com>
+To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, andrew+netdev@lunn.ch,
+ davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, vkoul@kernel.org,
+ peppe.cavallaro@st.com, wens@kernel.org, jernej.skrabec@gmail.com,
+ neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com,
+ shawnguo@kernel.org, festevam@gmail.com, jan.petrous@oss.nxp.com,
+ s32@nxp.com, mohd.anwar@oss.qualcomm.com, romain.gantois@bootlin.com,
+ geert+renesas@glider.be, magnus.damm@gmail.com, mripard@kernel.org,
+ christophe.roullier@foss.st.com, brgl@kernel.org, edumazet@kernel.org,
+ radu@rendec.net, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, dfustini@tenstorrent.com,
+ linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org,
+ linux-mips@vger.kernel.org, imx@lists.linux.dev,
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ sophgo@lists.linux.dev, linux-riscv@lists.infradead.org,
+ bartosz.golaszewski@linaro.org, sashiko-bot@kernel.org,
+ martin.blumenstingl@googlemail.com, krzysztof.kozlowski@oss.qualcomm.com,
+ prabhakar.mahadev-lad.rj@bp.renesas.com
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,77 +86,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: iav@iav.lv
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-9.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Igor Velkov <iav@iav.lv>
+Hello:
 
-meson_gxbb_wdt_suspend() and meson_gxbb_wdt_resume() only check
-watchdog_active(). Since commit 6adbfbab0f03 ("watchdog: meson: keep
-running if already active"), probe keeps a watchdog left running by the
-bootloader and sets WDOG_HW_RUNNING. If userspace never opens the
-device, WDOG_ACTIVE stays clear and the timer is not stopped for system
-suspend.
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-On an ODROID-HC4 (S905X3) whose U-Boot starts the watchdog, with no
-userspace owner, the board does not wake from deep suspend
-(rtcwake -m mem -s 60) in 2 of 2 attempts and needs a power cycle.
+On Wed, 14 Oct 2026 14:36:39 +0200 you wrote:
+> Add support for the firmware-managed variant of the DesignWare MAC on
+> the sa8255p platform. This series contains new DT bindings and driver
+> changes required to support the MAC in the STMMAC driver.
+> 
+> It also reorganizes the ethqos code quite a bit to make the introduction
+> of power domains into the driver a bit easier on the eye.
+> 
+> [...]
 
-Stop the timer on suspend and restart it on resume also when it is only
-running in hardware, as sp805_wdt does. With this change the board
-wakes from deep suspend in 4 of 4 attempts, and the kernel pings the
-watchdog again after resume.
+Here is the summary with links:
+  - [net-next,v16,1/7] net: stmmac: dwmac4: don't program the 1us tick counter without a CSR clock
+    https://git.kernel.org/netdev/net-next/c/d09d7b8e86e5
+  - [net-next,v16,2/7] dt-bindings: net: qcom: document the ethqos device for SCMI-based systems
+    https://git.kernel.org/netdev/net-next/c/534198a05d92
+  - [net-next,v16,3/7] net: stmmac: qcom-ethqos: set serdes mode before powerup
+    https://git.kernel.org/netdev/net-next/c/7af44cb9e447
+  - [net-next,v16,4/7] net: stmmac: qcom-ethqos: update phy_mode to the resolved interface in mac_finish()
+    https://git.kernel.org/netdev/net-next/c/05b3ea7346e3
+  - [net-next,v16,5/7] net: stmmac: qcom-ethqos: reuse the address of ethqos_emac_driver_data
+    https://git.kernel.org/netdev/net-next/c/92719abd6378
+  - [net-next,v16,6/7] net: stmmac: qcom-ethqos: factor out linux-level setup into a separate function
+    https://git.kernel.org/netdev/net-next/c/acf1e3db9151
+  - [net-next,v16,7/7] net: stmmac: qcom-ethqos: add support for sa8255p
+    https://git.kernel.org/netdev/net-next/c/bb3183e1c938
 
-Fixes: 6adbfbab0f03 ("watchdog: meson: keep running if already active")
-Assisted-by: LLM
-Signed-off-by: Igor Velkov <iav@iav.lv>
----
-The same change as commit 1c81d4a5cda2 ("watchdog: sp805_wdt: fix
-suspend/resume handling of HW_RUNNING watchdog") in watchdog-next.
----
- drivers/watchdog/meson_gxbb_wdt.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/watchdog/meson_gxbb_wdt.c b/drivers/watchdog/meson_gxbb_wdt.c
-index fb276060e831..fa6953d106ac 100644
---- a/drivers/watchdog/meson_gxbb_wdt.c
-+++ b/drivers/watchdog/meson_gxbb_wdt.c
-@@ -124,7 +124,8 @@ static int __maybe_unused meson_gxbb_wdt_resume(struct device *dev)
- {
- 	struct meson_gxbb_wdt *data = dev_get_drvdata(dev);
- 
--	if (watchdog_active(&data->wdt_dev))
-+	if (watchdog_active(&data->wdt_dev) ||
-+	    watchdog_hw_running(&data->wdt_dev))
- 		meson_gxbb_wdt_start(&data->wdt_dev);
- 
- 	return 0;
-@@ -134,7 +135,8 @@ static int __maybe_unused meson_gxbb_wdt_suspend(struct device *dev)
- {
- 	struct meson_gxbb_wdt *data = dev_get_drvdata(dev);
- 
--	if (watchdog_active(&data->wdt_dev))
-+	if (watchdog_active(&data->wdt_dev) ||
-+	    watchdog_hw_running(&data->wdt_dev))
- 		meson_gxbb_wdt_stop(&data->wdt_dev);
- 
- 	return 0;
-
----
-base-commit: 6276c8195e598361942082423114877265c17692
-change-id: 20261020-meson-gxbb-wdt-suspend-ad77f97606a8
-
-Best regards,
+You are awesome, thank you!
 -- 
-Igor Velkov <iav@iav.lv>
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
 
