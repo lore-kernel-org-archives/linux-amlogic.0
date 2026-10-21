@@ -2,144 +2,113 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBA16606A31A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Oct 2026 14:37:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C35560A4AD8
+	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Oct 2026 15:08:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BATTVzX7;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=ucX01732
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PvewL+kf;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=olo2HQe5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:In-Reply-To:
+	Cc:To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=p7e+NUrGm4ZyFCvL7KseAXH/L2joSfGhwRhIGfEvr1E=; b=BATTVzX7Vi8gkp
-	ca6hoWPspGwETIwevrvxQ4CI//RBMSj29BS6JFFoXTLuuCLZHD6skIaNQfvTM65LRKbBQ4jHa0Xm2
-	dS4UbkhOA9RAtennsrbEZZtCHrYH3QjLH8LMMexaMwbNNvRDRcQkmG341Sw7d8994wIeFLrSMtkwU
-	bfDVeMt6ASG2BeztXg2v6atTfeV/FE1SlzX7CgmybXxkPkKX7W0uAocCM8lw4DkGeklfIHzTUINfB
-	f2tCyW0YcsWcdWtAKWoghPWlujbPpLJ3Uiai0CZUgG+yVU3xUjQ0iWBq6wXXMpQ8as4SrwZKesdY9
-	2aiQoV20D2czFwNYSVYw==;
+	List-Owner; bh=+PLIiv38+tnRs118rqJra22fkY5MR2lfxmOn4roreJA=; b=PvewL+kf3urcbR
+	LJHYtZbstKUrRbzcBg4jUqCsZSnXcRhJrCSHgGwL7vRKDcugAFgN7qSUg7MjxeWgHdJleAW0Jv9BB
+	UvbDN2hkbFkta4bP49SG+rEAJ39zHxG2k2CZy/RbwrgmksAEpI99jKWMmLYT0mQtqttBy3+20Q5sF
+	kLDbk/mjeIaTOFGYTabsRZ3a02KbMRjzkcUTGed43zgkJf2yqs3trwZAMNNUUbUWoCUA7jbgHL2Tk
+	j8gZQ7nde76kQF28k9M3w0eoKdHTFuP5zgZwH2aBSXC038wI+vaEYJrhnd1/nQJNuK9rLZetauo3J
+	5TTSs+10AyxyX9YjOoEA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xJXRT-0000000C7G7-0xDQ;
-	Wed, 21 Oct 2026 14:37:23 +0000
-Received: from mail-norwayeastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c20f::7] helo=OSPPR02CU001.outbound.protection.outlook.com)
+	id 1xJXvS-0000000CCd9-3oUw;
+	Wed, 21 Oct 2026 15:08:22 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xJXRQ-0000000C7FJ-2Rhl;
-	Wed, 21 Oct 2026 14:37:21 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GOZOWsqsMYS62hxWa2g5YwWt3gOrMB+7p/XxT540Q8ZGYGSobRrigOSLoS4OcWarynBINPF7Vdidn9fOuxhehh9xFzxMO1RvsUVNQX45nNNcB7Zr/i0+bM1V7mq+AxingWTJDlOdg28DHV6x76YG5byCRJsRQQl2DGjz3SYl6jCgWhXDPuBBXZiV3I0ysGcNeOjtkZN0XzzC1LiEE191J0/aR5y5aUWQqdZw3PWctDzuKiC9V4wg694sx6kbP11cP84SNnxvUsvaKSzUc3R44k7d56Hp755fn1mClXR2bGH5I+TTwmDpjhglzo0iOZeDllCm4CUjfCEa3QdqzBKsSw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/zOBCCMcC9+Ss7AsuwDjFtkz7VCjAw/hS+sgCQ3RMwY=;
- b=m5jhVwzXtevM7bSV+gMpQ3SSKHZ1AtQhkfw+HItp+gmI5S5IWPbmu3jDLrtjfrvpnFoD7bfsPye7GttQUV8NCW4z7BgqkczE4h4WEFsO1+JoRpMmrxbqpD7BlCLTmaaZJ0Tetawy/1vcLhNI9hSfxQVFxcel3hh64AKjT7xnjnCsxr6IA/4Sc3iHGtNDsjBHaVfdxSJ7Fb1dCbIHNH5V+9J3mqQc2c2VJV75cpPgvB2eI80jRliRZFya90UgkqObnoLhWdWbFiQQiKP5zDxmck6hxfq/qm32/AUFQKWUosAnrQMPC+e8sFeeAAn7H3V+1+4BQps7CK6j/V32JJ3IjQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/zOBCCMcC9+Ss7AsuwDjFtkz7VCjAw/hS+sgCQ3RMwY=;
- b=ucX01732tOwOVCxYuVyeV0CYv22VdmrUOroa+Niuf4fZw271evv+hIaw6C179e6w0DNfzKGYY6KYZd5dwbG3fipx40ZQBHSUTmzBWfr/n5afeglRBd/Ua8i9UXdyVacYhquruS1LI+ie0TvAySCUEO2aDQMDYiDk86GG7kK1QnIMVHNRAKa+RIXvgozj0jhht+MpcEa2Jje+Nf/2lvlUZZMB+gEOVM8XDvUUWeo5tVEBLHdcC80q6bG/+hjy+pwHyHl7hQ4Mz+n3xBRGdnuJen+JID5Y4/KzQqjIKfEYCrqwCOTSrm/+jxWk1Mtu0hqfKbLrFzfPDHo1x3Nfy7PwJw==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by VI0PR04MB554873.eurprd04.prod.outlook.com (2603:10a6:800:361::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.522.19; Wed, 21 Oct
- 2026 14:37:15 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%6]) with mapi id 15.21.0546.012; Wed, 21 Oct 2026
- 14:37:11 +0000
-Date: Wed, 21 Oct 2026 10:37:03 -0400
-From: Frank Li <Frank.li@oss.nxp.com>
-To: Junyi Zhao <junyi.zhao@amlogic.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, imx@lists.linux.dev,
-	linux-hardening@vger.kernel.org, xianwei.zhao@amlogic.com,
-	Kelvin.Zhang@amlogic.com
-Subject: Re: [PATCH 1/3] i3c: master: Rework SVC I3C to support vendor glue
- layers
-Message-ID: <atjOD0PwVGDeh2uL@lizhi-Precision-Tower-5810>
-References: <20261019-a9_i3c-v1-0-329d819d621f@amlogic.com>
- <20261019-a9_i3c-v1-1-329d819d621f@amlogic.com>
- <atZ-YyEmG-KvUZAF@SMW015318>
- <887f0b2d-3a05-418b-bda5-0b01abbcb409@amlogic.com>
-Content-Disposition: inline
-In-Reply-To: <887f0b2d-3a05-418b-bda5-0b01abbcb409@amlogic.com>
-X-ClientProxiedBy: DS7P221CA0028.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:8:25c::14) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	id 1xJXvP-0000000CCbU-3a94
+	for linux-amlogic@lists.infradead.org;
+	Wed, 21 Oct 2026 15:08:21 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4a1dede3c2cso11216005e9.2
+        for <linux-amlogic@lists.infradead.org>; Wed, 21 Oct 2026 08:08:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1792595298; x=1793200098; darn=lists.infradead.org;
+        h=message-id:date:references:in-reply-to:cc:to:from:subject
+         :content-transfer-encoding:content-type:mime-version:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=m0Hjc8l32fjqZfSZIiJhNxKSLbC3uFZbj2Kv1jpon6Y=;
+        b=olo2HQe5NOoTVr7+NsHeWpF/OYC/mE8558cPVdOlmKzaIbmnLjY5fdTQIGVbgYSSmH
+         19X/GF49X1GTYkvUZJnsXg9jS9BkMpmWzAsUD1Kb+Y417Nc/BySZ7qDV3RND34rBGvIx
+         YXA1dCfvpjgZd1PzR+mhIlWH/PCzT3AOuvjjeRIN41/AEijOsD9aEyh2FM29fbelMjaq
+         A2XEiNmfYsxUSijCyVfOdpfvJZiw3p8gjz3vFX5HM7+pnKScanMoy1iZKV1G3dfXYEiG
+         EqzifzhYK3ngcCbkEUK8tNsT9gJqqWpWnWneY3bmIaO3U6P8VCKl5mYx0pV4t8geOQ09
+         xGvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1792595298; x=1793200098;
+        h=message-id:date:references:in-reply-to:cc:to:from:subject
+         :content-transfer-encoding:content-type:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=m0Hjc8l32fjqZfSZIiJhNxKSLbC3uFZbj2Kv1jpon6Y=;
+        b=WAXk6Y7mw3I+KYt9YowBLxWgEkGuylXr3dq+qcv5cNohl29shDtFjQBATDpXm0t1Et
+         pS48vvpIi31b60JlAT0iQSYgg9PvQ4JRNMRYrcZ94FXcLGRIsdgsrXEWCSTX+xaVJ632
+         qddNlNA4ExXqixeENOUKT/ybSLrStaZOnAJak/1GjMCngE7puNLpLc2/fkZ9MxpVzraF
+         e4V6dQePt7v5z+zPaOK6tlTFd1XEh/24zExANNPAr/6YejYte8krElEov/hvsTJTEx3h
+         Td9Irg9Z4pN4vFbPqjdfOtWRqtqKoHcPJPUsPp9QWJg2k2kLdtaoyHvtg6p9t4/WR7UR
+         UYig==
+X-Forwarded-Encrypted: i=1; AKwUvByq+jbl0puyWGtLN9zaLiOf4yqHBh9wPyQYZ84mUF7gT4tm6jdxV691spYP8VxQqZ1l8NochNM5UXhN4Wq/@lists.infradead.org
+X-Gm-Message-State: AFq9FYKr4pdI6VprNhB3H9q2ObKMxA00FYiLB1I77KREMyq3e7iksa5s
+	6ALaRDOLddBoU45MUlC+hKwGCx+Fv5RZMLOvIrB3KIUQJhE3/YD10ZtwHlA9luy3ylE=
+X-Gm-Gg: AYBFou3VSAGC5CE80eT0Vuv7dsO1AyNT4VKw4KPVLGkyxkUlfLCoRU0Z4Y+L0vHtgtN
+	PI6zPINFC0Ih/GMFKPWM26/LU2yS2XpgHqsYfyAUWB82+djeixwq/LLQUCz1EoTUiVlH29wcMJ7
+	d0MSdz09sAb1Dpn5YUW5ssCluL8RjH1b/WozSTvbd43T2U62heoJyj6WsR3n82DOz6SNZ/WvMQR
+	I45oMl0IoSGcSJlL8AZ5K8sAEtvB06JHcXyZ2uaWaBmheaDjrZNgSo9Ueq7VadrSANYLfrPOX0p
+	Lr7hAi3JoT4C4L1NinrThHP+psOdD1gHeFN5i32/wb1FwVeqmEUcVA3HQKqOKOg+odBGlm3ykHP
+	4WB3/xsb/7CjwOLTyYJo50cfNeaoG+icD/wg2quzGLyUApfEPXOHRu4txIgwoxw2irdIVZlkLC+
+	7/HPNRnt5jiXIMq6JXwzuQW4jW+f/ahOCeMSXBog09IGMYzWhz301m4UFYZ0z5n3NMxGJ9wqoAJ
+	BkpvVFR1Dba6ktc7EJmI8q1CQBN3NLNOaY4ZHtlGCcUiUUbMwKcRlwE3fRRXR9dimxdUdQTF9Y=
+X-Received: by 2002:a05:600c:6296:b0:4a1:df50:5758 with SMTP id 5b1f17b1804b1-4a1fd8cb920mr50004785e9.1.1792595297894;
+        Wed, 21 Oct 2026 08:08:17 -0700 (PDT)
+Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4a20049941dsm36794605e9.11.2026.10.21.08.08.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Oct 2026 08:08:17 -0700 (PDT)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|VI0PR04MB554873:EE_
-X-MS-Office365-Filtering-Correlation-Id: ea2be661-942d-411e-7295-08df2f80caa0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|19092799006|1800799024|23010399003|366016|6133799003|18002099003|22082099003|11063799006|4143699003|10067099003|261009223027099003|56012099006;
-X-Microsoft-Antispam-Message-Info: OK5scHxVYjktj1WRuMSTmAjb7hi7fIXj/6fRuR1Np7oPDnIZk5SQy9inA9ByGClZiO+xwAwxGgqAbMC0vteHFau4KnEhtnTJV+W9goCbj7E+RXanri6uj5ki5biYg74tq93RERPXFK1UuU5/EG9D/7qJTALgVD2VrEcrVRzmsK1HDAyDo/I8wVhNIQXfIhWZ0Z7tXBqq8oSJfNvZ9YJWKF9hmubQftZTS+TAO7shEGnevUFi3t2Ze1/WqAF8mxMUcJ7NYqQbbWO4MEAj49CwhusaMIDP9EWwG41XDhmo/AQP7QoKch7kSAhyqTuY4WtTWTKNqbCOIyeF5YoCImcZ6Jzd5uLX5mbSbz6H8Q1IMGKgP5WzbQte2g8rOl5NR+uiT6sdbqATq35JaeyGz+FTRGZtJtG2JOGSi1VVAkiMdCX7Yj9QMXYdYizZ0RjONMsP9xNi5J0JRj0mV0FyezuIStiATZC3OxuhmRv0lE2tbeeuVtGhzGQ0r81bs22rF+eqYgKpZivVTURBSQ3UbkoIObwgT5zKjKEcEWbjJMmcZ8veENSRn/H3Di+cQEHKvk5uGg9vzXWSedZc8ZCNtalXRFoo4dtjDZYxHd8BHE3kgdfrjx4uVJM9DI/iP0uz4iGf1ZRehYb5R2fKdpmmCxvAlKBWEx9YELDlJgs/ASprHSg=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(19092799006)(1800799024)(23010399003)(366016)(6133799003)(18002099003)(22082099003)(11063799006)(4143699003)(10067099003)(261009223027099003)(56012099006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?fH/Nm9VMbmbm3c28hmsWRmiGP9n4j3LGGRwyiDSKkooLNYRdD2t2HwvBWFMz?=
- =?us-ascii?Q?vRfZVXZODkeSxJlHrls+V/ORzUpBnQOgVyJ1IkSZ/RNr7t3iXN+CL7HTwJmK?=
- =?us-ascii?Q?8Cb/WZSADbEJAG+wdK5B20Sl6rX43ITsMXkq6B6ggAqVAwcSeR0jC5IzlNJ4?=
- =?us-ascii?Q?ngxghJruXvIEITL5GOuWGXSll2RdPIBazg+YMUFevwH7KjcCFplCsvBDex+2?=
- =?us-ascii?Q?uSH/vW4egEqN1SJ5vIZ6YBOumfSsBhEhf9UtTFeH8VBKCkXB8x/AfAHos9Sq?=
- =?us-ascii?Q?1kmiv2IIHn+XCueZzbIhuA709K2eK3dDVuKWsePio/j3qjTmesYXvHj5pGT4?=
- =?us-ascii?Q?vVumRw0uF9HH1qoG7l5/22mQXtSvk+s/PyHImeBUKV3OQil0GB19xxxrlpIR?=
- =?us-ascii?Q?qlIlRVYgCL99KExclSalZf2IR4UUSnkbbl1QnWciTQ9IhZwY0199oolPwLtm?=
- =?us-ascii?Q?Q1M4uK6Y3HVSgfujHUs/H0pEpwSox+SecyEygLpbw6oyjtpxcSRh1SlMLJT/?=
- =?us-ascii?Q?Hpxzu0A81W0zLLoUgXEjaO4mL8lwfKFOJO8p1p9vNWAMgr87zpmpUb/KlSi3?=
- =?us-ascii?Q?qnEDSctuIn9bi5PEeFhn9KDgE3eV+5X/VZcINXvL0ijmGqmoWFrqZVs85AIo?=
- =?us-ascii?Q?t5erYDowYx7isWzw5Ae2zVegMTgslKly1DAn3KsFxlg1LM0/nyrmaeE2jZ1c?=
- =?us-ascii?Q?UUVCXfbZBjKsoPM+yNBlhdLnCcvqjh2/yB6BNDIaIsS05AnuQKUF4Hk+b5xI?=
- =?us-ascii?Q?JxB6yTyzJokVzgZHTz1kJaq8chYCHp5KnQV5rih4FL3uw31D4XNJzXFqm9mL?=
- =?us-ascii?Q?X2DAGjnD+Ga8AKvocQxlbwk0czwn1ApOKY980Co1rhX0acl7I+IemU/bvn/2?=
- =?us-ascii?Q?gC6qpyoOcs2BBuXXiNKFLBR6ZcxoiyUiHz0Z5Cz+EcYc6IC8S8WDs4BXtHHL?=
- =?us-ascii?Q?8dYuaWTIMYk25c2OWaeBU9rzQlctY7kCwFc/mH4/La3LSeWiJqjV/uKyne9L?=
- =?us-ascii?Q?XPW5/R1sOz6bYn+CqQ1ialnjJW4fay25cNQXTTQBqFUTSjsw85HyFLtLLF3t?=
- =?us-ascii?Q?Jj4lIHvI3vwOOhmknf6odrcPmSEEAZyzfOz7oOlbIhcDL3WtedqbdN2Odgwh?=
- =?us-ascii?Q?4DWbzlg4nx92v+nrt8FZ0or0JryT/TCDFONRpKmrc1LdFAbkjXH+dFKqaRvN?=
- =?us-ascii?Q?fwsTYs6v9WjxU19clEhtesdvzGpmChoTsQ5SrYY4fZj6EpdP39eFiR6y2xsU?=
- =?us-ascii?Q?GCAIe3kBsInavroBoXBA4sJtNBp0iuSEr9a8bhrai5meDjX0nsNqSt3eIitT?=
- =?us-ascii?Q?T1A8qvLP/r16PYO8QHsnWSTOur7dzXfNOaYvDZzer42UNSfK1ckTmwS5LBvy?=
- =?us-ascii?Q?daLIFYVcH5znESa2MFRXNbU2dmAZuOz3N9FKG3AAfolu3UT1dX1vVY/wEAwx?=
- =?us-ascii?Q?vnxYsBYu9UpwbA4sFhHWmeBIXQETpwoUU2Wrcm0TIDVnHNRd8/jiyrQMnLPu?=
- =?us-ascii?Q?A8o96jTOkkz7ddvY6HX92DM5qfINo9UY1ga/EyCrX1hXADCOVBQKcToeVrBR?=
- =?us-ascii?Q?A9FG8w7fDQEJcvdfjhQii8GSau3sTmASQDLN93Xpc599Eo8IyjXqcFWsZMww?=
- =?us-ascii?Q?DqNVYHGYwqowoWtMVaUSsbYZYvokChFTuXOiQz2snSN2Pn9Mo7CAKqmsCuIh?=
- =?us-ascii?Q?/dwH5q4vkmpFdcYZM/FbZVfpxMBuJyFiLKn86SRskZIp/GkFzF1Ge+9/F+g/?=
- =?us-ascii?Q?5Wfg0Q6+kUi68bja5zh0k90bahYes8W55ibT2m201Wcg/0RHXXRh?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ea2be661-942d-411e-7295-08df2f80caa0
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2026 14:37:11.2761
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: n/2YHTHgzfiwuDgUCGKB7fr6IGIO9ddgF6xE3FmkkIodcXB2BsO0EkJsz+K+w2WpvoBJ2m8pLRB1Of/R48fUKVCLLRWPmgkd3mazjPaLavX3XmyxndBNLCwDxobQAAzV
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB554873
+Subject: Re: [PATCH v7 3/5] ASoC: meson: g12a-toacodec: Add S4 tocodec
+ driver
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jiebing Chen <jiebing.chen@amlogic.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-clk@vger.kernel.org, jian.xu@amlogic.com, shuai.li@amlogic.com, 
+ zhe.wang@amlogic.com
+In-Reply-To: <20261021-audio_drvier-v7-3-2b9aeae9cb8a@amlogic.com>
+References: <20261021-audio_drvier-v7-0-2b9aeae9cb8a@amlogic.com>
+ <20261021-audio_drvier-v7-3-2b9aeae9cb8a@amlogic.com>
+Date: Wed, 21 Oct 2026 17:08:09 +0200
+Message-Id: <179259528986.4070168.179126639869298765.b4-review@b4>
+X-Mailer: b4 0.17-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2307; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=aT/Bvwr1IC3lec+0KVaFiCrr+0v7baOk1896xqidnfQ=;
+ b=owGbwMvMwCW2VtK+WnvWU3HG02pJDFk3rsaXnu399Vj82hve2avywriU/6z0t5/K4BMyhdGpI
+ sSP9cedjlIWBjEuBlkxRZYa7mrxd5JaX2ZN17kNM4eVCWQIAxenANzkp4wMLxVKdWfazw34tVSo
+ LJAvcne0rSDrowsXO4PktqyfL6b0h+GvXKuDmBjT5pJZ+eztVi5G+Y/WXk2b/XTul0jV5CObErW
+ ZAQ==
+X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
+ fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261021_073720_625317_7104357B 
-X-CRM114-Status: GOOD (  27.87  )
-X-Spam-Score: 0.0 (/)
+X-CRM114-CacheID: sfid-20261021_080819_914356_5A4DFF1A 
+X-CRM114-Status: GOOD (  16.37  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -152,100 +121,78 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-9.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Oct 21, 2026 at 10:56:19AM +0800, Junyi Zhao wrote:
-> Hi Frank,
+> The S4 requires additional clock control bits to be turn on while enabled.
+> The S4 has 8 TDM lanes, instead of 4 on previous SoC.
+> Update the widget accordingly.
+> 
+> Signed-off-by: Jiebing Chen <jiebing.chen@amlogic.com>
+> ---
+>  sound/soc/meson/g12a-toacodec.c | 49 +++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 49 insertions(+)
 >
-> Thanks for looking at this.
->
-> Amlogic A9 used the same SVC I3C IP engine, but the integration of it
-> differs in the resources *around* the controller, which cannot be
-> expressed as another quirks entry:
->
-> - On the "ao" instance the bus clock is generated by an internal
->   divider (I3C_AO_FCLK_DIV_CTRL @0x304) programmed directly by the
->   driver; there is no CCF clock to clk_set_rate() on, while the
->   common probe assumes the fclk is a plain enable-able clock.
+> diff --git a/sound/soc/meson/g12a-toacodec.c b/sound/soc/meson/g12a-toacodec.c
+> index 21941ee552c5..9cfed3702354 100644
+> --- a/sound/soc/meson/g12a-toacodec.c
+> +++ b/sound/soc/meson/g12a-toacodec.c
+> @@ -41,6 +41,9 @@
+>  #define  CTRL0_BCLK_SEL_LSB		4
+>  #define  CTRL0_MCLK_SEL			GENMASK(2, 0)
+>  
+> +#define CTRL0_BCLK_ENABLE_SHIFT		30
+> +#define CTRL0_MCLK_ENABLE_SHIFT		29
 
-If it is in I3C memory region, you can do that by use callback. otherwise
-should go through clock framework.
+Please follow the indentation convention in place (2 spaces)
 
->
-> - Amlogic added register blocks outside the Silvaco map: a
->   DMA bridge and a bus monitor (0x200..0x22c).
+> +
+>  #define TOACODEC_OUT_CHMAX		2
+>  
+>  struct g12a_toacodec {
+> @@ -141,6 +144,16 @@ static const struct snd_soc_dapm_widget sm1_toacodec_widgets[] = {
+>  			    &g12a_toacodec_out_enable),
+>  };
+>  
+> +static const struct snd_soc_dapm_widget s4_toacodec_widgets[] = {
+> +	SND_SOC_DAPM_MUX("SRC", SND_SOC_NOPM, 0, 0,
+> +			 &sm1_toacodec_mux),
+> +	SND_SOC_DAPM_SWITCH("OUT EN", SND_SOC_NOPM, 0, 0,
+> +			    &g12a_toacodec_out_enable),
+> +	SND_SOC_DAPM_SUPPLY("I2S BCLK Gate", TOACODEC_CTRL0, CTRL0_BCLK_ENABLE_SHIFT, 0, NULL, 0),
+> +	SND_SOC_DAPM_SUPPLY("I2S MCLK Gate", TOACODEC_CTRL0, CTRL0_MCLK_ENABLE_SHIFT, 0, NULL, 0),
 
-Does DMA bridge only for I3C? It should be go through standard DMA engine.
+BCLK Gate => BCLK EN, same for MCLK
 
-what bus monitor use for.
+> +
+> +};
+> +
+>  static int g12a_toacodec_input_hw_params(struct snd_pcm_substream *substream,
+>  					 struct snd_pcm_hw_params *params,
+>  					 struct snd_soc_dai *dai)
+> @@ -226,6 +239,16 @@ static const struct snd_soc_dapm_route g12a_toacodec_routes[] = {
+>  	{ "OUT Capture", NULL, "OUT EN" },
+>  };
+>  
+> +static const struct snd_soc_dapm_route s4_toacodec_routes[] = {
+> +	{ "SRC", "I2S A", "IN A Playback" },
+> +	{ "SRC", "I2S B", "IN B Playback" },
+> +	{ "SRC", "I2S C", "IN C Playback" },
+> +	{ "OUT EN", "Switch", "SRC" },
+> +	{ "OUT Capture", NULL, "OUT EN" },
+> +	{ "OUT EN", NULL, "I2S BCLK Gate" },
+> +	{ "I2S BCLK Gate", NULL, "I2S MCLK Gate" },
 
->   Enabling the DMA bridge later will need hooks in the common
->   transfer path.
+Audio signal does not go through those Gate elements
+They should be supply path connected to OUT EN.
 
-We also need support DMA in future.
+-- 
+Jerome
 
->
-> Adding A9 support to svc-i3c-master.c directly, would make these
-> becomes if-branches in probe()/PM/transfer paths of the shared
-> driver, and the next vendor repeats that.
-
-You can use callback function in drvdata.
-
-> With the glue layer,
-> i3c-main.c keeps today's logic unchanged: i3c-silvaco.c is the
-> current probe code moved as-is (rename with 79% similarity), so
-> blame/history is preserved.
->
-> If the file move is the main concern, I can keep
-> svc-i3c-master.c where it is and only export the alloc/probe/remove/PM/
-> interface for glue drivers -- the essential part for me is keeping
-> the resource handling out of the common code paths.
-
-Now, there are not much user yet. Rename or re-org only when it becomes
-complex enough.
-
-Frank
-
->
-> Also, per Neil's suggestion I'll try modeling the AO divider as a
-> CCF clock in v2, which should drop one hook.
->
-> Thanks,
-> Junyi
->
->
-> On 2026/10/20 4:32, Frank Li wrote:
-> > [ EXTERNAL EMAIL ]
-> >
-> > On Mon, Oct 19, 2026 at 01:34:26PM +0800, Junyi Zhao via B4 Relay wrote:
-> > > [You don't often get email from devnull+junyi.zhao.amlogic.com@kernel.org. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
-> > >
-> > > From: Junyi Zhao <junyi.zhao@amlogic.com>
-> > >
-> > > The SVC I3C controller IP can be integrated into SoCs from different
-> > > vendors. Peripheral resources associated with the controller, such as
-> > > clocks, may vary between vendor implementations.
-> > >
-> > > Rework the driver to separate common functionality from
-> > > vendor-specific extensions. The common logic is shared across all
-> > > implementations, while platform-dependent operations are provided
-> > > through vendor-specific hooks.
-> > >
-> > > Also add a corresponding MAINTAINERS entry for the SILVACO I3C
-> > > controller.
-> > >
-> > > Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
-> > > ---
-> >
-> > No big difference. Needn't rework svc-i3c-master.c, you can add amlogic at
-> > svc-i3c-master.c directly.
-> >
-> > Frank
 
 _______________________________________________
 linux-amlogic mailing list
