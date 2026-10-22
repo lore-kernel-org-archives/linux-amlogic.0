@@ -2,86 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65338606A334
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 537C4606A330
 	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Oct 2026 21:53:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wbORUSHU;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=f4/yXbzr
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UZ9HwCPj;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=j/0qPl8+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
-	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=K4ykSl+nWTzjujfocIuH7prG6taifVSwcyJbn0eHl1c=; b=wbORUSHUENVvhgaPcUqJCWyhAj
-	64+jGHMXC40KRC6P/D7L37PJaOEnKFIDQJOlGLHQN7+ngBU9a/XPxGXpJpeTD4O37LPr1NQPxTm+r
-	db++nlUlER0QDlniVOxkp9fFosmGgiXSLtci1KDvt02ofYuWQ2XzkEajw6k0iAJg70sk67Y8AYJL+
-	iTJ9mk4meHXtjQ9ESZovtlKEilgtfS0QMR5oXXWoxsObjVpKrgLrdkB0linoAm5Jl2kAIVG71PT0f
-	ghpOIp7BiAvyn4qfwNxOUGcYBcXQQHrNTlZq49Z9k0w85kmOzdS/ip3Q8bnlUYwdCXjA+noBZR9o6
-	yDgm2deg==;
+	bh=m3WTcf0XLAUJt9BR1CL2kEP3q6QVGvBA1Cd2Z71ql0Q=; b=UZ9HwCPjQNrcwo3TSPucgDO974
+	wpHsImnSns4e9jx15eBPKq6fXcsQm/xVbBrrupyGZQZLcLjOSAw8L/8SIRZ9TfF1oFYn5MMmQGfS7
+	ehg8ZASD8pjMgU/RG1nayAXYSS1QvNi5jCudbBf35lW7BAGyyFi3+qbo/cUQdg1lwDYqQ0D843cND
+	UgGX5sDotuhH+KkzLFaenY4/6SWegBDn1HQg4LOy04kP+y988wAO91q1a4cXhwwTK3FHI8GOWFjN8
+	IXdr2N6aLNswa3I+LrDNXFrYLryWsa46nTNaufToujG/keLZvtzpxe1WKKmIAvCrcill6lPhURNvt
+	lywi2IXw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xK0ij-0000000F2A0-1UYx;
+	id 1xK0ij-0000000F2Al-3lg3;
 	Thu, 22 Oct 2026 21:53:09 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xK0ii-0000000F29K-27n9;
+	id 1xK0ii-0000000F29C-2fj1;
 	Thu, 22 Oct 2026 21:53:08 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3467B40470;
-	Thu, 22 Oct 2026 21:53:08 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id CE309602C3;
+	Thu, 22 Oct 2026 21:53:07 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1792705988;
-	b=z7Z//7QdWHsDdqUdKc5/u31Mz4r25lP7ioz+YKfG96HIxOBqXJ3gelyX5s8RnuSqIOYj
-	 iUc0esk5cqmAV3kvnbFHlQnlyl5+oq5C9OGvdm/2FpOBZkTIqKDgQnUGbNtF+a0yl0Ajb
-	 34RvbfrEa25VUkoREllVHiTyx+jzWo7S1APDm/1scth/y5Y2Jmb2YxKl3JNxIIrjBhzmO
-	 iAIbhLS6WmUqIGCH/ffirD5I4/z2+mOexqBgWGYgaXH0o9nTxyIXVI09pdKBHz1AvsO9w
-	 Lyauvgp2S7ZGkYKd07/T6IMdPtZmwn1jytXPyF60EpnTwEdev+7yov7//7kBkIR2l5w==
+	t=1792705987;
+	b=2Llhf9kGFOKcR5pr0eipqK/lhxppnfkFeqkrrMB2y86kW3Em1erZ3oaQ32/JZpIe7qL9
+	 9SNASWEU5z7Jrcf+Odm4UgEmulXVRUNARBpnAvN56TylCxvchLmIDlfq+RB09Q4z8ZjiI
+	 sGMHBa10MDDUvpnJEunhIvAOGzrAT+s121OsTtIr3PHyn/WZDGV3mqCWuQL0pKESuv0ax
+	 otoAqc4LxePDyF7BSK7otUO+Oq3dk6X6PHfErUOSQ3/XKt46wMjh0TqDDX8jhkqIqL+Yp
+	 qohgcl5JaAc0Xo21KTghtW4s6Cr1Vc91P3wdtd3vDjy1KS7Q+tBqUOQlpe8Q5HGF/qA==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1792705988;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=DTvpZdrzMHo58dnlhxU+/GyKaasgGpS/FpMT1oMFqiI=;
-	b=sLKRrcySykTV//pYdOYcbDHjQ+diZ5LeD51uo2F/d0gwN3mBkitaBbxyiwHba8l+oN3A
-	 c37e0eKNK9P7B4cS3Y5rlmyBVP6CzW8prvu8Z+fEApeG+no7D13HdhKE44bHyvFys59Nb
-	 oEkScPcORCvseHa73XDIffhYVbBzgmIpreuXkzHsieGsV4uaaWZnLV8Mb8bkC1ZAYYIun
-	 ycX7ltYd3+uW1aZqVoirOzt9vQZYD1jT0TobCIu9520I/8PoutlrQ1vrEW+ZU3Z0U9o1H
-	 3jkfiKGMLrJI6B9b0fVrWcqri6vFheiMY38TnfvmKA+SmzrGyULzccqkTDPxXlA/9nw==
+	c=relaxed/relaxed; t=1792705987;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=VhRlbpXx8Iat4T8my29ywJmXCK35kE4E4jvMl2k3ioY=;
+	b=YYBuqNHgN8xf2KwVQEnXFwzE2fdxn6B1Axru1IRORcrHoSyqxFbljrrHvVYj/gtpAdt1
+	 eKWZlMIC3eVmoMz+00nVUDZ7uazCOp7DEkbkpYSPm+9m1Uzqr0Kx9CjmG/fOMt5FVz44e
+	 4fOTUiDCiRoHGT2RMyzdi2Zn9yP6vOvdC2G0aO3EhS09EI/nuvy3C2S05AUip1XGodcuX
+	 HUYziiQgPgAA/Rq/HhpHznhJ6eDbH/GyEGrBJy6imfWYyLtmPs92j78X+8EaRpUyhwiXh
+	 bBhhKJPs7Qir1fXL5vBVWqbBeq/ctwhpT0rklOQIm5fSNTJ+gexMV35rs0GkDH88bdg==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 5697B1F031E2;
+	by smtp.kernel.org (Postfix) with ESMTPS id 5B2BE1F031E5;
 	Thu, 22 Oct 2026 21:53:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1792705988;
-	bh=DTvpZdrzMHo58dnlhxU+/GyKaasgGpS/FpMT1oMFqiI=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=f4/yXbzr1ZMRrJh5UUs7hh5nnH8UtpBaEdES9VlIghAJJ7vwKrwQRlsF6wlh86WCb
-	 1h6G/Nk7Oy97FYle2xwvPM1ufWIJXpXnTEjF/oyH2XJX5BJTYiqSKv7KWVsLsnKejm
-	 sL0TVrskW8OHEW6K/URmPqkMwI+lucpu2yhPVESAV04MWekNfE3+bcr5CdDvPvY/b+
-	 vSHTap7tjRlVG0ioMepQU7Howyn5Hy4CJcEWkUQBb7zsbAgrWZ2zHP4XX4F0S/UP0V
-	 8C2JoYnZGft3IAQ0FFpp41Nznas+3+AGW2mznmOE5qyB0hW1CGjsJnujUYTjY1SLUg
-	 AiRiOkJe/jbbA==
+	s=k20260515; t=1792705987;
+	bh=VhRlbpXx8Iat4T8my29ywJmXCK35kE4E4jvMl2k3ioY=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=j/0qPl8+lPkvgaupVBWhyHl0+o2zC69HtzLsajis3Qv/7dz6SGLb+Iq/xSQTpH28m
+	 HNtzYVz3D5lbIMIJ0BSJnhz1r0ekRsXLbDTyu7NZttE34jBdTEZrd9u0Se20aAUMPv
+	 8nPV2g8joK99cXN8jSB3/b/JsR7AjSVEY1CTbtV5YarQP4VAx3ZipgXPMYIpIC87vQ
+	 iLbPDmKpw/5YqiCZ9OSURyJy3i21bTLd9X6GEW97GbUej6qx8LY+qMekJSB3AF/ARL
+	 SRpj0+ZknpV+ZVfKvcX1ARgI1h3agxQvkt7LgI/8J+t+QMio0EzFKorBq74EXGgyeo
+	 KJvwVteJVwE1Q==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id A623541F91;
+	by lkml.kernel.org (Postfix) with ESMTP id D61BD41F9D;
 	Thu, 22 Oct 2026 21:53:05 +0000 (UTC)
 From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Subject: [PATCH 0/4] clk: meson: g12a: fix a few clock definition errors
-Date: Thu, 22 Oct 2026 23:52:38 +0200
-Message-Id: <20261022-fix-g12a-clk-v1-0-e2bd8f3f1afa@aliel.fr>
+Date: Thu, 22 Oct 2026 23:52:42 +0200
+Subject: [PATCH 4/4] clk: meson: g12a: fix swapped VID_PLL and VID_PLL_DIV
+ clock ids for sm1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAKaF2moC/x2MQQqAIBAAvxJ7bqFd0ENfiQ5qqy2FhUIE0d+Tj
- sMw80CVolJh7B4ocmnVIzegvoOwupwEdWkMPLClgRmj3piIHYZ9Q4resCcTorPQkrNI8/9umt/
- 3A4rwOaZeAAAA
-X-Change-ID: 20261022-fix-g12a-clk-1fb52b15cfa6
+Message-Id: <20261022-fix-g12a-clk-v1-4-e2bd8f3f1afa@aliel.fr>
+References: <20261022-fix-g12a-clk-v1-0-e2bd8f3f1afa@aliel.fr>
+In-Reply-To: <20261022-fix-g12a-clk-v1-0-e2bd8f3f1afa@aliel.fr>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
  Jerome Brunet <jbrunet@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
  Brian Masney <bmasney+clk@redhat.com>, Kevin Hilman <khilman@baylibre.com>, 
@@ -91,13 +90,13 @@ Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1230;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1156;
  i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=kv186d9Cog+H5dWdzKf8ASTTBRJiUw79UW7YCNc2//0=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ9at1g0fNi+Rc9qleitm8/LAgJbJb64ef8cW2GcvknOKZ
- /fEWwmzO0pZGMS4GGTFFFn651qeeHf56Jmve9RTYOawMoEMYeDiFICJhAszMsz1K2F8yr0t446h
- x9GHfwyWR+xf4H37+sWODWyJ9z9KnyplZOgUU0n/x2kvfKPZ+nnanfNNDBYVebaTKoJCPe6GX4h
- ZzQUA
+ bh=h5JtJvnbPtQe4PerBm4gkeO+nH6xIUrn66ppgc1aN8A=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ9at1v2uJZNXTlttVcy4TEblF59a57Tb/z59M5wwpUfq2
+ iRRtTkbOkpZGMS4GGTFFFn651qeeHf56Jmve9RTYOawMoEMYeDiFICJ3JjJyLD/Icc9hjPx1dWB
+ x2Mz93EVSKdtS07ue3DQ+kuh+74vvLcZ/jvXbhWyWR37PLly5rbJ64WfhkzYxOjkJHnNX/TQTH/
+ XcmYA
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
  fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
 X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
@@ -123,38 +122,38 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-While reviewing the G12A clock controller, I noticed two unrelated
-mistakes in the clock definitions:
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 
- - fclk_div2p5 uses mult = 1 instead of 2, so it runs at fclk / 5
-   instead of fclk / 2.5.
- - CLKID_VID_PLL and CLKID_VID_PLL_DIV are swapped in the hw_onecell_data
-   tables.
+In sm1 onecell data table CLKID_VID_PLL points to g12a_vid_pll_div
+and CLKID_VID_PLL_DIV points to g12a_vid_pll. So the ids are swapped.
 
-The first one is a single fix. The second one is split per SoC (g12a,
-g12b, sm1) since each table was introduced by a different commit so
-I provide different Fixes: tag.
+Swap the ids back to their right entries.
 
-I do not see any consumer today, so nobody should be affected.
-I don't think there is any values in backporting them btw.
-
+Fixes: 3dd02b7334ec ("clk: meson: g12a: add support for SM1 GP1 PLL")
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
-Ronald Claveau (4):
-      clk: meson: g12a: fix fclk_div2p5 multiplier
-      clk: meson: g12a: fix swapped VID_PLL and VID_PLL_DIV clock ids
-      clk: meson: g12a: fix swapped VID_PLL and VID_PLL_DIV clock ids for g12b
-      clk: meson: g12a: fix swapped VID_PLL and VID_PLL_DIV clock ids for sm1
+ drivers/clk/meson/g12a.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
- drivers/clk/meson/g12a.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
----
-base-commit: d419d682257d813f6cb7a28e42b35d0edf4ad038
-change-id: 20261022-fix-g12a-clk-1fb52b15cfa6
+diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+index 0a738c3c7fb5..e18cc151f4b6 100644
+--- a/drivers/clk/meson/g12a.c
++++ b/drivers/clk/meson/g12a.c
+@@ -5117,9 +5117,9 @@ static struct clk_hw *sm1_hw_clks[] = {
+ 	[CLKID_HDMI_PLL_OD]		= &g12a_hdmi_pll_od.hw,
+ 	[CLKID_HDMI_PLL_OD2]		= &g12a_hdmi_pll_od2.hw,
+ 	[CLKID_HDMI_PLL]		= &g12a_hdmi_pll.hw,
+-	[CLKID_VID_PLL]			= &g12a_vid_pll_div.hw,
++	[CLKID_VID_PLL]			= &g12a_vid_pll.hw,
+ 	[CLKID_VID_PLL_SEL]		= &g12a_vid_pll_sel.hw,
+-	[CLKID_VID_PLL_DIV]		= &g12a_vid_pll.hw,
++	[CLKID_VID_PLL_DIV]		= &g12a_vid_pll_div.hw,
+ 	[CLKID_VCLK_SEL]		= &g12a_vclk_sel.hw,
+ 	[CLKID_VCLK2_SEL]		= &g12a_vclk2_sel.hw,
+ 	[CLKID_VCLK_INPUT]		= &g12a_vclk_input.hw,
 
-Best regards,
---  
-Ronald Claveau <linux-kernel-dev@aliel.fr>
+-- 
+2.43.0
 
 
 
