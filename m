@@ -2,58 +2,98 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADC7D606AF44
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Oct 2026 13:46:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57AC3606A326
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Oct 2026 15:57:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wCfExoF4;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=c1It2CFc
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3P6WZLiF;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=BkOgLayl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:References:
-	In-Reply-To:Cc:To:Subject:From:Message-ID:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
+	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=O45fyrDj76haqEapStqaF79ZkSjNJyfwnNb4ywZr1Xk=; b=wCfExoF41GYribBdyin++GVtwg
-	0cq3dEg5z0and8YEM96X5KFSN3eNHNCRlkEO4Ac1l4Zsz5xg0joZcDTY36cKRRcKGH1ma2AcV9YS5
-	y99OX76Hf9i1QmQKmpYjU+iY+4KxGyUSg8JQ9Y8d2SZ03vavWtN2mrOjEjal43tevUpDuQT/QnHON
-	YuLRb4juJDWoNfCX00cVSgplNze3+cf+iil/fl/R5kSh3G8abaMe2Bd64yUsUEiBlfV8OGRd2kbG5
-	ciFVH2xwx/E44/q95vMmIrCUvIgSwzIUKLLn1rtBec93YQLu8gKxIKXaZN9d1EkeX2HkRV0+p76vE
-	dkqzb+Mg==;
+	bh=qhkPJ8ry8NUVeg7pLV/3EoiD/bqLbbt5eCLYIFJvnvo=; b=3P6WZLiFwj5KSn8QEn2O0Y60Ft
+	sINQSo7XKiSVwpUeGvkuLVv+IID/69WRdyhNu8JrZcB9wKm+M8yLjatmhOK1ZMeYiYsLVtbpUFAFO
+	YyYe6KKWwidkFjawTBnpENJHKFSJlbwEwTBOv2mRRRAhZxc8yAFsodSpb1ZikrlFOyA1UPMnXBIGn
+	vVMXHlQah/U/HmDWMH2eLrbJgd0hoZ1gJa37aKw1UyFmaQRjznCaRThvExOVwq/1alfJzTGFtaLkL
+	siRdMpV+96xA7Z5eVzU7/lWfstgXQX3YVxCGldWRnXeCqyrgWkIAm0WR0trL6Hq5gFoAp3K25p//w
+	m6Pz8Rmw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xJt7k-0000000EEhg-2o20;
-	Thu, 22 Oct 2026 13:46:28 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xJvAf-0000000ES7x-1VWn;
+	Thu, 22 Oct 2026 15:57:37 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xJt7i-0000000EEhB-2cwG
+	id 1xJvAd-0000000ES7P-1Puo
 	for linux-amlogic@lists.infradead.org;
-	Thu, 22 Oct 2026 13:46:26 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0F6EF43F64;
-	Thu, 22 Oct 2026 13:46:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78DCE1F000C5;
-	Thu, 22 Oct 2026 13:46:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1792676785;
-	bh=xlXgzCsk7GWchCuQqi932QWkmLMSYvgwRHNnNOUqMyk=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=c1It2CFcNVsUsxIjhOXYoGtk1vffbxX0dImWtPkqQB9u/6Se7Rv88QnpksdYGTi0y
-	 1okUY76ZrahqsLYxLTaaK5dbzjg2+y381MY70LUvCzkde3qPvKZ9SjPtA43sjYihTR
-	 CcBXx1EV7wkZ8JARlZVtUsbvzlmY+r6O4/I9ShbVWJLPgSAwb7SrFYXCvFGuFHUuBq
-	 XkUV2sCJbOwOmyK4KiJIfuvYKbVecojiAb65dhOfmVJ5OOty0OhsBZCipyg5BiQY6G
-	 GPIdZrN+hUid75bZA2lHcBqWcQzWf7izwwE/WFHdVuuoLKi2r4KS7noFePMDQfu+Ep
-	 6RqFRjzVwlN7Q==
-Message-ID: <sashiko-outbox-181565@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 6/9] drm/msm/dp: don't take extra references on
- multiple plug events
-To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
-Cc: dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org
-In-Reply-To: <20261022-hpd-irq-events-v6-6-337ea3ddaa62@oss.qualcomm.com>
-References: <20261022-hpd-irq-events-v6-0-337ea3ddaa62@oss.qualcomm.com>
- <20261022-hpd-irq-events-v6-6-337ea3ddaa62@oss.qualcomm.com>
-Date: Thu, 22 Oct 2026 13:46:24 +0000
+	Thu, 22 Oct 2026 15:57:36 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4a2069b9710so7429055e9.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 22 Oct 2026 08:57:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1792684653; x=1793289453; darn=lists.infradead.org;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=bCyNFGNC5QAv5YoFhc+XguwmFWmtXQoZNr4gvZ9GhCA=;
+        b=BkOgLaylQinH1jknPO8lE0MrQt2nB7cN0+BfWvQEK/bnn6H+SBwx25K436DWWxb5dk
+         gBKnLgMEK00e+vDilXUMy2SpWDalBV17hCL8e4VhiPZTLKopmCCoqe5ZkpP+gZH7PEGu
+         cPMJ4rC7FI/ptoXS2ikGzGk5n29Rs19nhKNJZD4e9UPEExisBdzEh2p2rpB3pyufE3Ex
+         7EoX6V6PaEwbF6qj5FSAxIWxQATUpJw/tnZRv/8aSkuR6OqwuuLKsk4Bo9xf99qw30oL
+         MM0cEhSyDB9IiKFT1iyoGvwjDVLSVwi4h0zGjO+LIYZYRWaoRcIVGCkUWeDc7UDC3y/J
+         haSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1792684653; x=1793289453;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=bCyNFGNC5QAv5YoFhc+XguwmFWmtXQoZNr4gvZ9GhCA=;
+        b=Il0gHxc1MNo6jIv3dL9mGmKg3MIFfyeBi/JjvIyiYsNdzuL8Bg1ID8F3j3aoAOzM/P
+         QezpXMpQR1rtolg4F+m54fdoQcJMQmne8PQ3NncJdlIdCNaV9szRImywBg+wLWfh09FQ
+         4Bx8a/eOb8qv8Iq7oTEAhIhYVEdYPvhxBjx7KbDI855zuBvMcpLnhj29wpC83eUsbwfn
+         gCccPjJKc6XxceHaqw9xUdoozEXbMAnaY7+uzlj59LjUDuBsOCKJJgAXTkZOT/00HoLJ
+         rAeqB2THvuD1/cfQ0ioGhMZkS1vvmDX/LHvarqetnSyLLMqPzz+cjnPyN+yqo192bpwG
+         7NKA==
+X-Forwarded-Encrypted: i=1; AKwUvByMpFGxm3Mr+XSveYgqBOIj9wODwRRjNIoKjwiXx9+Aa+3wbGYF2QTGlGfvk6GNAzmdyWDkj10R7pCEp24O@lists.infradead.org
+X-Gm-Message-State: AFq9FYIXQwD6UgWK9WoEmOiKwoJ+nyvVC0ItAfXxPk6r2ekp8tocx0NZ
+	dExTOguAH2ewbWVPHjcchs6WrbjRMqtBzWd/b9CAlI25H3bV96jHxkQcA16wP2mLudI=
+X-Gm-Gg: AYBFou33nvHr3k20or2Mv1WAfwNqXmdYGSo6xeFh9cODRlA+TofbwTPE51RssSlCYEq
+	/fUe5r8kDgjcVl2wgZctjjDTWnuOL7e1us8jAAK6RVuYMuOPp7C8hdSwEG0AMEMTWMI/6YaPJIQ
+	qOQJypK3xjunGKfLy9GnULvkTfvaFPwosk1rC23fTdoZKp9Xltj2AYWh9pr82NBVaLJ+yQYdrBR
+	xcsU7Slv+09pWCOWJ7qYtF0tP41YLIMAbZLEePqQxEAbvKjq//zBo5MK4FZdhWjAnenkswZBz3s
+	H5Jni6c3wwoRaNn1mihHT3zSKA2mf8+4Z6twfd9d4+0m+ZnJeEtUC86s2zncsyvBmkBXariO7QJ
+	/JS2O2gKqpIZrlvTAhNehpba1b6ZJGWc9k2umvb1DabZFdKGSKEd+tZRpHOORbKBW4Uo04Sz30y
+	ISnENYFjLr3EfHUNcW+QYTLdkHEtuhPdvMu9uR1tycZg3RUSDaEtDco5ypBTbVQppFcHv2BzxKs
+	TAsAmkGpfDY/xEwI4Pzdq/diFuPk3CtfO3kjJg7CrAwI/grwK8X1wzk02NlaVA3mgDkql87eVt3
+	NsdnccSeQum+1FubVypxu9snVNKv
+X-Received: by 2002:a05:600c:3548:b0:4a1:e774:370c with SMTP id 5b1f17b1804b1-4a1fdd145edmr114281495e9.30.1792684652964;
+        Thu, 22 Oct 2026 08:57:32 -0700 (PDT)
+Received: from [127.0.0.1] (mob-83-225-32-96.net.vodafone.it. [83.225.32.96])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4a1fcd360e4sm96519725e9.4.2026.10.22.08.57.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Oct 2026 08:57:32 -0700 (PDT)
+From: Carlo Caione <ccaione@baylibre.com>
+Date: Thu, 22 Oct 2026 17:57:26 +0200
+Subject: [PATCH] MAINTAINERS: cover all the headers in ARM/Amlogic Meson
+ SoC CLOCK FRAMEWORK
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Message-Id: <20261022-upstream-maintainers-clk-headers-v1-1-d09dd4db01d6@baylibre.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yWNQQrCMBBFr1Jm7UAz2CBeRVzEdGJHbSwzqQild
+ 2+qiw/vbd5fwFiFDc7NAsofMXnnKu7QQBxCvjNKXx2oJe9aIpwnK8phxDFILnWshvH1xIFDv3O
+ K5P0pHV3qAtTMpJzk+7u4XP9u8+3BsexdWNcN9iE8poQAAAA=
+X-Change-ID: 20261022-upstream-maintainers-clk-headers-fc2668f41f5a
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org
+Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Carlo Caione <ccaione@baylibre.com>
+X-Mailer: b4 0.16.0
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261022_085735_395848_869A32E8 
+X-CRM114-Status: UNSURE (   9.29  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,101 +103,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MiBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0hpZ2hdIGRybS9tc20vZHA6IHNr
-aXBwZWQgSFBEIGhpZ2ggcHJvY2Vzc2luZyBpbiBtc21fZHBfaHBkX3BsdWdfaGFuZGxlKCkKLSBb
-TWVkaXVtXSBkcm0vbXNtL2RwOiBydW50aW1lIFBNIHJlZmVyZW5jZSBsZWFrIGluIG1zbV9kcF9i
-cmlkZ2VfZGV0ZWN0KCkKLS0KCmNvbW1pdCAxMTgyZDdmMmYyZTg3NmM2M2RkNjc1NmRlMWY4NTIy
-NzcwMmI5M2I0CkF1dGhvcjogRG1pdHJ5IEJhcnlzaGtvdiA8ZG1pdHJ5LmJhcnlzaGtvdkBvc3Mu
-cXVhbGNvbW0uY29tPgoKZHJtL21zbS9kcDogZG9uJ3QgdGFrZSBleHRyYSByZWZlcmVuY2VzIG9u
-IG11bHRpcGxlIHBsdWcgZXZlbnRzCgpUaGlzIGNvbW1pdCBza2lwcyBzdWJzZXF1ZW50IEhQRCBw
-bHVnIGV2ZW50cyBpbiBtc21fZHBfaHBkX3BsdWdfaGFuZGxlKCkgd2hlbgpkcC0+cGx1Z2dlZCBp
-cyBhbHJlYWR5IHNldCBzbyB0aGF0IGV4dHJhIHJ1bnRpbWUgUE0gcmVmZXJlbmNlcyBhcmUgbm90
-IHRha2VuCmJlZm9yZSBhbiB1bnBsdWcgZXZlbnQgYXJyaXZlcy4KCj4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9tc20vZHAvZHBfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL21zbS9k
-cC9kcF9kaXNwbGF5LmMKPiBpbmRleCBmYTg5NDI5MjJiNTMzLi5jZTkxOWEyNmZiYTI4IDEwMDY0
-NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9tc20vZHAvZHBfZGlzcGxheS5jCj4gKysrIGIvZHJp
-dmVycy9ncHUvZHJtL21zbS9kcC9kcF9kaXNwbGF5LmMKPiBAQCAtNDEyLDYgKzQxMiw5IEBAIHN0
-YXRpYyBpbnQgbXNtX2RwX2hwZF9wbHVnX2hhbmRsZShzdHJ1Y3QgbXNtX2RwX2Rpc3BsYXlfcHJp
-dmF0ZSAqZHApCj4gIAo+ICAJZ3VhcmQobXV0ZXgpKCZkcC0+cGx1Z2dlZF9sb2NrKTsKPiAgCj4g
-KwlpZiAoZHAtPnBsdWdnZWQpCj4gKwkJcmV0dXJuIDA7CgpbU2V2ZXJpdHk6IEhpZ2hdCkNhbiBy
-ZXR1cm5pbmcgZWFybHkgaGVyZSB3aGVuIGRwLT5wbHVnZ2VkIGlzIHRydWUgY2F1c2UKbXNtX2Rw
-X2Rpc3BsYXlfcHJvY2Vzc19ocGRfaGlnaCgpIHRvIGJlIHNraXBwZWQgY29tcGxldGVseSB3aGVu
-IGEgZGlzcGxheSBpcwpjb25uZWN0ZWQ/CgpJbiBkcml2ZXJzL2dwdS9kcm0vZGlzcGxheS9kcm1f
-YnJpZGdlX2Nvbm5lY3Rvci5jLApkcm1fYnJpZGdlX2Nvbm5lY3Rvcl9kZXRlY3RfY3R4KCkgaW52
-b2tlcyB0aGUgYnJpZGdlIGRldGVjdCBjYWxsYmFjayBiZWZvcmUKbm90aWZ5aW5nIEhQRDoKCmRy
-bV9icmlkZ2VfY29ubmVjdG9yX2RldGVjdF9jdHgoKQogICAgZGV0ZWN0LT5mdW5jcy0+ZGV0ZWN0
-KCkgLT4gbXNtX2RwX2JyaWRnZV9kZXRlY3QoKQogICAgZHJtX2JyaWRnZV9jb25uZWN0b3JfaHBk
-X25vdGlmeSgpCiAgICAgICAgLT4gbXNtX2RwX2JyaWRnZV9ocGRfbm90aWZ5KCkKICAgICAgICAt
-PiBtc21fZHBfaHBkX3BsdWdfaGFuZGxlKCkKCldoZW4gbXNtX2RwX2JyaWRnZV9kZXRlY3QoKSBp
-biBkcml2ZXJzL2dwdS9kcm0vbXNtL2RwL2RwX2Rpc3BsYXkuYyBydW5zCmZpcnN0IChmb3IgaW5z
-dGFuY2UgYXQgYm9vdCBvciByZXN1bWUgd2hlbiBhIG1vbml0b3IgaXMgYWxyZWFkeSBjb25uZWN0
-ZWQsIG9yCmR1cmluZyBjb25uZWN0b3IgcHJvYmluZyBiZWZvcmUgdGhlIHRocmVhZGVkIEhQRCBJ
-UlEgcnVucyksIGl0IHJlYWRzIHRoZSBEUENECmNhcGFiaWxpdGllcyBpbnRvIGEgbG9jYWwgYnVm
-ZmVyIGFuZCBzZXRzIHByaXYtPnBsdWdnZWQgPSB0cnVlIHdpdGhvdXQKY2FsbGluZyBtc21fZHBf
-ZGlzcGxheV9wcm9jZXNzX2hwZF9oaWdoKCk6Cgpkcml2ZXJzL2dwdS9kcm0vbXNtL2RwL2RwX2Rp
-c3BsYXkuYzptc21fZHBfYnJpZGdlX2RldGVjdCgpIHsKICAgIC4uLgoJc3RhdHVzID0gY29ubmVj
-dG9yX3N0YXR1c19jb25uZWN0ZWQ7Cglwcml2LT5wbHVnZ2VkID0gdHJ1ZTsKICAgIC4uLgp9CgpX
-aGVuIG1zbV9kcF9ocGRfcGx1Z19oYW5kbGUoKSBpcyB0aGVuIGNhbGxlZCwgaXQgc2VlcyBkcC0+
-cGx1Z2dlZCA9PSB0cnVlIGFuZApyZXR1cm5zIDAgaW1tZWRpYXRlbHkuCgpTaW1pbGFybHksIGlm
-IG1zbV9kcF9ocGRfcGx1Z19oYW5kbGUoKSBydW5zIGZpcnN0IGFuZAptc21fZHBfZGlzcGxheV9w
-cm9jZXNzX2hwZF9oaWdoKCkgcmV0dXJucyBhbiBlcnJvciAoc3VjaCBhcyB3aGVuIGEgYnJhbmNo
-CmRldmljZSBpcyBjb25uZWN0ZWQgd2l0aCBzaW5rX2NvdW50ID09IDAgb3Igb24gYSB0cmFuc2ll
-bnQgQVVYIGVycm9yKSwKbXNtX2RwX2hwZF9wbHVnX2hhbmRsZSgpIHN0aWxsIHNldHMgZHAtPnBs
-dWdnZWQgPSB0cnVlIGF0IHRoZSBlbmQgb2YgdGhlCmZ1bmN0aW9uOgoKZHJpdmVycy9ncHUvZHJt
-L21zbS9kcC9kcF9kaXNwbGF5LmM6bXNtX2RwX2hwZF9wbHVnX2hhbmRsZSgpIHsKICAgIC4uLgoJ
-cmV0ID0gbXNtX2RwX2Rpc3BsYXlfcHJvY2Vzc19ocGRfaGlnaChkcCk7CgoJZHJtX2RiZ19kcChk
-cC0+ZHJtX2RldiwgIkFmdGVyLCB0eXBlPSVkIHNpbmtfY291bnQ9JWRcbiIsCgkJCWRwLT5tc21f
-ZHBfZGlzcGxheS5jb25uZWN0b3JfdHlwZSwKCQkJZHAtPmxpbmstPnNpbmtfY291bnQpOwoKCWRw
-LT5wbHVnZ2VkID0gdHJ1ZTsKCglyZXR1cm4gcmV0Owp9CgpCZWNhdXNlIG1zbV9kcF9kaXNwbGF5
-X3Byb2Nlc3NfaHBkX2hpZ2goKSBpcyBuZXZlciBjb21wbGV0ZWQgaW4gZWl0aGVyIGNhc2UsCndp
-bGwgZHAtPnBhbmVsLT5saW5rX2luZm8sIExUVFBSIHN0YXRlLCB0aGUgY29ubmVjdG9yIEVESUQs
-IGFuZApkcC0+bGluay0+c2lua19jb3VudCByZW1haW4gdW5pbml0aWFsaXplZD8KCltTZXZlcml0
-eTogTWVkaXVtXQpIb3cgZG9lcyB0aGlzIHNpbmdsZS1yZWZlcmVuY2UgbW9kZWwgaW4gbXNtX2Rw
-X2hwZF9wbHVnX2hhbmRsZSgpIGludGVyYWN0CndpdGggdGhlIHJ1bnRpbWUgUE0gcmVmZXJlbmNl
-IGhhbmRsaW5nIGluIG1zbV9kcF9icmlkZ2VfZGV0ZWN0KCk/CgpJbiBkcml2ZXJzL2dwdS9kcm0v
-bXNtL2RwL2RwX2Rpc3BsYXkuYywgbXNtX2RwX2JyaWRnZV9kZXRlY3QoKQp1bmNvbmRpdGlvbmFs
-bHkgYWNxdWlyZXMgYSBydW50aW1lIFBNIHJlZmVyZW5jZSBvbiAmZHAtPnBkZXYtPmRldiBhdCBl
-bnRyeQphbmQgb25seSByZWxlYXNlcyBpdCBhdCB0aGUgZW5kIGlmICFwcml2LT5wbHVnZ2VkOgoK
-ZHJpdmVycy9ncHUvZHJtL21zbS9kcC9kcF9kaXNwbGF5LmM6bXNtX2RwX2JyaWRnZV9kZXRlY3Qo
-KSB7CglndWFyZChtdXRleCkoJnByaXYtPnBsdWdnZWRfbG9jayk7CglyZXQgPSBwbV9ydW50aW1l
-X3Jlc3VtZV9hbmRfZ2V0KCZkcC0+cGRldi0+ZGV2KTsKCWlmIChyZXQpIHsKCQlEUk1fRVJST1Io
-ImZhaWxlZCB0byBwbV9ydW50aW1lX3Jlc3VtZVxuIik7CgkJcmV0dXJuIHN0YXR1czsKCX0KICAg
-IC4uLgoJc3RhdHVzID0gY29ubmVjdG9yX3N0YXR1c19jb25uZWN0ZWQ7Cglwcml2LT5wbHVnZ2Vk
-ID0gdHJ1ZTsKICAgIC4uLgplbmQ6CglpZiAoIXByaXYtPnBsdWdnZWQpIHsKCQlpZiAocGh5X2Rl
-aW5pdCkgewoJCQltc21fZHBfYXV4X2VuYWJsZV94ZmVycyhwcml2LT5hdXgsIGZhbHNlKTsKCQkJ
-bXNtX2RwX2Rpc3BsYXlfaG9zdF9waHlfZXhpdChwcml2KTsKCQl9CgoJCXBtX3J1bnRpbWVfcHV0
-X3N5bmMoJmRwLT5wZGV2LT5kZXYpOwoJfQoKCXJldHVybiBzdGF0dXM7Cn0KCldoZW4gYSBzaW5r
-IGlzIGNvbm5lY3RlZCBhbmQgcHJpdi0+cGx1Z2dlZCBpcyBhbHJlYWR5IHRydWUsIHdvbid0IGV2
-ZXJ5IGNhbGwKdG8gbXNtX2RwX2JyaWRnZV9kZXRlY3QoKSBsZWFrIGFuIGV4dHJhIHJ1bnRpbWUg
-UE0gcmVmZXJlbmNlIG9uCiZkcC0+cGRldi0+ZGV2IGJlY2F1c2UgbXNtX2RwX2hwZF91bnBsdWdf
-aGFuZGxlKCkgb25seSBjYWxscwpwbV9ydW50aW1lX3B1dF9zeW5jKCZwZGV2LT5kZXYpIG9uY2Ug
-d2hlbiB0cmFuc2l0aW9uaW5nIGRwLT5wbHVnZ2VkIGZyb20gdHJ1ZQp0byBmYWxzZT8KCkNvbnZl
-cnNlbHksIGlmIHByaXYtPnBsdWdnZWQgaXMgdHJ1ZSAoaG9sZGluZyBhIHJlZmVyZW5jZSBmcm9t
-Cm1zbV9kcF9ocGRfcGx1Z19oYW5kbGUoKSkgYW5kIGRybV9kcF9yZWFkX2RwY2RfY2FwcygpIG9y
-IGRybV9kcF9yZWFkX2Rlc2MoKQpmYWlscyBpbnNpZGUgbXNtX2RwX2JyaWRnZV9kZXRlY3QoKSwg
-bXNtX2RwX2JyaWRnZV9kZXRlY3QoKSBzZXRzCnByaXYtPnBsdWdnZWQgPSBmYWxzZSBhbmQgb25s
-eSBkcm9wcyB0aGUgcmVmZXJlbmNlIGl0IHRvb2sgYXQgZW50cnksIGNhdXNpbmcKbXNtX2RwX2hw
-ZF91bnBsdWdfaGFuZGxlKCkgdG8gcmV0dXJuIGVhcmx5IG9uICFkcC0+cGx1Z2dlZCB3aXRob3V0
-IHJlbGVhc2luZwp0aGUgcmVmZXJlbmNlIGFjcXVpcmVkIGJ5IG1zbV9kcF9ocGRfcGx1Z19oYW5k
-bGUoKS4KCj4gKwo+ICAJcmV0ID0gcG1fcnVudGltZV9yZXN1bWVfYW5kX2dldCgmcGRldi0+ZGV2
-KTsKPiAgCWlmIChyZXQpIHsKPiAgCQlEUk1fRVJST1IoImZhaWxlZCB0byBwbV9ydW50aW1lX3Jl
-c3VtZVxuIik7CgotLSAKU2FzaGlrbyBBSSByZXZpZXcgwrcgaHR0cHM6Ly9zYXNoaWtvLmRldi8j
-L3BhdGNoc2V0LzIwMjYxMDIyLWhwZC1pcnEtZXZlbnRzLXY2LTAtMzM3ZWEzZGRhYTYyQG9zcy5x
-dWFsY29tbS5jb20/cGFydD02CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3Rz
-LmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9saW51eC1hbWxvZ2ljCg==
+The ARM/Amlogic Meson SoC CLOCK FRAMEWORK section was written when the
+GXBB and Meson8 headers were the only clock headers, and only the A1
+ones were added to it since. The headers of the AXG, G12A, A9, C3, S4
+and T7 clock controllers in include/dt-bindings/clock/ are not covered,
+so ./scripts/get_maintainer.pl does not return this section for them.
+
+Match every amlogic,* clock header, and the axg* and g12a* ones.
+
+Signed-off-by: Carlo Caione <ccaione@baylibre.com>
+---
+ MAINTAINERS | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 3a19da74d00c..e5bda99b3015 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2555,7 +2555,9 @@ L:	linux-amlogic@lists.infradead.org
+ S:	Maintained
+ F:	Documentation/devicetree/bindings/clock/amlogic*
+ F:	drivers/clk/meson/
+-F:	include/dt-bindings/clock/amlogic,a1*
++F:	include/dt-bindings/clock/amlogic,*
++F:	include/dt-bindings/clock/axg*
++F:	include/dt-bindings/clock/g12a*
+ F:	include/dt-bindings/clock/gxbb*
+ F:	include/dt-bindings/clock/meson*
+ 
+
+---
+base-commit: 363f97a1ce635b86be7fd263d56a040fbd87bdbb
+change-id: 20261022-upstream-maintainers-clk-headers-fc2668f41f5a
+
+Best regards,
+--  
+Carlo Caione <ccaione@baylibre.com>
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
