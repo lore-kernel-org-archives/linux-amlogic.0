@@ -2,97 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89722606A327
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Oct 2026 17:50:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 392E4606A319
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Oct 2026 18:22:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uF3hF9Hf
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yFUkhSm1;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=HmWT3PeY
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:In-Reply-To:
+	Cc:To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=9sB5WX+BUrs8pWmuNbAmYri8u7q6OWtDH/bCoCE6vYQ=; b=uF3hF9Hf4d3ZGTq1K/eVc6C+6r
-	jwPmEcUxt6j1rryl/8aDfw+zt/zmFy9mXO2OS9zJiWU0JYJqDXmRGqb3O+eewq03BwNkKM3OmVd0s
-	/pe7r+ZYEXsUlBh3OR3w10FrDIoDytx1Y0dcbtKjRVx2+TSeJC6gduj/PIDbCHlvlbSJ5uAA39KqD
-	g45A6Tad3B//jbDLzKZ66J+QuawKVbSRfrSPw8ZWSIEntF5mpQvepM85lWIk9rC+qdbhKfY3hvapb
-	4Wt8e25zr0Qx7YmZYa+eAx6cJei9sQwqV0IIyOEwSDOPp5xKrSAK2XFhAgoAb88aCefCRQLI6w3HK
-	TtjwIOjg==;
+	bh=UdFkwc/tCjc+zKq10nF5TI91vllQnodZBWiP2Kh2vUk=; b=yFUkhSm16WZkVG13gVWMVN78r6
+	X+84uHPWSMln/rzb4vL6YHkClpvdtH69NQU4OWUH0Hj1oBLMc56crKiYB/4c4EHgiZWnUTFvBszzc
+	VG/D5wrW3WyaGeEamoOADbVGlg19VlJOEkfMjRgnrnKmRwI4DcpdcB82TfTz0fitqIUAn8All6J/u
+	8AGVZvJfgQS8HxOXT0apLDpSuc5RuzqkKQTkkGL7yByFsUREYfzmleDZq+EOFfudiXf6LfHco5Bwz
+	YS3pUWlyzHCkny1hg9OFHBs3Zdil1ygm7X6UwtmGnDmOz44GZNd3/0FOe3UNAm6aM37vpeM/dYIJ7
+	djta8hhQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xJwvx-0000000EdyZ-0Xo3;
-	Thu, 22 Oct 2026 17:50:33 +0000
-Received: from mail-wr1-f52.google.com ([209.85.221.52])
+	id 1xJxQN-0000000EhMj-2izN;
+	Thu, 22 Oct 2026 18:21:59 +0000
+Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xJwvu-0000000Edvr-2BT4
+	id 1xJxQK-0000000EhMM-1TXN
 	for linux-amlogic@lists.infradead.org;
-	Thu, 22 Oct 2026 17:50:31 +0000
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-48b060ec084so61455f8f.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 22 Oct 2026 10:50:29 -0700 (PDT)
+	Thu, 22 Oct 2026 18:21:58 +0000
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-48e20edd106so83090f8f.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 22 Oct 2026 11:21:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1792693314; x=1793298114; darn=lists.infradead.org;
+        h=message-id:date:references:in-reply-to:cc:to:from:subject
+         :content-transfer-encoding:content-type:mime-version:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=bQE0lagaKaRPxOL0ymbiA3jEEX5u6DV2i4c9cRwYEcE=;
+        b=HmWT3PeYHPMc4aWcaPDhKIVE9s/sANwN3UDgOR+ccEDgu0fVLeX2Tc0Lq0JJ1mocRO
+         4jq+OE6/vUDEk4J42ivIYClvUCM1Zybr/l3QtE310WPYWec0XDDbmpJqDcf/NFWpMJnD
+         bfWmkoP9NhKM3PL0xbsL/Neyn0kgJzGYOHgUBkK6GZKDnLgPsckxGdAwPF/ilm51K+TC
+         l914KcBiHy6hg1IiysVKdypGROUuZgY5VnHeY7xhYDzuYfVIs7zrF67YI5+iJB/88Chk
+         sQNyhLFAj7w7HGeCnXOzrlmp89Lx1jR6D+l+z/jOkVMY5kSju2I2bowWzpe5L4bglVxl
+         L6xQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1792691428; x=1793296228;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=Wd3oLS+dcFTXkdvGEDZ+0YYIQNbTTyKN39PEruh5N40=;
-        b=S9o4T3kk6bIfT8Syxr5R8iUlJQDAhmIGNdBf07Qy2EPXO6nmxiMYM2yKcL4OenXo8M
-         uRuGsiBiSsdYaplX/KvRZo9UKXtUvRgdtR+FKzlNb30aZI55jtzcv3jvOKsWtd2AbO0h
-         OLpctmn1eMQKDW2m6Wyj1Cnd09EfmYekY4inAXeuGFjChehu33yFxRDkjVC3FJvN4Oee
-         xzxezZXxb757Z4OqsOLPoCa+s1LdqNOfsbK82o1UutPiiWd67JZOJ1BXTB5g6SjAep2O
-         yU4Q+/p3PGwZ6ah/o3VkX2NAzFpYEHpSqpo0eZMTzi2+om7LfNTAF7Jmu9xJQNYyctU8
-         RCEQ==
-X-Forwarded-Encrypted: i=1; AKwUvBw/+agl9+KMGWEvsKw7reJJ/ztVbMvXjxzaasB0eUTQ3dEjBoJe3aazBdieO+Qm+fYKia/bp7ONr4qq44Ka@lists.infradead.org
-X-Gm-Message-State: AFq9FYIFvBg+SZPgfOmE/Cm6ZLLJ9detA/dexDFPoj1Tf3hQpw8MIWcS
-	FGSS2+2NQnVB4X9gWJ4BeVgtzDO10djiTF9HHJ54d/a3dOC7Jl4YXLBx
-X-Gm-Gg: AYBFou2YIW5ezrdusY+IshPqzloeeQWkGdJZioHibgwKadp/mGiE2LR4pXTrPUwwZRx
-	Ldh2WLrfPHDM99oXscy9z6iVYJtz9DKjScPdmwHanh8nlgLNIHdwRP5/vmX4nJhfcibm5mjVGx3
-	ZuNNAGR0K2gt2u5US5XXODqT5lbxuRpp1QcvacatNY3YFjoJjkn9Qo0+UkDxMU0Uur2XPWCdan/
-	CkJToEqhQw7A+fbeRQwb8CTSgVvust/ef/8mteBlyw6y8+OntO10NND8C4rufrbJlSDS1FI4HzY
-	O6xPTx61tsRgTPw/1n/OL+OOsKvCFgH/iCjchTRwYYncUuCcujX9O5mYwxOX0FFvIg0Wu2CBtkK
-	UZsm6btXHFYHwU+hbbazqNuvF8kjINDuQ4dBEJyLn4g4iSUcqoWkplIAyyyDUYRD6IvS5TUaE63
-	nO+tWwlNP3RWUNmShj+ea5jRvxzySEkjrXXa1RU7iv2SCtjAQRsxavs738iNegT/94LSDLmxqEP
-	/iWvoccE4POpJ+lFOALY6+NpOWgCb1j9FEtYqZxovtV4jmj9ikJM+vHmSUw8rECyht+UdxwfvvY
-	liNPZF55+w==
-X-Received: by 2002:a05:6000:1866:b0:48e:412:37f4 with SMTP id ffacd0b85a97d-48e2641de1amr14015136f8f.1.1792691428424;
-        Thu, 22 Oct 2026 10:50:28 -0700 (PDT)
-Received: from [192.168.1.135] ([81.79.62.202])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48e25835247sm13834966f8f.41.2026.10.22.10.50.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Oct 2026 10:50:27 -0700 (PDT)
-Message-ID: <c9d2b1dd-c733-454a-9281-80787f5c432e@linux.com>
-Date: Thu, 22 Oct 2026 18:50:26 +0100
+        d=1e100.net; s=20260707; t=1792693314; x=1793298114;
+        h=message-id:date:references:in-reply-to:cc:to:from:subject
+         :content-transfer-encoding:content-type:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=bQE0lagaKaRPxOL0ymbiA3jEEX5u6DV2i4c9cRwYEcE=;
+        b=c38qFy8eROYBVGpwkfi95PgWbb5OSezHF8Z651xhy6HRi60i282AIB27MS+9H1bD1s
+         hpbqeR9rGsWX6TaOeBdGEj2MrdxtM5th2UImoFQiX1v8ZYobmtaNRpttJaD4AFxxhtHe
+         GkQzPeWyQnjTe0+HQoU5IxA5Qv+4dgXR3BnzDFfUubzHcQyuQzmJIVW+FfrzZinL3sNx
+         hqZ7ieB4XtQqmqZpHlh/tWR+MS/FxT/Y/XpOyLeRJbgUABj+TvQPfuiOXVgYdosGDBE0
+         OCxk1XVp7jciGdczepO/2P0cCA9xaPYTdqCU1wCxv7g+HoTkaI1qzhNF0jCheUvSZSFH
+         O7yg==
+X-Forwarded-Encrypted: i=1; AKwUvByB4FRRP+n5eVtguBubXn0sqvFfSkJOu6xAQMfD1jzZP4O832bjD3/5vIhsW8wWjtohcLS3GXI8G5KLDh6W@lists.infradead.org
+X-Gm-Message-State: AFq9FYKEkjA+eViZrhCs2Tg0ete9WU58jp0rk4HiETgVHTIe2lFQIslJ
+	xF8YsA+7nLIAY1/3Ff/Nbd3Ymbf4naeqxdjQdi36wZ0gl3iWp4xMoxDWMEBFUP5zQkWZ/FIXqo+
+	BowJa8NE=
+X-Gm-Gg: AYBFou1WBzTotweMezBJRZpS2AucLOE3atBNdPIyv9OTJX6mcT80VdG7JB5B3EEToBI
+	Njwk5v9Iqds6VT5MYWdlrrytrW56HsXTRxWiAUtRyjaKObfAjeJYErB5YIjHl6IrihCtNYMuPMA
+	pjLkXPkZpHz8bK3H+HmrEgdBVUdFMXRX7mFruPyVsar/AuSptH8y4zdBsmo0yK0/xlIYAQyfXMn
+	gnsUOAYK4Qphu9uyYB+xmyCXfgqCjqF0bE4dWhZ2QxwxcN/ZprsWls8Nh6aM7DVltVFmVPIB8yN
+	WkZ0WEOHSm76BZScOsi0Ax66de3DdlB1ii/fG/a9AHT9lAOEGk+Bqn7awEJTeIq/f5FTpAFLONf
+	sUMuYrk127Y69HMPwy8fkb6YB3DDTBfRgY+Mj/fxTmeXvO0hHPBid+a5e81+LhRRkqfv7SzqIYV
+	Nwv9mwe8FYeTk85UfaqkEj5MTmEOY+VW23itXhKvsErR36YB3jjlxYaSYxzP6e7ppMMhGoqKk1k
+	FHBucfxii+Ctg1Ogv6vnhwOAT3QfHLILmLqiuwjN0MH4kQfVXE577wLw6xGK7V2kYHxz8l35Ho=
+X-Received: by 2002:a05:6000:401f:b0:48b:68:594a with SMTP id ffacd0b85a97d-48e264a328dmr12950455f8f.12.1792693313834;
+        Thu, 22 Oct 2026 11:21:53 -0700 (PDT)
+Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48e379cf680sm10654f8f.20.2026.10.22.11.21.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Oct 2026 11:21:53 -0700 (PDT)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 8/8] dt-bindings: net: ethernet-controller: tabulate
- who adds the RGMII delays
-To: Jerome Brunet <jbrunet@baylibre.com>, xianwei.zhao@amlogic.com,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20261010105900.247342-1-tanure@linux.com>
- <20261010105900.247342-9-tanure@linux.com>
- <1jqzhu9in5.fsf@starbuckisacylon.baylibre.com>
-Content-Language: en-US
-From: Lucas Tanure <tanure@linux.com>
-In-Reply-To: <1jqzhu9in5.fsf@starbuckisacylon.baylibre.com>
+Subject: Re: [PATCH] MAINTAINERS: cover all the headers in ARM/Amlogic
+ Meson SoC CLOCK FRAMEWORK
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Carlo Caione <ccaione@baylibre.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org, 
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20261022-upstream-maintainers-clk-headers-v1-1-d09dd4db01d6@baylibre.com>
+References: <20261022-upstream-maintainers-clk-headers-v1-1-d09dd4db01d6@baylibre.com>
+Date: Thu, 22 Oct 2026 20:21:46 +0200
+Message-Id: <179269330668.4070168.14282043797701140302.b4-review@b4>
+X-Mailer: b4 0.17-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=600; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=FHA0UZKs4ozL3194RgoWCh9aYKr2i6a1lCUCq4oBDkE=;
+ b=owGbwMvMwCW2VtK+WnvWU3HG02pJDFm3QhzWOBQZXriX7Ht+SVZ0w74cw10ndyeHsz2zKu5as
+ fFW9O60jlIWBjEuBlkxRZYa7mrxd5JaX2ZN17kNM4eVCWQIAxenAExkyx5GhgWGYu7+x3JF1PfO
+ /nCPJ0JCaSGTRt3uzHnByRxfJx05fYnhf0xUcsuTE1qzk6PWPpon7p79Z+avy3UzZyx/+/djhVH
+ 0ESYA
+X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
+ fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261022_105030_587181_0080EF26 
-X-CRM114-Status: GOOD (  15.89  )
-X-Spam-Score: -0.7 (/)
+X-CRM114-CacheID: sfid-20261022_112156_404972_B512EB46 
+X-CRM114-Status: UNSURE (   7.28  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,83 +110,31 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 13/10/2026 08:14, Jerome Brunet wrote:
-> On sam. 10 oct. 2026 at 11:59, Lucas Tanure <tanure@linux.com> wrote:
+On Thu, 22 Oct 2026 17:57:26 +0200, Carlo Caione <ccaione@baylibre.com> wrote:
+> The ARM/Amlogic Meson SoC CLOCK FRAMEWORK section was written when the
+> GXBB and Meson8 headers were the only clock headers, and only the A1
+> ones were added to it since. The headers of the AXG, G12A, A9, C3, S4
+> and T7 clock controllers in include/dt-bindings/clock/ are not covered,
+> so ./scripts/get_maintainer.pl does not return this section for them.
 > 
->> The informative section explains in prose how phy-mode, the delay
->> properties in the MAC node and the mode handed to the PHY fit together,
->> and says itself that developers often get this wrong. A reader has to
->> work through several paragraphs before answering the one question they
->> usually have: for this phy-mode and these properties, which part adds
->> which delay.
->>
->> Add a table that answers it at a glance, with one row for every
->> combination the properties allow.
->>
->> Assisted-by: LLM
->> Signed-off-by: Lucas Tanure <tanure@linux.com>
->> ---
->>   .../bindings/net/ethernet-controller.yaml      | 18 ++++++++++++++++++
->>   1 file changed, 18 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
->> index 1bafd687dcb1..bba27a9feb61 100644
->> --- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
->> +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
->> @@ -339,6 +339,24 @@ additionalProperties: true
->>   # has added. Failure to remove the delay will result in a
->>   # non-functioning link.
->>   #
->> +# Put together, with the two properties in the MAC node, this is who
->> +# adds each delay:
->> +#
->> +#   phy-mode    tx-internal-delay-ps  rx-internal-delay-ps  TX delay    RX delay
->> +#   rgmii       -                     -                     PCB trace   PCB trace
->> +#   rgmii-id    -                     -                     PHY         PHY
->> +#   rgmii-id    present               -                     MAC         PHY
->> +#   rgmii-id    -                     present               PHY         MAC
->> +#   rgmii-id    present               present               MAC         MAC
->> +#   rgmii-txid  -                     -                     PHY         PCB trace
->> +#   rgmii-txid  present               -                     MAC         PCB trace
->> +#   rgmii-rxid  -                     -                     PCB trace   PHY
->> +#   rgmii-rxid  -                     present               PCB trace   MAC
->> +#
+> Match every amlogic,* clock header, and the axg* and g12a* ones.
 > 
-> That would match how the HW is working on the A733 Allwinner too but I'm
-> not entirely sure this is what Andrew had in mind from our previous
-> discussion [1]. Adding him to the thread
-> 
-> [1]: https://lore.kernel.org/linux-sunxi/491f043e-6dc6-4936-a490-31a3362c5b6e@lunn.ch/
-> 
->> +# A property for a clock the PCB already delays is not in this table.
->> +# It is either the fine tuning described next, or a mistake the MAC
->> +# should report as a fatal error.
->> +#
->>   # Sometimes there is a need to fine tune the delays. Often the MAC or
->>   # PHY can perform this fine tuning. In the MAC node, the Device Tree
->>   # properties 'rx-internal-delay-ps' and 'tx-internal-delay-ps' should
-> 
-> Acked-by: Jerome Brunet <jbrunet@baylibre.com>
-> 
+> [...]
 
-Thanks, But I will drop this as it is wrong.
-Lucas
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 
->> -- 
->> 2.56.0
->>
-> 
+-- 
+Jerome
 
 
 _______________________________________________
