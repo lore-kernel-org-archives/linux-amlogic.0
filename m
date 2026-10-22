@@ -2,10 +2,10 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0359360A2625
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Oct 2026 20:07:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9ED1606A321
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Oct 2026 20:07:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NhalM7Qp
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FkGLLzS3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -13,53 +13,53 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=/bUGkh7UVdHX+BLk+JXa87BmsB6CzT7D9FFwO9YxLtE=; b=NhalM7QpSdd/Fku3zRMtxFMsbV
-	AFvU3xKmpIW5gZSEPD+XKNsiWkbXJWAidsj7w5/mzUFfMQG/fYIf/V3up6HQqqn3aHqZTg1M2c8RJ
-	esuPBKxzl0+t5E7qElgmAZtOJqHvV7YcWfGRgTIwMdJ4GYX+UQ6F9AlbxAiZpDzTd78cp6edVZBG9
-	6IZo9H8hKcMv97GPynXtQGMx8+U23X8xPRFZIFGkFCg9Cw3Fn5/5p8fuK9CfRszYqXtH6lZ6Jtwzt
-	vN+rFfuRrr+rjcRt6ZQmyCuVY+8s/XUwneaXcFIelpc7GVl99SwOnUz1RRiCMQYD/mEVtJsshsl1c
-	eCiaEMZQ==;
+	bh=uiRVLc/zH+oFdl97le/XzJL4ncBClBc/gzdY+FNan2c=; b=FkGLLzS3Bai08q4SFm/AxFNW+c
+	HdLu2yJ8e+PA76Qmet3cEkRCkCGOlu1Sc22JkqAlFm/oCrtaapQUD0mByfdGZDwn9ja263zM3z/kx
+	LxHRTlOQey11vRGh8xXd9cvMhrjeLNTGxbX2JaC3f/xzqYG1Cs+u2NMCDDujfWXiQEMSvsItI4EXh
+	buLe1ZLQclYPAMEQZL1N7pCYVZxE6rNHi0WfM420g7TyAtO0da0TCp5DJOMFBRs8fWiFbiC47JJbI
+	mr+u1LnZXZBYoro9mdXtLqRPSMZgX4lE5NNRoUIgUQiIXmuLLq+8v8/liu7YWIf5o9wZ7CDjhXJhp
+	2oOQ6Ypg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xJz3z-0000000EtDc-45cp;
-	Thu, 22 Oct 2026 20:07:00 +0000
-Received: from mail-wm1-f46.google.com ([209.85.128.46])
+	id 1xJz42-0000000EtIu-2SUe;
+	Thu, 22 Oct 2026 20:07:02 +0000
+Received: from mail-wm1-f54.google.com ([209.85.128.54])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xJz3t-0000000Et55-161Q
+	id 1xJz3u-0000000Et5x-29sh
 	for linux-amlogic@lists.infradead.org;
-	Thu, 22 Oct 2026 20:06:54 +0000
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4a1e266fca2so1634525e9.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 22 Oct 2026 13:06:52 -0700 (PDT)
+	Thu, 22 Oct 2026 20:06:55 +0000
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4a20568c8c0so1673405e9.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 22 Oct 2026 13:06:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1792699611; x=1793304411;
+        d=1e100.net; s=20260707; t=1792699613; x=1793304413;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=v5CqxcBKvAvHjHHPxB9ySYgie/HwK72kF8ZKF5b74+M=;
-        b=KCe6hOAbm7/Od5hYxtuOzWZPFv6WFIaIa94asSIJk0IwSsrPQJFVuv3RBElRbAjRZC
-         S7vY0QUyj46gMv7ORnvwd3v9JY5FKy8P1yXHI5VPTQqVEp9KGJHyn1YGyy3fCr25hfJL
-         c+exacHcTwGH1ssIydmKDa6IssLphM0R70bSGhBkLwUT53w+r5erJFDZMXVXB47nApUF
-         j7NNa8BHP3UB/4VfkZDEhESZtYkaoQsuqwQVIPwnTZt0X2WeisVZvQsslehxLYFHmNls
-         rANrlCmHXYAG6GohoUBzMN2uzyu9Fu99vM/1mMJGqjSR1U1z9Quw+sDjZiofYA90xSjw
-         CHMA==
-X-Forwarded-Encrypted: i=1; AKwUvBzD+I6v0poc6Fh0OmE2w8djBPu69l4z2emVtedXvxQgPo5msQT/Iwk7+qU3VNAkc1XU2byCGA7hNR1iN6QG@lists.infradead.org
-X-Gm-Message-State: AFq9FYIxE+x12J6EY1l/60+69/n9BqZOHM+BR9N8YNgjxC4xJYweAnV1
-	lGn9fQmYOkZvnpKdw5gsg8RqjU9fWrBrCbkNgccEGld2kU5tUgBwbvza
-X-Gm-Gg: AYBFou3wzAKRy5mY1iRsY736HvKYqTa4mhDDUX3h6Q9189jmIxBHeUzV9/XeyF3Vga/
-	tLVltgb9IADfZBH+q3pzSMt+CBqyTIpqaw4JGSjxAiqQTDiFzwc4MRu27IsPsfLBrw78NrR1Wzk
-	lvtjK1wEkXbIEHsTotYSo+PQrh5/g3hhlxNWKmTIVpiw0YXl5l12GKQSg+sE8NuZ1h+GbonBi91
-	lHr3zMSLe4XmE7ktx+vHGOpaLexj6efneyjQPHrLJ1WyG21Iie7tNFOP8888y0OoMndZVZf6CzL
-	Jyyn8Yc006x1QvGAjsdTH+84wbT6PJ2hiiJcTPQ9j+5Ph77s/dtfgF+5BKnKUGiX6cSE1jAGlBg
-	vMlDqJpeG2FUlM3pH1AujzjpGZAOkLdIXjqEOF6sVwy57s172psirBbqafE+EhYXrmFPIWNRfd4
-	kqRaG8R1Hw4gfNwXzf28YTn6AZo9colYNFxvykktSoKxboziWHqIR1NcbaYtBKxVTH4W/hRJ6Jf
-	3dPOITFQPxs4HCBRHS6pGPLrBm8vcewKQuyp0CMsJtiOT2GMhtbCCD/L8RaFZyxhaYqejbZuK0B
-	+hjnuCMDCirzc4eAqGIsx23rerlMO7PnmpHe
-X-Received: by 2002:a05:600c:1d0a:b0:4a1:f8cb:7d70 with SMTP id 5b1f17b1804b1-4a211f08fedmr1687545e9.24.1792699611517;
-        Thu, 22 Oct 2026 13:06:51 -0700 (PDT)
+        bh=ElpMWQpElxyvYVfod7vt+zc/cJPBYXPVQKctc5VqWXw=;
+        b=G/1vLGZJg8W8QM8+RbXmAlhwsR+10FQMNJoBr7forv15W3FsEj1G8RxQ7M/Ws+sNKC
+         S3MuDbcbGHYW/IuafXvFy0sDrKpHsRFuL2/mgQoU9rnR01wsHhBsIzZBkC8AARrbqAwb
+         igJ9apKUxUi0HvEOOwWSm/mKL3K2/ECkzMIZIc6BzTQCLzi0knfpadY4tr8QtzT1NzZ3
+         QL3x8/HuBH0XIuxreiNujFihHZJcxM1algRZVSLjuM9GSmiX0wOfFSL4FaA1d7kq22zk
+         gLoAUtgbl7Y/9NAKFaYzpGDHXeHd5NDHtrQJin6Wdty1YT4saOd/qaslhAT/EL4nKdeO
+         qMaA==
+X-Forwarded-Encrypted: i=1; AKwUvBw5MYst+rHBbH9+FbTAR2U7MSFQIfo7dOk7CrDem6KNHO+FpnWsoNEL/cwdUhpKHbT72PFjow99pvPDIP3j@lists.infradead.org
+X-Gm-Message-State: AFq9FYLq6A71qfVgynGNoOF9WYNw2PO9dePvPB67WQye3im8bg/RC1cS
+	RvBMQ7y4cff3QMcDAK+MyVpBc66QJjhzCfORVJNANzAPOcIlgA2uKx/g
+X-Gm-Gg: AYBFou1xLK2+PusAFxgtSHnMS3R5sNXF9CMkAXJSnRbLDWVaHfymNBx7eyFXTZsR36h
+	vRA+y7uFDyMKxcbTTntCU+u3eakdkLIVSV1by15fqaUCfHi3+pyTSnWxYu5CpCtFUkiV3CB8v8s
+	O9BFnKBOCwphh/KLeZhAux9JYTCI5CHhQYPl8tun8so8IZulApwbH0WCxDpJpqlmU5E3RQxQOY8
+	QmlQ2NNiiqEacjaYYoN0BiZTUiSyj6rtqrolm3jozcqFyJquSpNMBAM+t08E5CHvSQDzXQtVULP
+	+uSsJZ8/veys4mN4p2OfJRN42RT1lZdfsPHIKFMTur5dBYp6ZeUqr0s11o/xlae8I5ep7rT9Ij6
+	0hjgRZ3hcJvL8NCvhBTCcJ3f1TjWDqWigJT6yTIVpNswcMrhNg0EVurVl2JThRTon7zSOGf8oL8
+	R3Xt7fCmHRS3Jv27Y1+nUR9PViHKNRAD+myZbW08VeV7U2kcB/Ulz+2zeJe1+Ckt8+rqd1bNKQV
+	rTlHlqFguzfTKhB5ENZcGhoS0g5p8gTjurpYfOPCeMsKD3LrrAZgaS9/haye6nygg0YMTCuDm8Q
+	zXWN2c4k5H2Ha9FS
+X-Received: by 2002:a05:600c:4e43:b0:4a1:e672:5721 with SMTP id 5b1f17b1804b1-4a211ed57e1mr2298085e9.13.1792699612466;
+        Thu, 22 Oct 2026 13:06:52 -0700 (PDT)
 Received: from threads.localdomain ([81.79.62.202])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4a2123a1797sm35965e9.1.2026.10.22.13.06.50
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4a2123a1797sm35965e9.1.2026.10.22.13.06.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Oct 2026 13:06:50 -0700 (PDT)
+        Thu, 22 Oct 2026 13:06:51 -0700 (PDT)
 From: Lucas Tanure <tanure@linux.com>
 To: xianwei.zhao@amlogic.com,
 	Andrew Lunn <andrew+netdev@lunn.ch>,
@@ -82,18 +82,17 @@ Cc: netdev@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 5/7] arm64: dts: amlogic: t7: add the ethernet pinctrl nodes
-Date: Thu, 22 Oct 2026 21:06:38 +0100
-Message-ID: <20261022200640.3101932-6-tanure@linux.com>
+Subject: [PATCH v4 6/7] arm64: dts: amlogic: t7: add the ethernet controller
+Date: Thu, 22 Oct 2026 21:06:39 +0100
+Message-ID: <20261022200640.3101932-7-tanure@linux.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261022200640.3101932-1-tanure@linux.com>
 References: <20261022200640.3101932-1-tanure@linux.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261022_130653_334257_EDFF8A13 
-X-CRM114-Status: UNSURE (   9.38  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261022_130654_604379_87F028D9 
+X-CRM114-Status: GOOD (  10.56  )
 X-Spam-Score: -0.7 (/)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -114,62 +113,102 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The SoC brings its ethernet interface out on bank Z, but no pin groups
-were described, so a board had no way to hand those pins over to the
-MAC.
+The SoC has a Synopsys gigabit MAC, glue registers for the interface
+type and clock timing, and a multiplexer that points the management bus
+at the on-chip 100M PHY or the external pins. None of it was described.
 
-Describe them as the two sets a board actually needs: the nine pins the
-interface always uses, and the five extra ones RGMII adds for its wider
-data path.
+The controller reaches memory through a pipeline stage with its own
+gate that nothing else claims, so it is switched off as unused.
+The glue registers share a clock with the multiplexer, which probes
+only after the controller has programmed them: unless the controller
+holds that clock itself, the writes are lost and the port keeps the
+bootloader's delays.
+
+The on-chip PHY follows the G12A; no board in tree uses it, so it is
+untested. It stays disabled for boards to enable.
 
 Assisted-by: LLM
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 Signed-off-by: Lucas Tanure <tanure@linux.com>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 30 +++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 58 +++++++++++++++++++++
+ 1 file changed, 58 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index 6894c06a836b..7bd53ec16607 100644
+index 7bd53ec16607..94ea22514501 100644
 --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -376,6 +376,36 @@ mux {
- 					};
- 				};
+@@ -250,6 +250,33 @@ gic: interrupt-controller@fff01000 {
+ 			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_HIGH)>;
+ 		};
  
-+				eth_pins: eth {
-+					mux {
-+						groups = "eth_mdio",
-+							 "eth_mdc",
-+							 "eth_rgmii_rx_clk",
-+							 "eth_rx_dv",
-+							 "eth_rxd0",
-+							 "eth_rxd1",
-+							 "eth_txen",
-+							 "eth_txd0",
-+							 "eth_txd1";
-+						function = "eth";
-+						drive-strength-microamp = <4000>;
-+						bias-disable;
-+					};
++		ethmac: ethernet@fdc00000 {
++			compatible = "amlogic,t7-dwmac",
++				     "snps,dwmac-5.10a",
++				     "snps,dwmac";
++			reg = <0x0 0xfdc00000 0x0 0x10000>,
++			      <0x0 0xfe024000 0x0 0x8>;
++			interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "macirq";
++			clocks = <&clkc_periphs CLKID_SYS_ETH>,
++				 <&scmi_clk CLKID_FCLK_DIV2>,
++				 <&mpll CLKID_MPLL2>,
++				 <&clkc_periphs CLKID_SYS_AMPIPE_ETH>,
++				 <&clkc_periphs CLKID_SYS_ETHPHY>;
++			clock-names = "stmmaceth", "clkin0", "clkin1", "pipeline",
++				      "pclk";
++			power-domains = <&pwrc PWRC_T7_ETH_ID>;
++			rx-fifo-depth = <4096>;
++			tx-fifo-depth = <2048>;
++			status = "disabled";
++
++			mdio0: mdio {
++				compatible = "snps,dwmac-mdio";
++				#address-cells = <1>;
++				#size-cells = <0>;
++			};
++		};
++
+ 		apb4: bus@fe000000 {
+ 			compatible = "simple-bus";
+ 			reg = <0x0 0xfe000000 0x0 0x480000>;
+@@ -645,6 +672,37 @@ gpio_intc: interrupt-controller@4080 {
+ 					<10 11 12 13 14 15 16 17 18 19 20 21>;
+ 			};
+ 
++			eth_phy: mdio-multiplexer@28000 {
++				compatible = "amlogic,g12a-mdio-mux";
++				reg = <0x0 0x28000 0x0 0xa4>;
++				clocks = <&clkc_periphs CLKID_SYS_ETHPHY>,
++					 <&xtal>,
++					 <&scmi_clk CLKID_FCLK_50M>;
++				clock-names = "pclk", "clkin0", "clkin1";
++				mdio-parent-bus = <&mdio0>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				ext_mdio: mdio@0 {
++					reg = <0>;
++					#address-cells = <1>;
++					#size-cells = <0>;
 +				};
 +
-+				eth_rgmii_pins: eth-rgmii {
-+					mux {
-+						groups = "eth_rxd2_rgmii",
-+							 "eth_rxd3_rgmii",
-+							 "eth_rgmii_tx_clk",
-+							 "eth_txd2_rgmii",
-+							 "eth_txd3_rgmii";
-+						function = "eth";
-+						drive-strength-microamp = <4000>;
-+						bias-disable;
++				int_mdio: mdio@1 {
++					reg = <1>;
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					internal_ephy: ethernet-phy@8 {
++						compatible = "ethernet-phy-id0180.3301",
++							     "ethernet-phy-ieee802.3-c22";
++						interrupts = <GIC_SPI 340 IRQ_TYPE_LEVEL_HIGH>;
++						reg = <8>;
 +					};
 +				};
++			};
 +
- 				i2c0_ao_d_pins: i2c0-ao-d {
- 					mux {
- 						groups = "i2c0_ao_sck_d",
+ 			uart_a: serial@78000 {
+ 				compatible = "amlogic,t7-uart", "amlogic,meson-s4-uart";
+ 				reg = <0x0 0x78000 0x0 0x18>;
 -- 
 2.56.0
 
