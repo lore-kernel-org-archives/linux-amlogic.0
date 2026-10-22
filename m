@@ -2,11 +2,12 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D808E60A2628
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Oct 2026 18:31:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 892D860A262B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Oct 2026 18:31:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ft6sQ2qd;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=EqSFYy1Q
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TddpUaaI;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=XPjEMR0m;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=bFeClgzS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -14,73 +15,88 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=VJAGcMr8ELePedoqGSN9mqPpvtpskL+xG2QQDW5MhMI=; b=ft6sQ2qdgjCEkAqJxkq8DrKmem
-	69YXd0FUq19Bshmpg+WSn9eSWIM5zlLeID1eP3Lx532Xk3z5ob5us1m/Ax4RXPWt6GbyxljTLtEY6
-	68Ib5N0xkHExe7erfRXnxZQxRS/HaSjYO32gP3nzCiwAHrGB14Ga3xDBEzXd8qPvl1AFv+p3Pvs/Q
-	VF1nCXsqEeYy4FJMg1n6A7WNEOXGSS1Gi+tobvve06YGTczc33g7ph5ZZVzdBUTzEEns+o8/KZ64g
-	9G4bmMvrH/3x+RFfSV6w02VLTa9i8VcYQvcxjS2nzX7iN9GITKGzoEkjL/Rinu1HB2tf4CeFXyJf3
-	94dNfYeA==;
+	bh=aRBGGzxRN/tHUu376PgiNjmKQkNFZuPZ0cJyyTQKScs=; b=TddpUaaIj5cXxbw+xJ+QFZMGeW
+	OCsdU+qkSQ9yXlyUungYwQP17MzRiOaNJY9ubvUuQIJjRH7wuR13jlEMVQ1/EatkHvIK+CyKX3cMl
+	tG9BYOAivAK8KHVzUbUXxIxvoWXdajzWYHuDzawm/7QfnSXRW4LELN6t8VsIKACV6PJ7le29Oi0Z+
+	Dni88Y9AaHpc3YI/PoAjTWDY5jwWktfU/9K1k99z9tN5e+8hMUaQ3IwlGatev0kvlXqL2AYBZpZXl
+	f5dNhc49P/ysMwbJdUzTMiSkmIsdazyjXw6gJJgiIqGFt9V9AxuJX+l0swY58ISArD3/FPIAlLk+J
+	LA6fWFcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xJxZa-0000000Ei1j-12eM;
-	Thu, 22 Oct 2026 18:31:30 +0000
-Received: from mail-wm1-f52.google.com ([209.85.128.52])
+	id 1xJxZb-0000000Ei3R-0QvG;
+	Thu, 22 Oct 2026 18:31:31 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xJxZR-0000000Ehpp-0iyB
+	id 1xJxZW-0000000Ehw1-2xvr
+	for linux-amlogic@bombadil.infradead.org;
+	Thu, 22 Oct 2026 18:31:26 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=IJuRgpS46PrkIeywrDiw2DHESA2FABKs2wGEh7ENPpA=; b=XPjEMR0m/VBwbuRM7SH+o8gkaL
+	sFjtK6BsyGdeMMH86i0j0NHpT6ZFi8FrY95tbXm3T1jjjHWy6ZGSLDvZGUqhsJT6rWEUhfNbPWJh2
+	v67hJm5cg9aQElQBOw0azobqaJfiesenmoQ4dPSf9WQTTGyPJLdmploNB/hCLMNJTfdKFx7ugnrku
+	hqSBLrqCzpeOjCI0WqENHlcSkbw1Rvc2GIsxo7qvd6v8BB5BSQtDq9vZczTsv68il6SQDy2KKA/m3
+	IfR1fbkzlWsb/Bswb0A0pBv7lfV6EY29ybbTHg6ZOM15okj7I076q9O8bQusWcfWgzaEutZO1x0W8
+	GScnsXEg==;
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xJxZT-00000007jXw-03tU
 	for linux-amlogic@lists.infradead.org;
-	Thu, 22 Oct 2026 18:31:22 +0000
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4a1df146015so967585e9.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 22 Oct 2026 11:31:20 -0700 (PDT)
+	Thu, 22 Oct 2026 18:31:25 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4a20a37703bso1010035e9.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 22 Oct 2026 11:31:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1792693879; x=1793298679; darn=lists.infradead.org;
+        d=baylibre.com; s=google; t=1792693881; x=1793298681; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=5W7z1rOfIZVI61tKSTk21lKhK4AufBt6SAL9admKOgU=;
-        b=EqSFYy1Qnv6RdgACkV3QKU/tcXRd1aJZUHJOrXzMrJEv/5daqLvzRAh2WWvQq9qLei
-         w6lW2WF8Z087tkZkzZKJGh3nxppMUhmH797GlKJh5io7HkK/Ma72UCvzcOxRm8vVBidM
-         xuYzzEH0BzrnRxzagg03HvPqSDazJJGZMnMonEy1J7VkMV5LDsVCCZvHwYo3rbi+Y6Wj
-         MGNRQ+lqdG5h3/UwH0CZ/aU3wKQBFEH4uPYvKt4QVF1zuOpi1dVAFnFYUUOGiILuooCr
-         waVqCvLgYSnVfJ4NRdFdEfkVOsuQxzvxexatQcUBXEYCFRBPyVRHxdl6/zXs0k0OeZcy
-         6/LA==
+        bh=IJuRgpS46PrkIeywrDiw2DHESA2FABKs2wGEh7ENPpA=;
+        b=bFeClgzSEGxoskK0Ddw02YRQxjmchlL2iiK6XmRkaL/0sWba00PiDC9DXP/d2dKF+9
+         yu79LbJ6Ng8Wpdb3kbJT/40e6E0vnEzFiRuNITe/ko8v96LA4k+2HheQYUlaQEoNr/BI
+         YWhlSkmQ5CYdYKfNCYpLlQmfdD27cDMbADkXmtbiPyhPV7NA6HfSwAyC5wHcZAEZwpAH
+         WAXDLj9fUs7OJiXooJ9ZsXs4tLA+Cruobvy/5NtcTgQVelkG/pt822yEgocbTYwehEBK
+         ELZOAR2t+CG1yDW+sUW7/OlISvEPfXknJG31DChx7su0W7a2j7bRPANv9vZ4gd360wDk
+         qx5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1792693879; x=1793298679;
+        d=1e100.net; s=20260707; t=1792693881; x=1793298681;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=5W7z1rOfIZVI61tKSTk21lKhK4AufBt6SAL9admKOgU=;
-        b=gyFxXZfWTU+ahLJozOQrkOhTLS7ujCL1/yX28HMFXHrB3iPLabAqxzIRGsL+0IVezm
-         uzLki95wwxu2h59HdIlarKSgd/6dU2gx4SQi+O00xq9cXoqQ4ewjiebB+bXSY8jsVIjg
-         gBKNSkRoUKqvgx/5YNmvOlVPmeuGwDjyfKIlNECuQjNV0OTAhR5jUWgSpO603VJ4aZq8
-         3JI5vsnH1MSExXgfPPfUwBVI4bVP+RYaBs5Zl/5v+QHhANIbpnvuv4e2Nz2s2zafyxY8
-         KvjHWiPV2AabYlKWkmIU9QJX6DBOGtxrsrwSsYgXtFz1ulJoRYyf9cxcyZs3ff07hS5z
-         evQQ==
-X-Forwarded-Encrypted: i=1; AKwUvBy9ZawQXvr2tkRNdf+85Gj74aR8GC92oGGNWPFo9GasW6OjlUGuujehfwWOYp6o/bjB9mFsMLDAVS86+Vlb@lists.infradead.org
-X-Gm-Message-State: AFq9FYIarFhZHLTHZizb2S2ujKnfV4Uta9a2Qjwpgzs1NKbB/pFuBe//
-	pyVE72AH5ZIRNn0sDsq+0Nw69Mmf5q3R2Vwf5TikJt11FTd09U7u7xupq4zytswXKSU=
-X-Gm-Gg: AYBFou0ZiMzVVAqspqwMgtMKppARCvi7vwKMRXZJj2nXnsaUN+6WBU33iF1zpSDI6Sa
-	Aijsygo9kEe0XmVZRYBLypoDUrE1h9kG1y1oMXguEU6zYckhCWLcRgaxBrhrUziXuIMHVqMmS/k
-	/OKZcZ2eaxpva5VnJJS9RS0H2r1PrMZtxQxgIwCo7DxTjRhaiNoC5ZKi9og7aeM83ZRaKvPFdpm
-	iLhJPfARmiBaDE3XSPzH6SLVKZI6mrcAhEChGoZDRSr0I4H8SuVOcy4iWDwSkFS9OVgEnYpvYaa
-	2va6QapMFdA4oYjtAluDFyEGN1k2zCQxnYb2eUHP429Qm7OjGIRyN2Ac/Y0laoCWzM5SUtLYz05
-	dAd+d+MMVjA/Lp3Efh6E2NSE5wWDMUduGY1lntV6J7wakp1F1dQdyG6OHdOk78oeNKitRQVFyzh
-	sbwYl6NBMU4brDmXi7KzeLnqQn9UumJfK73SYpCZ7T1cWDTI5hPXEM/h90cNA7KOUJMqa+ypPma
-	WY93GPMlP6SCbfZGb4GLrxpVBZ1ygb0UpVe02KGpfF5a8/OM/O1wxCeZnuaAPHqnKxnK+aIpjD1
-	JctuodC97p6ZSZ7vRDra1lbw7mGwfK8u0vzKbWDGQpkN4VLUiRYmarB/k8QBFY4=
-X-Received: by 2002:a05:600c:6094:b0:4a1:93fd:8f8 with SMTP id 5b1f17b1804b1-4a1fd89daa9mr116976045e9.4.1792693878853;
-        Thu, 22 Oct 2026 11:31:18 -0700 (PDT)
+        bh=IJuRgpS46PrkIeywrDiw2DHESA2FABKs2wGEh7ENPpA=;
+        b=VnA5rKis6ygILIOLStkGTHpPuTc/nslX9fuQ8YHwtjLRxc67rf0ZNt+paD4w3lFNzQ
+         nEuW3P96gNiqgZ/l90AaT6gVRvHoXbIzAHMtDo1BqDz+42RnE/XZ7ERzXHU3kmVrJUoP
+         +aiLBfcagCMWt2YE91iCT8Yn06w9PcL3U6gLWH+kp3J9p1RU6Upc/9BYg1arBz5F1PQo
+         sMwLZGZboFiMuEoOg9PX4kkGXF0mZYjq9VrUSPbid8IxeFEC5eXG+SLl5K/+q4V6ZY7P
+         wn3STFX2hB1Uo8YAu3A1qXCkeMshPiUuMx5HwW23Nv4JCGVfK2sHbLes4TtSU6LUhevi
+         qeow==
+X-Forwarded-Encrypted: i=1; AKwUvByT/pHIbSX+uooOqEIDN5gTI6ekB3cQwEXGs1dZSMgdeV9Vi1lvBaJzTcM+5KpIzBhJGWszUU5zmO1ywUX+@lists.infradead.org
+X-Gm-Message-State: AFq9FYKQvCUHY3SBjhPFtghBxeSbNT7FJ9iDKqniddC+BmEtRQU50V7w
+	0XOCS/e/IgyYhR8j8Hnx8z1JgoNPhFgHl2/pC6MZ2pQt7JZ53vaOQkPfDshYub7vBGk=
+X-Gm-Gg: AYBFou04u4ztTv+0Ld4oGduRJOfpVwEpOhhxE4/kec9j6uhxhXkUJFmTLnlvn8EW7dP
+	nhrHp1c8Nj1OxYDgiTJpiw6zSl0m+gWcTTiq2pNiw1OrDPHSTa2JbpQwd4Bu0C09Fk3pvci0Zjj
+	pVzrJxG9E2EOJTVAM/hFPjeqxY4rkEZn3DSp69A8WgnUB7s9ib9aVjxKgw4USAUIOLHFzSzl0wv
+	KWb35H35L1SPETZ1m/MaGft4YeSXGQqmUMwKn/lghWCBpu5jGWX5ASka6iMvRArQDeZzgWj7n6u
+	5yTFOifTSvlG7t/0h10HlebnyUDEAcevymJ01O2QbIyPmyBOO+ipgXgXSHwWloL9+2DTMCI+gMK
+	gUWMpfsaeQelaUvNGKV/yUoClLEqLPdEoyI58bqoRZ6PN5sbMijDLrJOXkRso/dMHRg8jR6TSJO
+	aYQbEfBe8A8o2I5gi9sd28XfqnDt4ONNzV3h5cHJzauFOaZolcL1h4Nc73+N9PfzYgd64qiBh1w
+	rwkH9c/QdoPYvjQcBp3sVduf3jvff0pewWui3/Q7ruPSH+2OyOZUgcUUuL1jV55XTMJX9BSAZcd
+	wUvwIaIMdFrLDA3go1OUv6wbTTYPfeIauH0XL6jMNA==
+X-Received: by 2002:a05:600c:19c7:b0:4a0:89:6727 with SMTP id 5b1f17b1804b1-4a1fdd2f2ecmr113114475e9.16.1792693880575;
+        Thu, 22 Oct 2026 11:31:20 -0700 (PDT)
 Received: from [127.0.0.1] (host-79-21-165-229.retail.telecomitalia.it. [79.21.165.229])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4a21143094fsm4556975e9.1.2026.10.22.11.31.17
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4a21143094fsm4556975e9.1.2026.10.22.11.31.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Oct 2026 11:31:18 -0700 (PDT)
+        Thu, 22 Oct 2026 11:31:19 -0700 (PDT)
 From: Carlo Caione <ccaione@baylibre.com>
-Date: Thu, 22 Oct 2026 20:30:28 +0200
-Subject: [PATCH 2/4] arm64: dts: amlogic: s7d: fix the GIC CPU interface
- region size
+Date: Thu, 22 Oct 2026 20:30:29 +0200
+Subject: [PATCH 3/4] arm64: dts: amlogic: s7: describe the GIC
+ virtualization regions
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261022-upstream-s7-s7d-gicc-size-v1-2-8285053cf4ee@baylibre.com>
+Message-Id: <20261022-upstream-s7-s7d-gicc-size-v1-3-8285053cf4ee@baylibre.com>
 References: <20261022-upstream-s7-s7d-gicc-size-v1-0-8285053cf4ee@baylibre.com>
 In-Reply-To: <20261022-upstream-s7-s7d-gicc-size-v1-0-8285053cf4ee@baylibre.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -93,9 +109,9 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  Carlo Caione <ccaione@baylibre.com>
 X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261022_113121_580717_7EB31578 
-X-CRM114-Status: GOOD (  12.06  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261022_193123_422584_A9CF5FF5 
+X-CRM114-Status: GOOD (  11.76  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,31 +131,31 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The CPU interface of the GIC-400 spans 8 KiB, but the S7D device tree
-describes only its first 256 bytes. The GIC driver then disables the
-split priority drop and deactivation mode, which needs the GICC_DIR
-register in the second 4 KiB page, and warns at boot that the range is
-too small.
+The S7 device tree describes the distributor and the CPU interface of
+the GIC-400, but not its virtual interface control (GICH) and virtual
+CPU interface (GICV) regions. Without them the GIC driver does not hand
+the GIC over to KVM, which then runs without the in-kernel vGIC.
 
-Describe the whole 8 KiB region, as the other Amlogic SoCs with a
-GIC-400 at the same address do.
+Describe both regions at their GIC-400 offsets, as S4 does for its
+GIC-400 at the same address.
 
-Fixes: 1a30661c20de ("arm64: dts: add support for S7D based Amlogic BM202")
 Signed-off-by: Carlo Caione <ccaione@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi
-index 5593ff9e07eb..059a1bf37584 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi
-@@ -85,7 +85,7 @@ gic: interrupt-controller@fff01000 {
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi
+index 89b75bec40f0..a337783c7783 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi
+@@ -121,7 +121,9 @@ gic: interrupt-controller@fff01000 {
  			#address-cells = <0>;
  			interrupt-controller;
  			reg = <0x0 0xfff01000 0 0x1000>,
--			      <0x0 0xfff02000 0 0x0100>;
-+			      <0x0 0xfff02000 0 0x2000>;
+-			      <0x0 0xfff02000 0 0x2000>;
++			      <0x0 0xfff02000 0 0x2000>,
++			      <0x0 0xfff04000 0 0x2000>,
++			      <0x0 0xfff06000 0 0x2000>;
  			interrupts = <GIC_PPI 9 0xf04>;
  		};
  
