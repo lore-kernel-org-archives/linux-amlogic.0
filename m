@@ -2,98 +2,100 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5BF060A2630
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Oct 2026 20:07:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FCAE606A32C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Oct 2026 20:12:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZSIIeg5H
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rJA7WO6A;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=aTB3nh5l
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=G4WJXTXUBBUdBg0Y5NAnmMZ5r7ug6FpAjdsyh5ohNBU=; b=ZSIIeg5HXZftBzsyz58ady0OtP
-	SOUengliRcPFehA+tEQ0SZ8zX6sn+GIgviQW+XiZCBtEjDqWiCeefLr5sbwYhccFmJCPQahNcZdYk
-	z8g89HollLxKBSlEGOSCkD4OdEzlrDFUc9UHcc2CGrCAOeBNVlRSTyKTq2ES0wbDr1OXSs7BpnuTB
-	4NgO+nFSrkq23QE1U1EANuCVim+n85ggmgkv75ez7pM77fh14NkS9vbjO8yxd+2qhp/HwrtBzRWh2
-	BDt+06ReKvE9LWHu9qvpZywZNQ1Q236q3nghyJ8IDqJvhn8p7kMj92lnO7VL0YVAWxdfHjODrTBdW
-	L+71YX0g==;
+	bh=vqVal1O2FmvmDaWFByghG0KbYA/TSeADczPHMx00aK4=; b=rJA7WO6AkBtmvTvyZexWlILrIX
+	ePaB4cMp4LMbwgDZZczXp9y+kasb3O3rVOSDLgD8ALwETr59kPeNzwDmA1JZf2vhHzKN8QkerSam4
+	RF4B7qgt2oXlNF6TLSsXXGsL7//72WshkGwh9mFzxtpY1J1PkhXRlsEFfTFmTTfYCozdtjnLmzDQg
+	Wh6kSMtCDTsFo5P5a0qqOndM9t2FyQpHIiu3QbbqxioyMEkK/wQFRGKRjaglnO9mV8qqNSbcMjPXi
+	1vQyQf05hCR0XK3J4LGVyJUNCIWzpPvGpBTaXycC34Py0MiziNdteRUK3Ei4DyjoBlpZFvh9AmThD
+	TKkIro2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xJz44-0000000EtNc-3v8Q;
-	Thu, 22 Oct 2026 20:07:06 +0000
-Received: from mail-wm1-f50.google.com ([209.85.128.50])
+	id 1xJz9d-0000000EuKe-0Htg;
+	Thu, 22 Oct 2026 20:12:49 +0000
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xJz3v-0000000Et7I-0PT7
+	id 1xJz9a-0000000EuK0-2ybP
 	for linux-amlogic@lists.infradead.org;
-	Thu, 22 Oct 2026 20:06:56 +0000
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4980fe6b3beso8424505e9.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 22 Oct 2026 13:06:54 -0700 (PDT)
+	Thu, 22 Oct 2026 20:12:48 +0000
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-48af4d4e61fso105188f8f.2
+        for <linux-amlogic@lists.infradead.org>; Thu, 22 Oct 2026 13:12:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1792699965; x=1793304765; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=FNZQ0gtxT4Wys8jIUcbHf10HyijtjKU9qxZIf3oS0F0=;
+        b=aTB3nh5lmhaBVCJA7R8l+zXXm0OdGNaHOLpv4j9FXIfwhsjcqxny8edF9lLRcmdLhG
+         jBseK8iRcfOe0docgLYyCHC99mR9uvAGEyuG4TsUcW3OKkGPy21cnNWxNgUZJtglq09h
+         mS3CEVNlzUJLfRAteonGg8lcVuSH+FmCoTWiKEwCmvmKi7VxQbKdUtkNrPzuaOXF62Lu
+         g8uMkiXRriPOqkLYjRtxWK9+Kvz06sX+dJHJ7XoDLo12TF/HjZl8hQSerqscz2fex0Ms
+         6wa/1ZJFlvjOR03nXzFxueic2HfKcFsjEqqDAxrFcRogSUelV9IOiXl76S+mUY8Jjs44
+         cuag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1792699613; x=1793304413;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=B88mpadYYWmyEssRGoyIfGe+/tgPvAtSdH5NBRIaaYg=;
-        b=22PXvWoplSS9tbe5/cntrwvBcpRRCVHwHaGMVXGmOOKZaMsOPoWcZGMy3+EJyx20Ot
-         psTW/ZFkwYtFY2+rQjy7e11ld/EkNa6VsiabOw0ipgD5bAYoj5p/giKMMxnhEWFVB98K
-         lY/i4ANsS8Dw9jOgATvBajYJJyLdfp6nKdxKTMlrvtKa+aonHEHg1UAULGCBBhXP1KeP
-         MmXC2cu3hqEFotiAYmKQUYnjvX4l+TeEQv6PFk3jiXCLpNhiAv4RmgU17usLCyyjfFUN
-         qsnhbxtGDbAxHYXvXX29Vqn1xutTIhMXTSNY6XvuENKAZkHmG48GiAzFZv6EN9qqM/g0
-         E/Yw==
-X-Forwarded-Encrypted: i=1; AKwUvBw1YfzkAv0rTrzBaI/oeUeZipV6QAmMJnpVbL8Y/yKTh8KH1pA313xskoFS6Ed+07DOWqvJ2yTMf1PtprL0@lists.infradead.org
-X-Gm-Message-State: AFq9FYId4AySmt00VZBjRiboUDjDkKrvgrjVxXCnLYWX1kIyMKaeceiW
-	F4J0T0raJStRYWuzc+LxQKRVHo7e5yrdfY2ZLGxhXn7xGqdl6AezfkLS
-X-Gm-Gg: AYBFou3wW6/kaW5yVztIeYY0EkeJtazV//dhzoQwDy2PeOeq/Ci2ZVX9lrbsgskv/zf
-	VNj6ay1yo9sxPL6Nt7NtEtrp1Rhjf6Lx60Z1Ix7CYuivD5uSK0RjPk6pxWCY0j57dZlmPnedxTN
-	M4D17dD4xKomJWUvVHuyB4cg2wKtP1H/UryJlrxpEAKna2MtsDVjFTikOMF9w7THKW1tiY6CXEF
-	VJWy3g5PFlEtxHTiNb9I4CJtJ6sE5YyEnH9+dKAmVnzHXNcMoOri8jk6EontGOyHVzK+u2KdDOw
-	hpwq9qah7XTKEYaPbT0ZbO90YlszutWQr9yIDayPrjHt73CTh1qRoLrWcxVto6spd7ShF4GTTJs
-	SViXnDCPgPeGPSwvuCgAt0vn+1vX/pgR6EPFoPK+7H6evFCbMUSGZGnIah3cYdSYGt7zcV3o0Wg
-	ofePJjfG4e5mA01ohnhPwxhLSum+svNIUCNGwaK8QRdlS5NEKlZvk+AgPfKAFA7Epgkkm6r3ekP
-	0x0WVjeWlY791AfJYYTDaNDX62Y99FT7N6Sriu2YL2dTh/6o1bLaf/BRy23TK5S1QQzTvgM3Nq6
-	u1cSjXN5Q77//Nc=
-X-Received: by 2002:a05:600c:3b0a:b0:4a0:20b4:ba93 with SMTP id 5b1f17b1804b1-4a211c869d9mr2350165e9.16.1792699613390;
-        Thu, 22 Oct 2026 13:06:53 -0700 (PDT)
-Received: from threads.localdomain ([81.79.62.202])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4a2123a1797sm35965e9.1.2026.10.22.13.06.52
+        d=1e100.net; s=20260707; t=1792699965; x=1793304765;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=FNZQ0gtxT4Wys8jIUcbHf10HyijtjKU9qxZIf3oS0F0=;
+        b=dadEEybhC9ZThB0XB81LCQ4RwZtrG22RZL+jDiluMYTjT6S1js+6KlBb3wOarImGy2
+         yGpD1Zme6+20U1AFG+BWiCbKNNEWAMihrK3UweynKDmTaNEp87lOtHmm/JoTL186RXmn
+         AqzhO4pKwVy5zmcOmWd/ZAoETZrH1JgjM5SyTkxvFYO9ny98MwwKtExi6Bl8GfGUmyHW
+         y9JC0ZuZ4XAbuO01k7CX/uUaVw9ac+34g4seTMHTzkt5JK27jxmAPeKNRVyIYMoBTC/c
+         ylsyqIwGQ3yN7RXkm1u5hUCCFHDpulqRpk/ls3ViuhAQplGBPL/ds7js8oEZX38YmRkM
+         7XIw==
+X-Gm-Message-State: AFq9FYLIAW3mIwIB0+qZoiIHaqdZTFLqoenSYjhZfQTOOzlAY3ld9XKr
+	yQFwzVbOQHVQmRwUfUkPJjJYer0DyG7lvC2Klo5ZJ8DKFe3ZkQYEjFcOUF9O5pluvOw=
+X-Gm-Gg: AYBFou3hEUvZMFtLJTFnjqy0AijebDn5Wh6Flr3uDcsOKqzAAsCdgTeEBxrBPT290UB
+	MLPhCbM2D6zDuNly7tY8Gjjre6ptxib2Vuo1ZPFUAVW81Mm47wRMrOb4cpjDRtUdfltBWBkVM3z
+	Xv8Ps8pz+KcAm+XAugYD1xJLag2zaMkPjcahQHU9oyoYNE/npR0xXv7KrV3P0Ik6j3ZGdhklCJA
+	Vlc7EfbsPcOTxG8QA+LqNh8nXT9GwaLUd0vys6N3GmDr45JAVWUbri9HlR4aTB8OwjFtTdR4ZIi
+	V7pMo96KL7On45CZZDkcgklQgoVMLgNMf/RUsZLf/ikGmIVsIvwq6R5Wb7V1cPtpZJmtkDowfD/
+	2Wl3e0iy9294y0fylS/Zh3DPlDanu8UXEm2Z2q3MMjeAKUByyR2LI1ZcUbG/Sx5ttS8CnzVIkt+
+	toXGHAl1ss/o49byCwunGKsuSSNP4qhJFI1cc4HJ/DRJsc8sCeXl1biFFwJGkUqpzjHDrs4iIyu
+	Y8I+s9dAK05pgVl4q8cLEzqDd7p5sF4FrhfMRrA8hW0TLRqRsBxLs5eqDP4hw++a2YrZGecfzXb
+	d+RqNpmq9KNgqgy1yUzZRjRvhm//H/GiLYbZXFIa2Q==
+X-Received: by 2002:a05:6000:4007:b0:48e:870:778f with SMTP id ffacd0b85a97d-48e2649d848mr12345891f8f.16.1792699964688;
+        Thu, 22 Oct 2026 13:12:44 -0700 (PDT)
+Received: from [127.0.0.1] (host-79-21-165-229.retail.telecomitalia.it. [79.21.165.229])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48e380575d9sm224286f8f.44.2026.10.22.13.12.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Oct 2026 13:06:52 -0700 (PDT)
-From: Lucas Tanure <tanure@linux.com>
-To: xianwei.zhao@amlogic.com,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	davem@davemloft.net,
-	Eric Dumazet <edumazet@kernel.org>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 7/7] arm64: dts: amlogic: t7: khadas-vim4: enable the ethernet port
-Date: Thu, 22 Oct 2026 21:06:40 +0100
-Message-ID: <20261022200640.3101932-8-tanure@linux.com>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261022200640.3101932-1-tanure@linux.com>
-References: <20261022200640.3101932-1-tanure@linux.com>
+        Thu, 22 Oct 2026 13:12:44 -0700 (PDT)
+From: Carlo Caione <ccaione@baylibre.com>
+Subject: [PATCH 0/3] Fix the ENCP clock select field on GXBB, G12A and S4
+Date: Thu, 22 Oct 2026 22:10:31 +0200
+Message-Id: <20261022-upstream-clk-encp-sel-shift-v1-0-f1b1e10a3d84@baylibre.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMQQrCMBAF0KuUWTvQRrDiVcRFOv2xozWGTCpC6
+ d2Nunybt5IhK4xOzUoZLzV9xopu15BMPl7BOlaTa92ha53jJVnJ8A+W+c6Iktgws00aCocRvZf
+ 9cBT0VIeUEfT928+Xv20ZbpDyLWnbPqBM2Q5/AAAA
+X-Change-ID: 20261022-upstream-clk-encp-sel-shift-fde7ac3b8ce7
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+ Brian Masney <bmasney+clk@redhat.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jian Hu <jian.hu@amlogic.com>, Yu Tu <yu.tu@amlogic.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Carlo Caione <ccaione@baylibre.com>
+X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261022_130655_288850_8A4D82AB 
-X-CRM114-Status: GOOD (  10.58  )
-X-Spam-Score: -0.7 (/)
+X-CRM114-CacheID: sfid-20261022_131246_795567_DE2A4EA6 
+X-CRM114-Status: UNSURE (   6.98  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,62 +115,28 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The board carries a Realtek RTL8211F gigabit PHY on the external
-management bus, connected to the MAC over RGMII.
+The GXBB, G12A and S4 clock drivers describe the ENCP clock select with
+the field of the ENCT one, VID_CLK_DIV[23:20], instead of [27:24]. Fix
+it in the three drivers.
 
-Enable the controller, hand it the ethernet pins and point it at the
-PHY. RGMII needs a delay on each of its two clocks. The board traces
-add none, so the PHY adds both, which is what rgmii-id asks of it.
-
-The PHY interrupt output is wired to GPIOH_6, so link changes are
-reported instead of polled. The PHY reset is an RC network on the
-board, not a SoC pin, so there is no reset line to describe.
-
-Assisted-by: LLM
-Signed-off-by: Lucas Tanure <tanure@linux.com>
+Signed-off-by: Carlo Caione <ccaione@baylibre.com>
 ---
- .../amlogic/amlogic-t7-a311d2-khadas-vim4.dts | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+Carlo Caione (3):
+      clk: meson: gxbb: fix ENCP clock selection
+      clk: meson: g12a: fix ENCP clock selection
+      clk: meson: s4: fix ENCP clock selection
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-index 0fa83362b417..4914b0dff8a8 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-@@ -14,6 +14,7 @@ / {
- 	compatible = "khadas,vim4", "amlogic,a311d2", "amlogic,t7";
- 
- 	aliases {
-+		ethernet0 = &ethmac;
- 		serial0 = &uart_a;
- 		mmc0 = &sd_emmc_c;
- 		mmc1 = &sd_emmc_b;
-@@ -256,6 +257,24 @@ xtal: xtal-clk {
- 	};
- };
- 
-+&ethmac {
-+	status = "okay";
-+	pinctrl-0 = <&eth_pins>, <&eth_rgmii_pins>;
-+	pinctrl-names = "default";
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&external_phy>;
-+};
-+
-+&ext_mdio {
-+	external_phy: ethernet-phy@0 {
-+		/* Realtek RTL8211FD-CG */
-+		reg = <0>;
-+
-+		interrupt-parent = <&gpio_intc>;
-+		interrupts = <GPIOH_6 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+};
-+
- &i2c_m_ao_a {
- 	status = "okay";
- 	pinctrl-0 = <&i2c0_ao_d_pins>;
--- 
-2.56.0
+ drivers/clk/meson/g12a.c           | 2 +-
+ drivers/clk/meson/gxbb.c           | 2 +-
+ drivers/clk/meson/s4-peripherals.c | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+---
+base-commit: 363f97a1ce635b86be7fd263d56a040fbd87bdbb
+change-id: 20261022-upstream-clk-encp-sel-shift-fde7ac3b8ce7
+
+Best regards,
+--  
+Carlo Caione <ccaione@baylibre.com>
 
 
 _______________________________________________
