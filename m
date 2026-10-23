@@ -2,58 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 955D5606A31A
-	for <linux-amlogic@archiver.kernel.org>; Sat, 24 Oct 2026 01:02:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD0F5606A31A
+	for <linux-amlogic@archiver.kernel.org>; Sat, 24 Oct 2026 02:06:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=p+hZacLW;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=gxzt2ExI
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=b6UxKQkq;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.a=rsa-sha256 header.s=t20230301 header.b=J3ANBp7s
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:References:
-	In-Reply-To:Cc:To:Subject:From:Message-ID:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=DYRboS2jADitSTSROJ2V0wVWmf6JtAwMGLascQ13KEU=; b=p+hZacLWXwKo+NXjkrAv4IOycA
-	hMpzZHU2Z5uxbe5+wUXK/AQZ5CK46qyg5vOI5UJexHhIs7Bdd48EPAF0iPLpy+eVgkoP86DZtD5nW
-	ahWOV3WoLrxlE3djkVxV3reAAE9lLlRB5f2NmihvsTzbs3cjVWZoKV0YsDc3UP++XT+UYW4Crepey
-	vTc3Z+G4TCVNTQAr7Pa0YyyFC6EtgJPdcgOnNO9LgMmf6DY7rwXDe8TnwmbyakjyERdrFyO61rl5o
-	mTx8CpYAxRx4BfWAGJwLg4kKCAs38uBKt5iCTTm2gXm9lC9DvJgW312KtKBrFxY6/9MKK2JMjyBrH
-	4PfUKafw==;
+	bh=618TNm1j2E6SfkJ7TJbUPYRkr6iUf0Z/YEr3/OMdidY=; b=b6UxKQkqTeZiFs14BzDbnIxzw4
+	Xw9oNYM1GwklaKgYSwbaPZcoX3Krae91wqWY7KCaGgILbWSc87bglfsRKPIDbVXefg0NjTFuxYHN3
+	ZVyW5MRdWje56G7YnvlsdGiHQAjQEVRJRAoZCVmVi2UoT4NcKje55rvea00UwaBPX3Pg9uyUUwX/e
+	rf6KAmZWtOAp8eoxveeF2KNohypOr5DfXIHosoC7Q48tPkZY8JDOw0WnlUKcqler/FYY6rgWUQ0AB
+	QkL40mZIbVVt8ieIbcUw0z9oEi+/+5JIDsxE0VM5O02FKt3x9FpCwbX3ejMuWbxdWajKf/8OAvZrY
+	MZcVgXyw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xKQ9S-0000000HIvG-0VVi;
-	Sat, 24 Oct 2026 01:02:26 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xKR9D-0000000HL6T-1uee;
+	Sat, 24 Oct 2026 02:06:15 +0000
+Received: from smtp-69.smtpout.orange.fr ([80.12.242.69] helo=smtp.smtpout.orange.fr)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xKQ9Q-0000000HIvA-3jJT
+	id 1xKR99-0000000HL64-1KGR
 	for linux-amlogic@lists.infradead.org;
-	Sat, 24 Oct 2026 01:02:25 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 83C28601DE;
-	Sat, 24 Oct 2026 01:02:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D35761F01825;
-	Sat, 24 Oct 2026 01:02:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1792803742;
-	bh=UwjE+gl620La07uAsA8wn+kUBNJ7JNgAYLdqzEZ1xMI=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=gxzt2ExIm4oPRVsKZwW5ynw3PkG22F1/BAV88wEPjRyZWZq+Z+AlzubFmc1WmRrC0
-	 WNiGqhyD1/TbsqkmZgNDEm2Ejh3Pi6cASmI5+tG4kkdcx1dthoWhdqoo1k3VBfhxB6
-	 X4qT/C9i5tcm4cD8BgG4tjaIlhjUS+kshN/otA1T4ZeN1662zZE9yNLfZL6yZ00z3S
-	 2hD8ehlr1ivk2vqnP+7WkxcmdJvIXnmQ3hIo+TOfFa4rnS6jfmg1wZ3Tl9VyePRsvY
-	 RIJSanZtn2m+K6tZFdqJ3jM4DALHCvCuu+JWkglw8LIbMjdVQcGC9sT5/lE3mc00Er
-	 8JxpU9JrVRpYg==
-Message-ID: <sashiko-outbox-183480@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v8 7/9] drm/msm/dp: handle the IRQ_HPD events reported
- by USB-C
-To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
-Cc: dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org
-In-Reply-To: <20261024-hpd-irq-events-v8-7-6ee949e7a384@oss.qualcomm.com>
-References: <20261024-hpd-irq-events-v8-0-6ee949e7a384@oss.qualcomm.com>
- <20261024-hpd-irq-events-v8-7-6ee949e7a384@oss.qualcomm.com>
-Date: Sat, 24 Oct 2026 01:02:21 +0000
+	Sat, 24 Oct 2026 02:06:13 +0000
+Received: from fedora.home ([10.65.86.60])
+	by smtp.orange.fr with ESMTP
+	id KLJuxVbOJopfeKLJuxoe9x; Fri, 23 Oct 2026 21:52:54 +0200
+Received: from fedora.home ([IPv6:2a01:cb10:785:b00:26fb:aefb:6cd2:db0e])
+	by smtp.orange.fr with ESMTPSA
+	id KLJtxn1dYYWtEKLJtxZQMp; Fri, 23 Oct 2026 21:52:54 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1792785174;
+	bh=2m4IKtQlnVrJI7NkWlXuPkFhNiQqmS45ouu3Fbw8/CI=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version;
+	b=J3ANBp7sl/Dl5dkq6MOWlU6Kns62suUnR3EyqF7/ceWuGlTV/5beUyZ3CHZWT68wR
+	 wOj/1I0TAbQ5sbdz65qvjbLvE3OQkF+mAxnjwcCWyMx1VqPMQ01LxQWvyy7W0O9tf5
+	 vpgKj/gUidSYfM/4YE54GKamJe72utqoX/husS4YTvK5rPXEiJAfofGwZXqGzr5GxS
+	 JMFz8s3ngydirGYFyQ68y/TpFNy3wFWZx68XT/nQNAaf0k0T6l5RVccwJ8+Cwg2mPV
+	 WwSTg5IQwUD9o2ryJ4mWIoUqBFfbvG7lQCcBrKMW1S2BAVkIIR5ZTgEVUrYISPqb77
+	 ZpoyUSMYgkGHQ==
+X-ME-Helo: fedora.home
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Fri, 23 Oct 2026 21:52:54 +0200
+X-ME-IP: 2a01:cb10:785:b00:26fb:aefb:6cd2:db0e
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Frank Li <Frank.Li@kernel.org>
+Cc: linux-kernel@vger.kernel.org,
+	kernel-janitors@vger.kernel.org,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	linux-amlogic@lists.infradead.org,
+	dmaengine@vger.kernel.org
+Subject: [PATCH] dmaengine: amlogic: Fix an error handling path in aml_dma_probe()
+Date: Fri, 23 Oct 2026 21:52:50 +0200
+Message-ID: <93183551770e260aff993bb4cf1ce5ba8dc1e732.1792785154.git.christophe.jaillet@wanadoo.fr>
+X-Mailer: git-send-email 2.56.0
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261023_190611_799415_4FE97312 
+X-CRM114-Status: GOOD (  10.56  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,104 +77,58 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-9.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0hpZ2hdIGRybS9tc20vZHA6IG1z
-bV9kcF9icmlkZ2VfaHBkX25vdGlmeSgpIHJ1bnMgaXJxX2hwZCBvbiBwbHVnIGFuZCB3aGVuIHBv
-d2VyZWQgb2ZmCi0tCgpjb21taXQgOTc1Y2Q5OTMzOTdiOTIzMzUwYTQwM2I3Mjc1ZWQ5ZDUyMjNi
-YjZhOQpBdXRob3I6IERtaXRyeSBCYXJ5c2hrb3YgPGRtaXRyeS5iYXJ5c2hrb3ZAb3NzLnF1YWxj
-b21tLmNvbT4KCmRybS9tc20vZHA6IGhhbmRsZSB0aGUgSVJRX0hQRCBldmVudHMgcmVwb3J0ZWQg
-YnkgVVNCLUMKClRoaXMgY29tbWl0IHVwZGF0ZXMgbXNtX2RwX2JyaWRnZV9ocGRfbm90aWZ5KCkg
-dG8gaGFuZGxlIG91dC1vZi1iYW5kCkRSTV9DT05ORUNUT1JfRFBfSVJRX0hQRCBldmVudHMgcmVw
-b3J0ZWQgYnkgVVNCLUMgQWx0TW9kZSBoYW5kbGVycy4KCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9tc20vZHAvZHBfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL21zbS9kcC9kcF9k
-aXNwbGF5LmMKPiBpbmRleCBjZTkxOWEyNmZiYTI4Li43NzFjOGIwNzQ0YWVlIDEwMDY0NAo+IC0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9tc20vZHAvZHBfZGlzcGxheS5jCj4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL21zbS9kcC9kcF9kaXNwbGF5LmMKPiBAQCAtMTU2NiwxMSArMTU2NiwxMyBAQCB2b2lk
-IG1zbV9kcF9icmlkZ2VfaHBkX25vdGlmeShzdHJ1Y3QgZHJtX2JyaWRnZSAqYnJpZGdlLAo+ICAJ
-CWlmIChocGRfbGlua19zdGF0dXMgPT0gSVNSX0hQRF9SRVBMVUdfQ09VTlQpIHsKPiAgCQkJbXNt
-X2RwX2hwZF91bnBsdWdfaGFuZGxlKGRwKTsKPiAgCQkJbXNtX2RwX2hwZF9wbHVnX2hhbmRsZShk
-cCk7Cj4gLQkJfSBlbHNlIGlmIChocGRfbGlua19zdGF0dXMgPT0gSVNSX0lSUV9IUERfUFVMU0Vf
-Q09VTlQpIHsKPiAtCQkJbXNtX2RwX2lycV9ocGRfaGFuZGxlKGRwKTsKPiAgCQl9IGVsc2Ugewo+
-ICAJCQltc21fZHBfaHBkX3BsdWdfaGFuZGxlKGRwKTsKPiAgCQl9Cj4gKwo+ICsJCWlmIChocGRf
-bGlua19zdGF0dXMgPT0gSVNSX0lSUV9IUERfUFVMU0VfQ09VTlQgfHwKPiArCQkgICAgZXZlbnQg
-PT0gRFJNX0NPTk5FQ1RPUl9EUF9JUlFfSFBEKQo+ICsJCQltc21fZHBfaXJxX2hwZF9oYW5kbGUo
-ZHApOwoKW1NldmVyaXR5OiBIaWdoXQpDb3VsZCBydW5uaW5nIG1zbV9kcF9ocGRfcGx1Z19oYW5k
-bGUoKSBhbmQgbXNtX2RwX2lycV9ocGRfaGFuZGxlKCkKc2VxdWVudGlhbGx5IGhlcmUgdHJpZ2dl
-ciBsaW5rIG1haW50ZW5hbmNlIHdoaWxlIHRoZSBkaXNwbGF5IGFuZCBsaW5rIGNsb2NrcwphcmUg
-c3RpbGwgcG93ZXJlZCBvZmYsIG9yIGF0dGVtcHQgQVVYIHRyYW5zYWN0aW9ucyB3aGlsZSB0aGUg
-UEhZIGlzIGV4aXRlZD8KCldoZW4gc3RhdHVzIGlzIGNvbm5lY3Rvcl9zdGF0dXNfY29ubmVjdGVk
-IGFuZCBlaXRoZXIgZXZlbnQgaXMKRFJNX0NPTk5FQ1RPUl9EUF9JUlFfSFBEIG9yIGhwZF9saW5r
-X3N0YXR1cyBpcyBJU1JfSVJRX0hQRF9QVUxTRV9DT1VOVCwKbXNtX2RwX2JyaWRnZV9ocGRfbm90
-aWZ5KCkgbm93IGV4ZWN1dGVzIG1zbV9kcF9ocGRfcGx1Z19oYW5kbGUoZHApIGZvbGxvd2VkCnVu
-Y29uZGl0aW9uYWxseSBieSBtc21fZHBfaXJxX2hwZF9oYW5kbGUoZHApLgoKSWYgZHAtPnBsdWdn
-ZWQgaXMgZmFsc2Ugd2hlbiB0aGlzIHJ1bnMgKGZvciBleGFtcGxlLCB3aGVuIGFuIEFsdE1vZGUg
-ZHJpdmVyCnJlcG9ydHMgYm90aCBIUEQgc3RhdGUgYW5kIEhQRCBJUlEgb24gaW5pdGlhbCBjb25u
-ZWN0LCBvciB3aGVuIGEgbW9uaXRvciBpcwpwbHVnZ2VkIGludG8gYSBVU0ItQyBkb2NrIGFmdGVy
-IG1zbV9kcF9ocGRfdW5wbHVnX2hhbmRsZSgpIHNldCBkcC0+cGx1Z2dlZAp0byBmYWxzZSBvbiBz
-aW5rX2NvdW50ID09IDApLCBtc21fZHBfaHBkX3BsdWdfaGFuZGxlKCkgaW5pdGlhbGl6ZXMgdGhl
-IFBIWQphbmQgY2FsbHMgbXNtX2RwX2Rpc3BsYXlfcHJvY2Vzc19ocGRfaGlnaCgpOgoKZHJpdmVy
-cy9ncHUvZHJtL21zbS9kcC9kcF9kaXNwbGF5LmM6bXNtX2RwX2Rpc3BsYXlfcHJvY2Vzc19ocGRf
-aGlnaCgpIHsKCS4uLgoJbXNtX2RwX2xpbmtfcHJvY2Vzc19yZXF1ZXN0KGRwLT5saW5rKTsKCS4u
-Lgp9CgpUaGF0IGZpcnN0IGNhbGwgdG8gbXNtX2RwX2xpbmtfcHJvY2Vzc19yZXF1ZXN0KCkgdXBk
-YXRlcwpsaW5rLT5wcmV2X3NpbmtfY291bnQgdG8gbWF0Y2ggbGluay0+bXNtX2RwX2xpbmsuc2lu
-a19jb3VudC4gSG93ZXZlciwKZHJtX2ttc19oZWxwZXJfY29ubmVjdG9yX2hvdHBsdWdfZXZlbnQo
-KSBhbmQgbXNtX2RwX2Rpc3BsYXlfYXRvbWljX2VuYWJsZSgpCmhhdmUgbm90IGVuYWJsZWQgdGhl
-IHN0cmVhbSB5ZXQsIHNvIGRwLT5tc21fZHBfZGlzcGxheS5wb3dlcl9vbiBpcyBmYWxzZSwKY3Ry
-bC0+bGlua19jbGtzX29uIGlzIGZhbHNlLCBhbmQgdGhlIG1haW5saW5rIGlzIHVudHJhaW5lZC4K
-CkltbWVkaWF0ZWx5IGFmdGVyd2FyZCwgbXNtX2RwX2lycV9ocGRfaGFuZGxlKCkgY2FsbHMKbXNt
-X2RwX2xpbmtfcHJvY2Vzc19yZXF1ZXN0KCkgYSBzZWNvbmQgdGltZToKCmRyaXZlcnMvZ3B1L2Ry
-bS9tc20vZHAvZHBfZGlzcGxheS5jOm1zbV9kcF9pcnFfaHBkX2hhbmRsZSgpIHsKCS4uLgoJcmMg
-PSBtc21fZHBfbGlua19wcm9jZXNzX3JlcXVlc3QoZHAtPmxpbmspOwoJaWYgKCFyYykgewoJCXNp
-bmtfcmVxdWVzdCA9IGRwLT5saW5rLT5zaW5rX3JlcXVlc3Q7CgkJZHJtX2RiZ19kcChkcC0+ZHJt
-X2RldiwgInNpbmtfcmVxdWVzdD0lZFxuIiwgc2lua19yZXF1ZXN0KTsKCQlpZiAoc2lua19yZXF1
-ZXN0ICYgRFNfUE9SVF9TVEFUVVNfQ0hBTkdFRCkKCQkJcmMgPSBtc21fZHBfZGlzcGxheV9wcm9j
-ZXNzX2hwZF9oaWdoKGRwKTsKCQllbHNlCgkJCXJjID0gbXNtX2RwX2Rpc3BsYXlfaGFuZGxlX2ly
-cV9ocGQoZHApOwoJfQoJLi4uCn0KCkJlY2F1c2UgbGluay0+cHJldl9zaW5rX2NvdW50IGFscmVh
-ZHkgZXF1YWxzIHNpbmtfY291bnQsIGlmCkRQX0RPV05TVFJFQU1fUE9SVF9TVEFUVVNfQ0hBTkdF
-RCBpcyBubyBsb25nZXIgc2V0IGluCkRQX0xBTkVfQUxJR05fU1RBVFVTX1VQREFURUQsIG1zbV9k
-cF9saW5rX3Byb2Nlc3NfcmVxdWVzdCgpIGZhbGxzIHRocm91Z2ggdG8KbXNtX2RwX2xpbmtfcHJv
-Y2Vzc19saW5rX3N0YXR1c191cGRhdGUoKToKCmRyaXZlcnMvZ3B1L2RybS9tc20vZHAvZHBfbGlu
-ay5jOm1zbV9kcF9saW5rX3Byb2Nlc3NfcmVxdWVzdCgpIHsKCS4uLgoJfSBlbHNlIHsKCQlyZXQg
-PSBtc21fZHBfbGlua19wcm9jZXNzX2xpbmtfc3RhdHVzX3VwZGF0ZShsaW5rKTsKCQlpZiAoIXJl
-dCkgewoJCQltc21fZHBfbGluay0+c2lua19yZXF1ZXN0IHw9IERQX0xJTktfU1RBVFVTX1VQREFU
-RUQ7CgkJfQoJfQoJLi4uCn0KClNpbmNlIHRoZSBsaW5rIGhhcyBub3QgYmVlbiB0cmFpbmVkIHll
-dCAob3IgaWYgYW4gb3V0LW9mLWJhbmQKRFJNX0NPTk5FQ1RPUl9EUF9JUlFfSFBEIGFycml2ZXMg
-d2hpbGUgZHAtPnBsdWdnZWQgaXMgdHJ1ZSBiZWZvcmUKbXNtX2RwX2Rpc3BsYXlfYXRvbWljX2Vu
-YWJsZSgpIHR1cm5zIHRoZSBkaXNwbGF5IG9uKSwgZHJtX2RwX2NoYW5uZWxfZXFfb2soKQppcyBm
-YWxzZSBhbmQgRFBfTElOS19TVEFUVVNfVVBEQVRFRCBpcyBmbGFnZ2VkLiBUaGF0IGNhdXNlcwpt
-c21fZHBfZGlzcGxheV9oYW5kbGVfaXJxX2hwZCgpIC0+IG1zbV9kcF9jdHJsX2hhbmRsZV9zaW5r
-X3JlcXVlc3QoKSAtPgptc21fZHBfY3RybF9saW5rX21haW50ZW5hbmNlKCkgdG8gcHJvZ3JhbSBE
-UF9TVEFURV9DVFJMX1BVU0hfSURMRSwgbWFpbmxpbmsKc2V0dXAsIGFuZCBEUF9TVEFURV9DVFJM
-X1NFTkRfVklERU8gaW50byBkcF9saW5rIHJlZ2lzdGVycyB3aGlsZQpkcC0+bXNtX2RwX2Rpc3Bs
-YXkucG93ZXJfb24gYW5kIGN0cmwtPmxpbmtfY2xrc19vbiBhcmUgZmFsc2UuCgpJbiBhZGRpdGlv
-biwgaWYgdGhlIGRpc3BsYXkgd2FzIGRpc2FibGVkIHZpYQptc21fZHBfZGlzcGxheV9hdG9taWNf
-cG9zdF9kaXNhYmxlKCkgLT4gbXNtX2RwX2Rpc3BsYXlfZGlzYWJsZSgpIHdoaWxlIGEKc2luayBy
-ZW1haW5lZCBjb25uZWN0ZWQgKHNpbmtfY291bnQgIT0gMCk6Cgpkcml2ZXJzL2dwdS9kcm0vbXNt
-L2RwL2RwX2Rpc3BsYXkuYzptc21fZHBfZGlzcGxheV9kaXNhYmxlKCkgewoJLi4uCglpZiAoZHAt
-PmxpbmstPnNpbmtfY291bnQgPT0gMCkKCQkvKiByZS1pbml0IHRoZSBQSFkgc28gdGhhdCB3ZSBj
-YW4gbGlzdGVuIHRvIERvbmdsZSBkaXNjb25uZWN0ICovCgkJbXNtX2RwX2N0cmxfcmVpbml0X3Bo
-eShkcC0+Y3RybCk7CgllbHNlCgkJbXNtX2RwX2Rpc3BsYXlfaG9zdF9waHlfZXhpdChkcCk7CgoJ
-bXNtX2RwX2Rpc3BsYXktPnBvd2VyX29uID0gZmFsc2U7CgkuLi4KfQoKZHAtPnBoeV9pbml0aWFs
-aXplZCBpcyBmYWxzZSB3aGlsZSBkcC0+cGx1Z2dlZCBzdGF5cyB0cnVlLiBJZiBhbiBvdXQtb2Yt
-YmFuZApEUk1fQ09OTkVDVE9SX0RQX0lSUV9IUEQgYXJyaXZlcyBpbiB0aGlzIHN0YXRlLCBtc21f
-ZHBfaHBkX3BsdWdfaGFuZGxlKCkKcmV0dXJucyBlYXJseSBiZWNhdXNlIGRwLT5wbHVnZ2VkIGlz
-IHRydWUsIGFuZCBtc21fZHBfaXJxX2hwZF9oYW5kbGUoKSB0aGVuCmF0dGVtcHRzIEFVWCByZWFk
-cyB3aGlsZSB0aGUgUEhZIGlzIHBvd2VyZWQgZG93bi4KCi0tIApTYXNoaWtvIEFJIHJldmlldyDC
-tyBodHRwczovL3Nhc2hpa28uZGV2LyMvcGF0Y2hzZXQvMjAyNjEwMjQtaHBkLWlycS1ldmVudHMt
-djgtMC02ZWU5NDllN2EzODRAb3NzLnF1YWxjb21tLmNvbT9wYXJ0PTcKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBs
-aXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFk
-ZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+if an error occurs after the alloc_ordered_workqueue() call, the
+corresponding memory is never released.
+
+Use the managed version instead, as already done by most functions in the
+probe and simplify the remove function accordingly.
+
+This avoids the leak.
+
+Fixes: b84b5197e344 ("dmaengine: amlogic: Add general DMA driver for A9")
+Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+---
+Compile tested only
+---
+ drivers/dma/amlogic-dma.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/drivers/dma/amlogic-dma.c b/drivers/dma/amlogic-dma.c
+index 684121d13fca..791bd82743d3 100644
+--- a/drivers/dma/amlogic-dma.c
++++ b/drivers/dma/amlogic-dma.c
+@@ -620,7 +620,7 @@ static int aml_dma_probe(struct platform_device *pdev)
+ 	if (!aml_dma)
+ 		return -ENOMEM;
+ 
+-	aml_dma->free_wq = alloc_ordered_workqueue("aml_dma_free", 0);
++	aml_dma->free_wq = devm_alloc_ordered_workqueue(&pdev->dev, "aml_dma_free", 0);
+ 	if (!aml_dma->free_wq)
+ 		return -ENOMEM;
+ 
+@@ -712,7 +712,6 @@ static void aml_dma_remove(struct platform_device *pdev)
+ 		if (aml_chan)
+ 			tasklet_kill(&aml_chan->vchan.task);
+ 	}
+-	destroy_workqueue(aml_dma->free_wq);
+ }
+ 
+ static const struct of_device_id aml_dma_ids[] = {
+-- 
+2.56.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
