@@ -2,89 +2,141 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D156A606A31F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Oct 2026 01:21:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A08A7606A31B
+	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Oct 2026 06:00:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1Kts3+eS;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=X/Fm4VDX
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xv25+xig;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=amlogic.com header.i=@amlogic.com header.a=rsa-sha256 header.s=selector1 header.b=GfwyE/5V
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=i9w4KTtQ8MohxDNJ3KcMGh1NFK2oMkt2jgkHmeGtiik=; b=1Kts3+eSUZnJbLto/tYxlgqXkR
-	NUzCjHrZ3fOxQO3+RYkw4bFZf3D58eCc7T/y1owxa5R9CcLTnBHvB12km/WNDFjTytnobBIVshk2N
-	ZMUMHsfRV67WCIrSZSHxhAjhX4mUMhDVkz9qUyL4kO2+tzv91A2LJvNudhKDSCa4T52KL1ODrhW1Q
-	vi4u+ntcG8oEgZx/8429+P3Z0AbgOfE6bLYczzd/ZbsNWQoUt+1QgXiMNiHC2jogXfyo4LJX37B2E
-	AiqCRoPZAQsvJEoSSxPlXoblK7ArFCHvfjqlpnjwYGQm51M7xaMVaS7h2NvhfBCvFP8RKx2wNzo+F
-	eykBcKMQ==;
+	bh=hMvyq+9+KqgGy6B7P1lmX75cfI8FUbea9ufr5n7Pau8=; b=xv25+xighzl9zjeDJRwT7AdmsJ
+	NbOfJJwzd8dSAXrtxcj80iNYPcMum3MXjoyHlvOyAq8Tpjs+jjSdv2jTO+Ntn0IM1Cg/i9banBRxv
+	+bg/qq0pYMvZFFbUdFlpjqfLLAKSkNxlgNoekjwJukUcP1SZkwoUCvPSfvE6BFPuWPNQJNUvoqq+r
+	oTLg6d3/yy7B+5y5gkxgyguDRPFwUnCzdGcBjH5Ezs16B+dQ815nj1PPRN2e/hNBr1EkTwAN7lFVG
+	RSMm18yKBBGpyQAC7u3y5cglDMk1osbgODJSKtTZ4jhvLfnBbE45ieHEVWssK7vxsSgY7InT4GJDx
+	c5F4VbrQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xK3yS-0000000FG9A-1cnK;
-	Fri, 23 Oct 2026 01:21:36 +0000
-Received: from mail-m83154.xmail.ntesmail.com ([156.224.83.154])
+	id 1xK8KO-0000000FYPq-3vY5;
+	Fri, 23 Oct 2026 06:00:32 +0000
+Received: from mail-japanwestazon11022080.outbound.protection.outlook.com ([40.107.75.80] helo=OS8PR02CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xK3yO-0000000FG8f-1BXY;
-	Fri, 23 Oct 2026 01:21:35 +0000
-Received: from [127.0.0.1] (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 520f42c30;
-	Fri, 23 Oct 2026 09:21:25 +0800 (GMT+08:00)
-Message-ID: <e19ac7d1-5a86-4a96-a868-56a4abda3ec4@rock-chips.com>
-Date: Fri, 23 Oct 2026 09:21:08 +0800
+	id 1xK8KL-0000000FYPH-30To;
+	Fri, 23 Oct 2026 06:00:32 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YbyQcJ+pOmiJsqOgnjq4HGR8hjY8R3UPyrd8jLgcDn+f1lKWMA2zQCoXmwgGy7FnnK6OSfMHYcYovBEPb+nkJcDpFQcSa+1U43uOs2I9AHbzRJtzm841slswmN+CSpiH2oY4TPGQIepA7ZpezdojYgG+negPjqAN9+3J0bjLpEZrdqWvjkdGwdVHqDB8Kq0Wsboa14pxMKYLLo9t70vmhiOi0jMzjhDMloQSGxKl9VswzErNctC9cgBcXvXlsQoiRMtgVmIq8+12NaUJUrCo84Qo7c8tCkx3Dh2Whj2MFW9k+Oxl9jpF6XHMZjkQmpI5VIwO1/ODnYZzLlTp9YHxPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VkjrR2JiNkfmtFctw1PqnHWo7oFQMKWk7/6Pl682J9E=;
+ b=Vr5vQRz91saWNG2/R47qVfdwLdBPwv6mD2yYIT6ja37M3Fz5NJnS1ALmdW4d/dFk5nBvkIny8amro/wMtTZaMcvAtJUj8zG7xEHxbPI9LoyX41LeZb4cD9Vm5nkK/ACut4hH8dkBI7IKnurs+Usfco6aXkHscJ3D6pF2B7Yno6/CISCGBGiSj0t46UmENm2BC7ke+IqYH8XCMcFTn798+U8UgaRKh8HX8Lmaal48pXU+MuZQUfgugUXjz6GJ127e676y0eTO2LRFHmxaaCXZFYxB/nQeoGR4ypDHIpQoT2Nyn5gEqgw3/Y9xBE5e0JEBhkZFOyuLOIZNB9enopyruw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VkjrR2JiNkfmtFctw1PqnHWo7oFQMKWk7/6Pl682J9E=;
+ b=GfwyE/5VmDDnu84R0YDWW4Q0JB+nVgJWEPVxt1Aiot5+MU7JmzCayArTKDOjBmtQnsok1Zy6UkP0DSun69wrZeyrtUvqFvOz4mvyNmAqLAMYbLpIyVrP2dFZknKXGUPHFab/Ks7sR1yiIxcqckTdE1/7mT7V+ECIQ2wLL4INPlmfWW43PBGPAAEydQL4FpAOA7XzrA8coG6ef0VIANGXFmbsElAjdBfgYWLqpMJ6qlL5cxEG2EWISGLVdsNOMX8HAnaBvS1WPjcLCe4TQbY0hQFolpySe5kYzJLA33O+xsf1mO0H7/wAAtx13sR13re9PEMUAU9jpJfk5vztWZuZ7g==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from SI2PR03MB5786.apcprd03.prod.outlook.com (2603:1096:4:150::10)
+ by TYSPR03MB7692.apcprd03.prod.outlook.com (2603:1096:400:40e::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.18; Fri, 23 Oct
+ 2026 06:00:13 +0000
+Received: from SI2PR03MB5786.apcprd03.prod.outlook.com
+ ([fe80::6f51:1229:dd08:bfc2]) by SI2PR03MB5786.apcprd03.prod.outlook.com
+ ([fe80::6f51:1229:dd08:bfc2%6]) with mapi id 15.21.0546.017; Fri, 23 Oct 2026
+ 06:00:12 +0000
+Message-ID: <6abe6927-71b4-4bbd-8d63-fffcda43f0ec@amlogic.com>
+Date: Fri, 23 Oct 2026 14:00:06 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] clk: meson: s4: fix ENCP clock selection
+To: Carlo Caione <ccaione@baylibre.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jerome Brunet <jbrunet@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Brian Masney <bmasney+clk@redhat.com>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jian Hu <jian.hu@amlogic.com>, Yu Tu <yu.tu@amlogic.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20261022-upstream-clk-encp-sel-shift-v1-0-f1b1e10a3d84@baylibre.com>
+ <20261022-upstream-clk-encp-sel-shift-v1-3-f1b1e10a3d84@baylibre.com>
+From: Chuan Liu <chuan.liu@amlogic.com>
+In-Reply-To: <20261022-upstream-clk-encp-sel-shift-v1-3-f1b1e10a3d84@baylibre.com>
+X-ClientProxiedBy: TPYP295CA0037.TWNP295.PROD.OUTLOOK.COM
+ (2603:1096:7d0:7::16) To SI2PR03MB5786.apcprd03.prod.outlook.com
+ (2603:1096:4:150::10)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/9] drm/bridge: pass down IRQ_HPD to the drivers
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Francesco Dolcini <francesco@dolcini.it>, Kevin Hilman
- <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Pengyu Luo <mitltlatltl@gmail.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org
-References: <20261022-hpd-irq-events-v6-0-337ea3ddaa62@oss.qualcomm.com>
- <20261022-hpd-irq-events-v6-3-337ea3ddaa62@oss.qualcomm.com>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <20261022-hpd-irq-events-v6-3-337ea3ddaa62@oss.qualcomm.com>
-X-HM-Tid: 0aa1665937f503a7kunmabefcd952d3a31
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCHkxKVkIdSU4dHxpNGhkZTFYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
-	pKQkxVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=X/Fm4VDX9sFENPD6Wn9qD+Uao+7D0Epq2pQrsnbwFBrymGk6h8O6RmS3bL18Vm4+OOE5fn9EHK7f5aXlKmzlgC52HGgkZdlKQwycb9gdto26fXfwfIFdx0+DDP+R8+nr+Q9Qgl+MLUiC4hQPHMwHPlcJ75OMdNIu2jiqwx+mQLE=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=fTHe9pcXTKxRGNgBHQwELDkRI1+tQnp9o4yzAANBj4Y=;
-	h=date:mime-version:subject:message-id:from;
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SI2PR03MB5786:EE_|TYSPR03MB7692:EE_
+X-MS-Office365-Filtering-Correlation-Id: 56c8e3ac-9eb9-4d42-ffb9-08df30cae6db
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|23010399003|7416014|376014|366016|18002099003|22082099003|261022105027099003|261022075727099003|4143699003|11063799006|261009221227099003|261009223027099003|261009220027099003|261009221727099003|261021123027099003|10067099003|261021121427099003|261009223327099003|56012099006;
+X-Microsoft-Antispam-Message-Info: gwzytONEqPCiJthvBnwxIqSbdCfELmx6+KidJMpiiolZVnuUAjQNlY2Ll8etZLnEgnWRX5Ah0Je6StaZKpyDdizRBtqikKc614fdJCIWgeIUGPN31oLE1GReuf7DzQjbePIql/hmgs/MTojz6FhdCyCfqWQeeetB1VUGymz0bvL3ON6PEY8U8OPIkD9Agyx2tD7iaATHu+C1gABxvCifbnJ6tznwCh2xS25w5gIYOuAgEs1wkBWHSAVR6YJzPsRtjwaqaVkQhsO8ZOY9tIkbxXA6CFaQVOz1HlgcOdlqLZblrLchv9PofcPVOvf7hGcO/QEl7jQpD6wnrsfIMkd6MnECOBu2a0g3oINGl9mzqA05QHgRAlrp8FqUCQf/a26xklA8ynpfojE+fP1xWVSvRhdNeuQ+vzUX49xeh1ee2zn80SnxpTw1YYSocmeDMdKlZ9qT9gVPfnirIyUptEJ93LTRxGL8sUOHpy1L4/sHnCaxc0ZQfFNky+/pwZuWswUDshgBgH1pXJisXw3GT5C1pxDAh/HgqK0mQuofb3ymEI6/eUDwGyHg3so0t0jLpQ7b9JuREoB0fHmOUJ7IcW+Hw4zWSG0X6V0OChpPM0mzTanxX881/dGdsslFQPIWHsol
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SI2PR03MB5786.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(23010399003)(7416014)(376014)(366016)(18002099003)(22082099003)(261022105027099003)(261022075727099003)(4143699003)(11063799006)(261009221227099003)(261009223027099003)(261009220027099003)(261009221727099003)(261021123027099003)(10067099003)(261021121427099003)(261009223327099003)(56012099006);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aGtpaUdLNENDcjlTMzRCYjNJY1JwZDZLWTdqTVpqWkgyRy9uRy93YVhCZWVp?=
+ =?utf-8?B?YytjQlFjSytqNnJ5b0xTdDNDc0g0N1ppWVdQYmN0VnhXSFlybFdNdVVZT2xu?=
+ =?utf-8?B?TkZnK2plMDV4M2xjOVRUeDYxUkpkcU9oZ3htRkI0ZFQwcFFCZEc1ZXZJbWh0?=
+ =?utf-8?B?QjJ2QlVwWlJyaXNCUnFGSHNZb0RJQ2R6T2dXejFJUXlRY1ZRektFczV5SmNB?=
+ =?utf-8?B?ZExBbXdPVnJxUnluRWhSNE00TXJSd3krTURidVA2c1NWVTMxeGNVdTJnejV0?=
+ =?utf-8?B?bGhUeWluWVliMllKMzZHWkh4S3RwUFU1RzhrTnNvOXhGSStwd1NMWHNoeHFU?=
+ =?utf-8?B?ZWtOTFg1OUI5N0pzK2QxdWZ1a2xLT1RFRlNpOWRjNXRKN2dtQytmRGg0N0xz?=
+ =?utf-8?B?b290WHkrR0JiYWt6QkM4bmFCVWtNL3JSWHl2U0U0TDJFcld4YXBFUXdBSllv?=
+ =?utf-8?B?VnVQUkJkY2hlNEIrVDFUajhqYWQvMDE4NkJ4cVpETllnRmFJWHNYbWs1R05l?=
+ =?utf-8?B?T1J5Skh0aExZeWg0cXV2ZHhCRlNxaDFSdnpnekhjQmJyZklLcmdGRUlUU1g1?=
+ =?utf-8?B?anJNTERMenJiRlRidTJVOFFSQzEyVHVQVzhCWjRWZWdqczdoNElJVzV0cjF3?=
+ =?utf-8?B?dHhUQkNnaUV0RjRtdFp1b2ZVb2NmVk9kMUJ5Z0tZTUFUaHQ5YXlCaE1JaUxR?=
+ =?utf-8?B?WmtpckVTNnN1dEpidW43MkdQYXZSdU1zKzA2NG9hcjRTSWtjVERkczFWWUJF?=
+ =?utf-8?B?V1krN3Q1bVpnUVU3dXFtM1RhS0hOcVY0Z2N6ejJNUnFjc1ZkdVgyNDBFeFIr?=
+ =?utf-8?B?TjRUdHpiUjR3SEQ4cm15ZXQ4VjFPWGFodjZ6RWFKM1BiTGlNWjZHQWVWa3Jv?=
+ =?utf-8?B?QW5OM0lEbnRIZFhPUkF6UkdNNGFnQmRkMlRDQVhJNnI0dzVxZ3RIUlVhWE01?=
+ =?utf-8?B?OWxDQW9lSTlTNWQ2YUdQcndCOCtVeE84blk5djZ0VkU1VHdESFRrV29VSkhK?=
+ =?utf-8?B?QkNDUjFqOXdGb3JlRUhRNW5UM016aE10UFczZFZ1WFlHSUt3cmxqM25KY2Ra?=
+ =?utf-8?B?c3NYL2VLNWxsTi9NWWh5UGNua2d0b25rMWZ3UTQ1SWk0bE54RXZyVzZCZS9n?=
+ =?utf-8?B?TkczZFdQdmsxSStnR3RvQWtKcFlqbXpwUTg3VzluR1MzU2FOMEx6eTkzSGFT?=
+ =?utf-8?B?aE1kM2NHN2ZTZE9XK09vWHNkVTVaQzNqWmIwcFZRa1lGeThNQkFKV2RDeUdX?=
+ =?utf-8?B?bG1PUThnV1d6WGphNjM3ZGh4WVpxQ0ZZZmJQcHRqU3N1L0c2OGh6b3JYQyt3?=
+ =?utf-8?B?cWhLaTA5U3d3ZWprN2hielp5eFVJeVVVdmRKZkx6OVp0dEVJT3RSd05hVmxk?=
+ =?utf-8?B?UHAxRldLUGdSTUcxNXFvN3VmSWdRT2Y4SDdkdm5QQWJibkVXcm92YVFXZ2dj?=
+ =?utf-8?B?cjdISUVJYVUrWXZRVHFOYnpaSUN2UVl6T1pmLzE5eUZtSlZka3JJbjhadklo?=
+ =?utf-8?B?cEFuREFHZzRQSUdBL3pHUzFXQ0I2dXVma1RMOTgxMkpvZFl6bHEwbXlpSFpL?=
+ =?utf-8?B?S1dPN0tGcFJKdmhGeVJkRGY3M2xDblZzQjBWQXhrZm9yWGhFRGhBbVh6Qm8z?=
+ =?utf-8?B?dTR3c2lnOFZ0ZGpZaXh3eCs1cnJYN2l5c1FJM3FtOXJ2aElPeDJOZFFsc0Vm?=
+ =?utf-8?B?ZTBLMGpVQ09mUkhPOFcwcGlwdVp0YXYwQU9tR3VUZlY3bGYyUlRFQjVpVkly?=
+ =?utf-8?B?S0w0Mk5rTElyWnhReW1IZ00rNzZ3c01wTlF5bFVsdTJTZGsvdEhZTnpRSnEw?=
+ =?utf-8?B?ajB2U0F5WEJLZUp3ZHN6MVlVTUpEK2FPcThZTGorYVFhL3hoWTFUVG5zZmV1?=
+ =?utf-8?B?eGZ4WDNaU0dGYW9hVHJxNjh5OURGOXhBZElCcEc1T25yYWtxay9yNTVDZ2xi?=
+ =?utf-8?B?U21JOHdsbFF5SFpvdFovNDhvV0N4MEtOdWh2b2dnOEdCNG9vWmtYcStZMmpL?=
+ =?utf-8?B?TnlCRVZZcW96d3VRVk5zWURXNHp3azdYeHkrZThZL1lnMTh0TVp1VHlkTTdz?=
+ =?utf-8?B?Y2hUSjJMV0lzVE1xM2ZSWUhZUlR3UWQrUjBrS1V3N1NOcUc3aTFnbFhrWThk?=
+ =?utf-8?B?ejJDbXJtUWNvWmlLUjl2TkFjWjFHMHVWamFqT3gwaVdGRytZZVNUaTVrQWtB?=
+ =?utf-8?B?ZUpiTUZTSTlrZ09sZXpvYVg5SW9NYmR5V1l5bG4wMTdZUC8zQXBHU0VuNHU4?=
+ =?utf-8?B?RVdTbHVxUENWc1hMWkdWYnlRRXJkQ0ZraitGYnVnZkw5enFnZ1VZYllqYitp?=
+ =?utf-8?B?TmthR0ZWVEpjKzFncGVnajljUjBzUVBjYytyZ0FTb2xCYWg0Q1poUT09?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 56c8e3ac-9eb9-4d42-ffb9-08df30cae6db
+X-MS-Exchange-CrossTenant-AuthSource: SI2PR03MB5786.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2026 06:00:12.7467
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: JalKpffrTA0Ny2unML63SfuUmzrJOQJ2XKbGe3azE4jPJ38fRVwqhlG5+spMm+bcVi5C/ZhWl8BpUEVtmJqLOQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR03MB7692
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261022_182133_141680_017B3089 
-X-CRM114-Status: GOOD (  16.24  )
+X-CRM114-CacheID: sfid-20261022_230030_482991_66990C24 
+X-CRM114-Status: GOOD (  17.63  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -95,8 +147,8 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-15.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
@@ -106,127 +158,60 @@ X-Spam-Status: No, score=-15.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 10/22/2026 9:27 PM, Dmitry Baryshkov wrote:
-> The DisplayPort standard defines a special kind of HPD events called
-> IRQ_HPD. These events are used to notify DP Source about the events on
-> the Sink side. Pass down the extra status to the bridge drivers via the
-> hpd_notify() callback, letting DP bridges to act accordingly.
+Hi Carlo,
+     Thanks for the fix.
+
+On 10/23/2026 4:10 AM, Carlo Caione wrote:
+> [????????? ccaione@baylibre.com ????????? https://aka.ms/LearnAboutSenderIdentification?????????????]
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> [ EXTERNAL EMAIL ]
+> 
+> The ENCP clock uses ENCT's settings by mistake. Change the selector
+> from bits [23:20] to [27:24].
+
+Yes, you are right.
+
+By the way, S4 does not support the ENCT (Encoder for TV Panel) so the 
+driver does not define the associated clocks.
+
+> 
+> See the S905Y4 datasheet v0.7, Table 7-58.
+> 
+> Fixes: 57b55c76aaf1 ("clk: meson: S4: add support for Amlogic S4 SoC peripheral clock controller")
+> Signed-off-by: Carlo Caione <ccaione@baylibre.com>
+
+Reviewed-by: Chuan Liu <chuan.liu@amlogic.com>
+
 > ---
->  drivers/gpu/drm/bridge/lontium-lt9611uxc.c     | 3 ++-
->  drivers/gpu/drm/display/drm_bridge_connector.c | 2 +-
->  drivers/gpu/drm/meson/meson_encoder_hdmi.c     | 3 ++-
->  drivers/gpu/drm/msm/dp/dp_display.c            | 3 ++-
->  drivers/gpu/drm/msm/dp/dp_drm.h                | 3 ++-
->  drivers/gpu/drm/omapdrm/dss/hdmi4.c            | 3 ++-
->  include/drm/drm_bridge.h                       | 3 ++-
->  7 files changed, 13 insertions(+), 7 deletions(-)
+>   drivers/clk/meson/s4-peripherals.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-
-Reviewed-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-
-> diff --git a/drivers/gpu/drm/bridge/lontium-lt9611uxc.c b/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
-> index b3bb7f2cebb3..b1ffbab89a16 100644
-> --- a/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
-> +++ b/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
-> @@ -429,7 +429,8 @@ static const struct drm_edid *lt9611uxc_bridge_edid_read(struct drm_bridge *brid
->  
->  static void lt9611uxc_bridge_hpd_notify(struct drm_bridge *bridge,
->  					struct drm_connector *connector,
-> -					enum drm_connector_status status)
-> +					enum drm_connector_status status,
-> +					enum drm_connector_dp_event event)
->  {
->  	const struct drm_edid *drm_edid;
->  
-> diff --git a/drivers/gpu/drm/display/drm_bridge_connector.c b/drivers/gpu/drm/display/drm_bridge_connector.c
-> index 898273f60cf6..1b0a1a00d8eb 100644
-> --- a/drivers/gpu/drm/display/drm_bridge_connector.c
-> +++ b/drivers/gpu/drm/display/drm_bridge_connector.c
-> @@ -151,7 +151,7 @@ static void drm_bridge_connector_hpd_notify(struct drm_connector *connector,
->  	/* Notify all bridges in the pipeline of hotplug events. */
->  	drm_for_each_bridge_in_chain(bridge_connector->encoder, bridge) {
->  		if (bridge->funcs->hpd_notify)
-> -			bridge->funcs->hpd_notify(bridge, connector, status);
-> +			bridge->funcs->hpd_notify(bridge, connector, status, event);
->  	}
->  }
->  
-> diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-> index c4355c5cc340..a637613ae2e1 100644
-> --- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-> +++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
-> @@ -323,7 +323,8 @@ static int meson_encoder_hdmi_atomic_check(struct drm_bridge *bridge,
->  
->  static void meson_encoder_hdmi_hpd_notify(struct drm_bridge *bridge,
->  					  struct drm_connector *connector,
-> -					  enum drm_connector_status status)
-> +					  enum drm_connector_status status,
-> +					  enum drm_connector_dp_event event)
->  {
->  	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
->  
-> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-> index 6abe30bdff12..fa8942922b53 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_display.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
-> @@ -1541,7 +1541,8 @@ void msm_dp_bridge_hpd_disable(struct drm_bridge *bridge)
->  
->  void msm_dp_bridge_hpd_notify(struct drm_bridge *bridge,
->  			      struct drm_connector *connector,
-> -			      enum drm_connector_status status)
-> +			      enum drm_connector_status status,
-> +			      enum drm_connector_dp_event event)
->  {
->  	struct msm_dp_bridge *msm_dp_bridge = to_dp_bridge(bridge);
->  	struct msm_dp *msm_dp_display = msm_dp_bridge->msm_dp_display;
-> diff --git a/drivers/gpu/drm/msm/dp/dp_drm.h b/drivers/gpu/drm/msm/dp/dp_drm.h
-> index da412c788503..8f2f4201da60 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_drm.h
-> +++ b/drivers/gpu/drm/msm/dp/dp_drm.h
-> @@ -31,6 +31,7 @@ void msm_dp_bridge_hpd_enable(struct drm_bridge *bridge);
->  void msm_dp_bridge_hpd_disable(struct drm_bridge *bridge);
->  void msm_dp_bridge_hpd_notify(struct drm_bridge *bridge,
->  			      struct drm_connector *connector,
-> -			      enum drm_connector_status status);
-> +			      enum drm_connector_status status,
-> +			      enum drm_connector_dp_event event);
->  
->  #endif /* _DP_DRM_H_ */
-> diff --git a/drivers/gpu/drm/omapdrm/dss/hdmi4.c b/drivers/gpu/drm/omapdrm/dss/hdmi4.c
-> index bd6c4d2dcdc8..72972a6fe989 100644
-> --- a/drivers/gpu/drm/omapdrm/dss/hdmi4.c
-> +++ b/drivers/gpu/drm/omapdrm/dss/hdmi4.c
-> @@ -429,7 +429,8 @@ static void hdmi4_bridge_disable(struct drm_bridge *bridge,
->  
->  static void hdmi4_bridge_hpd_notify(struct drm_bridge *bridge,
->  				    struct drm_connector *connector,
-> -				    enum drm_connector_status status)
-> +				    enum drm_connector_status status,
-> +				    enum drm_connector_dp_event event)
->  {
->  	struct omap_hdmi *hdmi = drm_bridge_to_hdmi(bridge);
->  
-> diff --git a/include/drm/drm_bridge.h b/include/drm/drm_bridge.h
-> index 1981d24a700d..6382ef5f1ea2 100644
-> --- a/include/drm/drm_bridge.h
-> +++ b/include/drm/drm_bridge.h
-> @@ -509,7 +509,8 @@ struct drm_bridge_funcs {
->  	 */
->  	void (*hpd_notify)(struct drm_bridge *bridge,
->  			   struct drm_connector *connector,
-> -			   enum drm_connector_status status);
-> +			   enum drm_connector_status status,
-> +			   enum drm_connector_dp_event event);
->  
->  	/**
->  	 * @hpd_enable:
+> diff --git a/drivers/clk/meson/s4-peripherals.c b/drivers/clk/meson/s4-peripherals.c
+> index ba41fcd90588..33573eb85927 100644
+> --- a/drivers/clk/meson/s4-peripherals.c
+> +++ b/drivers/clk/meson/s4-peripherals.c
+> @@ -1114,7 +1114,7 @@ static struct clk_regmap s4_cts_encp_sel = {
+>          .data = &(struct clk_regmap_mux_data){
+>                  .offset = CLKCTRL_VID_CLK_DIV,
+>                  .mask = 0xf,
+> -               .shift = 20,
+> +               .shift = 24,
+>                  .table = s4_cts_parents_val_table,
+>          },
+>          .hw.init = &(struct clk_init_data){
 > 
+> --
+> 2.56.0
+> 
+> 
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
 -- 
-Best, 
-Chaoyi
+Best regards,
+Chuan
 
 
 _______________________________________________
