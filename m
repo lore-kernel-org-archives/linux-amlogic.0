@@ -2,11 +2,12 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD0F5606A31A
-	for <linux-amlogic@archiver.kernel.org>; Sat, 24 Oct 2026 02:06:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D3B7606A31A
+	for <linux-amlogic@archiver.kernel.org>; Sat, 24 Oct 2026 09:14:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=b6UxKQkq;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.a=rsa-sha256 header.s=t20230301 header.b=J3ANBp7s
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XTryBmbF;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=gzixjNik;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.a=rsa-sha256 header.s=t20230301 header.b=CchQwBVI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -14,40 +15,55 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=618TNm1j2E6SfkJ7TJbUPYRkr6iUf0Z/YEr3/OMdidY=; b=b6UxKQkqTeZiFs14BzDbnIxzw4
-	Xw9oNYM1GwklaKgYSwbaPZcoX3Krae91wqWY7KCaGgILbWSc87bglfsRKPIDbVXefg0NjTFuxYHN3
-	ZVyW5MRdWje56G7YnvlsdGiHQAjQEVRJRAoZCVmVi2UoT4NcKje55rvea00UwaBPX3Pg9uyUUwX/e
-	rf6KAmZWtOAp8eoxveeF2KNohypOr5DfXIHosoC7Q48tPkZY8JDOw0WnlUKcqler/FYY6rgWUQ0AB
-	QkL40mZIbVVt8ieIbcUw0z9oEi+/+5JIDsxE0VM5O02FKt3x9FpCwbX3ejMuWbxdWajKf/8OAvZrY
-	MZcVgXyw==;
+	bh=8F1r3uZdef/TcrCluBxvB0bemUSpHsStMXKuDOjHAUQ=; b=XTryBmbF4fX200BgYw+tjQXnK7
+	t1TuBYxtrJT5w57VfNrVNoVcccbofCinAZ8/tBq4i9ntcZBnrTXrdlQ7DYFn2GXm6k+hmv3GDmBz1
+	dORciSH6+Y40UsKuMJsGqm0UzkQxIKsau+avGIWRdwfm2r8HlAuLU+t4X2syG98LbU4n53YDCqtmH
+	agvfK0DACqPFulsn6u6k6J556hNy+eQRczvq/5pfvvF9OXfVKsuaOBr+sSMBQmVk/374SA9is8NJe
+	tJ08utfy4bs+ygQU6SlzR7v/EwrVAZis93JSD8TexrAV6fbt+qhtgdb2uDx1vH1sGaZNUhmQtnQA5
+	gkRnBaHg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xKR9D-0000000HL6T-1uee;
-	Sat, 24 Oct 2026 02:06:15 +0000
-Received: from smtp-69.smtpout.orange.fr ([80.12.242.69] helo=smtp.smtpout.orange.fr)
+	id 1xKXpY-000000002JG-2dTl;
+	Sat, 24 Oct 2026 09:14:24 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xKR99-0000000HL64-1KGR
+	id 1xKXpY-000000002J2-1Jla
+	for linux-amlogic@bombadil.infradead.org;
+	Sat, 24 Oct 2026 09:14:24 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:In-Reply-To:References;
+	bh=QWkn/xlVHRiRHb499IBZuW+PIveJv2lg7thsC4TJ6eg=; b=gzixjNikeIKUQ4QbeLdST8TbLS
+	9DQAbBac1DEmtLS0WjOmsga3lImooc5XWilNIDyF9AnOVF1hM3jW5pALFraWz8dzfctPfL7QPZuN6
+	zZ6whAij5w94RKAI8Jkjzq1vbaxBic9sWHMp6EG0jAY1mJhH6eSEbLt7HHPVbOF5f1u8QJt5c3D7Z
+	Iie3vfFHhjgLAgHmc8v1EgvQ0t0jWmKDbdK/TpNQLy3pdVonHkwmWB363RdMxz9BFqhMNzvdYWtmr
+	9ZiOhgZ29/uBbtMimYMsOGGCHD1vR9wRKQpoq0s+9+oQzksO3dRbVuWRv8flhgTczWHhBoD3JWxMF
+	G/XFlIAg==;
+Received: from smtp-15.smtpout.orange.fr ([80.12.242.15] helo=smtp.smtpout.orange.fr)
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xKXpT-0000000Bf80-3g2G
 	for linux-amlogic@lists.infradead.org;
-	Sat, 24 Oct 2026 02:06:13 +0000
-Received: from fedora.home ([10.65.86.60])
+	Sat, 24 Oct 2026 09:14:22 +0000
+Received: from fedora.home ([10.64.95.100])
 	by smtp.orange.fr with ESMTP
-	id KLJuxVbOJopfeKLJuxoe9x; Fri, 23 Oct 2026 21:52:54 +0200
+	id KXgjxjzKohc5VKXgjxqGgU; Sat, 24 Oct 2026 11:05:17 +0200
 Received: from fedora.home ([IPv6:2a01:cb10:785:b00:26fb:aefb:6cd2:db0e])
 	by smtp.orange.fr with ESMTPSA
-	id KLJtxn1dYYWtEKLJtxZQMp; Fri, 23 Oct 2026 21:52:54 +0200
+	id KXghxPvvNkwI8KXghxaElh; Sat, 24 Oct 2026 11:05:17 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1792785174;
-	bh=2m4IKtQlnVrJI7NkWlXuPkFhNiQqmS45ouu3Fbw8/CI=;
+	s=t20230301; t=1792832717;
+	bh=QWkn/xlVHRiRHb499IBZuW+PIveJv2lg7thsC4TJ6eg=;
 	h=From:To:Subject:Date:Message-ID:MIME-Version;
-	b=J3ANBp7sl/Dl5dkq6MOWlU6Kns62suUnR3EyqF7/ceWuGlTV/5beUyZ3CHZWT68wR
-	 wOj/1I0TAbQ5sbdz65qvjbLvE3OQkF+mAxnjwcCWyMx1VqPMQ01LxQWvyy7W0O9tf5
-	 vpgKj/gUidSYfM/4YE54GKamJe72utqoX/husS4YTvK5rPXEiJAfofGwZXqGzr5GxS
-	 JMFz8s3ngydirGYFyQ68y/TpFNy3wFWZx68XT/nQNAaf0k0T6l5RVccwJ8+Cwg2mPV
-	 WwSTg5IQwUD9o2ryJ4mWIoUqBFfbvG7lQCcBrKMW1S2BAVkIIR5ZTgEVUrYISPqb77
-	 ZpoyUSMYgkGHQ==
+	b=CchQwBVI0N6no9inzOgf1a18hq7H1IK9SKCyFxFx/6P+8EIL7aL7z6FRFVbkZNdoh
+	 HVEGzh+YabO/yoV8q6ryMwmY4Kaq0UyiKCGU36J9XlQpO+UzpPavB9vv/S7HVUJjSt
+	 eq+xd4iKC3kdOIdvu5q53e6V3w328Jm4nmH0T8sNyWN9wru6QQ5dyHBoPKV2LnaVWO
+	 53U8eQ7btsL/h8Sd2X6tOT9nF6e5hEScfRp77awMLSUJDTWFMW0i8YTkiAWoDJbKGT
+	 g6EDL4OiSs+Hr1945IIQF1UPxhN0bK9GOAJPrg6tvRR9wQazxrdK9Hkp+zvx5f/gu/
+	 Wv82SZbbvRqVg==
 X-ME-Helo: fedora.home
 X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Fri, 23 Oct 2026 21:52:54 +0200
+X-ME-Date: Sat, 24 Oct 2026 11:05:17 +0200
 X-ME-IP: 2a01:cb10:785:b00:26fb:aefb:6cd2:db0e
 From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
 To: Xianwei Zhao <xianwei.zhao@amlogic.com>,
@@ -58,16 +74,16 @@ Cc: linux-kernel@vger.kernel.org,
 	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
 	linux-amlogic@lists.infradead.org,
 	dmaengine@vger.kernel.org
-Subject: [PATCH] dmaengine: amlogic: Fix an error handling path in aml_dma_probe()
-Date: Fri, 23 Oct 2026 21:52:50 +0200
-Message-ID: <93183551770e260aff993bb4cf1ce5ba8dc1e732.1792785154.git.christophe.jaillet@wanadoo.fr>
+Subject: [PATCH v2] dmaengine: amlogic: Fix missing destroy_workqueue() at error path in aml_dma_probe()
+Date: Sat, 24 Oct 2026 11:05:13 +0200
+Message-ID: <13a835b1770e360af7991bb4c91ce52a8d01e331.1792785154.git.christophe.jaillet@wanadoo.fr>
 X-Mailer: git-send-email 2.56.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261023_190611_799415_4FE97312 
-X-CRM114-Status: GOOD (  10.56  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261024_101420_347475_BAAC85FE 
+X-CRM114-Status: GOOD (  11.82  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,7 +103,7 @@ X-Spam-Status: No, score=-17.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-if an error occurs after the alloc_ordered_workqueue() call, the
+If an error occurs after the alloc_ordered_workqueue() call, the
 corresponding memory is never released.
 
 Use the managed version instead, as already done by most functions in the
@@ -98,7 +114,12 @@ This avoids the leak.
 Fixes: b84b5197e344 ("dmaengine: amlogic: Add general DMA driver for A9")
 Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
 ---
-Compile tested only
+Compile tested only.
+
+Changes in v2:
+  - update the subject   [Franck Li]
+
+v1: https://lore.kernel.org/lkml/93183551770e260aff993bb4cf1ce5ba8dc1e732.1792785154.git.christophe.jaillet@wanadoo.fr/
 ---
  drivers/dma/amlogic-dma.c | 3 +--
  1 file changed, 1 insertion(+), 2 deletions(-)
