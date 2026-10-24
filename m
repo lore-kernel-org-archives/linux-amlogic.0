@@ -2,13 +2,13 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED00E606A31E
-	for <linux-amlogic@archiver.kernel.org>; Sat, 24 Oct 2026 00:36:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97934606A31E
+	for <linux-amlogic@archiver.kernel.org>; Sat, 24 Oct 2026 00:36:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=e3qftLkG;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=gIznYCzz;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=J+YPz7wc;
-	dkim=neutral header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=BcmLruQG
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=J+OqAZAR;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=OD9t8pJy;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=Y14TJ8rP;
+	dkim=neutral header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=VZ7GVeSC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -16,107 +16,107 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ICisXo/KvkTUGbKTpoftKGmIM5jc18otTqMrIT9SecA=; b=e3qftLkGlggN7Zo9AIZPU8edHm
-	NqYDlqtzNawyTbZEN4sbTQFP7AARwILa5Jj9pd36vlmrDDm5RkRvMXHeWwJLumgYC9jRthNuDHcUY
-	xSZ1cVXTuZsdbR4WjiEADtzgCipSuG6TKF4mZPngbnrUBivlID1h1dKZUWQ3MNSoWfYhbQbFidY65
-	BSnmOfulJzCgqdm12b1dJcevT6h8A0HUv5lMCW4CXbeJWQtT9OpA/zOt4QWWQmgHPbqmq5Fgvu3Kk
-	5ySk665fMZPF3PdQ0iO2Yo/PIrkmxzqhf41UL3Y9Nw+kzF4KlPQzfKl6wjehdPWsu7rBO5LlJrqda
-	FreDDV0g==;
+	bh=s/5MtMy7l37f3P6av6DLCIJ6CSi2FG96yFLIC+ILGkQ=; b=J+OqAZARXU/beK8hdiORhW8PIS
+	LJ2yqEcIy1umDqh9ghMqzeMTzQKdoWHFMmh47eWtpf5XGEG1QdVaCch+PlE1oLg/56HaR3Qc0LWEv
+	mvlik8UrFyjf7Jvsn4Z4+EpbxyolkJsx3Y529d0djtyTQEtb3SC8mzxHYIX9IixbEfPQ90MqBTxoN
+	X40kbzj4XLs531s+r7WitOIWy13MwKckCeya8YJp+EOlgbw+JIDmBX9GgCsRQrSaFd1M688DYB+Qs
+	ylZJte9guPoE8W+q3UY0ZwIPT0+FW8JpI3jJULyml6trbqHlwEeBHAxn2QChpYlfAs7RMSKemPok3
+	/T0MTd1Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xKPkK-0000000HGW9-2Ige;
-	Sat, 24 Oct 2026 00:36:28 +0000
+	id 1xKPkL-0000000HGXU-0wwN;
+	Sat, 24 Oct 2026 00:36:29 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xKPk8-0000000HGMd-1aE5
+	id 1xKPkB-0000000HGP8-3Y95
 	for linux-amlogic@bombadil.infradead.org;
-	Sat, 24 Oct 2026 00:36:16 +0000
+	Sat, 24 Oct 2026 00:36:19 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
 	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=aEK+3aXppk+SulvbkA+LMtBDzo28ARemmdD/SR/wIWc=; b=gIznYCzzkDq5XLe9dPqFKPZDjB
-	YbEIJGr2HZ4vINB9JsY/crLO2PE7/HB8SVAg4YMdS1wyST4NGHP8DCN18IN8KPM8Tjj0WTeg140Tp
-	kU3RyiA0C2zkESpssSFF90HgWIZJmzX9UgqTxSDbGkunM2EZsvkyObZIYMpgZfReHRJXznqIl9hX4
-	xPjrS0s9Y/QfdlLVuCyFZadCtuOmuW56AVwReJ0ZDO26yZ+esjZBExbKdlUrT6dIoPLBxTOCjXo6Z
-	lU8wetvehIiqAf5nPmnbdlgKynkNV3IlwMTGiqy1APliuPSmuAag6Uq/jkw7l6HlZ8CEMjj5/AzwZ
-	koR2p7Fg==;
+	bh=31r1EaH4MCPxAQTq2cHbU5NR/uyIR6thPFjexZfrw6o=; b=OD9t8pJyVv0uhpq3LxnpzM8fHn
+	lQqUdxrEMLjjSwafuZODy17o8i7XTAJ1z2jRMqMjmNdfC9QMuSXWbma1zFlmFFFczaHRq3upHLJXq
+	eC2ChQoHpEfkYfHYqgJ8t1Ju+DVRjZMYJE+RUv4JuxytCjes/MYqhQe3X0suq8iaTKKfjyHoUcpsR
+	xEqgYi22ovJ14tUKg+Ob5ZucweoBiYwsGv/CQxhBX6n1+NIbJ94sc5Zf5NgU67WIoTuHmu2B73FbY
+	pGXjMRseP/MpIgtTJ9HOmOu8g3gKjUh5FkQIbuxD270hiip8GP1c8do7Qx6sjibRzOTn4o4hDCY9v
+	tv6D+1vQ==;
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xKPk1-0000000AvNN-0Nnq
+	id 1xKPk5-0000000AvPL-0ShF
 	for linux-amlogic@lists.infradead.org;
-	Sat, 24 Oct 2026 00:36:12 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 69NLvUeA3684536
-	for <linux-amlogic@lists.infradead.org>; Sat, 24 Oct 2026 00:36:07 GMT
+	Sat, 24 Oct 2026 00:36:17 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 69NLvKNc2963832
+	for <linux-amlogic@lists.infradead.org>; Sat, 24 Oct 2026 00:36:11 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	aEK+3aXppk+SulvbkA+LMtBDzo28ARemmdD/SR/wIWc=; b=J+YPz7wc/wXRkN2O
-	/qWs+ZbaVilBwmcQTJyrbtXOAeMqeThtKiRXpi4A/NpM8tAXAc1U6YA24zFappTG
-	bKsKyvIkjuaE1Gq6B/vMTXO/NEk0pHqrpsBKxIYGEyYk9RVRD4HIy6p0CWdtHCK6
-	H2STkgeyyPB0upr3Si9ydSXMkI/dXDeh4B3IUEWh5bCCMJ58fNxx7BhZ10zn3WN1
-	K1Gvsm21yU02e4FWnNrxnU0rQWO/05YbtIAhZqAwLCGHCJXdzi6c9yl+eXZJJlNE
-	tr54sLbbaRhNODu2ut6tn/EVi7L4FyqYVs3/TqK8bHUMqkMVeqzgTTGMoAcTdbLf
-	c7youA==
+	31r1EaH4MCPxAQTq2cHbU5NR/uyIR6thPFjexZfrw6o=; b=Y14TJ8rPPToVsOWN
+	sBACVXmoasoTJ1BEh5WlrsTucN8+1iRREOVjNrczmobmXxX5oiHYgEGzAQr1iMyM
+	u5Nmjq7B2l7gEH3SnQGc/rouMMU5Q23+5/UE0ZDYEwq/XfSNGVYHXWOKX+fISFHO
+	6W211gF2HF2lAK6Bq48wtp/cS0JAVlUuak8V7GJ2ouXGjS5/uyLvqZWVgdu3UfhZ
+	a0uyVvXiWUfsftHz14XyjlthFB505NTFdrw0dmbMhYjclSTC9VC2Gkk/5RUisOde
+	/VquLCadl8Ru2Bli0RFKlPMToXYWy2PjslbH4K3u9hm5C8dQrp7Lv9DEDD3Xhi1r
+	oNfPaQ==
 Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hgas6sg71-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hgatc9hr4-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-amlogic@lists.infradead.org>; Sat, 24 Oct 2026 00:36:07 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-93ce7a85f04so287814585a.0
-        for <linux-amlogic@lists.infradead.org>; Fri, 23 Oct 2026 17:36:07 -0700 (PDT)
+	for <linux-amlogic@lists.infradead.org>; Sat, 24 Oct 2026 00:36:11 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-93cb98809caso250261185a.1
+        for <linux-amlogic@lists.infradead.org>; Fri, 23 Oct 2026 17:36:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1792802167; x=1793406967; darn=lists.infradead.org;
+        d=oss.qualcomm.com; s=google; t=1792802171; x=1793406971; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=aEK+3aXppk+SulvbkA+LMtBDzo28ARemmdD/SR/wIWc=;
-        b=BcmLruQGn+3LObRj2Ooz5gW5s3ZoPMYJkgdgXxGoZCXPEFsjUXyjA1EusN+KpPD8N2
-         4PuPB6xAqlDn0BC3XFPHJKbk/MvtiQo23IWuXPSnG5iatRif2trHN+/AqiA2sxwOV52W
-         T31YMqkcNLfTcpHt74eKwO8k7Jh1CWcwHZ4riEnBwnfif2++TIVvLupBhPjWX1ogCPxm
-         gtWWNptqo8SVWn1+tO7UaBHxI5g05tZhOXQxf9hCUMkmrwO08lL/rnLZprZwDuVzADGf
-         EQbNQrc4pHCZtlQIvetRItTtj4YG0Gvg6oGdnuph4h2vJmeSJXqzE2Bvum932xyV/wzB
-         tK6w==
+        bh=31r1EaH4MCPxAQTq2cHbU5NR/uyIR6thPFjexZfrw6o=;
+        b=VZ7GVeSCU2xC7zjWuUOirGT2n4OQ0ZoY/+xTr1D9ScqlynB0Q3ctkCu+dfFmfwz4SZ
+         gITzFdqiba3R2JiPHeyPXmoWfCzhqrbXiSsyG3Q4lsxqGEQvzAmQcfBPaUewb0YDUNc8
+         Fpe8RnMV1WIspTzyJZAIBdRy/yOcUJNeJkfJtQMIrNNXJAHqZ+3FYM2X/8zHoHPJvObn
+         NejY+vAbm6YuVx3JGbUAiPe3G6s028grZa82pNG6DoeOqdTF4mU7CKF3M4mlwk67HtPY
+         eFe09jng2/NJPWhsFN12/L+faY8lZTVumAWwUuwal89AeXbiVAOJDofzQBTzXU7en1Nr
+         chJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1792802167; x=1793406967;
+        d=1e100.net; s=20260707; t=1792802171; x=1793406971;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=aEK+3aXppk+SulvbkA+LMtBDzo28ARemmdD/SR/wIWc=;
-        b=YDvAYJm327zAx9BD7msbt81rUwXFTuDdfbLEyn5oA/j0l99489MoFgcbN1O0A+yXr9
-         LINmtlPbBoOYXe0DaJJvpBPd8ok66NfxgbACcNALc/I5TUViLf9bnkMtZRaV3dXv9OGL
-         eJGgC77uxor7hZIMTxSll6+PMk5+UuERqDKA0HWttFDkQJhN4LIZic1LRi1jc9hv2WM2
-         qNqE9O0iOGKjyexflQP3URUpL6GOJk36U90I3UzY6SfT5uUWATwmMveva31Ke2IFmhwX
-         JG9j+ojMpReDKtu3NA132K6dCe22PJE6QxwMxtobAPGuYIPgRqXVKjDrCEW7iH3SxGpx
-         QE8w==
-X-Forwarded-Encrypted: i=1; AKwUvBz5MDdYYaH139qQeey/PSFxm+IBxIUOaMpQ8KRBx4TzX0GOFyU1tulHdoWCnnND4nFKvhg2B8Dmsnhxwy06@lists.infradead.org
-X-Gm-Message-State: AFq9FYLCkPTBGDvYqvhvJT3gZnbPQ6HZZPqHxwYrzT0HwCaQpCHaJ12V
-	5yW7B0M261Bhxk3XoCmFqYFWVPVeKb4/GfbgrCZGP63AHKJZg9dsvCnLjYNerIbtClk9JM6hFYP
-	fNJwrVNcscBGW99U+MfK41iPQgdAdDZvBwTjVGny/PVfzx5wwI3PSrb8mrf0hDmZNvOy7NVZDcw
+        bh=31r1EaH4MCPxAQTq2cHbU5NR/uyIR6thPFjexZfrw6o=;
+        b=dt5xioSdL1m81QOL0bmHcVnT/7s0w+wGcLEsy4/k2MJO3j8rFKrgMSblyo4WfBM6lK
+         KLN0I3hCGss0dCQWG3TihF8mXSrYI8+0JPJAT8xE/4o4qgAY2cnZUuV0oneVKaUUl6t5
+         pCQ03Cz0Um62pYmChULmt4w7CXRL5x9RnGrCoOJV88nsjJ1SQ8TUPmjp6JMvh3eLq9M7
+         D/gbChpjSgVF/0RmJAFA21p7avisrTngjTOmTqiLc691Qe0brsP+LJ3/cnmsYYN2dzIK
+         f56loS3mVxktuuvRXNmuiWVrZ+lfLiE7Akekm9zvLwMlHH/suKwuNRoL1FdSexwIatW5
+         0baw==
+X-Forwarded-Encrypted: i=1; AKwUvBwrrtZgzKlw4pSzh7EC5tHSffCI3xeqYrHn8OZC5CFpyU53zMwXS94qfDtQSPD599LKcTQgvjKTBIhuodDS@lists.infradead.org
+X-Gm-Message-State: AFq9FYJYiaFrMvjjaQkY/lH5byxjWnceoex6iPFc20tklU6WBr+8qEks
+	biJzbvGUmzNPSUS5mfRL4qnypRuuQxD5GnE56n/J41fwf46XnUOu+zpn3Q01T2FIhdeJtyLF5mZ
+	Z8F/HCHOMuRW9R9NGacfNZ6jEEqcIas/zHWLZ/AAqB/X5vx0eizCZMeRKhClMlHHajnqg7548Ag
 	==
-X-Gm-Gg: AYBFou0JpF+b/gWH1jkeNe4Jh+iUV/WUFYDH08+v3RB4RSecBgFs9T3F8WR3sKjOu8v
-	woLxQs5FK9RTi1PIx6+9KPau/IHroH3WFtROSA7QKCKdzQJwT1BVfu15R7TqkB1+C+LrBObHMQs
-	uaVZnMniSuGs7SQ2HYdVbs2yG6V6IP+akbU3PC9PwF8FDErBLlfWLKpYkQsCe5qY0LmjvRQRgUk
-	WOUq8My19ohHiVJfoLojmbQkt4AUTVqmBl/O+3Bs0OHaSpb97ox7rwvPl10STVAo4nls4OMI8FA
-	OkbRU9PXkqBEAtVSzoUR8+IvLkH0s6lmOrWAeF0fON1WJTQJn0pE5RsH43b7s1Se53j6Xu9/5Nk
-	mZ98zvKZ5OybNrPvRfplmXivbd1rdo1x8CRvCqVbhp2xcnpVexzY9c9lGnxQ1JnJtzfj8I7Of4j
-	JM+pdJNNEXJMD7
-X-Received: by 2002:a05:620a:4408:b0:93f:5843:1055 with SMTP id af79cd13be357-940ef8fcd84mr106703885a.13.1792802166913;
-        Fri, 23 Oct 2026 17:36:06 -0700 (PDT)
-X-Received: by 2002:a05:620a:4408:b0:93f:5843:1055 with SMTP id af79cd13be357-940ef8fcd84mr106702085a.13.1792802166482;
-        Fri, 23 Oct 2026 17:36:06 -0700 (PDT)
+X-Gm-Gg: AYBFou0VgPzl7k90euawU3aIRzxLWVSuZNL9ER1Qelmc11vpKBbR+ZgEA5LbREafF0o
+	m9iSwQUO/s1XVdK7RQTPZXT5rTVCToLnID/u7mpDacTBTVoCMSdjzxW8UgYeLcf7yrWIAJs8Ijr
+	3pKQI+UYM4Pgn3B2+ak6Rp6PyYXTK21cQ+KBFK5uM7u1nf3msUhRflGKi3HFR/dEuCm1XF8Nij1
+	o+jGp6CvZIQvwEeIZQqwR40UgIi2Zy8HZQTXXk3GGeSvA5LCoYfRFPCBlMby9hktOvwE6lB1V9p
+	DC/4Kwa65dJ/8lwAOfJniJKUNfE9arFCtQ8qkkhectOpEwnz8NgWxuA9QZa06iiuV+11EkLfrVH
+	Cpe7IQ+ild309/j9bQHFVn0mUrsz0ziXO56UD7MVfUf38N7T/loQvnz8Vy8XiZIHQ7m2FPwZrwz
+	VWgT9OQF/YKv8c
+X-Received: by 2002:a05:620a:45ac:b0:93e:f0b9:505a with SMTP id af79cd13be357-940ef92acd1mr116217585a.58.1792802170908;
+        Fri, 23 Oct 2026 17:36:10 -0700 (PDT)
+X-Received: by 2002:a05:620a:45ac:b0:93e:f0b9:505a with SMTP id af79cd13be357-940ef92acd1mr116214485a.58.1792802170444;
+        Fri, 23 Oct 2026 17:36:10 -0700 (PDT)
 Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3ac709d1cf7sm1126651fa.15.2026.10.23.17.36.02
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3ac709d1cf7sm1126651fa.15.2026.10.23.17.36.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Oct 2026 17:36:04 -0700 (PDT)
+        Fri, 23 Oct 2026 17:36:08 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Sat, 24 Oct 2026 03:35:23 +0300
-Subject: [PATCH v8 7/9] drm/msm/dp: handle the IRQ_HPD events reported by
- USB-C
+Date: Sat, 24 Oct 2026 03:35:24 +0300
+Subject: [PATCH v8 8/9] soc: qcom: pmic-glink-altmode: pass down HPD_IRQ
+ events
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261024-hpd-irq-events-v8-7-6ee949e7a384@oss.qualcomm.com>
+Message-Id: <20261024-hpd-irq-events-v8-8-6ee949e7a384@oss.qualcomm.com>
 References: <20261024-hpd-irq-events-v8-0-6ee949e7a384@oss.qualcomm.com>
 In-Reply-To: <20261024-hpd-irq-events-v8-0-6ee949e7a384@oss.qualcomm.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -154,50 +154,52 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
         linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
         intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org
+        freedreno@lists.freedesktop.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1369;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1477;
  i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=VD1bcqfARXRbU99XE94wZup/nUa58ME0mMv2ZOe59d4=;
- b=kA0DAAoBizyKPgIpKNUByyZiAGrb/VOgyI5r3WOrGPADO8HFThBlFhdMoyLUc5IOFOCCd8lmb
- YkBMwQAAQoAHRYhBExwhJVcsmNW8LiVf4s8ij4CKSjVBQJq2/1TAAoJEIs8ij4CKSjVSokIAImr
- d3EvdLukc5qeDThRl7OAYBd5sCyOGRgGJL6gPmPsMCQlaqA93SbRaQdlHe/asMr+X2+Ui1YaSsV
- p8LZ23dmV2u2mnN+losDIcIObjYElFx1HQ6t5jidjTnjJ/unIFs9t1Le2OpxFbVvMMQnLGwcIhF
- jjwaHFiOj0BjokPIcjsvIS6tvO4oQVhK5OVnfj6nydXw/yPBrEPzUPmIYjC6CFMhj/XTSPvuKxP
- 6JMXu/3eauaK8fpauY4Zh6nm1kkX0hdR1EAo/6ma3QdCG+B7ADcQbuwzaK25hzzFs8wb/qCqrLQ
- VUYUwhy9q+KulXT735Z2FSv+NPcOe77FBV+4mBY=
+ bh=jYsdop2BAded35utDpfgQd5r9JZyyy8UmHQPRLGSyhM=;
+ b=owGbwMvMwMXYbdNlx6SpcZXxtFoSQ9btvyFFnqxLn4beuyZo1X0kPkzxT7j+V+WX3wPT+pKeT
+ 63zd1PsZDRmYWDkYpAVU2TxKWiZGrMpOezDjqn1MINYmUCmMHBxCsBEMprY/zt1hWckG0xdONPL
+ Z4HYo4JG+c0LTsazGwSXB27eVK1/9LVac+vheX7Tem0dWZwOtG+6t0xbSqdF6d2X1sKZ/Amhk8/
+ 0dJ+MtVES2CfvLHK4ZLXWvR97hDoFdjh75+zr6Xx7PKvhlZjVSa1jYtYf8t+cY+K7kJVi0GZo4/
+ GyvP/hoZdb1nVNjXbazZJ4XWun5mYxn+4sxd1i207MkZ4uEGnY9zRlpWON3CNz1Tn2mub5kkIlA
+ o43lQRXPf4kK18/OX7r2Tvz1Fo44l2aMs/t1rHi+jY7PC3KQOT4xIiNk1LqeTZYbo/iEkvxenuw
+ 9vZhBqnHvLdO8a1UV4h5WZP/IWeV5vHwc5dC7jRK5ewHAA==
 X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMDI0MDAwMSBTYWx0ZWRfX4/h0RG8/i/cp
- pNxtm0O5w/ZZt/M67/oGgIDXbPUiNgFxOsGXBrIq7Y/KB4qNIxZv/Ah5pEnJxKUHb/CchN9b40c
- NBDtkedjknDKSwZEdc0qOPFqYokuZpxzujuUtZy3IzfG2LtUY9USMk8SGY26JZ8/SC558n03UD8
- 8rzzrGaEuWAp2PMZHDSRnrgXcisfULEyipPklyLP1bY6NqNAP1uGsJ4YR9872VJjJ9IfMHMHOMM
- gUIlkhqfAf6Ea0zuo0CfTEkvR3cxq5USmVr8pteNtwONvNRadH0qP3pSaPoJkdu+1VVrmeoy3wC
- Gg9UZTjmCrOILne/Yu1Us48B0oEGPukT6fa993joLtgIVojdT8uEIlk4VrFhnzg7vSgzrQtPsxw
- /6HARIkUX2w1bYJo/Iv+w1HmuQ9ZWoTdgCNxtAJfj98Q6PCKWMOnUHoBIZu/+rPqmbcqUa3Ht84
- x6zT3jA2ovO5Ii8Mw3g==
-X-Authority-Analysis: v=2.4 cv=DK0acCNb c=1 sm=1 tr=0 ts=6adbfd77 cx=c_pps
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMDI0MDAwMSBTYWx0ZWRfX3x07AEDeKGxj
+ uXfRfWOvXJt1KxxlW9pYIoIEQBrA2mRkTh26jcrQdCO0lTCjkmR5fFVeF/j/QvQudBIMbn+Q0kF
+ w0qWb8iVJWXLluUfrIkvC//lXMmMH+M8pW2pxHo/lEpzBXyV8XgNYL9UHHTb0kLVHQsSLiH7bZe
+ 3PV6JgnL6WzmMysAf2whaShYDWYQaPGBlReYTbVjeg8NDx+lnqZHYuYDXX9SH2tkackEw9H7+Ao
+ t5D0H4SXm98x0st27jz0RbHdDIZJBdFOHj89YRKsGZeVegecIccp1iMxIEWFytcJNglZmYkEich
+ QT0y9VQ0GKcIzKKuvpzCGctjKifVWDLESoXTGpjDhbPmG27BMjDkCg9rZ/UsrKpt1D+ymYYNIWN
+ P0gItfx6z0Vq2/9AcJuZgm6o59UVI+yGk928qrF/8isDTrpFNkPoYXX4jZqC1nsvN6h65L17BAt
+ q1etbt2EZwZvpYd3CFA==
+X-Proofpoint-GUID: 9FsYB8gzDoksJ87BzgnoHGf6LfSxVkns
+X-Authority-Analysis: v=2.4 cv=Scxi5fRu c=1 sm=1 tr=0 ts=6adbfd7b cx=c_pps
  a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
  a=660iZSQnnn4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22 a=pGLkceISAAAA:8
- a=QyXUC8HyAAAA:8 a=EUspDBNiAAAA:8 a=ecQ_yDMs5xLrPBt5tDUA:9 a=QEXdDO2ut3YA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-GUID: odoLtAh-LAT4naTC1bkkedcELa2LTBRc
-X-Proofpoint-ORIG-GUID: odoLtAh-LAT4naTC1bkkedcELa2LTBRc
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMDI0MDAwMSBTYWx0ZWRfX7Rp4b3yqmPQL
- tMgjPCOvN+B+h0TDp2iLQqkFGiQoNsO+SF/ZT+HmyaP0hrL646U35bz5FSGSmcMTfFX86CLMzyo
- IPruwTwbEQlP/mSzmmno4EKW+EOvG+c=
+ a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22 a=EUspDBNiAAAA:8
+ a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8 a=QyXUC8HyAAAA:8 a=Wdvqb4HS36tEXOME5F0A:9
+ a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-ORIG-GUID: 9FsYB8gzDoksJ87BzgnoHGf6LfSxVkns
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMDI0MDAwMSBTYWx0ZWRfX06rFs9DWBhrD
+ A+b/8Q2mGiZPiuzFWarZzNER9jjB2lj4ACucMejOOlno/qx6QrEhBX4HHuZJjfjF+Jbz+G0/Lzx
+ iSyhiI/zY4kfpLuyHOemwXHcyglzpRw=
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
  definitions=2026-10-23_06,2026-10-21_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 spamscore=0 priorityscore=1501 adultscore=0 malwarescore=0
- impostorscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2610190000 definitions=main-2610240001
+ suspectscore=0 adultscore=0 phishscore=0 priorityscore=1501
+ lowpriorityscore=0 impostorscore=0 malwarescore=0 bulkscore=0 spamscore=0
+ clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2610190000
+ definitions=main-2610240001
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261024_013609_595677_55CB07D0 
-X-CRM114-Status: GOOD (  14.39  )
+X-CRM114-CacheID: sfid-20261024_013615_428101_60E5D87A 
+X-CRM114-Status: GOOD (  14.01  )
 X-Spam-Score: -0.9 (/)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -220,38 +222,37 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 The DisplayPort standard defines a special kind of HPD events called
 IRQ_HPD. These events are used to notify DP Source about the events on
-the Sink side, for example DP MST events.
+the Sink side.
 
-Let the MSM DisplayPort driver properly track and handle IRQ_HPD
-delivered over the OOB events (e.g. from the USB-C AltMode handler).
+Pass IRQ_HPD events from the firmware to the HPD bridge, letting those
+to be delivered to the DisplayPort driver.
 
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Acked-by: Bjorn Andersson <andersson@kernel.org>
 Reviewed-by: Pengyu Luo <mitltlatltl@gmail.com>
 Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 ---
- drivers/gpu/drm/msm/dp/dp_display.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/soc/qcom/pmic_glink_altmode.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-index ce919a26fba2..771c8b0744ae 100644
---- a/drivers/gpu/drm/msm/dp/dp_display.c
-+++ b/drivers/gpu/drm/msm/dp/dp_display.c
-@@ -1566,11 +1566,13 @@ void msm_dp_bridge_hpd_notify(struct drm_bridge *bridge,
- 		if (hpd_link_status == ISR_HPD_REPLUG_COUNT) {
- 			msm_dp_hpd_unplug_handle(dp);
- 			msm_dp_hpd_plug_handle(dp);
--		} else if (hpd_link_status == ISR_IRQ_HPD_PULSE_COUNT) {
--			msm_dp_irq_hpd_handle(dp);
- 		} else {
- 			msm_dp_hpd_plug_handle(dp);
- 		}
-+
-+		if (hpd_link_status == ISR_IRQ_HPD_PULSE_COUNT ||
-+		    event == DRM_CONNECTOR_DP_IRQ_HPD)
-+			msm_dp_irq_hpd_handle(dp);
- 	} else {
- 		msm_dp_hpd_unplug_handle(dp);
- 	}
+diff --git a/drivers/soc/qcom/pmic_glink_altmode.c b/drivers/soc/qcom/pmic_glink_altmode.c
+index 13c434f8d03a..c463b23c99d3 100644
+--- a/drivers/soc/qcom/pmic_glink_altmode.c
++++ b/drivers/soc/qcom/pmic_glink_altmode.c
+@@ -374,7 +374,11 @@ static void pmic_glink_altmode_worker(struct work_struct *work)
+ 		else
+ 			conn_status = connector_status_disconnected;
+ 
+-		drm_aux_hpd_bridge_notify(&alt_port->bridge->dev, conn_status);
++		drm_aux_hpd_bridge_notify_extra(&alt_port->bridge->dev,
++						conn_status,
++						alt_port->hpd_irq ?
++						DRM_CONNECTOR_DP_IRQ_HPD :
++						DRM_CONNECTOR_NO_EXTRA_STATUS);
+ 	} else if (alt_port->mux_ctrl == MUX_CTRL_STATE_TUNNELING) {
+ 		if (alt_port->svid == USB_TYPEC_TBT_SID)
+ 			pmic_glink_altmode_enable_tbt(altmode, alt_port);
 
 -- 
 2.47.3
