@@ -2,12 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D3B7606A31A
-	for <linux-amlogic@archiver.kernel.org>; Sat, 24 Oct 2026 09:14:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B49DA606A323
+	for <linux-amlogic@archiver.kernel.org>; Sat, 24 Oct 2026 17:45:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XTryBmbF;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=gzixjNik;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.a=rsa-sha256 header.s=t20230301 header.b=CchQwBVI
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2WoZkBPU;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20251104 header.b=D13NO4In
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -15,75 +14,87 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=8F1r3uZdef/TcrCluBxvB0bemUSpHsStMXKuDOjHAUQ=; b=XTryBmbF4fX200BgYw+tjQXnK7
-	t1TuBYxtrJT5w57VfNrVNoVcccbofCinAZ8/tBq4i9ntcZBnrTXrdlQ7DYFn2GXm6k+hmv3GDmBz1
-	dORciSH6+Y40UsKuMJsGqm0UzkQxIKsau+avGIWRdwfm2r8HlAuLU+t4X2syG98LbU4n53YDCqtmH
-	agvfK0DACqPFulsn6u6k6J556hNy+eQRczvq/5pfvvF9OXfVKsuaOBr+sSMBQmVk/374SA9is8NJe
-	tJ08utfy4bs+ygQU6SlzR7v/EwrVAZis93JSD8TexrAV6fbt+qhtgdb2uDx1vH1sGaZNUhmQtnQA5
-	gkRnBaHg==;
+	bh=swG8ASXVVTSqKr0vgOR5nWHL4AGRM+wT0k/fVgmrMEw=; b=2WoZkBPU+n3oD7pT65dVaQKPFO
+	Y+YsT1BpPayeJzDVlgoKt4S83ranMLBzYRPT0blHCw8LPE/gQHc2xAwpTnFj2kVLuOyQmHznDeqvt
+	qDPduSknSxuTb31MJ5V6mBZmisXE6QbcyRlXBlsjeK1hCt3wCMfR5E23Mqex6EGKisx83N5NAbtmM
+	n/VMQ1MLWjeAX6t0DAWM/H91hudIW71c9Nt+kPbVBo5aE08CcJQCg/Ga+wdnLqr32wLJPDzgp3No0
+	GKLSyNt5Ttbre0lYy6wFQmoeO9c0OshuEAbP2AcrlUwY4K7w54T9QWiNyVwD12cAveoYQh1/MTxug
+	ttom8iYw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xKXpY-000000002JG-2dTl;
-	Sat, 24 Oct 2026 09:14:24 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xKfnm-00000000PLB-3mWi;
+	Sat, 24 Oct 2026 17:45:06 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xKXpY-000000002J2-1Jla
-	for linux-amlogic@bombadil.infradead.org;
-	Sat, 24 Oct 2026 09:14:24 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:In-Reply-To:References;
-	bh=QWkn/xlVHRiRHb499IBZuW+PIveJv2lg7thsC4TJ6eg=; b=gzixjNikeIKUQ4QbeLdST8TbLS
-	9DQAbBac1DEmtLS0WjOmsga3lImooc5XWilNIDyF9AnOVF1hM3jW5pALFraWz8dzfctPfL7QPZuN6
-	zZ6whAij5w94RKAI8Jkjzq1vbaxBic9sWHMp6EG0jAY1mJhH6eSEbLt7HHPVbOF5f1u8QJt5c3D7Z
-	Iie3vfFHhjgLAgHmc8v1EgvQ0t0jWmKDbdK/TpNQLy3pdVonHkwmWB363RdMxz9BFqhMNzvdYWtmr
-	9ZiOhgZ29/uBbtMimYMsOGGCHD1vR9wRKQpoq0s+9+oQzksO3dRbVuWRv8flhgTczWHhBoD3JWxMF
-	G/XFlIAg==;
-Received: from smtp-15.smtpout.orange.fr ([80.12.242.15] helo=smtp.smtpout.orange.fr)
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xKXpT-0000000Bf80-3g2G
+	id 1xKfnj-00000000PKQ-2zDz
 	for linux-amlogic@lists.infradead.org;
-	Sat, 24 Oct 2026 09:14:22 +0000
-Received: from fedora.home ([10.64.95.100])
-	by smtp.orange.fr with ESMTP
-	id KXgjxjzKohc5VKXgjxqGgU; Sat, 24 Oct 2026 11:05:17 +0200
-Received: from fedora.home ([IPv6:2a01:cb10:785:b00:26fb:aefb:6cd2:db0e])
-	by smtp.orange.fr with ESMTPSA
-	id KXghxPvvNkwI8KXghxaElh; Sat, 24 Oct 2026 11:05:17 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1792832717;
-	bh=QWkn/xlVHRiRHb499IBZuW+PIveJv2lg7thsC4TJ6eg=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version;
-	b=CchQwBVI0N6no9inzOgf1a18hq7H1IK9SKCyFxFx/6P+8EIL7aL7z6FRFVbkZNdoh
-	 HVEGzh+YabO/yoV8q6ryMwmY4Kaq0UyiKCGU36J9XlQpO+UzpPavB9vv/S7HVUJjSt
-	 eq+xd4iKC3kdOIdvu5q53e6V3w328Jm4nmH0T8sNyWN9wru6QQ5dyHBoPKV2LnaVWO
-	 53U8eQ7btsL/h8Sd2X6tOT9nF6e5hEScfRp77awMLSUJDTWFMW0i8YTkiAWoDJbKGT
-	 g6EDL4OiSs+Hr1945IIQF1UPxhN0bK9GOAJPrg6tvRR9wQazxrdK9Hkp+zvx5f/gu/
-	 Wv82SZbbvRqVg==
-X-ME-Helo: fedora.home
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Sat, 24 Oct 2026 11:05:17 +0200
-X-ME-IP: 2a01:cb10:785:b00:26fb:aefb:6cd2:db0e
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Frank Li <Frank.Li@kernel.org>
-Cc: linux-kernel@vger.kernel.org,
-	kernel-janitors@vger.kernel.org,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	Sat, 24 Oct 2026 17:45:05 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-48e20ed3b9dso1554864f8f.2
+        for <linux-amlogic@lists.infradead.org>; Sat, 24 Oct 2026 10:45:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1792863901; x=1793468701; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=nn33RrLK2jP6yegXcMbyk7CADovV75ox65AHlodMd48=;
+        b=D13NO4In1izssgStRb8vq1p5ZI/qOCnsUFBbeRh0fg/ZZDoajTfRIB+2fEGb8E8+Ho
+         F+mcwAaOsged7tdPh4n2OrobbteIPcQDFp1pHXpATP+en4uisbabAXk6D9OCOalAeliu
+         FWfjg9Axc1ISbUNFnfUx7PSxf3YJ/3vLN3M3jYZkMjloxw1tVfsaVipDraZ8iy19aU5+
+         /r49y42D5fAjdw7Tqpw4iBCXR0oo78oAHyoI4CMxdzk1Yzv5x/GmyEzgVovvUxm+weyN
+         CLqmP0NdQwpTjhq37nVVkdfgbYyUp93ecJMz8Ljk/l5TLtGqufbuJ/JAhOoKYRzWucao
+         NsfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1792863901; x=1793468701;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=nn33RrLK2jP6yegXcMbyk7CADovV75ox65AHlodMd48=;
+        b=BkR0AvC/zzYe/RDO3GPckYoB7G+VwuQVmpHhXLhR9UAV2pb9MJbm+xtDd0lQAnFfl9
+         6K+EWKwLQJ6Ur0DApkk9gRa7HRR9PIykpksi60WjP5DQfaBxoGrpeZ5DMihZqNT1hBqV
+         +ktCFeooQyvmxYkUq1WVf//Co6ht1fEm7hUSgmu8hDJ8JiEvzq+oE78VRQClamgy2UtL
+         1AxdsSoESKEpJi1sd5+fXoSaMHMIXVG3j4RAmnG97KiMqhfFIDM6iOeA9CDiPqnSCrXH
+         J67jszxhkr5tQ8gHVIEReUqIb0lEUHcyIoVL/v5fdFYyO/yXj3nfW/bvNly3fD6c5zf7
+         9gzg==
+X-Forwarded-Encrypted: i=1; AKwUvByuMrhP8pzDGXTqUBO0CFMtgLeePkAfalT3SgMfqhS50wJ7f9JXnKVORVlhGiTAaSZlO8LQTQj9lvYeYcpt@lists.infradead.org
+X-Gm-Message-State: AFq9FYLZt5aQWVQHLz9xXpvdmiEZaCLSRpK8h2HMtXQ+jQ1MoQUAOEeP
+	jkInasuuizkoyXtz3HBdDwyeeAp1lZ7eEut8bvfCXAg5V+Y5yxnrUhAm
+X-Gm-Gg: AYBFou2CDWT2aTXoNJse7+eKwFPluiNUvqL+5VkZj6wLGLPOu7P42/Gb+Fo4jNahjzv
+	Dutl5jrLR2osuyXBgQ5zpjR+7BMIrmslWCQD6R9MfjoX3Ro2DAYxu/YzdaAlMdG1DTSXLdfWNh8
+	Zk0YshUbTpCaTgo3DLB2iGfNc1LUIBVmOhXtruw/hdMwOjzyeQ4wGjbLHlgtcoSeW9DtOb9yqyn
+	hbcKxbwCQLMx3uqsO2JV3OkNn6/1Xd/BqCbTIJ5rgxWAuf5dCYhk1vhe5SCz2SArC7oC2LWrpjC
+	M+ZqJvxsbOKrVPtWdT5BO2ZD3ScWfIy3ern7D+eQmlsBd4eD5kRn1M34i4JWUX0ZmWOTTTJJL8p
+	75heQ873CEOEQLLrzK4aBIFbgzaymdKyxg3ptD8YtR9QElhqjweZZeNAviZ+BHBrLL/rKlW+owf
+	xl5+7/4YcRSm/T/RHO/wuuda7YVj/0CPqWqjHJG/2iaqIrkxei8F2ZRzOcdVjQnaZ5UA/ROTNAL
+	5xSGm7WR85LjpWnrGaO298jXJ3jzM93DbrTnIHNV2uogveZvIYAfmwcGgDFKkOZTkUjnYDi8LeH
+	oa07fFlu858k1QjkQJ1RsexLkfs=
+X-Received: by 2002:a05:6000:178d:b0:48e:75f:477d with SMTP id ffacd0b85a97d-48e3eb262f0mr3872646f8f.7.1792863900975;
+        Sat, 24 Oct 2026 10:45:00 -0700 (PDT)
+Received: from john-desktop.station ([93.107.83.127])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48e3ebcb8d5sm5748244f8f.28.2026.10.24.10.44.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 24 Oct 2026 10:45:00 -0700 (PDT)
+From: John O'Callaghan <johnocallaghan@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-media@vger.kernel.org
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
 	linux-amlogic@lists.infradead.org,
-	dmaengine@vger.kernel.org
-Subject: [PATCH v2] dmaengine: amlogic: Fix missing destroy_workqueue() at error path in aml_dma_probe()
-Date: Sat, 24 Oct 2026 11:05:13 +0200
-Message-ID: <13a835b1770e360af7991bb4c91ce52a8d01e331.1792785154.git.christophe.jaillet@wanadoo.fr>
-X-Mailer: git-send-email 2.56.0
+	linux-staging@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH] media: meson: vdec: reset the VLD before H.264 decoding
+Date: Sat, 24 Oct 2026 18:44:36 +0100
+Message-ID: <20261024174436.1835068-1-johnocallaghan@gmail.com>
+X-Mailer: git-send-email 2.50.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261024_101420_347475_BAAC85FE 
-X-CRM114-Status: GOOD (  11.82  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261024_104503_781454_9A8DEB82 
+X-CRM114-Status: GOOD (  16.26  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,57 +107,104 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-If an error occurs after the alloc_ordered_workqueue() call, the
-corresponding memory is never released.
+The H.264 decoder outputs wrong luma until the second IDR picture of a
+stream. Chroma is correct. The top-left macroblocks of the first IDR
+picture hold garbage that is different on each run. Intra prediction
+spreads the error over the picture, and inter prediction carries it to
+the following pictures.
 
-Use the managed version instead, as already done by most functions in the
-probe and simplify the remove function accordingly.
+vdec_1_start() resets the VDEC1 blocks with DOS_SW_RESET0 before it
+powers on the VDEC memories with DOS_MEM_PD_VDEC. The VLD then starts
+in an undefined state. The vendor driver resets the VLD, IQIDCT and MC
+again in vh264_prot_init(), after the memories are on. This driver
+does not.
 
-This avoids the leak.
+Reset the VLD (DOS_SW_RESET0 bit 4) in codec_h264_start(). The VLD
+reset alone fixes the corruption. The other resets that the vendor
+driver does (IQIDCT, MC, DBLK, PIC_DC) make no difference.
 
-Fixes: b84b5197e344 ("dmaengine: amlogic: Add general DMA driver for A9")
-Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+On G12A, every decode session is affected. On GXBB, only the first
+session after power-on is affected.
+
+Fixes: d7647e7c90f5 ("media: meson: vdec: add H.264 decoding support")
+Cc: stable@vger.kernel.org
+Assisted-by: LLM
+Signed-off-by: John O'Callaghan <johnocallaghan@gmail.com>
 ---
-Compile tested only.
+How this patch was made: the bug was found and the fix written with an
+LLM coding assistant (Claude Code). I reviewed the fix and ran every
+test below on my boards. checkpatch is clean; W=1 and sparse give no
+new warnings.
 
-Changes in v2:
-  - update the subject   [Franck Li]
+Users see this bug in normal playback. On G12A, every H.264 video plays
+with the wrong brightness until the second IDR picture: the first
+8 seconds of my test clip, with a band 72 levels too bright on the left.
 
-v1: https://lore.kernel.org/lkml/93183551770e260aff993bb4cf1ce5ba8dc1e732.1792785154.git.christophe.jaillet@wanadoo.fr/
----
- drivers/dma/amlogic-dma.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+Tested with H.264 High profile clips (1080p and 720p, 600 frames, IDR
+every 250 frames), GStreamer 1.26 (v4l2h264dec) and FFmpeg 7.1
+(h264_v4l2m2m). Every decoded frame was compared by MD5 with the FFmpeg
+software decoder.
 
-diff --git a/drivers/dma/amlogic-dma.c b/drivers/dma/amlogic-dma.c
-index 684121d13fca..791bd82743d3 100644
---- a/drivers/dma/amlogic-dma.c
-+++ b/drivers/dma/amlogic-dma.c
-@@ -620,7 +620,7 @@ static int aml_dma_probe(struct platform_device *pdev)
- 	if (!aml_dma)
+Radxa Zero (S905Y2, G12A), Armbian kernels 6.18.45 and 7.3, staging
+vdec with Armbian's patches:
+- before: frames 0-249 wrong in every run (10 of 10)
+- after:  all 600 frames bit-exact (32 of 32 runs)
+
+Odroid C2 (S905, GXBB), Armbian kernel 6.18.44:
+- before: frames 0-249 wrong in the first decode after power-on,
+  later decodes bit-exact
+- after:  bit-exact, including the first decode after power-on
+
+Odroid C2, plain v7.3 (no out-of-tree vdec patches), GStreamer:
+- before: frames 0-249 wrong in the first decode after power-on
+- after:  bit-exact. Two GStreamer starts failed first with the known
+  poll() start race, so the decoder had already run before this decode.
+(v7.3 also drops the second-to-last frame at the end of the stream.
+That is a separate bug and is not addressed here.)
+
+The DOS_SW_RESET0 bits were tested one at a time: only bit 4 (VLD)
+changes the result.
+
+Not tested: GXL, GXLX, GXM, SM1, interlaced streams, 4K. On G12A the
+tests ran on Armbian kernels; their vdec patches do not touch
+codec_h264_start().
+
+The same fix is in Armbian:
+https://github.com/armbian/build/pull/11098
+
+ drivers/staging/media/meson/vdec/codec_h264.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/drivers/staging/media/meson/vdec/codec_h264.c b/drivers/staging/media/meson/vdec/codec_h264.c
+index a6074de15..497fbada6 100644
+--- a/drivers/staging/media/meson/vdec/codec_h264.c
++++ b/drivers/staging/media/meson/vdec/codec_h264.c
+@@ -182,6 +182,14 @@ static int codec_h264_start(struct amvdec_session *sess)
+ 	if (!h264->sei_vaddr)
  		return -ENOMEM;
  
--	aml_dma->free_wq = alloc_ordered_workqueue("aml_dma_free", 0);
-+	aml_dma->free_wq = devm_alloc_ordered_workqueue(&pdev->dev, "aml_dma_free", 0);
- 	if (!aml_dma->free_wq)
- 		return -ENOMEM;
++	/*
++	 * vdec_1_start() resets the VLD before the VDEC memories are powered
++	 * on. Reset it again, or the luma of the first pictures is corrupt.
++	 */
++	amvdec_write_dos(core, DOS_SW_RESET0, BIT(4));
++	amvdec_write_dos(core, DOS_SW_RESET0, 0);
++	amvdec_read_dos(core, DOS_SW_RESET0);
++
+ 	amvdec_write_dos_bits(core, POWER_CTL_VLD, BIT(9) | BIT(6));
  
-@@ -712,7 +712,6 @@ static void aml_dma_remove(struct platform_device *pdev)
- 		if (aml_chan)
- 			tasklet_kill(&aml_chan->vchan.task);
- 	}
--	destroy_workqueue(aml_dma->free_wq);
- }
- 
- static const struct of_device_id aml_dma_ids[] = {
+ 	workspace_offset = h264->workspace_paddr - WORKSPACE_BUF_OFFSET;
 -- 
-2.56.0
+2.50.1
 
 
 _______________________________________________
