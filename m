@@ -2,97 +2,63 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCD3F606A329
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Oct 2026 13:30:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7EFC606A31F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Oct 2026 15:22:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YclxVKrJ;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=cPOpoIF+
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=njK3VnOV;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=FnFAugCV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=vwJiJY3roii16VrneE1FHb4Tb/tIsBH1IW9OUx2ON7c=; b=YclxVKrJ+gz3GU2Eksl5a/hzoC
-	vZ4VilSZcw0fEkEdIdfdE6eKCRW/yNkHN4mqwCx3YMBd1UdEwfC5R9R3ww2lOJGMHo2jdkAtwpqxj
-	i4rhWiqNU9KUt1Z7cElRC1hsPp5FPnX3jDLIbICpLuj3qWwSugaRdas1rANmEs2RWOkF/j8aIjdYq
-	b1t7dudn25FArUvprQwvqa96L2N3NyEkIv0VGZpoOCKUbufH8l+q3b9vWjXQyZPC0ZMoujOoyl4gb
-	Zexu1bjg7WFLfprKopJoaTMd/A/eHLuLmX6Lu/XzJ9NpdQVV6KEA8BCp+CtzF4y4hm6sPmzyjn8SS
-	blol1eiA==;
+	bh=KCPKVhAfVsOI5javdoDqLZkpWOQdhtZl1KTSnq4KkIA=; b=njK3VnOV/Z2y+Rzfz/wWhewWWU
+	KwnxR0sYGBa3TAnT6aoFmc0HCjn/ROvk1rryvOPfvFLpa57R1IkoSAH1jYXb6FocoDpSsNj4Hg85d
+	OF4iu9OgghyaCN/fk2UpApl7IPCR0Vw9zWfQTew8arnnnGcmR2ujXa3hWmIrp1MAcmZxfrd7aCNLD
+	nH9cnXrsUMjCM4cGIDYvz8XN1J3SZz3mr+GdHOrgytJChM2UL+x1fS9k6/V6HfthvV+e9GVwajsLa
+	PDh+0E9LgnoIZLD/AdiGE6Nndx9Pa/dyFtVmua9mTBeIhQouyjCYLluN2hXar6ebCGTJG1WAYeSQI
+	6nMn0ARg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xLKm6-00000002bJy-2ICN;
-	Mon, 26 Oct 2026 13:30:06 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1xLMX2-00000002kru-2ZNj;
+	Mon, 26 Oct 2026 15:22:40 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xLKlw-00000002bFb-1C2Q
+	id 1xLMX1-00000002krn-0hcH
 	for linux-amlogic@lists.infradead.org;
-	Mon, 26 Oct 2026 13:29:58 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4a2084d62cdso23760145e9.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 26 Oct 2026 06:29:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1793021394; x=1793626194; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=iiDTsK3ygekIQj3ntqY+O/GObcC7NdXYPBilD7+mkLE=;
-        b=cPOpoIF+RrqjFPTvcJKE5jAit3ZnZgbOyrft0Buh8bI55/f7NtEdMuc+1bVfv+nviS
-         1ED39CAFqt+oc5NKKn4lznQqHYPn2wHEY0zbMJJkq5OP7ECF9ML2siDJl95B1g514e6E
-         ld0Ut5jUGI7RlCDTnW18/1ixsTznKsvk26/biDQqKalq+lV8rJ3oe/JT3X6Sf1WdWlFa
-         VBhdYbse6vhshjvrkU/Z+5BO71JFuluns3W46wY9kn4FuYEjOx9U/Ogw5sZ0iIeGB7Wt
-         c5SLcFK8sMIGL3UxOYtAntrDbPQ6gBpHLiZdCzmUXz3E2vR4is91paX/y+9wn4uo7389
-         oFzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793021394; x=1793626194;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=iiDTsK3ygekIQj3ntqY+O/GObcC7NdXYPBilD7+mkLE=;
-        b=INpoWuy7vXnXGF/DeiwfUWrxMcbjR/2GxPAeGRKc9mkuRmMkoUyr/Ag7sriAhE2y2+
-         ZopcL5Mr4OKvE6BlJiwK0zsHX1Doq6Y8oQ0gTLD9Mz1ay9GkpslfLnCj6UDlg2+kzVbX
-         wPXehbkad65IQbZ+5+5/bBLyde4ZmOU+Yph1/pHXjYAqepRKtspI72FKjOYHymPMJArl
-         6R6VL0C72k+dQBQrs2qwfSXyvJEikXA/AQUKZ77gcO3nl8/5TClSHy/0TGwTpVC8LW8X
-         7scADxDXXKU3Uj61Oxwz0oLrr9S2MECtB6eJWfTd08qAufCk6W4fyd9VK26OJ6yoPp9n
-         Jy9Q==
-X-Gm-Message-State: AFq9FYIsIF1TDdaZoQ8OWN1MtKcRiRwSGu6zNhydrMwqjhjV0BYETOCY
-	ClXCUjRX7462LUou0oVJsuxhznUzR2T3k2wpVC3sh28CXinA9XNbO5ywtB3xhqwJw/M=
-X-Gm-Gg: AYBFou1qUlt99HLi5DJEjtIEp0DTwd8f8gdSoK53wUf0kR+8WK1EULZCbjFDnwfn26s
-	DwpIcRciZARdQL2UktOtIU89Os1JK56birjgs3bG4RSnMC/eD6m+s4K7X2yCOak+V+5VXW0qUxR
-	viCW8pGw0mopPUIP5Gur826HR7ij8ad6pqHtid1FOfRmVOtImWvzp/u8ahQAcQNAD23PQ5xHLvd
-	6mMai9qnDcmw5eiu9ByGxrHOVDWkuLc+mSMCbJdaDbEYA0TUxTmXk3vzGvikSf1jfOiZA1+9Kt/
-	O1Qj/DCLtxdpMZ2QpIQk36WZReeERiijl7pMdp+DMQgxclAexbDPoAlXGex5LpeOLe6cs+GHoVh
-	wrWE/q9CI2sdpBFnSD9+H9YJ3TQ7UF35JVAx+nT45iAj0BFMtjZ4AsOC6CAqc3xh2ec7jqp8owz
-	WC/POmJhkrjCXsXcLTTHuUWGXBqQVk8u5pyNMWXM9yS0KdMJYP1jx9zp3fl0+u36pr4f6TlRHKd
-	YP6hDHhvoUkGfelZF6nL+TFhyGnydxwI9xgECf/025C5g2tl4osvnMzo4BhGSG4J7mlFg4Qyn+E
-	eS/dJNmZSFZwIz4gYkQx0+7pEQiI2v3ga9R/bnE7CjNd5xPeI/aUMzn4omv+I66cvZPA97E6
-X-Received: by 2002:a05:600c:5307:b0:4a1:d456:ddc8 with SMTP id 5b1f17b1804b1-4a35ac8bb56mr121212915e9.7.1793021394320;
-        Mon, 26 Oct 2026 06:29:54 -0700 (PDT)
-Received: from macbook.homenet.telecomitalia.it (host-95-246-144-141.retail.telecomitalia.it. [95.246.144.141])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4a359fbb725sm194507095e9.0.2026.10.26.06.29.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Oct 2026 06:29:53 -0700 (PDT)
-From: Carlo Caione <ccaione@baylibre.com>
-Date: Mon, 26 Oct 2026 14:29:44 +0100
-Subject: [PATCH 1/2] clk: meson: add the missing HDMI divider /4 alias
+	Mon, 26 Oct 2026 15:22:39 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 42C6C600DA;
+	Mon, 26 Oct 2026 15:22:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3319F1F01825;
+	Mon, 26 Oct 2026 15:22:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1793028158;
+	bh=RZDDaJ57x7rY16pTWiAgH2N6hWJkfwlHnV205h0LFhw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=FnFAugCV2anMB8GwwB//iiEOTlFCvHL4vGHno2iTe+GQfR3JvTClws4We8W6Xpw6h
+	 WywyeqBz2SbedLzQXZnhBV5LqqKXUL3qDO9xfsWrLY8Cy575GtuWYPYdyWnMIf4+ii
+	 4g5q5cFR6H88yv5JWvlD+zUbxmnqPru6OQp9hCMuXl+t8JcvlzejGxR7iXJ8U2dCTa
+	 VP7V1elV/PpCapJjDhEKRbLhvZAIfjrarAUNU8+trmOnLbq4QgizSxtQfqJUcTvSa/
+	 74OrWew4/OrvFmxOa9YM9nhfmZrYO+bpq2PkEA9LDGccSa8r5EKnAKJuFry74/ZL2U
+	 dRJlcg5Df2X4Q==
+Date: Mon, 26 Oct 2026 16:22:33 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Junyi Zhao <junyi.zhao@amlogic.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Xianwei Zhao <xianwei.zhaol@amlogic.com>, Junyi Zhao <junyi.zhaol@amlogic.com>, linux-i2c@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] i2c: amlogic: Add Amlogic A9 I2C controller driver
+Message-ID: <at8nuDtiHEDq4AZ2@zenone.zhora.eu>
+References: <20261022-a9-i2c-v2-0-45e3cef175bf@amlogic.com>
+ <20261022-a9-i2c-v2-2-45e3cef175bf@amlogic.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261026-upstream-clk-regmap-ro-divider-v1-1-c8216b0fb93a@baylibre.com>
-References: <20261026-upstream-clk-regmap-ro-divider-v1-0-c8216b0fb93a@baylibre.com>
-In-Reply-To: <20261026-upstream-clk-regmap-ro-divider-v1-0-c8216b0fb93a@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jerome Brunet <jbrunet@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
- Brian Masney <bmasney+clk@redhat.com>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Carlo Caione <ccaione@baylibre.com>
-X-Mailer: b4 0.16.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261026_062956_338658_6082E55A 
-X-CRM114-Status: GOOD (  12.16  )
-X-Spam-Score: -2.1 (--)
+Content-Disposition: inline
+In-Reply-To: <20261022-a9-i2c-v2-2-45e3cef175bf@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,68 +71,140 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-4.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On GXL and G12A, HDMI PLL divider values 2 and 3 both select /4, but
-only value 2 is listed in the tables. Reading value 3 therefore gives
-an unknown divisor and an incorrect clock rate.
+Hi Junyi,
 
-Add value 3 to both tables. This also avoids a division by zero when
-the read-only rate-rounding helper uses the value read from hardware.
+Sashiko's comments look legit to me, can you please take a look
+at those?
 
-Signed-off-by: Carlo Caione <ccaione@baylibre.com>
----
- drivers/clk/meson/g12a.c | 3 ++-
- drivers/clk/meson/gxbb.c | 3 ++-
- 2 files changed, 4 insertions(+), 2 deletions(-)
+Besides...
 
-diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
-index d0d4c7b6dc82..b23b9514fa91 100644
---- a/drivers/clk/meson/g12a.c
-+++ b/drivers/clk/meson/g12a.c
-@@ -779,12 +779,13 @@ static struct clk_regmap g12a_hdmi_pll_dco = {
- 
- /*
-  * G12/SM1 hdmi OD dividers are POWER_OF_TWO dividers but limited to /4.
-- * A divider value of 3 should map to /8 but instead map /4 so ignore it.
-+ * Divider values 2 and 3 both select /4.
-  */
- static const struct clk_div_table g12a_hdmi_pll_od_div_table[] = {
- 	{ .val = 0, .div = 1 },
- 	{ .val = 1, .div = 2 },
- 	{ .val = 2, .div = 4 },
-+	{ .val = 3, .div = 4 },
- 	{ /* sentinel */ }
- };
- 
-diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 7a7b104182ff..8cb6404c0efd 100644
---- a/drivers/clk/meson/gxbb.c
-+++ b/drivers/clk/meson/gxbb.c
-@@ -350,12 +350,13 @@ static struct clk_regmap gxbb_hdmi_pll = {
- 
- /*
-  * GXL hdmi OD dividers are POWER_OF_TWO dividers but limited to /4.
-- * A divider value of 3 should map to /8 but instead map /4 so ignore it.
-+ * Divider values 2 and 3 both select /4.
-  */
- static const struct clk_div_table gxl_hdmi_pll_od_div_table[] = {
- 	{ .val = 0, .div = 1 },
- 	{ .val = 1, .div = 2 },
- 	{ .val = 2, .div = 4 },
-+	{ .val = 3, .div = 4 },
- 	{ /* sentinel */ }
- };
- 
+> +static irqreturn_t aml_i2c_irq(int irqno, void *dev_id)
+> +{
+> +	struct aml_i2c *i2c = dev_id;
+> +	u8 *buf = NULL;
+> +	int ret;
+> +	u32 rd_len, i;
+> +	u32 rd_val;
+> +
+> +	spin_lock(&i2c->lock);
+> +	ret = controller_is_error(i2c);
+> +	if (ret) {
+> +		i2c->error = ret;
+> +		goto complete_irq_out;
+> +	}
+> +
+> +	switch (i2c->state) {
+> +	case A9_STATE_READ:
+> +		buf = i2c->msg->buf;
+> +		rd_len = min(i2c->msg->len - i2c->pos, A9_I2C_FIFO_DEPTH);
+> +		for (i = 0; i < rd_len; i++) {
+> +			rd_val = readl(i2c->regs + REG_CFG_RX);
+> +			buf[i2c->pos++] = rd_val & TX_RX_DATA;
+> +		}
+> +		/* Rx must clear thresh after read fifo */
+> +		clear_irq_status(i2c, A9_RX_THRESH_READ);
+> +		break;
+> +	case A9_STATE_WRITE:
+> +		aml_i2c_prepare_xfer(i2c, A9_FIFO_FILL_HALF);
+> +		if ((i2c->pos + A9_I2C_HALF_FIFO) >= i2c->msg->len)
+> +			aml_i2c_set_mask(i2c, REG_CFG_IRQ_ENABLE, A9_TX_THRESH_WRITE, 0);
+> +		i2c->pos += i2c->count;
+> +		/* Tx must clear thresh after write fifo */
+> +		clear_irq_status(i2c, A9_TX_THRESH_WRITE);
+> +		break;
+> +	case A9_STATE_IDLE:
+> +		dev_warn(i2c->dev, "i2c irq triggered abnormally, irq_state:0x%x,irq_en:0x%x\n",
+> +			 readl(i2c->regs + REG_CFG_IRQ_STATE),
+> +			 readl(i2c->regs + REG_CFG_IRQ_ENABLE));
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	if (!controller_is_done(i2c)) {
+> +		goto irq_trans_out;
+> +	} else {
+> +		if (i2c->state == A9_STATE_READ && (i2c->msg->len - i2c->pos))
+> +			goto irq_trans_out;
+> +	}
 
--- 
-2.56.0
+No need for brackets here:
 
+if (...)
+	goto ...;
+else if (...)
+	goto ...;
+
+But perhaps the two can be even merged.
+
+(i2c->msg->len - i2c->pos) is equal to (i2c->pos < i2c->msg->len)
+
+> +
+> +complete_irq_out:
+> +	reset_fifo_pos(i2c);
+> +	complete(&i2c->done);
+> +	i2c->state = A9_STATE_IDLE;
+> +	aml_i2c_set_mask(i2c, REG_CFG_IRQ_ENABLE, A9_RX_THRESH_READ | A9_TX_THRESH_WRITE, 0);
+> +	clear_irq_status(i2c, IRQ_ALL_MASK);
+> +irq_trans_out:
+> +	spin_unlock(&i2c->lock);
+
+...
+
+> +	i2c->state = (msg->flags & I2C_M_RD) ? A9_STATE_READ : A9_STATE_WRITE;
+> +	spin_lock_irqsave(&i2c->lock, flags);
+> +	aml_i2c_prepare_xfer(i2c, A9_FIFO_FILL_FULL);
+> +	i2c->pos += i2c->count;
+> +	spin_unlock_irqrestore(&i2c->lock, flags);
+> +	reinit_completion(&i2c->done);
+> +
+> +	if (last)
+> +		aml_i2c_set_mask(i2c, REG_CFG_BUS, BUS_NO_STOP, 0);
+> +	else
+> +		aml_i2c_set_mask(i2c, REG_CFG_BUS, BUS_NO_STOP, BUS_NO_STOP);
+> +	/* Start the transfer */
+> +	aml_i2c_do_start(i2c, msg);
+
+I think this should also be under spinlock in order to avoid that
+the interrupt handler accesses a partially initialized state.
+
+> +
+> +	time_left = msecs_to_jiffies(I2C_TIMEOUT_MS);
+> +	time_left = wait_for_completion_timeout(&i2c->done, time_left);
+> +
+> +	/*
+> +	 * Protect access to i2c struct and registers from interrupt
+> +	 * handlers triggered by a transfer terminated after the
+> +	 * timeout period
+> +	 */
+> +
+> +	spin_lock_irqsave(&i2c->lock, flags);
+> +	if (!time_left) {
+> +		i2c->state = A9_STATE_IDLE;
+> +		clear_irq_status(i2c, IRQ_ALL_MASK);
+> +		reset_fifo_pos(i2c);
+> +		ret = -ETIMEDOUT;
+
+the next instruction overwrites this error. Perhaps you could
+use a goto to spin_unlock and return.
+
+Andi
+
+> +	}
+> +
+> +	if (i2c->error)
+> +		ret = i2c->error;
+> +	spin_unlock_irqrestore(&i2c->lock, flags);
+> +
+> +	return ret;
+> +}
 
 _______________________________________________
 linux-amlogic mailing list
