@@ -2,63 +2,131 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7EFC606A31F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Oct 2026 15:22:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40095606A321
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Oct 2026 16:54:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=njK3VnOV;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=FnFAugCV
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=t7ULg1Ri;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=OermcisV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=KCPKVhAfVsOI5javdoDqLZkpWOQdhtZl1KTSnq4KkIA=; b=njK3VnOV/Z2y+Rzfz/wWhewWWU
-	KwnxR0sYGBa3TAnT6aoFmc0HCjn/ROvk1rryvOPfvFLpa57R1IkoSAH1jYXb6FocoDpSsNj4Hg85d
-	OF4iu9OgghyaCN/fk2UpApl7IPCR0Vw9zWfQTew8arnnnGcmR2ujXa3hWmIrp1MAcmZxfrd7aCNLD
-	nH9cnXrsUMjCM4cGIDYvz8XN1J3SZz3mr+GdHOrgytJChM2UL+x1fS9k6/V6HfthvV+e9GVwajsLa
-	PDh+0E9LgnoIZLD/AdiGE6Nndx9Pa/dyFtVmua9mTBeIhQouyjCYLluN2hXar6ebCGTJG1WAYeSQI
-	6nMn0ARg==;
+	bh=IkzHQshTSH1c8uhvgH0NDEtMpzppTRMnhMSgmOvDJro=; b=t7ULg1RiKJ1WI4cfTDbhereTW2
+	SdvZMSqUKh75iX3bfSLOwiMURGxP/umfDqxU5sRoAgRH8NGLLjVJNvV8M7RA2ZLPnpCHIc6IGKSgE
+	l8INO59n0NLJ+u9+GrSbBnOugr6LqEA0dQhl9JnCE7N43ZacWyUqBXDWRU/aETCI95znerzLtU08L
+	uFJmTrZdfg0QqaDtl6ckfiO7veRdmqxpfnm18GO2OMZZ5dOQLycW2Y3Kf9JZ0KPxlYVdQ6S45dsrA
+	VODGi638WZtWFG6e9f2npQFeBF01T4zsJtTKPNjmti35WCZtx367fCEKONwfQ5z1PXeEnLH0bLxv6
+	nQ3SPdBw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xLMX2-00000002kru-2ZNj;
-	Mon, 26 Oct 2026 15:22:40 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xLNxS-00000002vqG-0N8y;
+	Mon, 26 Oct 2026 16:54:02 +0000
+Received: from mail-northeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c200::1] helo=DB3PR0202CU003.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xLMX1-00000002krn-0hcH
+	id 1xLNxP-00000002vpp-1Gte
 	for linux-amlogic@lists.infradead.org;
-	Mon, 26 Oct 2026 15:22:39 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 42C6C600DA;
-	Mon, 26 Oct 2026 15:22:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3319F1F01825;
-	Mon, 26 Oct 2026 15:22:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793028158;
-	bh=RZDDaJ57x7rY16pTWiAgH2N6hWJkfwlHnV205h0LFhw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=FnFAugCV2anMB8GwwB//iiEOTlFCvHL4vGHno2iTe+GQfR3JvTClws4We8W6Xpw6h
-	 WywyeqBz2SbedLzQXZnhBV5LqqKXUL3qDO9xfsWrLY8Cy575GtuWYPYdyWnMIf4+ii
-	 4g5q5cFR6H88yv5JWvlD+zUbxmnqPru6OQp9hCMuXl+t8JcvlzejGxR7iXJ8U2dCTa
-	 VP7V1elV/PpCapJjDhEKRbLhvZAIfjrarAUNU8+trmOnLbq4QgizSxtQfqJUcTvSa/
-	 74OrWew4/OrvFmxOa9YM9nhfmZrYO+bpq2PkEA9LDGccSa8r5EKnAKJuFry74/ZL2U
-	 dRJlcg5Df2X4Q==
-Date: Mon, 26 Oct 2026 16:22:33 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Junyi Zhao <junyi.zhao@amlogic.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Xianwei Zhao <xianwei.zhaol@amlogic.com>, Junyi Zhao <junyi.zhaol@amlogic.com>, linux-i2c@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] i2c: amlogic: Add Amlogic A9 I2C controller driver
-Message-ID: <at8nuDtiHEDq4AZ2@zenone.zhora.eu>
-References: <20261022-a9-i2c-v2-0-45e3cef175bf@amlogic.com>
- <20261022-a9-i2c-v2-2-45e3cef175bf@amlogic.com>
+	Mon, 26 Oct 2026 16:54:00 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kbq9jGF2DL2ImORPIngeIT7gSk39Re8g+bAoqZD1c5ibOgP1YxlRvZ9RW+6GFVE3PnD/925kMv1FVPchTRf15bfx8yTHLsHyNktzBYk5OlvT6G/wPbjsiybUfQqvk0LXM5Cz8j6qok4jVriSciaCEXD610571PTZb8e7d/bn+2+v8w8TS2Wda6CE1qQCO4/BEcC99DZ4WP4ZN086rSbg/orNKnrc8TK/+xcc3BrzHpXrcocJL6cbNMU3fnr9kI9giYhBnIy9twxK0rX3EwvLtInVGAA7gzmHs9K8qlEku7z/JA+igZ5LMDOFRiIeiqT7mqWoG1GYffZF7r1gqVYphQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ekUON47Apr9jxYQ+WLZB2ycXKC9CFYI5hF004CfWqlk=;
+ b=I721VGM36k5oaAWdG58RyXnwOPFhZKAtU5/VhaUJjqE4SrJqvJYDQ3MzHe3Hs6886TRJVYTpTVH46/Qg5uz2gvHqJ3cy+W58PQDU1xkglcWgxTRDNscY65O7A8Po3wD+TpqtlRCcfAOa/nwlzf2WWMLpK7NQdMMgZt283U/Ivte5eOJM5tuQw3Fr3vO96dgDw8OO5orEP2/UCLVDMpGo5zsvon7wedvT3EgRYI9ENN3YxZ57xUxvjpE9dqFvbxh2TKPMACaIfH/TE4nI7/4D+NBlXRBWQKeGkgk98uBARA290loadBlc1sYgQh/GI5GbsiS0Un/7aAUyccd4feCQXQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ekUON47Apr9jxYQ+WLZB2ycXKC9CFYI5hF004CfWqlk=;
+ b=OermcisVbtycZIOmlE7JjqF6sqT9CDgrSle/FjZG35Z4fqhUazkEDk6vkMpmYFroUgmmeLgT4IX8WcML+dM71RgxXR0xR1cj11nfaJOHokCVQh243uI0yl7dk56QOzJIKIyoCOF4xREPOqr44qgffn+TigIs2pjLfW60dFPpC6AucGA4/kNpEKQwSfzdHgN2OXEfXEab/cvs0XI9ZLi84qphW8BUXtaLqu+BgQVpyTVxpnE5WZ3ZZCNfjFZSlweFOi4b6iM5XV/ztl8JoikqNw8xDjCRWXEd5WomSe5ZU91F00b958A0yp3f764qjOfZkwxuo4+ZpgreMoBr2L6rfg==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by DU4PR04MB10340.eurprd04.prod.outlook.com (2603:10a6:10:564::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.22; Mon, 26 Oct
+ 2026 16:53:55 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%6]) with mapi id 15.21.0546.021; Mon, 26 Oct 2026
+ 16:53:54 +0000
+Date: Mon, 26 Oct 2026 11:53:46 -0500
+From: Frank Li <Frank.li@oss.nxp.com>
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>, Vinod Koul <vkoul@kernel.org>,
+	Frank Li <Frank.Li@kernel.org>, linux-kernel@vger.kernel.org,
+	kernel-janitors@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	dmaengine@vger.kernel.org
+Subject: Re: [PATCH v2] dmaengine: amlogic: Fix missing destroy_workqueue()
+ at error path in aml_dma_probe()
+Message-ID: <at-FmthARu1uVlHQ@SMW015318>
+References: <13a835b1770e360af7991bb4c91ce52a8d01e331.1792785154.git.christophe.jaillet@wanadoo.fr>
+Content-Disposition: inline
+In-Reply-To: <13a835b1770e360af7991bb4c91ce52a8d01e331.1792785154.git.christophe.jaillet@wanadoo.fr>
+X-ClientProxiedBy: PH5P222CA0008.NAMP222.PROD.OUTLOOK.COM
+ (2603:10b6:510:34b::10) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20261022-a9-i2c-v2-2-45e3cef175bf@amlogic.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|DU4PR04MB10340:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6986124c-fea4-49a6-a141-08df3381b852
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|1800799024|376014|19092799006|366016|261026140227099003|260925022911599003|260925021311599003|260925021911599003|11063799006|56012099006|261009223027099003|261021123027099003|261022105027099003|261021121427099003|10067099003|261026121527099003|22082099003|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info: s+v/7NSu2phB/zHaAMTvEO63lL9lEl7b5vXbJde4kYVrlYoTMuhUVEKZyRvmacp0UHkF90FHWx/lQNQo5JGvKQkOH5AJX2C8D88B7FeWuqvdHFZx7RpcyHglvJgDrEzJ4cLqdgfq7ccNMUGUnmT2c4tGQQw8pSNp384Hxdu7iRCidRInkuu7mO3OdRpxNPBzWAfDksrbZMtCO8uSUPnBihJpxvfCjkNu55Jeuvd9g5A7J/VNf0ToAntHa08PSE6yqQBXHBR9qnSwqWmjXBhzrDbgWt9QYTuzIgfsgMgNkwZjqzlvmsIzShAb5wRgtA+yBm0VTefuL5V/m1QYvWLnb1jhnwT5es6mVhA1EYLKQIxcF8gAUSSAydn9vBGizR5whi3v2N9V+0buXKjFxqBY1tO3dJlrfgiKmCAdmhQHkqMlvMeysHnrhraj+iGx87+CU8bPv043GIeyMCYu8XalEZ94/WPdxJhck84H7t/YgrmC69B+/YRLGdyEMZ3d1RQH1EORgfKGVUEWHqJkmxUMT7cJTdPCbymC/nPrx4sXoKvRQfcUjlDzaCGv8o4zYTyumESbmhNX0t2PYgSsDvPBq1nf76pr0d7SruVBjqs3fbH0mdGZLo95sD7Ee9k802ok
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(1800799024)(376014)(19092799006)(366016)(261026140227099003)(260925022911599003)(260925021311599003)(260925021911599003)(11063799006)(56012099006)(261009223027099003)(261021123027099003)(261022105027099003)(261021121427099003)(10067099003)(261026121527099003)(22082099003)(18002099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Cp1vKrHWmvFmZ6oRBMpnkhdUSeuCpKoPBCooLu1Xh7EztnbSBdAvtT2L8NKU?=
+ =?us-ascii?Q?F27CK2Aw5IchoPOkeOp1v4q/NGfcpYzzPBN1SRezOGrHPRT7qBmkjxf7Lsjk?=
+ =?us-ascii?Q?EPum0VqY/lehk11/zBWsdADygX980dFesX6QclkS2cmfhKU1G+iMAHXNwsRc?=
+ =?us-ascii?Q?aRAC+5l2vtvimXJmz8v8JICCkZHgdHR/L8d0ImkNkZbvIBNE/I6LqimWENxT?=
+ =?us-ascii?Q?HQKlKmnct9E6a5VkP4mR70EU9A2WCRy4Ltw048HL/uAjwhH7VncpqqOcNnmm?=
+ =?us-ascii?Q?KwOKVyTRs+u3yLCsPZYQ+oV0DVen5vdAIb0MLsIM+/noLwbqB/LlWxXdfkIA?=
+ =?us-ascii?Q?WqA3GalZhOXZbtT9pCOYW3ehU+FtxMxriVWNOmDLk8UGp8MLyDTYzEfh1eaM?=
+ =?us-ascii?Q?ni/P+NwtrSXXPTyExHiJj8FzrgeHiQfXJpBDbw0cEb57wGLgOtmoHk/bFpxY?=
+ =?us-ascii?Q?gmH0w5ZAJ00tasY9DiT5hooi61Ir4HFF9uHe9afjaFlrP3ya9nWWgNvEy2TZ?=
+ =?us-ascii?Q?75vcdbMUQgnQq0TCd5g3kFyT9N/L/rqRoTpcPB/0YjFbxwEi/NY20zyvJhLO?=
+ =?us-ascii?Q?pDND75lvHT4LDBdH9fW9IBzWXoHhImRUxJ6gWnjk84EPxvE2IAPhV4iwHFiy?=
+ =?us-ascii?Q?EdU2XjA1rVsoK5rePIubMDlIqqqk0x4GyVkjO5si8IkD2cPP+jptQ/kYTg5+?=
+ =?us-ascii?Q?ZyOYAgAOxEOYsVHibjxPvD0BIC4HxAb9kOg3O0OmvDJ3l0gGfgd6XYza5wd6?=
+ =?us-ascii?Q?jkWxGl6Yy9F4HWH7qIV2mFVuSbT/b+ecO2NmKIIBgJ8zSjmX+vqw3mqzGWlq?=
+ =?us-ascii?Q?dNZN4UMOvi6m0vLDSaUTGlGfZCxigTp0RosdCUlL1p1OpVkwoaJLIpHO7GWc?=
+ =?us-ascii?Q?wD/LqX1LMAcm2+/WSDGGB+Og2dCy99xqRa0RFioG4O/p2s4bC3XOhpArmiw6?=
+ =?us-ascii?Q?iTn2cZfPSnLJ3Rsn55nJ4hv5Qy7ThtEZqVX+QQI0LnOU5UKiTUjBs3qsH7dt?=
+ =?us-ascii?Q?MGF7X5l5B1sTNqcZnji8L7Py8LSPaOCdgKnkJgn9kM5NoheVb5T6khGx4av6?=
+ =?us-ascii?Q?CUAsBcjdtRn9OEXtUCWGh9mQCYTx2HF2PlS3oYmVVz/KOrBwwwNvVeokJDA2?=
+ =?us-ascii?Q?mho9U0dY81Pyd3ucGVzA/kfNYMRrU0V+/czqR7oyZanMDYhBjTe34oGu7lzi?=
+ =?us-ascii?Q?VTu+sn2KuyQK9zKHtQhIhWYuakVvVH+fa/Vu6UMknwJuBFR+LnCe0tAwJPGk?=
+ =?us-ascii?Q?ax3zB7KQ8QEe+8DXG9E6PxhEl1Zte2HXf8AbotV4JoAooMa4K3pssi0x6y1l?=
+ =?us-ascii?Q?cREyULs91Sql+0DWoYAm4Dd5FTWNA/0QLwP9eb9hp9Iq1T2a9/ryUX/mvF90?=
+ =?us-ascii?Q?TlFvs6PgHKseYqSsO5/wlovCySS8JXFyyWhygkplAjd/xhBkVvjxdVW02Jk4?=
+ =?us-ascii?Q?X5wAD/RsHIEHDEUaqr8paml8AaQAlfmOSFdXNnGpIx1wOW6JSytHEsSpcptY?=
+ =?us-ascii?Q?KncO6s5ojRgoDDNDrsvuqa9FQQm9fdfewn9r8KISNvrBYvw+cY4ercey8cH5?=
+ =?us-ascii?Q?BOKalIeS7CaGtr6dfvo/MB1rnU8eGc2djQjAZU6epBkxCRCzOWQ2mmbDJhok?=
+ =?us-ascii?Q?ufAs9A30u5wdg5uALB6wGj/xtFroeRNIk1WmPt8Hp2yMNQU/0OSs0Er2OG4X?=
+ =?us-ascii?Q?hYJrPSc6zHy/JLO+aFvvrobPGWrUSExyEsB7YkkAXqaTgxGKFRHbSFTYS1H9?=
+ =?us-ascii?Q?xhpOsmmx+M4ciBsskSiJV3lYBSdGT/gL0WvdY/Biew/xV47IFRyk?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6986124c-fea4-49a6-a141-08df3381b852
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Oct 2026 16:53:54.8197
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +4ZorFKPcNwtaxy5pZOXQ2E6c0HMH1+Lx/dAcJXnnCLoAjTXdP4b+fu6gFVa2XabeMxdIhLlTMAnQIkS2+kF+h4YLD+D+vTPbspPiBnC2aTOap59gJ+FMHBLY27ZzG0/
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB10340
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261026_095359_351065_6D84B93F 
+X-CRM114-Status: GOOD (  19.40  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,140 +139,62 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-4.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-14.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Junyi,
+On Sat, Oct 24, 2026 at 11:05:13AM +0200, Christophe JAILLET wrote:
+> If an error occurs after the alloc_ordered_workqueue() call, the
+> corresponding memory is never released.
+>
+> Use the managed version instead, as already done by most functions in the
+> probe and simplify the remove function accordingly.
+>
+> This avoids the leak.
+>
+> Fixes: b84b5197e344 ("dmaengine: amlogic: Add general DMA driver for A9")
+> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+> ---
 
-Sashiko's comments look legit to me, can you please take a look
-at those?
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-Besides...
-
-> +static irqreturn_t aml_i2c_irq(int irqno, void *dev_id)
-> +{
-> +	struct aml_i2c *i2c = dev_id;
-> +	u8 *buf = NULL;
-> +	int ret;
-> +	u32 rd_len, i;
-> +	u32 rd_val;
-> +
-> +	spin_lock(&i2c->lock);
-> +	ret = controller_is_error(i2c);
-> +	if (ret) {
-> +		i2c->error = ret;
-> +		goto complete_irq_out;
-> +	}
-> +
-> +	switch (i2c->state) {
-> +	case A9_STATE_READ:
-> +		buf = i2c->msg->buf;
-> +		rd_len = min(i2c->msg->len - i2c->pos, A9_I2C_FIFO_DEPTH);
-> +		for (i = 0; i < rd_len; i++) {
-> +			rd_val = readl(i2c->regs + REG_CFG_RX);
-> +			buf[i2c->pos++] = rd_val & TX_RX_DATA;
-> +		}
-> +		/* Rx must clear thresh after read fifo */
-> +		clear_irq_status(i2c, A9_RX_THRESH_READ);
-> +		break;
-> +	case A9_STATE_WRITE:
-> +		aml_i2c_prepare_xfer(i2c, A9_FIFO_FILL_HALF);
-> +		if ((i2c->pos + A9_I2C_HALF_FIFO) >= i2c->msg->len)
-> +			aml_i2c_set_mask(i2c, REG_CFG_IRQ_ENABLE, A9_TX_THRESH_WRITE, 0);
-> +		i2c->pos += i2c->count;
-> +		/* Tx must clear thresh after write fifo */
-> +		clear_irq_status(i2c, A9_TX_THRESH_WRITE);
-> +		break;
-> +	case A9_STATE_IDLE:
-> +		dev_warn(i2c->dev, "i2c irq triggered abnormally, irq_state:0x%x,irq_en:0x%x\n",
-> +			 readl(i2c->regs + REG_CFG_IRQ_STATE),
-> +			 readl(i2c->regs + REG_CFG_IRQ_ENABLE));
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	if (!controller_is_done(i2c)) {
-> +		goto irq_trans_out;
-> +	} else {
-> +		if (i2c->state == A9_STATE_READ && (i2c->msg->len - i2c->pos))
-> +			goto irq_trans_out;
-> +	}
-
-No need for brackets here:
-
-if (...)
-	goto ...;
-else if (...)
-	goto ...;
-
-But perhaps the two can be even merged.
-
-(i2c->msg->len - i2c->pos) is equal to (i2c->pos < i2c->msg->len)
-
-> +
-> +complete_irq_out:
-> +	reset_fifo_pos(i2c);
-> +	complete(&i2c->done);
-> +	i2c->state = A9_STATE_IDLE;
-> +	aml_i2c_set_mask(i2c, REG_CFG_IRQ_ENABLE, A9_RX_THRESH_READ | A9_TX_THRESH_WRITE, 0);
-> +	clear_irq_status(i2c, IRQ_ALL_MASK);
-> +irq_trans_out:
-> +	spin_unlock(&i2c->lock);
-
-...
-
-> +	i2c->state = (msg->flags & I2C_M_RD) ? A9_STATE_READ : A9_STATE_WRITE;
-> +	spin_lock_irqsave(&i2c->lock, flags);
-> +	aml_i2c_prepare_xfer(i2c, A9_FIFO_FILL_FULL);
-> +	i2c->pos += i2c->count;
-> +	spin_unlock_irqrestore(&i2c->lock, flags);
-> +	reinit_completion(&i2c->done);
-> +
-> +	if (last)
-> +		aml_i2c_set_mask(i2c, REG_CFG_BUS, BUS_NO_STOP, 0);
-> +	else
-> +		aml_i2c_set_mask(i2c, REG_CFG_BUS, BUS_NO_STOP, BUS_NO_STOP);
-> +	/* Start the transfer */
-> +	aml_i2c_do_start(i2c, msg);
-
-I think this should also be under spinlock in order to avoid that
-the interrupt handler accesses a partially initialized state.
-
-> +
-> +	time_left = msecs_to_jiffies(I2C_TIMEOUT_MS);
-> +	time_left = wait_for_completion_timeout(&i2c->done, time_left);
-> +
-> +	/*
-> +	 * Protect access to i2c struct and registers from interrupt
-> +	 * handlers triggered by a transfer terminated after the
-> +	 * timeout period
-> +	 */
-> +
-> +	spin_lock_irqsave(&i2c->lock, flags);
-> +	if (!time_left) {
-> +		i2c->state = A9_STATE_IDLE;
-> +		clear_irq_status(i2c, IRQ_ALL_MASK);
-> +		reset_fifo_pos(i2c);
-> +		ret = -ETIMEDOUT;
-
-the next instruction overwrites this error. Perhaps you could
-use a goto to spin_unlock and return.
-
-Andi
-
-> +	}
-> +
-> +	if (i2c->error)
-> +		ret = i2c->error;
-> +	spin_unlock_irqrestore(&i2c->lock, flags);
-> +
-> +	return ret;
-> +}
+> Compile tested only.
+>
+> Changes in v2:
+>   - update the subject   [Franck Li]
+>
+> v1: https://lore.kernel.org/lkml/93183551770e260aff993bb4cf1ce5ba8dc1e732.1792785154.git.christophe.jaillet@wanadoo.fr/
+> ---
+>  drivers/dma/amlogic-dma.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+>
+> diff --git a/drivers/dma/amlogic-dma.c b/drivers/dma/amlogic-dma.c
+> index 684121d13fca..791bd82743d3 100644
+> --- a/drivers/dma/amlogic-dma.c
+> +++ b/drivers/dma/amlogic-dma.c
+> @@ -620,7 +620,7 @@ static int aml_dma_probe(struct platform_device *pdev)
+>  	if (!aml_dma)
+>  		return -ENOMEM;
+>
+> -	aml_dma->free_wq = alloc_ordered_workqueue("aml_dma_free", 0);
+> +	aml_dma->free_wq = devm_alloc_ordered_workqueue(&pdev->dev, "aml_dma_free", 0);
+>  	if (!aml_dma->free_wq)
+>  		return -ENOMEM;
+>
+> @@ -712,7 +712,6 @@ static void aml_dma_remove(struct platform_device *pdev)
+>  		if (aml_chan)
+>  			tasklet_kill(&aml_chan->vchan.task);
+>  	}
+> -	destroy_workqueue(aml_dma->free_wq);
+>  }
+>
+>  static const struct of_device_id aml_dma_ids[] = {
+> --
+> 2.56.0
+>
 
 _______________________________________________
 linux-amlogic mailing list
