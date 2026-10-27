@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1F5960A263D
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Oct 2026 12:29:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0312560A3803
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Oct 2026 12:29:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Q83YdmUo;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=Cvymowhn
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vERqSXX+;
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=YUiIybxD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -14,29 +14,29 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=r70QttizINaYLLcAbtNczNeraBx5ND2l2TgIaskqYYI=; b=Q83YdmUodhAalQQ/APBN/E0ETc
-	JU+Xs6h8u9Muw/jmxF+xWPeghEFJegNAsLGr/lDgOytzhCulok1I+BBDINIzrVoBBlBNuUUM+CXPL
-	3TUClcUndu3ae+WN/r1LWNX8IKD+80tdHeopyl2CZI6WluYvjNhiSmcYnJq71cvwpHtrnhKTPJ6FV
-	lgq7i72HP0JlipIZuhzBfdUCLJFkF7RkFdMA+ibZX6tFXDTsLTrB13fN881YnVuR41vudfV1tb3Pw
-	ohnJnmDD335jTVlMpavyTXytOQMURt10ULKyCkDclMY6eS3v51kkFUdbi89sVIP3I9iJokptLLqjv
-	/YWHuzoQ==;
+	bh=bzaLx3BRt9YD4e0rrr9Vgx4RwhuCzsmHAU4PWWRnI6k=; b=vERqSXX+Grww9n5WThzjyjelAq
+	TEZGr5tYVNgLRmui0uj7SWrh1VMEvDZvc4aacDAC0kzqfzCeQTU9SlW0usEyu4cVdC0VR7Dy9hmlg
+	TOQfqG19WwR3c2ZE2FBoBqH0erk1rpgKNwNMoZgMTeYv51L087Ey0DuX8mbcs94yVLSrYP29Cbv+n
+	gN1Sp+71xRjBrMPeYw4v3NBatOfW3en+2w5O0Xm6OP41RPKcC1KqgWRAMKffKDk6UBchQWZRkRwVF
+	xUlZiD44HxS3V6dP3Ma5saCifyTCNe9am/1+pCV1SfFrnIEtUjolMNpot9ev6Mt5yjb8u7MQ8C+N0
+	tdbvTUUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xLgIZ-00000004csI-17BI;
+	id 1xLgIZ-00000004csq-2YrN;
 	Tue, 27 Oct 2026 12:29:03 +0000
-Received: from m16.mail.163.com ([220.197.31.3])
+Received: from m16.mail.163.com ([220.197.31.2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xLgIR-00000004cje-44xo;
+	id 1xLgIR-00000004cjl-3EyP;
 	Tue, 27 Oct 2026 12:28:57 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=2H
-	/SRmEgHxYy6/YE6vU5/0Lc8z8GPUZ967ycTx0UluA=; b=CvymowhntoNLnPhJgZ
-	ZvElGLlDVe3+Qb9PTpqMuZEA+/NIEC3mThxJpWdxud/4U/zpqWL3pKa85fzhclOe
-	G0Ue+EI+tb0bsU8t3UvHFNwksFGw5m+t88SqVK1ielvLr/4P62bD7fw6GmZJYpcr
-	R9mJclmAjWNdSK0Uu50km8XHY=
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=S5
+	t7uFoKN8gTi5kSeRc4raDy/yZw3HkWKIXPXE2zN9Q=; b=YUiIybxDqGUIwQ39mp
+	PlrkjVLyqnAT8c0ajSwxUOZ0YZTx5JW2mzUJxYEkhfjV8NSjDLo1nDdb9Vzq2nAh
+	GxN8cOsr7RVD3efA056DUVYU9fu4Gmu1VvZiVLsecWtFLbIuqWngDvb51ChAyg6P
+	VNPgnAkifZY+By/6k8VnTQ+7k=
 Received: from Precision-7960.. (unknown [])
-	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wD3Dz_umOBqUsqlCw--.64541S5;
-	Tue, 27 Oct 2026 20:28:34 +0800 (CST)
+	by gzga-smtp-mtada-g1-2 (Coremail) with SMTP id _____wDnz2v5mOBqYaUSDA--.46182S2;
+	Tue, 27 Oct 2026 20:28:42 +0800 (CST)
 From: Hans Zhang <18255117159@163.com>
 To: bhelgaas@google.com,
 	lpieralisi@kernel.org,
@@ -55,23 +55,24 @@ Cc: imx@lists.linux.dev,
 	linux-pci@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Hans Zhang <18255117159@163.com>
-Subject: [PATCH v4 03/16] PCI: dwc: imx6: Use cached PCIe capability offset
-Date: Tue, 27 Oct 2026 20:28:14 +0800
-Message-ID: <20261027122827.2725643-4-18255117159@163.com>
+Subject: [PATCH v4 08/16] PCI: dwc: fu740: Use cached PCIe capability offset
+Date: Tue, 27 Oct 2026 20:28:19 +0800
+Message-ID: <20261027122827.2725643-9-18255117159@163.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261027122827.2725643-1-18255117159@163.com>
 References: <20261027122827.2725643-1-18255117159@163.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-CM-TRANSID: _____wD3Dz_umOBqUsqlCw--.64541S5
-X-Coremail-Antispam: 1Uf129KBjvJXoW7uFyruw4UKr1UtFWxKw1xKrg_yoW8Ww4Upa
-	9xurWFyF4rJF4SvFs2ya15uF13tas0kr4UJan3Kw1avFy7t34UWFy0kryftF43Kr4vgry2
-	yF17t3WxG39ayF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0ziBT5dUUUUU=
-X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbC6xI12GrgmPIXkwAA3w
+X-CM-TRANSID: _____wDnz2v5mOBqYaUSDA--.46182S2
+X-Coremail-Antispam: 1Uf129KBjvdXoWrZrWDXrWkJw4Dtr4rZFWUArb_yoWfCwbE9F
+	yDGFn7ArWDKr9YyF12kw1fJFykZa47W3WjgayrtFZxZFn2gw18XrykXFWDAF4kWFZxXF97
+	JF1qyF48tay7CjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7sRtpnmPUUUUU==
+X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbC7Bs32mrgmPsZugAA3Q
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261027_052856_400863_25C9A9C4 
-X-CRM114-Status: GOOD (  12.19  )
+X-CRM114-CacheID: sfid-20261027_052856_150843_D5F44BDB 
+X-CRM114-Status: UNSURE (   9.32  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -94,43 +95,27 @@ X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Replace the two dw_pcie_find_capability(pci, PCI_CAP_ID_EXP) calls in
-imx_pcie_ltssm_enable() and imx_pcie_start_link() with
-dw_pcie_get_pcie_cap().
-
-Both functions run with the controller powered and clocked: they are
-reached either from the host .start_link callback or, in Endpoint mode,
-after the PERST# deassert path has enabled the resources. The helper
-therefore performs the DBI read at the same point as the replaced call
-and caches the result for later invocations, which is useful for
-suspend/resume where the link is started again.
+fu740_pcie_start_link() is the .start_link callback. It runs after the
+controller has been powered up, so replace the capability search with
+dw_pcie_get_pcie_cap() to cache the offset.
 
 Signed-off-by: Hans Zhang <18255117159@163.com>
 ---
- drivers/pci/controller/dwc/pci-imx6.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/pci/controller/dwc/pcie-fu740.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-index 39790e66b98d..7fe9c1fa2686 100644
---- a/drivers/pci/controller/dwc/pci-imx6.c
-+++ b/drivers/pci/controller/dwc/pci-imx6.c
-@@ -970,7 +970,7 @@ static void imx_pcie_ltssm_enable(struct device *dev)
+diff --git a/drivers/pci/controller/dwc/pcie-fu740.c b/drivers/pci/controller/dwc/pcie-fu740.c
+index d0a34f680397..61e2daa20b19 100644
+--- a/drivers/pci/controller/dwc/pcie-fu740.c
++++ b/drivers/pci/controller/dwc/pcie-fu740.c
+@@ -178,7 +178,7 @@ static int fu740_pcie_start_link(struct dw_pcie *pci)
  {
- 	struct imx_pcie *imx_pcie = dev_get_drvdata(dev);
- 	const struct imx_pcie_drvdata *drvdata = imx_pcie->drvdata;
--	u8 offset = dw_pcie_find_capability(imx_pcie->pci, PCI_CAP_ID_EXP);
-+	u8 offset = dw_pcie_get_pcie_cap(imx_pcie->pci);
- 	u32 tmp;
- 
- 	tmp = dw_pcie_readl_dbi(imx_pcie->pci, offset + PCI_EXP_LNKCAP);
-@@ -999,7 +999,7 @@ static int imx_pcie_start_link(struct dw_pcie *pci)
- {
- 	struct imx_pcie *imx_pcie = to_imx_pcie(pci);
  	struct device *dev = pci->dev;
--	u8 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-+	u8 offset = dw_pcie_get_pcie_cap(pci);
- 	u32 tmp;
+ 	struct fu740_pcie *afp = dev_get_drvdata(dev);
+-	u8 cap_exp = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
++	u8 cap_exp = dw_pcie_get_pcie_cap(pci);
  	int ret;
+ 	u32 orig, tmp;
  
 -- 
 2.43.0
