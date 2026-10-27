@@ -2,83 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82DBA606A322
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Oct 2026 21:02:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A57F606A321
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Oct 2026 02:59:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TxdadAoJ;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XUw4tJON
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SFhfPYQ3;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=roeck-us.net header.i=@roeck-us.net header.a=rsa-sha256 header.s=default header.b=GxUj9QwG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:In-Reply-To:
-	Cc:To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=7ufJC7IvYaLew/4lxEehd3jDPYHlz0hyk0OjHEfLN8w=; b=TxdadAoJIf3DhKjv7vFgFbUt7k
-	3KINdR+ytUucmzTMsau+RdLNjbcFPF5YNWcdgdzzVEnpGgxCYzL99KwtnIl26EqdSWt5fjR+X+sDs
-	uyNIN+JI0WyDieRSx189a07r8s4EyurnixjxMBa7UkvAeUM5Zbkb/pB8wz1tcLKnKjZ53phdMTU0V
-	Q6YHfyLqMWXD+IuHhFHY6RF6BKK3t3eaUYAm/TG7XZWDpsEyo61y7+AN6FwmNe61gmFvozyJV4nWk
-	K++g3s/EVpBdecrAFBTDmH3vTfneNEOTHsxVtKr9+bOngn3kfa0Avr7RhtReL2lkVWgi/Vl3wd51n
-	ZVuu2h3w==;
+	bh=cVd/j4rBDQofnUyNaA/kcp84Kmd2EeCC6x/NHxfULJo=; b=SFhfPYQ3T0PJVHQk6ayVFz78K0
+	RkX4nePuYaGrmaYoUEt++nu4bT2f8VTRBnBKakIDvvzeAW3yupOmTGdMbWFEfNT58MlJLu5xIiRyM
+	IJukxRfBG7bL95h+/+njpV7shJ/j/G7Ti8qE7ulLH2q8c2Q5YrAnrmHa5GFQPhuT/BmKHF+OPaPHI
+	4+xtw9hjwxISlprlqKJYcl3/2HLXcLqrqQjOUkMi/PB+1MXYuIZgxUHgvJ0T/CoIL70S5W9lHJri5
+	76YjU2YETRX1K74bv814AmqPpeyHzWEtKZ0o2RlcB1ri+buH9kqZY/ktBarxN/q2jTF+Szp0BjD9l
+	0gUHIVPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xLRq6-00000003GP1-37Zu;
-	Mon, 26 Oct 2026 21:02:42 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xLXPR-00000003fp1-12mX;
+	Tue, 27 Oct 2026 02:59:33 +0000
+Received: from omta40.uswest2.a.cloudfilter.net ([35.89.44.39])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xLRq5-00000003GOc-1Bm7;
-	Mon, 26 Oct 2026 21:02:41 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id E834F436C8;
-	Mon, 26 Oct 2026 21:02:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A6791F01825;
-	Mon, 26 Oct 2026 21:02:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793048560;
-	bh=v358HEhOlmBDuVPDB7wDI9WRAFH4nBpagPV3eCkU2/U=;
-	h=Subject:From:To:Cc:In-Reply-To:References:Date;
-	b=XUw4tJONe4g8PLwoFuRLxJoUZxFxGq6F2n/k53iHgcdPwP5Z+JgqVNJb+6EqhZngi
-	 EiBaSMmzjYf5ndm8Nj8sIZzjNHqiPFI35g2RTZVerwjo4lb+SzY1fs0rZOOD3ortey
-	 ctdtcaK6FTozfHodP4mje2y9Juj87pDeC2a2wZZCTeG0Be+1g/jKG4BgyarHi1aAln
-	 y9ECIly7XIyzOMeqfShcMAy/QF82oADXSJ4wVufvqJDnzzojBpqTrFLbaNb9awHiur
-	 hZukemHAVM21Z7Zszt+kadQcDVhuPTvxK8bXfBy3KumFcl6QjBz8mTaZggVUCW/Xb+
-	 jB3snI5IW5gyw==
-Received: from traversing.sirena.org.uk (localhost [IPv6:::1])
-	by traversing.sirena.org.uk (Postfix) with ESMTP id 9AE551F289D4;
-	Mon, 26 Oct 2026 21:02:27 +0000 (GMT)
+	id 1xLXPO-00000003fo1-34pN
+	for linux-amlogic@lists.infradead.org;
+	Tue, 27 Oct 2026 02:59:31 +0000
+Received: from eig-obgw-6003b.ext.cloudfilter.net ([10.0.30.175])
+	by cmsmtp with ESMTPS
+	id LR6RxCsQoc3XsLXPMxcEPm; Tue, 27 Oct 2026 02:59:28 +0000
+Received: from 162-215-252-36.unifiedlayer.com ([208.91.199.152])
+	by cmsmtp with ESMTPS
+	id LXPKxcVRB7CfWLXPKxzJcy; Tue, 27 Oct 2026 02:59:26 +0000
+X-Authority-Analysis: v=2.4 cv=Z8HsHGRA c=1 sm=1 tr=0 ts=6ae0138e
+ a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
+ a=kj9zAlcOel0A:10 a=660iZSQnnn4A:10 a=M0FbrtG7MMAA:10
+ a=mitAZJTLCVS27zc7Mg0A:9 a=CjuIK1q_8ugA:10 a=KPbNTLLc3YvdawN95zVk:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=roeck-us.net; s=default; h=In-Reply-To:Content-Type:MIME-Version:References
+	:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
+	:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Unsubscribe-Post:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=DVZYAzp5y3OZA2PjGNx37RsXlUC5F7cYH3MmvY5PMVk=; b=GxUj9QwG56pBayE0cKAJfw7cw+
+	Wk73qh/ugxciGuEcKJvE39S+9pEZnrcM95ki2IDBrqYdx+kprmRMNxrloLsdQXR0aQs87VTPMtcca
+	7kG91AWECmiiPHhfZDbOTMf1tmpc2Z+03QU96mSDIwDUk9ZelIPxkyOF5x+zZDSiQTtgpl9pOv62N
+	R10DRSTq4g7LptaXSbZgEl9V6PSPVQffYosI8wWNeKgz8Ru7iYMtIGPUNIgEjtDmaCglhfmI0rAL1
+	IN7IEZynP9YMYZiPBBIgHkRxKyFNL9COZb4BPfJELtJ4V+GP5qxB1Fuqw7nuoqZ4dpEvxvU+bjqxR
+	rckPkmag==;
+Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:45506 helo=server.roeck-us.net)
+	by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.100.1)
+	(envelope-from <linux@roeck-us.net>)
+	id 1xLXPJ-00000001xoi-2zHC;
+	Tue, 27 Oct 2026 08:29:25 +0530
+Date: Mon, 26 Oct 2026 19:59:24 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Igor Velkov <iav@iav.lv>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Philippe Boos <pboos@baylibre.com>, linux-watchdog@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] watchdog: meson_gxbb_wdt: fix suspend/resume handling of
+ HW_RUNNING watchdog
+Message-ID: <5e77e129-f822-4134-afaa-1a0cc088978e@roeck-us.net>
+References: <20261020-meson-gxbb-wdt-suspend-v1-1-d5abe4340008@iav.lv>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v7 3/5] ASoC: meson: g12a-toacodec: Add S4 tocodec
- driver
-From: Mark Brown <broonie@kernel.org>
-To: Jiebing Chen <jiebing.chen@amlogic.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-clk@vger.kernel.org, jian.xu@amlogic.com, shuai.li@amlogic.com, 
- zhe.wang@amlogic.com
-In-Reply-To: <20261021-audio_drvier-v7-3-2b9aeae9cb8a@amlogic.com>
-References: <20261021-audio_drvier-v7-0-2b9aeae9cb8a@amlogic.com>
- <20261021-audio_drvier-v7-3-2b9aeae9cb8a@amlogic.com>
-Date: Mon, 26 Oct 2026 21:02:26 +0000
-Message-Id: <179304854619.199157.2693374514232344592.b4-review@b4>
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=591; i=broonie@kernel.org;
- h=from:subject:message-id; bh=cqCG7i2KkY1qhKb0vz9axhgwtlpKCIFLBV1xu14ZY0E=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLLu73/cV3RV+ql6TtKlM74fWNw4a7yu3fp9YULKho+Sx
- 4MWPvsm3FHKwiDGxSArpsgSl8X9sr7k9Rq+gwvbYOawMoEMYeDiFICJZOUx/M+M3cEpf3dK1fOf
- pQanquU+LKr+62m4denzvSpFjw51JX9k+O8ucfR+blMf79cnVwuidzXvteqaHP6rRjMvYdN2P9k
- p8cwA
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+Content-Disposition: inline
+In-Reply-To: <20261020-meson-gxbb-wdt-suspend-v1-1-d5abe4340008@iav.lv>
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
+X-AntiAbuse: Original Domain - lists.infradead.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - roeck-us.net
+X-BWhitelist: no
+X-Source-IP: 108.223.40.66
+X-Source-L: No
+X-Exim-ID: 1xLXPJ-00000001xoi-2zHC
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net (server.roeck-us.net) [108.223.40.66]:45506
+X-Source-Auth: guenter@roeck-us.net
+X-Email-Count: 2
+X-Org: HG=direseller_whb_net_legacy;ORG=directi;
+X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfNDv1L8SJLIhfHTe2gQOT80d6PGTV4xdgCvoZ5/pwtAHOAR+CLLdY1K9KJGTDX/8AKpIdXP03Ja84Sj01yb7OmzxocNBGDXjqym0RIcVAe2HSoeQlYtC
+ Ob+KN59fpOTkMSDsktVDYDszBnywBjMm3XYNmxlG+vVeZMI7hG3ru0du1FrqKjLpHImqv5NeP0pa3D3IidkVw3UIpu8Sh/T1ipNI1RKX0S19Yue187dEMkdt
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261026_195930_790351_93772525 
+X-CRM114-Status: UNSURE (   9.34  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -0.1 (/)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,32 +113,40 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-9.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> The S4 requires additional clock control bits to be turn on while enabled.
-> The S4 has 8 TDM lanes, instead of 4 on previous SoC.
-> Update the widget accordingly.
+On Tue, Oct 20, 2026 at 08:28:37PM +0300, Igor Velkov wrote:
+> From: Igor Velkov <iav@iav.lv>
+> 
+> meson_gxbb_wdt_suspend() and meson_gxbb_wdt_resume() only check
+> watchdog_active(). Since commit 6adbfbab0f03 ("watchdog: meson: keep
+> running if already active"), probe keeps a watchdog left running by the
+> bootloader and sets WDOG_HW_RUNNING. If userspace never opens the
+> device, WDOG_ACTIVE stays clear and the timer is not stopped for system
+> suspend.
+> 
+> On an ODROID-HC4 (S905X3) whose U-Boot starts the watchdog, with no
+> userspace owner, the board does not wake from deep suspend
+> (rtcwake -m mem -s 60) in 2 of 2 attempts and needs a power cycle.
+> 
+> Stop the timer on suspend and restart it on resume also when it is only
+> running in hardware, as sp805_wdt does. With this change the board
+> wakes from deep suspend in 4 of 4 attempts, and the kernel pings the
+> watchdog again after resume.
+> 
+> Fixes: 6adbfbab0f03 ("watchdog: meson: keep running if already active")
+> Assisted-by: LLM
+> Signed-off-by: Igor Velkov <iav@iav.lv>
 
-> +#define CTRL0_BCLK_ENABLE_SHIFT		30
-> +#define CTRL0_MCLK_ENABLE_SHIFT		29
+Applied.
 
-Should these have a _S4 suffix?
-
->  
-> +static const struct snd_soc_dapm_widget s4_toacodec_widgets[] = {
-> +	SND_SOC_DAPM_MUX("SRC", SND_SOC_NOPM, 0, 0,
-> +			 &sm1_toacodec_mux),
-
-Should this have a custom mux for S4, it looks like the register bits
-are different, a shift of 19 for S4.
-
--- 
-Mark Brown <broonie@kernel.org>
+Thanks,
+Guenter
 
 _______________________________________________
 linux-amlogic mailing list
