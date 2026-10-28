@@ -2,92 +2,58 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64A5260A382A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Oct 2026 03:08:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F290606A31A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Oct 2026 03:15:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Oql2FWCA;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=fXrSW3rV;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=RSwjLMSz
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1YKbU1Wi;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iu5NUdQz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:References:
+	In-Reply-To:Cc:To:Subject:From:Message-ID:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=PeLbkn1PwBVxTv7MQ0GPZg/e8ZVMpnZJUZHwdtQhyNU=; b=Oql2FWCAb2Lwhi2plRp6CgzXwl
-	ZNRnSgcL85MRE5Kjm6fbkuBLJQsAMoeA0oZJzydolNmG8QnQU+DugsFncm6QEDX0GBmczykHmT4Mj
-	NZ0dMfwzgHrcrashSWu8BlSAZj9/BCFk7y2KCfdEyjLOYNBSALwheAWYof3cL/Vd9+dWKSC7ps67z
-	KrNiFlTyEtI9alSpOSC2H8qNHVKh4Bf/A52TEAmdCxmcAUFaR6dDSe5oD/ez8r2RzJQDz9fhKNgIO
-	IBjYqJga+XWOKYiXbGvevhfWJC8rhlE8QbazKgrzU+jSr+PeR7CjGMrX6sBtSe6q1lzjgHan832FV
-	uq40PcNw==;
+	bh=CngG4fUoP9FvYF7ykihYzCOMY3XKl4SpxECuHN2Op4M=; b=1YKbU1WiX0sLf2a3Uo3Dj7Cu2l
+	ZYL8k4d//M1UZUr6TWA1JVeQLWtmaAcsR88Fx4wK+YWxgBK+kdYRybKDPh99sHhv6CLi03W4WGO4t
+	Es7+JOt2zcSTcz5whX/pIE6tNyoK9oCjX0YaBZJN79c/jJVAuavRRuAwkuWTJeBUe+nbCONSeNMGY
+	oFKVVc43VuBIlKr7UkTgn1jTqnwUZlJmwWEmFVS4smEbKVADMa9E1MNKDbOe2T1uGRYFTem5cz2z7
+	rHmpkwATTI+wQsPWxpCK/wWHyf65rwwz/NRSdGI4i3wNFzObCHsuxgwLxd7It8WW0xTmH8cpZOKGQ
+	5lLbn6MQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xLu1A-00000006A3d-02OT;
-	Wed, 28 Oct 2026 03:08:00 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xLu8Q-00000006CFo-1jNe;
+	Wed, 28 Oct 2026 03:15:30 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xLu13-000000069iq-1j1d;
-	Wed, 28 Oct 2026 03:07:53 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=uGOww8cTZ+dmcRduWhvlBtmVa5S9Xqh7rcDtCCMSFaU=; b=fXrSW3rVREwZw8nwhrKqzlcL5f
-	meAOIOZWfADqJ93Va4/HPplSjHhytnyKxyRYm/9RdTSA71/Ba5mWzLUPSJ7UhvDGzX7Oz3BBTY4i1
-	S3H7DxuPPghgueDO0WxxQmDykmttHSv8zRAS/FaPd0g+69LhEDsx+Rz/C6enfFrESgRrdEGC75V2Z
-	8096nXKBbpV3DOvKHXTMhfBJut7yWNeqwEOrGDRavqhmR2cBnLoB9dXPupOwE+Cr9AKGESCoPlBW/
-	pKg5kHLto4zB6XqqFT4x+nzL1hfuxMXhB0fow0BdavZZowT/37Exk2uYCnd+plKB6FiCtM1RBklMi
-	Gb851Ajg==;
-Received: from m16.mail.163.com ([117.135.210.5])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xLu0y-0000000FdaX-10P1;
-	Wed, 28 Oct 2026 03:07:50 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=uG
-	Oww8cTZ+dmcRduWhvlBtmVa5S9Xqh7rcDtCCMSFaU=; b=RSwjLMSzAQnxak8cmk
-	7cG9+kuYA6fM6xiN80akLhw8s7Dr7paowbfmps8cOdj+m4q4E3/iC+HYPXjScxR7
-	CJJfX/W9z09f3QH56i8pO5ywPoHHyAS3UdLaxVepcGDglSHUjPxK4SmXu7KmviBi
-	lwzcQRd5cGDFhgdUvc+MwLEC0=
-Received: from Precision-7960.. (unknown [])
-	by gzga-smtp-mtada-g0-0 (Coremail) with SMTP id _____wDXT8PnZuFq9rwVDg--.12376S2;
-	Wed, 28 Oct 2026 11:07:20 +0800 (CST)
-From: Hans Zhang <18255117159@163.com>
-To: bhelgaas@google.com,
-	lpieralisi@kernel.org,
-	kwilczynski@kernel.org,
-	mani@kernel.org,
-	jingoohan1@gmail.com
-Cc: imx@lists.linux.dev,
-	linuxppc-dev@lists.ozlabs.org,
-	linux-amlogic@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org,
-	sophgo@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-tegra@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Hans Zhang <18255117159@163.com>
-Subject: [PATCH v5 16/16] PCI: dwc: ultrarisc: Use cached PCIe capability offset
-Date: Wed, 28 Oct 2026 11:06:52 +0800
-Message-ID: <20261028030652.2917756-17-18255117159@163.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261028030652.2917756-1-18255117159@163.com>
+	id 1xLu8P-00000006CFg-1wKC
+	for linux-amlogic@lists.infradead.org;
+	Wed, 28 Oct 2026 03:15:29 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id B4B1C600C8;
+	Wed, 28 Oct 2026 03:15:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D3B01F01829;
+	Wed, 28 Oct 2026 03:15:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1793157328;
+	bh=JKVE0oHbGCK3KEheqHakd016WqeZ7tntTKiPfLYIsd4=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=iu5NUdQzyd7a65Ku7fJTWRV6m0p2do9Nc/2AJoVNOZJ8x/+qEsVuXsHO4hcXq8ZRh
+	 Qb6v2CdqHDwdFXPILzwmPmA3FmGjyQVxKBKPJlt91xPR/r60oVIJDw6+p0n5QDkwis
+	 Ksn/qvTJdAdajxJT1oOx2S9YPAudrYYLNY+kiTeG9liPpVK+vllNbk1eUpWHunYx9v
+	 U6W+e6/qGXHvA5VWBmqaGOtgc67E++1XrC6nvEtUKIUkfJd633umj7+nHQLfif9Our
+	 DU2lKE8+lami6PdQsZmOpB0wbrmLYKjHf/MfU170DApb/WinuidsiqQ+MdiFePL3fz
+	 8i0UtSgno10lQ==
+Message-ID: <sashiko-outbox-187403@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 01/16] PCI: dwc: Add pcie_cap field and caching
+ helper
+To: "Hans Zhang" <18255117159@163.com>
+Cc: imx@lists.linux.dev, linux-amlogic@lists.infradead.org, linux-pci@vger.kernel.org, Frank.Li@kernel.org, neil.armstrong@linaro.org
+In-Reply-To: <20261028030652.2917756-2-18255117159@163.com>
 References: <20261028030652.2917756-1-18255117159@163.com>
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-X-CM-TRANSID: _____wDXT8PnZuFq9rwVDg--.12376S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7Cr18Aw18ur17KF4rWF47XFb_yoW8JFy3pa
-	yaqr1YyF1kJr4Yyws2ka4DWF12q3ZxAryDJan7Kr13ZFyakrWUX34vk34rtFnFkF4UKr1Y
-	kw4FyFy7G3WrXwUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pirWriUUUUU=
-X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbC7AnmimrhZunUcQAA3o
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261028_030749_108459_6D37C817 
-X-CRM114-Status: GOOD (  10.27  )
-X-Spam-Score: 0.4 (/)
+ <20261028030652.2917756-2-18255117159@163.com>
+Date: Wed, 28 Oct 2026 03:15:27 +0000
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,47 +63,64 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	FROM_LOCAL_DIGITS,FROM_LOCAL_HEX,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,UNPARSEABLE_RELAY,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-ultrarisc_pcie_host_init() runs from the .init callback with the
-controller already enabled. Replace the capability search with
-dw_pcie_get_pcie_cap(). Since the lookup is performed lazily at the
-point of use, the driver no longer depends on any earlier caching step
-and the offset is always valid here.
-
-Signed-off-by: Hans Zhang <18255117159@163.com>
----
- drivers/pci/controller/dwc/pcie-ultrarisc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/pci/controller/dwc/pcie-ultrarisc.c b/drivers/pci/controller/dwc/pcie-ultrarisc.c
-index 523f454c6c524..915305bd88df4 100644
---- a/drivers/pci/controller/dwc/pcie-ultrarisc.c
-+++ b/drivers/pci/controller/dwc/pcie-ultrarisc.c
-@@ -56,7 +56,7 @@ static int ultrarisc_pcie_host_init(struct dw_pcie_rp *pp)
- 	FIELD_MODIFY(PORT_FLT_SF_MASK, &val, PORT_FLT_SF_VAL_64);
- 	dw_pcie_writel_dbi(pci, TIMER_CTRL_MAX_FUNC_NUM, val);
- 
--	cap_exp = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-+	cap_exp = dw_pcie_get_pcie_cap(pci);
- 	val = dw_pcie_readl_dbi(pci, cap_exp + PCI_EXP_LNKCTL2);
- 	FIELD_MODIFY(PCI_EXP_LNKCTL2_TLS, &val, PCI_EXP_LNKCTL2_TLS_16_0GT);
- 	dw_pcie_writel_dbi(pci, cap_exp + PCI_EXP_LNKCTL2, val);
--- 
-2.43.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW01lZGl1bV0gUENJOiBkd2M6IHVu
+Y29uZmlybWVkIG9mZnNldCByZXR1cm5lZCBpbiBkd19wY2llX2dldF9wY2llX2NhcCgpCi0tCgpj
+b21taXQgYzZmY2Q4NDBjZGI1N2RkMzUxZWExNzg3Y2FlOTE1YWQzMTY0ZmIxMwpBdXRob3I6IEhh
+bnMgWmhhbmcgPDE4MjU1MTE3MTU5QDE2My5jb20+CgpQQ0k6IGR3YzogQWRkIHBjaWVfY2FwIGZp
+ZWxkIGFuZCBjYWNoaW5nIGhlbHBlcgoKVGhpcyBjb21taXQgYWRkcyBhIHBjaWVfY2FwIGZpZWxk
+IHRvIHN0cnVjdCBkd19wY2llIGFuZCBpbnRyb2R1Y2VzIGEKZHdfcGNpZV9nZXRfcGNpZV9jYXAo
+KSBoZWxwZXIgdGhhdCBsYXppbHkgbG9va3MgdXAgYW5kIGNhY2hlcyB0aGUgUENJCkV4cHJlc3Mg
+Q2FwYWJpbGl0eSBvZmZzZXQgb24gZmlyc3QgdXNlIG9uY2UgY29uZmlybWVkIHZpYSBhIERCSSBy
+ZWFkLWJhY2suCgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2ll
+LWRlc2lnbndhcmUuaCBiL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaWUtZGVzaWdud2Fy
+ZS5oCj4gaW5kZXggNmQ3ODhhYTAwMDExNy4uZGVkZTZiMzk2NjU4NSAxMDA2NDQKPiAtLS0gYS9k
+cml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2llLWRlc2lnbndhcmUuaAo+ICsrKyBiL2RyaXZl
+cnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaWUtZGVzaWdud2FyZS5oClsgLi4uIF0KPiBAQCAtODMy
+LDYgKzgzNCw0MiBAQCBzdGF0aWMgaW5saW5lIHZvaWQgZHdfcGNpZV9kYmlfcm9fd3JfZGlzKHN0
+cnVjdCBkd19wY2llICpwY2kpCj4gIAlkd19wY2llX3dyaXRlbF9kYmkocGNpLCByZWcsIHZhbCk7
+Cj4gIH0KPiAgCj4gKy8qKgo+ICsgKiBkd19wY2llX2dldF9wY2llX2NhcCgpIC0gUmV0dXJuIHRo
+ZSBQQ0llIENhcGFiaWxpdHkgb2Zmc2V0Cj4gKyAqIEBwY2k6IERXQyBpbnN0YW5jZQo+ICsgKgpb
+IC4uLiBdCj4gKyAqIFJldHVybjogdGhlIG9mZnNldCBvZiB0aGUgUENJZSBDYXBhYmlsaXR5LCBv
+ciAwIGlmIGl0IGNvdWxkIG5vdCBiZQo+ICsgKiBmb3VuZCBvciBoYXMgbm90IGJlZW4gY29uZmly
+bWVkIHlldC4KPiArICovCj4gK3N0YXRpYyBpbmxpbmUgdTggZHdfcGNpZV9nZXRfcGNpZV9jYXAo
+c3RydWN0IGR3X3BjaWUgKnBjaSkKPiArewo+ICsJdTggY2FwID0gUkVBRF9PTkNFKHBjaS0+cGNp
+ZV9jYXApOwo+ICsKPiArCWlmICghY2FwKSB7Cj4gKwkJY2FwID0gZHdfcGNpZV9maW5kX2NhcGFi
+aWxpdHkocGNpLCBQQ0lfQ0FQX0lEX0VYUCk7Cj4gKwkJaWYgKGNhcCAmJiBkd19wY2llX3JlYWRi
+X2RiaShwY2ksIGNhcCkgPT0gUENJX0NBUF9JRF9FWFApCj4gKwkJCVdSSVRFX09OQ0UocGNpLT5w
+Y2llX2NhcCwgY2FwKTsKPiArCX0KPiArCj4gKwlyZXR1cm4gY2FwOwo+ICt9CgpbU2V2ZXJpdHk6
+IE1lZGl1bV0KSW4gZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNpZS1kZXNpZ253YXJlLmgs
+IHRoZSBrZXJuZWwtZG9jIGZvcgpkd19wY2llX2dldF9wY2llX2NhcCgpIHN0YXRlcyB0aGF0IGl0
+IHJldHVybnMgMCBpZiB0aGUgY2FwYWJpbGl0eSBjb3VsZCBub3QKYmUgZm91bmQgb3IgaGFzIG5v
+dCBiZWVuIGNvbmZpcm1lZCB5ZXQuCgpIb3dldmVyLCB3aGVuIHBjaS0+cGNpZV9jYXAgaXMgMCBh
+bmQgdHJhbnNpZW50IERCSSBkYXRhIGNhdXNlcwpkd19wY2llX2ZpbmRfY2FwYWJpbGl0eShwY2ks
+IFBDSV9DQVBfSURfRVhQKSB0byByZXR1cm4gYSBub24temVybyBvZmZzZXQgY2FwCndoaWxlIHRo
+ZSBjb25maXJtYXRpb24gY2hlY2sgZHdfcGNpZV9yZWFkYl9kYmkocGNpLCBjYXApID09IFBDSV9D
+QVBfSURfRVhQCmV2YWx1YXRlcyB0byBmYWxzZSwgcGNpLT5wY2llX2NhcCBpcyBsZWZ0IGFzIDAs
+IGJ1dCB0aGUgdW5jb25maXJtZWQgbm9uLXplcm8KY2FwIGlzIHN0aWxsIHJldHVybmVkIHRvIHRo
+ZSBjYWxsZXIuCgpDYWxsZXJzIHRoYXQgZ3VhcmQgREJJIHdyaXRlcyBvbiBhIG5vbi16ZXJvIHJl
+dHVybiAoc3VjaCBhcwpyb2NrY2hpcF9wY2llX2VuYWJsZV9sMHMoKSkgb3IgY2FjaGUgYSBub24t
+emVybyByZXR1cm4gaW4gZHJpdmVyIHN0YXRlIChzdWNoCmFzIHRlZ3JhX3BjaWVfZHdfaG9zdF9p
+bml0KCkgc2V0dGluZyBwY2llLT5wY2llX2NhcF9iYXNlIHdoZW4KIXBjaWUtPnBjaWVfY2FwX2Jh
+c2UpIHdpbGwgdGhlbiBjb25zdW1lIG9yIHBlcm1hbmVudGx5IHN0b3JlIHRoZSB1bmNvbmZpcm1l
+ZApvZmZzZXQuCgpTaG91bGQgZHdfcGNpZV9nZXRfcGNpZV9jYXAoKSByZXR1cm4gMCB3aGVuIHRo
+ZSBjb25maXJtYXRpb24gcmVhZC1iYWNrIGZhaWxzLApvciBzaG91bGQgdGhlIGtlcm5lbC1kb2Mg
+Y29tbWVudCBiZSB1cGRhdGVkIHRvIG1hdGNoIHRoZSBpbXBsZW1lbnRhdGlvbj8KCi0tIApTYXNo
+aWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nhc2hpa28uZGV2LyMvcGF0Y2hzZXQvMjAyNjEwMjgw
+MzA2NTIuMjkxNzc1Ni0xLTE4MjU1MTE3MTU5QDE2My5jb20/cGFydD0xCgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcg
+bGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJh
+ZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
