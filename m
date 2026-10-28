@@ -2,75 +2,113 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7292606A320
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Oct 2026 03:26:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C83B7606A31A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Oct 2026 06:16:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ndVaWY6N;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=F2ZYoHu4
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VYl2OZIA;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=uvC00cRL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=qChMqV+5Zp1mF+IJKfsUW6lNRrgW2OKeXBP36kUsZs8=; b=ndVaWY6N49HIf0b/BzB6NNAg2R
-	Q7jRXl3CE74DCCe7HzYZcheU/0HtYiHKiby2Yn7ucutZyfrsDxiKpb7VPR3whT68I9w62FdVZd7rL
-	MLw36WVgwRhu/FFFNpiAJOgihZFo+wF4qIvlg7U1qTmgaFil3e904ekP4Exr0oUh0tqZYl+PVL0VP
-	DECfjmukzp0tr1r8MD9nppLoLYamFFRA2rGncBzP4ibGU3evUVPhDALcnUDLhvcsaVo5F6szR7kjs
-	WRIC8IKyrNfbCpjcF6barr3KWrH/ilg0dgUb1zy6oCUk6IAgQyuERp+TwRwEEov0ly7RaGkyHgVZl
-	TaaD9myw==;
+	bh=ZM/VkD+7Z11Vvx+a5wD73SAbu9E8KUgeDRC12L0fu9M=; b=VYl2OZIAIwlbbxpXi91H5/EaH+
+	14Rk5+1N7NxALZzKqsO0eFF+Q1cXHqJRZsYGJGAzwlmVtUuDwe6IkEg+KeELBRGbjPb4oL4YZA20b
+	FO6M8uJqebnutObBdonOdwk2H3fJui3hf//4iJLw8VvDw/yVi7cOBiepiDBOarZFlrXcCN5Ewbq0G
+	n18klNFwgiFAsuqGJEvEXo2lerri0TyFRa4r/1K+jwJDO0za0vLGL5YWaribFQcY/5giJZ0Jp9HdW
+	/teMlAYqIY8R4AI6+Hp943bGbCOq7iSruBBe7U2qdOeW5YDcMG0jNZfFpc8xHXMqmRWmUCGEtCf55
+	TOOl+yiw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xLuId-00000006Ced-23PJ;
-	Wed, 28 Oct 2026 03:26:03 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xLwxS-00000006Olk-2e1C;
+	Wed, 28 Oct 2026 06:16:22 +0000
+Received: from mail-lf1-x133.google.com ([2a00:1450:4864:20::133])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xLuIb-00000006CeH-3Kut;
-	Wed, 28 Oct 2026 03:26:01 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 4E4D341A84;
-	Wed, 28 Oct 2026 03:26:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B75A91F01825;
-	Wed, 28 Oct 2026 03:25:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793157961;
-	bh=/vK5C+z753Ldc2efhljC24upKDWY/ID73cW01PyfTLw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=F2ZYoHu4Ke5redW7yT1lepvi8XuyJXVY8kB2Soz01LWCk2/3Jr1wWQMm4V93gWhtz
-	 gpIbdrL/+0Uc4zbhgIK+4Q/e/HSh1lXeavy6rrtWahva4Xra0jhcg3LlUfvSjbMUxS
-	 fvFHO/agzt46sG9c09v8s4ST07qqLjiK0647TAMEiTRLvh6XpDPVeMlK9bF3YqWRTa
-	 bw7jRrdpQTIdh7jnxShSvJCZcAEqm5zCE0+1ObOGYdVA6w2uZMEYnbjS+L2fk4uQCp
-	 iMXNm7TCMgEUFIz8BdGxBUD/kJLbSSpeGm/mZ/AMqTEI54J20tdGMectcotGrzykh1
-	 c8rYwIsH8pDaQ==
-Date: Wed, 28 Oct 2026 03:25:53 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Rupesh Majhi <zoone.rupert@gmail.com>
-Cc: Alex Lanzano <lanzano.alex@gmail.com>, Andy Shevchenko
- <andy@kernel.org>, Benson Leung <bleung@chromium.org>, David Lechner
- <dlechner@baylibre.com>, Guenter Roeck <groeck@chromium.org>, Jagath Jog J
- <jagathjog1996@gmail.com>, Javier Carrasco
- <javier.carrasco.cruz@gmail.com>, Jean-Baptiste Maneyrol
- <jean-baptiste.maneyrol@tdk.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Jinseob Kim <kimjinseob88@gmail.com>, Kevin Hilman <khilman@baylibre.com>,
- Lorenzo Bianconi <lorenzo@kernel.org>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Matti Vaittinen
- <mazziesaccount@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Remi Buisson
- <remi.buisson@tdk.com>, chrome-platform@lists.linux.dev,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, Marco Elver <elver@google.com>, Bart Van
- Assche <bvanassche@acm.org>
-Subject: Re: [PATCH v4 2/9] iio: core: annotate the conditional mode claims
-Message-ID: <20261028032553.2e865b19@jic23-hlaptop>
-In-Reply-To: <20261028031834.2ff7e6bf@jic23-hlaptop>
-References: <20261027124954.110697-1-zoone.rupert@gmail.com>
-	<20261027124954.110697-3-zoone.rupert@gmail.com>
-	<20261028031834.2ff7e6bf@jic23-hlaptop>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	id 1xLwxP-00000006OkV-3uPX
+	for linux-amlogic@lists.infradead.org;
+	Wed, 28 Oct 2026 06:16:21 +0000
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-5ba35c0df4fso676833e87.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 27 Oct 2026 23:16:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1793168176; x=1793772976; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=upb2yDjK+Sz2Or79oIRzVU6fGyWUl+WecZ9r73Zp7qs=;
+        b=uvC00cRLXCAUX2Ltx5xaekUZscjxsqssy3OCjz8blwEi1ZAPP/5P/yJeIoVjxrPp0W
+         IHX6XUNj26+xrKJy4XLyUwkxgpeWmaWFzp6O7EtX0wKe4IIm9Ha3/QGwTSRkxtcjkJQy
+         uI/eGSYaDczxHOEKKVvcQ7B43c8yJNkm7mgXO/v2ID+mta0/gIKrtVEwFcLzoQQv+OXd
+         bpjqkzMswnDkksTHXfa7ZH/bMDSxjNEK3hDVbAbEL35sAwKAVpTCjIFfQJVOP/XqXffG
+         y265bVi+N16hRua2cd/ynwyol9D1xockckZuO3FzeTuqjnFu3IYNxRp1I27QCbEKXdFi
+         x6Cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1793168176; x=1793772976;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=upb2yDjK+Sz2Or79oIRzVU6fGyWUl+WecZ9r73Zp7qs=;
+        b=M/nlRMFc936uKOVH3ZI0tOEKu5St8ErTQa7evpz7oqJZneTBkLeFZqfc/4qsow0rb7
+         9uJlsfqQy8nV21b8v+0hsQVMUht7jKGJrqlSofUqQjcm4Tgmv3p6U03Fe6jFJ4+7IyS8
+         lRVrfivYNgZAVS/MIL/2Rm35z0jrmh1rvG2l7iiXUjRrmpfjcv8jdb+diyZLdM22xQOD
+         2tBi5CbUlkWeNoepNhDqth+l12BhB6iu3GtSCpsRJlVtAGsecXxReahdN8vUD9Ycs0mv
+         bo0UwhyB7Y+WJGk1F6MqEIYFWVCV2IcXVXXrmFHURlDZ7rHQgwzipUi3yiEjoXWDG3pT
+         ISZQ==
+X-Forwarded-Encrypted: i=1; AKwUvByIDzbBQiN4SWI6QvcoVGL7/n7Fetc0MZdemh5ZHWFnX4JrDbs4cskeHglw8Du1+oWCatdjOfUpMMV2Onon@lists.infradead.org
+X-Gm-Message-State: AFq9FYJTTS1wZ4N/UvADWpeDjXT1FKGmamYCouFw+0KQbTmHChr9NbdK
+	tJ1+nni404DQFEcxpVfx+DFW0g+GK77EO7qmU6yvxcYwdpZssqjp6k0A
+X-Gm-Gg: AYBFou1AJJdWivNwkWri2IWIVPjSvG573RFfeuR6/77BummVNcNRrKPV9472liJyTzx
+	WgLyV99Kz4kDoO5VptExO1/2DsmbWqpF3r/JsbLHTOCYd3np5Wgny43pkE6k8m1++W3xlefiMkq
+	dEXdfaz0T4fGlJTfE65nT5ffavKAX6BcxQDDb7QmVQZgl3i8BosKtEqHEVRDPQt2+t9UMBHz5ow
+	x62h8McHQla3T0YjuIO1X75ke4quLAWvPBa6um3CqEuMUVDqaY5g7Sv24aJuzk4OPHJ2WJ9rbnw
+	vgA9KErM3ODh02xpVt74EDAWjE8CQ5RzXCa2cZahpFNeMbakOIFPrtHHtXiH0vpw2DVSFyJYAPG
+	g9Cw8DZ2AT4WCGcP63dgwCHBDIuw5FFPWKi7pjVFJHaYDpbPYK+UfSonzW4wi7bxjQg9pZi2TFW
+	h0Qj6qpTkElQgwGNO2Zj7pyCaUGVqL++pqLlcDrCK339p7OH1dpPPurSfA6JuyzF3FhsW5UKItZ
+	Is55qtPk+6PV2uHRyFK75Ws8BZ7z8PM6u0Uk1PQMU3qTRVZgOMiP1Ku6TXRMs7I4LMhPldWh+OJ
+	XVAdyg0GMyD4oZmOfkEnaX1VnUqyja+DN0bxJRRE42ODesBFLEx+gNLkgEgLM/cng8ldMTGBDLY
+	leIhjbun1gw==
+X-Received: by 2002:a05:6512:3a82:b0:5be:4be3:bb8f with SMTP id 2adb3069b0e04-5bfcad787eamr578392e87.19.1793168175751;
+        Tue, 27 Oct 2026 23:16:15 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5bfca47f9f2sm400912e87.8.2026.10.27.23.16.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Oct 2026 23:16:14 -0700 (PDT)
+Message-ID: <9e9a2f4b-b6d6-4faf-95f2-e227b41d27eb@gmail.com>
+Date: Wed, 28 Oct 2026 08:16:11 +0200
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 4/9] iio: accel: kionix-kx022a: annotate the lock
+ helpers
+To: Rupesh Majhi <zoone.rupert@gmail.com>,
+ Alex Lanzano <lanzano.alex@gmail.com>, Andy Shevchenko <andy@kernel.org>,
+ Benson Leung <bleung@chromium.org>, David Lechner <dlechner@baylibre.com>,
+ Guenter Roeck <groeck@chromium.org>, Jagath Jog J <jagathjog1996@gmail.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Jinseob Kim <kimjinseob88@gmail.com>,
+ Jonathan Cameron <jic23@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Lorenzo Bianconi <lorenzo@kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Remi Buisson <remi.buisson@tdk.com>
+Cc: chrome-platform@lists.linux.dev, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Marco Elver <elver@google.com>, Bart Van Assche <bvanassche@acm.org>
+References: <20261027124954.110697-1-zoone.rupert@gmail.com>
+ <20261027124954.110697-5-zoone.rupert@gmail.com>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20261027124954.110697-5-zoone.rupert@gmail.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261027_231619_993094_8EBBF7CC 
+X-CRM114-Status: UNSURE (   6.14  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,181 +118,34 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_2 autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-7.3 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, 28 Oct 2026 03:18:34 +0000
-Jonathan Cameron <jic23@kernel.org> wrote:
+On 27/10/2026 14:49, Rupesh Majhi wrote:
+> kx022a_turn_off_lock() returns with data->mutex held when it succeeds,
+> and kx022a_turn_on_unlock() releases it. Annotate both so context
+> analysis follows the lock into the callers.
+> 
+> Signed-off-by: Rupesh Majhi <zoone.rupert@gmail.com>
 
-> On Tue, 27 Oct 2026 14:49:47 +0200
-> Rupesh Majhi <zoone.rupert@gmail.com> wrote:
-> 
-> > iio_device_claim_direct() and iio_device_try_claim_buffer_mode() hold
-> > the mode lock only when they return true, but carry no annotation. With
-> > context analysis on, each caller that releases the claim is reported
-> > for releasing a lock it never took.
-> > 
-> > Mark both __cond_acquires(true, indio_dev), the token that
-> > __iio_dev_mode_lock() acquires. Sparse no longer reads these
-> > annotations, so drop the comment about it.  
-> Hi Rupesh,
-> 
-> The history of the definitions of these being in the header at
-> all was to make them visible enough to sparse that it could
-> figure out the locking and 'mostly' give good coverage.
-> 
-> Given that's no longer necessary, maybe it makes sense to make
-> the implementations private. It doesn't really help us that
-> much as those nasty helpers are still needed for the
-> rarely used guard that claims the current mode.
-> 
-> So maybe it's worth this maybe not...  Anyhow, perhaps one for
-> another day given I don't think it helps this effort.
-> 
+Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
-> diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-core.c
-> index e9a5d1d905c1..04c194bdda87 100644
-> --- a/drivers/iio/industrialio-core.c
-> +++ b/drivers/iio/industrialio-core.c
-> @@ -2269,6 +2269,33 @@ void __iio_dev_mode_unlock(struct iio_dev *indio_dev)
->  }
->  EXPORT_SYMBOL_GPL(__iio_dev_mode_unlock);
->  
-> +bool iio_device_claim_direct(struct iio_dev *indio_dev
-> +{
-> +       __iio_dev_mode_lock(indio_dev);
-> +
-> +       if (iio_buffer_enabled(indio_dev)) {
-> +               __iio_dev_mode_unlock(indio_dev);
-> +               return false;
-> +       }
-> +
-> +       return true;
-> +}
-> +EXPORT_SYMBOL_GPL(iio_device_claim_direct);
-> +
-> +bool iio_device_try_claim_buffer_mode(struct iio_dev *indio_dev)
-> +       __cond_acquires(true, indio_dev)
+Thanks.
 
-Dropping that marking. Turns out I even failed to build test this...
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
 
-
-> +{
-> +       __iio_dev_mode_lock(indio_dev);
-> +
-> +       if (!iio_buffer_enabled(indio_dev)) {
-> +               __iio_dev_mode_unlock(indio_dev);
-> +               return false;
-> +       }
-> +
-> +       return true;
-> +}
-> +EXPORT_SYMBOL_GPL(iio_device_try_claim_buffer_mode);
-> +
->  /**
->   * iio_device_get_current_mode() - helper function providing read-only access to
->   *                                the opaque @currentmode variable
-> diff --git a/include/linux/iio/iio.h b/include/linux/iio/iio.h
-> index ca91f5a64626..b9e4888e18bc 100644
-> --- a/include/linux/iio/iio.h
-> +++ b/include/linux/iio/iio.h
-> @@ -718,18 +718,7 @@ void __iio_dev_mode_unlock(struct iio_dev *indio_dev) __releases(indio_dev);
->   *
->   * Returns: true on success, false on failure.
->   */
-> -static inline bool iio_device_claim_direct(struct iio_dev *indio_dev)
-> -       __cond_acquires(true, indio_dev)
-> -{
-> -       __iio_dev_mode_lock(indio_dev);
-> -
-> -       if (iio_buffer_enabled(indio_dev)) {
-> -               __iio_dev_mode_unlock(indio_dev);
-> -               return false;
-> -       }
-> -
-> -       return true;
-> -}
-> +bool iio_device_claim_direct(struct iio_dev *indio_dev) __cond_acquires(true, indio_dev);
->  
->  /**
->   * iio_device_release_direct() - Releases claim on direct mode
-> @@ -753,18 +742,8 @@ static inline bool iio_device_claim_direct(struct iio_dev *indio_dev)
->   *
->   * Returns: true on success, false on failure.
->   */
-> -static inline bool iio_device_try_claim_buffer_mode(struct iio_dev *indio_dev)
-> -       __cond_acquires(true, indio_dev)
-> -{
-> -       __iio_dev_mode_lock(indio_dev);
-> -
-> -       if (!iio_buffer_enabled(indio_dev)) {
-> -               __iio_dev_mode_unlock(indio_dev);
-> -               return false;
-> -       }
-> -
-> -       return true;
-> -}
-> +bool iio_device_try_claim_buffer_mode(struct iio_dev *indio_dev)
-> +  __cond_acquires(true, indio_dev);
->  
->  /**
->   * iio_device_release_buffer_mode() - releases claim on buffer mode
-> 
-> 
-> > 
-> > Signed-off-by: Rupesh Majhi <zoone.rupert@gmail.com>
-> > ---
-> > Cc: Marco Elver <elver@google.com>
-> > Cc: Bart Van Assche <bvanassche@acm.org>
-> > 
-> >  include/linux/iio/iio.h | 9 ++-------
-> >  1 file changed, 2 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/include/linux/iio/iio.h b/include/linux/iio/iio.h
-> > index 9b63785d5aec..ca91f5a64626 100644
-> > --- a/include/linux/iio/iio.h
-> > +++ b/include/linux/iio/iio.h
-> > @@ -707,13 +707,6 @@ int iio_push_event(struct iio_dev *indio_dev, u64 ev_code, s64 timestamp);
-> >  void __iio_dev_mode_lock(struct iio_dev *indio_dev) __acquires(indio_dev);
-> >  void __iio_dev_mode_unlock(struct iio_dev *indio_dev) __releases(indio_dev);
-> >  
-> > -/*
-> > - * Helper functions that allow claim and release of direct mode
-> > - * in a fashion that doesn't generate many false positives from sparse.
-> > - * Note this must remain static inline in the header so that sparse
-> > - * can see the __acquires() and __releases() annotations.
-> > - */
-> > -
-> >  /**
-> >   * iio_device_claim_direct() - Keep device in direct mode
-> >   * @indio_dev:	the iio_dev associated with the device
-> > @@ -726,6 +719,7 @@ void __iio_dev_mode_unlock(struct iio_dev *indio_dev) __releases(indio_dev);
-> >   * Returns: true on success, false on failure.
-> >   */
-> >  static inline bool iio_device_claim_direct(struct iio_dev *indio_dev)
-> > +	__cond_acquires(true, indio_dev)
-> >  {
-> >  	__iio_dev_mode_lock(indio_dev);
-> >  
-> > @@ -760,6 +754,7 @@ static inline bool iio_device_claim_direct(struct iio_dev *indio_dev)
-> >   * Returns: true on success, false on failure.
-> >   */
-> >  static inline bool iio_device_try_claim_buffer_mode(struct iio_dev *indio_dev)
-> > +	__cond_acquires(true, indio_dev)
-> >  {
-> >  	__iio_dev_mode_lock(indio_dev);
-> >    
-> 
-> 
-
+~~ When things go utterly wrong vim users can always type :help! ~~
 
 _______________________________________________
 linux-amlogic mailing list
