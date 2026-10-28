@@ -2,120 +2,149 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DE7E606A31A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Oct 2026 12:02:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 305F7606A320
+	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Oct 2026 12:21:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IBNbUXYJ;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=RRQVjpwH
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2lplHonx;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=amlogic.com header.i=@amlogic.com header.a=rsa-sha256 header.s=selector1 header.b=yJNugPLC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=mHj9n5cQ/RpJ6RyEWxmbqKnvS6U0V/1qttsfmdYTVwU=; b=IBNbUXYJP3MWnOBmMVWeg461XY
-	1cqwldR2BuUd4AOtOrh14XUjidiAxCGssodcDBbaQhbHownFwFetzz+lvph+lDxRgYEOmUo+5Xowf
-	EWZqPX9wBE/0OUdlKG1xdk+WcUvnC/FTiEgbxDdb/BbxEh+qtbUHM7tAd2sKfTTmXlROKlLVQlpkO
-	BG4s7buqkeSeIunCme/8nnACjHqlyyMPlvjYEMtEuxQ1bgFt0rhU2omVzsZDcMTa4Umjm5rNBNUFf
-	o4iMpGQGm1Wx1fds3TwGzJd3dWb5tlcPJyrypT/fUvY+og1ODjEygVYnJcYoy4B+YOdiOB4mkGhFU
-	a0xh4cXQ==;
+	bh=9FowtHBbJY+tFoFMKIno+KOgarjD2n2pS2bx/sjFNm8=; b=2lplHonx32Ot+jwbOK9QrzQOxx
+	5qt1JM/odjRTgFk/AKM+AesrUybtFYdgjfTzB05GXfiVMzLCl2yCxkr/OL8Hs5sfkTJjyXNDCGD79
+	6lB+hhJbnznVNyM9RdeTlQ5oJig84yS6I1MlnblIdMVQfM+fNdo90CXUu2qvA5Klb0fV+CoJh3Wnz
+	2cFNBfxIxyMc2JJohSVeqd+8x4rARECsdLJzOfLCriGuwekxeGz6Sskf/n7HQ/HNmVzbutYf7kkuK
+	U2c2qxAyFGCykPPgMnMbzV/0EYhu3h6fKZ513wVTCWb+QSHTEXWchHfiPfa2PpjOUwNGlQyQDz/Z6
+	Ig1j9Myg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xM2Mn-00000006v1R-0wtd;
-	Wed, 28 Oct 2026 12:02:53 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xM2eU-00000006wkC-0eOD;
+	Wed, 28 Oct 2026 12:21:10 +0000
+Received: from mail-japaneastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c405::7] helo=TYDPR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xM2Ml-00000006v0u-2X6T;
-	Wed, 28 Oct 2026 12:02:51 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id BA6946022B;
-	Wed, 28 Oct 2026 12:02:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 282771F01828;
-	Wed, 28 Oct 2026 12:02:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793188970;
-	bh=dsnhxVyCRsDB7IzLyR1PYJXVzOdADR8u2HKSk2GZFPk=;
-	h=From:To:Cc:Subject:Date;
-	b=RRQVjpwH4sY11i/17VHL7AM40KXNuiYJdRXnbyur+Nx1X6LRie4UMFncaXFYLvxoH
-	 vEMx+GQHbHaIzp/LF1pxgiZjCGpoM593FiSdoC0oumS9cQ+QXTG2jrhbH/rMsMGOc4
-	 ny46eU+ErXiBlXUO9wIGSiSWyJt1DtVl5MzqstZpNxbA3vh1urvuNEXUEs3XtTQKG5
-	 7Btj3/p7neZupn/jFjINQHb1iG9rUE+2UcStPVD07cRqNeLl1k7LTJk5b+1SSApV+8
-	 TQK2keKsYvQ1wZP6bUVcqP55KiyxGZ4p7tUPGT59f84Fh951p+6KXMENhtAVhM6LuI
-	 GcDn6NkyRpNOQ==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Rob Clark <robin.clark@oss.qualcomm.com>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Abhinav Kumar <abhinav.kumar@linux.dev>,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Yinbo Zhu <zhuyinbo@loongson.cn>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Tiffany Lin <tiffany.lin@mediatek.com>,
-	Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-	Yunfei Dong <yunfei.dong@mediatek.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Ryder Lee <ryder.lee@mediatek.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Eric Anholt <eric@anholt.net>,
-	Kuogee Hsieh <quic_khsieh@quicinc.com>,
-	Peng Fan <peng.fan@nxp.com>,
-	Aakarsh Jain <aakarsh.jain@samsung.com>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	freedreno@lists.freedesktop.org,
-	imx@lists.linux.dev,
-	dmaengine@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-media@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH] dt-bindings: Fix property name typos in if/then schemas
-Date: Wed, 28 Oct 2026 07:02:12 -0500
-Message-ID: <20261028120216.2657397-1-robh@kernel.org>
-X-Mailer: git-send-email 2.53.0
+	id 1xM2eQ-00000006wji-3h74;
+	Wed, 28 Oct 2026 12:21:08 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AfnVPchdC2VuBBMfXLE7uCCEZ9T3R3o5vizeKHNFTU7vWF7w2HK+tTeJwJW7GDySv/1xWpLuJuONvryDX+6bwvF1bZhJZJQBAcKSuX9Uzx3AVYU/mTxz/N5gPGhTsGhJQQODQ6G/ZuwaFyp3HokMwLi++a5XzJ+i4gODAc0jFlSxA15S6+v+IItwPRvlViIX1uxwb6gZVDZ+h5esVZu/fSdU6UTZQkqOhN5JxHTtv+kuBj9VNGq7XosjQZvhqx5urn3YDoeZHGmTEJN/FQFQYJCg9OKlPlRaB/yUwl/o7XlfH0XNqjsikn5ywFnmj/eewdIg8+xjpH1551LhDNKFqQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HNfJLTfEegqv+3oFxcJm59fWMWPhakplaKdKJT5G1eQ=;
+ b=O+nI3RPtOxmjEomk6NIk1bSQsowW/oMxyhQSh2z6bFhS0D1t1DmGSKLSQdbbMEfv6w3EHolkyoxHFuM0gh/BvOju4n8O9wjoMXP5IzPJ1Nc1gKmXnllNuEbzQUsH7E+dJgxqcdpfDE/l2QsxkiK0VZvMaNrfTxY4TTF/qjZH5VwjHP8UYuUCAgp5hq3oLU1UafiXjRRAhQIT1MIIV7qYKuRt/wFnctzGz+z5i2OA2R+Ja22EuZtcAp8518uno/briVgWvih7Kk8B/KJNSmZT7srX3vPZBHhok3VPXjywF+gq6PNmJJg5WHGX2vyHfvU33eZlrF5mISvxiqwKZmi0gA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HNfJLTfEegqv+3oFxcJm59fWMWPhakplaKdKJT5G1eQ=;
+ b=yJNugPLCWN7SNNDBOioaexAbHV1CKaoz1E0RC2LUxFOyc9ktHEndckbTzHLNnHriClZwfI/KGwSA02FhvJtNxOWY/Ie7uvmHFBri8elLRULpNrNVHic1aJqUeR8YL0o87rw/haXKrM6OVQAr/tX2Y6X+JqMZCaRUMl8zh1qRvp+XtHCg8HOWRqXmhXIjMz8teGi3lbPKXKHQylvUlkki5xTED3kaioTsaYZggK2q07l2TKYvi3GMMNdAeJByHaze37lBm+ntiPDjnFD8vRD8K7vGNpv5EaBqhe6xdkN58ODYXlQjCb2Ojct52ZsbLSL2yZ2+mpxXcV1LhhGvedS2Hg==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TYNPR03MB10226.apcprd03.prod.outlook.com
+ (2603:1096:405:3c1::21) by TYZPR03MB8295.apcprd03.prod.outlook.com
+ (2603:1096:405:1c::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.22; Wed, 28 Oct
+ 2026 12:20:58 +0000
+Received: from TYNPR03MB10226.apcprd03.prod.outlook.com
+ ([fe80::ff5:e524:cf10:5d7]) by TYNPR03MB10226.apcprd03.prod.outlook.com
+ ([fe80::ff5:e524:cf10:5d7%6]) with mapi id 15.21.0546.021; Wed, 28 Oct 2026
+ 12:20:58 +0000
+Message-ID: <2f33d959-32cf-4b3d-a3eb-a12a032298a8@amlogic.com>
+Date: Wed, 28 Oct 2026 20:20:54 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 3/5] ASoC: meson: g12a-toacodec: Add S4 tocodec driver
+To: Mark Brown <broonie@kernel.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ jian.xu@amlogic.com, shuai.li@amlogic.com, zhe.wang@amlogic.com
+References: <20261021-audio_drvier-v7-0-2b9aeae9cb8a@amlogic.com>
+ <20261021-audio_drvier-v7-3-2b9aeae9cb8a@amlogic.com>
+ <179304854619.199157.2693374514232344592.b4-review@b4>
+From: Jiebing Chen <jiebing.chen@amlogic.com>
+In-Reply-To: <179304854619.199157.2693374514232344592.b4-review@b4>
+X-ClientProxiedBy: TY4P301CA0049.JPNP301.PROD.OUTLOOK.COM
+ (2603:1096:405:36b::7) To TYNPR03MB10226.apcprd03.prod.outlook.com
+ (2603:1096:405:3c1::21)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYNPR03MB10226:EE_|TYZPR03MB8295:EE_
+X-MS-Office365-Filtering-Correlation-Id: b681c25f-4050-4b5d-59c9-08df34edec0e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|23010399003|7416014|376014|261026140227099003|4143699003|56012099006|261022105027099003|11063799006|10067099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: 3MkqxVVGbzlDlVTqOmJW3iGkaFkH00KRG8uyozR1PyZLZA87CXFDKvpcKysTGPa+i9ulBOQdxCM6vLnckxHr+SI5MUOfcuvYaPzi+XgRp8/ki/2tJ+cBF1dtS0wolfDVn7ibyjOhmtzMVGebcZe4zrLHBM+7HtGrPwXMi3wbp7baVHrkHeHetiqnZgWplgnkZQApR8gzQrxNtoahAvNAncTwGN5Z5C5W9qIJ/55Srv8keA2rsl80HLuLWucBF4lccu4pqfNuBsyN4mxdYDbzrIyWNwxY1uv4kL6frQhtsjs3fZuD7rFynVd1BfzGB9LfWGPT4egioqYXH7m4PTB+YXdXZz9hVT6mxq6Wgk8HZlbX0e+n3Kt/14dzTIk6Lvu8U/+put/TAcMxQbs314iYsFFPjfV4rcptEbXurLse0htODbSGiT8zWxd62pQvw0IWIb+i8oASJRTWpa2nUdcl/pa+vqaKnGULZmRreXrRuxgcqrxQkgkz4v4oO7MxcEW4jheYfwSu9hOAYRifauJtPM63lqesqw2sqzxuXxFCnPh2GlgGVTLP8xlN6jU9m2n+YE61Cvb4g+DXQAtMYjeDeqh6Q33FWs1z/J6s0Tdci71301beXk57fpVgXF02fuD4lSLwTcVDFAtAt+daIvHDbLpbH2CwUdmpw7igcmWxnj8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYNPR03MB10226.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(23010399003)(7416014)(376014)(261026140227099003)(4143699003)(56012099006)(261022105027099003)(11063799006)(10067099003)(22082099003)(18002099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aFczbmVYOXh3b2Q0VkxVVXJibUJkVkRmMFcrWjFwLzBEbmdBNldoRmpvMFR0?=
+ =?utf-8?B?dFNSOHF4ckV1aVNhaG1iSWtSRkhEenM2SmJobDBqN0RGbkQySHhFeHI0VVlv?=
+ =?utf-8?B?KzBrZ2NaZWMwbktyMnBXVWtWWXFpZm5RU1ZvV1NDdVVhK0VYV3lRc2ZMYk5w?=
+ =?utf-8?B?RnFyVDM5U014SE5IUVJJNHcyVUptNkpDcEEzMDdaZU5ZMEwvWlRhaEd2bHp1?=
+ =?utf-8?B?bG0rcWNxNEpwd2ZPSHp0SGwzYk5LZGtkb1ppdmpabTNGeEwvUzRGMkJNekM4?=
+ =?utf-8?B?RTBlc1VxcUpIVkRWdE5LVDBaL3VRRmtTUTNPOU9DSUNzUUUzT1FuVGpJWTVS?=
+ =?utf-8?B?bG9uSGFNbFc5ZnRNbEgwTmFoVTNBbWJFVVhmOHpUL1hKRnQzSHQrSU1hNUd3?=
+ =?utf-8?B?dGszR3d4WDRsOWc4ODMyTlhFdHZTaWZ6MUkxeE04QXVBVFpCdkxqR3VrUXhy?=
+ =?utf-8?B?ZnVFYlZ4M2FXN2N3OEdXYWFGdStONHhPYUV5Zm4zNDY0Si9wVmUreElSeC83?=
+ =?utf-8?B?MWJZVTFsRDF4a2IwdVQ1R0pRd3hrQmtqeXZMaTJnV3kvdVJDWHBoajB3OU4w?=
+ =?utf-8?B?N2JlYkVnNW1XTkROMkdhZmxTNXJIUWJtR1FaQ0c3d21oWWR5cEFWd05JUkVS?=
+ =?utf-8?B?RW43RzZSYkp0aHpMVWNha0ViSHJqeXpuZUdYSm1ybldBaTZNdFZtbUZTeGcv?=
+ =?utf-8?B?UDI3SEkwaG1HMnIyS3pabHVEOTF3aE9nM0Y0R3dsZ0VqTS81Y2pnVTlWaE9q?=
+ =?utf-8?B?TVkvUWxIOUJ5QU80RWFCb1orN3J2QTZ4VGlMT2liOHZua092Q1hSemVpT0to?=
+ =?utf-8?B?SThLTFhCQlRJV1NDbmIzWFBKM09Ga3F0bm1BUzZxK1pQWXZlL3V5UHJsMHN6?=
+ =?utf-8?B?K25lZ2ZsVUJueWJ2bWpYSFVDcFkzbzlaaWNDTEVIQmV5SWpiL0wzU2hIbVVH?=
+ =?utf-8?B?MzNLZ1ZDNkpWd200YWV4VlRPa2k2blBlenNBQ1dRNTZlOG1JWEdQaDUxalRY?=
+ =?utf-8?B?UGtqYXJkUUN4ZFR1ZnZ0ejNTaXVFd1htbnNJNjVBa2hlRzVLWFRENkwvT3R4?=
+ =?utf-8?B?VUpLeEpTbUpWVnRLTEp1SUZYWk53M1dFOWpFKy94cThFM3g2NXhWR253VTFD?=
+ =?utf-8?B?amhKYm9adTBLSEVRU25TV0tFVTVNUVh3MmxRc0padVJ2Z1ppajVJWVFwRTBu?=
+ =?utf-8?B?cWhQNE53VTFUTTJURGdRU01QL08zOFUydXlTVnY4V3M3bk95S1BSbUh3L2hN?=
+ =?utf-8?B?MUNVNTlsTXAzemxWT0ZhNWU2eHA1bkZnR1ZSSkFidEFqOUZWQ2VNaUlIODda?=
+ =?utf-8?B?bFIyZUk3YkxoLzNTRU5ndXVDUmQxV2Z0c2xpUlVjVUxVMEZGRWwxS3BwVC9V?=
+ =?utf-8?B?ZDFHTy9TQ0tpQ1Q3N05UZER4NTJscDAxMGhWTlFaVnVwNElvK011SVRhV1Ba?=
+ =?utf-8?B?alJxNUFscFpoeEhsU25HeUY2ZlpNNjBUWnUvTS92UmlVVGR3bk05akg1Z1Jr?=
+ =?utf-8?B?ejRuekwxNDhXVHZ2NkNWRXl5WUh3Y21BQkhPaCtJazVrQ3EvcnNQQlV6Y3V5?=
+ =?utf-8?B?Q1JYcUJiSVl1N09sTVAvYnpUVlZheWVUMk00L05EZmZsZ2hhWHJtcEpKTndI?=
+ =?utf-8?B?cGFuMXBrNDFjdFZDbFQ4U0NrVVRMeWhEVmc2TkxxRU9aQzBFQkJQemE1TjFr?=
+ =?utf-8?B?QVc2NUx6L0xGWnBOL3dXWExaK1BvMENGMFhaVnJTcGNNWU5DeHk2dFh6QVBK?=
+ =?utf-8?B?SjBXcjQ1c2txdHFrbzc0MG1OaTE5RkZLbFRxd05kd2lsblV6dnQ2Q0NPditT?=
+ =?utf-8?B?dHp0S0lzMzN1MW5FbHVXQjFLOHU0L0VWQUV4M0h4dXNjWmYvN0JBRlI5NVNE?=
+ =?utf-8?B?NHpYN1BTdWZTTUFEajZ3OUU3K1pURzlCdTBTc055dXB0MnBkSDdnVmdBc0t4?=
+ =?utf-8?B?SkZVNGlZdlRlV3lmM0FsUlZXaHlGbWNTckozQVcrQS9kUDVRWmtLSFJib3hT?=
+ =?utf-8?B?cTh3M1g3ZGdBT2pFOXpuTHpQV3dFN3NidzNDYnphM3Blc1pIRGUxa0lrWFFI?=
+ =?utf-8?B?cWl0TTk5dC9zNzg2MmM1N21QR1phdE0zTS93SndXeU4rU3gvUFRsY0VvSnVG?=
+ =?utf-8?B?RDlNUzJFWk1SMzFrRGVNTndGL21DZTZFWGY0NjFvYmhSSmpIUGN3STRYVHd0?=
+ =?utf-8?B?OE5qRldYRVNHZlBwSzJYeXA5NXdsT2pVWEFTV3h0NzlpOUEyTWpMZkg1NitR?=
+ =?utf-8?B?OXBzNU1xcHMyVFVTNGdlejBvbXJIZ3hkbXFLOGc2N0lEaFJXUnJMKzdNWng1?=
+ =?utf-8?B?TlNiYTg2Ukx0dklzVG9oV0IreU14NVc2QmRMb0YwQnBIZkU2d2I1QT09?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b681c25f-4050-4b5d-59c9-08df34edec0e
+X-MS-Exchange-CrossTenant-AuthSource: TYNPR03MB10226.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2026 12:20:58.3079
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NisFzRB5lyu0IQ1Dq50yh/W0LlXN7waGUgrr4fzO3cRhVyyHpfXPM00DQi5En8oKYcdHSwwR+yVHvyWnKGYrRnOtPZvaD5HuYQ5A2yse4AI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB8295
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261028_052106_923435_F19115FB 
+X-CRM114-Status: UNSURE (   8.80  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,242 +154,29 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Property names within if/then schemas currently go unchecked whether
-they have a type defined or match what's in the top-level schema. Adding
-a check finds a number of instances of typos. The typos result in the
-schema having no effect on constraints.
-
-With this, fix the mediatek,vcodec-encoder 'clocks' count constraint
-exposed by the name correction.
-
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../devicetree/bindings/clock/qcom,kpss-gcc.yaml     |  2 +-
- .../bindings/display/brcm,bcm2711-hdmi.yaml          |  2 +-
- .../bindings/display/msm/dp-controller.yaml          |  2 +-
- .../devicetree/bindings/display/msm/hdmi.yaml        |  4 ++--
- Documentation/devicetree/bindings/dma/fsl,edma.yaml  |  2 +-
- .../devicetree/bindings/gpio/loongson,ls-gpio.yaml   |  2 +-
- .../bindings/iio/adc/amlogic,meson-saradc.yaml       |  2 +-
- .../bindings/media/mediatek,vcodec-encoder.yaml      | 12 ++++--------
- .../devicetree/bindings/media/samsung,s5p-mfc.yaml   |  2 +-
- .../devicetree/bindings/pci/mediatek-pcie.yaml       | 12 ++++++------
- 10 files changed, 19 insertions(+), 23 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/clock/qcom,kpss-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,kpss-gcc.yaml
-index 88b7672123a0..ed347096df46 100644
---- a/Documentation/devicetree/bindings/clock/qcom,kpss-gcc.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,kpss-gcc.yaml
-@@ -62,7 +62,7 @@ then:
-     - '#clock-cells'
- else:
-   properties:
--    clock: false
-+    clocks: false
-     clock-names: false
-     '#clock-cells': false
- 
-diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-index c1cefd547391..fd4d598f6ff8 100644
---- a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-@@ -145,7 +145,7 @@ allOf:
-             - description: CEC stuck at low interrupt
-             - description: Hotplug connected interrupt
-             - description: Hotplug removed interrupt
--        interrupts-names:
-+        interrupt-names:
-           items:
-             - const: cec-tx
-             - const: cec-rx
-diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-index 094a6383bb77..f72d1b354007 100644
---- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-@@ -304,7 +304,7 @@ allOf:
-         clocks:
-           minItems: 6
-           maxItems: 6
--        clocks-names:
-+        clock-names:
-           minItems: 6
-           maxItems: 6
- 
-diff --git a/Documentation/devicetree/bindings/display/msm/hdmi.yaml b/Documentation/devicetree/bindings/display/msm/hdmi.yaml
-index dfec6c3480f3..02d27ccad024 100644
---- a/Documentation/devicetree/bindings/display/msm/hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/hdmi.yaml
-@@ -113,7 +113,7 @@ allOf:
-             - const: core
-             - const: master_iface
-             - const: slave_iface
--        core-vcc-supplies: false
-+        core-vcc-supply: false
- 
-   - if:
-       properties:
-@@ -136,7 +136,7 @@ allOf:
-             - const: core
-             - const: alt_iface
-             - const: extp
--        hdmi-mux-supplies: false
-+        hdmi-mux-supply: false
- 
-   - if:
-       properties:
-diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-index f609038e35ae..0260d177c7d0 100644
---- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-+++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-@@ -172,7 +172,7 @@ allOf:
-             const: fsl,imx7ulp-edma
-     then:
-       properties:
--        clock:
-+        clocks:
-           minItems: 2
-           maxItems: 2
-         clock-names:
-diff --git a/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
-index 69852444df23..07c8b233c6bd 100644
---- a/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
-+++ b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
-@@ -80,7 +80,7 @@ allOf:
-         - resets
-     else:
-       properties:
--        "#interrupts-cells": false
-+        "#interrupt-cells": false
-         interrupt-controller: false
-         resets: false
- 
-diff --git a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
-index 70ab4e140e71..535213ba0c5e 100644
---- a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
-@@ -92,7 +92,7 @@ allOf:
-     else:
-       properties:
-         nvmem-cells: false
--        mvmem-cel-names: false
-+        nvmem-cell-names: false
-         clocks:
-           minItems: 4
-         clock-names:
-diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-index 4505e66876a2..52f471a070d5 100644
---- a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-+++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-@@ -110,19 +110,15 @@ allOf:
- 
-     then:
-       properties:
--        clock:
--          items:
--            minItems: 1
--            maxItems: 1
-+        clocks:
-+          maxItems: 1
-         clock-names:
-           items:
-             - const: venc_lt_sel
-     else:
-       properties:
--        clock:
--          items:
--            minItems: 1
--            maxItems: 1
-+        clocks:
-+          maxItems: 1
-         clock-names:
-           items:
-             - const: venc_sel
-diff --git a/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml b/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
-index b46cc780703c..4488d5ca9b9c 100644
---- a/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
-+++ b/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
-@@ -174,7 +174,7 @@ allOf:
-             - const: mfc
-         iommus:
-           maxItems: 2
--        iommus-names: false
-+        iommu-names: false
- 
- examples:
-   - |
-diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
-index c009a7a52bc6..7c40361f95ec 100644
---- a/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
-@@ -127,7 +127,7 @@ allOf:
-         phy-names:
-           const: pcie-phy1
- 
--        power-domain: false
-+        power-domains: false
- 
-       required:
-         - resets
-@@ -150,7 +150,7 @@ allOf:
-           minItems: 2
-           maxItems: 2
- 
--        reset: false
-+        resets: false
- 
-         reset-names: false
- 
-@@ -171,7 +171,7 @@ allOf:
-         clocks:
-           minItems: 6
- 
--        reset: false
-+        resets: false
- 
-         reset-names: false
- 
-@@ -193,7 +193,7 @@ allOf:
-         clocks:
-           minItems: 6
- 
--        reset: false
-+        resets: false
- 
-         reset-names: false
- 
-@@ -215,7 +215,7 @@ allOf:
-         clock-names:
-           maxItems: 1
- 
--        reset: false
-+        resets: false
- 
-         reset-names: false
- 
-@@ -223,7 +223,7 @@ allOf:
- 
-         phy-names: false
- 
--        power-domain: false
-+        power-domains: false
- 
-         mediatek,pbus-csr: false
- 
--- 
-2.53.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+CuWcqCAyMDI2LzEwLzI3IDU6MDIsIE1hcmsgQnJvd24g5YaZ6YGTOgo+IFsgRVhURVJOQUwgRU1B
+SUwgXQo+Cj4+IFRoZSBTNCByZXF1aXJlcyBhZGRpdGlvbmFsIGNsb2NrIGNvbnRyb2wgYml0cyB0
+byBiZSB0dXJuIG9uIHdoaWxlIGVuYWJsZWQuCj4+IFRoZSBTNCBoYXMgOCBURE0gbGFuZXMsIGlu
+c3RlYWQgb2YgNCBvbiBwcmV2aW91cyBTb0MuCj4+IFVwZGF0ZSB0aGUgd2lkZ2V0IGFjY29yZGlu
+Z2x5Lgo+PiArI2RlZmluZSBDVFJMMF9CQ0xLX0VOQUJMRV9TSElGVCAgICAgICAgICAgICAgMzAK
+Pj4gKyNkZWZpbmUgQ1RSTDBfTUNMS19FTkFCTEVfU0hJRlQgICAgICAgICAgICAgIDI5Cj4gU2hv
+dWxkIHRoZXNlIGhhdmUgYSBfUzQgc3VmZml4PwpHb3QgaXQuCj4KPj4gK3N0YXRpYyBjb25zdCBz
+dHJ1Y3Qgc25kX3NvY19kYXBtX3dpZGdldCBzNF90b2Fjb2RlY193aWRnZXRzW10gPSB7Cj4+ICsg
+ICAgIFNORF9TT0NfREFQTV9NVVgoIlNSQyIsIFNORF9TT0NfTk9QTSwgMCwgMCwKPj4gKyAgICAg
+ICAgICAgICAgICAgICAgICAmc20xX3RvYWNvZGVjX211eCksCj4gU2hvdWxkIHRoaXMgaGF2ZSBh
+IGN1c3RvbSBtdXggZm9yIFM0LCBpdCBsb29rcyBsaWtlIHRoZSByZWdpc3RlciBiaXRzCj4gYXJl
+IGRpZmZlcmVudCwgYSBzaGlmdCBvZiAxOSBmb3IgUzQuClRoYW5rcy4gV2UnbGwgYWRkIGEgZGVk
+aWNhdGVkIFM0IG11eCBmb3IgdGhpcyBtYXBwaW5nLgoKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgt
+YW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21h
+aWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
