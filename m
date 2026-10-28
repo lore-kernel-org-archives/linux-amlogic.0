@@ -2,74 +2,64 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 769CE606A323
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Oct 2026 03:18:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 342C4606A31A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Oct 2026 03:19:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=U+3rUIDT;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fS0J2LXS
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YZCHpqln;
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=MzWVMjzN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=7T8thpn3L15ceenoXDy4lybXAM1R/koruQSKm3Jiy+c=; b=U+3rUIDTAMGMzUmpTiKjJIrZOl
-	k7ctCgbx5sc6liW76CJMkJhAO1Ed8eol4uKuPagSDqR4k/t7VUcJDds9BTios9VM840o2ARuQjQi+
-	OOJTb3tP9j739Dgyf/eP5ocVDenNJwK+iEIGTtWGP8rHxhIdys5oHG0EfJKLZ8FMRhIpNQv4tws2Y
-	WT8gfice6H+A8v9YaD2A76Mir5hRHOqmCNdu8haQaBt8SVRAzIM7SzPSi+tUdR3k7qyuvBEQwU2Qm
-	96hZ6c8H60cMg+JdIWksq4IVzTE1Ou3xKgkYHq3qmUHDsKME7otElEMk5L5sJM1eRrq5jmPCztkR2
-	WmM4EBYw==;
+	bh=xpK/9hpvtasx/HmiaChgXc2IUtI5v9ehsEstSjRzPzM=; b=YZCHpqlnuGrriyqJWlGsLmb6GH
+	zGi8K5ywclBVuuL9zGZ7vwqfc4q3CR+NytK+y9ItE7c6xb6PSq/Tp0eG01d7Hvow1tLbMesOCQGza
+	zWhKHDjHncj9kyI9EORjcYf4G10lgd1JtlHelcrylbpI0QkERZ3eHfi8TFhDueVnWhwnpChB1jd1v
+	zUB6bciOz9EUNkqcOJVOJyHK41fGnuBiTYsf17YlQrdCH6piuApDVlGgzxVCX54PNjrWveeR/0dgB
+	chTO0cSiskE2ieICPzdj0BLdn5LeR77ILwUShnzCBVox9oFjmE5PVDA+fPTybvqXD1r0NSTBDYVXX
+	/6HG68DQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xLuBb-00000006CLD-3AXW;
-	Wed, 28 Oct 2026 03:18:47 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xLuC6-00000006CQO-3wjl;
+	Wed, 28 Oct 2026 03:19:18 +0000
+Received: from m16.mail.163.com ([220.197.31.5])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xLuBa-00000006CL3-1Yf9;
-	Wed, 28 Oct 2026 03:18:46 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 546CB43987;
-	Wed, 28 Oct 2026 03:18:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E861D1F01825;
-	Wed, 28 Oct 2026 03:18:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793157525;
-	bh=0yRzutRdG3ui1l9nm3eCsz3wlEwTD8dCkFjiiMx3rLE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=fS0J2LXShzRXImGzjFcnR0OE0DW0HQ6xp8hYJPlJXja1o4iKrHYrqq8XYGfL/FgQC
-	 jmRcYwKu/RHbF7kve5zOTB73ZoT6rSep3vps1xwYvK+2Fpzxhv3UUX+UPHl9PadEd0
-	 Sac61LnaTMGHD3n8OqDqCqs+c+uHT19RuZk/SEyGL7PPu54SCMAzrreyL6ew/9adxx
-	 EeG7Tak4ucY+H6UXxMqkgpfWh6ugrGrQBbjhQq8/HrxyEANQefBNWmDuwYnuJ2dilf
-	 BZw/XIpnRhSLF6z3QxVDkLiM1AI9/5elrI6sFXeF4XYuOV0Wb64pzXoDQ4J5IMgKz2
-	 C2FpFaAUAEsvg==
-Date: Wed, 28 Oct 2026 03:18:34 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Rupesh Majhi <zoone.rupert@gmail.com>
-Cc: Alex Lanzano <lanzano.alex@gmail.com>, Andy Shevchenko
- <andy@kernel.org>, Benson Leung <bleung@chromium.org>, David Lechner
- <dlechner@baylibre.com>, Guenter Roeck <groeck@chromium.org>, Jagath Jog J
- <jagathjog1996@gmail.com>, Javier Carrasco
- <javier.carrasco.cruz@gmail.com>, Jean-Baptiste Maneyrol
- <jean-baptiste.maneyrol@tdk.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Jinseob Kim <kimjinseob88@gmail.com>, Kevin Hilman <khilman@baylibre.com>,
- Lorenzo Bianconi <lorenzo@kernel.org>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Matti Vaittinen
- <mazziesaccount@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Remi Buisson
- <remi.buisson@tdk.com>, chrome-platform@lists.linux.dev,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, Marco Elver <elver@google.com>, Bart Van
- Assche <bvanassche@acm.org>
-Subject: Re: [PATCH v4 2/9] iio: core: annotate the conditional mode claims
-Message-ID: <20261028031834.2ff7e6bf@jic23-hlaptop>
-In-Reply-To: <20261027124954.110697-3-zoone.rupert@gmail.com>
-References: <20261027124954.110697-1-zoone.rupert@gmail.com>
-	<20261027124954.110697-3-zoone.rupert@gmail.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	id 1xLuC3-00000006CPx-3ZJ3
+	for linux-amlogic@lists.infradead.org;
+	Wed, 28 Oct 2026 03:19:17 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=d0TnDNXpTSOKkU/wZ+OsWRKYPI+WZH1qEV3bCcO11Io=;
+	b=MzWVMjzNB+Aunb0I6CPgaT0gJpqVlQGRp7urPYKPy4M8wXJ1rzLA/o2GdiMEvN
+	pwctFPB09l1Mz1hQljpkTWCaq1qZtWMd8UaJwDn+0PPigoQmDB19uiRvV18FjfPX
+	742AEZYlU0YChS4UdCouOmDguwXejJdhucENZ7cLvJV/o=
+Message-ID: <3773fc58-a6ab-4f8d-a9a1-c865217afe84@163.com>
+Date: Wed, 28 Oct 2026 11:18:51 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 01/16] PCI: dwc: Add pcie_cap field and caching helper
+To: sashiko-reviews@lists.linux.dev
+Cc: imx@lists.linux.dev, linux-amlogic@lists.infradead.org,
+ linux-pci@vger.kernel.org, Frank.Li@kernel.org, neil.armstrong@linaro.org
+References: <20261028030652.2917756-1-18255117159@163.com>
+ <20261028030652.2917756-2-18255117159@163.com>
+ <sashiko-outbox-187403@kernel.org>
+Content-Language: en-US
+From: Hans Zhang <18255117159@163.com>
+In-Reply-To: <sashiko-outbox-187403@kernel.org>
+X-CM-TRANSID: PSgvCgCn8AehaeFqDd1zCQ--.33353S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxuryDZw4xCF1ruryxCrWktFb_yoW5Wr17pa
+	9xJFyYkFWUJrW7ZFn2y3WrXr13tasxAFW7Gws3GrnavFy2yr17GF4YkrW3t3Z7GrWI9ryj
+	krWaqr9ruFs5JFDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UzT5LUUUUU=
+X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbC7AGVOWrhaaGG1wAA3T
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261027_201916_254991_55DAAACA 
+X-CRM114-Status: GOOD (  19.60  )
+X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,170 +69,94 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_2 autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-7.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	FROM_LOCAL_DIGITS,FROM_LOCAL_HEX,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 27 Oct 2026 14:49:47 +0200
-Rupesh Majhi <zoone.rupert@gmail.com> wrote:
 
-> iio_device_claim_direct() and iio_device_try_claim_buffer_mode() hold
-> the mode lock only when they return true, but carry no annotation. With
-> context analysis on, each caller that releases the claim is reported
-> for releasing a lock it never took.
+
+On 10/28/26 11:15, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> - [Medium] PCI: dwc: unconfirmed offset returned in dw_pcie_get_pcie_cap()
+> --
 > 
-> Mark both __cond_acquires(true, indio_dev), the token that
-> __iio_dev_mode_lock() acquires. Sparse no longer reads these
-> annotations, so drop the comment about it.
-Hi Rupesh,
-
-The history of the definitions of these being in the header at
-all was to make them visible enough to sparse that it could
-figure out the locking and 'mostly' give good coverage.
-
-Given that's no longer necessary, maybe it makes sense to make
-the implementations private. It doesn't really help us that
-much as those nasty helpers are still needed for the
-rarely used guard that claims the current mode.
-
-So maybe it's worth this maybe not...  Anyhow, perhaps one for
-another day given I don't think it helps this effort.
-
-diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-core.c
-index e9a5d1d905c1..04c194bdda87 100644
---- a/drivers/iio/industrialio-core.c
-+++ b/drivers/iio/industrialio-core.c
-@@ -2269,6 +2269,33 @@ void __iio_dev_mode_unlock(struct iio_dev *indio_dev)
- }
- EXPORT_SYMBOL_GPL(__iio_dev_mode_unlock);
- 
-+bool iio_device_claim_direct(struct iio_dev *indio_dev)
-+{
-+       __iio_dev_mode_lock(indio_dev);
-+
-+       if (iio_buffer_enabled(indio_dev)) {
-+               __iio_dev_mode_unlock(indio_dev);
-+               return false;
-+       }
-+
-+       return true;
-+}
-+EXPORT_SYMBOL_GPL(iio_device_claim_direct);
-+
-+bool iio_device_try_claim_buffer_mode(struct iio_dev *indio_dev)
-+       __cond_acquires(true, indio_dev)
-+{
-+       __iio_dev_mode_lock(indio_dev);
-+
-+       if (!iio_buffer_enabled(indio_dev)) {
-+               __iio_dev_mode_unlock(indio_dev);
-+               return false;
-+       }
-+
-+       return true;
-+}
-+EXPORT_SYMBOL_GPL(iio_device_try_claim_buffer_mode);
-+
- /**
-  * iio_device_get_current_mode() - helper function providing read-only access to
-  *                                the opaque @currentmode variable
-diff --git a/include/linux/iio/iio.h b/include/linux/iio/iio.h
-index ca91f5a64626..b9e4888e18bc 100644
---- a/include/linux/iio/iio.h
-+++ b/include/linux/iio/iio.h
-@@ -718,18 +718,7 @@ void __iio_dev_mode_unlock(struct iio_dev *indio_dev) __releases(indio_dev);
-  *
-  * Returns: true on success, false on failure.
-  */
--static inline bool iio_device_claim_direct(struct iio_dev *indio_dev)
--       __cond_acquires(true, indio_dev)
--{
--       __iio_dev_mode_lock(indio_dev);
--
--       if (iio_buffer_enabled(indio_dev)) {
--               __iio_dev_mode_unlock(indio_dev);
--               return false;
--       }
--
--       return true;
--}
-+bool iio_device_claim_direct(struct iio_dev *indio_dev) __cond_acquires(true, indio_dev);
- 
- /**
-  * iio_device_release_direct() - Releases claim on direct mode
-@@ -753,18 +742,8 @@ static inline bool iio_device_claim_direct(struct iio_dev *indio_dev)
-  *
-  * Returns: true on success, false on failure.
-  */
--static inline bool iio_device_try_claim_buffer_mode(struct iio_dev *indio_dev)
--       __cond_acquires(true, indio_dev)
--{
--       __iio_dev_mode_lock(indio_dev);
--
--       if (!iio_buffer_enabled(indio_dev)) {
--               __iio_dev_mode_unlock(indio_dev);
--               return false;
--       }
--
--       return true;
--}
-+bool iio_device_try_claim_buffer_mode(struct iio_dev *indio_dev)
-+  __cond_acquires(true, indio_dev);
- 
- /**
-  * iio_device_release_buffer_mode() - releases claim on buffer mode
-
-
+> commit c6fcd840cdb57dd351ea1787cae915ad3164fb13
+> Author: Hans Zhang <18255117159@163.com>
 > 
-> Signed-off-by: Rupesh Majhi <zoone.rupert@gmail.com>
-> ---
-> Cc: Marco Elver <elver@google.com>
-> Cc: Bart Van Assche <bvanassche@acm.org>
+> PCI: dwc: Add pcie_cap field and caching helper
 > 
->  include/linux/iio/iio.h | 9 ++-------
->  1 file changed, 2 insertions(+), 7 deletions(-)
+> This commit adds a pcie_cap field to struct dw_pcie and introduces a
+> dw_pcie_get_pcie_cap() helper that lazily looks up and caches the PCI
+> Express Capability offset on first use once confirmed via a DBI read-back.
 > 
-> diff --git a/include/linux/iio/iio.h b/include/linux/iio/iio.h
-> index 9b63785d5aec..ca91f5a64626 100644
-> --- a/include/linux/iio/iio.h
-> +++ b/include/linux/iio/iio.h
-> @@ -707,13 +707,6 @@ int iio_push_event(struct iio_dev *indio_dev, u64 ev_code, s64 timestamp);
->  void __iio_dev_mode_lock(struct iio_dev *indio_dev) __acquires(indio_dev);
->  void __iio_dev_mode_unlock(struct iio_dev *indio_dev) __releases(indio_dev);
->  
-> -/*
-> - * Helper functions that allow claim and release of direct mode
-> - * in a fashion that doesn't generate many false positives from sparse.
-> - * Note this must remain static inline in the header so that sparse
-> - * can see the __acquires() and __releases() annotations.
-> - */
-> -
->  /**
->   * iio_device_claim_direct() - Keep device in direct mode
->   * @indio_dev:	the iio_dev associated with the device
-> @@ -726,6 +719,7 @@ void __iio_dev_mode_unlock(struct iio_dev *indio_dev) __releases(indio_dev);
->   * Returns: true on success, false on failure.
->   */
->  static inline bool iio_device_claim_direct(struct iio_dev *indio_dev)
-> +	__cond_acquires(true, indio_dev)
->  {
->  	__iio_dev_mode_lock(indio_dev);
->  
-> @@ -760,6 +754,7 @@ static inline bool iio_device_claim_direct(struct iio_dev *indio_dev)
->   * Returns: true on success, false on failure.
->   */
->  static inline bool iio_device_try_claim_buffer_mode(struct iio_dev *indio_dev)
-> +	__cond_acquires(true, indio_dev)
->  {
->  	__iio_dev_mode_lock(indio_dev);
->  
+>> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+>> index 6d788aa000117..dede6b3966585 100644
+>> --- a/drivers/pci/controller/dwc/pcie-designware.h
+>> +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> [ ... ]
+>> @@ -832,6 +834,42 @@ static inline void dw_pcie_dbi_ro_wr_dis(struct dw_pcie *pci)
+>>   	dw_pcie_writel_dbi(pci, reg, val);
+>>   }
+>>   
+>> +/**
+>> + * dw_pcie_get_pcie_cap() - Return the PCIe Capability offset
+>> + * @pci: DWC instance
+>> + *
+> [ ... ]
+>> + * Return: the offset of the PCIe Capability, or 0 if it could not be
+>> + * found or has not been confirmed yet.
+>> + */
+>> +static inline u8 dw_pcie_get_pcie_cap(struct dw_pcie *pci)
+>> +{
+>> +	u8 cap = READ_ONCE(pci->pcie_cap);
+>> +
+>> +	if (!cap) {
+>> +		cap = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+>> +		if (cap && dw_pcie_readb_dbi(pci, cap) == PCI_CAP_ID_EXP)
+>> +			WRITE_ONCE(pci->pcie_cap, cap);
+>> +	}
+>> +
+>> +	return cap;
+>> +}
+> 
+> [Severity: Medium]
+> In drivers/pci/controller/dwc/pcie-designware.h, the kernel-doc for
+> dw_pcie_get_pcie_cap() states that it returns 0 if the capability could not
+> be found or has not been confirmed yet.
+> 
+> However, when pci->pcie_cap is 0 and transient DBI data causes
+> dw_pcie_find_capability(pci, PCI_CAP_ID_EXP) to return a non-zero offset cap
+> while the confirmation check dw_pcie_readb_dbi(pci, cap) == PCI_CAP_ID_EXP
+> evaluates to false, pci->pcie_cap is left as 0, but the unconfirmed non-zero
+> cap is still returned to the caller.
+> 
+> Callers that guard DBI writes on a non-zero return (such as
+> rockchip_pcie_enable_l0s()) or cache a non-zero return in driver state (such
+> as tegra_pcie_dw_host_init() setting pcie->pcie_cap_base when
+> !pcie->pcie_cap_base) will then consume or permanently store the unconfirmed
+> offset.
+> 
+> Should dw_pcie_get_pcie_cap() return 0 when the confirmation read-back fails,
+> or should the kernel-doc comment be updated to match the implementation?
+> 
+
+Hi,
+
+We have already replied to Bjorn before. According to the specification, 
+the value of pcie_cap is not equal to 0.
+
+
+Best regards,
+Hans
+
+
 
 
 _______________________________________________
