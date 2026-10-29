@@ -2,96 +2,149 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EDD3606A31C
-	for <linux-amlogic@archiver.kernel.org>; Wed, 28 Oct 2026 23:47:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE414606A31C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2026 02:56:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ulaSjrHj;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=f/4cLrJ4
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EXEqohAD;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=amlogic.com header.i=@amlogic.com header.a=rsa-sha256 header.s=selector1 header.b=YfL6swxf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=7HNcZLhw8/2aVbNyzh/Rv/ZpIrmFCOINNwlwqBie5N8=; b=ulaSjrHjOA9R9FmmZSp7nglYCX
-	gI0V07Gn62J+spblx4irPb+1WJ2ASPYrv1X0OlD7Cm+iYADqFR9k9FpUQgt3gzZHtptWLI0yEbeic
-	qAUpCd6EwolD1tVP8mI0FNKnb0q0XwkYfRg/1d/aSKpt2tMR/mFW7HFgeLZIlyyNj8WYk0GtUDG2Z
-	56cP5IY/Hr2v7aTM2hS0C+ANXGc/yQnnIIyTV23BJlGL2EiwP3b4c+o9yUTdYmAguTFgr4Sh2WfUb
-	nyb6u45y9Qgsd/m+z6yFLQSnbZDFsA7I0xjXKs2aDU4cel0OH9dUTE24c0QgdduCnW5+Oc/q7m63P
-	NNj3Y49g==;
+	bh=8hiwMs3tnecXexXYBAz6T2PzpGh+7u/jCJ2U2FrdJBY=; b=EXEqohAD2tAA5ktgg08NuC8VfZ
+	ZVrUhTZWLe7+6tWVOtO2OLe4f/y4GZGudZBMeDKMFBGEsygNZ3NCnWvVTLXRvRRQNCWochrIvnnlc
+	IT+4lpv0c6eG/VfvVLF1mIiAUonxcpQ2fjHfe2b5oG+cC/dYE7GibqkNJDXDPsQDQHEwuFrp0/448
+	dw+83hoQCoF9Qs6jFLidiAdUCBrODb/xKjKfZHm6tZdkL4xiYnM11caIbgiMhQ3aAhbkheFgToza0
+	+d2iTtolLRt1wx4OtPRexr2IriHrOO06oAHoAuODEbevH4EMK7E39eaZCjIHghWiAVfnIhmzxfbx2
+	JLPHgztw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMDMR-000000084YI-1Lus;
-	Wed, 28 Oct 2026 23:47:15 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xMGJb-00000008Dr4-44Ox;
+	Thu, 29 Oct 2026 02:56:31 +0000
+Received: from mail-japaneastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c405::7] helo=TYDPR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMDMP-000000084Y3-0tbR;
-	Wed, 28 Oct 2026 23:47:13 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 2D1A443E76;
-	Wed, 28 Oct 2026 23:47:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AF611F01825;
-	Wed, 28 Oct 2026 23:46:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793231232;
-	bh=neOivWsfnHbQR3N6AKh/3PoW3tIDMGi3k5qezfAAwY4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=f/4cLrJ4TGztgvmr14VBy6t7mBV8AM+uDlLfYVyShzm7APQvQBIiI0EDLgRGe0v7z
-	 LrPP1CYrALPm5Q04g1ErXIwYEqxpncy7n/vcasP5VS7fxapXxWQMRvQ3eLtXYsxC4u
-	 pO80RH6CgwyVic6xTA3E8YyB/WqO22L05DI08uL25eIqchvragaWR3rowAwilUDAAt
-	 Xh6oVb4uczfsq1lW3toZ9+v63X4qnWgC+a2EdGz7QxrKclbDs6hRlAucgG9mlmv1zz
-	 0pRXR0bqvqejkSM04r2n2wZ9K5nHoWUM+gUptsMAuOcN5EfgGaQV+XNpzRAcoIe2zH
-	 rDwATDPNl5e/Q==
-Date: Wed, 28 Oct 2026 23:46:52 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
- Brian Masney <bmasney+clk@redhat.com>, Jerome Brunet
- <jbrunet+clk@baylibre.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Florian Fainelli
- <florian.fainelli@broadcom.com>, Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Rob Clark
- <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>, Jessica Zhang
- <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, Marijn Suijten
- <marijn.suijten@somainline.org>, Frank Li <Frank.Li@nxp.com>, Vinod Koul
- <vkoul@kernel.org>, Yinbo Zhu <zhuyinbo@loongson.cn>, Linus Walleij
- <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, David Lechner
- <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
- Shevchenko <andy@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Tiffany Lin
- <tiffany.lin@mediatek.com>, Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
- Yunfei Dong <yunfei.dong@mediatek.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Marek Szyprowski <m.szyprowski@samsung.com>, Andrzej
- Hajda <andrzej.hajda@intel.com>, Ryder Lee <ryder.lee@mediatek.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?UTF-8?B?V2lsY3p5?=
- =?UTF-8?B?xYRza2k=?= <kwilczynski@kernel.org>, Manivannan Sadhasivam
- <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Matthias Brugger
- <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Christian Marangi
- <ansuelsmth@gmail.com>, Eric Anholt <eric@anholt.net>, Kuogee Hsieh
- <quic_khsieh@quicinc.com>, Peng Fan <peng.fan@nxp.com>, Aakarsh Jain
- <aakarsh.jain@samsung.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, freedreno@lists.freedesktop.org,
- imx@lists.linux.dev, dmaengine@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-media@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: Fix property name typos in if/then schemas
-Message-ID: <20261028234652.0d075035@jic23-hlaptop>
-In-Reply-To: <20261028120216.2657397-1-robh@kernel.org>
-References: <20261028120216.2657397-1-robh@kernel.org>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	id 1xMGJY-00000008Dpt-0mzr;
+	Thu, 29 Oct 2026 02:56:30 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=qf0gv2qQslJAk7lQWjBteK7H2SC5wuPrrJvzt1blBs1Gu6GKeCfA86jCtxHmvhBzd0yQ1GELsoZhu0hMf5ol6KZN2Zu3x0wCIepn6WGApB6UEqqNoGJ9Gj2X1vOberNK6gwNjUcl/32JtVC1SBKn74iVBRib4wDJcZVr9G26ih/zT3Z0a1Nb64Jdf0a6ZO5sY6oZ9lv8E3+66FilnBmEU8V5mOaCtSVdcZ1NQLP3t8m2OjWG9zDRUWLz2Y3vwWgJQ4BoAMB5iCXIFzdFLHYtq1c4b5cVtfI1LJjLq1qvhv4i9HpeO1YC9vF3lQfCz0E8yo4akUDTd5ASLH+9N7+K7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hnrs2FdnwHWCgKg0SmW1qSsndTGKhMKWtE98bO4UpLg=;
+ b=bVS/IKjSK30obqA3O0OREyy9kpX4FNjFmn3Q8Je2VLF59xJS6PXjOLgdBDb1fC8EFLh0u9etAmzKEmEV9uN1aQu4AQklHnQ+28ihfakty6zZ+Lej+hayJEQoX/Zw9XoCeJ/xA4BXVoffmX3qiCmo5kyhpMgtFOHZh2K7wMSj8Pl2oHrrxYTpyLbk04Eeceq5lW2jlgmCzl7QTsfHk7E1j71CyuaTLJOqI4cJq8RGbCyORx7Z/lwae/0JUkFVL+DbMe/h7ZjF7UlZGzGUhP3m28xQ5srtyPk7rw83LO0TMrw49GkqWj1OiEC2m6QpLt/iU77XCAjsgVAFwg/lGZct2Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hnrs2FdnwHWCgKg0SmW1qSsndTGKhMKWtE98bO4UpLg=;
+ b=YfL6swxfD17sRy2P8FLRzlfzyDz9rM+U7NUK3RUl/La+sOpNmLIj6c3KdYUYmqgdQ+sYZiy54RF7E8VsSm6Hmt2Pa7Vp4s72U0rNlDPV+lgupubUZ14BkAPnTj5lXapTNTeuoAX5cpjRpmvRniW/Zn4v9iVu1xDQavplxyjlZmff/6iAXrOAYZLXmvg0g525Fjmf6WVT60/cfZHryK+2piUtwTC3hPg6yujVMe/hjH2z7oz7xdftSCcc7vH/Zb0HDYF4T+pdBJkJJ9zNNTQBPYqRmhluI+b3WTKkc8kaiQN89Hy6npDmTBKYCHpv3W0qnxEJfFB1wkNv6Kkw4/kddQ==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TYNPR03MB10226.apcprd03.prod.outlook.com
+ (2603:1096:405:3c1::21) by OSNPR03MB10495.apcprd03.prod.outlook.com
+ (2603:1096:604:47d::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.8; Thu, 29 Oct
+ 2026 02:56:19 +0000
+Received: from TYNPR03MB10226.apcprd03.prod.outlook.com
+ ([fe80::ff5:e524:cf10:5d7]) by TYNPR03MB10226.apcprd03.prod.outlook.com
+ ([fe80::ff5:e524:cf10:5d7%6]) with mapi id 15.21.0546.021; Thu, 29 Oct 2026
+ 02:56:19 +0000
+Message-ID: <6009f35b-b1e0-458c-85d4-08e4bfb1db86@amlogic.com>
+Date: Thu, 29 Oct 2026 10:56:16 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 1/5] dt-bindings: clock: meson: Add audio power domain
+ for S4 soc
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ jian.xu@amlogic.com, shuai.li@amlogic.com, zhe.wang@amlogic.com
+References: <20261021-audio_drvier-v7-0-2b9aeae9cb8a@amlogic.com>
+ <20261021-audio_drvier-v7-1-2b9aeae9cb8a@amlogic.com>
+ <20261028-sparkling-objective-cricket-a428bd@quoll>
+From: Jiebing Chen <jiebing.chen@amlogic.com>
+In-Reply-To: <20261028-sparkling-objective-cricket-a428bd@quoll>
+X-ClientProxiedBy: TY4P286CA0047.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:405:36e::16) To TYNPR03MB10226.apcprd03.prod.outlook.com
+ (2603:1096:405:3c1::21)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYNPR03MB10226:EE_|OSNPR03MB10495:EE_
+X-MS-Office365-Filtering-Correlation-Id: c1b7f319-7190-4a34-2118-08df3568353c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|23010399003|7416014|18002099003|22082099003|56012099006|11063799006|10067099003|4143699003|261028144727099003|261021123027099003|261021121427099003|261022105027099003|261009223027099003|261026121527099003|261026140227099003;
+X-Microsoft-Antispam-Message-Info: qHvFRTiC5JOur0ghM9aekSI9hudhyLMr4Iy7Li46BFhxxKPzzovpy46TTjLMhaIHvJJign2brdLwsjglvE/20pl8E3h33CMB+eu57smHlhD4wnxdsjiuwEA1p0hMucj+tJEEYzPoY3dLmI9H21tPchvVhIetxvkIqzK073c994JgSgjAxxK2J5rsyux5B0F244JMgzQHKGMmIT9kH1irJnUVSN/rjrPwSmmAkYtb3GqnVr+s1M6Skn80LD1PadMLwoRY4U8Ueo72JYOVdq4v52kLG/Ecmr85OIf14DeUPVKFJvJCT+pQA5A3ukxUju7Z6GbSGiNen1+r/p9fgLv2M9hE8t6hsyzFw/XImYfQsD/h/pldZL3pywjuS2iBaMC+IK1oXItjBKDRooB0zsy0lr/4Ml520SVfgLQipidVjT99RJSmLBfmHjJ3h/JKE5DJFqDo337YXMHrspw4EVWJHkyGBTlU+gmswH/TO5/oLkVQFtmncJiQk04OskgmGduW5znOne2YfHPsUPJhXqBHYyAWuF7IzRZdEIkiXh+dwFL4sYx6nDJxRnzDCifNrPLe/mvBLWhgIW/ljzzeIsLTPBPQSO6Yx0gKwfbJCxjGjOMsygDnPAN2ufyibFHLwrFHloy/RSq6PsZAK9/OsiILGJwuKnuhvz1QE15ZsipCzxE=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYNPR03MB10226.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(23010399003)(7416014)(18002099003)(22082099003)(56012099006)(11063799006)(10067099003)(4143699003)(261028144727099003)(261021123027099003)(261021121427099003)(261022105027099003)(261009223027099003)(261026121527099003)(261026140227099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?d0ZvUFpxMWk0NUdheE9HMmw2MTZYT3ZlSlorUnQzaUdaRFhha2RnR2t0Slg0?=
+ =?utf-8?B?eERmWUtXbnV5dlZ3cVoyRDNjcDNsL0tuVEtxZDM2NHBoSDQ5dnJraDJjU3pO?=
+ =?utf-8?B?RVRrdWtBd1ZESVdzUjhJNmVaKzNaUzhYYzRyYnhKR2lJSVZMUnl6bmx0WS9z?=
+ =?utf-8?B?K0puTGdBTnduNkVqVFJsZ2ZPOU1obHNNcjU2ZzQzeXFvT0lNK24wSUY1STlq?=
+ =?utf-8?B?SGhwN3cxanBHMlZqMUdTaGRCQVpKcEM2WWt2b2ZGY2lITjN0c1BNVkZ4dXlP?=
+ =?utf-8?B?c0dUT290UHZsMExBd1BmcTdMOXJyTHJ1N3M1TFFlTXZvdkd3NktDbWN4Z3lM?=
+ =?utf-8?B?Q2NDaWdXSkNrd1RvdmNIRGRiVG9pamdpTVFTajV1dzJ1Um5QcEp2VEFDTzBB?=
+ =?utf-8?B?c0FHeEhFMXZ0amhjQ0dPam1TRTdZUTl6bkdTQXliYnFkMnd5dVZ5RWQzcHBk?=
+ =?utf-8?B?bXdSOVJQNnZobXVlb3BmS3pKSXVydW5DWHZ5NVFLaEF2L1o0SzRqaUJzRmpM?=
+ =?utf-8?B?THRjZHhUQWYrcWcvbE5BUU1mQXFLZUlrWXRoekNvYU8wZ1p3YlRNdHFWZTZO?=
+ =?utf-8?B?QUJjblJOaEhpREJhTDNvNTl5dmRzNm5UalRQenc5MHlnc3E3RUdDZmtXc1kz?=
+ =?utf-8?B?V3ZwVmcvclRYM3RiWjEwNkM0WVRVN1VFT2ZtNXhoVFczVmRxUTdpZ2o5MjZZ?=
+ =?utf-8?B?dE5maHFWSXNsSjE3YmY2dVJqZys1K3dkS2szOTRZdGN0UHBQREplaGRmMmNN?=
+ =?utf-8?B?Vm9YKzIxK1VvdWpJWEFYRnMxbFUrQ3F0dHhDMGxNWTdPalg1NUViYksxSk94?=
+ =?utf-8?B?Z2tBYnRmQ1RHL1hqWlZiU2pQZDZnTlYxSCtUZmhiZVB1NE9KMExrakdjK2c3?=
+ =?utf-8?B?RzJzL2VpK0dqNzdoeWtrWmtNc2xGMkpsSlZmQXFOYTRaUllyelROWjBHZ050?=
+ =?utf-8?B?MTVncjcrdS8xNklzcDVpWjdiZEd0SDNxQm9NbElnUEpXVC84S2dqRWpveEVv?=
+ =?utf-8?B?NDZLSzA3Z21ET0tUblducFNza2hBVGIrZjByK3F3dldvNWlDb1ZIRzdxaGFU?=
+ =?utf-8?B?dlVBZ1VVUS9kT01Da2xqVlF0SWcwdk1tUHQrbEhHSlZPV3ZPSXJBMjFrdmNT?=
+ =?utf-8?B?ZjM2ZVRHbmora1JBRktwSGtWOS9JTEhlbnpVUEROdHYxNUQrSytpekJmVTd5?=
+ =?utf-8?B?ZW9Zc20yRXlVbk5jOCtHWFdCZUpRbDJtb09CM1lqYnVoM2U3WlMrSElxOVRk?=
+ =?utf-8?B?UC9qbExwM1lwWHN2S0dLOTRCQ2hRbDd4NFVERTJMclViL0RYZTJPcVVWR3NJ?=
+ =?utf-8?B?SDZtd0J3cjZHbmtlY1d5aHVSTDZrN3VnSFdwMlJwNnljajhUL0pKNkF4cE5p?=
+ =?utf-8?B?QUsvRTg5bGxIa1owUnpBcGFxU0hOTm5vV0lFRlNmc1paTlpMK2lpOXpiUVlL?=
+ =?utf-8?B?VDk0SG5WWW4rRzg3Rlk0dGZBNkd0bXA2N0IwSU9ad1BvdE80TElkZWxYUlY3?=
+ =?utf-8?B?VUZJVlNrNThvanUvK0R3U0xGVElDR3ovZVhic2Nsc1Z6M2hXQXl0S2d6Zkh6?=
+ =?utf-8?B?Y1FZbWlJdFpWUlMwbzdaT2NNaVdkZnBQV0RkRnZvNmFFNG94TzRTUnZWNjRO?=
+ =?utf-8?B?cTZQbzVCcExaZ3gwYmN0U2NpN1Y4Y1hheW9KQ1U1MlBHK25WdU8rVUQ2ejRq?=
+ =?utf-8?B?SlVOM2E1NDFHNi9EaUxQOWRnYmYvOU5Cb2pYc1JFeS9JNVZMNk5WSWszNURr?=
+ =?utf-8?B?RThnUzFGUnlHNjlPQUNUOGd3bFdQTlZjWjMrZ1JzVFIybE9vTmJMejVwVnhI?=
+ =?utf-8?B?d2dwaEF0Z3pLWExvOGpEaGVSTlUySW1UOFhEWDhwOU5hcGxSUDF1NGZEVHdx?=
+ =?utf-8?B?RkJrTFUvSkNBR053WVFwL2lySzV2SzlzeWNQck5lQjdzUnp5VXlScVNJVVJU?=
+ =?utf-8?B?UzI1ZFc4Y0haOE5XbGxWdy96dU9BcVZOR3cxMldzelVnSTZ5VUFlNHVsaUtk?=
+ =?utf-8?B?dFlXdjl4YVJONjYwRjR6THcvdXFGbWtoNjY5Um1HR2c4M1RqVnpNVllwNU9a?=
+ =?utf-8?B?RGxKV0gyaXZicS9TOWZ5S0JSbDYzM0ZaZGhCcTVsaE9XT0FEdFhEWmZ4ZDdF?=
+ =?utf-8?B?TTFhTEJoREZkL3ZBQlRRd29YK3VwajladmV3QTNDcDIzcFY3M3BIbkZ3Q1RM?=
+ =?utf-8?B?TVRVaUNQaUF6QUdvRlJIdEs4Skx0dngzaytRZHJlR3NYMFVaVTVCbE1BRm5o?=
+ =?utf-8?B?dTBZS1hvK1Vtd3BGKzN6a25sbXpxTzQvcEhnY3RyZk1vYmdSQ2ZYbDRMSnJW?=
+ =?utf-8?B?aktjem9xMlBncnpBTXY0NEFVZitqRzJVWkNvOUdtamFRUlZUTGtwQT09?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c1b7f319-7190-4a34-2118-08df3568353c
+X-MS-Exchange-CrossTenant-AuthSource: TYNPR03MB10226.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2026 02:56:19.7471
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: KeIDULntJPEm8AxruLSJTXtTpGOmVh15ph24RGqvqzqUQh4PrwzWfMQGC1SBa4gvopYUkUFQ84CVYMtlT8OK1vs6WuUAmW/uRg63DpaoBgI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSNPR03MB10495
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261028_195628_633765_1AB9B2D5 
+X-CRM114-Status: GOOD (  12.80  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,249 +154,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_2 autolearn=ham autolearn_force=no
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, 28 Oct 2026 07:02:12 -0500
-"Rob Herring (Arm)" <robh@kernel.org> wrote:
-
-> Property names within if/then schemas currently go unchecked whether
-> they have a type defined or match what's in the top-level schema. Adding
-> a check finds a number of instances of typos. The typos result in the
-> schema having no effect on constraints.
-> 
-> With this, fix the mediatek,vcodec-encoder 'clocks' count constraint
-> exposed by the name correction.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  .../devicetree/bindings/clock/qcom,kpss-gcc.yaml     |  2 +-
->  .../bindings/display/brcm,bcm2711-hdmi.yaml          |  2 +-
->  .../bindings/display/msm/dp-controller.yaml          |  2 +-
->  .../devicetree/bindings/display/msm/hdmi.yaml        |  4 ++--
->  Documentation/devicetree/bindings/dma/fsl,edma.yaml  |  2 +-
->  .../devicetree/bindings/gpio/loongson,ls-gpio.yaml   |  2 +-
->  .../bindings/iio/adc/amlogic,meson-saradc.yaml       |  2 +-
-
-For IIO
-
-Acked-by: Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>
-
->  .../bindings/media/mediatek,vcodec-encoder.yaml      | 12 ++++--------
->  .../devicetree/bindings/media/samsung,s5p-mfc.yaml   |  2 +-
->  .../devicetree/bindings/pci/mediatek-pcie.yaml       | 12 ++++++------
->  10 files changed, 19 insertions(+), 23 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,kpss-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,kpss-gcc.yaml
-> index 88b7672123a0..ed347096df46 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,kpss-gcc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,kpss-gcc.yaml
-> @@ -62,7 +62,7 @@ then:
->      - '#clock-cells'
->  else:
->    properties:
-> -    clock: false
-> +    clocks: false
->      clock-names: false
->      '#clock-cells': false
->  
-> diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-> index c1cefd547391..fd4d598f6ff8 100644
-> --- a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-> +++ b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-> @@ -145,7 +145,7 @@ allOf:
->              - description: CEC stuck at low interrupt
->              - description: Hotplug connected interrupt
->              - description: Hotplug removed interrupt
-> -        interrupts-names:
-> +        interrupt-names:
->            items:
->              - const: cec-tx
->              - const: cec-rx
-> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> index 094a6383bb77..f72d1b354007 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> @@ -304,7 +304,7 @@ allOf:
->          clocks:
->            minItems: 6
->            maxItems: 6
-> -        clocks-names:
-> +        clock-names:
->            minItems: 6
->            maxItems: 6
->  
-> diff --git a/Documentation/devicetree/bindings/display/msm/hdmi.yaml b/Documentation/devicetree/bindings/display/msm/hdmi.yaml
-> index dfec6c3480f3..02d27ccad024 100644
-> --- a/Documentation/devicetree/bindings/display/msm/hdmi.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/hdmi.yaml
-> @@ -113,7 +113,7 @@ allOf:
->              - const: core
->              - const: master_iface
->              - const: slave_iface
-> -        core-vcc-supplies: false
-> +        core-vcc-supply: false
->  
->    - if:
->        properties:
-> @@ -136,7 +136,7 @@ allOf:
->              - const: core
->              - const: alt_iface
->              - const: extp
-> -        hdmi-mux-supplies: false
-> +        hdmi-mux-supply: false
->  
->    - if:
->        properties:
-> diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> index f609038e35ae..0260d177c7d0 100644
-> --- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> @@ -172,7 +172,7 @@ allOf:
->              const: fsl,imx7ulp-edma
->      then:
->        properties:
-> -        clock:
-> +        clocks:
->            minItems: 2
->            maxItems: 2
->          clock-names:
-> diff --git a/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
-> index 69852444df23..07c8b233c6bd 100644
-> --- a/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
-> @@ -80,7 +80,7 @@ allOf:
->          - resets
->      else:
->        properties:
-> -        "#interrupts-cells": false
-> +        "#interrupt-cells": false
->          interrupt-controller: false
->          resets: false
->  
-> diff --git a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
-> index 70ab4e140e71..535213ba0c5e 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
-> @@ -92,7 +92,7 @@ allOf:
->      else:
->        properties:
->          nvmem-cells: false
-> -        mvmem-cel-names: false
-> +        nvmem-cell-names: false
->          clocks:
->            minItems: 4
->          clock-names:
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-> index 4505e66876a2..52f471a070d5 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-> @@ -110,19 +110,15 @@ allOf:
->  
->      then:
->        properties:
-> -        clock:
-> -          items:
-> -            minItems: 1
-> -            maxItems: 1
-> +        clocks:
-> +          maxItems: 1
->          clock-names:
->            items:
->              - const: venc_lt_sel
->      else:
->        properties:
-> -        clock:
-> -          items:
-> -            minItems: 1
-> -            maxItems: 1
-> +        clocks:
-> +          maxItems: 1
->          clock-names:
->            items:
->              - const: venc_sel
-> diff --git a/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml b/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
-> index b46cc780703c..4488d5ca9b9c 100644
-> --- a/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
-> +++ b/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
-> @@ -174,7 +174,7 @@ allOf:
->              - const: mfc
->          iommus:
->            maxItems: 2
-> -        iommus-names: false
-> +        iommu-names: false
->  
->  examples:
->    - |
-> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
-> index c009a7a52bc6..7c40361f95ec 100644
-> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
-> @@ -127,7 +127,7 @@ allOf:
->          phy-names:
->            const: pcie-phy1
->  
-> -        power-domain: false
-> +        power-domains: false
->  
->        required:
->          - resets
-> @@ -150,7 +150,7 @@ allOf:
->            minItems: 2
->            maxItems: 2
->  
-> -        reset: false
-> +        resets: false
->  
->          reset-names: false
->  
-> @@ -171,7 +171,7 @@ allOf:
->          clocks:
->            minItems: 6
->  
-> -        reset: false
-> +        resets: false
->  
->          reset-names: false
->  
-> @@ -193,7 +193,7 @@ allOf:
->          clocks:
->            minItems: 6
->  
-> -        reset: false
-> +        resets: false
->  
->          reset-names: false
->  
-> @@ -215,7 +215,7 @@ allOf:
->          clock-names:
->            maxItems: 1
->  
-> -        reset: false
-> +        resets: false
->  
->          reset-names: false
->  
-> @@ -223,7 +223,7 @@ allOf:
->  
->          phy-names: false
->  
-> -        power-domain: false
-> +        power-domains: false
->  
->          mediatek,pbus-csr: false
->  
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+CuWcqCAyMDI2LzEwLzI4IDIyOjQ4LCBLcnp5c3p0b2YgS296bG93c2tpIOWGmemBkzoKPiBbIEVY
+VEVSTkFMIEVNQUlMIF0KPgo+IE9uIFdlZCwgT2N0IDIxLCAyMDI2IGF0IDAzOjA4OjI4UE0gKzA4
+MDAsIEppZWJpbmcgQ2hlbiB3cm90ZToKPj4gVGhlIGF1ZGlvIHBvd2VyIGRvbWFpbiBoYXMgYmVl
+biBmb3VuZCBvbiBTNCBkZXZpY2UuCj4+IEl0IG11c3QgYmUgZW5hYmxlZCBwcmlvciB0byBhdWRp
+byBvcGVyYXRpb25zLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBKaWViaW5nIENoZW4gPGppZWJpbmcu
+Y2hlbkBhbWxvZ2ljLmNvbT4KPj4gLS0tCj4+ICAgLi4uL2JpbmRpbmdzL2Nsb2NrL2FtbG9naWMs
+YXhnLWF1ZGlvLWNsa2MueWFtbCAgICAgICAgICB8IDE3ICsrKysrKysrKysrKysrKystCj4+ICAg
+MSBmaWxlIGNoYW5nZWQsIDE2IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKPj4KPj4gZGlm
+ZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9jbG9jay9hbWxvZ2lj
+LGF4Zy1hdWRpby1jbGtjLnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
+Y2xvY2svYW1sb2dpYyxheGctYXVkaW8tY2xrYy55YW1sCj4+IGluZGV4IGZkNzk4MmRkNGNlYS4u
+NjlmNWZlZjVmMTRhIDEwMDY0NAo+PiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvY2xvY2svYW1sb2dpYyxheGctYXVkaW8tY2xrYy55YW1sCj4+ICsrKyBiL0RvY3VtZW50
+YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9jbG9jay9hbWxvZ2ljLGF4Zy1hdWRpby1jbGtjLnlh
+bWwKPj4gQEAgLTIwLDYgKzIwLDcgQEAgcHJvcGVydGllczoKPj4gICAgICAgZW51bToKPj4gICAg
+ICAgICAtIGFtbG9naWMsYXhnLWF1ZGlvLWNsa2MKPj4gICAgICAgICAtIGFtbG9naWMsZzEyYS1h
+dWRpby1jbGtjCj4+ICsgICAgICAtIGFtbG9naWMsczQtYXVkaW8tY2xrYwo+PiAgICAgICAgIC0g
+YW1sb2dpYyxzbTEtYXVkaW8tY2xrYwo+Pgo+PiAgICAgJyNjbG9jay1jZWxscyc6Cj4+IEBAIC0x
+MDAsNiArMTAxLDggQEAgcHJvcGVydGllczoKPj4gICAgIHJlc2V0czoKPj4gICAgICAgZGVzY3Jp
+cHRpb246IGludGVybmFsIHJlc2V0IGxpbmUKPj4KPj4gKyAgcG93ZXItZG9tYWluczoKPj4gKyAg
+ICBtYXhJdGVtczogMQo+IE1pc3NpbmcgYmxhbmsgbGluZS4KZ290IGl0LCB0aGFua3MKPgo+PiAg
+IHJlcXVpcmVkOgo+PiAgICAgLSBjb21wYXRpYmxlCj4+ICAgICAtICcjY2xvY2stY2VsbHMnCj4+
+IEBAIC0xMTUsNiArMTE4LDcgQEAgYWxsT2Y6Cj4+ICAgICAgICAgICAgIGNvbnRhaW5zOgo+PiAg
+ICAgICAgICAgICAgIGVudW06Cj4+ICAgICAgICAgICAgICAgICAtIGFtbG9naWMsZzEyYS1hdWRp
+by1jbGtjCj4+ICsgICAgICAgICAgICAgIC0gYW1sb2dpYyxzNC1hdWRpby1jbGtjCj4+ICAgICAg
+ICAgICAgICAgICAtIGFtbG9naWMsc20xLWF1ZGlvLWNsa2MKPj4gICAgICAgdGhlbjoKPj4gICAg
+ICAgICByZXF1aXJlZDoKPj4gQEAgLTEyMiw3ICsxMjYsMTggQEAgYWxsT2Y6Cj4+ICAgICAgIGVs
+c2U6Cj4+ICAgICAgICAgcHJvcGVydGllczoKPj4gICAgICAgICAgICcjcmVzZXQtY2VsbHMnOiBm
+YWxzZQo+PiAtCj4+ICsgIC0gaWY6Cj4+ICsgICAgICBwcm9wZXJ0aWVzOgo+PiArICAgICAgICBj
+b21wYXRpYmxlOgo+PiArICAgICAgICAgIGNvbnRhaW5zOgo+PiArICAgICAgICAgICAgZW51bToK
+Pj4gKyAgICAgICAgICAgICAgLSBhbWxvZ2ljLHM0LWF1ZGlvLWNsa2MKPj4gKyAgICB0aGVuOgo+
+PiArICAgICAgcmVxdWlyZWQ6Cj4+ICsgICAgICAgIC0gcG93ZXItZG9tYWlucwo+PiArICAgIGVs
+c2U6Cj4+ICsgICAgICBwcm9wZXJ0aWVzOgo+PiArICAgICAgICBwb3dlci1kb21haW5zOiBmYWxz
+ZQo+IEFuZCBoZXJlIGFzIHdlbGwuCj4KPiBCZXN0IHJlZ2FyZHMsCj4gS3J6eXN6dG9mCj4KCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9n
+aWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8v
+bGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
