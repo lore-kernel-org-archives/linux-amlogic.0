@@ -2,89 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AA61606A329
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2026 18:38:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B519606A323
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2026 18:38:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=exLH3LyY;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=aSront95
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2DoIB2hI;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=WbgRtcSw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
-	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=kYPpZmwVk3uzXMdiZlkbk8K+c72CdOOmxADIGKzerUA=; b=exLH3LyY/D/FgOzHCigCh/FJ3y
-	s3s8SCbkxDlxjAFdWgujdlIoefuYJXLCaWKXg4y7KYUDHGHjqz1lZPtYJ7Yk8d4jPwMGP1fQQRd2n
-	hAQ9Jy7WBWGW4w+rJjH5FCNZooye/qa7MOwuqKyk4FuTBdq54cNat59E16cTUB94n6WIkPl/k8CA8
-	OYM0PQWpJkgr/Lrtq51JukurfM2/8dfqRnvQcaoXFW9EC4/yEPtFk0jxoz3x/OKh+U+pqXWrLN/Sk
-	zCZ3WqyGvXoSIC29gPfF+TemJnKyw/EZajuFQP9tj4tFIa4AcUqfSaJyOm6S+oLJh1DchTiqWKFW4
-	tgZH7YuQ==;
+	bh=HncVhQVXuVVC5wLLeeSILho984PjyB+mHOiiYm8x4Tw=; b=2DoIB2hIbFPfhrzOcb60I/URNQ
+	0Aoqhbjqh6ijIJNN/mtTvwq8IvPtj8tEFBUCLKdcwLCcrlabH+VxNLBVu4eq8u+Ne/n6WWm/ldr2Q
+	8dENmZF+Aaz19pNV4Coq/bxSjFYxZ/kpR4zBFmLD8dE2dgV4u/hoRluReP5mubYdnJCLnnJXr4rcn
+	5LnhKP779/gy71uBUHyMX0IbBg38sSNxDw0qJGzqDfx1ROifhzAj3xRa/L6xBs4qX7CZwuwp8Bo70
+	JUQxbldWMK2cOQq94F4E2Y6JZ8CKGlAnZjc0yqqr7Zq5nFsKhCiSBByuWrNll0LBNPi/GsM7DohE+
+	OsZJxM9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMV0e-0000000A7lW-3saf;
-	Thu, 29 Oct 2026 18:37:56 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1xMV0m-0000000A7qR-1Bnn;
+	Thu, 29 Oct 2026 18:38:04 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMV0a-0000000A7jX-3dxP
+	id 1xMV0d-0000000A7k4-1H3T
 	for linux-amlogic@lists.infradead.org;
-	Thu, 29 Oct 2026 18:37:55 +0000
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4a4dc547987so12616385e9.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 29 Oct 2026 11:37:51 -0700 (PDT)
+	Thu, 29 Oct 2026 18:37:56 +0000
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-4a9a8d6cea8so15521205e9.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 29 Oct 2026 11:37:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1793299070; x=1793903870; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=nVY7nEkvfjZeMrMmcTQRnsGrPkGC9OILvfF4knw9Fgs=;
-        b=aSront95VFK6YF893jZjPM4tIrSInqBYZJLlaMyRTJ79/Mo8RPDivvfjjrcNTLoK6C
-         R/pfqnqKM+y9rp97tAx+eDNXMX/ApgatVj9Z8AkA7E9dR6zZJdz7E5cvv9FELUut1ilb
-         /2omkbKJ4/WuYmqAg3IMbRM5LB7PMoL6G+AL5N4KyIomPnoH0YdNdSQZVOzeQdDED42K
-         l6q9zUHFbc54QPxtDoemAGHMcPhLonxmKwlGkJBX3qjd5FU5gkGZKWnt9nGkcgqqOCrI
-         sYlBRy7eIMrYS3sbB1NCtc64p6mGIU/F3Q4E+eWPTOnJywuIP9gL9UYTdqiyEvURijkk
-         ZkSQ==
+        d=baylibre.com; s=google; t=1793299074; x=1793903874; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Iq3tU2hJqbtFbeXtd3ktVw3J1WdeojLrkQfua2mm+s4=;
+        b=WbgRtcSw7HgzdiNVKL4xifqbrZAShjx+1a0TAmLh0GC0U03vvymH9GqW3E12BrJYlq
+         blm+nsX0U2g5t3RpBf9DZDGUHk8N2OweK8myQ3dJ828Rx6HNm8W+VGbe0Cs+9Y4cfNWW
+         NhMdefM4gBpIvRm9Rxh+T4nkx4Ml00MJSwFAReBt9KScu7bx6xYG/yTz93hlY0pm36pk
+         kNbvm6qiM94JWVHZJnRfJK6gS+K8nEzonLfCBw/bseo9PJYxcD9a0pHO6T0MgMI9RM9I
+         Ovqk/57wlpK+KpxsZ5u0BHnRR44kvbtgnMawQ4HORjuWp1hrxv7TaX7NfQelaUOqtnb2
+         Qq1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793299070; x=1793903870;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=nVY7nEkvfjZeMrMmcTQRnsGrPkGC9OILvfF4knw9Fgs=;
-        b=s8TnrWvoirqfV8ctlsSPr/bz60xT3qwYy4Yi9N79Kyno66I8o91v/XzxpL2m7QRTi9
-         d3l9qC62PfU8GwhSAiyBhMcdGDm95HzMHgYSz9NeHwmGGrnsX0exTvXUYPfVAMJUOkhG
-         kGHwmWIEJ/JXG9DIzRBH2I5q08nVtkP2KRsKSt0/ybY0wVcdWgAImpniMy4q/yAVtK0U
-         NZdc6FRzwrU+Bm0Q1syUJ1zdZ9MjDhCmiM5BP+9Z6W7g0o7L+HGP0nUPThTH0JvmbiWn
-         ueMSlp/pevWmgQhv5XeyafTJ6RPlo2GcCEhF6bLpuVLG8gOjue8MWxch8wUz+U0SyELW
-         ZA+Q==
-X-Gm-Message-State: AFq9FYKQNEs4/Y1MVjlCuFLZ3HRcwBARELdlVm07ZvwLcw6C+UgN8nmP
-	wdpG7qgNPjdODxUQ6r+878NqmIyqtDUaZbFNma/GdqfqObqgZW5oj1BOCVagHKCSjiw=
-X-Gm-Gg: AYBFou3uF6540VheNZIZjfTS4HmWSw/e5W3wgL7iKvNP2Ho9O8qElpsniQc3lmnreac
-	vhtLCf2c7buAk4aPgi4/hilhubxLfydJNebX0egiSC32JNDfevVxthYYe1WyOnar8oaDaW5IZni
-	dhYZPrOoOADXI1TFfdAEiPh7Jjmljga1mrBBaReLwUZURtfkSLJxd3hxPwGSyOVq/UUKvG07CuY
-	3mhsxZWrbfrALWlCBXXpsEJGJoDFI/jLZnlpxOfptbfMQaCyRdPF+iBNSLnsKdNTG23ykBnOC22
-	3fDmH4TyAu6fts1B05x68C06nQigTwRuzmNYq1UefsgR9bGwaRAYV1kAJqMyqsqFsba2KhSW1Um
-	GnlJ48hVPcYRA16lCiJMVYLnqkowkeTxm45VPwtVJ+OBoHOEv9v+MH06gyFktgV4iViUu61qwss
-	yAF+qnr8ogASPwijgit9hGzAWFxzJkYYtYP2SntbpCx+kD+weURU2ZmGLY4wDkZ0UoMXLvzy7ms
-	+PRbIXicw/ohZOd83kXGQZ06MgYm2gsgMEKIagi+ORI4vTCqUPHOYpkWay2rrbMjLQg5mOQfU4L
-	mnEXm5/IZ+o8OYOrZmsXCkyfK46opHW9bKSv+2VqUpPoQUUTYJMcSS7GHjrzRmXzI/Vta5Wukjl
-	5IWF6Ccg7lnsUPFEbxA==
-X-Received: by 2002:a05:600c:840e:b0:4a1:813f:2a60 with SMTP id 5b1f17b1804b1-4a965dd3274mr155468995e9.11.1793299070403;
-        Thu, 29 Oct 2026 11:37:50 -0700 (PDT)
+        d=1e100.net; s=20260707; t=1793299074; x=1793903874;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Iq3tU2hJqbtFbeXtd3ktVw3J1WdeojLrkQfua2mm+s4=;
+        b=TU3j5Y6HCfZjPcjTXkj8B4UL4CZA3/TjaJVuJB6fRFX0ChLCnnM64FQewD/+NPpZgp
+         YF5BzZ/rSSNKz8ShvCqLfS7QcQlyQhI2cOyslCJz9fU+I3xje0jkKJAPhouxfA5e3RT2
+         Apta5/Flq7owr9tuL2wp8ij+n0uw3QkjdZOb8c0WoXvs0ztaiTLBDJQmDmj2t+V4rdJX
+         AHM1da57BtymoJ0le11CZGU1PVBiJTDd53se24WYZwnLedqWTDJ5PLER+2dGmwHJSje2
+         wM2Skf4/H8mQd1Vn9OqFbS05A/UDDmA+NNwFeqbHkFYnyZQ9Gmsoe78oq/reiyPXrb1y
+         KfjA==
+X-Gm-Message-State: AFq9FYKLCNTom0WZBFKl0mzE3eDqKZYe/921mUmK6X24wEGqDOyRGf+E
+	bFv134evfGLsTLr1t2VHvJSbSMcWKkzdJ3Z57jcy0jsd9iGU6q3eyI/MzdXIJdanQBo=
+X-Gm-Gg: AYBFou2mczF7IAY7ZkE7PIxZGoEVrpMAUFM2nm1EOFSiloe1lfX/Sd+a0211OXSDoOW
+	OurRyD+cHOSowzLhmWpmKAwHCEhYV34+65+GRsqAwjjHibxFdOJc/DiU/klXEVTCPmgVQODgCxD
+	x+aJmKSEY9AwmHuCodDIsClyuxiSBNb/M5MNefHP+sSlyhu8m9VkgyIIYARI1ygv79m9VUMYrA3
+	jSfNkGosyUQEuk/LuEVfFPIO6HfAyG1zaBhkz18DwjfsitQZWENJUyYoNv72E4EnbA/hmnV4c+o
+	gqnLP5HNSm7ZGLsNl0+SlezfTXrUX0exobs9rjuBAHoE8i9ao1CQbn/6XpWS0SLyqnLzhh9CJEK
+	/HidI3WgrDcLEO1DLC5bfd79fT6oCveuDlWmEFx4q3HyUWRB6/P+UF+l5mDl/EnuuxruBLPvJRL
+	fpabdHSNndQB7GsqfYSsYLYd9e86BVtaj1Oq3mLx7QFcdD/wx1X6EnrMrtf84x24Ruxk30qPSuo
+	PEIuhHOOlRrerhkm6XlTXPs6B4lrikWmY4aCJf5mXwBUBkp3H4ZzSwrvPsn5+702TZxYDfXX52x
+	nyVXCPDKLP0czaNQcbtSoRrwH1OC2CG/UeAXpPz5f7PDFStt+lnjWJNJlwRzpo26z8q44verQ8j
+	h8x1WZySuu8/r5t4xFg==
+X-Received: by 2002:a05:600c:3144:b0:4a0:20b4:ba93 with SMTP id 5b1f17b1804b1-4aa8823df43mr85280425e9.16.1793299073743;
+        Thu, 29 Oct 2026 11:37:53 -0700 (PDT)
 Received: from [127.0.0.1] (host-95-246-144-141.retail.telecomitalia.it. [95.246.144.141])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4aa820492cesm90118305e9.13.2026.10.29.11.37.48
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4aa820492cesm90118305e9.13.2026.10.29.11.37.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Oct 2026 11:37:49 -0700 (PDT)
+        Thu, 29 Oct 2026 11:37:52 -0700 (PDT)
 From: Carlo Caione <ccaione@baylibre.com>
-Subject: [PATCH v2 0/3] Fix the ENCP clock select field on GXBB, G12A and
- S4
-Date: Thu, 29 Oct 2026 19:37:33 +0100
-Message-Id: <20261029-upstream-clk-encp-sel-shift-v2-0-31ffbb6b82af@baylibre.com>
+Date: Thu, 29 Oct 2026 19:37:35 +0100
+Subject: [PATCH v2 2/3] clk: meson: g12a: fix ENCP clock selection
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/42NSw6CMBQAr0K69pm2GCGuvIdh0ZZXecqn6StEQ
- ri7gBdwOclkZhGMkZDFLVtExImYhn4DfcqEa0z/RKB6Y6GlviqpNYyBU0TTgWvfgL0LwNgCN+Q
- T+BoL43JbOizEVggRPX2O+qP6MY/2hS7tyd1oiNMQ52M/qd377zQpkOCVVaikyevycrdmbslGP
- LuhE9W6rl9nsblj2wAAAA==
-X-Change-ID: 20261022-upstream-clk-encp-sel-shift-fde7ac3b8ce7
+Message-Id: <20261029-upstream-clk-encp-sel-shift-v2-2-31ffbb6b82af@baylibre.com>
+References: <20261029-upstream-clk-encp-sel-shift-v2-0-31ffbb6b82af@baylibre.com>
+In-Reply-To: <20261029-upstream-clk-encp-sel-shift-v2-0-31ffbb6b82af@baylibre.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
  Jerome Brunet <jbrunet@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
  Brian Masney <bmasney+clk@redhat.com>, Kevin Hilman <khilman@baylibre.com>, 
@@ -92,11 +89,11 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
  Jian Hu <jian.hu@amlogic.com>, Yu Tu <yu.tu@amlogic.com>
 Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Carlo Caione <ccaione@baylibre.com>, Chuan Liu <chuan.liu@amlogic.com>
+ Carlo Caione <ccaione@baylibre.com>
 X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261029_113752_924361_8A0A86FD 
-X-CRM114-Status: UNSURE (   8.84  )
+X-CRM114-CacheID: sfid-20261029_113755_375288_B9C48711 
+X-CRM114-Status: UNSURE (   9.59  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -118,34 +115,33 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The GXBB, G12A and S4 clock drivers place the ENCP clock select at
-VID_CLK_DIV[23:20] instead of [27:24]. Fix it in the three drivers.
+The ENCP clock uses ENCT's settings by mistake. Change the selector
+from bits [23:20] to [27:24].
 
+See the S905D3 datasheet 0.2, Table 6-109.
+
+Fixes: 085a4ea93d54 ("clk: meson: g12a: add peripheral clock controller")
 Signed-off-by: Carlo Caione <ccaione@baylibre.com>
 ---
-Changes in v2:
-- Reword the S4 commit message and the cover letter: S4 has no ENCT
-  encoder (Chuan, Jerome)
-- Add Chuan's Reviewed-by to the S4 patch
-- Link to v1: https://patch.msgid.link/20261022-upstream-clk-encp-sel-shift-v1-0-f1b1e10a3d84@baylibre.com
+ drivers/clk/meson/g12a.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
----
-Carlo Caione (3):
-      clk: meson: gxbb: fix ENCP clock selection
-      clk: meson: g12a: fix ENCP clock selection
-      clk: meson: s4: fix ENCP clock selection
+diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+index d0d4c7b6dc82..fdf41572be84 100644
+--- a/drivers/clk/meson/g12a.c
++++ b/drivers/clk/meson/g12a.c
+@@ -3666,7 +3666,7 @@ static struct clk_regmap g12a_cts_encp_sel = {
+ 	.data = &(struct clk_regmap_mux_data){
+ 		.offset = HHI_VID_CLK_DIV,
+ 		.mask = 0xf,
+-		.shift = 20,
++		.shift = 24,
+ 		.table = g12a_cts_parents_val_table,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
 
- drivers/clk/meson/g12a.c           | 2 +-
- drivers/clk/meson/gxbb.c           | 2 +-
- drivers/clk/meson/s4-peripherals.c | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
----
-base-commit: 363f97a1ce635b86be7fd263d56a040fbd87bdbb
-change-id: 20261022-upstream-clk-encp-sel-shift-fde7ac3b8ce7
-
-Best regards,
---  
-Carlo Caione <ccaione@baylibre.com>
+-- 
+2.56.0
 
 
 _______________________________________________
