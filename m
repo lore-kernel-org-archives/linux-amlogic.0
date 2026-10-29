@@ -2,98 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59036606A31A
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2026 12:54:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BBB5606A31C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2026 14:36:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fAdjvGIB;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=QTq45ZbM
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gddtTiG4;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=ewjAmSoD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:In-Reply-To:
+	Cc:To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=6iPmSBhcpSzGtVzRkWXiJyhvCj5KNiIPThUG1GcJdgo=; b=fAdjvGIBTqEPBKP1ROe0cr+mCo
-	uqLEYD1simd0QqYNjGaVtPx8hicnJmwpJHVHsUZPuQm9qY8zmCZPzCYc3pS8wY+F/ZkxvnOH9C4lG
-	F6qrxhtW2+mblqmdnkMcdqjrhnitJKefFC6gq4OL4OIdtBpue7b1NMmcccjr7AFrHAYT2nAHp+PKR
-	5yyUDO7/np2IUusThmMuhhaAQFc1wZH9V7OO5gkLHPWwTZ+xkP54Lpj6zSBShoRW45m9jWmpMR2P4
-	4oswOi8MCNv7JqW3/UHf2TT0bf0bhVVkiFKjuxMCb0rtI4Jgkymfgc+2kVeCYCa9LIgDVivo/64GS
-	JtMMr0dg==;
+	bh=3de8Nd2/j8VuPGN6GXQpQDJviRLR50bFCYv8+MsNIfw=; b=gddtTiG4D9ium3neDJymqcrmtZ
+	dX6VBNFb6mCiAVqOwuMk+xlfUdTvU9kHMiD8HLHBXgbIq18zYWAgFXkyIbdJ8kG+pz6D9smXdvxtc
+	DDE8XMhuQgbt6+FM9/7gUuyA5beNplW9rDwyWS+/bAAPjThWkuAUHAJiJYA5oBjmdsKCXMxWLxTVA
+	X6OMiVKvxDeoQSU6NVzsZ2jLPMZUGtXdZ6XbFReV/bRb9N4o8TC9n52+7b0uV+vQyZjxjrkyFoGHs
+	phoWBlTZ6CaZlX77KFxRdgaTm6anyJdTFEZ1uCMeDiLbAp4nwTk5C6drLrepMnHQ6hQCdx227+2mJ
+	OVA9pZzQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMPeV-00000009FYL-02zM;
-	Thu, 29 Oct 2026 12:54:43 +0000
+	id 1xMREx-00000009XJg-0rxD;
+	Thu, 29 Oct 2026 14:36:27 +0000
 Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMPeK-00000009FRJ-3bcg
+	id 1xMREt-00000009XIV-2njq
 	for linux-amlogic@lists.infradead.org;
-	Thu, 29 Oct 2026 12:54:34 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-49d05d51553so14113955e9.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 29 Oct 2026 05:54:31 -0700 (PDT)
+	Thu, 29 Oct 2026 14:36:25 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4a1fbd52ab6so17608265e9.0
+        for <linux-amlogic@lists.infradead.org>; Thu, 29 Oct 2026 07:36:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1793278470; x=1793883270; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=MlnO/XQNGCl3Ib1nyxoNZ+8myRyO4vnZro6S1iLdVc4=;
-        b=QTq45ZbMcDmJruseNY9ooZB8tAozWhG1Nr3fLrdev/hnEh9b7QyGw8pPVFLmhtuYkW
-         NCF+5FaIT25I+WaD02BuqU1e6L3AK9ZhFQVzXK6MG1YD18/Zyp3iWHDGfnIXQApu8wce
-         mpU8YfdBigc4mlk8KK6Wc1lYQUIiLszeQSxBFzfqgo2/Zrf9e7oQwUenmVv9t0jFTH0T
-         2/EAjBV1YPNGVojMfcgm22ZHqC/+mJPzLEhVXnpnfHfZoAxPqEo6Xy6Q4t/IsnFBqylK
-         Q2ePkrmr0VnxG6kVDoe9XPIqYQU1Quwtc/LD/pwBrLbODZ+tG/+9+XmL2xg+z/52Nxo0
-         MQZA==
+        d=baylibre.com; s=google; t=1793284581; x=1793889381; darn=lists.infradead.org;
+        h=message-id:date:references:in-reply-to:cc:to:from:subject
+         :content-transfer-encoding:content-type:mime-version:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=AobNRzoJo9ZhKbhwLMRuTuaSxhba9zwPGclaewwNK7o=;
+        b=ewjAmSoDLf9udMTcld3MYtODJrLZRDaQZZlcLnKpmyRB0h7VRuyj5gU70krmUpEM/f
+         ZyZKouyGgKlGd38TbT3ezEP5mUi9yTc7BTTw2yqp3KInTPDljsfJkZ2ZqZ8i60u48prb
+         1hA2xxeN6dEf0PFLfY7ckL9PmWfi+JYwys0a3JprTTbx7sN2PnC2omHzeIrteRAXVaUn
+         DZVB/qA32xfufKGXcUMzrc6FHWPtBejrLBldMyWBSV7KYYcfVvNa6EPDSTyb7jp+IxMV
+         rhO4Q3JEphqzwSvdCBHiPL68TsLd9KRsNmYDTlERAytTv3tWFCUUVyHgE9C7UhjjTzqE
+         mCxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793278470; x=1793883270;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
+        d=1e100.net; s=20260707; t=1793284581; x=1793889381;
+        h=message-id:date:references:in-reply-to:cc:to:from:subject
+         :content-transfer-encoding:content-type:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=MlnO/XQNGCl3Ib1nyxoNZ+8myRyO4vnZro6S1iLdVc4=;
-        b=fW8NtHhDiB9M1bMx6UgwAH9GaIfY1dX/StjrvapupVFkfxRkcVsLoXOjqKdpY0P6wO
-         6/wKUKJdXGCr4VWZbL+pfpEcJ6ywkAJ/UrrpY52ge1eJHyTJGiAiwYApTrzfZL81dDbS
-         BR5iPEf2mA+PmRg5L6WLW/8FucnvfjdLt5Usp2Yc4/z+6NpUIKNh1BzDZz9ebfk29O1X
-         IoObtW7RInnUhA4dOUv3xBBx9kZ448xPVOVNA2UF2I7h1YYxOCVEgvzYPqn46kHDpb2I
-         3IRRNfQDld1wWhtRByakjPM3olmfdyLLGaaWuZT34KBTB+d0KIiu1/cd3H+tgqVY4mxb
-         jyuQ==
-X-Gm-Message-State: AFq9FYIJLR9rlJPTEMdLoSESk6JbAOPD5Ys/PFEPkd7dwhuRiAQEl12N
-	NvgyYqeC87cf6KItONsdWIQUA7uZQcD9ElqUnDvw3UOQ2dTeB+i/H5rf32sRdTJAsJk=
-X-Gm-Gg: AYBFou3vjVD22hCdgBphT+QhiAFhwhw4FYEyqH1hwrCb5r6FnLSVJSJvdBansI3sOC4
-	wi6TJGdhiZQv5NJ9DCLMiKvxsVsOqBicAQVf6HedV2o7NbrJKSDlE6Ntq+6m8hT6WVoACV/O85j
-	5vr5bCzwKi/U3fwMzHBPLasFHQZ+9I19/KYyK0m0FbQxGXvTVG4wjfkm4F6S8x6UGn+3/hhXHOO
-	NYqN/pCl+up13hoR3sY+r1ogzK2B4tAbs0Qs8taPsIT3RDgoPDxGu0+U/7IJ8csdTJYgKKvLgV1
-	quBM23Vy80RYCApniiQ5exVBfO6K47Pkz8AhmbAuwzDEXBp+4K3KMF3Iz31+VLjsN8KGHcIepnG
-	11AzjbdbB7eJYud7XNx5XzDjHK80yRemtx38HNv5MTe4dG6pOn1sEFeLb2/Kt/4j3RT0mLWlV2h
-	xLdXw6K427nA725jwm++cnysqNri/mGiXDMsenFBR8LoG71e8pMNkt8/Ns/dlvEHY9yYFUwB1nr
-	ljqfg92wkH/6Bw11m46xH3ZT6i6NpKiX/fHIbuU+h1D6aJW9GhrmvrDEVKquD4feNeVZGQ15/aG
-	lfxlJstYXltKBMy79oHc247NxjjQkaK3OkUWkmb+M6tgDeTMRDly6Mw6nsDdd4NMl5JYM/xLhVb
-	+LLfq1Fno9x7CuNOxMG+rH3HskTUEk5/9GYOc7G3JmfunNQ==
-X-Received: by 2002:a05:600c:6095:b0:4a7:d9b1:b684 with SMTP id 5b1f17b1804b1-4a9643d51aamr113545565e9.2.1793278470416;
-        Thu, 29 Oct 2026 05:54:30 -0700 (PDT)
-Received: from macbook.homenet.telecomitalia.it (host-95-246-144-141.retail.telecomitalia.it. [95.246.144.141])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48e3ebc39a8sm35034622f8f.11.2026.10.29.05.54.28
+        bh=AobNRzoJo9ZhKbhwLMRuTuaSxhba9zwPGclaewwNK7o=;
+        b=yLVVWxfB41i6+03LuG3/9z7A/vIVByGDDZlnGzK2BEsACOlPxcbnutdcdY+aH8bkcV
+         8SW2dggVko6RDXQtzoTjmEhlHxQO4/tkhBQTvbOYwvIVG3/G7PjzG0vppjiV86T28qvF
+         5KhcQC17We+/TfE+zBBzl6FBEVcLgkPGj0yJQFYtMB9FqlQsS589JRG90dGGfnbV6/yW
+         7TomC6hIkNqrJocxBO5R1WkBycaeQ8DY9fFsKvEeZ1fflcvn4mBVKlPaIf4OL1yKzOlq
+         l6HSbV7FByiC+xT5QxgygQs0YrMVf1EXUviHPHKhhks6MsXePFA6gyx/YEqMe2M+5uGp
+         wWmw==
+X-Forwarded-Encrypted: i=1; AKwUvBySoI0ww3a5BQK5oqRp4lsLZRe7+VrXwxkKkXdfxqt/D8FlS5iNMT2xJwnrJKFqJ489bJ1fsFbQZHbHc2JL@lists.infradead.org
+X-Gm-Message-State: AFq9FYKKLvVFUTdW5lAEqr5TmGEOJiiYdW4ozPQ1TOGDASbfyoEZs/Fc
+	pOfpMAxvY/QYnOUvKo55uyIeVtYGxY7APssLGtIbFp9PpAyrajwPSwv+P3iR8ldyxJJkqNVBKvj
+	IlS813nU=
+X-Gm-Gg: AYBFou2Jl0P7n2ccmHY0xfmVJ0Kx6LStjmAe0SQQvlZnHU8mWRAcy2X100s6PlT8tT3
+	3BF4OsXaEAqQLUXWLNb4ugHa9NMPDvDIJzSlOKZsJL4OD8TqnQZ+vtw6i61IvfyZJAqyl7O3ByC
+	opLIYLi0xLvFrpf2jEgNMFbcFJC8VFX1WZ22AqX9qC0YtfuYGTU7t/Bjkm8jaPkh/nk2qHYvjl5
+	XSYVb4jTW/CMt3z4GmKt0KZCgfdcc60MDxJNTcSlYKmVrYo9OYUCghhSvlQl8tjZFVYlkLgPY8J
+	suEgdNKb8TqGov+OH5dV/H1Ow9ZIbsuaj5uVpPhTyu0FZeNybcvY6rp5rNrrX0xzdChL3TH5YVi
+	8+aplv2+an9c5iMm/djJivURv/XDSjI5vwug+xRgJAXTZmIkwnvefM+3+CSD8L8wVpPJuHFY3Sm
+	MrZWV73XYpjZaiaFwq04krHPLi3HK+cvGgQOZJMCsWmabZnXYK5+VEVkCB8/z7lTXxdGoav+XEU
+	GqWgMKUNd/Umvz3pN42r5mbQoddbfncxrT4urENgVkKlInmwg3cb6dpZDueZFMfTfR959FFAZpG
+	iplDJNQSUuBXO5u+1zGqMn2le4Jd/vk70JgqDESW6Mcwawle
+X-Received: by 2002:a05:600c:6085:b0:4a1:e01e:1927 with SMTP id 5b1f17b1804b1-4a996a9e304mr115101135e9.5.1793284581222;
+        Thu, 29 Oct 2026 07:36:21 -0700 (PDT)
+Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4a96a32eef4sm80612955e9.3.2026.10.29.07.36.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Oct 2026 05:54:29 -0700 (PDT)
-From: Carlo Caione <ccaione@baylibre.com>
-Date: Thu, 29 Oct 2026 13:54:21 +0100
-Subject: [PATCH v2 3/3] clk: meson: regmap: use the current divisor for
- read-only clocks
+        Thu, 29 Oct 2026 07:36:20 -0700 (PDT)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261029-upstream-clk-regmap-ro-divider-v2-3-7a375fd8f88e@baylibre.com>
-References: <20261029-upstream-clk-regmap-ro-divider-v2-0-7a375fd8f88e@baylibre.com>
-In-Reply-To: <20261029-upstream-clk-regmap-ro-divider-v2-0-7a375fd8f88e@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
+Subject: Re: [PATCH 0/3] Fix the ENCP clock select field on GXBB, G12A and
+ S4
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Carlo Caione <ccaione@baylibre.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
  Jerome Brunet <jbrunet@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
  Brian Masney <bmasney+clk@redhat.com>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Carlo Caione <ccaione@baylibre.com>
-X-Mailer: b4 0.16.0
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jian Hu <jian.hu@amlogic.com>, Yu Tu <yu.tu@amlogic.com>, 
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20261022-upstream-clk-encp-sel-shift-v1-0-f1b1e10a3d84@baylibre.com>
+References: <20261022-upstream-clk-encp-sel-shift-v1-0-f1b1e10a3d84@baylibre.com>
+Date: Thu, 29 Oct 2026 15:36:17 +0100
+Message-Id: <179328457778.1865333.17367903644168961694.b4-review@b4>
+X-Mailer: b4 0.17-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=328; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=I6EvPRMH0NyoJrkviiRd+YwWhq7FQ66k6ghPBYl+JiM=;
+ b=owGbwMvMwCW2VtK+WnvWU3HG02pJDFmPIx8LPbxyy0ci6kzfIiapRZva5gtGLNK0DJVjmvol9
+ kQC74+rHaUsDGJcDLJiiiw13NXi7yS1vsyarnMbZg4rE8gQBi5OAZiIghojw5bD68TulT3j+8wp
+ V/biuueWSxOFT7/cVbHvs/upiYzn51cwMjyJdD/z4eTLD9z51W7b7z/cIHlEU6d+n8HFS+1bvD4
+ wSfEBAA==
+X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
+ fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261029_055432_937374_DB253835 
-X-CRM114-Status: GOOD (  13.24  )
+X-CRM114-CacheID: sfid-20261029_073623_716903_937720A4 
+X-CRM114-Status: UNSURE (   7.64  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,91 +118,24 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-None of the Meson clocks using clk_regmap_divider_ro_ops set
-CLK_DIVIDER_READ_ONLY. Without that flag, the shared rounding callback
-can choose a new divisor even though these ops cannot program it. The
-clock core may then adjust child clocks using the wrong parent rate.
+> The GXBB, G12A and S4 clock drivers describe the ENCP clock select with
+> the field of the ENCT one, VID_CLK_DIV[23:20], instead of [27:24]. Fix
+> it in the three drivers.
 
-Make the read-only ops always round using the current hardware divisor.
-Parent rate changes remain allowed with CLK_SET_RATE_PARENT.
+The commit description of patch 3 apparently does not really make sense
+in the context of the S4
 
-Fixes: ea11dda9e091 ("clk: meson: add regmap clocks")
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
-Signed-off-by: Carlo Caione <ccaione@baylibre.com>
----
- drivers/clk/meson/clk-regmap.c | 34 +++++++++++++++++++++-------------
- 1 file changed, 21 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/clk/meson/clk-regmap.c b/drivers/clk/meson/clk-regmap.c
-index 1ed56fe63cae..002e16865109 100644
---- a/drivers/clk/meson/clk-regmap.c
-+++ b/drivers/clk/meson/clk-regmap.c
-@@ -120,26 +120,34 @@ static unsigned long clk_regmap_div_recalc_rate(struct clk_hw *hw,
- 				   div->width);
- }
- 
--static int clk_regmap_div_determine_rate(struct clk_hw *hw,
--					 struct clk_rate_request *req)
-+static int clk_regmap_div_ro_determine_rate(struct clk_hw *hw,
-+					    struct clk_rate_request *req)
- {
- 	struct clk_regmap *clk = to_clk_regmap(hw);
- 	struct clk_regmap_div_data *div = clk_get_regmap_div_data(clk);
- 	unsigned int val;
- 	int ret;
- 
--	/* if read only, just return current value */
--	if (div->flags & CLK_DIVIDER_READ_ONLY) {
--		ret = regmap_read(clk->map, div->offset, &val);
--		if (ret)
--			return ret;
-+	ret = regmap_read(clk->map, div->offset, &val);
-+	if (ret)
-+		return ret;
- 
--		val >>= div->shift;
--		val &= clk_div_mask(div->width);
-+	val >>= div->shift;
-+	val &= clk_div_mask(div->width);
- 
--		return divider_ro_determine_rate(hw, req, div->table,
--						 div->width, div->flags, val);
--	}
-+	return divider_ro_determine_rate(hw, req, div->table, div->width,
-+					 div->flags, val);
-+}
-+
-+static int clk_regmap_div_determine_rate(struct clk_hw *hw,
-+					 struct clk_rate_request *req)
-+{
-+	struct clk_regmap *clk = to_clk_regmap(hw);
-+	struct clk_regmap_div_data *div = clk_get_regmap_div_data(clk);
-+
-+	/* if read only, just return current value */
-+	if (div->flags & CLK_DIVIDER_READ_ONLY)
-+		return clk_regmap_div_ro_determine_rate(hw, req);
- 
- 	return divider_determine_rate(hw, req, div->table, div->width,
- 				      div->flags);
-@@ -176,7 +184,7 @@ EXPORT_SYMBOL_NS_GPL(clk_regmap_divider_ops, "CLK_MESON");
- const struct clk_ops clk_regmap_divider_ro_ops = {
- 	.init = clk_regmap_init,
- 	.recalc_rate = clk_regmap_div_recalc_rate,
--	.determine_rate = clk_regmap_div_determine_rate,
-+	.determine_rate = clk_regmap_div_ro_determine_rate,
- };
- EXPORT_SYMBOL_NS_GPL(clk_regmap_divider_ro_ops, "CLK_MESON");
- 
+A part from this, it looks good
 
 -- 
-2.56.0
+Jerome
 
 
 _______________________________________________
