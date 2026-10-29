@@ -2,65 +2,100 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4FA1606A31C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2026 16:39:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F935606A32C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Oct 2026 18:38:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dbl4rWjk;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=eV18hT0G
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vRrDf0mB;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=B1k/VJ9H
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=fEyYdGVdoCjz/HPNSS5QszFtrhS3CH+2w02XQEiH0DI=; b=dbl4rWjksNsyKk0A6ncs8Cgupt
-	naAglbdB7nenQgRLOImpqTBdYBzKCJ7pUbsBnE62bUIzKwTzOt5LJxKj1ddeEpUi9RNhBD2OF5pdD
-	jgoXipzj8H6gAJ8WsX9/9ivQsXXWCXy3pXFcxSW+3riC4TnpcWJ8qFywK1D49C6UlEMYA9eYzClXI
-	QXrOsxcQvX4KiMa4Bl1c4h1sueMJ+3jm0GZwnt2gdOoebnqgIx+yUuwMrUAk3lvPNg9fmzkSm7wRC
-	wTKMjK8yF7X1aIW66Q754LEDAWyuC3h1MceKroNfV5/yO3tXv1orC/iA3/iFMUgEMS/342AkiVMv+
-	8JLIyikA==;
+	bh=ZxhPYmoGSQq9mTfyZWhv45x0jWX1GjFGbwGBjl1Td2g=; b=vRrDf0mBvN4nz5I2vhtjSQiar5
+	yYWhft6ZI1W7ZPapOfcue3mjnkmc/5jvUQxkewOpfqONQ1fHHj+tYO4WkNs+bLi9lT0TH2wV7S3NK
+	JOWSwJXEOhZ9K0N9e5UG/M48ElktS/xSvQzOK6dA8WTQbHql4EIOW6/iSgVbalvYSrd04yxtk8BVV
+	4GFdzHyT1CrAL9Ata7FiLtJoDMiy5rMJT4uM1DFCuB5qNgvrmcj6o2LewQLBLoGAQxAwJw6Q831Br
+	B0K7rKJu1H1jPiriFIQH+Fm/75Q7/AzFbSYfimqBxPB0rnFV+NWESPwAv+6R4e+B2h30FSu0UR79m
+	bD2hB5aQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMTA0-00000009qZt-0Tin;
-	Thu, 29 Oct 2026 16:39:28 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
-	by bombadil.infradead.org with esmtps (Exim 4.99.1 #2 (Red Hat Linux))
-	id 1xHjWP-00000003Exd-0oFQ
+	id 1xMV0f-0000000A7lg-0PSL;
+	Thu, 29 Oct 2026 18:37:57 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xMV0c-0000000A7ja-1D62
 	for linux-amlogic@lists.infradead.org;
-	Fri, 16 Oct 2026 15:07:01 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 56861601FF;
-	Fri, 16 Oct 2026 15:07:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C15781F000C4;
-	Fri, 16 Oct 2026 15:06:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1792163220;
-	bh=qgiGef4Ohy6VRaPUYC6AlFmNRyKjxhooP4OqvSap8is=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=eV18hT0GJUaQWHwp7Ud3PDO7D6hZRb8bZhmXgdps3B8BS6n8oNJ0JGllQiOIL5tDP
-	 Sm/steBjr2D+Yo32uchtTymDOoEIcPaq4VI6WSikDzpGouECjbWUVLW7w9yFeVcsgN
-	 02VFgdWQOgAJ5by5jdKCTaA2WhUV2wFYDSyfDULQTbvubLT8hniX199/Slm0vXbZR2
-	 IQZm0/IZz7DZlUj5ENSfYBHMLo8QtFx+/3Njn/IvMWTwBJYMk/0rkA4a76NRnaV3YZ
-	 uopDBKWTIAyxKjcdyOUu7Z1DGoMj7Z2ldUbBCAWjfTtDyVPCr1XX9oKF9XIN6QoIXc
-	 wR5wn+tLG2xuQ==
-From: Maxime Ripard <mripard@kernel.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maxime Ripard <mripard@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, Aun-Ali Zaidi <admin@kodeit.net>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>, Liviu Dudau <liviu.dudau@arm.com>, Andrew Jeffery <andrew@codeconstruct.com.au>, Joel Stanley <joel@jms.id.au>, Dave Airlie <airlied@redhat.com>, Jocelyn Falempe <jfalempe@redhat.com>, Francesco Dolcini <francesco@dolcini.it>, Ian Ray <ian.ray@gehealthcare.com>, Martyn Welch <martyn.welch@collabora.co.uk>, Peter Senna Tschudin <peter.senna@gmail.com>, Russell King <linux@armlinux.org.uk>, Alim Akhtar <alim.akhtar@samsung.com>, Inki Dae <inki.dae@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>, Kyungmin Park <kyungmin.park@samsung.com>, Peter Griffin <peter.griffin@linaro.org>, Seung-Woo Kim <sw0312.kim@samsung.com>, linux-samsung-soc@vger.kernel.org, Alison Wang <alison.wang@nxp.com>, Stefan Agner <stefan@agner.ch>, Tian Tao <tiantao6@hisilicon.com>, Xinwei Kong <kong.kongxinwei@hisilicon.com>, Yongbang Shi <shiyongbang@huawei.com>, Dexuan Cui <decui@microsoft.com>, Long Li <longli@microsoft.com>, Saurabh Sengar <ssengar@linux.microsoft.com>, linux-hyperv@vger.kernel.org, Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, Philipp Zabel <p.zabel@pengutronix.de>, Sascha Hauer <s.hauer@pengutronix.de>, imx@lists.linux.dev, Paul Kocialkowski <paulk@sys-base.io>, Huacai Chen <chenhuacai@kernel.org>, Icenowy Zheng <zhengxingda@iscas.ac.cn>, Jianmin Lv <lvjianmin@loongson.cn>, Mingcong Bai <jeffbai@aosc.io>, Qianhai Wu <wuqianhai@loongson.cn>, Xi Ruoyao <xry111@xry111.site>, Abhinav Kumar <abhinav.kumar@linux.dev>, Dmitry Baryshkov <lumag@kernel.org>, Jessica Zhang <jesszhan0024@gmail.com>, Marijn Suijten <marijn.suijten@somainline.org>, Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>, freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, Gerd Hoffmann <kraxel@redhat.com>, spice-devel@lists.freedesktop.org, virtualization@lists.linux.dev, Geert Uytterhoeven <geert+renesas@glider.be>, linux-renesas-soc@vger.kernel.org, Marcus Folkesson <marcus.folkesson@gmail.com>, Iker Pedrosa <ikerpedrosam@gmail.com>, Javier Martinez Canillas <javierm@redhat.com>, Alain Volmat <alain.volmat@foss.st.com>, Raphael Gallais-Pou <rgallaispou@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Philippe Cornu <philippe.cornu@foss.st.com>, Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>, Yannick Fertre <yannick.fertre@foss.st.com>, Chen-Yu Tsai <wens@kernel.org>, Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev, Jonathan Hunter <jonathanh@nvidia.com>, Mikko Perttunen <mperttunen@nvidia.com>, Thierry Reding <thierry.reding@kernel.org>, linux-tegra@vger.kernel.org, Alexey Brodkin <abrodkin@synopsys.com>, Hans de Goede <hansg@kernel.org>, LiangCheng Wang <zaq14760@gmail.com>, Alex Lanzano <lanzano.alex@gmail.com>, =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>, Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, Chia-I Wu <olvaffe@gmail.com>, Dmitry Osipenko <dmitry.osipenko@collabora.com>, Gurchetan Singh <gurchetansingh@chromium.org>, Haneen Mohammed <hamohammed.sa@gmail.com>, Louis Chauvet <louis.chauvet@bootlin.com>, Melissa Wen <melissa.srw@gmail.com>, Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>, Ruben Wauters <rubenru09@aol.com>, Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org, Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Danilo Krummrich <dakr@kernel.org>,
- Lyude Paul <lyude@redhat.com>, nouveau@lists.freedesktop.org, Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, Magnus Damm <magnus.damm@gmail.com>, Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Zack Rusin <zack.rusin@broadcom.com>, Aditya Garg <aditya.garg@linux.dev>
-Subject: Re: (subset) [PATCH 00/75] drm/connector: Convert all drivers to atomic_create_state and remove reset
-Date: Fri, 16 Oct 2026 17:06:53 +0200
-Message-ID: <179216309041.2383329.5085571920107795525.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org>
-References: <20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org>
+	Thu, 29 Oct 2026 18:37:55 +0000
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4a2084d62cdso21604185e9.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 29 Oct 2026 11:37:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1793299072; x=1793903872; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=V0JzWuHSZxiNILu81vxHkBC1eR8z4avkRtzlz0Wpj+s=;
+        b=B1k/VJ9H5N5QQzeIkBKyuV61DAvpXsdXfpiaRTPZxiBt4QC1oqOumM7CupVDHBjHiM
+         78OHhHk9/vniQ53lxbD5M9btKGbh0DikU7qHgu8qmQu7hgq6RC+S88GmsK2PJQfAefW8
+         8oVuieoJ/6pQ5Adq/Ah3ca/SgFBEuhP991zjGEeu9A6Fy6IE7DEiFfBUpb6z8Hmi/sa2
+         wF2W3mxn0Xtz8oeMfCHJsCiQ2ag3HnHYuej/NN2gBPINIOGWKeiiTW+BhMwlF8LtdjGW
+         cMF4FTQrMaNMwPFOiF9XJtAv7v+ecnP//1rLtZu9F32nF0yxvNMKGYBFPqXITnPK+Lsb
+         XbAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1793299072; x=1793903872;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=V0JzWuHSZxiNILu81vxHkBC1eR8z4avkRtzlz0Wpj+s=;
+        b=ZUTPlvTR4WDBNny8OmMwrty81CKBrFPD7y0GVOHT8PDiYFzvjZMF/KwmzTGTnr7/Ec
+         0wk+GYdkjt49jl1kaXiLDQOSAIe/bJbBbS7LCap1lYY+9upQ3gEhia97ll9eHFPGHc1R
+         XiXJI+lSfPlTadW2m8mYe73WDvDn56CgPbp122sjpceS11x+dxHxAK82pzGN2rSPDb9Y
+         zJVTaDNKD6RuEgL5xbdX4LM3XAhPB4y+s6+NodPeqb3mQGVE/fvDLXCgXb5TAqAW9WmW
+         zUwqDy1wTNvpqmjTAI0EpKSmHcAW8BAjJkZAAgyr5QU4KRVRC+aM+JLTBlvLhA0xWc+A
+         ptyw==
+X-Gm-Message-State: AFq9FYK7W36E/+MOon5jydkbb+AXYPstzDRH4C77zw/K1ufoXOaBKP2f
+	SU/iHkEQOzfFmx00Ug2omdyYlv131t7CyFTuB2BrCeoBK15p6nTKOWmtNK7CpeG8ASA=
+X-Gm-Gg: AYBFou0NpVsbsZ5uhaG3vgmguOs4L8Jwvh0Q7GFt8aRtF81whCd9kjnqsQAZSQ53A/e
+	OYq5VlK+DnceYfNRq03RIBLOOQwSLHSNwriXA80jAZxG+g/vaNIXUrwlCVoMjdeBIspZrsZ82EU
+	5X/xeqZufn0wbziutmHj8Af5FEAH9dKgb+noMlkm7obsyxmygfRN4+MwY1j6nLsJkmIDYkxnQcn
+	6nogOqdUkQrWJshv1K+MhJjD0At1fDjMEhO8MX5PSl4anRqYzJn7snHKUGEjpY/9UjrGnEEbn+6
+	4BVMsKRTTxjhtnYr+mwgyblWMxiltVJuxuZGd+P39wbDHvdf+0XOqoluHQF0PO6y1ly1Z7oB+d6
+	7Sw8nuamvr1AYRJ78XoatnLr8Q3Kro5nTxCcwRB0v8IorbUJ/fsUlM0i0t4jDpk1mNo/U8nBgOx
+	JqhJCbCYWkpHtPaGKvjAGCWx/+ViyILt5u6NPmwzgsmJVpopSUS6NyCqInnbZu7f+n2YsvWQBpz
+	MJJYWVJYR81amh/iUKf2ctFifMT5v+1Pbp5Ahp8SByPvz48F145ZLz5nxvyKs0Mpb3p0KaiV/I/
+	ZdA7ZDwsaTwJZwZS+Ritrmmi8DoGsssI94VzuTcoDR3V+0OBKxcTo3lLBaIkgNdDaQ+kR5G0D7C
+	vZS7wu3EJN1BB1Znu8w==
+X-Received: by 2002:a05:600c:4705:b0:4a1:7c56:d4e2 with SMTP id 5b1f17b1804b1-4a966587157mr144058185e9.16.1793299072008;
+        Thu, 29 Oct 2026 11:37:52 -0700 (PDT)
+Received: from [127.0.0.1] (host-95-246-144-141.retail.telecomitalia.it. [95.246.144.141])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4aa820492cesm90118305e9.13.2026.10.29.11.37.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Oct 2026 11:37:51 -0700 (PDT)
+From: Carlo Caione <ccaione@baylibre.com>
+Date: Thu, 29 Oct 2026 19:37:34 +0100
+Subject: [PATCH v2 1/3] clk: meson: gxbb: fix ENCP clock selection
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 29 Oct 2026 09:39:26 -0700
+Message-Id: <20261029-upstream-clk-encp-sel-shift-v2-1-31ffbb6b82af@baylibre.com>
+References: <20261029-upstream-clk-encp-sel-shift-v2-0-31ffbb6b82af@baylibre.com>
+In-Reply-To: <20261029-upstream-clk-encp-sel-shift-v2-0-31ffbb6b82af@baylibre.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+ Brian Masney <bmasney+clk@redhat.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jian Hu <jian.hu@amlogic.com>, Yu Tu <yu.tu@amlogic.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Carlo Caione <ccaione@baylibre.com>
+X-Mailer: b4 0.16.0
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261029_113754_339758_AE14ACC1 
+X-CRM114-Status: UNSURE (   9.81  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,48 +108,41 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, 14 Oct 2026 19:26:23 +0200, Maxime Ripard wrote:
-> This is a follow-up to the plane and CRTC reset removal series, and
-> part of a larger effort to remove the reset hook from all KMS objects.
-> 
-> The connector reset hook is overloaded: it is called both at probe
-> time to create the initial software state and during suspend/resume to
-> reset hardware and software state. These two roles have different
-> requirements, and the reset hook is not fallible, making error
-> handling difficult for the initial state allocation path.
-> 
-> [...]
+The ENCP clock uses ENCT's settings by mistake. Change the selector
+from bits [23:20] to [27:24].
 
-Applied to misc/kernel.git (drm-misc-next)
+See the S905X datasheet revision 0.2, page 70.
 
-[05/75] drm/arm: komeda: Switch to drm_atomic_helper_connector_create_state
-        commit: 849b1119cb1f429667bf3e79cba86ad397087ab7
-[11/75] drm/bridge: lontium-lt8912b: Switch to drm_atomic_helper_connector_create_state
-        commit: 80512a4f295c52caf1394677d9c80738b68c8831
-[12/75] drm/bridge: megachips: Switch to drm_atomic_helper_connector_create_state
-        commit: 9a4a55df74880acf7c2b954d6011aab579db5f5e
-[24/75] drm/hyperv: Switch to drm_atomic_helper_connector_create_state
-        commit: 7b9c28149a291451ada4c3e9fc7fd2ae13f36bc5
-[25/75] drm/imx: ipuv3: Switch to drm_atomic_helper_connector_create_state
-        commit: 75da1ba5a3c36dca76206ec8e90bebcfc3641c64
-[35/75] drm/solomon: ssd130x: Switch to drm_atomic_helper_connector_create_state
-        commit: 9ec42580ccceb54bd8e0b044729a98e4f345b522
-[39/75] drm/sysfb: Switch to drm_atomic_helper_connector_create_state
-        commit: af36b2313c54e10b832298033b8be2fd50746c96
-[51/75] drm/vc4: Switch to drm_atomic_helper_connector_create_state
-        commit: c81e4d88c3ed73483a99a90f56cc80c80eebc863
-[67/75] drm/malidp: Convert to atomic_create_state
-        commit: 8b32d0652db9bb6b01055311e1cce5e3c4b70137
+Fixes: a8080f247bcd ("clk: meson-gxbb: Add video clocks")
+Signed-off-by: Carlo Caione <ccaione@baylibre.com>
+---
+ drivers/clk/meson/gxbb.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks!
-Maxime
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index 7a7b104182ff..b483164955b9 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -2370,7 +2370,7 @@ static struct clk_regmap gxbb_cts_encp_sel = {
+ 	.data = &(struct clk_regmap_mux_data){
+ 		.offset = HHI_VID_CLK_DIV,
+ 		.mask = 0xf,
+-		.shift = 20,
++		.shift = 24,
+ 		.table = gxbb_cts_parents_val_table,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+
+-- 
+2.56.0
+
 
 _______________________________________________
 linux-amlogic mailing list
