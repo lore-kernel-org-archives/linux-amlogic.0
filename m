@@ -2,105 +2,139 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EF4B606A31A
-	for <linux-amlogic@archiver.kernel.org>; Fri, 30 Oct 2026 09:04:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1515606A31A
+	for <linux-amlogic@archiver.kernel.org>; Fri, 30 Oct 2026 09:27:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JlrYvLdT;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=FcPcKCDk
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lqirdsMo;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=amlogic.com header.i=@amlogic.com header.a=rsa-sha256 header.s=selector1 header.b=UzMDpRGX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:In-Reply-To:
-	Cc:To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=6ohIAarw9NttYN1Iq6BkBuurMVyXwUDwCVo4n6+PO7c=; b=JlrYvLdTYUbsRL7KRsM1xkBC11
-	azjpVATOUXyADhjSkqgQeCe8sS+HVFMIV84CMPLN6+RijIbcEziPdzm9ICMdo9GDCinyC1kLjtefY
-	/6XCN1l2ftGjiZQJvP4FB6emrgWHvt6UyQaBxVsrhkpXmdifNuspBF6sgJn1qPLnjVTeXf3xQnAko
-	ZXlADC0uKyPVbBDgqTNMUR9Xb7Y+PuwmhLwqbVJCY0/o3kQNbfZAsYMAsIZYesrrKvBIUEUwAoweW
-	B20SWs+jKT6oFJWzjEXfd4GDUrkpB0AQnYA6nw7cPCse41jpuJiHh+r04iWYt2Uw2OjcAVD5t2W8r
-	QHStb83w==;
+	bh=gYhbZ0XHqUtpHXYG488yQHxJ9E0qo4x2UUaxm8/ya/g=; b=lqirdsMoYCq12YymDBe06By3PD
+	e2xfX3PZWdkM8JXqtswD8NrNkvi04BWr2LzNdZ7tlyHv2MyaT1JQZ4qgN+zx1IshHPycjQTOcPPwe
+	/vctfaSPTCSMv0GBDxZx3BtIMMO3FmDR9KESPSfvt7nhXlL8FEEdLYAJysvX7PTPzd3HV04D6l9xF
+	kyRv487QW1tsTyKe02qlY1OYm953hccaUB5NmkzUVy7lue8l9pn72qWcY0gVoexbpwKa2WpT8uZ8p
+	D+2KgB9Pmzll5IUEqoV9EiyuEN7Fz3bc8n5HK2uapUfpOfjnnr2vg+jcT8IR/lXqECC0zabPU6o7G
+	aEvx45EA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMiX2-0000000BC8f-3f8j;
-	Fri, 30 Oct 2026 09:04:16 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+	id 1xMiti-0000000BEzc-0M8Z;
+	Fri, 30 Oct 2026 09:27:42 +0000
+Received: from mail-japaneastazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c405::5] helo=TYPPR03CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMiWz-0000000BC7O-18Dh
+	id 1xMite-0000000BExq-1ah1
 	for linux-amlogic@lists.infradead.org;
-	Fri, 30 Oct 2026 09:04:15 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-48e47347279so246464f8f.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 30 Oct 2026 02:04:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1793351051; x=1793955851; darn=lists.infradead.org;
-        h=message-id:date:references:in-reply-to:cc:to:from:subject
-         :content-transfer-encoding:content-type:mime-version:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=Lyeem7zbd9Dj2v4p81+wNT8qJ6Duf4aQ5ILsHn2QZOY=;
-        b=FcPcKCDkBd7Vat7mnxF4kWJ6JvWLVd2mgUUFuO+viv8gcF2WqWX9op33QUICyLKqor
-         O3LykCGHWdiSAtMYTooibcd05vXDR88u7x7X3CDK2C2D2KHO1ccAdblCOTwY5Zr3jxL+
-         GA0cYrtRDeWdmUCUYXZoiMGS5Z8e81lAA6CLRjEJ0JuyQnPz/NZRCjAGO+/TGNb9aT33
-         8hVItT1ocOWvKqJYvYN7tYjid2VTtZ0+KE26y10pS+F2lgr46hKgsrjPDIx7JapssXfB
-         7FpA6tKN2V+a1+RRl1oLY2uHoY+DOb2zvtAgBy/iQYx4YVjQXtMSdC9ZRMBgRolzcEe4
-         tKsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793351051; x=1793955851;
-        h=message-id:date:references:in-reply-to:cc:to:from:subject
-         :content-transfer-encoding:content-type:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=Lyeem7zbd9Dj2v4p81+wNT8qJ6Duf4aQ5ILsHn2QZOY=;
-        b=2YnUedVdsBfFothvRSjBugUDQqRgTZOjel9fiZTw3bmMuNXA2JU/FfDXj+/dz8++LL
-         uRFqlvLZEdfAvnYNS2IMPVtDkVS/QIH7fHMuPQwAPQk6P3yes1jzWpfpcx8z8SETPLm7
-         TWFMsbhMScLLvgULrabjz2jV1mE1GZTmgCDBajp6drCPgs2peV/19NIeBwWvWB0AFR91
-         WyqSVC1O301dK7Y2fp5mb33pa9AP4EkFgoXUZLDzpT9z3mj6h/rF0f46ymJ7GGJf3sIi
-         F0FYuKSSRLswXObYipqdZTYx5V+QF+/MDGqksjaIKyWkQbTYlLFLXHjlDBdSD+QbNvmb
-         SJwA==
-X-Forwarded-Encrypted: i=1; AKwUvBzERBMsAa2U/Z5dn55/3NCPfC2yxZJ5PjSdFWOC+cMPOVu0bhkHxyfacrMh4e0DHOZEoUwSkUxq/RLXaoEJ@lists.infradead.org
-X-Gm-Message-State: AFq9FYIdLqPIw+GWihzto9A0wYNygjwmpsKDss1LAXMeWPlKzZGz2j6e
-	FoqOOcBt6F50JqOc1DOIs9Q1eFmDHYqt78svy9hHJEj4++WQfex9GLfotaee9EJR1hg=
-X-Gm-Gg: AYBFou0/4IMRGBEvsfHe9CLfWP3eXZALM84e4aWK1ZAU/Aydr9Dh4ehIU0cx2ZExYeC
-	MED7zd4D4Nt3SMDMAMpwdzkKK4bQyXMyjiQxKzh+80wIFl+DcKNXHmuwaOOhGMMBJZNFDZpDCSe
-	WNRo2aykPbPqJ+f3X+/K2peFOSdBMK1zr6wYg/C03raqhKJ/5tYc5zDcy/+FWzv+552wXKAu7QB
-	t1QCzEQPNs62SWYLawpl8uJeR0gQLYB+SL2cgRHHMzgZ+Q7jqqzs2stafkNESvIMH38bOhmBOL8
-	Y457v9FiN0M8qGv8pHZNY0MOH3vd6HEwO9x71sA5cN+YkrrGcWDGfhUxhHG1thVc2mI31rs0+6n
-	EEjVzSDlg1U8w70e5X3ZriLhpbd1wc8ooL8sg606jXXnLHCdpyE5H/sE1v5086eIpnXY48Wh3Bq
-	IQCujPfSuABhwxBaQRidzVTM7TsxCIYKezijVcwKKvNPWHkZ+OaS4RYgSk0JLV+gG0rklVk3M3N
-	mlGKdn2jrFdPsjno6xGTYSldUoYZDBYjPmD7ki9E2B7TJBDip0fxKrKRfVDUE/TFe5j4mRuUdin
-	FmA8xTJg4S6QSbP7rrYgc2RNMb7T6CsFKczKGrmrjyemo6OCAA==
-X-Received: by 2002:a05:6000:29d3:b0:48e:5df2:a011 with SMTP id ffacd0b85a97d-48e6e2c14a0mr2402572f8f.5.1793351050905;
-        Fri, 30 Oct 2026 02:04:10 -0700 (PDT)
-Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48e71b8bd8esm1977127f8f.42.2026.10.30.02.04.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Oct 2026 02:04:10 -0700 (PDT)
+	Fri, 30 Oct 2026 09:27:40 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dMfIh/MnaHdkIRuu2mJyjknBHHtdwOXbxKkb568VT/xwcAM2GlRNB4urClMYV7WhEhqZFj7B8KzkvvxNBbOi0+yIUy2PMkp1OqcsPtfyLlVyCdimRmKa+sxX/qpjgvTqdR6Xq8W4NZAQZLS30Czzl5kbwQDGvncjxKvWbo/qobVtS2OaLORCqkB17jYjNmbp2R0TKQaZXF8Th+7Hu8EA3W0HkDvK5/qPcmV5WluUdGUwMG8QpDwCAXVxRuNtusmumEmtKOtJOYkuhfrNcaykGarAiwOmE+MWkU3zuV1I7OV9FWvqAVZi2ddnqwjXBnycE2Ipxk1M3pleWjVxUqFLkg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uRjzo/k36HqYQSv42VxyuV/s/0rrVS+B8K46dP4A5G4=;
+ b=eXrB7Y76K+uDok/Wx2bJ964H8MfH4n9APJ9G1NqTI38fhD1CwAHW+mxrpjekxGbOYu0B0d5xhH5vlQOniP48cUTSENjXqa6OMqriZgPAb6uHj3s8/0bryRjydHjWqIEASCL8WKvXwinvpeVDgu64Sgj2OdzxqEUyVcNRyACSXLbKJFiCskmNjbfZWAxv0cgUyUrNRzNi+KDNo50Cw8tOai2vo75BIGoMA1PKy3JLq40Ft+Z0a6USAAHLDh/9Hfa+fhLZ3uF1Txmpm0GsSaWCTmpP9kmmji7I97vnVUkHPRmwp0F26Y5t6WL1Uc3w8CoC0s29eEXG1gMzqkmtkpmYSw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uRjzo/k36HqYQSv42VxyuV/s/0rrVS+B8K46dP4A5G4=;
+ b=UzMDpRGX5bgshTBZEDWfqpT6khKNBEsnRD/+O0YGAjiW5Fu9evM3cjHYxOpTq/Vs9lSil9rhYqDF5RE3y8HtZylWpc9F07IUKmtsMINC5y/0zNj6VNp0Bw3R1WwG2uxkDUWZXgIBUNCz1O6evfEqeOLwUjE/GcIKPfs4/90VWoMYi2kAuBylHAdPTA07YR6hiHa/AKWswGNEHV0RSX7CFHe1r5M1/FNVQi4P8u1t/X/I5OwG8kCZNjinyLKYKAlAzyTm8mLDBubFS3kgjwx4skFnA/egdNCJ4bTz5aBHZQqEy7l7OcHjPiha0XoVL0DfFLeamqeFg9YVWD3sUQfDWQ==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+ by TYZPR03MB7710.apcprd03.prod.outlook.com (2603:1096:400:3ca::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.9; Fri, 30 Oct
+ 2026 09:27:31 +0000
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::78d4:9dee:2e32:d1e4]) by TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::78d4:9dee:2e32:d1e4%7]) with mapi id 15.21.0569.008; Fri, 30 Oct 2026
+ 09:27:31 +0000
+Message-ID: <25203e40-ae4a-487c-a579-46e1c42f7917@amlogic.com>
+Date: Fri, 30 Oct 2026 17:27:28 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] i2c: amlogic: Add Amlogic A9 I2C controller driver
+To: sashiko-reviews@lists.linux.dev
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+ robh@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org
+References: <20261029-a9-i2c-v3-0-7b30ccc00533@amlogic.com>
+ <20261029-a9-i2c-v3-2-7b30ccc00533@amlogic.com>
+ <sashiko-outbox-188989@kernel.org>
+Content-Language: en-US
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <sashiko-outbox-188989@kernel.org>
+X-ClientProxiedBy: SE2P216CA0093.KORP216.PROD.OUTLOOK.COM
+ (2603:1096:101:2c2::14) To TYZPR03MB6896.apcprd03.prod.outlook.com
+ (2603:1096:400:289::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH] clk: meson: Fix PLL enable timing
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Jian Hu <jian.hu@amlogic.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jerome Brunet <jbrunet@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
- Brian Masney <bmasney+clk@redhat.com>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20261028-fix_enable_timing-v1-1-70f060ec3f2a@amlogic.com>
-References: <20261028-fix_enable_timing-v1-1-70f060ec3f2a@amlogic.com>
-Date: Fri, 30 Oct 2026 10:04:05 +0100
-Message-Id: <179335104535.2573818.8004160070280286355.b4-review@b4>
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1514; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=Xx/eVbgodhm0RN6K7j9bFweBrB1LQw7pZ6RJPufC9Ko=;
- b=owGbwMvMwCW2VtK+WnvWU3HG02pJDFlPYjsvLvb60dNYISrD82ePdkjGlu8bu59yTpnJIHckl
- d9Fel5hRykLgxgXg6yYIksNd7X4O0mtL7Om69yGmcPKBDKEgYtTACaiIcfwP+H5ve7nf765rXFe
- 3Xhp8cE/jpN2ld5xm75PWd5+WuaClckM/zRXCy/+OTWaq/BGwcM/q6vN/z03MD/MvFqk3Sg99NV
- zCT4A
-X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
- fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|TYZPR03MB7710:EE_
+X-MS-Office365-Filtering-Correlation-Id: a8db5485-abac-4791-0379-08df3668061d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|23010399003|366016|376014|4143699003|11063799006|56012099006|261028144727099003|261022105027099003|261026140227099003|261026121527099003|261021123027099003|261022075727099003|10067099003|261021121427099003|261009223027099003|22082099003|18002099003|6133799003|3023799007;
+X-Microsoft-Antispam-Message-Info: 0dAen/pWwBcbUklHe4spr+bcgxtY20LJBWbK1ZwLcliqS1epr1AiQEVcxQmo5R3dh/frlR9E6BMKpQ5Ef30FLhCetzgV9hKdEVf8D7z7atWnnRclWWjiRC5v5zhoksOTWKbRRfNwk2lv+ZH5IC8SFivOC/wobc/K7yorC8Kaw/RYNi+cVkgcaYq6XGkMu0BdsYB7JC6fGE1FB0DVaC/UhTP9wzPX4LKK7ctd/LEkzS1asKpziuSvVvuHm9WP36wAwRc6Bt8jRrna0ltjChII4HmY/QYg0ZMuVsqvT1/m8f0auv3ZEYyR+OKP8nCM49tVNEsdNTKtGh4x50YEn7wDXEsWG/O8NZS4HyK9Efku00ZNCTl3Ezs+ceOjHLfKrCDcG7v3XAPqe2LHddJ6Rxc8bySIgkmdrJnrYNUl+7924kIqMN8TOomUTviHAu572m3L/NZzyOeeXisNtLCK4EvQGJ721ABgEo+szHW4K6eljN+Kmio0gLxG2epU913JmgqcaJF5x7oUIyvo3/xPd56HkQeG2G/tZpbzO7Ru17vreJfN38H/F0P2wf3bhYlHikFPWUJdZ75DIHmOsUSaPOQRt2dwaAKCaKDwFDDcDXiWZsVAQPuqs+DQq7up9ubVuNlmSPsr1Unm/IohFgbqOqWSv0viucmPs6FVROST4EshEVQ=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(23010399003)(366016)(376014)(4143699003)(11063799006)(56012099006)(261028144727099003)(261022105027099003)(261026140227099003)(261026121527099003)(261021123027099003)(261022075727099003)(10067099003)(261021121427099003)(261009223027099003)(22082099003)(18002099003)(6133799003)(3023799007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bSt4Lzh2a1pPbFFuQVpFc2xscnVabkUyelJjQXhwNGl4MVFuTitPTm80T21l?=
+ =?utf-8?B?ZG1kcExKK1lZYy9SUisxVHpCWDlUbkE0WUpuemxNZUtJNklNVWtubUNZK0Zv?=
+ =?utf-8?B?R3JzWGhibkxPU0ZxdjQ4MkNKL0NHMW9JRFJ6M2p4OUpqQldJRXFBSVJ5TFBs?=
+ =?utf-8?B?UVVneTNIZUt0T25PeTFyOWIwT3hsMkt6eWpLcS85TGRodnZXRjliRFNNWmR6?=
+ =?utf-8?B?VGUvcjFVL3lXVVJlb0p1WmFFTnVPMkVIY1Y4aExxRUJyekhhbXptM2ZicktI?=
+ =?utf-8?B?TWsxN01JcW5pM292MUQ0OG1Hc2l4dHEwZERja2pNdTUyWEI5akd5Z3Avc082?=
+ =?utf-8?B?RUZNVDhHOVJRaW9tdGZtWERXTkxGcmhvS0lFOFZFSU03NTgydWkzMGhTMXpv?=
+ =?utf-8?B?S1BhZG01MnMrN280aER1bEZpTkVvZzB3TDkyaGdia2NoWGtCWlNQNy8yQndR?=
+ =?utf-8?B?S3hBbUloWDUwcm1jeit5UFRUOXgzNnZ3RHNFMktUMHkvMXl5RURCWlk3bGUx?=
+ =?utf-8?B?NU9ITlI0N3ZCSE1WdndQM25HeWFCK3FUL29Hb2xBL2NqVVk1d1ZnVkk4Tm5N?=
+ =?utf-8?B?Z1dGaG80T25pRnRRaCt5ZzJaVHZIOVU3Tm5qN25OL1V5U1liaUlZZE1XYjlL?=
+ =?utf-8?B?Nk9ZaFZhdkk3MzdTcG5yM0dLWE5oa0V5TFJacnhHS25xcW9XMVpqT1hmU3ZU?=
+ =?utf-8?B?dW9xbm4yWFgvVGthTGRZVDBaNGQ5RUVuOUtTOTVBSUcvS3grN0ZZM0hoTjlG?=
+ =?utf-8?B?UXE4UGJzdUk3U2Q3MlJBV1BmZ0xYZTYxQVZrUms4UlpIOU93L3JrakxadW1i?=
+ =?utf-8?B?eEtwR2h6Y1laelVnQlAwSkhPUk1VTWhEYTZXQ2h4OWtJTFVOUjZzZHdESkF1?=
+ =?utf-8?B?MU1ncTA2Q1h6UXg0Q2tkVUxVZVBGVHl0eGZ3dnMvMkJiM1pxUEY5MksrZm8w?=
+ =?utf-8?B?S3F5SFU4UkFtcC9FTnBybWh6Rmd1cEdXK0x6SUJUQk81SVhpdmljOXhXcG1F?=
+ =?utf-8?B?K0RMS1IrWmJtSkYxMUVZQ1JneFpwcmhnRWJ3a015cVNTNGdwUUhCOVdteWtP?=
+ =?utf-8?B?bFczdEVGNk40Z0VwNDVvWVo1Z1A4ditFS3dma2hJc21aYnlWcXNOME9XWFB6?=
+ =?utf-8?B?Q2wwcHBOamVjNEJpY2dyZFJMLzlRVDk4UEVhaGhXYmwydlZwQXZ2c3l3TEo0?=
+ =?utf-8?B?V1MyTzA2T2tzMGg1MVVDZ2x6ZXRLOHZFMGJtdzBNa0RQc21UYmlPZ3czZm1G?=
+ =?utf-8?B?U1hLUFY3L085eXdHemoxZUpzWjZ2azNXSmFXcjNxWEp2YjdjTjg3d0c5RGI0?=
+ =?utf-8?B?YUZKOTdTTm5xZE40S1ZhYTZCMlFBM01vZ1gzVHNNRVV4SUtRREtHc2Y2YmVJ?=
+ =?utf-8?B?OEFsNG1kb25QZ1YwbllFbCt1NlMrWjdQMjl6YXNzZTQ4akhaVUk4WVJKbXVm?=
+ =?utf-8?B?ZGRFS21YaU1pS2FEaVpHRG9pbEtQYko4bmZSTVhjOFdBTDFuYWFSR2hqekNK?=
+ =?utf-8?B?cXVxelVIU1dEWWVDemFQaW1mSlU4SVluV1A2dU1BYXhKeTJRMHJMUjFGajNP?=
+ =?utf-8?B?YXd2d0g4aUdGTy9Fd2RhNlRIeTlBV3AvbFo4WVRSWS9ZZ0hDUEtuVW03R2Z2?=
+ =?utf-8?B?dEl6L1hQOVNKeXdiMWhNUjRUTC9NMXkzMk9wYTZlT3l4MzM5R3dzNllkVUF1?=
+ =?utf-8?B?bnE0ejN0OHViNW5tcUFCRkhUcVphbUZuUEdaUDRHU0R4d0xsY3Y1d3l5STRl?=
+ =?utf-8?B?aG9UN0NGeGtGamJ3YWpvTE5PRktEZ3BrTTM5ZWh1bTFMNWpicTFUYndOMTZn?=
+ =?utf-8?B?L2VhRUV4MWRidENBcmlxUUFaZGpDa0ZjSDRpQTFrM2xOWkxTTlJheTVZVDJO?=
+ =?utf-8?B?ZVNJQVZoTkNmZjZGa1JJdnhnOCtLYm14bTh0TFowWGZlcTkweC83UUF1VzVl?=
+ =?utf-8?B?amdOd2M0K3JBZkJRT3UxYUhIVGp4Vk1KQUlERHVFaElRUWkyeVhKaU5IaHdx?=
+ =?utf-8?B?eHljWGtWVnhZYXo5TmZzK0tNTmc3emtnOEQ5WG9HUmtjanh5S2FnT2FUTy9L?=
+ =?utf-8?B?SHYvRkEwTEpNc0gzL2Nrb3FsMmJLSlh0UEkzejBEZytYMHpYczg3Zyswck9C?=
+ =?utf-8?B?aWIzS0w3WDJEN01VdE9yd1ZGWFdSdnZTMlovSk5HNFgvT1BuWW5sVzFjQWVk?=
+ =?utf-8?B?dXN3UFQ5bGhITFY3MDBvNjBsSnp5L0RRYjBab1NZSm81M1dSZ1gvYUYyd1lG?=
+ =?utf-8?B?L3JDcmloeTNXd0FuMjR3bmVUbkxPTjZtU2hMUlhVU00rYW10Z2dxRW1qVHZp?=
+ =?utf-8?B?TEtDVFRNVzhLQTB3d0QzQjlSUkdaeTNEb0JjWERyMnZ4WG45TFRpZz09?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a8db5485-abac-4791-0379-08df3668061d
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2026 09:27:31.8023
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nXxFy4xalH+gqhcG+IPVBetudnQPq//ZbdmocWrI6c42AWJR7MvpZcUWrJrMyYkRuUyY6wh6GFvPBQiFb8TRBP5qsRyj3u+fpUEZUkLYTSI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB7710
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261030_020413_337839_70F54A15 
-X-CRM114-Status: GOOD (  12.90  )
+X-CRM114-CacheID: sfid-20261030_022738_538873_55C0D154 
+X-CRM114-Status: GOOD (  26.38  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -111,63 +145,207 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
-	autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> The hardware requires a 50us delay after setting the PLL enable
-> bit to meet its timing requirements.
+hi,
+
+On 2026/10/29 16:48, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 3 potential issue(s) to consider:
+> - [High] i2c: amlogic-a9: missing threshold IRQ disable on timeout in aml_i2c_xfer_msg()
+> - [Medium] i2c: amlogic-a9: transfer started before IRQ setup in aml_i2c_do_start()
+> - [Medium] i2c: amlogic-a9: spurious TX FIFO write on completion in aml_i2c_irq()
+> --
 > 
-> Without this delay, GP0 and HIFI PLLs on Amlogic T7, SM1 and C3
-> may fail to lock under stress testing.
+> commit ab8bf627f35c4931f8163555b700d4cca01277db
+> Author: Junyi Zhao<junyi.zhao@amlogic.com>
 > 
-> For example, enabling the GP0 PLL at 1512MHz may lose lock and
-> result in an output I/O error:
+> i2c: amlogic: Add Amlogic A9 I2C controller driver
 > 
-> echo 1512000000 > /sys/kernel/debug/clk/gp0_pll/clk_rate
-> echo 1 > /sys/kernel/debug/clk/gp0_pll/clk_prepare_enable
-> sh: write error: I/O error
-
-This is something for the cover letter or bellow the --- for a single change series.
-
+> This commit adds an I2C controller driver for Amlogic A9 SoCs, along with
+> corresponding Kconfig, Makefile, and MAINTAINERS entries.
 > 
-> Add the required 50us delay after enabling the PLL.
+>> diff --git a/drivers/i2c/busses/i2c-amlogic-a9.c b/drivers/i2c/busses/i2c-amlogic-a9.c
+>> new file mode 100644
+>> index 0000000000000..503511734fe26
+>> --- /dev/null
+>> +++ b/drivers/i2c/busses/i2c-amlogic-a9.c
+> [ ... ]
+>> +static void aml_i2c_put_data(struct aml_i2c *i2c, u8 *buf, int len)
+>> +{
+>> +     int i;
+>> +
+>> +     /* When this I2C module transfers 0 bytes, it must still send at least 1 byte. */
+>> +     if (!i2c->msg->len) {
+>> +             writel(0x00, i2c->regs + REG_CFG_TX);
+>> +             return;
+>> +     }
+>> +
+>> +     for (i = 0; i < len; i++, buf++)
+>> +             writel(*buf, i2c->regs + REG_CFG_TX);
+>> +}
+>> +
+>> +static void aml_i2c_prepare_xfer(struct aml_i2c *i2c, enum fifo_fill_mode mode)
+>> +{
+>> +     bool write = !(i2c->msg->flags & I2C_M_RD);
+>> +
+>> +     if (!write)
+>> +             return;
+>> +
+>> +     i2c->count = min(i2c->msg->len - i2c->pos,
+>> +                      mode == A9_FIFO_FILL_FULL ? A9_I2C_FIFO_DEPTH : A9_I2C_HALF_FIFO);
+>> +     aml_i2c_put_data(i2c, i2c->msg->buf + i2c->pos, i2c->count);
+>> +}
+>> +
+>> +static irqreturn_t aml_i2c_irq(int irqno, void *dev_id)
+>> +{
+> [ ... ]
+>> +     switch (i2c->state) {
+>> +     case A9_STATE_READ:
+>> +             buf = i2c->msg->buf;
+>> +             rd_len = min(i2c->msg->len - i2c->pos, A9_I2C_FIFO_DEPTH);
+>> +             for (i = 0; i < rd_len; i++) {
+>> +                     rd_val = readl(i2c->regs + REG_CFG_RX);
+>> +                     buf[i2c->pos++] = rd_val & TX_RX_DATA;
+>> +             }
+>> +             /* Rx must clear thresh after read fifo */
+>> +             clear_irq_status(i2c, A9_RX_THRESH_READ);
+>> +             break;
+>> +     case A9_STATE_WRITE:
+>> +             aml_i2c_prepare_xfer(i2c, A9_FIFO_FILL_HALF);
+>> +             if ((i2c->pos + A9_I2C_HALF_FIFO) >= i2c->msg->len)
+>> +                     aml_i2c_set_mask(i2c, REG_CFG_IRQ_ENABLE, A9_TX_THRESH_WRITE, 0);
+>> +             i2c->pos += i2c->count;
+>> +             /* Tx must clear thresh after write fifo */
+>> +             clear_irq_status(i2c, A9_TX_THRESH_WRITE);
+>> +             break;
+> [Severity: Medium]
+> When a zero-length write message (i2c->msg->len == 0) is submitted via
+> aml_i2c_xfer() -> aml_i2c_xfer_msg(), aml_i2c_prepare_xfer() calls
+> aml_i2c_put_data() and writes 0x00 to REG_CFG_TX before starting the
+> transfer.
 > 
-> Testing on GXL shows that the PLL works correctly without the
-> additional delay and continues to lock successfully after the
-> 50us delay is added.
+> When the transfer finishes and A9_PHY_DONE triggers aml_i2c_irq(), the
+> A9_STATE_WRITE case runs unconditionally without checking if bytes remain to
+> be written or if A9_TX_THRESH_WRITE is set. Because i2c->msg->len is still 0,
+> aml_i2c_prepare_xfer() -> aml_i2c_put_data() writes a second dummy 0x00 byte
+> to REG_CFG_TX during completion.
 > 
-> On A1, remove the redundant 10us delay before enabling the
-> self-adaption current module, as the new PLL enable delay already
-> covers this timing requirement.
+> Also, given the comment in aml_i2c_put_data() noting that the hardware must
+> send at least 1 byte when transferring 0 bytes, does a 0-byte transfer
+> actually transmit a data byte on the bus? If the controller cannot perform
+> true zero-length transfers, should aml_i2c_quirks set I2C_AQ_NO_ZERO_LEN
+> since aml_i2c_func() advertises I2C_FUNC_SMBUS_EMUL (which includes SMBus
+> Quick commands)?
 > 
-> Tested on: T7, C3, S4, AXG, GXL, SM1 and A1.
+
+Will add flag I2C_AQ_NO_ZERO_LEN in aml_i2c_quirks.
+
+>> +     default:
+>> +             break;
+>> +     }
+>> +
+>> +     if (!(irq_state & A9_TRANS_DONE) ||
+>> +         (i2c->state == A9_STATE_READ && i2c->pos < i2c->msg->len))
+>> +             goto irq_trans_out;
+>> +
+>> +complete_irq_out:
+>> +     i2c->state = A9_STATE_IDLE;
+>> +     reset_fifo_pos(i2c);
+>> +     complete(&i2c->done);
+>> +     aml_i2c_set_mask(i2c, REG_CFG_IRQ_ENABLE, A9_RX_THRESH_READ | A9_TX_THRESH_WRITE, 0);
+>> +     clear_irq_status(i2c, IRQ_ALL_MASK);
+>> +irq_trans_out:
+>> +     spin_unlock(&i2c->lock);
+>> +
+>> +     return IRQ_HANDLED;
+>> +}
+>> +
+>> +static void aml_i2c_do_start(struct aml_i2c *i2c, struct i2c_msg *msg)
+>> +{
+>> +     unsigned int reg_val;
+>> +     unsigned int trans_len;
+>> +
+>> +     trans_len = msg->len;
+>> +     reg_val = (unsigned int)(((msg->addr & 0x7f) << START_SADDR_SHIFT) |
+>> +                             ((msg->flags & I2C_M_RD) ? START_READ : 0) |
+>> +                             ((trans_len & 0xfff) << START_LEN_SHIFT) | START_START);
+>> +     aml_i2c_set_mask(i2c, REG_CFG_START,
+>> +                      START_START | START_SLAVE_ADDR | START_READ | START_LEN, reg_val);
+>> +     clear_irq_status(i2c, IRQ_ALL_MASK);
+>> +     /* enable thresh mode */
+>> +     if (trans_len > A9_I2C_FIFO_DEPTH) {
+>> +             reg_val = (msg->flags & I2C_M_RD) ? A9_RX_THRESH_READ : A9_TX_THRESH_WRITE;
+>> +             aml_i2c_set_mask(i2c, REG_CFG_IRQ_ENABLE,
+>> +                              A9_RX_THRESH_READ | A9_TX_THRESH_WRITE, reg_val);
+>> +     }
+>> +}
+> [Severity: Medium]
+> In aml_i2c_do_start(), START_START is written to REG_CFG_START before
+> clear_irq_status(i2c, IRQ_ALL_MASK) is called and before the threshold
+> interrupts are enabled in REG_CFG_IRQ_ENABLE.
 > 
-> Fixes: e40c7e3cda07 ("clk: meson: clk-pll: add enable bit")
+> If execution is delayed between writing REG_CFG_START and clearing
+> REG_CFG_IRQ_STATE (for instance on PREEMPT_RT where spin_lock_irqsave() does
+> not disable preemption, or due to an NMI or hypervisor preemption), can the
+> hardware assert A9_NCK_ERROR or A9_PHY_DONE for the new transfer only for
+> clear_irq_status(i2c, IRQ_ALL_MASK) to immediately wipe it out, causing
+> aml_i2c_irq() to miss A9_TRANS_DONE and wait_for_completion_timeout() in
+> aml_i2c_xfer_msg() to time out?
+> 
 
-This is the commit which introduced the enable bit and it is not really
-what you are fixing here
+This is a hardware-related issue. Some status bits can only be cleared 
+during startup. Changing the initialization sequence may cause data 
+transmission issues.
 
-A more likely candidate is b6ec400aa153 which introduced the delay
-sequence you are modifying here.
+>> +
+>> +static int aml_i2c_xfer_msg(struct aml_i2c *i2c, struct i2c_msg *msg, bool last)
+>> +{
+> [ ... ]
+>> +     if (!time_left) {
+>> +             spin_lock_irqsave(&i2c->lock, flags);
+>> +             i2c->state = A9_STATE_IDLE;
+>> +             clear_irq_status(i2c, IRQ_ALL_MASK);
+>> +             reset_fifo_pos(i2c);
+>> +             spin_unlock_irqrestore(&i2c->lock, flags);
+>> +             return -ETIMEDOUT;
+>> +     }
+> [Severity: High]
+> When a transfer with msg->len > A9_I2C_FIFO_DEPTH (32 bytes) is started,
+> aml_i2c_do_start() enables A9_RX_THRESH_READ or A9_TX_THRESH_WRITE in
+> REG_CFG_IRQ_ENABLE.
+> 
+> If that transfer times out in aml_i2c_xfer_msg(), this timeout path resets
+> i2c->state, clears REG_CFG_IRQ_STATE, and resets the FIFO pointers, but
+> unlike complete_irq_out in aml_i2c_irq(), it does not disable
+> A9_RX_THRESH_READ | A9_TX_THRESH_WRITE in REG_CFG_IRQ_ENABLE, nor does it
+> clear START_START in REG_CFG_START to halt the controller.
+> 
+> When a subsequent transfer with msg->len <= A9_I2C_FIFO_DEPTH runs,
+> aml_i2c_do_start() skips updating REG_CFG_IRQ_ENABLE:
+> 
+>          if (trans_len > A9_I2C_FIFO_DEPTH) {
+>                  reg_val = (msg->flags & I2C_M_RD) ? A9_RX_THRESH_READ : A9_TX_THRESH_WRITE;
+>                  aml_i2c_set_mask(i2c, REG_CFG_IRQ_ENABLE,
+>                                   A9_RX_THRESH_READ | A9_TX_THRESH_WRITE, reg_val);
+>          }
+> 
+> Because aml_i2c_irq() dispatches strictly on i2c->state without checking
+> which bit in irq_state triggered the interrupt, won't a stale
+> A9_TX_THRESH_WRITE interrupt left enabled from a timed-out write fire during
+> a subsequent <= 32-byte read (i2c->state == A9_STATE_READ), causing
+> aml_i2c_irq() to read from an empty REG_CFG_RX FIFO into i2c->msg->buf while
+> leaving A9_TX_THRESH_WRITE uncleared?
 
-I've got this other patch addressing PLL delays in my queue:
-
-https://lore.kernel.org/all/20251031-optimize_pll_driver-v3-2-92f3b2f36a83@amlogic.com/
-
-Which one is it ? both ?
-
-Please consolidate and resubmit.
-
--- 
-Jerome
-
+Will add clear A9_RX_THRESH_READ | A9_TX_THRESH_WRITE enable bit after 
+timeout.
 
 _______________________________________________
 linux-amlogic mailing list
