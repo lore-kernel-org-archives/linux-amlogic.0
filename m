@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FFDE606A33A
-	for <linux-amlogic@archiver.kernel.org>; Fri, 30 Oct 2026 16:32:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66C96606A321
+	for <linux-amlogic@archiver.kernel.org>; Fri, 30 Oct 2026 16:33:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PpmVETeJ;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=RGmYFh03
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=j0bu1Rge;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=EeAC9zca
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -14,74 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=uPplj7KbexSbYrUDl5ZMe3TitDIPxBSxCyk82gxewxk=; b=PpmVETeJMbxXGLkrq3HRy9CcPW
-	Ue5bhULZKXxvtAWGRtiT7c4gnswSKzTS0aFzy4tx4sb9kAMdpY0TNMjrn92/PB3MyAlzcjrooEiEg
-	TeRTZBAfPhpLKw4sk3WqvkMPKh2YKLQIPC9Z6VSmImFvLze1G+BRsZyP9DP63XqYYDrL/4Xs6rTiQ
-	5CfLjG0sbz+98ZD/xp15GGb0CDUt2oNLW/dD0/XxewzStk1iC//vLU3erlYujy1fMK8kfumjKStO4
-	dUduRL3NBOKX5xwg0IC1CqpfDD8GtiddJ5rL5irc0Q4+EIlm2dz2CRWi3jgiCg+6WPqg2mVBwkM68
-	c5Bub3iQ==;
+	bh=MunSNwI568XKYx4aB9AZfB1y4AJHpTfaKBsyEaTFn7w=; b=j0bu1RgeJj1yl/ZG7F8QER620K
+	XIzqooxzFYD1AYPFqfZGXJ3UN9voxh+DByw4pLqEMqQ7EKtCNILaSSP/FtnTX+gSmFk6ysySClJIB
+	g6EMjSlwGCxhbN/FJqHhtvWb4iovYrzp/dnU5p3BHWuFILDhj1W0EWcl2YuyOt6bs3vYiUtBDjY3+
+	0/AaBp9KbfgUPwSro52aOEl55ng4q0hfEP30dARcE4ILyW/6kOtvJ2ca6oRVpKBLgEe+NRZwckshh
+	g0OadMh6iRVD6SJerQ4om6tyvSpt6edQl8BfeMHaJqhCzhScCUckJWFGjkTfAQ7Ug/mnWYXUUproC
+	jM9RnB8Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMpXB-0000000C8AM-2Sy3;
-	Fri, 30 Oct 2026 16:32:53 +0000
+	id 1xMpXI-0000000C8DD-0IjZ;
+	Fri, 30 Oct 2026 16:33:00 +0000
 Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMpX8-0000000C88M-47gt
+	id 1xMpX9-0000000C88U-1tG4
 	for linux-amlogic@lists.infradead.org;
 	Fri, 30 Oct 2026 16:32:53 +0000
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4a140e7405dso9715135e9.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 30 Oct 2026 09:32:49 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4a2167bd087so7679895e9.3
+        for <linux-amlogic@lists.infradead.org>; Fri, 30 Oct 2026 09:32:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1793377969; x=1793982769; darn=lists.infradead.org;
+        d=baylibre.com; s=google; t=1793377970; x=1793982770; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=M1SoM7Xac7RXZwO+FnicXP4wRxU5w10jY+RMIW4NnkA=;
-        b=RGmYFh0370HhfZZ5rhzNx6hcIPYYDQxYKJr0NVkHCPpFatohS5DrW0HqLf2VaKqgjk
-         mNFbdcQJ2Nd4o+ACGy3uU06VXMoZWi7jw03HzLBFbPjSASjgcNsB5KV219IdWhirViPy
-         V1KFRSmJvRb3WvOJPSaHne2fiXwR6dEX6t7Sev1kN/a/23GImJOu0BXSIgqS6fVlX+OF
-         xRr2yZfy/ggc7EQsHSVgaYE1kM8/1mDLxpSzuu3ZZ/raME3yOqPeCEyoKfZ37TqbrpyI
-         j/0WDLE5/+O2VqEzU5zRuYAMHIuKqjPO84AJrh/aBC0+wmGQV+ZYERxvjTjjdLhp4NNQ
-         6Edw==
+        bh=6+1tf605VEw+u+AR0YH1cCPgkt2etMqrPGwsHIMVVIo=;
+        b=EeAC9zcaUuNMtZvaDjkAcELuzSg6fr19EFpVxoaf+MXZ8aV9IPpwkDfb3idEF3tKoU
+         bNjnVkmzZ5VBxcgnBbXit+aVEGMJDoCw8hI+eZVIT1e7otfe/IJi+zyRq/zLaOBhpgR5
+         ZUP73s0abDA7vdpVWomVGeJ2JPFebOVsctMN2gEKr1w0ebnJqTW04smnj8rI0PAYUO9Z
+         JhWS5JltZ55fx3Jb2GNSiC8blXuHeSgDVoPfMpTmKQOWb7udFt8fCncOisv3zD31fuEK
+         IityCJ3rBApQyCwlQzIOOHdWB7/a2HC8VQeN71psKzcvYX4UiUxYoHU/beml472q9dY+
+         1/FA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793377969; x=1793982769;
+        d=1e100.net; s=20260707; t=1793377970; x=1793982770;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=M1SoM7Xac7RXZwO+FnicXP4wRxU5w10jY+RMIW4NnkA=;
-        b=c/L/iB/bRNRBJnpyFkvY9yjrEsVQsJtNRye9a+J4Ro+QjQABnXo3Dc5je9r7bFlYkT
-         JLYvtJVCAGEs1/j3Trqiem7MbQzpMpDeGg3EdJ5ijr5tqEKGIDE2haxjHHr879qsJl9E
-         WhLoj3xe4txBJoipwZT8L3mLZ09UQTs5+9qyYu730TlD39wS7HNHaNHhEkflaheMw7jS
-         aoosKFmcLCCO428+jcPYRf6Q2kkgFuP37ls6lpBcNyPIMOHmIjO7dDKPZLmUGwXjm5NF
-         tgMCOlDYaiSLihe2SZbAGoa4Co8wvKc7AtTKmCoJs/P4poKbmEvw5lsXeFuRtFzltWGq
-         NL7Q==
-X-Forwarded-Encrypted: i=1; AKwUvBzE5ikQQ9ddnq6FMCT/ZmTAl4YT2YqvXuddfNYs4o7hMVZ6t5O0HjpCn6NvmEAl5tv4JPpUwNwx0yyCgGic@lists.infradead.org
-X-Gm-Message-State: AFq9FYIRSoQTwYsgmeniQcaCw3+8jAgdVxFndKtLRumovGuPTprniaJ6
-	afBavvYUpVkvVHCBYXRDKxJmNroKFFKsjI8nqEZTQeFEynyVCMqGM/Uyn6WJjJaqtLy6uk6xm4e
-	xI2r/HEQ=
-X-Gm-Gg: AYBFou3UJoj4Vv4NL48InjF2fcdL/oI17yhnuCKHi5IKm9gFWszyHO3xqjwlHL4QiNh
-	1p16GFz1PIyd3Gf1q414uaotSVHYt8PJOPNm3mOqGm89JSkkgft3Ad7J66ZL/r1erCh6LH4FU+b
-	+sL5w92cIXBUxhosneUdggaG8ftKP7cbntADfyKO6euPZAxCwpCM6w6QeRTlN9C8nvw8c2/NQBM
-	5bYOXVtr9SbLYXIm4NdMNZokVS6pDqK/guWXVkS44YBWumomjc94okVtGuD+hqZIQNhpLzFrmmb
-	1TWMimuojPOaiqtWtO3DioS2YbVYHziIo3iwccBr8fHzt3/ojNHm3DTPc1v+5CcHyxJtbVOQorI
-	SRzQ+tx27sIcsa08Zn55qf4qx4z14N5ka8IxhldJiUKp9tw54xfN34jQe+OYdxbupP6zbUxVBvf
-	l0/mMUptE7LmD8lyx36x17Wi4UqTQgTMmCeIa4GqYzkHnDMM3O482KTwKJgXN4A6aohurlD3hz5
-	yoKGhrH0z7vwxnbkPnppeaywuKtp9/Jh2zOsv2mHvShimssdTrfISEXPlx7zEbnCsCdqdsBvj6u
-	R0EZoURD2oxzbP2ArCvl/xL1/Uu5Fhw+ugJalklFBCFnRwwg
-X-Received: by 2002:a05:600c:46ce:b0:4a6:7d6:821f with SMTP id 5b1f17b1804b1-4ac189928e9mr64716115e9.29.1793377968735;
-        Fri, 30 Oct 2026 09:32:48 -0700 (PDT)
+        bh=6+1tf605VEw+u+AR0YH1cCPgkt2etMqrPGwsHIMVVIo=;
+        b=RaFFY1C6aiFA4YSAGmxcrV/R7AMdzrQtP/jsojYynX4t3it03qPt10dZTxRJDY2234
+         piJWrD2ZR42b52u6LPlwExx/cmoIQnG6tNK61I9H3M2Oa7lRTOJdfrMLRk/UxuxtK3C8
+         KsHxaBvzkQ9PXmJi80ks5uNWYBKfZyMrLiQXukvt4GKnpcwq2CN96r1Glj1FitXmVHA2
+         ItG0iilJUU66uq71dxwYoT9JZFd9nkv4/t4uH1E0uhi4nCsIW48oUMmPXm7WOpaNGU5j
+         Bw8pNy34kywU8MhvmVKxE7m/SYcz8qJYapoH7x5wfrAKadmbvdwHta4gY953tzwjnBX9
+         E0Wg==
+X-Forwarded-Encrypted: i=1; AKwUvBxOZJz8GWqOBEslFohmyVTF/f4Z8U9ZWdn2Bw092pzdeTTFhBp6gVyvSNxYAXW/iH0KGdMhhl7auG+V0C8K@lists.infradead.org
+X-Gm-Message-State: AFq9FYKTX5cqciK1fYG1gVVvSWqnA79c+laEyxyTrrsYfSNJi19isBYQ
+	qafXUQFlff1owrPBZavA+ROuQILmqLl/L/rZZowCWS2k0NhXkYmb5cGcNtip/zPeQJw=
+X-Gm-Gg: AYBFou3w0jFDwHqWpUFVmMWwPSw7FqLqAx/4WUCCHeR3TxjXnsvREYMoH7cPToSWsxV
+	meubfv24uk5XAYVNKdVAnPVMZrAOX5mAzRDpL/M5nKvFEt52q0x04gDrk3Ju2T836mOY85feOMM
+	kPeY3UalZi49TrC5pybff2LOXxA4f+ks9qPySBSZGOpEEIQu/W//IJPwG6ZAqov7FmWETmAfc+d
+	BQbTlHZz3mwYtAdxhZBglwAZNqEwI+Cq4ZtCPF7/xgH5JrrUZTkJqazD+/Z7cBX26V1FPeYJJcj
+	FV/l6fdN05aIiu5re0kjNRtc5bOjQMgVJWR9D9p2mdtB0YyHBKN5CkzsD85nxuUFFwauVGjmP/c
+	qH+6q8w9uxerFm1sIweBMwF5HUX2Uc+Q9BvIDj+sZF/qAYofsQBvO88b4o53I3lPMcxE4X6+O3T
+	JfFHGYqI43B+dJp9r9s47es9qMzUUyfRw7p0urw+3J06GrSlX553x9XK9ECPMQG5KRvqs4LfVjW
+	SfZAYEyZKL7z06MtA4ahsFP8A6RlWiafv93vad3j+piWwTlUJx7Awk3KJVUgF9VZvnXLMjbomXH
+	woiZPWDZjLE9arLu5f5jHLtD9X1sBbQoDuui80IleaLC8lJSvA==
+X-Received: by 2002:a05:600c:8b55:b0:4a2:1655:87e2 with SMTP id 5b1f17b1804b1-4ac17b2b023mr70629455e9.19.1793377969852;
+        Fri, 30 Oct 2026 09:32:49 -0700 (PDT)
 Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4abe7706516sm45130975e9.0.2026.10.30.09.32.48
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48e71b959c1sm4062372f8f.45.2026.10.30.09.32.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Oct 2026 09:32:48 -0700 (PDT)
+        Fri, 30 Oct 2026 09:32:49 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Fri, 30 Oct 2026 17:29:53 +0100
-Subject: [PATCH 1/2] ASoC: meson: card: leave the device drvdata to the
- ASoC card
+Date: Fri, 30 Oct 2026 17:29:54 +0100
+Subject: [PATCH 2/2] ASoC: meson: card: unregister the card before freeing
+ its links
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261030-meson-card-register-fixup-v1-1-6474985e94f6@baylibre.com>
+Message-Id: <20261030-meson-card-register-fixup-v1-2-6474985e94f6@baylibre.com>
 References: <20261030-meson-card-register-fixup-v1-0-6474985e94f6@baylibre.com>
 In-Reply-To: <20261030-meson-card-register-fixup-v1-0-6474985e94f6@baylibre.com>
 To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
@@ -93,17 +92,17 @@ Cc: linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Jerome Brunet <jbrunet@baylibre.com>
 X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1398; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=0RFe1Fr3NaxVtejZemaL7j5wb6r/Qt9kPR04MlhQsks=;
- b=owGbwMvMwCW2VtK+WnvWU3HG02pJDFlPjq2bcGOyzGlzq7QHs65mvjjvKLVt7V/Jc+saPA+rS
- /KVXHh/uqOUhUGMi0FWTJGlhrta/J2k1pdZ03Vuw8xhZQIZwsDFKQAT+XKckeHfCw+1YwYd73yc
- ly6uTff6EMXxOD9pR6zZ/iXVhyIet/gwMsxx9l7/94VQvvGk7R2Kpz7UKYtXr1U+sp9nDpOxd6b
- 6CwYA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1200; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=MbVgYLo6a0sH0b1W+GvzTE98oQ0+5OC6agqIsxBjCpM=;
+ b=owGbwMvMwCW2VtK+WnvWU3HG02pJDFlPjq0Lkf+sf85oVkmvYbuC66yvHz5Vc3HOvrCEzd/If
+ LbFjofPO0pZGMS4GGTFFFlquKvF30lqfZk1Xec2zBxWJpAhDFycAjCRlb8Z/im2TJmvXdm04Wfk
+ zt8qz6atM45WzcxKkM82sThy2XpD8EdGhhNTdi+SP1rUmtsY1C7j1bfppaDdlW5mD7kXm0uZKkN
+ lGQA=
 X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
  fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261030_093251_075075_B3DBC945 
-X-CRM114-Status: GOOD (  13.72  )
+X-CRM114-CacheID: sfid-20261030_093251_517826_D08653C3 
+X-CRM114-Status: GOOD (  10.42  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -124,42 +123,39 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-snd_soc_register_card() sets the device drvdata to the card, so
-meson_card_remove() gets the card, not the meson_card it expects. The
-card is not the first member of meson_card, so the links are read from
-the wrong place and remove() crashes on unbind or rmmod.
+The card is registered with devm, so it is only unregistered after
+meson_card_remove() has freed its links.
 
-Get priv from the card and drop the platform_set_drvdata() call that
-the card registration overrides.
+Register the card without devm and unregister it in remove(), before
+freeing the links.
 
-Fixes: aa9c3b7273a5 ("ASoC: meson: axg: extract sound card utils")
+Fixes: 7864a79f37b5 ("ASoC: meson: add axg sound card support")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- sound/soc/meson/meson-card-utils.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ sound/soc/meson/meson-card-utils.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/sound/soc/meson/meson-card-utils.c b/sound/soc/meson/meson-card-utils.c
-index f2796dc84fa5..3cdc73b3fe8b 100644
+index 3cdc73b3fe8b..24332f29047a 100644
 --- a/sound/soc/meson/meson-card-utils.c
 +++ b/sound/soc/meson/meson-card-utils.c
-@@ -276,7 +276,6 @@ int meson_card_probe(struct platform_device *pdev)
- 	if (!priv)
- 		return -ENOMEM;
+@@ -309,7 +309,7 @@ int meson_card_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto out_err;
  
--	platform_set_drvdata(pdev, priv);
- 	snd_soc_card_set_drvdata(&priv->card, priv);
+-	ret = devm_snd_soc_register_card(dev, &priv->card);
++	ret = snd_soc_register_card(&priv->card);
+ 	if (ret)
+ 		goto out_err;
  
- 	priv->card.owner = THIS_MODULE;
-@@ -324,7 +323,8 @@ EXPORT_SYMBOL_GPL(meson_card_probe);
+@@ -326,6 +326,7 @@ void meson_card_remove(struct platform_device *pdev)
+ 	struct snd_soc_card *card = platform_get_drvdata(pdev);
+ 	struct meson_card *priv = snd_soc_card_get_drvdata(card);
  
- void meson_card_remove(struct platform_device *pdev)
- {
--	struct meson_card *priv = platform_get_drvdata(pdev);
-+	struct snd_soc_card *card = platform_get_drvdata(pdev);
-+	struct meson_card *priv = snd_soc_card_get_drvdata(card);
- 
++	snd_soc_unregister_card(card);
  	meson_card_clean_references(priv);
  }
+ EXPORT_SYMBOL_GPL(meson_card_remove);
 
 -- 
 2.53.0
