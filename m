@@ -2,138 +2,110 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA7A5606A31A
-	for <linux-amlogic@archiver.kernel.org>; Fri, 30 Oct 2026 12:56:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35054606A325
+	for <linux-amlogic@archiver.kernel.org>; Fri, 30 Oct 2026 13:38:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3qjnEeuy;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DbvVbneF
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pWoEfsG5;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=F6pwSGRN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=039q653vLU4UuxLeNLiuD50SWVL68obLsxpi4sd8Rz8=; b=3qjnEeuyi0CSnToLc707wNfg2A
-	vpBUg0399D9BtLpgTzP1IH2nVML8HqHXND7kGTffXstc9O4DUAkRpY+dcJdmXpO/bxMe8ePiXs+8m
-	P5s6TprveaQk1EyjfF3bDfWdLoI0aXTz9ZQMWSUGl1//va1hp51/JmG+JvDz0ZeQAHN+RmRiSMmYB
-	xYlILpGg3S3hDwIXhYut9tyForgnf9MtYWCSK6LqvoDIzqaqea5H3RmNduKpP+XF4lEzzCVRAlYcr
-	k1YwA7u6O44hNsMg5AntOrCKN7IwkrgANXgfu10mFd+XmDFhFfqI2WHkfbvYWzo8EmLI8yI7MGnpt
-	58Ha2X1Q==;
+	bh=cnH4LjdHDd/DF5zSsj2x1EeUF2GW9cwfk6HjCF1hHz4=; b=pWoEfsG5YywS9Po0/ls8LGd5xE
+	ocCMQ9Vh1SvapBGkNYyU3zlvR8lOUau+kjUOFksDVXqEyzSBFRiAQVwVA963UxICmE48+vNyEuVPw
+	uWZIOCRCrAlLHpx7i+MDpj7uTECfwijt+Cv9+9uBtKVCzthhVclKogHlVRxwy0gqxf3hy7WpkY11h
+	S483MLRnhr6ZKye2yyOAvxrUclSugus8rd8RIKziGBbmfdvddRcEYZNfYWR0KJiT408Lyy5jh9Yd4
+	O37s44zd7P07z74LCotJkWLNcZUmpqRH7hya7Tt5Ah5sjumcZ/siGwLVB8x/ZTsXy1WS8DariyL1k
+	YPr4amfg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMm9L-0000000BiI4-1ETa;
-	Fri, 30 Oct 2026 12:56:03 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xMmoP-0000000Blq2-3Yk6;
+	Fri, 30 Oct 2026 13:38:29 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xMm9K-0000000BiHs-1Oi9
-	for linux-amlogic@lists.infradead.org;
-	Fri, 30 Oct 2026 12:56:02 +0000
+	id 1xMmoP-0000000Blpk-0YGY;
+	Fri, 30 Oct 2026 13:38:29 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 8ACC06062F;
-	Fri, 30 Oct 2026 12:56:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 840761F000C1;
-	Fri, 30 Oct 2026 12:56:00 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 22E3E41713;
+	Fri, 30 Oct 2026 13:38:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B895D1F000C1;
+	Fri, 30 Oct 2026 13:38:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793364961;
-	bh=QEN1UqSia/bSOQapCp3EkqxCvOcE8KsRJXMohGlQcDQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=DbvVbneFlRcReg135ryJEYVhhtWakAOVNath1hcKIIXE0a0XxAPDDvNN6T7Uf6+oe
-	 8w5jtD2yqrswAxXmfPTHEdkD7AvDqLamYaTsnJnneKspcbfXmYHU3OGl89jWEz8/U/
-	 /ww4ODFnAJ7tLbMPad8NuI/UAu0PK8s28Ey4jTtat4X8zzsm4uIT7x105xj2SQfJbe
-	 wzxdFTqJOrrKiP1LRPFbbaswMYtV6X09XW80Okkv+fqOYtPGsvIPYCiSGFVMsrui5k
-	 MrMYZoVyeIy+hz3rgx3Z3HJJdqyKirPMRBric5eDJy0W8pHIi0gyTDHmZJorASfuP1
-	 +FvfPpgyOt/TA==
-From: Maxime Ripard <mripard@kernel.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
+	s=k20260515; t=1793367508;
+	bh=C2S7rduE7F27e/ACslqZKocTp/JTh21Fn7y8iprLI+s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=F6pwSGRNK0eicHwv4sWaVzrGABaI7Kcr8UwklPuzziX/9g4PceqQiyip94FKU92Sn
+	 yK+wgRrs54sOD0/Afs8KSLgbc1XHhfMD1sTCAMKOEVOXBuRidENzicTpRkFwC5Drsh
+	 TFqswhNmzAyPeXj4y0zDecf++b1piEtnkJVqvpF+hLWG5sAGP2AiJZL9e47EBH78bW
+	 et8iaI4wnqFB7A7TsU9/PFkQ+NhS0+9ztnNFeU1IgNWoayj62P723V2TXOXccc+euZ
+	 SmtChrl8Mr0i2fvr4iGY6GeHD6WAKK/fYcDPPFkt/TeYkC0lT16nSZhem5wJfjJcE9
+	 /A4du6Xt6WWNw==
+Date: Fri, 30 Oct 2026 08:38:24 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, Ryder Lee <ryder.lee@mediatek.com>,
 	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maxime Ripard <mripard@kernel.org>
-Cc: dri-devel@lists.freedesktop.org,
-	=?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
-	Ruben Wauters <rubenru09@aol.com>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Samuel Holland <samuel@sholland.org>,
-	linux-sunxi@lists.linux.dev,
-	=?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
-	Alex Deucher <alexander.deucher@amd.com>,
-	amd-gfx@lists.freedesktop.org,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Joel Stanley <joel@jms.id.au>,
-	Dave Airlie <airlied@redhat.com>,
-	Jocelyn Falempe <jfalempe@redhat.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Inki Dae <inki.dae@samsung.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Kyungmin Park <kyungmin.park@samsung.com>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Seung-Woo Kim <sw0312.kim@samsung.com>,
-	linux-samsung-soc@vger.kernel.org,
-	Alison Wang <alison.wang@nxp.com>,
-	Stefan Agner <stefan@agner.ch>,
-	Tian Tao <tiantao6@hisilicon.com>,
-	Xinwei Kong <kong.kongxinwei@hisilicon.com>,
-	Yongbang Shi <shiyongbang@huawei.com>,
-	Paul Kocialkowski <paulk@sys-base.io>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	Icenowy Zheng <zhengxingda@iscas.ac.cn>,
-	Jianmin Lv <lvjianmin@loongson.cn>,
-	Mingcong Bai <jeffbai@aosc.io>,
-	Qianhai Wu <wuqianhai@loongson.cn>,
-	Xi Ruoyao <xry111@xry111.site>,
-	Gerd Hoffmann <kraxel@redhat.com>,
-	spice-devel@lists.freedesktop.org,
-	virtualization@lists.linux.dev,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-renesas-soc@vger.kernel.org,
-	Marcus Folkesson <marcus.folkesson@gmail.com>,
-	Iker Pedrosa <ikerpedrosam@gmail.com>,
-	Alain Volmat <alain.volmat@foss.st.com>,
-	Raphael Gallais-Pou <rgallaispou@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Mikko Perttunen <mperttunen@nvidia.com>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	linux-tegra@vger.kernel.org,
-	Alexey Brodkin <abrodkin@synopsys.com>,
-	Hans de Goede <hansg@kernel.org>,
-	LiangCheng Wang <zaq14760@gmail.com>,
-	Alex Lanzano <lanzano.alex@gmail.com>,
-	Sean Paul <sean@poorly.run>,
-	Chia-I Wu <olvaffe@gmail.com>,
-	Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-	Gurchetan Singh <gurchetansingh@chromium.org>,
-	Haneen Mohammed <hamohammed.sa@gmail.com>,
-	Louis Chauvet <louis.chauvet@bootlin.com>,
-	Melissa Wen <melissa.srw@gmail.com>,
-	Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Sean Paul <sean@poorly.run>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Dmitry Baryshkov <lumag@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	linux-iio@vger.kernel.org, linux-pci@vger.kernel.org,
+	Tiffany Lin <tiffany.lin@mediatek.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Yinbo Zhu <zhuyinbo@loongson.cn>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, imx@lists.linux.dev,
+	dmaengine@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Aakarsh Jain <aakarsh.jain@samsung.com>,
+	Yunfei Dong <yunfei.dong@mediatek.com>,
+	freedreno@lists.freedesktop.org,
+	David Lechner <dlechner@baylibre.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Peng Fan <peng.fan@nxp.com>, linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Linus Walleij <linusw@kernel.org>,
+	Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+	Abhinav Kumar <abhinav.kumar@linux.dev>, linux-gpio@vger.kernel.org,
+	Kevin Hilman <khilman@baylibre.com>, linux-media@vger.kernel.org,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Andy Shevchenko <andy@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Kuogee Hsieh <quic_khsieh@quicinc.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>, Conor Dooley <conor+dt@kernel.org>,
+	Rob Clark <robin.clark@oss.qualcomm.com>,
+	Eric Anholt <eric@anholt.net>, linux-clk@vger.kernel.org,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Frank Li <Frank.Li@nxp.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org,
-	Harry Wentland <harry.wentland@amd.com>,
-	Leo Li <sunpeng.li@amd.com>,
-	Rodrigo Siqueira <siqueira@igalia.com>,
-	Jani Nikula <jani.nikula@linux.intel.com>,
-	Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-	Rodrigo Vivi <rodrigo.vivi@intel.com>,
-	Tvrtko Ursulin <tursulin@ursulin.net>,
-	intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org,
-	Danilo Krummrich <dakr@kernel.org>,
-	Lyude Paul <lyude@redhat.com>,
-	nouveau@lists.freedesktop.org
-Subject: Re: (subset) [PATCH v2 00/59] drm/connector: Convert all drivers to atomic_create_state and remove reset
-Date: Fri, 30 Oct 2026 13:55:55 +0100
-Message-ID: <179336494956.280337.14142889938692228617.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20261022-drm-no-more-connector-reset-v2-0-0b7e4e85b1e8@kernel.org>
-References: <20261022-drm-no-more-connector-reset-v2-0-0b7e4e85b1e8@kernel.org>
+	linux-rpi-kernel@lists.infradead.org,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org,
+	Jessica Zhang <jesszhan0024@gmail.com>
+Subject: Re: [PATCH] dt-bindings: Fix property name typos in if/then schemas
+Message-ID: <179336750291.3442134.12651355159128189290.robh@kernel.org>
+References: <20261028120216.2657397-1-robh@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20261028120216.2657397-1-robh@kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -146,74 +118,40 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, 22 Oct 2026 14:30:59 +0200, Maxime Ripard wrote:
-> This is a follow-up to the plane and CRTC reset removal series, and
-> part of a larger effort to remove the reset hook from all KMS objects.
+
+On Wed, 28 Oct 2026 07:02:12 -0500, Rob Herring (Arm) wrote:
+> Property names within if/then schemas currently go unchecked whether
+> they have a type defined or match what's in the top-level schema. Adding
+> a check finds a number of instances of typos. The typos result in the
+> schema having no effect on constraints.
 > 
-> The connector reset hook is overloaded: it is called both at probe
-> time to create the initial software state and during suspend/resume to
-> reset hardware and software state. These two roles have different
-> requirements, and the reset hook is not fallible, making error
-> handling difficult for the initial state allocation path.
+> With this, fix the mediatek,vcodec-encoder 'clocks' count constraint
+> exposed by the name correction.
 > 
-> [...]
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/clock/qcom,kpss-gcc.yaml     |  2 +-
+>  .../bindings/display/brcm,bcm2711-hdmi.yaml          |  2 +-
+>  .../bindings/display/msm/dp-controller.yaml          |  2 +-
+>  .../devicetree/bindings/display/msm/hdmi.yaml        |  4 ++--
+>  Documentation/devicetree/bindings/dma/fsl,edma.yaml  |  2 +-
+>  .../devicetree/bindings/gpio/loongson,ls-gpio.yaml   |  2 +-
+>  .../bindings/iio/adc/amlogic,meson-saradc.yaml       |  2 +-
+>  .../bindings/media/mediatek,vcodec-encoder.yaml      | 12 ++++--------
+>  .../devicetree/bindings/media/samsung,s5p-mfc.yaml   |  2 +-
+>  .../devicetree/bindings/pci/mediatek-pcie.yaml       | 12 ++++++------
+>  10 files changed, 19 insertions(+), 23 deletions(-)
+> 
 
-Applied to misc/kernel.git (drm-misc-next)
+Applied, thanks!
 
-[01/59] drm/hdmi: Change __drm_atomic_helper_connector_hdmi_state_init parameter order
-        commit: e8698caa41f659739861f3c5b19070ea973f58ab
-[02/59] drm/atomic-state-helper: Rename connector_tv_margins_reset to state_init
-        commit: 39e8c69f41882b12ffd1cbea39b07923dc430de6
-[03/59] drm/atomic-state-helper: Rename connector_tv_reset to state_init
-        commit: 27411554b73b2de2e230df3fefc6821485b3d509
-[04/59] drm/panel: Add atomic_create_state support
-        commit: a8684a05336c1115172bd5fce9a942d830e11d13
-[06/59] drm/aspeed: Switch to drm_atomic_helper_connector_create_state
-        commit: f88d567860da9e5a5ba0f05424ea4c8321af0467
-[07/59] drm/ast: Switch to drm_atomic_helper_connector_create_state
-        commit: 42572c272e61af9c53162f307c81bb48a0977e5d
-[19/59] drm/hisilicon: hibmc: Switch to drm_atomic_helper_connector_create_state
-        commit: 800edc28eb000fbcb2229d6799ffa5c3831def15
-[20/59] drm/logicvc: Switch to drm_atomic_helper_connector_create_state
-        commit: ec2e19c6518ca8959ca009491e62913ea53be450
-[22/59] drm/mgag200: Switch to drm_atomic_helper_connector_create_state
-        commit: f15c3a86f606c7dd8e057dc7a3d762d634b8fa20
-[24/59] drm/qxl: Switch to drm_atomic_helper_connector_create_state
-        commit: e439361203a610cebd725e068dc1694d585d6ecf
-[27/59] drm/sitronix: st7920: Switch to drm_atomic_helper_connector_create_state
-        commit: 382b5915baae6d289cf550b70e325cd162d140c5
-[33/59] drm/tiny: bochs: Switch to drm_atomic_helper_connector_create_state
-        commit: 6b1c795028b1552f25bc4b707673e0d848786dcb
-[34/59] drm/tiny: cirrus: Switch to drm_atomic_helper_connector_create_state
-        commit: 777642458977878a2e81399adf16b1e23ab57b17
-[35/59] drm/tiny: gm12u320: Switch to drm_atomic_helper_connector_create_state
-        commit: 379d9ab55e5d0453ab744892981f122f8e5614fc
-[36/59] drm/tiny: pixpaper: Switch to drm_atomic_helper_connector_create_state
-        commit: 417ff0dc9d68de04248361c3db10c902e33b87c6
-[37/59] drm/tiny: repaper: Switch to drm_atomic_helper_connector_create_state
-        commit: 7fdf84a3913597bb662a1d1aa37f798576dbd2ed
-[39/59] drm/udl: Switch to drm_atomic_helper_connector_create_state
-        commit: 9b9731aea4920327ec8fb757bcc9fa88c7c8fa45
-[40/59] drm/vboxvideo: Switch to drm_atomic_helper_connector_create_state
-        commit: 8c0c25d8724aa3a0850efac1f117444485ce899c
-[46/59] drm/gud: Convert to atomic_create_state
-        commit: 79363b9b53e285a5f98b95d75e32f889ef3431f3
-[50/59] drm/vc4: hdmi: Convert to atomic_create_state
-        commit: 946c74390c2fe7cc9acedf2d333ca1f924b7eba3
-[51/59] drm/vc4: vec: Convert to atomic_create_state
-        commit: 76000c76a4784e8bc4ea957dcebc93449f762bd7
-[54/59] drm/ast: Convert to atomic_create_state
-        commit: a1e63ab695ad76850ab9787b9eb6aab695dc2965
-
-Thanks!
-Maxime
 
 _______________________________________________
 linux-amlogic mailing list
