@@ -2,75 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0B69606A31A
-	for <linux-amlogic@archiver.kernel.org>; Sat, 31 Oct 2026 08:09:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B0EF606A31D
+	for <linux-amlogic@archiver.kernel.org>; Sat, 31 Oct 2026 13:45:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vP93rqjW;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=web.de header.i=markus.elfring@web.de header.a=rsa-sha256 header.s=s29768273 header.b=lUe2Tjg6
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Uyf3EGE3;
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=zohomail header.b=jzAu9FRJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:Subject:References:Cc:
-	To:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=rnrxCv3hynQle5dEUpZQPjChfIjyuPKtcs6Owq9lxa0=; b=vP93rqjW16i/HNN3gYtZEwmW41
-	gsBSXND7dBbNfc7PD7qgoNrFWOssGNlO8S6nUzyaKpj2PxaTsmz8bWHaPE1hngvYJvfe5HsGqREKr
-	wzybQHZysKPD1XPuaOh++7EFwk+sQn9DoNrygHTinHI7u1Z64zjENb1x4Dnf6//anAl8wYPvwpu/o
-	03vL4Xc59AsY2tfLKhPf4LBy8Uv0rREkifFR+gSL7VPRs0eW4lTF//KWU+OkobDwl6HhkISp+YXvM
-	vSnkpI6RERtvbFJcToABy2WkOZrZDIeWUYPcDPDAds77+H+dQIpNp3RFqjWBM8ZujQE/qpPZR//sv
-	IgDRK3oA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:References:
+	In-Reply-To:Message-ID:Cc:To:From:Date:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Unsubscribe-Post:List-Owner;
+	bh=XquazmY1qZP/bDlr/zz4TUn5aSVlepEQJ8Xis5atSn8=; b=Uyf3EGE34BCHn8E/X9Q4x/CI8P
+	0uPAdafMB9AjBwwL9dvec5L8vyNEslWcf2Hjtof0V+yNQvmvVxQ7MtV7hRgu+sKbkjLZPgPxFgC8i
+	elddfmkanxK2MGFTtDkG09CHeOXUHQIN6/WDUPf5JUZGP/jKPyoU+HlykXuKQJzybO2cZpMr+FYsl
+	s/rpPMjxia7xAB//m8Uw4DMzFNAIvU7/v8EppU+zCAHcXrYBnI0+fAShI225XeqCDf6AhL9Hq8Guw
+	RYxfsubwSvO8rpw9sj+eWSVtpAbXpTqbi0Uor8J33Yw8uQStqAYi9hx0dXT91RI/SpDH7qd41R9Rk
+	yrP1fZow==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xN49g-0000000D2k7-0n7G;
-	Sat, 31 Oct 2026 08:09:36 +0000
-Received: from mout.web.de ([212.227.15.4])
+	id 1xN9Oc-0000000DNMA-0iny;
+	Sat, 31 Oct 2026 13:45:22 +0000
+Received: from sender5-op-o11.zoho.com ([165.173.182.11])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xN49d-0000000D2ix-1K7S
-	for linux-amlogic@lists.infradead.org;
-	Sat, 31 Oct 2026 08:09:35 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1793434165; x=1794038965; i=markus.elfring@web.de;
-	bh=qMp7WtDDsowc5EZ8yz5xTumcSQBgMEW1TVtNkDP5Jeo=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=lUe2Tjg685EgEQdyMvIkxuriEZ3TQQtvxKbr4PeIcF3bBOvvxvcOqjV+mpn6frib
-	 qxpFeqRg0IkLVgCYoerfkDKR4FMpjSmq2+y1Ori9zTYcHjcroVyMS93mNs4bQK4gh
-	 VKPiDGnjzAwgAi4xzxjvJ8Urj7Jug69qjIVzekmJBEt8icBKfze4Oc++0SMnkh+fT
-	 hWO3JKZuFTgHQgfzP5KNVE6gGlfFeGgZ1G4nYCJNE+9wHpeUqjArqLu3b9V5HRSvr
-	 dZdSikf+2ylgWAxJ0G5W+TDh5TljRjAgtQIJ0p5iO3HzBWB9TbVFXKh31hYpz5vOt
-	 BG29xAYoHGuSLP7dfQ==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from client.hidden.invalid by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MLzin-1x5GJp47Hd-00IOyj; Sat, 31
- Oct 2026 09:09:25 +0100
-Message-ID: <fa1813ed-c908-47f8-8176-24b8fb5acfd7@web.de>
-Date: Sat, 31 Oct 2026 09:09:13 +0100
+	id 1xN9OX-0000000DNKH-06sv;
+	Sat, 31 Oct 2026 13:45:18 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1793454313; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=h/xD/GnjIT4Rf3g3eJLjZfk3+Qsa80d2N2y7utHj6RLU3orDPYbpqk0pR7Ywl8RAqUXhJD2PjfB4Mtu1RWr5pkSCkSQ1hc6J4ztFZmAVpvi+ToTASlpEZ/+GJu1WP4RoFEiz6Vrqk/ZKaEmiZNx3zUD83FbLYgzYrH7yQfhbP4k=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1793454313; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=IA2zfU+elFDnFUhawKqcn+g6PD/rFJZaMV/qgUC1Ch4=; 
+	b=WAD9taRwR+ehdUcZuwyq1fHrzlSOTc/eYpAMznpjbfEud4VaX1IA9Zt/4+GBp2H3xHGaTUwT9wF72eKqVhFbowKaxL+WEN3G8bxi+j9rA8JHrbi3B5lXVkyC6pmki18zML6qzbsWUAQ0M1n72S9qUUbY00loeCAWO2fNG6rGIy8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.dufresne@collabora.com;
+	dmarc=pass header.from=<nicolas.dufresne@collabora.com>
+DKIM-Signature: a=rsa-sha256; b=jzAu9FRJBaNSJ3AHilw2eWXauQJuC0SSmJh121wg9/CuUKZwl6srQeaaMXIDHfyzNyXmOCkbtSyKyJUSqJfDGHCGOHoBrlEzej4Q1/Ow3g6ZoFAt93aQdii1H8++3yJTzyjthijpIhccsjlCAb8N0K5iRvlMgdCYyVNauKzrbnA=; c=relaxed/relaxed; s=zohomail; d=collabora.com; v=1; bh=IA2zfU+elFDnFUhawKqcn+g6PD/rFJZaMV/qgUC1Ch4=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
+Received: from mail.zoho.com by mx.zohomail.com
+	with SMTP id 1793454311209756.6514837174597; Sat, 31 Oct 2026 06:45:11 -0700 (PDT)
+Date: Sat, 31 Oct 2026 09:45:11 -0400
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: <zhentao.guo@amlogic.com>
+Cc: <wbieganski@baylibre.com>, <neil.armstrong@linaro.org>,
+	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <mchehab@kernel.org>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<krzysztof.kozlowski@oss.qualcomm.com>
+Message-ID: <1a192350728.896283f8650321.6916105559730663215@collabora.com>
+In-Reply-To: <31535217-e87d-4ef7-b22d-32c35ee998bb@amlogic.com>
+References: <20261022-b4-s4-vdec-upstream-v12-0-616240978792@amlogic.com> <179337024629.131241.9227206619077693683.b4-reply@b4> <1a18d5c5f7f.3e45f382588509.8172330954347509989@collabora.com> <31535217-e87d-4ef7-b22d-32c35ee998bb@amlogic.com>
+Subject: Re: [PATCH v12 0/6] Add Amlogic stateless H.264 video decoder for
+ S4
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Junyi Zhao <junyi.zhao@amlogic.com>,
- Xianwei Zhao <xianwei.zhao@amlogic.com>, linux-amlogic@lists.infradead.org,
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- Andi Shyti <andi.shyti@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: LKML <linux-kernel@vger.kernel.org>
-References: <20261029-a9-i2c-v3-2-7b30ccc00533@amlogic.com>
-Subject: Re: [PATCH v3 2/2] i2c: amlogic: Add Amlogic A9 I2C controller driver
-Content-Language: en-GB, de-DE
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20261029-a9-i2c-v3-2-7b30ccc00533@amlogic.com>
-X-Provags-ID: V03:K1:OAL/h9LrhauZec+Z1Gb3zz5oWOomnw6KwrIHj5kimUqPglHc/5r
- EdZmCeeKQTQMXVFaCkNx8tDHHh3qMGtHEiOLhBPmdZl3QppuMWgLakjX2WVmUqLUqIXE5DI
- TBoNk1jqc2d+Zd4/+ZNejmkeRoyYT/pLeeBtZ16e5/Dw3+qAJlDywPWsyCiSCC0eQhWZbiu
- pGDom4i8/w7r7ulhPNLXQ==
-UI-OutboundReport: notjunk:1;M01:P0:vX50RL4e1kI=;L2CBKnLb3f4+Aiux6yxgEHnch8i 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 DNbPqGTB3RwM7Yi6R2Y6FBHvpituNZY=
+Importance: Normal
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261031_010933_729628_7868A920 
-X-CRM114-Status: UNSURE (   4.61  )
+X-CRM114-CacheID: sfid-20261031_064517_136071_53B0EDA4 
+X-CRM114-Status: UNSURE (   7.95  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -85,26 +80,21 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-4oCmCj4gKysrIGIvZHJpdmVycy9pMmMvYnVzc2VzL2kyYy1hbWxvZ2ljLWE5LmMKPiBAQCAtMCww
-ICsxLDQ0NSBAQArigKYKPiArc3RhdGljIGludCBhbWxfaTJjX3hmZXJfbXNnKHN0cnVjdCBhbWxf
-aTJjICppMmMsIHN0cnVjdCBpMmNfbXNnICptc2csIGJvb2wgbGFzdCkKPiArewrigKYKPiArCWlm
-ICghdGltZV9sZWZ0KSB7Cj4gKwkJc3Bpbl9sb2NrX2lycXNhdmUoJmkyYy0+bG9jaywgZmxhZ3Mp
-Owo+ICsJCWkyYy0+c3RhdGUgPSBBOV9TVEFURV9JRExFOwo+ICsJCWNsZWFyX2lycV9zdGF0dXMo
-aTJjLCBJUlFfQUxMX01BU0spOwo+ICsJCXJlc2V0X2ZpZm9fcG9zKGkyYyk7Cj4gKwkJc3Bpbl91
-bmxvY2tfaXJxcmVzdG9yZSgmaTJjLT5sb2NrLCBmbGFncyk7Cj4gKwkJcmV0dXJuIC1FVElNRURP
-VVQ7Cj4gKwl9CuKApgoKVW5kZXIgd2hpY2ggY2lyY3Vtc3RhbmNlcyB3b3VsZCB5b3UgYmVjb21l
-IGludGVyZXN0ZWQgdG8gYXBwbHkgYSBzdGF0ZW1lbnQKbGlrZSDigJxndWFyZChzcGlubG9ja19p
-cnFzYXZlKSgmaTJjLT5sb2NrKTvigJ0/Cmh0dHBzOi8vZWxpeGlyLmJvb3RsaW4uY29tL2xpbnV4
-L3Y3LjMvc291cmNlL2luY2x1ZGUvbGludXgvc3BpbmxvY2suaCNMNjQyLUw2NDUKClJlZ2FyZHMs
-Ck1hcmt1cwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-bGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQu
-b3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1s
-b2dpYwo=
+CkhpIFpoZW50YW8sCgotLS0tIExlIHNhbS4sIDMxIG9jdC4gMjAyNiAwMDo1MToyOSAtMDQwMCB6
+aGVudGFvLmd1b0BhbWxvZ2ljLmNvbSBhIMOpY3JpdCAtLS0tCgo+ID4gVGhhdCByZW1pbmRlZCBt
+ZSwgaXMgdGhhdCBmaXJtd2FyZSBpbiBsaW51eC1maXJtd2FyZT8KPiBUaGlzIGZpcm13YXJlIGlz
+IGN1cnJlbnRseSBub3QgaW4gdGhlIHJlcG8gb2YgbGludXggZmlybXdhcmUuIFNob3VsZCB3ZQo+
+IG1lcmdlIHRoZSBkcml2ZXIgZmlyc3QsIGFuZCB0aGVuIHN1Ym1pdCB0aGUgYmxvYiB0byB0aGUg
+ZmlybXdhcmUgcmVwbz8KCgoKVGh1cyBmYXIsIHdlIGhhdmUgYWx3YXlzIHJlcXVpcmVkIHRoZSBm
+aXJtd2FyZXMgdG8gbGFuZCBmaXJzdCwgdW5sZXNzIGEgc3Ryb25nIGp1c3RpZmljYXRpb24gb3Ig
+dmFsaWQgYWx0ZXJuYXRpdmUgd2FzIHByb3Bvc2VkLgoKCk5pY29sYXMKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBs
+aXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFk
+ZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
