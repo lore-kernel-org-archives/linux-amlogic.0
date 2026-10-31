@@ -2,97 +2,56 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EA45606A31A
-	for <linux-amlogic@archiver.kernel.org>; Sat, 31 Oct 2026 20:09:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C621606A31A
+	for <linux-amlogic@archiver.kernel.org>; Sat, 31 Oct 2026 20:22:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KQOBFuHL;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=i2RO2T6D
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gMmSBFwe;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dbtB405s
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:References:
+	In-Reply-To:Cc:To:Subject:From:Message-ID:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=SODaY+nryGZpmbkDAIBKfFZtIPOkYVS2nVojdJUNSZU=; b=KQOBFuHLPid8+GqB2HLV7pVjYB
-	mK0gCTKjmy/NCbashIhV/M/2dxYA5K2uCNUDgdAK7WFX1Mn7TNaWNduoEhg8NcxW4ExQ3PwHbMaDm
-	Ad6sQSJM1MuQyuJ3Z5vpn7/XJTkRM3frO7KsuuIls3h6I2Hb9kfumd6Yg5IqeGWWWwX5TyZ5qhK+I
-	dKxkU54m/OxlVi7/q07x+mOXzVRcr+xDZWDS61Oy1V7P+m3pJc6bpKsV5pqZbwYaswBN2xCJfu90B
-	mgtELKVA/MtPVg2/g12WAsyXrtM9P5WRmntXyux3PnqM6V8HrJO90juGw1CO5tw3Rln1mFcSwbb9/
-	JWnHY45Q==;
+	bh=CdUdAAPm+efcS1Z+ZS+SRkuohIwIsYO3IS9eBo/dIOQ=; b=gMmSBFweukC+hd6gEr4L/KA87J
+	fr5PDMTc0P+zSN8dh2XC4sPcTFmR4fXrMWDIQpjDXJdfFc3CKPYF6En5ZlF65auoquUJatT3nn3ZM
+	aXUjjuSIZOopA6/2gIZgNxR+qP9KK3GlhZyimPXxLkuul5DelctQsJnOPISWF/lN06LX+EBOwbUic
+	c9paO8YqSTMg5jG87XvI7XNbKJiaalXGH8wwM9oZlL9VctT4Cui3ONTnRNuQJBDZxOBrCdxCi4nl/
+	fYSxEJv+nJefVmSW3UlDxKO8JSYxMr72q1sH2692MasUiohdxeTnZNLc5X1GCvgJBxYzFHTN/rnN1
+	PsjsWD2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNFOk-0000000Dedr-3w5r;
-	Sat, 31 Oct 2026 20:09:54 +0000
-Received: from mail-pl1-x62e.google.com ([2607:f8b0:4864:20::62e])
+	id 1xNFae-0000000Df0m-496p;
+	Sat, 31 Oct 2026 20:22:13 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNFOi-0000000DedC-1aLb
+	id 1xNFad-0000000Df0f-1kyI
 	for linux-amlogic@lists.infradead.org;
-	Sat, 31 Oct 2026 20:09:53 +0000
-Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-2e812e2b31bso10472215ad.3
-        for <linux-amlogic@lists.infradead.org>; Sat, 31 Oct 2026 13:09:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1793477391; x=1794082191; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=lLEWRWhxY0X5Qhcbz/EtLWHCv/8fQ6WLPeE028PNRtE=;
-        b=i2RO2T6DceVJhXyYhh6KSi/22W9WptRho70kHwE5luWFtezzlmbvAYHQ1rUr0OwMkc
-         Vn4EoAXBBOshjB9T2z1cM43C9n7HfuNQZL4eI5DbEaR9nLnNMJuXD3xPfxH0GkzPUXSm
-         dBn64z/7xi5yoLvAaju3fQulovnuK1IZSFbm/H22Pj4A//x5a7p+uO2G9qRzVAykM4NN
-         lnnBIcaWR8EP7wvxGWtaofqcAp0C74koeOWWHU3+3AZLwg5huU/3wDYPWR9RnslSfE5o
-         zD4gAdQ+dfElfN/RHI7G4GeHB0k7h78CIsKB5xM19qXjiBoney+vPOappE156bJQUQMA
-         qzDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793477391; x=1794082191;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=lLEWRWhxY0X5Qhcbz/EtLWHCv/8fQ6WLPeE028PNRtE=;
-        b=r//Iwd7aFL8DROXBnlVLse2HE1XmXkoyFCWXzMBi6ONSTXcKVWHbO3tqiFQ9ch0bx0
-         dt7VlK/U0tu6VIkeXeSNJlTCaR8y1mECDdIjBhs05fUE2TZ++2A79vW3C8rDK/d1ZgLu
-         yWWFWW+7kucmk6gPBh7gsX9GS6ZLjvrmAWbAxV5J7q+Tc70ps4ZON2ctRZ1LXjBLqIf+
-         QEefKZ41aVIZhU1UUWSq6Il5zqRUbaQ32EJPeyFX7xHq8kQ0mQTxMHicJrJ2lX0DzFcO
-         n2OUfXKwIoAQ7XxVKTK9A+6bgxG5ykLLgLiNsNCTpQEGCuf/IsRVv0pTBYN5qIdxhoLB
-         hX6A==
-X-Forwarded-Encrypted: i=1; AKwUvByry+IcjolMoiYTFggMgpHGMMASsa629Y6W0MScY6DxqAa5UZUr9/bHYkVeD/w45eTo6kqUmXlS2dXhM1Ba@lists.infradead.org
-X-Gm-Message-State: AFq9FYI6M6/W5pkpJCCmpI/HdNzq87M0jQ9SuZRsksSZtDmyG1cmduLd
-	QuEr5s3AGWtN0jyaIffTb23QcTU7HodzLvHREzhDrFkHIvYYnWzSCcej
-X-Gm-Gg: AYBFou1fSVNm/pg7hPs35NEEX4GGHr3FTSqzcoqXTU3Tara5A1eye2lu7rETRScVYSQ
-	J/nBUT32q7jjxlwnY/Xru2CWHLOVBM6BVYUb7NCObN5dKc5D0RqOQ2S+UkPjWn1ccMcCTfqOOww
-	3wR6nf6aMFxtZKibGqiMcAV+2Oc8BEhDAu3NU4X4pwbS7ZfEIIP5+jZbqiSXm+X5zYvK81LdaDz
-	giRyCe6h6H2Rl/GD6ez/FiixOce9I6zFqjcSmFG0zu9XPlRC3LlUh7vgC9+l+UXlc5+gswyBEZV
-	+CgOikoAHMHlijZ6zgI/MBCluDKVaALawH/Cc3QTkK0JBOq4K4VOfIV78rvnvP6fs1T59M4kSlz
-	Wr7M0jbvuto6s/I2KSmRJSyPo7zacefaIFYD9OgOcGMUc8mgx0nT6u6RnpeGtm5lZ49Og0LhKEN
-	HF/A7R+N3lrCk5at3Gy7pR2qXqpDXgNpNzClWw8T/5SWHapG/6A9fQE/5qULc+syBshsEgbYBlO
-	Whl09iJKzNLsxLpF/DLRPskzHlJ8h/Y82tLN9RT2/Z2lScp/2aS5RCsA+IwpU1/NlBiKDCw5MS/
-	A1mLUnVoPa0eMaFzdneOfle7WZZxH5dvwAFrbBE0QcGx9TQxZX8=
-X-Received: by 2002:a17:903:1a08:b0:2e5:54b9:6b37 with SMTP id d9443c01a7336-2eb364bbb41mr60052995ad.28.1793477390781;
-        Sat, 31 Oct 2026 13:09:50 -0700 (PDT)
-Received: from ArchLinux-E5-Server.lan ([240e:3a2:ac01:77c0:1:3024:80c:fbbb])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2eb38e9633fsm16660465ad.0.2026.10.31.13.09.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 31 Oct 2026 13:09:49 -0700 (PDT)
-From: ZHENPENG YUAN <yuanzhenpeng210@gmail.com>
-To: linux-mmc@vger.kernel.org,
-	ulfh@kernel.org
-Cc: martin.blumenstingl@googlemail.com,
-	neil.armstrong@linaro.org,
-	khilman@baylibre.com,
-	jbrunet@baylibre.com,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	ZHENPENG YUAN <yuanzhenpeng210@gmail.com>
-Subject: [RFC PATCH] mmc: meson-mx-sdhc: add DMA bounce buffer support
-Date: Sun,  1 Nov 2026 04:09:25 +0800
-Message-ID: <20261031200925.3364-1-yuanzhenpeng210@gmail.com>
-X-Mailer: git-send-email 2.56.0
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261031_130952_430120_668CC009 
-X-CRM114-Status: GOOD (  26.38  )
-X-Spam-Score: -1.9 (-)
+	Sat, 31 Oct 2026 20:22:11 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 8D118600C8;
+	Sat, 31 Oct 2026 20:22:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E1451F000C1;
+	Sat, 31 Oct 2026 20:22:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1793478130;
+	bh=86jsc3l259+WVvitVVxPO0UVJD97PRd3ToUsEV+rhlk=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=dbtB405sBNulrIG6Bhmf3gqsFHIi6A+yb5ZTlZ9aYQVXQb00QJadoY5GRQGOnPbeV
+	 62kvtaU2MS70wcbZmrb4mqFnorb49cw+E9B9Uqq42iJUmNubkXl6D61xFcy0l7At2L
+	 /rC66dyl4DedPFRD7JKnm9n1oKQ9auKRqD4WwctrHp6AQvp407LaU0Z3QBqM+mjoPo
+	 OGePX36+u60kgvaUqEXNSXMfACwgmyBPnFPA7HobAPtreDhLAjXX736iqnCI4doGju
+	 QsniOX7+4B4meCE0i3FeO6e37X4/VsscdQYECIxmw0tZ9xlRXsUYxTyBZASf6QZD8f
+	 edO3hb3F5wKTQ==
+Message-ID: <sashiko-outbox-192112@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [RFC PATCH] mmc: meson-mx-sdhc: add DMA bounce buffer support
+To: "ZHENPENG YUAN" <yuanzhenpeng210@gmail.com>
+Cc: linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org
+In-Reply-To: <20261031200925.3364-1-yuanzhenpeng210@gmail.com>
+References: <20261031200925.3364-1-yuanzhenpeng210@gmail.com>
+Date: Sat, 31 Oct 2026 20:22:09 +0000
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,307 +61,89 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The Meson MX SDHC controller uses a single DMA address for each
-transfer. Since the driver leaves max_segs at the MMC core default
-of 1, large I/O requests are split into single-segment requests,
-typically 4 KiB each.
-
-On an Amlogic S805, this limits eMMC sequential read throughput
-to approximately 15 MiB/s despite using HS200 timing.
-
-Add a 128 KiB DMA bounce buffer for multi-segment requests and
-advertise up to 64 scatterlist segments. Single-segment requests
-continue to use direct DMA. If buffer allocation fails, fall back
-to the original single-segment limit.
-
-Testing on a Xunlei OneCloud (Meson8b, Samsung 8GME4R eMMC)
-running Linux 7.3.1:
-
-  Block size       Before       After
-  4 KiB            14.47        14.69 MiB/s
-  64 KiB           15.06        63.21 MiB/s
-  128 KiB          15.08        75.13 MiB/s
-  1 MiB            15.07        75.93 MiB/s
-
-For a 128 MiB sequential read, block requests decreased from
-32768 to 1024.
-
-Direct I/O SHA256 readback verification and fio CRC32C write
-verification passed. No MMC errors were observed.
-
-Assisted-by: LLM
-Signed-off-by: ZHENPENG YUAN <yuanzhenpeng210@gmail.com>
----
- drivers/mmc/host/meson-mx-sdhc-mmc.c | 165 ++++++++++++++++++++++++---
- 1 file changed, 149 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/mmc/host/meson-mx-sdhc-mmc.c b/drivers/mmc/host/meson-mx-sdhc-mmc.c
-index fb49ea712..c62583a80 100644
---- a/drivers/mmc/host/meson-mx-sdhc-mmc.c
-+++ b/drivers/mmc/host/meson-mx-sdhc-mmc.c
-@@ -16,6 +16,7 @@
- #include <linux/property.h>
- #include <linux/regmap.h>
- #include <linux/regulator/consumer.h>
-+#include <linux/scatterlist.h>
- #include <linux/types.h>
- 
- #include <linux/mmc/host.h>
-@@ -29,6 +30,12 @@
- #define MESON_SDHC_MAX_BLK_SIZE					512
- #define MESON_SDHC_NUM_TUNING_TRIES				10
- 
-+/*
-+ * A 128 KiB request spans at most 33 pages when it is not page aligned.
-+ * The extra entries give the block layer room to merge a full request.
-+ */
-+#define MESON_SDHC_MAX_SEGS					64
-+
- #define MESON_SDHC_WAIT_CMD_READY_SLEEP_US			1
- #define MESON_SDHC_WAIT_CMD_READY_TIMEOUT_US			100000
- #define MESON_SDHC_WAIT_BEFORE_SEND_SLEEP_US			1
-@@ -48,6 +55,17 @@ struct meson_mx_sdhc_host {
- 	struct mmc_command		*cmd;
- 	int				error;
- 
-+	/*
-+	 * The controller has a single DMA address register, so requests that
-+	 * are not physically contiguous have to be bounced through this
-+	 * buffer.
-+	 */
-+	void				*bounce_buf;
-+	size_t				bounce_buf_size;
-+	dma_addr_t			dma_addr;
-+	unsigned int			dma_len;
-+	bool				dma_bounce;
-+
- 	struct regmap			*regmap;
- 
- 	struct clk			*pclk;
-@@ -220,8 +238,7 @@ static void meson_mx_sdhc_start_cmd(struct mmc_host *mmc,
- 			   FIELD_PREP(MESON_SDHC_CTRL_PACK_LEN, pack_len));
- 
- 	if (cmd->data)
--		regmap_write(host->regmap, MESON_SDHC_ADDR,
--			     sg_dma_address(cmd->data->sg));
-+		regmap_write(host->regmap, MESON_SDHC_ADDR, host->dma_addr);
- 
- 	meson_mx_sdhc_wait_cmd_ready(mmc);
- 
-@@ -362,32 +379,97 @@ static void meson_mx_sdhc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
- 
- static int meson_mx_sdhc_map_dma(struct mmc_host *mmc, struct mmc_request *mrq)
- {
-+	struct meson_mx_sdhc_host *host = mmc_priv(mmc);
- 	struct mmc_data *data = mrq->data;
--	unsigned int dma_len;
-+	enum dma_data_direction dir;
-+	struct scatterlist *sg;
-+	unsigned int len, total_len;
-+	int i, nents;
- 
- 	if (!data)
- 		return 0;
- 
--	dma_len = dma_map_sg(mmc_dev(mmc), data->sg, data->sg_len,
--			     mmc_get_dma_dir(data));
--	if (!dma_len) {
--		dev_err(mmc_dev(mmc), "dma_map_sg failed\n");
-+	dir = mmc_get_dma_dir(data);
-+	len = data->blocks * data->blksz;
-+	host->dma_len = len;
-+	host->dma_bounce = false;
-+
-+	/*
-+	 * A request that consists of a single scatterlist entry is already
-+	 * contiguous from the controller's point of view and can be
-+	 * programmed directly.  This is also the only case where transfers
-+	 * larger than the advertised max_req_size may occur (SDIO).
-+	 */
-+	if (data->sg_len == 1 && data->sg->length >= len) {
-+		nents = dma_map_sg(mmc_dev(mmc), data->sg, data->sg_len, dir);
-+		if (!nents) {
-+			dev_err(mmc_dev(mmc), "dma_map_sg failed\n");
-+			return -ENOMEM;
-+		}
-+
-+		host->dma_addr = sg_dma_address(data->sg);
-+		return 0;
-+	}
-+
-+	total_len = 0;
-+	for_each_sg(data->sg, sg, data->sg_len, i)
-+		total_len += sg->length;
-+
-+	if (!host->bounce_buf || len > host->bounce_buf_size ||
-+	    total_len < len) {
-+		dev_err(mmc_dev(mmc),
-+			"cannot DMA %u bytes in %u segments\n",
-+			len, data->sg_len);
-+		return -EINVAL;
-+	}
-+
-+	if (dir == DMA_TO_DEVICE) {
-+		if (sg_copy_to_buffer(data->sg, data->sg_len, host->bounce_buf,
-+				      len) != len) {
-+			dev_err(mmc_dev(mmc),
-+				"failed to copy data into the bounce buffer\n");
-+			return -EIO;
-+		}
-+	}
-+
-+	host->dma_addr = dma_map_single(mmc_dev(mmc), host->bounce_buf, len,
-+					dir);
-+	if (dma_mapping_error(mmc_dev(mmc), host->dma_addr)) {
-+		dev_err(mmc_dev(mmc), "dma_map_single failed\n");
- 		return -ENOMEM;
- 	}
- 
-+	host->dma_bounce = true;
-+
- 	return 0;
- }
- 
-+static void meson_mx_sdhc_unmap_dma(struct meson_mx_sdhc_host *host,
-+				    struct mmc_data *data)
-+{
-+	struct device *dev = mmc_dev(host->mmc);
-+
-+	if (host->dma_bounce) {
-+		dma_unmap_single(dev, host->dma_addr, host->dma_len,
-+				 mmc_get_dma_dir(data));
-+		host->dma_bounce = false;
-+	} else {
-+		dma_unmap_sg(dev, data->sg, data->sg_len,
-+			     mmc_get_dma_dir(data));
-+	}
-+}
-+
- static void meson_mx_sdhc_request(struct mmc_host *mmc, struct mmc_request *mrq)
- {
- 	struct meson_mx_sdhc_host *host = mmc_priv(mmc);
- 	struct mmc_command *cmd = mrq->cmd;
-+	int ret = 0;
- 
- 	if (!host->error)
--		host->error = meson_mx_sdhc_map_dma(mmc, mrq);
-+		ret = meson_mx_sdhc_map_dma(mmc, mrq);
- 
--	if (host->error) {
--		cmd->error = host->error;
-+	if (host->error || ret) {
-+		cmd->error = host->error ? host->error : ret;
- 		mmc_request_done(mmc, mrq);
- 		return;
- 	}
-@@ -596,11 +678,6 @@ static irqreturn_t meson_mx_sdhc_irq_thread(int irq, void *irq_data)
- 			regmap_update_bits(host->regmap, MESON_SDHC_PDMA, val,
- 					   val);
- 		}
--
--		dma_unmap_sg(mmc_dev(host->mmc), cmd->data->sg,
--			     cmd->data->sg_len, mmc_get_dma_dir(cmd->data));
--
--		cmd->data->bytes_xfered = cmd->data->blksz * cmd->data->blocks;
- 	}
- 
- 	meson_mx_sdhc_wait_cmd_ready(host->mmc);
-@@ -625,6 +702,40 @@ static irqreturn_t meson_mx_sdhc_irq_thread(int irq, void *irq_data)
- 		 */
- 		meson_mx_sdhc_clear_fifo(host->mmc);
- 
-+	if (cmd->data) {
-+		struct mmc_data *data = cmd->data;
-+		size_t len = data->blksz * data->blocks;
-+		bool bounced = host->dma_bounce;
-+
-+		/*
-+		 * Unmap the data after the controller has been quiesced so
-+		 * that neither the reset nor the FIFO flush can race with an
-+		 * ongoing DMA transfer.  dma_unmap_single() (for bounced
-+		 * reads) also invalidates the CPU caches, so the copy below
-+		 * sees the data written by the controller.
-+		 */
-+		meson_mx_sdhc_unmap_dma(host, data);
-+
-+		if (!data->error) {
-+			if (bounced && data->flags & MMC_DATA_READ) {
-+				size_t copied;
-+
-+				copied = sg_copy_from_buffer(data->sg,
-+							     data->sg_len,
-+							     host->bounce_buf,
-+							     len);
-+				if (copied != len) {
-+					dev_err(mmc_dev(host->mmc),
-+						"failed to copy data from the bounce buffer\n");
-+					data->error = -EIO;
-+				}
-+			}
-+
-+			if (!data->error)
-+				data->bytes_xfered = len;
-+		}
-+	}
-+
- 	meson_mx_sdhc_request_done(host);
- 
- 	return IRQ_HANDLED;
-@@ -813,8 +924,17 @@ static int meson_mx_sdhc_probe(struct platform_device *pdev)
- 
- 	mmc->max_req_size = SZ_128K;
- 	mmc->max_seg_size = mmc->max_req_size;
--	mmc->max_blk_count = FIELD_GET(MESON_SDHC_SEND_TOTAL_PACK, ~0);
- 	mmc->max_blk_size = MESON_SDHC_MAX_BLK_SIZE;
-+	/*
-+	 * The controller has a single DMA address register.  Allowing the
-+	 * block layer to merge more segments is only safe because requests
-+	 * consisting of multiple segments are bounced through a contiguous
-+	 * buffer.  Keep every request within max_req_size so that it always
-+	 * fits into that buffer; SDIO uses max_blk_count to split transfers
-+	 * as well.
-+	 */
-+	mmc->max_blk_count = mmc->max_req_size / mmc->max_blk_size;
-+	mmc->max_segs = MESON_SDHC_MAX_SEGS;
- 	mmc->max_busy_timeout = 30 * MSEC_PER_SEC;
- 	mmc->f_min = clk_round_rate(host->sd_clk, 1);
- 	mmc->f_max = clk_round_rate(host->sd_clk, ULONG_MAX);
-@@ -823,6 +943,19 @@ static int meson_mx_sdhc_probe(struct platform_device *pdev)
- 	mmc->caps |= MMC_CAP_WAIT_WHILE_BUSY | MMC_CAP_HW_RESET;
- 	mmc->ops = &meson_mx_sdhc_ops;
- 
-+	host->bounce_buf = devm_kmalloc(dev, mmc->max_req_size, GFP_KERNEL);
-+	if (host->bounce_buf) {
-+		host->bounce_buf_size = mmc->max_req_size;
-+	} else {
-+		/*
-+		 * Without the bounce buffer only physically contiguous
-+		 * requests can be handled, so fall back to the old limit.
-+		 */
-+		mmc->max_segs = 1;
-+		dev_warn(dev,
-+			 "failed to allocate the DMA bounce buffer, using single-segment transfers\n");
-+	}
-+
- 	ret = mmc_of_parse(mmc);
- 	if (ret)
- 		goto err_disable_pclk;
--- 
-2.56.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0NyaXRpY2FsXSBtbWM6IG1lc29u
+LW14LXNkaGM6IG1pc3NpbmcgY21kLT5lcnJvciBjaGVjayBpbiBtZXNvbl9teF9zZGhjX2lycV90
+aHJlYWQoKQotLQoKY29tbWl0IGRhYjE1YjVlNTFmM2IxNTEyMTI5OGQ1MDk1NDQwYjZhNzFhZDZl
+MGYKQXV0aG9yOiBaSEVOUEVORyBZVUFOIDx5dWFuemhlbnBlbmcyMTBAZ21haWwuY29tPgoKbW1j
+OiBtZXNvbi1teC1zZGhjOiBhZGQgRE1BIGJvdW5jZSBidWZmZXIgc3VwcG9ydAoKVGhpcyBjb21t
+aXQgYWRkcyBhIDEyOCBLaUIgRE1BIGJvdW5jZSBidWZmZXIgZm9yIG11bHRpLXNlZ21lbnQgc2Nh
+dHRlcmxpc3QKcmVxdWVzdHMgaW4gdGhlIE1lc29uIE1YIFNESEMgZHJpdmVyIGFuZCBpbmNyZWFz
+ZXMgbWF4X3NlZ3MgdG8gNjQuIFNpbmdsZQpzZWdtZW50IHJlcXVlc3RzIGNvbnRpbnVlIHRvIHVz
+ZSBkaXJlY3QgRE1BLCB3aGlsZSBtdWx0aS1zZWdtZW50IHRyYW5zZmVycwphcmUgY29waWVkIHRo
+cm91Z2ggdGhlIGJvdW5jZSBidWZmZXIuCgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL21tYy9ob3N0
+L21lc29uLW14LXNkaGMtbW1jLmMgYi9kcml2ZXJzL21tYy9ob3N0L21lc29uLW14LXNkaGMtbW1j
+LmMKPiBpbmRleCBmYjQ5ZWE3MTI4OWU2Li5jNjI1ODNhODA0ZjQ5IDEwMDY0NAo+IC0tLSBhL2Ry
+aXZlcnMvbW1jL2hvc3QvbWVzb24tbXgtc2RoYy1tbWMuYwo+ICsrKyBiL2RyaXZlcnMvbW1jL2hv
+c3QvbWVzb24tbXgtc2RoYy1tbWMuYwoKWyAuLi4gXQoKPiBAQCAtNjI1LDYgKzcwMiw0MCBAQCBz
+dGF0aWMgaXJxcmV0dXJuX3QgbWVzb25fbXhfc2RoY19pcnFfdGhyZWFkKGludCBpcnEsIHZvaWQg
+KmlycV9kYXRhKQo+ICAJCSAqLwo+ICAJCW1lc29uX214X3NkaGNfY2xlYXJfZmlmbyhob3N0LT5t
+bWMpOwo+ICAKPiArCWlmIChjbWQtPmRhdGEpIHsKPiArCQlzdHJ1Y3QgbW1jX2RhdGEgKmRhdGEg
+PSBjbWQtPmRhdGE7Cj4gKwkJc2l6ZV90IGxlbiA9IGRhdGEtPmJsa3N6ICogZGF0YS0+YmxvY2tz
+Owo+ICsJCWJvb2wgYm91bmNlZCA9IGhvc3QtPmRtYV9ib3VuY2U7Cj4gKwo+ICsJCS8qCj4gKwkJ
+ICogVW5tYXAgdGhlIGRhdGEgYWZ0ZXIgdGhlIGNvbnRyb2xsZXIgaGFzIGJlZW4gcXVpZXNjZWQg
+c28KPiArCQkgKiB0aGF0IG5laXRoZXIgdGhlIHJlc2V0IG5vciB0aGUgRklGTyBmbHVzaCBjYW4g
+cmFjZSB3aXRoIGFuCj4gKwkJICogb25nb2luZyBETUEgdHJhbnNmZXIuICBkbWFfdW5tYXBfc2lu
+Z2xlKCkgKGZvciBib3VuY2VkCj4gKwkJICogcmVhZHMpIGFsc28gaW52YWxpZGF0ZXMgdGhlIENQ
+VSBjYWNoZXMsIHNvIHRoZSBjb3B5IGJlbG93Cj4gKwkJICogc2VlcyB0aGUgZGF0YSB3cml0dGVu
+IGJ5IHRoZSBjb250cm9sbGVyLgo+ICsJCSAqLwo+ICsJCW1lc29uX214X3NkaGNfdW5tYXBfZG1h
+KGhvc3QsIGRhdGEpOwo+ICsKPiArCQlpZiAoIWRhdGEtPmVycm9yKSB7Cj4gKwkJCWlmIChib3Vu
+Y2VkICYmIGRhdGEtPmZsYWdzICYgTU1DX0RBVEFfUkVBRCkgewo+ICsJCQkJc2l6ZV90IGNvcGll
+ZDsKPiArCj4gKwkJCQljb3BpZWQgPSBzZ19jb3B5X2Zyb21fYnVmZmVyKGRhdGEtPnNnLAo+ICsJ
+CQkJCQkJICAgICBkYXRhLT5zZ19sZW4sCj4gKwkJCQkJCQkgICAgIGhvc3QtPmJvdW5jZV9idWYs
+Cj4gKwkJCQkJCQkgICAgIGxlbik7Cj4gKwkJCQlpZiAoY29waWVkICE9IGxlbikgewo+ICsJCQkJ
+CWRldl9lcnIobW1jX2Rldihob3N0LT5tbWMpLAo+ICsJCQkJCQkiZmFpbGVkIHRvIGNvcHkgZGF0
+YSBmcm9tIHRoZSBib3VuY2UgYnVmZmVyXG4iKTsKPiArCQkJCQlkYXRhLT5lcnJvciA9IC1FSU87
+Cj4gKwkJCQl9Cj4gKwkJCX0KPiArCj4gKwkJCWlmICghZGF0YS0+ZXJyb3IpCj4gKwkJCQlkYXRh
+LT5ieXRlc194ZmVyZWQgPSBsZW47Cj4gKwkJfQo+ICsJfQoKW1NldmVyaXR5OiBDcml0aWNhbF0K
+U2hvdWxkIHRoaXMgYmxvY2sgaW4gbWVzb25fbXhfc2RoY19pcnFfdGhyZWFkKCkgY2hlY2sgIWNt
+ZC0+ZXJyb3IgaW4gYWRkaXRpb24KdG8gIWRhdGEtPmVycm9yIGJlZm9yZSBjb3B5aW5nIGZyb20g
+aG9zdC0+Ym91bmNlX2J1ZiBhbmQgc2V0dGluZwpkYXRhLT5ieXRlc194ZmVyZWQ/CgpXaGVuIGEg
+Y29tbWFuZCB3aXRoIGNtZC0+ZGF0YSBlbmNvdW50ZXJzIGEgRklGTyBvdmVycnVuL3VuZGVycnVu
+IG9yIGEgY29tbWFuZApyZXNwb25zZSBDUkMgb3IgdGltZW91dCBlcnJvciwgbWVzb25fbXhfc2Ro
+Y19pcnEoKSBzZXRzIGNtZC0+ZXJyb3Igd2hpbGUKbGVhdmluZyBjbWQtPmRhdGEtPmVycm9yIGFz
+IDA6Cgpkcml2ZXJzL21tYy9ob3N0L21lc29uLW14LXNkaGMtbW1jLmM6bWVzb25fbXhfc2RoY19p
+cnEoKSB7CglpZiAoaXN0YSAmIE1FU09OX1NESENfSVNUQV9SWEZJRk9fRlVMTCB8fAoJICAgIGlz
+dGEgJiBNRVNPTl9TREhDX0lTVEFfVFhGSUZPX0VNUFRZKQoJCWNtZC0+ZXJyb3IgPSAtRUlPOwoJ
+ZWxzZSBpZiAoaXN0YSAmIE1FU09OX1NESENfSVNUQV9SRVNQX0VSUl9DUkMpCgkJY21kLT5lcnJv
+ciA9IC1FSUxTRVE7CgllbHNlIGlmIChpc3RhICYgTUVTT05fU0RIQ19JU1RBX1JFU1BfVElNRU9V
+VCkKCQljbWQtPmVycm9yID0gLUVUSU1FRE9VVDsKCglpZiAoY21kLT5kYXRhKSB7CgkJaWYgKGlz
+dGEgJiBNRVNPTl9TREhDX0lTVEFfREFUQV9FUlJfQ1JDKQoJCQljbWQtPmRhdGEtPmVycm9yID0g
+LUVJTFNFUTsKCQllbHNlIGlmIChpc3RhICYgTUVTT05fU0RIQ19JU1RBX0RBVEFfVElNRU9VVCkK
+CQkJY21kLT5kYXRhLT5lcnJvciA9IC1FVElNRURPVVQ7Cgl9Cn0KCkluIG1lc29uX214X3NkaGNf
+aXJxX3RocmVhZCgpLCBpZiBjbWQtPmVycm9yIGlzIC1FSU8gb3IgLUVUSU1FRE9VVCwKbWVzb25f
+bXhfc2RoY19yZXNldCgpIHJlc2V0cyB0aGUgY29udHJvbGxlci4gSG93ZXZlciwgYmVjYXVzZSB0
+aGUgcG9zdC11bm1hcApjb21wbGV0aW9uIGNoZWNrIG9ubHkgdGVzdHMgIWRhdGEtPmVycm9yOgoK
+MS4gT24gYSBib3VuY2VkIG11bHRpLXNlZ21lbnQgcmVhZCwgc2dfY29weV9mcm9tX2J1ZmZlcigp
+IHN0aWxsIGNvcGllcyBsZW4KICAgYnl0ZXMgZnJvbSBob3N0LT5ib3VuY2VfYnVmIGludG8gZGF0
+YS0+c2cgZXZlbiB0aG91Z2ggdGhlIHRyYW5zZmVyIGZhaWxlZAogICBvciB3YXMgYWJvcnRlZCwg
+b3ZlcndyaXRpbmcgdGhlIGNhbGxlcidzIHNjYXR0ZXJsaXN0IHdpdGggdW5pbml0aWFsaXplZAog
+ICBkZXZtX2ttYWxsb2MoKSBoZWFwIG1lbW9yeSBvciBzdGFsZSBkYXRhIGZyb20gYW4gZWFybGll
+ciB0cmFuc2Zlci4KCjIuIGRhdGEtPmJ5dGVzX3hmZXJlZCBpcyBzZXQgdG8gbGVuIGRlc3BpdGUg
+Y21kLT5lcnJvciBiZWluZyBub24temVyby4gSW4KICAgbW1jX2Jsa19tcV9wb2xsX2NvbXBsZXRp
+b24oKSAtPiBtbWNfYmxrX21xX3J3X3JlY292ZXJ5KCksIGlmIENNRDEzIHN0YXR1cwogICBwb2xs
+aW5nIGZpbmRzIHRoZSBjYXJkIGluIHRoZSB0cmFuc2ZlciBzdGF0ZSB3aXRob3V0IGNhcmQtc2lk
+ZSBlcnJvciBiaXRzLAogICByZWNvdmVyeSBzZWVzIGEgbm9uLXplcm8gYnJxLT5kYXRhLmJ5dGVz
+X3hmZXJlZCBhbmQgcmV0dXJucyBlYXJseToKCmRyaXZlcnMvbW1jL2NvcmUvYmxvY2suYzptbWNf
+YmxrX21xX3J3X3JlY292ZXJ5KCkgewoJLi4uCglpZiAoYnJxLT5kYXRhLmJ5dGVzX3hmZXJlZCkK
+CQlyZXR1cm47Cn0KCkNvdWxkIHRoaXMgY2F1c2UgbW1jX2Jsa19tcV9jb21wbGV0ZV9ycSgpIHRv
+IGNvbXBsZXRlIGEgZmFpbGVkIHJlYWQgb3Igd3JpdGUKcmVxdWVzdCB3aXRoIEJMS19TVFNfT0ss
+IHJlc3VsdGluZyBpbiBzaWxlbnQgZGF0YSBjb3JydXB0aW9uIG9yIGRhdGEgbG9zcz8KCi0tIApT
+YXNoaWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nhc2hpa28uZGV2LyMvcGF0Y2hzZXQvMjAyNjEw
+MzEyMDA5MjUuMzM2NC0xLXl1YW56aGVucGVuZzIxMEBnbWFpbC5jb20/cGFydD0xCgpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1h
+aWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3Rz
+LmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
