@@ -2,75 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC232606A327
-	for <linux-amlogic@archiver.kernel.org>; Sun,  1 Nov 2026 21:14:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14E6A606A335
+	for <linux-amlogic@archiver.kernel.org>; Sun,  1 Nov 2026 22:15:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RF++GRHS;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=MtI0IhGI
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rJd/AE3b;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=K+V9Dv3q
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Date:
+	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=qzgtMhA2sRnuOlsWvd7i3CBWOW++k/lGVwir31WXRtw=; b=RF++GRHSTRyFBUpifUbVDOVN3A
-	bXSvCTNK2wEM7SVid3LBqEIsVWbLywdjjg/YUqg9HKTPxd5/XTt0HyPO1hHTVenObsClDXBlZk7By
-	V+57AnE6+6/6Cc0cOLD6WSzZZfMysoUWXPNi+GXs4tHH9oMNKEz/Z5CCXmOG0fHskcR9iAIlstKwV
-	5nyo33ZZ80fBshaLybZCJKujPY1xIe3EWZUsdCMj7BXLOTT2PtpqtKFLJ7PkLCU5S6bVBIB2g2jzO
-	g/F0vg8KcJ9c+br8PV+c8eZEDvB+2yosigrDCG6/qhv8SAM6kH6jYy5UV8WCh3xqkiVRY65ZM9CBV
-	oXGaqudw==;
+	bh=yHQi9a0frRq2MEY4h7CG06HcRA+4KRPs3PmwCp5qBkc=; b=rJd/AE3bmIhvw53UiQJHo/XLSm
+	8qPhhoLgE/J5+Bjq/zcXlganmDKUJY2ABNRM9yf4wdRQTQoG81t7MsoA1chYsAM1ShjBAToey5XlE
+	JqJstgd35jV28H3uIdWdL30yZAD5ZDx9DAk0BTLvsNk9EYfBX1k3J5IrehSi/bh1ViYgf/4clHYvn
+	5T6gR3rca9wvYSzoGG8OE20BKe/snNT+sAjKKE7hmLMXxslWAvv8/QDAS6nRKk87C6tYVDrwyi4Fq
+	gBZ6z2+b0IrvtB2ljJ30LpIgYjBoyfrGELgR7yRMANGVM9t3GE3d68CJGDayTAk9crUTWhquCYqXS
+	lTpNyZ+g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNcse-0000000EuD3-1Y0i;
-	Sun, 01 Nov 2026 21:14:20 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xNdqD-0000000Eyvr-2KRn;
+	Sun, 01 Nov 2026 22:15:53 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNcsd-0000000EuCu-0WHm;
-	Sun, 01 Nov 2026 21:14:19 +0000
+	id 1xNdqC-0000000EytQ-0Rl4;
+	Sun, 01 Nov 2026 22:15:52 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 2DFDB40D93;
-	Sun,  1 Nov 2026 21:14:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D9831F000C1;
-	Sun,  1 Nov 2026 21:14:14 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id B7A7744006;
+	Sun,  1 Nov 2026 22:15:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B0951F00A23;
+	Sun,  1 Nov 2026 22:15:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793567658;
-	bh=ZNkRVh6Ty401RG6V3W3YBuDyeqLwtI1cJ5oxr/TdzUs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=MtI0IhGI+f3QNHD3CTexim/4WGzwoaiHljWQsSqfmi4liMSnO9BMV0v/Tqb5Mwi7g
-	 3mBHxE+bw5aYdqBHlmXNZ6ZRgwwAUBKPTVzFMWIeBc+Vi/EHjtd9G/jCLOmdhbro3L
-	 ehq87f1GKiyV9p1CPOnrRa03HsulXIsfNuvg7zDaVURrEZq9UswFDM8XqXtLSJ+Coi
-	 gmvN/efPtlG5AVDpcLd6jfpOUIODKw3o/07Vp+2Zq2WHIloyWcqmvGoh7ixl3JWCRv
-	 0P4xOdAnL9igbVMeJP8kUvlIfCZm6bLFt1KD3KcYyB35AcPePY0xO3cMOZQOusgtGS
-	 2vqFkWqH7+tZw==
-Date: Sun, 1 Nov 2026 21:14:10 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Rupesh Majhi <zoone.rupert@gmail.com>
-Cc: Alex Lanzano <lanzano.alex@gmail.com>, Andy Shevchenko
- <andy@kernel.org>, Benson Leung <bleung@chromium.org>, David Lechner
- <dlechner@baylibre.com>, Guenter Roeck <groeck@chromium.org>, Jagath Jog J
- <jagathjog1996@gmail.com>, Javier Carrasco
- <javier.carrasco.cruz@gmail.com>, Jean-Baptiste Maneyrol
- <jean-baptiste.maneyrol@tdk.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Jinseob Kim <kimjinseob88@gmail.com>, Kevin Hilman <khilman@baylibre.com>,
- Lorenzo Bianconi <lorenzo@kernel.org>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Matti Vaittinen
- <mazziesaccount@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Remi Buisson
- <remi.buisson@tdk.com>, chrome-platform@lists.linux.dev,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, Marco Elver <elver@google.com>, Bart Van
- Assche <bvanassche@acm.org>
-Subject: Re: [PATCH v4 0/9] iio: enable context analysis for all drivers
-Message-ID: <20261101211410.5fa14b39@jic23-hlaptop>
-In-Reply-To: <20261101105832.55605-1-zoone.rupert@gmail.com>
-References: <20261027124954.110697-1-zoone.rupert@gmail.com>
-	<20261101033018.05897c08@jic23-hlaptop>
-	<20261101105832.55605-1-zoone.rupert@gmail.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=k20260515; t=1793571351;
+	bh=FccY8w4XVKmL62rTrNsIiuAmg2iirAJ9NTvcPUeI7l0=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc;
+	b=K+V9Dv3qcTj5160hj+SlEd6bb36GPd0hfxFxqjLqYo66VpB8oCIm4PuHm9pjlid/h
+	 xICIzZcud0NUgf8UqhSDgZUnCOe+E4H24SE9jF1p7O4fFeppaF6xJ19c2x3GponAYK
+	 zBB0xnPMXK3KXJyJgXpeecppENU8uStUTuAYpN58z1zi5XdcZnpfMOTU/Sjz04mpNh
+	 EBDswN/2U3tv2zVNouRalxGVIPr45mrQWsWqgkUoAJAzcLHlFn+u4O5aPuxyp1V9hh
+	 nqI9MBjEMOeTC+Cpzk8pdEQbjpMVozvCH8kCeYtfZV/f7RAOqeoEUa4gaQ0O3fobrF
+	 9dSJrBw8PPsVQ==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 7D3DF38003B8;
+	Sun,  1 Nov 2026 22:15:51 +0000 (UTC)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Subject: Re: [PATCH net-next v16 0/7] net: stmmac: qcom-ethqos: add support
+ for
+ SCMI power domains
+From: patchwork-bot+linux-riscv@kernel.org
+Message-Id: <179357135004.2624073.6498267080189807632.git-patchwork-notify@kernel.org>
+Date: Sun, 01 Nov 2026 22:15:50 +0000
+References: <20261014-qcom-sa8255p-emac-v16-0-0266c2ead980@oss.qualcomm.com>
+In-Reply-To: <20261014-qcom-sa8255p-emac-v16-0-0266c2ead980@oss.qualcomm.com>
+To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Cc: linux-riscv@lists.infradead.org, andersson@kernel.org,
+ konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+ kuba@kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com,
+ alexandre.torgue@foss.st.com, vkoul@kernel.org, peppe.cavallaro@st.com,
+ wens@kernel.org, jernej.skrabec@gmail.com, neil.armstrong@linaro.org,
+ khilman@baylibre.com, jbrunet@baylibre.com, shawnguo@kernel.org,
+ festevam@gmail.com, jan.petrous@oss.nxp.com, s32@nxp.com,
+ mohd.anwar@oss.qualcomm.com, romain.gantois@bootlin.com,
+ geert+renesas@glider.be, magnus.damm@gmail.com, mripard@kernel.org,
+ christophe.roullier@foss.st.com, brgl@kernel.org, edumazet@kernel.org,
+ radu@rendec.net, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, dfustini@tenstorrent.com,
+ linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org,
+ linux-mips@vger.kernel.org, imx@lists.linux.dev,
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ sophgo@lists.linux.dev, bartosz.golaszewski@linaro.org,
+ sashiko-bot@kernel.org, martin.blumenstingl@googlemail.com,
+ krzysztof.kozlowski@oss.qualcomm.com, prabhakar.mahadev-lad.rj@bp.renesas.com
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,45 +90,49 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
-	autolearn=no autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sun,  1 Nov 2026 12:58:32 +0200
-Rupesh Majhi <zoone.rupert@gmail.com> wrote:
+Hello:
 
-> On Sun, 01 Nov 2026 03:30:18 +0000
-> Jonathan Cameron <jic23@kernel.org> wrote:
-> 
-> > Please take a look and check I didn't mess it up.  
-> 
-> Diff is fine. Built drivers/iio with clang 23 allmodconfig: no
-> warnings, and a dropped unlock is still caught.
-> 
-> Subject line got lost though. It should be "iio: enable context
-> analysis for all drivers".
-Doh.  Cut and paste bug!
-> 
-> CONTEXT_ANALYSIS_dps310.o := y in pressure/Makefile can go now too.
-> I can send a follow-up.
-No problem - I roled that in.  Didn't bother changing the commit message
-as it is obvious what is going on there.
+This series was applied to riscv/linux.git (fixes)
+by Jakub Kicinski <kuba@kernel.org>:
 
+On Wed, 14 Oct 2026 14:36:39 +0200 you wrote:
+> Add support for the firmware-managed variant of the DesignWare MAC on
+> the sa8255p platform. This series contains new DT bindings and driver
+> changes required to support the MAC in the STMMAC driver.
 > 
-> Jinseob Kim's Tested-by didn't make it in:
-> https://lore.kernel.org/linux-iio/CALMSew+nhZp9BoqS5tOgFdiVy13U1r2f4UQa9Sd5zc9pSt_YcA@mail.gmail.com/
-Ah. b4 didn't pick that. I guess because the formatting was missing the <> around the email address
-that is standard.  Anyhow, fixed up.
-
-Thanks!
-
-Jonathan
-
+> It also reorganizes the ethqos code quite a bit to make the introduction
+> of power domains into the driver a bit easier on the eye.
 > 
-> Rupesh
+> [...]
+
+Here is the summary with links:
+  - [net-next,v16,1/7] net: stmmac: dwmac4: don't program the 1us tick counter without a CSR clock
+    https://git.kernel.org/riscv/c/d09d7b8e86e5
+  - [net-next,v16,2/7] dt-bindings: net: qcom: document the ethqos device for SCMI-based systems
+    https://git.kernel.org/riscv/c/534198a05d92
+  - [net-next,v16,3/7] net: stmmac: qcom-ethqos: set serdes mode before powerup
+    https://git.kernel.org/riscv/c/7af44cb9e447
+  - [net-next,v16,4/7] net: stmmac: qcom-ethqos: update phy_mode to the resolved interface in mac_finish()
+    https://git.kernel.org/riscv/c/05b3ea7346e3
+  - [net-next,v16,5/7] net: stmmac: qcom-ethqos: reuse the address of ethqos_emac_driver_data
+    https://git.kernel.org/riscv/c/92719abd6378
+  - [net-next,v16,6/7] net: stmmac: qcom-ethqos: factor out linux-level setup into a separate function
+    https://git.kernel.org/riscv/c/acf1e3db9151
+  - [net-next,v16,7/7] net: stmmac: qcom-ethqos: add support for sa8255p
+    https://git.kernel.org/riscv/c/bb3183e1c938
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
 _______________________________________________
