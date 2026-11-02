@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 370AD60A5BC8
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Nov 2026 12:41:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD12660B57D9
+	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Nov 2026 15:15:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Mrkmt5tK;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GaIaYRqA
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yusvLXLj;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=Dsi4vAol
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -14,62 +14,93 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=vDJ2pEA2/UqFvFVz2FqycxAqkzjDuaqVsb0ExFtSOIY=; b=Mrkmt5tKciNbyADZh9oG3/atRu
-	HXaK9mJvxUGfdaZkzp5OK6m2YUwVUhKsta6lvJw8MzyMmGtO+MXWyA0R6wOLWjVqMih0Wlj8sLZuV
-	lBfomP9GHJJfE2TLvyEkYPI+NMAbGzqpVi5SZ+dccZTg7yYDZ8I3rp81I8uu89rbQSPK9g4Dym1dM
-	ifmTk5DrwXIaTbo02gY1nrRtlNLaRcGriGbx8WcRBwaL7jekuX1s7xbI74fQL/JRuiJ3g9mNroPLP
-	olZSUKJDeAUuLk59y/hrExyF/ZztvfWYoB/k+4gxLExJVQlXaaq43vE9+hmQl4Kt3UbaU7nqjwtWD
-	Fwh47O/Q==;
+	bh=eFEg4sBzBtXlvLkgUGWD5h8IlyK1/YkWF3kDN1dWiD0=; b=yusvLXLjtmGKm5C0wegVFt+bje
+	u+iiiP+Q3we6xRSNX8g6P5EiF+nKoJ5lDxP2eZi1v/GimWlF7LquWvHFhwCoxPjiLdq4CFrAQVlqn
+	+wrVUt7Zryw7bFIDNJWCtk2oRz/3A2qKVdTGuyq9AKdAhBJ1l1l6jYgqX1sf807DPf10BsL7Ibu0o
+	lgqMg9UARfsm7RPMNWobed92zzUD5iIUH6BIgrMSTk5USpcf4WF1jiSbvBOC7gCTE6UTbFay4ggRR
+	Y9P/1tFn66jdsSdAJp6E7UbT6aSWsGRBa0hhaOOtMB3CRf+2t0LclIRpjpDX/0PiO17FaaSCJ57sx
+	WW9Jpx0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNrM8-0000000GVwg-0pV3;
-	Mon, 02 Nov 2026 12:41:44 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xNtkx-0000000H1l1-43zW;
+	Mon, 02 Nov 2026 15:15:31 +0000
+Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNrM4-0000000GVw3-2gGZ;
-	Mon, 02 Nov 2026 12:41:40 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id D0E5860619;
-	Mon,  2 Nov 2026 12:41:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D05A1F00A1B;
-	Mon,  2 Nov 2026 12:41:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793623299;
-	bh=/Peu5b7Kyrbsgh+h02YANx8ZlL/9Kso/Lv68KQwUCJw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=GaIaYRqADioKDBhpm9h8PAHqVKAeV2AQ3xiDVqExAHj64WTNWFjv5wIQYHBOtbUAz
-	 adyfFjW9ZX3C/zS9xn9te6qn+l9VgGMfdr3uqsKUdqMrdYyzNLMX4Oqg/Kfn8RBTiV
-	 cOqAtoqa9oAq7TpN7t7s3QQj3a451cXTfix+xRhXi8Z5otFzoEXPZfwQwinAVOtter
-	 vCKkhRPtCh4AUWor7Ihp4K/U6DZFQmFTy9oI/Qo2OKJvXkj69IXdlNqJ6csoBmfMzr
-	 2v5kvjG+jUZ/C931SmYrbR+jim7DFrYt8a6ce6/jwNKMKAwKq25De5bN1qBKIe75b4
-	 Gv38G5J9YybGw==
-Received: from traversing.sirena.org.uk (localhost [IPv6:::1])
-	by traversing.sirena.org.uk (Postfix) with ESMTP id A405A23103DC;
-	Mon, 02 Nov 2026 12:41:37 +0000 (GMT)
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jerome Brunet <jbrunet@baylibre.com>
-Cc: linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20261030-meson-card-register-fixup-v1-0-6474985e94f6@baylibre.com>
-References: <20261030-meson-card-register-fixup-v1-0-6474985e94f6@baylibre.com>
-Subject: Re: [PATCH 0/2] ASoC: meson: card: fix driver remove
-Message-Id: <179357776085.1716893.7760028365760800728.b4-ty@b4>
-Date: Mon, 02 Nov 2026 00:02:40 +0000
+	id 1xNtkv-0000000H1k6-0TRG
+	for linux-amlogic@lists.infradead.org;
+	Mon, 02 Nov 2026 15:15:30 +0000
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-48afbd2c386so1837904f8f.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 02 Nov 2026 07:15:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1793632526; x=1794237326; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:date:message-id
+         :subject:references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Lwko6okvSNVg/jnBVKvteCXR92d+R24Bf36M7tO1Ed0=;
+        b=Dsi4vAol6uTx2gVNS35+o3ZvYhaLO0CAiDe87zjwWEokJBMVqYv+6HwO2KeXvKUUKp
+         SK30Xu9Ssk4SWuW1QJvfJFAZTPC6+0gQx1L84wZTNen+QxgSrozbp0XO05DBieHCeBhP
+         qVTXDqiChcERSE9BW5C8apfSanycVSUZpRMtmrZ54tk0XThNcB4RX8IgMEZAVBDhrlh5
+         +F2brnrFX8hVF1nKkFhDkidMcDGWjD8SU1HCYctNferkZM59rg2ygFpCvTnBKR9/4lOP
+         6I9+0uts5J06hRbMCrbEOOMczgaxNUWk8k1fdtZ9mM6+yTZDtT0WEV2hXdQVo1CS8gFr
+         uJUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1793632526; x=1794237326;
+        h=content-transfer-encoding:content-type:mime-version:date:message-id
+         :subject:references:in-reply-to:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Lwko6okvSNVg/jnBVKvteCXR92d+R24Bf36M7tO1Ed0=;
+        b=OJqM/d6p3713FIQSKIKHnAJd4r/UH2FWLRSU99TAbe3rtY9rE7F/X7Ddg2rZOMAp8x
+         2PZjFLe1O0ISzcxpOabPWn8Q+Oslao/wHky9DDY7327WS2NzcyGqViru0W6g1EpkkMFv
+         UwOVO99vKC3YOh8VpKyKYCYiedHg2eXP6wqgGdKmJg1/HpZQigsLHUVBw5SGqFhHB2+B
+         R8KSOA70RXGZafc0AfDRvm5JqEs03TP2BVmE8SFnS9aZf4F5vuoLWrXIt3zfM6xwBLs3
+         KOkyHBmOpiBOtwpsY3IxVO4ymax6KDhIiR9mVrNAsKb8RS7aIDjNFULC28o//DulpzFx
+         6PuQ==
+X-Forwarded-Encrypted: i=1; AKwUvBxpN3dbHHGvpxnzON4RgnxQm1J7jcmVwqVIzYFJQZ5pk1xMajntAMbTzG15EiGMfnnglwPKocIKq8ll31dx@lists.infradead.org
+X-Gm-Message-State: APuU4Z+fUPhTQ4MPCxRKfQnOZ9qglollI9MY0YXGbmCIb6hzU1V7+nhq
+	2MDAhGgugq4vIUh7+rSHBpXHA/s2PZwhwpaqup3QqxUl5jecMZDVcMVWLB3/YgWGr+Z6SmyF7Vz
+	Wqn48dvA=
+X-Gm-Gg: AYBFou0mUniLhYBA4JkGcpYTongPFoSFJEhwEQjUzeVJ5QzQqt95cw/1QDNKFO7pDVC
+	JTn5GvPgLCnOo8ZR2aCovhZ2/u85IwLMo5i7URHjQgXiEwxUK87o08+Dd1yR7I3U8k8Bln6TfD3
+	jUbHzJJOkmPEtTT2RNSri6wCGTtTSr1Z0XrbXNj0x/SRWTBOtLyHVaPWwhDct61g7Lajwt3S2oW
+	ux8D1KracAJloKEn4L6dWa0XwqGiGFBsrQ6H3DLWZpQRla0pvkz+kvEhK4ne4fPEV8kkbt7B+pL
+	5FC9VxVzkG4w03I1Te0BgPhq2a3KYRqDhvaA9PYD8SRL8B5kcftcxyXOrzI0vUZugNUicpBMQVa
+	fM5cHbNMhaC4z6mT8/7lcdnD7AnsTBOs0Bbt00HT00xCtYpzDKsgtvV78f4S+t7VOln5wtto/OI
+	1v+WzVIrOSOk0yPngW/HiFg3lhWrXnyZD9NkjFR5F8CyOTHxQuTVJSPPFIR40vdYRqEq9zp19pk
+	YhH2bgTB1/60J474lR+s6f+FuYse1Z5JrvFwxbgG4HB3SH7yhE+kDeDrfG7l1zHMz7pZxsHzoi3
+	tGO0kcW1K4C+f7LC0kUL6Uz2m3gJGCODUqHpzxlCcvVoppVjcVzNXEqGhLmOCwyczJHeeA==
+X-Received: by 2002:a5d:5f07:0:b0:48d:ef7d:4b4c with SMTP id ffacd0b85a97d-48e6e4f8c4dmr24016067f8f.44.1793632525630;
+        Mon, 02 Nov 2026 07:15:25 -0800 (PST)
+Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48e71b964desm20278422f8f.46.2026.11.02.07.15.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Nov 2026 07:15:24 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ linux-amlogic@lists.infradead.org, Carlo Caione <ccaione@baylibre.com>
+Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20261022-upstream-maintainers-clk-headers-v1-1-d09dd4db01d6@baylibre.com>
+References: <20261022-upstream-maintainers-clk-headers-v1-1-d09dd4db01d6@baylibre.com>
+Subject: Re: [PATCH] MAINTAINERS: cover all the headers in ARM/Amlogic
+ Meson SoC CLOCK FRAMEWORK
+Message-Id: <179363251235.2870673.14649605942242408938.b4-ty@b4>
+Date: Mon, 02 Nov 2026 16:15:12 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1412; i=broonie@kernel.org;
- h=from:subject:message-id; bh=IW+3schf3f12w+Fw6YVgIZQH8wOkkSnqf4ANNKtqitI=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLJetDKeM6/ybwzd5fO0sf+q+QRNTYE6+YtvLL0/f9U8o
- cwkOutyRykLgxgXg6yYIktcFvfL+pLXa/gOLmyDmcPKBDKEgYtTACayyIuR4auVd7Xk0yXMVyKm
- JgkW74wRZG+6f29L/lGPzfaLpUSf/mT47/FGtWJmmamErzX3i9Dayktbiv+fYpvH9fDb2VdtX46
- qcgEA
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+X-Developer-Signature: v=1; a=openpgp-sha256; l=218; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=cdtF+IoyulNvDDWLsBzOlK8XDHbQ0yPEZoN3CHTIrY8=;
+ b=owGbwMvMwCW2VtK+WnvWU3HG02pJDFkvVvJ8sVbYu2HF+9xn65XDM1Jd43QWq/2zZOfkVywKe
+ OHy52NuRykLgxgXg6yYIksNd7X4O0mtL7Om69yGmcPKBDKEgYtTACZi943hf9oOm6dcXHLN/DMf
+ PZRJyvlv6rpr2aSsORcCbLstlvzxmM3IcEsluDdb6sybjOPF3/9PyTK768OXKZxZ6ukkVDPlo6Y
+ 9HwA=
+X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
+ fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261102_071529_162344_5A9BCA67 
+X-CRM114-Status: UNSURE (   3.93  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,50 +113,21 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DATE_IN_PAST_12_24,
-	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 30 Oct 2026 17:29:52 +0100, Jerome Brunet wrote:
-> ASoC: meson: card: fix driver remove
-> 
-> meson_card_remove() reads the wrong drvdata and frees the card links
-> before the card is unregistered, which crashes when the driver is
-> unbound. Fix both.
+Applied to clk/linux.git (clk-amlogic), thanks!
 
-Applied to
+[1/1] MAINTAINERS: cover all the headers in ARM/Amlogic Meson SoC CLOCK FRAMEWORK
+      https://git.kernel.org/clk/linux/c/493e4ff653e5
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.5
-
-Thanks!
-
-[1/2] ASoC: meson: card: leave the device drvdata to the ASoC card
-      https://git.kernel.org/broonie/sound/c/b734d4c00f8a
-[2/2] ASoC: meson: card: unregister the card before freeing its links
-      https://git.kernel.org/broonie/sound/c/6f86aab14274
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Best regards,
+--
+Jerome
 
 
 _______________________________________________
