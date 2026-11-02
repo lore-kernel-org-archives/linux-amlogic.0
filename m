@@ -2,104 +2,59 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8AAD60874ED
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Nov 2026 16:28:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B53F606A324
+	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Nov 2026 18:40:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ocTRO98C;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=n/QxLb3k
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CY6hYZkt;
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=iav.lv header.i=@iav.lv header.a=rsa-sha256 header.s=zoho header.b=AzFW1jds
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=e3HrIBvKvyju4nRSj/GRWrY7UVixAdNIsccaoVBPUU8=; b=ocTRO98CXlO49FKATjjorhoUky
-	UDn7AJ0wAOk4Pj53FaB+TKtR1wr9vJnvEa1GtYB8ZabEbpgnT4QYvaQXa2Q63uJLAyJ1PkqTo7QsW
-	HZnJF8YK7mEv8FD8jzzODZ0/63BGXPhWNZ1y2Z2iy4GXUQc7V+IwbjDhwwp7uWG4KMv3DspPBhQl7
-	CbacZBO9JIAQQyqIkahNppZOOKWYQYdu1/5akWbauk/zDNexAZOKpXxv21yRyr0qFvVRmGYq91yKW
-	LO6vO2ViBLVtZetSLeBMTO47m4hI4IYwOtjtCuMm7zQ4nosei1JaWYFEVSafmDgdzgmBx/9DExQId
-	VkfCL6Aw==;
+	bh=HuUpEm+gxzm8BzKSnd2jawBsPcOkL1ahrMalm6ve2xM=; b=CY6hYZkt7KdvLy4Gy7tsuz4HI4
+	MFDCvEt/SOu/+7yUVX4HyNSksSg9V5qiA7WDa9FKyI4vnPmLdzk+k/qCL+o8D8G91zYIT7WfBtMri
+	Z15fgQRaTCrFyZpGnbbLXrBw6iMIWV3rYJpnHLIA9G9NWktRLJkeCCwQQlxc+m1VEGpcM+Q/aPFvG
+	HfHugzFRcM5SuLh+9QnDx/8zFp1KJNsFgc4PR/XqVwF9C7eX3jLppU3TsF+ognyxg0e7AmEu5bVc4
+	uOfIfjC7l3XIR3A1DV3iqdFAqx5INh6bNpbzdLBvolSuSTPPsdEN+EYnbQi6/Ypc6FRMw8B3D8D0D
+	xL+XPg8w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNutB-0000000HIHA-09cd;
-	Mon, 02 Nov 2026 16:28:05 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1xNwxb-000000000U5-0mer;
+	Mon, 02 Nov 2026 18:40:47 +0000
+Received: from sender-op-o17.zoho.eu ([136.143.169.17])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xNut4-0000000HICi-1aL7
-	for linux-amlogic@lists.infradead.org;
-	Mon, 02 Nov 2026 16:28:03 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-48e0d1c095dso1666707f8f.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 02 Nov 2026 08:27:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1793636876; x=1794241676; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:mime-version:date:message-id
-         :subject:references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=6Yzw89lsinqooxl3AQbwM5bflwcgQEHrujUJ/xTqMIU=;
-        b=n/QxLb3kSD+SUAgyDHqSpJyDTFRiIqIyuyqrKJ72noMfGkswPWpWUNsQIaDN2N5JP3
-         UIbRRFl5MAaT31CeEzhJheSMgwL9DFCzuoDhjCVcf+Ic1WsuF1w44n2Vctarq3kfCrhL
-         NmOTA/foH58uhU8zUiB/KojugV3l2Wmarp9rpiCPcrapjdKWiOHbnIdp16nzdwWpfBFy
-         VwIfsOYucAScNUnaBcXn0Be6k5P4OJiMNY4gT6bDCfoG6gLG9XrlVtYG+Ri0VgfkeU/5
-         Fng8PU4etuHEYNSvC2tmo0EkMQDEzeNahIXQoYKzDKTkrL3eEk0sNaKQoORMufXf0I3h
-         7mCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793636876; x=1794241676;
-        h=content-transfer-encoding:content-type:mime-version:date:message-id
-         :subject:references:in-reply-to:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=6Yzw89lsinqooxl3AQbwM5bflwcgQEHrujUJ/xTqMIU=;
-        b=mWN93KL1iZ+U7vHnCi76cg+K+W6LasDehZN0l0ymFPu6zPoqDW7H10WSX2E6/TJCc8
-         GbgSeIhGHpyoHG//9Nb/UsnjG3ZL/x0wTuboCHKwivnnNFM1eP24es+MHL7onKFULMty
-         m57DCrA9vWxxYhRP01BxqmT0kkGFSIbTY5BkLdM9G9TG6mttXSZ9cBYmElqy/rp/v2G+
-         AxipfzFoRoJqaeu2g/wsaHYfhSTCEMn8zeRd5tuSYet6RMSyaVrjCqnY2l21mZEj+T27
-         Ixk8SiIsDWMVU6jr67kmUwgrxeWFZRXkKWTReBRnJjMJ9cZHJnrYTLZgxQMQPEHm7kAk
-         ywSw==
-X-Gm-Message-State: APuU4Z8VGY3yniGxlUDwWHS5g4a+jFyxOBre58wmvTXpVTU4htUL7Gx2
-	RB5Z0lXgb01OVl1MLri6JaIVK1U8GI9UdKN8B/MRHIJGQcsxCv0TvajN2fWpODqkEkI=
-X-Gm-Gg: AYBFou27WBBDCQDyGBLkdJM6WwLQ/CGCK5bcsbrg0Vxgj6mh7rFSpFXuqBtdg0EHv2/
-	kf9t96d1uStw5PQ6lM0uI3SX/vK4zvyLuHPGAA4taAkLALCnzMVhnKKABVSRNrX8GRNButlskoU
-	8fHsj7+7tzWWgKpdXA9pIA4T9cQi6Z8BfOF4RVMDrk13zfRCkh4rbdHqxX/Lz1QnfC0b5oc/gOA
-	7jOtY/qZ3ZVvvyYqwW3Wm9e05agn/IObe1mkpk6uzHjjejly2OmOetkTtcM5AjwlLZQ8DmHLKgU
-	09P1MAyO7Sw+2Io2m8gQz7uZRhuMVVgnrkCU0k1gcRwdTTjufjaONZPe1vdeXT2RaRA+wUG4ksG
-	QwcNM1OX7Huiwd4i2QNQMbKjkvrEVAXIohvZRV6/4fUh7EwFy/axWG+Tcc+xCCzVRZAk8n6coY5
-	Q77MaSIzxg/mPNAu1KyZNr9n7UkDUjmADPXcbfj42W++QpL2KHVhKqoCnB21I1yRCtgWPse0YqM
-	e8FMUxo7dElYOaZHpSleEJMIAS3IYeQTUIUPPIhCMYTj67HPECIPvKrijeTKZQPHnXbn9SMp2JY
-	+xjxAFvuQ26f6zWwSwLpF+X4mIJ6MVbbzfzj8j+IFIY/dUAxew==
-X-Received: by 2002:a05:6000:22c3:b0:48e:61c9:4e32 with SMTP id ffacd0b85a97d-48e6e505515mr22460208f8f.32.1793636875388;
-        Mon, 02 Nov 2026 08:27:55 -0800 (PST)
-Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48e71a4d425sm21327567f8f.1.2026.11.02.08.27.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Nov 2026 08:27:54 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Carlo Caione <ccaione@baylibre.com>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20261029-upstream-clk-regmap-ro-divider-v2-0-7a375fd8f88e@baylibre.com>
-References: <20261029-upstream-clk-regmap-ro-divider-v2-0-7a375fd8f88e@baylibre.com>
-Subject: Re: [PATCH v2 0/3] Fix rate rounding for Meson read-only dividers
-Message-Id: <179363686177.2573818.9840227299008811238.b4-ty@b4>
-Date: Mon, 02 Nov 2026 17:27:41 +0100
+	id 1xNwxX-000000000T6-0pDw;
+	Mon, 02 Nov 2026 18:40:44 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1793644839; cv=none; 
+	d=zohomail.eu; s=zohoarc; 
+	b=ZI1w18v9ajwZLxKG63htNilqe0d2mwvjzda/tAdlLQxiC78vodaJrepsFUv0cgqc9FpKflSma0uP8EXUm/ateujJFAyDpAz2pmxClGC2azmYEU0Ix9fo55nRNrjgm3myfmr5GGzNVqjBLRh4zrCa3NBCozXdWL03CJwAW1t4++k=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
+	t=1793644839; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=x2JYvPAFU2onTnd8tUYxjXC7Nzj85EYDqdqRJ3qq08g=; 
+	b=ON9c6+GulNPP/MVg3P1Oyh+Mi0Re5wMo/RnB1hyZBbY4x3s0zP8vHwSOu0pfUsRiwu73CeDvue/6ZeOaMm25qXI9S7d6orhZWawtgQ9SAdmBP8ITItGs9PRdtIUhEFXlA92edkG9aOLWi8REPqkAYb6oNjMchVXoemEsEs7/uVQ=
+ARC-Authentication-Results: i=1; mx.zohomail.eu;
+	dkim=pass  header.i=iav.lv;
+	spf=pass  smtp.mailfrom=iav@iav.lv;
+	dmarc=pass header.from=<iav@iav.lv>
+DKIM-Signature: a=rsa-sha256; b=AzFW1jdsBWQAQEu6mLS0kkwz/CCkMCivK5e7hQqLegFoHV/g4isoTOvoG2M+ZPpqaqr/GJYb2pB3+O3DU+NI8hDv6nGwOHnmvgy8K8U0FrKCcn93EVCDPorRMaManKiO3+dQoHGBIrbZCHyzkV+f2dFQYYNXBm2gDsNT6yCZn9Q=; c=relaxed/relaxed; s=zoho; d=iav.lv; v=1; bh=x2JYvPAFU2onTnd8tUYxjXC7Nzj85EYDqdqRJ3qq08g=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
+Received: by smtp.zoho.eu with SMTPS id 1793644838477757.940158003217;
+	Mon, 2 Nov 2026 19:40:38 +0100 (CET)
+From: Igor Velkov <iav@iav.lv>
+To: Christian Hewitt <christianshewitt@gmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Dongjin Kim <tobetter@gmail.com>, Eric Neulight <Eric.Neulight@linuxdev.slmail.me>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, Igor Velkov <iav@iav.lv>
+Subject: Re: [PATCH] arm64: dts: amlogic: meson-sm1-odroid: let the SD card be powered down
+Date: Mon, 02 Nov 2026 20:38:31 +0200
+Message-ID: <20261102-hc4-sd-hewitt-reply-1@iav.lv>
+In-Reply-To: <AD1E9AE8-8FA9-4CC2-AED8-AB2F455FA8E2@gmail.com>
+References: <20261003-hc4-sd-power-off-v1-1-f7ffba01b348@iav.lv> <179100548183.3372253.2014593916926884551@iav.lv> <179140715034.293470.4459182430175564610@iav.lv> <AD1E9AE8-8FA9-4CC2-AED8-AB2F455FA8E2@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=78; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=6Yzw89lsinqooxl3AQbwM5bflwcgQEHrujUJ/xTqMIU=;
- b=owGbwMvMwCW2VtK+WnvWU3HG02pJDFkvdnHpxHrPXvaH9XIH+4SEyWdKTjDzFkYtFOY7YbPEt
- ljWNNW4o5SFQYyLQVZMkaWGu1r8naTWl1nTdW7DzGFlAhnCwMUpABM5dZ/hD0+n5LxFfV82ZzPZ
- LpyvGbFFh8d2+Z7r0yJVltn8e3RUezHDP9Oft5buYvW7J6K6Z1Hb+ym/t6j/8G1lnzSlRvlYf7X
- 6Ri4A
-X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
- fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261102_082758_452657_7118F32D 
-X-CRM114-Status: UNSURE (   3.83  )
+X-CRM114-CacheID: sfid-20261102_104043_549604_0A0C9F08 
+X-CRM114-Status: UNSURE (   6.62  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -114,19 +69,28 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Applied to clk/linux.git (clk-amlogic), thanks!
+Hi Christian,
 
-Best regards,
+For HC4 I sent the U-Boot side on Oct 13 [1]: the same idea as your
+first patch, plus u-boot,off-on-delay-us = <100000> on TFLASH_VDD.
+Without it mmc_power_cycle() keeps the supply off for only 2 ms. With it
+HC4 boots from SD after a watchdog reset 3/3 (0/3 before), so the delay
+may be worth a try on VIM1S.
+
+On ODROID-N2 the factory BL2 leaves DELAY1/DELAY2/ADJUST at 0, so I
+haven't seen your second issue there.
+
+[1] https://lore.kernel.org/r/20261013-b4-hc4-sd-power-cycle-v1-1-cde760a256a5@iav.lv
+
 --
-Jerome
-
+Igor Velkov
 
 _______________________________________________
 linux-amlogic mailing list
