@@ -2,10 +2,10 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E85B16082BD4
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Nov 2026 16:37:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE2DA6083602
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Nov 2026 16:37:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wkVjSLkC
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=l1kSEtw0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -13,54 +13,54 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=CFqK9gLP3K55waQ0HnR3WSq+SdOlnhUcr5KnBkfdhuI=; b=wkVjSLkC3o9GvomRAMn+EKGlQy
-	3CwDEO1Y/737NKHfzug6IuPRaIgR3PdfnKk6ZwJTdpuH/QQI4jsPTVLa5jGRykB3vDwAfVGRaBSJN
-	5Ctc9shG6qd2Mpgf8Bbhm69wHiUd344T3AbLX8lm6RhAT/NGpKLUPi7WKerHIyFZYyxoqc8DwJsub
-	SiZZjo1ovqAFHS8UJ1ZMcacWmtfZmJcec4EikvJeq9ygKN1FvGz1gUgZHPssVl/x84CigtT0q/d/l
-	7uRS240znDSS8AlIVi+54+pfRuDAVL3q1cyfq2H9eRNLkobI76kGanusWqG2Pj/LDrWl1QBgdi+W3
-	Bq4vCNGA==;
+	bh=lR4qwfRJoIxKy3DU2nel/t7eeFPdWsTxxmnAv2TsXkA=; b=l1kSEtw0h4MkkxpPqfulFUgRu9
+	cgwAA9tYFcBCYLIdjSYEe5Vh5oteXjQ313rNrvxTaYiPddpW53PfA3WzJmqmSiYjMya1cBRb7nbsU
+	XWFldztTjEVDvna6IUZvba2o1it7Z8/1beV7GQofKFJ6vhWXbNiP5IaL3V+ALnLzXvsdm4xfyjwTw
+	OomIAQ7Q+roPmYsjupx1Axbx9NBiUliyUBFglIoG+Edv6J/+jXDuhOZpOnK5uMQ4s9rkWH/fubWb2
+	CB2K1iBncWLALOvfgRUgx59TmshIqaTys24jvnB+BscWa6irPAbAubQsSeCZWcvvKwEx0+kNEFTyD
+	Z/thQYjg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOHVl-000000039Yz-2KUx;
-	Tue, 03 Nov 2026 16:37:25 +0000
-Received: from mail-wr1-f51.google.com ([209.85.221.51])
+	id 1xOHVm-000000039aj-0sKI;
+	Tue, 03 Nov 2026 16:37:26 +0000
+Received: from mail-wr1-f54.google.com ([209.85.221.54])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOHVi-000000039T2-0YxF
+	id 1xOHVj-000000039Tj-0DHt
 	for linux-amlogic@lists.infradead.org;
-	Tue, 03 Nov 2026 16:37:23 +0000
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-48dee593f18so4092700f8f.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 03 Nov 2026 08:37:21 -0800 (PST)
+	Tue, 03 Nov 2026 16:37:24 +0000
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-48afbd2c386so2616340f8f.3
+        for <linux-amlogic@lists.infradead.org>; Tue, 03 Nov 2026 08:37:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793723840; x=1794328640;
+        d=1e100.net; s=20260707; t=1793723841; x=1794328641;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=puIm5drKvsAtTzpQuwSkW9RuuhHt2CPtr5r817ZaEWU=;
-        b=YvLU53pwr9GeQoGTyt8jVn4pOVF+4h3H/v9wKISfFeOuL+hkmxZq7RgEOVoj3GtJIL
-         FN6K7sH5Lu5G/GMfdNCqA25HQ+FZwnYjE/6FEVKPVESXebY52MChLl1HgKDIME+1rEPU
-         mQb7Pq3MSkj8wWPCAf+3HcRC6DyOABHmjl5uA3IPLNFYIXqa5KvjjX9ZZKPxt6n+GmDI
-         eu3qWf7+B8TCyf85RzxuzY1JhHLOE3MHgECrudVIHckMVchX9pmxcuMVJMTtjVR9L09p
-         Tt1GukeyBDHjTexnboQDtSTylR159TR23a1X7i2ArVX+L9omMGgxkXYgYLhRthQhCCU1
-         rqbA==
-X-Forwarded-Encrypted: i=1; AKwUvByxuh0Zu/QfSku1Yv62B67qbhU6MwRuGrKtUgojLrrNJmtxPlUhYswCKl7u1ajiqECQojxS2wHOzgfLD14+@lists.infradead.org
-X-Gm-Message-State: APuU4Z/+XMmpuN34tZJHKCQLYqYwZKvH/u9tyVLnMOpnO54tkrF78CyA
-	Q1rveUT6rPdi1Mxi72WUPof7W0wROg4CYRBC/DIX5upbGevW1fF8ioSo
-X-Gm-Gg: AYBFou0yLm9by/ohSkSL6SPOHpd4H6LN5MzqIPQksx2k/Fjq86+eS6qAyAHO2t3vgG2
-	yWYsRr8JByXnfRai5YlBxjyfiNSNVHlXS6vsElthQattm6imMb0HByEgRz3yvOYphCEy4k4hzA+
-	eZ9SZNO32bQ9V/W5KblI4PnKV+KA/nPrHRb7roGZMq2rdr+V2iWBOSnRBgJflxRAY//wk9XwBQz
-	adCvovEghHfAL32FvecC2Q9Gq+1ts7XWKug/VJG6a2s6MgoThKN6NA7iv8/ezxP/CK6FTcDlbD8
-	e7hwXmL8Uu0hZLkfb5zqgahCV64/KQk3CcSFcvW+Cf7Mqks2aZQx8Z7hU8B9ueDSTwPggQU/p9s
-	0eNIU5KyJmwIDq3cohMLLBfrDRSQtcXInLY6ceMjr/jL2c09FAY0dtb2rEkYNGq0fblY7pLuvm8
-	ihPhJ6rr8g5zQ1nc5DNyXYDmNdQ3ZMsqYVqhVLP30orRxiWsSKwwRKscenJJpCeymXvi/s5xCFY
-	EWZiCbVxadAWZorKyF02ysWHD+9gDTRcmkt20+1fVV7NYZHm/JtDbanNJtmnB54VPPd6kNfAjMc
-	qc8jUP5YZADXdvTCKaz6YIdYL7tSSI4iwWltQDAa6Rx6W1Z+wH5+wHMAg5Cwc9nFR2XlFrj8KWG
-	T9SoU1imGmZNlwJJxP5wsBy2GoA==
-X-Received: by 2002:a05:6000:2213:b0:48c:7f18:c85e with SMTP id ffacd0b85a97d-48e6e3042d5mr30563697f8f.45.1793723840170;
-        Tue, 03 Nov 2026 08:37:20 -0800 (PST)
+        bh=b7yfUIavlqkZvjW0hdKuc7GNLhU6uDD+OhW8RPwrMQg=;
+        b=wSqCCjcCwKUuzFvzymOH0ft4WGj4KCsY4a1x779IYSGXRliKvZ1olU61sSYoQR5i7h
+         ukFmDfiCuBwmIKRXhFWEg507Fc3tfKYJubZVzTlWw4lApWX4nuuZNGzahMQAdZ9Yg0FS
+         QZe0cwSCO18mPm48Sbbjzwijb5xgHx3PuUMA1cRaSZYDX1Qe8gIgAsUbnCIVxr8g4VDA
+         QHa8jMw6lTsUnaf0lgaBmt/EvqbM8NUXc2u/f2nWhhHKJemeOpzWOhSh/IXwsd5CN0Cy
+         eb3IneaOr8XF6xuO6QTtZ3IlnGaXHBipU5V6KynTRg+H2zYnhid7MI087yP/ktZsaT1Q
+         ioDw==
+X-Forwarded-Encrypted: i=1; AKwUvBzZQ7zy/guxJaimdLwGW/tAFIKPmKYqqT1hmQEzdXN7aksJMUyn6t145RDDTfQchKYMReV1pYsqCdXdqE+z@lists.infradead.org
+X-Gm-Message-State: APuU4Z/7GDQLFp6CROdBgm+97iCcK4zZ38J3VCmWg2aEjbHdzieKShHR
+	XLL5HwccDPstWkjSRw3g0tT9gmZAV9SIoo1eSDQMztMg8RhDby0qNVCp
+X-Gm-Gg: AYBFou1upCgeKl6o+WxbJ3GGGu5xyh8z5VXjvU+tl2utM8zSpj42moAk90GIm9LTftK
+	Lz9Eh8id4vEZmfcQtAw/mbqZCtT6Rh51yT02frqm4wjjR020gliIfnHLKdsMSRqMHTOqrDtDYwM
+	GobVyW/fJZtIoG/RjHfSXidFSIdvLz957+t+FOGeYF3e4VfOQb7FOCUy0K01E1agIEWog5cNPIj
+	uFemPf+51SH4XZb4CVST8EMz2WHf6Kof1fpYL4JIkS8foH/pGLKG9KQWQWBR7pXOVT+kWfOKkU3
+	SRbAiNM8SfL4c6a/jSqCSFg9vJivAGskiMW5X/2deHPR7FOTIl6Zi+wElLAFstWafXiOKLqn+Vz
+	Y+OsmJYohGc23dROWybQAokS7wk1uPbssNdO7hvn4fGUxmpctCQTdyp4108BPDc21QqyJER/5A9
+	PcRYt23ReYZossr7njBmKJOzw+eigobq0J1rVSL4SrxgPFKwzZ9bepqcxa8L0EmrXcbn5H+trSI
+	w9E647UFcr6j7gSfbzxDjh81Ltaq65eqVdZsiEgyXO/YAJn+lQYpLinjOTlDzIfHnlwHaUReYyr
+	VIBZa4/DVB/UizwewdrLHmmUMU1Sjblog6Gnmbm0lpfu+3hZtU2hF4c1qhchla1GjeXV39Wyu/N
+	1zFsyVXREbtsQB6HNHDf6nGc21w==
+X-Received: by 2002:a05:6000:41c8:b0:48d:faa6:cedf with SMTP id ffacd0b85a97d-48e6e50645dmr30646945f8f.56.1793723841371;
+        Tue, 03 Nov 2026 08:37:21 -0800 (PST)
 Received: from threads.localdomain ([90.254.187.36])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48e71a4d3e9sm29044772f8f.6.2026.11.03.08.37.19
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48e71a4d3e9sm29044772f8f.6.2026.11.03.08.37.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Nov 2026 08:37:19 -0800 (PST)
+        Tue, 03 Nov 2026 08:37:20 -0800 (PST)
 From: Lucas Tanure <tanure@linux.com>
 To: xianwei.zhao@amlogic.com,
 	Andrew Lunn <andrew+netdev@lunn.ch>,
@@ -83,17 +83,17 @@ Cc: netdev@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v5 3/7] net: stmmac: dwmac-meson8b: add support for the Amlogic T7
-Date: Tue,  3 Nov 2026 16:37:11 +0000
-Message-ID: <20261103163715.385394-4-tanure@linux.com>
+Subject: [PATCH v5 4/7] net: stmmac: dwmac-meson8b: follow the generic RGMII delay rules on the T7
+Date: Tue,  3 Nov 2026 16:37:12 +0000
+Message-ID: <20261103163715.385394-5-tanure@linux.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261103163715.385394-1-tanure@linux.com>
 References: <20261103163715.385394-1-tanure@linux.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261103_083722_325589_7DB5790B 
-X-CRM114-Status: GOOD (  14.73  )
+X-CRM114-CacheID: sfid-20261103_083723_109763_712A801D 
+X-CRM114-Status: GOOD (  17.16  )
 X-Spam-Score: -0.8 (/)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -114,85 +114,113 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The glue registers on the T7 are laid out exactly as the G12A ones, RX
-delay field included, so the T7 can reuse the G12A settings.
+The delay code reads phy-mode as the list of delays this glue has to
+add, falls back to a 2ns transmit delay when no property asks for one,
+and takes the vendor delay properties. ethernet-controller.yaml says
+the opposite: the PHY adds the 2ns delays, and the MAC properties only
+hold small fine tuning added on top. Every board in the tree depends on
+the old reading, so it stays as it is.
 
-What it does not share is how the controller reaches memory. That path
-runs through a pipeline stage with a gate of its own, and no other
-device has any use for that gate. Nothing claims it, so it is switched
-off as unused and a transfer that has started can never finish.
-
-Without that gate the controller cannot do DMA at all, so it is
-required rather than optional: a clear probe failure beats an
-undiagnosable hang later.
+No T7 board uses this glue yet, so the T7 gets a path of its own that
+follows the generic rules: the receive delay line is fine tuning in
+200ps steps, and the transmit side, a quarter-period phase step, offers
+none, so the transmit property is refused.
 
 Assisted-by: LLM
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Signed-off-by: Lucas Tanure <tanure@linux.com>
 ---
- .../ethernet/stmicro/stmmac/dwmac-meson8b.c   | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ .../ethernet/stmicro/stmmac/dwmac-meson8b.c   | 42 ++++++++++++++++++-
+ 1 file changed, 41 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-index e4d5c41294f4..450f7b4b29a6 100644
+index 450f7b4b29a6..c8bd15b6780b 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-@@ -81,6 +81,7 @@ struct meson8b_dwmac;
+@@ -80,6 +80,7 @@ struct meson8b_dwmac;
+ 
  struct meson8b_dwmac_data {
  	int (*set_phy_mode)(struct meson8b_dwmac *dwmac);
++	int (*init_delays)(struct meson8b_dwmac *dwmac);
  	bool has_prg_eth1_rgmii_rx_delay;
-+	bool has_pipeline_clk;
+ 	bool has_pipeline_clk;
  };
+@@ -338,6 +339,41 @@ static int meson8b_init_rgmii_delays(struct meson8b_dwmac *dwmac)
+ 	return 0;
+ }
  
- struct meson8b_dwmac {
-@@ -384,6 +385,7 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
- 	struct plat_stmmacenet_data *plat_dat;
- 	struct stmmac_resources stmmac_res;
- 	struct meson8b_dwmac *dwmac;
-+	struct clk *pipeline_clk;
- 	int ret;
- 
- 	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
-@@ -443,6 +445,13 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
- 	if (IS_ERR(dwmac->timing_adj_clk))
- 		return PTR_ERR(dwmac->timing_adj_clk);
- 
-+	if (dwmac->data->has_pipeline_clk) {
-+		pipeline_clk = devm_clk_get_enabled(dwmac->dev, "pipeline");
-+		if (IS_ERR(pipeline_clk))
-+			return dev_err_probe(dwmac->dev, PTR_ERR(pipeline_clk),
-+					     "missing pipeline clock\n");
-+	}
++/*
++ * The T7 follows ethernet-controller.yaml: the PHY adds the 2ns RGMII
++ * delays and this glue only fine tunes the RX clock on top of what
++ * phy-mode describes. Its TX clock has no fine tuning, the only step is
++ * a quarter of the clock period, so the TX property is refused, and so
++ * are the vendor properties of the older SoCs.
++ */
++static int meson_t7_init_delays(struct meson8b_dwmac *dwmac)
++{
++	struct device_node *np = dwmac->dev->of_node;
++	u32 cfg_rxclk_dly = 0;
 +
- 	ret = meson8b_init_rgmii_delays(dwmac);
++	if (of_property_present(np, "tx-internal-delay-ps") ||
++	    of_property_present(np, "amlogic,tx-delay-ns") ||
++	    of_property_present(np, "amlogic,rx-delay-ns"))
++		return dev_err_probe(dwmac->dev, -EINVAL,
++				     "only rx-internal-delay-ps is supported, the PHY adds the RGMII delays\n");
++
++	if (phy_interface_mode_is_rgmii(dwmac->phy_mode))
++		cfg_rxclk_dly = FIELD_PREP(PRG_ETH1_CFG_RXCLK_DLY,
++					   dwmac->rx_delay_ps / 200);
++	else if (dwmac->rx_delay_ps)
++		return dev_err_probe(dwmac->dev, -EINVAL,
++				     "rx-internal-delay-ps needs an RGMII phy-mode\n");
++
++	meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_TXDLY_MASK |
++				PRG_ETH0_ADJ_ENABLE | PRG_ETH0_ADJ_SETUP |
++				PRG_ETH0_ADJ_DELAY | PRG_ETH0_ADJ_SKEW, 0);
++
++	meson8b_dwmac_mask_bits(dwmac, PRG_ETH1, PRG_ETH1_CFG_RXCLK_DLY,
++				cfg_rxclk_dly);
++
++	return 0;
++}
++
+ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
+ {
+ 	int ret;
+@@ -452,7 +488,7 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
+ 					     "missing pipeline clock\n");
+ 	}
+ 
+-	ret = meson8b_init_rgmii_delays(dwmac);
++	ret = dwmac->data->init_delays(dwmac);
  	if (ret)
  		return ret;
-@@ -479,6 +488,12 @@ static const struct meson8b_dwmac_data meson_g12a_dwmac_data = {
+ 
+@@ -475,21 +511,25 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
+ 
+ static const struct meson8b_dwmac_data meson8b_dwmac_data = {
+ 	.set_phy_mode = meson8b_set_phy_mode,
++	.init_delays = meson8b_init_rgmii_delays,
+ 	.has_prg_eth1_rgmii_rx_delay = false,
+ };
+ 
+ static const struct meson8b_dwmac_data meson_axg_dwmac_data = {
+ 	.set_phy_mode = meson_axg_set_phy_mode,
++	.init_delays = meson8b_init_rgmii_delays,
+ 	.has_prg_eth1_rgmii_rx_delay = false,
+ };
+ 
+ static const struct meson8b_dwmac_data meson_g12a_dwmac_data = {
+ 	.set_phy_mode = meson_axg_set_phy_mode,
++	.init_delays = meson8b_init_rgmii_delays,
  	.has_prg_eth1_rgmii_rx_delay = true,
  };
  
-+static const struct meson8b_dwmac_data meson_t7_dwmac_data = {
-+	.set_phy_mode = meson_axg_set_phy_mode,
-+	.has_prg_eth1_rgmii_rx_delay = true,
-+	.has_pipeline_clk = true,
-+};
-+
- static const struct of_device_id meson8b_dwmac_match[] = {
- 	{
- 		.compatible = "amlogic,meson8b-dwmac",
-@@ -500,6 +515,10 @@ static const struct of_device_id meson8b_dwmac_match[] = {
- 		.compatible = "amlogic,meson-g12a-dwmac",
- 		.data = &meson_g12a_dwmac_data,
- 	},
-+	{
-+		.compatible = "amlogic,t7-dwmac",
-+		.data = &meson_t7_dwmac_data,
-+	},
- 	{ }
+ static const struct meson8b_dwmac_data meson_t7_dwmac_data = {
+ 	.set_phy_mode = meson_axg_set_phy_mode,
++	.init_delays = meson_t7_init_delays,
+ 	.has_prg_eth1_rgmii_rx_delay = true,
+ 	.has_pipeline_clk = true,
  };
- MODULE_DEVICE_TABLE(of, meson8b_dwmac_match);
 -- 
 2.56.0
 
