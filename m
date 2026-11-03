@@ -2,98 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAB9760850A2
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Nov 2026 09:54:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 536A6606EE8B
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Nov 2026 09:54:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0XeK+CoY;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=lleyHFBp
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LhbHShWT;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=P6rUjeNw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	References:In-Reply-To:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=mNkY10+1b5v+ZCAiOzDe6Ej923JE7A7/HPcO5+kvQ2Y=; b=0XeK+CoYGxF1whwsFKaXChAKBp
-	e4zfQCcc2gSVzcD/L5dB5Kw2num7NeDblB8UUIKI5sXGnnSKrt/s9iIAPJpysIfTnvdKThq1tW4WA
-	HiugA33ZSov9h5qdhVlIkjsTwHdDaNEHpwME0jSgKMEmkX+R1xYl4bYy204nGhT7AbtiZx8ezDDOb
-	vzetDMSjrRJQVfydC/PiJPY2tSnIIPeHMFqpK8bE7vPzkLMb/J7etvB55DHmwOHYMx+lcYFtyFlCo
-	El3VEsFAxdWzBk3oc5LaPCbUZYUxPB6z73UvV2Q4V612cQYPtE/05pEtTKN4F0A/2XmyPIq8TzQ6E
-	gYcojtdQ==;
+	bh=bDnVRz7w7R390Io2zftv0lZKOr61Pt0/hp7t391SuhE=; b=LhbHShWTDcZt5nlA8YGiEoxIfQ
+	MWr8gkmwM6YFpf877k40Cimh+ofMLcCcDgeolxL6MNgwMwAEcpmcDGkLS6Czr1LbiGnb6gNgUR4kk
+	7LdC4139aPdSGC1aJoushZTbXuTbnqM35P1dK3LtIDovtJr0cfTAjUhde6vezKQkym63lKR8SfKjD
+	gjRUY8ugYLy1+LhKEhKTH01PQ8DsjpOI3ZNTs7QZ7VX7FdQXwx54hEYKjNfi+N/QCjw8xJ0UF43Pw
+	pgk6eefVe5Ob+0eGD+Jpb0gb/KqLUm9MfPXkJyayzfkFtghFGiwC4ImtKmuXIKWf+3yVGfG2Xu6jw
+	rkDycv7w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOBDd-00000001q7r-1kV8;
+	id 1xOBDd-00000001q9Y-3s48;
 	Tue, 03 Nov 2026 09:54:17 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOBDV-00000001pzL-0Kj5
+	id 1xOBDV-00000001q0R-2c48
 	for linux-amlogic@lists.infradead.org;
 	Tue, 03 Nov 2026 09:54:11 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4a35a60499eso37613985e9.0
-        for <linux-amlogic@lists.infradead.org>; Tue, 03 Nov 2026 01:54:08 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4a2000d5fb1so26673995e9.1
+        for <linux-amlogic@lists.infradead.org>; Tue, 03 Nov 2026 01:54:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1793699647; x=1794304447; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1793699648; x=1794304448; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:mime-version:date:message-id
          :subject:references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Wy4OVqINXkwCakS/yGHU8W8MCAAF/D/083jT8dDHKck=;
-        b=lleyHFBplpYMGTN9OYLyUq7Tp9pbmaDTQpmpr5r5HfJjCVAtEo1HD2+654fdGLgbSq
-         HsE9keCrPvMtTl03/lRDLmrk5d7ez1gJevHUnPghH6StiqEMbUYF3yY9E0I7VFvc0+fM
-         penFdmAGRfX6GtCFHfbmOdpZwEjg890JT2ZIx5hBZM2oUxsELX/lemkxSFLUo/+2427/
-         mobpbFndubLboJCavfMe3tNy/Ld0ql+JpokWXmK/8PVIff+eLa7xe5vozytuhPhhB0dC
-         zo9ywP2gtZHZ6KwD1P7lfdIwqF0JYZOfKzj3OMDFmTa0UJHwGVfbWleOyBZkBR5+O1Qg
-         B8lw==
+        bh=6UHqseh2cLjxXxMTOFi4N10VEzBEykU3JQ6JoShxyaI=;
+        b=P6rUjeNwcJWl2AE6HQKH5UqYbwcbRDL8yPKWrpi4FdonJeogS03zOIuH5bN2ayOVfb
+         nB9fQ0oLAsNUhCxY45u3d+R/xawe3Pt6d67kKpcKBExDXpcpOSqiXYoBz5Mhk04cZDkk
+         jTItOauSnAIHAfhv4W20QFPGHHLpF1x7oi0tfvQFJ7G/Ufzh4XvP6/nK2mN8Ro9vWPN8
+         Tus0Vog3y2ZRB3Sz2zeOmpIFPv5mAXiqlW59U6+EPemsjmz3Fh8dmdwFe16Qc5imw3el
+         n36zs9alUGgZCFK8SI6jQRvAiQZRj90GpHzxrJ7O2QbPx7qs39JToydgWYS4f4nfMLEk
+         +0Qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793699647; x=1794304447;
+        d=1e100.net; s=20260707; t=1793699648; x=1794304448;
         h=content-transfer-encoding:content-type:mime-version:date:message-id
          :subject:references:in-reply-to:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Wy4OVqINXkwCakS/yGHU8W8MCAAF/D/083jT8dDHKck=;
-        b=LnD+mlP8eHtT/Mw006s8lNrBqob4NRer8lvXmOOBEd7xAtEW4j4K8ENH3GzqqZM+lz
-         8QlUPfuABE07o56bRkMBoeyRtD+rphOk5qLW4gsn8RxBxCbrIhZsLGJDufvj7/YbFuJE
-         nFD1akMVhVEG+M0QPzUQJinOZtGCsbRxfAs6kLomu66eM/gWlJmwCtnA8LR118Q2NNFj
-         NgJklUHlH5yR+9OIkJLfnZtwtieLKLcEWuKfWezk5KEtnHkquNrlwUH8pPomlCa+ZBfv
-         2RzvKU7eauwizTG8Ggx6bjD3Xu0a5zSLDdcl5A3GmNRvxB1gN50LlXszW1wy6LptWlmp
-         4ZIA==
-X-Forwarded-Encrypted: i=1; AKwUvBzOYd6xb2lVWV26b57OqJ2jYMFarqWwTKvgWMeojUes5fvqGcMoaKGJVRwGbbB3ZtWJwvVr7jyfbSUysiIt@lists.infradead.org
-X-Gm-Message-State: APuU4Z86Q65vZge2ntN9yuX8hSVTgZp3kSsjewe5ZRJfppAY5Nx6xlXP
-	orQX28IG+L6T+P25P6vWMLs+y8IVQJzV0ZrHvx1FK8xrqu0NEuzqqxdqyrvsCGBAWX8=
-X-Gm-Gg: AYBFou0pXnp5sYup260D97qElm/qNq+DsiU0VMXpLXf/bb1+gMpnfRKgjmKFra7W4Rf
-	wDgD6vWwU6fQBLCQGBQC43G8GolWXM/SaRo/4DlYT/YOFAweQ+JrS+NskHCz+ynW7jH50utXOFC
-	/ZLQexyPY5FnJDuAK1nyX+6vzX+v8IexOR10+0Xt5zRvBuF2EOGYjy7FeV/9vUnpDHPcYaTtHBh
-	6Lf7qA8B2Y/KqHsja2MM6wuZcIL5LLZvoezkobWMSnDQGE/7T/HHp/NNcijA2QDFgV4ZHKkZ51z
-	N4Oh8HJSsz5v5uXj3hFMJjoyiZiIGqYJFER8EtIZ4GYpfzyZSp8735E3cI7cI8Q6CP+CEzdbwCu
-	UCSLL+pnYhhN82wgpzoPuEHF9/kLc4yGNUlkrzyNzON8Zc+BuckzkTgzRuLXSeFlNoJGtAM8+Tj
-	lQz7sdSd9mez3yuRFBu+ugknaBSBsNPsWwqWm6AlOXDQm7TOmW6dg2yMEFhxSUNhH5DwjvcuF9M
-	g/dNfGb6qKhj14tOItbTzsLFeezT9PrEKI6mReNrXiyxI3wdDamYTX0i8vJ6C7eYWyZK/6w2VH4
-	jDiCzkHAQdfIw1m1kWPutRYpkvDSZc4n3W44HM2iypeWO7D0ng==
-X-Received: by 2002:a05:600c:8b64:b0:4a2:84c:52f3 with SMTP id 5b1f17b1804b1-4ac16fa21dcmr308685225e9.6.1793699646995;
-        Tue, 03 Nov 2026 01:54:06 -0800 (PST)
+        bh=6UHqseh2cLjxXxMTOFi4N10VEzBEykU3JQ6JoShxyaI=;
+        b=ztbRskEqe2FRP+xU7QBvxHhkRpTQrB4+i52kyPb1sIDeedYmVwc2Xpry/7JG/uZIA0
+         vq0taA+EZHomCMxjs6EIjP1vJXAbgN8BYe3++JNaIQoDt/GaoeJdUL2l1xxL3b7r7/xu
+         32iATQPgZSzb4RJDCiMr1iSQ6c4NMrjG/maUAtlBvHp8+l+xCT8mX1y3YP03qFMOjaEF
+         c5w5jHonxsmBs9gzI4lNja4DenkH35iRjsXIfbdKm/paulCL8hVZeP2/lEpZHhhFYYYy
+         D28qqPP+MAl42X6GCnuPVe81y1+4NUso9pTJUdNjLRX2orAcz68Yfpm862e2WjpN2b5K
+         EbJw==
+X-Forwarded-Encrypted: i=1; AKwUvBznqoWBXUFf8zEokooEnJMuMD4aJg6glSth6hWCFjfzFIRjmsbQPISh+zAHGCBOHYwhlKq9FvVhL6CL+tNz@lists.infradead.org
+X-Gm-Message-State: APuU4Z9azHPsprICeZm+GURoWyr6IrP7COCI7y7Agp4di4DyYGaFtPAI
+	md8M4Y72cypkK0ePc8GpX5RrdOBK6iF1FiVjcgBNZvhuFKuHHw8zj6tejqNfvjEgSESYbinX36+
+	yayHZvxs=
+X-Gm-Gg: AYBFou0rYi4n22hCmzg/pvnbIoZiMkDAP8hQUfW1pqPgUX3zynw/vqFgGZ92L+IFMdD
+	WGb7UwQqFify3MFAEriB5+02DT7ATfn7qgB/OJdoHkiOjZdjCVKi8EmU3LzdE3N8tjwtrU4uz/D
+	tVZG2a29Hhkz2etGheYKa967+XSupDG+kAub2e4V3uRCKMP8Q0f9DxhWJaRGMDviHQhWcRkozx2
+	YFwvVHXxqLQjG3CrUHOsCpV2AlL8mpnK/jaxOYAAQrA0jtUESg1eblQchMANNv9KUpJJ9TF/mh5
+	GHd4oZj1XatOCCOgUCylGdE5BnjNyUWDDe3/ik7wy6wDS/D7OSner7EAN05HXSt3sv4g2WWO1FT
+	xdiIp+w8IaDoTa6PEDWXt6RczeyyLY7EiwiZBMzevjTdl2tUsGbFGXELuClPE9hXlR4Kf1IliML
+	EPjE3O3Ysb4M9YVUyUideDX71tLW/dpJbuJNiCJA9GUFAIXKozd220c/T3I/65dxNl1TK05zHwg
+	fftfKX1qLc/pZmLkbOyuwbySfSg6jObbxbamaBS4R4qmIBTvPP/gT422+GPq7dnFWSeo350dIxU
+	OL87AMusGQr8q1UqsD51UuKCf5ntGx2xdzFCt1+vY2fWTpJq3w==
+X-Received: by 2002:a05:600c:348d:b0:4a1:fbf8:55c9 with SMTP id 5b1f17b1804b1-4ac19234acbmr271871785e9.33.1793699647846;
+        Tue, 03 Nov 2026 01:54:07 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4b2aaa4b85fsm43219155e9.10.2026.11.03.01.54.06
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4b2aaa4b85fsm43219155e9.10.2026.11.03.01.54.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Nov 2026 01:54:06 -0800 (PST)
+        Tue, 03 Nov 2026 01:54:07 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20261016-add-thermal-t7-vim4-v7-0-6eede5450fd4@aliel.fr>
-References: <20261016-add-thermal-t7-vim4-v7-0-6eede5450fd4@aliel.fr>
-Subject: Re: [PATCH v7 0/4] arm64: amlogic: T7 thermal support
-Message-Id: <179369964613.2330120.9766633798877372121.b4-ty@b4>
-Date: Tue, 03 Nov 2026 10:54:06 +0100
+To: khilman@baylibre.com, Nick Xie <nick@khadas.com>
+In-Reply-To: <20261017040038.3702428-1-nick@khadas.com>
+References: <20261017040038.3702428-1-nick@khadas.com>
+Subject: Re: [PATCH 0/2] Add initial support for Khadas VIM 5
+Message-Id: <179369964713.2330120.11723763412614220428.b4-ty@b4>
+Date: Tue, 03 Nov 2026 10:54:07 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261103_015409_753134_CCB3D6D2 
-X-CRM114-Status: GOOD (  10.68  )
+X-CRM114-CacheID: sfid-20261103_015409_768746_80F4E535 
+X-CRM114-Status: GOOD (  12.57  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -104,6 +98,7 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, martin.blumenstingl@googlemail.com, linux-kernel@vger.kernel.org, xianwei.zhao@amlogic.com, linux-amlogic@lists.infradead.org, krzk+dt@kernel.org, xieqinick@gmail.com, linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
@@ -116,26 +111,22 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 Hi,
 
-On Fri, 16 Oct 2026 19:16:06 +0200, Ronald Claveau wrote:
-> This series adds thermal monitoring support for the Amlogic T7 SoC,
-> used on the Khadas VIM4 board.
+On Sat, 17 Oct 2026 12:00:36 +0800, Nick Xie wrote:
+> This series adds initial support for the Khadas VIM 5, a board based
+> on the Amlogic A311Y3 SoC.
 > 
-> The T7 exposes six thermal sensors (a53, a73, gpu, nna, vpu, hevc),
-> each accessible through the secure monitor firmware interface rather
-> than a directly mapped eFuse register as on older SoCs.
+> The first patch documents the board compatible. The second adds the
+> board device tree with UART B enabled, an 8 GiB memory description,
+> and the ARM Trusted Firmware reserved memory region.
 > 
 > [...]
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v7.5/arm64-dt)
 
-[1/4] arm64: dts: amlogic: t7: Add cooling cells to all CPUs
-      https://git.kernel.org/amlogic/c/79279ee341b99634f3c106e5970e13d073e8b064
-[2/4] arm64: dts: amlogic: t7: Add thermal sensor nodes
-      https://git.kernel.org/amlogic/c/c3644a9b59fa49ef88bd312dcdf47cc6e155dbeb
-[3/4] arm64: dts: amlogic: t7: Add thermal zones
-      https://git.kernel.org/amlogic/c/e41608d8792d8de0369a0e90f7e0d2b45db27541
-[4/4] arm64: dts: amlogic: t7: khadas-vim4: Add fan cooling to thermal zones
-      https://git.kernel.org/amlogic/c/e90086cb0f608c55e0b2d17e8db8207e789fdaf5
+[1/2] dt-bindings: arm: amlogic: Add Khadas VIM 5
+      https://git.kernel.org/amlogic/c/7db251465d5319a5c0fc46c397ebddb284560982
+[2/2] arm64: dts: amlogic-a9-a311y3-khadas-vim-5: add initial device tree
+      https://git.kernel.org/amlogic/c/56d1180882a32c78a6207b5364e43c2fc546cd9d
 
 These changes has been applied on the intermediate git tree [1].
 
