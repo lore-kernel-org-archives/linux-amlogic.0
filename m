@@ -2,124 +2,100 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6142606A327
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Nov 2026 09:09:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 825C7606A331
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Nov 2026 09:45:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nAWAw6oh;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=UpBMU24K
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2Qbq7X6m;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=GXotiLLt
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=dbaugsSFl4XCoIRjqU9n29nVLHIgEcSuNG0rAtu8BwM=; b=nAWAw6ohHQtptqdWKj3tYUOLxX
-	60RkMqy8QVzdF8dwLfQ7awqFWK1yXdCtIKTGHBlWMcQqvjNIFTY6n0FXhAVjBFEsYn9A0SMp71Q/P
-	1kcv7adABf+5q56xDvChNvqOp/92A9Pt3ESYWqQYq8+UxYKY6vxTzwBvlBEdtCB8t3Ilv1TcSVH1s
-	a5aqhpiS6l9EHVZ1HJkQ9t61gT6II21LNBv85EGEdp3aDwgpZFHdp6rvf0xrcQSyJZfAS6FFpI7ev
-	4dpKmG6VjHu5n+t5bTkorKDgQuD9j7ADvcPncwJPjJu6YIjxkc3B8iV4+2ZhY2C/PN/7MqMq5iUv9
-	7KO2OzGA==;
+	bh=f1AqkKkwAwOvQ1F2bSBfV8Xm1LmU1iDBTa3ncF/kuGw=; b=2Qbq7X6mr7T1Y+lOhO3zeE9vST
+	dFZR4fJIYRNovJYAPvaw5+s0xo8upW30HClGECvMPZVBadYrmsu9m0V2O8kCgcJWF2IjxJwSxmScV
+	cgTPbOUn6koe4miNInA++3uBvbNprLsD5RMas6PXQZHN49Re0jOQHCJzljQV7feBArLV/87Cs5Cp/
+	qhQOjDFXMdWkRaOESQ4uKVFinRu6IOkGshbpilR7ybt4Q6E+pD+CFvJQ7gtlX1XEG6hIGjRx5WCHK
+	eHwy2I6/h91je3hgzGU4LAT2RBpBd/3fY6hBcswGGpT3dYqGLsNC6E+9l1e/NGc5/1Unj9Z+UnvAw
+	WFuZbzVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOAVr-00000001hOh-3BnC;
-	Tue, 03 Nov 2026 09:09:03 +0000
-Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
+	id 1xOB4l-00000001nOM-4102;
+	Tue, 03 Nov 2026 09:45:08 +0000
+Received: from mgamail.intel.com ([198.175.65.19])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOAVp-00000001hNo-03Me
-	for linux-amlogic@lists.infradead.org;
-	Tue, 03 Nov 2026 09:09:02 +0000
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-48b001cd92bso2083723f8f.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 03 Nov 2026 01:09:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1793696939; x=1794301739; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:organization
-         :autocrypt:content-language:references:cc:to:subject:reply-to:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=r+6KD6EavPTxoIx3RdmJF2dsNsMGEPhiTBNUEhG2xw0=;
-        b=UpBMU24KJPV/fam7Ak2epnrfQkfrcLCm9H4nkEMwrzOq7DxG/m/pTocZjkpTeilR7i
-         fbp6Zds9hwZnXZFxC+vuhLNGHAoB331+YOc9Qqq70urP7+mDta4Mxfp0YK9XuVe6OksV
-         qUtamM41isUWYZzMMOMbNuW/UBochWpAP5EkrdU8dPdZ8Cxeucaf0068uGcM+OIj99nb
-         JljCE9uGlO5ErjPpYzBbNJoVBYXx1TviU9ycPKSOuIUzuUhXW9XDXTe7S4oW6KdMCWgB
-         d/Fe5KVy/YjKgpquq3z7iZeh/GaQo+S15nT0rvXHp4OgPBeWJhmxTUhjLTJkUdLSHsyW
-         zMZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793696939; x=1794301739;
-        h=content-transfer-encoding:content-type:in-reply-to:organization
-         :autocrypt:content-language:references:cc:to:subject:reply-to:from
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=r+6KD6EavPTxoIx3RdmJF2dsNsMGEPhiTBNUEhG2xw0=;
-        b=irHdT8QbR4uDU9nYFLfbJTAhBqiU6Y0qQVYLZ8M4wgxiZdoDHsOEHbyRDo9P30KUEd
-         RHkV6IAJZHEy/jiAB+NcnJXvHad5BdpH1zGSQTQoe2qUau+VjguUMFFrBWGOZ71uQwaW
-         kBqhKMqhvxOA+XlnC4vGBdROddsg5+NtQ6Ky3nnQ8oMUgi6iEn4vK9v7gpca7BkJgDk1
-         cHwkM33a8CVDzRDfJ4MJBlpsukxTDjHWQhUUhyhJwDcdIphydqlCkc+TfvBpqn2jgRRA
-         cIsw+X428k9btYPy/GWSdoN/+gZ2Sg5vf49ezWWy/4hYn0YPppbtAWb8TWTXcHZQQDe0
-         UVJw==
-X-Forwarded-Encrypted: i=1; AKwUvBx9kflqxMctOnz2g938JPlbNkOjxTwOQ/Sp0FSmR/XE/DGHSrxAgrqOjgbbUV30QNtkMNaeHwTj5xWmNbuU@lists.infradead.org
-X-Gm-Message-State: APuU4Z8KsHkxmsweC4Bic7CI6mAt5PK3IlOIh7V2XLVUsZmfbK2SfJt2
-	FG6umQjqNczhZ36z7aSFFdxQT70OTutiPHDiaUAZSSxxq97IfVqswcFgvAEqf2utfdU=
-X-Gm-Gg: AYBFou34+NJv8N1l2/lOBRo8V4wPYHDd89UoutbVTOvbhiS3QoA/XFYgOO/VyS2FCKS
-	Fvglbod3jWLaqicZEe15t1JpnPLSz9NxJKncD1nSF76jJdzQi8BogTxU9Mx1+E5viXeHRFNy8bt
-	v9YxegBrOBuwcpMYVjs1ZhH4tBggAD1ibt3A4FNnYk4JqH9rud6uL8YvvoRKT8Ur3SF72lCPZgJ
-	yTZFA6VrB2VoeXsK6rK1iVYymXclae3xMgal1T/3hgbmx4pZ5rRPLI0VkU1l686AH8GQOb1LU6n
-	8/at39a7wD3AzN9Zk83m/zbEHUgdNi4aUfXTEB1p/QzckeI7hp2VEtn1Qq1YKLRfgvuGiHd7bDr
-	88foBDS3ntqyMtlE99G+EDJgLtegI+N0Tpx7/01Ousxc45lJiJAg/GHdZpm12+m6y55MBllcDmC
-	bv+F+rzKjmpw770dk1ajWgiiESh5l++RRuUy7axSfjOyrdOLBKVxlc/L7LAzJCb1JK2aYIY2E9C
-	NYwD93imCMGagW59maGpbCZAOIIfHjRlSaMY77CDcBnmHQpypuNBJ+m3A+tjUgajxqPuSm4xX/R
-	H/PrI5fglkL36IuVper531wwWgpU7NvHhLm23rBG0cJtOEAY2GgohlLqAkog3JLaRBYmYt5P6Ob
-	NKO43WuqQ
-X-Received: by 2002:a05:6000:2213:b0:48c:7f18:c85e with SMTP id ffacd0b85a97d-48e6e3042d5mr27695053f8f.45.1793696938764;
-        Tue, 03 Nov 2026 01:08:58 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:106d:1080:95a2:4869:9f46:45f0? ([2a01:e0a:106d:1080:95a2:4869:9f46:45f0])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48fbba47a32sm717115f8f.1.2026.11.03.01.08.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Nov 2026 01:08:58 -0800 (PST)
-Message-ID: <054d99f5-3364-48c8-a5ba-ca2faf745179@linaro.org>
-Date: Tue, 3 Nov 2026 10:08:57 +0100
+	id 1xOB4j-00000001nMj-0RFY;
+	Tue, 03 Nov 2026 09:45:06 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1793699105; x=1825235105;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=qP/t4N3PI5wThGHkMAYxTPrH5iaWsuCbk6aKxmmZ9b4=;
+  b=GXotiLLtuX0xPrBVUtJnfZoqu9woKO8HEpDp9HYWfqcZgN18Nu5bYRm/
+   V2y0DhanRFZFpclJNgm6zbSAG6rQRmGfvjks/TSQ6IfoUwi6t6xeyS/jo
+   i9q3zjtxiPgs6czOekQ3eJN35V8orLhhrwZAXcv0Ckni1GT8je01mxxx+
+   PLgrLpbuxVWmBSUmRWI/vKsn3ehuIFwSisW3oqNRpjcKOJtyDmr0n5mb8
+   ocsAzSjBCDXax8FBi0E4guewV4+ja9qQCJJWSOVw+K/gQzvJ3rm+U7000
+   s0PvTkj6nJaKhQhOlR6L9N+sT5KiXTIXJ+s9CqJ4yYaN+xiEuUBlBQ8pH
+   g==;
+X-CSE-ConnectionGUID: J4r9i0sMRqeUU6oKNWBUxg==
+X-CSE-MsgGUID: OMA8iGHvSF2lzbE0Yulbyg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11954"; a="2443831"
+X-IronPort-AV: E=Sophos;i="6.27,193,1787036400"; 
+   d="scan'208";a="2443831"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2026 01:45:02 -0800
+X-CSE-ConnectionGUID: zHbXd8tfQoSfJzSB11ByKQ==
+X-CSE-MsgGUID: eAFN0YoqR82Ahh0sG4Z4vw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,193,1787036400"; 
+   d="scan'208";a="6237758"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.108])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2026 01:44:57 -0800
+Date: Tue, 3 Nov 2026 11:44:54 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Rupesh Majhi <zoone.rupert@gmail.com>,
+	Alex Lanzano <lanzano.alex@gmail.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Benson Leung <bleung@chromium.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Guenter Roeck <groeck@chromium.org>,
+	Jagath Jog J <jagathjog1996@gmail.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Jinseob Kim <kimjinseob88@gmail.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Remi Buisson <remi.buisson@tdk.com>,
+	chrome-platform@lists.linux.dev, linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Marco Elver <elver@google.com>,
+	Bart Van Assche <bvanassche@acm.org>
+Subject: Re: [PATCH v4 0/9] iio: enable context analysis for all drivers
+Message-ID: <aumtFi5Jdzs8NIWE@ashevche-desk.local>
+References: <20261027124954.110697-1-zoone.rupert@gmail.com>
+ <20261101033018.05897c08@jic23-hlaptop>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] soc: amlogic: clk-measure: Fix AXG HIFI PLL name
-To: jian.hu@amlogic.com, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20261027-fix_axg-v1-1-741388f1e851@amlogic.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20261027-fix_axg-v1-1-741388f1e851@amlogic.com>
+Content-Disposition: inline
+In-Reply-To: <20261101033018.05897c08@jic23-hlaptop>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261103_010901_076812_7564C231 
-X-CRM114-Status: GOOD (  14.51  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261103_014505_191668_0049583A 
+X-CRM114-Status: UNSURE (   8.81  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,56 +105,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 10/27/26 09:43, Jian Hu via B4 Relay wrote:
-> From: Jian Hu <jian.hu@amlogic.com>
-> 
-> AXG does not have a GP1 PLL. Clock measurement ID 5 corresponds
-> to the HIFI PLL, but it is incorrectly named "gp1_pll".
-> 
-> Rename it to "hifi_pll" to match the actual hardware.
-> 
-> Fixes: 19e0bde7bf6a ("soc: amlogic: clk-measure: add axg and g12a support")
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> ---
->   drivers/soc/amlogic/meson-clk-measure.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/soc/amlogic/meson-clk-measure.c b/drivers/soc/amlogic/meson-clk-measure.c
-> index 33767f0bc67c..c1ffa2537464 100644
-> --- a/drivers/soc/amlogic/meson-clk-measure.c
-> +++ b/drivers/soc/amlogic/meson-clk-measure.c
-> @@ -182,7 +182,7 @@ static const struct meson_msr_id clk_msr_axg[] = {
->   	CLK_MSR_ID(2, "ring_osc_out_ee_2"),
->   	CLK_MSR_ID(3, "a53_ring_osc"),
->   	CLK_MSR_ID(4, "gp0_pll"),
-> -	CLK_MSR_ID(5, "gp1_pll"),
-> +	CLK_MSR_ID(5, "hifi_pll"),
->   	CLK_MSR_ID(7, "clk81"),
->   	CLK_MSR_ID(9, "encl"),
->   	CLK_MSR_ID(17, "sys_pll_div16"),
-> 
-> ---
-> base-commit: a848d72aab71e19ea78180f2502ad7d12818723f
-> change-id: 20261027-fix_axg-9a1226dd4f1d
-> 
-> Best regards,
+On Sun, Nov 01, 2026 at 03:30:18AM +0000, Jonathan Cameron wrote:
+> On Tue, 27 Oct 2026 14:49:45 +0200
+> Rupesh Majhi <zoone.rupert@gmail.com> wrote:
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+...
 
-Thanks,
-Neil
+
+>  #
+>  # Makefile for the industrial I/O core.
+>  #
+> +subdir-ccflags-y += $(CFLAGS_CONTEXT_ANALYSIS)
+
+Personally I would move this to the end of Makefile.
+
+>  obj-$(CONFIG_IIO) += industrialio.o
+>  industrialio-y := industrialio-core.o industrialio-event.o inkern.o
+
+But if it's already in, it's not a big deal.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
 _______________________________________________
 linux-amlogic mailing list
