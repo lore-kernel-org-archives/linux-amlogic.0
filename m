@@ -2,152 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 500DB606A31B
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Nov 2026 05:19:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 969A3606A33B
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Nov 2026 05:54:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PbS+O22i;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=amlogic.com header.i=@amlogic.com header.a=rsa-sha256 header.s=selector1 header.b=gkL3UzfT
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qLtF+BSO;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=N3m4cG1O
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=CCRO+V8XacPDBkGw5vKvZ5laQ/D8EZal/1yg/2yFCEs=; b=PbS+O22iDoQdmme8tey7faJSAi
-	jfGlBD61v5xE0EsfFHAD66KGNVxUgQHwxmn+0UHHYV6JCE9DK0U7gWsPLSpstFgXDUH2ktBhzIbmP
-	fPhrNSHYEUWTzl9yyk7u34QFZaSSmWJr3xOeNPEqQek75J+XOtD2oUYw5Sh5GBRjBolUS4jEpGsPa
-	kzObb1UMBMhUwyWSOx2vU/fKVVVyGpuU3ad84LRGBi90+YgA1uzxMJ6BGNwNpDE1pztevomAv3Ucu
-	MORyaPcaP1/stjVF+OsjLBvo+rcLZVmONRahG1cQlQfeRHMas0o5KSF3SXSEUJ2cNWpmfBoPr99Fz
-	S4orrioA==;
+	bh=cf3a+2v4r1A2WvHL6vf4gSQmFt3s/oCbXSIm9FaSVyk=; b=qLtF+BSOnqrr+d86/1728g6BPj
+	uYGRPbw8mF6xXET0oB/V8wrNTKhs6HjqY/kHHBJ8/eQKFY0MlCnDBHek/PqWDeDBOHoo1RPLHawgf
+	gt05UtMloXnHcRNRgOC0FvykIWpkyvJPYU0MCSKFLIONiU2w650kOt23Kn1zvkngDUObqil+JfFOu
+	39aBEHOeAPYzVNsQX+9M63lLtI4TN5lAzRXWx7IcMFrYyF0sH1FusTUoqteN4nlMz75XyUSEmwrr2
+	AYEfnjLEWpADlhLiBKW/HMpooOOzGyfGQUReDT+5HkO8Ol97Nh0o+UfmSNrusdmfDw+qqbPFWEx0a
+	FfcRnMBQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOTOs-00000004KpH-0xZT;
-	Wed, 04 Nov 2026 05:19:06 +0000
-Received: from mail-japanwestazlp170120003.outbound.protection.outlook.com ([2a01:111:f403:c406::3] helo=OS8PR02CU002.outbound.protection.outlook.com)
+	id 1xOTxL-00000004Mnj-0qM9;
+	Wed, 04 Nov 2026 05:54:43 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOTOl-00000004Kmf-3tb5;
-	Wed, 04 Nov 2026 05:19:04 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PT51n5CHMhXcAbCiKeP3A2vDhbGYUHV+BxgQcIa1VQ5LTOYzCXHPEcI1oom71YEAivSlLYw8nZDsoxQ1C0Oe4I/hOKNtolLv7qm5rwDoyufQAINmL7oQrpv5hHdjCeAEO8qtsZ/Q4sPA+vNzXXKP1gZPCH9oNoF0TRwc/VxAu3OcsUbJpNanv09AxdShB2ws+BehKGSAJARK8GT3DkBXG+Zpjtgu2gKxSrasCXloc8F1y3bgL+3tMI3MU9eZyQLcXkJdjS2DBiOGuMB9Vq6FvS+Bsf0/683oAifEc1JlwTzkpR6HXs3FMiCBg5GKyQjAH3pIeXyklSXmcFC3+3scKg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3zw7mODbL60TzsxJg3cHiPzGSN6gF0uMBrvSx8x/wa8=;
- b=eL5cqWRpzJ6ZOba+QWptvNqqKvVlD8msigggQMGyY/OSi1Fx77peon5vQFyluHnqfXkG7h6UFXELaSqLebCJxjmpEQebQXMrzPnhlFpBj7vuBBZSmb2D3EeDci0jBo1k4KXv0hNb9xYF8gBcNKQ/uDf/lq1tHfFGTyHTGIe1cHQmVCIIu+fd1nU165GXoQYQy8yQd1oLwYnDTbGxUhNVkY7k+s+bGrURQkgSLQjq2VBp7ppmfThdTme0xAlO/npuQUbJ14znCR9FcnLCvsA8ktzPxNYuipMOjoFnmuMw3ttBvk5EAOPzhSZyhstCMu14eDPTBr/WRYyJW8nwbMJprg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3zw7mODbL60TzsxJg3cHiPzGSN6gF0uMBrvSx8x/wa8=;
- b=gkL3UzfTCgXkufcy6nEvPCQuB1eIUZI+FMg7F1WmOO6U7arJw+69uvwNinPj5+3sJbtXyXz6xwhmzw2VTwCjt9ua0nv+sO15WAnRXWHAuu/Ad/Kjmqz4H6ZE++cpbmf25WEq1t0FuctPeWEiib+4EdZJiOZ8M6oTo2StH0ShXuUqmsXyHKRKYkaT2CIeCPogaVGipbv7/Yghki7r7PoIcjT1q/uC6s9v2y1s23gw/5UitPgmFe+mY3d3q4F7ZONLWqPDeFm9eatlDXdUxCzUZaab4LbkhV+18tKZw+s4E3vIdi0BSqGXOvcwggyGbBGgOGn6V5E6pZHqTQkMxLZRQA==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB5743.apcprd03.prod.outlook.com (2603:1096:400:74::7)
- by SEZPR03MB6569.apcprd03.prod.outlook.com (2603:1096:101:74::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.8; Wed, 4 Nov 2026
- 05:18:50 +0000
-Received: from TYZPR03MB5743.apcprd03.prod.outlook.com
- ([fe80::7f51:5771:90c4:8c40]) by TYZPR03MB5743.apcprd03.prod.outlook.com
- ([fe80::7f51:5771:90c4:8c40%3]) with mapi id 15.21.0569.011; Wed, 4 Nov 2026
- 05:18:49 +0000
-Message-ID: <e2b65a8f-a1c3-47f6-896d-22884907d7b1@amlogic.com>
-Date: Wed, 4 Nov 2026 13:18:45 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] i3c: master: svc: Add amlogic a9 support
-To: Frank Li <Frank.li@oss.nxp.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>, Kees Cook <kees@kernel.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, imx@lists.linux.dev,
- linux-hardening@vger.kernel.org, xianwei.zhao@amlogic.com,
- Kelvin.Zhang@amlogic.com
-References: <20261102-a9_i3c-v2-0-0c474bfccffa@amlogic.com>
- <20261102-a9_i3c-v2-1-0c474bfccffa@amlogic.com>
- <aukKRUYfEABgIruC@lizhi-Precision-Tower-5810>
- <2210c679-0577-49b9-b8c9-fffe1d88baed@amlogic.com>
- <auqkKAKRZZ0pA-R3@SMW015318>
-Content-Language: en-GB
-From: Junyi Zhao <junyi.zhao@amlogic.com>
-In-Reply-To: <auqkKAKRZZ0pA-R3@SMW015318>
-X-ClientProxiedBy: SI1PR02CA0020.apcprd02.prod.outlook.com
- (2603:1096:4:1f4::9) To TYZPR03MB5743.apcprd03.prod.outlook.com
- (2603:1096:400:74::7)
+	id 1xOTxK-00000004MnN-1HnV;
+	Wed, 04 Nov 2026 05:54:42 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 1483E43E6C;
+	Wed,  4 Nov 2026 05:54:42 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1793771681;
+	b=XNilzmluRg7GRRAg58XkGyKrRWFJIhnzDk43bWjG0iSPk+UgdPZkFGBndGGc90JkAPb9
+	 0P3bJlVKrA5lXOXHK/D4KQWwz+ozsW0xyKAFSpCwefTmkhnxYgTMJ1fhp4qLxko9klmXG
+	 tyk3Hv2CYrLZWqK3zuWps9KP/Nk6WydwLBe1z5UhQUH+B+Pblq+SiJ+TcdcN6UEu1R5CP
+	 6qmzCJdy1ZkFKRp3gDg4kiwJGLttQ3SVOH/n9yPvB8zqvMxGbIM/s41Id3QGKNq1+/F6O
+	 +lqQyRNGmw/+REUHv1/OJDyoSggE/B4WkvPGsr8ixe5pyKwfwM3YrJdeCMLsKCG9B+g==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1793771681;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=teleq+CKugt1QK/s9Q02odvUXCBdWX4x0eH0UdC9R64=;
+	b=HXO8DE+EmqUeOeMw1qFLpebrC0F4FlrAy3VR52n1aRZG0KWNVPmuPNX8fiX0MzsULNgY
+	 cr/WoLsQOcoAOdo3o1/jBtUD8YSkR3j+bIIHRRcsDgostUVY4fCU+RioZ3zVUteVf/1oZ
+	 M6g75MY5wPR/gHXKVQbup1v5aGKHR5orBzfbsFqitNNCxoNYINEb93M4OkejQVy5Tbojz
+	 Mxn0aiCj10WzpbX9D+Gbn1qiXVVyRw+QlxhhtSzsDX1HOsZ37IV30djspItFWtwRr43bZ
+	 XinUJI/V4CeP9NBDCYqipx5oqyFjQ6iJH7+TCjXnUryBjVUJIU7KASBuWQyJP2zTS2Q==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 4486B1F00919;
+	Wed,  4 Nov 2026 05:54:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1793771681;
+	bh=teleq+CKugt1QK/s9Q02odvUXCBdWX4x0eH0UdC9R64=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=N3m4cG1OLsa1y/sJ1UXGMjqV6Q9x1UeEwQ0Yn84SBf8jdEE4TOw6SGGsWZY7YlPTj
+	 p/ni057gbFfg3aAEQZh9iJXMqUutG4qSRrmkQcJ6Pz93U1SKylmtiyTfVr9ZwBhtk/
+	 tXF2PIzNqd8pdkBPz9V5sZ27sD2n8YOezmtE0xBhhZgdpdRPhw5MdZA5OnWsxzsjwv
+	 wyn1RfpW/pKfTJx1EZoZKghFxOtFCZE7C1SPjAPgsy2A/gMUD3bMFPbj3jzu3b8R92
+	 RxAY2A0XT2IRGDm5cLpuLp9WJxxzgu0avxsdIut8yaXFd81DuZqFgJBhafl7epQKYW
+	 Tu8Oso0TnMydA==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id C5EBB46C5E;
+	Wed,  4 Nov 2026 05:54:40 +0000 (UTC)
+From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
+Date: Wed, 04 Nov 2026 05:54:37 +0000
+Subject: [PATCH RFC 1/3] dt-bindings: rtc: Add linux,wakeup-states and
+ linux,alarmtimer-priority
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB5743:EE_|SEZPR03MB6569:EE_
-X-MS-Office365-Filtering-Correlation-Id: df342855-50f4-4565-6d2c-08df3a331bd7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|23010399003|366016|1800799024|261102123227099003|11063799006|4143699003|56012099006|261026121527099003|261022105027099003|261028144727099003|261021121427099003|261026140227099003|10067099003|18002099003|22082099003|6133799003;
-X-Microsoft-Antispam-Message-Info: NhcrMH284r1KyuDLas8MM18ijMVBzeYQ/LKCykFlw7FRLvuE0nCeME5Dqai5LxdUtClc9aaIq05cmV9TYF8+SG/68Txb7BGHNZWtD//h4SKSy0x8wmkO1dOX+5PHevbkFpZYdHvewl9zaSs2jAbaap2LtXnbYuXDrirbm+IlVy3tKRitPK5S86758+QFk4AbfITTCp+zVS3qhC88q9XCSJ4eLJBrwUwScQSTWv8ocWDDYFJFIJx6/tKxw6nBxSwLKNgwo4Q+FDI4Einby+F67r2BjvphTEFg48hP8gByjdYIdfAGgnffKTjEm4BDgaV0gPPjLywfpsUqfE4SRcCqyaFO/NtmSq5M/L8Yomn7MiRDab43/Np1to6zcWFQx0Kh/8ZHqK7Th1EpwB3hAd7jH/XOMeKmqgHRg0BJFDwMfW25aq3E5JWX/NAeTS3oXqhrO/CuagykSWlo+lKSnLbjS23NIlGHNU1OnHf+O/Bip24A9aGi8w3O96hSYn/9QbeHjq9vRDUmsIhV9TXMXjAMLYy9aP2Lw+WLLOVsAaTf49wbJ2V9VJFNDDGHIjBg4taRC7IfLe44D+aNbx9iRH+RXyOqUoSwXeQYOnbJvaAyUckOX5mbVVWkvzifeNvikQ0UgPdU3D7OdOss2lJotzHPX/kEzJxAqFHq0m/QMx8eULA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB5743.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(23010399003)(366016)(1800799024)(261102123227099003)(11063799006)(4143699003)(56012099006)(261026121527099003)(261022105027099003)(261028144727099003)(261021121427099003)(261026140227099003)(10067099003)(18002099003)(22082099003)(6133799003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MmlNNmk0b015bzZhendlejN0a2ZvRjdpbk90Tk9YclA0VmdWRnAwT3orQVlw?=
- =?utf-8?B?Yy9nTW1ibkxkVVIrZFFxbGpuSHhKMkNvQlpZSWN2am4wM0JuR0hUc0l2MTVq?=
- =?utf-8?B?NVkvVW1SMDF4emVVZmZXZGZWeTczY1B1c0NMdVI4RXlqb0dqTTFYZkFERlRu?=
- =?utf-8?B?clhLenh2L2k4TXhickh2YVBZY2t1bS93dGNrZVVhYWs3dVBSb3NOTUdmVUR5?=
- =?utf-8?B?NUNzQmJEWFYyVDBxUitRRjNuSXEzVDVCb0gwN2J6VGh0akVDQnFna2hwWWZk?=
- =?utf-8?B?dHlubndhR1hOM290L28weFVCWklKR2RIT2liUjdYY3RMUEcxaC9OQzRwdDhP?=
- =?utf-8?B?Q1p0UWVDMmM2ZTZNeGFqMXBHMFRVU0pqdE1zc2tCSjlKblRWendSNWRTMjZ3?=
- =?utf-8?B?aTVUdzBTWmQ3UDBhV2E1L1FuUmxUcDhyUUtVOTVNRC9lWUxJbTBCQXlac3J4?=
- =?utf-8?B?bHdWdk96akNZTXNOL0lRWERFcFhkWThnbFJuVVhvMno0ZENIeVFjSms3ZHBL?=
- =?utf-8?B?cldLYW10eER6V3ZKS2JlNElkWTJic3pGcnJEeWxFM3NnZmQvckgxbEprc0Z6?=
- =?utf-8?B?Z1FsOWlMVTlXb2lwcUxCdFhrbDJQV1dCam5vd211MnFndS84cHNHQnh4V2R4?=
- =?utf-8?B?UEhCc0NuVzhoQWZDLzVLaGlacDRGVWFvQ3NXNVl3cTNGVkJsTnhaZFN5bThJ?=
- =?utf-8?B?c0hlakY0Mjlsd3NOejNvSEdiWUFFZ3pnNDA3QmhHN2lwWFBXbmR4aEx4NFNo?=
- =?utf-8?B?M1BVcFdhN3NEOUtYaGVhQlNZdm9oeFJHdUd0T2JSb3lMTzFRV2tYekFKWlUx?=
- =?utf-8?B?VDR3dlRONmpWMk54ekpIQW0zRTJQbHorYTJRQThKdEY1SHkycUt1QUx2RTZV?=
- =?utf-8?B?TlcwMGx2L1pVRktRSGFmaGJ4VUh6aWk3cG9wS0NlQU5jOWdSUndOU2pzeGRq?=
- =?utf-8?B?eXRrRVNNMHlITFNjZHpRcTFienhHM3hsaDlqUlJmYjZyUk5hc2VwYUxOUDUy?=
- =?utf-8?B?TzJ2OGMrcEdmeFRTcVNFd2NaMDJPZmQ4czJWaXoyVHErUkRCdGtxZUFSOHBP?=
- =?utf-8?B?ZldxMjkzMXJFMXR4YUhXdmNPRUI4RnM2bjNEMitWNXhFakVDcWxkVzZibTNt?=
- =?utf-8?B?c25PTlJzNWYvUnlNVVBpMGN3dUhNRHViSUFTQnlIeWJxOXRrTWN4YTJhN2Rt?=
- =?utf-8?B?Q3VkWmtlWEp2RWd2RmYwVG5oS21NNWI0bUUxZ0dEZVhjUTdhNVo0OVQzSFlF?=
- =?utf-8?B?eHliWFBkWHdHZ0VMYnowbkNJQWRrc2NtSzA3ZC9SWUxNUm1sZUxvMlBoSFpD?=
- =?utf-8?B?VnVTRldjMVl3Z0JDc1JXMmxsNWFFM2JISVdnY2NnYzdlNk5NOVVjRitPSGpJ?=
- =?utf-8?B?RUJiTjBZSzhGNVd1OTdlSXpCNmc4SlBMOERkSG4rakRRV3cxV0s0eDBzdXh0?=
- =?utf-8?B?K3c0TmJGV2xvWjRmS3RpelF2dVVGYWY3MExpd08yYmJla1BtSUpVSFRqM2RO?=
- =?utf-8?B?YXg4NEJPSDc4LzBmdDRNVjdlNStIVjFJd0RxSVMxZHdTYVR3S2ZQZlkxWGND?=
- =?utf-8?B?QzJsajlTTHhBb1NIeFV2RWVFQXkyOUlWZkZqcm1XL2NCQ29MNnVESmVFdkh0?=
- =?utf-8?B?dmxkd09vVEtUYUJ3dmE2VUJPR050RkNzM2d4bWJsNkp0ZDhBZFNKMnBYQi9z?=
- =?utf-8?B?ZDY1d2I4VFNOenhSbWhhVUQwQy91VFpUeFh0amJ2OFZNN3lGMHNmSkRHYWp6?=
- =?utf-8?B?d2xIamdaaEVoWmltUDlSZDBBaXBKUi9qZGR6WlR0TzYwYXN5RWtWOGtTdG1S?=
- =?utf-8?B?Q1pwQ3FDUDhxZUJGK2JqTU9ZQzVuS21EZ04yekYxRVdNeEg3ZmxoSGs1VlVk?=
- =?utf-8?B?RWsycTN1N2x2WHVVWGVNcDBqTEw1MTl0U3h4LzVTN0ZwZ3k0NzYwa1BYTFhX?=
- =?utf-8?B?NU93SVBuTFBuQzhrYk5sQ1Rua0ZQc1BoaDJMMVRVVUdIVjlDd0Jkbk52ajho?=
- =?utf-8?B?b3lHOHhyNDJwRFpFRzdrcm5GdThrVEFwRFlnWHVXaXMzazZtRmgxUlg2Vnpm?=
- =?utf-8?B?RWd2R2NWbzZYT2YzOGNRcDVzWmRKTzYwb3JnVmt4eWx2MU5HNE9aOUFTV2ds?=
- =?utf-8?B?ZEtxTVJ1aTMxaUFNT04zbVdFMENvNGhaSVg0Z2dxOHJkSm8wL3oxbzJDRE5N?=
- =?utf-8?B?UmVFU082MU1QZk9ZY01ycjZFT3Z2ZGEvSXE3bEhmVlBFYkY2WnZtazFkNmVj?=
- =?utf-8?B?MXJqUTA0WFZ0UTFsYzQ0U3RzQWhhTnZYazVQZzVjNUNTNSt5bUVsOUNwSlhr?=
- =?utf-8?B?aXlzbUpmMHRldkRGOFlkTFQwTHFvQmhuSE52azY5ZnBZRWRHSEREQT09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: df342855-50f4-4565-6d2c-08df3a331bd7
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB5743.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2026 05:18:49.8478
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Kv6POOZ1Skfw5P17xWvu+gaGVCogkZ9TmhDhiZdFJQ+AxYYX/p4phazTg5TuwMxnUwla1OL9ifzACZm7NRkXFQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB6569
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261103_211859_981017_810176E8 
-X-CRM114-Status: GOOD (  14.48  )
-X-Spam-Score: -2.1 (--)
+Message-Id: <20261104-b4-alarmtimer-rtc-priority-v1-1-e996681b8086@iav.lv>
+References: <20261104-b4-alarmtimer-rtc-priority-v1-0-e996681b8086@iav.lv>
+In-Reply-To: <20261104-b4-alarmtimer-rtc-priority-v1-0-e996681b8086@iav.lv>
+To: John Stultz <jstultz@google.com>, Thomas Gleixner <tglx@kernel.org>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, Miroslav Lichvar <mlichvar@redhat.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Igor Velkov <iav@iav.lv>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3808; i=iav@iav.lv;
+ h=from:subject:message-id;
+ bh=03lyxM4SQ2zx0WHWIjnOxBbyYZuv2oiIWhQvdfHX1RY=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDFmvTsz7PYtLJGfuw7h/x3gefC637LKTrvZlvP/gWsTcs
+ 82zHvIe7yhlYRDjYpAVU2SZcEjjVsaSq3/9PcwfwMxhZQIZwsDFKQATMYtm+MV8XeKmxqIldz/n
+ 6Qos2pOWzFUzL0iuYi2vyfUMTqlWtQuMDKe0zi11av/rZ3z210otX7mVS2STfe/M3X5qUfq3/O+
+ l/3gA
+X-Developer-Key: i=iav@iav.lv; a=openpgp;
+ fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
+X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
+X-Original-From: Igor Velkov <iav@iav.lv>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -157,58 +114,118 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Reply-To: iav@iav.lv
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-SGkgRnJhbmssCgl0aGFua3MgZm9yIHlvdXIgZGV0YWlsLgoKT24gMDQvMTEvMjAyNiAxMToxOSwg
-RnJhbmsgTGkgd3JvdGU6Cj4gWyBFWFRFUk5BTCBFTUFJTCBdCj4gCj4gT24gV2VkLCBOb3YgMDQs
-IDIwMjYgYXQgMTA6NDQ6NTlBTSArMDgwMCwgSnVueWkgWmhhbyB3cm90ZToKPj4gSGkgRnJhbmss
-Cj4+Cj4+IFRoYW5rcyBmb3IgdGhlIHJldmlldy4KPj4KPj4gT24gMDMvMTEvMjAyNiAwNjoxMCwg
-RnJhbmsgTGkgd3JvdGU6Cj4+PiBbIEVYVEVSTkFMIEVNQUlMIF0KPj4+Cj4+PiBPbiBNb24sIE5v
-diAwMiwgMjAyNiBhdCAwNzowNTozOVBNICswODAwLCBKdW55aSBaaGFvIHdyb3RlOgo+Pj4+IEFt
-bG9naWMgYTkgU29DcyBpbnRlZ3JhdGUgdGhlIFNpbHZhY28gSTNDIElQLCBhbmQgdGhlaXIgcGVy
-aXBoZXJhbAo+Pj4+IGNsb2NrcyB2YXJ5IGZyb20gdGhlIHZhbmlsbGEgaW1wbGVtZW50YXRpb246
-Cj4+Pj4KPj4+PiAgICAgLSBUaGUgRUUtZG9tYWluIGNvbnRyb2xsZXIgKGFtbG9naWMsYTktaTNj
-KSB0YWtlcyB0d28gY2xvY2tzLAo+Pj4+ICAgICAgICJwY2xrIiBhbmQgImZhc3RfY2xrIiwgYW5k
-IHRoZSBmYXN0IGNsb2NrIHJhdGUgbXVzdCBiZQo+Pj4+ICAgICAgIHByb2dyYW1tZWQgYmVmb3Jl
-IHRoZSBjb250cm9sbGVyIGNhbiBiZSB1c2VkLgo+Pj4+Cj4+Pj4gICAgIC0gVGhlIEFPLWRvbWFp
-biBjb250cm9sbGVyIChhbWxvZ2ljLGE5LWFvLWkzYykgZXhwb3NlcyBvbmx5ICJwY2xrIjoKPj4+
-PiAgICAgICBpdHMgYnVzIGNsb2NrIGlzIGdlbmVyYXRlZCBieSBhbiBpbnRlcm5hbCBkaXZpZGVy
-IGxvY2F0ZWQgaW4gdGhlCj4+Pj4gICAgICAgY29udHJvbGxlcidzIG93biByZWdpc3RlciBzcGFj
-ZS4KPj4+Pgo+Pj4+IEFkZCBhIHZlbmRvcl9pbml0IGNhbGxiYWNrIHRvIGhhbmRsZSB0aGlzIGNs
-b2NrIHNldHVwLgo+Pj4+IEFkZCBhIHZlbmRvcl9xdWlya3MgZmllbGQgdG8gZGVzY3JpYmUgQU8t
-c3BlY2lmaWMgYmVoYXZpb3IuCj4+Pj4KPj4+PiBTaWduZWQtb2ZmLWJ5OiBKdW55aSBaaGFvIDxq
-dW55aS56aGFvQGFtbG9naWMuY29tPgo+Pj4+IC0tLQo+IC4uLgo+Pj4+ICsgICAgIGludCAoKnZl
-bmRvcl9pbml0KShzdHJ1Y3Qgc3ZjX2kzY19tYXN0ZXIgKm1hc3Rlcik7Cj4+Pj4gK307Cj4+Pj4g
-Kwo+Pj4KPj4+IHdoeSBuZWVkIG1vdmUgdGhpcyBzdHJ1Y3QKPj4KPj4gYmVjYXVzZSBjYWxsYmFj
-ayBuZWVkIHBhcmFtIHN0cnVjdCBzdmNfaTNjX21hc3RlciAqbWFzdGVy77yMIGFuZCBpZiBub3Tv
-vIwKPj4gY29tcGlsZSBlcnJvci4gdW5kZWZpbmVkLgo+IAo+IE1vc3QgbGlrZWx5IHN2Y19pM2Nf
-bWFzdGVyIG5lZWQgc2F2ZSBhIHBvaW50IGZvciBkcnZkYXRhIGluIGZ1dHVyZS4KPiAKPiBZb3Ug
-YWRkIGZvcndhcmQgZGVjbGVhciBiZWZvcmUgZHJ2ZGF0YQo+IAo+IHN0cnVjdCBzdmNfaTNjX2Ry
-dmRhdGE7Cj4gCgp3aWxsIGRvLgoKPj4KPiAuLi4KPj4+PiArc3RhdGljIGludCBhbWxfYW9faTNj
-X3RhaWxfY2xvY2tzKHN0cnVjdCBzdmNfaTNjX21hc3RlciAqbWFzdGVyLCBzdHJ1Y3QgY2xrICpw
-YXJlbnQpCj4+Pj4gK3sKPj4+PiArICAgICBzdHJ1Y3QgZGV2aWNlICpkZXYgPSBtYXN0ZXItPmRl
-djsKPj4+PiArICAgICBzdHJ1Y3QgYW1sX2kzY19hb19jbGsgKmFvOwo+Pj4+ICsgICAgIHN0cnVj
-dCBjbGtfaW5pdF9kYXRhIGluaXQgPSB7fTsKPj4+PiArICAgICBjaGFyIG5hbWVbNjRdOwo+Pj4+
-ICsgICAgIGludCByZXQ7Cj4+Pj4gKyAgICAgc3RydWN0IGNsa19idWxrX2RhdGEgKm5ld19jbGtz
-Owo+Pj4+ICsgICAgIHN0cnVjdCBjbGsgKmZjbGs7Cj4+Pgo+Pj4ga2VlcCByZXZpc2UgQ2hlbWlz
-dHJ5IG9yZGVyCj4+Pgo+PiB3aWxsIGNoYW5nZSBvcmRlcu+8mgo+PiAgICAgICAgc3RydWN0IGFt
-bF9pM2NfYW9fY2xrICphbzsKPj4gICAgICAgIHN0cnVjdCBjbGsgKmZjbGs7Cj4+ICAgICAgICBz
-dHJ1Y3QgY2xrX2J1bGtfZGF0YSAqbmV3X2Nsa3M7Cj4+ICAgICAgICBzdHJ1Y3QgZGV2aWNlICpk
-ZXYgPSBtYXN0ZXItPmRldjsKPj4gICAgICAgIHN0cnVjdCBjbGtfaW5pdF9kYXRhIGluaXQgPSB7
-fTsKPj4gICAgICAgIGNoYXIgbmFtZVs2NF07Cj4+ICAgICAgICBpbnQgcmV0Owo+IAo+IAo+IGxv
-bmdlc3QgaXMgZmlyc3QKPiAKPiBzdHJ1Y3QgZGV2aWNlICpkZXYgPSBtYXN0ZXItPmRldjsKPiBz
-dHJ1Y3QgY2xrX2J1bGtfZGF0YSAqbmV3X2Nsa3M7Cj4gc3RydWN0IGNsa19pbml0X2RhdGEgaW5p
-dCA9IHt9Owo+IHN0cnVjdCBhbWxfaTNjX2FvX2NsayAqYW87Cj4gc3RydWN0IGNsayAqZmNsazsK
-PiBjaGFyIG5hbWVbNjRdOwo+IGludCByZXQ7Cj4gCgp3aWxsIGRvLiB0aGFua3MgdGhlIGRldGFp
-bC4KCj4gCj4gRnJhbmsKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmlu
-ZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9s
-aW51eC1hbWxvZ2ljCg==
+From: Igor Velkov <iav@iav.lv>
+
+A board can have more than one RTC with an alarm that wakes the system,
+for example an I2C RTC next to an RTC in the PMIC or the SoC firmware.
+Which of them wakes the system depends on the sleep state and on the
+board's firmware: amlogic,meson-vrtc is a register the firmware reads
+when the application processors suspend, so it wakes the system from
+deep sleep only, and whether an I2C RTC wakes the system from deep
+sleep depends on the firmware handling its interrupt line.
+
+Add two properties to describe this per RTC. linux,wakeup-states lists
+the sleep states an alarm of the RTC wakes the system from, named as in
+/sys/power/mem_sleep, plus hibernate and off, or none for an RTC whose
+alarm wakes the system from no state. linux,alarmtimer-priority weights
+the RTC among those that wake the system from the target state.
+
+List both in nxp,pcf8563.yaml and amlogic,meson-vrtc.yaml, which do not
+allow unlisted properties.
+
+Signed-off-by: Igor Velkov <iav@iav.lv>
+---
+ .../bindings/rtc/amlogic,meson-vrtc.yaml           |  3 +++
+ .../devicetree/bindings/rtc/nxp,pcf8563.yaml       |  3 +++
+ Documentation/devicetree/bindings/rtc/rtc.yaml     | 29 ++++++++++++++++++++++
+ 3 files changed, 35 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/rtc/amlogic,meson-vrtc.yaml b/Documentation/devicetree/bindings/rtc/amlogic,meson-vrtc.yaml
+index a89865fa676a..bc4a1916f600 100644
+--- a/Documentation/devicetree/bindings/rtc/amlogic,meson-vrtc.yaml
++++ b/Documentation/devicetree/bindings/rtc/amlogic,meson-vrtc.yaml
+@@ -30,6 +30,9 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  linux,alarmtimer-priority: true
++  linux,wakeup-states: true
++
+ required:
+   - compatible
+   - reg
+diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf8563.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf8563.yaml
+index 22909a96123e..5aabeb074c82 100644
+--- a/Documentation/devicetree/bindings/rtc/nxp,pcf8563.yaml
++++ b/Documentation/devicetree/bindings/rtc/nxp,pcf8563.yaml
+@@ -32,6 +32,9 @@ properties:
+   interrupts:
+     maxItems: 1
+ 
++  linux,alarmtimer-priority: true
++  linux,wakeup-states: true
++
+   start-year: true
+   wakeup-source: true
+ 
+diff --git a/Documentation/devicetree/bindings/rtc/rtc.yaml b/Documentation/devicetree/bindings/rtc/rtc.yaml
+index efb66df82782..3b4b8ff90ada 100644
+--- a/Documentation/devicetree/bindings/rtc/rtc.yaml
++++ b/Documentation/devicetree/bindings/rtc/rtc.yaml
+@@ -26,6 +26,35 @@ properties:
+       0: not chargeable
+       1: chargeable
+ 
++  linux,alarmtimer-priority:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Weight of this RTC for waking the system on alarmtimer alarms.
++      Among the RTCs that can wake the system from the target sleep
++      state, the one with the highest value is used; on a tie, the
++      operating system decides. An RTC without this property has
++      priority 0.
++
++  linux,wakeup-states:
++    $ref: /schemas/types.yaml#/definitions/string-array
++    description:
++      System sleep states an alarm of this RTC wakes the system from,
++      given the board and its firmware. s2idle, shallow and deep are the
++      states of /sys/power/mem_sleep, hibernate is suspend-to-disk and
++      off is the powered-off system, and none, given alone, means the
++      alarm wakes the system from no state. An RTC without this property
++      is taken to wake the system from every state.
++    oneOf:
++      - items:
++          enum:
++            - s2idle
++            - shallow
++            - deep
++            - hibernate
++            - "off"
++      - items:
++          - const: none
++
+   quartz-load-femtofarads:
+     description:
+       The capacitive load of the quartz(x-tal), expressed in femto
+
+-- 
+2.43.0
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
