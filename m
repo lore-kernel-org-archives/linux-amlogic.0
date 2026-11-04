@@ -2,85 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 969A3606A33B
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A415606A33C
 	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Nov 2026 05:54:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qLtF+BSO;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=N3m4cG1O
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FWiOp7o9;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=oODXvuwQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=cf3a+2v4r1A2WvHL6vf4gSQmFt3s/oCbXSIm9FaSVyk=; b=qLtF+BSOnqrr+d86/1728g6BPj
-	uYGRPbw8mF6xXET0oB/V8wrNTKhs6HjqY/kHHBJ8/eQKFY0MlCnDBHek/PqWDeDBOHoo1RPLHawgf
-	gt05UtMloXnHcRNRgOC0FvykIWpkyvJPYU0MCSKFLIONiU2w650kOt23Kn1zvkngDUObqil+JfFOu
-	39aBEHOeAPYzVNsQX+9M63lLtI4TN5lAzRXWx7IcMFrYyF0sH1FusTUoqteN4nlMz75XyUSEmwrr2
-	AYEfnjLEWpADlhLiBKW/HMpooOOzGyfGQUReDT+5HkO8Ol97Nh0o+UfmSNrusdmfDw+qqbPFWEx0a
-	FfcRnMBQ==;
+	bh=bWRo5pUy/n7cpTnRm325iWDksx5tDfrOcm4dDg1iAbE=; b=FWiOp7o9FyZseXYmn6p/5MsQMV
+	WOYoRENdziA5FTdrohX+T9HOzv/vIF/wwV6UVULunIRus39DvG7dmjHRYzIzIqYr+u/T2i+OQtmRj
+	0m95RIb24kEk1vKdbdavwXEYeVxzcHwamWE9DoIo5bO73iefN0uy65xUKS3972O/lcUxuJxM2MwRt
+	6l7XqX+3Nalad8KOfyasiH6J/ygjSYcSEU0u5bzgWeJEO+Sg5RshUWb/0TYOIZmOEN65eFmamJv64
+	kuLgNZ2R0mM9h4lYftI5nh6d9qIXpidPe4cnjhN2aIvHTaV69pPcz38PjQlLzT6TmPs6RExOu0jNP
+	gWAONZBA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOTxL-00000004Mnj-0qM9;
-	Wed, 04 Nov 2026 05:54:43 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xOTxN-00000004Moo-2CV5;
+	Wed, 04 Nov 2026 05:54:45 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOTxK-00000004MnN-1HnV;
-	Wed, 04 Nov 2026 05:54:42 +0000
+	id 1xOTxL-00000004MnO-0Hcv;
+	Wed, 04 Nov 2026 05:54:43 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 1483E43E6C;
+	by tor.source.kernel.org (Postfix) with ESMTP id 1D724601F6;
 	Wed,  4 Nov 2026 05:54:42 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1793771681;
-	b=XNilzmluRg7GRRAg58XkGyKrRWFJIhnzDk43bWjG0iSPk+UgdPZkFGBndGGc90JkAPb9
-	 0P3bJlVKrA5lXOXHK/D4KQWwz+ozsW0xyKAFSpCwefTmkhnxYgTMJ1fhp4qLxko9klmXG
-	 tyk3Hv2CYrLZWqK3zuWps9KP/Nk6WydwLBe1z5UhQUH+B+Pblq+SiJ+TcdcN6UEu1R5CP
-	 6qmzCJdy1ZkFKRp3gDg4kiwJGLttQ3SVOH/n9yPvB8zqvMxGbIM/s41Id3QGKNq1+/F6O
-	 +lqQyRNGmw/+REUHv1/OJDyoSggE/B4WkvPGsr8ixe5pyKwfwM3YrJdeCMLsKCG9B+g==
+	b=wPCgumpn0G5a+Pma8pYUHdPtGBCkuKVe8XuxVMo/0J3GdR/YKK3rmkyolfxAjc5L5zrR
+	 StZLNkrg8zhzkstD+nwpMm0TjjemjSF4S0NQ4g2jH/DKpGz+HQIZVDxW7S+NW7yQ0dh68
+	 1BGi9D5kINqyBkWtoOSlRBzvjsL5IXYJ4Yx3KV0ZokaicZ5ju7hR7Nitock1ieFhril1+
+	 k2FvjS3QWLZbgBvaXe5NjRs/qfcOYqkpzsZO30kOs+TUPM5ZVyDDJRbwUXmhYUx1gbaMw
+	 YFmqGiSxmz+3hZ7EvQ2zbJwmLNDnmlrCz5vZhI5e66orNRHkacxyfcSeopf2BeKcr7g==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1793771681;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=teleq+CKugt1QK/s9Q02odvUXCBdWX4x0eH0UdC9R64=;
-	b=HXO8DE+EmqUeOeMw1qFLpebrC0F4FlrAy3VR52n1aRZG0KWNVPmuPNX8fiX0MzsULNgY
-	 cr/WoLsQOcoAOdo3o1/jBtUD8YSkR3j+bIIHRRcsDgostUVY4fCU+RioZ3zVUteVf/1oZ
-	 M6g75MY5wPR/gHXKVQbup1v5aGKHR5orBzfbsFqitNNCxoNYINEb93M4OkejQVy5Tbojz
-	 Mxn0aiCj10WzpbX9D+Gbn1qiXVVyRw+QlxhhtSzsDX1HOsZ37IV30djspItFWtwRr43bZ
-	 XinUJI/V4CeP9NBDCYqipx5oqyFjQ6iJH7+TCjXnUryBjVUJIU7KASBuWQyJP2zTS2Q==
+	 X-Original-From:Reply-To;
+	bh=l6QTWAiT2pnjRja/ALYbiKuIFt7Nll81q03ZWRJukTo=;
+	b=lgQyO0BV7yZb612/NPJ8FKJeOBW65eyseFUK7ODe3pe7Jcp76YVZnGN+kYWnWea+2hNn
+	 KdUjQLtoZjDcXewBi50S4FQ0w48TyYjbnsHv3Ym1oZ3IAXek+GnBJS+tTq8vM/Z6y0qnF
+	 MvBDMp2PI3j3hUWX5DEJMkBC6kUONdiVjON/HKkTuwqzF5gOHdoA95AOWsrNc1MzA6NR+
+	 Wiiz0kpRzmCLwBc/zErbvpya82S04ezXrsLyZeGajVz7okZUhYL+GYMKtWghHYSFUi1gD
+	 GHx5P1toR5u5TQ0VlZd9bIz0BxlaInh6oqQC0V4v2qMlfRz7ebU+144TynkiVuwOIpQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 4486B1F00919;
+	by smtp.kernel.org (Postfix) with ESMTPS id 314551F000C1;
 	Wed,  4 Nov 2026 05:54:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1793771681;
-	bh=teleq+CKugt1QK/s9Q02odvUXCBdWX4x0eH0UdC9R64=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=N3m4cG1OLsa1y/sJ1UXGMjqV6Q9x1UeEwQ0Yn84SBf8jdEE4TOw6SGGsWZY7YlPTj
-	 p/ni057gbFfg3aAEQZh9iJXMqUutG4qSRrmkQcJ6Pz93U1SKylmtiyTfVr9ZwBhtk/
-	 tXF2PIzNqd8pdkBPz9V5sZ27sD2n8YOezmtE0xBhhZgdpdRPhw5MdZA5OnWsxzsjwv
-	 wyn1RfpW/pKfTJx1EZoZKghFxOtFCZE7C1SPjAPgsy2A/gMUD3bMFPbj3jzu3b8R92
-	 RxAY2A0XT2IRGDm5cLpuLp9WJxxzgu0avxsdIut8yaXFd81DuZqFgJBhafl7epQKYW
-	 Tu8Oso0TnMydA==
+	bh=l6QTWAiT2pnjRja/ALYbiKuIFt7Nll81q03ZWRJukTo=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=oODXvuwQ2dcUNulurxLj5q3EWvbva2U4hPPiYuHRVOnkA3UBC8o+MbJ2gQVAXI9DZ
+	 AqWbn9ZSXqnO5B/zYZes9LNsGq37KR/lWK3YOHqjphOAG+Ui+ho9WseeR+uyzxzs8O
+	 lfo9r/vkf9QZPHKTLu34nYyMZj7Jv2kWEZ+hTsmSOpxfMeooNqxHzA/ylmJNhSZEYq
+	 lH3x0OLPd5RM582nTQMbruoA/xjwIBVxD4XHEOBHc0duukhT+YQTjHVw3h7b5FQyHt
+	 osRqjg5Y/6kHopCmBgz6a8NdDy27Yz8X86c/bN0WMQBss0i0hpp7SibsBF8QZKKjeb
+	 nG53P9UfvSNAA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id C5EBB46C5E;
+	by lkml.kernel.org (Postfix) with ESMTP id B1C5E46C9F;
 	Wed,  4 Nov 2026 05:54:40 +0000 (UTC)
 From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Wed, 04 Nov 2026 05:54:37 +0000
-Subject: [PATCH RFC 1/3] dt-bindings: rtc: Add linux,wakeup-states and
- linux,alarmtimer-priority
+Subject: [PATCH RFC 0/3] alarmtimer: Choose the wakeup RTC per sleep state
+ from the device tree
+Date: Wed, 04 Nov 2026 05:54:36 +0000
+Message-Id: <20261104-b4-alarmtimer-rtc-priority-v1-0-e996681b8086@iav.lv>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261104-b4-alarmtimer-rtc-priority-v1-1-e996681b8086@iav.lv>
-References: <20261104-b4-alarmtimer-rtc-priority-v1-0-e996681b8086@iav.lv>
-In-Reply-To: <20261104-b4-alarmtimer-rtc-priority-v1-0-e996681b8086@iav.lv>
+X-B4-Tracking: v=1; b=H4sIAJ3I6moC/x3MSwrCQAwA0KuUrA00cWyxW6EHcCsuxmnaBvojM
+ 4hSencHl2/zdohiKhGaYgeTt0Zdlww6FRBGvwyC2mUDl1wRlQ5fDv3kbU46i6GlgJvpapq+yMI
+ XOpPnK9WQg82k188/f8C9vcHzOH4P0Y9gcQAAAA==
 To: John Stultz <jstultz@google.com>, Thomas Gleixner <tglx@kernel.org>, 
  Alexandre Belloni <alexandre.belloni@bootlin.com>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -94,13 +95,13 @@ Cc: Stephen Boyd <sboyd@kernel.org>, Miroslav Lichvar <mlichvar@redhat.com>,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
  linux-kernel@vger.kernel.org, Igor Velkov <iav@iav.lv>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3808; i=iav@iav.lv;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4284; i=iav@iav.lv;
  h=from:subject:message-id;
- bh=03lyxM4SQ2zx0WHWIjnOxBbyYZuv2oiIWhQvdfHX1RY=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDFmvTsz7PYtLJGfuw7h/x3gefC637LKTrvZlvP/gWsTcs
- 82zHvIe7yhlYRDjYpAVU2SZcEjjVsaSq3/9PcwfwMxhZQIZwsDFKQATMYtm+MV8XeKmxqIldz/n
- 6Qos2pOWzFUzL0iuYi2vyfUMTqlWtQuMDKe0zi11av/rZ3z210otX7mVS2STfe/M3X5qUfq3/O+
- l/3gA
+ bh=0IYwb1SInrt3b80xHHEOcsUK/4uBWyP8cJUA4xS+Tyw=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDFmvTswTXs/q8/O4/BzBn62T5ojfu5TIqLR8j/mNjgvVB
+ 3iaZ5Sxd5SyMIhxMciKKbJMOKRxK2PJ1b/+HuYPYOawMoEMYeDiFICJ5FoxMlzdxL/urq5/yVIF
+ OQEZ9kwdBc9Ufb4Tx/9Y+k/JunPsTSQjQ5tPQuWGiZ7ze80Tuu7nVl/167vQfeIwa0bkj0A3ZeF
+ wVgA=
 X-Developer-Key: i=iav@iav.lv; a=openpgp;
  fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
 X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
@@ -125,103 +126,93 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Igor Velkov <iav@iav.lv>
+alarmtimer binds to the first registered RTC that has an alarm and a
+wakeup-capable parent and programs it on every suspend. On ODROID-HC4
+that RTC is amlogic,meson-vrtc: a register the SoC firmware reads when
+the application processors suspend. It wakes the board from deep sleep
+only, and only when the firmware handles the alarm; it raises no
+interrupt in Linux, so it never wakes the board from s2idle. The board's
+pcf8563, whose interrupt line goes to a GPIO, registers later and is
+never used.
 
-A board can have more than one RTC with an alarm that wakes the system,
-for example an I2C RTC next to an RTC in the PMIC or the SoC firmware.
-Which of them wakes the system depends on the sleep state and on the
-board's firmware: amlogic,meson-vrtc is a register the firmware reads
-when the application processors suspend, so it wakes the system from
-deep sleep only, and whether an I2C RTC wakes the system from deep
-sleep depends on the firmware handling its interrupt line.
+Which RTC wakes the system depends on the sleep state and on the board's
+firmware, so the series lets the board device tree say it per RTC:
 
-Add two properties to describe this per RTC. linux,wakeup-states lists
-the sleep states an alarm of the RTC wakes the system from, named as in
-/sys/power/mem_sleep, plus hibernate and off, or none for an RTC whose
-alarm wakes the system from no state. linux,alarmtimer-priority weights
-the RTC among those that wake the system from the target state.
+- linux,wakeup-states: the sleep states an alarm of this RTC wakes the
+  system from ("s2idle", "shallow", "deep" as in /sys/power/mem_sleep,
+  plus "hibernate" and "off"), or "none".
+- linux,alarmtimer-priority: a weight to pick among several RTCs that
+  wake the system from the same state.
 
-List both in nxp,pcf8563.yaml and amlogic,meson-vrtc.yaml, which do not
-allow unlisted properties.
+alarmtimer keeps each RTC that has an alarm and a wakeup-capable parent,
+unless an RTC registered before it, with at least the same priority,
+already wakes from every state it lists; each kept RTC gets its own
+"alarmtimer" platform device under the RTC. alarmtimer_suspend() picks,
+by pm_suspend_target_state, the RTC with the highest priority among
+those listing that state, the first registered among equals, and
+programs the alarm from that RTC's platform device only. The driver core
+suspends a device before its ancestors (dpm_suspend() takes
+dpm_prepared_list from the tail, in reverse registration order), so the
+chosen RTC and its parent, which drives the hardware, are still awake
+when the alarm is programmed.
+Without the properties only the first RTC gets a platform device and
+alarmtimer programs it on every suspend.
+
+An RTC without linux,wakeup-states is taken to wake the system from
+every state, so that adding the property to one RTC, e.g. from an
+overlay, does not change how the others are used; a priority on the new
+one settles which wins.
+
+Hibernation wakeups (.freeze/.poweroff callbacks) are not part of this
+series.
+
+Patch 3 sets linux,wakeup-states on ODROID-HC4: "s2idle" for the
+pcf8563 and "deep" for meson-vrtc, so that alarmtimer programs the
+pcf8563 for s2idle and meson-vrtc for deep sleep. The patch applies to
+the current tree, but the s2idle wakeup also needs the pcf8563
+interrupt (GPIOX_5), which a patch under review adds [1].
+
+Tested on ODROID-HC4 with v7.3.1, [1] and a BL301 that handles the vrtc
+alarm, waking by a CLOCK_BOOTTIME_ALARM timer, once per state: s2idle
+woke on the pcf8563 interrupt, deep sleep on meson-vrtc with the pcf8563
+alarm left unset. Without the series the alarm went to meson-vrtc and
+the board did not wake from s2idle.
+
+Questions:
+
+- Are "linux,wakeup-states" and "linux,alarmtimer-priority" acceptable
+  names, or should they be generic (no linux, prefix), given that the
+  states describe the hardware and the firmware rather than Linux?
+- Is the device tree the right place for a capability that depends on
+  the firmware the board runs? On HC4, meson-vrtc wakes from deep sleep
+  only with a BL301 that handles its alarm.
+
+The alarm limit of meson-vrtc also depends on the firmware, and the
+kernel cannot learn it. Some API is needed to pass this information to
+the kernel.
+
+[1] https://lore.kernel.org/r/20261020-hc4-rtc-alarm-irq-v1-1-b2b8c68d54f5@iav.lv
 
 Signed-off-by: Igor Velkov <iav@iav.lv>
 ---
- .../bindings/rtc/amlogic,meson-vrtc.yaml           |  3 +++
- .../devicetree/bindings/rtc/nxp,pcf8563.yaml       |  3 +++
- Documentation/devicetree/bindings/rtc/rtc.yaml     | 29 ++++++++++++++++++++++
- 3 files changed, 35 insertions(+)
+Igor Velkov (3):
+      dt-bindings: rtc: Add linux,wakeup-states and linux,alarmtimer-priority
+      alarmtimer: Choose the wakeup RTC by sleep state and priority
+      arm64: dts: amlogic: meson-sm1-odroid-hc4: Describe which RTC wakes the board
 
-diff --git a/Documentation/devicetree/bindings/rtc/amlogic,meson-vrtc.yaml b/Documentation/devicetree/bindings/rtc/amlogic,meson-vrtc.yaml
-index a89865fa676a..bc4a1916f600 100644
---- a/Documentation/devicetree/bindings/rtc/amlogic,meson-vrtc.yaml
-+++ b/Documentation/devicetree/bindings/rtc/amlogic,meson-vrtc.yaml
-@@ -30,6 +30,9 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  linux,alarmtimer-priority: true
-+  linux,wakeup-states: true
-+
- required:
-   - compatible
-   - reg
-diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf8563.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf8563.yaml
-index 22909a96123e..5aabeb074c82 100644
---- a/Documentation/devicetree/bindings/rtc/nxp,pcf8563.yaml
-+++ b/Documentation/devicetree/bindings/rtc/nxp,pcf8563.yaml
-@@ -32,6 +32,9 @@ properties:
-   interrupts:
-     maxItems: 1
- 
-+  linux,alarmtimer-priority: true
-+  linux,wakeup-states: true
-+
-   start-year: true
-   wakeup-source: true
- 
-diff --git a/Documentation/devicetree/bindings/rtc/rtc.yaml b/Documentation/devicetree/bindings/rtc/rtc.yaml
-index efb66df82782..3b4b8ff90ada 100644
---- a/Documentation/devicetree/bindings/rtc/rtc.yaml
-+++ b/Documentation/devicetree/bindings/rtc/rtc.yaml
-@@ -26,6 +26,35 @@ properties:
-       0: not chargeable
-       1: chargeable
- 
-+  linux,alarmtimer-priority:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Weight of this RTC for waking the system on alarmtimer alarms.
-+      Among the RTCs that can wake the system from the target sleep
-+      state, the one with the highest value is used; on a tie, the
-+      operating system decides. An RTC without this property has
-+      priority 0.
-+
-+  linux,wakeup-states:
-+    $ref: /schemas/types.yaml#/definitions/string-array
-+    description:
-+      System sleep states an alarm of this RTC wakes the system from,
-+      given the board and its firmware. s2idle, shallow and deep are the
-+      states of /sys/power/mem_sleep, hibernate is suspend-to-disk and
-+      off is the powered-off system, and none, given alone, means the
-+      alarm wakes the system from no state. An RTC without this property
-+      is taken to wake the system from every state.
-+    oneOf:
-+      - items:
-+          enum:
-+            - s2idle
-+            - shallow
-+            - deep
-+            - hibernate
-+            - "off"
-+      - items:
-+          - const: none
-+
-   quartz-load-femtofarads:
-     description:
-       The capacitive load of the quartz(x-tal), expressed in femto
+ .../bindings/rtc/amlogic,meson-vrtc.yaml           |   3 +
+ .../devicetree/bindings/rtc/nxp,pcf8563.yaml       |   3 +
+ Documentation/devicetree/bindings/rtc/rtc.yaml     |  29 ++++
+ .../boot/dts/amlogic/meson-sm1-odroid-hc4.dts      |   5 +
+ kernel/time/alarmtimer.c                           | 157 ++++++++++++++++++---
+ 5 files changed, 180 insertions(+), 17 deletions(-)
+---
+base-commit: 348f54c435bf3177baa78201952810b255d44b30
+change-id: 20261104-b4-alarmtimer-rtc-priority-2e25131a2917
 
+Best regards,
 -- 
-2.43.0
+Igor Velkov <iav@iav.lv>
 
 
 
