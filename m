@@ -2,59 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADB4C606A328
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Nov 2026 06:06:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F450606A31B
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Nov 2026 07:02:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CvI2BGcH;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nnlfF5vK
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BTOfFZMQ;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=AG1CIAct
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:References:
-	In-Reply-To:Cc:To:Subject:From:Message-ID:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=SKzBf+mKzhMYjRSYq7PDWWl0Ijh+f8TeF86PgkbEGeg=; b=CvI2BGcH322hc9WkzmHj0pcCMv
-	sxejV3fGZ7sLKv75azum3M9dY2blNQfwniF+Pxlm/9u5gdHCrr0afaewZEjo6X//zU5oI13ilq2fj
-	R3U+Xz1sF1jlB00qpIXzeLR3CgvueWoko7ldNY48CcmE7Fijs3EDTnhgJK6xLX7sgbQY9SbRfVQos
-	I8wJ56fdseoQ5weOf/xhayCO1itjvV8zejGRA9QaDcyobCNncrhEURNEJs+PvcpPWpz9ZmYJF8b7y
-	W1ZJp1pdJqypLaSZCU00Jt8v1fryFJKX1+Ig1yrtWAzCil2Go5uIX1agfRk4V4pPC6y1fnIHFAWw4
-	Fn56aJnQ==;
+	bh=INOo2/6Ir9HVBB1Ksxr+Km3w9KDRIB/gGQUAaUS8DXU=; b=BTOfFZMQcB/w/vLusDHIdTA0n8
+	GYl2kL9CW9wBNeQ+Fwtxwu+r1oh6lu23qLoK8aNQpb+ZIF61UDC4T4v+XVjxZkfMaxXdlxKrSg5Tx
+	1GjAKCSrqDS4+ZOwWoEiKo2ixvde8kvQvBO7y6sGWqAaBJ4AWOJ2d1bvK/8/Q1ZBu0wUUOl8StXfV
+	mB3RjPNWm1r1Bc/V70Es8gQpGyLDs2qsLUFSOV69QQbcUUzafoEdh9SDV9Lp6aa9owjSAaHNBirQu
+	d4IKKGwlEHKP6V5LXvmUZsFn7LZJVQ1iobNIk3P69G1ynJq150IZRaoRdnNRv+RykIOnwtMus6Vun
+	rhlA0kXA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOU8J-00000004O5E-2g7P;
-	Wed, 04 Nov 2026 06:06:03 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xOV15-00000004SC0-0joq;
+	Wed, 04 Nov 2026 07:02:39 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOU8H-00000004O50-3yu4
-	for linux-amlogic@lists.infradead.org;
-	Wed, 04 Nov 2026 06:06:01 +0000
+	id 1xOV13-00000004SBn-3nGh;
+	Wed, 04 Nov 2026 07:02:37 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 56625414EF;
-	Wed,  4 Nov 2026 06:06:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9D181F000C1;
-	Wed,  4 Nov 2026 06:06:00 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 5B9EF410A0;
+	Wed,  4 Nov 2026 07:02:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FE0E1F000C1;
+	Wed,  4 Nov 2026 07:02:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793772361;
-	bh=L3n36mnOsqyiV4KZF52bEPsThE+j4Itg7nle1oUa4HY=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=nnlfF5vK4yGCIGVLlOoVGdVlZG+yCdwRWcmM7L9uY/E7EcZCuDRZtLKdFKXS4kuae
-	 32OCmy48roaEkqyeTamP1JTx9mpxaDXfLUxd8Z88NYlciiZk6qq8DPtQ4i6Y0uucJ6
-	 8GLOlOtUK9c79P1fOCWi8CBi9yGalB/xUweUofbT9t9eoY4tOXPXCSKKZUuKOJbM3E
-	 5LRdWyfIYBuBFeXw7DhgQSENCEPS8XpaQLGdr0w/O7cgdScQs5KbLF+yvCoWPo1JUF
-	 x5G4sf9hrCfshlGvx5bmHVjuappLcaT1WMIjMncQos73Ha0qxz+O3hSd40XSNePosk
-	 dp2BfXtllRiJQ==
-Message-ID: <sashiko-outbox-196725@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH RFC 1/3] dt-bindings: rtc: Add linux,wakeup-states and
- linux,alarmtimer-priority
-To: "Igor Velkov" <iav@iav.lv>
-Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, robh@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org, "Alexandre
- Belloni" <alexandre.belloni@bootlin.com>
-In-Reply-To: <20261104-b4-alarmtimer-rtc-priority-v1-1-e996681b8086@iav.lv>
-References: <20261104-b4-alarmtimer-rtc-priority-v1-0-e996681b8086@iav.lv>
- <20261104-b4-alarmtimer-rtc-priority-v1-1-e996681b8086@iav.lv>
-Date: Wed, 04 Nov 2026 06:06:00 +0000
+	s=k20260515; t=1793775757;
+	bh=K6s4lOO67MxeZ2kZUNjXsFE143gts4Ntp0bKcxeuWXY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=AG1CIActR9mqZ3w7p9KYrxKCyFEr07K9s8Tg1edd/dvBLQUpgRWNwIDLZmHr8hA0J
+	 youonnsgIg2Jkkzj0hrbrDzKYT2+i6+gDyEu+m9rEUipKE2RyuG9YOoPrAkQoY48xM
+	 SpjYSFIHsTahiE3pY7cu6jozUJdocbhKpPFpkwJ3WlG1QJgqXA1fzgKlgq4b6Xwlfq
+	 lZN35CWk/yWdzf8Ny9E9agNJNcwRm5t4leHbXG822DMkmdWsmrQZ+rVCQFkB5Hp/2K
+	 EpLOT2V5KDUGE0unr/Kl/ojYujSFTm6ZwD7BNBGyFobdEAKUh6W2PS8OeXbTTrJSyX
+	 k8ZTksvnEurCw==
+Message-ID: <5b741c90-4e57-425e-b3ef-b8d10eac1f33@kernel.org>
+Date: Wed, 4 Nov 2026 08:02:33 +0100
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] serial: meson: unregister the UART driver if port
+ registration fails
+To: Wentao Liang <vulab@iscas.ac.cn>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
+References: <20261104021501.1468500-1-vulab@iscas.ac.cn>
+Content-Language: en-US
+From: Jiri Slaby <jirislaby@kernel.org>
+Autocrypt: addr=jirislaby@kernel.org; keydata=
+ xsFNBE6S54YBEACzzjLwDUbU5elY4GTg/NdotjA0jyyJtYI86wdKraekbNE0bC4zV+ryvH4j
+ rrcDwGs6tFVrAHvdHeIdI07s1iIx5R/ndcHwt4fvI8CL5PzPmn5J+h0WERR5rFprRh6axhOk
+ rSD5CwQl19fm4AJCS6A9GJtOoiLpWn2/IbogPc71jQVrupZYYx51rAaHZ0D2KYK/uhfc6neJ
+ i0WqPlbtIlIrpvWxckucNu6ZwXjFY0f3qIRg3Vqh5QxPkojGsq9tXVFVLEkSVz6FoqCHrUTx
+ wr+aw6qqQVgvT/McQtsI0S66uIkQjzPUrgAEtWUv76rM4ekqL9stHyvTGw0Fjsualwb0Gwdx
+ ReTZzMgheAyoy/umIOKrSEpWouVoBt5FFSZUyjuDdlPPYyPav+hpI6ggmCTld3u2hyiHji2H
+ cDpcLM2LMhlHBipu80s9anNeZhCANDhbC5E+NZmuwgzHBcan8WC7xsPXPaiZSIm7TKaVoOcL
+ 9tE5aN3jQmIlrT7ZUX52Ff/hSdx/JKDP3YMNtt4B0cH6ejIjtqTd+Ge8sSttsnNM0CQUkXps
+ w98jwz+Lxw/bKMr3NSnnFpUZaxwji3BC9vYyxKMAwNelBCHEgS/OAa3EJoTfuYOK6wT6nadm
+ YqYjwYbZE5V/SwzMbpWu7Jwlvuwyfo5mh7w5iMfnZE+vHFwp/wARAQABzSFKaXJpIFNsYWJ5
+ IDxqaXJpc2xhYnlAa2VybmVsLm9yZz7CwXcEEwEIACEFAlW3RUwCGwMFCwkIBwIGFQgJCgsC
+ BBYCAwECHgECF4AACgkQvSWxBAa0cEnVTg//TQpdIAr8Tn0VAeUjdVIH9XCFw+cPSU+zMSCH
+ eCZoA/N6gitEcnvHoFVVM7b3hK2HgoFUNbmYC0RdcSc80pOF5gCnACSP9XWHGWzeKCARRcQR
+ 4s5YD8I4VV5hqXcKo2DFAtIOVbHDW+0okOzcecdasCakUTr7s2fXz97uuoc2gIBB7bmHUGAH
+ XQXHvdnCLjDjR+eJN+zrtbqZKYSfj89s/ZHn5Slug6w8qOPT1sVNGG+eWPlc5s7XYhT9z66E
+ l5C0rG35JE4PhC+tl7BaE5IwjJlBMHf/cMJxNHAYoQ1hWQCKOfMDQ6bsEr++kGUCbHkrEFwD
+ UVA72iLnnnlZCMevwE4hc0zVhseWhPc/KMYObU1sDGqaCesRLkE3tiE7X2cikmj/qH0CoMWe
+ gjnwnQ2qVJcaPSzJ4QITvchEQ+tbuVAyvn9H+9MkdT7b7b2OaqYsUP8rn/2k1Td5zknUz7iF
+ oJ0Z9wPTl6tDfF8phaMIPISYrhceVOIoL+rWfaikhBulZTIT5ihieY9nQOw6vhOfWkYvv0Dl
+ o4GRnb2ybPQpfEs7WtetOsUgiUbfljTgILFw3CsPW8JESOGQc0Pv8ieznIighqPPFz9g+zSu
+ Ss/rpcsqag5n9rQp/H3WW5zKUpeYcKGaPDp/vSUovMcjp8USIhzBBrmI7UWAtuedG9prjqfO
+ wU0ETpLnhgEQAM+cDWLL+Wvc9cLhA2OXZ/gMmu7NbYKjfth1UyOuBd5emIO+d4RfFM02XFTI
+ t4MxwhAryhsKQQcA4iQNldkbyeviYrPKWjLTjRXT5cD2lpWzr+Jx7mX7InV5JOz1Qq+P+nJW
+ YIBjUKhI03ux89p58CYil24Zpyn2F5cX7U+inY8lJIBwLPBnc9Z0An/DVnUOD+0wIcYVnZAK
+ DiIXODkGqTg3fhZwbbi+KAhtHPFM2fGw2VTUf62IHzV+eBSnamzPOBc1XsJYKRo3FHNeLuS8
+ f4wUe7bWb9O66PPFK/RkeqNX6akkFBf9VfrZ1rTEKAyJ2uqf1EI1olYnENk4+00IBa+BavGQ
+ 8UW9dGW3nbPrfuOV5UUvbnsSQwj67pSdrBQqilr5N/5H9z7VCDQ0dhuJNtvDSlTf2iUFBqgk
+ 3smln31PUYiVPrMP0V4ja0i9qtO/TB01rTfTyXTRtqz53qO5dGsYiliJO5aUmh8swVpotgK4
+ /57h3zGsaXO9PGgnnAdqeKVITaFTLY1ISg+Ptb4KoliiOjrBMmQUSJVtkUXMrCMCeuPDGHo7
+ 39Xc75lcHlGuM3yEB//htKjyprbLeLf1y4xPyTeeF5zg/0ztRZNKZicgEmxyUNBHHnBKHQxz
+ 1j+mzH0HjZZtXjGu2KLJ18G07q0fpz2ZPk2D53Ww39VNI/J9ABEBAAHCwV8EGAECAAkFAk6S
+ 54YCGwwACgkQvSWxBAa0cEk3tRAAgO+DFpbyIa4RlnfpcW17AfnpZi9VR5+zr496n2jH/1ld
+ wRO/S+QNSA8qdABqMb9WI4BNaoANgcg0AS429Mq0taaWKkAjkkGAT7mD1Q5PiLr06Y/+Kzdr
+ 90eUVneqM2TUQQbK+Kh7JwmGVrRGNqQrDk+gRNvKnGwFNeTkTKtJ0P8jYd7P1gZb9Fwj9YLx
+ jhn/sVIhNmEBLBoI7PL+9fbILqJPHgAwW35rpnq4f/EYTykbk1sa13Tav6btJ+4QOgbcezWI
+ wZ5w/JVfEJW9JXp3BFAVzRQ5nVrrLDAJZ8Y5ioWcm99JtSIIxXxt9FJaGc1Bgsi5K/+dyTKL
+ wLMJgiBzbVx8G+fCJJ9YtlNOPWhbKPlrQ8+AY52Aagi9WNhe6XfJdh5g6ptiOILm330mkR4g
+ W6nEgZVyIyTq3ekOuruftWL99qpP5zi+eNrMmLRQx9iecDNgFr342R9bTDlb1TLuRb+/tJ98
+ f/bIWIr0cqQmqQ33FgRhrG1+Xml6UXyJ2jExmlO8JljuOGeXYh6ZkIEyzqzffzBLXZCujlYQ
+ DFXpyMNVJ2ZwPmX2mWEoYuaBU0JN7wM+/zWgOf2zRwhEuD3A2cO2PxoiIfyUEfB9SSmffaK/
+ S4xXoB6wvGENZ85Hg37C7WDNdaAt6Xh2uQIly5grkgvWppkNy4ZHxE+jeNsU7tg=
+In-Reply-To: <20261104021501.1468500-1-vulab@iscas.ac.cn>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -64,122 +112,80 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW01lZGl1bV0gZHQtYmluZGluZ3M6
-IHJ0YzogT1Mtc3BlY2lmaWMgYWxhcm10aW1lciBwb2xpY3kgYW5kIHNsZWVwIHN0YXRlcyBpbiBE
-VAotLQoKY29tbWl0IGRjODE4YTNmYjQxNDkxNDg4OGQwNGY1ODA3NDU4YmMyMjc2OTNiMGMKQXV0
-aG9yOiBJZ29yIFZlbGtvdiA8aWF2QGlhdi5sdj4KCmR0LWJpbmRpbmdzOiBydGM6IEFkZCBsaW51
-eCx3YWtldXAtc3RhdGVzIGFuZCBsaW51eCxhbGFybXRpbWVyLXByaW9yaXR5CgpUaGlzIGNvbW1p
-dCBhZGRzIHRoZSBsaW51eCx3YWtldXAtc3RhdGVzIGFuZCBsaW51eCxhbGFybXRpbWVyLXByaW9y
-aXR5CnByb3BlcnRpZXMgdG8gdGhlIGNvbW1vbiBSVEMgRGV2aWNldHJlZSBiaW5kaW5nIHNjaGVt
-YSB0byBkZXNjcmliZSBwZXItUlRDCnNsZWVwLXN0YXRlIHdha2V1cCBjYXBhYmlsaXRpZXMgYW5k
-IGFsYXJtdGltZXIgc2VsZWN0aW9uIHdlaWdodHMsIGFuZCBhbGxvd3MKdGhlbSBpbiB0aGUgYW1s
-b2dpYyxtZXNvbi12cnRjIGFuZCBueHAscGNmODU2MyBiaW5kaW5ncy4KCj4gZGlmZiAtLWdpdCBh
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9ydGMvYW1sb2dpYyxtZXNvbi12cnRj
-LnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcnRjL2FtbG9naWMsbWVz
-b24tdnJ0Yy55YW1sCj4gaW5kZXggYTg5ODY1ZmE2NzZhNi4uYmM0YTE5MTZmNjAwNyAxMDA2NDQK
-PiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcnRjL2FtbG9naWMsbWVz
-b24tdnJ0Yy55YW1sCj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3J0
-Yy9hbWxvZ2ljLG1lc29uLXZydGMueWFtbAo+IEBAIC0zMCw2ICszMCw5IEBAIHByb3BlcnRpZXM6
-Cj4gICAgcmVnOgo+ICAgICAgbWF4SXRlbXM6IDEKPiAgCj4gKyAgbGludXgsYWxhcm10aW1lci1w
-cmlvcml0eTogdHJ1ZQo+ICsgIGxpbnV4LHdha2V1cC1zdGF0ZXM6IHRydWUKPiArCj4gIHJlcXVp
-cmVkOgo+ICAgIC0gY29tcGF0aWJsZQo+ICAgIC0gcmVnCj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50
-YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9ydGMvbnhwLHBjZjg1NjMueWFtbCBiL0RvY3VtZW50
-YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9ydGMvbnhwLHBjZjg1NjMueWFtbAo+IGluZGV4IDIy
-OTA5YTk2MTIzZTUuLjVhYWJlYjA3NGM4MmIgMTAwNjQ0Cj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL3J0Yy9ueHAscGNmODU2My55YW1sCj4gKysrIGIvRG9jdW1lbnRh
-dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3J0Yy9ueHAscGNmODU2My55YW1sCj4gQEAgLTMyLDYg
-KzMyLDkgQEAgcHJvcGVydGllczoKPiAgICBpbnRlcnJ1cHRzOgo+ICAgICAgbWF4SXRlbXM6IDEK
-PiAgCj4gKyAgbGludXgsYWxhcm10aW1lci1wcmlvcml0eTogdHJ1ZQo+ICsgIGxpbnV4LHdha2V1
-cC1zdGF0ZXM6IHRydWUKPiArCj4gICAgc3RhcnQteWVhcjogdHJ1ZQo+ICAgIHdha2V1cC1zb3Vy
-Y2U6IHRydWUKPiAgCj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
-aW5ncy9ydGMvcnRjLnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcnRj
-L3J0Yy55YW1sCj4gaW5kZXggZWZiNjZkZjgyNzgyZi4uM2I0YjhmZjkwYWRhMCAxMDA2NDQKPiAt
-LS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcnRjL3J0Yy55YW1sCj4gKysr
-IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3J0Yy9ydGMueWFtbAo+IEBAIC0y
-Niw2ICsyNiwzNSBAQCBwcm9wZXJ0aWVzOgo+ICAgICAgICAwOiBub3QgY2hhcmdlYWJsZQo+ICAg
-ICAgICAxOiBjaGFyZ2VhYmxlCj4gIAo+ICsgIGxpbnV4LGFsYXJtdGltZXItcHJpb3JpdHk6Cj4g
-KyAgICAkcmVmOiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy91aW50MzIKPiArICAg
-IGRlc2NyaXB0aW9uOgo+ICsgICAgICBXZWlnaHQgb2YgdGhpcyBSVEMgZm9yIHdha2luZyB0aGUg
-c3lzdGVtIG9uIGFsYXJtdGltZXIgYWxhcm1zLgo+ICsgICAgICBBbW9uZyB0aGUgUlRDcyB0aGF0
-IGNhbiB3YWtlIHRoZSBzeXN0ZW0gZnJvbSB0aGUgdGFyZ2V0IHNsZWVwCj4gKyAgICAgIHN0YXRl
-LCB0aGUgb25lIHdpdGggdGhlIGhpZ2hlc3QgdmFsdWUgaXMgdXNlZDsgb24gYSB0aWUsIHRoZQo+
-ICsgICAgICBvcGVyYXRpbmcgc3lzdGVtIGRlY2lkZXMuIEFuIFJUQyB3aXRob3V0IHRoaXMgcHJv
-cGVydHkgaGFzCj4gKyAgICAgIHByaW9yaXR5IDAuCj4gKwo+ICsgIGxpbnV4LHdha2V1cC1zdGF0
-ZXM6Cj4gKyAgICAkcmVmOiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy9zdHJpbmct
-YXJyYXkKPiArICAgIGRlc2NyaXB0aW9uOgo+ICsgICAgICBTeXN0ZW0gc2xlZXAgc3RhdGVzIGFu
-IGFsYXJtIG9mIHRoaXMgUlRDIHdha2VzIHRoZSBzeXN0ZW0gZnJvbSwKPiArICAgICAgZ2l2ZW4g
-dGhlIGJvYXJkIGFuZCBpdHMgZmlybXdhcmUuIHMyaWRsZSwgc2hhbGxvdyBhbmQgZGVlcCBhcmUg
-dGhlCj4gKyAgICAgIHN0YXRlcyBvZiAvc3lzL3Bvd2VyL21lbV9zbGVlcCwgaGliZXJuYXRlIGlz
-IHN1c3BlbmQtdG8tZGlzayBhbmQKPiArICAgICAgb2ZmIGlzIHRoZSBwb3dlcmVkLW9mZiBzeXN0
-ZW0sIGFuZCBub25lLCBnaXZlbiBhbG9uZSwgbWVhbnMgdGhlCj4gKyAgICAgIGFsYXJtIHdha2Vz
-IHRoZSBzeXN0ZW0gZnJvbSBubyBzdGF0ZS4gQW4gUlRDIHdpdGhvdXQgdGhpcyBwcm9wZXJ0eQo+
-ICsgICAgICBpcyB0YWtlbiB0byB3YWtlIHRoZSBzeXN0ZW0gZnJvbSBldmVyeSBzdGF0ZS4KPiAr
-ICAgIG9uZU9mOgo+ICsgICAgICAtIGl0ZW1zOgo+ICsgICAgICAgICAgZW51bToKPiArICAgICAg
-ICAgICAgLSBzMmlkbGUKPiArICAgICAgICAgICAgLSBzaGFsbG93Cj4gKyAgICAgICAgICAgIC0g
-ZGVlcAo+ICsgICAgICAgICAgICAtIGhpYmVybmF0ZQo+ICsgICAgICAgICAgICAtICJvZmYiCj4g
-KyAgICAgIC0gaXRlbXM6Cj4gKyAgICAgICAgICAtIGNvbnN0OiBub25lCgpbU2V2ZXJpdHk6IE1l
-ZGl1bV0KU2hvdWxkIE9TLXNwZWNpZmljIGFsYXJtdGltZXIgcG9saWN5IHdlaWdodHMgYW5kIExp
-bnV4IC9zeXMvcG93ZXIvbWVtX3NsZWVwCmxhYmVscyBiZSBlbmNvZGVkIGluIHRoZSBEZXZpY2V0
-cmVlIGJpbmRpbmcgcmF0aGVyIHRoYW4gZGVyaXZlZCBieSB0aGUgT1MgZnJvbQpoYXJkd2FyZSBw
-cm9wZXJ0aWVzIGFuZCBjb21wYXRpYmxlIHN0cmluZ3M/CgpEb2N1bWVudGF0aW9uL2RldmljZXRy
-ZWUvYmluZGluZ3Mvd3JpdGluZy1iaW5kaW5ncy5yc3Qgbm90ZXMgdGhhdCBiaW5kaW5ncwpzaG91
-bGQgZGVzY3JpYmUgaGFyZHdhcmUgcmF0aGVyIHRoYW4gTGludXggb3IgZGV2aWNlIGRyaXZlciBz
-cGVjaWZpY3MsIGFuZApzaG91bGQgbm90IGFkZCBwcm9wZXJ0aWVzIHRoYXQgYXJlIGFscmVhZHkg
-aW1wbGllZCBieSBvciBkZWR1Y2libGUgZnJvbSB0aGUKY29tcGF0aWJsZSBzdHJpbmcuCgpGb3Ig
-bGludXgsYWxhcm10aW1lci1wcmlvcml0eSwgdGhpcyBlbmNvZGVzIGFuIGFyYml0cmFyeSBudW1l
-cmljIHdlaWdodCBmb3IKdGhlIExpbnV4IGtlcm5lbCBhbGFybXRpbWVyIHN1YnN5c3RlbSAoa2Vy
-bmVsL3RpbWUvYWxhcm10aW1lci5jKSBpbnRvIHRoZSBEVApBQkkuIENvdWxkIHRoZSBrZXJuZWwg
-aW5zdGVhZCBzZWxlY3QgdGhlIHByZWZlcnJlZCB3YWtldXAgUlRDIHVzaW5nIGhhcmR3YXJlCmNo
-YXJhY3RlcmlzdGljcyBhbHJlYWR5IGtub3duIHRvIHRoZSBSVEMgZHJpdmVycyAoZm9yIGV4YW1w
-bGUsIGFsYXJtCnJlc29sdXRpb24gc3VjaCBhcyBSVENfRkVBVFVSRV9BTEFSTV9SRVNfTUlOVVRF
-IGluIGRyaXZlcnMvcnRjL3J0Yy1wY2Y4NTYzLmMKdmVyc3VzIDEtc2Vjb25kIHJlc29sdXRpb24s
-IG9yIGFsYXJtIHJhbmdlKSwgdXNlcnNwYWNlIHBvbGljeSwgb3Igc3RhbmRhcmQgRFQKL2FsaWFz
-ZXMgKHJ0YzAsIHJ0YzEpPwoKRm9yIGxpbnV4LHdha2V1cC1zdGF0ZXMsIHNldmVyYWwgb2YgdGhl
-IHN0YXRlIGRlZmluaXRpb25zIGFwcGVhciB0byBjb25mbGljdAp3aXRoIGhhcmR3YXJlIGRlc2Ny
-aXB0aW9uIG9yIGV4aXN0aW5nIHByb3BlcnRpZXMgaW4gcnRjLnlhbWw6CgoxLiBJbiBEb2N1bWVu
-dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcnRjL2FtbG9naWMsbWVzb24tdnJ0Yy55YW1sLCB3
-YWtpbmcKdGhlIHN5c3RlbSBvbmx5IHdoZW4gdGhlIGFwcGxpY2F0aW9uIHByb2Nlc3NvcnMgc3Vz
-cGVuZCBpcyBpbmhlcmVudCB0byB0aGUKaGFyZHdhcmUgYW5kIGZpcm13YXJlIGludGVyZmFjZSAo
-YSBzY3JhdGNoIHJlZ2lzdGVyIHJlYWQgYnkgdGhlIFNDUCB1cG9uCnBsYXRmb3JtIHN1c3BlbmQs
-IGFzIGltcGxlbWVudGVkIGluIGRyaXZlcnMvcnRjL3J0Yy1tZXNvbi12cnRjLmMpLCB3aGljaCBp
-cwphbHJlYWR5IGRlZHVjaWJsZSBmcm9tIGNvbXBhdGlibGUgPSAiYW1sb2dpYyxtZXNvbi12cnRj
-IiB3aXRob3V0IGEgbmV3IERUCnByb3BlcnR5LgoKMi4gVGhlIHZhbHVlcyBzMmlkbGUsIHNoYWxs
-b3csIGFuZCBkZWVwIGFyZSBMaW51eCBzeXNmcyBsYWJlbHMgZnJvbQovc3lzL3Bvd2VyL21lbV9z
-bGVlcCByYXRoZXIgdGhhbiBoYXJkd2FyZSBwcm9wZXJ0aWVzLiBJbiBwYXJ0aWN1bGFyLCBzMmlk
-bGUgaXMKYSBwdXJlIExpbnV4IHNvZnR3YXJlIGZyZWV6ZSBzdGF0ZSB3aGVyZSBhbnkgZW5hYmxl
-ZCBPUyBpbnRlcnJ1cHQgd2FrZXMgdGhlCnN5c3RlbSwgd2hlcmVhcyBhbiBSVEMgd2l0aG91dCBh
-biBpbnRlcnJ1cHRzIHByb3BlcnR5IHdpcmVkIHRvIHRoZSBrZXJuZWwKY2Fubm90IHdha2UgdGhl
-IHN5c3RlbSBmcm9tIHMyaWRsZS4gU2ltaWxhcmx5LCBvbiBub24tQUNQSSBEZXZpY2V0cmVlCnBs
-YXRmb3JtcywgaGliZXJuYXRlIHVzZXMgcG93ZXItb2ZmIHJhdGhlciB0aGFuIGEgZGlzdGluY3Qg
-aGFyZHdhcmUgc2xlZXAKc3RhdGUsIGFuZCB3aGV0aGVyIGFuIFJUQyBjYW4gd2FrZSB0aGUgc3lz
-dGVtIGZyb20gcGxhdGZvcm0gc3VzcGVuZCBvcgpwb3dlci1vZmYgaXMgZGV0ZXJtaW5lZCBieSBp
-bnRlcnJ1cHQvd2FrZXVwIHJvdXRpbmcgYW5kIHBvd2VyIGRvbWFpbiBvciBQTUlDCndpcmluZy4K
-CjMuIEhvdyBkb2VzIGxpbnV4LHdha2V1cC1zdGF0ZXMgaW50ZXJhY3Qgd2l0aCB0aGUgZXhpc3Rp
-bmcgd2FrZXVwLXNvdXJjZQpwcm9wZXJ0eSBpbiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3MvcnRjL3J0Yy55YW1sPyBTcGVjaWZ5aW5nCmxpbnV4LHdha2V1cC1zdGF0ZXMgPSAibm9u
-ZSIgZHVwbGljYXRlcyB0aGUgYWJzZW5jZSBvZiB3YWtldXAtc291cmNlIGFuZAphbGxvd3MgY29u
-dHJhZGljdG9yeSBjb21iaW5hdGlvbnMgc3VjaCBhcyBzZXR0aW5nIGJvdGggd2FrZXVwLXNvdXJj
-ZSBhbmQKbGludXgsd2FrZXVwLXN0YXRlcyA9ICJub25lIiBpbiBueHAscGNmODU2My55YW1sLiBD
-b252ZXJzZWx5LCBzdGF0aW5nIHRoYXQgYW4KUlRDIHdpdGhvdXQgbGludXgsd2FrZXVwLXN0YXRl
-cyB3YWtlcyB0aGUgc3lzdGVtIGZyb20gZXZlcnkgc3RhdGUgKGluY2x1ZGluZwpoaWJlcm5hdGUg
-YW5kIG9mZikgb3ZlcnN0YXRlcyB0aGUgY2FwYWJpbGl0eSBvZiBzdGFuZGFyZCBSVENzIHRoYXQg
-Y2Fubm90IHdha2UKYSBwb3dlcmVkLW9mZiBzeXN0ZW0uCgotLSAKU2FzaGlrbyBBSSByZXZpZXcg
-wrcgaHR0cHM6Ly9zYXNoaWtvLmRldi8jL3BhdGNoc2V0LzIwMjYxMTA0LWI0LWFsYXJtdGltZXIt
-cnRjLXByaW9yaXR5LXYxLTAtZTk5NjY4MWI4MDg2QGlhdi5sdj9wYXJ0PTEKCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGlu
-ZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5m
-cmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On 04. 11. 26, 3:15, Wentao Liang wrote:
+> meson_uart_probe() registers the shared uart_driver on the first port and
+> relies on meson_uart_remove() to unregister it once the last port is
+> removed.  If uart_add_one_port() fails, probe returns an error, so remove
+> is never called and the driver stays registered, leaking its tty driver
+> and per-port state.
+> 
+> Remember whether this probe registered the driver and unregister it again
+> when adding the port fails.
+> 
+> Fixes: e71aab9d6132 ("tty: serial: meson: apply ttyS devname instead of ttyAML for new SoCs")
+> Cc: stable@vger.kernel.org
+> Assisted-by: DeepSeek-V4.1-Flash and OpenAI Codex
+> Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
+
+makes sense to me:
+Reviewed-by: Jiri Slaby <jirislaby@kernel.org>
+
+
+> ---
+>   drivers/tty/serial/meson_uart.c | 7 ++++++-
+>   1 file changed, 6 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+> index a6cb2a535f9d..a51362f73dee 100644
+> --- a/drivers/tty/serial/meson_uart.c
+> +++ b/drivers/tty/serial/meson_uart.c
+> @@ -702,6 +702,7 @@ static int meson_uart_probe(struct platform_device *pdev)
+>   	int ret = 0;
+>   	int irq;
+>   	bool has_rtscts;
+> +	bool registered = false;
+>   
+>   	if (pdev->dev.of_node)
+>   		pdev->id = of_alias_get_id(pdev->dev.of_node, "serial");
+> @@ -753,6 +754,7 @@ static int meson_uart_probe(struct platform_device *pdev)
+>   		if (ret)
+>   			return dev_err_probe(&pdev->dev, ret,
+>   					     "can't register uart driver\n");
+> +		registered = true;
+>   	}
+>   
+>   	port->iotype = UPIO_MEM;
+> @@ -781,8 +783,11 @@ static int meson_uart_probe(struct platform_device *pdev)
+>   	}
+>   
+>   	ret = uart_add_one_port(uart_driver, port);
+> -	if (ret)
+> +	if (ret) {
+>   		meson_ports[pdev->id] = NULL;
+> +		if (registered)
+> +			uart_unregister_driver(uart_driver);
+> +	}
+>   
+>   	return ret;
+>   }
+
+
+-- 
+js
+suse labs
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
