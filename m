@@ -2,99 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ED3B606A32C
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Nov 2026 16:48:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9599C606A331
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Nov 2026 02:14:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=r/VRsxXL;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=NkpRrorW
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WJkuCzAd;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Z9VAbBQK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=2xKiSXdic/LvXy+VujEhsJ4zK6hA1iw2jYWR25bit0c=; b=r/VRsxXLFIJPMDkla5TUUwyxkt
-	PfkzfDgoyR6FmAPGWJ91yn9zFNifRoPUx+e3uGmiE2Lke9vH8UJ+qAfw3rXTpHMrnC6S7UD06fg9e
-	vqojUZRAXXdPQ9vmMRsWbZ7pctem4xaDX41071ztxvPyRFlqIyAuXwMBFgrASbChPd1MSZgZyxmfI
-	9qMNVe+TlzEC6dqfgWc0XRmN2KIo8orNsWavBdQD5vSklvfi96EYPLLXZgKm9PPjhXpWp3ODI1KE0
-	cZCKxbO0e62b8wSSLP56QijFo4oE0ioLh8QomLCcLlV5O0mI2+Si5PzIzLgrvG1a8ncSVoQlIVtmp
-	qrf5jp6g==;
+	bh=AKZ3lr7YnBA6zJ+ZRS43fGt7WEi46dYEfSGzS19k/Ko=; b=WJkuCzAdLUE1A9bs4MD7sq/gFT
+	9y7RnIz1FNaANmIuKJUNu7O31QdfMghd7v4mWEtdkCXHxY0rnxiyUlPc7a2O3CVLGWZUFyIg0JstY
+	OUFMaBtUQo5KcagaZPtLWTR7+FbErdBVMDAxRVhlPezlyroOAdLSv9q5ACGJA60UkjZvul0lMaLc3
+	/7IfHatucGeY5SLeIMiapk29HlUpYHH73kSIWH+NQDqSnLH3oOW+L3hPFZk6ulBi4/sBfJ1oJjf0w
+	qcINwqRVAxP4oC8KW5bn4JlIHEGExm2wKuX//XWFZi6J/6D1Zd08shJshI4GrzUP+yFkGYEKoDd7A
+	ofYeZLEw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOHgB-00000003D0N-07vE;
-	Tue, 03 Nov 2026 16:48:11 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1xOQVx-000000047sj-2b1d;
+	Wed, 04 Nov 2026 02:14:13 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOHg3-00000003Cyi-2EaW
-	for linux-amlogic@lists.infradead.org;
-	Tue, 03 Nov 2026 16:48:09 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4a5b2be99a8so28530045e9.2
-        for <linux-amlogic@lists.infradead.org>; Tue, 03 Nov 2026 08:48:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1793724480; x=1794329280; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=0DHqxRU3I3QAylUw75qoIBcYNwXHNjO4FsY2C/ZCxGk=;
-        b=NkpRrorWl6WxFx7tRiYB7fZKMwKxF5XqZ8p6swpZHwMkZnjDrNC+d4+VUEKa/cMFlQ
-         OqBWjst1RnPpIPyh/ipcyujJGN6DDPoSWvHq5F/Pq5guL/MdpfN4IQmKPMAnXF5S6nQJ
-         5bGUESwKAi6MFOyxMMn457roczbucVbAdecHBap3SUdsgm7IFB16sqk/leD+vovHrm4R
-         zq/BS8cXwKOGSyWeOfDRBgHanNKdx1PUEDl61UaTnFEPmLRb0WEa+E0+esEJc5X2kbtn
-         AyRbcKSjKBkl5sVSQYpwFMbnSAlG/Lc82yNCGpFcQDpvPGJMGoviX7PcjOtWQR23e8To
-         THsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793724480; x=1794329280;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=0DHqxRU3I3QAylUw75qoIBcYNwXHNjO4FsY2C/ZCxGk=;
-        b=Ut1JcLHr9p2CccUrRWbJ4Y5JvtmEXSuMKQnYAuGookxGI79lR3TqtJICFqazCkAmZG
-         S1o3AWdT/w/JHd3wDqQDqKacmycHMkhdXEYBvqsakPbU5Oh6sSTC4L53YE6u6pchISm/
-         +b05rUC8BQeY7CrAfh04hLHsTgx/eorjJlJgCh1pg0CSIOtF4jNVn6uvMuG2PvDqUubB
-         LnjHha6rjT/l+f+CmS2AqrqQiGHawHcI9VSTA2EYcxL7n0Xxe+NbpX3B4YXcOsG3raEK
-         R10r+d1P22VYtq2sOp1xYFGxuZIiORzAE76f4DAjXrJxQ3xCGeJQ3GDP5J88rj3IeNK2
-         UrlQ==
-X-Forwarded-Encrypted: i=1; AKwUvBz0Q8fa8hXzPM0jFwzk4Z7cfkD4XI4aIS9sSYnqnWnojZDFN92ZCz2mlPzHTVJEAapVKs32kYC4OVLZKsUz@lists.infradead.org
-X-Gm-Message-State: APuU4Z9qevF2EK/xpZ/YTnIK6lm5PE07My1NrNn/H9//AOweHViY7iJH
-	G43nBxt8Azs76QAF7IisaCBStkpngm+7lW3EbeIKNT5KVSD4ZU2UMMHV
-X-Gm-Gg: AYBFou27sHVsFcgdIHZgoftLBQNtCssi3UYjrz6pi6Ee2JKhcpcHe4yJM6GE/eCyL/P
-	gtKnc8zPvT+rlwj2o4xFPRPettkJeCy30B/3PVTXrs0J6AMeBgia5/wR9UgGkUQD4Hyfk6B8Fsp
-	ylPN4p3TN92ZOKF/YaxWZCyDOF3e57IP2D2CHY1yyY8KORP2mKVzrUwNU0w0oOA0XzRNCsqcA4X
-	tMVZIkQsEwPmVyKVr656ESEw5IeNN5Jy+zK6camtuN3d3jWzyYRtgsDSQVG/rFVug5i4Vtqxm3M
-	HsJtl4I3aSmD5Zuy2JDuzbUL+TwuEF76d+FbltJ7bI3q5SURkegAc00LrdvC2Dwo6HOjVt/odfN
-	0r7maFNbu8mj4ROU08StBycKf3I20KiP4RyZhHLV0VsgbK355vO/WExFE+hTr7A3PvklTp+ApOD
-	km4w582HBnZiNzEHIlJUf6PervJLSNR7dfLyiZX/pen1XkSMHwE9zdSesXjTEOj3d2yqrocr1pK
-	ZcKMtl3kNcoBziAkjDp92Zwj/nk8VR4os5Cak2FAn/zWUgPJUA8/T8HbdPnIot8nVmTJ/WHVN0q
-	ebdUeYTKed6bZo1xs3+cs4gLnS/ZswwwL1AjRNE2aBrxWz7mEixJfGPjgo0f1fjCDiQ=
-X-Received: by 2002:a05:600c:8b85:b0:4a2:392:9de2 with SMTP id 5b1f17b1804b1-4ac1932b550mr276786925e9.28.1793724480320;
-        Tue, 03 Nov 2026 08:48:00 -0800 (PST)
-Received: from localhost.localdomain ([79.117.198.103])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4b2a555e59dsm79469835e9.0.2026.11.03.08.47.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Nov 2026 08:47:59 -0800 (PST)
-From: Jose Nieto <jnieto.alaber@gmail.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Jose Nieto <jnieto.alaber@gmail.com>
-Subject: [PATCH] arm64: dts: amlogic: khadas-vim3: add SPI NOR flash overlay
-Date: Tue,  3 Nov 2026 17:47:30 +0100
-Message-ID: <20261103164730.160593-1-jnieto.alaber@gmail.com>
-X-Mailer: git-send-email 2.47.3
+	id 1xOQVv-000000047sV-2bpp;
+	Wed, 04 Nov 2026 02:14:11 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 0370A42E81;
+	Wed,  4 Nov 2026 02:14:11 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1793758450;
+	b=aFNKdRUX2+JWSIZgrvzWn/cw2aFplahu5cvVHPy6UCoJuHwEV5vGZiJy7x5quLo494WP
+	 6LHHL2eytQ9MAWOFQY9XnadkaBuZj9TFkb6WCr9Hyc/xrc9XHL+ub1+HBRZ/8x7TKkFyI
+	 HzrGn+2kwRLwalswlgliirIfsFpxwEs6Zz8wHfaNyCD/t+XOkhuuS86obWAL/FQdwqjtG
+	 G8Z8OCWwmm1t+pdh44IOqSlvWp7zJNaflWCmbggjjliYSkWEjY+o2cWu0gduIzaDCKjhA
+	 lCa8p75QmRZ77yCmBm6foE98KmWnMLXp2rZUOsvRT8TfsNnnwZIMx0zrJHLrGy9uNgA==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1793758450;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=QuWnynJaFtZ4mUeHAMb8ZXbGT8gjmXFWO9hN7OPXEGM=;
+	b=YP3cQskzF694e/w5lVmfMMdnim+0c2o9GQ+G8JCXm4FazUhSnzDtnRAs5ICHCzmgG2cc
+	 NX7wnuj763UkSre32zlH60Mmi9ntr9X7VlIA9Z+Vki+VNiZd8mlURMHMhiNWXKaQa7qqx
+	 oehGKraWcbFgL5cvsSqzVgacTqUSZnrxRHYIzQrIaKgWLdp0e9+ykWBhQMpi98XGIeOcC
+	 /WjnP64Qr1EJeme8QGbWJnh50zNKqF8/BmL0W5xyytmBIP3iZg3Ay8wPQh2VG1/GpWgxV
+	 wQSafkV/3RS7MBXaM5WB9wNhou1se+PPo9FwjTJlcpFcISfM1HUoBBAxetfaxjIQagw==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 4D07D1F00919;
+	Wed,  4 Nov 2026 02:14:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1793758450;
+	bh=QuWnynJaFtZ4mUeHAMb8ZXbGT8gjmXFWO9hN7OPXEGM=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=Z9VAbBQKfPvU6iJQrlyB6F6w5GXNLz0eGsV78q2Avwaa8u/lWLDGL7eTGuKDPhp2K
+	 0OldadH4+sT874n2OP0UOLIxjQGh4PXAw3gW0p6w5MmPfEopZ0doDaq26xrxxNOHU+
+	 zWwY2YBeM5lNvQwrsgBnWNHr/Dg/edD75x8bJF6x46DALoud6P54iKAE8klgCAHzd1
+	 9fjv3u6y/NfoEvEDwGYodFlu7Em8urPS5LwBhiW2vD6WCB5UtIX2uKJwkz+KM5YbWj
+	 H/H/USBhktkaFMxjXnXJ5vh7ZxzT6LhrFu0zqP+CbFh3fFWFGWwQINTzxnU/S42fk+
+	 ffxGO2IfzeQ1w==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id A02FF46BB9;
+	Wed,  4 Nov 2026 02:14:09 +0000 (UTC)
+From: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
+Date: Wed, 04 Nov 2026 10:13:53 +0800
+Subject: [PATCH v2] clk: meson: Fix PLL enable timing
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261103_084803_585347_1EB6A379 
-X-CRM114-Status: GOOD (  13.27  )
-X-Spam-Score: -2.1 (--)
+Message-Id: <20261104-fix_enable_timing-v2-1-05cdaf34fcdb@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAOCU6moC/22NQQqDMBBFryKzbkqSioaueo8iEuMkDmgiiYQW8
+ e5Nhe7KrN7n/zc7JIyECe7VDhEzJQq+gLxUYCbtHTIaC4PkshFctszSq0evhxn7jRbyjqlaDla
+ reiwHZbdGLKXT+ewKT5S2EN/niyy+6c+m/tiyYIK13PKGo7lZqR96mYMjczVhge44jg9Nqm6Dt
+ AAAAA==
+X-Change-ID: 20261027-fix_enable_timing-842bfa84d4d4
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+ Brian Masney <bmasney+clk@redhat.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Chuan Liu <chuan.liu@amlogic.com>, Jian Hu <jian.hu@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1793758448; l=2881;
+ i=jian.hu@amlogic.com; s=20260415; h=from:subject:message-id;
+ bh=xxrXTMztdBF0a6VBQPK0bEnfAifBskZXSA2NITGHqh4=;
+ b=3C/aE4+3IjlZRhPCE2+cmWyBrKfwj3h7F6xGKTAv7WFzD7Xvq/R7XnrXwbaqnesEhZ/KTy9XC
+ HvDa3fB608+Bphq7/Q9ei3vd0wOxU7GPwFeplrgBqV81rLq7WR33XbQ
+X-Developer-Key: i=jian.hu@amlogic.com; a=ed25519;
+ pk=zHUE+rNtH9z+Sb8au1/elWknjFQmy5QDVkBoxleuOIA=
+X-Endpoint-Received: by B4 Relay for jian.hu@amlogic.com/20260415 with
+ auth_id=735
+X-Original-From: Jian Hu <jian.hu@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,83 +111,101 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: jian.hu@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The Khadas VIM3 has a 16 MiB SPI NOR flash (W25Q128) whose data lines are
-shared with the eMMC D4-D7 lines. Add an overlay that restricts the eMMC to
-4-bit mode and enables the SPI NOR controller, exposing the flash as an MTD
-device.
+From: Jian Hu <jian.hu@amlogic.com>
 
-The flash HOLD#/WP# lines are wired to the eMMC D3/D7 nets, so the
-nor_hold_wp_pins pinctrl group is intentionally not used.
+The hardware requires a 50us delay after setting the PLL enable
+bit to allow the PLL power-up sequence to complete.
 
-Signed-off-by: Jose Nieto <jnieto.alaber@gmail.com>
+Without this delay, GP0 and HIFI PLLs on Amlogic T7, SM1 and C3
+may fail to lock under stress testing.
+
+Add a 50us delay after enabling the PLL and another 50us delay
+after deasserting the PLL reset.
+
+Testing on GXL shows that the PLL works correctly without the
+additional delay and continues to lock successfully after the
+50us delay is added.
+
+On A1, remove the redundant 10us delay before enabling the
+self-adaption current module, as the new PLL enable delay already
+covers this timing requirement.
+
+Fixes: b6ec400aa153 ("clk: meson: introduce new pll power-on sequence for A1 SoC family")
+Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 ---
- arch/arm64/boot/dts/amlogic/Makefile          |  2 ++
- .../dts/amlogic/meson-khadas-vim3-spifc.dtso  | 24 +++++++++++++++++++
- 2 files changed, 26 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-khadas-vim3-spifc.dtso
+For example, enabling the GP0 PLL at 1512MHz may lose lock and
+result in an output I/O error:
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 57bc440fa55c..3714cbaaa03e 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -23,6 +23,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-bananapi-m2s.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3-spifc.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3-ts050.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-bananapi-cm4-cm4io.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-bananapi-cm4-mnt-reform2.dtb
-@@ -104,5 +105,6 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
- # Overlays
- meson-g12a-fbx8am-brcm-dtbs	:= meson-g12a-fbx8am.dtb meson-g12a-fbx8am-brcm.dtbo
- meson-g12a-fbx8am-realtek-dtbs	:= meson-g12a-fbx8am.dtb meson-g12a-fbx8am-realtek.dtbo
-+meson-g12b-a311d-khadas-vim3-spifc-dtbs := meson-g12b-a311d-khadas-vim3.dtb meson-khadas-vim3-spifc.dtbo
- meson-g12b-a311d-khadas-vim3-ts050-dtbs := meson-g12b-a311d-khadas-vim3.dtb meson-khadas-vim3-ts050.dtbo
- meson-sm1-khadas-vim3l-ts050-dtbs	:= meson-sm1-khadas-vim3l.dtb meson-khadas-vim3-ts050.dtbo
-diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3-spifc.dtso b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3-spifc.dtso
-new file mode 100644
-index 000000000000..c70780b11b9b
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3-spifc.dtso
-@@ -0,0 +1,24 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2026 Jose Nieto <jnieto.alaber@gmail.com>
-+ *
-+ * The Khadas VIM3 on-board SPI NOR flash shares its data lines with the
-+ * eMMC data lines 4-7. Restrict the eMMC to 4-bit mode to free D4-D7 and
-+ * enable the SPI NOR controller, exposing the flash as an MTD device.
-+ *
-+ * The flash HOLD#/WP# lines are wired to the eMMC D3/D7 nets, so the
-+ * nor_hold_wp_pins pinctrl group is intentionally not used.
-+ */
+echo 1512000000 > /sys/kernel/debug/clk/gp0_pll/clk_rate
+echo 1 > /sys/kernel/debug/clk/gp0_pll/clk_prepare_enable
+sh: write error: I/O error
+
+Tested on: T7, C3, S4, AXG, GXL, SM1 and A1.
+---
+Changes in v2:
+- Combine Chuan's patch to this patch.
+- Update the Fixes tag.
+- Move test details below the commit message.
+- Link to Chuan's patch: https://lore.kernel.org/all/20251031-optimize_pll_driver-v3-2-92f3b2f36a83@amlogic.com
+- Link to v1: https://lore.kernel.org/r/20261028-fix_enable_timing-v1-1-70f060ec3f2a@amlogic.com
+---
+ drivers/clk/meson/clk-pll.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+index 1ea6579a760f..477eb9958a8d 100644
+--- a/drivers/clk/meson/clk-pll.c
++++ b/drivers/clk/meson/clk-pll.c
+@@ -369,20 +369,25 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
+ 	/* Enable the pll */
+ 	meson_parm_write(clk->map, &pll->en, 1);
+ 
++	/* Wait for the PLL power-up sequence to complete */
++	udelay(50);
 +
-+/dts-v1/;
-+/plugin/;
-+
-+&sd_emmc_c {
-+	pinctrl-0 = <&emmc_ctrl_pins>, <&emmc_data_4b_pins>, <&emmc_ds_pins>;
-+	bus-width = <4>;
-+};
-+
-+&spifc {
-+	status = "okay";
-+};
-+
+ 	/* Take the pll out reset */
+-	if (MESON_PARM_APPLICABLE(&pll->rst))
++	if (MESON_PARM_APPLICABLE(&pll->rst)) {
+ 		meson_parm_write(clk->map, &pll->rst, 0);
++		/* Wait for the PLL loop to stabilize */
++		udelay(50);
++	}
+ 
+ 	/*
+ 	 * Compared with the previous SoCs, self-adaption current module
+ 	 * is newly added for A1, keep the new power-on sequence to enable the
+ 	 * PLL. The sequence is:
+-	 * 1. enable the pll, delay for 10us
++	 * 1. enable the pll, delay for 50us
+ 	 * 2. enable the pll self-adaption current module, delay for 40us
+ 	 * 3. enable the lock detect module
+ 	 */
+ 	if (MESON_PARM_APPLICABLE(&pll->current_en)) {
+-		udelay(10);
+ 		meson_parm_write(clk->map, &pll->current_en, 1);
+ 		udelay(40);
+ 	}
+
+---
+base-commit: 363f97a1ce635b86be7fd263d56a040fbd87bdbb
+change-id: 20261027-fix_enable_timing-842bfa84d4d4
+
+Best regards,
 -- 
-2.47.3
+Jian Hu <jian.hu@amlogic.com>
+
 
 
 _______________________________________________
