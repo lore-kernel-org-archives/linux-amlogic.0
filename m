@@ -2,58 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 589F0606A329
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Nov 2026 16:41:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 090D3606A333
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Nov 2026 18:38:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mFJU2s23;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=K+q3ivEn
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=m2Z1jy6P;
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=iav.lv header.i=@iav.lv header.a=rsa-sha256 header.s=zoho header.b=XwsE/OKh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:References:
-	In-Reply-To:Cc:To:Subject:From:Message-ID:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=fKnL2rou4CbSwseU/fI3qWIFZwCmvh+nKKmhCJDGGWk=; b=mFJU2s23e2tcZW0XipjB6uWsJE
-	NKrIek0tWwRajLy9byyxUCEKlz494uve+vWtA/3P6kiYI9kBbdUgyuYOeA+XuwnZUziOFAQoyyuQj
-	sCo6XwN7aozq/12/n8kjaX5x3eBoDCNwzOVXmC8fbTUPbxLsYb4NcSmerUfISMRGTag2aRKqvIbaE
-	6EZpF++uhaXn1ZXI7Y0GikQKFWRBO0KzVXrMDid+SYohmJAFKwFXrW2Eefjghyi+ng4UqF0hXAGsE
-	H/SBxghmgfGOY8bhYhnmAsOpxy8F7AaUY3hZ8W/ktSBKiDusWhfDNnC72M/HmC3uhAqIjtSnY5k4r
-	VTLGDfBw==;
+	bh=pTUMDOo6GSLUHp0rvgfoQGv/iPKp3kTOv0z7Kwh1Vjw=; b=m2Z1jy6PTrUDYHQeF8AC0GA8Pf
+	h2ZiMnrF2afUmwJOLpH9vrC/2+33oQiOpvIJ15hg+EawdHQQYV/m3SUi2Lur2Tu/sLe5WRHQ6Dqtf
+	ipjmSoAoLlu4z1Rp+5mjDgEPmTa9SfzdlYAZfHaHrCj5qooxjEWd7jYASz26Dt7rXhilgk/QLt2xf
+	jMSpRS5ARuOdW8mkCpPicVT55h1KenLYXqFOVoBwVaoKAEe983uoHlNq71X0UBJIFB8lnPY/pCuVj
+	xFv1cFcqyYEUOa1ffdlqqZshHJQY4+V4XSG4XTB8ahHJ24RGs+Ee1RDncMmHB30/sshHbbd3WxISz
+	YJS5rrfQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOe3W-000000061iW-0Flc;
-	Wed, 04 Nov 2026 16:41:46 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xOfsG-00000006Q65-3N8m;
+	Wed, 04 Nov 2026 18:38:16 +0000
+Received: from sender-op-o15.zoho.eu ([136.143.169.15])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOe3U-000000061iF-2sh1
-	for linux-amlogic@lists.infradead.org;
-	Wed, 04 Nov 2026 16:41:44 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id A6CD060546;
-	Wed,  4 Nov 2026 16:41:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1199D1F000C1;
-	Wed,  4 Nov 2026 16:41:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793810503;
-	bh=rYvC6+49TX167R0ReJbHBPyR2n96oGtOYT7s7nqBIX8=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=K+q3ivEnCbKwTNfzgmQETIF7/vpJrZ1/8wtp5IG5UeyYq00ZZNXYWtGrW5CJTBU3C
-	 uA+Lkbxlut//MkKPBeQiIDX6z6sJx+OS3h/fzLDtbnUFyMkqFpvXuhAskz+jVInahv
-	 0cP95CCEUYF6MC1OHivmlypmnJGKHo7e7vPf6vj+SeqWuNRwiQEGeWnHq8R8D0b93o
-	 mPnoGoSscUt97uj5U3zqqgzfNDudMoZNFM3ho/UjTwjnU42lJC3uDFSis+lHxmfmIg
-	 G6bfH32i7P7wtEm0HYaW4uGqK2xZPoq+cg/9eQdLtugXxmGrhoAnScjDKyVygjqup5
-	 /5fRmMbjCMW1Q==
-Message-ID: <sashiko-outbox-197643@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 2/7] dt-bindings: net: amlogic,meson-dwmac: add
- amlogic,t7-dwmac
-To: "Lucas Tanure" <tanure@linux.com>
-Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, robh@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org
-In-Reply-To: <20261103163715.385394-3-tanure@linux.com>
-References: <20261103163715.385394-1-tanure@linux.com>
- <20261103163715.385394-3-tanure@linux.com>
-Date: Wed, 04 Nov 2026 16:41:42 +0000
+	id 1xOfsD-00000006Q3i-1kut;
+	Wed, 04 Nov 2026 18:38:15 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1793817483; cv=none; 
+	d=zohomail.eu; s=zohoarc; 
+	b=jOiOl+0CE+ACVKVx2qnxTLmr810zE/CRa3KOwEr2zNkoJc25NbMCCdee3UXcgi4SvHxIB9BtXeTa0IVCXrN70PWks0O6lrv3nUDrmsbs7zmRhW0uVtNFMd0VTFsWtSr8+/uuFcaXlBFobGvMea9hXuGXpJvGRq1hcefv3O2S7cE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
+	t=1793817483; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=+G4rf1hzJmKdD7EoOaWqne7TUKWl699YR7p6ZHK04Pg=; 
+	b=KMm2Qa0cQcm1Y27OQJWy4TNMM30UFPAzO1jo5bniPHxWFY0Eda/ucpPhYTde4l6Pg2NFIbfnvQFVZX1Ll+NpPo+lgbZt1jPYyQdzP1mocMFucUS2ZDb6+KaOPLwNzr7Ds4lccHlD684uAul0XSMWEoK4teQbqi8DSwUGyg4TaIs=
+ARC-Authentication-Results: i=1; mx.zohomail.eu;
+	dkim=pass  header.i=iav.lv;
+	spf=pass  smtp.mailfrom=iav@iav.lv;
+	dmarc=pass header.from=<iav@iav.lv>
+DKIM-Signature: a=rsa-sha256; b=XwsE/OKhgSV8BT27J+m5RtLTpGlmD2r5OAJQBoml3G3mJAKrH4UlhmUacSyvaKRjiVf6jv2WIYpVW3Zf1hnYQuMIP8iVKsbm/g6dLhyYNPkj9JoZW4z3McwqHJCweLV6luJLFyFNmNcj9d8s1sIjsmdVL0IaFCIvnJVaF1p0uAk=; c=relaxed/relaxed; s=zoho; d=iav.lv; v=1; bh=+G4rf1hzJmKdD7EoOaWqne7TUKWl699YR7p6ZHK04Pg=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
+Received: by smtp.zoho.eu with SMTPS id 1793817481738396.6696032790776;
+	Wed, 4 Nov 2026 19:38:01 +0100 (CET)
+Date: Wed, 04 Nov 2026 20:38:00 +0200
+From: Igor Velkov <iav@iav.lv>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: iav@iav.lv, John Stultz <jstultz@google.com>, Thomas Gleixner <tglx@kernel.org>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Miroslav Lichvar <mlichvar@redhat.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC 0/3] alarmtimer: Choose the wakeup RTC per sleep state from the device tree
+Message-ID: <20261104-alarmtimer-rtc-neil-reply-1@iav.lv>
+In-Reply-To: <399668f0-e97a-438e-b761-1ea6c18d904b@linaro.org>
+References: <20261104-b4-alarmtimer-rtc-priority-v1-0-e996681b8086@iav.lv>
+ <399668f0-e97a-438e-b761-1ea6c18d904b@linaro.org>
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261104_103813_736143_2AFC9E9B 
+X-CRM114-Status: UNSURE (   9.53  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,104 +75,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MSBwb3RlbnRpYWwgaXNzdWUocykgdG8gY29uc2lkZXI6Ci0gW0xvd10gZHQtYmluZGluZ3M6IG5l
-dDogYW1sb2dpYyxtZXNvbi1kd21hYzogdW53aWVsZHkgcGVyLWNvbXBhdGlibGUgY29uZGl0aW9u
-YWxzCi0tCgpjb21taXQgYmJkMDEyNTk1YWM2NDcwYjI5NjAxNjRjOTE0YzY4ZTgwMWVhNTczOApB
-dXRob3I6IEx1Y2FzIFRhbnVyZSA8dGFudXJlQGxpbnV4LmNvbT4KCmR0LWJpbmRpbmdzOiBuZXQ6
-IGFtbG9naWMsbWVzb24tZHdtYWM6IGFkZCBhbWxvZ2ljLHQ3LWR3bWFjCgpUaGlzIGNvbW1pdCBh
-ZGRzIHRoZSBhbWxvZ2ljLHQ3LWR3bWFjIGNvbXBhdGlibGUgc3RyaW5nIHRvIHRoZSBBbWxvZ2lj
-IE1lc29uCkRXTUFDIGRldmljZSB0cmVlIGJpbmRpbmcgc2NoZW1hLCBzcGVjaWZ5aW5nIGl0cyBm
-aXZlLWNsb2NrIGxpc3QgYW5kCnJlc3RyaWN0aW5nIGl0cyBkZWxheSBwcm9wZXJ0aWVzIHRvIHJ4
-LWludGVybmFsLWRlbGF5LXBzLgoKPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
-cmVlL2JpbmRpbmdzL25ldC9hbWxvZ2ljLG1lc29uLWR3bWFjLnlhbWwgYi9Eb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvbmV0L2FtbG9naWMsbWVzb24tZHdtYWMueWFtbAo+IGluZGV4
-IGU3NjljOWJiNzBkODQuLjZkZTAxM2UzZThmNjMgMTAwNjQ0Cj4gLS0tIGEvRG9jdW1lbnRhdGlv
-bi9kZXZpY2V0cmVlL2JpbmRpbmdzL25ldC9hbWxvZ2ljLG1lc29uLWR3bWFjLnlhbWwKPiArKysg
-Yi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0L2FtbG9naWMsbWVzb24tZHdt
-YWMueWFtbAoKWyAuLi4gXQoKPiBAQCAtNTcsNiArNTgsNTkgQEAgYWxsT2Y6Cj4gICAgICAgICAg
-ICAgIC0gY29uc3Q6IGNsa2luMQo+ICAgICAgICAgICAgICAtIGNvbnN0OiB0aW1pbmctYWRqdXN0
-bWVudAo+ICAKPiArICAtIGlmOgo+ICsgICAgICBwcm9wZXJ0aWVzOgo+ICsgICAgICAgIGNvbXBh
-dGlibGU6Cj4gKyAgICAgICAgICBjb250YWluczoKPiArICAgICAgICAgICAgY29uc3Q6IGFtbG9n
-aWMsdDctZHdtYWMKPiArICAgIHRoZW46Cj4gKyAgICAgIHByb3BlcnRpZXM6Cj4gKyAgICAgICAg
-Y2xvY2tzOgo+ICsgICAgICAgICAgaXRlbXM6Cj4gKyAgICAgICAgICAgIC0gZGVzY3JpcHRpb246
-IEdNQUMgbWFpbiBjbG9jawo+ICsgICAgICAgICAgICAtIGRlc2NyaXB0aW9uOiBGaXJzdCBwYXJl
-bnQgY2xvY2sgb2YgdGhlIGludGVybmFsIG11eAo+ICsgICAgICAgICAgICAtIGRlc2NyaXB0aW9u
-OiBTZWNvbmQgcGFyZW50IGNsb2NrIG9mIHRoZSBpbnRlcm5hbCBtdXgKPiArICAgICAgICAgICAg
-LSBkZXNjcmlwdGlvbjoKPiArICAgICAgICAgICAgICAgIGNsb2NrIG9mIHRoZSBwaXBlbGluZSBz
-dGFnZSBpbnNlcnRlZCBpbiB0aGUgYnVzIHBhdGggYmV0d2Vlbgo+ICsgICAgICAgICAgICAgICAg
-dGhlIGNvbnRyb2xsZXIgYW5kIHRoZSBEUkFNLiBXaXRob3V0IGl0LCB0aGUgY29udHJvbGxlciBj
-YW5ub3QKPiArICAgICAgICAgICAgICAgIGNvbXBsZXRlIERNQSB0cmFuc2ZlcnMuCj4gKyAgICAg
-ICAgICAgIC0gZGVzY3JpcHRpb246Cj4gKyAgICAgICAgICAgICAgICBjbG9jayBvZiB0aGUgcmVn
-aXN0ZXIgYmxvY2sgaG9sZGluZyBQUkdfRVRIMCBhbmQgUFJHX0VUSDEuCj4gKyAgICAgICAgICAg
-ICAgICBXaXRob3V0IGl0LCB0aGUgYmxvY2sgcmVhZHMgYXMgemVybyBhbmQgaWdub3JlcyB3cml0
-ZXMuCj4gKwo+ICsgICAgICAgIGNsb2NrLW5hbWVzOgo+ICsgICAgICAgICAgaXRlbXM6Cj4gKyAg
-ICAgICAgICAgIC0gY29uc3Q6IHN0bW1hY2V0aAo+ICsgICAgICAgICAgICAtIGNvbnN0OiBjbGtp
-bjAKPiArICAgICAgICAgICAgLSBjb25zdDogY2xraW4xCj4gKyAgICAgICAgICAgIC0gY29uc3Q6
-IHBpcGVsaW5lCj4gKyAgICAgICAgICAgIC0gY29uc3Q6IHBjbGsKPiArCj4gKyAgICAgICAgIyBU
-aGUgUEhZIGFkZHMgdGhlIDJucyBSR01JSSBkZWxheXMsIHNlZSBldGhlcm5ldC1jb250cm9sbGVy
-LnlhbWwuCj4gKyAgICAgICAgIyBUaGUgUlggZGVsYXkgbGluZSBvZiB0aGlzIGdsdWUgaXMgZmlu
-ZSB0dW5pbmcgaW4gMjAwcHMgc3RlcHMsCj4gKyAgICAgICAgIyBhZGRlZCBvbiB0b3Agb2Ygd2hh
-dCBwaHktbW9kZSBkZXNjcmliZXMuIFRoZSBUWCBzaWRlIGhhcyBubyBmaW5lCj4gKyAgICAgICAg
-IyB0dW5pbmc6IGl0cyBvbmx5IHN0ZXAgaXMgYSBxdWFydGVyIG9mIHRoZSBjbG9jayBwZXJpb2Qs
-IHRoZSBmdWxsCj4gKyAgICAgICAgIyAybnMgYXQgMUdiaXQvcywgc28gdGhlIFRYIHByb3BlcnR5
-IGlzIG5vdCBhY2NlcHRlZC4KPiArICAgICAgICB0eC1pbnRlcm5hbC1kZWxheS1wczogZmFsc2UK
-PiArCj4gKyAgICAgICAgIyBEZXByZWNhdGVkOiBuZXcgU29DcyB1c2UgdGhlIHN0YW5kYXJkICot
-aW50ZXJuYWwtZGVsYXktcHMKPiArICAgICAgICAjIHByb3BlcnRpZXMgaW5zdGVhZC4KPiArICAg
-ICAgICBhbWxvZ2ljLHR4LWRlbGF5LW5zOiBmYWxzZQo+ICsgICAgICAgIGFtbG9naWMscngtZGVs
-YXktbnM6IGZhbHNlCj4gKwo+ICsgICMgRGVsYXkgZGVmaW5pdGlvbnMgZm9yIE1lc29uOGIgYW5k
-IG5ld2VyCj4gKyAgLSBpZjoKPiArICAgICAgcHJvcGVydGllczoKPiArICAgICAgICBjb21wYXRp
-YmxlOgo+ICsgICAgICAgICAgY29udGFpbnM6Cj4gKyAgICAgICAgICAgIGVudW06Cj4gKyAgICAg
-ICAgICAgICAgLSBhbWxvZ2ljLG1lc29uOGItZHdtYWMKPiArICAgICAgICAgICAgICAtIGFtbG9n
-aWMsbWVzb244bTItZHdtYWMKPiArICAgICAgICAgICAgICAtIGFtbG9naWMsbWVzb24tZ3hiYi1k
-d21hYwo+ICsgICAgICAgICAgICAgIC0gYW1sb2dpYyxtZXNvbi1heGctZHdtYWMKPiArICAgICAg
-ICAgICAgICAtIGFtbG9naWMsbWVzb24tZzEyYS1kd21hYwo+ICsgICAgdGhlbjoKPiArICAgICAg
-cHJvcGVydGllczoKPiAgICAgICAgICBhbWxvZ2ljLHR4LWRlbGF5LW5zOgo+ICAgICAgICAgICAg
-ZW51bTogWzAsIDIsIDQsIDZdCj4gICAgICAgICAgICBkZWZhdWx0OiAyCgpbU2V2ZXJpdHk6IExv
-d10KVGhpcyBpc24ndCBhIHJ1bnRpbWUgYnVnLCBidXQgdGhlIHBlci1jb21wYXRpYmxlIGlmLXRo
-ZW4gY29uZGl0aW9uYWxzIHVuZGVyCmFsbE9mIGluIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
-aW5kaW5ncy9uZXQvYW1sb2dpYyxtZXNvbi1kd21hYy55YW1sIGFyZQpnZXR0aW5nIHF1aXRlIHVu
-d2llbGR5IHdpdGggdGhlIGFkZGl0aW9uIG9mIGFtbG9naWMsdDctZHdtYWMuCgpUaGUgVDcgdmFy
-aWFudCBkaWZmZXJzIHN1YnN0YW50aWFsbHkgZnJvbSB0aGUgb2xkZXIgdmFyaWFudHMgaW4gdGhp
-cyBiaW5kaW5nOgppdCB1c2VzIHNucHMsZHdtYWMtNS4xMGEgaW5zdGVhZCBvZiBzbnBzLGR3bWFj
-LTMuNzBhLCBoYXMgYSBkaXN0aW5jdCBmaXZlLWNsb2NrCmxpc3QgKHN0bW1hY2V0aCwgY2xraW4w
-LCBjbGtpbjEsIHBpcGVsaW5lLCBwY2xrIHdpdGhvdXQgdGltaW5nLWFkanVzdG1lbnQpLCBhbmQK
-ZGlzYWxsb3dzIHR4LWludGVybmFsLWRlbGF5LXBzIGFzIHdlbGwgYXMgYW1sb2dpYyx0eC1kZWxh
-eS1ucyBhbmQKYW1sb2dpYyxyeC1kZWxheS1ucy4KCkluc2VydGluZyB0aGUgYW1sb2dpYyx0Ny1k
-d21hYyBibG9jayBpbnRvIHRoZSBtaWRkbGUgb2YgYWxsT2YgYWxzbyBzcGxpdHMgdGhlCmV4aXN0
-aW5nIGNvbmRpdGlvbmFsIGZvciB0aGUgZml2ZSBNZXNvbjhiLXRocm91Z2gtRzEyQSBjb21wYXRp
-YmxlcyBpbnRvIHR3bwpzZXBhcmF0ZSBpZi10aGVuIGJsb2NrcyB3aXRoIGlkZW50aWNhbCBlbnVt
-IGxpc3RzOgoKICAtIGlmOgogICAgICBwcm9wZXJ0aWVzOgogICAgICAgIGNvbXBhdGlibGU6CiAg
-ICAgICAgICBjb250YWluczoKICAgICAgICAgICAgZW51bToKICAgICAgICAgICAgICAtIGFtbG9n
-aWMsbWVzb244Yi1kd21hYwogICAgICAgICAgICAgIC0gYW1sb2dpYyxtZXNvbjhtMi1kd21hYwog
-ICAgICAgICAgICAgIC0gYW1sb2dpYyxtZXNvbi1neGJiLWR3bWFjCiAgICAgICAgICAgICAgLSBh
-bWxvZ2ljLG1lc29uLWF4Zy1kd21hYwogICAgICAgICAgICAgIC0gYW1sb2dpYyxtZXNvbi1nMTJh
-LWR3bWFjCgpGdXJ0aGVybW9yZSwgYmVjYXVzZSBhbWxvZ2ljLHR4LWRlbGF5LW5zIGFuZCBhbWxv
-Z2ljLHJ4LWRlbGF5LW5zIGFyZSBvbmx5CmRlZmluZWQgaW5zaWRlIHRoYXQgc2Vjb25kIE1lc29u
-OGItdGhyb3VnaC1HMTJBIGNvbmRpdGlvbmFsIGFuZCBub3QgaW4gdGhlCnRvcC1sZXZlbCBwcm9w
-ZXJ0aWVzIGJsb2NrICh3aXRoIHVuZXZhbHVhdGVkUHJvcGVydGllczogZmFsc2UgYXQgdGhlIGJv
-dHRvbSBvZgp0aGUgc2NoZW1hKSwgc2V0dGluZyB0aGVtIHRvIGZhbHNlIGluIHRoZSBhbWxvZ2lj
-LHQ3LWR3bWFjIGJsb2NrIGlzIHJlZHVuZGFudCwKd2hpbGUgbGVhdmluZyByeC1pbnRlcm5hbC1k
-ZWxheS1wczogZGVmYXVsdDogMCBpbnNpZGUgdGhlIE1lc29uOGItdGhyb3VnaC1HMTJBCmJsb2Nr
-IG9taXRzIHRoYXQgZGVmYXVsdCBmb3IgYW1sb2dpYyx0Ny1kd21hYy4KCldvdWxkIGl0IGJlIGNs
-ZWFuZXIgdG8gc3BsaXQgYW1sb2dpYyx0Ny1kd21hYyBpbnRvIGEgc2VwYXJhdGUgYmluZGluZyBz
-Y2hlbWEKZG9jdW1lbnQgcmF0aGVyIHRoYW4gYWRkaW5nIG1vcmUgcGVyLWNvbXBhdGlibGUgY29u
-ZGl0aW9uYWxzIHRvCmFtbG9naWMsbWVzb24tZHdtYWMueWFtbD8KCi0tIApTYXNoaWtvIEFJIHJl
-dmlldyDCtyBodHRwczovL3Nhc2hpa28uZGV2LyMvcGF0Y2hzZXQvMjAyNjExMDMxNjM3MTUuMzg1
-Mzk0LTEtdGFudXJlQGxpbnV4LmNvbT9wYXJ0PTIKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFt
-bG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On 11/4/26, Neil Armstrong wrote:
+> This sounds bulky, perhaps it would be much simpler if we just added
+> all the available RTCs which has RTC_FEATURE_ALARM and can wakeup ?
+>
+> Just switch from 1 single to multiple RTCs in a linked list and you're
+> done, no DT & bindings changes.
+
+A list it is, and v2 drops linux,alarmtimer-priority.
+
+Arming every RTC makes the coarsest one fire first: pcf8563 has no
+alarm seconds, so its alarm comes up to 59 s early, and an RTC with
+alarm_offset_max wakes earlier still. The board wakes before the timer
+expires, and the next alarm may come seconds later: while it is still
+resuming, which takes seconds with disks and PCIe, or right after it
+is suspended again. Drivers then go through suspend and resume at
+short intervals. Arming one RTC per sleep state avoids that, and which
+RTC wakes from which state is board knowledge, so v2 keeps
+linux,wakeup-states.
+
+--
+Igor Velkov
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
