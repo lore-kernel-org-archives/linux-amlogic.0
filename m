@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 696C4606CE90
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2026 11:48:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD5DC606CEA4
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2026 11:48:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sSTEvoMy;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=TfzyPtUu
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=e1PAWP+H;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=xudMFcQn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -14,41 +14,41 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Cc:To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=6ZQvMa+uBsuQg2bImofCA8rBeDCQcwcTC9k5yS1cxBE=; b=sSTEvoMy9t0ivj5SK1rvNT04U/
-	B/0kPhAQY3w0C8KooQ4DGmO3728JFB6wq/g6ajV5LN1ySD6Re6RFpaPQTOCfu3WsyxdZeXbaYqy5F
-	NYtbbx3P3Z9gGGTVj1FYaLB9AOR57L/6VNTUZw9bpIZ9t9VeWEVp/U7UsHzln8AOofdbjxJBRCejc
-	zL6GJL2eY2aHSp9hZlT3wxQ7UHJrahQ7V+EHfY4owqsry76p7J1byIBHpai05OnOU4Ee5AfwpLov8
-	N3xpOU5Rhz3lQeIO/QCcG3FfhdsZ+uWUlgkl3FM0UEPPTEXas+qxJou76PkZm32dgfNk0g3+nKwJA
-	aEwxBuUg==;
+	bh=uAw2VPPGM6OHivN2aK63FTe2NK2YVIIk1kwCbCReBhY=; b=e1PAWP+H0cDu9Yh0hVeazRM1Ap
+	HGuwUj1RbJ97tVBNH+djqsqr7q68Lj0kQUsTK+fcKL35UkhhyTVig62bp6dx4B9gjmeZdNcLDxJT7
+	6iYP3x9YO+yJcIEaBZKkmVnAqj+qQl3poSu349iULFccl523csBCgBprwYBH3Pk1mqX6yAopdYtbu
+	EWn1hrhkvc3HhEpdQPnveLJ7ivfZFmT0KWvP/fKioJ/UyWzvKgjxCE7Ae47f8aKx4X8gNogeQNFA2
+	fUhlRy8X7eeTh8Yf7/uBV/YKaHYnTwlwzksi2pjMpc/cuuS7RgVBnvLml8saVRU1z+Xr8ouHjSSb3
+	JfUwfroA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOvxF-00000008l2k-0QqS;
-	Thu, 05 Nov 2026 11:48:29 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+	id 1xOvxK-00000008l6l-1cPX;
+	Thu, 05 Nov 2026 11:48:34 +0000
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOvx8-00000008kzs-2xxv;
-	Thu, 05 Nov 2026 11:48:28 +0000
+	id 1xOvxG-00000008l2P-0WDY;
+	Thu, 05 Nov 2026 11:48:33 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id F300C4E407D8;
-	Thu,  5 Nov 2026 11:48:20 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id EBE15C6915A;
+	Thu,  5 Nov 2026 11:48:26 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id BDEEB5FF85;
-	Thu,  5 Nov 2026 11:48:20 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8EEB61032923C;
-	Thu,  5 Nov 2026 12:48:07 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id BCE275FF85;
+	Thu,  5 Nov 2026 11:48:27 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B78AF10328CE3;
+	Thu,  5 Nov 2026 12:48:18 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1793879293; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1793879304; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=XUzqzsKgcyoL6M8PVuZWS1pIRiVak4HGA1enwxpKFgU=;
-	b=TfzyPtUunkXTXfMbxVM6GSrt3bgzxOaRd+9ROUgEN/9PFfQ/lJQvYeQ0HNnrj0uOEs7h38
-	YAMWsq/K+cBpYFLjPPk6S0iqU6GRURwRoL9hjfGRk4mj8XswxSkTwj/bDkQpBgfKSdAwj/
-	30FE8aFQUxhL3grGC4PaVGnZXEUgCf6BKafXeL0l7oo0cWdPeFfjlYVW9bEqJxeVoQTjhh
-	mG2qG9DEKkobPViVI7zvbc18P0FJ8yHIARYYiz5Z9NP4slBl11/7xFmck16Ntd+1lRrMR1
-	eUotg+NbT9ojrx7E1oxrESA07Er+/iip9o9F+4AnJT03rL1lcyvLqeaWatypYQ==
+	bh=aCE1gdqZG0gj8sGUQxXy0HGUs7pUtWJaz5F8kcOEKQc=;
+	b=xudMFcQnUyvhlTEFR+H0l8xy1hxLPwGa5as2O9dl+7nUdaCk3qObAKF4n70YuGyTV1v/T0
+	kWZdpoV6uG4iN3nkON4O0xweTrkdE/UcPffku4JOcAfvcXUs6Gr1+umlGMQpO8qskEBHoB
+	nUIqUMHJs9XrGZ/sTwbPvji2jRPmv9ny9hDt7TLuaT8VFscVzM4DsXSrMLolw1QF5CBFev
+	UkdbKUsE8B59CwR1BrjUZh1yFnFBfQzlTmjSXOlh1HpBy4xqVlmDRoFjhwD4vMxSRQxsCj
+	hvr1FbfRfh46jfWflpl1l0dCzESRAlycFTxEvap1riXMqvltxt3Z6ljJ9bB7NQ==
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v8 4/9] drm/bridge: pass extra events to the HPD
- callback
+Subject: Re: [PATCH v8 5/9] drm/bridge: aux-hpd: let drivers pass IRQ_HPD
+ events
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
 To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -80,19 +80,17 @@ Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, 
- Francesco Dolcini <francesco.dolcini@toradex.com>
-In-Reply-To: <20261024-hpd-irq-events-v8-4-6ee949e7a384@oss.qualcomm.com>
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
+In-Reply-To: <20261024-hpd-irq-events-v8-5-6ee949e7a384@oss.qualcomm.com>
 References: <20261024-hpd-irq-events-v8-0-6ee949e7a384@oss.qualcomm.com>
- <20261024-hpd-irq-events-v8-4-6ee949e7a384@oss.qualcomm.com>
+ <20261024-hpd-irq-events-v8-5-6ee949e7a384@oss.qualcomm.com>
 Date: Thu, 05 Nov 2026 12:47:24 +0100
-Message-Id: <179387924494.1025980.10089938981667489796.b4-review@b4>
+Message-Id: <179387924494.1025980.3024349339803589757.b4-review@b4>
 X-Mailer: b4 0.16.0
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261105_034822_910770_5447AD39 
-X-CRM114-Status: UNSURE (   9.94  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261105_034830_409075_820D37EC 
+X-CRM114-Status: GOOD (  12.50  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -113,17 +111,22 @@ X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, 24 Oct 2026 03:35:20 +0300, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> wrote:
 > The DisplayPort standard defines a special kind of HPD events called
 > IRQ_HPD. These events are used to notify DP Source about the events on
 > the Sink side.
-> 
-> Bridge drivers report these events through the
-> drm_bridge_hpd_notify_extra(). Pass down the extra status to the HPD
-> callback, specified during the drm_bridge_hpd_enable(), letting
-> underlying drivers (e.g. drm_bridge_connector) to receive these events.
-> 
-> [...]
+>
+> Let users of aux-hpd, the UCSI and PMIC GLINK drivers pass the IRQ_HPD
+> events to the DisplayPort drivers.
+>
+> The drm_aux_hpd_bridge_notify() is kept to ease merging of the series,
+> preventing extra cross-tree merges. It will be removed once all
+> drivers are converted. The drm_bridge_hpd_notify() function is kept for
+> the drivers which only care about the connector status and will always
+> pass DRM_CONNECTOR_NO_EXTRA_STATUS as the extra status.
+
+Do you have a plan to later convert all drm_bridge_hpd_notify() to the new
+_extra() variant, then remove drm_bridge_hpd_notify() and eventually rename
+drm_bridge_hpd_notify_extra() to drm_bridge_hpd_notify()?
 
 Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
