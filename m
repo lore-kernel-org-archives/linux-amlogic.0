@@ -2,89 +2,99 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEB16606A329
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2026 09:15:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5464606EE95
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2026 10:03:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HOOboCMy;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bFAS48f0
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OmMt1Za3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=MlgP9hH6C1e1YsfUOeWxTT46UBmoB1O5BQkNRcCuoko=; b=HOOboCMyW8eUrCkOYGWR8rD7E6
-	B3lXDhiurFC5foTKhkHXpXtgTe24qjoZJS8Fkt8x5jOC/H0lo/e1oz1vsBdjezEKyUlyW3Xft5+8m
-	yNOw4gpoFB8SGg6ZFVGo/ViIu7BYx3SA48/+e/bJ5IxVNXa+cF0Y4U+wkMnW9OjQR7CAhfBMkKcYA
-	kVnozLESFuVy6puEqcWDj5NIs2D3My/F0br8XZDaSXoZ1cIIJqmBYpp3nARhUSemMm9oteL0FrCf5
-	vWWVaFFpkntXghuOZj3ZQ8dSMxdJloCkm6JNTdEfTq6xrR52YCwtNW94NWUkb6+13wA3IohgPbfDg
-	YVfAxq2Q==;
+	bh=CFqK9gLP3K55waQ0HnR3WSq+SdOlnhUcr5KnBkfdhuI=; b=OmMt1Za3CLGAOCNhbtv1gfyFL0
+	cFF3xx4DCgD12zDzB0BF/7e3xLa6o8RWkGdyePW1WSONOqHy278ec43J+oqAltKGSAI4HrjxMnlRw
+	P0TrhYgbwhIb2G402AQiopXL00ogTfhwDZzHARAkM2Ly4OFk1o78yxI9c0HrhXUrXgKezoHRXnoqS
+	zW1CuFrl8k5M3mrR1grbDLN1RWAJxJl/PX2VF1zB5d5i5gFlUQh3gUDdyfRhmLJ9N3oP/Sdg0NJxN
+	w6u82Ai1CDGG+FS58Fsr/bZhIGzzPy+rhYJGs4DXZoPtiYug4nu+YhYFeLwRnuoIs30rzBLklpazP
+	dX60IrUg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOtYx-00000008Gky-3x4W;
-	Thu, 05 Nov 2026 09:15:15 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xOuJh-00000008OF5-1cBh;
+	Thu, 05 Nov 2026 10:03:33 +0000
+Received: from mail-wm1-f53.google.com ([209.85.128.53])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOtYv-00000008Gkn-0ArO
+	id 1xOuJf-00000008OBQ-1EV5
 	for linux-amlogic@lists.infradead.org;
-	Thu, 05 Nov 2026 09:15:13 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 30E8860F3E;
-	Thu,  5 Nov 2026 09:15:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36B561F000C1;
-	Thu,  5 Nov 2026 09:15:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793870111;
-	bh=yuu8MRbvZ8Q99gVGDEWGPtvGQgcdEiYL3ohtAsA9Mfg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=bFAS48f0dLcspAEXkjkArw9f5g1sLZat7q01f+HKggEbmSs8nuly01Er89M9cFC+E
-	 aJelUDSseJymE+2CsLiDv70w3W0f6o/p8FxgDHcsOPwgv1/JMp5POhaS6WYnvYb7K8
-	 zUzkNI/hkDRyloSNnZbNr8XotLbG+h1F+jOL0Hkb0Avr9U7fYBRpfR9C0mcxiQBR3s
-	 vMTD9J5x5SQw0X/qL4Os/hOqj2LHOa1MTSUUKJIb4NDus9wXA/2kpJ9BHnn9SLC4gw
-	 1auncQlq+pWnfmu6Sf7Gd8Hf0QutCtTy+KqQdynzeHMD3cDRsYlcu6hbTs5fM0MRzR
-	 2QGNBnbRrZdUQ==
-Date: Thu, 5 Nov 2026 10:15:08 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org, 
-	Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>, 
-	amd-gfx@lists.freedesktop.org, Russell King <linux@armlinux.org.uk>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Inki Dae <inki.dae@samsung.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Kyungmin Park <kyungmin.park@samsung.com>, 
-	Peter Griffin <peter.griffin@linaro.org>, Seung-Woo Kim <sw0312.kim@samsung.com>, 
-	linux-samsung-soc@vger.kernel.org, Alison Wang <alison.wang@nxp.com>, 
-	Stefan Agner <stefan@agner.ch>, Huacai Chen <chenhuacai@kernel.org>, 
-	Icenowy Zheng <zhengxingda@iscas.ac.cn>, Jianmin Lv <lvjianmin@loongson.cn>, 
-	Mingcong Bai <jeffbai@aosc.io>, Qianhai Wu <wuqianhai@loongson.cn>, 
-	Xi Ruoyao <xry111@xry111.site>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	linux-renesas-soc@vger.kernel.org, Marcus Folkesson <marcus.folkesson@gmail.com>, 
-	Alain Volmat <alain.volmat@foss.st.com>, Raphael Gallais-Pou <rgallaispou@gmail.com>, 
-	Chen-Yu Tsai <wens@kernel.org>, Samuel Holland <samuel@sholland.org>, 
-	linux-sunxi@lists.linux.dev, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Mikko Perttunen <mperttunen@nvidia.com>, Thierry Reding <thierry.reding@kernel.org>, 
-	linux-tegra@vger.kernel.org, Alexey Brodkin <abrodkin@synopsys.com>, 
-	Alex Lanzano <lanzano.alex@gmail.com>, Chia-I Wu <olvaffe@gmail.com>, David Airlie <airlied@redhat.com>, 
-	Dmitry Osipenko <dmitry.osipenko@collabora.com>, Gerd Hoffmann <kraxel@redhat.com>, 
-	Gurchetan Singh <gurchetansingh@chromium.org>, virtualization@lists.linux.dev, 
-	Haneen Mohammed <hamohammed.sa@gmail.com>, Louis Chauvet <louis.chauvet@bootlin.com>, 
-	Melissa Wen <melissa.srw@gmail.com>, Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org, 
-	Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
-	Rodrigo Siqueira <siqueira@igalia.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
-	Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
-	Tvrtko Ursulin <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
-	Danilo Krummrich <dakr@kernel.org>, Lyude Paul <lyude@redhat.com>, nouveau@lists.freedesktop.org
-Subject: Re: [PATCH v3 00/37] drm/connector: Convert all drivers to
- atomic_create_state and remove reset
-Message-ID: <auxJBtexUg6oHcs9@houat>
-References: <20261030-drm-no-more-connector-reset-v3-0-30e71d92c327@kernel.org>
+	Thu, 05 Nov 2026 10:03:32 +0000
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4a4dc547987so9050615e9.0
+        for <linux-amlogic@lists.infradead.org>; Thu, 05 Nov 2026 02:03:30 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1793873010; x=1794477810;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=puIm5drKvsAtTzpQuwSkW9RuuhHt2CPtr5r817ZaEWU=;
+        b=TMa7NnEZPRO9ZnLZKpe6kQq3LAZVN2ejdlxQYY33dc7rUIa6EHnIrlhk2YYBqri+6I
+         ihhxlol6uXMvGgro7BpLG66C26bhUdwPLPc856BUKXP/BiZ1iG3tt+6hq+pBqQyFDrmD
+         6VMgKHie5FILRV2Ol/XR/bZN+bepgpDfOtBtWTmzuW5mv3zmi9luhyKF8xAJJjbg7qOe
+         /GpVmI9eVgQx0uYxrtgRMZsEOams24j6p6wiXVxOXy8Zb9xNGJYtMQz+cBJ8HvzQ3+e/
+         4wh/R8pPQS0XWkbaWI7RUsmaO3Y+0gpJLwD18w2Q1D1Ha5UVEzwCymOhxRRfhDQ1MYAU
+         0veA==
+X-Forwarded-Encrypted: i=1; AKwUvBwto14jiuz9N013hWezEfszGL5fHe9tksvKJ9SmX1dZPJINWP7yaN6zRQdzKA/NTFJG5AX29nTs4TRXcY9V@lists.infradead.org
+X-Gm-Message-State: APuU4Z/0diW+JPNOzQipffaZHegbx+e1FcBumo62CFlT9+D3oF9V3IRh
+	tdZaGkoJcMVZMg4T37/oQaykx/+VRaW4nDtFFJMXSpjTnfuKcxKFmTm8
+X-Gm-Gg: AYBFou333bQDDi+6kyl90IgHsLy365zjx/RR8fLgjCLa1mgfDw52wn4628oxNGAIvZF
+	RoXyCoFtHonRLNGsvrPgf75AHLz6c25ONCjDitj1B3DqfpEXqaAX7ji7T/+5iwe39/NtKLYraB5
+	R0OssWobzRWzYxF9fBiQcsIaumTg5U/k2zQMONDRGpYznfRm0dNxf/ZQC4hlgyrFGhxs1a/5FYI
+	4YWx2fdfeBn96hy5uFCjeMmBfdi8aIWs8mTYTyuUOoSd2FHxBnfzgyP9m9QjaxCr/uDQGnQr9nz
+	GMvZzy8no0iUkNMpJKCcdZilb8x7Km2fVDE32JKaZwUpn2bAHISkjPes7OMgVBsTEwhSSHksdpW
+	PSGqie1MKD9ODJ7XBpG1k4jUEqsLrJgKtBnldNVm25wGrJSbHE1qqPThLcJclpO88L96x8otXZX
+	12EGBxUgyNKMElm90ypQcIJ9XSSg/lwUP2R9sohYBbDNsGMSRmrowbfZqr/K26v9m9aTX0EDi2w
+	GA/Hz10DEqbVwcY29xPDaDzldHeocqsMKpLhSqKNIQeY1KQAa67EwLAZUfvset0a3zURkjdFnmL
+	4ywPcRyRhZaHczPQQiItg/jV1DYXK+59E6sMqFwBixtq1jwJJv6IjOtx12Il/C2HeJYHDD8+UFp
+	suvktOOr0gecXQI6BRvdu6UfAlw==
+X-Received: by 2002:a05:600c:34d4:b0:4a2:d7e:5ccb with SMTP id 5b1f17b1804b1-4ac182dca99mr455243555e9.15.1793873009584;
+        Thu, 05 Nov 2026 02:03:29 -0800 (PST)
+Received: from threads.localdomain ([90.254.187.36])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4b43342773esm53455775e9.4.2026.11.05.02.03.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Nov 2026 02:03:28 -0800 (PST)
+From: Lucas Tanure <tanure@linux.com>
+To: xianwei.zhao@amlogic.com,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	davem@davemloft.net,
+	Eric Dumazet <edumazet@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 3/7] net: stmmac: dwmac-meson8b: add support for the Amlogic T7
+Date: Thu,  5 Nov 2026 10:03:18 +0000
+Message-ID: <20261105100322.37816-4-tanure@linux.com>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <20261105100322.37816-1-tanure@linux.com>
+References: <20261105100322.37816-1-tanure@linux.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20261030-drm-no-more-connector-reset-v3-0-30e71d92c327@kernel.org>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261105_020331_351208_F52C512B 
+X-CRM114-Status: GOOD (  14.65  )
+X-Spam-Score: -0.8 (/)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,85 +104,100 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============8632674404827386599=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+The glue registers on the T7 are laid out exactly as the G12A ones, RX
+delay field included, so the T7 can reuse the G12A settings.
 
---===============8632674404827386599==
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="2zvnwa2sqytkzb4j"
-Content-Disposition: inline
+What it does not share is how the controller reaches memory. That path
+runs through a pipeline stage with a gate of its own, and no other
+device has any use for that gate. Nothing claims it, so it is switched
+off as unused and a transfer that has started can never finish.
 
+Without that gate the controller cannot do DMA at all, so it is
+required rather than optional: a clear probe failure beats an
+undiagnosable hang later.
 
---2zvnwa2sqytkzb4j
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 00/37] drm/connector: Convert all drivers to
- atomic_create_state and remove reset
-MIME-Version: 1.0
+Assisted-by: LLM
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Lucas Tanure <tanure@linux.com>
+---
+ .../ethernet/stmicro/stmmac/dwmac-meson8b.c   | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-On Fri, Oct 30, 2026 at 04:13:30PM +0100, Maxime Ripard wrote:
-> This is a follow-up to the plane and CRTC reset removal series, and
-> part of a larger effort to remove the reset hook from all KMS objects.
->=20
-> The connector reset hook is overloaded: it is called both at probe
-> time to create the initial software state and during suspend/resume to
-> reset hardware and software state. These two roles have different
-> requirements, and the reset hook is not fallible, making error
-> handling difficult for the initial state allocation path.
->=20
-> While reset has the semantics to reset both the software and hardware
-> state, the vast majority of implementations and all the helpers only
-> reset the software state, making them equivalent to
-> atomic_create_state in practice. The atomic_create_state hook makes
-> this explicit: it only allocates and initializes a pristine state
-> without any side effect, and returns the state pointer or an ERR_PTR
-> on failure.
->=20
-> This series converts all connector drivers tree-wide from the reset hook
-> to atomic_create_state, then removes the reset hook from struct
-> drm_connector_funcs entirely. The conversions were done using a
-> combination of Coccinelle semantic patches, mechanical one-line
-> replacements and manual adjustments.
->=20
-> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+index e4d5c41294f4..450f7b4b29a6 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+@@ -81,6 +81,7 @@ struct meson8b_dwmac;
+ struct meson8b_dwmac_data {
+ 	int (*set_phy_mode)(struct meson8b_dwmac *dwmac);
+ 	bool has_prg_eth1_rgmii_rx_delay;
++	bool has_pipeline_clk;
+ };
+ 
+ struct meson8b_dwmac {
+@@ -384,6 +385,7 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
+ 	struct plat_stmmacenet_data *plat_dat;
+ 	struct stmmac_resources stmmac_res;
+ 	struct meson8b_dwmac *dwmac;
++	struct clk *pipeline_clk;
+ 	int ret;
+ 
+ 	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
+@@ -443,6 +445,13 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
+ 	if (IS_ERR(dwmac->timing_adj_clk))
+ 		return PTR_ERR(dwmac->timing_adj_clk);
+ 
++	if (dwmac->data->has_pipeline_clk) {
++		pipeline_clk = devm_clk_get_enabled(dwmac->dev, "pipeline");
++		if (IS_ERR(pipeline_clk))
++			return dev_err_probe(dwmac->dev, PTR_ERR(pipeline_clk),
++					     "missing pipeline clock\n");
++	}
++
+ 	ret = meson8b_init_rgmii_delays(dwmac);
+ 	if (ret)
+ 		return ret;
+@@ -479,6 +488,12 @@ static const struct meson8b_dwmac_data meson_g12a_dwmac_data = {
+ 	.has_prg_eth1_rgmii_rx_delay = true,
+ };
+ 
++static const struct meson8b_dwmac_data meson_t7_dwmac_data = {
++	.set_phy_mode = meson_axg_set_phy_mode,
++	.has_prg_eth1_rgmii_rx_delay = true,
++	.has_pipeline_clk = true,
++};
++
+ static const struct of_device_id meson8b_dwmac_match[] = {
+ 	{
+ 		.compatible = "amlogic,meson8b-dwmac",
+@@ -500,6 +515,10 @@ static const struct of_device_id meson8b_dwmac_match[] = {
+ 		.compatible = "amlogic,meson-g12a-dwmac",
+ 		.data = &meson_g12a_dwmac_data,
+ 	},
++	{
++		.compatible = "amlogic,t7-dwmac",
++		.data = &meson_t7_dwmac_data,
++	},
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, meson8b_dwmac_match);
+-- 
+2.56.0
 
-Applied to drm-misc-next
-
-Maxime
-
---2zvnwa2sqytkzb4j
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCauxJHAAKCRAnX84Zoj2+
-dpi6AYDFcyxVth1IfzYJl7Mk/wdU/UrwZChOoRG3vJ2c4jm3YXPwmaZCDBG4hPm/
-E3dp1WQBf2Htv+GDvQkXS9avpT+uRjkpFRqowDqfaE0gXWHKwBFuo13bOFi12DLC
-XPBNQCk6+w==
-=O+mF
------END PGP SIGNATURE-----
-
---2zvnwa2sqytkzb4j--
-
-
---===============8632674404827386599==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============8632674404827386599==--
-
