@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AAC3606A31B
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2026 17:50:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C738606D809
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2026 17:51:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HwQxpXmQ;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=cT5lrhgr
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=y8kXGqq8;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=nQWnKx48
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -14,70 +14,70 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Cc:To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Pg1BlpNeHI1JHKYVgF1ZMEIWuZdgNxu0T30HIZY6810=; b=HwQxpXmQ5d1nTXfi9w1AYVMTzC
-	jjh8F6rvfxD/X+QpLGqIhUwh9HsoI7QF3ZGxrRImrbG9EaU9bYQz4AbBCFsVMbQkPgUoc2Ih9ovE+
-	HD20fHj022+L8K7eI3+pNCadtC/7qLA+8+asCzzafSwALZ9U6Bbr2/16/sRPE5WnFIjp4sHKagGZx
-	RS7tsHy+es0zgiJ0+vsEDMPQorQhKsqefvjTXi6G4UlJOUX8AjwgOA2o4/Gob06XqKpif8Rf/QmHC
-	urKRu0I2On98Dx3Ab/G43N+sBlBWbaFyY8rW+0Vu0KVJ5Ecg+Ne0wvZbSpVv0TuYDE7OZchlhx+2x
-	8+ITOwHw==;
+	bh=UFzFJSahSQXy02ZjnSAHqWAkwaiMhVteq3MwsD8y+P8=; b=y8kXGqq8sOk4w17aLYLXhpCwHb
+	7lN1x2a55jif7v4h9anr26Rl62PcTXczpRLQu41ZaPr3OBm8hfZlEpBrW1wc7CJiHWQP7J0ExDkt1
+	vNlI8Bjak2h9cjGKFcBBxTSMsKHtKiwQD8fBaDk/8D+PSFMahNuZ0wQBSZHWwAnpBa8h7Sqnu1wy6
+	vGCrX+ssj18/yyhpDg7fEgfHY0mWRMBnh3ANNcYTMXy3CwtghP97ygo6uCsJYcMMhB/yMxMyalYnU
+	OhCRzi92Ndf9MNEkzLE2Fn6y5lz09Rk4x/hdpQllxYrEr3x3vnQBR+JdnCrflyCj4R27sUrbdquPU
+	wjDlwMmQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xP1c0-0000000A0iO-0GVk;
-	Thu, 05 Nov 2026 17:50:56 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1xP1c2-0000000A0k0-1vBk;
+	Thu, 05 Nov 2026 17:51:01 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xP1br-0000000A0ej-0Gtg
+	id 1xP1bs-0000000A0fW-3Ili
 	for linux-amlogic@lists.infradead.org;
-	Thu, 05 Nov 2026 17:50:50 +0000
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4a2069b9710so21255435e9.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 05 Nov 2026 09:50:46 -0800 (PST)
+	Thu, 05 Nov 2026 17:50:51 +0000
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-490d59c3edaso718776f8f.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 05 Nov 2026 09:50:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1793901045; x=1794505845; darn=lists.infradead.org;
+        d=baylibre.com; s=google; t=1793901047; x=1794505847; darn=lists.infradead.org;
         h=message-id:date:references:in-reply-to:cc:to:from:subject
          :content-transfer-encoding:content-type:mime-version:from:to:cc
          :subject:date:message-id:reply-to:content-type;
-        bh=T10mg0NCtNOcMbzwRpRiIpkOxV69UeTO/LUX0z+nOPY=;
-        b=cT5lrhgrdQvD6/f1fBVB5d1v6P3unBgap6oVilGKqxEQwPI8KFLzuGjlNGo0x4Z4Rn
-         tt82efkTqFpuzdy/oRo+TIfHFjqg+qqFN6LszsxNWhIpvVPy9zZ5GemwF1N/GLcj6jKW
-         o5veuwbw69lybBmSx9Rsr9JXmCXZfyZgsStZxhZBMnkSce7JcET3arXywG99NuzuUySO
-         ZKaQWq6Dls/wvlhn5jX7wew5G0TxJvKeqVC4qn9VJinzdw9go2R/MhBr2bIWTlbgFeVd
-         CBrEYViES0xLcDsWyQPq02O9TSszqyYSjG474otg7RFyVovIqrvV5VqORAoGGroyf4HR
-         M1Og==
+        bh=LA8AvLGyexZbtAf4veVlwI7D/EBoHlL13GOji2GbHxQ=;
+        b=nQWnKx485zJpvWxbnDcJXoziaaf0V5DQoXgjecPNfqg6odLep7m8r/fsmZVHZBUynx
+         jLghzLosPyF0iOQRnSB6ELpkPTOSlXryyu6ILMuAz8BlGf3g06O60h8L6XIcg0py9sSv
+         MjWYLDIx5Hlv+nDjmK9IEYVlfF8T+GHu8uhfqLjyP58Lr3o2lCuf2nWZygWdhYmHbpME
+         QsxxuztkEOV/8XTvcm792DBtOjkm+dGXYO6WfPhhDzUTfQe+RoZoINyoBSq8HZktLoBb
+         CgFztUCiTi0m3fqzK8KsnyisadfMUYm9C4EJkiFwC40tSqlx6uzzyN5AtC1m8b8H6V+t
+         VKPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793901045; x=1794505845;
+        d=1e100.net; s=20260707; t=1793901047; x=1794505847;
         h=message-id:date:references:in-reply-to:cc:to:from:subject
          :content-transfer-encoding:content-type:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=T10mg0NCtNOcMbzwRpRiIpkOxV69UeTO/LUX0z+nOPY=;
-        b=bBWcuSmFv3N5oj+BKPVgc7xxAg0fyrGqDjVGuEHq78KwlXmNqIo5iq4OmzQ6dZOwIg
-         nQOsXuuCVWWjppe5+W+Yo1I2kZN1b0FyFxmuAJB9IC7IWYNpKW3/byHOzdHrJ00aoWP6
-         F9jLrhDikfY/VbqzwguhCGQA6OkakGsC0y8oJH7fqebfrTAP5Fhkhd7ld1BTk+x8949K
-         qxaIRp/lnu1e2mIpmfjDWQP0sAKF/Z94+urupgh3thU3PAaScATy4jqZ/EBk2xv9KqY7
-         HvE00RqmgaZbHnA1dyKJVxtAiyjodMSDmZWs9yK2eSU6GfZWvFGvPG06iXn9jtN2KyUK
-         5PEw==
-X-Forwarded-Encrypted: i=1; AKwUvBxgHfXI2Ex6jA8Fps8VwowWhKcYtHIGltOMXhiq7zrbigJSCHaMgwN2MtxEFSTnyofyOn2y2yvIsAJbYClj@lists.infradead.org
-X-Gm-Message-State: APuU4Z8ZCwVLz4BKbiicLkCgDODZ6M24ZR+96tgyVtGX4T6FfZ2IsK5u
-	NGwa2mbp280hPa0z3nabK7Z0wyQfekeWcJpQcP42xwAo7FSl9VtkjC4xR2h8Yu+HMc8=
-X-Gm-Gg: AYBFou1k0RDwJ6CMGVoZh/xYINTTrTE3hUmdDqH9uMe1i32GLTfldisQ9hmbFS73JjJ
-	dSiMBpSWbDx+hSTkMpmFG4oz5ZUKw78htoDvuWP1AFh3XyZweHh4gRGtpPXpZj2XgOUtxiFndHD
-	nmIOKb6UNzkiFpwub/HMUy8tEPs+NKdI5qn/Ir5KOZQJBzoEeaDHvTF9UuKoPekj6YRIUpCarIL
-	LvRYE2NBYzRhrTHLD1lin2CVuJSc4+eBohFV2aIpFJvTPZ823QKeHZp6wxYTlDJtMRKFvAqdna/
-	HMpa17gGe0Onb1GjLaJGtqyzNRz0I5Pmv39Fs+Dv8zf37bCbokJ3KRQyAz9CU1P+h3fnWDZ0WEE
-	mrRsfyQLGhBdfUkZ0VHzkih6Cr3gx6ikdJnoWZLQXPCWW3CEw3QwIk9CyfXVIEaFOgAJnI9XOLa
-	e8ihYehPAHg0g7BqoX2vxx7zfX58xTKS/pAbugdkgIw4ijUb33Ch4t/eTo+8QIFRvPVyjwahYmo
-	xepi7i5gpTrY1HPiOA68R0ZC+WxgyaqCm8O/n5skLEOlBaplPZMlaKumycpuOpwNzUU95h85uvn
-	sYuDI1B8iGxci3MTtMaiRrp7JjAthQxeCMBE1Fihx7R9M98R
-X-Received: by 2002:a05:600c:6095:b0:4a3:7344:13b5 with SMTP id 5b1f17b1804b1-4ac182dcb98mr390804805e9.16.1793901045109;
-        Thu, 05 Nov 2026 09:50:45 -0800 (PST)
+        bh=LA8AvLGyexZbtAf4veVlwI7D/EBoHlL13GOji2GbHxQ=;
+        b=M2Ql9IbV823kcE9FvsP46ymxsNb0CVOTEygVBZsxGQ2zDHmKytcUdyWBuBOYQu7cc/
+         65hSoXgJcX5lQb1pUL8yEkmrFGdYbXhQ90G0jPOjGaKd4O8VnA0znkZY1z5CQS/r02Gm
+         PTvhu06hU0O+gSFBE5pQ+0jnYDlKC6kE/V8JtsxR2yMBxGVqF3U1T2h6d6EKfv6Q6Ccq
+         ychpJ395x6zY/JKiBCsKzm3dCVDSyn/oIB9/ty9ToFtiGk4QOU6wMLwlFQTcOEXW5cWw
+         Xz+/oqm34WismE+vOc0QujmUuDo8y5qziYmJvv1wEcrOcJcMptmKBrmGXZIzRk0bxtOP
+         iaoQ==
+X-Forwarded-Encrypted: i=1; AKwUvBx08CwBnMjvlW0eXJbtQahtvDrZUHbclatsNooyeLGnYDbc+wO63+i1tJ7lN06Y3RquYtCQmEjxVZ2P7i7S@lists.infradead.org
+X-Gm-Message-State: APuU4Z9J85evVGJCndxCMsvyI0+h1LO/15mHl8Kx3pAXxh3mSOMd+FTz
+	RUW1aMqtGuEthDW3AcupY9fKB3FZajtVorYgy3EM2hyPM/2rJx7vI0g2y2UKei2s1fw=
+X-Gm-Gg: AYBFou0N7AcjNVCsLYDzU4DDSA19yDNg2F4BNI2mEpQQ+R5gEp/d9IRm7obnBZMwWMw
+	qhTLo6sWmgR4XfxiEOP9MAfbQCPe2oZF+GqxWzGim5BuYL/Iw34WQ224LLg8kahK9V4BfT7zhAO
+	NgVF7yQH4+z+T5YxfDtiu53h66tdBBFXvn89z705seQl0NWAI9iEdrG//yyQysRf6QeasSSEAbG
+	2WuZGWt2nJDGywg2kEwFpDb2g2D3FJH8t6MUGkRvxNjuDCFM9KHzwckMp1T/9YMC0yf2gU+x/rc
+	xYf8ySG6aXlwQiR8LKAqfzHHOwc5DFgYe38//0TO8qGAxIGnw2qfdA3Excqmzq7aZ6Lh3iNhAxV
+	apdK7xkjcE1ANp3i+hb7zFNKWzsGbdm1tSmERjCLNMC4+8zcvcl4ufxUAgARRegXpbMmdPV8asE
+	fXuXBaRc7xI8GwNR9OQEGEvYaqBE5I1fc6wURXf2R8Fhrvq5wjHILUUMYRBJqq6XiwrgGB1MlRl
+	IoSoSQkSBXbV5NMQTBVDCZwYBJqT3rFTHxZAMvMdYFyd+WcOQdfthxWNZdhZzgnXej2edBtnCwJ
+	lREN1RqPmsM/ldyxWldh5Yz1aZHXHMrY5gy90DX15p7LYla4
+X-Received: by 2002:a05:6000:2f87:b0:491:eb12:e133 with SMTP id ffacd0b85a97d-4927835f4a0mr739128f8f.11.1793901046808;
+        Thu, 05 Nov 2026 09:50:46 -0800 (PST)
 Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4b4527fed5bsm200497845e9.3.2026.11.05.09.50.43
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-48fed551dbasm10843690f8f.37.2026.11.05.09.50.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Nov 2026 09:50:44 -0800 (PST)
+        Thu, 05 Nov 2026 09:50:45 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH RFC RFT v2 0/3] clk: meson: Refactor PLL pre-divider as
- a divider clock
+Subject: Re: [PATCH RFC RFT v2 2/3] clk: divider: add
+ CLK_DIVIDER_INVALID_ZERO flag
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Jian Hu <jian.hu@amlogic.com>
 Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -89,23 +89,23 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, linux-amlogic@lists.infradead.org, 
  linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20261029-meson_refactor_n-v2-0-ff4ac74e527b@amlogic.com>
+In-Reply-To: <20261029-meson_refactor_n-v2-2-ff4ac74e527b@amlogic.com>
 References: <20261029-meson_refactor_n-v2-0-ff4ac74e527b@amlogic.com>
+ <20261029-meson_refactor_n-v2-2-ff4ac74e527b@amlogic.com>
 Date: Thu, 05 Nov 2026 18:50:40 +0100
-Message-Id: <179390104084.2573818.1569105668888286892.b4-review@b4>
+Message-Id: <179390104085.2573818.16461908615505096359.b4-review@b4>
 X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=858; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=RepJ4XPfeKmVot5v9YpoyqtS578offaAhAsWd1iXvqU=;
- b=owGbwMvMwCW2VtK+WnvWU3HG02pJDFlvDn5uK2lTkH16raHEndtv5saPH5IMuqqOZpy7sclwE
- 0/l/tmlHaUsDGJcDLJiiiw13NXi7yS1vsyarnMbZg4rE8gQBi5OAZjI37mMDJtFdLed2ra09Lmo
- zrWDh2rO+B1+Oq+XJTNH61xGbjJDpBTD/3TGS63HFoWsmzpr67XN+jMYOd2f1k7Z+adJdorCzW3
- tiewA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2894; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=hgYik+Icrd5okmeAAVTfYYP6BAFK/E7hkpa3L1tnww0=;
+ b=owGbwMvMwCW2VtK+WnvWU3HG02pJDFlvDn6+tSd8/d2dfKabnr0/9+ZojuLnxzpVp+oKOPje3
+ 5/O/X3Czo5SFgYxLgZZMUWWGu5q8XeSWl9mTde5DTOHlQlkCAMXpwBMZPM/hv950Q9jiq+4WW0u
+ twi6Je18bN4hBs7Yuf9YynYukVx3RvoyI8NyJb9zV89lp9wubMhs2XQwac7TDN05otvuafDUtZ/
+ jeMsPAA==
 X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
  fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261105_095047_123407_7223F065 
-X-CRM114-Status: UNSURE (   9.39  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261105_095049_821789_9DED84A8 
+X-CRM114-Status: GOOD (  24.02  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -119,29 +119,76 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> This series refactors the Meson PLL framework to remove the dedicated
-> PLL pre-divider (N) parameter from the PLL implementation and model it
-> as a separate divider clock.
+> When a divider register reads zero, divider_recalc_rate() currently
+> emits a warning (unless CLK_DIVIDER_ALLOW_ZERO is set) and returns
+> the parent rate.
 > 
-> Currently, the Meson PLL framework models the PLL pre-divider using a
-> dedicated n field in struct meson_clk_pll_data. This makes the
-> pre-divider part of the PLL-specific implementation, although the
-> Common Clock Framework already provides a generic divider clock.
+> This behaviour assumes a zero divisor acts as a pass-through, which
+> does not apply to all hardware. Some dividers, for example PLL
+> pre-dividers on Amlogic SoCs, come out of reset with a zero value
+> that does not produce a usable clock. Returning the parent rate
+> hides this fault behind an incorrect, plausible value.
 > 
-> The pre-divider is not intended to be dynamically adjusted. Each PLL
-> has a fixed N value as part of its configuration. Most PLLs use N = 1,
-> while a few special cases use N = 3 to satisfy their PLL input frequency
-> constraints. Modeling the pre-divider as a separate divider clock
-> removes PLL-specific handling and simplifies the PLL framework.
+> CLK_DIVIDER_ALLOW_ZERO only suppresses the warning while still
+> reporting the parent rate, so it cannot represent this hardware
+> behaviour.
+> 
+> Add CLK_DIVIDER_INVALID_ZERO for dividers where a zero divisor value
+> is invalid. When this flag is set, recalc_rate() returns 0, making
+> the faulty state visible to the clock framework rather than hiding it
+> as a pass-through.
+> 
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> ---
+>  drivers/clk/clk-divider.c    | 3 +++
+>  include/linux/clk-provider.h | 6 ++++++
+>  2 files changed, 9 insertions(+)
+>
+> diff --git a/drivers/clk/clk-divider.c b/drivers/clk/clk-divider.c
+> index f68216c65d3d..6c1523d22477 100644
+> --- a/drivers/clk/clk-divider.c
+> +++ b/drivers/clk/clk-divider.c
+> @@ -143,6 +143,9 @@ unsigned long divider_recalc_rate(struct clk_hw *hw, unsigned long parent_rate,
+>  
+>  	div = _get_div(table, val, flags, width);
+>  	if (!div) {
+> +		if (flags & CLK_DIVIDER_INVALID_ZERO)
+> +			return 0;
 
-s/framework/driver
+While I think CLK_DIVIDER_INVALID_ZERO really makes sense for a writeable divider
+only, to gracefully handle a reset value at zero that we would later correct,
+we should still handle all paths correctly. This include a RO divider and its
+determine rate path. I'll try to send something for this soon.
+
+> +
+>  		WARN(!(flags & CLK_DIVIDER_ALLOW_ZERO),
+>  			"%s: Zero divisor and CLK_DIVIDER_ALLOW_ZERO not set\n",
+>  			clk_hw_get_name(hw));
+> diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
+> index dc8e161f9c2c..fe2dbbba49e3 100644
+> --- a/include/linux/clk-provider.h
+> +++ b/include/linux/clk-provider.h
+> @@ -744,6 +744,11 @@ struct clk_div_table {
+>   *	big endian.
+>   * CLK_DIVIDER_EVEN_INTEGERS - clock divisor is 2, 4, 6, 8, 10, etc.
+>   *	Formula is 2 * (value read from hardware + 1).
+> + * CLK_DIVIDER_INVALID_ZERO - a zero value read from the register is not a
+> + *	divide by one / bypass but an invalid setting which does not produce
+> + *	a usable clock.  recalc_rate() returns 0 so that the broken state is
+> + *	reported to the framework instead of the parent rate, without
+> + *	triggering the CLK_DIVIDER_ALLOW_ZERO warning.
+
+
+ CLK_DIVIDER_INVALID_ZERO - a zero divisor is an invalid setting with no
+ 	usable output. recalc_rate() returns 0 instead of the parent rate.
+	Takes precedence over CLK_DIVIDER_ALLOW_ZERO.
 
 -- 
 Jerome
