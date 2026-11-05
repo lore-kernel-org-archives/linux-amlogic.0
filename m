@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86AAD606A329
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2026 14:09:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A11C0606A31B
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2026 15:31:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NON62bQ8;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=A8NQJhwC
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=owF17fBS;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=R4U44gSD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -14,57 +14,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Tz0TufJ3/A6on+lAVsf715wg+BWwik9NUYpsQMQVSFg=; b=NON62bQ8jhRmAuPybpzCknDDyo
-	nBA5MIaYUg6+oPBUhEUWarvqGGSXcDc5Cyag50isflfEf+ql7VwYvPyLxm+r9S0yVwVWp6y2E34aW
-	JBIbDrQcVXC7TxBdwefXJ5I7pdxcZB7LdCw/aBZbf4/0l/YVzl7c+ChyDGDo087eXLNzy6wI5f5+x
-	m0NHTXW+rfSq75jx8itMVOhmiJP7nu4traJ040R1u28m+2bH+3g/hMl222MKtQ1Nve1KWeQQxI4xK
-	iTssSEeeAiNOiqV/Afo/ucb8voHvqy42hT57y29s4IInO9fQEsjXADN8ECODrC46DcuhHHtrd1fW7
-	b0lZWIWg==;
+	bh=Tz0TufJ3/A6on+lAVsf715wg+BWwik9NUYpsQMQVSFg=; b=owF17fBS9c9/h2feljqK2nDMet
+	ehEI4oDbcJfIEkhHMGGZt+hEglTPD/BxTc8Ex/OhRLGBmQRTyHq9rpwrgPzkBu69V3iEg7vTvZYPW
+	7JpT7T8QqPlbl+g34eBT2oi32taRor+Plkre/DDn4qIpcHrZixcc+rsqE8yBWpiONk+svJ33gTPi3
+	xYQVZhXku/Ycj89N4RTJ2oRxbmF94YK39lzVcQDm0txJUzma0gxTNlQquCJg2yZH7QBVj11Ap2Gfg
+	pXSq/tpn5+4M08nuz8S5F45zFbZ9A23/FrXLeVb+FpyIv9kU1ZhABSwsQuwArRHdZNV0NBiS4eMbk
+	O71GwKEg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOy9s-00000009DRN-1jwE;
-	Thu, 05 Nov 2026 14:09:40 +0000
+	id 1xOzRN-00000009PcQ-2s68;
+	Thu, 05 Nov 2026 15:31:49 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOy9r-00000009DRA-1vKt
+	id 1xOzRM-00000009PcD-2NW1
 	for linux-amlogic@lists.infradead.org;
-	Thu, 05 Nov 2026 14:09:39 +0000
+	Thu, 05 Nov 2026 15:31:48 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id E18BF40DA8;
-	Thu,  5 Nov 2026 14:09:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45DB91F00919;
-	Thu,  5 Nov 2026 14:09:38 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 0D58242B1E;
+	Thu,  5 Nov 2026 15:31:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 618081F0093A;
+	Thu,  5 Nov 2026 15:31:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793887778;
+	s=k20260515; t=1793892707;
 	bh=Vhrzh9uVSsxK/QEM0A/OExVSfLi+mHZOJUJOKuzlAJw=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=A8NQJhwCx3kCKUvN5VWmwIHx/2Axr1hmSWje+o1GO4Q7yxdRU410YoezdRHkLCNiK
-	 ojsaqxfvDsLMjkqiAN53r6p07D2Nf0/MAgzKkLsbBht1gdVzm9YrSxS11oNxumMT7e
-	 GGtd4EUx9c3k/ELnPDXpwkqFjb5gMIgMwPi5NrGumfbEv83xp0ik/x0uCMQb0y8+pj
-	 4AmjZKbTkSgCTCa6R5evSLAKdCS6FRcptTNS7+5fMe+nXm07+IiyYV6m9T1ZI+d9Kc
-	 2/ORP/rNlkvnFhmvxJQOOnYHx5V/sieAVZd2S3+T2q4bUegPATlgEzvALCYvQxZKzj
-	 NhOFHxK3z17Bw==
+	b=R4U44gSDqlGRpbueWsRDU9KZFQ/ODspvv38KWUuEE0hnNs46LH3VFBB34CLTu2uNT
+	 G27/ABQWlBI1Rqevwp0PGDCSlGmkKotZS9/d/u/zS1Y2hJQ8vBWSxrjTAgHiJt5P8a
+	 RTEdBMtK7QlVy/ZOEDyM4AFK7gcCcj/A1/D23JvCreSpKSbCDF6+DwWyllkCDfZan+
+	 Tjul2+EYMl7WqrE7HV3pVtn/jwXGoztIMc74YO0I37Dgh8PV+RR5OrcAj2uSmYV56Q
+	 SZWRCMeJ732OZUbwExNTDNg9Cq/3IxYfHnenrv3JJncP3H1imjTyimtloOTp3xhn3y
+	 qeCpgJ+7e1H1A==
 From: Maxime Ripard <mripard@kernel.org>
-Date: Thu, 05 Nov 2026 15:07:43 +0100
-Subject: [PATCH 26/83] drm/meson: Switch to
+Date: Thu, 05 Nov 2026 16:29:35 +0100
+Subject: [PATCH RESEND 26/83] drm/meson: Switch to
  drm_mode_config_create_initial_state
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261105-drm-no-more-config-reset-v1-26-763560c2cc3f@kernel.org>
-References: <20261105-drm-no-more-config-reset-v1-0-763560c2cc3f@kernel.org>
-In-Reply-To: <20261105-drm-no-more-config-reset-v1-0-763560c2cc3f@kernel.org>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, 
- Kevin Hilman <khilman@baylibre.com>, 
+Message-Id: <20261105-drm-no-more-config-reset-v1-26-1f58d1e33380@kernel.org>
+References: <20261105-drm-no-more-config-reset-v1-0-1f58d1e33380@kernel.org>
+In-Reply-To: <20261105-drm-no-more-config-reset-v1-0-1f58d1e33380@kernel.org>
+To: David Airlie <airlied@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
  linux-amlogic@lists.infradead.org
 X-Mailer: b4 0.14.3
 X-Developer-Signature: v=1; a=openpgp-sha256; l=1300; i=mripard@kernel.org;
  h=from:subject:message-id; bh=Kd0V2S7TqFaJ/xhzHTLla+COz/NLMYco+UxWD75X7Kg=;
- b=owGbwMvMwCmsHn9OcpHtvjLG02pJDFlvepfPLLP6np1zizl3+c+eTZyztLb9vCe5PTM2OcY7S
- SRLbEFQx1QWBmFOBlkxRZYnMmGnl7cvrnKwX/kDZg4rE8gQBi5OAZgI+07GOgPDA9I9u3LzVFR3
- XvNru1VsWPnpEqfB84amzdWBBeynHPf+v71I7JfmpjmcGj17rfhfMDY8/tQRmXfrnPSibXNqyvV
- 0ONhaPj06IcG/NlEjKd19cllvgu/uKTzHH2Vwhf4yYOyLWgMA
+ b=owGbwMvMwCmsHn9OcpHtvjLG02pJDFlvFrx4oJlc9PF/5Ivfd90kTu5/IdqpKSL4PnnTzIoIr
+ YeuRz+XdExlYRDmZJAVU2R5IhN2enn74ioH+5U/YOawMoEMYeDiFICJnDZirNOSz/CQ/xDr+cL5
+ dfyJvDssT8XrjppIZZrai2n+LdiRx/Rp2s4VYSGRt2vFq/2FeCynMtaKi6nsPPVb7NIbxZACiU0
+ JTvsZ5d9Ge7NsDIj9mHRhAb/8zUiWW3+0NbsX/f07YaLuTwkA
 X-Developer-Key: i=mripard@kernel.org; a=openpgp;
  fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 X-BeenThere: linux-amlogic@lists.infradead.org
