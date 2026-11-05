@@ -2,70 +2,89 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 090D3606A333
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Nov 2026 18:38:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEB16606A329
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2026 09:15:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=m2Z1jy6P;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=iav.lv header.i=@iav.lv header.a=rsa-sha256 header.s=zoho header.b=XwsE/OKh
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HOOboCMy;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bFAS48f0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=pTUMDOo6GSLUHp0rvgfoQGv/iPKp3kTOv0z7Kwh1Vjw=; b=m2Z1jy6PTrUDYHQeF8AC0GA8Pf
-	h2ZiMnrF2afUmwJOLpH9vrC/2+33oQiOpvIJ15hg+EawdHQQYV/m3SUi2Lur2Tu/sLe5WRHQ6Dqtf
-	ipjmSoAoLlu4z1Rp+5mjDgEPmTa9SfzdlYAZfHaHrCj5qooxjEWd7jYASz26Dt7rXhilgk/QLt2xf
-	jMSpRS5ARuOdW8mkCpPicVT55h1KenLYXqFOVoBwVaoKAEe983uoHlNq71X0UBJIFB8lnPY/pCuVj
-	xFv1cFcqyYEUOa1ffdlqqZshHJQY4+V4XSG4XTB8ahHJ24RGs+Ee1RDncMmHB30/sshHbbd3WxISz
-	YJS5rrfQ==;
+	bh=MlgP9hH6C1e1YsfUOeWxTT46UBmoB1O5BQkNRcCuoko=; b=HOOboCMyW8eUrCkOYGWR8rD7E6
+	B3lXDhiurFC5foTKhkHXpXtgTe24qjoZJS8Fkt8x5jOC/H0lo/e1oz1vsBdjezEKyUlyW3Xft5+8m
+	yNOw4gpoFB8SGg6ZFVGo/ViIu7BYx3SA48/+e/bJ5IxVNXa+cF0Y4U+wkMnW9OjQR7CAhfBMkKcYA
+	kVnozLESFuVy6puEqcWDj5NIs2D3My/F0br8XZDaSXoZ1cIIJqmBYpp3nARhUSemMm9oteL0FrCf5
+	vWWVaFFpkntXghuOZj3ZQ8dSMxdJloCkm6JNTdEfTq6xrR52YCwtNW94NWUkb6+13wA3IohgPbfDg
+	YVfAxq2Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOfsG-00000006Q65-3N8m;
-	Wed, 04 Nov 2026 18:38:16 +0000
-Received: from sender-op-o15.zoho.eu ([136.143.169.15])
+	id 1xOtYx-00000008Gky-3x4W;
+	Thu, 05 Nov 2026 09:15:15 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOfsD-00000006Q3i-1kut;
-	Wed, 04 Nov 2026 18:38:15 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1793817483; cv=none; 
-	d=zohomail.eu; s=zohoarc; 
-	b=jOiOl+0CE+ACVKVx2qnxTLmr810zE/CRa3KOwEr2zNkoJc25NbMCCdee3UXcgi4SvHxIB9BtXeTa0IVCXrN70PWks0O6lrv3nUDrmsbs7zmRhW0uVtNFMd0VTFsWtSr8+/uuFcaXlBFobGvMea9hXuGXpJvGRq1hcefv3O2S7cE=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
-	t=1793817483; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=+G4rf1hzJmKdD7EoOaWqne7TUKWl699YR7p6ZHK04Pg=; 
-	b=KMm2Qa0cQcm1Y27OQJWy4TNMM30UFPAzO1jo5bniPHxWFY0Eda/ucpPhYTde4l6Pg2NFIbfnvQFVZX1Ll+NpPo+lgbZt1jPYyQdzP1mocMFucUS2ZDb6+KaOPLwNzr7Ds4lccHlD684uAul0XSMWEoK4teQbqi8DSwUGyg4TaIs=
-ARC-Authentication-Results: i=1; mx.zohomail.eu;
-	dkim=pass  header.i=iav.lv;
-	spf=pass  smtp.mailfrom=iav@iav.lv;
-	dmarc=pass header.from=<iav@iav.lv>
-DKIM-Signature: a=rsa-sha256; b=XwsE/OKhgSV8BT27J+m5RtLTpGlmD2r5OAJQBoml3G3mJAKrH4UlhmUacSyvaKRjiVf6jv2WIYpVW3Zf1hnYQuMIP8iVKsbm/g6dLhyYNPkj9JoZW4z3McwqHJCweLV6luJLFyFNmNcj9d8s1sIjsmdVL0IaFCIvnJVaF1p0uAk=; c=relaxed/relaxed; s=zoho; d=iav.lv; v=1; bh=+G4rf1hzJmKdD7EoOaWqne7TUKWl699YR7p6ZHK04Pg=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zoho.eu with SMTPS id 1793817481738396.6696032790776;
-	Wed, 4 Nov 2026 19:38:01 +0100 (CET)
-Date: Wed, 04 Nov 2026 20:38:00 +0200
-From: Igor Velkov <iav@iav.lv>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: iav@iav.lv, John Stultz <jstultz@google.com>, Thomas Gleixner <tglx@kernel.org>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Miroslav Lichvar <mlichvar@redhat.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC 0/3] alarmtimer: Choose the wakeup RTC per sleep state from the device tree
-Message-ID: <20261104-alarmtimer-rtc-neil-reply-1@iav.lv>
-In-Reply-To: <399668f0-e97a-438e-b761-1ea6c18d904b@linaro.org>
-References: <20261104-b4-alarmtimer-rtc-priority-v1-0-e996681b8086@iav.lv>
- <399668f0-e97a-438e-b761-1ea6c18d904b@linaro.org>
+	id 1xOtYv-00000008Gkn-0ArO
+	for linux-amlogic@lists.infradead.org;
+	Thu, 05 Nov 2026 09:15:13 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 30E8860F3E;
+	Thu,  5 Nov 2026 09:15:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36B561F000C1;
+	Thu,  5 Nov 2026 09:15:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1793870111;
+	bh=yuu8MRbvZ8Q99gVGDEWGPtvGQgcdEiYL3ohtAsA9Mfg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=bFAS48f0dLcspAEXkjkArw9f5g1sLZat7q01f+HKggEbmSs8nuly01Er89M9cFC+E
+	 aJelUDSseJymE+2CsLiDv70w3W0f6o/p8FxgDHcsOPwgv1/JMp5POhaS6WYnvYb7K8
+	 zUzkNI/hkDRyloSNnZbNr8XotLbG+h1F+jOL0Hkb0Avr9U7fYBRpfR9C0mcxiQBR3s
+	 vMTD9J5x5SQw0X/qL4Os/hOqj2LHOa1MTSUUKJIb4NDus9wXA/2kpJ9BHnn9SLC4gw
+	 1auncQlq+pWnfmu6Sf7Gd8Hf0QutCtTy+KqQdynzeHMD3cDRsYlcu6hbTs5fM0MRzR
+	 2QGNBnbRrZdUQ==
+Date: Thu, 5 Nov 2026 10:15:08 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org, 
+	Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>, 
+	amd-gfx@lists.freedesktop.org, Russell King <linux@armlinux.org.uk>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Inki Dae <inki.dae@samsung.com>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Kyungmin Park <kyungmin.park@samsung.com>, 
+	Peter Griffin <peter.griffin@linaro.org>, Seung-Woo Kim <sw0312.kim@samsung.com>, 
+	linux-samsung-soc@vger.kernel.org, Alison Wang <alison.wang@nxp.com>, 
+	Stefan Agner <stefan@agner.ch>, Huacai Chen <chenhuacai@kernel.org>, 
+	Icenowy Zheng <zhengxingda@iscas.ac.cn>, Jianmin Lv <lvjianmin@loongson.cn>, 
+	Mingcong Bai <jeffbai@aosc.io>, Qianhai Wu <wuqianhai@loongson.cn>, 
+	Xi Ruoyao <xry111@xry111.site>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	linux-renesas-soc@vger.kernel.org, Marcus Folkesson <marcus.folkesson@gmail.com>, 
+	Alain Volmat <alain.volmat@foss.st.com>, Raphael Gallais-Pou <rgallaispou@gmail.com>, 
+	Chen-Yu Tsai <wens@kernel.org>, Samuel Holland <samuel@sholland.org>, 
+	linux-sunxi@lists.linux.dev, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Mikko Perttunen <mperttunen@nvidia.com>, Thierry Reding <thierry.reding@kernel.org>, 
+	linux-tegra@vger.kernel.org, Alexey Brodkin <abrodkin@synopsys.com>, 
+	Alex Lanzano <lanzano.alex@gmail.com>, Chia-I Wu <olvaffe@gmail.com>, David Airlie <airlied@redhat.com>, 
+	Dmitry Osipenko <dmitry.osipenko@collabora.com>, Gerd Hoffmann <kraxel@redhat.com>, 
+	Gurchetan Singh <gurchetansingh@chromium.org>, virtualization@lists.linux.dev, 
+	Haneen Mohammed <hamohammed.sa@gmail.com>, Louis Chauvet <louis.chauvet@bootlin.com>, 
+	Melissa Wen <melissa.srw@gmail.com>, Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-amlogic@lists.infradead.org, 
+	Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+	Rodrigo Siqueira <siqueira@igalia.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
+	Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+	Tvrtko Ursulin <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+	Danilo Krummrich <dakr@kernel.org>, Lyude Paul <lyude@redhat.com>, nouveau@lists.freedesktop.org
+Subject: Re: [PATCH v3 00/37] drm/connector: Convert all drivers to
+ atomic_create_state and remove reset
+Message-ID: <auxJBtexUg6oHcs9@houat>
+References: <20261030-drm-no-more-connector-reset-v3-0-30e71d92c327@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261104_103813_736143_2AFC9E9B 
-X-CRM114-Status: UNSURE (   9.53  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+In-Reply-To: <20261030-drm-no-more-connector-reset-v3-0-30e71d92c327@kernel.org>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,39 +94,85 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============8632674404827386599=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/4/26, Neil Armstrong wrote:
-> This sounds bulky, perhaps it would be much simpler if we just added
-> all the available RTCs which has RTC_FEATURE_ALARM and can wakeup ?
->
-> Just switch from 1 single to multiple RTCs in a linked list and you're
-> done, no DT & bindings changes.
 
-A list it is, and v2 drops linux,alarmtimer-priority.
+--===============8632674404827386599==
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="2zvnwa2sqytkzb4j"
+Content-Disposition: inline
 
-Arming every RTC makes the coarsest one fire first: pcf8563 has no
-alarm seconds, so its alarm comes up to 59 s early, and an RTC with
-alarm_offset_max wakes earlier still. The board wakes before the timer
-expires, and the next alarm may come seconds later: while it is still
-resuming, which takes seconds with disks and PCIe, or right after it
-is suspended again. Drivers then go through suspend and resume at
-short intervals. Arming one RTC per sleep state avoids that, and which
-RTC wakes from which state is board knowledge, so v2 keeps
-linux,wakeup-states.
 
---
-Igor Velkov
+--2zvnwa2sqytkzb4j
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 00/37] drm/connector: Convert all drivers to
+ atomic_create_state and remove reset
+MIME-Version: 1.0
+
+On Fri, Oct 30, 2026 at 04:13:30PM +0100, Maxime Ripard wrote:
+> This is a follow-up to the plane and CRTC reset removal series, and
+> part of a larger effort to remove the reset hook from all KMS objects.
+>=20
+> The connector reset hook is overloaded: it is called both at probe
+> time to create the initial software state and during suspend/resume to
+> reset hardware and software state. These two roles have different
+> requirements, and the reset hook is not fallible, making error
+> handling difficult for the initial state allocation path.
+>=20
+> While reset has the semantics to reset both the software and hardware
+> state, the vast majority of implementations and all the helpers only
+> reset the software state, making them equivalent to
+> atomic_create_state in practice. The atomic_create_state hook makes
+> this explicit: it only allocates and initializes a pristine state
+> without any side effect, and returns the state pointer or an ERR_PTR
+> on failure.
+>=20
+> This series converts all connector drivers tree-wide from the reset hook
+> to atomic_create_state, then removes the reset hook from struct
+> drm_connector_funcs entirely. The conversions were done using a
+> combination of Coccinelle semantic patches, mechanical one-line
+> replacements and manual adjustments.
+>=20
+> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+
+Applied to drm-misc-next
+
+Maxime
+
+--2zvnwa2sqytkzb4j
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCauxJHAAKCRAnX84Zoj2+
+dpi6AYDFcyxVth1IfzYJl7Mk/wdU/UrwZChOoRG3vJ2c4jm3YXPwmaZCDBG4hPm/
+E3dp1WQBf2Htv+GDvQkXS9avpT+uRjkpFRqowDqfaE0gXWHKwBFuo13bOFi12DLC
+XPBNQCk6+w==
+=O+mF
+-----END PGP SIGNATURE-----
+
+--2zvnwa2sqytkzb4j--
+
+
+--===============8632674404827386599==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============8632674404827386599==--
+
