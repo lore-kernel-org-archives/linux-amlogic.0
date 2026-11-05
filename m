@@ -2,176 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DA22606A31B
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2026 13:35:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F64B606A326
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Nov 2026 13:40:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=F63Or7hB;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=fzfhnCGS;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=Kd4olU1h
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Q3OEAmIa;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=bcVDkrBS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:In-Reply-To:
+	Cc:To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=cFcZY1XRevKTlbAdOuhLX4mqBwu8eQvvOsk5j6NHVvY=; b=F63Or7hBQCj21J/612USHkULhB
-	1VxzCSD/7ytm60wa7/PcBYnO5lzmgdmHouOhD08ExQb4SOsAnLPbQbumCuuVecfLx/A6DChemG5tE
-	4O1UZSY1E25UlYm+xmshPnWXWidJSKahuRjl41mCJFBuZMxiDfLEhQrYnaKSF0E4NmaNYUDWXwfuk
-	45rTO19XhVTgoQkShmh0Vbvvv5e/KUUWaTDCNoR2GbWuqhN1BBZEJaqsW3avi4Mk8Xl4FtXUOPLTL
-	P4uQSnmadQ24dwqzyT8fgSRwESl9ECA7nWAAtB6N0SejUwPnz4+hXXTDr4sG+/QDUSb07pMQatrGZ
-	nK7GKP/Q==;
+	bh=R4CTKt73b7ktLJodF/PZkKZW80EzuLRZOFu41kPFWu8=; b=Q3OEAmIawNelLTlRwiBN+v5Ksp
+	rSIpHmEQAs+6tS7C2Ab2cxQpPZSwueKm8YrUBWbVHHJh9CMaMArJl1vehHQ6f09PtvmgvGYih59M+
+	m9hG09OzFtjnyPleMksMz2g4hnGS88gVXAVnCBl+3o65zWqnQ6t78RweYROCOLsop8f25k4uuSwcg
+	ofIin+4mMK+SnEyOwAWUAlR73KHKKMOzthDPzrKY2mR4Ttm7ULk5T1xKQ/Wu7pbESfgIpGs4dugFj
+	eRB2uvhebMH1LPjiPv2cpz1iw+r8lW40qBcZ+tFxOamTt4N0AkCuVE9fVtx28nSBFQUT9x8vhCHKa
+	ox2CGz8g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOxcW-000000099dK-0hfe;
-	Thu, 05 Nov 2026 13:35:12 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1xOxhF-000000099yL-1UqZ;
+	Thu, 05 Nov 2026 13:40:05 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xOxcT-000000099cF-33dR
+	id 1xOxhA-000000099xO-3dNL
 	for linux-amlogic@lists.infradead.org;
-	Thu, 05 Nov 2026 13:35:11 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6A5AiCxh1583267
-	for <linux-amlogic@lists.infradead.org>; Thu, 5 Nov 2026 13:35:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=C6les2P6C3VYvsc8kD6y8hS8
-	7HftniHxNnR9mHrsnsE=; b=fzfhnCGS61R5KeLTKzhUcDeAl/a29wFH1O5NR8ZL
-	Iw6z2btcm6+JaEDnK9eSRH8JWClTBhbiW1AFYg/luuhSwwunNo2lkKeM8EYe8rvZ
-	TV7x7CaQX3OrmcH16RuJqyNZaCGDINouoX1PTlszEStB77ayp7XVqjs4moIZ4Xso
-	E6/GKvXrqnzlh6tuy2aaE4RkQ/asZV+KBiDYP4qK9qy4XiIAloPmt7N3Uj5FTN0f
-	HCbfzWU/oCCQ7Jmpz8VKhvc9YoBR8esCIXqkfvzL9IGE8Mvw/QTBa0j286UPKh9Y
-	aM/5s7PwOIzIj6WL90/6ma44jvKpdaijgodIthb/ysITBA==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hrraarpu6-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-amlogic@lists.infradead.org>; Thu, 05 Nov 2026 13:35:08 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-93cbf2fd504so370350685a.2
-        for <linux-amlogic@lists.infradead.org>; Thu, 05 Nov 2026 05:35:08 -0800 (PST)
+	Thu, 05 Nov 2026 13:40:02 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4a59100fa83so18032665e9.0
+        for <linux-amlogic@lists.infradead.org>; Thu, 05 Nov 2026 05:40:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1793885708; x=1794490508; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=C6les2P6C3VYvsc8kD6y8hS87HftniHxNnR9mHrsnsE=;
-        b=Kd4olU1hKDi8pfANBH91POsv/q7lYn/HXWg5t16VhVJWfouOcQFYMtXF1H0yfkLiXJ
-         Vn9kLZDXeAzXbNuTm4GLCW50NNQFX7F4V8oubnBu+cGu4RFoDdqryOGfikAfO8UDKiBh
-         c3bbHwOi5YlHXDrFfNtiZFHkPuxHGlcGirOQ044s52+wlC/EgbeaHsI069LJpq9GcdbQ
-         Tp2X6noC4NsFd7oGoKMDw6PCRV3cbIMZJVgRocmHGCWTdijQH0bqjl9zUix3Fvjj/b3C
-         0JBKsZcWp9ZQGL+BgOOsIYeNTF5alPtvbtcyhrW6CRQlppSxJCEIfrLjaTvhQHe0qeB0
-         bxQg==
+        d=baylibre.com; s=google; t=1793885999; x=1794490799; darn=lists.infradead.org;
+        h=message-id:date:references:in-reply-to:cc:to:from:subject
+         :content-transfer-encoding:content-type:mime-version:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=Zm6TMXmi9ebTqld5yDJqwV1KRDoKAgG1LtJKW3+78Cw=;
+        b=bcVDkrBSiBlmcu7/HDLcDm+cECU6iLC+0XOVTCjqNB367sPIWF2Tu+F+ezAT/FSOVJ
+         9U2+/yOWfXN09FCbRUOuyFoXeE6r2Fjq7X7V5thpvWLCdQLrCb+TuZZh4ByUGBCvBmSf
+         9MC83jRlnyLE4JzfAdE54BOVRxoU4lhKaRC7nHLjeQTlg9KLeVlfrusqUz1NP3oqlr/t
+         /UcOmjB4AtteVWOpK2uGp7WsnLGihv9gRXVdopR12TX72bDGApREeOqfsYERrZPi9I8f
+         xi7N/2pW0xBDEK2mmqyxjOnBpa01O1pAnDmqa7EWFBMynkN2V5zXf+m+aZaJcRpWX7sF
+         1+eA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793885708; x=1794490508;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
+        d=1e100.net; s=20260707; t=1793885999; x=1794490799;
+        h=message-id:date:references:in-reply-to:cc:to:from:subject
+         :content-transfer-encoding:content-type:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=C6les2P6C3VYvsc8kD6y8hS87HftniHxNnR9mHrsnsE=;
-        b=xNnJYJEbAgFf4mmuzoWv4fzHsOBSeMssokbNpIkk2rTz0DpTm8vyTLKOYXtjsoDWT/
-         b3gofSqZlQPxjAPax56Jn6rY39JWUhMjONOgauZsTmgCw1QU043X4CVPpjyrtCyxQbwg
-         Pp4+Axr0E2etX7EScsGEvJQM4ePlAv5u+oK+5k7jnmAsivc/OvQCcrAakuV1HJbQcXpN
-         uCE36UmEeHbJd1JeiYTX49t4GkFm9Jpm3sZzJ9vOzRf8C4YzC3Fq091xizfuPQxPMjqG
-         tnfZ5QhI2WaN2ROyo49Fqi+iAw0KfmwJuaNHdr2/P29HpeqXJolmg6vTIoOqXs28hGmb
-         lIQg==
-X-Forwarded-Encrypted: i=1; AKwUvBzwC7IjVPiU2fs+ErMQ2TJVK39aOWrZ07cXl46+llacWVCx/ng1wwDCvmLwhnNuucBG2t9Eevt8Fq2shYCK@lists.infradead.org
-X-Gm-Message-State: APuU4Z8r8k+jAUb1pcsTVQskSASdCvKREHqqTOSZSWwugI5CPmSC8xuQ
-	MjoeyVGQP8oL7xt1kXfBp9a3IyNSpy/vmFGdpTqY5FotHzAVGroL3bAjUrIETA8qPzmKEdCpLkF
-	SgtRSG84ga1ciOoXLg1hpiDgeNhRi/umo4p5HoqkByKvgdYzhSZ/U6N5bP7CLmkCuV1dmlsqf5A
-	==
-X-Gm-Gg: AYBFou0RZthEO7WTWx266SdkYKvhzN1g26v28jsM6T0NifsPmtEzdmhlUbpBzQBHbZd
-	kw4ww84MXWKu9I1rjs1H8ongDt7HSV1wj1d22d7KLD5s2+xtMJTdCJwldH2qEjRijMbg4xNN4Db
-	PCPF3DNiI4MUg5jxzQnay6PtAH+mFzxFp8vyj90G5yQ5DXzJ07u0ukeoRvd4Q/uIu8d0di2MCfM
-	zdC7awwWS8M5AJqmkx4BipfrvA69+izKy11dpX95q+oUkwcL9T3u4XZ2lVXUhCNcqJgKPBhOLto
-	lUFMOdLwUB4ZWdeD9z8j8lOMqOesz4GUN76t1nYTpKGAD3A0Qmzk9x6qWXyEddnFB7vFwyZY5XM
-	dIzWmV3+PWtWKm39VRij8wLtns3C+vITxUPb2el95c82Q/L/iMsia92xyBY2AdmNMq9DGsgNeTR
-	Gqb2GFT609FZ8rFOyuYWKmEoYJS4E2Fi7aNUO/4m4F6TqfqKmYNF3ezlW0Gz9f
-X-Received: by 2002:a05:620a:a905:b0:945:b9c8:de5a with SMTP id af79cd13be357-945b9c8dedbmr1578449485a.20.1793885707659;
-        Thu, 05 Nov 2026 05:35:07 -0800 (PST)
-X-Received: by 2002:a05:620a:a905:b0:945:b9c8:de5a with SMTP id af79cd13be357-945b9c8dedbmr1578445985a.20.1793885707078;
-        Thu, 05 Nov 2026 05:35:07 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3acdc6e07fdsm10695471fa.28.2026.11.05.05.35.05
+        bh=Zm6TMXmi9ebTqld5yDJqwV1KRDoKAgG1LtJKW3+78Cw=;
+        b=f99AXq6AUT8TDcizgXek68+9pdNNT6/hHAWlSuu5Xb88rAS5cdh5hN4YW+uW4Z2cMv
+         w3tu6yRenTRKamqOOuh86AGZLGGoXzc7hGBKzg/fDK2G1ScsgoOGirZcrP7IinhdNETy
+         dEXLlbrWFkghUS7fhy7+3nGcDTJLxVNGQeXWnyAb1cvuXbeN3qERKmUqqLmBkYYFttw+
+         pGkbOA6jKuTyQn+9LkeMebiJCLzI8HhDBLt3Y1HttxufE99XHmVkQO4+7FwapFIVETfB
+         fdDiJ/aUuJ2pRxMm08dxY6N9DCyQ8X3HNMNX9Vg0THtUP4zM8P3ocdPTttJi9izvld+4
+         6HWg==
+X-Forwarded-Encrypted: i=1; AKwUvBx9AyXIe4MrqaTVK/0Wo7yE+Qeefjjb7+pqBij08IGgcO757Ez+EL4V3CUgKe3u5fZUuWhdXIA7aQ+Pd+A4@lists.infradead.org
+X-Gm-Message-State: APuU4Z9dEXEpTCxjl/GpX3NAwxmaNAPRJ1plPwIzciXK7DBxraMXWdOF
+	0nyT7R8KCN7HhDULbNRdpaVnNTE2GHVm5ZClTSc8vqiG6BqIRHZjB3OWeJdH52Loo5s=
+X-Gm-Gg: AYBFou2sc97PuisqhZzkfhl/H9/SaYIb8vF/C5nU222pz7MnpW0ROzJDt912/fCz23Q
+	EHknMjwqlvbDHO175mK7nEPb7y8E9s6hrZCT5+hsCdSuRuwJJ6p+bwaxcfy4l6/bUhZxMyyUddH
+	5XUP+uZ56RVuCLqcDnE+slIfqO7zJBTYKfAyL2RgBdPBk0didXdSyISTvU+pdyg2Q6GxGHa1VO5
+	qHRBdhSVLkFKcW1j1GlbHnaXyiFeP+bDq+8cCfmY8KosblXo/aHzb5a7AR3r6G/XnNZtBCHHoPQ
+	IqlFPVWQhetvybJBmAFXcP/1azpRrMBgvicQXGDQAF6L+iDVpqoP1ZpGLbMyx29nUSHKMtPHjLr
+	89lAqxXv6mRKlJIW0bsC9fDMKw3XNsYZO69yBl97YFdEOIIU7S+Jf5jPmBO5YId7oHnn3ycToZw
+	ECq59nFlRudjh5+AEv+g7E3JobaEKj9FEdFDElphsYOoCu9CrpH++dHM/dJEep8oU2nAXnr2Fr0
+	XDrRLt+xEhsZtGtECeZ3dX/R6LTSYf7hHCgHDalW/byaYFH72Sn2HiRCXcoG0uDQQ021oTNIXcp
+	ysNaZRPJfaJNkhV45QhFh0ng0gHkai18P53UMz4NS/noHhvI
+X-Received: by 2002:a05:600c:83c3:b0:4a9:18f4:925e with SMTP id 5b1f17b1804b1-4ac174711afmr407422615e9.18.1793885998746;
+        Thu, 05 Nov 2026 05:39:58 -0800 (PST)
+Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4b4107b7198sm64630215e9.0.2026.11.05.05.39.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Nov 2026 05:35:05 -0800 (PST)
-Date: Thu, 5 Nov 2026 15:35:03 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jani Nikula <jani.nikula@linux.intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-        Tvrtko Ursulin <tursulin@ursulin.net>,
-        Francesco Dolcini <francesco@dolcini.it>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Pengyu Luo <mitltlatltl@gmail.com>,
-        Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
-        intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org
-Subject: Re: [PATCH v8 5/9] drm/bridge: aux-hpd: let drivers pass IRQ_HPD
- events
-Message-ID: <6x7dtyvhbk22ri6nnpuo5jpk2ijphaebgbbchoramc4fhnvgjl@slhivetxacte>
-References: <20261024-hpd-irq-events-v8-0-6ee949e7a384@oss.qualcomm.com>
- <20261024-hpd-irq-events-v8-5-6ee949e7a384@oss.qualcomm.com>
- <179387924494.1025980.3024349339803589757.b4-review@b4>
+        Thu, 05 Nov 2026 05:39:58 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <179387924494.1025980.3024349339803589757.b4-review@b4>
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTA1MDA1NCBTYWx0ZWRfX4fE1WRqz47EK
- 09p406NMm44E+5qgbfvFFfKs9yMx5PfuE0Fie7yP87AYhweNR2PEYaEPtauM9XxUpLyTGD+Jz8u
- 2YDmVQcMUIESwlLL3t3bARLBXFRceh8=
-X-Proofpoint-ORIG-GUID: b5iMioYsWEuZZc3Kbzxzqf6-TQ_l-JAJ
-X-Authority-Analysis: v=2.4 cv=U54Hnuru c=1 sm=1 tr=0 ts=6aec860c cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22 a=P-IC7800AAAA:8
- a=oSBH3dYeosbuySqTTykA:9 a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
- a=d3PnA9EDa4IxuAV0gXij:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTA1MDA1NCBTYWx0ZWRfX6YGzwp/qYd7C
- S/VafyP2WqZwK34tnQrtD3ml8SpF5Gd/IQnT4gyZsLszgtPtE7m41CqvO5uZXG/L2MKuH8QdqU+
- 7mjXmo7PTn/RjmB+NXdrxGY6eNXSxVPqB140N5MBhfd1JDH9yhYySSnmMD6ucqQogfGh5DaFwrc
- PpOWH/w3JbOpDBZDMXS8RyisWJrnTXlYseSp2u1z33eHSLztPNU8/sOdRz3Ik+lUO2TRB4vniei
- d+I7coJpoTrRQ6yZofpAHuUtQ8a5A9IA4Kkpo+JsJr2BxJmqcWNxaz3gyV82F1kxWmf+6dy08eH
- onfR3TON1GtKD75MXT88N/HNPrGR/UKaSMrfhp5DTSo0E78vvd2fNVppY0X4m49d35SqT+I4HZT
- GHj4gravTXpLGGMo0wMUDPwGdEyQ2nCzLBWLLUU6iP5W63P2P5INa5OuEvWRvgTXGqQBzG8a1K6
- 908NUlcnSHZaW8YT7yw==
-X-Proofpoint-GUID: b5iMioYsWEuZZc3Kbzxzqf6-TQ_l-JAJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-05_03,2026-11-04_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 phishscore=0 bulkscore=0 priorityscore=1501 lowpriorityscore=0
- adultscore=0 spamscore=0 clxscore=1015 suspectscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2610300000 definitions=main-2611050054
+Subject: Re: [PATCH RFC RFT v2 2/3] clk: divider: add
+ CLK_DIVIDER_INVALID_ZERO flag
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jian Hu <jian.hu@amlogic.com>
+Cc: sashiko-reviews@lists.linux.dev, linux-amlogic@lists.infradead.org, 
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org, 
+ conor+dt@kernel.org, neil.armstrong@linaro.org
+In-Reply-To: <02476c54-d8ae-479d-898f-cd89ee2f7c24@amlogic.com>
+References: <20261029-meson_refactor_n-v2-0-ff4ac74e527b@amlogic.com>
+ <20261029-meson_refactor_n-v2-2-ff4ac74e527b@amlogic.com>
+ <sashiko-outbox-189068@kernel.org>
+ <02476c54-d8ae-479d-898f-cd89ee2f7c24@amlogic.com>
+Date: Thu, 05 Nov 2026 14:39:56 +0100
+Message-Id: <179388599696.2573818.3573650064673131943.b4-reply@b4>
+X-Mailer: b4 0.17-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2459; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=jY1a/cgO/AsaKMem8B+RlbZOedbhgH1XS158DQz6dbc=;
+ b=owGbwMvMwCW2VtK+WnvWU3HG02pJDFlv2nXPrdC+L/KnMu9R1D1tRzX9vYd/SKduvDY96+S2Z
+ Tdu393N11HKwiDGxSArpshSw10t/k5S68us6Tq3YeawMoEMYeDiFICJTN/N8L/a3f2p9Iup1qle
+ KoeWqkfJv4jpybA4dudj29W9U+WudrgwMpy/8nfisn7WmB+KC1myC7YbqbNEOAjPtn3JYzfjRZr
+ FGTYA
+X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
+ fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261105_053509_770714_833AEC20 
-X-CRM114-Status: GOOD (  19.37  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261105_054000_966276_E2C0473E 
+X-CRM114-Status: GOOD (  19.23  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -184,40 +115,74 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 05, 2026 at 12:47:24PM +0100, Luca Ceresoli wrote:
-> > The DisplayPort standard defines a special kind of HPD events called
-> > IRQ_HPD. These events are used to notify DP Source about the events on
-> > the Sink side.
-> >
-> > Let users of aux-hpd, the UCSI and PMIC GLINK drivers pass the IRQ_HPD
-> > events to the DisplayPort drivers.
-> >
-> > The drm_aux_hpd_bridge_notify() is kept to ease merging of the series,
-> > preventing extra cross-tree merges. It will be removed once all
-> > drivers are converted. The drm_bridge_hpd_notify() function is kept for
-> > the drivers which only care about the connector status and will always
-> > pass DRM_CONNECTOR_NO_EXTRA_STATUS as the extra status.
+On 2026-11-04 17:07:10+08:00, Jian Hu wrote:
+> On 10/29/2026 5:47 PM, sashiko-bot@kernel.org wrote:
 > 
-> Do you have a plan to later convert all drm_bridge_hpd_notify() to the new
-> _extra() variant, then remove drm_bridge_hpd_notify() and eventually rename
-> drm_bridge_hpd_notify_extra() to drm_bridge_hpd_notify()?
-
-I'd say, only if they require the extra status. Otherwise, it's just a
-noise which is perfectly handled by the wrapper.
-
+> > Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> > - [High] clk: divider: unhandled zero divisor in divider_ro_determine_rate()
+> > --
+> >
+> > commit 5ec3118aee2f03855552c58a4a8533e035b565bc
+> > Author: Jian Hu <jian.hu@amlogic.com>
+> >
+> > clk: divider: add CLK_DIVIDER_INVALID_ZERO flag
+> >
+> > This commit introduces the CLK_DIVIDER_INVALID_ZERO flag for dividers where
+> > a zero divisor value represents an invalid hardware state rather than a
+> > pass-through. When this flag is set and the divisor evaluates to zero,
+> > divider_recalc_rate() returns 0 without emitting a warning.
+> >
+> > [Severity: High]
+> > Should divider_ro_determine_rate() in drivers/clk/clk-divider.c also handle
+> > a zero divisor when CLK_DIVIDER_INVALID_ZERO or CLK_DIVIDER_ALLOW_ZERO is
+> > set?
+> >
+> > When a read-only divider has a register value val that maps to div == 0 via
+> > _get_div() (for example, when CLK_DIVIDER_INVALID_ZERO is combined with
+> > CLK_DIVIDER_ONE_BASED or an unmapped table entry alongside
+> > CLK_DIVIDER_READ_ONLY), calling clk_round_rate() or clk_set_rate() invokes
+> > clk_divider_determine_rate()->divider_ro_determine_rate():
+> >
+> > drivers/clk/clk-divider.c:divider_ro_determine_rate() {
+> >          int div;
+> >
+> >          div = _get_div(table, val, flags, width);
+> >
+> >          /* Even a read-only clock can propagate a rate change */
+> >          if (clk_hw_get_flags(hw) & CLK_SET_RATE_PARENT) {
+> >                  if (!req->best_parent_hw)
+> >                          return -EINVAL;
+> >
+> >                  req->best_parent_rate = clk_hw_round_rate(req->best_parent_hw,
+> >                                                            req->rate * div);
+> >          }
+> >
+> >          req->rate = DIV_ROUND_UP_ULL((u64)req->best_parent_rate, div);
+> >
+> >          return 0;
+> > }
+> >
+> > Unlike divider_recalc_rate(), divider_ro_determine_rate() does not check for
+> > !div before calling DIV_ROUND_UP_ULL(), which will trigger a division by zero
+> > in the kernel when div is 0.
 > 
-> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> In this patch, the dividers which set CLK_DIVIDER_INVALID_ZERO use 
+> divider_determine_rate(),
+> 
+> not divider_ro_determine_rate().
+
+Yet the point raised is valid. The change must work for everyone, not just you.
 
 -- 
-With best wishes
-Dmitry
+Jerome
+
 
 _______________________________________________
 linux-amlogic mailing list
