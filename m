@@ -2,104 +2,110 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B813E606A33A
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Nov 2026 07:09:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 510B7606A33A
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Nov 2026 07:13:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NzE9+w9E;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=EmTgMEiC
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MKdPwzFi;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Tj4eP/rS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
-	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=cnSZAzPiDY8jER00F/xxiC7d/UtL5gS5E/Bq/oReKQ8=; b=NzE9+w9EeKNy3/vQyYPq6nb2xA
-	9PViUrEtrzDDuTjp/GnEeivFlo+xQ8YeZVDTKTlLZ31s7/U9CFgSlwooaHy9NrWLzKtSLK5h+mTfI
-	t9ZtuToVTiIF37BntnMUM5e4HLdjQSSh5ogg0R/dMi5s9SbByMtKh3duRe5SBXiSyufSLZ0NylR96
-	j54gGXFLh/SSWioysvt0zaWZEHHOM0E2u+R/P3mkiX1mYjnzZsjCdfz1cQDE8iaf7cR4KkpC8r1Nd
-	xZO4sIcNjDCDLNFzE8pY3tgN3mHduM8abBZgyydP+/FL0Ndh5/dr84nPLniGSw/XGckw0Dwexy48T
-	Ttqwt7KA==;
+	bh=ShbA2F55s9KiCvL/KYSG9vA6uUZTUApFbD4kCREQQ10=; b=MKdPwzFivkH5cp8JQlWfz0HfOT
+	RpEPyVdJ3OCUKaXEi1WK/U80Ik9JAYkA0kYh0D2d86u51t12H8RdB6Pg4qReVTSsap8jf1fglq9Yv
+	SHxvrgCMyk+vEWwbvKLfi8ND22p2BNdabgJUWr6Cv/GSY+hzCizbCYey7WEvRCYjWZbh6Lkxm7U6V
+	QXS/WjGYqFw8X6OM7Y6091xolsKKTISS9VrgWgqXfK5GHoC+avMjJQYgZOeqyL6/UU+pSB2EsuiqK
+	l1zN40YZMb9wubHhHGZEUGBI39JPL3gYHlEJMFS3CBF7P4UTqeegFQXo1DaUZiDyVYIpvDRpp/fxH
+	TwLJbbmw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPE4L-0000000BOtN-0XF5;
-	Fri, 06 Nov 2026 07:09:01 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xPE8T-0000000BPMa-0g2d;
+	Fri, 06 Nov 2026 07:13:17 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPE4K-0000000BOtE-031C;
-	Fri, 06 Nov 2026 07:09:00 +0000
+	id 1xPE8S-0000000BPLa-0NOR;
+	Fri, 06 Nov 2026 07:13:16 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id C0E3343CAA;
-	Fri,  6 Nov 2026 07:08:59 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id AA96F43D60;
+	Fri,  6 Nov 2026 07:13:15 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1793948939;
-	b=zbWAaEPUHHoS10iRxwlAfYnVZEY400FBLMBedLqwiiRsCl6M9CAuRCrdrbTZWyh/Lp7z
-	 xlKb/ydJTbl66WnQBGecGc7EgCknhldhy78MqS2/1jz3XerfE7nNzek6ZQJEKf9LyRCGk
-	 MYVZLyRxqI3L6ZBd9xeQJEnpa1weJqtiMrb8zEa7846I31LOdanAct/FjAAHRy/5tkXyq
-	 SfsfK2XrZ52dKarefSaJ04019h9SEKwMpBQQrLQXVKz+cI2S2j5YR1yiyH3N8HUE5cbnM
-	 f0vSQsMCneD0qAj1JEhTTg9KJtPete8ccWB8ylLBHai8h9MK8OMKolJihRSy5OOScdg==
+	t=1793949195;
+	b=MkQZ68AHze0Xfm1F/RbPek8pf33GX7SQVdWuViwlISyA4gxUsM4wM1xpiLwntkE5hhvw
+	 4NxubdzmfDu+KbL/JvdBDfuEBVy26tXKYG1G6v1aXMiDVoYraiyCkBD6MhEgcRVArUHCp
+	 +c4ruE0jFoKVRImEfzKyHT40UTzCQED6JASS6EXrjRXEU2cOOgOZ/xvDvRPwAWd+42gkw
+	 TQP7luBqmiEWRu5o9G+9pbJxKcPCeRJ2SY/dRXZXqgBENnUzF17PbGRGdcx8mH8Z7WF2q
+	 EA0gf2+cgw4O1/jUWtGHLVRhocQjm6r6RIdeb/pQXG+FfiptTOCLUQGpoCZGg2rBfCA==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1793948939;
+	c=relaxed/relaxed; t=1793949195;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=sssGzgp6hfraRTjPaOuoMz/ydvUjxyv6U8CNhrczgQc=;
-	b=U/JE4jcRGwUJ0lMX4i4CgZJg50O11vt6uHoQD6T8gO2348U8Snd/qUfglIZJVHtlGxMF
-	 BWgAeY82qEbJkEuDKm3Y0kms+JItm4icEFrZMMjblaQ/IV8N2GYjySaNcy+CvU5niMX+L
-	 8756IRzIdSrwQuEiwYKK99F8d+2X5Z6phBOsAACqGiXsgKsadx3UxN//jVz43oJH0rbMh
-	 eulOlubwgUGtTBsdFd1F8WFh9EpLU4z0sFBb3trRwTzTknaFSV9jCLRacVSeaP9gzvYCb
-	 57rZ/POhU2V6jrXMFRhbJ1F9zsGg4kQuXm9j/8jvqxFHng9Eesfi6Eplm4tC3d3MchQ==
+	bh=z/ZZ/v2ozrIFzFDjrSLFseMeWg/94kHqZgMwNJDg2q4=;
+	b=Xopdpj4VYGxioNFZqfIcj4ok1F7jTuq/ckUeJWJTHKoW4Tn3oDrpgKGu/1DhJGsqcjER
+	 U+POpKH2zLG9aGY4z9uQxnjDAmezV3VYdAmlQIXyb5+3iCHn5XoDZMVEgkedlaYvkn9Tj
+	 kqc0on2FytD8EAbY4+kokhFtoNaZaoKFI6qY1gtcKPDo2UiWoSmrC4RkYN2nBETDLWBhf
+	 Gn63rXYtTpLVoGLVnJbvxRZO1hN98NnVy/4iuYnIxOy4/STZvMhJZMVOTzj10hEUZuvSh
+	 7D0WWANQOSNyoN/jhtcJd2K4BWvihli1BidI/vMTIE/JfYGPEdIXpOgqjpS/kCLq9JQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id F2A7F1F0089F;
-	Fri,  6 Nov 2026 07:08:58 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 841861F008A3;
+	Fri,  6 Nov 2026 07:13:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793948939;
-	bh=sssGzgp6hfraRTjPaOuoMz/ydvUjxyv6U8CNhrczgQc=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=EmTgMEiCAR2x4GSZadNau2v3DnOTeD3OA/JvNiQgw96aHXlTPIeALuWaCT/br2GZq
-	 UQGflvH6Eo8o7j80G+MQcL8d50PhMKkRIu3PG7BZXLyczM40yXjATzdzlhK2pME5tg
-	 t/m5yzUi+W/1t72VorLv4DTz2ZY3V4GkNOsJ3drzzhMrIVuaSBwrFdMgxslUqvEjcq
-	 e1S5inj3LqrYrs4huiA1fGQnaYwsgHJDkL6mPuS4hEro3uTPnwO7p9ZfPV2pxOoEVz
-	 21w/zD5QuoWUdFYM7un2YwSocNlcAvsL35wTMKyrfNfjlTFCD5txca8exvkDRxompa
-	 I+fi/r3B1x2fw==
+	s=k20260515; t=1793949195;
+	bh=z/ZZ/v2ozrIFzFDjrSLFseMeWg/94kHqZgMwNJDg2q4=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=Tj4eP/rSdBUkUPuoM1W9YYwEfrRZJBBBzlJodJHuEK+LZQjWEVWjIRqvKTYIYRgET
+	 AKBM9GHVyKGn9q8ryheAE+VpvMrzNfOCIqpWfdhOnCkPGSZkHQl+rh4rKw4JJAIZWP
+	 ++rs853Vs2jpGu5x46/Ad5SLORAaA8XR+GnDaTCKoHfEaxtCadmHYdCu6siryECF0w
+	 oAo/F5LMYnpfJm+gaDSSfIxruCETRuIzs/QgIRux9k/eb+QtpF9gD696as/SuZravG
+	 VKRHRrq9+BHgejKyO/uaXock2tYqpG32hWATGvRNZQH+wh26q5QudokPGYhBZJaO7Z
+	 /b/LjQ9KOgv1Q==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 4BF9C45C1E;
-	Fri,  6 Nov 2026 07:08:58 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Fri, 06 Nov 2026 07:08:46 +0000
-Subject: [PATCH] pinctrl: amlogic: a4: Allow functions without groups
+	by lkml.kernel.org (Postfix) with ESMTP id 12C9545C3F;
+	Fri,  6 Nov 2026 07:13:14 +0000 (UTC)
+From: Junyi Zhao via B4 Relay <devnull+junyi.zhao.amlogic.com@kernel.org>
+Date: Fri, 06 Nov 2026 15:13:09 +0800
+Subject: [PATCH v3 2/2] dt-bindings: i3c: silvaco,i3c-master: Add Amlogic
+ A9 support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261106-debug-info-v1-1-067c5c554f91@amlogic.com>
-X-B4-Tracking: v=1; b=H4sIAP187WoC/x2MQQqAIBAAvyJ7bkGNFPpKdMhcbS8aShGEf086z
- sDMC5UKU4VZvFDo5so5dVCDgP3YUiRk3xm01EYpadCTuyJyChmdm7qj0VhloQdnocDPP1vW1j7
- 7Vr3yXAAAAA==
-X-Change-ID: 20261106-debug-info-bb5611e36717
-To: Linus Walleij <linusw@kernel.org>, 
+Message-Id: <20261106-a9_i3c-v3-2-804b69b9095b@amlogic.com>
+References: <20261106-a9_i3c-v3-0-804b69b9095b@amlogic.com>
+In-Reply-To: <20261106-a9_i3c-v3-0-804b69b9095b@amlogic.com>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
  Neil Armstrong <neil.armstrong@linaro.org>, 
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1793948933; l=2986;
- i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=38GizBhLDTW4i/GAT4DbimPes3s2Ei64bmXiM44p6dM=;
- b=Zp2hrVUInW3tmySD+qP23c2GiuMu7cuWGPE7KpTaGQtXN3rnWgNGaDXPPlqLObAPZOi7+XzRa
- Me9xUYBVdZ5BwnG79tTvNzKV6JE2Az0cijnFmwxSoHYLJFkY+nj7+s7
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
- auth_id=578
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Miquel Raynal <miquel.raynal@bootlin.com>, Kees Cook <kees@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>
+Cc: linux-i3c@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, imx@lists.linux.dev, 
+ linux-hardening@vger.kernel.org, xianwei.zhao@amlogic.com, 
+ Kelvin.Zhang@amlogic.com, Junyi Zhao <junyi.zhao@amlogic.com>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1793949192; l=3008;
+ i=junyi.zhao@amlogic.com; s=20260924; h=from:subject:message-id;
+ bh=EbBk034GgwE/lc2KD1CPaTtRovIqCoOmYzsKMI0uw94=;
+ b=PL+f2g6aiQBoYwgwUjM03HWozXwwqI0y/oLp6OneE8FG5gPq4DZyr64D1ghA4gICEt8xHaQ1y
+ 9pNv4KLHqkuDz3THgyulcyimgZl9v3xIkMzMNoMEjC8oF7YiQIRy8Ft
+X-Developer-Key: i=junyi.zhao@amlogic.com; a=ed25519;
+ pk=hiL5PjGIksGFiWvEx9J3MhQqU/ro6vNbj72NIw4bbvA=
+X-Endpoint-Received: by B4 Relay for junyi.zhao@amlogic.com/20260924 with
+ auth_id=1054
+X-Original-From: Junyi Zhao <junyi.zhao@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,7 +115,7 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
+Reply-To: junyi.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
@@ -120,94 +126,101 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+From: Junyi Zhao <junyi.zhao@amlogic.com>
 
-Allow function nodes without child groups during device tree
-parsing instead of returning an error.
+Amlogic A9 SoCs integrate the Silvaco I3C master IP in two domains:
+the EE-domain instance (amlogic,a9-i3c) takes "pclk" and "fast_clk"
+like the NXP integration, while the AO-domain instance
+(amlogic,a9-ao-i3c) lives in the Always-On domain and generates its
+bus clock from a divider inside the controller's own register space,
+so there is no external fast clock and only "pclk" is exposed.
 
-Only count and parse nodes with the "func-" prefix as pinctrl
-functions, ignoring other non-GPIO child nodes.
+The two instances differ from the vanilla Silvaco/NXP integrations in
+clock topology and required init, so the driver matches them by
+dedicated compatibles instead of the "silvaco,i3c-master-v1"
+fallback: a fallback would bind the generic driver data, which
+neither programs the fast clock rate nor handles the AO internal
+divider, and the variant would then fail to work.
 
-Also handle zero-sized allocations when no groups are defined
-by checking for ZERO_SIZE_PTR in addition to NULL.
+Add both compatibles to the schema without the fallback, following
+nuvoton,npcm845-i3c, and use per-compatible if/then conditionals to
+enforce the clock counts: two clocks for the EE-domain instance and
+one clock for the AO-domain instance.
 
-This allows the driver to support function nodes without
-groups and avoid treating unrelated device tree nodes as
-pinctrl functions.
-
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
 ---
-Add debugging information for error dts and Error pinctrl config not affect normal pin work.
----
- drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 26 +++++++++++++++++---------
- 1 file changed, 17 insertions(+), 9 deletions(-)
+ .../bindings/i3c/silvaco,i3c-master.yaml           | 26 ++++++++++++++++++++--
+ 1 file changed, 24 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-index 39eb8cc7fc0d..d0e3cec3ead0 100644
---- a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-+++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-@@ -821,8 +821,10 @@ static int aml_pctl_parse_functions(struct device_node *np,
- 	func = &info->functions[index];
- 	func->name = np->name;
- 	func->ngroups = of_get_child_count(np);
--	if (func->ngroups == 0)
--		return dev_err_probe(dev, -EINVAL, "No groups defined\n");
-+	if (func->ngroups == 0) {
-+		dev_dbg(dev, "func %s No groups defined\n", func->name);
-+		return  0;
-+	}
+diff --git a/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml b/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
+index 853092f75..d892d42be 100644
+--- a/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
++++ b/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
+@@ -13,6 +13,8 @@ properties:
+   compatible:
+     oneOf:
+       - enum:
++          - amlogic,a9-i3c
++          - amlogic,a9-ao-i3c
+           - nuvoton,npcm845-i3c
+           - silvaco,i3c-master-v1
+       - items:
+@@ -28,14 +30,14 @@ properties:
+     maxItems: 1
  
- 	func->groups = devm_kcalloc(dev, func->ngroups, sizeof(*func->groups), GFP_KERNEL);
- 	if (!func->groups)
-@@ -899,8 +901,12 @@ static void aml_pctl_dt_child_count(struct aml_pinctrl *info,
- 		if (of_property_read_bool(child, "gpio-controller")) {
- 			info->nbanks++;
- 		} else {
--			info->nfunctions++;
--			info->ngroups += of_get_child_count(child);
-+			if (!strncmp(child->name, "func-", 5)) {
-+				info->nfunctions++;
-+				info->ngroups += of_get_child_count(child);
-+			} else {
-+				dev_dbg(info->dev, "func node defined err %s\n", child->name);
-+			}
- 		}
- 	}
- }
-@@ -1128,7 +1134,8 @@ static int aml_pctl_probe_dt(struct platform_device *pdev,
+   clocks:
+-    minItems: 2
++    minItems: 1
+     items:
+       - description: system clock
+       - description: bus clock
+       - description: other (slower) events clock
  
- 	info->banks = devm_kcalloc(dev, info->nbanks, sizeof(*info->banks), GFP_KERNEL);
+   clock-names:
+-    minItems: 2
++    minItems: 1
+     items:
+       - const: pclk
+       - const: fast_clk
+@@ -70,15 +72,35 @@ allOf:
+         compatible:
+           contains:
+             enum:
++              - amlogic,a9-i3c
+               - nxp,imx94-i3c
+               - nxp,imx95-i3c
+     then:
+       properties:
+         clocks:
++          minItems: 2
+           maxItems: 2
+         clock-names:
++          minItems: 2
+           maxItems: 2
  
--	if (!info->functions || !info->groups || !info->banks)
-+	if (IS_ERR_OR_NULL(info->functions) || IS_ERR_OR_NULL(info->groups) ||
-+	    IS_ERR_OR_NULL(info->banks))
- 		return -ENOMEM;
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - amlogic,a9-ao-i3c
++    then:
++      properties:
++        clocks:
++          maxItems: 1
++          description:
++            The "ao" variant is the controller instance in the Always-On (AO)
++            domain, which has no separate bus clock and derives the
++            bus clock from an internal divider.
++        clock-names:
++          maxItems: 1
++
+ unevaluatedProperties: false
  
- 	info->data = (struct aml_pctl_data *)of_device_get_match_data(dev);
-@@ -1166,10 +1173,11 @@ static int aml_pctl_probe_dt(struct platform_device *pdev,
- 			}
- 			bank++;
- 		} else {
--			ret = aml_pctl_parse_functions(child, info,
--						       i++, &grp_index);
--			if (ret)
--				return ret;
-+			if (!strncmp(child->name, "func-", 5)) {
-+				ret = aml_pctl_parse_functions(child, info, i++, &grp_index);
-+				if (ret)
-+					return ret;
-+			}
- 		}
- 	}
- 
+ examples:
 
----
-base-commit: 89edcad9f23925f5706b7555b02165d1990444d5
-change-id: 20261106-debug-info-bb5611e36717
-
-Best regards,
 -- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
+2.42.0
 
 
 
