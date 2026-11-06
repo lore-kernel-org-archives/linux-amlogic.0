@@ -2,104 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DFA4606A330
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Nov 2026 19:34:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2AC6606A326
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Nov 2026 19:40:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ihPMvH0T;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=UC1d7YND
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=v978V7Sp
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:In-Reply-To:
+	Cc:To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=9SEChd7+dl0b6s592ASeT1DkyoUnyOijk6lUDrwFABo=; b=ihPMvH0TsdcoMcCwb0Kgixnhks
-	9kb6JMJSE95qKmoTHZwBcm+vJPYoG8QedmRUV2lo6XKb7GCiqMtrLwOGs8OuxQwv3RsMOT5lllDtj
-	ggfWrbrCSzXTKiNZbEl/DEi5B/bKipuQ9JRmhl3mVHa3bDAFD9YuqyxbuJo8v+EXgYiGLJ/vCLPAW
-	p0ppRVuNqQ3iBNDDUtr9iJ6E0g8lA0ZT+/mP9vZVBau6VtWas5xJx+ZzqWAC7HOsq9oq2K4uHxRzF
-	hiGCwJp3pY5Dbd41Krw72FfqieiwQoKNqmIN8KcdiOt+gRLdVhi5fxBzBT5Svm+aGAH2TcH+yha/I
-	tPZKguvg==;
+	bh=05m6PQgNyGJ6Axft1J44f6tdksy7teqfVuWM3xqSTl0=; b=v978V7SpZE/AIfflDyEKy+Ruce
+	X6TjhqPNUZ+UJalWcNJO4WWzL2trUBsslCOvOzd1tyLjiGn9Fs4Q63xht8o52/ONt7sQpiljEvDE0
+	pOwW5opR+bXleCOhPMiuvb/teazm18R7VtPpg7ULMo+mqtiodE4pg0cnUOlYInZw2F9YT1rJDMKI2
+	YvR0YMGbjc6p6eURqgGiRftYmNnUEfyvJzr3Htj4Ld2UqbnLvpNaaTtUPZjYnlGaKLpPxj1hk2Jve
+	S18LO136jTpra9UE79D69FBh8sDDDtkp4c6Tef+8HnM+Bb+kwXO4agaYcgo2FrTXLhFalB475vmRc
+	SYFCBh9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPPi4-0000000DXLc-3Zvz;
-	Fri, 06 Nov 2026 19:34:48 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1xPPnV-0000000DXr7-1hKV;
+	Fri, 06 Nov 2026 19:40:25 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPPi0-0000000DXKS-22sP
+	id 1xPPnT-0000000DXqz-1VY7
 	for linux-amlogic@lists.infradead.org;
-	Fri, 06 Nov 2026 19:34:47 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4a3517554f7so10602285e9.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 06 Nov 2026 11:34:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1793993682; x=1794598482; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=veI1zjLMBadlIkwiy8gwMKz1++qI3Sdp/irDe+F5lH4=;
-        b=UC1d7YNDgoVxJdUHy2aH4qIWPDmvb3yvmWirR4NRtPc7L1ZBw4LtZH+UTc2HGVT0Qi
-         pOdJOITfmHjR5r0rm3TrUt+kLjnxP/SnWIMqiM6/NYMICcZYzOCdDG2xohNciYJCXdSD
-         2SHRTn1BPt6BIh2mmOQS/81rGKAVZ9XdsYN6GPznyMsgO9rtDkwyiIteKbi5xesTJaUC
-         U3m5j00pcaSTKbwzYqpGDY9uBfKke2DnF02Ogw49zuDwRSEhxztFFlyDcZaao2NLLHe9
-         4PkC6nugvLQslektUsSBAWclwKXHf+sXeZCNY1CKtinAI+ycBTxrbF7FYybq5YaqNR5/
-         BSsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793993682; x=1794598482;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=veI1zjLMBadlIkwiy8gwMKz1++qI3Sdp/irDe+F5lH4=;
-        b=Bh/6YWrkrlNy9xF1lYlwpHkhS0S09SWFkiqCelZbrTtbFIxdowRWQTimLVLFdjcWT2
-         qL/xCKkPsKOBJrle6QMVjbKHmfOl4Z23GD/iaPSMmXusxjY7Db55Z0PF98XD85EbooQo
-         HCAGiShj8vb6ZzYUajy7fMlDc44MZeiKJfr3bjiPjxmeukTM19MHY1Y12+ZBTckeNbVm
-         m5d/535n5CXHW99Y/A9dQHtm6p5VzQN6EbgBUWErykn4fvxE2ZmQErbnN7DO5RfV2AY5
-         fpMN0LphRlgX30eThFEcfK5rG4dtl9buJs2gfU4uXaVUUDeus2/jI8GWwL2NeU+gnov8
-         YTZQ==
-X-Forwarded-Encrypted: i=1; AKwUvBxQo5WJuyW04g+auk/fn31VIE+Q2B/sslcRiVFk5AWSwGkqORygQL8nZFlo36SojB4/lQOT+cjfDGGltrfB@lists.infradead.org
-X-Gm-Message-State: APuU4Z/GCR3fe7D/rUAdIDv2S9VrSnVG0hQgXkylCXPP0qqpLzSmqoY7
-	B6el3VizC1uIWyEdgDd8HEkLhKJMphv5rMJl1q8XkjUYxVtJ28iCMOsovBwOz+drCLE=
-X-Gm-Gg: AYBFou31E4G82tNSojaeLoBWIDD8cKoGnTdW9EH0/wb9KfbGx9Psj9E0DSw1lm2co0c
-	S+5e3sR7+LN7fotHMduu/ifjNIW2Z3D5s2aZyMvdqctgT3K9asogdAskoMWXaRc2/TEYyjbz2Ni
-	6q2KfWJd0Cn9GAos3xVbQYDX7eqs4I6g2Lw2xIB4fz91QUUc1CuqaoyygJq5vzDLRTjrbNNbQZc
-	OeW8hq+/DAeWbL+DM297qPxwYRnPYF7Cdgzxd29mXNlfs4Bu51x7JF0A6xoB6VdFXeY8633cYu8
-	KoYEQrM55SHUtHnKa91cR47VbEHzeufdpoWBzXRZAmVxRomrCGRF+xlWCYZu1J3Cy6Y3FNABN/u
-	ocuDpP1aoYRR+Pa1n+5hvbuv9RrxKRakywTNjN1mLikGi/L5D8C+twgyrl/m/AKTIDgSxPL3CtJ
-	DmagTSk7PX7n2WP+lMNjoyupFKMPeR4SlOozh0ELIU6QNPzgmG/svsQsSCM5zfmnC0KGQ/EkRtP
-	g/aLhEf2vNc3nK875ChBXTEokCqMfO4keXXWVY3jlP8b1UFHFZN1re/TchoILEHtzJus8LvSLGQ
-	P5WI8tk+GJ3QiUuCxbiXvlAA2d3zCn9HRE3ZUY6t2tlVtBZm87Vc0eJIVbGH2W7bHU8T9P6LzQu
-	H7t4pBO154rWqJ166/etWqbyl000CWGXZUQ==
-X-Received: by 2002:a05:600c:3e0e:b0:4a2:cbe:bebc with SMTP id 5b1f17b1804b1-4b6dfba9199mr64477945e9.23.1793993682189;
-        Fri, 06 Nov 2026 11:34:42 -0800 (PST)
-Received: from macbook (host-95-246-144-141.retail.telecomitalia.it. [95.246.144.141])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4b7efb1547fsm3329295e9.11.2026.11.06.11.34.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Nov 2026 11:34:41 -0800 (PST)
-Date: Fri, 6 Nov 2026 20:34:37 +0100
-From: Carlo Caione <ccaione@baylibre.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
-	Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Jian Hu <jian.hu@amlogic.com>, Chuan Liu <chuan.liu@amlogic.com>, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 6/7] dt-bindings: clock: Add Amlogic S7 peripherals clock
- controller
-Message-ID: <au4p0xYEFkgEU6T4@macbook>
-References: <20261106-upstream-s7-clk-v1-0-7d501d62621f@baylibre.com>
- <20261106-upstream-s7-clk-v1-6-7d501d62621f@baylibre.com>
- <20261106-unwilling-preoccupy-156dbb310448@spud>
+	Fri, 06 Nov 2026 19:40:23 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 57F2F601C0;
+	Fri,  6 Nov 2026 19:40:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8B8D1F0089F;
+	Fri,  6 Nov 2026 19:40:21 +0000 (UTC)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20261106-unwilling-preoccupy-156dbb310448@spud>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_113445_012079_9932F1F0 
-X-CRM114-Status: GOOD (  12.28  )
-X-Spam-Score: -2.1 (--)
+Subject: Re: [PATCH v5 01/16] PCI: dwc: Add pcie_cap field and caching
+ helper
+From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+To: Hans Zhang <18255117159@163.com>
+Cc: sashiko-reviews@lists.linux.dev, imx@lists.linux.dev, 
+ linux-amlogic@lists.infradead.org, linux-pci@vger.kernel.org, 
+ Frank.Li@kernel.org, neil.armstrong@linaro.org
+In-Reply-To: <3773fc58-a6ab-4f8d-a9a1-c865217afe84@163.com>
+References: <20261028030652.2917756-1-18255117159@163.com>
+ <20261028030652.2917756-2-18255117159@163.com>
+ <sashiko-outbox-187403@kernel.org>
+ <3773fc58-a6ab-4f8d-a9a1-c865217afe84@163.com>
+Date: Sat, 07 Nov 2026 01:10:16 +0530
+Message-Id: <179399401605.55876.3520713514569261990.b4-reply@b4>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3038;
+ i=manivannan.sadhasivam@oss.qualcomm.com; h=from:subject:message-id;
+ bh=1tMG3qbjDNeqUpxfEBEvQAkk2kZSTgYVoHa4KZ6UwNk=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBq7i0gBLa0hX8gTIugn2MLgSu3YqcqnGaKfSliE
+ khZL5oFTgSJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCau4tIAAKCRBVnxHm/pHO
+ 9QLzB/98XUV9FjvnZTWHvlQLojLVfWOzHoACcUgVHDiCq/7ZVYkJoCtPGTWAeY87dvCUBo8RYxk
+ GUtJUQAxM6Kdbfc6bvVhkdbMJYgzw1ARlnHSM6rFe5ZNxhO2wJRzRu1dylIg15lRDsjgsHOUdyE
+ n2GGcV/wmgckVB9+3Hlyhd8KlTcrWPkrsSAJzS7C6H5CM1gDz3iKCkE8iCv1BjaUaTWDnbZwxYe
+ Da2RS37T9+o5tqMzFNLfUDIl9bPiJUQiv5rzK0BkpGvdZ4r7mzK50bFeFJXVeDVl27SvwL2gsj8
+ WHO1wGfB+Zd5qVajvJelHygoWeU2HgRGKSpzR93/kohcOiXL
+X-Developer-Key: i=manivannan.sadhasivam@oss.qualcomm.com; a=openpgp;
+ fpr=C668AEC3C3188E4C611465E7488550E901166008
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,57 +74,92 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 06, 2026 at 17:34:14 +0100, Conor Dooley wrote:
-
-> > +    #include <dt-bindings/clock/amlogic,s7-pll-clkc.h>
-> > +    #include <dt-bindings/clock/amlogic,s7-scmi-clkc.h>
-> > +
-> > +    soc {
-> > +        #address-cells = <2>;
-> > +        #size-cells = <2>;
-> > +
-> > +        clock-controller@0 {
-> > +            compatible = "amlogic,s7-peripherals-clkc";
-> > +            reg = <0x0 0x0 0x0 0x49c>;
+On 2026-10-28 11:18 +0800, Hans Zhang wrote:
 > 
-> What's with the weird numbers in this example?
 > 
-> Examples don't have to be real, but when it looks like this the
-> immediate thought is that the modelling of the device might be
-> incorrec.t
+> On 10/28/26 11:15, sashiko-bot@kernel.org wrote:
+> > Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> > - [Medium] PCI: dwc: unconfirmed offset returned in dw_pcie_get_pcie_cap()
+> > --
+> > 
+> > commit c6fcd840cdb57dd351ea1787cae915ad3164fb13
+> > Author: Hans Zhang <18255117159@163.com>
+> > 
+> > PCI: dwc: Add pcie_cap field and caching helper
+> > 
+> > This commit adds a pcie_cap field to struct dw_pcie and introduces a
+> > dw_pcie_get_pcie_cap() helper that lazily looks up and caches the PCI
+> > Express Capability offset on first use once confirmed via a DBI read-back.
+> > 
+> >> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> >> index 6d788aa000117..dede6b3966585 100644
+> >> --- a/drivers/pci/controller/dwc/pcie-designware.h
+> >> +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> > [ ... ]
+> >> @@ -832,6 +834,42 @@ static inline void dw_pcie_dbi_ro_wr_dis(struct dw_pcie *pci)
+> >>   	dw_pcie_writel_dbi(pci, reg, val);
+> >>   }
+> >>   
+> >> +/**
+> >> + * dw_pcie_get_pcie_cap() - Return the PCIe Capability offset
+> >> + * @pci: DWC instance
+> >> + *
+> > [ ... ]
+> >> + * Return: the offset of the PCIe Capability, or 0 if it could not be
+> >> + * found or has not been confirmed yet.
+> >> + */
+> >> +static inline u8 dw_pcie_get_pcie_cap(struct dw_pcie *pci)
+> >> +{
+> >> +	u8 cap = READ_ONCE(pci->pcie_cap);
+> >> +
+> >> +	if (!cap) {
+> >> +		cap = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+> >> +		if (cap && dw_pcie_readb_dbi(pci, cap) == PCI_CAP_ID_EXP)
+> >> +			WRITE_ONCE(pci->pcie_cap, cap);
+> >> +	}
+> >> +
+> >> +	return cap;
+> >> +}
+> > 
+> > [Severity: Medium]
+> > In drivers/pci/controller/dwc/pcie-designware.h, the kernel-doc for
+> > dw_pcie_get_pcie_cap() states that it returns 0 if the capability could not
+> > be found or has not been confirmed yet.
+> > 
+> > However, when pci->pcie_cap is 0 and transient DBI data causes
+> > dw_pcie_find_capability(pci, PCI_CAP_ID_EXP) to return a non-zero offset cap
+> > while the confirmation check dw_pcie_readb_dbi(pci, cap) == PCI_CAP_ID_EXP
+> > evaluates to false, pci->pcie_cap is left as 0, but the unconfirmed non-zero
+> > cap is still returned to the caller.
+> > 
+> > Callers that guard DBI writes on a non-zero return (such as
+> > rockchip_pcie_enable_l0s()) or cache a non-zero return in driver state (such
+> > as tegra_pcie_dw_host_init() setting pcie->pcie_cap_base when
+> > !pcie->pcie_cap_base) will then consume or permanently store the unconfirmed
+> > offset.
+> > 
+> > Should dw_pcie_get_pcie_cap() return 0 when the confirmation read-back fails,
+> > or should the kernel-doc comment be updated to match the implementation?
+> > 
+> 
+> Hi,
+> 
+> We have already replied to Bjorn before. According to the specification, 
+> the value of pcie_cap is not equal to 0.
+> 
 
-The numbers are actually real, but the example simply lost their context
-because I copied the node from the S7 dtsi (not yet submitted), where
-the controller sits under the APB bus node (bus@fe000000) and the bus
-ranges make the addresses relative to it.
+Then please update the stale the kernel doc.
 
-		apb: bus@fe000000 {
-			compatible = "simple-bus";
-			reg = <0x0 0xfe000000 0x0 0x480000>;
-			#address-cells = <2>;
-			#size-cells = <2>;
-			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+- Mani
 
-			clkc_periphs: clock-controller@0 {
-				compatible = "amlogic,s7-peripherals-clkc";
-				reg = <0x0 0x0 0x0 0x49c>;
-				#clock-cells = <1>;
-				...
 
-In V2 I'll use an absolute address for the sake of clarity (PLL has the
-same issue).
-
-Thanks,
-
---
-Carlo Caione
 
 _______________________________________________
 linux-amlogic mailing list
