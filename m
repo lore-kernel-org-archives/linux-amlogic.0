@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 804A6606A338
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Nov 2026 10:19:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A58C2606D80E
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Nov 2026 10:19:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GcwRIrBo;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=student.uibk.ac.at header.i=@student.uibk.ac.at header.a=rsa-sha256 header.s=prod24a header.b=q8BZ1Wj3
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jpeUF13D;
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=student.uibk.ac.at header.i=@student.uibk.ac.at header.a=rsa-sha256 header.s=prod24a header.b=OTr64l7G
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -14,44 +14,45 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=2M0sVraxMhFlmsdlroVu0VLPehXvnffHGHOval28EUA=; b=GcwRIrBockMI+70lupYLyFJRoa
-	TgbfyntjoWmZKKiA6Cxl1/UeWg07XaUcCb0ar4Xig3vRkCJ8txmwjvVB+WNaFnPowyFi8fSYNhJAR
-	R7Mza1Fcm4guRSF2lCJV3E2yxMwyT9JiOvJaLcc5UDEwM/Or55yq5vDNYcwLQoe/eUeQRIVT6etTW
-	BiIwgiXhPclt1Y092egS56RTKm0kCBq7OMORNqcsmk562Tm08WyScgO2AvBqQZxCklqwppDeHoHFn
-	auRy2jwpDrgIGQaXbu3Hnb4fJcDN+NXCkFFqrP53OZR1oIZ4pOEbL6Vi45pas2UDUgie8RqJqgj/v
-	dDK9l3VA==;
+	bh=sTjgHNkiPMgdQvD45dlHOQ/xBF6mkYlZClPi21BfExA=; b=jpeUF13DvrrnI07addK8GN4Ica
+	AzMFeR6ETqkfwY8fO1WIga6M9YZz9ZQa+rwtkojzmWnOQ8P1i5Lzf+Zkk4q360N9ft+Aw3K1zDobx
+	VMeS51Trs9Z3W29sZ/jqF5BNRXOXJJfE6o5TlM+QH0mWID3JBx6CoZNPUuYyMYwZM1E4g76jyaxg2
+	FpHydqRnp/IdhOExfjZ7VhvDmWelglv8CI+3wKaEKjYk0yvG7Ij59kWP7/KVtWE9f4LYJ3vmIkkL4
+	QcM6U2IfAxLaLSv1BjYmh/mIGqncshwa54hGrACLp8CQbWBo3fuvc/Gz5Rt4KmKcRzodJ9uEQasmB
+	+d8ynmgg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPH2l-0000000Btcb-0qNN;
-	Fri, 06 Nov 2026 10:19:35 +0000
+	id 1xPH2o-0000000Btfb-17b0;
+	Fri, 06 Nov 2026 10:19:38 +0000
 Received: from smtp.uibk.ac.at ([138.232.1.140])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPH2g-0000000BtZK-2UCe
+	id 1xPH2i-0000000BtZk-0H7I
 	for linux-amlogic@lists.infradead.org;
 	Fri, 06 Nov 2026 10:19:34 +0000
 Received: from surface-pro-5 (ydWLT-U1-95-184.uibk.ac.at [172.25.95.184])
 	(authenticated bits=0)
-	by smtp.uibk.ac.at (8.15.2/8.15.2/F1) with ESMTPSA id 6A6AJFCV1863929
+	by smtp.uibk.ac.at (8.15.2/8.15.2/F1) with ESMTPSA id 6A6AJFCX1863929
 	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 6 Nov 2026 11:19:19 +0100
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.uibk.ac.at 6A6AJFCV1863929
+	Fri, 6 Nov 2026 11:19:22 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp.uibk.ac.at 6A6AJFCX1863929
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=student.uibk.ac.at;
-	s=prod24a; t=1793960359;
-	bh=6QgvRhlzOA/wreBqMg52QNgHYNNm7XlsRj0cgRLIaiE=;
+	s=prod24a; t=1793960362;
+	bh=dSK6Qss+gWvybGICqOwyGsIjhnfJGdmoQt5OqdnLTHo=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=q8BZ1Wj35fLCS3WMlUsfr+GVTwFzd7K5aqk9Vw4j2NPOIdz+gpLHyPrBJkdqFDXpr
-	 8zjahMZw8EWwrumwt0pcZFxiOfAKD0Q959Qbc932gMNnP+DBkSGHgK7sToEYdjTs71
-	 YiPmhy2AsRgGNDw6iifS+YpMgHYbqVkwhsNozh8k=
+	b=OTr64l7Gdgk015jkXzpixEqd+24O/Iq8jMLOKPXrL6CcfNItxL+l92pF93/aP1Yz+
+	 TBt7ML469pTLmGeYHsv+uCEVdfb9J3qsRRKUiXt7QNP+lgjxNKNTDUzIS/Z28h7aSa
+	 ENho7H32ZN3yslUMDapFe0e/zH1SBNjEddNtfPwg=
 From: christian.koever-draxl@student.uibk.ac.at
 To: glaroque@baylibre.com, rafael@kernel.org, daniel.lezcano@kernel.org,
         rui.zhang@intel.com, lukasz.luba@arm.com, robh@kernel.org,
         krzk+dt@kernel.org, conor+dt@kernel.org
 Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Christian=20Stefan=20K=C3=B6v=C3=A9r-Draxl?= <ckoever@outlook.de>
-Subject: [PATCH v2 1/3] dt-bindings: thermal: amlogic: add S4
-Date: Fri,  6 Nov 2026 11:19:11 +0100
-Message-ID: <20261106101913.46664-2-christian.koever-draxl@student.uibk.ac.at>
+        =?UTF-8?q?Christian=20Stefan=20K=C3=B6v=C3=A9r-Draxl?= <ckoever@outlook.de>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v2 3/3] thermal/drivers/amlogic: do not log the secure monitor deferral as an error
+Date: Fri,  6 Nov 2026 11:19:13 +0100
+Message-ID: <20261106101913.46664-4-christian.koever-draxl@student.uibk.ac.at>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261106101913.46664-1-christian.koever-draxl@student.uibk.ac.at>
 References: <20261106101913.46664-1-christian.koever-draxl@student.uibk.ac.at>
@@ -60,8 +61,8 @@ MIME-Version: 1.0
 X-Spam-Score: () -13.0 ALL_TRUSTED,RCV_SMTP_AUTH,RCV_SMTP_UIBK,U_H_APTO_LONG,U_RCPTS_11_PLUS
 X-Scanned-By: MIMEDefang_3.2_at_uibk.ac.at
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_021930_971660_595B3785 
-X-CRM114-Status: GOOD (  11.25  )
+X-CRM114-CacheID: sfid-20261106_021932_344992_FE6E7E29 
+X-CRM114-Status: GOOD (  10.20  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -83,33 +84,27 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 RnJvbTogQ2hyaXN0aWFuIFN0ZWZhbiBLw7Z2w6lyLURyYXhsIDxja29ldmVyQG91dGxvb2suZGU+
-CgpUaGUgUzQgdGVtcGVyYXR1cmUgc2Vuc29ycyBhcmUgdGhlIEcxMkEgZGVzaWduLCBidXQgbGlr
-ZSBvbiBUNyB0aGVpcgpjYWxpYnJhdGlvbiB2YWx1ZSBpcyBvbmx5IGF2YWlsYWJsZSB0aHJvdWdo
-IHRoZSBzZWN1cmUgbW9uaXRvcjogdGhlCmFvLXNlY3VyZSByZWdpc3RlciB1c2VkIG9uIEcxMkEg
-aG9sZHMgdW5yZWxhdGVkIGRhdGEgb24gUzQuIEFkZCBhCmNvbXBhdGlibGUgZm9yIHRoZW0uIEFz
-IG9uIFQ3IHRoZSBzZW5zb3IgaW5kZXggaXMgdGhlIGFyZ3VtZW50IG9mIHRoZQpzZWN1cmUgbW9u
-aXRvciBwaGFuZGxlLCBzbyBvbmUgY29tcGF0aWJsZSBzZXJ2ZXMgdGhlIENQVSBhbmQgdGhlIERE
-UgpzZW5zb3IuIEVhY2ggc2Vuc29yIGhhcyBhIGJ1cyBjbG9jayBnYXRpbmcgcmVnaXN0ZXIgYWNj
-ZXNzICh0c19wbGwgLwp0c19kZHIgaW4gdGhlIFM0IHBlcmlwaGVyYWwgY2xvY2sgY29udHJvbGxl
-cikgYmVzaWRlcyB0aGUgZnVuY3Rpb25hbApjbG9jaywgc28gaXQgdGFrZXMgYm90aCwgbmFtZWQu
-CgpTaWduZWQtb2ZmLWJ5OiBDaHJpc3RpYW4gU3RlZmFuIEvDtnbDqXItRHJheGwgPGNrb2V2ZXJA
-b3V0bG9vay5kZT4KLS0tCiAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy90aGVybWFsL2FtbG9naWMs
-dGhlcm1hbC55YW1sICAgICAgICAgfCA1ICsrKystCiAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRp
-b25zKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
-cmVlL2JpbmRpbmdzL3RoZXJtYWwvYW1sb2dpYyx0aGVybWFsLnlhbWwgYi9Eb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvdGhlcm1hbC9hbWxvZ2ljLHRoZXJtYWwueWFtbAppbmRleCBl
-NzJjYjM5YWM2MzUuLjY2ZGQ1NzJmZjQ0YiAxMDA2NDQKLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZp
-Y2V0cmVlL2JpbmRpbmdzL3RoZXJtYWwvYW1sb2dpYyx0aGVybWFsLnlhbWwKKysrIGIvRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3RoZXJtYWwvYW1sb2dpYyx0aGVybWFsLnlhbWwK
-QEAgLTIzLDYgKzIzLDcgQEAgcHJvcGVydGllczoKICAgICAgICAgICAtIGNvbnN0OiBhbWxvZ2lj
-LGcxMmEtdGhlcm1hbAogICAgICAgLSBlbnVtOgogICAgICAgICAgIC0gYW1sb2dpYyxhMS1jcHUt
-dGhlcm1hbAorICAgICAgICAgIC0gYW1sb2dpYyxzNC10aGVybWFsCiAgICAgICAgICAgLSBhbWxv
-Z2ljLHQ3LXRoZXJtYWwKIAogICByZWc6CkBAIC04NCw3ICs4NSw5IEBAIGFsbE9mOgogICAgICAg
-cHJvcGVydGllczoKICAgICAgICAgY29tcGF0aWJsZToKICAgICAgICAgICBjb250YWluczoKLSAg
-ICAgICAgICAgIGNvbnN0OiBhbWxvZ2ljLHQ3LXRoZXJtYWwKKyAgICAgICAgICAgIGVudW06Cisg
-ICAgICAgICAgICAgIC0gYW1sb2dpYyxzNC10aGVybWFsCisgICAgICAgICAgICAgIC0gYW1sb2dp
-Yyx0Ny10aGVybWFsCiAgICAgdGhlbjoKICAgICAgIHByb3BlcnRpZXM6CiAgICAgICAgIGNsb2Nr
-czoKLS0gCjIuNTYuMAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5m
-cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xp
-bnV4LWFtbG9naWMK
+CgpUaGUgdGhlcm1hbCBzZW5zb3IgdXN1YWxseSBwcm9iZXMgYmVmb3JlIHRoZSBzZWN1cmUgbW9u
+aXRvciwgc28gdGhlCmZpcnN0IGF0dGVtcHQgYWx3YXlzIGRlZmVycyBhbmQgbG9ncyAiRmFpbGVk
+IHRvIGdldCBzZWN1cmUgbW9uaXRvcgpmaXJtd2FyZSIgYXMgYW4gZXJyb3Igb24gZXZlcnkgYm9v
+dCwgYWx0aG91Z2ggdGhlIHNlY29uZCBhdHRlbXB0CnN1Y2NlZWRzLiBVc2UgZGV2X2Vycl9wcm9i
+ZSgpLCB3aGljaCByZWNvcmRzIHRoZSByZWFzb24gZm9yIHRoZQpkZWZlcnJhbCBpbnN0ZWFkIG9m
+IGxvZ2dpbmcgaXQuCgpSZXZpZXdlZC1ieTogTmVpbCBBcm1zdHJvbmcgPG5laWwuYXJtc3Ryb25n
+QGxpbmFyby5vcmc+ClNpZ25lZC1vZmYtYnk6IENocmlzdGlhbiBTdGVmYW4gS8O2dsOpci1EcmF4
+bCA8Y2tvZXZlckBvdXRsb29rLmRlPgotLS0KIGRyaXZlcnMvdGhlcm1hbC9hbWxvZ2ljX3RoZXJt
+YWwuYyB8IDcgKysrLS0tLQogMSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgNCBkZWxl
+dGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL3RoZXJtYWwvYW1sb2dpY190aGVybWFsLmMg
+Yi9kcml2ZXJzL3RoZXJtYWwvYW1sb2dpY190aGVybWFsLmMKaW5kZXggNGMxMDdiMzEwMGMwLi5i
+YmY5MTBiYTg1MTMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvdGhlcm1hbC9hbWxvZ2ljX3RoZXJtYWwu
+YworKysgYi9kcml2ZXJzL3RoZXJtYWwvYW1sb2dpY190aGVybWFsLmMKQEAgLTE5NiwxMCArMTk2
+LDkgQEAgc3RhdGljIGludCBhbWxvZ2ljX3RoZXJtYWxfcHJvYmVfc20oc3RydWN0IHBsYXRmb3Jt
+X2RldmljZSAqcGRldiwKIAogCXBkYXRhLT5zbV9mdyA9IG1lc29uX3NtX2dldChwaF9hcmdzLm5w
+KTsKIAlvZl9ub2RlX3B1dChwaF9hcmdzLm5wKTsKLQlpZiAoIXBkYXRhLT5zbV9mdykgewotCQlk
+ZXZfZXJyKGRldiwgIkZhaWxlZCB0byBnZXQgc2VjdXJlIG1vbml0b3IgZmlybXdhcmVcbiIpOwot
+CQlyZXR1cm4gLUVQUk9CRV9ERUZFUjsKLQl9CisJaWYgKCFwZGF0YS0+c21fZncpCisJCXJldHVy
+biBkZXZfZXJyX3Byb2JlKGRldiwgLUVQUk9CRV9ERUZFUiwKKwkJCQkgICAgICJGYWlsZWQgdG8g
+Z2V0IHNlY3VyZSBtb25pdG9yIGZpcm13YXJlXG4iKTsKIAogCXBkYXRhLT50c2Vuc29yX2lkID0g
+cGhfYXJncy5hcmdzWzBdOwogCi0tIAoyLjU2LjAKCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1h
+bWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
