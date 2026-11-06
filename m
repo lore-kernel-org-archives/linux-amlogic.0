@@ -2,150 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 032B4606A33C
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Nov 2026 03:16:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B813E606A33A
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Nov 2026 07:09:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4B/sd26f;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=amlogic.com header.i=@amlogic.com header.a=rsa-sha256 header.s=selector1 header.b=HrsnGpPD
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NzE9+w9E;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=EmTgMEiC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=yB+hTFp9SNRiPyil3iVqcJUPQtnGa2U/A3S9P9pBfNs=; b=4B/sd26fGxAr9Q4E4Zret89GIl
-	Xb2kGgXBkMQwMj4MSUStfCKKuLOCc4+AIqUR+aAAonqGQI9pBXn3NvI0Jey5JDUPfZfmknsPb5t2Q
-	kMsjDMJcV+0J9dJcyfbD9veEIAeYWmO+Cxxd25nkXo+qBLsnmq5cPJoUiG2Ap9iouNuxLUgcOGYs7
-	svq63RrT3HSVoJaZpASHuscpaye1N3gqUlt5EpRDPDh6HCBYjxJP4P671IhniG0ch2HhHHVeNcTJG
-	WtiEiR3YqRUU2EDY9S02/rgFNe8jukfrtAg9HR70RPgM6FYXIT164MlIh331z4GeSJUka44xFLNyU
-	HUQ/mTzQ==;
+	bh=cnSZAzPiDY8jER00F/xxiC7d/UtL5gS5E/Bq/oReKQ8=; b=NzE9+w9EeKNy3/vQyYPq6nb2xA
+	9PViUrEtrzDDuTjp/GnEeivFlo+xQ8YeZVDTKTlLZ31s7/U9CFgSlwooaHy9NrWLzKtSLK5h+mTfI
+	t9ZtuToVTiIF37BntnMUM5e4HLdjQSSh5ogg0R/dMi5s9SbByMtKh3duRe5SBXiSyufSLZ0NylR96
+	j54gGXFLh/SSWioysvt0zaWZEHHOM0E2u+R/P3mkiX1mYjnzZsjCdfz1cQDE8iaf7cR4KkpC8r1Nd
+	xZO4sIcNjDCDLNFzE8pY3tgN3mHduM8abBZgyydP+/FL0Ndh5/dr84nPLniGSw/XGckw0Dwexy48T
+	Ttqwt7KA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPARW-0000000B98K-0Kk4;
-	Fri, 06 Nov 2026 03:16:42 +0000
-Received: from mail-japaneastazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c405::5] helo=TYPPR03CU001.outbound.protection.outlook.com)
+	id 1xPE4L-0000000BOtN-0XF5;
+	Fri, 06 Nov 2026 07:09:01 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPART-0000000B97Y-0TPY;
-	Fri, 06 Nov 2026 03:16:40 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CMTZvMyLw7LWtaA4GjKrnog57msSZAOHQVDgKWCQfSZxoPhsxHaWE1vXg7o326J4bZO4x/upiVlL9JvPoArMtpgjI2fj3YQ9uN7sbv2GirpE+B5AHtUH70gy6BRvxaPwumGFfCHv+FpEfI1Ad5yWWZMMw0ohYs6aKtYkO+zr7Sf94fwKyg2A9nAY13BNn/43XaEmIMaDBMVPMVd7z6aZKqbHmjECbSi/SAyKDVQI/oRvXTV1SYdPRsU2IaMNGEthDs3QCFTQ795gMWsMsyidpjr2ZZvFHYW1OkSyoOrRb8QQhb8ATY/akBVbUzba1Fn0dGP1UF0jn6+TrkmMZXPPeA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dKQJ1hqxJMm5ufGt9cHkbgDEczEbIUAAlNGYNj6221E=;
- b=E/ANFnAcrN6oRYyN7maSGEe0zBflAlPXfbITxIMJFHkjxUgVt9TylkNna7Af7GQVxnY+v7FauNT+b9OPCmccbKOY1r1rLsQO/BlRi8A/mSBOktNeJkwntRyLDcLqKQI/3HF+lXg+4UJGgCXKRC9jBTm7ZiQJTqEod6/EAHVw3/j7cfcKUfhbJuOp3vxcOaB/WR+8oOCzwYhjgjFdQkI7l6/herouPk0YJyF/OPZWKsqCM9IDE+xj5aqauWuU/+eeQ0ROeLU1O1mSBbcConkBaGoS3Jt56YQ4I+bH2Fd5KXToeJ1Pr7Q/AVWuy5LyfwVVcfLICdY5swuER24nd/Rehg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dKQJ1hqxJMm5ufGt9cHkbgDEczEbIUAAlNGYNj6221E=;
- b=HrsnGpPD4CmNlbPEVL7Dq7DmuDRmBV0CsMJC/ltAWBIt4I3og/sRzWZb3TsY2cThGSvGP7JZSZhtgAj21n2WbK6orey4TgJhtrx/w7eaqGlETxzP/+KGXw3pgQFcCqWYjqicq62ocdBYlFN5zaIrDKMGBGV4KMaqteXiXWkaDSlCKRQH465O4zFowfLkK9xZ34ojOjcJtdvvrKNrW/pjGwrzUDyUr6TbZPGBVNjfbKYPazXQLf0hB1ZGUg0z5gTioVpOEbmR9cNcAOwxPh48qTvfNZazxRU5O9EetTIHeCfwW3mca4MOgguwzC4IDJxChAJPbuWA1ujCPwgGQpE+Pw==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB5778.apcprd03.prod.outlook.com (2603:1096:820:6d::13)
- by TYZPR03MB6893.apcprd03.prod.outlook.com (2603:1096:400:286::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.10; Fri, 6 Nov
- 2026 03:16:29 +0000
-Received: from KL1PR03MB5778.apcprd03.prod.outlook.com
- ([fe80::e1e:5c95:a889:828e]) by KL1PR03MB5778.apcprd03.prod.outlook.com
- ([fe80::e1e:5c95:a889:828e%4]) with mapi id 15.21.0569.011; Fri, 6 Nov 2026
- 03:16:29 +0000
-Message-ID: <35dc1ebf-5194-4ec8-adfb-dcc8ea717750@amlogic.com>
-Date: Fri, 6 Nov 2026 11:16:21 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/7] dt-bindings: net: amlogic,meson-dwmac: add
- amlogic,t7-dwmac
-To: Krzysztof Kozlowski <krzk@kernel.org>, Lucas Tanure <tanure@linux.com>
-Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>,
- davem@davemloft.net, Eric Dumazet <edumazet@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20261103163715.385394-1-tanure@linux.com>
- <20261103163715.385394-3-tanure@linux.com>
- <20261105-stoic-cricket-of-tolerance-cb3014@quoll>
-From: Chuan Liu <chuan.liu@amlogic.com>
-In-Reply-To: <20261105-stoic-cricket-of-tolerance-cb3014@quoll>
-X-ClientProxiedBy: TP0P295CA0055.TWNP295.PROD.OUTLOOK.COM
- (2603:1096:910:3::11) To KL1PR03MB5778.apcprd03.prod.outlook.com
- (2603:1096:820:6d::13)
+	id 1xPE4K-0000000BOtE-031C;
+	Fri, 06 Nov 2026 07:09:00 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id C0E3343CAA;
+	Fri,  6 Nov 2026 07:08:59 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1793948939;
+	b=zbWAaEPUHHoS10iRxwlAfYnVZEY400FBLMBedLqwiiRsCl6M9CAuRCrdrbTZWyh/Lp7z
+	 xlKb/ydJTbl66WnQBGecGc7EgCknhldhy78MqS2/1jz3XerfE7nNzek6ZQJEKf9LyRCGk
+	 MYVZLyRxqI3L6ZBd9xeQJEnpa1weJqtiMrb8zEa7846I31LOdanAct/FjAAHRy/5tkXyq
+	 SfsfK2XrZ52dKarefSaJ04019h9SEKwMpBQQrLQXVKz+cI2S2j5YR1yiyH3N8HUE5cbnM
+	 f0vSQsMCneD0qAj1JEhTTg9KJtPete8ccWB8ylLBHai8h9MK8OMKolJihRSy5OOScdg==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1793948939;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=sssGzgp6hfraRTjPaOuoMz/ydvUjxyv6U8CNhrczgQc=;
+	b=U/JE4jcRGwUJ0lMX4i4CgZJg50O11vt6uHoQD6T8gO2348U8Snd/qUfglIZJVHtlGxMF
+	 BWgAeY82qEbJkEuDKm3Y0kms+JItm4icEFrZMMjblaQ/IV8N2GYjySaNcy+CvU5niMX+L
+	 8756IRzIdSrwQuEiwYKK99F8d+2X5Z6phBOsAACqGiXsgKsadx3UxN//jVz43oJH0rbMh
+	 eulOlubwgUGtTBsdFd1F8WFh9EpLU4z0sFBb3trRwTzTknaFSV9jCLRacVSeaP9gzvYCb
+	 57rZ/POhU2V6jrXMFRhbJ1F9zsGg4kQuXm9j/8jvqxFHng9Eesfi6Eplm4tC3d3MchQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id F2A7F1F0089F;
+	Fri,  6 Nov 2026 07:08:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1793948939;
+	bh=sssGzgp6hfraRTjPaOuoMz/ydvUjxyv6U8CNhrczgQc=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=EmTgMEiCAR2x4GSZadNau2v3DnOTeD3OA/JvNiQgw96aHXlTPIeALuWaCT/br2GZq
+	 UQGflvH6Eo8o7j80G+MQcL8d50PhMKkRIu3PG7BZXLyczM40yXjATzdzlhK2pME5tg
+	 t/m5yzUi+W/1t72VorLv4DTz2ZY3V4GkNOsJ3drzzhMrIVuaSBwrFdMgxslUqvEjcq
+	 e1S5inj3LqrYrs4huiA1fGQnaYwsgHJDkL6mPuS4hEro3uTPnwO7p9ZfPV2pxOoEVz
+	 21w/zD5QuoWUdFYM7un2YwSocNlcAvsL35wTMKyrfNfjlTFCD5txca8exvkDRxompa
+	 I+fi/r3B1x2fw==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 4BF9C45C1E;
+	Fri,  6 Nov 2026 07:08:58 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Fri, 06 Nov 2026 07:08:46 +0000
+Subject: [PATCH] pinctrl: amlogic: a4: Allow functions without groups
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB5778:EE_|TYZPR03MB6893:EE_
-X-MS-Office365-Filtering-Correlation-Id: e5d1db88-85d7-42e6-b95b-08df3bb4594c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|23010399003|7416014|366016|1800799024|22082099003|18002099003|10067099003|14125299003|11063799006|4143699003|56012099006|261028144727099003|261026121527099003|261021123027099003|261102123227099003|261022105027099003|261009223027099003|261021121427099003|261026140227099003;
-X-Microsoft-Antispam-Message-Info: ko1UReoZElL7bRcS5Y8cXY40TLHp2fud4HB0kEE96vUpwcldjvjYtSbJAD2FKfBMHSQZu6s8RSAYUZ/9hjNEzNR9uJgkVNl4U+1hhTzCTjum+pSIBaBRfLMf/SnWspiCyBDQ4W5c3x/gBaABWtaWScVJtXQSBoC7nqdIfAs5WcouEN0RWlGQKazZwI31cxvLZrb8kHBpOSObYvqwc3GkA0pHEjyIH1IeD2COV6MVHuHpr7e0mEvFBi4DkecEHYIz1a+GafpaiH4UKG70aaYLPz+LHhzmPQ4TfWsb+szQQuoRGId5RKUqZa588fM1zSH8PVhGKA3pCR+C+ceX6XPJwNkw+0X6XgmLsDKrCnfcCaBU+B4OgP1qDfdH6s6pN9zKleVlW98T29TrWK2Pn3aSevVPeYKPNI6nHd83vF4RnpH44Fx2MA2/OBlCgMDrLhaKqhh2lvuHLg9hsk5+94bS1wEK5FLMBVLGKHBchSCtpW1AhkhBNjxeG5OiM2nlNPGYNIwT4iRq9t0YnrMsHhcHplF02jgADOJaYtLL3l67DMiczlkJY6BF+sDnl6ikIiUfkEfVJTglJEheMHtXCDza66jYAa3l6rExhuQwYcNgdfoxBzegpIexOVvWzhNW20+Z+mdsW2yzoh2mVMcLFyJs0eZLbQatdwXe6dbjZ4P2MlA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5778.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(23010399003)(7416014)(366016)(1800799024)(22082099003)(18002099003)(10067099003)(14125299003)(11063799006)(4143699003)(56012099006)(261028144727099003)(261026121527099003)(261021123027099003)(261102123227099003)(261022105027099003)(261009223027099003)(261021121427099003)(261026140227099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y3hTNmNLNGdxOFVtNDczaUZEQ0JwL2REaW1RNit1YzdUQlUwZzZENndmVTdG?=
- =?utf-8?B?anZqaWYxNytXa0lhU0Qwd21aQlNrcE8vSzdsWVFVWDYwRC93NmRZVFhCcG8x?=
- =?utf-8?B?NVZPTlFuMjJualhWU3d0cXREMlZJMWpkcGtHOUpLNlFCRnVCdTVIc2lLQmNV?=
- =?utf-8?B?WTAyN3k0cXVZQmFrOFhKakc0c1JBREJTT2FWakhQREY2ejhiRVZCWnhwdURB?=
- =?utf-8?B?QTF3OWROSS9KaEsvY1FnU1NZdFpsazRQbGY2UXJQelg0elNLQ3oxaXlGbGIw?=
- =?utf-8?B?MVNmNmxZWUlPeG5UaDVwWjFXZUJjd2FNS20vek53cTJqdjNDcGRsckpkMnlC?=
- =?utf-8?B?dWl3OFViODhJUXY4cXFRSHcyeThLdi9mYmcyZ1RHZ1YyZ2VZazRUanNONXA1?=
- =?utf-8?B?a3pQc1krL3JxWUMrY0kwajYrVFpjREM0dTc2cjlpOU1aS04zY3pXUDVvSyty?=
- =?utf-8?B?TW5Wbi8yT1JxNno3WENBWkZ4eEQwSVlJT1NtSW9PRUdMeXgzUmxXck5QaDRm?=
- =?utf-8?B?bFQ3S3BQaTU2YmVqQU5IRC9jOUdjcFR0Vk0vZ1JVRUx5SCtxbk01c2x4QWR2?=
- =?utf-8?B?aDRTdUNEdkpsdUpVUVowbHVBWXZIam1BdVUrWmhWM3hHMlkybUsrVXRhNUEr?=
- =?utf-8?B?bnRKQTZHbVBwS3VVOEdvTDJubE93VDhDY1pKT3RhQUh4KzFSTUJxa3B4OTFm?=
- =?utf-8?B?Wlk0akdoZW9abmxWcDl3UDdnYTdpMWUxVmNGVVZYUnAxaHpyOXRJa0JXQXlI?=
- =?utf-8?B?blBRdE1xaGZkWUtqdCtMSXJiSm1uNW9mVnNab3VaT200aTVPNi9MZnN0QVoy?=
- =?utf-8?B?Uzc3V0xONVgzN3BkdlBxTEpwT0h3YWY5WEFZOTBBRFpocGJPc3lPOEQyRTZq?=
- =?utf-8?B?dlpDeGEyTFZuQjRvVHFDY2o1RnlVcTZZL3E1UkVHVlpEVVM3OStNVGdjK011?=
- =?utf-8?B?SGlZVUlCM0ZQK25zUU5sTzNlSlp1WGJ5UTMrdzIydks2MDh5bUZlbDVSaUp3?=
- =?utf-8?B?ZGgzQmxjUzFVdzZMeWh2TExiYklPNTFWVE5FUzRSUHIyYS9KTExSSXV0UW4v?=
- =?utf-8?B?NjYyZVpJT2tUY1FCTUFua3oyUFVXTlpJZ3BVMHcrUEZscVZSMnZJWjNrOXA4?=
- =?utf-8?B?dlJaMi9sY1hKc2Y3YnBveHVDOEJoc2NORjRESS9DRWZuQlh5dVl0M0Y1anRi?=
- =?utf-8?B?ZzlndjN2UEtlSnJvTEJ0dEdjT1RIMHdQZU9WYkZRNmdVYlM2TFNXWHp6Y3Vr?=
- =?utf-8?B?RzJpeW9XMklxOG9uZHFjNktpVjgrdlMzR1NkSTMxUFBCbjN2L0dmTERPVlhY?=
- =?utf-8?B?aVU0ZTNEU2tOYlRQbDQ5V3Z6KzVVSHE4R0lGN1ZURnVOK3RlblFTOEl4amtl?=
- =?utf-8?B?NGhBKzhwS3NCRVd6dE1rZ2wvOVVzU3J2NVlvWmkzMU5ad0Rxc3lscnFwMmRo?=
- =?utf-8?B?ZXl2amNHK2preElJUzJlTGQ1TXl0S2FLa1IrekRheFZuMXZQbWFLcnZRcFRi?=
- =?utf-8?B?WE9MR3JPN01KWllVaHR0K2ZLUFhqY3VqcnlHbklSNEU4YkVzcW5NcGZ5akxm?=
- =?utf-8?B?cG5zeE9OSVlOZFJpVzBaMGhkakMyVDVWMHVMVTNYR3lIYWpKbVFGL1Z4VEU2?=
- =?utf-8?B?NFRxL1RhemVYS1dFWEkrZkxyZ3JWSkdkU2dEMFdDV2JDbmF5MUNNakp2NDVY?=
- =?utf-8?B?Y1RJNG1UbEdOMTdwNUJmSzBIMHd0U2tlQ1lVWTA5QVZqVU9IZi9Iak1KT1FL?=
- =?utf-8?B?djRoMkdoeXM4TnhNellnL2FkdU83ZGM3clp5MTNGMDdoU3R0MEFVdkpnQXJB?=
- =?utf-8?B?ZmdCalVxWUliUjl4K0xiR1pIQWtSa0RYbE5hdG1MRzBXUnU0RXB0VGRjQ2FS?=
- =?utf-8?B?Z0s3UlhUZXgxdWM0MWVLZmU2RTNTUW1RM3dtYXAwenA5N0x6TDIvamFkbnRV?=
- =?utf-8?B?NkhUbzQ0dWJXTkNpaFNYUmx3alNJaHdLNG51Q1VMQ1kvRUo5WnFvc1ZnSlpQ?=
- =?utf-8?B?azFZczBIWEhSVTdCM2hjRjVXWjE3V01iWmkzdU5iYmpqTkwvZHdFMm9Sa3BB?=
- =?utf-8?B?a1N2MDRtYTYzWVlOczdwME1MVFRuQXp4MzJDMTMvN0E1NEJOQjJJcDRSR3pX?=
- =?utf-8?B?QW9hK2VTa0hwaTVjVkowRWh1UGZhSUNRL0tiZ1ZTcE1ybWRVYUxUY1RoeVR3?=
- =?utf-8?B?QXJkbit3S2ZUa205UEI5OG1ITUYwK2g5ZjJTTk1aSmVpcFhrTERXZWF4WFJV?=
- =?utf-8?B?dHRBdGllWWIzYWt1RUZWK2dZN1ZaREYrcWJhbXdxM3VuTFByd2NTb1Z6Y2ov?=
- =?utf-8?B?R2ZoOEZlc2FQU2RBV295RGFDOENPT3M1UnE2c1RvZVdqMFdCcGlNQT09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e5d1db88-85d7-42e6-b95b-08df3bb4594c
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5778.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2026 03:16:29.1079
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kXhOdMJZu2nvsEapOzqjhowOstq/bh5cMtt93ac5zaD6XAjURMKDesWCPDpjTGlxI3SdDtHyNOK3KlSLmlNkvw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB6893
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261105_191639_170187_031FCCEE 
-X-CRM114-Status: GOOD (  22.43  )
-X-Spam-Score: -2.1 (--)
+Message-Id: <20261106-debug-info-v1-1-067c5c554f91@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAP187WoC/x2MQQqAIBAAvyJ7bkGNFPpKdMhcbS8aShGEf086z
+ sDMC5UKU4VZvFDo5so5dVCDgP3YUiRk3xm01EYpadCTuyJyChmdm7qj0VhloQdnocDPP1vW1j7
+ 7Vr3yXAAAAA==
+X-Change-ID: 20261106-debug-info-bb5611e36717
+To: Linus Walleij <linusw@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1793948933; l=2986;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=38GizBhLDTW4i/GAT4DbimPes3s2Ei64bmXiM44p6dM=;
+ b=Zp2hrVUInW3tmySD+qP23c2GiuMu7cuWGPE7KpTaGQtXN3rnWgNGaDXPPlqLObAPZOi7+XzRa
+ Me9xUYBVdZ5BwnG79tTvNzKV6JE2Az0cijnFmwxSoHYLJFkY+nj7+s7
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -155,148 +109,106 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Krzysztof, Lucas,
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-On 11/5/2026 7:57 PM, Krzysztof Kozlowski wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On Tue, Nov 03, 2026 at 04:37:10PM +0000, Lucas Tanure wrote:
->>
->> Assisted-by: LLM
-> 
-> Drop this one.
-> 
->> Signed-off-by: Lucas Tanure <tanure@linux.com>
->> ---
->>   .../bindings/net/amlogic,meson-dwmac.yaml     | 59 +++++++++++++++++++
->>   1 file changed, 59 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
->> index e769c9bb70d8..6de013e3e8f6 100644
->> --- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
->> +++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
->> @@ -23,6 +23,7 @@ select:
->>             - amlogic,meson-gxbb-dwmac
->>             - amlogic,meson-axg-dwmac
->>             - amlogic,meson-g12a-dwmac
->> +          - amlogic,t7-dwmac
->>     required:
->>       - compatible
->>
->> @@ -57,6 +58,59 @@ allOf:
->>               - const: clkin1
->>               - const: timing-adjustment
->>
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: amlogic,t7-dwmac
->> +    then:
->> +      properties:
->> +        clocks:
->> +          items:
->> +            - description: GMAC main clock
->> +            - description: First parent clock of the internal mux
->> +            - description: Second parent clock of the internal mux
->> +            - description:
->> +                clock of the pipeline stage inserted in the bus path between
->> +                the controller and the DRAM. Without it, the controller cannot
->> +                complete DMA transfers.
->> +            - description:
->> +                clock of the register block holding PRG_ETH0 and PRG_ETH1.
->> +                Without it, the block reads as zero and ignores writes.
-> 
-> This sounds like you take clock from other block. That's wrong, that
-> device should take its own clock.
+Allow function nodes without child groups during device tree
+parsing instead of returning an error.
 
-I see that the clock in the dts patch corresponds to <&clkc_periphs 
-CLKID_SYS_ETHPHY>. This clock provides the working clock for the APB Bus 
-of the ETH PHY controller, and this clock will affect the register 
-reading and writing of the ETH PHY (including the ETH_PLL). See section 
-15.3.4.2 RegisterDescription in A311D2 Datasheet for details.
+Only count and parse nodes with the "func-" prefix as pinctrl
+functions, ignoring other non-GPIO child nodes.
 
-> 
-> 
->> +
->> +        clock-names:
->> +          items:
->> +            - const: stmmaceth
->> +            - const: clkin0
->> +            - const: clkin1
->> +            - const: pipeline
->> +            - const: pclk
->> +
->> +        # The PHY adds the 2ns RGMII delays, see ethernet-controller.yaml.
->> +        # The RX delay line of this glue is fine tuning in 200ps steps,
->> +        # added on top of what phy-mode describes. The TX side has no fine
->> +        # tuning: its only step is a quarter of the clock period, the full
->> +        # 2ns at 1Gbit/s, so the TX property is not accepted.
->> +        tx-internal-delay-ps: false
->> +
->> +        # Deprecated: new SoCs use the standard *-internal-delay-ps
->> +        # properties instead.
->> +        amlogic,tx-delay-ns: false
->> +        amlogic,rx-delay-ns: false
->> +
->> +  # Delay definitions for Meson8b and newer
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - amlogic,meson8b-dwmac
->> +              - amlogic,meson8m2-dwmac
->> +              - amlogic,meson-gxbb-dwmac
->> +              - amlogic,meson-axg-dwmac
->> +              - amlogic,meson-g12a-dwmac
->> +    then:
->> +      properties:
->>           amlogic,tx-delay-ns:
->>             enum: [0, 2, 4, 6]
->>             default: 2
->> @@ -106,6 +160,7 @@ allOf:
->>             contains:
->>               enum:
->>                 - amlogic,meson-g12a-dwmac
->> +              - amlogic,t7-dwmac
->>       then:
->>         properties:
->>           rx-internal-delay-ps:
->> @@ -142,6 +197,10 @@ properties:
->>         - items:
->>             - const: amlogic,meson6-dwmac
->>             - const: snps,dwmac
->> +      - items:
->> +          - const: amlogic,t7-dwmac
->> +          - const: snps,dwmac-5.10a
->> +          - const: snps,dwmac
-> 
-> I see no such hunk in the code, so not sure how to review this.
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Also handle zero-sized allocations when no groups are defined
+by checking for ZERO_SIZE_PTR in addition to NULL.
 
--- 
+This allows the driver to support function nodes without
+groups and avoid treating unrelated device tree nodes as
+pinctrl functions.
+
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Add debugging information for error dts and Error pinctrl config not affect normal pin work.
+---
+ drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 26 +++++++++++++++++---------
+ 1 file changed, 17 insertions(+), 9 deletions(-)
+
+diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+index 39eb8cc7fc0d..d0e3cec3ead0 100644
+--- a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
++++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+@@ -821,8 +821,10 @@ static int aml_pctl_parse_functions(struct device_node *np,
+ 	func = &info->functions[index];
+ 	func->name = np->name;
+ 	func->ngroups = of_get_child_count(np);
+-	if (func->ngroups == 0)
+-		return dev_err_probe(dev, -EINVAL, "No groups defined\n");
++	if (func->ngroups == 0) {
++		dev_dbg(dev, "func %s No groups defined\n", func->name);
++		return  0;
++	}
+ 
+ 	func->groups = devm_kcalloc(dev, func->ngroups, sizeof(*func->groups), GFP_KERNEL);
+ 	if (!func->groups)
+@@ -899,8 +901,12 @@ static void aml_pctl_dt_child_count(struct aml_pinctrl *info,
+ 		if (of_property_read_bool(child, "gpio-controller")) {
+ 			info->nbanks++;
+ 		} else {
+-			info->nfunctions++;
+-			info->ngroups += of_get_child_count(child);
++			if (!strncmp(child->name, "func-", 5)) {
++				info->nfunctions++;
++				info->ngroups += of_get_child_count(child);
++			} else {
++				dev_dbg(info->dev, "func node defined err %s\n", child->name);
++			}
+ 		}
+ 	}
+ }
+@@ -1128,7 +1134,8 @@ static int aml_pctl_probe_dt(struct platform_device *pdev,
+ 
+ 	info->banks = devm_kcalloc(dev, info->nbanks, sizeof(*info->banks), GFP_KERNEL);
+ 
+-	if (!info->functions || !info->groups || !info->banks)
++	if (IS_ERR_OR_NULL(info->functions) || IS_ERR_OR_NULL(info->groups) ||
++	    IS_ERR_OR_NULL(info->banks))
+ 		return -ENOMEM;
+ 
+ 	info->data = (struct aml_pctl_data *)of_device_get_match_data(dev);
+@@ -1166,10 +1173,11 @@ static int aml_pctl_probe_dt(struct platform_device *pdev,
+ 			}
+ 			bank++;
+ 		} else {
+-			ret = aml_pctl_parse_functions(child, info,
+-						       i++, &grp_index);
+-			if (ret)
+-				return ret;
++			if (!strncmp(child->name, "func-", 5)) {
++				ret = aml_pctl_parse_functions(child, info, i++, &grp_index);
++				if (ret)
++					return ret;
++			}
+ 		}
+ 	}
+ 
+
+---
+base-commit: 89edcad9f23925f5706b7555b02165d1990444d5
+change-id: 20261106-debug-info-bb5611e36717
+
 Best regards,
-Chuan
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
 
 
 _______________________________________________
