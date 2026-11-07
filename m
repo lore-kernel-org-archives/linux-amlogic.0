@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78B76606EE8F
-	for <linux-amlogic@archiver.kernel.org>; Sat,  7 Nov 2026 20:13:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 663CD606A33E
+	for <linux-amlogic@archiver.kernel.org>; Sat,  7 Nov 2026 20:13:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CQvYRzxO;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=aed1CdqR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iRDcsQjY;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=QK0zDWUG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -14,76 +14,76 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=PlCWHqbQupCUmCwU0+wRVWtbmC2dZRQIjjOcMbcAXCU=; b=CQvYRzxOP8dLlOZ6DMEJLU9bSB
-	GNhLObFagqedWDokuh0kvXjypYs8H47tL0CL4AhbQUwYQBotw1WalepyJ7KXFFOXQr+7auJPjDEF5
-	2k/FfyegUw+VYI8uOauWHSX6VLvD0mzE5zHDSJ67sNikqsNp4nt+OQnOVZLgGdFITxeWY4XPNBLn3
-	n6D8W0B6eSZpv3O8bw80exkw28TJ9Pva9+vHOnOD3KSsv4FNv5lFfNAI+osocss9A9P6G+jmCzKIn
-	qBiJQVZOa/tmX+IO+U7p2jrcHvJ5E+NKO8JxTyQniXc8eQbV4MieN9TcJlurGiACbVO5Ymfdjqvyo
-	mvkWazNw==;
+	bh=6aOC+z3XOfEEZQOGLYC85n2TENAsvWlgIJdeoKgJBoA=; b=iRDcsQjYG6Ceics3hRIuRCf8RX
+	2eYEIuYRWA/ToPizY/pFSPlOdqDXqXF1CLi/OIyOi6fOF1YvWvei8HPiv2vLNQ2UaOU1PX7cAS3Dd
+	YxrAA6+A7G6UzFpDcbC33De7yEAAcPDyPKLfd5ckpOkVdCMG4K6PLaUzZlzoKWRw7HkXwBMGIfBxl
+	rz/SQyE5nF9GpaSi8X13zynslL7sQSR3/ndpD/sm96QufvQE2OAW6A2M+qcgaKTaa3wNXRI1ctbrn
+	aJs9Y5Aj8Pf4pEJq6k75n7VFZWc8VJCVwVOun3ZSPM/2btuZWLZBylgCABhimZt6JX3vxaJZsFZvX
+	NAUaJoIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPmnC-0000000FIHL-3zJk;
-	Sat, 07 Nov 2026 20:13:38 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xPmnI-0000000FIRy-2tzj;
+	Sat, 07 Nov 2026 20:13:44 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPmn6-0000000FI36-2cTs
+	id 1xPmnA-0000000FIBB-2gzt
 	for linux-amlogic@bombadil.infradead.org;
-	Sat, 07 Nov 2026 20:13:32 +0000
+	Sat, 07 Nov 2026 20:13:37 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
-	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=d6C42oxILqzAGe2XSYpJ1wKWPDH0Wjq+6Bkl8QonrCw=; b=aed1CdqR7iCQUzKxIjJ1Ef5S2k
-	EmQYghtgu96Pd4yVP9pJkeLCDBKa9BtO3AaKS8fXD1jhIPCoM+u5v8pqPeE8zrMXQq9qiQnXv3MTu
-	l4L79JDUkYE6WfMKzd+oME5l2TtHpR+sagJu947lpuM43b4/DUIMLcBFqpGNr9GN6V9PAyrF7LaBX
-	p/xRtAUOZ2E9czrDNP9gFtg0qrZ7NU9sXX5gEY0lZQLenu39hNGYqw8ZSp9f+RMW2114o1j4udwFD
-	Im7K+gSec8NI/sVq1ZGX40vtwsEr93UX9AnGvSDBMXiw+ad3jhsLi3PQ46Eg/RJzajw/ngp6HP28O
-	KhKqajBA==;
-Received: from mail-oa1-f48.google.com ([209.85.160.48])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPmn3-00000005QZ3-1sWa
+	d=infradead.org; s=casper.20170209; h=Cc:To:In-Reply-To:References:Message-Id
+	:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender
+	:Reply-To:Content-ID:Content-Description;
+	bh=Y7c6OOYT+qEeDVQYiysesbJy0c+qB96uscD707pwGC0=; b=QK0zDWUGjV/+M48T0ePwL/wVRW
+	kMAyXcZOMMyI8bbd74PfKqi20Zf4iPAkNtyLETijvo/X8o3+SHAyYacdlpwthMHreHAUUmZv8WAcD
+	f4ff8OYXuZxwvBB9rgwKHQM4Xjha+1F/qlKri8yvIKTq0bO+xci7AujtyCQLmvBA3laTYNji4fndv
+	DWGypvSX6muXAo+wDnhjdUY+wOiGUiSzAHoVZKMcy4aaEv21UYHKs88FAMsVuS9a7sng+3CIa6r5m
+	dmizp3u/UZ4242Wl0bSum8p9+EyTiG7XJcS5phYfxUUi0Up6a/aYdMGSilKvYUaNpHkWnPp+AOJdZ
+	117S89zA==;
+Received: from mail-oi1-f171.google.com ([209.85.167.171])
+	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xPmn7-00000003Fwk-1hOd
 	for linux-amlogic@lists.infradead.org;
-	Sat, 07 Nov 2026 20:13:31 +0000
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-499f20c7054so7712fac.0
-        for <linux-amlogic@lists.infradead.org>; Sat, 07 Nov 2026 12:13:28 -0800 (PST)
+	Sat, 07 Nov 2026 20:13:35 +0000
+Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-53ec9237600so3415b6e.3
+        for <linux-amlogic@lists.infradead.org>; Sat, 07 Nov 2026 12:13:32 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794082408; x=1794687208;
+        d=1e100.net; s=20260707; t=1794082411; x=1794687211;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=d6C42oxILqzAGe2XSYpJ1wKWPDH0Wjq+6Bkl8QonrCw=;
-        b=DGUc82meSxsIrvWdsCk1MtDgT0+aonT+jpMpnqFSWgxiVaS/bYa7IFAkYfpg+SXvfc
-         jf1VTI/QJigGKGyUY2qnFJ0k43U1EamqqdVVT5eNo6SZlpAD8H9tdiZaKLBUUdmmGku9
-         cdqQvbBtqSLpQq1NX7ly0TkiRrhW/Z9G+CS82o0RF/FQXgcl87m5mWhsIJ5qRxfAZUQf
-         6XMUIKxiBr/0lwuu1NrLgD/MzZfRwygUA47RzLe7pS+B5O8R4D8drPDQ0P7UoHhzcHZw
-         d1dVmL2mX14WyyRwNOnoQrj/Bb7hD+FxtzaciMZIiZiO96Z7TfGWNTF0j6N4PQWj4TUf
-         h+rA==
-X-Forwarded-Encrypted: i=1; AL+hErGjx/NqoN9/ZYiN4TXaypv3t2a/9PopnM41U+MC68BaC+vCCsM+mVsbPG6Ct8o57S6xAw6qo8RRheqzvwpG@lists.infradead.org
-X-Gm-Message-State: APuU4Z+vWKywe1rA5aQu640Lb1YYHALysg2S3QcAnTJ59WYlRIDUifca
-	QDiARg/OpIHh2aHfcD82I7Q7hoMsivV2WH+WiUC5uJjJzgMndAD77MEFeC51FknVgEE=
-X-Gm-Gg: AYBFou298eAsz/o4qf5YzSt4u/4batXL7dBt4eRhNB4reLkmRcng0O8Dw3+sgG1LuJI
-	/doImKj6NXWatkWMxtXdGk/KQih1erSKqoe/eHudvvYeyBsDSuBWZwrFUTCWv3BH5ZZCMG7CRzK
-	zNMK5PBt37yosbyjE4sbdtD+QuujoFpKPP0pnz+qqbTKCBhnQK/UgoDAKWKXjY8IGNNfqQAvfWe
-	A/3LbvVKRBwYd/rJbnhhC6fDj7mseRNiwisILku7NWukQyvHehTHKqIqGB3Upk96d+Buis+715c
-	Gs5ER8PdTAMc172C+mrJZGCWQbATxH5gfa4hbaN4XmACE37sKOoQgQ8bub6Ns/8zezfxLTEHA1d
-	K1XWnWGXiyxV3OHkAerTgh4vtsheLXPdi8K3ucKRYd+5w5Wt14GmW07kdIHdH9I8bmU3VmI2gnv
-	QNxTk/PJfkBYGoXk4vvv+gU92jqZMQHO2TgpkeK20zmJK2TVlI4fSOGvdlQZzPVnCswQK2jjiUV
-	xS5vdFVz+IHy7NC8HpgUvTTWM5p4kk3maWiywcdEVwYIq0iJYTypqVXneR1WnbAh6BoRLEXljP3
-	ZQR37djYdTsmlM/hdmpjf6C20g2xNBL8vS44M2HQsl1Y4U7p/tN0tpLVICeDQQ==
-X-Received: by 2002:a05:6871:2b26:b0:4a2:c175:d339 with SMTP id 586e51a60fabf-4ad98e4af21mr4151086fac.39.1794082407651;
-        Sat, 07 Nov 2026 12:13:27 -0800 (PST)
+        bh=Y7c6OOYT+qEeDVQYiysesbJy0c+qB96uscD707pwGC0=;
+        b=r8MDn/eNkqnhuXNJ8h+E474E40LMx45RGGVEpmfF2TKyIpQxEbQroiAk8nrc6f+gdw
+         WQC45+4MDNeiMWHeU/2EaVkkp0WJM/G1D+dCsNXkNfXNSw8HuVaHP8cmAPtkKJrInPLJ
+         TPr30ZxRGlY5URqcSIq16s7QCnT+Az+Q59ITEwQsDkTQGrCirDTWfjE8XPWIX//tnXRf
+         XyYV2jTFmd7cXHlolnjxJubXVln9oKW+l1qQLBO1djsEMRNHrGxV90FS3GdDvz11Ghqi
+         BaReo8yJbPfY1ZooxsdHGm/uoeHmesr6SY+MTqq3/9oyKX09LZJfFAXkFaHm5ubDGAm6
+         WWAQ==
+X-Forwarded-Encrypted: i=1; AKwUvBzKynO2/0KbxJ5FYPGWrAMxfc1Xpls1mV/qPN8Lnzs4kc/HgWWv5tCeODh/NDlOpHD9XV2+DK6dUxMqTh7d@lists.infradead.org
+X-Gm-Message-State: APuU4Z/Js4h4qzUeRk2nCCJ5oG+ZIEfjdHvq3h9EeKmddqmR54KhzLYD
+	Cuu9eBGk+yzLeWkN7N0rAOs/XbOEfRuKj8vD5tKLRo3Wd6BXqGsc6qv1cZgGw8hP0U8=
+X-Gm-Gg: AYBFou1NVUyhR5n8aOL7f1OOPsTiHgNgIj33uM0ZJ74PPZa4E70XCtE8UgMCHmrGiWb
+	mrCaNWqKPzwoz+T9NlMgl/UXdKyWk05CK4X9NElsdmy8xzfrFkS4EenIStb4z+If4CSQiGZKsrX
+	pE1oWg+xuhekhGpClcG+mdr9WmT1g1ZH0znXYywz7Qa2Vq6hDLLgT0YX7TG3eEFLwV2sZf3zOMJ
+	WDPdBVX3eEa76C6EOegkq1L8xSZI6KL4EXIny5nTn2UamS3GVieDRb0MmtAbNZzxnClqnY8P9yU
+	Xj/LjHczsrqK9yZ0+cve0rmY7JeI99xhAIvdKAks1aOXDcbvPQ3pKvVNNRWLviB9RO1GJr0RU3M
+	4ZWnVYM+SvJB95DMmiUk0/iv56BVOBOOSb6f8Yqi3npGRHWLiPIdwj9axdEi+37ct52lG0Sn1Jp
+	QsdRmuQXQw2JSsQTBY8wJSgIzrkTmaLNQkzqbX3XpdCkhBV4A29P/sPhVpB3IntcVbXrkqh+Wnu
+	DHQ2erT5I60X4xNvsSV/Uk840+vs4/CgaaF8m1w0nFbVUnfqCLFIEy/vYOHTOEKe0mGlaMRLZEN
+	qwOOlTVRaJfoYAxsjrs+zBQS3B7EL4Fi2QQnh5XkdtACyODAeuz/OmcT1RL7
+X-Received: by 2002:a05:6808:6412:b0:4cb:818f:d56f with SMTP id 5614622812f47-567e0f98da3mr4920477b6e.23.1794082410773;
+        Sat, 07 Nov 2026 12:13:30 -0800 (PST)
 Received: from [127.0.1.1] (174-29-1-49.hlrn.qwest.net. [174.29.1.49])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4ade68aa561sm226096fac.5.2026.11.07.12.13.24
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4ade68aa561sm226096fac.5.2026.11.07.12.13.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Nov 2026 12:13:27 -0800 (PST)
+        Sat, 07 Nov 2026 12:13:30 -0800 (PST)
 From: James Hilliard <james.hilliard1@gmail.com>
-Date: Sat, 07 Nov 2026 03:16:36 -0700
-Subject: [PATCH 39/58] mtd: rawnand: qcom: retain open-handle state on
+Date: Sat, 07 Nov 2026 03:16:37 -0700
+Subject: [PATCH 40/58] mtd: rawnand: cafe: retain open-handle state on
  removal
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261107-submit-rawnand-retained-handle-lifetime-v1-v1-39-0181ef0cc4c8@gmail.com>
+Message-Id: <20261107-submit-rawnand-retained-handle-lifetime-v1-v1-40-0181ef0cc4c8@gmail.com>
 References: <20261107-submit-rawnand-retained-handle-lifetime-v1-v1-0-0181ef0cc4c8@gmail.com>
 In-Reply-To: <20261107-submit-rawnand-retained-handle-lifetime-v1-v1-0-0181ef0cc4c8@gmail.com>
 To: Miquel Raynal <miquel.raynal@bootlin.com>,
@@ -141,9 +141,9 @@ Cc: Tze Yee Ng <tze.yee.ng@altera.com>, linux-mtd@lists.infradead.org,
  linux-arm-msm@vger.kernel.org, James Hilliard <james.hilliard1@gmail.com>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_201329_509466_F28FF264 
-X-CRM114-Status: GOOD (  17.87  )
-X-Spam-Score: 3.5 (+++)
+X-CRM114-CacheID: sfid-20261107_201333_528518_7B26C4C3 
+X-CRM114-Status: GOOD (  13.84  )
+X-Spam-Score: 1.7 (+)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -168,177 +168,112 @@ Keep chip metadata and controller storage alive until the final MTD
 reference is released. Unregister and disconnect each published chip
 before releasing the resources used by its hardware operations.
 
-Validate boot partitions before publication and unwind partial probes.
+Free DMA memory at teardown and clear its pointer before deferred
+detach.
 
 Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
 ---
- drivers/mtd/nand/raw/qcom_nandc.c | 74 +++++++++++++++++++++++++++------------
- 1 file changed, 51 insertions(+), 23 deletions(-)
+ drivers/mtd/nand/raw/cafe_nand.c | 37 +++++++++++++++++++++++++++----------
+ 1 file changed, 27 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/mtd/nand/raw/qcom_nandc.c b/drivers/mtd/nand/raw/qcom_nandc.c
-index 2d98f79b492d..f812de1d776f 100644
---- a/drivers/mtd/nand/raw/qcom_nandc.c
-+++ b/drivers/mtd/nand/raw/qcom_nandc.c
-@@ -1900,7 +1900,6 @@ static int qcom_nandc_setup(struct qcom_nand_controller *nandc)
+diff --git a/drivers/mtd/nand/raw/cafe_nand.c b/drivers/mtd/nand/raw/cafe_nand.c
+index f3117b031cd2..bcf7482410e7 100644
+--- a/drivers/mtd/nand/raw/cafe_nand.c
++++ b/drivers/mtd/nand/raw/cafe_nand.c
+@@ -651,7 +651,10 @@ static void cafe_nand_detach_chip(struct nand_chip *chip)
  {
- 	u32 nand_ctrl;
+ 	struct cafe_priv *cafe = nand_get_controller_data(chip);
  
--	nand_controller_init(&nandc->controller);
- 	nandc->controller.ops = &qcom_nandc_ops;
- 
- 	/* kill onenand */
-@@ -2007,6 +2006,11 @@ static int qcom_nand_host_parse_boot_partitions(struct qcom_nand_controller *nan
- 	return 0;
+-	dma_free_coherent(&cafe->pdev->dev, 2112, cafe->dmabuf, cafe->dmaaddr);
++	if (cafe->dmabuf) {
++		dma_free_coherent(&cafe->pdev->dev, 2112, cafe->dmabuf, cafe->dmaaddr);
++		cafe->dmabuf = NULL;
++	}
  }
  
-+static void qcom_nand_host_release(struct nand_chip *chip)
+ static const struct nand_controller_ops cafe_nand_controller_ops = {
+@@ -659,6 +662,11 @@ static const struct nand_controller_ops cafe_nand_controller_ops = {
+ 	.detach_chip = cafe_nand_detach_chip,
+ };
+ 
++static void cafe_nand_release(struct nand_controller *controller)
 +{
-+	kfree(to_qcom_nand_host(chip));
++	kfree(container_of(controller, struct cafe_priv, nand.legacy.dummy_controller));
 +}
 +
- static int qcom_nand_host_init_and_register(struct qcom_nand_controller *nandc,
- 					    struct qcom_nand_host *host,
- 					    struct device_node *dn)
-@@ -2019,13 +2023,16 @@ static int qcom_nand_host_init_and_register(struct qcom_nand_controller *nandc,
- 	ret = of_property_read_u32(dn, "reg", &host->cs);
- 	if (ret) {
- 		dev_err(dev, "can't get chip-select\n");
--		return -ENXIO;
-+		ret = -ENXIO;
-+		goto free_host;
- 	}
- 
- 	nand_set_flash_node(chip, dn);
- 	mtd->name = devm_kasprintf(dev, GFP_KERNEL, "qcom_nand.%d", host->cs);
--	if (!mtd->name)
--		return -ENOMEM;
-+	if (!mtd->name) {
-+		ret = -ENOMEM;
-+		goto free_host;
-+	}
- 
- 	mtd->owner = THIS_MODULE;
- 	mtd->dev.parent = dev;
-@@ -2050,11 +2057,7 @@ static int qcom_nand_host_init_and_register(struct qcom_nand_controller *nandc,
- 
- 	ret = nand_scan(chip, 1);
- 	if (ret)
--		return ret;
--
--	ret = mtd_device_parse_register(mtd, probes, NULL, NULL, 0);
--	if (ret)
--		goto err;
-+		goto free_host;
- 
- 	if (nandc->props->use_codeword_fixup) {
- 		ret = qcom_nand_host_parse_boot_partitions(nandc, host, dn);
-@@ -2062,10 +2065,21 @@ static int qcom_nand_host_init_and_register(struct qcom_nand_controller *nandc,
- 			goto err;
- 	}
- 
-+	ret = nand_set_release(chip, qcom_nand_host_release);
-+	if (ret)
-+		goto err;
-+	ret = mtd_device_parse_register(mtd, probes, NULL, NULL, 0);
-+	if (ret) {
-+		nand_disconnect(chip);
-+		mtd_put_master(mtd);
-+		return ret;
-+	}
- 	return 0;
- 
- err:
- 	nand_cleanup(chip);
-+free_host:
-+	kfree(host);
- 	return ret;
- }
- 
-@@ -2077,15 +2091,13 @@ static int qcom_probe_nand_devices(struct qcom_nand_controller *nandc)
- 	int ret = -ENODEV;
- 
- 	for_each_available_child_of_node_scoped(dn, child) {
--		host = devm_kzalloc(dev, sizeof(*host), GFP_KERNEL);
-+		host = kzalloc_obj(*host);
- 		if (!host)
- 			return -ENOMEM;
- 
- 		ret = qcom_nand_host_init_and_register(nandc, host, child);
--		if (ret) {
--			devm_kfree(dev, host);
-+		if (ret)
- 			continue;
--		}
- 
- 		list_add_tail(&host->node, &nandc->host_list);
- 	}
-@@ -2119,6 +2131,26 @@ static int qcom_nandc_parse_dt(struct platform_device *pdev)
- 	return 0;
- }
- 
-+static void qcom_nandc_chips_cleanup(struct qcom_nand_controller *nandc)
-+{
-+	struct qcom_nand_host *host, *tmp;
-+
-+	list_for_each_entry_safe(host, tmp, &nandc->host_list, node) {
-+		struct nand_chip *chip = &host->chip;
-+		struct mtd_info *mtd = nand_to_mtd(chip);
-+
-+		WARN_ON(mtd_device_unregister(mtd));
-+		nand_disconnect(chip);
-+		list_del(&host->node);
-+		mtd_put_master(mtd);
-+	}
-+}
-+
-+static void qcom_nandc_release(struct nand_controller *controller)
-+{
-+	kfree(container_of(controller, struct qcom_nand_controller, controller));
-+}
-+
- static int qcom_nandc_probe(struct platform_device *pdev)
+ static int cafe_nand_probe(struct pci_dev *pdev,
+ 				     const struct pci_device_id *ent)
  {
- 	struct qcom_nand_controller *nandc;
-@@ -2127,9 +2159,12 @@ static int qcom_nandc_probe(struct platform_device *pdev)
- 	struct resource *res;
+@@ -683,6 +691,10 @@ static int cafe_nand_probe(struct pci_dev *pdev,
+ 		err = -ENOMEM;
+ 		goto out_disable_device;
+ 	}
++	cafe->nand.controller = &cafe->nand.legacy.dummy_controller;
++	err = devm_nand_controller_init(&pdev->dev, cafe->nand.controller, cafe_nand_release);
++	if (err)
++		goto out_disable_device;
+ 
+ 	mtd = nand_to_mtd(&cafe->nand);
+ 	mtd->dev.parent = &pdev->dev;
+@@ -693,7 +705,7 @@ static int cafe_nand_probe(struct pci_dev *pdev,
+ 	if (!cafe->mmio) {
+ 		dev_warn(&pdev->dev, "failed to iomap\n");
+ 		err = -ENOMEM;
+-		goto out_free_mtd;
++		goto out_disable_device;
+ 	}
+ 
+ 	cafe->rs = init_rs_non_canonical(12, &cafe_mul, 0, 1, 8);
+@@ -785,9 +797,16 @@ static int cafe_nand_probe(struct pci_dev *pdev,
+ 	pci_set_drvdata(pdev, mtd);
+ 
+ 	mtd->name = "cafe_nand";
+-	err = mtd_device_parse_register(mtd, part_probes, NULL, NULL, 0);
++	err = nand_set_release(&cafe->nand, NULL);
+ 	if (err)
+ 		goto out_cleanup_nand;
++	err = mtd_device_parse_register(mtd, part_probes, NULL, NULL, 0);
++	if (err) {
++		nand_disconnect(&cafe->nand);
++		cafe_nand_detach_chip(&cafe->nand);
++		mtd_put_master(mtd);
++		goto out_irq;
++	}
+ 
+ 	goto out;
+ 
+@@ -801,8 +820,6 @@ static int cafe_nand_probe(struct pci_dev *pdev,
+ 	free_rs(cafe->rs);
+  out_ior:
+ 	pci_iounmap(pdev, cafe->mmio);
+- out_free_mtd:
+-	kfree(cafe);
+  out_disable_device:
+ 	pci_disable_device(pdev);
+  out:
+@@ -816,17 +833,17 @@ static void cafe_nand_remove(struct pci_dev *pdev)
+ 	struct cafe_priv *cafe = nand_get_controller_data(chip);
  	int ret;
  
--	nandc = devm_kzalloc(&pdev->dev, sizeof(*nandc), GFP_KERNEL);
-+	nandc = kzalloc_obj(*nandc);
- 	if (!nandc)
- 		return -ENOMEM;
-+	ret = devm_nand_controller_init(dev, &nandc->controller, qcom_nandc_release);
-+	if (ret)
-+		return ret;
++	ret = mtd_device_unregister(mtd);
++	WARN_ON(ret);
++	nand_disconnect(chip);
+ 	/* Disable NAND IRQ in global IRQ mask register */
+ 	cafe_writel(cafe, ~1 & cafe_readl(cafe, GLOBAL_IRQ_MASK), GLOBAL_IRQ_MASK);
+ 	free_irq(pdev->irq, mtd);
+-	ret = mtd_device_unregister(mtd);
+-	WARN_ON(ret);
+-	nand_cleanup(chip);
++	cafe_nand_detach_chip(chip);
+ 	free_rs(cafe->rs);
+ 	pci_iounmap(pdev, cafe->mmio);
+-	dma_free_coherent(&cafe->pdev->dev, 2112, cafe->dmabuf, cafe->dmaaddr);
+-	kfree(cafe);
+ 	pci_disable_device(pdev);
++	mtd_put_master(mtd);
+ }
  
- 	platform_set_drvdata(pdev, nandc);
- 	nandc->dev = dev;
-@@ -2188,6 +2223,7 @@ static int qcom_nandc_probe(struct platform_device *pdev)
- 	return 0;
- 
- err_setup:
-+	qcom_nandc_chips_cleanup(nandc);
- 	qcom_nandc_unalloc(nandc);
- err_nandc_alloc:
- 	clk_disable_unprepare(nandc->aon_clk);
-@@ -2203,16 +2239,8 @@ static void qcom_nandc_remove(struct platform_device *pdev)
- {
- 	struct qcom_nand_controller *nandc = platform_get_drvdata(pdev);
- 	struct resource *res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	struct qcom_nand_host *host;
--	struct nand_chip *chip;
--	int ret;
- 
--	list_for_each_entry(host, &nandc->host_list, node) {
--		chip = &host->chip;
--		ret = mtd_device_unregister(nand_to_mtd(chip));
--		WARN_ON(ret);
--		nand_cleanup(chip);
--	}
-+	qcom_nandc_chips_cleanup(nandc);
- 
- 	qcom_nandc_unalloc(nandc);
- 
+ static const struct pci_device_id cafe_nand_tbl[] = {
 
 -- 
 2.53.0
