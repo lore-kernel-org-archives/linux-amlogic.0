@@ -2,78 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B22606A332
-	for <linux-amlogic@archiver.kernel.org>; Sat,  7 Nov 2026 16:50:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A200606D81A
+	for <linux-amlogic@archiver.kernel.org>; Sat,  7 Nov 2026 16:55:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=z/n29h2H
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ddj1afVP;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=L9e511v6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:In-Reply-To:
-	Cc:To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=RA4zkysn4VSBQIv98er1ip5TUxruKgiYBt6ft8NyquY=; b=z/n29h2HRLCOYZX/d9NF52uOj6
-	ObR7S+ZKFBmMES1ZFi4AuNkXe7UTqlfA55nQKJx8MzHfpRVFWsJa28gM1VHZpFBUVwFvLjy+z8DN/
-	PZfszuT8wWrkMamRuumXqIfbGn+zOtFcppT0scWHV+pS7jSaiL6eVi2SbCXtb+PHIN4yl2hxSNnLd
-	1KzavcmfNEawUOBvWPFdXGEg5/wO/jtUDzyzk5XLLFidd0+Xe11YNu3rE7Kth4OQliWzSwrWKeXj6
-	HyylICZh2wZGvK45sslUwiqw90WFLJggjBhib8YzyasrIuMcx9s7J41Zhb1AT8ScBB7tcgOObZIj+
-	CuCzcirw==;
+	bh=xqzZXrtjBozClQkJaQx9KR90XqDrtOJ265ndEHzHldc=; b=Ddj1afVPrKK0XFQpBuhZ8q0N6f
+	V6UxZRM+y56akx6F9xWfIjhBq4RI5Jn9yAEtX09sDbdrr+SQhWh2Lgx0/4qltXjY1yXqhauzEMC6E
+	GwqLseK7Eg7e8xolnSrA1NhvBfmQV+e0bvqhZH6mkU8Lo6gvLipzdteHOiHYjfqTBWVu7Az9/JZue
+	P0eQbsEMxWTaGbTRCSzCya8vGcvPNkJ/Iw7GwCVZwXfdR8c2wu3U8epNDuNJVPwq0VUfVtf4iDOXs
+	4zQBcXdSsxx+2waG7fWe6Vf69ocNUfXI8ybl0zjLakGaQ++7M2FVucO9eupiw5Nj8uh2+7uclcpe6
+	XYurfeuw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPjcq-0000000F2eA-2zUm;
-	Sat, 07 Nov 2026 16:50:44 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xPjhl-0000000F3FR-2cLk;
+	Sat, 07 Nov 2026 16:55:49 +0000
+Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPjco-0000000F2dn-3dDi;
-	Sat, 07 Nov 2026 16:50:43 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 8FB396138A;
-	Sat,  7 Nov 2026 16:50:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CEE31F008A1;
-	Sat,  7 Nov 2026 16:50:39 +0000 (UTC)
+	id 1xPjhi-0000000F3Ds-2lgQ
+	for linux-amlogic@lists.infradead.org;
+	Sat, 07 Nov 2026 16:55:48 +0000
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-48b001cd92bso824856f8f.2
+        for <linux-amlogic@lists.infradead.org>; Sat, 07 Nov 2026 08:55:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794070544; x=1794675344; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=yB3F3iURSo2op220m5n6KYAkOCelQKBFVJEduVBmqr4=;
+        b=L9e511v6P2fAQNliRv8hVE4aXS9mAZSnQNsCNRudwdPgl9Mbrk4wFFzHvfbp/RSJ3z
+         +XPQfN6YejvHzpZZjLtQQuEww1iO/q8mW4+Fge2WYMhtyKVKupUZElA2pIfc1D8A5gnK
+         4rozz+CKsONVkScXEn7l/eeZ4Bgl34M1lQDycGoL91YuoQOhgeovebyWVWBMJs7uQ6Ji
+         FSVBtEsbIUEbHa6jzonJaJsT5JbyMnfxy9/WWU+xnasHg6KPMnHmsVvGrWmTrg50atAV
+         RFipQ2pTJvvykg0ChcyHXrTvqzvK+u+7RJ3xV2VOXEc7d09WBBwam+0iD7v/oWt27C3Y
+         pNsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794070544; x=1794675344;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=yB3F3iURSo2op220m5n6KYAkOCelQKBFVJEduVBmqr4=;
+        b=fBSPR3yWnwS50sueKnxmNRFjnmZt+FCUzs6ZunI/ul3CxsY//Q7bgF5sBEk08z/86Y
+         DgUlLsqXuMNMpSVdMlGHAZXYVKolwSziPuC1+4jITZ2lhyKL9movBh/ryjjxsjzGHTOI
+         BDT0Jj2f1PGbzw6vyq6/o7n3BMOGEAQtXF/zahICBEAaUgGVXPPYIY8JWxbOJNK1LIpA
+         kqRm5EJyrPaqSbdJ52T1C7Qudbokd3w8uT/ssOPeX/HP82igclHgvAvPlzwefB3HamMI
+         zAz9WoG4MdTpgR+n6RpdmmPM9xCJkLdd/hFfc4RKazOWKZjBncbMl7X5kGg0rL9Z8zgy
+         Lhgw==
+X-Forwarded-Encrypted: i=1; AL+hErGRNzb6f3gpPY89BDIGnbFyBc8ZrruDpgNhRM6Zqa2H0/xB+Pqwhc9n0I/jNH0lN99Z2PJDpwt/y3KwC097@lists.infradead.org
+X-Gm-Message-State: APuU4Z9WuZM141Pn58n0iRoAPXrbHopVvJqT2O8tRixom7gTuM+MMHTn
+	qbf3vjrXM98p/rubDNc6cmAm0GT3AVC/1V7r3GjXS7QgttJeFtm8Kq8F
+X-Gm-Gg: AYBFou3DxXwGCn3XeCer/7GcwSkkdsP69CXRoPQLHnxWSNifwj8PZssMBBljHUS9FzJ
+	COukdjp6h+Ho/Y82Or2dYTr0pJSV2GAjP7wtJTUoSKJIV/X1iI9rNgUqeY7h49YQDfdgVN5KzcK
+	0+/xsX9r8rVlAmUqPL8hTGI9gsgxiHV+IN5lSCbNMsdFacRaLMjArmJ0RBnbQg+CWz9HbsLr+SV
+	AVUfnX/O/ffNOk7tfazs/G3aXVj032o2IRXrxSR2cRO2Gj/AvP0tFK1DO+6+tipd9HrTWsHraBY
+	1Y7ssy35K2jp8Nx28Hb8vT5stL6eqOtlpWtUmvSX48mvGecT1N1mUj7srHBGT9nrzmp1eCu45yu
+	zIRFCOLPmY9vq7KG8hYT32eYxEnaxwKQZNRHI+BJgTk0iaDnbOhKIpWi60Pj7M4UaDPHQb6BJTF
+	h21xzPACWrYiLkTr42mhH5JCrbA5Gabwxf1bJJmRYCc1Yi0PWynJKCok43czq8ZEnQrJQVMafC8
+	2LhPDuwvyCpULdZK6kCH2XLe1G1xL+jGU1dy6seAbzFAiQoVEgdXLlOtFnZ6Y4MC8JFNsaoA77m
+	sTL4M3BLz2hcbPq4b6nSJbYjnNlN6c3A+Q==
+X-Received: by 2002:a5d:5d82:0:b0:48e:6092:dea1 with SMTP id ffacd0b85a97d-49277bb30fcmr10474276f8f.47.1794070543659;
+        Sat, 07 Nov 2026 08:55:43 -0800 (PST)
+Received: from kreach.multipass ([77.37.5.67])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-492d723222fsm10544837f8f.21.2026.11.07.08.55.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 07 Nov 2026 08:55:43 -0800 (PST)
+From: Jude Gyimah <jude.gyimah87@gmail.com>
+To: jbrunet@baylibre.com,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	perex@perex.cz,
+	tiwai@suse.com
+Cc: neil.armstrong@linaro.org,
+	khilman@baylibre.com,
+	martin.blumenstingl@googlemail.com,
+	linux-sound@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Jude Gyimah <jude.gyimah87@gmail.com>
+Subject: [PATCH 0/4] ASoC: meson: fix missing REGMAP_MMIO dependencies
+Date: Sat,  7 Nov 2026 17:55:23 +0100
+Message-ID: <20261107165527.576383-1-jude.gyimah87@gmail.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 2/3] PCI: Configure Root Port MPS after scanning its
- hierarchy
-From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-To: Niklas Cassel <cassel@kernel.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, Bjorn Helgaas <helgaas@kernel.org>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Yue Wang <yue.wang@Amlogic.com>, Hans Zhang <18255117159@163.com>, 
- Keith Busch <kbusch@kernel.org>, mx2pg@pm.me, 
- Lukas Wunner <lukas@wunner.de>, Frank Li <Frank.Li@nxp.com>, 
- Mahesh Vaidya <mahesh.vaidya@altera.com>, 
- Ricardo Pardini <ricardo@pardini.net>, Shawn Lin <shawn.lin@rock-chips.com>, 
- =?utf-8?q?Pali_Roh=C3=A1r?= <pali@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
- Jingoo Han <jingoohan1@gmail.com>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Myron Stowe <myron.stowe@redhat.com>, Jon Mason <jdmason@kudzu.us>, 
- linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-rockchip@lists.infradead.org
-In-Reply-To: <20261020122854.1500883-7-cassel@kernel.org>
-References: <20261020122854.1500883-5-cassel@kernel.org>
- <20261020122854.1500883-7-cassel@kernel.org>
-Date: Sat, 07 Nov 2026 22:20:38 +0530
-Message-Id: <179407023831.65886.4898449607413795226.b4-reply@b4>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2497;
- i=manivannan.sadhasivam@oss.qualcomm.com; h=from:subject:message-id;
- bh=5LFctG0eiAz5gLJy+LkdgxdcQaH2WjiLxcMmdDJcNCo=;
- b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBq71bfk94n2KqPyxyjK3MxV0IdJr8qZsarNEVt8
- IzRU0v0pV+JATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCau9W3wAKCRBVnxHm/pHO
- 9c8aCAChrzgEZVOZTm7ZdM+eYCmMceH2bCAIyzgIESMvYJdeHG2yqrmibfQqM5ZbaaRMGszjOXt
- +tCbtQLST72VVN5Brm7tfnMtAb7S0fws+9Xmf/72hBxC+uWQpIppyoA/sut+c++FRGvDltZkn/i
- zxHU2JzUikv8laW9muroU/YbV1xMWfkPiRbnNXMOD/mikdu4ttQw19CjNO/FNN4lR5U6hoRVAbc
- jf5yDayX+6FJ0RdKE0vofG+Th0UzqLOMI3lYHfvwGM9U1D+x8Lt1tFXppPrB+ArVxzs1iOLZwj9
- twETqh7xYX1ZJuNxMr7RWBKCAsIo8Pc7VpFuwfjWNZd0fdZX
-X-Developer-Key: i=manivannan.sadhasivam@oss.qualcomm.com; a=openpgp;
- fpr=C668AEC3C3188E4C611465E7488550E901166008
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261107_085546_713810_244902B0 
+X-CRM114-Status: UNSURE (   8.07  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -0.8 (/)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,60 +109,46 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,
+	FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 2026-10-20 14:28 +0200, Niklas Cassel wrote:
-> With the default MPS strategy (PCIE_BUS_DEFAULT), pci_configure_mps()
-> only matches each device's Maximum Payload Size (MPS) to its upstream
-> bridge.  Root Ports have no upstream bridge, so their MPS stays at
-> whatever firmware or the hardware default (128 bytes) left there, and the
-> hierarchy below them inherits that value even if the Root Port and all
-> devices below it support more.
-> 
-> Once the hierarchy below a Root Port has been scanned, and before drivers
-> are bound, set the Root Port and every device below it to the largest MPS
-> they all support, even if that is more than firmware programmed.  Do this
-> from pcie_bus_configure_settings(), which the host bridge, ACPI and
-> hotplug paths call after scanning, and from pci_rescan_bus() and
-> pci_rescan_bus_bridge_resize(), which don't.
-> 
-> If the hierarchy contains a hotplug bridge other than the Root Port,
-> typically a Switch Downstream Port, limit it to 128 bytes instead, like
-> pcie_find_smpss() does for PCIE_BUS_SAFE: a device hot-added below such a
-> port later can't lower the MPS of a hierarchy in use, but every device
-> supports 128 bytes.  This costs throughput where firmware programmed a
-> larger MPS for such a hierarchy, in exchange for hot-added devices always
-> working.
-> 
-> An empty slot directly below a Root Port is left alone; it is evaluated
-> when a device is hot-added or rescanned there, which also allows raising
-> the Root Port again after a device that supported less has been replaced.
-> Hierarchies in which a device other than a Switch port may already have
-> a driver bound are never changed.  If the MPS of a device can't be set,
-> restore the previous MPS of the whole hierarchy rather than leaving it
-> with mismatched settings.
-> 
-> Since PCIE_BUS_DEFAULT can now raise MPS above what firmware programmed,
-> apply the Intel 5000/5100 read completion coalescing quirk to it as well.
-> 
-> The other strategies are unchanged: PCIE_BUS_TUNE_OFF doesn't touch MPS,
-> and PCIE_BUS_SAFE, PCIE_BUS_PERFORMANCE and PCIE_BUS_PEER2PEER already
-> configure the hierarchy in pcie_bus_configure_settings().
-> 
-> Suggested-by: Manivannan Sadhasivam <mani@kernel.org>
-> Co-developed-by: Hans Zhang <18255117159@163.com>
-> Signed-off-by: Hans Zhang <18255117159@163.com>
-> Signed-off-by: Niklas Cassel <cassel@kernel.org>
+Each of these drivers can be built into vmlinux while the code
+providing a symbol it calls is a module, which fails to link.  The
+same shape in 4 drivers, so they are here as one series.
 
-Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Affected: aiu, axg-pdm, axg-spdifin, axg-spdifout.
 
-- Mani
+The fix is a select rather than a depends on: the providers have no
+prompt of their own and are only ever enabled by a select, so a
+depends on would leave these drivers unselectable.
 
+Each was reproduced on v7.3, arm64 by a vmlinux link that failed on the
+named symbol, and each links once the select is added.
+
+Found with kreach, a static check that compares what Kconfig allows
+against the symbols the compiled objects actually reference.
+
+The checker is at https://github.com/JGyimah/kreach, and the
+reproducer configuration for each finding is published with it
+under results/.
+
+Jude Gyimah (4):
+  ASoC: meson: aiu: select REGMAP_MMIO
+  ASoC: meson: axg-pdm: select REGMAP_MMIO
+  ASoC: meson: axg-spdifin: select REGMAP_MMIO
+  ASoC: meson: axg-spdifout: select REGMAP_MMIO
+
+ sound/soc/meson/Kconfig | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+-- 
+2.43.0
 
 
 _______________________________________________
