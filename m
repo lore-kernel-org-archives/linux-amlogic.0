@@ -2,106 +2,149 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C69ED606A32C
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Nov 2026 22:27:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 196D4606EE94
+	for <linux-amlogic@archiver.kernel.org>; Sat,  7 Nov 2026 10:16:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=c0S1A+Qc;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=URIe2ULY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SZedqmgQ;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=x/4IdBOw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ByNc5TRqufw+omnItlE1m8DUKaJxSLZjKXa7+xWZswQ=; b=c0S1A+Qc648nvgQfxcaEOU5AT/
-	RGK/Z9ePT6LgYw/N2lHEGty4iw1WQW5iZkYS3Z0E/3eeSvs/r7nYjbkHcJFbRfHk2nDEhXzGiXLQ5
-	cvb/lQYUxHIRWchOwIwS+dvu1J2Ek+Pg9QFx0+iYrN1gVTh/iSifoNbCEg8GzNtQt1LqZTk2CEmwS
-	ZIoP8bWG8Rw+psDPWLO25xKVSXd7D56zmnHTCMT7IlxSWBBN3CFS1Y/EuI7TN213617wN6jjuVnpj
-	b6HhJt/Kz+hcOpaxE9Zphbb1dLn/HUCydjA1dJSAcVL29KmTe5pWtDE35mNlejsk5ktvizZR4JBJC
-	ZRMpeL+g==;
+	bh=X9hEUmFldhnfyWIrxDZuj9JeNDqshibzRSM3JN3lvo4=; b=SZedqmgQ+WuzSMUJOogbZjXTN4
+	ZC3ZB3VSfETWn1UV9WqfKZkYgGzJs51AouqrAqk3gGurZpuaGsfZ7FOts0IVnN7D5V482uG14hvgn
+	UBgSvM97lALzDtgctCa+NImUKpxniuyux1q1DPpVSJzyJbuSah77PZLUtElNUb7O3bqCKfEsOR9wm
+	AAT5h9LpzwwIKYk06vzf3y1BP02p892G+FDuT2kzeYVV3Z5yCOSPo6ShfzKWR3e4QhTNDzyHmVg2x
+	CuYynNaeVm75/uvUlAkghCBdxh5m7QHUei2x03e0SpYFLlkj4CdGOhiVnIsvj1b9G8sopdYjILESq
+	IGbzAKuQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPSPW-0000000DmcU-3dJn;
-	Fri, 06 Nov 2026 22:27:50 +0000
-Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
+	id 1xPdTP-0000000ESh6-177u;
+	Sat, 07 Nov 2026 10:16:35 +0000
+Received: from mail-ot1-x330.google.com ([2607:f8b0:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPSPS-0000000Dmbj-3RjS
+	id 1xPdTI-0000000ESb4-2P7H
 	for linux-amlogic@lists.infradead.org;
-	Fri, 06 Nov 2026 22:27:49 +0000
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-48e09aa5264so634718f8f.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 06 Nov 2026 14:27:46 -0800 (PST)
+	Sat, 07 Nov 2026 10:16:33 +0000
+Received: by mail-ot1-x330.google.com with SMTP id 46e09a7af769-82109f51565so590242a34.2
+        for <linux-amlogic@lists.infradead.org>; Sat, 07 Nov 2026 02:16:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1794004065; x=1794608865; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=Tm44yLE9zR/+xclgm4/iFVDEIIryMy4vkUArG8yur4M=;
-        b=URIe2ULYvxmDl5bnXK5F8wTP1YDGl4rooz22SpRQqaXbPMetWWdggcLAXl6vKa+730
-         FNUGWrK2OyEMCHONM5cBCRabZvS4a5x/b2J7bd9wn87GaE2uLWcr5IX00Zgn6WP8oDZX
-         xdreqGMXPPGWUgt2HoyaMtU8IBv8SlqizEwPSSTIwHt+ZS52g+xldN5g+3CzZRJIHZdg
-         ieQ8NSYNHwCIE/8pqs7G9+aqrzoFf+ebYPIUKO025Wpc/Q/vKOaGPuRMgOEqqi+2BPI8
-         agsUxTj9o/DeqzK61Af1RG5k77d8y0FAnrS6bcGItf4hVbbs0cbQ9Da8h/0EBThTipl8
-         Z/Kw==
+        d=gmail.com; s=20260707; t=1794046587; x=1794651387; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=/qFqvbFurN4PEJpXMJPKtOAq4hdCyVwSYAR6O028L8Y=;
+        b=x/4IdBOwOZFUgtoFLBB6+JQOVKr5eiGYaMt/A2iMzvzbBVjTIWHqRevouCNYTe0sMW
+         iJZqFRGVMKlVZcVCut1dJJmiNsY49AJGeOeyPi+Ufs+E1P1GnE+pM/f9ShBaqgK2J/s4
+         yedGwaZ6Qy2siuXl6eTXG5hrnxMVdF53wMAWh5JqjH2AcY5MJOrUe/UI4F2PNbqVJWTQ
+         2nRP5fFlHOtlh8hnsvu1X1DhGGjJg0e7YFCr3vn6BINbjoel2196bEdNwOAsd65EZVLk
+         aLUr5JRTWM6UxZTfSuRD9NdHmXsgxN/x6kFmVGg9JSoeMUKn7bkhmxljp3p3hRt2cV3z
+         EPEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794004065; x=1794608865;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
+        d=1e100.net; s=20260707; t=1794046587; x=1794651387;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Tm44yLE9zR/+xclgm4/iFVDEIIryMy4vkUArG8yur4M=;
-        b=vDGz2Lo+TeU6GTKHcU7X8Uy8WrjXCELhJ7l/uM/5r7+td3tAHWffiWAd5+DEsEZL8n
-         bBArgNCFlkVekaYoA2ZvRjs/taYohq3S+pSxNG9z2y13i56qWNGvJWm2RKs25nigmggH
-         4NpAAnUdsF6mc6Fw8n6JmdRUrXIHernijJRxjU5KQDM1ZiEvZ37t5BQm0YcOc+kNKCUx
-         wyc9RUCZAgOn9CLApL000KwpiTw6nTe7W3VU5+nZVIWRBZ1Xavfr4D/R9CiHMWeoEeQ3
-         EXqeyuTSvRfSED+CsKZ36GBFSBNckVvcsj/M7xLkvNbM1x02cpntdPe6w/xo24Eqoqz1
-         G6Ug==
-X-Forwarded-Encrypted: i=1; AL+hErEfxEfq3XxhnRLTfA3jGTHBHWagrWVAxKa1rg/zdR5onYTeoX2m52X4tRlu2O3k+kGUBcxIT0rmLNsOrkeO@lists.infradead.org
-X-Gm-Message-State: APuU4Z99emhzmEdtkze5WkCZbQmspSAQQPl1Zw/j75og2aVThknnzcdK
-	GSb+S3epoL1Gp079Ez/0BZ62a3yDdZ1+fDr+dEWNmYhjcWSwNpwF8jaZ7PztBbpF5fE=
-X-Gm-Gg: AYBFou38vQDRNVinlgHbv2fH/G2/ByvY6UYe77IEsr0AwMZUrPPzmow9q1ij4jKrmkd
-	R7/u2NrqFxvP+/R6teb1FiBRwul/21V72RSH82TEbw4wSmLBM7LQepYIoDz+Mr8tCvqAfgbPzf3
-	s4xkKGytvkCmxzE0vxSeI6t8dpR3modOj97b2mv3PU7haUvtj/xDRb2AkBmYe94RVF8p81ZR/m8
-	MmL2zSmIvXZQHHDO+adVEzo84B4xwhrfIkgrdkU+MYo5IDdjQBWQ2q3h7SGUjTc86DTWsqe/QaK
-	CbxIiEhPyAKOjJ2hYDlHRCRIwtiNmWnmDLDAanA6lZv7RfVoZejvKVuskHi81MBJoykNhmgEDpe
-	ln7AJNFfUTnJ4+klWRw54k8aJCa5s3uRJx2ZDbpEbw7qfBhdZvsbKcQYN3ddCSA/73iNc4q42sL
-	s5g18/q0b7Wq6u2hmbZq4QZhiE3V8J+tz7hSiIiVAXvAdkF7u9U0GcW+e4+96U3fuVMl5nNU5yC
-	13CWYmWc9lmFjGzxm9KRfA0zZxFGJkYQ4Ht05yQ96Om8DJnx+HBl63r/tYdkG08VBLBSH3SKqEd
-	gucH80JMZ4Uru1w9VNsYq1Zr0iPXCPQv33f/l2IyLhzEPPtx0Hs44mDI+ycrfKNotGBKpLi18Qt
-	mMyLSXRtWVjc=
-X-Received: by 2002:a5d:5d13:0:b0:490:ef5a:bf39 with SMTP id ffacd0b85a97d-492733d12f2mr5925598f8f.6.1794004064618;
-        Fri, 06 Nov 2026 14:27:44 -0800 (PST)
-Received: from macbook (host-95-246-144-141.retail.telecomitalia.it. [95.246.144.141])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-492d73286cdsm5497080f8f.28.2026.11.06.14.27.39
+        bh=/qFqvbFurN4PEJpXMJPKtOAq4hdCyVwSYAR6O028L8Y=;
+        b=XN6HcEQW6MYvf86WqDn3i/9F0Yyi8b3CB6M3cy9UBs7rMVBsatb/ypxAbCVL3RItrH
+         1NLVl+nurLsWcSgnKTwuy0V8IPlrFRXgmT9rXa2qfg4zlRt06zbeJJhd/2QYPLDNoltH
+         CQAASoupPNv7/3fkWI+ORRVrTPMkYWzeR72xHkMYe8HXE73E4d35j7qC+9iPkedj4GRD
+         edp4kJeUVtmBIISW/aOlDu3rdwD3/CPNEA7i1a1Lit2NVl6PY9LpHypSdwiGfcnEMaQP
+         zi+6swBXSVI1WJzP/dhh4/yGxnry/nM6Bf4hXpkrNor/X8CcbS14f6nEsnbTxz/Br45m
+         +VtA==
+X-Forwarded-Encrypted: i=1; AKwUvBy9/oLIflcXgff5e3W1YwaVdkqt96rgtinK7g1oEiEcYjWXxzxwtiJi4T4QK40TtJxHn0oCrnz7EMovCIux@lists.infradead.org
+X-Gm-Message-State: APuU4Z/dfrMOih9zoNUid4DQv3Nkcc6/wBRXl9Lrrp0K8CMP+lKszMX0
+	EoWI2LRmXhvefRPXwbnQqher2YZiiZEaD1CFjDzjqCMbwww222n2eWTX
+X-Gm-Gg: AYBFou2CCOwU8alAvuX7EXbc1sTgmxAwgUGb/y2Kc2Yxrk/ndWrZyRGwzj0nTp7usUo
+	+biJ7oqBemrzl/f6Ys37ZfdKwn8LMH6opa4VKUw75d7XfXyl9q5VlTOBHCmwcTAfpF86PnUz8b7
+	N/LOoE/ctCoo3BgG78NkxvIL4SpWCgjRELV6cyCf4gbkTVN9WBN4Vl+m3/yESL8VM0haFirikv3
+	z6ef4eo8qTek7Wyft5ZIeUE2djE9jwSezfmNuLRJv0Bu9oXsvjMtxV4cJOr1/a4WmQv3vDNY8PQ
+	3vMHyz6b1NU5xkKWIip/2jYLFG4AHvn3rNs1LQYYHqV3VRWbW3GlJAjNEkJUi+8XFhNhTiY09hE
+	CkmbGqM2JUFF4JU+YUCGiClWx3p69u3L5iczo/XNfb+OFTlkfQB3735CNaouTEgGNeTgA48RIIW
+	ubTdOjGUKPqOWpy8FKEKzl0fLvNpSemFH/H+MSZlhZQ+SvnflNFPEUvxmB0VyEWKRrcGjtfOH6d
+	tuE4u9I1xK6vFWYJoo6ed3/Ui6vR9uFn0ceJju2URL9f6XjtWhKnVmq5bM2/n1a337d16dc98VK
+	ZmuB4DZtPZ9nSI8ioCirWKiqx78vN2l/De4BG6Od87Ka7jT0nhhBi4LkuD9U1nNfBdQd6ct+64h
+	Id8YAiCrHQ20I9LuzHCbwSCI4OeDTRMjMZIuOzLdbeossyPMcK9NYCBT265+KH2rQ8ZEQqGDzou
+	7Wndjd11L0DLXjXH9su/t4eR5+uFnJsMu2HN8xyCKc0d/GVAqCgjmZ
+X-Received: by 2002:a05:6830:4101:b0:844:4959:e856 with SMTP id 46e09a7af769-85f1cf2dfcbmr4924112a34.11.1794046587358;
+        Sat, 07 Nov 2026 02:16:27 -0800 (PST)
+Received: from [127.0.1.1] (174-29-1-49.hlrn.qwest.net. [174.29.1.49])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-85f1dbef224sm3990269a34.12.2026.11.07.02.16.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Nov 2026 14:27:44 -0800 (PST)
-Date: Fri, 6 Nov 2026 23:27:38 +0100
-From: Carlo Caione <ccaione@baylibre.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
-	Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Jian Hu <jian.hu@amlogic.com>, Chuan Liu <chuan.liu@amlogic.com>, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 6/7] dt-bindings: clock: Add Amlogic S7 peripherals clock
- controller
-Message-ID: <au5RoF6BooP14xhY@macbook>
-References: <20261106-upstream-s7-clk-v1-0-7d501d62621f@baylibre.com>
- <20261106-upstream-s7-clk-v1-6-7d501d62621f@baylibre.com>
- <20261106-unwilling-preoccupy-156dbb310448@spud>
- <au4p0xYEFkgEU6T4@macbook>
- <20261106-headband-buckwheat-fecbd459ee85@spud>
+        Sat, 07 Nov 2026 02:16:26 -0800 (PST)
+From: James Hilliard <james.hilliard1@gmail.com>
+Date: Sat, 07 Nov 2026 03:15:58 -0700
+Subject: [PATCH 01/58] mtd: clear OTP provider pointers after unregistering
+ them
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20261106-headband-buckwheat-fecbd459ee85@spud>
+Message-Id: <20261107-submit-rawnand-retained-handle-lifetime-v1-v1-1-0181ef0cc4c8@gmail.com>
+References: <20261107-submit-rawnand-retained-handle-lifetime-v1-v1-0-0181ef0cc4c8@gmail.com>
+In-Reply-To: <20261107-submit-rawnand-retained-handle-lifetime-v1-v1-0-0181ef0cc4c8@gmail.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Brian Norris <computersforpeace@gmail.com>, 
+ Boris Brezillon <bbrezillon@kernel.org>, 
+ Arseniy Krasnov <AVKrasnov@sberdevices.ru>, Chen-Yu Tsai <wens@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Thomas Gleixner <tglx@kernel.org>, 
+ Vitaly Wool <vitalywool@gmail.com>, David Woodhouse <dwmw2@infradead.org>, 
+ Russell King <rmk+kernel@arm.linux.org.uk>, 
+ David Woodhouse <David.Woodhouse@intel.com>, 
+ Mike Rapoport <rppt@kernel.org>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Christophe Kerello <christophe.kerello@st.com>, 
+ Jason Roberts <jason.e.roberts@intel.com>, 
+ Michal Simek <michal.simek@amd.com>, 
+ Boris Brezillon <boris.brezillon@collabora.com>, 
+ Mason Yang <masonccyang@mxic.com.tw>, 
+ Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>, 
+ Stefan Agner <stefan@agner.ch>, Lucas Stach <dev@lynxeye.de>, 
+ Thierry Reding <thierry.reding@kernel.org>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, Dmitry Osipenko <digetx@gmail.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>, 
+ Heiko Stuebner <heiko@sntech.de>, Yifeng Zhao <yifeng.zhao@rock-chips.com>, 
+ Nicolas Ferre <nicolas.ferre@microchip.com>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+ Keguang Zhang <keguang.zhang@gmail.com>, Jacky Huang <ychuang3@nuvoton.com>, 
+ Shan-Chun Hung <schung@nuvoton.com>, Frank Li <Frank.Li@nxp.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Han Xu <han.xu@nxp.com>, 
+ Liang Yang <liang.yang@amlogic.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Manivannan Sadhasivam <mani@kernel.org>, 
+ Kamal Dasu <kamal.dasu@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Vladimir Zapolskiy <vz@mleia.com>, 
+ Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>, 
+ Paul Cercueil <paul@crapouillou.net>, 
+ Harvey Hunt <harveyhuntnexus@gmail.com>, 
+ Maxim Levitsky <maximlevitsky@gmail.com>, Michael Walle <michael@walle.cc>, 
+ Srinivas Kandagatla <srini@kernel.org>
+Cc: Tze Yee Ng <tze.yee.ng@altera.com>, linux-mtd@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org, 
+ linux-mediatek@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-mips@vger.kernel.org, imx@lists.linux.dev, 
+ linux-renesas-soc@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-msm@vger.kernel.org, James Hilliard <james.hilliard1@gmail.com>, 
+ stable@vger.kernel.org
+X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_142746_926802_49A5D73C 
-X-CRM114-Status: GOOD (  21.25  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261107_021631_834332_835C6046 
+X-CRM114-Status: GOOD (  14.21  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,150 +157,89 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 06, 2026 at 20:48:01 +0100, Conor Dooley wrote:
-> On Fri, Nov 06, 2026 at 08:34:37PM +0100, Carlo Caione wrote:
-> > On Fri, Nov 06, 2026 at 17:34:14 +0100, Conor Dooley wrote:
-> > 
-> > > > +    #include <dt-bindings/clock/amlogic,s7-pll-clkc.h>
-> > > > +    #include <dt-bindings/clock/amlogic,s7-scmi-clkc.h>
-> > > > +
-> > > > +    soc {
-> > > > +        #address-cells = <2>;
-> > > > +        #size-cells = <2>;
-> > > > +
-> > > > +        clock-controller@0 {
-> > > > +            compatible = "amlogic,s7-peripherals-clkc";
-> > > > +            reg = <0x0 0x0 0x0 0x49c>;
-> > > 
-> > > What's with the weird numbers in this example?
-> > > 
-> > > Examples don't have to be real, but when it looks like this the
-> > > immediate thought is that the modelling of the device might be
-> > > incorrec.t
-> > 
-> > The numbers are actually real, but the example simply lost their context
-> > because I copied the node from the S7 dtsi (not yet submitted), where
-> > the controller sits under the APB bus node (bus@fe000000) and the bus
-> > ranges make the addresses relative to it.
-> > 
-> > 		apb: bus@fe000000 {
-> > 			compatible = "simple-bus";
-> > 			reg = <0x0 0xfe000000 0x0 0x480000>;
-> > 			#address-cells = <2>;
-> > 			#size-cells = <2>;
-> > 			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
-> > 
-> > 			clkc_periphs: clock-controller@0 {
-> > 				compatible = "amlogic,s7-peripherals-clkc";
-> > 				reg = <0x0 0x0 0x0 0x49c>;
-> > 				#clock-cells = <1>;
-> > 				...
-> > 
-> > In V2 I'll use an absolute address for the sake of clarity (PLL has the
-> > same issue).
-> 
-> Before you do that, can you please share with me the s7 dtsi? Cos surely
-> you've got it in some git repo online somewhere.
+If factory OTP discovery or registration fails after user OTP was
+registered, mtd_otp_nvmem_add() unregisters the user provider but leaves
+its pointer set. mtd_device_parse_register() then unregisters it again
+while unwinding the error, accessing a freed provider or dropping a
+reference still owned by a consumer.
 
-The S7 dtsi is already upstream at [0], the peripheral clock controller
-and PLL will be enabled in that DTSI with a following series after the
-bindings and the drivers in this set are acked, following the diffs that
-will be submitted:
+The same stale pointer survives when the factory OTP error is
+-EOPNOTSUPP, which mtd_otp_nvmem_add() treats as success. In that case
+mtd_device_unregister() can release the provider a second time later.
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi
-index 2c204dcebbba..5f2a61f42cbd 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi
-@@ -7,6 +7,8 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/pinctrl/amlogic,pinctrl.h>
-+#include <dt-bindings/clock/amlogic,s7-pll-clkc.h>
-+#include <dt-bindings/clock/amlogic,s7-scmi-clkc.h>
- #include <dt-bindings/power/amlogic,s7-pwrc.h>
+Centralize removal of the OTP providers and clear each pointer after
+unregistering it so subsequent cleanup cannot repeat the put.
 
- / {
-@@ -160,6 +162,22 @@ apb: bus@fe000000 {
-                        #size-cells = <2>;
-                        ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+Fixes: e0489f6e221f ("mtd: core: fix error path for nvmem provider")
+Cc: stable@vger.kernel.org
+Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+---
+ drivers/mtd/mtdcore.c | 19 ++++++++++++-------
+ 1 file changed, 12 insertions(+), 7 deletions(-)
 
-+                       clkc_pll: clock-controller@8000 {
-+                               compatible = "amlogic,s7-pll-clkc";
-+                               reg = <0x0 0x8000 0x0 0x1e8>;
-+                               #clock-cells = <1>;
-+                               clocks = <&scmi_clk CLKID_TOP_PLL_OSC>,
-+                                        <&scmi_clk CLKID_TOP_PLL_OSC>,
-+                                        <&scmi_clk CLKID_TOP_PLL_OSC>,
-+                                        <&scmi_clk CLKID_TOP_PLL_OSC>,
-+                                        <&scmi_clk CLKID_HDMI_PLL_OSC>;
-+                               clock-names = "fix",
-+                                             "gp0",
-+                                             "hifi",
-+                                             "hifi1",
-+                                             "hdmi";
-+                       };
+diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
+index 8efa2d88556e..558a605ba749 100644
+--- a/drivers/mtd/mtdcore.c
++++ b/drivers/mtd/mtdcore.c
+@@ -1016,6 +1016,14 @@ static int mtd_nvmem_fact_otp_reg_read(void *priv, unsigned int offset,
+ 	return retlen == bytes ? 0 : -EIO;
+ }
+ 
++static void mtd_otp_nvmem_remove(struct mtd_info *mtd)
++{
++	nvmem_unregister(mtd->otp_user_nvmem);
++	mtd->otp_user_nvmem = NULL;
++	nvmem_unregister(mtd->otp_factory_nvmem);
++	mtd->otp_factory_nvmem = NULL;
++}
 +
-                        uart_b: serial@7a000 {
-                                compatible = "amlogic,s7-uart",
-                                             "amlogic,meson-s4-uart";
+ static int mtd_otp_nvmem_add(struct mtd_info *mtd)
+ {
+ 	struct device *dev = mtd->dev.parent;
+@@ -1082,7 +1090,7 @@ static int mtd_otp_nvmem_add(struct mtd_info *mtd)
+ 	return 0;
+ 
+ err:
+-	nvmem_unregister(mtd->otp_user_nvmem);
++	mtd_otp_nvmem_remove(mtd);
+ 	/* Don't report error if OTP is not supported. */
+ 	if (err == -EOPNOTSUPP)
+ 		return 0;
+@@ -1180,10 +1188,8 @@ int mtd_device_parse_register(struct mtd_info *mtd, const char * const *types,
+ 	}
+ 
+ out:
+-	if (ret) {
+-		nvmem_unregister(mtd->otp_user_nvmem);
+-		nvmem_unregister(mtd->otp_factory_nvmem);
+-	}
++	if (ret)
++		mtd_otp_nvmem_remove(mtd);
+ 
+ 	if (ret && device_is_registered(&mtd->dev)) {
+ 		err = del_mtd_device(mtd);
+@@ -1210,8 +1216,7 @@ int mtd_device_unregister(struct mtd_info *master)
+ 		memset(&master->reboot_notifier, 0, sizeof(master->reboot_notifier));
+ 	}
+ 
+-	nvmem_unregister(master->otp_user_nvmem);
+-	nvmem_unregister(master->otp_factory_nvmem);
++	mtd_otp_nvmem_remove(master);
+ 
+ 	if (IS_REACHABLE(CONFIG_MTD_VIRT_CONCAT)) {
+ 		err = mtd_virt_concat_destroy(master);
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi
-index 5f2a61f42cbd..afc88abea301 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi
-@@ -162,6 +162,40 @@ apb: bus@fe000000 {
-                        #size-cells = <2>;
-                        ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+-- 
+2.53.0
 
-+                       clkc_periphs: clock-controller@0 {
-+                               compatible = "amlogic,s7-peripherals-clkc";
-+                               reg = <0x0 0x0 0x0 0x49c>;
-+                               #clock-cells = <1>;
-+                               clocks = <&clkc_pll CLKID_FCLK_DIV2>,
-+                                        <&clkc_pll CLKID_FCLK_DIV2P5>,
-+                                        <&clkc_pll CLKID_FCLK_DIV3>,
-+                                        <&clkc_pll CLKID_FCLK_DIV4>,
-+                                        <&clkc_pll CLKID_FCLK_DIV5>,
-+                                        <&clkc_pll CLKID_FCLK_DIV7>,
-+                                        <&clkc_pll CLKID_HIFI_PLL>,
-+                                        <&clkc_pll CLKID_GP0_PLL>,
-+                                        <&clkc_pll CLKID_HIFI1_PLL>,
-+                                        <&scmi_clk CLKID_GP1_PLL>,
-+                                        <&clkc_pll CLKID_HDMI_PLL>,
-+                                        <&clkc_pll CLKID_HDMI_PLL_PIX>,
-+                                        <&xtal>,
-+                                        <&scmi_clk CLKID_ACLKM>;
-+                               clock-names = "fclk_div2",
-+                                             "fclk_div2p5",
-+                                             "fclk_div3",
-+                                             "fclk_div4",
-+                                             "fclk_div5",
-+                                             "fclk_div7",
-+                                             "hifi_pll",
-+                                             "gp0_pll",
-+                                             "hifi1_pll",
-+                                             "gp1_pll",
-+                                             "hdmi_pll",
-+                                             "vid_pix",
-+                                             "xtal",
-+                                             "axi_frcpu";
-+                       };
-+
-                        clkc_pll: clock-controller@8000 {
-                                compatible = "amlogic,s7-pll-clkc";
-                                reg = <0x0 0x8000 0x0 0x1e8>;
-
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi
-
---
-Carlo Caione
 
 _______________________________________________
 linux-amlogic mailing list
