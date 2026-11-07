@@ -2,89 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 196D4606EE94
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15F32606EE92
 	for <linux-amlogic@archiver.kernel.org>; Sat,  7 Nov 2026 10:16:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SZedqmgQ;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=x/4IdBOw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lTlqVSPk;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=pKUem8qx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=X9hEUmFldhnfyWIrxDZuj9JeNDqshibzRSM3JN3lvo4=; b=SZedqmgQ+WuzSMUJOogbZjXTN4
-	ZC3ZB3VSfETWn1UV9WqfKZkYgGzJs51AouqrAqk3gGurZpuaGsfZ7FOts0IVnN7D5V482uG14hvgn
-	UBgSvM97lALzDtgctCa+NImUKpxniuyux1q1DPpVSJzyJbuSah77PZLUtElNUb7O3bqCKfEsOR9wm
-	AAT5h9LpzwwIKYk06vzf3y1BP02p892G+FDuT2kzeYVV3Z5yCOSPo6ShfzKWR3e4QhTNDzyHmVg2x
-	CuYynNaeVm75/uvUlAkghCBdxh5m7QHUei2x03e0SpYFLlkj4CdGOhiVnIsvj1b9G8sopdYjILESq
-	IGbzAKuQ==;
+	bh=AZ2c0GfRv79ACTCNmwCNsBP7DNMeBKHcpsKKrOiyrYA=; b=lTlqVSPkl9VJa2H6+ENqVLaBS1
+	dwlXbHXUZzRFqAPtMcQgdI3GEQhXJSpdbQEpbLBvXBxyyzyQ7+Hc71cEo55/mu5jSEesiy/71dk6B
+	8wfod8a0QaWLlIRoxobodEuBwOZBmO35e6nx9rgJ1ZnEQ0k4GJwLHjPd3v2kZ6P2PqPvJQniZsUe3
+	LVIHiu3EsUfUe5hSaWroutQ4M70s6taFUpI+fH8fNsXTtJ5pmyGUDkC6wREoZA6fSoIS2jdu6Xdn5
+	Jj1gXvTLyEGvE172pcpjoOhByDtTqT9v8nCSUR4fOFzT3/LjkuBJubydJq9ukIbrDhh6ARNDM5grf
+	qzpm5lhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPdTP-0000000ESh6-177u;
-	Sat, 07 Nov 2026 10:16:35 +0000
-Received: from mail-ot1-x330.google.com ([2607:f8b0:4864:20::330])
+	id 1xPdTO-0000000ESfF-0AHl;
+	Sat, 07 Nov 2026 10:16:34 +0000
+Received: from mail-ot1-x32f.google.com ([2607:f8b0:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPdTI-0000000ESb4-2P7H
+	id 1xPdTF-0000000ESYx-40c2
 	for linux-amlogic@lists.infradead.org;
-	Sat, 07 Nov 2026 10:16:33 +0000
-Received: by mail-ot1-x330.google.com with SMTP id 46e09a7af769-82109f51565so590242a34.2
-        for <linux-amlogic@lists.infradead.org>; Sat, 07 Nov 2026 02:16:28 -0800 (PST)
+	Sat, 07 Nov 2026 10:16:28 +0000
+Received: by mail-ot1-x32f.google.com with SMTP id 46e09a7af769-84a248254f4so881649a34.0
+        for <linux-amlogic@lists.infradead.org>; Sat, 07 Nov 2026 02:16:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794046587; x=1794651387; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=/qFqvbFurN4PEJpXMJPKtOAq4hdCyVwSYAR6O028L8Y=;
-        b=x/4IdBOwOZFUgtoFLBB6+JQOVKr5eiGYaMt/A2iMzvzbBVjTIWHqRevouCNYTe0sMW
-         iJZqFRGVMKlVZcVCut1dJJmiNsY49AJGeOeyPi+Ufs+E1P1GnE+pM/f9ShBaqgK2J/s4
-         yedGwaZ6Qy2siuXl6eTXG5hrnxMVdF53wMAWh5JqjH2AcY5MJOrUe/UI4F2PNbqVJWTQ
-         2nRP5fFlHOtlh8hnsvu1X1DhGGjJg0e7YFCr3vn6BINbjoel2196bEdNwOAsd65EZVLk
-         aLUr5JRTWM6UxZTfSuRD9NdHmXsgxN/x6kFmVGg9JSoeMUKn7bkhmxljp3p3hRt2cV3z
-         EPEg==
+        d=gmail.com; s=20260707; t=1794046584; x=1794651384; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=3JSGrKkfasSjkXz6S7pS4jiVu0FeZWNudCsARugg3Tw=;
+        b=pKUem8qxeRfDV5TS/xLFNEY8iwVt3GSyU2TAE76T8XqH1vccM9HcGo+ddfngpUa+eX
+         vdSqF3buiZMqamGSYzc69wZ8ZgMXAKcYHyZC7Fc63INDYe0BsSqFKTamFxqkRkI+ZXGF
+         M+2HTvG/mBrjkglWmmprdYeOGNJmAIXoh/eqVj+qeR/1tnDhsk89z1bgZEb4KjYq9l/h
+         OyArDu/vHpODny2FWJfCHySbvp3y+JjEnXus7PpMo014eMQHTQFnB4WmtJN5nyHjqM87
+         8EoGaO9s/3QAi+dTG3oWw2yyEE+pav8cl7Pxx5yGBKC9PjOJN0YgFpY7u3i75rx6QZdT
+         4gXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794046587; x=1794651387;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=/qFqvbFurN4PEJpXMJPKtOAq4hdCyVwSYAR6O028L8Y=;
-        b=XN6HcEQW6MYvf86WqDn3i/9F0Yyi8b3CB6M3cy9UBs7rMVBsatb/ypxAbCVL3RItrH
-         1NLVl+nurLsWcSgnKTwuy0V8IPlrFRXgmT9rXa2qfg4zlRt06zbeJJhd/2QYPLDNoltH
-         CQAASoupPNv7/3fkWI+ORRVrTPMkYWzeR72xHkMYe8HXE73E4d35j7qC+9iPkedj4GRD
-         edp4kJeUVtmBIISW/aOlDu3rdwD3/CPNEA7i1a1Lit2NVl6PY9LpHypSdwiGfcnEMaQP
-         zi+6swBXSVI1WJzP/dhh4/yGxnry/nM6Bf4hXpkrNor/X8CcbS14f6nEsnbTxz/Br45m
-         +VtA==
-X-Forwarded-Encrypted: i=1; AKwUvBy9/oLIflcXgff5e3W1YwaVdkqt96rgtinK7g1oEiEcYjWXxzxwtiJi4T4QK40TtJxHn0oCrnz7EMovCIux@lists.infradead.org
-X-Gm-Message-State: APuU4Z/dfrMOih9zoNUid4DQv3Nkcc6/wBRXl9Lrrp0K8CMP+lKszMX0
-	EoWI2LRmXhvefRPXwbnQqher2YZiiZEaD1CFjDzjqCMbwww222n2eWTX
-X-Gm-Gg: AYBFou2CCOwU8alAvuX7EXbc1sTgmxAwgUGb/y2Kc2Yxrk/ndWrZyRGwzj0nTp7usUo
-	+biJ7oqBemrzl/f6Ys37ZfdKwn8LMH6opa4VKUw75d7XfXyl9q5VlTOBHCmwcTAfpF86PnUz8b7
-	N/LOoE/ctCoo3BgG78NkxvIL4SpWCgjRELV6cyCf4gbkTVN9WBN4Vl+m3/yESL8VM0haFirikv3
-	z6ef4eo8qTek7Wyft5ZIeUE2djE9jwSezfmNuLRJv0Bu9oXsvjMtxV4cJOr1/a4WmQv3vDNY8PQ
-	3vMHyz6b1NU5xkKWIip/2jYLFG4AHvn3rNs1LQYYHqV3VRWbW3GlJAjNEkJUi+8XFhNhTiY09hE
-	CkmbGqM2JUFF4JU+YUCGiClWx3p69u3L5iczo/XNfb+OFTlkfQB3735CNaouTEgGNeTgA48RIIW
-	ubTdOjGUKPqOWpy8FKEKzl0fLvNpSemFH/H+MSZlhZQ+SvnflNFPEUvxmB0VyEWKRrcGjtfOH6d
-	tuE4u9I1xK6vFWYJoo6ed3/Ui6vR9uFn0ceJju2URL9f6XjtWhKnVmq5bM2/n1a337d16dc98VK
-	ZmuB4DZtPZ9nSI8ioCirWKiqx78vN2l/De4BG6Od87Ka7jT0nhhBi4LkuD9U1nNfBdQd6ct+64h
-	Id8YAiCrHQ20I9LuzHCbwSCI4OeDTRMjMZIuOzLdbeossyPMcK9NYCBT265+KH2rQ8ZEQqGDzou
-	7Wndjd11L0DLXjXH9su/t4eR5+uFnJsMu2HN8xyCKc0d/GVAqCgjmZ
-X-Received: by 2002:a05:6830:4101:b0:844:4959:e856 with SMTP id 46e09a7af769-85f1cf2dfcbmr4924112a34.11.1794046587358;
-        Sat, 07 Nov 2026 02:16:27 -0800 (PST)
+        d=1e100.net; s=20260707; t=1794046584; x=1794651384;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=3JSGrKkfasSjkXz6S7pS4jiVu0FeZWNudCsARugg3Tw=;
+        b=Fr3T+N2YM/PPInAAeTtVV1JkqtjzuM1qktxqrL11bDJr4uhTiH8Jwx54lkrUv3tTRb
+         iOt/UM6Ktk9XLS20upzNqs/340vrvuYeTOmT6RtD3zwfj2qdgPllWLjgrjLJ8yPwgz2g
+         +rIlHHOFooaYHTi3SCll1PLiOI7v4QWTpAgSELA7KpEcIoxJnRI8ZvDtSyCq6JCRIJ8Q
+         ZWld2C5n+0h8sQNhz2Pgu4TDb4/hd42G2RDsydN/HTAIxPI6NXrXd6MDeR0kg7jOPyy+
+         CeDkIE99rP8uthN4GkUhzxyJ2JJsElVNkRsjYlREWGwxL4n4gygmuEVTFgYEB6z5OeEb
+         XAgQ==
+X-Forwarded-Encrypted: i=1; AKwUvBzafpd+yj7ruJE1RN0nY2NeIHe14t9nIDmj1GoqxQv2Nk45SWsEeyHyfwjfUDYrw4JQbFqkKYiz0yBJI7ul@lists.infradead.org
+X-Gm-Message-State: APuU4Z8skqQwTLzmeOU1ovKO0kyWix+dnKybS1+28/UxkJXzt7JQjUsm
+	qdsHcFZT8v3V6m1yISjmGwobCtLZafXbEV4t8TBDg6CMs8FUM+hsTyhI
+X-Gm-Gg: AYBFou32ZIXRloQ24MpuRa4eOGJRiw0kplxHoDR/A3Er2Pp8SmE+Co9kLePJWzA7z1u
+	kYGi37Vfxc/H02Ye9YIK4sgTe6lwXGlRLE5l0JdAaZ93ojdQqfQCW94l0Hp/4WMUayPza3aF/Ht
+	MiO51LiUjwjQp/RBNBNiXSlPVDeYyP+x+DE52BIqfxeX0hwRKUX5if6lDAjmHagWJ7RmVKTbrb+
+	Q+3QpC3qzxsqsACZbwL5bYfl9xCGKRAb8aQHavyRzAELufCyoJWd7HB6zm4K/CVXFCCzbxiEUpY
+	JpgjD3yFZuziwRulQZZXDQGUM5GDbCwU7WtEYGJkC2TiBgkyjkfzSLTjBe4bcuI6aQz+f9d+vVn
+	aVWpRtod+dPWWKSaULOtiVqHeHa/xZs0nKwUecd9L8qHCTr5rLgUgeKnYywHx0J+WSm+S80pScx
+	2LTdNBsyGw+uoDxz3t6WN2fkgkgMaSih20/si4+2//d67yakZputOWOA9ZAwPzdgEr2Gmlrs86Z
+	CSUkV65Jysay81asSDdw8Zw9690tXRvpN4+buIZW5a6ZaqiXtjbs6AC93uGFZneX8pTwch2Kj1W
+	6UKOcpeJRGUyBZn+bdSCY5z5QqFeNG6XZB5hHSKnWqPWGGt0x8XCJbUXIjYm8t+TDCXOlvodsN/
+	hO1WO5JCV/hoJQ8Jab4zZ52HPz6369VFZyBx2EYai91P9lI0p/WfdYflEC5uvzy4jJx7vUaLQYB
+	6x8t9jEagg4+O1LMS597iZUxbkD/H7JvQ3E30sS1rFhHwuxZ3Zix3m
+X-Received: by 2002:a05:6830:917:b0:844:4959:e855 with SMTP id 46e09a7af769-85f1cf7a431mr5394630a34.6.1794046584470;
+        Sat, 07 Nov 2026 02:16:24 -0800 (PST)
 Received: from [127.0.1.1] (174-29-1-49.hlrn.qwest.net. [174.29.1.49])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-85f1dbef224sm3990269a34.12.2026.11.07.02.16.24
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-85f1dbef224sm3990269a34.12.2026.11.07.02.16.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Nov 2026 02:16:26 -0800 (PST)
+        Sat, 07 Nov 2026 02:16:23 -0800 (PST)
 From: James Hilliard <james.hilliard1@gmail.com>
-Date: Sat, 07 Nov 2026 03:15:58 -0700
-Subject: [PATCH 01/58] mtd: clear OTP provider pointers after unregistering
- them
+Subject: [PATCH 00/58] mtd: rawnand: retain chip and controller state
+ across removal
+Date: Sat, 07 Nov 2026 03:15:57 -0700
+Message-Id: <20261107-submit-rawnand-retained-handle-lifetime-v1-v1-0-0181ef0cc4c8@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261107-submit-rawnand-retained-handle-lifetime-v1-v1-1-0181ef0cc4c8@gmail.com>
-References: <20261107-submit-rawnand-retained-handle-lifetime-v1-v1-0-0181ef0cc4c8@gmail.com>
-In-Reply-To: <20261107-submit-rawnand-retained-handle-lifetime-v1-v1-0-0181ef0cc4c8@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/y2OS24DIRAFrzJiHSS+A8xVIi+66Z6YyDN2ADuRL
+ N89OM6ypFK9dxeNa+EmlukuKt9KK+d9gH6bRD7C/sGy0GBhlJm1Vk62K26lywrfO+wkK3coO5M
+ cMp1YnsrKvWwsb1oqdMZ49pkVihG8VF7Lz9/Y++HFo/bJuT8X/o3KX9fxor80cYGej+PDMoHXm
+ DI6FYJW3qWkrc1OW/IxByCjKQWLNj47CI1lPm/j6TJZRQCr5RBTQAeREgbDHlWOM9HMBhwFil4
+ cHo9fEYSVahABAAA=
+X-Change-ID: 20261104-submit-rawnand-retained-handle-lifetime-v1-0b4225e5ce0b
 To: Miquel Raynal <miquel.raynal@bootlin.com>, 
  Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
  Brian Norris <computersforpeace@gmail.com>, 
@@ -142,8 +145,8 @@ Cc: Tze Yee Ng <tze.yee.ng@altera.com>, linux-mtd@lists.infradead.org,
  stable@vger.kernel.org
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_021631_834332_835C6046 
-X-CRM114-Status: GOOD (  14.21  )
+X-CRM114-CacheID: sfid-20261107_021626_127209_8F10B424 
+X-CRM114-Status: GOOD (  11.46  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -157,88 +160,203 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,
 	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,
 	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-If factory OTP discovery or registration fails after user OTP was
-registered, mtd_otp_nvmem_add() unregisters the user provider but leaves
-its pointer set. mtd_device_parse_register() then unregisters it again
-while unwinding the error, accessing a freed provider or dropping a
-reference still owned by a consumer.
+An MTD handle can outlive controller unbind. Its metadata and NAND locks
+must remain valid, including when a writable file closes and calls sync,
+while further hardware access must be rejected after disconnection.
 
-The same stale pointer survives when the factory OTP error is
--EOPNOTSUPP, which mtd_otp_nvmem_add() treats as success. In that case
-mtd_device_unregister() can release the provider a second time later.
+This builds on earlier MTD removal-lifetime work. Commit 19bfa9ebebb5
+("mtd: use refcount to prevent corruption") added MTD reference counting
+[0], but retaining an MTD reference does not by itself retain the
+driver-owned allocation containing the master. The 2025 read/unbind
+discussion also covered raw NAND [1] and highlighted the need to drain
+active operations before releasing resources [2]. Tze Yee Ng's SPI-NOR
+series addresses the corresponding SPI-NOR paths [3]. This series adds
+shared backing-object ownership and applies it to raw-NAND drivers.
 
-Centralize removal of the OTP providers and clear each pointer after
-unregistering it so subsequent cleanup cannot repeat the put.
+Introduce an opt-in backing-object lifetime for MTD masters and separate
+raw-NAND hardware disconnection from final cleanup. Registered MTD nodes,
+device references and open handles retain the backing chip; nested
+partitions also retain their parent metadata. Removal notifiers can
+finish I/O before disconnection drains admitted operations. Hardware
+resources are then released without waiting for open files to close.
 
-Fixes: e0489f6e221f ("mtd: core: fix error path for nvmem provider")
-Cc: stable@vger.kernel.org
+OTP providers retain their callback context through final NVMEM device
+release while keeping their existing physical-device parent. Preparatory
+patches clear unregistered OTP provider pointers and add opt-in NVMEM
+context references.
+
+Share the chip and controller ownership helpers, serialize Macronix OTP
+access through the same operation locks, and convert the raw-NAND
+controller drivers. Each driver conversion keeps metadata cleanup
+separate from hardware teardown, including partially published probes.
+Shared controllers remain allocated until their last retained chip is
+released. R852 allocates a new chip for each inserted card, and NDFC
+allocates controller state per binding, so old handles cannot refer to
+replacement media or a new binding.
+
+The series adds the common lifetime support and converts its driver
+users. It is based on NAND next at 30daaf3e7897 and Tze Yee Ng's posted
+module-reference ordering fix [4], whose patch ID is a prerequisite.
+
+TLA+ models of retained-handle, controller and OTP ownership, including
+their assumptions and coverage limits, are available in [5].
+
+[0] https://lore.kernel.org/r/20230620131905.648089-2-alexander.usyskin@intel.com
+[1] https://lore.kernel.org/r/CAND4H7dz94Gsi_tXSQmLNme9uROnouOUwuCX9BW_+RCc2ZFDqA@mail.gmail.com
+[2] https://lore.kernel.org/r/mafs0bjs73tbq.fsf@kernel.org
+[3] https://lore.kernel.org/r/20261022035352.52129-1-tze.yee.ng@altera.com
+[4] https://lore.kernel.org/r/20261022035352.52129-2-tze.yee.ng@altera.com
+[5] https://github.com/jameshilliard/linux-h616-nand-tla
+
+Assisted-by: Codex:gpt-6-astra
 Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
 ---
- drivers/mtd/mtdcore.c | 19 ++++++++++++-------
- 1 file changed, 12 insertions(+), 7 deletions(-)
+James Hilliard (58):
+      mtd: clear OTP provider pointers after unregistering them
+      nvmem: retain provider context through final device release
+      mtd: add opt-in lifetime ownership for backing objects
+      mtd: rawnand: separate hardware disconnection from cleanup
+      mtd: rawnand: share retained chip and controller ownership
+      mtd: rawnand: macronix: serialize OTP access with NAND operations
+      mtd: rawnand: sunxi: retain chip state until the final MTD put
+      mtd: rawnand: plat_nand: retain open-handle state on removal
+      mtd: rawnand: gpio: retain open-handle state on removal
+      mtd: rawnand: stm32_fmc2: retain open-handle state on removal
+      mtd: rawnand: denali: retain chips across controller removal
+      mtd: rawnand: arasan: retain chips across controller removal
+      mtd: rawnand: mxic: retain open-handle state on removal
+      mtd: rawnand: intel: retain open-handle state on removal
+      mtd: rawnand: tegra: retain open-handle state on removal
+      mtd: rawnand: mtk: retain chips across controller removal
+      mtd: rawnand: rockchip: retain chips across controller removal
+      mtd: rawnand: atmel: retain chips across controller removal
+      mtd: rawnand: orion: retain open-handle state on removal
+      mtd: rawnand: socrates: retain open-handle state on removal
+      mtd: rawnand: fsl_upm: retain open-handle state on removal
+      mtd: rawnand: pasemi: retain open-handle state on removal
+      mtd: rawnand: ams-delta: retain open-handle state on removal
+      mtd: rawnand: xway: retain open-handle state on removal
+      mtd: rawnand: hisi504: retain open-handle state on removal
+      mtd: rawnand: vf610: retain open-handle state on removal
+      mtd: rawnand: technologic: retain open-handle state on removal
+      mtd: rawnand: loongson: retain open-handle state on removal
+      mtd: rawnand: ma35d1: retain open-handle state on removal
+      mtd: rawnand: pl35x: retain open-handle state on removal
+      mtd: rawnand: mxc: retain open-handle state on removal
+      mtd: rawnand: fsmc: retain open-handle state on removal
+      mtd: rawnand: gpmi: retain open-handle state on removal
+      mtd: rawnand: omap2: retain open-handle state on removal
+      mtd: rawnand: marvell: retain open-handle state on removal
+      mtd: rawnand: renesas: retain open-handle state on removal
+      mtd: rawnand: meson: retain open-handle state on removal
+      mtd: rawnand: cadence: retain open-handle state on removal
+      mtd: rawnand: qcom: retain open-handle state on removal
+      mtd: rawnand: cafe: retain open-handle state on removal
+      mtd: rawnand: brcmnand: retain open-handle state on removal
+      mtd: rawnand: au1550nd: retain chip state across removal
+      mtd: rawnand: sharpsl: retain chip state across removal
+      mtd: rawnand: davinci: retain chip state across removal
+      mtd: rawnand: sh_flctl: retain chip state across removal
+      mtd: rawnand: lpc32xx_slc: retain chip state across removal
+      mtd: rawnand: lpc32xx_mlc: retain chip state across removal
+      mtd: rawnand: ndfc: retain chip state across removal
+      mtd: rawnand: txx9ndfmc: retain chip state across removal
+      mtd: rawnand: ingenic: retain chip state across removal
+      mtd: rawnand: mpc5121: retain chip state across removal
+      mtd: rawnand: bcm47xxnflash: retain chip state across removal
+      mtd: rawnand: fsl_elbc: retain chip state across removal
+      mtd: rawnand: fsl_ifc: retain chip state across removal
+      mtd: rawnand: r852: retain chip state across removal
+      mtd: rawnand: nandsim: retain chip state across removal
+      mtd: rawnand: cs553x: retain chip state across removal
+      mtd: rawnand: diskonchip: retain chip state across removal
 
-diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
-index 8efa2d88556e..558a605ba749 100644
---- a/drivers/mtd/mtdcore.c
-+++ b/drivers/mtd/mtdcore.c
-@@ -1016,6 +1016,14 @@ static int mtd_nvmem_fact_otp_reg_read(void *priv, unsigned int offset,
- 	return retlen == bytes ? 0 : -EIO;
- }
- 
-+static void mtd_otp_nvmem_remove(struct mtd_info *mtd)
-+{
-+	nvmem_unregister(mtd->otp_user_nvmem);
-+	mtd->otp_user_nvmem = NULL;
-+	nvmem_unregister(mtd->otp_factory_nvmem);
-+	mtd->otp_factory_nvmem = NULL;
-+}
-+
- static int mtd_otp_nvmem_add(struct mtd_info *mtd)
- {
- 	struct device *dev = mtd->dev.parent;
-@@ -1082,7 +1090,7 @@ static int mtd_otp_nvmem_add(struct mtd_info *mtd)
- 	return 0;
- 
- err:
--	nvmem_unregister(mtd->otp_user_nvmem);
-+	mtd_otp_nvmem_remove(mtd);
- 	/* Don't report error if OTP is not supported. */
- 	if (err == -EOPNOTSUPP)
- 		return 0;
-@@ -1180,10 +1188,8 @@ int mtd_device_parse_register(struct mtd_info *mtd, const char * const *types,
- 	}
- 
- out:
--	if (ret) {
--		nvmem_unregister(mtd->otp_user_nvmem);
--		nvmem_unregister(mtd->otp_factory_nvmem);
--	}
-+	if (ret)
-+		mtd_otp_nvmem_remove(mtd);
- 
- 	if (ret && device_is_registered(&mtd->dev)) {
- 		err = del_mtd_device(mtd);
-@@ -1210,8 +1216,7 @@ int mtd_device_unregister(struct mtd_info *master)
- 		memset(&master->reboot_notifier, 0, sizeof(master->reboot_notifier));
- 	}
- 
--	nvmem_unregister(master->otp_user_nvmem);
--	nvmem_unregister(master->otp_factory_nvmem);
-+	mtd_otp_nvmem_remove(master);
- 
- 	if (IS_REACHABLE(CONFIG_MTD_VIRT_CONCAT)) {
- 		err = mtd_virt_concat_destroy(master);
+ drivers/mtd/mtdcore.c                              | 214 +++++++++++++++++----
+ drivers/mtd/nand/raw/Makefile                      |   1 +
+ drivers/mtd/nand/raw/ams-delta.c                   |  29 ++-
+ drivers/mtd/nand/raw/arasan-nand-controller.c      |  57 ++++--
+ drivers/mtd/nand/raw/atmel/nand-controller.c       |  59 ++++--
+ drivers/mtd/nand/raw/au1550nd.c                    |  26 ++-
+ drivers/mtd/nand/raw/bcm47xxnflash/main.c          |  23 ++-
+ drivers/mtd/nand/raw/brcmnand/brcmnand.c           |  72 +++++--
+ drivers/mtd/nand/raw/cadence-nand-controller.c     |  60 ++++--
+ drivers/mtd/nand/raw/cafe_nand.c                   |  37 +++-
+ drivers/mtd/nand/raw/cs553x_nand.c                 |  46 +++--
+ drivers/mtd/nand/raw/davinci_nand.c                |  29 ++-
+ drivers/mtd/nand/raw/denali.c                      |  31 ++-
+ drivers/mtd/nand/raw/denali_dt.c                   |  21 +-
+ drivers/mtd/nand/raw/denali_pci.c                  |  15 +-
+ drivers/mtd/nand/raw/diskonchip.c                  |  21 +-
+ drivers/mtd/nand/raw/fsl_elbc_nand.c               |  68 ++++---
+ drivers/mtd/nand/raw/fsl_ifc_nand.c                |  58 ++++--
+ drivers/mtd/nand/raw/fsl_upm.c                     |  23 ++-
+ drivers/mtd/nand/raw/fsmc_nand.c                   |  22 ++-
+ drivers/mtd/nand/raw/gpio.c                        |  21 +-
+ drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.c         |  22 ++-
+ drivers/mtd/nand/raw/hisi504_nand.c                |  23 ++-
+ drivers/mtd/nand/raw/ingenic/ingenic_nand_drv.c    |  49 +++--
+ drivers/mtd/nand/raw/intel-nand-controller.c       |  22 ++-
+ drivers/mtd/nand/raw/internals.h                   |   2 +
+ drivers/mtd/nand/raw/loongson-nand-controller.c    |  23 ++-
+ drivers/mtd/nand/raw/lpc32xx_mlc.c                 |  26 ++-
+ drivers/mtd/nand/raw/lpc32xx_slc.c                 |  26 ++-
+ drivers/mtd/nand/raw/marvell_nand.c                |  54 ++++--
+ drivers/mtd/nand/raw/meson_nand.c                  |  55 ++++--
+ drivers/mtd/nand/raw/mpc5121_nfc.c                 |  29 ++-
+ drivers/mtd/nand/raw/mtk_nand.c                    |  44 ++++-
+ drivers/mtd/nand/raw/mxc_nand.c                    |  24 ++-
+ drivers/mtd/nand/raw/mxic_nand.c                   |  26 ++-
+ drivers/mtd/nand/raw/nand_base.c                   |  78 ++++++--
+ drivers/mtd/nand/raw/nand_lifetime.c               | 118 ++++++++++++
+ drivers/mtd/nand/raw/nand_macronix.c               |   4 +
+ drivers/mtd/nand/raw/nandsim.c                     |  24 ++-
+ drivers/mtd/nand/raw/ndfc.c                        |  37 +++-
+ .../mtd/nand/raw/nuvoton-ma35d1-nand-controller.c  |  44 ++++-
+ drivers/mtd/nand/raw/omap2.c                       |  45 ++++-
+ drivers/mtd/nand/raw/orion_nand.c                  |  27 ++-
+ drivers/mtd/nand/raw/pasemi_nand.c                 |  25 ++-
+ drivers/mtd/nand/raw/pl35x-nand-controller.c       |  46 ++++-
+ drivers/mtd/nand/raw/plat_nand.c                   |  24 ++-
+ drivers/mtd/nand/raw/qcom_nandc.c                  |  74 ++++---
+ drivers/mtd/nand/raw/r852.c                        | 111 +++++++----
+ drivers/mtd/nand/raw/r852.h                        |   1 +
+ drivers/mtd/nand/raw/renesas-nand-controller.c     |  45 +++--
+ drivers/mtd/nand/raw/rockchip-nand-controller.c    |  49 +++--
+ drivers/mtd/nand/raw/sh_flctl.c                    |  25 ++-
+ drivers/mtd/nand/raw/sharpsl.c                     |  25 ++-
+ drivers/mtd/nand/raw/sm_common.c                   |  15 +-
+ drivers/mtd/nand/raw/sm_common.h                   |   2 +-
+ drivers/mtd/nand/raw/socrates_nand.c               |  22 ++-
+ drivers/mtd/nand/raw/stm32_fmc2_nand.c             |  22 ++-
+ drivers/mtd/nand/raw/sunxi_nand.c                  |  59 ++++--
+ drivers/mtd/nand/raw/technologic-nand-controller.c |  25 ++-
+ drivers/mtd/nand/raw/tegra_nand.c                  |  37 +++-
+ drivers/mtd/nand/raw/txx9ndfmc.c                   |  42 +++-
+ drivers/mtd/nand/raw/vf610_nfc.c                   |  22 ++-
+ drivers/mtd/nand/raw/xway_nand.c                   |  27 ++-
+ drivers/nvmem/core.c                               |  12 +-
+ drivers/nvmem/internals.h                          |   1 +
+ include/linux/mtd/mtd.h                            |  16 ++
+ include/linux/mtd/rawnand.h                        |  21 +-
+ include/linux/nvmem-provider.h                     |  10 +
+ 68 files changed, 1949 insertions(+), 544 deletions(-)
+---
+base-commit: 30daaf3e7897b4a8d9b72e5b0c86dd6e2a4d7d85
+change-id: 20261104-submit-rawnand-retained-handle-lifetime-v1-0b4225e5ce0b
+prerequisite-patch-id: a51b9cb4077105499133c413d58c7ad21d973b38
 
--- 
-2.53.0
+Best regards,
+--  
+James Hilliard <james.hilliard1@gmail.com>
 
 
 _______________________________________________
