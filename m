@@ -2,10 +2,10 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88E14606A331
-	for <linux-amlogic@archiver.kernel.org>; Sat,  7 Nov 2026 20:14:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E952B606A32D
+	for <linux-amlogic@archiver.kernel.org>; Sat,  7 Nov 2026 20:14:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OLIyo68b
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=5FaXY7ME
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -13,61 +13,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=oIBgoKYPG2xMBNbHVaoeoMDyQE3QjavLpiAgg1bFIFU=; b=OLIyo68bWt/ZKyNEPrIZr5bUxn
-	sY0Q5NkOzo/1TGxa+9FYPfQKBao8Y1XGKgLmI85gVifj7fScU7t9gdqhY1IJPNj8Q1QzW7V1ASJcw
-	QZps5XJW7ousoH2y7z3UI7jTVCZCkiYOnFpXSG33dhbviMXMGcVUNQER9mFlw30gDLdeVkvGkFSid
-	X1yfzahhH5RwRPNgUf03O2eGRS0hnih0TTDvKnfDM7JAOkcyXKJgC0xoXxdmW2JSCfYF2gpgm8Gnk
-	jieK47ln5GOUMoh5Sy+UJEoRmtttPqR//rteV0yzpPARLzsBVKVZcDMHIEDq9N6hHZgQ84WQ5Ozfc
-	qL3G42aQ==;
+	bh=v5ZzQ/Z3jmdJViLF+uS64iNLbilIbA/sQ0kWm6cFAQk=; b=5FaXY7MEKrE0jdT8yxpzR8szR0
+	5XbUfa5RhAmU2Pz5AAhcCnlNhKabVzp2TsY6mW6eSiMBT2BLlIoWMvGwS4dgPw9OdtXgH7oBhKqvM
+	vNlKZSHJjqmsXoqlJmvpQXbkOZrLjpM0HvuroxIYaSTz51wdDq2wFngdrQKea47yYUJUKhc0Zd1Go
+	ntUfYEqLrI96iUAJfeT1YFSCd5NfR63VM4ax/NYlVySZ0G7S39P9jl35Q06835Sq0RcrMIhbIB7CO
+	FSA77CMcFfvMJVJWux14Gp/4exlCaISrx+8Sb3Wj3J1DX0/X3khHMLU4ZIJPfa37sVvd5dkAyuL2z
+	BYAF8sCQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPmoE-0000000FK67-0UYl;
-	Sat, 07 Nov 2026 20:14:42 +0000
-Received: from mail-oo1-f50.google.com ([209.85.161.50])
+	id 1xPmoG-0000000FKBo-1ZJs;
+	Sat, 07 Nov 2026 20:14:44 +0000
+Received: from mail-oa1-f54.google.com ([209.85.160.54])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPmnk-0000000FJFF-1qnf
+	id 1xPmnn-0000000FJJ9-1mH6
 	for linux-amlogic@lists.infradead.org;
-	Sat, 07 Nov 2026 20:14:16 +0000
-Received: by mail-oo1-f50.google.com with SMTP id 006d021491bc7-6d68de53053so1238589eaf.0
-        for <linux-amlogic@lists.infradead.org>; Sat, 07 Nov 2026 12:14:12 -0800 (PST)
+	Sat, 07 Nov 2026 20:14:19 +0000
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-48eee44b908so4100fac.1
+        for <linux-amlogic@lists.infradead.org>; Sat, 07 Nov 2026 12:14:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794082451; x=1794687251;
+        d=1e100.net; s=20260707; t=1794082454; x=1794687254;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=NppZ7CUb04bxQjnUofthCMie7KVnuMp1vzpPBAm263s=;
-        b=ChM/tnTjlWY9sCn7gO0CEK+KRJBGnmOSHB0UrOrVPKh9nI7Xr5kowVy/PlUtkQPNk/
-         Wy7IGrwPp/S4afmSOW6t7djmzrKfKG3rMp6cDOrV8KKVPqBx9AvH5Uy3E0NOwRTL0w+e
-         ceCUP4Git2/JkX5M2z8AeSYWsnIk/13xv9kl+X23hzFYmuCQ/7gtXZoFSfJg457+beG2
-         +17humnNVdUhx5A3EgWcQSeqsVwjKYxrmp0wVOs9oy/4IIkOKZ+tGrRe4WTsGXzOXwXZ
-         IzF0mkWunYO2dwMPkJpv0OIdY3TLL8yarfSkWBfmj1nVa2avv1nlHIvjIhz6Sgdtb6Ia
-         YZEg==
-X-Forwarded-Encrypted: i=1; AKwUvBwQ+TBnihqCj4NfkftEoQWxfz865DxvCeToPkQdwUlIJYNsFs/33kOGCI8Mu3nB3Is5xT312dLWinZzOY/j@lists.infradead.org
-X-Gm-Message-State: APuU4Z/BdhgNFQPnt/2Icuo/PFrCMqeKRskyyD1KiTNke/F8nMC48vqe
-	dqIreht38na7Hq9zEntD0X/PgtfNBNVYz+fHKw71Szqrb1kz4Ui8YBBbNXpaY3/8prs=
-X-Gm-Gg: AYBFou1bSS7KrHR9yWb0m4K81xPZGkBTvwxNHoyDqatFGVfbIzjOpwLIR2BXtPDzoBf
-	ZfNqjUtaZigAncqyq5z5SHNVaj42uP0PRCzimDR0haDRRmRt1nq+4sx/a3/TBN3wiCVacwisbaT
-	QKjcvDsxa0RvQ9WzdskOK9/NNXEHjnmhxUS2wIUMfe3vQrcncQfte0LH1rkh/KLreDzw4ICmGMG
-	E7p0jXRBhZOnKuMerWGpRrIEwzv+DfTdUPhzD3TvIfdrxcDSYGkTW/l7vEa/E3enQ4SBwTlxqwc
-	a0eeAvclvsm9Qo3AFpaRmCfj+oZS93IMLH7dqicZ9gGhRHuEiBTa3lqLr3kvoh78KAAesG1z14K
-	zfDOuYCgZFM25aJnHxuiYPbHgibqnuFEPzTcsQKH/wX+t7rrID62xZ3Qny6ZyHu7FNiaQKa62/+
-	ZdKxiuGhEFGzxYyw5lq0bbld2AN3zoXN5H6QYZrPVRvcNukpRmnudhsSONVlxtW8I2wiPzGD7rX
-	FYhrolzbWgQlrAqSvrcTxTjd4rpHax1T/tnRxzUcmIV5z+PVd7DwRxWYmFYBbRPbXLVQ8sOVNih
-	DNRzoHHWx2A9i4pNbOR+RDcJZVi5wFHgpt0ZhCJ459EB03lddB4SpP/XksgB
-X-Received: by 2002:a05:6820:440d:b0:703:10f3:89f1 with SMTP id 006d021491bc7-7170f2cf793mr13093eaf.40.1794082451391;
-        Sat, 07 Nov 2026 12:14:11 -0800 (PST)
+        bh=Z28hpkRxNuFHQxwJ5bnvo4CTYnv30xHbFPLm6nkYYQ4=;
+        b=h+d3YSqPP7jekwxmQkamGMqghHMXtsHJZHg6PJvUnl2H8BjGahLtVjUmh7ENC02dAs
+         kHuTYOFhNzNgKlePAtlqDm2ntFcBZ+8qvRWFyb7UkVOsquhjK+4UnFrJx7P4tI4JwI7H
+         cP1XeiOHQWbA/7V+QfzP1EUgDE2+Fbtx3re4BlKieC2Uc7kcqnnLedCUPOmfWB2VD5h/
+         ijSoij8Pj/qGWZySVd22O5D1L36DldP+quc3Or8iejtpnkZI6x4hCr9ldZh7gjNmEwYl
+         LGR5uipnxJQCZYfsX1F97B+W0UMsM9Ae3O4Lv2MBhkz+kZerxqalhxwzSDVruYli2yTF
+         fpwQ==
+X-Forwarded-Encrypted: i=1; AL+hErHQe80Ig3+vk3DIXw+7s4bx7/1xNmoI/CBZUzQWrJV2o2MlJWhbUzxDgBYVdFsCIk8DaeJZ+w9ZfG+MYpYB@lists.infradead.org
+X-Gm-Message-State: APuU4Z/1fJwT/dWCUrPVQb4+JW8J6nOhfeoEF0FY/DEF8d4AQ7MDMGTb
+	DF5Yh+DvyLW4YqQqU6pNzHx802VLRpNBJPXC0yLOhK/T7HM5uFR4+Zy4BTy2Yta7XWU=
+X-Gm-Gg: AYBFou2Fpo8Z+IlNLVUHBvSpH8+7T32GxY5wAkp3xXfh4PEBgJj1lhoxOwYEc5IxYiD
+	cBm2mbYowAT4qFsp0grYb2wqZwhxGsYOTMy7CyZCCzFoiLqH/DCv86OfkNUPuVlAkPmVOdmPPus
+	EdUD+9xGIPgeSe4zCACd9iEfwEMPEvGfJCZ/3tp/MEAw8dmNQW40PC+qbGKovshy0X811X6su69
+	cIz8Strpti1KPV2L80zS8/bujrDNYgIEch6CzVGIDLqRUgddZbGXHrFVFno+Myo2RMEEXR9Uc+w
+	+Pl8o/9sq3ZyvfYWFnJGMrCMT6b91GMM71UzcB6a7yRl9NKl13aprVt5K644boiIpXY58kG21mX
+	OdhssOOMCzSDFUDxdyqs9DeuTvMHUTyvBR94V+jjxDMD4TAQapBd/da5Xx/dvjBboPkmnJG1jp4
+	TIyM1KaF8DWg1g3EE4X5ijbh45Pd6VwZRGwNRiqgYF8YTIN8O4iUXvn2kr6k6dSc8x+g2Ux8dB/
+	h/yYyalNQzSlofyZCL1dLJtd/DZPBwkJMBE5jX+SFWC/99QQCa9tRSswUS6XqIEEw3rOR1QuNLh
+	1ziV24HXXtBaHmMPGGi9+GaVFjp3HmMJPZpwApkmZ4RC4IBhm7SC13Z7teTt
+X-Received: by 2002:a05:6870:788e:b0:4a7:4cd1:6f37 with SMTP id 586e51a60fabf-4ad9880f064mr3791819fac.19.1794082454298;
+        Sat, 07 Nov 2026 12:14:14 -0800 (PST)
 Received: from [127.0.1.1] (174-29-1-49.hlrn.qwest.net. [174.29.1.49])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4ade68aa561sm226096fac.5.2026.11.07.12.14.08
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4ade68aa561sm226096fac.5.2026.11.07.12.14.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Nov 2026 12:14:10 -0800 (PST)
+        Sat, 07 Nov 2026 12:14:13 -0800 (PST)
 From: James Hilliard <james.hilliard1@gmail.com>
-Date: Sat, 07 Nov 2026 03:16:51 -0700
-Subject: [PATCH 54/58] mtd: rawnand: fsl_ifc: retain chip state across
- removal
+Date: Sat, 07 Nov 2026 03:16:52 -0700
+Subject: [PATCH 55/58] mtd: rawnand: r852: retain chip state across removal
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261107-submit-rawnand-retained-handle-lifetime-v1-v1-54-0181ef0cc4c8@gmail.com>
+Message-Id: <20261107-submit-rawnand-retained-handle-lifetime-v1-v1-55-0181ef0cc4c8@gmail.com>
 References: <20261107-submit-rawnand-retained-handle-lifetime-v1-v1-0-0181ef0cc4c8@gmail.com>
 In-Reply-To: <20261107-submit-rawnand-retained-handle-lifetime-v1-v1-0-0181ef0cc4c8@gmail.com>
 To: Miquel Raynal <miquel.raynal@bootlin.com>,
@@ -125,8 +124,8 @@ Cc: Tze Yee Ng <tze.yee.ng@altera.com>, linux-mtd@lists.infradead.org,
  linux-arm-msm@vger.kernel.org, James Hilliard <james.hilliard1@gmail.com>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_121413_348844_033324BF 
-X-CRM114-Status: GOOD (  18.10  )
+X-CRM114-CacheID: sfid-20261107_121416_263910_A2D524F8 
+X-CRM114-Status: GOOD (  25.98  )
 X-Spam-Score: 1.7 (+)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -148,158 +147,302 @@ X-Spam-Status: No, score=-12.3 required=3.0 tests=BAYES_00,DATE_IN_PAST_06_12,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Separate active bank membership from ownership of the shared IFC NAND
-controller. Retained chip references keep the controller lock and chip
-metadata alive after removal, without retaining hardware mappings.
+A removed card can still have open MTD handles. Reinitializing the same
+nand_chip for a newly inserted card lets those handles access
+replacement media, while freeing it during PCI removal leaves dangling
+references.
 
-Disconnect before device-managed resources disappear and drop the shared
-controller reference from each chip's final release callback.
+Allocate a fresh chip for every insertion and separate SmartMedia
+scanning from publication so lifetime ownership is installed first.
+Disconnect the old chip before disabling its hardware, and retain it and
+the controller until their final MTD reference is released. Stop
+IRQ-driven card-work scheduling before destroying the workqueue during
+PCI removal.
 
 Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
 ---
- drivers/mtd/nand/raw/fsl_ifc_nand.c | 58 ++++++++++++++++++++++++++++++-------
- 1 file changed, 47 insertions(+), 11 deletions(-)
+ drivers/mtd/nand/raw/r852.c      | 111 ++++++++++++++++++++++++---------------
+ drivers/mtd/nand/raw/r852.h      |   1 +
+ drivers/mtd/nand/raw/sm_common.c |  15 ++----
+ drivers/mtd/nand/raw/sm_common.h |   2 +-
+ 4 files changed, 75 insertions(+), 54 deletions(-)
 
-diff --git a/drivers/mtd/nand/raw/fsl_ifc_nand.c b/drivers/mtd/nand/raw/fsl_ifc_nand.c
-index cc75b6a67e07..18b747e73c3b 100644
---- a/drivers/mtd/nand/raw/fsl_ifc_nand.c
-+++ b/drivers/mtd/nand/raw/fsl_ifc_nand.c
-@@ -40,6 +40,8 @@ struct fsl_ifc_mtd {
- /* overview of the fsl ifc controller */
- struct fsl_ifc_nand_ctrl {
- 	struct nand_controller controller;
-+	struct kref refcnt;
-+	unsigned int users;
- 	struct fsl_ifc_mtd *chips[FSL_IFC_BANK_COUNT];
- 
- 	void __iomem *addr;	/* Address of assigned IFC buffer	*/
-@@ -961,11 +963,33 @@ static int fsl_ifc_chip_init(struct fsl_ifc_mtd *priv)
- 	return 0;
+diff --git a/drivers/mtd/nand/raw/r852.c b/drivers/mtd/nand/raw/r852.c
+index 92c47d351c27..0fb320cd7b77 100644
+--- a/drivers/mtd/nand/raw/r852.c
++++ b/drivers/mtd/nand/raw/r852.c
+@@ -625,16 +625,34 @@ static void r852_update_media_status(struct r852_device *dev)
+ 	spin_unlock_irqrestore(&dev->irqlock, flags);
  }
  
--static int fsl_ifc_chip_remove(struct fsl_ifc_mtd *priv)
-+static void fsl_ifc_controller_release(struct kref *ref)
- {
--	ifc_nand_ctrl->chips[priv->bank] = NULL;
-+	kfree(container_of(ref, struct fsl_ifc_nand_ctrl, refcnt));
-+}
- 
--	return 0;
-+static void fsl_ifc_chip_release(struct nand_chip *chip)
+-/*
+- * Register the nand device
+- * Called when the card is detected
+- */
++static void r852_chip_release(struct nand_chip *chip)
 +{
-+	struct fsl_ifc_nand_ctrl *ctrl;
-+
-+	ctrl = container_of(chip->controller, struct fsl_ifc_nand_ctrl, controller);
-+	kfree(nand_get_controller_data(chip));
-+	kref_put(&ctrl->refcnt, fsl_ifc_controller_release);
++	kfree(chip);
 +}
 +
-+static DEFINE_MUTEX(fsl_ifc_nand_mutex);
-+
-+static void fsl_ifc_chip_remove(struct fsl_ifc_mtd *priv)
-+{
-+	struct fsl_ifc_nand_ctrl *ctrl;
-+
-+	ctrl = container_of(priv->chip.controller, struct fsl_ifc_nand_ctrl, controller);
-+	guard(mutex)(&fsl_ifc_nand_mutex);
-+	ctrl->chips[priv->bank] = NULL;
-+	if (!--ctrl->users) {
-+		priv->ctrl->nand = NULL;
-+		ifc_nand_ctrl = NULL;
-+	}
- }
- 
- static int match_bank(struct fsl_ifc_global __iomem *ifc_global, int bank,
-@@ -981,8 +1005,6 @@ static int match_bank(struct fsl_ifc_global __iomem *ifc_global, int bank,
- 	return (cspr & CSPR_BA) == convert_ifc_address(addr);
- }
- 
--static DEFINE_MUTEX(fsl_ifc_nand_mutex);
--
- static int fsl_ifc_nand_probe(struct platform_device *dev)
++/* Register a new chip instance for each inserted card. */
+ static int r852_register_nand_device(struct r852_device *dev)
  {
- 	struct fsl_ifc_runtime __iomem *ifc;
-@@ -1016,30 +1038,35 @@ static int fsl_ifc_nand_probe(struct platform_device *dev)
- 		return -ENODEV;
- 	}
+-	struct mtd_info *mtd = nand_to_mtd(dev->chip);
++	struct nand_chip *chip;
++	struct mtd_info *mtd;
++	int ret;
  
--	priv = devm_kzalloc(&dev->dev, sizeof(*priv), GFP_KERNEL);
-+	priv = kzalloc_obj(*priv);
- 	if (!priv)
- 		return -ENOMEM;
+ 	WARN_ON(dev->card_registered);
  
- 	mutex_lock(&fsl_ifc_nand_mutex);
- 	if (!fsl_ifc_ctrl_dev->nand) {
--		ifc_nand_ctrl = devm_kzalloc(fsl_ifc_ctrl_dev->dev, sizeof(*ifc_nand_ctrl),
--					     GFP_KERNEL);
-+		ifc_nand_ctrl = kzalloc_obj(*ifc_nand_ctrl);
- 		if (!ifc_nand_ctrl) {
- 			mutex_unlock(&fsl_ifc_nand_mutex);
-+			kfree(priv);
- 			return -ENOMEM;
- 		}
++	chip = kzalloc_obj(*chip);
++	if (!chip)
++		goto error1;
++
++	chip->legacy.cmd_ctrl = r852_cmdctl;
++	chip->legacy.waitfunc = r852_wait;
++	chip->legacy.dev_ready = r852_ready;
++	chip->legacy.read_byte = r852_read_byte;
++	chip->legacy.read_buf = r852_read_buf;
++	chip->legacy.write_buf = r852_write_buf;
++	chip->controller = &dev->controller;
++	nand_set_controller_data(chip, dev);
++	dev->chip = chip;
++	mtd = nand_to_mtd(chip);
+ 	mtd->dev.parent = &dev->pci_dev->dev;
  
- 		fsl_ifc_ctrl_dev->nand = ifc_nand_ctrl;
+ 	if (dev->readonly)
+@@ -642,8 +660,17 @@ static int r852_register_nand_device(struct r852_device *dev)
  
- 		nand_controller_init(&ifc_nand_ctrl->controller);
-+		kref_init(&ifc_nand_ctrl->refcnt);
- 	} else {
- 		ifc_nand_ctrl = fsl_ifc_ctrl_dev->nand;
-+		kref_get(&ifc_nand_ctrl->refcnt);
- 	}
-+	ifc_nand_ctrl->users++;
- 	mutex_unlock(&fsl_ifc_nand_mutex);
+ 	r852_engine_enable(dev);
  
- 	ifc_nand_ctrl->chips[bank] = priv;
- 	priv->bank = bank;
- 	priv->ctrl = fsl_ifc_ctrl_dev;
-+	priv->chip.controller = &ifc_nand_ctrl->controller;
-+	nand_set_controller_data(&priv->chip, priv);
- 	priv->dev = &dev->dev;
- 	priv->vbase = vbase;
- 
-@@ -1071,12 +1098,19 @@ static int fsl_ifc_nand_probe(struct platform_device *dev)
- 	ret = nand_scan(&priv->chip, 1);
- 	if (ret)
- 		goto err;
-+	ret = nand_set_release(&priv->chip, fsl_ifc_chip_release);
+-	if (sm_register_device(mtd, dev->sm))
+-		goto error1;
++	ret = sm_scan_device(mtd, dev->sm);
 +	if (ret)
-+		goto cleanup_nand;
- 
- 	/* First look for RedBoot table or partitions on the command
- 	 * line, these take precedence over device tree information */
- 	ret = mtd_device_parse_register(mtd, part_probe_types, NULL, NULL, 0);
--	if (ret)
--		goto cleanup_nand;
++		goto free_chip;
++	ret = nand_set_release(chip, r852_chip_release);
 +	if (ret) {
-+		nand_disconnect(&priv->chip);
-+		fsl_ifc_chip_remove(priv);
-+		mtd_put_master(mtd);
-+		return ret;
++		nand_cleanup(chip);
++		goto free_chip;
++	}
++	ret = mtd_device_register(mtd, NULL, 0);
++	if (ret)
++		goto put_chip;
+ 
+ 	if (device_create_file(&mtd->dev, &dev_attr_media_type)) {
+ 		message("can't create media type sysfs attribute");
+@@ -653,8 +680,17 @@ static int r852_register_nand_device(struct r852_device *dev)
+ 	dev->card_registered = 1;
+ 	return 0;
+ error3:
+-	WARN_ON(mtd_device_unregister(nand_to_mtd(dev->chip)));
+-	nand_cleanup(dev->chip);
++	WARN_ON(mtd_device_unregister(mtd));
++put_chip:
++	nand_disconnect(chip);
++	r852_engine_disable(dev);
++	dev->chip = NULL;
++	mtd_put_master(mtd);
++	goto error1;
++free_chip:
++	r852_engine_disable(dev);
++	dev->chip = NULL;
++	kfree(chip);
+ error1:
+ 	/* Force card redetect */
+ 	dev->card_detected = 0;
+@@ -667,16 +703,19 @@ static int r852_register_nand_device(struct r852_device *dev)
+ 
+ static void r852_unregister_nand_device(struct r852_device *dev)
+ {
+-	struct mtd_info *mtd = nand_to_mtd(dev->chip);
++	struct mtd_info *mtd;
+ 
+ 	if (!dev->card_registered)
+ 		return;
++	mtd = nand_to_mtd(dev->chip);
+ 
+ 	device_remove_file(&mtd->dev, &dev_attr_media_type);
+ 	WARN_ON(mtd_device_unregister(mtd));
+-	nand_cleanup(dev->chip);
++	nand_disconnect(dev->chip);
+ 	r852_engine_disable(dev);
++	dev->chip = NULL;
+ 	dev->card_registered = 0;
++	mtd_put_master(mtd);
+ }
+ 
+ /* Card state updater */
+@@ -734,7 +773,8 @@ static irqreturn_t r852_irq(int irq, void *data)
+ 	card_status = r852_read_reg(dev, R852_CARD_IRQ_STA);
+ 	r852_write_reg(dev, R852_CARD_IRQ_STA, card_status);
+ 
+-	if (card_status & (R852_CARD_IRQ_INSERT|R852_CARD_IRQ_REMOVE)) {
++	if (!dev->removing &&
++	    (card_status & (R852_CARD_IRQ_INSERT | R852_CARD_IRQ_REMOVE))) {
+ 
+ 		ret = IRQ_HANDLED;
+ 		dev->card_detected = !!(card_status & R852_CARD_IRQ_INSERT);
+@@ -841,10 +881,14 @@ static const struct nand_controller_ops r852_ops = {
+ 	.attach_chip = r852_attach_chip,
+ };
+ 
++static void r852_controller_release(struct nand_controller *controller)
++{
++	kfree(container_of(controller, struct r852_device, controller));
++}
++
+ static int  r852_probe(struct pci_dev *pci_dev, const struct pci_device_id *id)
+ {
+ 	int error;
+-	struct nand_chip *chip;
+ 	struct r852_device *dev;
+ 
+ 	/* pci initialization */
+@@ -866,42 +910,28 @@ static int  r852_probe(struct pci_dev *pci_dev, const struct pci_device_id *id)
+ 
+ 	error = -ENOMEM;
+ 
+-	/* init nand chip, but register it only on card insert */
+-	chip = kzalloc_obj(struct nand_chip);
+-
+-	if (!chip)
+-		goto error4;
+-
+-	/* commands */
+-	chip->legacy.cmd_ctrl = r852_cmdctl;
+-	chip->legacy.waitfunc = r852_wait;
+-	chip->legacy.dev_ready = r852_ready;
+-
+-	/* I/O */
+-	chip->legacy.read_byte = r852_read_byte;
+-	chip->legacy.read_buf = r852_read_buf;
+-	chip->legacy.write_buf = r852_write_buf;
+-
+ 	/* init our device structure */
+ 	dev = kzalloc_obj(struct r852_device);
+ 
+ 	if (!dev)
+-		goto error5;
++		goto error4;
++	error = devm_nand_controller_init(&pci_dev->dev, &dev->controller,
++					  r852_controller_release);
++	if (error)
++		goto error4;
+ 
+-	nand_set_controller_data(chip, dev);
+-	dev->chip = chip;
+ 	dev->pci_dev = pci_dev;
+ 	pci_set_drvdata(pci_dev, dev);
+ 
+-	nand_controller_init(&dev->controller);
+ 	dev->controller.ops = &r852_ops;
+-	chip->controller = &dev->controller;
+ 
+ 	dev->bounce_buffer = dma_alloc_coherent(&pci_dev->dev, R852_DMA_LEN,
+ 		&dev->phys_bounce_buffer, GFP_KERNEL);
+ 
+-	if (!dev->bounce_buffer)
++	if (!dev->bounce_buffer) {
++		error = -ENOMEM;
+ 		goto error6;
 +	}
  
- 	dev_info(priv->dev, "IFC NAND device at 0x%llx, bank %d\n",
- 		 (unsigned long long)res->start, priv->bank);
-@@ -1087,6 +1121,7 @@ static int fsl_ifc_nand_probe(struct platform_device *dev)
- 	nand_cleanup(&priv->chip);
- err:
- 	fsl_ifc_chip_remove(priv);
-+	fsl_ifc_chip_release(&priv->chip);
  
- 	return ret;
+ 	error = -ENODEV;
+@@ -961,9 +991,6 @@ static int  r852_probe(struct pci_dev *pci_dev, const struct pci_device_id *id)
+ 	dma_free_coherent(&pci_dev->dev, R852_DMA_LEN, dev->bounce_buffer,
+ 			  dev->phys_bounce_buffer);
+ error6:
+-	kfree(dev);
+-error5:
+-	kfree(chip);
+ error4:
+ 	pci_release_regions(pci_dev);
+ error3:
+@@ -976,6 +1003,11 @@ static int  r852_probe(struct pci_dev *pci_dev, const struct pci_device_id *id)
+ static void r852_remove(struct pci_dev *pci_dev)
+ {
+ 	struct r852_device *dev = pci_get_drvdata(pci_dev);
++	unsigned long flags;
++
++	spin_lock_irqsave(&dev->irqlock, flags);
++	dev->removing = true;
++	spin_unlock_irqrestore(&dev->irqlock, flags);
+ 
+ 	/* Stop detect workqueue -
+ 		we are going to unregister the device anyway*/
+@@ -995,9 +1027,6 @@ static void r852_remove(struct pci_dev *pci_dev)
+ 	dma_free_coherent(&pci_dev->dev, R852_DMA_LEN, dev->bounce_buffer,
+ 			  dev->phys_bounce_buffer);
+ 
+-	kfree(dev->chip);
+-	kfree(dev);
+-
+ 	/* Shutdown the PCI device */
+ 	pci_release_regions(pci_dev);
+ 	pci_disable_device(pci_dev);
+diff --git a/drivers/mtd/nand/raw/r852.h b/drivers/mtd/nand/raw/r852.h
+index 96fe301d15da..a89ab61ea51e 100644
+--- a/drivers/mtd/nand/raw/r852.h
++++ b/drivers/mtd/nand/raw/r852.h
+@@ -128,6 +128,7 @@ struct r852_device {
+ 	struct delayed_work card_detect_work;
+ 	struct workqueue_struct *card_workqueue;
+ 	int card_registered;		/* card registered with mtd */
++	bool removing;			/* stop card work during PCI removal */
+ 	int card_detected;		/* card detected in slot */
+ 	int card_unstable;		/* whenever the card is inserted,
+ 					   is not known yet */
+diff --git a/drivers/mtd/nand/raw/sm_common.c b/drivers/mtd/nand/raw/sm_common.c
+index e238784c8c3e..a79e3c3c77d1 100644
+--- a/drivers/mtd/nand/raw/sm_common.c
++++ b/drivers/mtd/nand/raw/sm_common.c
+@@ -182,28 +182,19 @@ static const struct nand_controller_ops sm_controller_ops = {
+ 	.attach_chip = sm_attach_chip,
+ };
+ 
+-int sm_register_device(struct mtd_info *mtd, int smartmedia)
++int sm_scan_device(struct mtd_info *mtd, int smartmedia)
+ {
+ 	struct nand_chip *chip = mtd_to_nand(mtd);
+ 	struct nand_flash_dev *flash_ids;
+-	int ret;
+ 
+ 	chip->options |= NAND_SKIP_BBTSCAN;
+ 
+ 	/* Scan for card properties */
+ 	chip->legacy.dummy_controller.ops = &sm_controller_ops;
+ 	flash_ids = smartmedia ? nand_smartmedia_flash_ids : nand_xd_flash_ids;
+-	ret = nand_scan_with_ids(chip, 1, flash_ids);
+-	if (ret)
+-		return ret;
+-
+-	ret = mtd_device_register(mtd, NULL, 0);
+-	if (ret)
+-		nand_cleanup(chip);
+-
+-	return ret;
++	return nand_scan_with_ids(chip, 1, flash_ids);
  }
-@@ -1099,9 +1134,10 @@ static void fsl_ifc_nand_remove(struct platform_device *dev)
+-EXPORT_SYMBOL_GPL(sm_register_device);
++EXPORT_SYMBOL_GPL(sm_scan_device);
  
- 	ret = mtd_device_unregister(nand_to_mtd(chip));
- 	WARN_ON(ret);
--	nand_cleanup(chip);
-+	nand_disconnect(chip);
+ MODULE_LICENSE("GPL");
+ MODULE_AUTHOR("Maxim Levitsky <maximlevitsky@gmail.com>");
+diff --git a/drivers/mtd/nand/raw/sm_common.h b/drivers/mtd/nand/raw/sm_common.h
+index 57fc9f86f9ee..d8a330d6b730 100644
+--- a/drivers/mtd/nand/raw/sm_common.h
++++ b/drivers/mtd/nand/raw/sm_common.h
+@@ -33,7 +33,7 @@ struct sm_oob {
+ #define SM_SMALL_OOB_SIZE	8
  
- 	fsl_ifc_chip_remove(priv);
-+	mtd_put_master(nand_to_mtd(chip));
- }
  
- static const struct of_device_id fsl_ifc_nand_match[] = {
+-int sm_register_device(struct mtd_info *mtd, int smartmedia);
++int sm_scan_device(struct mtd_info *mtd, int smartmedia);
+ 
+ 
+ static inline int sm_sector_valid(struct sm_oob *oob)
 
 -- 
 2.53.0
