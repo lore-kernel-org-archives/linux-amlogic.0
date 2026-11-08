@@ -2,64 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98A16606A32D
-	for <linux-amlogic@archiver.kernel.org>; Sat,  7 Nov 2026 22:45:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65857606A320
+	for <linux-amlogic@archiver.kernel.org>; Sun,  8 Nov 2026 03:11:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SXQ1mAyf;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WnnaW6MP
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=15zEhh78;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=docomonet.jp header.i=@docomonet.jp header.a=rsa-sha256 header.s=20240125 header.b=h4Yto5rt
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Message-Id:References:In-Reply-To:
+	MIME-Version:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=oHbz6sT9jjCQg/UTaax0ChLqGTf64wleBXhcZeUnoPI=; b=SXQ1mAyfYRbXgCXXowYeoxXhXl
-	5puP6+h256iv67txraz5etOuatkY5EInTZSTGmiYweywnpRPzgm/L3lNR3r7feNK9512fKv10wiN8
-	M8sc4LjY0PLsHZBLaR97U2WrAi7Fjxe9MctJ3A1nmuDi2a6Ek5akyPeD7rqlkW9qF+u7v05tmG13G
-	K67iu/39Rp2lDFVvx9F/NVRrGYt8T2FjNi1GnSJwltSn/vS34vrgEdefh0Muw8a7bndmOdyoCWFdW
-	HdlN6XKPFpxTthLg/FLeVDulEySIhdUqEkOdPR8l6ODgTIkWwxMX5u3LORrXd8F2Xr1/7YC54VeKW
-	wMsWk7pA==;
+	bh=NYBG1+SdaaujkZe9HJNmYiETlo3cu8tcvrgvSULoiCo=; b=15zEhh787/mwSyg02SP5YvWev3
+	xX26aXhKdUpXu6+P447Fbj3W8zWpIzDLhzOro1gCwN9QQ4YMkd72P2PFfx+uIYiRQ4y2He+MBa/4S
+	sTZ6lFYSceylm+3BtezjgjX9Ja7UTiq3iEs5ngDijHfWMVUkBANTi6eeYDjwNe2CjzTo33sYztQEO
+	duuFegpveHK8hIuD1XnTVf8gP+pyfKz+a2EdrtjcveP8Y1cftRRhyFfv63xWyZdOvdF+OgFCZay7M
+	KVTK5cv8jNgEDbbpXQAOy3uhTPbaOVznHAb7Rj8NnO5CSbU0taVtp+aKvyKYFzR5WDN1lAvErSzUW
+	XvZ9aFsw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPp9y-0000000FTtf-15iE;
-	Sat, 07 Nov 2026 22:45:18 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xPtJb-0000000FdCk-17Nz;
+	Sun, 08 Nov 2026 03:11:31 +0000
+Received: from ocn-ckd-mts-117c37.ocn.ad.jp ([122.28.128.102])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPp9x-0000000FTtR-1KFd;
-	Sat, 07 Nov 2026 22:45:17 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id B13D44466C;
-	Sat,  7 Nov 2026 22:45:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA4951F0089F;
-	Sat,  7 Nov 2026 22:45:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794091516;
-	bh=5Sg/QYc64KGsYlE8LxgBfqmE1GMl4mLlfKRfIL2XKbk=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=WnnaW6MPIQMe5PP2NqlUxaetG2uBm1miygWQ2RwaFHPcW743Qpf4SaYmS2T1W61ye
-	 WtdLYYA4E71F2MSu+qlnK1gs3ILHqyGdT0fIPskWakrOfWSf75OrgTnIPXrPPbnDod
-	 RcpTsR04TFbydLjDDwd7MPCIYTKMNw0PRvfh2SaPORn7p1LhhCmIWA1+NUUJlmZax0
-	 E8mF6dwI4qrxmJn4dvjOc2AJqdOH8WXq9NMbU1SD6QAYbX5EaDHjYAttWMTX9DFOwC
-	 dipLk31/oxxl8oL8kBrRhFzBxfDn15PRVa46dzLqpqkiTQAsjbCkyMrtEWMXA1h5cP
-	 2SIHlV9PuGYRA==
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org, 
- jingoohan1@gmail.com, Hans Zhang <18255117159@163.com>
-Cc: imx@lists.linux.dev, linuxppc-dev@lists.ozlabs.org, 
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-arm-msm@vger.kernel.org, sophgo@lists.linux.dev, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-tegra@vger.kernel.org, linux-pci@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20261028030652.2917756-1-18255117159@163.com>
-References: <20261028030652.2917756-1-18255117159@163.com>
-Subject: Re: [PATCH v5 00/16] PCI: dwc: Cache PCIe capability offset
-Message-Id: <179409150473.143243.11323239293809371653.b4-ty@b4>
-Date: Sun, 08 Nov 2026 04:15:04 +0530
+	id 1xPtJW-0000000FdCA-2ykZ;
+	Sun, 08 Nov 2026 03:11:29 +0000
+Received: from ocn-spm-mts-103c1.ocn.ad.jp (ocn-spm-mts-103c1.ocn.ad.jp [153.128.190.230])
+	by ocn-ckd-mts-117c37.ocn.ad.jp (Postfix) with ESMTP id 974F34003112;
+	Sun,  8 Nov 2026 12:11:18 +0900 (JST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=docomonet.jp;
+	s=20240125; t=1794107478;
+	bh=GQvfNp65FBXmcF3uK/s2GXnfQ0y/t47EhDsCV7hVUL8=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=h4Yto5rt/S4/h7ZlyTQ/vq17Y7qA0reVKb/xAGxFXwDU7A8yUz95Z+5WvGn+N6HvZ
+	 A4Nb2mHlH8YR4FyUQuYE4QbF5Fe1JS6fqqLrQRpbuIGoGdeQOXK7NAL+pgf/Ih0UO7
+	 eNPJQblhEB8UR0kt1UFfFk/Ggo88Zgy27JSjtSmg=
+Received: from ocn-vc-mts-108c1.ocn.ad.jp ([153.149.236.202])
+ by ocn-spm-mts-103c1 with ngmta
+ id 811bd508-18e5f33f0194fd6a; Sun, 08 Nov 2026 12:11:18 +0900
+Received: from ocn-sdpx-mts-113c1.ocn.ad.jp ([153.128.117.211])
+ by ocn-vc-mts-108c1 with ngmta
+ id c06a01b4-18e5f33ec017da7b; Sun, 08 Nov 2026 12:11:18 +0900
+Received: from docomonet.jp (p3688129-ipoe.ipoe.ocn.ne.jp [153.238.101.128])
+	by ocn-sdpx-mts-113c1.ocn.ad.jp (Postfix) with ESMTPA;
+	Sun,  8 Nov 2026 12:11:17 +0900 (JST)
+From: "Shigeaki Asai" <y-asai.0816@docomonet.jp>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Nicolas Belin <nbelin@baylibre.com>,
+ Jagan Teki <jagan@amarulasolutions.com>
+Cc: dri-devel@lists.freedesktop.org,
+ linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org,
+ John Williams <porschemad911@gmail.com>
+Subject: Re: [PATCH] drm/meson: encoder_dsi: load ENCL gamma table while ENCL is disabled
+Date: Sun, 08 Nov 2026 12:11:16 +0900
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Mailer: b4 0.16.0
+X-Mailer: HidemaruMail 7.47 (WinNT,A00)
+In-Reply-To: <022f5372-7963-41b1-ba76-2d89c51aa8c6@linaro.org>
+References: <20261004-meson-gamma-v1-1-6347558e2bb3@docomonet.jp> <022f5372-7963-41b1-ba76-2d89c51aa8c6@linaro.org>
+Message-Id: <5DD6F2ED1CC4592F3006A@docomonet.jp>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261107_191127_123178_213ECDC2 
+X-CRM114-Status: UNSURE (   3.50  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,61 +87,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Ck9uIFdlZCwgMjggT2N0IDIwMjYgMTE6MDY6MzYgKzA4MDAsIEhhbnMgWmhhbmcgd3JvdGU6Cj4g
-VGhlIERXQyBQQ0llIGNvcmUgYW5kIGl0cyBwbGF0Zm9ybSBkcml2ZXJzIHJlcGVhdGVkbHkgY2Fs
-bAo+IGR3X3BjaWVfZmluZF9jYXBhYmlsaXR5KHBjaSwgUENJX0NBUF9JRF9FWFApIHRvIG9idGFp
-biB0aGUgb2Zmc2V0IG9mIHRoZQo+IFBDSSBFeHByZXNzIENhcGFiaWxpdHkgc3RydWN0dXJlLCBp
-bmNsdWRpbmcgaW4gcGF0aHMgdGhhdCBydW4gbW9yZSB0aGFuCj4gb25jZSBzdWNoIGFzIGxpbmsg
-cG9sbGluZywgc3VzcGVuZC9yZXN1bWUgYW5kIGludGVycnVwdCBoYW5kbGVycy4KPiAKPiBBZGQg
-YSBjYWNoZWQgcGNpZV9jYXAgZmllbGQgdG8gc3RydWN0IGR3X3BjaWUgYW5kIGEKPiBkd19wY2ll
-X2dldF9wY2llX2NhcCgpIGhlbHBlciB0aGF0IHBlcmZvcm1zIHRoZSBsb29rdXAgb24gZmlyc3Qg
-dXNlIGFuZAo+IGNhY2hlcyB0aGUgcmVzdWx0LCB0aGVuIGNvbnZlcnQgdGhlIGNvcmUgYW5kIHRo
-ZSAxNCBwbGF0Zm9ybSBkcml2ZXJzCj4gdGhhdCB1c2UgUENJX0NBUF9JRF9FWFAuCj4gCj4gWy4u
-Ll0KCkFwcGxpZWQsIHRoYW5rcyEKClswMS8xNl0gUENJOiBkd2M6IEFkZCBwY2llX2NhcCBmaWVs
-ZCBhbmQgY2FjaGluZyBoZWxwZXIKICAgICAgICBjb21taXQ6IGQwMThmZjRiZTg5NjE5ODE4Mjhl
-NzVhZmQzNmVlZjkwY2M1MjRjZDgKWzAyLzE2XSBQQ0k6IGR3YzogVXNlIGNhY2hlZCBQQ0llIGNh
-cGFiaWxpdHkgb2Zmc2V0IGluIGNvcmUKICAgICAgICBjb21taXQ6IGY4M2E3YjU1NTE3MDEyNDk2
-YmQ5NTM5ZmJiZGVlZWNmMGQxZTlmZjkKWzAzLzE2XSBQQ0k6IGR3YzogaW14NjogVXNlIGNhY2hl
-ZCBQQ0llIGNhcGFiaWxpdHkgb2Zmc2V0CiAgICAgICAgY29tbWl0OiA4NDcyMzc0NTc2ZDMwMGQz
-NmRlMjBhZDU5MmZkMWYzOTE4MWI4NWE4ClswNC8xNl0gUENJOiBkd2M6IGxheWVyc2NhcGUtZXA6
-IFVzZSBjYWNoZWQgUENJZSBjYXBhYmlsaXR5IG9mZnNldAogICAgICAgIGNvbW1pdDogODc0Mjdj
-YzlkNzExNTA4OGU5MmU4YzkyYzI4MmUyODQ4MWM5YjI2YgpbMDUvMTZdIFBDSTogZHdjOiBtZXNv
-bjogVXNlIGNhY2hlZCBQQ0llIGNhcGFiaWxpdHkgb2Zmc2V0CiAgICAgICAgY29tbWl0OiA1M2Y5
-ZWQzZDY4MDdjNmFhNzk5NDRlZDQyYjMzNjJhYTg5MTkyOTU2ClswNi8xNl0gUENJOiBkd2M6IHJv
-Y2tjaGlwOiBVc2UgY2FjaGVkIFBDSWUgY2FwYWJpbGl0eSBvZmZzZXQKICAgICAgICBjb21taXQ6
-IGJmNWMzZjQ5NzUwMTA3NTBjNTM1YjEyN2NiM2FiODE5NTFjN2ZmZDAKWzA3LzE2XSBQQ0k6IGR3
-YzogZXN3aW46IFVzZSBjYWNoZWQgUENJZSBjYXBhYmlsaXR5IG9mZnNldAogICAgICAgIGNvbW1p
-dDogMzg2YjlmYTQ5ZTI2YWZiZDc2ZDkzNGYxMzZmNjhiYzM1NTc5MWNlOApbMDgvMTZdIFBDSTog
-ZHdjOiBmdTc0MDogVXNlIGNhY2hlZCBQQ0llIGNhcGFiaWxpdHkgb2Zmc2V0CiAgICAgICAgY29t
-bWl0OiA2ZmJhNTU3YjgyZjQ5OTY3ODZkMTI2NzZmNTU0YWQxMmU2N2U0NmQ5ClswOS8xNl0gUENJ
-OiBkd2M6IGludGVsLWd3OiBVc2UgY2FjaGVkIFBDSWUgY2FwYWJpbGl0eSBvZmZzZXQKICAgICAg
-ICBjb21taXQ6IDAyMzA1YWQzYWQyZjkxOGFjMDA5ZThhZTRjMmRmOGMyYjExZGMwYmMKWzEwLzE2
-XSBQQ0k6IGR3YzogcWNvbS1lcDogVXNlIGNhY2hlZCBQQ0llIGNhcGFiaWxpdHkgb2Zmc2V0CiAg
-ICAgICAgY29tbWl0OiBjNDg5ZTEwMDhkZjhhNzQ1NjY4NmFiNjM3NTkzNTgyYmU2M2YxNGM5Clsx
-MS8xNl0gUENJOiBkd2M6IHFjb206IFVzZSBjYWNoZWQgUENJZSBjYXBhYmlsaXR5IG9mZnNldAog
-ICAgICAgIGNvbW1pdDogMzhhZjllZGE0OTE5OGIwYjJlM2Q5MDMyNGFmNmM1YjAwMTIzZDRlYwpb
-MTIvMTZdIFBDSTogZHdjOiBzb3BoZ286IFVzZSBjYWNoZWQgUENJZSBjYXBhYmlsaXR5IG9mZnNl
-dAogICAgICAgIGNvbW1pdDogMzI4YzZkNTA3Njk2ZWIzYjA3NWVmYTYyMzZjZGMxYzEyYTJhODAw
-YwpbMTMvMTZdIFBDSTogZHdjOiBzcGFjZW1pdC1rMTogVXNlIGNhY2hlZCBQQ0llIGNhcGFiaWxp
-dHkgb2Zmc2V0CiAgICAgICAgY29tbWl0OiBlZjJiYzU2ZjA5N2FhZmRlZWU3ZmNlYjY4ZDJjYTll
-NGM2OTU2ZGJmClsxNC8xNl0gUENJOiBkd2M6IHNwZWFyMTN4eDogVXNlIGNhY2hlZCBQQ0llIGNh
-cGFiaWxpdHkgb2Zmc2V0CiAgICAgICAgY29tbWl0OiBlYmQ5NjhmMjBjNjFiM2Q4NjE2NWQ5ZTFi
-YzM4NzA0NGRjZjczNzA3ClsxNS8xNl0gUENJOiBkd2M6IHRlZ3JhMTk0OiBVc2UgY2FjaGVkIFBD
-SWUgY2FwYWJpbGl0eSBvZmZzZXQKICAgICAgICBjb21taXQ6IDgwNzg5MjdiZjI3ODY2ZWNjNTI1
-MTkxOWVjNmI0MTQ3OGFlNjIwYWMKWzE2LzE2XSBQQ0k6IGR3YzogdWx0cmFyaXNjOiBVc2UgY2Fj
-aGVkIFBDSWUgY2FwYWJpbGl0eSBvZmZzZXQKICAgICAgICBjb21taXQ6IDY0ZTJlNTQyMzhkYzFh
-NjNkNGM4YmQ4MjdkMTQwYmRmZmVmMDU0MDMKCkJlc3QgcmVnYXJkcywKLS0gCuCuruCuo+Cuv+Cu
-teCuo+CvjeCuo+CuqeCvjSDgrprgrqTgrr7grprgrr/grrXgrq7gr40KCgoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5n
-IGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
-YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On 10/4/26 17:31, Neil Armstrong wrote:
+>Thanks for figuring this out !
+>
+>Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+>
+>Thanks,
+>Neil
+
+Hi Neil,
+
+Gentle ping on this one. It has your Reviewed-by, could it be picked
+up for drm-misc-fixes? Please let me know if anything else is needed.
+
+Thanks,
+Shigeaki
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
