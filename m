@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51FFC606A322
-	for <linux-amlogic@archiver.kernel.org>; Sun,  8 Nov 2026 23:17:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C010606A333
+	for <linux-amlogic@archiver.kernel.org>; Sun,  8 Nov 2026 23:21:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Jfby+eXb;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jpGUSey5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=z5J0zrpq;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=b8hmYRrU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,36 +14,36 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
 	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ZHY9nvZ8WE/EHrMe39V8rGCu1pOEGA/IE+TQFkFdDpg=; b=Jfby+eXbDVvOQLaYe7mar6lXnJ
-	WF/G4T8T35vZjIahSj53nyrxsbGecBb8ZKH93TZLiBUrdSV+pDt+utYSDukAEPBoXDh8uALdDW77R
-	1nyT718jmgo7Qu8cAc5SCV5G/npzg4EfHLo3qnH72M8/ceq0VGiq1lAZgEmZw/gGDPr+Rvp6FpUEm
-	ElSr9+SEwmkug2rt9uBSGHLKVb8tIAiVNcB6+hdnphJYHSDVOMO6KheKNDzXIypC+jV6MeWdMwkxq
-	haQxFJ7hIsdVJhjLkxmam4x335hz2DlPXXpEEYAihAnXbtsLtyRMNAMBaQPD8ePKE4NdlN4nHVc8a
-	1maT7bZQ==;
+	bh=bwVbsiPCqlSJqZ9uxWdGbyiYG+TEMJuPYaHBUMa7ffE=; b=z5J0zrpq/aCCu98Jg6smzMXvrI
+	NZ88qVQLx71tjmV8UqEo53PyPJKGSG1gQO1xf6xoLrC3a7kuGMBGUsEAmM2UGDq6N7iiQ6yug0WmS
+	EY+o44j6AaLoDmBaxUJh8gLXcuk4LVm24YUQ+3+XGMSH8JEzz784MEvRIg0BdfT7u7/DgR7CVyR8R
+	z8sLQ9hE3F1Jx+WJz5SlvXigcuTcj3ReU4El/1xtZxKEL3TmnrzZIa0T1HPCI2f389v2lOhh+0W7G
+	2nkRck4g5qvGk9wmaF7nUynP2EMrMi+e89Meyk5nJd5qQkW9G+BkUdmGzwTc0q9MopSEmXu37kkQf
+	XfmE8pIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQC8S-0000000GsoA-0AXB;
-	Sun, 08 Nov 2026 23:17:16 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xQCCL-0000000GtAX-47ew;
+	Sun, 08 Nov 2026 23:21:17 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQC8Q-0000000Gso1-4B2y;
-	Sun, 08 Nov 2026 23:17:15 +0000
+	id 1xQCCK-0000000GtA8-04SC;
+	Sun, 08 Nov 2026 23:21:16 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5A69761184;
-	Sun,  8 Nov 2026 23:17:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC3A21F0089F;
-	Sun,  8 Nov 2026 23:17:09 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 78DF841363;
+	Sun,  8 Nov 2026 23:21:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01E541F0089F;
+	Sun,  8 Nov 2026 23:21:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794179833;
-	bh=C2reihoSd8+x5X3GrAOxEQiq3mx4R4XS9zazh7fb3Us=;
+	s=k20260515; t=1794180074;
+	bh=PcBmZo2LxPiZ1DooWOhkTG+L22kCLVLPysQqIhdI0es=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=jpGUSey5vvxY92S+HSf4OjpfJZrKayxou0qil8Xw8HI0KUYAGMdJ8qvI5skRIcVqJ
-	 V5OeCHHEYJ3Vf7jlLwQ00IKnbUyWU+PCNZ5C14m/P6TfbC4CerkGeqUBMWvt/9CSU3
-	 vOzZ1fPI7/x4s7fTfR07RFmFucr1tUU/gKar+9Xx92BCNdmPpYjJV2UMvcEC5enA99
-	 Jx1lPLuRKGwGKwbC2/W88g1DCeh6wsi5yzGUV/QN8NRyP61gx6Tuvw15s+PLAYb0jk
-	 qoWrt82mORcGdsnMmq+Iuo9quSFeAd3RLRtXGLGwClBr0T9S2hIDA3ZcbAEC6UE+kw
-	 AHaXbFVtg0DeA==
-Date: Sun, 8 Nov 2026 23:17:07 +0000
+	b=b8hmYRrUruhBbHPv68CfkNWMuyiwryxXsIA8qPlCtdx+38OUpfDk0/Q/MARxhe7yg
+	 bkGgWgOn6KBfX4a2Jg0pXBU2nRxP8Y0koeyjqoqyJAnL9Hf8Vkg6v5PxqFHHfYUOmR
+	 ybdZR0RmkbbpCXXiNuRLELHigVzqUVG5CqElbE+jvfAXslzC7V44LJD4yuHhb5BMJU
+	 Qmi7NwBw6HoBvGgXquS+djEiSYIpNLaQvasRMpHp7VyeYikZTAEWgrQTvxHXagTBxj
+	 aXlEGX2dDQ/PVmFMySY59PqURczf2hUF5H4jtaIEuaxK3YEZc6a6dDO7TflfkxzBh9
+	 AUnmdXai8JIdw==
+Date: Sun, 8 Nov 2026 23:21:08 +0000
 From: Conor Dooley <conor@kernel.org>
 To: Carlo Caione <ccaione@baylibre.com>
 Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
@@ -59,18 +59,13 @@ Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
 	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 6/7] dt-bindings: clock: Add Amlogic S7 peripherals clock
- controller
-Message-ID: <20261108-resurrect-mumbo-10daa7ac0cf0@spud>
+Subject: Re: [PATCH 1/7] dt-bindings: clock: Add Amlogic S7 SCMI clock IDs
+Message-ID: <20261108-computer-backed-d98862794d18@spud>
 References: <20261106-upstream-s7-clk-v1-0-7d501d62621f@baylibre.com>
- <20261106-upstream-s7-clk-v1-6-7d501d62621f@baylibre.com>
- <20261106-unwilling-preoccupy-156dbb310448@spud>
- <au4p0xYEFkgEU6T4@macbook>
- <20261106-headband-buckwheat-fecbd459ee85@spud>
- <au5RoF6BooP14xhY@macbook>
+ <20261106-upstream-s7-clk-v1-1-7d501d62621f@baylibre.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <au5RoF6BooP14xhY@macbook>
+In-Reply-To: <20261106-upstream-s7-clk-v1-1-7d501d62621f@baylibre.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,99 +75,103 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============9212971801864693308=="
+Content-Type: multipart/mixed; boundary="===============3308614258888235073=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============9212971801864693308==
+--===============3308614258888235073==
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hSqhUowhvI7bmoOF"
+	protocol="application/pgp-signature"; boundary="hKoZ7BNqYWgXY8wN"
 Content-Disposition: inline
 
---hSqhUowhvI7bmoOF
+--hKoZ7BNqYWgXY8wN
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 06, 2026 at 11:27:38PM +0100, Carlo Caione wrote:
-> On Fri, Nov 06, 2026 at 20:48:01 +0100, Conor Dooley wrote:
-> > On Fri, Nov 06, 2026 at 08:34:37PM +0100, Carlo Caione wrote:
-> > > On Fri, Nov 06, 2026 at 17:34:14 +0100, Conor Dooley wrote:
-> > >=20
-> > > > > +    #include <dt-bindings/clock/amlogic,s7-pll-clkc.h>
-> > > > > +    #include <dt-bindings/clock/amlogic,s7-scmi-clkc.h>
-> > > > > +
-> > > > > +    soc {
-> > > > > +        #address-cells =3D <2>;
-> > > > > +        #size-cells =3D <2>;
-> > > > > +
-> > > > > +        clock-controller@0 {
-> > > > > +            compatible =3D "amlogic,s7-peripherals-clkc";
-> > > > > +            reg =3D <0x0 0x0 0x0 0x49c>;
-> > > >=20
-> > > > What's with the weird numbers in this example?
-> > > >=20
-> > > > Examples don't have to be real, but when it looks like this the
-> > > > immediate thought is that the modelling of the device might be
-> > > > incorrec.t
-> > >=20
-> > > The numbers are actually real, but the example simply lost their cont=
-ext
-> > > because I copied the node from the S7 dtsi (not yet submitted), where
-> > > the controller sits under the APB bus node (bus@fe000000) and the bus
-> > > ranges make the addresses relative to it.
-> > >=20
-> > > 		apb: bus@fe000000 {
-> > > 			compatible =3D "simple-bus";
-> > > 			reg =3D <0x0 0xfe000000 0x0 0x480000>;
-> > > 			#address-cells =3D <2>;
-> > > 			#size-cells =3D <2>;
-> > > 			ranges =3D <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
-> > >=20
-> > > 			clkc_periphs: clock-controller@0 {
-> > > 				compatible =3D "amlogic,s7-peripherals-clkc";
-> > > 				reg =3D <0x0 0x0 0x0 0x49c>;
-> > > 				#clock-cells =3D <1>;
-> > > 				...
-> > >=20
-> > > In V2 I'll use an absolute address for the sake of clarity (PLL has t=
-he
-> > > same issue).
-> >=20
-> > Before you do that, can you please share with me the s7 dtsi? Cos surely
-> > you've got it in some git repo online somewhere.
+On Fri, Nov 06, 2026 at 09:30:24AM +0100, Carlo Caione wrote:
+> The S7 firmware exposes clocks through SCMI, including sources needed
+> by the other clock controllers.
 >=20
-> The S7 dtsi is already upstream at [0], the peripheral clock controller
-> and PLL will be enabled in that DTSI with a following series after the
-> bindings and the drivers in this set are acked, following the diffs that
-> will be submitted:
+> Define their identifiers so devicetree can reference these
+> firmware-provided clocks.
 
-Right. The device does seem to have nodes of odd sizes and start
-addresses, so this at least is not making anything worse.
+Are SCMI clock IDs actually suitable for being bindings? Can't the IDs
+vary here between versions of the firmware?
+They're also not a "made up" set of indexes, like traditional clocks
+are, they're real numbers that come from some document akin to
+interrupts that we do not have bindings for and no driver is likely to
+reference these definitions either right?
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+Is something like this not more suitable for being included as a header
+in the amlogic dts directory?
 
---hSqhUowhvI7bmoOF
+>=20
+> Signed-off-by: Carlo Caione <ccaione@baylibre.com>
+> ---
+>  include/dt-bindings/clock/amlogic,s7-scmi-clkc.h | 27 ++++++++++++++++++=
+++++++
+>  1 file changed, 27 insertions(+)
+>=20
+> diff --git a/include/dt-bindings/clock/amlogic,s7-scmi-clkc.h b/include/d=
+t-bindings/clock/amlogic,s7-scmi-clkc.h
+> new file mode 100644
+> index 000000000000..10d7caa5d1e2
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/amlogic,s7-scmi-clkc.h
+> @@ -0,0 +1,27 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Copyright (c) 2026 BayLibre, SAS.
+> + */
+> +
+> +#ifndef __AMLOGIC_S7_SCMI_CLKC_H
+> +#define __AMLOGIC_S7_SCMI_CLKC_H
+> +
+> +#define CLKID_DDR_PHY_OSC			0
+> +#define CLKID_USB1_PLL_OSC			1
+> +#define CLKID_TOP_PLL_OSC			2
+> +#define CLKID_HDMI_PLL_OSC			3
+> +#define CLKID_USB0_PHY_PLL_OSC			4
+> +#define CLKID_USB1_PHY_PLL_OSC			5
+> +#define CLKID_USB0_PLL_OSC			6
+> +#define CLKID_ETH_PLL_OSC			7
+> +#define CLKID_ADC_PLL_OSC			8
+> +#define CLKID_CPU_CLK				9
+> +#define CLKID_DSU_CLK				10
+> +#define CLKID_GP1_PLL				11
+> +#define CLKID_ACLKM				12
+> +#define CLKID_PWM_G				13
+> +#define CLKID_PWM_H				14
+> +#define CLKID_PWM_I				15
+> +#define CLKID_PWM_J				16
+> +
+> +#endif /* __AMLOGIC_S7_SCMI_CLKC_H */
+>=20
+> --=20
+> 2.56.0
+>=20
+
+--hKoZ7BNqYWgXY8wN
 Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCavEC8wAKCRB4tDGHoIJi
-0kSzAP9D+07DueUyQidEmOTviYikdTVwB4OjYhIW3eDHUkvnNAEAw27P7rZuFiZP
-JlFXjpIzLkFe/xvXdJ5/TibIL+soSAc=
-=F15I
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCavED5AAKCRB4tDGHoIJi
+0hDPAP9YclqOSMdTbrycJ3d5X3ODkP1cdB9jLCe8Tunz3gRHwwD+Mrj45Sqm1RAo
+fyN12kabh2Nu3j+H2vcVuvNGcpj/TAA=
+=Zf8q
 -----END PGP SIGNATURE-----
 
---hSqhUowhvI7bmoOF--
+--hKoZ7BNqYWgXY8wN--
 
 
---===============9212971801864693308==
+--===============3308614258888235073==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -183,5 +182,5 @@ linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
---===============9212971801864693308==--
+--===============3308614258888235073==--
 
