@@ -2,102 +2,144 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C2D660735C8
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Nov 2026 08:50:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D1F8606A31C
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Nov 2026 08:56:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AfTkmIgm;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=N3epthB4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MeluQkc+;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=amlogic.com header.i=@amlogic.com header.a=rsa-sha256 header.s=selector1 header.b=uiHDc7gP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=CEiaRZfdXavuEr8c5JZoUeCqricc+XcZfIAJB1y28so=; b=AfTkmIgmwLIQV0PtDCQk937z/S
-	Y/EjKpMk3ptp8mdjkWAdUEHSxAyn7NBr1Kch7bviRkZeQeI54K2KVYWZSLwz/UMIMfRCI4sLQI43B
-	g+bHiRkqRgbxezAKbzdv3moGo59uF5TA6pLV/RSPk7AhaMBfrJmyRq9uWGpw5sJ392M3ti6yPyHSm
-	1l1f+mL8s1HEmP8BIufOWGEGY0YH5aI4O6+0EWVne5xVzulMvofAfdS+S7i4wnVzCh6r8+Uih3fNC
-	9CdIT1qXaAq7zurSxjpihlGA5WDytH6aAqhwA4NIF8GL5yN8gWg7u4X7cln3RHVvs7g9n0/NDyC2D
-	2h1bVZ8Q==;
+	bh=3tFo7fnwEg9RYDCGkfT0m/iv0dQYXxfdCnx3ZBk7Xag=; b=MeluQkc+zaTmYde8dvNV8Pb0um
+	VOg2nZ0n7i6SyFZvrB5FBMlLOXNQi7JMxkpBwA1T8wwYktFJgZiQw0b8BcT9h20LO9hjqRdSxutVq
+	uuVKj001MYEKHpB/hwFRmkRSJVaRLmIlOyY/3t2DbP9KO3O8KoZXtrdBQYszCmOeEBwJPHHH8LdNC
+	yMWR/352rvQYzMQSWtC4N9rARoXKaZk8BlDN2MsxR0rixCMPL2VQI73UNtF0Iz0GrGf3qxnGDlqk1
+	LzZTFspNjMmMQlVYBS9vpXGNw43QPx4zZgNWLJXnnaHzGyMbBwP2+5EUieXRxv5tOv6b3B8yT9hmz
+	Tf8tNQWw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQL4r-0000000088k-249d;
-	Mon, 09 Nov 2026 08:50:09 +0000
-Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	id 1xQLAa-000000009Ov-1VbO;
+	Mon, 09 Nov 2026 08:56:04 +0000
+Received: from mail-koreacentralazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c40f::6] helo=SEYPR02CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQL4i-000000007u2-3ejG
-	for linux-amlogic@lists.infradead.org;
-	Mon, 09 Nov 2026 08:50:03 +0000
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-49134c8509fso490811f8f.1
-        for <linux-amlogic@lists.infradead.org>; Mon, 09 Nov 2026 00:49:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1794214198; x=1794818998; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=1k1iPnwy0Bc6PGE6t+Zl0LM80Ml+GB/glVmXDTikwzo=;
-        b=N3epthB4vcAG2wGnNyNEQyo05Xhc4bcNm+WH2ZXEmmSPr43TTwCzowbKG8VGpR2xEu
-         4dezzfzIayNcFokrfWbHpSB+L6rsCIM7ATKhTw6/cipZATcNh0YNonqeKCEg4nM5C7Go
-         JZ0+K8jlhqXs8ylK0OG1/xuTPaWI1PE37aktIPR3oCUMfVxeFd6QDBCLu5T6PiPtmncK
-         Fiti9Ks4OookxoFQxnYjVGAqtnSFOzXqADM2LfepO1F2XwbF/AOok+gpofqGK4kIE5Dy
-         zUHmPCW32X7m7lzDEf9FNDqdNJN7viKvPyKBu8CkoV5DD+9m1ekOwmtJHJHksAOvDBwN
-         9UrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794214198; x=1794818998;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=1k1iPnwy0Bc6PGE6t+Zl0LM80Ml+GB/glVmXDTikwzo=;
-        b=muFIVFei5be7CyOMTFh+xSIfa04ykf7J6uWFcIlhBCQdws5bQqHjTDaYTtFD3IFvJG
-         Nb/rsO062iTrKLyO2Npys278pwSsBiN08LSX2Oyji9u/cnSLouuvd3ze0tgiD73hrOLL
-         l/5/nxVS80ZGF43msoaFSgZ2eAoKylAqKVw9Rp4loT5vPJpUn26gbrUVLEhQjrliJdhH
-         XsTxybHEfpW0MdexyD2b8P9LK9N36X9ZAWvc9dhfFrL4bzzSqx7msf4v9BNXwtjqbobX
-         ueGXX2xplwo071YtOcvR2BHsA5/U8w4leLKEbVjrNXmNOMwQ5++NDd52P7fP7qyo/ta/
-         3rKA==
-X-Forwarded-Encrypted: i=1; AL+hErH9zcIL0/GO5ht8e2M1GtYrn3/Y9J75+2tsKAEr2wz/cGIngvBHFQmvG4iW8A8C0TvhS/aPqHBFwVirBEgo@lists.infradead.org
-X-Gm-Message-State: APuU4Z/u1PnUv6oBwa9jxm4kxRfwpeUqzsOxb7l+aY9mJS34z/9A74o9
-	ckCXZdAiXGAEkAC93f8JN+z7/FxmAD+lYasur12dBJudTQKfUnKos5Wj+EtoQ0LXGL0=
-X-Gm-Gg: AYBFou3V9695EqpAdQ9F3LG+2vB7xTVH0v0sQ6aK1eWhR4WGEDvnOkzwrOXne7YYbmt
-	9M0sL4cLjUDw5P60uMkzpNl0MAtcmp0jObsTp4dmPBSbwYGBSsThkAgrbFflRagkbo+JX5Loyqa
-	H9rQwkF0Oyc/qCPlMMM9Je9zS0l031LM4HpVJI+vHauihZ1Q+f2KFZdtb8hWvI8dWdCcPvsNq4S
-	SsM4UbfcbeoJ40BJ3X/8SzX/D5b2txdYl1x44lUorYLP+NeGD8VkAKH+iZ7mHlHm1K4hgslJmh8
-	7iPe7qQ6MrDX8TVw3nEpXAybycAfO3uIkoObhPWUxL27hOy934NO/LWBqgSXb5SWu1AA2RTv9Im
-	15gc6fK4m2tr2Ac6JL7PPG13hy6U0THc7nDpYZRJkXx8biNVtQpORmLVjlXxd6lsuXtKda8CP6p
-	N3KfoSbvJH/bfB5zyaMhDkPBhbNyG3Is6o4w04lzbR2RO5vFVT9uIRhWURgV/Np84UVsWXPNtyi
-	EeMnwci2PXb1t1565zEYWf/m5XjxMWgheP5sr+dCHjMX8DbHaSRttsceR3No79QNewT4GGXsrVa
-	lRHrIOKd9dzRERjbz8Ck3x2PoSAf7rOGMana0+k95NCdbYAaakeEUUGBS6sGBreYykvhLq2fwc+
-	Wtt4ySvYRStiRa3aD5jDNpV9YwuXc3yiS0IjzvgKBdovPVw==
-X-Received: by 2002:a05:6000:248a:b0:48c:4442:54e with SMTP id ffacd0b85a97d-49584b5afe0mr6225635f8f.30.1794214198288;
-        Mon, 09 Nov 2026 00:49:58 -0800 (PST)
-Received: from macbook.homenet.telecomitalia.it (host-95-246-144-141.retail.telecomitalia.it. [95.246.144.141])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49597090444sm9069465f8f.31.2026.11.09.00.49.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2026 00:49:57 -0800 (PST)
-Date: Mon, 9 Nov 2026 09:49:56 +0100
-From: Carlo Caione <ccaione@baylibre.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
-	Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Jian Hu <jian.hu@amlogic.com>, Chuan Liu <chuan.liu@amlogic.com>, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/7] dt-bindings: clock: Add Amlogic S7 SCMI clock IDs
-Message-ID: <avGIMja1yTAkG2X8@macbook.homenet.telecomitalia.it>
-References: <20261106-upstream-s7-clk-v1-0-7d501d62621f@baylibre.com>
- <20261106-upstream-s7-clk-v1-1-7d501d62621f@baylibre.com>
- <20261108-computer-backed-d98862794d18@spud>
+	id 1xQLAY-000000009OK-1MPA;
+	Mon, 09 Nov 2026 08:56:03 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=vOdU28saKBolXG/XMSTMYzuq2koXqNBL+NI+FEPEf6DRWwaNBI9RgHvrZbpVGtsv7Jbj6RzDBhFrmD7A58AzSGo2aEV2LHCYPtmBycvV8EFEKdRrXZF8ZaZS0hpQ6xlFdogwNRdfVHQaCwbUV8xvRM6HZn1808KOzzbcM86PXOwyA3HalKuKrkYRJmP2NJFto71/ew3IDsuEBqa7t+NfjmqRDDEOEmA4FvBwEta8LknNLXZw2ciwNQYA3lv8jSLOfh/ufpSHwlqolzcS0JPrzkI7PjGorkDYbHgnh76G/hAPUq+wywsv/x9rMVANMn1r3qMqtHeybDE393oWImB89Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=E8EiU2ZSqpH4F9FIinSzE2iYqZDLtXYF/oJcAVxNpDY=;
+ b=ANcMwi8mTteB1H2vomguMIcxarRJhGvByTf2mP96yf+p57qhz39h62VJRcxxC8rgvW9ih1p40d8okdKzbAjzKotTMKd4taQhqq9S64pKEzoMglonXiVjWJZpnBg9ylRihJxnnZoF4VDiFfmYXQ4pgLoObQfuVghbyU9LNjlTXkUl4xiHcHl9/LuNpupmS04cALdgaU2IH/V5GOwqdCAMMrCoLkoV2oVu+hWhe2Nq47/TRDigiv8/qcxM7ffnNtfuvCe7OqeHHC6hUsz7Rw6w8BSkoeXJCl5S3fseLowCArzhojhwiSXBiVrjLmWDnuQmGNw5ta5KPsFgP1HZuEnVrg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=E8EiU2ZSqpH4F9FIinSzE2iYqZDLtXYF/oJcAVxNpDY=;
+ b=uiHDc7gPmWJjBZSGj8TBYz+hJMBIv4l0SrEzwbXyAEFk3jg9J5qGZBhqlYo1xUAcd+OBnZaK4IFFdQ372gFOFXbMSGk16XhSuy7roSOgwFu+ECb06SaN9WmuPzMXNde26ffduSmcHQvQeqMOcoW5ljk7BUv8Wa8bUUhyExjN+h4qCCkfo3H7Kun2sLHpijAI27LwTF6BdX+oLE35lrxWhDbwePf9BYHR5yI/QUWG+91ipKVr0y4241Y2k/ckASy03VIzmyt39ESEAnHclOqeuj0PtQNbgnxEhkxHKs3Hoc4fSk7M9SXIigyw3f79Ur+du677pJest2SpUqSubruJvg==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from KL1PR03MB7149.apcprd03.prod.outlook.com (2603:1096:820:ca::7)
+ by TYZPR03MB6648.apcprd03.prod.outlook.com (2603:1096:400:1f3::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.12; Mon, 9 Nov
+ 2026 08:55:49 +0000
+Received: from KL1PR03MB7149.apcprd03.prod.outlook.com
+ ([fe80::2f06:12a:fff0:6506]) by KL1PR03MB7149.apcprd03.prod.outlook.com
+ ([fe80::2f06:12a:fff0:6506%3]) with mapi id 15.21.0592.010; Mon, 9 Nov 2026
+ 08:55:48 +0000
+Message-ID: <59ed0b18-3432-48ec-a923-3105c4d21d1d@amlogic.com>
+Date: Mon, 9 Nov 2026 16:55:44 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC RFT v2 0/3] clk: meson: Refactor PLL pre-divider as a
+ divider clock
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20261029-meson_refactor_n-v2-0-ff4ac74e527b@amlogic.com>
+ <179390104084.2573818.1569105668888286892.b4-review@b4>
+From: Jian Hu <jian.hu@amlogic.com>
+In-Reply-To: <179390104084.2573818.1569105668888286892.b4-review@b4>
+X-ClientProxiedBy: SE2P216CA0128.KORP216.PROD.OUTLOOK.COM
+ (2603:1096:101:2c7::15) To KL1PR03MB7149.apcprd03.prod.outlook.com
+ (2603:1096:820:ca::7)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20261108-computer-backed-d98862794d18@spud>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: KL1PR03MB7149:EE_|TYZPR03MB6648:EE_
+X-MS-Office365-Filtering-Correlation-Id: db217871-e638-40f5-e91c-08df3e3f3fc0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|23010399003|376014|7416014|1800799024|18002099003|22082099003|6133799003|10067099003|3023799007|4143699003|11063799006|261028144727099003|261102123227099003|261022075727099003|261022105027099003|56012099006|261021123027099003|261021121427099003|261026140227099003;
+X-Microsoft-Antispam-Message-Info: 2dW0rTCoM7nz5RTAHBqskcfSyQ0k4KhgP/Z7J6/ktduQ47PN3Jge9US2NA1EkAf/nbyVW/4y2Bot7U/GvKanmeMFBy74t7NXe1eD1GmT442rno2c+vspPYHKGztXbFFoGbbpYhe2Z8BXoquqtN2WxvpZPvYvwfBPVLY7toX+tKQC3YJMY6GO6f0ht0xpi0CKSNV9OBV8nxVo7KIvdl7ht9eEoC8m6T2aVbKiXB1042wb+/mQ/1og8kd0Mf1J2lIDIjBT7TKjoz1MHwwmihs7eNH+B0x47Vy4UVqwKcDJcSok4KS+QtxBABZZm7zcuaABza59Fjh3LVlC4PDl8XbW0AwLzmz2N0eVOAQeBM9uyXYTXjgrUPdMqS7XGUo9bXsH3Im9mTRCzh+b2NigjS7bnlXmqaWsab9LyXXxRoAjh2e7cRYRw8IwMfx3PbPtV6APSHWr6MN1/jAAn4XjbIS5m+PTH0f7yRtv6B9n9KK4wS8hCIjp3+tJVPPqGp3ptXtrqmWspLTaTj2Wa1Vc79Y/+7cvrUWttfIXW/+3cPTAKC5tyG6yEF/kNgEoByJ23vSfYEaIYYCLkeMVpT0sdjx+H8kelc+qZ4ZtUiotqTjpxkNudTAEdC187R8SQUTuM31mz7yTw+hy4/cugbD7RE4F8VHJ0VyQENebd7lSizc4myg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB7149.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(23010399003)(376014)(7416014)(1800799024)(18002099003)(22082099003)(6133799003)(10067099003)(3023799007)(4143699003)(11063799006)(261028144727099003)(261102123227099003)(261022075727099003)(261022105027099003)(56012099006)(261021123027099003)(261021121427099003)(261026140227099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UzJWRlFZaEN0SStmUmsvL05tTzhBR2VJNDl4QzBxK3ZhK0ZUY0tlQUhYL25t?=
+ =?utf-8?B?ek5RTUVtdnBQdEdtZ2Z5R1ZhVG9teEFNcUpkOWNJcFg3a2NleHFjOEVCM3VI?=
+ =?utf-8?B?enZXWHFHVXFUeWMyKytBMVBYRGlPa3BCalVoVURFZzNiR0VjU2J5ME5aZzNK?=
+ =?utf-8?B?ano4bW00bmhtekZiMVJlN3gzNWl0WGlKQWVOMjM4b0RtVUNZdVV3QmhETGZ1?=
+ =?utf-8?B?QURGa3czWnZFZC9GQmxGR0RSa1ZpdVVXM3JwN0pZYld0OVFSMDVudHBpcWdp?=
+ =?utf-8?B?SjkzdlJkSExiZ29HV3hTTXNBT3pUb2NZOEthNnIwV0VBbEJoWktabys3SWRT?=
+ =?utf-8?B?eEVMcXFKWDdhZ0ljcE1xblVFNEVXaXQ3NnNnM3JEZlYyb2cvNUd6VjdFYlJl?=
+ =?utf-8?B?OXB4V1gvUzFVbDZBeEJ3ZC9YcjhLRGNGSWdMdE83dXJITTZqNlZ6aGt2TEgx?=
+ =?utf-8?B?UlNHbHFYTE9jdC9DSmFhWUc2T2U4VHlCdnpzbVc3R1diVHVuUEdvdkpqRGlp?=
+ =?utf-8?B?U3V3QTlQWHMxbEtMd29ZdXdCN0hVNjZsTnI3SEl2d0ltemRlS0k5NlNCc3Iw?=
+ =?utf-8?B?dURnc0ZCWGt5NWFkZ0Z5SjRuZ2tWOFRrTHpReVdmaUkyb1BJMzNwV3hjRUx5?=
+ =?utf-8?B?LzB2ODhyNk5hMUZmVVVsWDVMQWJsSVVLSHF3UFN1QWhTZXhaZGR5TWFLVlZ4?=
+ =?utf-8?B?QVhFOUNObGZzUjV5bjQyTlZYbU02NC9jMTlIUitNeXhwaGliM3d0VXQwWHN1?=
+ =?utf-8?B?R013NGY2MWlHQWZFNHhnbjJhNFVmWEtvQlN1SzE4VGwvYmhTWS8xaVJET0k3?=
+ =?utf-8?B?WE82ZUVNd09QQ0RRMUNhOXhIeUNlMDlIWHFkR2R6NW5LMElTblF6Z3IweHY4?=
+ =?utf-8?B?TUY2am00RU5uMEFGTzBRUTY4K041aXRjK2c2eXB4Tmd0NU5SbXpURkM1YURo?=
+ =?utf-8?B?YjJTbW1XenoxMDB5cVNBU0dGTllZaXVGNnIwc1FPU25JZ2xkNVQ4RndTWVVm?=
+ =?utf-8?B?a3RBWjNwdy9FbHh1TmVscUZKVm56aVgwdjZqYkdWdWpPWEhKMEhJQVJDQXMw?=
+ =?utf-8?B?SDFGNnM5ODhFT2tQTHF2UGpmbHJIanlKSFY3NjREWVNwa1BTcmc2NnhMbVEv?=
+ =?utf-8?B?eFc0MnlMTGlaK1k5YmtPNDIvTjREKzk0aG9VZCsvb2FaY1JCSy9wWjJzTWFT?=
+ =?utf-8?B?VGsyNWo2ZGJWZmVBMU5kRVMwWnkvMXpLSFFCWDYxa2toSk95NmZsR3FCaTBM?=
+ =?utf-8?B?aFFEYkE1eCtWSzlKSm1oazIwckZRb0FMdktveXB6YUF2Y1NDekhZbjNiUk1S?=
+ =?utf-8?B?VFpNOWFvSEI5Vk5YZTcxVUZSRm1pR01mSitRcWU1TjIrckhDWDMzc0RNa1Zs?=
+ =?utf-8?B?djNTek01bFYvL0UrcnVJZnNKeUtxWU5kLzVwNDU0VDh2cHo3OGMzMVcycVRh?=
+ =?utf-8?B?SUJSa0VLUTladFppb21sUU9tQldSdlhVejJaUjZqRFRyR0xUR3dhWWs5U2FZ?=
+ =?utf-8?B?djlEcWQreDVVOEdndXBLdFF6NVlaMS9pbmNYZDZXMndHQWZSWGsrc3NvZGF6?=
+ =?utf-8?B?a3huYjhiOGhOOTVGQ1pkK1o4MjdoZ3RvTEFMaWZDTWVRRHdaSWlnV3Z4UlZL?=
+ =?utf-8?B?SEV3RzVObmcyZ0xOT094MFlnS0ZvNVhHYlBsanltMGdHVG5IbEdLNG5EL3ht?=
+ =?utf-8?B?TDduOExLbEl2SzRVeHNVTnQ2VFRFcVpweXRrR1IwbWo5dGxDZ1dEUzhoOWpD?=
+ =?utf-8?B?MGFqOUFodjgyeFYyV0lHQmJhZm5kRVB3OE0zWXQ1SjByajRYd3BsTUhKMDVV?=
+ =?utf-8?B?QVU4SW4zcTJ6R2xxeXZ5dDlDVmhDeHdkaXhyT2IzODlsZjhZbnNET1p2NEE1?=
+ =?utf-8?B?UnpzUGw3MUs2NXl1TTgxVnFKSjIvTFV0K3pNYkMzdnZFdHhGVXE0SDRZTnlw?=
+ =?utf-8?B?OGs0QnNBdkhROFk4RkpMbnUyM2JSNHBPVEtEdWhGR3FIMVRUbWtSQmJjS3Jt?=
+ =?utf-8?B?a1FuOEtEUFJkL0ZEcHBjbWJIaHF6dUU5S1V3MS9YN3JqNWJkVHo2Wk4ySVVR?=
+ =?utf-8?B?bHFCZTduVjVSck1aYWYwR05HemN6SHdjaFdWU0lkMEQvUzVEc0piQmNHd29a?=
+ =?utf-8?B?TU5VVmRjNEhCc24vaUl3NjV2ZXp1MUhUNmpORW5udWhtbjl0bUVOR096SHF3?=
+ =?utf-8?B?VWpVY1JQTytmcCsvQnFqMUtMRVVjZ1lBeWIxYTBnZTFmZ2xqeFFQQ2xGWk5D?=
+ =?utf-8?B?UWc4eW1RTE02VDc0SVBLQW03YXRoeStWS3JFZU14OVhFUnp1WVNJZXpBNXhM?=
+ =?utf-8?B?cmpGdnJ1VGV2VmhqNHpzTDVxYWFWMVZkeUlhamNsSlllTVQ1UWxpdz09?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: db217871-e638-40f5-e91c-08df3e3f3fc0
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB7149.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 08:55:48.5322
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: lTyFqwmMV0WzCCH4EGciFnonIMAlqoR3tuFQoi8Xf38AHjYuBq1Y1JnHN7HlP5czdRUMJk1M8pwm1O2Ctfj38A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB6648
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_005000_959629_B9372B49 
-X-CRM114-Status: GOOD (  14.76  )
+X-CRM114-CacheID: sfid-20261109_005602_388114_9E169247 
+X-CRM114-Status: GOOD (  10.95  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -108,45 +150,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sun, Nov 08, 2026 at 23:21:08 +0100, Conor Dooley wrote:
-> On Fri, Nov 06, 2026 at 09:30:24AM +0100, Carlo Caione wrote:
-> > The S7 firmware exposes clocks through SCMI, including sources needed
-> > by the other clock controllers.
-> > 
-> > Define their identifiers so devicetree can reference these
-> > firmware-provided clocks.
-> 
-> Are SCMI clock IDs actually suitable for being bindings? Can't the IDs
-> vary here between versions of the firmware?
-> They're also not a "made up" set of indexes, like traditional clocks
-> are, they're real numbers that come from some document akin to
-> interrupts that we do not have bindings for and no driver is likely to
-> reference these definitions either right?
-> 
-> Is something like this not more suitable for being included as a header
-> in the amlogic dts directory?
+Hi Jerome,
 
-Right, I'm not strogly opinonated on this, I followed the existing
-Amlogic SCMI headers, but I agree the dts directory is a better fit.
 
-In v2 I'll drop this patch and add the header to
-arch/arm64/boot/dts/amlogic/ with the DT series instead. The examples
-of the two bindings you just acked will no longer include it though.
+Thanks for your review.
 
-Thanks,
+On 11/6/2026 1:50 AM, Jerome Brunet wrote:
+> [ EXTERNAL EMAIL ]
+>
+>> This series refactors the Meson PLL framework to remove the dedicated
+>> PLL pre-divider (N) parameter from the PLL implementation and model it
+>> as a separate divider clock.
+>>
+>> Currently, the Meson PLL framework models the PLL pre-divider using a
+>> dedicated n field in struct meson_clk_pll_data. This makes the
+>> pre-divider part of the PLL-specific implementation, although the
+>> Common Clock Framework already provides a generic divider clock.
+>>
+>> The pre-divider is not intended to be dynamically adjusted. Each PLL
+>> has a fixed N value as part of its configuration. Most PLLs use N = 1,
+>> while a few special cases use N = 3 to satisfy their PLL input frequency
+>> constraints. Modeling the pre-divider as a separate divider clock
+>> removes PLL-specific handling and simplifies the PLL framework.
+> s/framework/driver
+
+
+Ok, I will rename framework to driver in v3.
+
+>
+> --
+> Jerome
 
 --
-Carlo Caione
+
+Jian
+
 
 _______________________________________________
 linux-amlogic mailing list
