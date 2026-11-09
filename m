@@ -2,106 +2,95 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C8CF606A322
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Nov 2026 00:57:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8C6F606A32A
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Nov 2026 08:09:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cgvAMyex;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=k8L9S03m
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZTUmMom6;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=mCHtfvzY
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
-	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=xs/eFUiTfPkQbFxgs26Uv6qSjf0zrCLW7qMXfgJBHlU=; b=cgvAMyex2eaxJLY2LKuQNbJZ0l
-	HVBRWk5K2fDk9zGxiu+W7dHvFuXxZgggPy/6QciganTVGi0ONQdc0rSU+fTALu2zFMqDsH8Af7ENV
-	vnHCp9g6NyIy/zqUbmLs0zisXkCfcx+ArMckJlX0Wnjc/bCEdmtPSRvWR+S07Tf3w8Eq1qhKRpY3e
-	LrfcAtY+c762M+Z4tPGUK/O6ETaNHeFcNORIFSrpjWjo28PyBIGVP13hVpPMFOqteGdV0z5hur2gC
-	McGQCpQsUUNHhj0fPsG+7GY81JR0BC47723etVTp97W1OYq5x7kZoewEo9ItllL9xUJgihyFFJbzu
-	YUCzeRfg==;
+	bh=wo0CAMz7iFYfHWdHV9S8mFYIJHY3DLCDaMj1nbU6wlw=; b=ZTUmMom67yvIsE/xZ0zXnHqyAW
+	AeYP3yTZcoJkRy3PdX4gnJgto+aHi/yYvUdT4bNwsFXl9izOJ80KE6Vd9jsbnOW+GUnEnvoxQwKIX
+	EyP+UD0skWK1bahthIl6H63wa9vJ260e/B90ZYjdCKDMAorfR1haZGuS6iy8pt3k0JIJIV212epL2
+	hRgmUbz7dJ84zUSYIDWqQOrS5/lQf8Ry/ydFdplZ6fVNzQ36xgW8yN861AKH1uiVDmSf9WRPu6VHu
+	b7cWc1KbdkTOcJ3Is2F7gCIjjv1265slY4yKXw6Mdd0NX0AG/vXkzA0pNgwUhWnL4k1pyhG+v7FHi
+	S+abbxVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQDhq-0000000H0Un-43rL;
-	Mon, 09 Nov 2026 00:57:54 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xQKRj-000000001iu-11xE;
+	Mon, 09 Nov 2026 08:09:43 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQDhp-0000000H0Ud-2HV0;
-	Mon, 09 Nov 2026 00:57:53 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 01DD46182A;
-	Mon,  9 Nov 2026 00:57:53 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794185872;
-	b=oFtotlonBixhADIUAaRFb/R9eMIbYHB68t5Dp9YdKn8p035HsN5/CVVW1cl1Vi0VnmdO
-	 hxr2ZDGnNLu06Jy0tDHCr2okQEt97Wks6bw7SukTgqRuKyGCy+MS6kWLnIuezzXYIFvRx
-	 XbLOUX16ehdd1aDSMy0eavAlhe7qZOu/0j4pGoqq+yZpx8297RSPYUaXcTlAC8/wrEszR
-	 TKiZnB1nMhOyGQSzMeMyFAg86C/rxHiQcQVfbWneYh9dzvSNOujiH4o0NSVtWoCIc4Oqg
-	 RXIjlii04MQBATfn1e2W8KGsnN/zPFkxOQhK9h2THfDb6kc8uHu/Slk55PaXmPLlH6g==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794185872;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:To:Cc:X-Mailer:X-Developer-Signature:
-	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To:
-	 Content-Transfer-Encoding;
-	bh=w/CDc/ekChpK1MEr5fDIpNGu1oRamZM5e+eEMVQj/7E=;
-	b=dV1A4t9XuKShgiXAc+9Ewo1uXYNMlPMZMg2W1DH+56FUCKuPuQxTgKLCFQEBOTbC7AKf
-	 sAaceBnQMilESeUG7ecZppQIaYIs8R5ZyOW4Q/D5k+Eaxz7ZwBBAJUdUXRL5b43ELVpse
-	 6vH/g564dYZj1tAVTC/XTn71ngv9HxdrDltXPwWZ1jWZjaXaSzt9ettwZfjQpSDiV/oa0
-	 9QZzrej2hnIFud6TwhJhWuR9bLwD8Zt8zkV/nmRRjHQl8KUcAojheJAXSDgZlz/zwUcf4
-	 rxL+zmb7VCGi9JHfaoENTZEWPjDeP6KEIU2/qxk8nDCP+UCQp5aCN3r+ZVfdf19Py6A==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 3954B1F0089F;
-	Mon,  9 Nov 2026 00:57:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794185872;
-	bh=w/CDc/ekChpK1MEr5fDIpNGu1oRamZM5e+eEMVQj/7E=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=k8L9S03m3BDqv8PczotWE3y1CXKgKWUtkn2VvTC3249n2qgohy+rBLEDsFkOvVj/7
-	 CPc6bkKvRtY3uT/YqDKFtGbDY5FkODbAWC54f53saPt/vj2DU7yBzouDml+Puu5B3Q
-	 56zCjPFefmzNgooLepmCgqPxPnRpeqUs20OMlc7AXfoCM/54N3J2iJSx4LLwx/rf1p
-	 13uIUQF58KpRSf210pruj6kk41tF6ZU1aM3g6F8Gv78gyu/rdEUluLXGgZ0ZxWz54g
-	 a3ovwriD7g0Z1S94keHCjHW2Huj7j6k653L1IG678tGn6CPsdvf0jgRJ5vzxkGRZGf
-	 ioCuA20uyFoxQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id A9A7E4075E;
-	Mon,  9 Nov 2026 00:57:51 +0000 (UTC)
-From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Mon, 09 Nov 2026 00:57:49 +0000
-Subject: [PATCH] arm64: dts: amlogic: meson-sm1-odroid: mark the Ethernet
- PHY as a wakeup source
+	id 1xQKRe-000000001iB-0LAi
+	for linux-amlogic@lists.infradead.org;
+	Mon, 09 Nov 2026 08:09:41 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-490f38e9688so417814f8f.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 09 Nov 2026 00:09:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1794211775; x=1794816575; darn=lists.infradead.org;
+        h=content-type:mime-version:message-id:date:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=7WgP2xkUAyLjKpFzwzFZYmyYY1jkU6o9DJTWgp1SX/A=;
+        b=mCHtfvzYGI2K8dW6Vq99YyMauMxX2twECbfje2FPUnXHBnoSj46xIKs/Q1zZ1oNwUb
+         32ATO8gMCBJRjMsJOL1U9jDWQeiO0BDzL+kFdIKav7gnbHuZ5oaBdz+XWETZTY0Q6jVo
+         w+bOXrH15ZUUe31y4NHZbQzPXxcTmiUOuLfiGyNz/pnpFXo6dZPGQm9tcAGx/ekT7fQC
+         0j+s0AKtQLHTqCe01Nn1ik7/lieA1i+A1gsNauUM2NRuFvLSvKAsf0KUKjMKSDXDRqxQ
+         OFiHRwH9eNDNjhCrhq0nMy8jkfQIGsCd0PDg8FsWjgt+XxiyGhwU7cxmOBXB66Gge7bO
+         y/sA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794211775; x=1794816575;
+        h=content-type:mime-version:message-id:date:references:in-reply-to
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=7WgP2xkUAyLjKpFzwzFZYmyYY1jkU6o9DJTWgp1SX/A=;
+        b=FGJRko6eI7Tu7gHCNbgLaW9z2wFAVcugMJp+DHT/ouL6e4pvBMrWaULl30hj+5HngF
+         addUUMiPPnkNeIiVJ0P9SiJtbaqZefZs8AIXppTuJHp5qtD8LC/jwF1qTI+7mbt/A4Ew
+         klSM4VbB4Y/QiufwC/HvC3qCkaFrmELmX+hgO1nefy8bdsD5zcr0duMpwrDc109HdyNT
+         UKLQqcNsPPCyKnyAaWM474Oj9SJhZaHXBOSmT2PwU+15gIcIRgIJtu43CvSHPB6T03eN
+         xS2Z0xVo5AbghNvWAZbsYDzGmmI/288FMI27Cfdb3pcdjYd/uv7GM98q7wB1I6hBEsI/
+         Nxsg==
+X-Forwarded-Encrypted: i=1; AL+hErEoPQ7UPcIZgIwPvoE/ePAnov8a5oza/RvOq+MDl8ZWq6nXzWRZb9r3zfTKH6MLweD/nu2MyLNQfZbd5ibV@lists.infradead.org
+X-Gm-Message-State: APuU4Z/fnY3grfx3DerB+gXnztYYfKn+VEgDEfQ4MUVhRVVpXJ4CO3YY
+	Xl07pHG2HL55a6pLAtiHxCL8iBuY4+iYMbhCoe+s9rEJZJFCvzYpiKYsmcu+RtJ5VDY=
+X-Gm-Gg: AYBFou1D3JGHuI2XvYMqQyIBLrs3boqSN6ow0hT+8yQl8iGt2UXkY/GWGQ0oIodnVIv
+	OOQFACGz94cjcYGf3kkCOiiJ3X11jTpyfKUoUS3IYOU/rjpEXjd+SaXIxpQNvRzvGSV+U9B4rCO
+	oUb02Y0yNWbRmSYhG5mIpwWCYru93PFqboiuYMk08GPhxMYzGbkKWa9SE52HrctarNLwsoN59N9
+	meLU1idr/P3JuGY/FEFmHd9CfwoZGRfg1+QXynQieR5A/6d+PeLHNia6GfVQ8/jRJIPwzah/z1s
+	F489N0nF9sDsDNAX4Eoglyoe6K35YTn8QmBG0kFk1WMj3qianIZKUS+rG3KYkJjzYl0uqv3FdN0
+	YqH2x5/EK+MkDDI28+4+l5o9+72Cx0iXXsMa9JtFJ3voIdZHgIs9MStgyd621IIFUNIdmdo/0aD
+	BS+INDEgm28BtEekvNugsInkNeyV/wbczoi3wHxmF4esNHyBpPS+8pST3YsOnnsXKOOCoq8Q6+0
+	2eHKkdCRfszFGq9q9HQ6lY0ckXE/VFNztrTzw6WGRfKBMS52N9wyxhvpqQpG4JTRl16EOQ6csK1
+	YAxj9XiUcQhkeyymEDHk+TQ+NSBOlYkiBspr30Tnq1Cklfmi
+X-Received: by 2002:a05:6000:5c6:b0:490:5521:f24f with SMTP id ffacd0b85a97d-4941f667da5mr10718282f8f.3.1794211775492;
+        Mon, 09 Nov 2026 00:09:35 -0800 (PST)
+Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49597187162sm8595813f8f.34.2026.11.09.00.09.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Nov 2026 00:09:34 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jude Gyimah <jude.gyimah87@gmail.com>, lgirdwood@gmail.com,
+ broonie@kernel.org, perex@perex.cz, tiwai@suse.com
+Cc: neil.armstrong@linaro.org, khilman@baylibre.com,
+ martin.blumenstingl@googlemail.com, linux-sound@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Jude Gyimah <jude.gyimah87@gmail.com>
+Subject: Re: [PATCH 0/4] ASoC: meson: fix missing REGMAP_MMIO dependencies
+In-Reply-To: <20261107165527.576383-1-jude.gyimah87@gmail.com>
+References: <20261107165527.576383-1-jude.gyimah87@gmail.com>
+Date: Mon, 09 Nov 2026 09:09:33 +0100
+Message-ID: <1jmrri1l4y.fsf@starbuckisacylon.baylibre.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261109-hc4-phy-wakeup-v1-1-d98784ecac88@iav.lv>
-X-B4-Tracking: v=1; b=H4sIAIwa8WoC/x3MSQqAMAxA0atI1gYaJ6hXERe1RhsELS1OiHe3u
- HyL/x+IHIQjtNkDgQ+Jsq0JlGdgnVlnRhmToVBFQ6Q0OluhdzeeZuHdo7ZU82BMScSQIh94kus
- fdv37flgHcaZgAAAA
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Igor Velkov <iav@iav.lv>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1953; i=iav@iav.lv;
- h=from:subject:message-id;
- bh=th9XEIxslt9+U3iOsvDowXn3pt6YXgBXd1xZpRrr4n4=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDFkfpfry3jIbvs9Z9Uatelmny21OjdLSH79fPbD2nPIzI
- mF67HyGjlIWBjEuBlkxRZYJhzRuZSy5+tffw/wBzBxWJpAhDFycAjCRMCOGf7ofCvuMDwa/vHVx
- zlTZbeVOSdWZE/2Nv/j83z819/luTRuG/6VWdbxz7a99TLhh3Ngh/o//ywEJu7TgQx/uaf9m9Wi
- sZgMA
-X-Developer-Key: i=iav@iav.lv; a=openpgp;
- fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
-X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
-X-Original-From: Igor Velkov <iav@iav.lv>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261109_000938_141732_E7843B60 
+X-CRM114-Status: GOOD (  15.90  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,69 +100,62 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: iav@iav.lv
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Igor Velkov <iav@iav.lv>
+On sam. 07 nov. 2026 at 17:55, Jude Gyimah <jude.gyimah87@gmail.com> wrote:
 
-The RTL8211F interrupt is wired to GPIOZ_14 and described in the PHY
-node, but the node does not declare that it can wake the board. Without
-wakeup-source the Realtek driver does not make the PHY wakeup capable,
-so phylink leaves Wake-on-LAN to the MAC, and a magic packet does not
-wake the board from s2idle.
+> Each of these drivers can be built into vmlinux while the code
+> providing a symbol it calls is a module, which fails to link.  The
+> same shape in 4 drivers, so they are here as one series.
+>
+> Affected: aiu, axg-pdm, axg-spdifin, axg-spdifout.
+>
+> The fix is a select rather than a depends on: the providers have no
+> prompt of their own and are only ever enabled by a select, so a
+> depends on would leave these drivers unselectable.
+>
+> Each was reproduced on v7.3, arm64 by a vmlinux link that failed on the
+> named symbol, and each links once the select is added.
+>
+> Found with kreach, a static check that compares what Kconfig allows
+> against the symbols the compiled objects actually reference.
+>
+> The checker is at https://github.com/JGyimah/kreach, and the
+> reproducer configuration for each finding is published with it
+> under results/.
+>
+> Jude Gyimah (4):
+>   ASoC: meson: aiu: select REGMAP_MMIO
+>   ASoC: meson: axg-pdm: select REGMAP_MMIO
+>   ASoC: meson: axg-spdifin: select REGMAP_MMIO
+>   ASoC: meson: axg-spdifout: select REGMAP_MMIO
 
-Signed-off-by: Igor Velkov <iav@iav.lv>
----
-Tested on ODROID-HC4 with Linux 7.4-rc1 and the U-Boot and .config of
-Armbian: s2idle, Wake-on-LAN set with ethtool after the link is up. With
-this change a magic packet woke the board 5 of 5 times, in 8 s, with
-pm_wakeup_irq pointing at the PHY. Without it, 0 of 2: the RTC alarm
-woke the board.
+With the change sashiko requested
 
-The test DTB had two other changes: the RTC alarm interrupt [1] and PCIe
-disabled. With PCIe enabled the board did not resume 2 of 2. In the one
-console capture resume starts when the packet is sent, then a hard LOCKUP
-and a panic follow while pci_pm_resume_noirq() of the root port runs;
-pci-meson has no system PM. So on the HC4 with its stock DT this property
-alone does not give working Wake-on-LAN yet.
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 
-Not tested on ODROID-C4, which shares this node.
+The re-spin is necessary because the description does not match the
+change, even if the change is correct.
 
-[1] https://lore.kernel.org/r/20261019-hc4-rtc-alarm-irq-v1-1-078fc79e596f@iav.lv
----
- arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+>
+>  sound/soc/meson/Kconfig | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> -- 
+> 2.43.0
+>
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-index e6f02d738a21..9a4684dfbde3 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-@@ -277,6 +277,7 @@ external_phy: ethernet-phy@0 {
- 		interrupt-parent = <&gpio_intc>;
- 		/* MAC_INTR on GPIOZ_14 */
- 		interrupts = <IRQID_GPIOZ_14 IRQ_TYPE_LEVEL_LOW>;
-+		wakeup-source;
- 	};
- };
- 
-
----
-base-commit: 81e55899e134541583a4e611ff750e1868671c67
-change-id: 20261109-hc4-phy-wakeup-9c15ebaa311e
-
-Best regards,
 -- 
-Igor Velkov <iav@iav.lv>
-
-
+Jerome
 
 _______________________________________________
 linux-amlogic mailing list
