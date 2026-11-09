@@ -2,105 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA175606A31C
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Nov 2026 20:59:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C24E606A321
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Nov 2026 21:26:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xtXyW/m1;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=YXm6ceWA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ph217QwA;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=TJE843tZ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=7tN9sks9FbdczSwyzlMC5f8PyZfoMuY3WFWw8wo/pM4=; b=xtXyW/m1Sf84N2lSqPozWkJ2DQ
-	R5zJMmE1tIXUXMcSFqLSCX3Bc7oIlPTzQYSI46O4/0I18Luc9DwObU1FWv0NOjS1pz4QesM1qVIdz
-	Q/H9I/UrMYxEi+7+C4G/On1ls6DlYaKHHCojR5cuKIya7e9zSLZfkvtb1LyecsFFlDUYTfsBYo3VN
-	eM2e/ZQ2WxFWOo8IlM8yKPxGkJGxsvXoWjTjtsL3PH/cbGHJ9tzeJtP2D8buWw/s5YrSSJ08ad4NX
-	Op4CTX/bAoohkwge9GdOCIrAn+kB4zQJEGWYb3gkVG4jBC9Jzq+9fKzTr36+wShbRWQQ+JVwFbJ3m
-	9NPbobLA==;
+	bh=8J2fPXaTGQzR5mhHeKVzXVKFARl6hjOhsScLMGnB5Sk=; b=ph217QwAcvwIyBe/j6IbzggRL9
+	Ufil3D+f+ob1US+1deXjSjX/pePMc9q+BOB93qDj29zI2BKY0cuZhF7Q0dueWvcwmjfx3pmm+vusr
+	neP5o5QxWfupjx9FqKtsvJNUMJIjaGQF8nN3TMYfwq0XHkZQu/M8IwAltX6MCWwi2CS/dQX7JGITF
+	ojj30a9yyejc6AG8ZxNOPUXkULc6I8AwsweDOSZjA7OUBpFhwDDVSHuc00+7LgR5j26K8iFpYcqma
+	GUjzP3Euu3+wJzl/uZTM9HrVrhdOpK5xC3wkRvjd7EbpYT7iwDPdFzYdakPoGGlmhuMz2iWo9h5st
+	V/2HoWrQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQWSg-00000001iJj-2YoS;
-	Mon, 09 Nov 2026 20:59:30 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1xQWt8-00000001liq-37Kc;
+	Mon, 09 Nov 2026 21:26:50 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQWSc-00000001iHX-3IQk
-	for linux-amlogic@lists.infradead.org;
-	Mon, 09 Nov 2026 20:59:29 +0000
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-4a214c5c4c0so13672065e9.3
-        for <linux-amlogic@lists.infradead.org>; Mon, 09 Nov 2026 12:59:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1794257964; x=1794862764; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=h0yneiKg7DNhOrT8jayZCJtlhVR9ITH7sa+yxZSUWfA=;
-        b=YXm6ceWAvdp6Et9vLxo/fOhN4dq0QV5BBWaNwMMULk9KG/r7sPXXDQH07PZ3mQCsOM
-         rsW+t9AHQyBy/HU3dKQTe1XU5Hjbtly/LHwMW48B9h+csATcwdhOq84jkja7b1sF9wzh
-         rtzbt8khcJLVDo7wvH68N6h8uHcTPP7c6FyahY63pDft/kEOvU4Qw/Q1jzzfAaKDWI92
-         rcR5T+6NuHJNrx1K6ejql2vU/JQMDBpqD4bzyf2ukXOUo57jzZQr2LiSafYq4gdr8r2d
-         WHBUbvrnW0f5mq83LXtJ75N638yres942cdSjWlL20cEUY84Ss+PfS3GbpEr9ymUcjnV
-         A81w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794257964; x=1794862764;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=h0yneiKg7DNhOrT8jayZCJtlhVR9ITH7sa+yxZSUWfA=;
-        b=ZEJaO6DWJDHs7WAiUXKWY3pTNrWpMq84hwVsh8EFtte8QEh2DMdZIrtb7g4lUdgAVu
-         5ONj/QOPUsAdPT3ncC5vKn4Zmq7Fqv2mQd6v03/6hIkgz6k1daCc6WiPU1R2wgXLesAu
-         ykuZ59J70FlNKj5LyFoJYF74y9hNpib0kIi72X104LrV4SjrrE9OHRDEM0hrxbusEw1L
-         UhKClzte8/d3v2pg1Jr/8GnxQJ6N+Uyn7sciE3h1FXh9wscY+SYjYEr8NngR7tBHHFOp
-         PB8UrTjwZh4hK8PLKLqbDBRbXwNZj28dQPxaDwjOy0DMiKr3He/TBRJKmxr6fLHmcURK
-         0m+A==
-X-Forwarded-Encrypted: i=1; AL+hErGjIECG0nsrCF0eyhaaFgo6MxdQKFOf23++Y3VAyCoe/g3z2io3EEurirs4EVrA2OYpt0/3SB2sPNYbCJMZ@lists.infradead.org
-X-Gm-Message-State: APuU4Z84ODsZXNPLsacbsQRuT4pFYfnqhjPKudzjLDDLNaL9qMX8N1XP
-	4jcLROf2hHbGtStpfgpej0Dgxctwn6hORMBGxqjjP5ssMZZSY/irAY4RNdjEpiLSprw=
-X-Gm-Gg: AYBFou2ZkRn3M1hllx1OzOHbiRs8ZjGh4rqSfxy5swhTFeKcvrvWvDLRSY8p/wD9PGz
-	rkvu5xND5TkIIgoWunyAl1TbkBD2cdoPDBKNvaUbjia3GlY9JmavuCcwYcxeaYbEf9A6VkmSRiN
-	b5KLjPs9nHCCUU/yChsJT5ivcVN8t39I2xO9CzMtsqdLbxzfUVlE8WbR7v1osfu7OXs/qjH22tI
-	HkNPq6DuluDKRq25AH9z8/ro2IdQcWFye7hYoP6qPP7YEK+9KYaD5ti+3u0XapIORRjINB72kwF
-	2KvCScne/+lLXvVx5ZhI2/nXp/y18X+cW2ilK4O4nbbZvVCDTCbCTXbTwUQ0U1cg0i4KND13aXt
-	8b2OPEXWZdIh5FKARf13RGSNiGMBuaj1lGWOKjY8dSBHYABi6UdW2gPKWQiLOHIIYIL2CwRng43
-	VkL2sMkZwE7pjdv/wVo1B9R8F1viH1jIfoFA3CC12iWCqN572MXZOKRGW/FCCeUPO8wua3GHjwI
-	xwBFpqn3fet9PNcZ2R5bq0YKPq9FxuBkzMxzjlHiZXLotlATy0CCBJIDvuMrWJWO/CMTbTgZPbV
-	UOcjF4q86jFV7S1YplxZiOkif/JOnXmEkG1bJQNLlrbWx7zkrqvmMItTTmPTTRFcYr0Bw/NNsVt
-	ybNUMSIJ65kjjZdvfuRzv+Q61XZn2w3usRZAFy+bMXKMl0g==
-X-Received: by 2002:a05:600c:3d96:b0:4a3:d327:6ed with SMTP id 5b1f17b1804b1-4ba02347dc6mr6849605e9.17.1794257964075;
-        Mon, 09 Nov 2026 12:59:24 -0800 (PST)
-Received: from macbook.homenet.telecomitalia.it (host-95-246-144-141.retail.telecomitalia.it. [95.246.144.141])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4983284c99bsm1081150f8f.7.2026.11.09.12.59.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2026 12:59:23 -0800 (PST)
-Date: Mon, 9 Nov 2026 21:59:22 +0100
-From: Carlo Caione <ccaione@baylibre.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Brian Masney <bmasney+clk@redhat.com>, Jerome Brunet <jbrunet+clk@baylibre.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Jian Hu <jian.hu@amlogic.com>, Chuan Liu <chuan.liu@amlogic.com>, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/7] dt-bindings: clock: Add Amlogic S7 SCMI clock IDs
-Message-ID: <avIv2GfXHuOPWJzC@macbook.homenet.telecomitalia.it>
-References: <20261106-upstream-s7-clk-v1-0-7d501d62621f@baylibre.com>
- <20261106-upstream-s7-clk-v1-1-7d501d62621f@baylibre.com>
- <20261108-computer-backed-d98862794d18@spud>
- <1jfqxa1jv7.fsf@starbuckisacylon.baylibre.com>
- <20261109-stature-splicing-a146b4cfaad4@spud>
+	id 1xQWt4-00000001lgB-46Z3;
+	Mon, 09 Nov 2026 21:26:47 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 55D3845A53;
+	Mon,  9 Nov 2026 21:26:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01BF21F00906;
+	Mon,  9 Nov 2026 21:26:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794259606;
+	bh=IeL20zffwri2QEDJY4S8vD79Aj6Kzet8Q6gkziCyfEI=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=TJE843tZMJvDkZkZhzeFMq7/WzZ2ynMba7QxPwSHivmYkbarlQTo5KItiqeEc2k0p
+	 udFUN+U07fO9+WrHHqg+dtHxiXmggEZKE6ALV6HPs/GLa2XayOSyyhTRYSAcU0z+rf
+	 Hnmdw3BkT41PwyO9U5cPu5UX9gvd/6Z06z07ckrpk30k3G/OHObgyH7g8uJU/+X5KD
+	 cUO2w33HslzPuTT+1fbz14H5KKowu8IFG1eJj4wJDS9VlJPjXa0ppCUmWRr8PcGCia
+	 5oLywuD3V6NrsseuIomYdUWC7yc65xPUYyy9jyBUnmNCgo15rlJW9VZjEg87ZKbB51
+	 RohhXsfG6J09w==
+Received: from traversing.sirena.org.uk (localhost [IPv6:::1])
+	by traversing.sirena.org.uk (Postfix) with ESMTP id AD2C83021AF7;
+	Mon, 09 Nov 2026 21:26:32 +0000 (GMT)
+From: Mark Brown <broonie@kernel.org>
+To: jbrunet@baylibre.com, lgirdwood@gmail.com, perex@perex.cz, 
+ tiwai@suse.com, Jude Gyimah <jude.gyimah87@gmail.com>
+Cc: neil.armstrong@linaro.org, khilman@baylibre.com, 
+ martin.blumenstingl@googlemail.com, linux-sound@vger.kernel.org, 
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20261109154120.592392-1-jude.gyimah87@gmail.com>
+References: <20261109154120.592392-1-jude.gyimah87@gmail.com>
+Subject: Re: [PATCH v2 0/4] ASoC: meson: fix missing REGMAP_MMIO
+ dependencies
+Message-Id: <179424961953.3711751.2485850214120950980.b4-ty@b4>
+Date: Mon, 09 Nov 2026 18:40:19 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20261109-stature-splicing-a146b4cfaad4@spud>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_125927_532421_064374AB 
-X-CRM114-Status: GOOD (  11.58  )
-X-Spam-Score: -2.1 (--)
+X-Mailer: b4 0.17-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1703; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=scQ/NZ7UXcdBK6jHeXkafGF4axf0CmZWt+PDuXO6Y38=;
+ b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLI+WXXsii9b+2z6OU22tW4s/7teGs9908busUvKOj79/
+ cwvdxS9O0pZGMS4GGTFFFnisrhf1pe8XsN3cGEbzBxWJpAhDFycAjCRW0sZ/hmoF4jft13BuGaD
+ Usft6Rxn+D3zpPUmtc+sd593sSNH/D8jQ2PStxgjn5g3uxa3Hq8vWRH4f06Jjs7GL8muwgeVZkq
+ d4QMA
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,31 +82,58 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 09, 2026 at 20:00:56 +0100, Conor Dooley wrote:
+On Mon, 09 Nov 2026 16:41:16 +0100, Jude Gyimah wrote:
+> ASoC: meson: fix missing REGMAP_MMIO dependencies
+> 
+> Each of these drivers can be built into vmlinux while the code
+> providing a symbol it calls is a module, which fails to link.  The
+> same shape in 4 drivers, so they are here as one series.
+> 
+> Affected: aiu, axg-pdm, axg-spdifin, axg-spdifout.
+> 
+> [...]
 
-> The "document" in this case is the source code of the firmware then.
-> The info might not be printed in the TRM, but it is determined by
-> something, Carlo had to get the numbers from somewhere?
+Applied to
 
-Yes, I got the IDs by enumerating the clocks exposed by the running
-S7 firmware, logging their IDs and names through the Linux SCMI clock
-driver (using a vendor provided firmware and kernel of course).
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.5
 
-And yes, the DT cell is the firmware's SCMI ID, passed through
-without translation. Renumbering these definitions would break that
-correspondence indeed.
+Thanks!
 
-Cheers,
+[1/4] ASoC: meson: aiu: select REGMAP_MMIO
+      https://git.kernel.org/broonie/sound/c/cc2f13940cee
+[2/4] ASoC: meson: axg-pdm: select REGMAP_MMIO
+      https://git.kernel.org/broonie/sound/c/12d753e6ca1d
+[3/4] ASoC: meson: axg-spdifin: select REGMAP_MMIO
+      https://git.kernel.org/broonie/sound/c/4603b51f1dad
+[4/4] ASoC: meson: axg-spdifout: select REGMAP_MMIO
+      https://git.kernel.org/broonie/sound/c/10ac156211d2
 
---
-Carlo Caione
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
 _______________________________________________
 linux-amlogic mailing list
