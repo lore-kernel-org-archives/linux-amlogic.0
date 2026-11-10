@@ -2,74 +2,113 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C24E606A321
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Nov 2026 21:26:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0D27606A33A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Nov 2026 02:28:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ph217QwA;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=TJE843tZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uwvSpJ23;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=agJHtwEL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=8J2fPXaTGQzR5mhHeKVzXVKFARl6hjOhsScLMGnB5Sk=; b=ph217QwAcvwIyBe/j6IbzggRL9
-	Ufil3D+f+ob1US+1deXjSjX/pePMc9q+BOB93qDj29zI2BKY0cuZhF7Q0dueWvcwmjfx3pmm+vusr
-	neP5o5QxWfupjx9FqKtsvJNUMJIjaGQF8nN3TMYfwq0XHkZQu/M8IwAltX6MCWwi2CS/dQX7JGITF
-	ojj30a9yyejc6AG8ZxNOPUXkULc6I8AwsweDOSZjA7OUBpFhwDDVSHuc00+7LgR5j26K8iFpYcqma
-	GUjzP3Euu3+wJzl/uZTM9HrVrhdOpK5xC3wkRvjd7EbpYT7iwDPdFzYdakPoGGlmhuMz2iWo9h5st
-	V/2HoWrQ==;
+	bh=BEp+PYs/zCRprMAZ7HgEUru9UN3dZcRMHI3NduCnAdM=; b=uwvSpJ23LSIBIyx+1Eu7pPmESH
+	nl1eEd6yo9vig1+CzV5IkKpRcR6CrVf6wQP+Kb9uRm45g/s9V7iSiPSI6bubS4LwlKBS8GpDXqilo
+	gpfJ4RPS4I/wbOCTZTEvd05KaeupZbH3+crceT3d3QCYwjkQIt2b+ppf1xjObBiZTbDpuxVNs95sm
+	IfUVSG5UR5sFxivtSWj5gLFNQMpUdjOP5M8PWUIR0B2N7sVGRGv0Z28Xs4YALn0Y5ZF+vGW2DAkzK
+	kIKYeP3ts5wdsISot84Ek5eCFhIxLvFpOpy9PvhKlwsNOxW5jUp1l2k2VUkVaYPgxLqWVd+8zMC/o
+	4an5Oc8A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQWt8-00000001liq-37Kc;
-	Mon, 09 Nov 2026 21:26:50 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xQbbJ-000000029f6-2RaS;
+	Tue, 10 Nov 2026 02:28:45 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQWt4-00000001lgB-46Z3;
-	Mon, 09 Nov 2026 21:26:47 +0000
+	id 1xQbbI-000000029dj-0rII;
+	Tue, 10 Nov 2026 02:28:44 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 55D3845A53;
-	Mon,  9 Nov 2026 21:26:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01BF21F00906;
-	Mon,  9 Nov 2026 21:26:46 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id C0D3A43C65;
+	Tue, 10 Nov 2026 02:28:43 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794277723;
+	b=cCaTw4tn51+57BVbgJra1UdGo7fw+ZLbHob14gMv+QCuBW9rj+qKFGZLx/exHB3GbJU5
+	 LSLl0z37loPKEJnZ16a7/dX8OwI1JlDYPvPn+SoNYUKnN7OCT0WhPXDrvjQNrJHVBtVsg
+	 1Pq6Ji2leyDvmBd5mp95rxDewGYdGuq2YVj/yq58M7TK5zCwvfjTCsNdIAFNOZYIhEwwq
+	 9MmxBKAd8/V4FR/Gh15t4Sz2E4HLCZVL/lFEOozgLGIOSKnTgfRKC4FjBWYMknQQhQZe/
+	 bKjGI3sfYNKjr0kpKcBX+fr7ZaX7teXcGopaq2Woe6LtGugMExelKEf/ojSsdwQsacw==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794277723;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=8ecZOHoObiB+kPAF4SpLaHxeA23SUq7WeosA8aG0FT4=;
+	b=iOO1RMcXpss64AanoK2fNICBm53tifAoTlur4TloaxAv1Z5vmtfMM4pEFyuH1VlQndZJ
+	 P5Ugs5unVRcCw9fj8onUBjRX/voM5HTxyUVGJYBaGTX/A5//Lq7fvEYboyMvx2VvTkLMa
+	 Vx8ahptLLFN4Byn++MAGYjOk1ffXh6LEJn520+6+JlMwjDud0x1OuPpRiqtbwqTt85r22
+	 B0UJI9htBsH6DyaWEY3cfhcbrNY+Vr0nMIHr5TpfGO54q9+i93E902NC0QWw3DidkQY67
+	 zQi6mRYBM5DRdnH+E8/VXno3FrcLoo6+vxaodxxMHGlC6w40nMF7kCc7mBD15xl1zMg==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 37C261F0089F;
+	Tue, 10 Nov 2026 02:28:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794259606;
-	bh=IeL20zffwri2QEDJY4S8vD79Aj6Kzet8Q6gkziCyfEI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=TJE843tZMJvDkZkZhzeFMq7/WzZ2ynMba7QxPwSHivmYkbarlQTo5KItiqeEc2k0p
-	 udFUN+U07fO9+WrHHqg+dtHxiXmggEZKE6ALV6HPs/GLa2XayOSyyhTRYSAcU0z+rf
-	 Hnmdw3BkT41PwyO9U5cPu5UX9gvd/6Z06z07ckrpk30k3G/OHObgyH7g8uJU/+X5KD
-	 cUO2w33HslzPuTT+1fbz14H5KKowu8IFG1eJj4wJDS9VlJPjXa0ppCUmWRr8PcGCia
-	 5oLywuD3V6NrsseuIomYdUWC7yc65xPUYyy9jyBUnmNCgo15rlJW9VZjEg87ZKbB51
-	 RohhXsfG6J09w==
-Received: from traversing.sirena.org.uk (localhost [IPv6:::1])
-	by traversing.sirena.org.uk (Postfix) with ESMTP id AD2C83021AF7;
-	Mon, 09 Nov 2026 21:26:32 +0000 (GMT)
-From: Mark Brown <broonie@kernel.org>
-To: jbrunet@baylibre.com, lgirdwood@gmail.com, perex@perex.cz, 
- tiwai@suse.com, Jude Gyimah <jude.gyimah87@gmail.com>
-Cc: neil.armstrong@linaro.org, khilman@baylibre.com, 
- martin.blumenstingl@googlemail.com, linux-sound@vger.kernel.org, 
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20261109154120.592392-1-jude.gyimah87@gmail.com>
-References: <20261109154120.592392-1-jude.gyimah87@gmail.com>
-Subject: Re: [PATCH v2 0/4] ASoC: meson: fix missing REGMAP_MMIO
- dependencies
-Message-Id: <179424961953.3711751.2485850214120950980.b4-ty@b4>
-Date: Mon, 09 Nov 2026 18:40:19 +0000
+	s=k20260515; t=1794277723;
+	bh=8ecZOHoObiB+kPAF4SpLaHxeA23SUq7WeosA8aG0FT4=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=agJHtwELRQpst+vZ+QDZVUP5wp5hHo4DCjHChOzgNQwiIEQTSDH/xNh3g+/j22ZCl
+	 NnO+yL+ijLaSHyB9OZPX4uFRKaH7GUBY3zTsBu3Y14FaozNZdaM/CZKWTS8LSMpceG
+	 xVy9ldm5fOhwIrA7hUsMYIuPrObXWZ575nXbcPObdOE3NLFDvi4SrIB/VjOgg5cg26
+	 xog8mTADrdSgCJE4d0lqWgVo/Rk4I8YmCob3CN4+X5nuk9/CSy/D0LZ6g9pMn4kJRJ
+	 8HJOPCpDBTbHrTzbVIKBFEv+iAaj4VOd67Dk5TLnA+NTOc5YXEX9WYzKmdKINDTPXa
+	 nVtvTeykRTPiA==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 87A514876C;
+	Tue, 10 Nov 2026 02:28:41 +0000 (UTC)
+From: Jiebing Chen via B4 Relay <devnull+jiebing.chen.amlogic.com@kernel.org>
+Subject: [PATCH v8 0/5] Add support for S4 audio
+Date: Tue, 10 Nov 2026 10:28:23 +0800
+Message-Id: <20261110-audio_drvier-v8-0-1489241e4c83@amlogic.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1703; i=broonie@kernel.org;
- h=from:subject:message-id; bh=scQ/NZ7UXcdBK6jHeXkafGF4axf0CmZWt+PDuXO6Y38=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLI+WXXsii9b+2z6OU22tW4s/7teGs9908busUvKOj79/
- cwvdxS9O0pZGMS4GGTFFFnisrhf1pe8XsN3cGEbzBxWJpAhDFycAjCRW0sZ/hmoF4jft13BuGaD
- Usft6Rxn+D3zpPUmtc+sd593sSNH/D8jQ2PStxgjn5g3uxa3Hq8vWRH4f06Jjs7GL8muwgeVZkq
- d4QMA
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+X-B4-Tracking: v=1; b=H4sIAEeB8moC/2XQ3UoDMRAF4FcpuXYlk79JvPI9RCSbTNqA7UpWg
+ 1L23c0Wam2WuToD3xmYM5upZJrZ0+7MCtU85+nUgn3YsXDwpz0NObbMBBeaA/DBf8U8vcVSM5W
+ Bo9fSQlBOjayRj0Ipf1/qXl5bPuT5cyo/l/YK6/ZaJO+LKgx8sAEUIk/Sev7sj+/TPofHMB3ZW
+ lXFjQtQHReNS7QWkpcYHG25/MeF7bhsPI4pSq45kgpbrm5cguu4atzYNph8RHBbrm8c+ydWvV5
+ XoHUCQmXUlpsrNxyE6bhp3DmSmlutxyC2HP84tN91HBsXo/PkyYXR+nu+LMsv6TZNmyQCAAA=
+X-Change-ID: 20250110-audio_drvier-07a5381c494b
+To: Jerome Brunet <jbrunet@baylibre.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ jian.xu@amlogic.com, shuai.li@amlogic.com, zhe.wang@amlogic.com, 
+ jiebing chen <jiebing.chen@amlogic.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794277720; l=5902;
+ i=jiebing.chen@amlogic.com; s=20250110; h=from:subject:message-id;
+ bh=1IdD/x6+9H2DA3RNvBtQLVmSshzcx8N4zmIF2uAhX+Q=;
+ b=iAgcOXLuH6BggNRoyiFrLKN+7qA4360Uw+cKC0YrkpK7ifL5t8b+4BK9u9MeJ2i1FW37kLBV5
+ weB8Qqjgu+TA/vGIEk0rZEaHWK3C04S2+g/6PUe8Sb/vI6FMi8zGYYR
+X-Developer-Key: i=jiebing.chen@amlogic.com; a=ed25519;
+ pk=6rFvvF45A84pLNRy03hfUHeROxHCnZ+1KAGw/DoqKic=
+X-Endpoint-Received: by B4 Relay for jiebing.chen@amlogic.com/20250110 with
+ auth_id=316
+X-Original-From: Jiebing Chen <jiebing.chen@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,60 +118,133 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: jiebing.chen@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, 09 Nov 2026 16:41:16 +0100, Jude Gyimah wrote:
-> ASoC: meson: fix missing REGMAP_MMIO dependencies
-> 
-> Each of these drivers can be built into vmlinux while the code
-> providing a symbol it calls is a module, which fails to link.  The
-> same shape in 4 drivers, so they are here as one series.
-> 
-> Affected: aiu, axg-pdm, axg-spdifin, axg-spdifout.
-> 
-> [...]
+This series completes the end-to-end audio support
+for S4 SoC from hardware bindings to driver implementation
+and system integration.
 
-Applied to
+1 Device Tree Bindings Updates 
+Added audio power domain and S4 audio clock support for S4 SoC.
+Added S4 audio tocodec binding support.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.5
+2 Driver Implementation
+Implemented S4 tocodec driver for G12A architecture.
+Added S4 audio clock support in AXG audio clock 
 
-Thanks!
+3 Device Tree Integration
+Add Amlogic S4 audio subsystem support in arm64 DTS.
 
-[1/4] ASoC: meson: aiu: select REGMAP_MMIO
-      https://git.kernel.org/broonie/sound/c/cc2f13940cee
-[2/4] ASoC: meson: axg-pdm: select REGMAP_MMIO
-      https://git.kernel.org/broonie/sound/c/12d753e6ca1d
-[3/4] ASoC: meson: axg-spdifin: select REGMAP_MMIO
-      https://git.kernel.org/broonie/sound/c/4603b51f1dad
-[4/4] ASoC: meson: axg-spdifout: select REGMAP_MMIO
-      https://git.kernel.org/broonie/sound/c/10ac156211d2
+Signed-off-by: jiebing chen <jiebing.chen@amlogic.com>
+---
+Changes in v8: 
+- The S4 clock-enable macros now have an _S4 suffix, and S4 uses its own source mux at the correct bit instead of the SM1 one.
+- Align the new CTRL0_BCLK_ENABLE_SHIFT and CTRL0_MCLK_ENABLE_SHIFT macros with the existing style: two spaces after #define, 
+  and the values lined up with the other CTRL0_* macros.
+- Rename the DAPM supplies from I2S BCLK Gate and I2S MCLK Gate to I2S BCLK EN and I2S MCLK EN.
+- Connect both clock supplies directly to OUT EN. They are no longer chained, so the audio path does not pass through them. 
+  OUT EN enables BCLK and MCLK when it is powered on. The audio path remains IN -> SRC -> OUT EN -> OUT Capture.
+- 5 V regulator. Drop regulator-boot-on and regulator-always-on from vcc5v_reg. It stays the amplifier VCC-supply and is enabled only when the amplifier is in use.
+- Unused codec. Remove the dmics node. Nothing referenced it.
+- Amplifier name. Change sound-name-prefix from 10U2 to Analog_PA, and update the audio-routing entries to Analog_PA INL, 
+  Analog_PA INR, Analog_PA OUTL, and Analog_PA OUTR.
+- 64 kHz clocks. Keep CLKID_HIFI_PLL at 1179648000 for the 48 kHz family and CLKID_MPLL0 at 270950400 for the 44.1 kHz family. Add CLKID_MPLL1 at 393216000 for the 64 kHz family.
+- Coaxial SPDIF output. Add spdif_out_h_pins in meson-s4.dtsi. GPIOH_4 is muxed as spdif_out_h / spdif_out, with a 3 mA drive and the bias disabled. 
+  &spdifout_a uses that pinctrl so the coaxial output can be enabled.
+- Disabled by default. Mark the audio controllers, the audio clock controller, and the audio arbiter as status = "disabled" in meson-s4.dtsi. AQ222 enables only the instances it uses.
+- Codec supply. Move AVDD-supply = <&vddio_ao1v8> out of the SoC dtsi and onto the board-level &acodec node.
+- Add the missing blank lines after the new power-domains property and after the new allOf conditional block.
+- Link to v7: https://patch.msgid.link/20261021-audio_drvier-v7-0-2b9aeae9cb8a@amlogic.com
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Changes in v7:
+- Use the supply widget to manage the tocodec clock enable signal.
+- Remove redundant MPLL frequencies.
+- Fixed dt_binding warning
+- Link to v6: https://lore.kernel.org/r/20260126-audio_drvier-v6-0-99e350855bc2@amlogic.com
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Changes in v6:
+- Fix the problem of string for Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+- Remove clock pad register, and it will be submitted as an independent patch.
+- Redescribe sound/soc/meson/g12a-toacodec.c
+- Link to v5: https://lore.kernel.org/r/20250710-audio_drvier-v5-0-d4155f1e7464@amlogic.com
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+Changes in v5:
+- Fix warning Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yam when make dt_binding_check
+- The audio reg is mounted below the APB bus in dts file.
+- Deal with pad clock in a distinct controller.
+- Fix warning for sound/soc/meson/g12a-toacodec.c
+- Link to v4: https://lore.kernel.org/r/20250319-audio_drvier-v4-0-686867fad719@amlogic.com
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Changes in v4:
+- fix dtb check warning 
+- add maxItems of power domain for dt-bindings
+- fixed audio clock pads regmap base and reg offset 
+- use dapm widget to control tocodec bclk and mclk enable
+- Link to v3: https://lore.kernel.org/r/20250228-audio_drvier-v3-0-dbfd30507e4c@amlogic.com
 
-Thanks,
-Mark
+Changes in v3:
+- remove g12a tocodec switch event
+- Modify the incorrect title for dt-bindings
+- Link to v2: https://lore.kernel.org/r/20250214-audio_drvier-v2-0-37881fa37c9e@amlogic.com
+
+Changes in v2:
+- remove tdm pad control and change tocodec base on g12a
+- change hifipll rate to support 24bit
+- add s4 audio clock
+- Link to v1: https://lore.kernel.org/r/20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com
+
+To: Neil Armstrong <neil.armstrong@linaro.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+To: Michael Turquette <mturquette@baylibre.com>
+To: Stephen Boyd <sboyd@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>
+To: Mark Brown <broonie@kernel.org>
+To: Jaroslav Kysela <perex@perex.cz>
+To: Takashi Iwai <tiwai@suse.com>
+To: Kevin Hilman <khilman@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org
+Cc: linux-clk@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-sound@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+
+---
+Jiebing Chen (5):
+      dt-bindings: clock: meson: Add audio power domain for S4 soc
+      dt-bindings: Asoc: axg-audio: Add S4 audio tocodec
+      ASoC: meson: g12a-toacodec: Add S4 tocodec driver
+      clk: meson: axg_audio: add S4 support
+      arm64: dts: amlogic: Add Amlogic S4 Audio
+
+ .../bindings/clock/amlogic,axg-audio-clkc.yaml     |  17 +
+ .../bindings/sound/amlogic,g12a-toacodec.yaml      |   1 +
+ .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts     | 311 ++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi          | 396 +++++++++++++++++++++
+ drivers/clk/meson/axg-audio.c                      | 165 +++++++++
+ sound/soc/meson/g12a-toacodec.c                    |  64 ++++
+ 6 files changed, 954 insertions(+)
+---
+base-commit: a0c666c25aeefd16f4b088c6549a6fb6b65a8a1d
+change-id: 20250110-audio_drvier-07a5381c494b
+
+Best regards,
+--  
+Jiebing Chen <jiebing.chen@amlogic.com>
+
 
 
 _______________________________________________
