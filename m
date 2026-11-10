@@ -2,57 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21BB8606A332
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Nov 2026 02:49:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7676E60A260D
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Nov 2026 05:09:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=k5qpv4BI;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ExmSTTIC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3AReZr8o;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HlsumMSR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:References:
-	In-Reply-To:Cc:To:Subject:From:Message-ID:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=8gLXF9KsmFw7sBO39pY/VzzJeosHTVt0yYL/ubUWFss=; b=k5qpv4BIZh0xX3QSDbt02NtLxA
-	A8n0SHvhkUVI6zY8pcFKFjL9DEwWu60DeXAlHCX2LXZI5Js1KNna/R2kBvsxxCGbP9W09UG7/Binu
-	gcZ1p302KTYbPa/4qehZWJt23H35GymtQUZNLOjSP83WRjiEArvBrqqynL5SDgzblZ3FneUOaC1Uz
-	n0QhLExAeb3quW5lac0rShnCmI6GCsboji4BZKH1mrUXM7/P+BiL1wEdL7eVn1nDMwdBUQL7PcRZ3
-	54zz0HvUtjBsmmgHZ8LNXOR/EI0YnerhYwifuzY61IofYCjOsIPVrvy8+s2slR58q5dLIGlFQWIja
-	Fn+kwnMg==;
+	bh=N0YBR2OM2aFl1uVc7bodFHK652WUkDmeIa/upmCcUCs=; b=3AReZr8oIR1Gl8gE4cJLis5EW6
+	hCAeBzsXqarClohnV4Fo9QHZaC53xHCa/F6GE04Txfpw/aLGofacRTW0o3xGZt55YTUO2zCM8Ccoy
+	xSxNK39ArFcps2dDvw4WcG4VlnFC6XhcuXahOU6Lzc0ylS1fK1DIsAVyzm5GV3JFd1UJzUj6kwKL1
+	Qc+kh3cugu5ggX/LUM2ufLn8tkrhV66Eostjiexw8AZo7Xo0ZE6tX5/A1GCkc35hjpFJUiSQjUYry
+	Vypyfs79uyQB+fDFeMkdfYi0uMTp6IK4XPUnmK/ObWswVm2aOEJebhVSOg0pL8CJsCklig7EGcpof
+	kZSah1Gg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQbv2-00000002CXB-2jao;
-	Tue, 10 Nov 2026 02:49:08 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xQe6j-00000002USE-2UGF;
+	Tue, 10 Nov 2026 05:09:21 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQbv1-00000002CX4-3pye
-	for linux-amlogic@lists.infradead.org;
-	Tue, 10 Nov 2026 02:49:08 +0000
+	id 1xQe6g-00000002UNK-40QE;
+	Tue, 10 Nov 2026 05:09:20 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1CC14636A4;
-	Tue, 10 Nov 2026 02:49:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61CF11F0089F;
-	Tue, 10 Nov 2026 02:49:06 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 06AE1636E0;
+	Tue, 10 Nov 2026 05:09:18 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794287357;
+	b=yumHOzCRMs8sHBEz52MhzjBCbwtwhWf3OZ4lrjS6MtCiG7xRiN+9iJn9JavSPDVJzG5r
+	 5x1xPp6njAEtbP+NVHlqrCs0VBXQ7cR2aIVZehff309GMDTsW0G3UH/Dv1ls3CrzAhOEv
+	 rrLkWbA7PxydFz/TQO/b6jaBTqmbyirFJPJb9GVqf0/2Gc7RIytSOTpOaZ0QxfShwYtSI
+	 GSXnEn3TzkPgwVIcC6tUQpOHmYKPlsneK4xB6By2s8NQtmumUazOgo3n6nd25EXtSfaPV
+	 408UUchlkB25Y/GHz0gnFoLSm8OH165XH/hTl/1+R1q5l4Mp6GIJyVpxke8TJC/lL0A==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794287357;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=5eh6B0MLrnUtM1Hc34WhByD1VEsYF+myuR17nVrgwTI=;
+	b=naQDEH1GEbAUy8dNvQNV9pZBSOuE0tKkZOKU4YiQw0jmfhwbi8Fceut0Q5RUHtVSQvtB
+	 XMxqjGJ6fhVpHqa38CLoDKUkRcRWxoNVx0izerlOGN3pVVfkPpEV8GtGI5ZiQcddqJSRW
+	 DAEvaZ/CTWYCnjsSdLGdWRz6w6get8nPCOsIW3260p3LYANRKfl2FQFs2izA1o4RUNXBK
+	 aVbBE5fnMBNjDpTGi0NzBo+esBsqZb3ZUAns9a/1TvJ2QgmeGlRNfae2+YxXuGrDIUyyk
+	 iTbnKZsrQzyX5xhrk/+ph2pz5XXZi7Txo+ZvTlES84owhOLSaGkxF/urACzZANtyXfg==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 232881F008BC;
+	Tue, 10 Nov 2026 05:09:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794278946;
-	bh=BWKvH/OjHWbKXA6A9HL2uzCDLGobFi9XpMtJ+4XFWG8=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=ExmSTTICFqGUvQ/013AEAixSsbQRgn9rwwIkbZ4cDbwMvm0ajSeDtxYW28ZGIAU9P
-	 3B1V28iEmJbZSukUTXmx8ZZUGxtDeOyrv/BGxBTVZBZ9zZH8tJ8jC3rF7fTv2cpMHf
-	 vjRX3GOxf1SXNKRu9Z4qvghZ7zxXQhQAx6AQhbwqq3qPRJgffT8ia2d2NWGR/aPBek
-	 umG4/6LBhsuQFLjEfGRFndLvzevgdXSIxadq1X3nPPj0hq3vDrwxnBH2EJcpDQGAcD
-	 6wgHvhvtfaBa5vEg88IGh57YAxbLmHtPphPw5nKMPiwTGUg5PIMYevACq7J0E8Rl1V
-	 10IbQgifEI6Fw==
-Message-ID: <sashiko-outbox-206068@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v8 5/5] arm64: dts: amlogic: Add Amlogic S4 Audio
-To: "Jiebing Chen" <jiebing.chen@amlogic.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org
-In-Reply-To: <20261110-audio_drvier-v8-5-1489241e4c83@amlogic.com>
-References: <20261110-audio_drvier-v8-0-1489241e4c83@amlogic.com>
- <20261110-audio_drvier-v8-5-1489241e4c83@amlogic.com>
-Date: Tue, 10 Nov 2026 02:49:05 +0000
+	s=k20260515; t=1794287357;
+	bh=5eh6B0MLrnUtM1Hc34WhByD1VEsYF+myuR17nVrgwTI=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=HlsumMSRzOd8b/Ndw43VWODGK/zVLZFF7zluYWED7TqTzsgAkz3yGwarBtq1CQzc0
+	 fedChpXXszO4rHuTRQj01v5R9CGmecR16dOFrXr2g2U+X6hGQNVC6Kb5P1+V/HUy0e
+	 Ab/rjxxEXhclfIcIqVG7geQ36NF5HeWKPsBmKG0s0iL15aVT7wUd03XlD8d+RA2358
+	 8N9JFrQ98b4h6xzHbowkuWtY8sAz28lb6QR9q5Bhn/uo3+8THyEppL+jn4DPGwlQx/
+	 2KJ1/J/WP2coQ9g0BQ5XHLOshmRpssTx07i5VRCw+Esyrjx8+14j6QjEz1oTTdq64+
+	 6C0oh2YHRozIg==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 7954848871;
+	Tue, 10 Nov 2026 05:09:16 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Tue, 10 Nov 2026 05:09:12 +0000
+Subject: [PATCH v2] pinctrl: amlogic: a4: Allow functions without groups
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Message-Id: <20261110-debug-info-v2-1-73ad7aa0874b@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAPim8moC/22MQQ6CMBAAv0L27Bq22hI9+Q/DgZYtbCKUtEo0p
+ H+3cvY4k8xskDgKJ7hWG0ReJUmYC6hDBW7s5oFR+sKgamWIaoM929eAMvuA1uri+GQaaqAES2Q
+ v7312bwuPkp4hfvb3Sj/7d7MSEtamcdppffYXunXTIwziji5M0Oacv4gh8L2mAAAA
+X-Change-ID: 20261106-debug-info-bb5611e36717
+To: Linus Walleij <linusw@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794287355; l=2644;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=sWD7zbg1mSXOEg9K8sOVvNf5EChgrS2CCVGEpGmu0uo=;
+ b=Bn+UorY0bcUbavYtuQe7WCJiVKPEGNSMK8QgR2s6loKCX7ROkp3eRi8Rgestk9kEQdi97vDnV
+ gPVKPwqjHjMCFU6ZIImK8Ma4yH99sq5pnmF1eeZVaotV47oXxU4ZJuA
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,106 +109,100 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MiBwb3RlbnRpYWwKaXNzdWVzIHRvIGNvbnNpZGVyOgotIFtNZWRpdW1dIGFybTY0OiBkdHM6IGFt
-bG9naWM6IHdyb25nIHNwZGlmaW4gaW50ZXJydXB0IG51bWJlciBpbgogIG1lc29uLXM0LmR0c2kK
-LSBbTWVkaXVtXSBhcm02NDogZHRzOiBhbWxvZ2ljOiBtaXNzaW5nIHBpbmN0cmwgY29uZmlndXJh
-dGlvbiBmb3IKICBzcGRpZmluIG9uIEFRMjIyCi0tCgpjb21taXQgYmE4NjMyOTZkOGExZjljMjg5
-M2M5YzRjNjRkYjg3NDc0ZjU4ZTZlNwpBdXRob3I6IEppZWJpbmcgQ2hlbiA8amllYmluZy5jaGVu
-QGFtbG9naWMuY29tPgoKYXJtNjQ6IGR0czogYW1sb2dpYzogQWRkIEFtbG9naWMgUzQgQXVkaW8K
-ClRoaXMgY29tbWl0IGFkZHMgYXVkaW8gY29udHJvbGxlciBkZXZpY2UgdHJlZSBub2RlcyBmb3Ig
-dGhlIEFtbG9naWMgUzQgU29DCmFuZCBlbmFibGVzIHRoZSBzb3VuZCBjYXJkIGFuZCBhdWRpbyBw
-ZXJpcGhlcmFscyBvbiB0aGUgQVEyMjIgYm9hcmQuCgo+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0
-L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tczQtczgwNXgyLWFxMjIyLmR0cyBiL2FyY2gvYXJtNjQv
-Ym9vdC9kdHMvYW1sb2dpYy9tZXNvbi1zNC1zODA1eDItYXEyMjIuZHRzCj4gaW5kZXggMGEzZjgx
-ZWEwZmIwYS4uMzM0YjU3YmRlNGRlZiAxMDA2NDQKPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRz
-L2FtbG9naWMvbWVzb24tczQtczgwNXgyLWFxMjIyLmR0cwo+ICsrKyBiL2FyY2gvYXJtNjQvYm9v
-dC9kdHMvYW1sb2dpYy9tZXNvbi1zNC1zODA1eDItYXEyMjIuZHRzCgpbIC4uLiBdCgo+IEBAIC0x
-MjksNiArMTQwLDIwNyBAQCB2ZGRjcHU6IHJlZ3VsYXRvci12ZGRjcHUgewo+ICAJCQkJPDY5OTAw
-MCA5OD4sCj4gIAkJCQk8Njg5MDAwIDEwMD47Cj4gIAl9OwoKWyAuLi4gXQoKPiArCQkvKiBzcGRp
-ZiBjb2F4IGlucHV0ICovCj4gKwkJZGFpLWxpbmstMTEgewo+ICsJCQlzb3VuZC1kYWkgPSA8JnNw
-ZGlmaW4+Owo+ICsKPiArCQkJY29kZWMgewo+ICsJCQkJc291bmQtZGFpID0gPCZzcGRpZl9kaXI+
-Owo+ICsJCQl9Owo+ICsJCX07CgpbIC4uLiBdCgo+IEBAIC0yMzUsMyArNDQ3LDEwMiBAQCAmZXRo
-bWFjIHsKPiAgCXBoeS1oYW5kbGUgPSA8JmludGVybmFsX2VwaHk+Owo+ICAJcGh5LW1vZGUgPSAi
-cm1paSI7Cj4gIH07CgpbIC4uLiBdCgo+ICsmc3BkaWZpbiB7Cj4gKwlzdGF0dXMgPSAib2theSI7
-Cj4gK307Cj4gKwo+ICsmc3BkaWZvdXRfYSB7Cj4gKwlwaW5jdHJsLTAgPSA8JnNwZGlmX291dF9o
-X3BpbnM+Owo+ICsJcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsKPiArCXN0YXR1cyA9ICJva2F5
-IjsKPiArfTsKCltTZXZlcml0eTogTWVkaXVtXQpJcyAmc3BkaWZpbiBtaXNzaW5nIHBpbmN0cmwt
-MCBhbmQgcGluY3RybC1uYW1lcyBwcm9wZXJ0aWVzIHRvIG11eCB0aGUKc3BkaWZfaW4gcGluIChh
-bmQgYSBjb3JyZXNwb25kaW5nIHNwZGlmX2luIHBpbm11eCBub2RlIGluIG1lc29uLXM0LmR0c2kp
-PwoKZGFpLWxpbmstMTEgd2lyZXMgJnNwZGlmaW4gdG8gdGhlIGV4dGVybmFsIGNvYXhpYWwgcmVj
-ZWl2ZXIgJnNwZGlmX2RpciwKYW5kIHBpbmN0cmwtbWVzb24tczQuYyBkZWZpbmVzIHRoZSBzcGRp
-Zl9pbiBmdW5jdGlvbiBvbiB0aGUgcGFkIG5leHQgdG8Kc3BkaWZfb3V0X2gsIGJ1dCB1bmxpa2Ug
-JnNwZGlmb3V0X2EsICZzcGRpZmluIGhhcyBubyBwaW5jdHJsIGNvbmZpZ3VyYXRpb24KYW5kIHdp
-bGwgbm90IHJlY2VpdmUgYW4gZXh0ZXJuYWwgaW5wdXQgc2lnbmFsIHVubGVzcyB0aGUgcGluIHdh
-cyBhbHJlYWR5Cm11eGVkIGJ5IGZpcm13YXJlLgoKPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9i
-b290L2R0cy9hbWxvZ2ljL21lc29uLXM0LmR0c2kgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9n
-aWMvbWVzb24tczQuZHRzaQo+IGluZGV4IGRmYzBhMzBhNmU2MWIuLjk4YWMwMWM1ZDZhZGIgMTAw
-NjQ0Cj4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLXM0LmR0c2kKPiAr
-KysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tczQuZHRzaQoKWyAuLi4gXQoK
-PiBAQCAtODYzLDQgKzg3OCwzODUgQEAgZW1tYzogbW1jQGZlMDhjMDAwIHsKClsgLi4uIF0KCj4g
-Kwl0b2Rkcl9hOiBhdWRpby1jb250cm9sbGVyQDMzMDEwMCB7Cj4gKwkJY29tcGF0aWJsZSA9ICJh
-bWxvZ2ljLHNtMS10b2RkciIsCj4gKwkJCQkgImFtbG9naWMsYXhnLXRvZGRyIjsKPiArCQlyZWcg
-PSA8MHgwIDB4MzMwMTAwIDB4MCAweDJjPjsKPiArCQkjc291bmQtZGFpLWNlbGxzID0gPDA+Owo+
-ICsJCXNvdW5kLW5hbWUtcHJlZml4ID0gIlRPRERSX0EiOwo+ICsJCWludGVycnVwdHMgPSA8R0lD
-X1NQSSAzMiBJUlFfVFlQRV9FREdFX1JJU0lORz47Cj4gKwkJY2xvY2tzID0gPCZjbGtjX2F1ZGlv
-IEFVRF9DTEtJRF9UT0REUl9BPjsKPiArCQlyZXNldHMgPSA8JmFyYiBBWEdfQVJCX1RPRERSX0E+
-LAo+ICsJCQkgPCZjbGtjX2F1ZGlvIEFVRF9SRVNFVF9UT0REUl9BPjsKPiArCQlyZXNldC1uYW1l
-cyA9ICJhcmIiLCAicnN0IjsKPiArCQlhbWxvZ2ljLGZpZm8tZGVwdGggPSA8ODE5Mj47Cj4gKwkJ
-c3RhdHVzID0gImRpc2FibGVkIjsKPiArCX07Cj4gKwo+ICsJdG9kZHJfYjogYXVkaW8tY29udHJv
-bGxlckAzMzAxNDAgewo+ICsJCWNvbXBhdGlibGUgPSAiYW1sb2dpYyxzbTEtdG9kZHIiLAo+ICsJ
-CQkJICJhbWxvZ2ljLGF4Zy10b2RkciI7Cj4gKwkJcmVnID0gPDB4MCAweDMzMDE0MCAweDAgMHgy
-Yz47Cj4gKwkJI3NvdW5kLWRhaS1jZWxscyA9IDwwPjsKPiArCQlzb3VuZC1uYW1lLXByZWZpeCA9
-ICJUT0REUl9CIjsKPiArCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMzMgSVJRX1RZUEVfRURHRV9S
-SVNJTkc+Owo+ICsJCWNsb2NrcyA9IDwmY2xrY19hdWRpbyBBVURfQ0xLSURfVE9ERFJfQj47Cj4g
-KwkJcmVzZXRzID0gPCZhcmIgQVhHX0FSQl9UT0REUl9CPiwKPiArCQkJIDwmY2xrY19hdWRpbyBB
-VURfUkVTRVRfVE9ERFJfQj47Cj4gKwkJcmVzZXQtbmFtZXMgPSAiYXJiIiwgInJzdCI7Cj4gKwkJ
-YW1sb2dpYyxmaWZvLWRlcHRoID0gPDI1Nj47Cj4gKwkJc3RhdHVzID0gImRpc2FibGVkIjsKPiAr
-CX07Cj4gKwo+ICsJdG9kZHJfYzogYXVkaW8tY29udHJvbGxlckAzMzAxODAgewo+ICsJCWNvbXBh
-dGlibGUgPSAiYW1sb2dpYyxzbTEtdG9kZHIiLAo+ICsJCQkJICJhbWxvZ2ljLGF4Zy10b2RkciI7
-Cj4gKwkJcmVnID0gPDB4MCAweDMzMDE4MCAweDAgMHgyYz47Cj4gKwkJI3NvdW5kLWRhaS1jZWxs
-cyA9IDwwPjsKPiArCQlzb3VuZC1uYW1lLXByZWZpeCA9ICJUT0REUl9DIjsKPiArCQlpbnRlcnJ1
-cHRzID0gPEdJQ19TUEkgMzQgSVJRX1RZUEVfRURHRV9SSVNJTkc+Owo+ICsJCWNsb2NrcyA9IDwm
-Y2xrY19hdWRpbyBBVURfQ0xLSURfVE9ERFJfQz47Cj4gKwkJcmVzZXRzID0gPCZhcmIgQVhHX0FS
-Ql9UT0REUl9DPiwKPiArCQkJIDwmY2xrY19hdWRpbyBBVURfUkVTRVRfVE9ERFJfQz47Cj4gKwkJ
-cmVzZXQtbmFtZXMgPSAiYXJiIiwgInJzdCI7Cj4gKwkJYW1sb2dpYyxmaWZvLWRlcHRoID0gPDI1
-Nj47Cj4gKwkJc3RhdHVzID0gImRpc2FibGVkIjsKPiArCX07Cj4gKwo+ICsJZnJkZHJfYTogYXVk
-aW8tY29udHJvbGxlckAzMzAxYzAgewo+ICsJCWNvbXBhdGlibGUgPSAiYW1sb2dpYyxzbTEtZnJk
-ZHIiLAo+ICsJCQkJICJhbWxvZ2ljLGF4Zy1mcmRkciI7Cj4gKwkJcmVnID0gPDB4MCAweDMzMDFj
-MCAweDAgMHgyYz47Cj4gKwkJI3NvdW5kLWRhaS1jZWxscyA9IDwwPjsKPiArCQlzb3VuZC1uYW1l
-LXByZWZpeCA9ICJGUkREUl9BIjsKPiArCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMzYgSVJRX1RZ
-UEVfRURHRV9SSVNJTkc+OwoKWyAuLi4gXQoKPiArCXNwZGlmaW46IGF1ZGlvLWNvbnRyb2xsZXJA
-MzMwNDAwIHsKPiArCQljb21wYXRpYmxlID0gImFtbG9naWMsZzEyYS1zcGRpZmluIiwKPiArCQkJ
-CSAiYW1sb2dpYyxheGctc3BkaWZpbiI7Cj4gKwkJcmVnID0gPDB4MCAweDMzMDQwMCAweDAgMHgz
-MD47Cj4gKwkJI3NvdW5kLWRhaS1jZWxscyA9IDwwPjsKPiArCQlzb3VuZC1uYW1lLXByZWZpeCA9
-ICJTUERJRklOIjsKPiArCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTUxIElSUV9UWVBFX0VER0Vf
-UklTSU5HPjsKPiArCQljbG9ja3MgPSA8JmNsa2NfYXVkaW8gQVVEX0NMS0lEX1NQRElGSU4+LAo+
-ICsJCTwmY2xrY19hdWRpbyBBVURfQ0xLSURfU1BESUZJTl9DTEs+Owo+ICsJCWNsb2NrLW5hbWVz
-ID0gInBjbGsiLCAicmVmY2xrIjsKPiArCQlyZXNldHMgPSA8JmNsa2NfYXVkaW8gQVVEX1JFU0VU
-X1NQRElGSU4+Owo+ICsJCXN0YXR1cyA9ICJkaXNhYmxlZCI7Cj4gKwl9OwoKW1NldmVyaXR5OiBN
-ZWRpdW1dClNob3VsZCB0aGUgc3BkaWZpbiBpbnRlcnJ1cHQgYmUgMzUgaW5zdGVhZCBvZiAxNTE/
-CgpPbiBBbWxvZ2ljIFNvQ3MgKHN1Y2ggYXMgbWVzb24tZzEyLmR0c2kgYW5kIG1lc29uLXNtMS5k
-dHNpLCB3aGljaCB1c2UKMTQ4Li4xNTQpLCB0aGUgaW50ZXJydXB0cyBmb3IgdG9kZHJfYS4udG9k
-ZHJfYywgc3BkaWZpbiwgYW5kCmZyZGRyX2EuLmZyZGRyX2MgZm9ybSBhIGNvbnRpZ3VvdXMgYmxv
-Y2suICBIZXJlIHRvZGRyX2EuLnRvZGRyX2MgYXJlIGF0CjMyLi4zNCBhbmQgZnJkZHJfYS4uZnJk
-ZHJfYyBhcmUgYXQgMzYuLjM4LCB3aGlsZSBzcGRpZmluIHN0aWxsIGhhcyAxNTEKZnJvbSBHMTJB
-L1NNMSwgc28gYW55IGNvbnN1bWVyIG9mIHRoZSBzcGRpZmluIGludGVycnVwdCB3aWxsIGJpbmQg
-dG8gdGhlCndyb25nIGxpbmUuCgotLSAKU2FzaGlrbyBBSSByZXZpZXcgwrcgaHR0cHM6Ly9zYXNo
-aWtvLmRldi8jL3BhdGNoc2V0LzIwMjYxMTEwLWF1ZGlvX2Rydmllci12OC0wLTE0ODkyNDFlNGM4
-M0BhbWxvZ2ljLmNvbT9wYXJ0PTUKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlz
-dHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2xpbnV4LWFtbG9naWMK
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+Allow function nodes without child groups during device tree
+parsing instead of returning an error.
+
+Only count and parse nodes with the "func-" prefix as pinctrl
+functions, ignoring other non-GPIO child nodes.
+
+This allows the driver to support function nodes without
+groups and avoid treating unrelated device tree nodes as
+pinctrl functions.
+
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Add debugging information for error dts and Error pinctrl config not affect normal pin work.
+---
+Changes in v2:
+- Reserve banks nfunctions and ngroups no-zero judgement and update commit message simultaneously.
+- Link to v1: https://lore.kernel.org/r/20261106-debug-info-v1-1-067c5c554f91@amlogic.com
+---
+ drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 23 +++++++++++++++--------
+ 1 file changed, 15 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+index 39eb8cc7fc0d..bd12f6fa3d4d 100644
+--- a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
++++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+@@ -821,8 +821,10 @@ static int aml_pctl_parse_functions(struct device_node *np,
+ 	func = &info->functions[index];
+ 	func->name = np->name;
+ 	func->ngroups = of_get_child_count(np);
+-	if (func->ngroups == 0)
+-		return dev_err_probe(dev, -EINVAL, "No groups defined\n");
++	if (func->ngroups == 0) {
++		dev_dbg(dev, "func %s No groups defined\n", func->name);
++		return  0;
++	}
+ 
+ 	func->groups = devm_kcalloc(dev, func->ngroups, sizeof(*func->groups), GFP_KERNEL);
+ 	if (!func->groups)
+@@ -899,8 +901,12 @@ static void aml_pctl_dt_child_count(struct aml_pinctrl *info,
+ 		if (of_property_read_bool(child, "gpio-controller")) {
+ 			info->nbanks++;
+ 		} else {
+-			info->nfunctions++;
+-			info->ngroups += of_get_child_count(child);
++			if (!strncmp(child->name, "func-", 5)) {
++				info->nfunctions++;
++				info->ngroups += of_get_child_count(child);
++			} else {
++				dev_dbg(info->dev, "func node defined err %s\n", child->name);
++			}
+ 		}
+ 	}
+ }
+@@ -1166,10 +1172,11 @@ static int aml_pctl_probe_dt(struct platform_device *pdev,
+ 			}
+ 			bank++;
+ 		} else {
+-			ret = aml_pctl_parse_functions(child, info,
+-						       i++, &grp_index);
+-			if (ret)
+-				return ret;
++			if (!strncmp(child->name, "func-", 5)) {
++				ret = aml_pctl_parse_functions(child, info, i++, &grp_index);
++				if (ret)
++					return ret;
++			}
+ 		}
+ 	}
+ 
+
+---
+base-commit: 89edcad9f23925f5706b7555b02165d1990444d5
+change-id: 20261106-debug-info-bb5611e36717
+
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
