@@ -2,81 +2,63 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D04FF606A321
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Nov 2026 21:54:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2860360A3834
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Nov 2026 21:54:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=g4eH/wwA;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iPI/oWpC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lso4XkpO;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ctjkI+d2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=CGmWYAlMjeBs17lZQxr40uRixj84caoybjxXblzjWEU=; b=g4eH/wwAm2WE0ayHe51Am0x8KW
-	/DEWYYmy5RnqbW8FwhjPSkPDdVPz8Tv/4EG29mD6/H5cHVqlS1w1xYAi1UkoM12s4WJsOMVUQAM0M
-	rHrjRqjTqGG0BzJbz95BivoIFm3adjr8kEABUDhkykhnZCKbmTf6blRoPa0BW96jZYYRudX4xSAXo
-	JuSlRdjnWILRZfE95bwX57XV3/v1OyVeZJMPalDojUOkj/XDiz4dtOXgwFy6TN3i6/MVnmPSCo3h6
-	FeRfCwlqgtgtfx5RDQPjyS+kjAfTlsf84KndZN39Zzu54mYC6HwxCjcA0R48WQMIKUsY0JMwfKQCM
-	xYXhfFEA==;
+	bh=i3u0agzOJ3xGzowtpZViRCo1lsE/t/BPzgDYghRD+qg=; b=lso4XkpOGYHAbnKXWprU/wCOYU
+	0jUaKxaRekZM/YRs5drEK+1GIUpx+hNDCM6P8/hUa4th7DNs5NDdzz71FwKECz1NdYexJZmiu4vze
+	fQlmw9vTpjs+FQG/8UuVBVWTZjSvHGyrin8HI/xOwqgtp2q0x9otQ5aLjKsuCr14EbrKbqmy9vTFg
+	I22HgnWBDtiAS8lobuIOTlLri6erQZYBHkJ7SuzY+y2wZ6G8lf/M7h6Gh5Gc9i29V3BEU5jn3QVY6
+	8kjZX1kHbnZTovSWQR8qETUh397VVpaEeZMr7SgN0T5IkCcuhAc6l0eQA7LtO8lbcPz10AxfmLwI7
+	HcEBLtVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRGGT-00000007rQt-3XZA;
-	Wed, 11 Nov 2026 21:53:57 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xRGHD-00000007rxh-2yM8;
+	Wed, 11 Nov 2026 21:54:43 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRGGS-00000007rQF-1ehf;
-	Wed, 11 Nov 2026 21:53:56 +0000
+	id 1xRGHC-00000007rwP-05gc
+	for linux-amlogic@lists.infradead.org;
+	Wed, 11 Nov 2026 21:54:42 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 29DAF404EF;
-	Wed, 11 Nov 2026 21:53:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C9C61F00A07;
-	Wed, 11 Nov 2026 21:53:51 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 4D4D6635AC;
+	Wed, 11 Nov 2026 21:54:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98A211F00A05;
+	Wed, 11 Nov 2026 21:54:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794434036;
-	bh=vo+Xid6UcgteTwGX3R58YBsHWjRppW5tyw1bkBxSt4I=;
-	h=From:To:Cc:Subject:Date;
-	b=iPI/oWpCeHnCEMErtUbB2VDRAaWW9J2fj7z9qM9xNObLw+vhYbiTeAAwKI1GUFzpB
-	 8J6tK9NjXMawtWmXJ7EtuvUVZzv8i3Jpo8wL8PB1fsAMjH0l4TLB9N0tWy/8P5qAs1
-	 NTb4kOWKJ9UHTsJy7quNX5jyg9qB1PzdgIaBm78Mui3Pk/VxmwHT9TUjJTvesjDWmH
-	 F1rZ6wO/8t6MTYTfWN4BNEmcCIYAHoqq4cZVBcz5j41IjehzfuTZ8B9YHn4DWdlYn1
-	 oIGezAmdft8/q/HoSW91hLiKYlQpj3zSQDRMHUe/bqnI+HxDaqih3NGGAF6AB5swkP
-	 NchItdGVZuArA==
+	s=k20260515; t=1794434081;
+	bh=q645S7MuLxtm0KXEpUvH/1fxmD22ftRK+Tq/SnA/0bc=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=ctjkI+d2kHy1vY4LJPUexzsoO3/W30OnbdRDxZBFGqtlp61gsF+RCZB7YrNWZkV87
+	 XP1+wZ25F7cbVo/6jna/9pRD2hNmuNjKyexW4AQgK1j7d1/ian2Dh+mevzQNMuAVn4
+	 r4m94tcm/RVlz0ONFRr63MA+6mrLoq1+gIqntiVWeqEU2UKiiqDDhQVBc4sltlKDH8
+	 Nzl2J/L6wAe4TzhdmXGAPYD6rDy99T8rlCiUsj6OEIiRfyWTj3OINzxGykeZDXfWb+
+	 XkDrgao/Ch1hj7cG/LFtJBVinQuiY+hdQGssoERkl/T4gReeQ4nzBg0HzoXLigRmKa
+	 ZsZt589PlMMBQ==
 From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org
-Cc: linux-kernel@vger.kernel.org,
-	Akinobu Mita <akinobu.mita@gmail.com>,
-	Alex Smith <alex@alex-smith.me.uk>,
-	Andrey Volkov <avolkov@varma-el.com>,
-	Basavaraj Natikar <Basavaraj.Natikar@amd.com>,
-	Colin Ian King <colin.i.king@gmail.com>,
-	Dale Farnsworth <dfarnsworth@mvista.com>,
-	dmaengine@vger.kernel.org,
-	Frank Li <Frank.Li@kernel.org>,
-	Gary R Hook <gary.hook@amd.com>,
-	Grant Likely <grant.likely@secretlab.ca>,
-	Jacky Huang <ychuang3@nuvoton.com>,
-	Joachim Eastwood <manabian@gmail.com>,
-	Linus Walleij <linusw@kernel.org>,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mips@vger.kernel.org,
-	Paul Cercueil <paul@crapouillou.net>,
-	Peter Pearse <peter.pearse@arm.com>,
-	Philipp Stanner <pstanner@redhat.com>,
-	Raju Rangoju <Raju.Rangoju@amd.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Sanjay R Mehta <sanju.mehta@amd.com>,
-	Shan-Chun Hung <schung@nuvoton.com>,
-	Sylvain Munaut <tnt@246tNt.com>,
-	Vinod Koul <vkoul@kernel.org>,
+To: lee@kernel.org,
 	Xianwei Zhao <xianwei.zhao@amlogic.com>,
-	Zubair Lutfullah Kakakhel <Zubair.Kakakhel@imgtec.com>
-Subject: [PATCH 00/10] dmaengine: Fix teardown races, resource leaks, and error handling
-Date: Wed, 11 Nov 2026 21:52:38 +0000
-Message-ID: <20261111215349.1983909-1-lee@kernel.org>
+	Vinod Koul <vkoul@kernel.org>,
+	Frank Li <Frank.Li@kernel.org>,
+	linux-amlogic@lists.infradead.org,
+	dmaengine@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: stable@vger.kernel.org
+Subject: [PATCH 05/10] dmaengine: amlogic: Destroy free_wq after devres DMA device unregistration
+Date: Wed, 11 Nov 2026 21:52:43 +0000
+Message-ID: <20261111215349.1983909-6-lee@kernel.org>
 X-Mailer: git-send-email 2.56.0.567.gdb80ae8cd5-goog
+In-Reply-To: <20261111215349.1983909-1-lee@kernel.org>
+References: <20261111215349.1983909-1-lee@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -91,72 +73,54 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-These issues were reported by Sashiko.
+aml_dma_probe() registers the DMA device with
+dmaenginem_async_device_register(), so dma_async_device_unregister() is
+deferred until devres release after aml_dma_remove() returns.  However,
+aml_dma_remove() destroys aml_dma->free_wq directly, causing
+aml_dma_free_desc() to queue work onto a destroyed workqueue when
+channels and descriptors are released during devres teardown, and early
+error returns in aml_dma_probe() also leak aml_dma->free_wq.
 
-Cc: Akinobu Mita <akinobu.mita@gmail.com>
-Cc: Alex Smith <alex@alex-smith.me.uk>
-Cc: Andrey Volkov <avolkov@varma-el.com>
-Cc: Basavaraj Natikar <Basavaraj.Natikar@amd.com>
-Cc: Colin Ian King <colin.i.king@gmail.com>
-Cc: Dale Farnsworth <dfarnsworth@mvista.com>
-Cc: dmaengine@vger.kernel.org
-Cc: Frank Li <Frank.Li@kernel.org>
-Cc: Gary R Hook <gary.hook@amd.com>
-Cc: Grant Likely <grant.likely@secretlab.ca>
-Cc: Jacky Huang <ychuang3@nuvoton.com>
-Cc: Joachim Eastwood <manabian@gmail.com>
-Cc: Linus Walleij <linusw@kernel.org>
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-mips@vger.kernel.org
-Cc: Paul Cercueil <paul@crapouillou.net>
-Cc: Peter Pearse <peter.pearse@arm.com>
-Cc: Philipp Stanner <pstanner@redhat.com>
-Cc: Raju Rangoju <Raju.Rangoju@amd.com>
-Cc: Robin Murphy <robin.murphy@arm.com>
-Cc: Sanjay R Mehta <sanju.mehta@amd.com>
-Cc: Shan-Chun Hung <schung@nuvoton.com>
-Cc: Sylvain Munaut <tnt@246tNt.com>
-Cc: Vinod Koul <vkoul@kernel.org>
-Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Zubair Lutfullah Kakakhel <Zubair.Kakakhel@imgtec.com>
+Allocate aml_dma->free_wq with devm_alloc_ordered_workqueue() so it is
+destroyed on probe failure and after dmaenginem_async_device_register()
+unwinds on removal.
 
-Lee Jones (10):
-  dmaengine: pl08x: Defer OF DMA controller registration until slave
-    setup
-  dmaengine: ae4dma: Unregister DMA engine in ae4_pci_remove()
-  dmaengine: ptdma: Unmap descriptor in pt_do_cleanup()
-  dmaengine: ptdma: Remove completed descriptor under vc.lock in
-    pt_cmd_callback_work()
-  dmaengine: amlogic: Destroy free_wq after devres DMA device
-    unregistration
-  dmaengine: arm-dma350: Query dma_cookie_status() under vc.lock in
-    d350_tx_status()
-  dmaengine: bestcomm: Defer publishing bcom_eng until initialisation
-    completes
-  dmaengine: bestcomm: Check rh_create() return value in
-    bcom_sram_init()
-  dmaengine: jz4780: Fix descriptor cleanup on hwdesc setup failure
-  dmaengine: dmatest: Avoid unsigned underflow in min_odd()
+Fixes: b84b5197e344 ("dmaengine: amlogic: Add general DMA driver for A9")
+Closes: https://sashiko.dev/#/bug/linux-c216084a-f89a-48d5-bdea-584522d1bdda
+Cc: stable@vger.kernel.org
+Signed-off-by: Lee Jones <lee@kernel.org>
+---
+ drivers/dma/amlogic-dma.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
- drivers/dma/amba-pl08x.c                | 23 +++++++++
- drivers/dma/amd/ae4dma/ae4dma-pci.c     |  1 +
- drivers/dma/amd/ptdma/ptdma-dmaengine.c |  4 +-
- drivers/dma/amlogic-dma.c               |  3 +-
- drivers/dma/arm-dma350.c                |  3 +-
- drivers/dma/bestcomm/bestcomm.c         | 69 +++++++++++++------------
- drivers/dma/bestcomm/sram.c             |  6 +++
- drivers/dma/dma-jz4780.c                |  5 +-
- drivers/dma/dmatest.c                   |  6 +++
- 9 files changed, 80 insertions(+), 40 deletions(-)
-
+diff --git a/drivers/dma/amlogic-dma.c b/drivers/dma/amlogic-dma.c
+index 684121d13fca..791bd82743d3 100644
+--- a/drivers/dma/amlogic-dma.c
++++ b/drivers/dma/amlogic-dma.c
+@@ -620,7 +620,7 @@ static int aml_dma_probe(struct platform_device *pdev)
+ 	if (!aml_dma)
+ 		return -ENOMEM;
+ 
+-	aml_dma->free_wq = alloc_ordered_workqueue("aml_dma_free", 0);
++	aml_dma->free_wq = devm_alloc_ordered_workqueue(&pdev->dev, "aml_dma_free", 0);
+ 	if (!aml_dma->free_wq)
+ 		return -ENOMEM;
+ 
+@@ -712,7 +712,6 @@ static void aml_dma_remove(struct platform_device *pdev)
+ 		if (aml_chan)
+ 			tasklet_kill(&aml_chan->vchan.task);
+ 	}
+-	destroy_workqueue(aml_dma->free_wq);
+ }
+ 
+ static const struct of_device_id aml_dma_ids[] = {
 -- 
 2.56.0.567.gdb80ae8cd5-goog
 
