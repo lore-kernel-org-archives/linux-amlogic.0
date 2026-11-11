@@ -2,11 +2,12 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 877C1606A33B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Nov 2026 10:13:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34A6E60A2602
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Nov 2026 10:13:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Wf8bfwi3;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=pKGDmjRQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=W17kjfBd;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=Aw+jlCWu;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=JzGhvG7G
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -14,73 +15,88 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Q5IK3ULzpashFzGtxcraK20kf/u335PAbr7RChQBpb4=; b=Wf8bfwi30mPHirVXneiLroAiGS
-	LVV0SPHJiw0n37B1V+NhsL0d8YBQfhrFv9FUth/8ifFnL21PWAq+xQWAd6mebEgCBZeec3uZaAPIy
-	6hRLAegcrtKMSU5ZrCCOcTCmpK6UPSdxPH+FMMBzdkUiMK3pWAINYyMFZb3b8oGO6xu4Yr2VkrZ3q
-	weG6O7zyluDT54HyDsoxAXS7P1bgkGGuntT7VzJUjk/NKgaRwgIllHSFw/bk6News5ZO8jWoc6aHJ
-	lFcWD1u0xxC9F7+/eICVd0f7F7lUI5pwMwLkRSp92ujPcDJPttefXo01TahroMsO2+QuY/n18bzYY
-	klSJRkBg==;
+	bh=Wt4/7UDJQBzajfjPRF9fabjGAaLporjN8suLcKfloys=; b=W17kjfBdssTVyKwJLUHVnabyN/
+	yCI74lIpSIwWMRB8cfKIOmX1Xm8MkAKGSHyH0pV8+3FU4vKm7E0GdKiobetRK8PuDNDslxVl/bKfw
+	lu4jXKSkb2VpjRgrvMdACEsv0B9GSQeBj0Ikm1L1mf3HGRNYpykv6+egmTwyD0PW2LqVm94juSLMg
+	BGuf1OH99hhSuOe0eIdDbRkgve/jnRS6BM1G+dXFFRMx8L1OTuHjMGfEuXTjGfylunAuGL98lMixe
+	OltCZWws9HqsgDuYMXyrt1Xq6lHJq/u6c4U2fQKV1mZ6IAG4lxznrXJG9N4JuMa4DM7lRGlQ/PoR4
+	ieP9MbYg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR5KA-00000006JMS-0vjM;
-	Wed, 11 Nov 2026 10:13:02 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1xR5KE-00000006JQ1-2UPh;
+	Wed, 11 Nov 2026 10:13:06 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR5K4-00000006JJV-3pXP
-	for linux-amlogic@lists.infradead.org;
+	id 1xR5K8-00000006JLC-2kZL
+	for linux-amlogic@bombadil.infradead.org;
 	Wed, 11 Nov 2026 10:13:00 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4a1b07c3c5fso28741905e9.1
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=o4Vnk0yWIEYevoeI5rytnlxL+lVUP6Dc9a6y6ecj/KI=; b=Aw+jlCWupgEBBrZyw7Y512i/Rc
+	IEHBZ6+xyYlZ+Br3KFSoqSx8XECvJzcgI4YnlJY0XSldaOkPrOi+ssOdkSVtZRwi6+9iHgSk7HcYV
+	FVvcMLskwlacFIW/1hmx3tyVCYizthIYWzifvtCDig+W4YHDjcCZGJDPj6LEe7g4rnR3Eci4i9lj0
+	NqdCI4xLtFseV7jGVoSYbx8n2Yp8Nbktu1Q7ixFkJgFkKA19lAvPhUw23ZYav3Z5QMj/mk/bZT7PF
+	hSwQkLuersNeOhL7BF+/1Kxoy3h4CE32Glv/MbFwAetCYZHcz52pUxKf5Vx/Pq6Jmc2XWglYyw3+G
+	MyF82jRg==;
+Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xR5K5-000000090e8-3ZOE
+	for linux-amlogic@lists.infradead.org;
+	Wed, 11 Nov 2026 10:12:59 +0000
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4a20a37703bso21665525e9.1
         for <linux-amlogic@lists.infradead.org>; Wed, 11 Nov 2026 02:12:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1794391975; x=1794996775; darn=lists.infradead.org;
+        d=baylibre.com; s=google; t=1794391976; x=1794996776; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=n3v1AgR+CHCMi0QrlArcix8UUVt6MgDpIHZcAPaGD/I=;
-        b=pKGDmjRQPq8HXdma7N7vLww9Jrsn1Ozpnnfda9ki+Dc8+isi0es1Gh/7iHJH5Qzp8N
-         q5XLy2PHG15fQ8u02Has5zEF4gAfWdbVJyiAZDWEI5/3A2rat0V2SJyEBwrGl2xyZNKF
-         2AQ25k33oxvL3TFvSICIudQyqijtEZF8idFpha/hm1evPpx1trEiP4zATKFjHgl+gb6k
-         +t2srgZQzEQoJYDJUbWMaJzCu/gnSnUITyIrcWco9+12/73XIuDnnC85h8BIySjgQa64
-         DBz+/cHL5jR53aNTJRx5PesluPvA2ysBOV7ycNzIrm813QEUHpZU4pUCidsTrQmnUMC8
-         c/lA==
+        bh=o4Vnk0yWIEYevoeI5rytnlxL+lVUP6Dc9a6y6ecj/KI=;
+        b=JzGhvG7G77uiKi+zcpZzXr/Tz4OGTCgXitZfxPOyAAJZkMaAQKJ+wRRXbHzFgXdMwY
+         WTLUvGad3tfNBHftfUeFvE74j0pdKc/OpGYu5rq69YLqpusrkgaPWNma/cw1gAcQM0Qn
+         fbOjk8uXuqScgNXFNXH4tQKxeoQYICmFGG5d+AesR2FwqCOjoA7vRq3mKvVGW/I0p25j
+         SyHHQKk0JCGDV0bH2BPPUwu766rWAu6Lc59hscwJvuKFL14Ftl08MTD4FPwrk6oFPCiP
+         fnouRt82CYn8I0wm8LnqqccpEB/aeloIFcWnloiiGFeeRpayyMYdZPsR8dFmLT3A49AH
+         pJdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794391975; x=1794996775;
+        d=1e100.net; s=20260707; t=1794391976; x=1794996776;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=n3v1AgR+CHCMi0QrlArcix8UUVt6MgDpIHZcAPaGD/I=;
-        b=jKuvkFZTfVNCwVrZ8Z43QbLgHK9OuNfLZqKYlLOFKpaF9AKKV4tn/ti/Pztge4zEFV
-         BUEmoI1lku8nKz8gSyFwTKk35KtHW2QocuGvjV4MWu0YLZytazV8i5g1WJ66NKnjqnJD
-         eIsmgu7xBzYIcEj3p97q49/nhMZl0A3DiLbWsBqub0mCweLiOEXpjYoH5QD5Qxxi6SY2
-         cO7QL8pWAQR0pxJZMHRnCnRupAA67xSW6G+wThBH+oekanJGiXyS+r3W/JrZA5drHvDT
-         cfiY1Y4rX6dTujGf3h66Gk7C+SDU9FqOlu38Ldc9OPc3z1/5hcLZLCa7C1ryU/31z1zR
-         +YSA==
-X-Forwarded-Encrypted: i=1; AL+hErGF3UEZ6dpB7irTWTu/4R0vHjMnJif47HFRy7WslZUfGs3aWh6YOr60mqpMA4Evdy5xLDy4X6UQn6m90hif@lists.infradead.org
-X-Gm-Message-State: APuU4Z8Y7Diw3pCv1COBMgL/WUk09Q+1pBxZDwkrgtfoye/o5vrd0LuW
-	DLV1C4sAgCvbHSaSRyj7SdX0WLTzjGeLolv4oBnczGx/lOZUT614dtMGzPwyjuwYCMM=
-X-Gm-Gg: AYBFou1tEXZYB0sv4B/gJWtZzTMYgvsVdJ9upwIAl1dyS6ujGB2+78hVqBaiWDZ9uvM
-	S6NmBkD8TTeZNEQkUdhrQwxmRNLoz36rk2uYAjZmCUw8YgxtARsSvmkjgContWdxGxJsKLFMyQU
-	Y2XL5x2snxfY8l6kkjjinvkcjCo7uToVIF7WGPgauVeC/AydPPu9VWn4Y1RJ1sxeqCdpyRFjDMc
-	gPXySQT3y29+ss99qSRkqdc9kNK0cShFyJBRbN3hq9pDaMORJoLNLBNbIZHacacUXwxCima7k68
-	JNYnYpR/VeTgB+OLhMJTYCu4ILIRvdj5jBEtWMwGpXv/6SDMBPeGbAX3Yt2iRTDLEC/6WK2yj7R
-	tQCqmac9lQRZQr84JFfKQHyJbt9gozx8QxgxXu7079GEA9Mckl6S7J1WFVGpfYGYzu3BgjtZuTn
-	Ny7s1qSFxtVdjiIpjBzENpUQVKWN+Y3L91tCL+EZI2K5z+kme2WK3JkPefQjRVFWLsoHfH6EXsN
-	Rhtb4xbnjTSZ4YnmVjDBarypBw8gbWL8pbEbXt2uJ/UW5nhkxHnCUFqatP0YUa51SQbGt5MwI+b
-	tX4vhZQPQC698qzyNWrji24YE9sI
-X-Received: by 2002:a05:600c:1c0c:b0:4a2:1655:87db with SMTP id 5b1f17b1804b1-4ba091a5bcbmr39187675e9.0.1794391974882;
-        Wed, 11 Nov 2026 02:12:54 -0800 (PST)
+        bh=o4Vnk0yWIEYevoeI5rytnlxL+lVUP6Dc9a6y6ecj/KI=;
+        b=GWyQQkeJzUGHc/DWL6c8XwBr9raIu62qpKypyxcMM3nH5QKqT65yVdcuNjWWeq9JWE
+         Id/6trSmaSCMvD4YsQpL2WN4+0kGMD/w2GDE0hPg1OxmPgRUoSDTreLe76glNSyeEY0G
+         QbjoEC6dywupTI2GFg4oDiTj7ygmWOeAU2nDSqYau6+0PfzfyUakRaUa5Lz7EjjA7fji
+         ymeoW0gH72bE/MHfJ+ZfdOtffDbn6Gix21eimadYN/NbOwxs6VTCerYftPrIiUOTj/Yf
+         h6Zn4di6cQu5v6LvfuGtg3NbTAt/t0ss9ZEGNmFuS6Wd/5bJrk7VnV3DGG8O+YVauUpf
+         CNCQ==
+X-Forwarded-Encrypted: i=1; AL+hErGfUl8PFhuZkQL/aptl2rGnWKSiVk/imPYHMXhQrqnjddnGKtf9/A68GMIqUzy+vX2txUmx4po6/1V2OSuK@lists.infradead.org
+X-Gm-Message-State: APuU4Z8wbgbv06Wh/yvC6fpXu9MvPRjrE5D9UCDF6Y7F/cqo+UA+MmA4
+	0ttzUczF03DbRXhk6caUtF9uHD7jy+n2h8mL56uyTfn6BX0Vp86URL3D0yxaRpWzVVU=
+X-Gm-Gg: AYBFou3stm4hxJxUSKNL+DDMG7FcZRpBstIM9i7eeTYgYj+3pthEkmmUfliOI2O7zak
+	VwIh4dukoE+zzYk2RueJ+UNsb4fT/4RyiKvZ/4jG2MtsmJuxZvWICOE03O3GS+GXAIt+afTqKty
+	iYKHRu9T19bn1ZlkWo5SIbSoXSZJFHTu3VVrUXlqD0ewPF09XPdFyWBMIQ6a1AZYjlkXNJfT3Zd
+	aB4EeRBCAS3yHqvJHz4fAL6UAUFk2wFiScNAu6y3E6mVN6a/xJi+3ocrirR38Iu/9bgcHk9e8oS
+	uWF/sCccvzdKqi/xQhhpVsmrygEB/nUz6JOtuCp7mlnpOmEPmZlm2K/PHjyEsBLs3oip8FeB2+w
+	eU/37VKRIowwlxc//vLoS8bqdID5xZxfaACMh/eNLVZmla/jFiqJXvopb7zNa2TxY3JMs0G5YnZ
+	N6uQOV+FJFwkZQrFOPoyGxHJyLSQfBGemzKfijxoI4JmwNwgFAtouPIpK8Ac3LPERr+9UqrQM/f
+	39WpBbn0PVqT0h5QGYFzVBJErnqd++TCxeGJ6vbZixVw4zlv3TKd6mRzlkAjIP2QefK8tEGLSE3
+	ytpOyjF0Wl0NqbkcjkvM6C0TBsg=
+X-Received: by 2002:a05:600c:888d:b0:4ba:495c:2f5d with SMTP id 5b1f17b1804b1-4ba495c2fe5mr18878685e9.9.1794391975803;
+        Wed, 11 Nov 2026 02:12:55 -0800 (PST)
 Received: from [127.0.1.1] ([151.61.248.197])
         by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba01fea745sm124194375e9.10.2026.11.11.02.12.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2026 02:12:54 -0800 (PST)
+        Wed, 11 Nov 2026 02:12:55 -0800 (PST)
 From: Valerio Setti <vsetti@baylibre.com>
-Date: Wed, 11 Nov 2026 11:12:48 +0100
-Subject: [PATCH v2 1/2] ASoC: meson: gx-formatter: change stream lock from
- mutex to spinlock
+Date: Wed, 11 Nov 2026 11:12:49 +0100
+Subject: [PATCH v2 2/2] ASoC: meson: gx-formatter: add lockdep_assert_held
+ check
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261111-gx-formatter-use-spinlock-v2-1-763241aeca52@baylibre.com>
+Message-Id: <20261111-gx-formatter-use-spinlock-v2-2-763241aeca52@baylibre.com>
 References: <20261111-gx-formatter-use-spinlock-v2-0-763241aeca52@baylibre.com>
 In-Reply-To: <20261111-gx-formatter-use-spinlock-v2-0-763241aeca52@baylibre.com>
 To: Jerome Brunet <jbrunet@baylibre.com>, 
@@ -93,18 +109,18 @@ Cc: linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Valerio Setti <vsetti@baylibre.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6296; i=vsetti@baylibre.com;
- h=from:subject:message-id; bh=AM5clnX3PNR8b5jWnSWhqcd+0TC3ywf0Ls6D1xVD6fs=;
- b=owGbwMvMwCV2z3ty7kUrRgbG02pJDFlf7JeIHVcOnz7ZzPIyH2f50x0x+8PPf/DoePR8k9ufw
- zLV7aJ8HaUsDGJcDLJiiiws0+/9LihVe2iccLIAZg4rE8gQBi5OAZiIUTDD/1reef7JW5+1Bdr9
- i7g0jZvR+o6h2ivt1hsPzj076tSo+pThr2jr82DTQ63bXtSc8syJ1tBtc+AzO5/8lIvLXs8pYI4
- iIwA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1220; i=vsetti@baylibre.com;
+ h=from:subject:message-id; bh=vZUPcnmxkAiby0ImBP4p7xGG24J8BAgjSTNkADYSIMA=;
+ b=owGbwMvMwCV2z3ty7kUrRgbG02pJDFlf7Jd0Ttd0+Gv7UCOveuLGBfyZezWL16bIlh+c8LR+d
+ v+dqRrpHaUsDGJcDLJiiiws0+/9LihVe2iccLIAZg4rE8gQBi5OAZjIXAOG/1mGURtdjiyrbC57
+ s7r5XsGPhnn+m40Dlt9qvtLML16S/4CR4Wq+vt6UL3Nrmtf+C/zyRbZZdreH3MHvwXftHDpvXHz
+ zgxMA
 X-Developer-Key: i=vsetti@baylibre.com; a=openpgp;
  fpr=0497DEFB707526E13360C970DE4B936DD13A0100
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_021257_013605_F3003122 
-X-CRM114-Status: GOOD (  19.78  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261111_101257_856658_6DB71FE8 
+X-CRM114-Status: GOOD (  10.32  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,192 +140,39 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Currently a mutex is being used in 'struct gx_stream' to serialize
-access to structure data. This was inherited from the AXG design. An
-important difference though is that in axg-card dai_links are nonatomic
-so callback functions like 'trigger' are allowed to sleep. In GX instead
-dai_links are atomic.
+The documentation of 'struct gx_formatter_ops' states that
+formatter's callbacks for enable/disable/prepare are called with the
+spinlock held. Validate this by adding 'lockdep_assert_held()' in
+'gx_formatter_enable'/'gx_formatter_disable'.
 
-For example, starting playback from userspace with
-'CONFIG_DEBUG_ATOMIC_SLEEP=y' results in a warning message like:
-
-[ ] BUG: sleeping function called from invalid context at kernel/locking/mutex.c:316
-[ ] in_atomic(): 1, irqs_disabled(): 1, non_block: 0, pid: 272, name: speaker-test
-[ ] preempt_count: 1, expected: 0
-
-due to the following call stack:
-
-snd_pcm_do_start (called with spinlock taken)
-  dpcm_fe_dai_trigger
-    dpcm_fe_dai_do_trigger
-      dpcm_dai_trigger_fe_be
-        dpcm_be_dai_trigger
-          soc_pcm_trigger
-            snd_soc_pcm_dai_trigger
-              soc_dai_trigger
-                aiu_encoder_i2s_trigger
-                  gx_stream_start (takes 'ts->lock')
-
-Fix this by changing the lock type from mutex to spinlock. This is safe
-on GX platform because all formatters' functions only perform MMIO regmap
-calls that do not sleep.
-
-'spin_lock_irqsave' is used in 'gx_stream_start'/'gx_stream_stop' because
-trigger runs with IRQs already disabled and stop can also run in IRQ
-context (e.g. in case of XRUN while executing 'aiu_fifo_isr').
-'spin_lock_irq' is instead used in 'gx_formatter_attach'/
-'gx_formatter_detach' in order to prevent IRQs on the same CPU that might
-end up calling 'gx_stream_stop' and therefore deadlock.
-
-While at this also improve 'gx_formatter_detach()' by moving
-'gx_formatter_disable()' under the spinlock guard. This makes it symmetric
-to 'gx_formatter_attach()' and ensures that the prepare/enable/disable
-formatter callbacks are called with spinlock held.
-
-Fixes: a295be8d6210 ("ASoC: meson: gx: add gx-formatter and gx-interface")
+Suggested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Signed-off-by: Valerio Setti <vsetti@baylibre.com>
-
 ---
-
-Changes in v2:
-- Moved 'gx_formatter_disable()' under the spinlock guard in
-  'gx_formatter_detach'. [Martin]
----
- sound/soc/meson/gx-formatter.c | 22 +++++++++++-----------
- sound/soc/meson/gx-formatter.h |  4 ++++
- sound/soc/meson/gx-interface.h |  3 ++-
- 3 files changed, 17 insertions(+), 12 deletions(-)
+ sound/soc/meson/gx-formatter.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/sound/soc/meson/gx-formatter.c b/sound/soc/meson/gx-formatter.c
-index 2d3218cce426..d3bc0c6c81cd 100644
+index d3bc0c6c81cd..46efe34e84e1 100644
 --- a/sound/soc/meson/gx-formatter.c
 +++ b/sound/soc/meson/gx-formatter.c
-@@ -61,7 +61,7 @@ static int gx_formatter_attach(struct gx_formatter *formatter)
- 	struct gx_stream *ts = formatter->stream;
- 	int ret = 0;
+@@ -22,6 +22,8 @@ static int gx_formatter_enable(struct gx_formatter *formatter)
+ {
+ 	int ret;
  
--	mutex_lock(&ts->lock);
-+	spin_lock_irq(&ts->lock);
++	lockdep_assert_held(&formatter->stream->lock);
++
+ 	/* Do nothing if the formatter is already enabled */
+ 	if (formatter->enabled)
+ 		return 0;
+@@ -46,6 +48,8 @@ static int gx_formatter_enable(struct gx_formatter *formatter)
  
- 	/* Catch up if the stream is already running when we attach */
- 	if (ts->ready) {
-@@ -74,7 +74,7 @@ static int gx_formatter_attach(struct gx_formatter *formatter)
- 
- 	list_add_tail(&formatter->list, &ts->formatter_list);
- out:
--	mutex_unlock(&ts->lock);
-+	spin_unlock_irq(&ts->lock);
- 	return ret;
- }
- 
-@@ -85,11 +85,10 @@ static void gx_formatter_detach(struct gx_formatter *formatter)
- 	if (!ts)
+ static void gx_formatter_disable(struct gx_formatter *formatter)
+ {
++	lockdep_assert_held(&formatter->stream->lock);
++
+ 	/* Do nothing if the formatter is already disabled */
+ 	if (!formatter->enabled)
  		return;
- 
--	mutex_lock(&ts->lock);
-+	spin_lock_irq(&ts->lock);
- 	list_del(&formatter->list);
--	mutex_unlock(&ts->lock);
--
- 	gx_formatter_disable(formatter);
-+	spin_unlock_irq(&ts->lock);
- }
- 
- static int gx_formatter_power_up(struct gx_formatter *formatter,
-@@ -212,9 +211,10 @@ EXPORT_SYMBOL_GPL(gx_formatter_create);
- int gx_stream_start(struct gx_stream *ts)
- {
- 	struct gx_formatter *formatter;
-+	unsigned long irq_flags;
- 	int ret = 0;
- 
--	mutex_lock(&ts->lock);
-+	spin_lock_irqsave(&ts->lock, irq_flags);
- 
- 	/* Start all the formatters attached to the stream */
- 	list_for_each_entry(formatter, &ts->formatter_list, list) {
-@@ -228,7 +228,7 @@ int gx_stream_start(struct gx_stream *ts)
- 	ts->ready = true;
- 
- out:
--	mutex_unlock(&ts->lock);
-+	spin_unlock_irqrestore(&ts->lock, irq_flags);
- 	return ret;
- }
- EXPORT_SYMBOL_GPL(gx_stream_start);
-@@ -236,8 +236,9 @@ EXPORT_SYMBOL_GPL(gx_stream_start);
- void gx_stream_stop(struct gx_stream *ts)
- {
- 	struct gx_formatter *formatter;
-+	unsigned long irq_flags;
- 
--	mutex_lock(&ts->lock);
-+	spin_lock_irqsave(&ts->lock, irq_flags);
- 	ts->ready = false;
- 
- 	/* Stop all the formatters attached to the stream */
-@@ -245,7 +246,7 @@ void gx_stream_stop(struct gx_stream *ts)
- 		gx_formatter_disable(formatter);
- 	}
- 
--	mutex_unlock(&ts->lock);
-+	spin_unlock_irqrestore(&ts->lock, irq_flags);
- }
- EXPORT_SYMBOL_GPL(gx_stream_stop);
- 
-@@ -256,7 +257,7 @@ struct gx_stream *gx_stream_alloc(struct gx_iface *iface)
- 	ts = kzalloc_obj(*ts);
- 	if (ts) {
- 		INIT_LIST_HEAD(&ts->formatter_list);
--		mutex_init(&ts->lock);
-+		spin_lock_init(&ts->lock);
- 		ts->iface = iface;
- 	}
- 
-@@ -272,7 +273,6 @@ void gx_stream_free(struct gx_stream *ts)
- 	 * are removing the TDM DAI. It should not be possible
- 	 */
- 	WARN_ON(!list_empty(&ts->formatter_list));
--	mutex_destroy(&ts->lock);
- 	kfree(ts);
- }
- EXPORT_SYMBOL_GPL(gx_stream_free);
-diff --git a/sound/soc/meson/gx-formatter.h b/sound/soc/meson/gx-formatter.h
-index b90b1814d79b..9f5a1720481e 100644
---- a/sound/soc/meson/gx-formatter.h
-+++ b/sound/soc/meson/gx-formatter.h
-@@ -20,6 +20,10 @@ struct gx_formatter_hw {
- 
- struct gx_formatter_ops {
- 	struct gx_stream *(*get_stream)(struct snd_soc_dapm_widget *w);
-+	/*
-+	 * Following functions are called with gx_stream->lock held and local
-+	 * IRQs disabled so they must not sleep.
-+	 */
- 	void (*enable)(struct regmap *map);
- 	void (*disable)(struct regmap *map);
- 	int (*prepare)(struct regmap *map,
-diff --git a/sound/soc/meson/gx-interface.h b/sound/soc/meson/gx-interface.h
-index 2a6207e393e8..a6a5cc9e7af0 100644
---- a/sound/soc/meson/gx-interface.h
-+++ b/sound/soc/meson/gx-interface.h
-@@ -9,6 +9,7 @@
- 
- #include <linux/clk.h>
- #include <linux/regmap.h>
-+#include <linux/spinlock.h>
- #include <sound/pcm.h>
- #include <sound/soc.h>
- #include <sound/soc-dai.h>
-@@ -24,7 +25,7 @@ struct gx_iface {
- struct gx_stream {
- 	struct gx_iface *iface;
- 	struct list_head formatter_list;
--	struct mutex lock;
-+	spinlock_t lock;
- 	unsigned int channels;
- 	unsigned int width;
- 	unsigned int physical_width;
 
 -- 
 2.47.3
