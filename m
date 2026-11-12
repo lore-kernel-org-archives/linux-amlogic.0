@@ -2,120 +2,182 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 746B1606A880
-	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Nov 2026 01:29:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD5A3606A333
+	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Nov 2026 02:40:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pn+CCkmB;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=lGYFhkQ0;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=moVkKXrb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=a7LMKhQJ;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=KI/qRF06;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=JiyNngVp
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=sLjVc8UF3L8fsL16KCa5CDAoHdfFXvJ0nF+p+sGjcfw=; b=pn+CCkmBvyOj9SrYSmbwm30I8Z
-	Y4dAr9PZbrkIruEt2oYBf7y69cpupez8+4ESwK/bK1ztF4hzYn3bNQIZBXUvUIssCbur9Ct2l7Q33
-	fU6Zh23NYaMemf55/0ydN16WTGWCJ6YauEB2mUu3pkefJ8cRwP417LQ60OoA6Fl1ebJ3+LuZJdH9U
-	0Qd6TCPiEtQum9NvIMhfPN0emRVtxeU7q3axaPQ9/Na7hryP1WPWKaN7Bp0DFSrY6FxY+Ts906TGV
-	Wrmwf4u8Cg/b9l++nXs0uE2EAGeR4e/vf1UT5ejtB1s29gJO7F/LAXesTF2zrxAhxB2gVPqp42yJ0
-	ZLqS1Fcg==;
+	bh=I9e6G0Ped6HhDGVcu0//0UYvuRF1TDZD9paHryL+caA=; b=a7LMKhQJy620EsMaCNcktguzd0
+	q1zkiNcM/qoBIEvP2Ico8YqSWpPuY9fcdPiZHHWb6wUBAAKOTIhwYELOLlyswtH/i/Fflq24cMCh3
+	cdMlbq3C3pYNq259/l4q++hTgCaOGFenfPZP87VOgJmxEUjsHGiMyHIGDd6PIlrv/mFjUmGqf6GSH
+	6gsxmyDL+HGZXgPdDkjD3R0nLnBpnp60TaD/bVkjUoRCSWZLqGflidx4htMUnEFGWVrOdGffQRnng
+	I3jnRuNzbfRb5iTccr61t2xpkUmjyCiCp07PfDbXcazeul7eNLUEiM/9og6IIhmk8e/XyXk7ydgwp
+	ck73zvJg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRJdL-00000008NE7-3DT6;
-	Thu, 12 Nov 2026 01:29:47 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xRKjg-00000008XtM-1fGA;
+	Thu, 12 Nov 2026 02:40:24 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRJcq-00000008MKh-1u8B
-	for linux-amlogic@bombadil.infradead.org;
-	Thu, 12 Nov 2026 01:29:16 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
-	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=7gO+W8gGsjCf9Pzr83AlTVVS6n8V9bVZ/U6f8F6rCC4=; b=lGYFhkQ0KiY/kT3m+UCqc90vtY
-	TYXFcLNrypg1mAtP7JAdBUuzwlYNPPTOZW8gvGzOP3BG+TJhRLh25mDabKdfAqSjpGYe5JeeCH4V4
-	we8CSb2BmjiUUN0v2OgeOfo+KMz++SFJvkfTcAUrhNmwVYrZOM3QXMy72fi5/JeKtGVRW04QQLf0Q
-	E5nqvXKlomS3MCS3WaISLyrwn5YwQYWnVdo8LZvuQ2vJ90C8BWAq7XNFoM8ipJ69UVn7grIRt3Cr+
-	YcxjZCHs2t6liReqpWI3q/LC88qGvKOmPlfjjxYBvtIzmN8N+JC19EmxWXMB5xkVOU/bJ7WtPpRjd
-	iS+gYxLg==;
-Received: from mail-oi1-x22c.google.com ([2607:f8b0:4864:20::22c])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRJcl-00000009mqz-3bgD
+	id 1xRKjd-00000008Xrw-3FAl
 	for linux-amlogic@lists.infradead.org;
-	Thu, 12 Nov 2026 01:29:15 +0000
-Received: by mail-oi1-x22c.google.com with SMTP id 5614622812f47-4d7034a99a9so2225910b6e.3
-        for <linux-amlogic@lists.infradead.org>; Wed, 11 Nov 2026 17:29:11 -0800 (PST)
+	Thu, 12 Nov 2026 02:40:22 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AC2aVoW1475381
+	for <linux-amlogic@lists.infradead.org>; Thu, 12 Nov 2026 02:40:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	iih96abnjxj/PozHFDBWYCK9JcXmwzDO9tgu+OyMggw=; b=KI/qRF060qDr0r2Y
+	cJuOgXtsBpuDssWcFJlKOO1nnz751BpTeh9oz1oPGvjmslvWwhtLwO06nYw9Mz4r
+	ecj4zy4uuMABNaIYsfdpdtFlcLHOb0GPfLodjZXjXNDK8Vf+XQwfP+fvVcSjA1fG
+	8h4TorsRex4rX7DoDD7Xb8uxUGXLLNcE7DByWRDzOUXxuwCBoKiBaRMH9GFL3BUA
+	/SVMy9oqTiO0QrtV7oovqEHmjChkcnZA0sdNFtNSTh5HzTW33BNQPX4QbldT90Az
+	F5ZYYFXjKa2Gozlp/vRRIx8hfdaKFek54kf3AKzEgLxcExHQcVbuPbqhhr1obTxj
+	daAuAw==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hvtymt9mx-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-amlogic@lists.infradead.org>; Thu, 12 Nov 2026 02:40:19 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-534f3fe0236so81270721cf.2
+        for <linux-amlogic@lists.infradead.org>; Wed, 11 Nov 2026 18:40:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794446950; x=1795051750; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=7gO+W8gGsjCf9Pzr83AlTVVS6n8V9bVZ/U6f8F6rCC4=;
-        b=moVkKXrbsa6GJv1HfNCTVDMdjCs1oc50kNFoJo63nB/FgQvyYsvcRZvsgwo71VlWpb
-         DnsPxWmkydMkqGeb7KS96vncmtP8SCyAIXyojt55dmuO6bnIfbLuxY77vUHcyJWG9733
-         qjH1sp0hRbJAPFPn7I8RrUPxX6GzFfhnYOg62ZHpkk7zYV7HEqiLhIf4ZjduonGTaUPe
-         jR/v98QCCJu0QXvi0XPsNpU2clLWUPVO7emiiHK6V2It1NK7pmzoMIl4daAAGkMI0uZl
-         7qgWf2y8jsc11PRkS2HqpdDwEqx3roGhtsAzQptq6+qI9KCf0oipV4jIRBCx64Hp50di
-         4t6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794446950; x=1795051750;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+        d=oss.qualcomm.com; s=google; t=1794451219; x=1795056019; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=7gO+W8gGsjCf9Pzr83AlTVVS6n8V9bVZ/U6f8F6rCC4=;
-        b=l6mirEBVPQaHtMNPHwMHQx4IzqgublYnGuyjfsZ5cTqa3tewdHRVBzUEC8WjCMYqhN
-         21+fnyd2g4GcRFgOvOZtS+j68nEKM72v4fFK1pJBiDOwxzdLxJA359m+VffW3Ia2FFvV
-         kbZk9Ed82c4yGKXEu8Wsd2wODWe+GDUNR4uM/vG8SbYh8X3gK5TRqxwDGDjYPO2TswNE
-         urMboOsEeBEcFPCxQrumG9t4ZSl3ytK31HIih8l9bQD05UHwqdGSMdgtP3XdOdLX0WYZ
-         RFW1txwsHe9CfFSwC5mXgB1nrlJgYf7B5eXt0Pwt7SiD7HtTiI63RVXNTMi5dt3oqXFs
-         4ADw==
-X-Forwarded-Encrypted: i=1; AL+hErGo6psZYD9L52tvnsBxzBQEWM3+TA8+DA5ebY0XJb0fn6iT+V7OkIvJh7qq9Avm2ZLpjUU682edd9da5gKP@lists.infradead.org
-X-Gm-Message-State: APuU4Z9gglyVAyZ18JD1ZTJOnQT2iTLiesUBd6dug7AhY32mAvmMb//c
-	Odm1OJsAJfxha7SpehHVKHFlQyUKxc+oclKNj7vglm/2tDrJAG6SEaXoj5IhTfwP
-X-Gm-Gg: AYBFou0VIjUPTxz7k3RnICkI8PcPkq+jMWOjNlkjLQf4UbJUm7R3tAI989b2Ot71dpr
-	6tkGcDALook12u5GZ89qcXlLHFgDt23UPx7fD+Aza1M9nmg+LuDaH3i9m9/uuTNOM0z1/tGgIfL
-	BiK/NMInstw/QzQjbb/yGqcpArx/Q3ZcuUnHW2pKC4oT4NhwHwvt1uEDT7UxCT9ap7lEgXw1slu
-	qJVf4uZS6ujUQmL7NIHBmsqdKh5x0N0auZWLSDyTgHLcATPG0QM+qqkE3MVErVGcW8FwqTL1IXS
-	Q7BMVnLeBzpBX754ZxgQfgbhTFwFbV9FYfFXsxqOoPbEqlQPwfJJSAtSRL0wagPlrKROqaldJI9
-	wuNEqPvjRrqnskekJw1MMHdN02/BP3jzjZnZFS8o1vROyyWWhBUZCrjnLx9b2AZAhEB/04NoS5A
-	KMRC5GvQtii9FMLPQD4SuNEjOW/S0kTX22Howo+k0TzsF7iNNLeQnmZWan0iNYTP7HB7mvlDxu6
-	bcPu1jWvLJwVZEqnaRuzEk6I3uLbvof47Dk7vQBn0zTdqNDlateDpp/LTF/GHmd4Wkh8fx+eF6F
-	0keNJFpVnfX0lyRFTgDfhMUKL3+In14AvN0DvGlxDFtmdcB7j/zUKAc8C0VAexwKqN7mM6OdnJy
-	79Hbb6iXqPKSCH7laP7x5BWITLp5Sigu9cFg8sNR60gCblGm6XlbjOoRBgtdS38MV3kLwe33emz
-	c/Y0JcbYWEzpssWnGzfQ0c3vQoHlfJ74cq1Weh5ealgE2qYugBqci8
-X-Received: by 2002:a05:6808:c215:b0:4d6:9222:99f7 with SMTP id 5614622812f47-56b98327045mr3914540b6e.55.1794446949668;
-        Wed, 11 Nov 2026 17:29:09 -0800 (PST)
-Received: from [127.0.1.1] (174-29-1-49.hlrn.qwest.net. [174.29.1.49])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-56905738049sm6823481b6e.10.2026.11.11.17.29.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2026 17:29:09 -0800 (PST)
-From: James Hilliard <james.hilliard1@gmail.com>
-Date: Wed, 11 Nov 2026 18:28:16 -0700
-Subject: [PATCH v3 37/58] mtd: rawnand: meson: retain open-handle state on
- removal
+        bh=iih96abnjxj/PozHFDBWYCK9JcXmwzDO9tgu+OyMggw=;
+        b=JiyNngVpyNY6NSzp/tmEW5EBraHtg72fHFEXQkdAx4zKs5LA5aChcKAAorA+xqskrS
+         nCyGmuUpoInkQckky5su+E7JTZ6kYjjNXyTJlbfKZVkMmeD/SBLQ+oBvPX2VNeFzTBBH
+         eFVsGHTIBZfGZgxwRBw48NZGu0JAoPtAGrJsaKeTrGWlBNwXJ/EAlztS+2BiQbDS5+sI
+         8FA4XYOW5bddRJVn7/YyZbjV38cdEwCcG9fLHLNj+K7V0YmlI8q9g61xn3D2IxYSXBmc
+         KhUxNgSn2ZnGn64d/hNBKOttJ42q9MukbKA+x9CB8GlLec7cHHnACbyK3Lvtm99B/dXp
+         +eow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794451219; x=1795056019;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=iih96abnjxj/PozHFDBWYCK9JcXmwzDO9tgu+OyMggw=;
+        b=anSMpWRtRuW+yJsSPspYRc9RtEDtu62CE5hD93X8YGAYzSODtHuIVhUoZhef+/5tki
+         1fYj87xhrGenr62UYC0itSn9PzajnGxjynBONUANqn54Ke7Gy3krHhPdpiIWxVk8T5o5
+         y27sq++92KhoXCg4Fr9dcHLsBwEQXKveejXs6Yixq/onMget8Gb6IDtHuL8Trxe6ziFE
+         3MHOMAbE/2vdR5sQp9dK8Q6uOX3PMgYcPZGLF/aDpv3cydG86pagCOQRBFMNyDhxtDq+
+         XcocTZo7TeOoArUPCQirlKscCm6TBLz0tJ4mcPtkRA0CvwxovltDFMVobJEXP8usHWpx
+         UEmQ==
+X-Forwarded-Encrypted: i=1; AL+hErGQm6e6kdB3XFxPlWSnTAChe9y/oSa8kqR2P2uUkNAMRGofIhF1zo4xwV7v4qhxZhVIowUBKHz7Zyse4DUr@lists.infradead.org
+X-Gm-Message-State: APuU4Z/NphUKXzWiwpPj1oMWks/SugHf2phCIXObsrOcKnBKZ8KB8xdF
+	ATlX6Qa2EzvrzSni3qjZx7gNrFIsFVd/G0lY1+bqceGnKqVGtAjQ8mD4+rL1KtvLPfujmAZPVJa
+	zypxsdINxd/OEH/+Yr4FuFIWep3dks6PYdcAY+5VZfxVQ8tBf5rOKWmlNoz7hV7xl5Lx0xBJtqw
+	==
+X-Gm-Gg: AYBFou1d/D/yTyL+S5IdnYtTt1J8csYMVzBNX/3HhznM/w6n6Ixb/pCkcSCiwh+yCN6
+	LaVL94PbbNn0e9afUC6792xG9cd4I1e7nfVLacXmrYX/BgmNQUYm/wqH/PhoyizHGBBTQPeBsOj
+	bgIwen38js6nStiG7XgerT5GJi8CvNidhyjKTk6WWfl5BznA4ozdTzOfZgDXjAz285KO8XFI09A
+	JzqkLqsayr2e/TxOpktWV2Gf6xJTB0feABN+rwVtHseeH0IzOfTGPPIP9lhJkNBHfzDkWfqtZ9H
+	OiHCzmLnSOVOx9gu3Hcnu+O4bmJFyhI9RiucTWhA0ukyqIvcjL567+nXKl6zJ3a/vWixWhTgaK1
+	TkVHzatXYsRdVzNUQs4spOC1UHV+m+MPr+60zGBGY7/5DVADw/Bnd1qR5YV83nMCqZnWnYu7zOl
+	jb0FXZhPh90kVeoIcqP8VGLB3OVv1UCJWFXaQgF4o=
+X-Received: by 2002:a05:622a:4e0a:b0:536:352d:65e9 with SMTP id d75a77b69052e-556c25188e0mr64866151cf.65.1794451219054;
+        Wed, 11 Nov 2026 18:40:19 -0800 (PST)
+X-Received: by 2002:a05:622a:4e0a:b0:536:352d:65e9 with SMTP id d75a77b69052e-556c25188e0mr64861391cf.65.1794451209677;
+        Wed, 11 Nov 2026 18:40:09 -0800 (PST)
+Received: from [10.111.167.254] (Global_NAT1_IAD_FW.qualcomm.com. [129.46.232.65])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-5550bd33340sm64426881cf.21.2026.11.11.18.39.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Nov 2026 18:40:09 -0800 (PST)
+Message-ID: <ffe9dd90-909c-4259-8a57-2ea67307a95b@oss.qualcomm.com>
+Date: Thu, 12 Nov 2026 10:39:56 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261111-submit-rawnand-retained-handle-lifetime-v1-v3-37-ce537999741d@gmail.com>
-References: <20261111-submit-rawnand-retained-handle-lifetime-v1-v3-0-ce537999741d@gmail.com>
-In-Reply-To: <20261111-submit-rawnand-retained-handle-lifetime-v1-v3-0-ce537999741d@gmail.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>
-Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- James Hilliard <james.hilliard1@gmail.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Liang Yang <liang.yang@amlogic.com>, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.15.2
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 6/9] drm/msm/dp: don't take extra references on
+ multiple plug events
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Jani Nikula <jani.nikula@linux.intel.com>,
+        Rodrigo Vivi <rodrigo.vivi@intel.com>,
+        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+        Tvrtko Ursulin <tursulin@ursulin.net>,
+        Francesco Dolcini <francesco@dolcini.it>,
+        Kevin Hilman
+ <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov
+ <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Pengyu Luo <mitltlatltl@gmail.com>,
+        Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+        intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org
+References: <20261024-hpd-irq-events-v8-0-6ee949e7a384@oss.qualcomm.com>
+ <20261024-hpd-irq-events-v8-6-6ee949e7a384@oss.qualcomm.com>
+Content-Language: en-US
+From: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+In-Reply-To: <20261024-hpd-irq-events-v8-6-6ee949e7a384@oss.qualcomm.com>
+X-Proofpoint-GUID: rLi94ekrsBJ_XmT3aOQMq6aLbwyI82Yy
+X-Proofpoint-ORIG-GUID: rLi94ekrsBJ_XmT3aOQMq6aLbwyI82Yy
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEyMDAxMCBTYWx0ZWRfX3ChbrkR70qVp
+ /iPw83hJunhr75XzpD48TXQk44VJK0R5DBzBMXX18ELDD2N9g4HUHWF33bGx/s55P9bSqGO1yjj
+ k34MQeEqd9B3sZanUcyadabsMoEe4p3sC1L6oN8F92QF6C2TLMn3l1+PJc1wvRheeGmGQ6ItfZU
+ Ulhs7fCj6MYTmxgOdAFS/0ln3neJ+4weK6FiDgUehZMwrbVQKZBVSBitV1JylBwrp0rjiMzX+OU
+ r2YcWom0o+lB+TRtAHBVFyMacKzrTDsXa82U4r4sWMdGOSJbU+VmfhNq92AJFcpx4LQarNEsUy4
+ ypPopyxk9iNmNPwgt3X1BxFfN9rasDNEtXymTpcCjiIhEDSoY6Lb51RpDv98Upt2x6CsNYpA/lA
+ p3OzfYBg1SanCjpZ/pRz26VAPtNAFKfWE27H5Q9SoVkJfjVR1aDSX7Ysd2NFg7oXGOY3aQdMZfs
+ 8ZP4b2kvHWmXB/pKWLA==
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEyMDAxMCBTYWx0ZWRfX4RtxuWWpbDUu
+ W8Iop/aZ7L4Zmye0V9iNFSPKq8nYJadoCcefonbeoVNj1QB0lkPq5PF0Cm1A2owmebMSDvvyx/F
+ grJZAoekMaK+OpAoRWG705cci7Zv6mk=
+X-Authority-Analysis: v=2.4 cv=Q4BHcI2a c=1 sm=1 tr=0 ts=6af52713 cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=C3Dk8TwHQYyIj7nOf9RCJw==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
+ a=EUspDBNiAAAA:8 a=UkfVDg3vQ6na--iosyQA:9 a=QEXdDO2ut3YA:10
+ a=dawVfQjAaf238kedN5IG:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-12_01,2026-11-11_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 priorityscore=1501 phishscore=0
+ adultscore=0 suspectscore=0 clxscore=1011 bulkscore=0 malwarescore=0
+ spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
+ definitions=main-2611120010
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_012912_044942_C31C695F 
-X-CRM114-Status: GOOD (  15.17  )
-X-Spam-Score: 0.1 (/)
+X-CRM114-CacheID: sfid-20261111_184021_930025_908C7B0B 
+X-CRM114-Status: GOOD (  20.52  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,173 +187,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Keep chip metadata and controller storage alive until the final MTD
-reference is released. Unregister and disconnect each published chip
-before releasing the resources used by its hardware operations.
 
-Free transfer buffers in the synchronous NAND detach callback.
 
-Cc: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: Liang Yang <liang.yang@amlogic.com>
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>
-Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
----
- drivers/mtd/nand/raw/meson_nand.c | 47 +++++++++++++++++++++++++--------------
- 1 file changed, 30 insertions(+), 17 deletions(-)
+On 10/24/2026 8:35 AM, Dmitry Baryshkov wrote:
+> The upper layers might signal multiple sequential HPD plug events. Don't
+> take extra references and skip all further HPD plug events until we
+> receive the unplug event.
+> 
+> Fixes: 3ea2d1c3d154 ("drm/msm/dp: turn link_ready into plugged")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
+>   drivers/gpu/drm/msm/dp/dp_display.c | 3 +++
+>   1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
+> index fa8942922b53..ce919a26fba2 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_display.c
+> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
+> @@ -412,6 +412,9 @@ static int msm_dp_hpd_plug_handle(struct msm_dp_display_private *dp)
+>   
+>   	guard(mutex)(&dp->plugged_lock);
+>   
+> +	if (dp->plugged)
+> +		return 0;
+> +
+>   	ret = pm_runtime_resume_and_get(&pdev->dev);
+>   	if (ret) {
+>   		DRM_ERROR("failed to pm_runtime_resume\n");
+> 
+Hi, the issue reported by the AI is real. There is a regression in the 
+SST case: when .detect() runs first, it sets plugged to true. As a 
+result, when msm_dp_hpd_plug_handle() is called, 
+msm_dp_display_process_hpd_high() is skipped, which causes the 
+subsequent failure.
 
-diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-index 2a554f62a25e..871dc5e22759 100644
---- a/drivers/mtd/nand/raw/meson_nand.c
-+++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -1398,8 +1398,7 @@ meson_nfc_nand_chip_init(struct device *dev,
- 		return -EINVAL;
- 	}
- 
--	meson_chip = devm_kzalloc(dev, struct_size(meson_chip, sels, nsels),
--				  GFP_KERNEL);
-+	meson_chip = kzalloc(struct_size(meson_chip, sels, nsels), GFP_KERNEL);
- 	if (!meson_chip)
- 		return -ENOMEM;
- 
-@@ -1410,12 +1409,13 @@ meson_nfc_nand_chip_init(struct device *dev,
- 		if (ret) {
- 			dev_err(dev, "could not retrieve register property: %d\n",
- 				ret);
--			return ret;
-+			goto free_chip;
- 		}
- 
- 		if (test_and_set_bit(tmp, &nfc->assigned_cs)) {
- 			dev_err(dev, "CS %d already assigned\n", tmp);
--			return -EINVAL;
-+			ret = -EINVAL;
-+			goto free_chip;
- 		}
- 	}
- 
-@@ -1427,21 +1427,23 @@ meson_nfc_nand_chip_init(struct device *dev,
- 
- 	nand->options |= NAND_USES_DMA;
- 	mtd = nand_to_mtd(nand);
--	mtd->owner = THIS_MODULE;
-+
- 	mtd->parent_dev = dev;
- 
- 	ret = of_property_read_u32(np, "nand-rb", &nand_rb_val);
- 	if (ret == -EINVAL)
- 		nfc->no_rb_pin = true;
- 	else if (ret)
--		return ret;
-+		goto free_chip;
- 
--	if (nand_rb_val)
--		return -EINVAL;
-+	if (nand_rb_val) {
-+		ret = -EINVAL;
-+		goto free_chip;
-+	}
- 
- 	ret = nand_scan(nand, nsels);
- 	if (ret)
--		return ret;
-+		goto free_chip;
- 
- 	if (nand->options & NAND_IS_BOOT_MEDIUM) {
- 		ret = of_property_read_u32(np, "amlogic,boot-pages",
-@@ -1449,8 +1451,7 @@ meson_nfc_nand_chip_init(struct device *dev,
- 		if (ret) {
- 			dev_err(dev, "could not retrieve 'amlogic,boot-pages' property: %d",
- 				ret);
--			nand_cleanup(nand);
--			return ret;
-+			goto cleanup_nand;
- 		}
- 
- 		ret = of_property_read_u32(np, "amlogic,boot-page-step",
-@@ -1458,21 +1459,30 @@ meson_nfc_nand_chip_init(struct device *dev,
- 		if (ret) {
- 			dev_err(dev, "could not retrieve 'amlogic,boot-page-step' property: %d",
- 				ret);
--			nand_cleanup(nand);
--			return ret;
-+			goto cleanup_nand;
- 		}
- 	}
- 
-+	ret = nand_set_lifetime(nand, to_meson_nand(nand));
-+	if (ret)
-+		goto cleanup_nand;
- 	ret = mtd_device_register(mtd, NULL, 0);
- 	if (ret) {
- 		dev_err(dev, "failed to register MTD device: %d\n", ret);
--		nand_cleanup(nand);
-+		nand_disconnect(nand);
-+		mtd_put_master(mtd);
- 		return ret;
- 	}
- 
- 	list_add_tail(&meson_chip->node, &nfc->chips);
- 
- 	return 0;
-+
-+cleanup_nand:
-+	nand_cleanup(nand);
-+free_chip:
-+	kfree(meson_chip);
-+	return ret;
- }
- 
- static void meson_nfc_nand_chips_cleanup(struct meson_nfc *nfc)
-@@ -1486,8 +1496,9 @@ static void meson_nfc_nand_chips_cleanup(struct meson_nfc *nfc)
- 		mtd = nand_to_mtd(&meson_chip->nand);
- 		WARN_ON(mtd_device_unregister(mtd));
- 
--		nand_cleanup(&meson_chip->nand);
-+		nand_disconnect(&meson_chip->nand);
- 		list_del(&meson_chip->node);
-+		mtd_put_master(mtd);
- 	}
- }
- 
-@@ -1550,15 +1561,17 @@ static int meson_nfc_probe(struct platform_device *pdev)
- 	struct meson_nfc *nfc;
- 	int ret, irq;
- 
--	nfc = devm_kzalloc(dev, sizeof(*nfc), GFP_KERNEL);
-+	nfc = kzalloc_obj(*nfc);
- 	if (!nfc)
- 		return -ENOMEM;
-+	ret = devm_nand_controller_init(dev, &nfc->controller, nfc);
-+	if (ret)
-+		return ret;
- 
- 	nfc->data = of_device_get_match_data(&pdev->dev);
- 	if (!nfc->data)
- 		return -ENODEV;
- 
--	nand_controller_init(&nfc->controller);
- 	INIT_LIST_HEAD(&nfc->chips);
- 	init_completion(&nfc->completion);
- 
-
--- 
-2.53.0
-
+I tried removing the plugged update from .detect(), and that fixes the 
+SST issue. The display works now. However, there is still an 
+intermittent issue where the wrong resolution is selected. I suspect 
+this is related to the timing of the EDID read: when fbcon comes up, the 
+correct EDID may not be available immediately.
 
 _______________________________________________
 linux-amlogic mailing list
