@@ -2,113 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EEBB606A8A1
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Nov 2026 13:56:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4872606A331
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Nov 2026 14:23:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xmav9r2J;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=LJFyvvAe
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mapvLXMr;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=m4LUgG+4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version:Subject:
-	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=0frs4OKAzXOE8weLXj1vXu3ex04rk6q59jaTughR/Sk=; b=xmav9r2Js5p2eovkjuVnztf+E8
-	QRCe4fduQPkqQ24WNYCrS7Q58w/0D7pzdsdB0EuW4V24RDXKHsRBU7UyulrHlaerT3I9RfrdfnIKO
-	SoP0zrTRIzK89Q7CaunVAHcUmQwSLKChnSe3R2cAE/7l/qTc/RKVOywGyy7mAkTevPWyymUaPLJp6
-	CDy6e4Wtu2tYTAzf/A2hl1Ukdmztcze8QuiReuD+pTHYNUk72PgimLI81gBmW/f6XCkGyokGPu+ry
-	X6g0sRuxvCQvEqoeqORJ8OirkK1S9x9HeitURXsFMZf5uTRjTigsyoEPQEae4Gm24IesFMrMaZQvW
-	2LQ8bcJg==;
+	bh=DSKRmBBg/HVq0nfa1dDSBrU8Vutn5MWUFsv7RmjakkU=; b=mapvLXMrStXI1W9rKlMBM4RQn9
+	r/RTlfXA8qJRtnKwF25XGHxd+aDIuC0b4frtS3yJEUI+QFnpj7xHKQ/NPrCdwFRfnGQO/fP5WgPW5
+	Ir0dVCqUqBl1qbsZ4Y9qn0gNPzDIs0x8WQMY2Uq1yEDleMGfbvcMeke1RIDmEgg0MEjMr4NyDvaub
+	tkZQ2jL6ldEcVTFRZM4bDyaY428EfoUnkzp3GFG1MJCVTisPAsP1jTjuWbNhtORPRSlUW7cIc7v5x
+	v3sh8uhO2FElS+gJMfXZOyvB8ORvM/DCJjV5N/dfkrH/9yKHlmCswn7Mbv6PylmQIiFWnqwL95JyW
+	YNB3O5GQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRrlq-0000000D3Rb-3s9p;
-	Fri, 13 Nov 2026 13:56:50 +0000
-Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	id 1xRsBh-0000000D8SX-1OaX;
+	Fri, 13 Nov 2026 14:23:33 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRrll-0000000D3O4-20kB
-	for linux-amlogic@lists.infradead.org;
-	Fri, 13 Nov 2026 13:56:49 +0000
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-48e46e449e8so975772f8f.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 13 Nov 2026 05:56:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1794578203; x=1795183003; darn=lists.infradead.org;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=OBZlMLfPsVQIpOJpXajuH7DlrD4e9+7gm2lISPcBfUk=;
-        b=LJFyvvAeiUM+JhD0l2CtpMPiW20WmTqe6GXdw7ur8Nl8QE3TbK2ebLXA9TcJUU0qAn
-         Hmg7EHyTgJoIAoguyEeFQV7cyog8qKQHGqVF2N2yz9YUv1RO82mZKyfsVzK5ViQtSMrw
-         SKGk8vz5Rgm7mDZgae5aWDrYYY7N3g128PxWtHJjHZhkQ4ro/FEFlUkhvWVwLCWmT5gM
-         1grPpVBzdf4BVW8Kmp930svgta7xpN8+VpkqBBQjjjRu+hkIuDao+Na0+k2XBG6HKRjI
-         4rzn4sDCGviHAE4Dw3EemkmATgef+2snVglGV4HJrMkeZ736JN4v1yOqu9ZwMHLeDv4+
-         ydKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794578203; x=1795183003;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to:content-type;
-        bh=OBZlMLfPsVQIpOJpXajuH7DlrD4e9+7gm2lISPcBfUk=;
-        b=Ejo6eLWLXo7Q/ZaumiXjJshZZ4Jd1nAgcMVvuqgyj1Oth6lMNT8ySUuP9eu/rM15iI
-         KLo4lQzdoWCgfdbFAnPgMMepdwwbp2R/WK1WUNNJ0RPGLwQbqFKaVroeGSiGlKKRuETQ
-         NAudp/SNl/gXBdZnrHwM5R2HTTrlE1RswRmgQWizQtfHgEw73vsLS05gKV1bqJyl7AfF
-         2NhMtjNUXtw0xjtIabH8rKE6JEQa7MjqCfRLrbbyun0Qe6q+BwtgKPEYU3izPdfPN/GE
-         C39o2lP6jJSoTdgiePZezgMbdEp9SoLtKAS3cw0jNH85Zu7ZnWC6f08ije3tMo/NlM5L
-         jOng==
-X-Forwarded-Encrypted: i=1; AL+hErFgisbqgOPdwtF0gbfhAmdGBDku2VwtXZOT2y85RIlHPr5giBvXxR24PHK5nyD3z1QsQs14nSHEKNFQe7ix@lists.infradead.org
-X-Gm-Message-State: APuU4Z+fHwQ+ow2p9fdDJ/QP5M5lW9BHF4ZBYwEuv0Fyh6LFoUFw828V
-	eJq4PPDojKsEWsz3+39yQ4mafZEMDW5g9DY4k1LktTmBqxNTX+NWm56NDkSEB0Yw89Y=
-X-Gm-Gg: AYBFou1pbXbZq18c/8cYm3pz55HuA3OTrxR8q96PkXoY9LRjSljFcaJsyRCFK8BIhtD
-	qdmRCqX99rofCTzV4NBmLjduTNmplSY7VlZVs4flNp9aLsSMrlLojL4mebt1/m+Yi/sODnQuY5V
-	tivOymBMuQRG09/mGmi4YTVX8lmuPdNWc05p+gqcsnUGHgn9/H6f/3+O3amtrjck9NBbUbVA44T
-	EVg7kcwjL7N4nklSyEbpW4AchlR+Ejnfm6Q7ihJscNzZz51/aHdzNKJw65pWA9+6g+RI3wYGOlX
-	KTdDLX/wWyMcEsxJmStlHu4Hxq4my/e/2oqncwmpv9pq1b6iWxZsiYkm3z1KPvjboTwgGNJ2CoC
-	nLndCO21be9Dbi8x28gb52Od39lGIuL3MmYyLbkdtqZ+pH7Can+By+d5N68QEnOYFnNqjsKeIj4
-	9IeHzFqiF0np1HPD5V3vmZeiCnl514+6wj5AUQGHae6/L5ev3M9B8IlWq1TVV5HkNL1jIJNUaGL
-	oJD479xqr2k7j0Ng+m/jm2HdBri8WaIiMOqDYkCoKzTXWIptUB9b5KF8UntBJH1WXxSGpXmjfNs
-	84VCnFQPfycs
-X-Received: by 2002:a05:6000:2c04:b0:48e:3b53:e100 with SMTP id ffacd0b85a97d-49c73164e37mr5793896f8f.56.1794578203223;
-        Fri, 13 Nov 2026 05:56:43 -0800 (PST)
-Received: from [127.0.1.1] ([151.61.248.197])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c608d10b2sm8233202f8f.44.2026.11.13.05.56.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2026 05:56:42 -0800 (PST)
-From: Valerio Setti <vsetti@baylibre.com>
-Date: Fri, 13 Nov 2026 14:56:34 +0100
-Subject: [PATCH v2] ASoC: meson: aiu-fifo: prevent sleeping when spinlock
- is held
+	id 1xRsBg-0000000D8SM-3Y4E;
+	Fri, 13 Nov 2026 14:23:32 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 0E91A6021D;
+	Fri, 13 Nov 2026 14:23:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91A091F000C4;
+	Fri, 13 Nov 2026 14:23:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794579811;
+	bh=oTXRYCpqjj1rl3vyHjx8W2/mRwY/DkjlcdCqq9U+cmg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=m4LUgG+4O9wOw5PECmOhmjElyPGjEyauwluxzttah1Qm4rZn1lH+6EbmtsEpGYM6Z
+	 1pOjj1lnIQwn/m/JWEoRkZbJp+d0lVyDYNA3aUerzZYvYb2Hl5QMjLXUDo4h2ejIWl
+	 XGyy1GonO7vjji4FZq1Xis8QL0A8zIookpUN2PAtMFxp7XIAj6hLJ20J+rrb1lhd2r
+	 DQVzM1pjJojQBDknpYKRMXhcMwpyHhWyI36ByZmJgve+Yz5xs2tpekHiqAfcoLk3dk
+	 uywxWeLFQChUcwlrTeFypKz7KeFdE1+upscnEjlIGCQtTFBjgQpacVUcNyOB9JjWVt
+	 W08xaPWirg4cw==
+Date: Fri, 13 Nov 2026 08:23:29 -0600
+From: Rob Herring <robh@kernel.org>
+To: Lucas Tanure <tanure@linux.com>
+Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>,
+	davem@davemloft.net, Eric Dumazet <edumazet@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/7] dt-bindings: net: amlogic,meson-dwmac: add
+ amlogic,t7-dwmac
+Message-ID: <20261113142329.GA593855-robh@kernel.org>
+References: <20261105100322.37816-1-tanure@linux.com>
+ <20261105100322.37816-3-tanure@linux.com>
+ <20261110175451.GA833369-robh@kernel.org>
+ <CAJX_Q+2WoawiGT9zF2W+LCUhVn2QV3F9rUDBHiGtR6pddKAkNA@mail.gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261113-aiu-fifo-fix-sleep-on-spinlock-v2-1-f72015c933bf@baylibre.com>
-X-B4-Tracking: v=1; b=H4sIABEX92oC/42OQQqDMBBFryJZd4oRsbWr3kNcJONYp7WJZFQq4
- t0b7QU6iw8PHv/PqoQCk6hbsqpAMwt7FyE7JQo74x4E3ERWWZoVOh4YnqDl1sf4gPREA3gHMrD
- rPb4gJSS8NkVuSqtiyRAoisdAVf9YJvskHPfW3ehYRh+W44NZ797fY7MGDQ2WRHmqzQXbuzVLz
- zbQGf1b1du2fQEYrvXP4QAAAA==
-X-Change-ID: 20261111-aiu-fifo-fix-sleep-on-spinlock-0ecec8d64a9b
-To: Jerome Brunet <jbrunet@baylibre.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
- Christian Hewitt <christianshewitt@gmail.com>
-Cc: linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Valerio Setti <vsetti@baylibre.com>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8520; i=vsetti@baylibre.com;
- h=from:subject:message-id; bh=1fTo+4uyzOmAFYCXX+UpHdSokP50b/OzdEc4+14QE3g=;
- b=owGbwMvMwCV2z3ty7kUrRgbG02pJDFnfxcWni/3fFB9qK6qqP5GFWSD57ZtNzeVSj3Jctm7Z+
- HXF41jJjlIWBjEuBlkxRRaW6fd+F5SqPTROOFkAM4eVCWQIAxenAExkrx8jw9XD8btX35RcsIjj
- wlFj+btzlsZ8aH3vJRZ89LjY5zD9jXKMDO+urbGo4BPd/mbbo49PJRUetDQ7/eWwWG2udfKiwIr
- UE+wA
-X-Developer-Key: i=vsetti@baylibre.com; a=openpgp;
- fpr=0497DEFB707526E13360C970DE4B936DD13A0100
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_055645_618198_7A572455 
-X-CRM114-Status: GOOD (  18.90  )
-X-Spam-Score: -2.1 (--)
+Content-Disposition: inline
+In-Reply-To: <CAJX_Q+2WoawiGT9zF2W+LCUhVn2QV3F9rUDBHiGtR6pddKAkNA@mail.gmail.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,220 +81,92 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-dai_links in the gx-card are atomic which means that the DAI trigger
-callback is called with the spinlock held. This means that usage of
-potentially sleeping functions (e.g. mutexes) is not allowed here.
-
-'snd_soc_component_write'/'snd_soc_component_read' take the component's
-io_mutex on entry.
-
-Replace usage of these functions in:
-- 'aiu_fifo_i2s_trigger'
-- 'fifo_spdif_trigger'
-- 'aiu_fifo_pointer'
-
-This is meant to resolve the following runtime bug found while starting I2S
-playback on an OdroidC2 device where the kernel was built enabling
-CONFIG_DEBUG_ATOMIC_SLEEP and CONFIG_PROVE_LOCKING:
-
-  Playback device is hw:0,0
-  Stream parameters are 44100Hz, S16_LE, 2 channels
-  Sine wave rate is 1000.0000Hz
-  Rate set to 44100Hz (requested 44100Hz)
-  Buffer size range from 128 to 262144
-  Period size range from 64 [   21.012074] BUG: sleeping function called from invalid context at kernel/locking/mutex.c:623
-  [   21.018009] in_atomic(): 1, irqs_disabled(): 1, non_block: 0, pid: 267, name: speaker-test
-  [   21.026184] preempt_count: 1, expected: 0
-  [   21.030151] RCU nest depth: 0, expected: 0
-  [   21.034205] locks held by speaker-test/267: 1, last CPU#3:
-  [   21.039638]  #0: ffff000003dbd910 (&group->lock#2){....}-{3:3}, at: snd_pcm_stream_lock_irq+0x40/0x60
-  [   21.048782] irq event stamp: 5274
-  [   21.052059] hardirqs last  enabled at (5273): [<ffff800081494240>] _raw_spin_unlock_irq+0x38/0x80
-  [   21.060856] hardirqs last disabled at (5274): [<ffff8000814935c8>] _raw_spin_lock_irq+0x80/0x90
-  [   21.069481] softirqs last  enabled at (5238): [<ffff8000800f9aec>] handle_softirqs+0x584/0x5e0
-  [   21.078020] softirqs last disabled at (5231): [<ffff800080010324>] __do_softirq+0x1c/0x28
-  [   21.086133] CPU: 3 UID: 0 PID: 267 Comm: speaker-test Not tainted 7.3.0 #2 PREEMPT
-  [   21.086141] Hardware name: Hardkernel ODROID-C2 (DT)
-  [   21.086145] Call trace:
-  [   21.086149]  show_stack+0x20/0x40 (C)
-  [   21.086160]  dump_stack_lvl+0x6c/0x98
-  [   21.086171]  dump_stack+0x18/0x24
-  [   21.086179]  __might_resched+0x160/0x230
-  [   21.086189]  __might_sleep+0x50/0x90
-  [   21.086197]  __mutex_lock+0x64/0x8a0
-  [   21.086206]  mutex_lock_nested+0x2c/0x40
-  [   21.086215]  snd_soc_component_write+0x38/0x80
-  [   21.086227]  aiu_fifo_i2s_trigger+0x74/0x90
-  [   21.086237]  soc_dai_trigger.part.0+0x44/0x90
-  [   21.086246]  snd_soc_pcm_dai_trigger+0x174/0x280
-  [   21.086255]  soc_pcm_trigger+0xe4/0x1f0
-  [   21.086265]  dpcm_dai_trigger_fe_be+0x30/0xb0
-  [   21.086276]  dpcm_fe_dai_do_trigger+0x11c/0x1a0
-  [   21.086287]  dpcm_fe_dai_trigger+0x40/0x60
-  [   21.086296]  snd_pcm_do_start+0x4c/0x80
-  [   21.086307]  snd_pcm_action_single+0x50/0xc0
-  [   21.086316]  snd_pcm_action+0x88/0xb0
-  [   21.086325]  snd_pcm_start+0x2c/0x40
-  [   21.086335]  __snd_pcm_lib_xfer+0x660/0x810
-  [   21.086345]  snd_pcm_common_ioctl+0xa20/0x17e0
-  [   21.086356]  snd_pcm_ioctl+0x3c/0x60
-  [   21.086366]  __arm64_sys_ioctl+0xac/0x110
-  [   21.086376]  invoke_syscall+0x5c/0x120
-  [   21.086386]  el0_svc_common.constprop.0+0x48/0xf0
-  [   21.086395]  do_el0_svc+0x24/0x40
-  [   21.086404]  el0_svc+0x54/0x3b0
-  [   21.086414]  el0t_64_sync_handler+0xa0/0xf0
-  [   21.086424]  el0t_64_sync+0x198/0x1a0
-
-Note: the return value of 'regmap_read' in 'aiu_fifo_pointer' is
-intentionally ignored. Regmap is MMIO here and read failures shouldn't
-happen. Also 'axg-fifo.c' is doing the same in its 'axg_fifo_pcm_pointer'.
-
-Fixes: e8712315c44d ("ASoC: soc-component: use io_mutex correctly")
-Fixes: 6b59c53c8adc ("ASoC: meson: aiu: fifo-spdif: soft reset the S/PDIF datapath on start/stop")
-Signed-off-by: Valerio Setti <vsetti@baylibre.com>
----
-I found this issue while working on [1].
-This patch is independent of [1] and they can go in in any order. They
-are fixing the same problem in different modules.
-
-[1]: https://lore.kernel.org/all/20261021-gx-formatter-use-spinlock-v1-1-71ebc9224c03@baylibre.com/
----
-Changes in v2:
-- Removed handling of 'regmap_read' failures in 'aiu_fifo_pointer'. Since
-  ragmap is MMIO here, read failures cannot happen. [Martin]
-- Link to v1: https://patch.msgid.link/20261111-aiu-fifo-fix-sleep-on-spinlock-v1-1-dc9ee401a7cf@baylibre.com
-
-To: Jerome Brunet <jbrunet@baylibre.com>
-To: Liam Girdwood <lgirdwood@gmail.com>
-To: Mark Brown <broonie@kernel.org>
-To: Jaroslav Kysela <perex@perex.cz>
-To: Takashi Iwai <tiwai@suse.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-To: Kevin Hilman <khilman@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To: Christian Hewitt <christianshewitt@gmail.com>
-Cc: linux-sound@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
----
- sound/soc/meson/aiu-fifo-i2s.c   | 15 ++++++++++++---
- sound/soc/meson/aiu-fifo-spdif.c | 14 ++++++++++----
- sound/soc/meson/aiu-fifo.c       |  3 ++-
- 3 files changed, 24 insertions(+), 8 deletions(-)
-
-diff --git a/sound/soc/meson/aiu-fifo-i2s.c b/sound/soc/meson/aiu-fifo-i2s.c
-index eccbc16b293ad..8f785241585df 100644
---- a/sound/soc/meson/aiu-fifo-i2s.c
-+++ b/sound/soc/meson/aiu-fifo-i2s.c
-@@ -5,6 +5,7 @@
- 
- #include <linux/bitfield.h>
- #include <linux/clk.h>
-+#include <linux/regmap.h>
- #include <sound/pcm_params.h>
- #include <sound/soc.h>
- #include <sound/soc-dai.h>
-@@ -48,14 +49,22 @@ static int aiu_fifo_i2s_trigger(struct snd_pcm_substream *substream, int cmd,
- 				struct snd_soc_dai *dai)
- {
- 	struct snd_soc_component *component = dai->component;
-+	unsigned int val;
-+	int ret;
- 
- 	switch (cmd) {
- 	case SNDRV_PCM_TRIGGER_START:
- 	case SNDRV_PCM_TRIGGER_RESUME:
- 	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
--		snd_soc_component_write(component, AIU_RST_SOFT,
--					AIU_RST_SOFT_I2S_FAST);
--		snd_soc_component_read(component, AIU_I2S_SYNC);
-+		ret = regmap_write(component->regmap, AIU_RST_SOFT, AIU_RST_SOFT_I2S_FAST);
-+		if (ret < 0)
-+			return snd_soc_ret(component->dev, ret,
-+					   "Failed to write register on trigger");
-+
-+		ret = regmap_read(component->regmap, AIU_I2S_SYNC, &val);
-+		if (ret < 0)
-+			return snd_soc_ret(component->dev, ret,
-+					   "Failed to read register on trigger");
- 		break;
- 	}
- 
-diff --git a/sound/soc/meson/aiu-fifo-spdif.c b/sound/soc/meson/aiu-fifo-spdif.c
-index a9861c5d66374..297834bce1c7a 100644
---- a/sound/soc/meson/aiu-fifo-spdif.c
-+++ b/sound/soc/meson/aiu-fifo-spdif.c
-@@ -69,15 +69,21 @@ static int fifo_spdif_trigger(struct snd_pcm_substream *substream, int cmd,
- 	case SNDRV_PCM_TRIGGER_START:
- 	case SNDRV_PCM_TRIGGER_RESUME:
- 	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
--		snd_soc_component_write(component, AIU_RST_SOFT,
--					AIU_RST_SOFT_958_FAST);
-+		ret = regmap_write(component->regmap, AIU_RST_SOFT, AIU_RST_SOFT_958_FAST);
-+		if (ret < 0)
-+			return snd_soc_ret(component->dev, ret,
-+					   "Failed to write register on trigger");
-+
- 		fifo_spdif_dcu_enable(component, true);
- 		break;
- 	case SNDRV_PCM_TRIGGER_SUSPEND:
- 	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
- 	case SNDRV_PCM_TRIGGER_STOP:
--		snd_soc_component_write(component, AIU_RST_SOFT,
--					AIU_RST_SOFT_958_FAST);
-+		ret = regmap_write(component->regmap, AIU_RST_SOFT, AIU_RST_SOFT_958_FAST);
-+		if (ret < 0)
-+			return snd_soc_ret(component->dev, ret,
-+					   "Failed to write register on trigger");
-+
- 		fifo_spdif_dcu_enable(component, false);
- 		break;
- 	default:
-diff --git a/sound/soc/meson/aiu-fifo.c b/sound/soc/meson/aiu-fifo.c
-index 8b54f9681d00c..edb47095c059d 100644
---- a/sound/soc/meson/aiu-fifo.c
-+++ b/sound/soc/meson/aiu-fifo.c
-@@ -5,6 +5,7 @@
- 
- #include <linux/bitfield.h>
- #include <linux/clk.h>
-+#include <linux/regmap.h>
- #include <linux/dma-mapping.h>
- #include <sound/pcm_params.h>
- #include <sound/soc.h>
-@@ -38,7 +39,7 @@ snd_pcm_uframes_t aiu_fifo_pointer(struct snd_soc_component *component,
- 	struct snd_pcm_runtime *runtime = substream->runtime;
- 	unsigned int addr;
- 
--	addr = snd_soc_component_read(component, fifo->mem_offset + AIU_MEM_RD);
-+	regmap_read(component->regmap, fifo->mem_offset + AIU_MEM_RD, &addr);
- 
- 	return bytes_to_frames(runtime, addr - (unsigned int)runtime->dma_addr);
- }
-
----
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-change-id: 20261111-aiu-fifo-fix-sleep-on-spinlock-0ecec8d64a9b
-
-Best regards,
---  
-Valerio Setti <vsetti@baylibre.com>
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gRnJpLCBOb3YgMTMsIDIwMjYgYXQgMTI6MDc6NTVQTSArMDAwMCwgTHVjYXMgVGFudXJlIHdy
+b3RlOgo+IE9uIFR1ZSwgTm92IDEwLCAyMDI2IGF0IDU6NTTigK9QTSBSb2IgSGVycmluZyA8cm9i
+aEBrZXJuZWwub3JnPiB3cm90ZToKPiA+Cj4gPiBPbiBUaHUsIE5vdiAwNSwgMjAyNiBhdCAxMDow
+MzoxN0FNICswMDAwLCBMdWNhcyBUYW51cmUgd3JvdGU6Cj4gPiA+IFRoZSBUNyBoYXMgdGhlIHNh
+bWUgZXRoZXJuZXQgZ2x1ZSBhcyB0aGUgRzEyQSBidXQgbmVlZHMgdHdvIGNsb2NrcyBvZgo+ID4g
+PiBpdHMgb3duLiBUaGUgY29udHJvbGxlciByZWFjaGVzIG1lbW9yeSB0aHJvdWdoIGEgcGlwZWxp
+bmUgc3RhZ2Ugd2l0aAo+ID4gPiBpdHMgb3duIGdhdGU7IG5vdGhpbmcgZWxzZSBjbGFpbXMgaXQs
+IHNvIGl0IGlzIHN3aXRjaGVkIG9mZiBhcyB1bnVzZWQKPiA+ID4gYW5kIHRyYW5zZmVycyBuZXZl
+ciBmaW5pc2guIFRoZSBnbHVlIHJlZ2lzdGVycyBzaXQgaW4gYSBibG9jayBjbG9ja2VkCj4gPiA+
+IHRvZ2V0aGVyIHdpdGggdGhlIE1ESU8gbXVsdGlwbGV4ZXIsIHdoaWNoIHByb2JlcyBhZnRlciB0
+aGUgY29udHJvbGxlcgo+ID4gPiBoYXMgcHJvZ3JhbW1lZCB0aGVtOiB0aGUgd3JpdGVzIGFyZSBs
+b3N0IGFuZCB0aGUgcG9ydCBrZWVwcyB0aGUKPiA+ID4gYm9vdGxvYWRlcidzIGRlbGF5cy4KPiA+
+ID4KPiA+ID4gU28gdGhlIFQ3IGdldHMgaXRzIG93biBjbG9jayBsaXN0LCB3aXRob3V0IHRoZSB0
+aW1pbmcgYWRqdXN0bWVudCBjbG9jawo+ID4gPiBpdCBuZXZlciB1c2VzLiBJdHMgZGVsYXlzIGZv
+bGxvdyBldGhlcm5ldC1jb250cm9sbGVyLnlhbWw6IHRoZSBQSFkgYWRkcwo+ID4gPiB0aGUgMm5z
+LCBhbmQgb25seSB0aGUgcmVjZWl2ZSBkZWxheSBsaW5lIG9mZmVycyBmaW5lIHR1bmluZywgc28g
+b25seQo+ID4gPiByeC1pbnRlcm5hbC1kZWxheS1wcyBpcyB2YWxpZCBoZXJlLgo+ID4gPgo+ID4g
+PiBBc3Npc3RlZC1ieTogTExNCj4gPiA+IFNpZ25lZC1vZmYtYnk6IEx1Y2FzIFRhbnVyZSA8dGFu
+dXJlQGxpbnV4LmNvbT4KPiA+ID4gLS0tCj4gPiA+ICAuLi4vYmluZGluZ3MvbmV0L2FtbG9naWMs
+bWVzb24tZHdtYWMueWFtbCAgICAgfCA0OSArKysrKysrKysrKysrKysrKysrCj4gPiA+ICAxIGZp
+bGUgY2hhbmdlZCwgNDkgaW5zZXJ0aW9ucygrKQo+ID4KPiA+IEkgdGVuZCB0byBhZ3JlZSB3aXRo
+IHRoZSBzYXNoaWtvIGNvbW1lbnQsIGJ1dCBhbSBmaW5lIGVpdGhlciB3YXkuIE9uY2UKPiA+IHRo
+ZSBpZi90aGVuIHNjaGVtYXMgYXJlIGxvbmdlciB0aGFuIHRoZSBtYWluIHNjaGVtYSwgaXQncyBh
+IHNpZ24gdG8KPiA+IHNwbGl0Lgo+IAo+IEluIFY3IEkgd2lsbCBzcGxpdCBhcyBJIHRoaW5rIGl0
+IHdpbGwgYmUgZWFzaWVyIHRvIHJldmlldy4KPiAKPiA+Cj4gPiA+Cj4gPiA+IGRpZmYgLS1naXQg
+YS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0L2FtbG9naWMsbWVzb24tZHdt
+YWMueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9uZXQvYW1sb2dpYyxt
+ZXNvbi1kd21hYy55YW1sCj4gPiA+IGluZGV4IGU3NjljOWJiNzBkOC4uZmY1ZTUwZjY1MTE0IDEw
+MDY0NAo+ID4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0L2Ft
+bG9naWMsbWVzb24tZHdtYWMueWFtbAo+ID4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRy
+ZWUvYmluZGluZ3MvbmV0L2FtbG9naWMsbWVzb24tZHdtYWMueWFtbAo+ID4gPiBAQCAtMjMsNiAr
+MjMsNyBAQCBzZWxlY3Q6Cj4gPiA+ICAgICAgICAgICAgLSBhbWxvZ2ljLG1lc29uLWd4YmItZHdt
+YWMKPiA+ID4gICAgICAgICAgICAtIGFtbG9naWMsbWVzb24tYXhnLWR3bWFjCj4gPiA+ICAgICAg
+ICAgICAgLSBhbWxvZ2ljLG1lc29uLWcxMmEtZHdtYWMKPiA+ID4gKyAgICAgICAgICAtIGFtbG9n
+aWMsdDctZHdtYWMKPiA+ID4gICAgcmVxdWlyZWQ6Cj4gPiA+ICAgICAgLSBjb21wYXRpYmxlCj4g
+PiA+Cj4gPiA+IEBAIC04NCw2ICs4NSw0OSBAQCBhbGxPZjoKPiA+ID4gICAgICAgICAgcngtaW50
+ZXJuYWwtZGVsYXktcHM6Cj4gPiA+ICAgICAgICAgICAgZGVmYXVsdDogMAo+ID4gPgo+ID4gPiAr
+ICAtIGlmOgo+ID4gPiArICAgICAgcHJvcGVydGllczoKPiA+ID4gKyAgICAgICAgY29tcGF0aWJs
+ZToKPiA+ID4gKyAgICAgICAgICBjb250YWluczoKPiA+ID4gKyAgICAgICAgICAgIGNvbnN0OiBh
+bWxvZ2ljLHQ3LWR3bWFjCj4gPiA+ICsgICAgdGhlbjoKPiA+ID4gKyAgICAgIHByb3BlcnRpZXM6
+Cj4gPiA+ICsgICAgICAgIGNsb2NrczoKPiA+ID4gKyAgICAgICAgICBpdGVtczoKPiA+ID4gKyAg
+ICAgICAgICAgIC0gZGVzY3JpcHRpb246IEdNQUMgbWFpbiBjbG9jawo+ID4gPiArICAgICAgICAg
+ICAgLSBkZXNjcmlwdGlvbjogRmlyc3QgcGFyZW50IGNsb2NrIG9mIHRoZSBpbnRlcm5hbCBtdXgK
+PiA+ID4gKyAgICAgICAgICAgIC0gZGVzY3JpcHRpb246IFNlY29uZCBwYXJlbnQgY2xvY2sgb2Yg
+dGhlIGludGVybmFsIG11eAo+ID4gPiArICAgICAgICAgICAgLSBkZXNjcmlwdGlvbjoKPiA+ID4g
+KyAgICAgICAgICAgICAgICBjbG9jayBvZiB0aGUgcGlwZWxpbmUgc3RhZ2UgaW5zZXJ0ZWQgaW4g
+dGhlIGJ1cyBwYXRoIGJldHdlZW4KPiA+ID4gKyAgICAgICAgICAgICAgICB0aGUgY29udHJvbGxl
+ciBhbmQgdGhlIERSQU0uIFdpdGhvdXQgaXQsIHRoZSBjb250cm9sbGVyIGNhbm5vdAo+ID4gPiAr
+ICAgICAgICAgICAgICAgIGNvbXBsZXRlIERNQSB0cmFuc2ZlcnMuCj4gPiA+ICsgICAgICAgICAg
+ICAtIGRlc2NyaXB0aW9uOgo+ID4gPiArICAgICAgICAgICAgICAgIGNsb2NrIG9mIHRoZSByZWdp
+c3RlciBibG9jayBob2xkaW5nIFBSR19FVEgwIGFuZCBQUkdfRVRIMS4KPiA+ID4gKyAgICAgICAg
+ICAgICAgICBXaXRob3V0IGl0LCB0aGUgYmxvY2sgcmVhZHMgYXMgemVybyBhbmQgaWdub3JlcyB3
+cml0ZXMuCj4gPiA+ICsKPiA+ID4gKyAgICAgICAgY2xvY2stbmFtZXM6Cj4gPiA+ICsgICAgICAg
+ICAgaXRlbXM6Cj4gPiA+ICsgICAgICAgICAgICAtIGNvbnN0OiBzdG1tYWNldGgKPiA+ID4gKyAg
+ICAgICAgICAgIC0gY29uc3Q6IGNsa2luMAo+ID4gPiArICAgICAgICAgICAgLSBjb25zdDogY2xr
+aW4xCj4gPiA+ICsgICAgICAgICAgICAtIGNvbnN0OiBwaXBlbGluZQo+ID4gPiArICAgICAgICAg
+ICAgLSBjb25zdDogcGNsawo+ID4gPiArCj4gPiA+ICsgICAgICAgICMgVGhlIFBIWSBhZGRzIHRo
+ZSAybnMgUkdNSUkgZGVsYXlzLCBzZWUgZXRoZXJuZXQtY29udHJvbGxlci55YW1sLgo+ID4gPiAr
+ICAgICAgICAjIFRoZSBSWCBkZWxheSBsaW5lIG9mIHRoaXMgZ2x1ZSBpcyBmaW5lIHR1bmluZyBp
+biAyMDBwcyBzdGVwcywKPiA+Cj4gPiBTb3VuZHMgbGlrZSBjb25zdHJhaW50czoKPiA+Cj4gPiBt
+YXhpbXVtOiAyMDAwCj4gPiBtdWx0aXBsZU9mOiAyMDAKPiAKPiBZZXMsIHdpdGggbWF4aW11bTog
+MzAwMDogdGhlIGZpZWxkIGlzIGZvdXIgYml0cywgMCB0byAxNSBzdGVwcyBvZgo+IDIwMHBzLgo+
+ID4KPiA+ID4gKyAgICAgICAgIyBhZGRlZCBvbiB0b3Agb2Ygd2hhdCBwaHktbW9kZSBkZXNjcmli
+ZXMuIFRoZSBUWCBzaWRlIGhhcyBubyBmaW5lCj4gPiA+ICsgICAgICAgICMgdHVuaW5nOiBpdHMg
+b25seSBzdGVwIGlzIGEgcXVhcnRlciBvZiB0aGUgY2xvY2sgcGVyaW9kLCB0aGUgZnVsbAo+ID4g
+PiArICAgICAgICAjIDJucyBhdCAxR2JpdC9zLCBzbyB0aGUgVFggcHJvcGVydHkgaXMgbm90IGFj
+Y2VwdGVkLgo+ID4KPiA+IE1vdmUgdGhpcyB0byB0eC1pbnRlcm5hbC1kZWxheS1wcy4gWW91IGNh
+biAoa2luZCBvZiBhY2t3YXJkbHkpIGRvOgo+ID4KPiA+IHR4LWludGVybmFsLWRlbGF5LXBzOgo+
+ID4gICBkZXNjcmlwdGlvbjogLi4uCj4gPiAgIG5vdDoge30KPiAKPiBkdF9iaW5kaW5nX2NoZWNr
+IGRvZXMgbm90IGFjY2VwdCAibm90IiBvbiBhIHByb3BlcnR5IHVuZGVyCj4gcHJvcGVydGllczog
+b3IgaW4gYW4gYWxsT2YgZW50cnk6IGNlbGwueWFtbCBhbGxvd3Mgb25seSBkZXNjcmlwdGlvbiwK
+PiBkZXByZWNhdGVkLCBjb25zdCwgZW51bSwgbWluaW11bSwgbWF4aW11bSwgbXVsdGlwbGVPZiwg
+ZGVmYXVsdCwgJHJlZgo+IGFuZCBvbmVPZiB0aGVyZS4gSXQgcGFzc2VzIG9ubHkgaW5zaWRlIGlm
+L3RoZW4sIGFuZCB0aGUgbmV3IGZpbGUgaGFzCj4gbm8gaWYvdGhlbi4gU28gdGhlIHByb3BlcnR5
+IHN0YXlzIGZhbHNlLCB3aXRoIHRoZSBleHBsYW5hdGlvbiBhcyBhCj4gY29tbWVudCBhYm92ZSBp
+dC4KCk9rYXksIGJ1dCB3ZSBzaG91bGQgZml4IHRoYXQuCgpSb2IKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0
+CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFk
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
