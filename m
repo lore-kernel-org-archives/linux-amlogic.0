@@ -2,107 +2,57 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7B04606A333
-	for <linux-amlogic@archiver.kernel.org>; Sat, 14 Nov 2026 22:13:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ACE1606A323
+	for <linux-amlogic@archiver.kernel.org>; Sat, 14 Nov 2026 22:26:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rJgUH8xR;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=LqSzYkdA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YFsqdXUo;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=AvB/lWrP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:References:
+	In-Reply-To:Cc:To:Subject:From:Message-ID:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=BStBuW6yPp5BeK1TnfwvdfYau+5xyBn+qfNQ6VGOGuk=; b=rJgUH8xR5EKPhhDkJkAGKDCBx5
-	rnJTgqqmrt0HeYhd6ipm8k5o34uCSC8esttXzOHC2SUxMnlb5NRnwQYArgSOD+0hHxrAT7NEd553Y
-	/Z1ErWw1MgQrRAtMEhp+80RpnuMpM8iChidISrcS9bZeby9hEJDBdVxPsV2PgE1zK1FEJCMuADK8h
-	uNam+aJvF978WZ/yn4YDjVdya9AaZ81NVt3RwhWXmm09SUltCnk3hLVVglWNoIbwD+7iOm7Yu7+mR
-	Kw4yFcmxp48SZNtjBkuadWk7YzlGag6s47CXsy+fs8PQNkHLGUd6IFcrC/nWC3245s/ROKOOI+E3f
-	Ixukr46A==;
+	bh=nbA3vZdA3KnqvqZw1dlhDrIVo3Po9h5UgjuFKORHWQ4=; b=YFsqdXUo545TgfQd/t5N7cZxwt
+	0AQ/7b0x1TbTrzFBd6OtQ4lYmejqN6Cpi5P8Rs3yImp8uQZpSFFmFZjclp7ylj0r4oDBunICTQlu6
+	qw7qhz2zN53Gbw1mBWUOBrJV0OlCGUia2jQCSewLOHNUDT6oTNkjKCvrvDmzaNBw/jIcWAV6OK9vc
+	Y6va37RVfwoiW9KgX2yWisdhYMNl6ibhmY8rOunK69RlzgFr3IpGOZGz3n4Sv7FcYtpVsyqy6xs8f
+	p9s7EZsZeQLKFpNzRQCkWXRhgQEHtKFcRlSgFSaRu/e8QOH92ny3Xktr0wDFDv2dr/HWKXJ5xlyZE
+	9LNPBHgA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSLzi-0000000GorV-2Hnk;
-	Sat, 14 Nov 2026 22:13:10 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xSMC8-0000000GqJh-1zqU;
+	Sat, 14 Nov 2026 22:26:00 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSLzd-0000000GopI-2gLx;
-	Sat, 14 Nov 2026 22:13:05 +0000
+	id 1xSMC8-0000000GqJZ-0G6q
+	for linux-amlogic@lists.infradead.org;
+	Sat, 14 Nov 2026 22:26:00 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9545760F33;
-	Sat, 14 Nov 2026 22:13:04 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794694384;
-	b=sHWlb4juzpxFpZKl4VWkH+1YxfHRUrBgpROCqIFdC59EdOnK9gdoFWI/LSkTYqGZvO5u
-	 0c/0yDdnDorno3KySml9HShdzQWS8E61JH/yHgzZYWh+Ip30BaDBQz2WIFiiqek+9/Piq
-	 3ICHzqcEITS8szwPiiVRnlMqJ4Z2Ak9UBVtlEMEjqr0uUYOfrMIVRxMn+GQQHWYMlwl5e
-	 75DSUoRcGCQu4o0RR7AZO3uw9xheR3eWDiCAochU8ULqEBBVvj8Ewg29tKKVlBnYu4P3S
-	 R3zyKePDr4/Bi3r8ZLplHixInHga3wfi+gOIoLwqHgDwaAXsc9DgxERqCYz+cd1LijA==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794694384;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=JZYytunKML3y7PA1IDzFlQnkI0F6TBG/gdk3jD0lV4Y=;
-	b=H40o4TZ9pzT8h03QFENMIGZzjIIQnLytrph2ahqbMKcoxf+pWbBmFgFvvj15vJMdEDFm
-	 D5ehVD1VREAtJYD2zmn1M4Lg4uZ8X4Cvoc9De0IC0CXiIkJ181sysrt4vEjbiH/1GeO33
-	 5r0mMBUO0c3GpMhkNYrFt9PJEV4CSRLfbMIiIsl0pFptw9Qgp5WM37GryKh77iuI8W7fa
-	 YMecAjiglZJNml2aHbloMtKW0L+eLno6LxGBxRjuElN3TLlaO7RfWfj4NK4muX+cjSC8q
-	 q4a5NyUTuievk8GWdyOjMlP7B2s+4XhZHeYQ04yOH45OlmmdnwJqFY4Z7SbVS5zdRQQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 6850F1F000C7;
-	Sat, 14 Nov 2026 22:13:03 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 3A1A8609EF;
+	Sat, 14 Nov 2026 22:25:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A783C1F000C4;
+	Sat, 14 Nov 2026 22:25:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794694384;
-	bh=JZYytunKML3y7PA1IDzFlQnkI0F6TBG/gdk3jD0lV4Y=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=LqSzYkdAGBJzfV/U9emY+CTs8KHhXW6+KtbvUEUn6x8dBfYskSnkA5uj8BsKLNIf1
-	 PMUFx5XdZNXMl75KuW6dx/36TU2B/hRZcDX8pE6+87thA227x17kBY9ID09xEMX+P4
-	 rkajep+H+gPeJIQFlj5jyfIINFKEyYNtqLk9FnHYJ5EyE9KssqTFiwOb3A8Dg5j2Gx
-	 wmJhNSIVGmclZFWW4WSeaxg5cn1rxGB7T0KmUh5xwqrJJDoz/I2Nzk9V6SADeVVZuc
-	 qXvfvlGKhkCN5Nxb9SUx8u0hUOTxTLuGBg+v9cFlt6Ijtke2f5vgDnTOuMMyywNhFC
-	 pYFG2eDnNeJ6Q==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id E97A749EAC;
-	Sat, 14 Nov 2026 22:13:02 +0000 (UTC)
-From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Sat, 14 Nov 2026 22:12:59 +0000
-Subject: [PATCH 2/2] PCI: meson: Add system suspend/resume support
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Message-Id: <20261114-b4-pci-meson-suspend-v1-2-be3d04a13304@iav.lv>
+	s=k20260515; t=1794695158;
+	bh=l9Lktmad6aldki3CP7RDALK/ehOQCSYds+PrMiE3D5A=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=AvB/lWrP8v9GcrrvW2Pmr7ajGncTAtJRvRNVqAIdoTC5ufisV0JhTH16UXpW24N8+
+	 sJJlpNUzSLtD4npePslI5AuNA7hlRj8RjpAyigEieVZIjwBfQlR3Lnc7Ih9maYLEz7
+	 0badfCwHVupXpbyGvpP5l8eZGtZMw9XuCdu9i1snV5AZlYJR2C7de+qDFC/8vkYR9X
+	 qfZiBQlqj/hIv4q4LGve5BASwhvCpMIX94RSdCTogCCYBYfLuicaaN9ChPTlW07b8N
+	 tFbNvkDjjutSvk/INxNaAIkAGaVPnDJ33V4BdQ2c4iL+CvV7vZXO6rnPBEEyecstW/
+	 qE5JsAO1pGLpg==
+Message-ID: <sashiko-outbox-215064@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 2/2] PCI: meson: Add system suspend/resume support
+To: "Igor Velkov" <iav@iav.lv>
+Cc: linux-pci@vger.kernel.org, linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org
+In-Reply-To: <20261114-b4-pci-meson-suspend-v1-2-be3d04a13304@iav.lv>
 References: <20261114-b4-pci-meson-suspend-v1-0-be3d04a13304@iav.lv>
-In-Reply-To: <20261114-b4-pci-meson-suspend-v1-0-be3d04a13304@iav.lv>
-To: Yue Wang <yue.wang@Amlogic.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-pci@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Igor Velkov <iav@iav.lv>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5260; i=iav@iav.lv;
- h=from:subject:message-id;
- bh=MeM+aGdPJAWmnUmNJwf7DDqjZs0SyCzmsgJmymZ7zbo=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDFk/7rwVPihZuTDPPzQ7h/9pz5wzbadeZUprzjDMYJg/0
- VUie8rCjlIWBjEuBlkxRZYJhzRuZSy5+tffw/wBzBxWJpAhDFycAjCRFUyMDJtM+jp9o/ZMtxLR
- Fw/S/ayTdeZLxbx7vS/+TTXNFp5h95eRYVZKguzmtvi6M/Y3pIIuZXxkua/z38m+YnGmhuK2r2F
- SjAA=
-X-Developer-Key: i=iav@iav.lv; a=openpgp;
- fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
-X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
-X-Original-From: Igor Velkov <iav@iav.lv>
+ <20261114-b4-pci-meson-suspend-v1-2-be3d04a13304@iav.lv>
+Date: Sat, 14 Nov 2026 22:25:58 +0000
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,180 +62,59 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: iav@iav.lv
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Igor Velkov <iav@iav.lv>
-
-On SM1 the controller sits in the PCIE power domain, which genpd
-switches off in the noirq suspend phase.  The driver has no PM
-callbacks, so the controller comes back unprogrammed and the first
-config access to the Root Port after resume hangs the CPU.  On
-ODROID-HC4 (ASM1061 SATA behind the port) s2idle never returns.
-
-Add noirq PM callbacks that call dw_pcie_suspend_noirq() and
-dw_pcie_resume_noirq(): suspend broadcasts PME_Turn_Off and waits for
-L2 if the link is up, then calls .deinit; resume calls .init, programs
-the Root Complex, MSI and iATU registers and restarts the link.  Set
-suspend_poweroff, so that suspend enters L2 even when D3cold is not
-possible.
-
-Send PME_Turn_Off through the apps_pm_xmt_turnoff bit of PCIE_CFG0
-in a .pme_turn_off callback, so that no outbound iATU window is needed
-for the Msg TLP.  Bit 12 is apps_pm_xmt_turnoff in the description of
-this wrapper in the Amlogic A311D (G12B) datasheet, where bit 7 is the
-app_ltssm_enable the driver already uses.
-
-Do this only when the controller has a power domain, as on SM1.  G12A,
-G12B and AXG have none; entering L2 and powering the PHY off in
-suspend is untested there, so the callbacks return at once.
-
-A resume that fails to start the link or times out waiting for it
-calls .deinit itself, and the next suspend calls it again.  A second
-phy_power_off() and phy_exit() would unbalance the PHY counts, and the
-next .init would not power the PHY on, so .deinit leaves a controller
-that is already off alone.
-
-Signed-off-by: Igor Velkov <iav@iav.lv>
----
- drivers/pci/controller/dwc/pci-meson.c | 53 ++++++++++++++++++++++++++++++++++
- 1 file changed, 53 insertions(+)
-
-diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-index 627470c83bb5..5ef7369bb21b 100644
---- a/drivers/pci/controller/dwc/pci-meson.c
-+++ b/drivers/pci/controller/dwc/pci-meson.c
-@@ -9,6 +9,7 @@
- #include <linux/clk.h>
- #include <linux/delay.h>
- #include <linux/gpio/consumer.h>
-+#include <linux/of.h>
- #include <linux/pci.h>
- #include <linux/platform_device.h>
- #include <linux/reset.h>
-@@ -27,6 +28,7 @@
- /* PCIe specific config registers */
- #define PCIE_CFG0			0x0
- #define APP_LTSSM_ENABLE		BIT(7)
-+#define APPS_PM_XMT_TURNOFF		BIT(12)
- 
- #define PCIE_CFG_STATUS12		0x30
- #define IS_SMLH_LINK_UP(x)		((x) & (1 << 6))
-@@ -68,6 +70,8 @@ struct meson_pcie {
- 	struct meson_pcie_rc_reset mrst;
- 	struct gpio_desc *reset_gpio;
- 	struct phy *phy;
-+	bool power_domain;
-+	bool powered;
- };
- 
- static struct reset_control *meson_pcie_get_reset(struct meson_pcie *mp,
-@@ -385,6 +389,8 @@ static int meson_pcie_host_init(struct dw_pcie_rp *pp)
- 		return ret;
- 	}
- 
-+	mp->powered = true;
-+
- 	pp->bridge->ops = &meson_pci_ops;
- 
- 	meson_set_max_payload(mp, MAX_PAYLOAD_SIZE);
-@@ -397,13 +403,29 @@ static void meson_pcie_host_deinit(struct dw_pcie_rp *pp)
- {
- 	struct meson_pcie *mp = to_meson_pcie(to_dw_pcie_from_pp(pp));
- 
-+	/* After a failed resume the next suspend calls .deinit once more */
-+	if (!mp->powered)
-+		return;
-+
- 	gpiod_set_value_cansleep(mp->reset_gpio, 1);
- 	meson_pcie_power_off(mp);
-+	mp->powered = false;
-+}
-+
-+static void meson_pcie_pme_turn_off(struct dw_pcie_rp *pp)
-+{
-+	struct meson_pcie *mp = to_meson_pcie(to_dw_pcie_from_pp(pp));
-+	u32 val;
-+
-+	val = meson_cfg_readl(mp, PCIE_CFG0);
-+	meson_cfg_writel(mp, val | APPS_PM_XMT_TURNOFF, PCIE_CFG0);
-+	meson_cfg_writel(mp, val, PCIE_CFG0);
- }
- 
- static const struct dw_pcie_host_ops meson_pcie_host_ops = {
- 	.init = meson_pcie_host_init,
- 	.deinit = meson_pcie_host_deinit,
-+	.pme_turn_off = meson_pcie_pme_turn_off,
- };
- 
- static const struct dw_pcie_ops dw_pcie_ops = {
-@@ -429,6 +451,13 @@ static int meson_pcie_probe(struct platform_device *pdev)
- 	pci->pp.ops = &meson_pcie_host_ops;
- 	pci->num_lanes = 1;
- 
-+	/*
-+	 * Genpd switches the controller's power domain off in suspend.  Only
-+	 * SM1 has one, and only SM1 gets suspend support.
-+	 */
-+	mp->power_domain = of_property_present(dev->of_node, "power-domains");
-+	pci->pp.suspend_poweroff = mp->power_domain;
-+
- 	mp->phy = devm_phy_get(dev, "pcie");
- 	if (IS_ERR(mp->phy)) {
- 		dev_err(dev, "get phy failed, %pe\n", mp->phy);
-@@ -477,6 +506,29 @@ static void meson_pcie_remove(struct platform_device *pdev)
- 	dw_pcie_host_deinit(&mp->pci.pp);
- }
- 
-+static int meson_pcie_suspend_noirq(struct device *dev)
-+{
-+	struct meson_pcie *mp = dev_get_drvdata(dev);
-+
-+	if (!mp->power_domain)
-+		return 0;
-+
-+	return dw_pcie_suspend_noirq(&mp->pci);
-+}
-+
-+static int meson_pcie_resume_noirq(struct device *dev)
-+{
-+	struct meson_pcie *mp = dev_get_drvdata(dev);
-+
-+	if (!mp->power_domain)
-+		return 0;
-+
-+	return dw_pcie_resume_noirq(&mp->pci);
-+}
-+
-+static DEFINE_NOIRQ_DEV_PM_OPS(meson_pcie_pm_ops, meson_pcie_suspend_noirq,
-+			       meson_pcie_resume_noirq);
-+
- static const struct of_device_id meson_pcie_of_match[] = {
- 	{
- 		.compatible = "amlogic,axg-pcie",
-@@ -494,6 +546,7 @@ static struct platform_driver meson_pcie_driver = {
- 	.driver = {
- 		.name = "meson-pcie",
- 		.of_match_table = meson_pcie_of_match,
-+		.pm = pm_sleep_ptr(&meson_pcie_pm_ops),
- 	},
- };
- 
-
--- 
-2.43.0
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+bm8gbmV3IGlzc3VlcwppbiB0aGlzIHBhdGNoLCBidXQgbm90aWNlZCAxIHJlbGF0ZWQgcHJlLWV4
+aXN0aW5nIGlzc3VlIGl0IGRvZXMgbm90CmludHJvZHVjZToKLSBbTWVkaXVtXSBQQ0k6IG1lc29u
+OiBhY2NpZGVudGFsIGNsZWFyaW5nIG9mIFcxQyBiaXRzIGluIERldmljZSBTdGF0dXMKICByZWdp
+c3RlciBbMV0KLS0KCmNvbW1pdCBmN2E1Y2ZmODNjZTIwZGQ5MzZmNzAxODE3ZmFhODIzMDM3OWFi
+M2FkCkF1dGhvcjogSWdvciBWZWxrb3YgPGlhdkBpYXYubHY+CgpQQ0k6IG1lc29uOiBBZGQgc3lz
+dGVtIHN1c3BlbmQvcmVzdW1lIHN1cHBvcnQKClRoaXMgY29tbWl0IGFkZHMgbm9pcnEgc3VzcGVu
+ZCBhbmQgcmVzdW1lIGNhbGxiYWNrcyBmb3IgdGhlIEFtbG9naWMgTWVzb24KUENJZSBjb250cm9s
+bGVyIHdoZW4gYXR0YWNoZWQgdG8gYSBwb3dlciBkb21haW4sIGFsb25nIHdpdGggYQoucG1lX3R1
+cm5fb2ZmIGNhbGxiYWNrIGFuZCBwb3dlciBzdGF0ZSB0cmFja2luZyBhY3Jvc3MgaG9zdCBpbml0
+IGFuZApkZWluaXQuCgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9w
+Y2ktbWVzb24uYyBiL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaS1tZXNvbi5jCj4gaW5k
+ZXggNjI3NDcwYzgzYmI1ZC4uNWVmNzM2OWJiMjFiZiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL3Bj
+aS9jb250cm9sbGVyL2R3Yy9wY2ktbWVzb24uYwo+ICsrKyBiL2RyaXZlcnMvcGNpL2NvbnRyb2xs
+ZXIvZHdjL3BjaS1tZXNvbi5jCgpbIC4uLiBdCgo+IEBAIC0zODUsNiArMzg5LDggQEAgc3RhdGlj
+IGludCBtZXNvbl9wY2llX2hvc3RfaW5pdChzdHJ1Y3QgZHdfcGNpZV9ycCAqcHApCj4gIAkJcmV0
+dXJuIHJldDsKPiAgCX0KPiAgCj4gKwltcC0+cG93ZXJlZCA9IHRydWU7Cj4gKwo+ICAJcHAtPmJy
+aWRnZS0+b3BzID0gJm1lc29uX3BjaV9vcHM7Cj4gIAo+ICAJbWVzb25fc2V0X21heF9wYXlsb2Fk
+KG1wLCBNQVhfUEFZTE9BRF9TSVpFKTsKCltTZXZlcml0eTogTWVkaXVtXQpUaGlzIHByb2JsZW0g
+d2Fzbid0IGludHJvZHVjZWQgYnkgdGhpcyBwYXRjaCwgYnV0IGNhbgptZXNvbl9zZXRfbWF4X3Bh
+eWxvYWQoKSBhbmQgbWVzb25fc2V0X21heF9yZF9yZXFfc2l6ZSgpIGluYWR2ZXJ0ZW50bHkKY2xl
+YXIgd3JpdGUtMS10by1jbGVhciBzdGF0dXMgYml0cyBpbiBQQ0lfRVhQX0RFVlNUQSBbMV0gd2hl
+bgptZXNvbl9wY2llX2hvc3RfaW5pdCgpIHJ1bnMgb24gcHJvYmUgYW5kIHJlc3VtZT8KCmRyaXZl
+cnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaS1tZXNvbi5jOm1lc29uX3NldF9tYXhfcGF5bG9hZCgp
+IHsKICAgIC4uLgoJdmFsID0gZHdfcGNpZV9yZWFkbF9kYmkocGNpLCBvZmZzZXQgKyBQQ0lfRVhQ
+X0RFVkNUTCk7Cgl2YWwgJj0gflBDSV9FWFBfREVWQ1RMX1BBWUxPQUQ7Cglkd19wY2llX3dyaXRl
+bF9kYmkocGNpLCBvZmZzZXQgKyBQQ0lfRVhQX0RFVkNUTCwgdmFsKTsKCgl2YWwgPSBkd19wY2ll
+X3JlYWRsX2RiaShwY2ksIG9mZnNldCArIFBDSV9FWFBfREVWQ1RMKTsKCXZhbCB8PSBQQ0lFX0NB
+UF9NQVhfUEFZTE9BRF9TSVpFKG1heF9wYXlsb2FkX3NpemUpOwoJZHdfcGNpZV93cml0ZWxfZGJp
+KHBjaSwgb2Zmc2V0ICsgUENJX0VYUF9ERVZDVEwsIHZhbCk7Cn0KCkJvdGggaGVscGVycyBwZXJm
+b3JtIDMyLWJpdCByZWFkLW1vZGlmeS13cml0ZSBhY2Nlc3NlcyBhdCBvZmZzZXQgKwpQQ0lfRVhQ
+X0RFVkNUTCwgd2hpY2ggaW5jbHVkZXMgdGhlIDE2LWJpdCBQQ0lfRVhQX0RFVlNUQSByZWdpc3Rl
+ciBpbiB0aGUKdXBwZXIgaGFsZiBvZiB0aGUgd29yZC4gIFdyaXRpbmcgYmFjayAxcyByZWFkIGZy
+b20gUENJX0VYUF9ERVZTVEEgY2xlYXJzCnBlbmRpbmcgY29ycmVjdGFibGUgb3Igbm9uLWZhdGFs
+IGVycm9yIHN0YXR1cyBiaXRzLCBhbmQgdXNpbmcKZHdfcGNpZV9yZWFkd19kYmkoKSBhbmQgZHdf
+cGNpZV93cml0ZXdfZGJpKCkgd291bGQgYXZvaWQgdG91Y2hpbmcKUENJX0VYUF9ERVZTVEEuCgpb
+MV0gaHR0cHM6Ly9zYXNoaWtvLmRldi8jL2J1Zy9saW51eC02MDdkNGUyOS03MzE4LTQ5YjEtYTdj
+My1jOTFhNGM0ZjI2YTAKCi0tIApTYXNoaWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nhc2hpa28u
+ZGV2LyMvcGF0Y2hzZXQvMjAyNjExMTQtYjQtcGNpLW1lc29uLXN1c3BlbmQtdjEtMC1iZTNkMDRh
+MTMzMDRAaWF2Lmx2P3BhcnQ9MgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0
+cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGlu
+Zm8vbGludXgtYW1sb2dpYwo=
