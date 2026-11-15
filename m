@@ -2,108 +2,115 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF74D606A334
-	for <linux-amlogic@archiver.kernel.org>; Sun, 15 Nov 2026 19:22:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA188606A323
+	for <linux-amlogic@archiver.kernel.org>; Sun, 15 Nov 2026 20:35:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vJRV1SuD;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ISgGePwb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2qP1fjwf;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.a=rsa-sha256 header.s=20260707 header.b=Rn+smbFE
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
-	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=D87SijoFIQw+XXzSop9G81hEFb1phtI3l3tjnrU9kvg=; b=vJRV1SuDP47GSaV4DGZe/Gx6AB
-	9PUsc4OiFrh0W8LtLfAqSKrp+18UQGsxjBh0Y/vAU9f+1N7E05RYvXxGV3SewrG0YSq2l2PwyNlcV
-	Ix5FbwprxnV4mEttxQoPMx9mrpJefQKfmnTcaMIgXqbjxMw+t2/mjBdsMgfPVzHqswlITHinXMIEj
-	4/9+apyvWBJmouYdjYA2mc5JTp8WIWjvo/WbyMfz5Z8PDPp+WzGQnb01opZaGXz+aLh/tJP/vQ0hG
-	6QCT5G3xFCxwZVpCZyWe2sobYIEKMCwN99YnyT3Xl+PzriuANZLuDP0Zfi9sp2wqLQ1QFdZYwhgbP
-	o92c6P4Q==;
+	bh=SaeB6JltktNFyBXx+OQ3ImJP/jCAOy3DnZtBpYjsUtQ=; b=2qP1fjwfAORjJ/BzWGCYoIHeTx
+	QpKpTznld5RmunTOgKZ/mf4OqEof18fV8Ixbpook1/sugZoVPgA5GGcTEHf8UW8lrwffLDDsCIRpX
+	rg4nU/971v0Fplrjaux25ennSNjV9BJ9p1GkLCdH+D0ROkwXhhJvaQ6hLkyVSgTfCBPwLQ0dUQARP
+	y6io+S6tP0hb+sajMwebmnfZOAfRYQnGN0G0eeb2NU1kfMf3EGCkWjKM/KBTB1QkKqX7mZ72qul6k
+	uzjiMn46GMYPFxnAnuU4FeBHsHStlbULyuQ7OXznwwBtnMxWF0NUqHkkpOLihUNAngVFyyb+DfpPq
+	fVfk5CpA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSfno-00000000NMb-3Tgg;
-	Sun, 15 Nov 2026 19:22:12 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xSgwV-00000000Rjf-3rDa;
+	Sun, 15 Nov 2026 20:35:15 +0000
+Received: from mail-yx1-xb135.google.com ([2607:f8b0:4864:20::b135])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSfno-00000000NLu-1BO6;
-	Sun, 15 Nov 2026 19:22:12 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 801C6450B8;
-	Sun, 15 Nov 2026 19:22:11 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794770531;
-	b=xYRFjuWAVlDJt+GpEyku2jK05KjUb/MktKM1cjB0roVzaNOixjCzlFaV9trdNhihaq96
-	 shyUJEdZuURKUzangJrHVUlVYvQ4SYJx4VjotmKb7xx4piUdhGHAjSN9PhXZzbKvTA+Oe
-	 LYhHXkxaL5U7J2kcUpf3fGu1+MUQMJEPWhC0Z2yCa+5iyQsmp1zhb1LD1Vs8POJq3gUsv
-	 kj+TJmVGr9EY9m2cudOWF3LFOcXnY0jG/CsehwHzv8C2w3rkRFPAD+yve4171/wq2JGyR
-	 s/RoTG/1n+pJDuMblwfMs+CGONieCuk/gx71Pgr2wdpIWNSWTvfVwqHibp4NWjmIBgw==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794770531;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:To:Cc:X-Mailer:X-Developer-Signature:
-	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To:
-	 Content-Transfer-Encoding;
-	bh=8N8NLCTo0g5vPdM1WgGpCKsKl3w4IZ0gBgY6CLXYvYg=;
-	b=iVS2DNy0yeHNIv7YW+O993qEpCA8pBLdJ0+zmpdvrY2+amZs0xvCMsi5nFExuovsdCK6
-	 p7f7Z82sStLYxSyp5PktXHP5YZ9PJz0rn1H6pZimQRJW/QBqFW07FRJpQkaZzdy3+yVmA
-	 tOBc2cKaty9ZHvyfoyX4noqYeQCTncnjx/al7UeD40hybNABuclTeijlOXj+O7YhRRkFI
-	 4D2/OCFH48DVpzE3AwpCeSj2djG0Ty0MgMX3Rrbjc6zDfhuRNqOvHS+nJX0hTqwDS6kMo
-	 LymGJH4Y0h4gcE8vG7SAwmU5McXVtS6Es6desWbV9P7zbWazT2upo3TeKz8ZdVx39Qw==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id D7F071F000C4;
-	Sun, 15 Nov 2026 19:22:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794770531;
-	bh=8N8NLCTo0g5vPdM1WgGpCKsKl3w4IZ0gBgY6CLXYvYg=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=ISgGePwbIF3dMM4JEP7VqeQPjJWkzOcneRlS3voc4blfvKsF7B2OAnah9vp5EL5Ek
-	 QL9fHfUAWtVIl2cM8xKdaW2jk1Jpqqx+lA23Hidgc1EP5s3TsbjDsJR+vQ20UbtK6P
-	 faJFkVnKlDdv8oLDvoSO0csVikZ350Kdls1EM96Yfa3RnXs+ZXbcfL1GJ1wEZ68s+j
-	 Zc01T/lafhvGuDuH9wiEjf3tubN06bq3EnDaXQZnjUdEw0cJ05sy6MDqFknoBMDg9n
-	 avhFVVJE5lhEXY2jMl/QUcKnSw+FD5B/RWkG4GVWkergAYLR3QSQrlRXuNO7R4f7ZL
-	 yTz4DcZ742NeQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 6B7094A153;
-	Sun, 15 Nov 2026 19:22:10 +0000 (UTC)
-From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Sun, 15 Nov 2026 19:22:08 +0000
-Subject: [PATCH net] net: mdio: mux-meson-g12a: keep the MAC data path when
- switching MDIO
+	id 1xSgwT-00000000Ric-0Ms1
+	for linux-amlogic@lists.infradead.org;
+	Sun, 15 Nov 2026 20:35:14 +0000
+Received: by mail-yx1-xb135.google.com with SMTP id 956f58d0204a3-67db3a48dc6so445429d50.3
+        for <linux-amlogic@lists.infradead.org>; Sun, 15 Nov 2026 12:35:12 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794774912; cv=none;
+        d=google.com; s=arc-20260327;
+        b=n5dEPkAIYQi7/UFw2NRSi+lAuXXfjEkUmHYsy/Hbe92yU+j2+lTG+O5OY823C3oowe
+         78HSKxkhlj759+mOAG1Yw4vrhHPNJBYFX6BZ7i8r31z7WOdMe+5B2NCk7/AhMF2kdxo1
+         3b7Eoe2NvCn4cfosAr7Ar2o2jgs+E/Vkx0thKnJC+2rn32YsIDnRYoz6tXVhG3PkotNM
+         W+zQIm17QgJIDtZLmZqc6/9EcWA0u1OCEf17SS1NRwHKL51Mz5w3OL2hgRquPBXrnMSI
+         H0q2oKtdS8xBS0YQ0/35VSEH1hggfTxBoLi/Lz9K8U4vTbUoQH0zghQvbpnPdmhBbDIz
+         kkEA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=hfoGaPOvarXU+50W/KFhlCJQD8hal54gXW4WmBlLFMM=;
+        fh=NGqOmAB2TC+fjgRdIz1gxpsIVFH7hKuzC4DSplDMN8A=;
+        b=kQUuOcUoAKB27Fm8qjjwytQNUbWnzVDytlN+k5YryTQOajdKI+bs/WKkjOuOr1vHB3
+         yWFTTu6VS7fGkUMwxM46QJ+69vv1GEdlhg8rFi2DH6keSc22ePu814q1jFUjFIuKFTFV
+         7l1j5p9A7K6gcgnefZVFgsFfxOCS6FQWTPrKIdjcHpuwXzObtgBpVTo4+WiMZFLLh1Eq
+         I5lM5cCZfVlM8H8sgfPm57pHnRFxIA4AlqcYkynqj8SNfAm+VUSwEje5CzVB+by5tKvn
+         urGn1DlAU7wwjgosabJlrzVCWjmp8C/llb4viEENodqOj6KbJp4cDb27tw5UUdMrnA4q
+         H4xw==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20260707; t=1794774912; x=1795379712; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=hfoGaPOvarXU+50W/KFhlCJQD8hal54gXW4WmBlLFMM=;
+        b=Rn+smbFE6aS/BsypiGIo6T47q1ic/NOAu89o9+7CGhTRD96Z61BFtbh9C0ntlGWzHl
+         NniHMZOPmhFMPiMXwxN6v8SgcdVJlx3rU/RGJSw1JNiABRQ3ok92rW41Kc57wkizY7pJ
+         cleZbFteY79nYgLKi1kb9yxmNTfVOYL7T6jUe7yHLfupPtYg6aMATzTHJI8IbV2SXX1Y
+         QLZien2rvj+7AHUPOQWRgNXRF3NQ4en1A1jmndz8K84rpRGdlrKs3iaipoPLfbnYrdts
+         2oLum2OMfaHSN+xIKRTxtvzJOcxYqSpCFP8nAiKP11fDS4N7/HETCOWcUbp+T79nXtOz
+         0eEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794774912; x=1795379712;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=hfoGaPOvarXU+50W/KFhlCJQD8hal54gXW4WmBlLFMM=;
+        b=gDka04mejnb2T0b1OgCBDFSIX7jmCq3Cg3yqcj7BKC9Axu29M+QmYPqCXpQtSLUBYg
+         rUdmJm2XA6HaFGa7D/OEA5ePOHJzJk4hu4Ij4Jlb4TMcY0DWqe48FMNcJVg8X9HK+Ma9
+         18Hcaaz4GN8+0Af2MTdNQIwzChNkrQ2NRISKmX5642jVd2MXo+INb3E4WibVRShko1rs
+         cDOR9mgdinHsG5lmAZOj6LmUSMu3+9NxUjNTpG42/gd5lIutvRs2pYk1S7PTOQtxpAHE
+         yeTCliATt3deJn/mrxcVTnQD6ELaQfOwMySWcu96B2YLQmK0vQfeUszb5d1pDqOd732q
+         gcLA==
+X-Forwarded-Encrypted: i=1; AL+hErGfcdDASv5PgVxbPh25syYAvUCnpQW9n2sBpeBevW2VtPJkQgihnexyblA4KqLmU39STHoTIqwKUcjV9i6D@lists.infradead.org
+X-Gm-Message-State: APuU4Z+4sXlfoYpLCFIAHrK/084rjPc7wkg9PMDjSRnnXklST5lj47QN
+	caJOHbBiBY9FAkIlvuKg6jzOvB2O9apgwE5rb6DNHbwE1I93/tkqsLJBiQWU4QfrOx+ESoIsXB9
+	JHPAjFJZPEZ10ImjYGNGucdv4mKOU+3g=
+X-Gm-Gg: AYBFou2lK8ZjQE/2gCVHv29XB3Y2amoJp7jfj93FYNyqTF0ViAmTbDbiWsF46aGwczI
+	uSfLfGEK0XSA1WSK6vU1GVrqwZMS1nMbrNzt/Dg7aiwCeekWDX/5L2KlxHa+i2VS+Yby4OwQCH8
+	UQ8yhUwYSxNDRi3BHlRttNxzuHSjD5+uUFpJ2GZIwPKO4WIBGnGmWl31rOsLrGxYCfhIYZ3YTg1
+	WLlwVLizV/s5gFdeBp0kw66ABPiopGRrNFQ2LS3mHihBsMyJiTnn9SSG1ftlzYL88OBJBrMiXw1
+	JCiUZxG8DnMwd3OsrpEYyGYD5gjMg1XlvrMJH5y0fIyz9e4GvKPaI3m+cOY4xq7iiOPwvbO7VPV
+	BKLMttT61vwr6z58CSA9o/9q9NP6pkM5BihZbS0dUDoWkKghFX3AXPAwhMIDDRhh0BkaSKg==
+X-Received: by 2002:a05:690e:12cb:b0:67d:b94b:6021 with SMTP id
+ 956f58d0204a3-67db94b66dcmr213466d50.143.1794774911740; Sun, 15 Nov 2026
+ 12:35:11 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261115-g12a-mux-data-path-v1-1-011dad738698@iav.lv>
-X-B4-Tracking: v=1; b=H4sIAF8G+moC/x3MQQqEMAxA0atI1gZMcBTnKoOL1EbNwiptZxDEu
- 1tm+Rb/X5A0miZ4VxdE/VmyPRRQXcG0SlgUzRcDN9wR0QsXYsHte6KXLHhIXrFrWZx3U+94gBI
- eUWc7/9MPBM0w3vcDR/PlzWkAAAA=
-To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Igor Velkov <iav@iav.lv>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4492; i=iav@iav.lv;
- h=from:subject:message-id;
- bh=rixsLn/9QY2RgeRhk+RdadQVMXkG8S6mNv5cUWus1nk=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDFm/2BK38l3+vnLXneB3c4Um/vN+9ndKXUs372TV2JmGP
- g/ehh+70FHKwiDGxSArpsgy4ZDGrYwlV//6e5g/gJnDygQyhIGLUwAmcmonw//q4PWZTL6G15tS
- ArUFlx2RiTr89XnppPMWR8ybJ/lerlrCyHDh/pOaGTX+SqGnXeY0aiQ3L36XLxrxqp1Zvtw+leX
- 3Sg4A
-X-Developer-Key: i=iav@iav.lv; a=openpgp;
- fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
-X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
-X-Original-From: Igor Velkov <iav@iav.lv>
+References: <20261106104632.54161-1-christian.koever-draxl@student.uibk.ac.at>
+In-Reply-To: <20261106104632.54161-1-christian.koever-draxl@student.uibk.ac.at>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sun, 15 Nov 2026 21:35:01 +0100
+X-Gm-Features: AclHuK-bZ0RnQfOiBUZa9VF3gQt02asaFssBFzc6vFvqnEmYWhTqvHFuHS-Culc
+Message-ID: <CAFBinCDfE9J7fFnvJ2YqeFx1ZijY+5aFjGcpcBLMDrnpU8OipA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: usb: amlogic,meson-g12a-usb-ctrl: add S4 support
+To: christian.koever-draxl@student.uibk.ac.at, krzk+dt@kernel.org
+Cc: gregkh@linuxfoundation.org, robh@kernel.org, conor+dt@kernel.org, 
+	neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com, 
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, 
+	=?UTF-8?B?Q2hyaXN0aWFuIFN0ZWZhbiBLw7Z2w6lyLURyYXhs?= <ckoever@outlook.de>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261115_123513_134588_DC660ADC 
+X-CRM114-Status: UNSURE (   9.50  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,157 +120,29 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: iav@iav.lv
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-0.8 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Igor Velkov <iav@iav.lv>
-
-Switching the mux to the internal MDIO bus writes SMI_SRC_MAC together
-with USE_INTERNAL and RX_CLK_EPHY to ETH_PHY_CNTL2. The last two move the
-MAC data path and RX clock to the internal PHY. On boards whose MAC uses
-an external PHY, any access to the internal PHY stops reception until an
-access to the external bus switches the mux back.
-
-phylib suspends and resumes the unattached internal PHY across system
-sleep. stmmac sets mac_managed_pm, and with Wake-on-LAN in the MAC
-phylink_resume() does not start the external PHY, so nothing switches
-the mux back. On ODROID-HC4 (RTL8211F), after suspend-to-RAM with WoL in
-the MAC and an RTC wakeup, ETH_PHY_CNTL2 stays at 0x260 and the MAC
-receives nothing while TX works.
-
-With the MAC on the external PHY, SMI_SRC_MAC alone is enough to read
-the internal PHY ID (0x0180/0x3301) while RX keeps running; adding
-USE_INTERNAL or RX_CLK_EPHY stops RX.
-
-Set the data path bits only when the MAC's phy-handle names a PHY on
-the internal bus. As in dwmac-rk, which reads phy-is-integrated from
-that node, the node phy-handle names decides; here it is the mux bus
-the PHY sits on.
-
-Fixes: 7090425104db ("net: phy: add amlogic g12a mdio mux support")
-Signed-off-by: Igor Velkov <iav@iav.lv>
----
-Tested on ODROID-HC4: three RTC wakeups from suspend-to-RAM with WoL in
-the MAC (ETH_PHY_CNTL2 0x40, RX working), one without WoL.
----
- drivers/net/mdio/mdio-mux-meson-g12a.c | 49 ++++++++++++++++++++++++++++++----
- 1 file changed, 44 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/net/mdio/mdio-mux-meson-g12a.c b/drivers/net/mdio/mdio-mux-meson-g12a.c
-index 71c44385489d..ed688d48eaf0 100644
---- a/drivers/net/mdio/mdio-mux-meson-g12a.c
-+++ b/drivers/net/mdio/mdio-mux-meson-g12a.c
-@@ -12,6 +12,7 @@
- #include <linux/iopoll.h>
- #include <linux/mdio-mux.h>
- #include <linux/module.h>
-+#include <linux/of.h>
- #include <linux/phy.h>
- #include <linux/platform_device.h>
- 
-@@ -56,6 +57,7 @@ struct g12a_mdio_mux {
- 	void __iomem *regs;
- 	void *mux_handle;
- 	struct clk *pll;
-+	bool mac_uses_internal_phy;
- };
- 
- struct g12a_ephy_pll {
-@@ -149,7 +151,7 @@ static const struct clk_ops g12a_ephy_pll_ops = {
- 
- static int g12a_enable_internal_mdio(struct g12a_mdio_mux *priv)
- {
--	u32 value;
-+	u32 value, cntl2;
- 	int ret;
- 
- 	/* Enable the phy clock */
-@@ -169,10 +171,11 @@ static int g12a_enable_internal_mdio(struct g12a_mdio_mux *priv)
- 		PHY_CNTL1_CLK_EN |
- 		PHY_CNTL1_CLKFREQ;
- 	writel(value, priv->regs + ETH_PHY_CNTL1);
--	writel(PHY_CNTL2_USE_INTERNAL |
--	       PHY_CNTL2_SMI_SRC_MAC |
--	       PHY_CNTL2_RX_CLK_EPHY,
--	       priv->regs + ETH_PHY_CNTL2);
-+
-+	cntl2 = PHY_CNTL2_SMI_SRC_MAC;
-+	if (priv->mac_uses_internal_phy)
-+		cntl2 |= PHY_CNTL2_USE_INTERNAL | PHY_CNTL2_RX_CLK_EPHY;
-+	writel(cntl2, priv->regs + ETH_PHY_CNTL2);
- 
- 	value |= PHY_CNTL1_PHY_ENB;
- 	writel(value, priv->regs + ETH_PHY_CNTL1);
-@@ -301,6 +304,41 @@ static int g12a_ephy_glue_clk_register(struct device *dev)
- 	return 0;
- }
- 
-+/* Like dwmac-rk: the PHY named by the MAC's phy-handle decides the data path */
-+static bool g12a_mac_uses_internal_phy(struct device_node *mux_np)
-+{
-+	struct device_node *parent_bus, *mac, *phy, *phy_bus, *mux;
-+	bool internal = false;
-+	u32 reg;
-+
-+	parent_bus = of_parse_phandle(mux_np, "mdio-parent-bus", 0);
-+	if (!parent_bus)
-+		return false;
-+
-+	mac = of_get_parent(parent_bus);
-+	of_node_put(parent_bus);
-+	if (!mac)
-+		return false;
-+
-+	phy = of_parse_phandle(mac, "phy-handle", 0);
-+	of_node_put(mac);
-+	if (!phy)
-+		return false;
-+
-+	phy_bus = of_get_parent(phy);
-+	of_node_put(phy);
-+	if (!phy_bus)
-+		return false;
-+
-+	mux = of_get_parent(phy_bus);
-+	if (mux == mux_np && !of_property_read_u32(phy_bus, "reg", &reg))
-+		internal = (reg == MESON_G12A_MDIO_INTERNAL_ID);
-+	of_node_put(mux);
-+	of_node_put(phy_bus);
-+
-+	return internal;
-+}
-+
- static int g12a_mdio_mux_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -313,6 +351,7 @@ static int g12a_mdio_mux_probe(struct platform_device *pdev)
- 		return -ENOMEM;
- 
- 	platform_set_drvdata(pdev, priv);
-+	priv->mac_uses_internal_phy = g12a_mac_uses_internal_phy(dev->of_node);
- 
- 	priv->regs = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(priv->regs))
-
----
-base-commit: aa40afa831ebfe45e40a23721711059f2ac584d4
-change-id: 20261115-g12a-mux-data-path-642abdbc7b29
-
-Best regards,
--- 
-Igor Velkov <iav@iav.lv>
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gRnJpLCBOb3YgNiwgMjAyNiBhdCAxMTo0NuKAr0FNCjxjaHJpc3RpYW4ua29ldmVyLWRyYXhs
+QHN0dWRlbnQudWliay5hYy5hdD4gd3JvdGU6Cj4KPiBGcm9tOiBDaHJpc3RpYW4gU3RlZmFuIEvD
+tnbDqXItRHJheGwgPGNrb2V2ZXJAb3V0bG9vay5kZT4KPgo+IFRoZSBTNCBVU0IgZ2x1ZSBpcyB0
+aGUgRzEyQSBvbmUsIGJ1dCBpdCBmcm9udHMgYW4geEhDSSBob3N0IGNvbnRyb2xsZXIKPiBpbnN0
+ZWFkIG9mIGEgRFdDMyBjb3JlLCB3aXRoIHR3byBVU0IyIFBIWXMgYW5kIG5vIFVTQjMgUEhZLiBB
+ZGQgYW4gUzQKPiBjb21wYXRpYmxlIHdpdGggdGhlIEcxMkEgb25lIGFzIGZhbGxiYWNrLCBhbmQg
+YWxsb3cgYSBnZW5lcmljIHhIQ0kKPiBjaGlsZCBub2RlLgpLcnp5c3p0b2YsIEkgaGF2ZSBoYXZl
+IGEgcXVlc3Rpb24gcmVnYXJkaW5nIHRoZSBsYXN0IHNlbnRlbmNlOgoKWy4uLl0KPiAgICAgIG9u
+ZU9mOgo+ICAgICAgICAtICRyZWY6IGR3YzIueWFtbCMKPiAgICAgICAgLSAkcmVmOiBzbnBzLGR3
+YzMueWFtbCMKPiArICAgICAgLSAkcmVmOiBnZW5lcmljLXhoY2kueWFtbCMKRG9lcyB0aGlzIG1l
+YW4gd2UgbmVlZCB0byB0aGUgYWxsb3dlZCBjaGlsZC1ub2RlcyB0byB0aGUgY29tcGF0aWJsZQpz
+dHJpbmcgKHNvIG9ubHkgUzQgYWxsb3dzIGdlbmVyaWMteGhjaSBhbmQgRzEyQSBvbmx5IGFsbG93
+cyBkd2MyL2R3YzMKYnV0IG5vdCBnZW5lcmljLXhoY2kpPwoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGlu
+dXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3Jn
+L21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
