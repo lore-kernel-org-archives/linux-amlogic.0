@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A95E8606A31C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2026 09:55:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 313F0606A31C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2026 10:00:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qQHxeWGn;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=cTPsy6oN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EEqElWuS;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=S78Vco0Y
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
@@ -14,83 +14,87 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=P3T22uYwmEZudVjDDurRabVHS+Yqtx3tbpHlbcG5Ti4=; b=qQHxeWGnffp3A5WchKi93XWAw6
-	iWwhQUF9J+2Q51NHuDUWMJC4I2BHTcCS8++0Ql40oXvyx6DSh1ZCszxbQyEKYMqF5uxUrrKAv1D49
-	B/z0KDvR6avSgSC8dyrz6Jr7JTHKvmYmV30YvRhxUxSRFTwsPmKPuh2/6gM6aud20tOY9jmjuDeNe
-	tjljUwMAPuXf3o7Ab7jRDjr7GU4I4HE5pIIKiKmRfTzorx/ryi+7DYtww1o1Qfbn8ep6cngV6fUhk
-	WXz58FbsS9M/9iAod9Hua1Ctf5bvqQFi0AoZWqq4SpNOgK0sJhnbWjJ3znB/iBRB0UTpBB3ESpaH5
-	DU4vdaaQ==;
+	bh=IbAKo4kUp03MLcXrULZ4qOoVvEeyXNTB1vjJkRTLuaU=; b=EEqElWuS+uhMmLvGEO10PyTK6U
+	jZ2UWlyBOJ53ays6s+pXmW4jBoCmjMaQ1ZS9hGoBmg0Mkgpnjf21OrZ2gU61o7Mv0OlCKIzj15BOY
+	wrX47uHknfB/6M/RUZNeadW0x8yZQ5cUnbHIrkMrvM2n8KaUvb67a6r+dmUUBlOFZdNh4sjx2x6Ps
+	luBSbzrbZ6O2OtLNAmgZ9XjqBjlqBKDH5y4YpP9Ywg2UhEglv9z1pSZFewKo+EZWlootqjen9Hxtv
+	OAIzBS8cNq77Az8+6HI5FpQQrNPyCVFaz+uER3l8G81CVPRlObAnM7fSfITY2kYJ1h+QAYxEUQzLe
+	EauuNLZA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xStR8-00000001r7e-2GON;
-	Mon, 16 Nov 2026 09:55:42 +0000
-Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	id 1xStVb-00000001s7Y-0efA;
+	Mon, 16 Nov 2026 10:00:19 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xStR4-00000001r6D-3J7A
+	id 1xStVY-00000001s5g-1hMJ
 	for linux-amlogic@lists.infradead.org;
-	Mon, 16 Nov 2026 09:55:41 +0000
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-48e09aa5264so1480628f8f.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 16 Nov 2026 01:55:37 -0800 (PST)
+	Mon, 16 Nov 2026 10:00:17 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4bb666304fdso10186095e9.0
+        for <linux-amlogic@lists.infradead.org>; Mon, 16 Nov 2026 02:00:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1794822936; x=1795427736; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1794823214; x=1795428014; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:in-reply-to:organization
          :autocrypt:content-language:references:cc:to:subject:reply-to:from
          :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=4JH33ii/O1IYJlAZS2nMThk6S+BnMzG8A9OXw4THRRo=;
-        b=cTPsy6oNpCzWux9rzKrxYybE0e+ifIPxSRYx48VaXJ3IN/p90lCFQnVwJowbiRHJ2s
-         sr5moQKEbLp+/Bpdp0CrEOnTHo8rsMOW27GtFnHhRYiRd8JxwFaNcWbbdLZlLC51cL3m
-         RYwxL+G/e5W0iVYd1YG4+xmp3UnEBkBxkVl7Zjrv51NvpP47SZsBMX2dtB9ruIkxo80o
-         jg9SP7KFYtpO1x+/1rMEBf+rRwtc4/EFc4X7cB2QDr9Ib/GfGDVD3wGvzFVJZe4avsr8
-         3VfyOHOmpcl+ipJ8Zyzcr0UYVDj12ggmK8Cd7JI5SzzpkNGvpCaI1U9hNqiDrA5OpaEd
-         l/dg==
+        bh=mS0n0VCms4eHAxEd2Xq6Bm0DUZuN+p1NF5Q118cCuJU=;
+        b=S78Vco0YSIKfCt9VKHH0iq98gXaE2zrQYvGUSavcngfrC32b/DM7eMQKAo57LeUSwD
+         OzT/mUb1f2B0q0pDgD4E0VLq/7/eorFCyidGGQslMHTB/yNvSXu40UcyMjOtlJD1fEs9
+         SNMQ0oqU0bYqY1Ycm9oLoBYRA98fyscOEHzr/qyNtldrE56MN84c4nnzX8T5zyBMfacB
+         tYaVx5JEf2WO0lk61U3GZwdaescSdOJEO1fNzKWlduFAKisOjMWKEoGpfRh9zFR1iZCp
+         xDvAlYqGBWo9MjDXGK2lntVLbAnBB1HGLnmjn0BCnLoKrOep4FlaL7BXo5s5axnHiXU2
+         bLjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794822936; x=1795427736;
+        d=1e100.net; s=20260707; t=1794823214; x=1795428014;
         h=content-transfer-encoding:content-type:in-reply-to:organization
          :autocrypt:content-language:references:cc:to:subject:reply-to:from
          :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=4JH33ii/O1IYJlAZS2nMThk6S+BnMzG8A9OXw4THRRo=;
-        b=kQ1Av9yJfVG7ot79hbd6qYo0nPWFuSYEcNWsxPsVDI/lew+Dtk0Gbw2SM0uHW4RxLM
-         zha5ifi7BQY+dMdEaZXUVJ2aS9HZ6NIuS4NY5M/JkeVevkHOycFb0RtbMOJ2TtZ3R49J
-         Faxb5WDqTyF7riXYqX/KMRdk5IyhjsEe/nA/gGF7+Du2kf6gqPf7ev5DMHVP38BE62D5
-         FhwoBJwdJgcp9Mdnn/9RQEBI+4y3Pw2FZ+0svGMg+usLEGCqojQC0Sth+Bt57F+Yz7PD
-         E+6wN7qVbKopIlTPskSN8GQOBYuHOtk/zjg3oFmyinDAvo+lXESgrZjrZlfbHj6wLRNr
-         IIvQ==
-X-Forwarded-Encrypted: i=1; AL+hErH0JcwHEEQ3CIIFOgeMykO+QPWOnGe+NqwvNfceIZsZxGTkzUOlROyMfjPGFBuBYfihXdaun016Zu/td0rJ@lists.infradead.org
-X-Gm-Message-State: APuU4Z+MAtY5dse0iCbuJROsl2hwbe8cFvySykHGiVJpegGnsS7KYOdg
-	Scv0vvKQ7BSePOmahuCMHUM8KEz1MZG2eTNRn7lTpkaN6NJGobFwfiJ3v+m569QMaf0=
-X-Gm-Gg: AZFdTZdawtq8wNexuvMmxSSTZuvt7o6byY8QJQnj0u8A9JMBF//p1i2CbDtNaTT3jiY
-	ZH93xe8z30PbyVKaVgEXyqOioVKK6aF8r47hd7/5xiXFzI5hOBXAGCtnu5Gcfh6r+DVjZRgg1Q9
-	hIDpJsCkLVjmrulsN18DhSty0E8jA1cy24tZkWCvPQgKicU9q6cwUAhqA9h7rMeIVIJz5YxqUS7
-	cXU8h71d4PQRWWRgilhZrKYV/ExUQ9i/KizukjNIeN6GgvxXIOnLzXfNSMEwAkRcjeUHtwgkWkV
-	mQ+ovHgpsAuvCCqpwHK+7xVhNE0ReKEUdvPeIF6RANHBOCPvOeoWS1EJ3Rs1QgiBpMPr5hQAmN2
-	pnkmHnQiZvMqtKOLyd9w7lD/hsC/8e3E/ycacioHi6AfIh1ROKxAy0CVXXw46v5sCkeXC/AkDa2
-	lQ/DRl7WHCEMtxwWLrV0+5Jq3PZeOpb3KDsXYRKgx06qmHEFJiiFSw0GpRxF2WeYIqXvNPkRyJT
-	zd+hti1lh0NM/TSj8JxAIJr6nkj+FHfItoPgst/eW01KbRrSngESAiVj+cIO5mR3/qpT417UjrT
-	qNW9PPo973kDslJvfFMXswZj89K2E/LYbG0pDEIchLfBM+HaFfxraWqZSbW322k6wLpBzm8dWU2
-	lBd8UFxYs
-X-Received: by 2002:a05:6000:26cf:b0:492:f6b7:f488 with SMTP id ffacd0b85a97d-49c6fc9dbf5mr23160002f8f.7.1794822936261;
-        Mon, 16 Nov 2026 01:55:36 -0800 (PST)
+        bh=mS0n0VCms4eHAxEd2Xq6Bm0DUZuN+p1NF5Q118cCuJU=;
+        b=REOBt+zUfY+QphluWijHQjLhkMoEsaQVJ0cSDr8vm5UAQcUMqoZYzVSAjTV+uEkSPr
+         7hvyfPDsBvEhNYU0PXYsZAayENtcuzAqrHA4f6z4GeooDa3EdOjqKqWY6Zc+b2+s0kIJ
+         puYZJHFesaXGFlwvPd4+NqTXQKKnRd7CvIZqZLtdHhyjoVesTNp21vlKU+1Cgfl1QNcU
+         u1dMjvJngY7oUP1u+YLrzDvXDzpVOA14w3ybM3x3cDs8bWEaqK0xnuW0iwmvt0Mvgo6Y
+         QVrgEC85tBzNGgbP1GCGKF+QptGOgW62tcBeNwibK9eH+D20LDCI5SB93B5jRLf32Ezz
+         Vsew==
+X-Forwarded-Encrypted: i=1; AL+hErHFSvsZnJHfyAKTgeU0AWV0ax260Vav1kFbhMxNYxgVo5INxBRAdCbi9oB25mrNbZiCQ0L4dLFZGlpX28rp@lists.infradead.org
+X-Gm-Message-State: APuU4Z9M1MQ3RV499xC0wHOPFhn7TVjSULXLSx1RCk0pgx4WOIvRiaTB
+	nw9Duv5VNjGFapEsQ70hxCoCD2arloMw6zy2e/lv8ohr4kHT2YNF10GHC3H6wVHBtWg=
+X-Gm-Gg: AYBFou3F1YI98OygJTAFw1AyGz6PjL3JFNqclC+0ZivNcuvY9nTYMzjLQEhTUDNMnFC
+	xsvMK3JuntXVPjnCk9StgpYjwDy63GQDnXQMBZhnCG6htZQXu2uAKIVCNYliIjJGBxKSluhYgFI
+	85/jhrbECt3pvEEnkqyKPjrTFYH877hnDavHAapUWb8PfcqP5YqtxGYnd77EPSowLPEj5fBdkXY
+	r7GLsQNv7Un6H0c0Jz7LzpFadkiiAb+VWKVmuC0SOLX8rqx86M2ERvKru+0OnuTsyK05P6lChS8
+	KkuI2sVuPnkRFDxtEpixMYXkbLi5BHdtnhWcHorwYGPRw52JVMieieHxGfbqTIS0pQ09iRPuNEY
+	5IJx/r+6Qv6sqNRMjGBvz7XuRs2aEtccI6EfzG8oY9Cvl4GCSAA2yhmKcQHZAlrNNPlUfQHUaFj
+	yd0apoVL/DI3RxhJ/nagO7Ea9/HdO9GC1PSNN3w+5sH/qWdOrxJ+7WEfvxli+8JpwDxJnha3AEi
+	hGojn8UJ+ITvYsGNvthg8ugVls3eBLqx13dXAZmzo6K8HQ1/tR23Mybng4RW7KRWBJgYLcld8yv
+	7+gdikFmh/Bi/ag9NQWDLExhFgJFZ8S3HxMDMMrJhlK4aRFM8FzU+vKMK1BgkhsnJcXsP1/+FD+
+	XJlf49BwH
+X-Received: by 2002:a05:600c:3b16:b0:4a2:1960:6fa with SMTP id 5b1f17b1804b1-4bb55a6116bmr218070545e9.4.1794823213643;
+        Mon, 16 Nov 2026 02:00:13 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:106d:1080:575d:8fcf:e30d:5aed? ([2a01:e0a:106d:1080:575d:8fcf:e30d:5aed])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c69406640sm20884339f8f.12.2026.11.16.01.55.35
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb4e28c882sm375110715e9.6.2026.11.16.02.00.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Nov 2026 01:55:35 -0800 (PST)
-Message-ID: <19786c13-d3fd-4258-a1d5-2a28a1dccc31@linaro.org>
-Date: Mon, 16 Nov 2026 10:55:35 +0100
+        Mon, 16 Nov 2026 02:00:13 -0800 (PST)
+Message-ID: <c458eba8-553e-4c5d-a280-918bec25b041@linaro.org>
+Date: Mon, 16 Nov 2026 11:00:12 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 0/7] arm64: dts: amlogic: Fix dtc warnings with W=1
-To: linux-kernel-dev@aliel.fr, Kevin Hilman <khilman@baylibre.com>,
+Subject: Re: [PATCH v12 1/6] firmware: meson: sm: video firmware loading via
+ secure monitor
+To: zhentao.guo@amlogic.com, Nicolas Dufresne
+ <nicolas.dufresne@collabora.com>, Kevin Hilman <khilman@baylibre.com>,
  Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
 Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20261115-fix-amlogic-dt-warnings-v1-0-94cbd67a32ea@aliel.fr>
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20261022-b4-s4-vdec-upstream-v12-0-616240978792@amlogic.com>
+ <20261022-b4-s4-vdec-upstream-v12-1-616240978792@amlogic.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -117,10 +121,10 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20261115-fix-amlogic-dt-warnings-v1-0-94cbd67a32ea@aliel.fr>
+In-Reply-To: <20261022-b4-s4-vdec-upstream-v12-1-616240978792@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_015538_847979_87B30AC2 
-X-CRM114-Status: GOOD (  10.51  )
+X-CRM114-CacheID: sfid-20261116_020016_476115_26F7AA22 
+X-CRM114-Status: GOOD (  11.05  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -143,50 +147,31 @@ X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/15/26 23:29, Ronald Claveau via B4 Relay wrote:
-> Building the Amlogic device trees with W=1 CHECK_DTBS=y currently
-> produces several dtc warnings, all related to the same pattern:
+On 10/22/26 07:26, Zhentao Guo via B4 Relay wrote:
+> From: Zhentao Guo <zhentao.guo@amlogic.com>
 > 
->    Warning (unit_address_vs_reg): /soc/bus@.../pinctrl@XXXX: node has a
->    unit name, but no reg or ranges property
->    Warning (simple_bus_reg): /soc/bus@.../pinctrl@XXXX: missing or
->    empty reg/ranges property
+> Add SM_LOAD_VIDEO_FW to the secure monitor command enum
+> to allow decoder drivers to load firmware through the meson_sm
+> interface.
 > 
-> The pinctrl nodes use an empty "ranges;" while having a unit address.
-> 
-> With this series applied, the Amlogic DTBs build without any warning
-> with:
-> 
->    make ARCH=arm64 W=1 CHECK_DTBS=y amlogic/
-> 
-> Boot tested on Khadas VIM1 (GXL) and Khadas VIM4 (T7)
-> 
-> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+> Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
 > ---
-> Ronald Claveau (7):
->        arm64: dts: amlogic: t7: Add ranges to periphs pinctrl node
->        arm64: dts: amlogic: a1: Add ranges to periphs pinctrl node
->        arm64: dts: amlogic: axg: Add ranges to periphs pinctrl node
->        arm64: dts: amlogic: g12: Add ranges to periphs pinctrl node
->        arm64: dts: amlogic: gxbb: Add ranges to periphs pinctrl node
->        arm64: dts: amlogic: gxl: Add ranges to periphs pinctrl node
->        arm64: dts: amlogic: s4: Add ranges to periphs pinctrl node
+>   include/linux/firmware/meson/meson_sm.h | 1 +
+>   1 file changed, 1 insertion(+)
 > 
->   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi       | 2 +-
->   arch/arm64/boot/dts/amlogic/meson-a1.dtsi         | 2 +-
->   arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 5 +++--
->   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 6 ++----
->   arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi       | 5 +++--
->   arch/arm64/boot/dts/amlogic/meson-gxl.dtsi        | 5 +++--
->   arch/arm64/boot/dts/amlogic/meson-s4.dtsi         | 2 +-
->   7 files changed, 14 insertions(+), 13 deletions(-)
-> ---
-> base-commit: 6d582d78fad9d828e575ca0cdcff8ea47a77220b
-> change-id: 20261115-fix-amlogic-dt-warnings-7cba2a4eb9d4
+> diff --git a/include/linux/firmware/meson/meson_sm.h b/include/linux/firmware/meson/meson_sm.h
+> index 3ebc2bd9a976..3b90b49d0552 100644
+> --- a/include/linux/firmware/meson/meson_sm.h
+> +++ b/include/linux/firmware/meson/meson_sm.h
+> @@ -15,6 +15,7 @@ enum {
+>   	SM_THERMAL_CALIB_READ,
+>   	SM_A1_PWRC_SET,
+>   	SM_A1_PWRC_GET,
+> +	SM_LOAD_VIDEO_FW,
+>   };
+>   
+>   struct meson_sm_firmware;
 > 
-> Best regards,
-> --
-> Ronald Claveau <linux-kernel-dev@aliel.fr>
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
