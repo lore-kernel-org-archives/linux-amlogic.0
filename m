@@ -2,133 +2,95 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 989BC606A31C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2026 16:29:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B071606A32C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2026 16:41:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iUxrvYLi;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=pkF9u4FZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CFP0gwNS;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=V/14gUF1
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:MIME-Version:
+	Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=5bagaTnz1X+nGms8DxjznCWD0blZrz9vM2wUxPj9/yk=; b=iUxrvYLivZPo70oPPln7WBi9pj
-	OkHlC+j7T+j97AobMAryGynr2Wgc0Q5wXgPxYi1OgU7E0iX+U4Drc1c9KIHcM28MxeI6GJlgQ6xGT
-	X0eyM23vAL5VEQ9Hq3woxRZRv65/lMpPn9b7kYOrDIjbG90fVARB6y/k3NhUGmzHqcpBtCFWyBqYi
-	jeVUcnV2vkOMGCcoTYbmeH6/xBgYrOa/4JPeJhbRML2c8tBUqut7S2ORBKBgQWIkKbnNsC0ZDuAfb
-	OmvurB1dSdd8DbwTCtwHOv0iYd7dUv1ASqV7826lWye+L+B9YSCRVHSc8y2Ow8PDaWEjcwIpoPb2S
-	28qwX0HA==;
+	bh=JoUU/Dkl6ZeVeJw88SSYAF0/3M1AhcTBaMFU30AOQbk=; b=CFP0gwNSHZ5P5neIrEgbMKn+Zt
+	9QWXQHqVEPedJ8doFZAljo83tVIynD7T/5rHNkyL7VydwM2edADlFZ55AKdLV+CboQMfQsqouedRX
+	r2I5w1LAqh9nn6OGpimM5N+L6WBp2bhmZ5MC53rCr4Wd3vxfWJbHwN2kJYA+rQRCw6IoPcbvUx0GR
+	N2tTRFuLHKTew1cU+eyVGaGp76XWqHTSFr0df4pAFDRUlEzCQ7SjTNcQPdjjtHPj6cjkt25UP0M9b
+	VFxxQ9q3JJkl2akVUA98/9fVb/c7zAk9N2ea7fRyFmIfJC83Z+t9s5831vSnbYseASFRrc4jIjwEk
+	HQtdRODA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSzZz-00000003Dww-1xFS;
-	Mon, 16 Nov 2026 16:29:15 +0000
-Received: from mail-westeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c201::3] helo=AS8PR04CU009.outbound.protection.outlook.com)
+	id 1xSzle-00000003Hmd-1tFy;
+	Mon, 16 Nov 2026 16:41:18 +0000
+Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSzZw-00000003Dvx-1SmR;
-	Mon, 16 Nov 2026 16:29:13 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bVeRNR45UROZRhaT2AhX+wHvOdSswEw9J6lIjiO5nx4tHEYUrH55CpgiWD7ggMWr3LoGv72yFssFSU93bl/x0eLvzNbC9Ie2EPZqDQqCLfhIE9szNqZVnpZo+hCCKuciem/+dTTgFv08GRSZJDkkodLK9+wqS/UsAn0EZMOHzsgyt5Vll9fXjufTmt7oOtqRlUvyBoTwPZDJ21KA3G7dQHu1L+6/HqdTNvOgZdWsVQxSnzOqYfTJ4MQDNieaYJ0fQgJ7OYrXEcE6EL/d9mOFUoLy+pAgXe0/7sZqzAt+gDAR7e1wLaf4cQT5Gje4Pdvt+CHJkPIMDNuAWJvx0HWGIQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JDkOpNv+LYpWuGzOZaoAM1aEw7nBWz6K7YjEJ+8kAMk=;
- b=d3fTMMNm8kiMQo1/0CP4DWTHHxI8qMve6P8I7+qCHEpHLb3EbAiV8UHwHoE0WqGxCzbk5KhxT3megZtCODPSJ4bTtih2lvY7AhTYijtH3eeEeToecxDPYFrZRt0Dqupma8GDcbO+0zV19kBNzWvQXFKeiq+zCNFWGmCKbAAzm0lip/QaXxIVvNdA5KQBkIzuY6ignd2OqLwud/m+7nECGpm7K6AiWgF3q8x5wpemuNRpbS639lxux/QVosJ+/uPjp3UsyS7uDPDlYzaVcaZi/rsxC/PeQTUjvuEazatd1OGdCAjdbTgthV4o8PGdBU6NNZIrg3pxsn3GIC5+JUpuPA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JDkOpNv+LYpWuGzOZaoAM1aEw7nBWz6K7YjEJ+8kAMk=;
- b=pkF9u4FZJqlOg0PJS5YhtN5wdbRO6/Dj4+ughF7xg5euytupuUORCTeULMpRzn/NBmf0zEaVyzGq8UPMX028cXJPLefHxAsc/w02YWRMhjiosmeLcwuB41VIKrXuhnxovXRBcK2wdMDEV0CogZlr3wQbCetKwoTvq5btGNfttdvotk96PnRPnpyEPEfameSoCZTbPmP7beF86yMthRp48iUXmtVYxM7Y3dMCKj8p1QmT8FiZm16G4upV0qw7iiHajeTi2w1y8PhYINGCmjcBRzzOChbcdZ9ID4frJ14GLtYNE/Iyiq9em50P2Cmmm7dA40Q+R5ezf0+yP9jMnoJu9w==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by GV1PR04MB11015.eurprd04.prod.outlook.com (2603:10a6:150:212::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
- 2026 16:29:04 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.013; Mon, 16 Nov 2026
- 16:29:04 +0000
-Date: Mon, 16 Nov 2026 10:28:53 -0600
-From: Frank Li <Frank.li@oss.nxp.com>
-To: sashiko-reviews@lists.linux.dev
-Cc: Junyi Zhao <junyi.zhao@amlogic.com>, linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	imx@lists.linux.dev, robh@kernel.org, conor+dt@kernel.org,
-	Frank.Li@kernel.org, neil.armstrong@linaro.org,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: Re: [PATCH v4 2/2] i3c: master: svc: Add amlogic a9 support
-Message-ID: <avsvRS6ADfbzQkpn@SMW015318>
-References: <20261116-a9_i3c-v4-0-3d3222b7128d@amlogic.com>
- <20261116-a9_i3c-v4-2-3d3222b7128d@amlogic.com>
- <sashiko-outbox-216859@kernel.org>
-Content-Disposition: inline
-In-Reply-To: <sashiko-outbox-216859@kernel.org>
-X-ClientProxiedBy: PH8PR22CA0011.namprd22.prod.outlook.com
- (2603:10b6:510:2d1::22) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	id 1xSzlZ-00000003Hld-2e5F
+	for linux-amlogic@lists.infradead.org;
+	Mon, 16 Nov 2026 16:41:16 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-4a2153c8525so22734545e9.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 16 Nov 2026 08:41:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1794847271; x=1795452071; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=YA4HSjIeB4gPYXT/wWzHI76b1JmPd/ZJtbNmLZ/Ltrg=;
+        b=V/14gUF1S69qn4p3CWCFBLWzd+mk8OFfsH5eUi7WdEqgeoKzNERAlRrV6GhthV4d7m
+         9PNWhapUNZJD0GJjVrFhdjnQqSV/7IQS8L7hseLVTh2Kx15CLLXsBJnoPKgN9l9By/QS
+         aQ1fw5eik5iW+FcnBYR81oLW5IJihsBL9fs5Mx15jaTNlPMcTb/Eyy2J64qz17/9le3r
+         dQyMJ/z2cFCq9B9M/snrPA2AnJNazLZ2Zpt5MnK8FOP3CzQwrp89Gns4oMz4aZ8Mz64K
+         zSQrub8/o6LtSU83D52u9bz+aKk3bGnw4xgocn6OeA8kflImxEWaLRKgJmlQinrma+Z0
+         vzfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794847271; x=1795452071;
+        h=content-transfer-encoding:content-type:in-reply-to:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=YA4HSjIeB4gPYXT/wWzHI76b1JmPd/ZJtbNmLZ/Ltrg=;
+        b=cphporqlJ3MFTpc7D8kbvu3IqIFC5NyAY3i5p1KA55nCLTNTmKWvgc2SbKUnq1OrQf
+         QYbkndeGZ47tnVhJ1W0onQ180+rPXBdzGme11patWi/ym8tFd0fRiO3fON6d190gDLdz
+         QlFPAP61fcLJ8yeX+lkq8hQhen+I+gqiaPFT/vy6VsxemCwTNsi3nCmuzYlEKA5JGTFj
+         PUPpPHLmTjUXryWv8syj3VQ/6Q3wRJxEAw3BthKKQSecTcZMCDNPtGjstO/ik7RDI8+J
+         AQCMcsFKFMKkUW2xrfDfsj878zdTRw/2xtuFsmWqtHDJsQJMd4v1O6CLG2C+vncEeCJA
+         Zqhg==
+X-Forwarded-Encrypted: i=1; AL+hErFw4AU/QSs9DbDH+5BQS/eQP79205dXV54jyVKna/v+6P11k8ww69JIwHyhQMXRAtqXS2RQnGPFAv/tgx9r@lists.infradead.org
+X-Gm-Message-State: APuU4Z+C9bux9qR3e6UBL7Y4uHsKzvcz5sOVgmEjTjDg+EDmjDskSujD
+	6GdhDmxMVOu2ah9ah406dS1dCZQrafyZmfGdR+0oTbLmBgPmQ7wQrG6j7xLTr36HCOI=
+X-Gm-Gg: AYBFou2/iPxJg4WgSVGAKMYuGTZ8lXazkVO0Sf4x9JABwn8y7AiC7oev+ob9eb1KKjj
+	GbyVI4mV81yMi1Gz9eATHP7/PQHxTbAycL/E7MwSKW7JeYe931prQcLSeKow7BTHMjMiEL2B/RW
+	2zKN2VjcOozAHPdHGSy2U3xynbfhYAY96awbZqB8QpeYWoDHe2x5jcMEtyp5KsVg05y+Wdaj/3Q
+	fiWNDtqcpq1ntX8FadqWyrPx+O1SfaHja2UOQot9j7cdbKAvupZMhxsOy27YQLg7CB+oQlohzb6
+	vMmn5DhC+3EKdbhL5R/k7fzsahqG5WtP0GX3fAMQr08nVE8SIUsHVMKuqUmPsi8nku+ZH0fM9L4
+	E3EVkIMHvq1sf1nnEEs/hxPTgEZrql1Vunh5VAQ+VLaoIn13Ucm1LAKejrgOf2IEYwNACFYh3H2
+	OV1OSAVi3LQhDgtHHU9kWPF6TRQg0Xmm1JgGyh2XpvRzu01Ru+xfmbg7vv/2bZkG3iB92ZvtRw/
+	PJp/o6evCkcLgo60mWzjopTMezf88sR8bXuoso0qZ3rCfR9RgvPoPxCJZwcnLL27fNfRSY9Ur7Y
+	IMy2qCpLI2eYMAzNPrPWcs9F6k83IyqS
+X-Received: by 2002:a05:600c:34d2:b0:4a1:fa27:df7c with SMTP id 5b1f17b1804b1-4bb55ac6cabmr228383715e9.34.1794847271206;
+        Mon, 16 Nov 2026 08:41:11 -0800 (PST)
+Received: from [192.168.3.100] ([151.61.248.197])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb5720f6basm154341245e9.4.2026.11.16.08.41.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Nov 2026 08:41:10 -0800 (PST)
+Message-ID: <34e02f23-1ace-4a13-9353-b73a1464a592@baylibre.com>
+Date: Mon, 16 Nov 2026 17:41:09 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|GV1PR04MB11015:EE_
-X-MS-Office365-Filtering-Correlation-Id: 483a1e10-d01d-4fca-0715-08df43febab1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|19092799006|366016|1800799024|7416014|376014|22082099003|18002099003|6133799003|261009223027099003|11063799006|4143699003|56012099006|261028144727099003|261102123227099003|261026135527099003|261026121527099003|261026130827099003|261021123027099003|261026140227099003|261022115727099003|261022105027099003|261021133027099003|261021121427099003|261021130227099003|261022075727099003|261021135927099003|261022113327099003|10067099003;
-X-Microsoft-Antispam-Message-Info: KuxhcsWgcJXAjAKWoplZVAPU0Lh9g/oMCqixV/TfolkTiqdii5YQKzYde0Yif4tiSqM/BgHZ5liLNOriluO2PHbfhsZwulKANPf+dCdXv94BxbRXu8zdRig6NCwI3aX0nWslofHqh1Ixn/fiEvewBW5MG4YsTCDqawzH6QkdzrT99ghkC74AvS93ffQiDWVIKEjO1Z7IVJXnVn5yjH2VUhYwQeIHRalW6IdTXAb8X4Uz8mGG/ps+Tz9zfDeWCtwteL0hC8CRty9UBAHhtEGm1DxghPFOXk2Er8Yvr4uOR50IQ5mTkOlD3XYy1Mt2n5JUiXVofzRjVfvXUsvy0hvfKDiYExXKZrYppQy066+nRPa/ClymlhZv0WHolyk5sojB0Wl3PTL7b2ua3+ob3wf/ggbge4vz0Psq4BhE7S4gQMJP0lFQO/FD2GeFlW2tb0nWv4BlyjxfI7QJqfndy0Rp0C0JbC2ejGxzsEuhY/WbUAQaw7eVUU2Ge0APn6lPHEK1kFEaSZweqDK/PDe1j6oHWDo9hJOsP03SYtHR/dtSWHFg+zt2af8tFJt+pwwgum6jUyk8rdHTqpvcxNqWGlfz4FE8DiXAOJ0owTNF+UGCejc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(19092799006)(366016)(1800799024)(7416014)(376014)(22082099003)(18002099003)(6133799003)(261009223027099003)(11063799006)(4143699003)(56012099006)(261028144727099003)(261102123227099003)(261026135527099003)(261026121527099003)(261026130827099003)(261021123027099003)(261026140227099003)(261022115727099003)(261022105027099003)(261021133027099003)(261021121427099003)(261021130227099003)(261022075727099003)(261021135927099003)(261022113327099003)(10067099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?HUESEz4mC6Pi5i659XypAGxoN0H0H1tVU5Ofm51TstJEYalNQthnxETHv9?=
- =?iso-8859-1?Q?8ybndCV5d82YwokqypvoVtvZU5Sh8gz72QbySchXAWtrPfzs51WlTtVzu3?=
- =?iso-8859-1?Q?zyh8XWaMT2DhPD7EkrvQ/si6gL2zeu72y1QZx57ywAtDMXUhwvzabONm1t?=
- =?iso-8859-1?Q?IYCMIdZSt2/1LD9vsXK2ljc3KsEce+GN0XV5Vi2RtoChON1Cq9i8Ob/qUU?=
- =?iso-8859-1?Q?zLq/QiC6K5epxQiAsqvX546151dMd6sXKpkrCVDMP1IJ0B+uuP0JMSt3Xk?=
- =?iso-8859-1?Q?6E7PsIeaCHPXXvLec+VucHhokKVWLzhhSkmNDM9u8b7V0k/KQPudqS9He0?=
- =?iso-8859-1?Q?rH7LTeGYEJpeHanZVRja7ZZG+nHQNwfJYUNEDh6jgBvyk92E3063zjeUsb?=
- =?iso-8859-1?Q?qteIkJUq6D/An6aVTprPUBk1l8IkIykMOEJXgZxwK/6ZTplcMhQAOMQlh0?=
- =?iso-8859-1?Q?y+YW3sIeCP5wyBBKPx7Qt2flt2gyMuyFy2NjioC6DqkQs8lHqcFpgg9KLQ?=
- =?iso-8859-1?Q?dG1T+GIQqpkSAckosPOBlib9wHAFe6QwmatxhV/TG2dUU4KsIOJ77uHlX2?=
- =?iso-8859-1?Q?mVisMNJnIYSUjM/GdhE+qkgas1u/wJIFyFVVfSsclbmcp7+I3TpeDorCcH?=
- =?iso-8859-1?Q?6iloytZ6zAc4biDYvP1IiqC8UWFTC2e44ED/L+Ko9wVz+/47XYpTdwNK4e?=
- =?iso-8859-1?Q?BFndOZK9BTdpBi8G7N/Kk25KRyo5wv3gXSWfEL3ErKnUPZhkX4rKUfCTSR?=
- =?iso-8859-1?Q?ncWFwDb9pdGjTVjDVvLJvAPdangaXPWB8Yl7Yth5l27c798yuFJUX5n6tL?=
- =?iso-8859-1?Q?6qG54cKJU9iuF6KH08cPg3UWWxNFuhgrIbGgMyU5EYEBZUVDsMd8PrCbQ4?=
- =?iso-8859-1?Q?Hiu6kDv2U1mdmpQYybrRXNfDeZaJuOj60KNjZxfUTqLEoBjHr8oFKuCnKJ?=
- =?iso-8859-1?Q?M1f8uDLH41ErCFjFK2RU9JeDWrF6LduvpLDpL51HkQ6ot/dFS2/0D64wBj?=
- =?iso-8859-1?Q?mHLoETLQs4ch7Oi9RxdTT79fwuFdqY93rCfWbeD6GQkCLn+8FdC7wlYYDQ?=
- =?iso-8859-1?Q?1qQ/LQr1fzwhEAqLy7j0ehscMAYXoZhSmxfNFmPN6lm8IvrxIoGHsk3Nqr?=
- =?iso-8859-1?Q?xHPkHMGT3YV5EDH/eBlHK+BfDJYNX/wlbZcURXdtLtWJYDn2WdVPBIZmIZ?=
- =?iso-8859-1?Q?9zH/LPFvcGrRWbq1RTlICNLLFQDT83znldE3qw8hYEP/B1jVjABMNBKxC4?=
- =?iso-8859-1?Q?FvMZFdfZRRuKtQStD08XqmI0XNgy67W1oMXUcjpKNh6YX97euKEKl9Pdti?=
- =?iso-8859-1?Q?Vux/PqDrs4M0yISJbbLYQDcD3mVUV2Gd9PSMmd6M6UEnN0DjzSxusT10Xh?=
- =?iso-8859-1?Q?GgkL3h29n/pcyJgLytmg5p6J198oIlhiS2R3GFiNCK3cTq3G9bSxAcoFTL?=
- =?iso-8859-1?Q?CMnlQqCz4Bp2NrHSySrgCP9nK2mGKMZt3Q61A16Me4T4+JP1GXRNpwgBq9?=
- =?iso-8859-1?Q?0ge3LlZDxXWOW9Q/ZXyzgF3xPM+oJ1xrKjdX28sK3C/MEDIMsJA5cFkw/3?=
- =?iso-8859-1?Q?ANtCnG1TxLrOKfxFvEnK6scQnde4tWrFXLtUPTmInP/VtRHSozvisx6tAc?=
- =?iso-8859-1?Q?rgGHbX6M1cxzhO8edCujHI0c34HV5jyHW922izLumfMSEoTuBkZmkkAHSJ?=
- =?iso-8859-1?Q?AOMPs2wLP2G0//0Dfp9g3ni2Dicte94DUV1alsWdSVBwDSLVqT6qJpJXuA?=
- =?iso-8859-1?Q?v/1HQTeU6MJgdQf2Iwb0OGmxMROt0ZKcJtK0b8QtEMJDOBHzvDS75HpQii?=
- =?iso-8859-1?Q?L6XtYjq5+Wc8RGYspU0/9RZ3f1jAUBdHETjogVoWWPk21HL+D9fN?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 483a1e10-d01d-4fca-0715-08df43febab1
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 16:29:04.5136
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LnXx+q0Sna55rUfHc/OyKFfK6BluwJvDurRGrD9wqTzQ2YsC57cXNT7W9vihPKgh0EH30fdY2RazaGqLWH9QmvpOTcGLAijwXr5yFTVBH73E+u3OTT66XO3f8oDYGk0c
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB11015
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ASoC: meson: aiu-fifo: prevent sleeping when spinlock is
+ held
+Content-Language: en-US
+To: Manuel Ebner <manuelebner@mailbox.org>
+References: <20261111-aiu-fifo-fix-sleep-on-spinlock-v1-1-dc9ee401a7cf@baylibre.com>
+ <0140bc0b3d1078bf8851340e0cb893b2907e146a.camel@mailbox.org>
+From: Valerio Setti <vsetti@baylibre.com>
+In-Reply-To: <0140bc0b3d1078bf8851340e0cb893b2907e146a.camel@mailbox.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_082912_393108_F526F375 
-X-CRM114-Status: GOOD (  32.34  )
-X-Spam-Score: 0.2 (/)
+X-CRM114-CacheID: sfid-20261116_084113_680560_1A866048 
+X-CRM114-Status: GOOD (  25.23  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -138,171 +100,67 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, linux-kernel@vger.kernel.org, Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Liam Girdwood <lgirdwood@gmail.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Kevin Hilman <khilman@baylibre.com>, Takashi Iwai <tiwai@suse.com>, linux-sound@vger.kernel.org, Jaroslav Kysela <perex@perex.cz>, Mark Brown <broonie@kernel.org>, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 16, 2026 at 11:12:37AM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 3 potential
-> issues to consider:
-> - [Medium] i3c: master: svc: NULL dereference of clks[0].id in
->   aml_i3c_init()
-> - [Medium] i3c: master: svc: clocks left enabled in
->   svc_i3c_master_remove()
-> - [Low] i3c: master: svc: duplicate fast_clk lookup in aml_i3c_init()
-> --
->
-> commit 260aeb5a4d5c58d3bea32674062960231e4d4d2c
-> Author: Junyi Zhao <junyi.zhao@amlogic.com>
->
-> i3c: master: svc: Add amlogic a9 support
->
-> This commit adds support for the Amlogic A9 EE-domain and AO-domain Silva=
-co
-> I3C controllers, introducing a vendor_init callback to register the AO
-> variant's internal clock divider chain and configure the fast_clk rate.
->
-> > diff --git a/drivers/i3c/master/svc-i3c-master.c b/drivers/i3c/master/s=
-vc-i3c-master.c
-> > index e700392f0801f..0268fc713afdf 100644
-> > --- a/drivers/i3c/master/svc-i3c-master.c
-> > +++ b/drivers/i3c/master/svc-i3c-master.c
->
-> [ ... ]
->
-> > @@ -2163,9 +2209,215 @@ static const struct svc_i3c_drvdata npcm845_drv=
-data =3D {
->
-> [ ... ]
->
-> > +	/*
-> > +	 * Keep the clk bulk state balanced for the following
-> > +	 * clk_bulk_disable_unprepare() calls (error paths and runtime PM).
-> > +	 */
-> > +	ret =3D clk_prepare_enable(fclk);
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret, "can't enable fast_clk\n");
-> > +
-> > +	new_clks =3D devm_kcalloc(dev, master->num_clks + 1, sizeof(*new_clks=
-),
-> > +				GFP_KERNEL);
-> > +	if (!new_clks) {
-> > +		clk_disable_unprepare(fclk);
-> > +		return -ENOMEM;
-> > +	}
-> > +
-> > +	memcpy(new_clks, master->clks,
-> > +	       master->num_clks * sizeof(*master->clks));
-> > +	new_clks[master->num_clks].id =3D "fast_clk";
-> > +	new_clks[master->num_clks].clk =3D fclk;
-> > +	master->clks =3D new_clks;
-> > +	master->num_clks++;
-> > +
-> > +	return 0;
-> > +}
->
-> [Severity: Medium]
-> Can unbinding the driver leave fclk and the input clocks enabled when the
-> device is not runtime-suspended?
->
-> svc_i3c_master_remove() calls pm_runtime_dont_use_autosuspend() and
-> pm_runtime_disable(), relying on svc_i3c_runtime_suspend() to call
-> clk_bulk_disable_unprepare().  If CONFIG_PM is disabled, runtime PM is
-> forbidden via sysfs, or hotjoin is enabled (which holds a runtime PM
-> reference not released by i3c_master_unregister()), runtime suspend does
-> not run during remove.  When devres then unregisters ao->gate.hw,
-> ao->div.hw, and ao->div_en.hw while they are still prepared and enabled,
-> clk_unregister() triggers a kernel warning and leaks the prepare and
-> enable counts on the parent pclk.
-
-Suppose it is existing problem.
-
->
-> > +
-> > +/**
-> > + * aml_i3c_init - Amlogic A9 specific init, called with the clocks ena=
-bled
-> > + * @master: I3C master controller
-> > + *
-> > + * Register the AO variant's internal divider chain and round/set the =
-fast
-> > + * clock rate for both variants.
-> > + *
-> > + * Return: 0 on success, or a negative error code.
-> > + */
-> > +static int aml_i3c_init(struct svc_i3c_master *master)
-> > +{
-> > +	struct device *dev =3D master->dev;
-> > +	struct clk *fclk;
-> > +	long fin_freq;
-> > +	int ret, i;
-> > +
-> > +	if (svc_has_quirk(master, AML_I3C_QUIRK_AO)) {
-> > +		/*
-> > +		 * clk_bulk_get_all() preserves the DT order, and the
-> > +		 * binding restricts the AO variant to exactly one clock,
-> > +		 * which is always "pclk".  So clks[0] is the input of the
-> > +		 * internal divider chain.
-> > +		 */
-> > +		if (strcmp(master->clks[0].id, "pclk"))
-> > +			return dev_err_probe(dev, -EINVAL,
-> > +					     "invalid AO input clock\n");
->
-> [Severity: Medium]
-> Can this trigger a NULL pointer dereference on master->clks or
-> master->clks[0].id?
->
-> When a device tree node has no clocks, devm_clk_bulk_get_all() returns 0
-> and leaves master->clks as NULL, which passes the master->num_clks < 0
-> check in svc_i3c_master_probe().  Previously, the fast_clk loop in probe
-> ran zero iterations and returned -EINVAL, but aml_i3c_init() now runs
-> first and indexes master->clks[0] without checking that master->num_clks
-> is at least 1 (or equal to 1 as required by the AO binding).  In addition,
-> of_clk_bulk_get() leaves clks[i].id as NULL if clock-names is missing or
-> shorter than clocks, which would cause strcmp() here and in the fast_clk
-> loop below to dereference NULL.
-
-This one need check.
-
-Frank
-
->
-> > +
-> > +		ret =3D aml_ao_i3c_tail_clocks(master, master->clks[0].clk);
-> > +		if (ret)
-> > +			return ret;
-> > +	}
-> > +
-> > +	for (i =3D 0; i < master->num_clks; i++) {
-> > +		if (!strcmp(master->clks[i].id, "fast_clk"))
-> > +			break;
-> > +	}
-> > +
-> > +	if (i =3D=3D master->num_clks)
-> > +		return dev_err_probe(dev, -EINVAL,
-> > +				     "can't get I3C fast clock\n");
-> > +
-> > +	fclk =3D master->clks[i].clk;
-> > +	if (IS_ERR(fclk))
-> > +		return PTR_ERR(fclk);
->
-> [Severity: Low]
-> This isn't a bug, but this fast_clk lookup and validation duplicates the
-> identical loop in svc_i3c_master_probe() that runs right after
-> vendor_init() returns.  Could a shared helper or resolving master->fclk
-> once avoid repeating the lookup?
->
-> --
-> Sashiko AI review =B7 https://sashiko.dev/#/patchset/20261116-a9_i3c-v4-0=
--3d3222b7128d@amlogic.com?part=3D2
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgTWFudWVsCgo+IEkgaGF2ZSByZWFkIHlvdXIgcGF0Y2ggYW5kIGhhdmUgYSBxdWVzdGlvbi4K
+Wy4uLl0KPj4gQEAgLTQ4LDE0ICs0OSwyMiBAQCBzdGF0aWMgaW50IGFpdV9maWZvX2kyc190cmln
+Z2VyKHN0cnVjdCBzbmRfcGNtX3N1YnN0cmVhbSAqc3Vic3RyZWFtLCBpbnQgY21kLAo+PiAgwqAJ
+CQkJc3RydWN0IHNuZF9zb2NfZGFpICpkYWkpCj4+ICDCoHsKPj4gIMKgCXN0cnVjdCBzbmRfc29j
+X2NvbXBvbmVudCAqY29tcG9uZW50ID0gZGFpLT5jb21wb25lbnQ7Cj4+ICsJdW5zaWduZWQgaW50
+IHZhbDsKPiAKPiBIZXJlIGlzIHZhbC4KPiAKPj4gKwlpbnQgcmV0Owo+PiAgIAo+PiAgwqAJc3dp
+dGNoIChjbWQpIHsKPj4gIMKgCWNhc2UgU05EUlZfUENNX1RSSUdHRVJfU1RBUlQ6Cj4+ICDCoAlj
+YXNlIFNORFJWX1BDTV9UUklHR0VSX1JFU1VNRToKPj4gIMKgCWNhc2UgU05EUlZfUENNX1RSSUdH
+RVJfUEFVU0VfUkVMRUFTRToKPj4gLQkJc25kX3NvY19jb21wb25lbnRfd3JpdGUoY29tcG9uZW50
+LCBBSVVfUlNUX1NPRlQsCj4+IC0JCQkJCUFJVV9SU1RfU09GVF9JMlNfRkFTVCk7Cj4+IC0JCXNu
+ZF9zb2NfY29tcG9uZW50X3JlYWQoY29tcG9uZW50LCBBSVVfSTJTX1NZTkMpOwo+PiArCQlyZXQg
+PSByZWdtYXBfd3JpdGUoY29tcG9uZW50LT5yZWdtYXAsIEFJVV9SU1RfU09GVCwgQUlVX1JTVF9T
+T0ZUX0kyU19GQVNUKTsKPj4gKwkJaWYgKHJldCA8IDApCj4+ICsJCQlyZXR1cm4gc25kX3NvY19y
+ZXQoY29tcG9uZW50LT5kZXYsIHJldCwKPj4gKwkJCQkJwqDCoCAiRmFpbGVkIHRvIHdyaXRlIHJl
+Z2lzdGVyIG9uIHRyaWdnZXIiKTsKPj4gKwo+PiArCQlyZXQgPSByZWdtYXBfcmVhZChjb21wb25l
+bnQtPnJlZ21hcCwgQUlVX0kyU19TWU5DLCAmdmFsKTsKPiAKPiBTbyBhcyBJIHVuZGVyc3RhbmQg
+dmFsLyZ2YWwgaXMganVzdCB0aGVyZSB0byBsaXN0ZW4gYW5kIGZvcmdldCB3aGF0IGdldHMgcmV0
+dXJuZWQuCj4gVGhhdCdzIGtpbmRhIHdlaXJkLCBidXQgbm90IGFuIGlzc3VlLgoKV2VsbCwgSSB1
+bmRlcnN0YW5kIHRoYXQgaXQgbWlnaHQgYmUgd2VpcmQgZnJvbSBhIHNvZnR3YXJlIHBvaW50IG9m
+IHZpZXcsIApidXQgaXQgbWFrZXMgc2Vuc2UgZnJvbSB0aGUgaGFyZHdhcmUgb25lLiBBY2NvcmRp
+bmcgdG8gdGhlIG1hbnVhbDoKCiAgICAgQSByZWFkIGZyb20gdGhpcyByZWdpc3RlciBpbmRpY2F0
+ZXMgdGhhdCB0aGUgbmV4dCBzYW1wbGUgdG8gYmUKICAgICBzZW50IG91dCBvZiB0aGUgaW50ZXJm
+YWNlIHNob3VsZCBnbyBpbnRvIHRoZSBsZWZ0IGNoYW5uZWwgb2YKICAgICB0aGUgZGFjLgo+PiBA
+QCAtMzcsOCArMzgsMTEgQEAgc25kX3BjbV91ZnJhbWVzX3QgYWl1X2ZpZm9fcG9pbnRlcihzdHJ1
+Y3Qgc25kX3NvY19jb21wb25lbnQgKmNvbXBvbmVudCwKPj4gIMKgCXN0cnVjdCBhaXVfZmlmbyAq
+ZmlmbyA9IHNuZF9zb2NfZGFpX2RtYV9kYXRhX2dldF9wbGF5YmFjayhkYWkpOwo+PiAgwqAJc3Ry
+dWN0IHNuZF9wY21fcnVudGltZSAqcnVudGltZSA9IHN1YnN0cmVhbS0+cnVudGltZTsKPj4gIMKg
+CXVuc2lnbmVkIGludCBhZGRyOwo+IAo+IEhlcmUgaXQncyBhZGRyLiBJdCdzIG5vdCB5b3Vycywg
+eW91IGp1c3Qga2VwdCBpdC4KPiAKPj4gKwlpbnQgcmV0Owo+PiAgIAo+PiAtCWFkZHIgPSBzbmRf
+c29jX2NvbXBvbmVudF9yZWFkKGNvbXBvbmVudCwgZmlmby0+bWVtX29mZnNldCArIEFJVV9NRU1f
+UkQpOwo+PiArCXJldCA9IHJlZ21hcF9yZWFkKGNvbXBvbmVudC0+cmVnbWFwLCBmaWZvLT5tZW1f
+b2Zmc2V0ICsgQUlVX01FTV9SRCwgJmFkZHIpOwo+IAo+IFNpbWlsYXIgYXMgYWJvdmUuIEJ1dCB3
+aHkgaXMgYWRkciBoZXJlIGFuZCB2YWwgYWJvdmU/IEkgdGhpbmsgaXQncyB0aGUgc2FtZSByb2xl
+IGluIHJlZ21hcF9yZWFkKCkuCj4gV291bGQgaXQgbWFrZSBzZW5zZSB0byBuYW1lIGJvdGggdGhl
+IHNhbWU/IElmIGl0IGRvZXMsIEknbSBpbiBmYXZvciBvZiB2YWwsIGJlY2F1c2UgdGhhdCdzIGlu
+IHRoZQo+IGtlcm5lbC1kb2Mgb2YgcmVnbWFwX3JlYWQoKS4KPiAKPj4gKwlpZiAocmV0IDwgMCkK
+Pj4gKwkJcmV0dXJuIHNuZF9zb2NfcmV0KGNvbXBvbmVudC0+ZGV2LCByZXQsICJGYWlsZWQgdG8g
+cmVhZCBGSUZPIHBvaW50ZXIiKTsKPj4gICAKPj4gIMKgCXJldHVybiBieXRlc190b19mcmFtZXMo
+cnVudGltZSwgYWRkciAtICh1bnNpZ25lZCBpbnQpcnVudGltZS0+ZG1hX2FkZHIpOwo+IEhlcmUg
+YWRkciBpcyB1c2VkLCBzbyBpdCdzIG5vdCBzYW1lIGFzIGFib3ZlLgo+IAo+IExvb2tpbmcgZm9y
+d2FyZCB0byB5b3VyIFBPVi4KCkhlcmUgSSBsZWZ0ICdhZGRyJyB0byBtaW5pbWl6ZSB0aGUgbnVt
+YmVyIG9mIGNoYW5nZXMgaW4gdGhlIHBhdGNoLgpMb29raW5nIGF0IGl0IGFnYWluIG5vdywgSSdt
+IG1vcmUgaW4gZmF2b3Igb2Yga2VlcGluZyBpdCBhcyAnYWRkcicuIEkgCnVuZGVyc3RhbmQgdGhh
+dCB0aGUgcmVnbWFwIGRvY3VtZW50YXRpb24gdXNlcyAndmFsJywgYnV0IGluIHRoaXMgY2FzZSB3
+ZSAKa25vdyB0aGF0IHRoZSByZXR1cm5lZCB2YWx1ZSBpcyByZWFsbHkgYW4gYWRkcmVzcyBvZiBt
+ZW1vcnksIG5vdCBqdXN0IGEgCmdlbmVyaWMgdmFsdWUuCkFsc28ga2VlcGluZyB0aGUgbmFtZSBh
+cyBpdCBpcyBtYWtlcyB0aGUgbGFzdCBsaW5lIG9mIHRoYXQgZnVuY3Rpb24gCnJlYWRpbmcgc21v
+b3RobHkuCgpIb3dldmVyIGlmIHlvdSBkZWVtIHRoaXMgdW5hY2NlcHRhYmxlIEkgY2FuIGNoYW5n
+ZSBhcyB5b3UgcmVxdWVzdGVkLiAKSnVzdCBsZXQgbWUga25vdy4KCkJlc3QgcmVnYXJkcywKCi0t
+IApWYWxlcmlvCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRl
+YWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgt
+YW1sb2dpYwo=
