@@ -2,85 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1047C606A89D
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10C8D606A8AB
 	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2026 00:25:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=t7ed7wtz;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fglc3hqw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LZ8pxfir;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ElpHC3iz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
+	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=qmCnYHYnEhJbjlbPfxqoaYtWzMrTi/o7uj+67Q4Xgxs=; b=t7ed7wtzk7JL/2Eg1jtAiKHoYf
-	6A+sHoGJF2WNm0SBkbZtZ4/vpF4elM7XxyLSgY6sNO56qmTZs0ugRL/RWaCUh8J4UKTwKiFkFxUEF
-	XKBHWzxTC7DwzpJnbxFFqMyfoUuPHjVwZVg6gICXzhlmoscjeJANb9k+HFbTAAq9jy6iPx9uOpXZ9
-	M6KsRNR7iCyWL5RJr0cYxhWKFgVbwI10m5ZMz0OVY5stU0v1YtE1pAu9+Xp8NrrNrqAI5uf2TUszA
-	JF9xMW4gpaTkJ8CQbjl+FtOi4CkEiU92Z+QABJAP5Rrr+KOiAjjw8tVszNbl6Jh+GxDPSvQXaweI7
-	sJv3Pm+Q==;
+	bh=aTQcG+Wk4b/oF+BXZtNAQCp2sWerdgTMkridfWJVGsE=; b=LZ8pxfirRXxEZAjNK41PbFUf+G
+	mhMXjfF1/ioSht+jjWkAysqiFG0wJyWeoWrwiCwyGBX7HFBLY41B2K7guLYrwbTW+yv9HG5gVBFb2
+	3WnU2zkwZN2jDguxbQSR9iVk/RDVCVaVdify78TPoG7Nvv5lBaYO790hCyM56loD7uyBEnTh9EMMq
+	rmZWDcvdBHXt2uSIUaZO+lCXkcAwRtDLNq5qvAN+wuWoq4fx9o1BtXQU/LUTyHXbmuCekBfvl76GZ
+	GSLrN+YroCyMWUaQaKBEcfUjHnS7o+YGIAMux7e5lwqJEQoUedPhY/i8O1faiKNLV2mYLMjs5HJxl
+	Ia1Ikkgw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSkX4-00000000mZU-3686;
-	Mon, 16 Nov 2026 00:25:14 +0000
+	id 1xSkX2-00000000mWa-0BrP;
+	Mon, 16 Nov 2026 00:25:12 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xSkX2-00000000mWc-0y4a;
-	Mon, 16 Nov 2026 00:25:12 +0000
+	id 1xSkX0-00000000mWB-2c9a;
+	Mon, 16 Nov 2026 00:25:10 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id DAFC8455E4;
-	Mon, 16 Nov 2026 00:25:11 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 07F8E4192E;
+	Mon, 16 Nov 2026 00:25:10 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794788711;
-	b=z15b9yPL3RwOEvFXHt7Y/Q9PdLnGOWia6BGWXLpcLP0/f5z+MrpMpOSDmDbtO0T73W1p
-	 VxRGMtnqQCZRPl9uAO3MTAiHtTIlWlb0djfrjeB6vJ1MRIEfKjKtoiDYNd5mxjX2u8183
-	 ZFL5O8dPbgVmC5h3seWJQnPGexlaJW1ZMJR98fQtFLEGuXhzm+JO71XecmAVu9tjUScXG
-	 rPQHcX5VBM6N/6g9/eGl53bhnSowEqGrFJLFapnvJNQxpEZb/4DxyJ66LXyKHLwnSPcwN
-	 fTYu4N8rhekSTcByadGn5qxWggaifv44ISHCztKRQffCSsBQyicy1ctfTN5Cripi1bQ==
+	t=1794788709;
+	b=OYrDPyqnEWDVq+QOwPsp3ch5PS54+8KDrXE/dkvhd62AhdOryfNg7tWRLJgwCDbJraMx
+	 nRZ7TbTh5wf66ARtrTvb7JD9R4XPOhdcy6wORysglbAfZvPN+r+S8SKcvAdFUByIf8H8x
+	 ONb6/YtutRl5FqMEZSW4+aPDNBhLTI2mNHIpEC8KcI4kBgU+q+dtXHtwrKSd3dDmQ/2pT
+	 iLHow4rp9lGzjJUU589+pmaUCmPovFrnD1mg9U6gt87/tQKUCxwp8zWYHTb6Jd28WPOfY
+	 LUaRJdzVMjt9A3vFotEYQLDm7sdGE2+bGefoTsGXC22zDxIYVNyq+23UOnxpFbGJ6+Q==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794788711;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	c=relaxed/relaxed; t=1794788709;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=Fj5JKSeJMAlyVYfoZF5xtSPea7M46yEaKVIj7hfiK34=;
-	b=sB3uzS1dPitwT1YvaimK8Zs7jD3ru0sqDps8U0KVEQXgIosyTsr9Jqls6UL84PDKq+hF
-	 iHZMdZz1EQ9Lu4u9/Qj5ERpSebIYzovV8fl1PAhKoW2T6YTfkUJ79LVYr6L5s1DMDnAff
-	 XuEPHFUh/T2/6/S3D+oqx9KJYszglDrn53pEXhweSGoNALme38SdUbf+9Ftoc5uFY/3T8
-	 pXKrxRiTBh9qFIuHcJntMnVgfHXlOtz0m5Yf30CGUUtyjckVIOIc9FHRrJdqJksgScU1o
-	 KjRu6qbvxC6UzfnWeoRopFZFOBaL0juo3CdD9FsXJx8VhE5vsHpiw/f3vXZioDhrk8Q==
+	 X-Original-From:Reply-To;
+	bh=CP/D1iXhgNBj4XOM5YsrdaeeNdbdCcdhYw0Gszc4ps0=;
+	b=W+np2rYgsnQwdB0sPEi5K1kXXdkpFmCgl2n0Cih7ChoXSbNFqA6XLORvKr+n/uSwdK8b
+	 SXzYS/n9bhx31chC1ubNPmNg9XewoE8MPwVC3ENYkJZJTwjd2aGoosttUAUgi41mVDFIK
+	 rnquMykkfEfGyZ8aZGl9vJOmq9XuSXFzcscCX3mAUMtjFfOkb0qc79ROPnkGj0iQ/3H4z
+	 hrUNuSLbaFr0OjxnoMM4NRyOgCx3QbWWkYhKeVxY2zHTCrKYCki0Gy+t5Zw9FS7mXpza2
+	 fAeZ5cJzdhSzErh9ncUaa3z1/mcvkRG0ZeOdsiT7KLoNFixcHMBZl1iHjhdn/X3sT+w==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 30B491F000C6;
-	Mon, 16 Nov 2026 00:25:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794788711;
-	bh=Fj5JKSeJMAlyVYfoZF5xtSPea7M46yEaKVIj7hfiK34=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=fglc3hqw21xawRuSCjphQQAEhktac5GAL3B0Qq+GcCzaB3L6hPjpjfUyO/ZS0PjVx
-	 RzvvtmXOlEg1SPehzAOQ9JIQzCeOU1iHA/v/SQV3lHdg4KWQPcfEw1VSwC7DhlsILH
-	 7/lf7UZKsL+/++66QK5HaBQvlmmVoFl4sZvtogTmWBA10moRmSrv16Vy+XO+BfqQW2
-	 zIfpbwTg/BcR8CmJKWkOnUju2y+ZS4n7uLENREoCT03jA979WjQFhM7+m5ozvaTxYd
-	 Y4FogGTSX0dFvL6dvVabOwFFx1aQQwSn4b9nYWZN/CzE7NwMPTRcougyIp+cUGvyyt
-	 262FybKNzkBQQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 5A38E4A2AF;
+	by smtp.kernel.org (Postfix) with ESMTPS id 195311F000C4;
 	Mon, 16 Nov 2026 00:25:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794788709;
+	bh=CP/D1iXhgNBj4XOM5YsrdaeeNdbdCcdhYw0Gszc4ps0=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=ElpHC3izxrSQ0iTPf/fMU8xZMNVhbv+i7HMDT14YPbeOOuhldgKfFLnH1SiwQLRKH
+	 rmrONddxNpAUkFw18usgeLEc+sPdsbIO0pxzC/sjOp/uPIabyu/T5+PhOWA658n2oi
+	 eN0p5RrOeZjbTRzk6/C8rjfLBs59yOiod1pIX7NVTyTjluNYFD1mf1Joktf0VvDlAu
+	 a7JgySEcAglmkwNQJCcKRbd+fdjCIvVeg51lByMiJrjtAmpmMsCsb8Ylku11GDsLNw
+	 9k+JF55gTDPCOyGa6x9XCnIDwQMw5CLBPvi39+qqeYrNuHF/9Ldvkc1b7vFpuMOuA4
+	 kxMrJOzar/J9w==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 9D4414A293;
+	Mon, 16 Nov 2026 00:25:08 +0000 (UTC)
 From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Mon, 16 Nov 2026 00:25:07 +0000
-Subject: [PATCH v2 8/8] arm64: dts: amlogic: meson-sm1-odroid-hc4: Describe
- which RTC wakes the board
+Subject: [PATCH v2 0/8] alarmtimer: Pick the wakeup RTC per suspend state
+Date: Mon, 16 Nov 2026 00:24:59 +0000
+Message-Id: <20261116-b4-alarmtimer-rtc-priority-v2-0-b2c69721e489@iav.lv>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261116-b4-alarmtimer-rtc-priority-v2-8-b2c69721e489@iav.lv>
-References: <20261116-b4-alarmtimer-rtc-priority-v2-0-b2c69721e489@iav.lv>
-In-Reply-To: <20261116-b4-alarmtimer-rtc-priority-v2-0-b2c69721e489@iav.lv>
+X-B4-Tracking: v=1; b=H4sIAFxN+moC/43NTQ6CMBCG4auQWTumU7GCK+9hWBQcZRL+Mm0aC
+ eHuVk/g8vkW77dBYBUOcC02UE4SZJ4y7KGArvfTi1Ee2WCNdUSmxLZEP3gdo4ysqLHDRWVWiSt
+ atmc6kbc1XSAHFuWnvH/xe5PdS4izrr+vRN/1r2wiNMh17VxFbWUqdxOfjkOCZt/3D0k86ybBA
+ AAA
 To: John Stultz <jstultz@google.com>, Thomas Gleixner <tglx@kernel.org>, 
  Alexandre Belloni <alexandre.belloni@bootlin.com>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -94,13 +95,13 @@ Cc: Stephen Boyd <sboyd@kernel.org>, Miroslav Lichvar <mlichvar@redhat.com>,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
  linux-kernel@vger.kernel.org, Igor Velkov <iav@iav.lv>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1310; i=iav@iav.lv;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3970; i=iav@iav.lv;
  h=from:subject:message-id;
- bh=KnLlIIqoXkwEM5qIksoDafpdgl/wvWdUGl1vKeB191k=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDFm/fJN3R1f0LWlIi57vYrn7w16ulSkcvV9/cn9QcnUpM
- T22/k9MRykLgxgXg6yYIsuEQxq3MpZc/evvYf4AZg4rE8gQBi5OAZjISWVGhsbZ1QIZGz4v53wr
- ctYsqTN2+dxcjsc85+fyxR1JeiW2NYLhv9/c8r1Huha838rk+vvh47pz1+8ziB5+vq7p1/P44L4
- TSXwA
+ bh=k9wmTILcWLHAdWH9pEL5KIITiwGEzZ7A8xsajYITXGs=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDFm/fONda/jifC9dNHd7uuFW/OXqtxosHxuq10Z0PrspE
+ ut7vnJrRykLgxgXg6yYIsuEQxq3MpZc/evvYf4AZg4rE8gQBi5OAZiIwzOGvyJhGqXz0y5GRxW1
+ hK34/lHhjbiR95SkH0fuPSp1NdVxm8rwi7nrdS1z+Hf+e3k+dikf7ZmZ12yQWdrms2HO4n0bT2X
+ O5AcA
 X-Developer-Key: i=iav@iav.lv; a=openpgp;
  fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
 X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
@@ -125,46 +126,91 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Igor Velkov <iav@iav.lv>
+alarmtimer takes the first RTC with an alarm and a wakeup capable parent
+and programs it on every suspend. Which RTC wakes the system can depend
+on the suspend state. On ODROID-HC4, meson-vrtc is a register the SoC
+firmware reads when the application processors suspend: it wakes the
+board from deep sleep only, and only with a BL301 that handles it, while
+the pcf8563 wakes it from s2idle. meson-vrtc registers first, so an
+alarm does not wake the board from s2idle.
 
-The board has two RTCs with an alarm. The pcf8563 interrupt line goes
-to GPIOX_5, so once that interrupt is described [1], its alarm wakes the
-board from s2idle. meson-vrtc is a register the SoC firmware reads when
-the application processors suspend, so it wakes the board from deep
-sleep only, and only with a BL301 that handles its alarm.
+The series keeps an RTC per suspend state, taken from a new
+linux,wakeup-states property of the RTC's parent, structured as Thomas
+suggested:
 
-List the states per RTC, so that alarmtimer programs the pcf8563 for
-s2idle and meson-vrtc for deep sleep.
+  1-2  alarmtimer_has_rtcdev(), the state in struct rtc_wakeup
+  3    the freezer delta replaced with per type expiry times
+  4    a platform device without a parent, linked to the RTC, with
+       sysfs links per suspend state
+  5    an RTC per suspend state; suspend is rejected when an alarm is
+       pending and no RTC wakes the system from the target state
+  6-7  the binding and its parser
+  8    ODROID-HC4
 
-Link: https://lore.kernel.org/r/20261019-hc4-rtc-alarm-irq-v1-1-078fc79e596f@iav.lv [1]
+Without the property every RTC is taken for every state, so the first
+one is used as before.
+
+The user space found to look the platform device up (omarchy-mobile,
+hostmobility, z13ctl) matches it by name under
+/sys/bus/platform/devices or by a glob over /sys, and still finds it
+under /sys/devices/platform.
+
+Patch 8 needs the pcf8563 interrupt [1] for s2idle. Without it the
+pcf8563 takes s2idle but cannot wake the board, which is no worse than
+today.
+
+Tested on ODROID-HC4 on top of timers/core with [1]:
+- s2idle: the pcf8563 alarm wakes the board
+- deep: meson-vrtc wakes it, the pcf8563 is not programmed
+- a CLOCK_BOOTTIME_ALARM clock_nanosleep() interrupted by the freezer
+  wakes the board from deep sleep
+- with the pcf8563 limited to "deep", s2idle with an alarm pending
+  fails with -EOPNOTSUPP
+The PCIe root port was removed for s2idle: pci-meson has no PM
+callbacks and the board does not resume otherwise. The same tests
+passed on v7.3.4 with the five alarmtimer commits from timers/core and
+lockdep enabled. sparse reports nothing new.
+
+[1] https://lore.kernel.org/r/20261019-hc4-rtc-alarm-irq-v1-1-078fc79e596f@iav.lv
+
 Signed-off-by: Igor Velkov <iav@iav.lv>
 ---
- arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+Changes in v2:
+- restructured as suggested, no priority property, no list of RTCs
+- one platform device for all RTCs, ordered by a device link to each
+- sysfs links per suspend state
+- the freezer delta replaced
+- suspend rejected when no RTC covers the target state
+- binding: s2idle, shallow, deep or none; hibernate and off dropped
+- based on tip timers/core
+- Link to v1: https://lore.kernel.org/r/20261104-b4-alarmtimer-rtc-priority-v1-0-e996681b8086@iav.lv
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-index 5f15c2299509..0dd9cd2d8245 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts
-@@ -106,6 +106,7 @@ rtc: rtc@51 {
- 		compatible = "nxp,pcf8563";
- 		reg = <0x51>;
- 		wakeup-source;
-+		linux,wakeup-states = "s2idle";
- 	};
- };
- 
-@@ -142,3 +143,7 @@ &usb {
- 	phys = <&usb2_phy0>, <&usb2_phy1>;
- 	phy-names = "usb2-phy0", "usb2-phy1";
- };
-+
-+&vrtc {
-+	linux,wakeup-states = "deep";
-+};
+---
+Igor Velkov (8):
+      alarmtimer: Replace alarmtimer_get_rtcdev() with alarmtimer_has_rtcdev()
+      alarmtimer: Move the wakeup state into struct rtc_wakeup
+      alarmtimer: Replace the freezer delta with per type expiry times
+      alarmtimer: Register the platform device without a parent
+      alarmtimer: Keep an RTC per suspend state
+      dt-bindings: rtc: Add linux,wakeup-states
+      alarmtimer: Read the wakeup states of an RTC from linux,wakeup-states
+      arm64: dts: amlogic: meson-sm1-odroid-hc4: Describe which RTC wakes the board
 
+ .../bindings/rtc/amlogic,meson-vrtc.yaml           |   2 +
+ .../devicetree/bindings/rtc/nxp,pcf8563.yaml       |   2 +
+ Documentation/devicetree/bindings/rtc/rtc.yaml     |  17 ++
+ .../boot/dts/amlogic/meson-sm1-odroid-hc4.dts      |   5 +
+ drivers/power/supply/charger-manager.c             |   2 +-
+ include/linux/alarmtimer.h                         |   7 +-
+ kernel/time/alarmtimer.c                           | 228 +++++++++++++--------
+ 7 files changed, 174 insertions(+), 89 deletions(-)
+---
+base-commit: 0359ecff58853a491dd0f09792fea8e87235ae06
+change-id: 20261104-b4-alarmtimer-rtc-priority-2e25131a2917
+
+Best regards,
 -- 
-2.43.0
+Igor Velkov <iav@iav.lv>
 
 
 
