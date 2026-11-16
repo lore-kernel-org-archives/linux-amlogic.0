@@ -2,101 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA0D9606A31C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2026 21:22:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E25B4606A31C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2026 22:24:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vqzoE22m;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=J1mLQN0R
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LsO7JbeM;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=ZkBISZgo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=W1aBP0Ck/O10Iq9Yv2GLr0y97uMmR5B+3I2onYjwuGc=; b=vqzoE22my875s586wTFSgVyrc6
-	y9F/3Czikfh0DAZ0Zarw4HiuetA3bNClPz37mhfWS30cHj4Q6pQ9x7VK/8LfzPL4vLhv5K1Rhk+nE
-	2qP59dO3DKd7JohmPGIq6d/EFd7VAWbu2eHj01uBbAextEaqvIF2XMWHmxrOJCWeEH5P/QLaOB40t
-	Ex1c+sXNI/tTDS/Z6rndKZbPnhhYyXTznTGznU+Td/HwUETTGxsx89YhIKd1f5Nk13tYJrwqn2fNZ
-	tSdu3Qo+y9RlPHPstiY6EZeCBGZM91AzlcU/X0VtptvvUD5Lqs1lQKi0xHMe1ZBsmLejWLm5LSBZ6
-	yJEb/8EQ==;
+	bh=chzLwkOQffxDhZlwfoMdmuJCZCq3CmV5MUn49JtroVc=; b=LsO7JbeMZkpBw6K3PCZDelWkHq
+	sAIY26jrgIyXCHQKzrJGwAoor3BIh+XzZJHV2eVewMgOzy2UaQPyU74W4sX9L4yfZj3Oun6y6HcUm
+	OMjlBRzt5yvB7MEMAXlNNJloHX7RINzgMFM6SrSh79Og74vT2OeD/+jALXaKCDPh09vlKiTNJ09Kg
+	OGh8H8sm+hqs0q+rbVaJkdb+ByDVhxc4ixZdQqrgVcgoUZSsqwDzO6+1MVJ/EiFzX7WOB17GYQfJV
+	ZP3Iaxg5Rs7mJuf8vhxsUfBvZov3Bz8WZdKDMnvtffVRBU7ElzMtugNLSD9rnoGXYIOTxAR1u8njf
+	pGBPE/xA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT49d-00000003wYc-30yT;
-	Mon, 16 Nov 2026 21:22:21 +0000
-Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+	id 1xT57f-000000042x8-2Zrc;
+	Mon, 16 Nov 2026 22:24:23 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT49a-00000003wVT-3u2k
+	id 1xT57c-000000042w2-1xOB
 	for linux-amlogic@lists.infradead.org;
-	Mon, 16 Nov 2026 21:22:20 +0000
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-48e20ed3b9dso4243614f8f.2
-        for <linux-amlogic@lists.infradead.org>; Mon, 16 Nov 2026 13:22:18 -0800 (PST)
+	Mon, 16 Nov 2026 22:24:22 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4bb606491faso13718985e9.3
+        for <linux-amlogic@lists.infradead.org>; Mon, 16 Nov 2026 14:24:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1794864137; x=1795468937; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:mime-version:date:message-id
-         :subject:references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=sJbfjHwLUTndWZHf1I31qfbGZOpPu211U7CheHU9eZ0=;
-        b=J1mLQN0R86iW38MDzWRqP5AThXoykuuDe1xAlUnX5vuuzfUuXrSBUxUGWAPixkIklL
-         3XMYOd4fJiy5Gf2oESP/TjUjX7e1L2GRPAC9H3UZSz5UH6+ul+9oKMDAHFy1lTRNtyvF
-         P2/9r81jHXB5hKjui6YafFPASWGCv/BSV5HlSDi5hxSo98lHqCHBZGxROMy7rht2vrgp
-         CvlUP0TXjvHgh37JPIH0CFKrKLNy4g1tl22qp5r0wLmVoJOT0cNeZOX3FOAxVR4eSSBX
-         IHx0cNxeed82yEWbDKPZyC8Vx4Bqi97dW9uOTs1QFX1RMpU8f9lqHaVr52BYyIfjF1Kn
-         RD9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794864137; x=1795468937;
-        h=content-transfer-encoding:content-type:mime-version:date:message-id
-         :subject:references:in-reply-to:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+        d=baylibre.com; s=google; t=1794867859; x=1795472659; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=sJbfjHwLUTndWZHf1I31qfbGZOpPu211U7CheHU9eZ0=;
-        b=g3XJYnod4HKANABQVWiza/ZxGDcp0a37c8qupREDyAwFwAXXITLvhSqMgsJcnX5vyV
-         179r59DksKjeABVW4xF+4z0jWjQg+1u618CknaePuUwFTQF2TNQvEHLgQikX1ieVOeRY
-         +bHUKe/1AMkxeL1g2T7P7PTFLiBGwmu87qq+RK50oELxRq2LQpgoCP0qAesSmu7S2DXb
-         +w8XCMVR2Q/XKjP7lQDDL0Dz+QZNGI5X+ipKsevQ2SgNexbsehk6BI3ZtCgO4u0sugyC
-         Rn4tXQpTppq6gThsrR87pfAqZgBWrqIyCaeRS9SVfNXrZEHJujq1nG9F9wfHbIo4KzTt
-         pgvw==
-X-Forwarded-Encrypted: i=1; AL+hErHFYWX7f66LhJ0zKEhzt/Zce+jp8SFTA+/ZItV7TkrOoIiwQdrtTeBQtGXBkN8MLZGNQSI+oBHgJhx/yyJD@lists.infradead.org
-X-Gm-Message-State: APuU4Z+A94Tj0qEYxKweK0oipDlY48ydhfNbIUQ/FHGSFzRCBLVkomrq
-	v0dZ2plFBjnIgDTlImmXOEW2U5PSZt/1qWjoOb9LnUYZh2fiUtD+VFSDM1Rjv65+ROc=
-X-Gm-Gg: AZFdTZfMJV8fzr36fzNQhzrNj9nc4Nt5Mgj2LJxyvblkgDKOeNBUHYwsvcUJI08Jv49
-	utz74t2EHsispdl+hgcjbnhrycHiry4ddjf1jXYXSaXqpULY9+1fp5yYOj71cTIRQMEOhv2kwEu
-	BIJQMHaYHztbUSL4ai49dyRaOwyfTXnUb0Vul65J51YdEvAkZJ/ObNPi7TtTZFT2rJOp8uzHkeO
-	AWR8gYNp8h5Wwj/M+blxuKCLiQDAk8bPJs53ueMFjNE5Zn2wMGjzTetHmS+daHPY0YBvhDAgH1Y
-	d4swSzm3eUkUvfT1sl+a6nOm0yRgqtuT7CSXmQwOzYUoTCeLeB3E+urLSxS5XSjMdMxuF9oLEcY
-	fukjJTNjvC6OVnNg5pSOQUthnOJJ4S2diiFPxMltnYwST1IZwG7S/Rs4/XsOAsmW/RNp7XGYfPn
-	9FOhhYlhh+1qwadUYTxlmw9tgZPaX+1Js1FQPik1T1Hbi0gyOWrLVqknoGmWy31+FKX0SxH1jKJ
-	EvSF0Az8/4TCSV37InwBlNO0EMAwbteJkfOxyFPqcwioOJrs4/oiEkKHtuoEprOsEWxIsJj4I3Z
-	079bA+HxqzLFUc46hpJx/VoBpiKwpmxs2sd6g5aATQ7/iOEYT54=
-X-Received: by 2002:a05:6000:4284:b0:492:820d:5e6 with SMTP id ffacd0b85a97d-49c72ba6660mr30296893f8f.49.1794864136472;
-        Mon, 16 Nov 2026 13:22:16 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c603f4d29sm23832144f8f.35.2026.11.16.13.22.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2026 13:22:15 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Zhentao Guo <zhentao.guo@amlogic.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-In-Reply-To: <20261022-b4-s4-vdec-upstream-v12-0-616240978792@amlogic.com>
-References: <20261022-b4-s4-vdec-upstream-v12-0-616240978792@amlogic.com>
-Subject: Re: (subset) [PATCH v12 0/6] Add Amlogic stateless H.264 video
- decoder for S4
-Message-Id: <179486413508.1210949.15857134761629837585.b4-ty@b4>
-Date: Mon, 16 Nov 2026 22:22:15 +0100
+        bh=Ln1EVdAGOFluUL+4qX0wySLdavyI3EeHq5qaZG2vFtM=;
+        b=ZkBISZgoMZ1xdbpw2IQa5GAwYHSo7s5Wf3uudXSSbcUkVDBG2U59RdcUq0M5PylNhU
+         5z6MEiwzND5XLKCC+mVWk4DGtenRuwDs16+tw2LxSpNidzjZF+I6jurBdr0a1vRwD7YH
+         NumWxNpOWQVYpqoNS7VZonVak+CfmbBO+fT6Z71/7JP/XKZw36xOQ2N8s07kHqenslD4
+         ll9wuwlcGNwUPQUpaf3xdr+3gDIx/Si4ShJnpQRfqaImdEv7W6flJUfT+EVcvCbMbf0d
+         zUem/gog9iP/+62yT1qUT42kWqkfUbdICJFulws9E7eJXKh46L1j2GHOHaz0ECY6nqYC
+         I+5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794867859; x=1795472659;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Ln1EVdAGOFluUL+4qX0wySLdavyI3EeHq5qaZG2vFtM=;
+        b=PWWEmsnXIF5+kJ3ZJr9LcyIDCe3IA5gs0IphOM4wj0VVIP9ncuT6mis72r26aX8GDo
+         T5/axniskpA3D0BrvYDF8RRD5uU/gQF3+uCwYJBAdkG6D7YSY4c2fBOPgUqdSHZzUlAx
+         P8OCsyaFnhfkmWcHH4C0wkGJfUkgvUavVhwUqMC7DMShqhTJLtnMRJl1q77zSXjcDQQ/
+         2Crt/sjr5pFrnzMjDukk7Q6sjq62by09+KEYK04s6zyCHVVNHMSQPD1KWzwD4CUzkxlk
+         5gdpxziZ6ywn0aWnv0E6Ey1L+aUzOho8R/1lw39/YLwL6+XAWBojUFFt4PCp8s7FVRlY
+         ar+A==
+X-Forwarded-Encrypted: i=1; AL+hErFUZjxGfTh31c7cwFvMC6hCIYhGRWlzbPYkiOjTszjgE85p7+uJ20a1o6PNfdEfrQUebhr5ONJQvTffr6MZ@lists.infradead.org
+X-Gm-Message-State: APuU4Z+o3l1H+aNORF8gbcA2L0/PM4ljBv0Ap3FfOhPaKAT4kDXhRbVb
+	Cl9Eh2mgsxMCK3Hb9jtQ+Mfq581Lx1TOp1sYwrPX1UAQ01EFpZHaiqzKjXVPobtEJlM=
+X-Gm-Gg: AYBFou2txyiUnXw90ikEmGqEysiXCOMxdOPMuijSMZWoyAuEtJshQr3ArHZm6DZhUzC
+	qto7aLGm0m9hPWUhydpK/r7/ybPbfP2obki64jxR4zuTHYIk7/RkdSSO359Mx9rWm2HGmf/YvO7
+	PiXHGvbzccCO4l8s58fLZ1M+9lova664eovLS6f1vu7lO+4CE54aVG9VqfVkOtGaF0BsFY5+gvc
+	ejjtClNYqoLTFP/nuJgWPu0K3daVoTkxVOyUUjx+E1ow0Qsx3fcOXN0saFknCaUkY70K//vdeCP
+	mApBs1nd4IVDwLjPMMB9IchC7zPf+lro6uJwPKzLmcYeW3X/A5yuv7ZU5yuKasOHrh/bJqPidMO
+	BLKiemEZ+4z0dHxuQ5AALBWTSLKN/odvBPbu4SPQASe2fiK7Taf2h7BcxiglZSp9IJCcAQOgfnd
+	sfOdqyNhmqN6Pb2LzmjPJRwUXXDvtgm83Jo0RV2WmAs0PKCLy4tvtlRkGIUvKkrr7K7XRJAjjN+
+	bSIt95haWwhbA9tJU/faeDoBS1wCnLsNBr+VWwFb4PPfOvHAmo1KHDkgIJSTUqeGmyjJGBS3MUX
+	bpfbw+d2WRRPZW9LzUm6+jZop/mI92xU2VjgqMNmo9wZkxk3zWW3GA==
+X-Received: by 2002:a05:600c:4e43:b0:4a7:c366:d791 with SMTP id 5b1f17b1804b1-4bb559f24ffmr251632055e9.1.1794867858617;
+        Mon, 16 Nov 2026 14:24:18 -0800 (PST)
+Received: from [192.168.3.100] ([151.61.248.197])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb784231basm18143055e9.11.2026.11.16.14.24.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Nov 2026 14:24:18 -0800 (PST)
+Message-ID: <71ede0e6-7f8f-4594-ae56-5be10f9159a3@baylibre.com>
+Date: Mon, 16 Nov 2026 23:24:16 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Mailer: b4 0.15.2
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/7] ASoC: dt-bindings: add amlogic,gxbb-audin
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+References: <20261018-audin-v5-0-4b8cc13a1b22@baylibre.com>
+ <20261018-audin-v5-1-4b8cc13a1b22@baylibre.com>
+ <CAFBinCC+-N8LvoXZwMhoxjOzXgoYUfDKCcvmD7Uuph5=hTSg7g@mail.gmail.com>
+Content-Language: en-US
+From: Valerio Setti <vsetti@baylibre.com>
+In-Reply-To: <CAFBinCC+-N8LvoXZwMhoxjOzXgoYUfDKCcvmD7Uuph5=hTSg7g@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261116_132218_998842_0D938589 
-X-CRM114-Status: GOOD (  11.59  )
+X-CRM114-CacheID: sfid-20261116_142420_535335_FC511D0F 
+X-CRM114-Status: GOOD (  28.72  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,60 +111,104 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
 	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+Hi Martin
 
-On Thu, 22 Oct 2026 13:26:58 +0800, Zhentao Guo wrote:
-> Introduce initial driver support for Amlogic's new video acceleration
-> hardware architecture, designed for video stream decoding.
-> 
-> Compared to the current Amlogic video decoder hardware architecture,
-> this new implementation eliminates the Esparser hardware component,
-> enabling direct vb2 buffer input. The driver is designed to support
-> the V4L2 M2M stateless decoder API. The initial phase includes support
-> for H.264 decoding on Amlogic S805X2 platform.
-> 
-> [...]
+ >> +properties:
+ >> +  compatible:
+ >> +    oneOf:
+ >> +      - const: amlogic,gxbb-audin
+ >> +      - items:
+ >> +          - const: amlogic,gxl-audin
+ >> +          - const: amlogic,gxbb-audin
+ >  From what I can tell it's even amlogic,meson8-audin compatible.
+ > Although I didn't have the time to test in on hardware yet.
+ >
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (for-next)
+Thanks for catching it!
+Any testing is more than welcome. I don't have that board at home and, 
+based on my quick search, it seems not super easy to find one these days.
 
-[1/6] firmware: meson: sm: video firmware loading via secure monitor
-      https://git.kernel.org/amlogic/c/fe6c77ab883ecbbcb2d4731a2a5d883a9efbea30
-[2/6] firmware: meson: sm: Add video firmware loading SMC call
-      https://git.kernel.org/amlogic/c/a47962dfcc5a924d3b824ec7acf56c0c654510b8
+ > [...]
+ >> +    audio-controller@a000 {
+ >> +      compatible = "amlogic,gxbb-audin";
+ >> +      reg = <0xa000 0x148>;
+ > I believe the audin registers are 0x300 wide.
+ > Both, GXL datasheet [0] page 43 and GXM datasheet [1] page 48 claim
+ > that the register area is 0x100 wide.
+ > The last documented register with AUDIN_ prefix is AUDIN_FIFO2_PIO_RDH
+ > = 0xb8. The datasheet [0] (page 395) lists register numbers divided by
+ > 4, so to get the actual address in the memory map we need to multiply
+ > it by 4, which gives 0x2e0.
+ > The 32-bit SoC vendor kernel [2] has a header that states: #define
+ > AUDIN_ADDR_END 0x28bf (same as in datasheet, we need to multiply this
+ > by 4).
 
-These changes has been applied on the intermediate git tree [1].
+I know that the register layout in these SoC is a bit messy, so let me 
+explain how I got to the 0x148 that I wrote above.
 
-The for-next branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+When working at this driver I used the S095 and S905X manuals that I 
+found online, but based on the link you shared for the S912, I would say 
+it's the same when it comes to AUDIN.
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
+Using [0] as reference, the highest register being mentioned in the 
+AUDIN chapter is AUD_RESAMPLE_STATUS whose offset is 0x304 (i.e. 0xc1 * 
+4). However I noticed that before that there are a lot of registers 
+whose name doesn't start with AUDIN_, but rather with AUDOUT_, PCMOUT_, 
+PCMIN_.
+The first contiguous block of AUDIN_ stops at AUDIN_FIFO_INT which is 
+0x148 (= 0x52 * 4). The other AUDIN_ block you mentioned is between 
+AUDIN_FIFO0_PIO_STS (at 0x2c0) and AUDIN_FIFO2_PIO_RDH (at 0x2e0).
 
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
+ > I'm bringing this up because dt-bindings are supposed to be complete.
+ > So even if the driver doesn't use a resource yet we're supposed to
+ > still describe it.
 
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
+I perfectly agree with this, but at the same time I thought that 
+including registers which potentially do not belong to AUDIN was 
+dangerous in the other direction, i.e. we cover a too large area that 
+will be hard to use in the future if/when we want to use it and we 
+realize it's really not part of AUDIN.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+ > I don't see any additional resources that we'd need to describe and
+ > #sound-dai-cells allows adding the additional SPDIF input later.
+
+That's exactly why I cut the range at 0x148: that seems to be enough to 
+implement what we need for I2S/SPDIF audio input.
+
+Honestly I don't understand what the second range 0x2c0-0x2e0 stands for 
+as it's not described in the manual. For sake of curiosity I just tried 
+looking into the Hardkernel kernel for Odroid C2 [0] but I didn't find 
+any usage of AUDIN_FIFO0_PIO_xxx registers.
+So my question is: are we sure we really need them?
+
+[0] https://github.com/hardkernel/linux.git - branch 'odroidc2-3.14.y'
+
+ >  From what I saw in the registers there's also the possibility to send
+ > the input signal to AUDIN but I couldn't find any additional resources
+ > we'd need to describe in the dt-bindings for this.
+ >
+ >
+ >
+ > [0] 
+https://dl.khadas.com/products/vim1/datasheet/s905x-datasheet-v0.3.pdf
+ > [1] https://dl.khadas.com/products/vim2/datasheet/s912-datasheet.pdf
+ > [2] 
+https://github.com/endlessm/linux-meson/blob/d6e13c220931110fe676ede6da69fc61a7cb04b6/arch/arm/mach-meson8/include/mach/register.h#L2274
+
+Best regards,
 
 -- 
-Neil
+Valerio
 
 
 _______________________________________________
