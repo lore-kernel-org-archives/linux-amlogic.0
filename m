@@ -2,75 +2,61 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40B90606A880
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2026 23:16:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81A21606A338
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Nov 2026 23:47:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=u4pxrULr;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IZ/dM1u6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Uz9nDd84;
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=iav.lv header.i=@iav.lv header.a=rsa-sha256 header.s=zoho header.b=GRq6dFG5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
-	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=0pUf/P/8o4apwt9SgzXptHTukvON5tz0Iywk1blBxfg=; b=u4pxrULr+Ip6nUSXYthTR2MRqH
-	wzd4Z+4SjRJ7nfio7x0zg338Zt4QXYFogt30lV8hiNKEaYJhw6+MoGX5xTwjEVmb5fMy0oBtVWLgF
-	Cq80QfU76vTxIBR6dBEVYRhFZHwbwa5F3wEyDVoPViSkLP3IcD6y4Id5SBeSeGqrYhfr2sfXjt319
-	UIoo/U7xb03JploX9k0OXpAtJ8qDdN0lMLRyoX2PMbFPHEXPiqyFI6EZiVki9gRNewCNZVUgDpgT7
-	xvUDg607laUX3nTTCE5tVOourPxup0jgSLkl7vwVEDrhrjplh8gbeygdjHP78mO4xw+zmXpRjByD6
-	RODF4+Eg==;
+	bh=yv/7vVdkbzHI51LN1mXKPAZdPnR6fKFQnnaWMMU2PmY=; b=Uz9nDd845RZh0c4Ff11Hswqx3k
+	Xm1/WmI6zXD4e52HquPYmA2oYb9ExxwkiVNOF5zjpjYRSOTurRWEV1CRFujr3nppNdWMeCp3hQlZK
+	eM/vxZAgMdsnRNvJBVE5i0yRyHX42YA0Wh0LLzCiHKRACQJA6rFUMcO8jZAKxV4sp/aLW1rcefgtt
+	8cNcMWCts+J595Lu3drXhZZq6Z0i3cqScBqga6nQQjRKeYiSirznoDjv2bVrhiMJfkbOO6CZ6HyWv
+	HWKD8nBonb0kTQiuITVmqmfMCM5Wzp+7m7uPk2cZmCzfCvnwcAKmgEftCFDs78mHejwkv1NqHJIQY
+	IxvhkGzg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT5wS-000000048qz-1dZk;
-	Mon, 16 Nov 2026 23:16:52 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xT6Q3-00000004CO4-06tg;
+	Mon, 16 Nov 2026 23:47:27 +0000
+Received: from sender-op-o15.zoho.eu ([136.143.169.15])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xT5wR-000000048qj-3YUa;
-	Mon, 16 Nov 2026 23:16:51 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8995E40ACA;
-	Mon, 16 Nov 2026 23:16:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D43E11F000C4;
-	Mon, 16 Nov 2026 23:16:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794871011;
-	bh=D744codKNdjWB0cIKo4OC/V775hatd/33THb99xe3yY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=IZ/dM1u68/w4ysDuF2c/9CTIYBd8/rFn5rCBuddDvWtSTc4jm3uO+TCFPOfimXYSz
-	 t8JmCxAfr+W425w+VYBo9mBMQMa/YxwMecLbewFm6yXjEZp+OAjE5TlqPKwTE8nc8K
-	 +gkYfojo8Jk+EN8F2g01KQ8p8kyXahhMagLjnu401xUHol7LTWXQ8cjPuGg8cF3QKv
-	 K9ast/IxtW9TP+dTJ5mp1g6c0Q3YuVPr80OKJlP5VfYwqzZgnwL78gks74c2qSO3s0
-	 J/i9DphSXgS62lUxieCZv/CS1km+yTO6GNrBDVt4ndV2QIPzVvG/zbemvxwFbFpndZ
-	 o3Uf7zZ1pyuFA==
-From: Mark Brown <broonie@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
- Christian Hewitt <christianshewitt@gmail.com>, 
- Valerio Setti <vsetti@baylibre.com>
-Cc: linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20261113-aiu-fifo-fix-sleep-on-spinlock-v2-1-f72015c933bf@baylibre.com>
-References: <20261113-aiu-fifo-fix-sleep-on-spinlock-v2-1-f72015c933bf@baylibre.com>
-Subject: Re: [PATCH v2] ASoC: meson: aiu-fifo: prevent sleeping when
- spinlock is held
-Message-Id: <179485994155.2504946.8052884083469699014.b4-ty@b4>
-Date: Mon, 16 Nov 2026 20:12:21 +0000
+	id 1xT6Q0-00000004CMy-2Hoy;
+	Mon, 16 Nov 2026 23:47:26 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1794872819; cv=none; 
+	d=zohomail.eu; s=zohoarc; 
+	b=inej4tXdDNrbwI2iLCdbbKghn7L/mpBlzz30MhNPRZ812lEI9uMjBvRjAa9/YbL10wNQS5T//czPLmXuRb4eTxAZd6knCzW/u6eZ6ZZepfi+LC05dooeVn84EiFE0kqSzNEAGioW+vBEB50cUdGlL9XfygKPRqDUwAzExMn2iEI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
+	t=1794872819; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=Ooe8aVYLhVyQjDTdzZYaM/OancGDo6HyHA7XUTxSDaQ=; 
+	b=JvhAMGsKmhDokRhKissokzoD2UuEbmCLuOweMxg+UqTmANFbSGwDnLv0v44Q/eHTrngXGPUfX1U83BhjiBupOPT+aI5e/O/HD6u3ajaouNQ1wQP1a1Kq40JA/ypv+ES3nRQTCOUHZYUO02EBTzfLztbUW9yzY9n84cuZoEC0FXE=
+ARC-Authentication-Results: i=1; mx.zohomail.eu;
+	dkim=pass  header.i=iav.lv;
+	spf=pass  smtp.mailfrom=iav@iav.lv;
+	dmarc=pass header.from=<iav@iav.lv>
+DKIM-Signature: a=rsa-sha256; b=GRq6dFG5MWvsX9lB2vV85LdCvyLwCnVGbM5hs2ybm7+Go8RGSTbckgzGtSuxw9oCgmw0VByn6VpplVRgfHxmV34jacX2mlFI6m6bg4eeoBAbgPCpmUWu1paoGL7TQI2f6+NLFzMRKdjZT7wg4KbBV9Moi+T1WmP6+HIo1+UFikw=; c=relaxed/relaxed; s=zoho; d=iav.lv; v=1; bh=Ooe8aVYLhVyQjDTdzZYaM/OancGDo6HyHA7XUTxSDaQ=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
+Received: by smtp.zoho.eu with SMTPS id 1794872817568586.021810184602;
+	Tue, 17 Nov 2026 00:46:57 +0100 (CET)
+Date: Tue, 17 Nov 2026 01:46:56 +0200
+From: Igor Velkov <iav@iav.lv>
+To: netdev-bot+sashiko@kernel.org
+Cc: iav@iav.lv, andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net, edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com, neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net] net: mdio: mux-meson-g12a: keep the MAC data path when switching MDIO
+Message-ID: <20261117-re-sashiko-g12a-mux-v1@iav.lv>
+In-Reply-To: <179485704584.3136.17355463997361048256@kernel.org>
+References: <20261115-g12a-mux-data-path-v1-1-011dad738698@iav.lv> <179485704584.3136.17355463997361048256@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1141; i=broonie@kernel.org;
- h=from:subject:message-id; bh=YoWPz3fhDSUGPyw/AXIX0PwVKHHA0Y9uh1d/YQgfCLQ=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLJ+993bumy3uZLDM+M/qUWzL133LQhcMW93+QKdmB1TF
- i7eJL74XUcpC4MYF4OsmCJLXBb3y/qS12v4Di5sg5nDygQyhIGLUwAm4iDC8FfmtI6mlqnJ1wX7
- Z01zdc73m8ehtmeF0TS9Fb33LhxLPVrC8N8n8ECJcFeYUdvV2R0zrzWoheWauH9dt2bpb6nn9Xm
- rZJkA
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261116_154724_860801_D1DA8C4A 
+X-CRM114-Status: UNSURE (   2.75  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,45 +69,17 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.3 required=3.0 tests=BAYES_00,DATE_IN_PAST_03_06,
-	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 13 Nov 2026 14:56:34 +0100, Valerio Setti wrote:
-> ASoC: meson: aiu-fifo: prevent sleeping when spinlock is held
+Right, the check missed the deprecated phy and phy-device references.
+v2 looks the PHY up with fwnode_get_phy_node(), as stmmac does.
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.4
-
-Thanks!
-
-[1/1] ASoC: meson: aiu-fifo: prevent sleeping when spinlock is held
-      https://git.kernel.org/broonie/sound/c/0d40a91ca56e
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+pw-bot: cr
 
 _______________________________________________
 linux-amlogic mailing list
