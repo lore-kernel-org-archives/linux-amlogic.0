@@ -2,132 +2,56 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6747D606A338
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2026 19:43:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DBFD606A32C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2026 19:58:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IrbJEsyM;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=HkJWO89N
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TKiBPM5d;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=oRuTZncz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:References:
+	In-Reply-To:Cc:To:Subject:From:Message-ID:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=1KUpI+Ciok93Z8BpeTFxZAZNr1oxsySwpXTKmgX/UFQ=; b=IrbJEsyM1uf2yxfot/BzkKM+uB
-	EVroDttLK+wsGL2ZzzHTp6+RbIFmZ0HstycmI0jq9V0DgkjSqRPP7Ihx/fDQiVagNu/R52u4qMMSs
-	Ssp3erkU4B9MOwDv8Do/kNQ+JYOLwKvfKg8sGoQ6WsigyQAEzIuDmI3TkFvVBrntiLOHj0g7lIeSp
-	o9dvm82fDqm9hbBGZpyY9ZQyNi1f34aabPYpMH7beJRINRzp3Q74rWQ9WZVAyB1q1ZSOuxib1emT1
-	vehcFU6TjTHx7GP/2SmHq/eXMV2SqqC3ZsL+IjedcmdhG4wBUdLQnAtHqfZ1ag13a9t4qAvUsXkIw
-	f6sNCw7Q==;
+	bh=/nVxeLlvGCsG8tc6fNMeb6oqPF5JHPD/+EF7UtsB79M=; b=TKiBPM5du4vT5wKcYtqr7VM9C5
+	NDquWXhOehARiGxophPBrlYtsZMw+lN5y/gLXIULs/KeGSlP54u8Zar+ddm34Llsz0tyEpf+R2//2
+	wcmLawkc7O7wzxmAck4zVLGOIYB5tzLEJd7eKMFnik0rCK0VIDBYrEgN3t8jeUbvykrY4Ezg1zwZZ
+	KN0Qxuzd/vGe4TLAsaRG669Td4Worl2zJjwpKfoV2vr65/6a9cVWSpS8V6N3ly6dttGRFkTzQc68/
+	O3CU3JhFg7tbpeJQYPjTRCcGY4iDYxKUoPmgP3Avmwgi56BexJHLXkBboEz6S5m21vU1Pb2L97XeN
+	q5JVtFpA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTP5s-00000006wSi-1Gwt;
-	Tue, 17 Nov 2026 19:43:52 +0000
-Received: from mail-swedencentralazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c202::7] helo=GVXPR05CU001.outbound.protection.outlook.com)
+	id 1xTPJn-00000006yHt-05bc;
+	Tue, 17 Nov 2026 19:58:15 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTP5q-00000006wS0-0LDu
-	for linux-amlogic@lists.infradead.org;
-	Tue, 17 Nov 2026 19:43:51 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GPDRSGpW0mZXm+TnyTqcIrcdRvgWijgXDoEZ8FhEe5ME458N500IH8LG/6o9jjcSmi6Q5RD6h7OPhNqofuFFW9CMoNNqiJPtMrZtjeZ2/5zJYvBs73BLtB9orYGgbB9CjCXIqjT2YCkc+UwKEtnzAoaXuXqXblV49PYBUyQ2m9xjCHoiivLVK7Eqwd0yNRC0npJBeO6ycUSdGj87LYkRjPicYPRKRDD4zUbjQYz30Blp9Vx6iHO+g16csFZIBvnLOG1WIwNBTFbyu/9dHdEmN6RGJoHL/VPMgPw+cDbd6M7Wl5C8xPFG0WQzUKBlxz+S+JNIcRYpvnsQzN512CuklA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=K9xb7ZQ0srMLZ4Jhzai5UUxAzKZWHrQldEuGT+UIljc=;
- b=m9HCga7+d4O3Ldb1ugJM0o0hNWb8c9s8u8ZGk0zM/lnL4sRwEJs1xk93j2af3r/Ul9fqI2wDIiL+8+exQZuhBdSnI4kOZ47bz+daR6w2uKMthw6QaPoT8vZI+eDly9MOmMXCSHo5oRP5+79xbXbvqPsRmcVxQ/uMpHFF651kRO4Ezpz3T3Kpx+9o4Ierf4emoNJxU9zV5oDjo9RkzwDx4jcgNKwK0vJIte++wnZqmWY/TITHExBtP++eIFbUeHKHYRadihjtJWeUw40izv9upTpNgMygxrQi+XVGRu+ZNO5KRicjvY2HS21PlcDEgQuP0AMu1Wibi1JSEnkSqyfUUA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=K9xb7ZQ0srMLZ4Jhzai5UUxAzKZWHrQldEuGT+UIljc=;
- b=HkJWO89NeSWEXMdu+972gNQNSXjyEOnatDww51ofYmrnuSqaB55Ex9rbMZNToqaOxnWVqZzXrtWhTw+jV7Q4QoszLSUrpJHLmm+edpSdLxf7zClgDuUUlKHy3zeBukXdmE2bfzy8afd7bcd2C6n+rzahEk2WVqk+4x9o4gKAv+a2Kc+cmSUO2GfffQ0+03vA8AGCATxjxjnInaF9j61R1P7JDT3LzNlsP4nYTNc+iOLxV0nxVIRmIB+0mQ22GHv7fSwM5L7jfalwXa9/SvD5OUeNGxXKq0Ktx1YjkH7xT6SfD91lUQFtITFENIgQRtZNyn/jPuUBqQsdFO+ZqdEW3A==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by GV2PR04MB12191.eurprd04.prod.outlook.com (2603:10a6:150:33a::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Tue, 17 Nov
- 2026 19:43:45 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.013; Tue, 17 Nov 2026
- 19:43:44 +0000
-Date: Tue, 17 Nov 2026 14:43:37 -0500
-From: Frank Li <Frank.li@oss.nxp.com>
-To: Lee Jones <lee@kernel.org>
-Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>, Vinod Koul <vkoul@kernel.org>,
-	Frank Li <Frank.Li@kernel.org>, linux-amlogic@lists.infradead.org,
-	dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v2 06/11] dmaengine: amlogic: Destroy free_wq after
- devres DMA device unregistration
-Message-ID: <avyuaSzbqYrloiNp@lizhi-Precision-Tower-5810>
-References: <20261117163809.622249-1-lee@kernel.org>
- <20261117163809.622249-7-lee@kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20261117163809.622249-7-lee@kernel.org>
-X-ClientProxiedBy: PH0PR07CA0098.namprd07.prod.outlook.com
- (2603:10b6:510:4::13) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|GV2PR04MB12191:EE_
-X-MS-Office365-Filtering-Correlation-Id: 723d0de8-7354-4a72-7b6b-08df44e31745
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|23010399003|19092799006|376014|1800799024|22082099003|18002099003|261009223027099003|56012099006|11063799006|10067099003|4143699003|261102123227099003|261021123027099003|261028144727099003|261022075727099003|261026140227099003|261026121527099003|261021121427099003|261022105027099003;
-X-Microsoft-Antispam-Message-Info: tgXVdAgAvJcnMMrNV+TjoZozD0PYwkPtasGlzP3G8W6XjNjXwbgI9YVpTurPkJ1HDPQBWoYy0TP9aiyhZZS7T3Z50Pz7MVksoIdAjCYgqcJPoMgxLZ2nOjXY4TvQOnMPrMBikkjhDmAQ+wJ4Vhw1Rrp60F1MqwECPvG8kVUH+NlDyk3Pok/G3l6e8CRNx0WjpNKRu+iZLVP3+S8rBynZPz8BQstQdFAjW7hBeqPXtEunJdhURRySiw8inHD6o/myOfTnQR9gBQAnIlvC7XRWjgxXZmZqGteH9UrwgigpMsQK2quiMgBifqfYVbUa4XYg0dj409Bvoq9LWjhzuQuay8hagwDywewi+ITfGgElzzD+X7fyBRzgcC8iuxlZa+1eXLgwCQn8YLKjmAts/ME0/2T3J9Gn/tZAvQrZDwj5Vt/tQFmNe33CSVwcDagzsFGG1SqI9xVlJIJF9vRKNRHbMpPVkHERZ7sv+BXVhmQdYb8Ey92jPFYd/nmw/Rzgft//u1jB7CTyVxKNBVATDTo+3IVtwZOfod7UiORXRfUFoybhAJcVFDbnBV/l8n2y4KroFna1aop27wN3gx3savrNqFnq1PcGLIc1igHcWO5slNA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(23010399003)(19092799006)(376014)(1800799024)(22082099003)(18002099003)(261009223027099003)(56012099006)(11063799006)(10067099003)(4143699003)(261102123227099003)(261021123027099003)(261028144727099003)(261022075727099003)(261026140227099003)(261026121527099003)(261021121427099003)(261022105027099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/kcihJ7x5lEr+qMqjpCsywTzovXcg6rBnOkyyI/Dz8exd6LqRsmVfg7brlKN?=
- =?us-ascii?Q?8Dp6h3FTvtgITJrWJ+qhaatMp33BFGznOmi4d62yl0epZFUWt3YWKFY4Y0mj?=
- =?us-ascii?Q?K45c+lqZZkddlibBavyA/2y2fBPPkD+TZEmvN3eDE7PZyIj8zIriHKaFY41/?=
- =?us-ascii?Q?yw600gBYldQgcHZNNo890ZCZ56+31ZSTyVNsnt4u2Ft8dy+hF+pH/M1iiXCv?=
- =?us-ascii?Q?avHH1wTx4t32hFT5Z4xQtVHjA7C/6HRisTgvkZgtCK+PB37XwLSXwextDINh?=
- =?us-ascii?Q?DtDO/RJ/f9SX+FjWN0h9t4xjqXWXR6eG7jP2sEKDS53GSRdpA8hpJe0LIrPF?=
- =?us-ascii?Q?z25o7OiFg9F8lC7/30vX4Fvbn9MD1LDl7wSUeYKn1UBUbL86WMQW5M2frDxn?=
- =?us-ascii?Q?Xk/Cu0+C6G1aA951JYkA+QuAjEROxa0RjT7bonoFmFFNYkLwfg3XFd4m/+Rs?=
- =?us-ascii?Q?IRLVmOjaDtLe6Ub6U4mTuNC4cw8idmvOfzjMjb7kyKAGUcRLREmrgCdOIYFA?=
- =?us-ascii?Q?KC+M8VIq0g7lYOKAJdMYfZ1dgl+XhG1J9ZuEmfXzmsMGkfgldy63YE0ZJ8jm?=
- =?us-ascii?Q?2mjGodvT/LNKM4Ug0jKO0aVn2CPO/H6mxF/pewwThuT6yILv4SOMrJ0CDonc?=
- =?us-ascii?Q?JSXcDPS6RY77EUHmjrGdG+V2kWVj6DkbZt7pHpRV/jMqzhJ82RWmaI1KJQcZ?=
- =?us-ascii?Q?iDRYCOEWClspopVa7RCpIPCzctMZbcnzcGs0PmNofAiK3KRcJIVUncvrelDj?=
- =?us-ascii?Q?72f2MMfNHpjFcnSAO+bomxr/s3iumL0hinfcrsCQ+shJVUPTL+/7dLwunyCs?=
- =?us-ascii?Q?jLaJytLZfmNLfsyMqEiMUgDMQUu+uNX2mCbSfVLSTI2Ck7SKLizZCdNEMEKo?=
- =?us-ascii?Q?SPfQO9OqbUwNJQYjXmo3aV/I4JHChFTJqeUKF2GgNoLmEtcAvm0DsOVOF1d/?=
- =?us-ascii?Q?FQq6udo36R7h2AQK4PD/xhUccYlStfHUKeCVtRRuP2MocBQCo/Ye6YAsPww/?=
- =?us-ascii?Q?DvxiRivfQdVf7KJCdJSlWsqSmx2u1d3yqr5EXnm2dhWk06wYyHG3oOvCjv9T?=
- =?us-ascii?Q?lrS2Lc90Z5qzxphT0BvDJ/UojtV62qkZkcGqauZMvfuxe/RIvrTAZF+6LU2T?=
- =?us-ascii?Q?jqs7DDgJl/8cfe/zhQUKjZCzEr4wU26Hh1m+9+/jdoKew6rfW4Fgk5IdVmgb?=
- =?us-ascii?Q?kBKGJ+ugV8GUIM4IpvJzTw7cuPcD6THazfE5jY+hxZITlb7BPwAXGlbh/sqV?=
- =?us-ascii?Q?GgyMTadN0pIs/K16RPLMoFJ+5amcus+cQy1fZP85Vxn7jDYizaH5R0Jr/hZ4?=
- =?us-ascii?Q?Si0xJ2b2SEHJBo2clNVylEWOe2Q8GFLZ/EcFVvRi9ptY3EDEQfgY4FhYIgw+?=
- =?us-ascii?Q?blRseQ7HhHUknkg9BRl9pwfZ+d0EbUEiuGzTOEZ7on0jVrIF6G7U917yYHlp?=
- =?us-ascii?Q?93XfVTZbtLAOL9wfRtFSF7pVL70pPI5jbKUy8w2NQq0lBkiBt/hpuzOPPZBf?=
- =?us-ascii?Q?jS7WdRFvVsfgNhZMVmmABj8L3JM/V62pcTyU7eu8PhscWQFXEC5gM8pvbsG4?=
- =?us-ascii?Q?dy61W5T4Bw4fZ68pCRQfJVz8XAcS0EzxxMtAVwT4vDlKkfej6GhILEwpzOsQ?=
- =?us-ascii?Q?YPzHr0Tyf2rzm4bWP0yE9iATOacknwuaKH1xdZ5dMutHPAUYwnJOhXNjjavV?=
- =?us-ascii?Q?hpUZLtEZRDkmMN7Ox5TELMtMVum7Zy9eN0C+X7UtNBDq2Z0ytrKXXAlkY9xz?=
- =?us-ascii?Q?zCT45lRF9ODLpzHoKB7kuHReEFC1L/b+l6I8GyvQZqV2daJIJ08u?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 723d0de8-7354-4a72-7b6b-08df44e31745
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2026 19:43:44.9159
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XTIqKg8EU/raKAU3ijEjUC1lsHxAjq55aHaFKiloAzQAhujo4SZ2UKGKtbuz+l93VvhM8GeiTLsEVaTDwB/++Ubjv46W94dk+YxiS5LNhX0UKWRjv//lnfZANfs9mecH
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR04MB12191
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_114350_143164_8B80D3BE 
-X-CRM114-Status: GOOD (  19.05  )
-X-Spam-Score: -1.0 (-)
+	id 1xTPJl-00000006yHP-2zjq;
+	Tue, 17 Nov 2026 19:58:13 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 069DC61405;
+	Tue, 17 Nov 2026 19:58:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3379E1F000C4;
+	Tue, 17 Nov 2026 19:58:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794945492;
+	bh=qsjU6DFACAbDOfJLMOOcz7Evb3Wx0q0vKZrTcX0d8CY=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=oRuTZnczPBzp7vCRPzYA8CeIO4F+D3quE7Q84dLMmiYTH5gGsx76zknj4tzRH7K0z
+	 JePvcwIs6FaDra2ISn07URXkOye1twBppiPGFsHwq11KFawgW7lFOh65OUgZLUmoHq
+	 rxGGLRk92ncO0jmA8+RSWn5NXYjfQ9XSfATotq7Ice7J5BU6SYenEm8h6RineS3umC
+	 8qzgaIHIGq5G0l+fr9CBckk25k5wU3czlNL7kUWUfHJv8rUPBtv+K1Zg3eQw1tnoMp
+	 xSWSgb7S48XToMWZg8imz9B1M5Xx7KSL5oQd+xK6kSlv2yFghm1MPS2g/kMJhhewFp
+	 +S4ev8sFQmT2g==
+Message-ID: <sashiko-outbox-219538@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 04/10] phy: amlogic: Add Meson HDMI TX PHY driver
+To: "Ronald Claveau" <linux-kernel-dev@aliel.fr>
+Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-phy@lists.infradead.org, dri-devel@lists.freedesktop.org, robh@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org, vkoul@kernel.org, olteanv@gmail.com
+In-Reply-To: <20261117-meson-drm-create-hdmitx-phy-v1-4-9e0ac931381c@aliel.fr>
+References: <20261117-meson-drm-create-hdmitx-phy-v1-0-9e0ac931381c@aliel.fr>
+ <20261117-meson-drm-create-hdmitx-phy-v1-4-9e0ac931381c@aliel.fr>
+Date: Tue, 17 Nov 2026 19:58:11 +0000
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -137,69 +61,65 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sashiko-reviews@lists.linux.dev
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 17, 2026 at 04:37:07PM +0000, Lee Jones wrote:
-> aml_dma_probe() registers the DMA device with
-> dmaenginem_async_device_register(), so dma_async_device_unregister() is
-> deferred until devres release after aml_dma_remove() returns.  However,
-> aml_dma_remove() destroys aml_dma->free_wq directly, causing
-> aml_dma_free_desc() to queue work onto a destroyed workqueue when
-> channels and descriptors are released during devres teardown, and early
-> error returns in aml_dma_probe() also leak aml_dma->free_wq.
->
-> Allocate aml_dma->free_wq with devm_alloc_ordered_workqueue() so it is
-> destroyed on probe failure and after dmaenginem_async_device_register()
-> unwinds on removal.
->
-> Fixes: b84b5197e344 ("dmaengine: amlogic: Add general DMA driver for A9")
-> Closes: https://sashiko.dev/#/bug/linux-c216084a-f89a-48d5-bdea-584522d1bdda
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Lee Jones <lee@kernel.org>
-> ---
-
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
-
->
-> v1 => v2: No changes
->
->  drivers/dma/amlogic-dma.c | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
->
-> diff --git a/drivers/dma/amlogic-dma.c b/drivers/dma/amlogic-dma.c
-> index 684121d13fca..791bd82743d3 100644
-> --- a/drivers/dma/amlogic-dma.c
-> +++ b/drivers/dma/amlogic-dma.c
-> @@ -620,7 +620,7 @@ static int aml_dma_probe(struct platform_device *pdev)
->  	if (!aml_dma)
->  		return -ENOMEM;
->
-> -	aml_dma->free_wq = alloc_ordered_workqueue("aml_dma_free", 0);
-> +	aml_dma->free_wq = devm_alloc_ordered_workqueue(&pdev->dev, "aml_dma_free", 0);
->  	if (!aml_dma->free_wq)
->  		return -ENOMEM;
->
-> @@ -712,7 +712,6 @@ static void aml_dma_remove(struct platform_device *pdev)
->  		if (aml_chan)
->  			tasklet_kill(&aml_chan->vchan.task);
->  	}
-> -	destroy_workqueue(aml_dma->free_wq);
->  }
->
->  static const struct of_device_id aml_dma_ids[] = {
-> --
-> 2.56.0.679.gc527c65306-goog
->
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
+MSBwb3RlbnRpYWwKaXNzdWUgdG8gY29uc2lkZXI6Ci0gW01lZGl1bV0gcGh5OiBhbWxvZ2ljOiBi
+cm9rZW4gcmF0ZSBhbmQgc3VibW9kZSBjaGVjayBpbgogIG1lc29uX2hkbWlfcGh5X3ZhbGlkYXRl
+KCkKLS0KCmNvbW1pdCAwYmY0OWVhNzdjODY0Y2RjZjdhZjk2ZTU5ZTFmZmJhNTE5NGQ5NjM2CkF1
+dGhvcjogUm9uYWxkIENsYXZlYXUgPGxpbnV4LWtlcm5lbC1kZXZAYWxpZWwuZnI+CgpwaHk6IGFt
+bG9naWM6IEFkZCBNZXNvbiBIRE1JIFRYIFBIWSBkcml2ZXIKClRoaXMgY29tbWl0IGFkZHMgYSBn
+ZW5lcmljIFBIWSBkcml2ZXIgZm9yIHRoZSBIRE1JIFRYIFBIWSBvbiBBbWxvZ2ljIEdYQkIsCkdY
+TCwgR1hNLCBhbmQgRzEyQSBTb0NzLCBhbG9uZyB3aXRoIGEgbGVnYWN5IGhlbHBlciBmb3IgZGV2
+aWNlIHRyZWVzCmxhY2tpbmcgYSAicGh5cyIgcHJvcGVydHkuCgo+IGRpZmYgLS1naXQgYS9kcml2
+ZXJzL3BoeS9hbWxvZ2ljL3BoeS1tZXNvbi1oZG1pLXR4LmMgYi9kcml2ZXJzL3BoeS9hbWxvZ2lj
+L3BoeS1tZXNvbi1oZG1pLXR4LmMKPiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+IGluZGV4IDAwMDAw
+MDAwMDAwMDAuLjY5ODMzYTA4MGRjMzUKPiAtLS0gL2Rldi9udWxsCj4gKysrIGIvZHJpdmVycy9w
+aHkvYW1sb2dpYy9waHktbWVzb24taGRtaS10eC5jClsgLi4uIF0KPiArLyogR1hCQiAqLwo+ICtz
+dGF0aWMgY29uc3Qgc3RydWN0IG1lc29uX2hkbWlfcGh5X3JhdGUgZ3hiYl9yYXRlc1tdID0gewo+
+ICsJLyogNS45NEdicHMsIDMuNzEyNUdicHMgKi8KPiArCXsgMzcxMjUwMDAwLCAweDMzMzUzMjQ1
+LCAweDIxMDAxMTViIH0sCj4gKwkvKiAyLjk3R2JwcyAqLwo+ICsJeyAyOTcwMDAwMDAsIDB4MzM2
+MzQyODMsIDB4YjAwMDExNWIgfSwKPiArCS8qIDEuNDg1R2JwcywgYW5kIGJlbG93ICovCj4gKwl7
+IDAsICAgICAgICAgMHgzMzYzMjEyMiwgMHgyMDAwMTE1YiB9LAo+ICt9OwpbIC4uLiBdCj4gK3N0
+YXRpYyBjb25zdCBzdHJ1Y3QgbWVzb25faGRtaV9waHlfcmF0ZSAqCj4gK21lc29uX2hkbWlfcGh5
+X2ZpbmRfcmF0ZShjb25zdCBzdHJ1Y3QgbWVzb25faGRtaV9waHlfZGF0YSAqZGF0YSwgdTY0IHJh
+dGUpCj4gK3sKPiArCXVuc2lnbmVkIGludCBpOwo+ICsKPiArCWZvciAoaSA9IDA7IGkgPCBkYXRh
+LT5udW1fcmF0ZXM7IGkrKykKPiArCQlpZiAocmF0ZSA+PSBkYXRhLT5yYXRlc1tpXS5taW5fcmF0
+ZSkKPiArCQkJcmV0dXJuICZkYXRhLT5yYXRlc1tpXTsKPiArCj4gKwlyZXR1cm4gTlVMTDsKPiAr
+fQpbIC4uLiBdCj4gK3N0YXRpYyBpbnQgbWVzb25faGRtaV9waHlfdmFsaWRhdGUoc3RydWN0IHBo
+eSAqcGh5LCBlbnVtIHBoeV9tb2RlIG1vZGUsCj4gKwkJCQkgICBpbnQgc3VibW9kZSwgdW5pb24g
+cGh5X2NvbmZpZ3VyZV9vcHRzICpvcHRzKQo+ICt7Cj4gKwlzdHJ1Y3QgbWVzb25faGRtaV9waHkg
+KnByaXYgPSBwaHlfZ2V0X2RydmRhdGEocGh5KTsKPiArCj4gKwlpZiAobW9kZSAhPSBQSFlfTU9E
+RV9IRE1JKQo+ICsJCXJldHVybiAtRUlOVkFMOwo+ICsKPiArCWlmIChvcHRzLT5oZG1pLmJwYyAh
+PSA4KQo+ICsJCXJldHVybiAtRUlOVkFMOwo+ICsKPiArCWlmICghbWVzb25faGRtaV9waHlfZmlu
+ZF9yYXRlKHByaXYtPmRhdGEsIG9wdHMtPmhkbWkudG1kc19jaGFyX3JhdGUpKQo+ICsJCXJldHVy
+biAtRUlOVkFMOwo+ICsKPiArCXJldHVybiAwOwo+ICt9CgpbU2V2ZXJpdHk6IE1lZGl1bV0KQ2Fu
+IG1lc29uX2hkbWlfcGh5X2ZpbmRfcmF0ZSgpIGV2ZXIgcmV0dXJuIE5VTEwgaGVyZT8KCkV2ZXJ5
+IHBlci1Tb0MgcmF0ZSB0YWJsZSBlbmRzIHdpdGggYW4gZW50cnkgd2hlcmUgbWluX3JhdGUgaXMg
+MCwgYW5kIHJhdGUKaXMgYW4gdW5zaWduZWQgdTY0LCBzbyByYXRlID49IGRhdGEtPnJhdGVzW2ld
+Lm1pbl9yYXRlIGlzIGFsd2F5cyB0cnVlIG9uCnRoZSBmaW5hbCBlbnRyeS4gIFRoYXQgbWFrZXMg
+dGhlIE5VTEwgcmV0dXJuIGFuZCB0aGUgY2FsbGVycycgTlVMTCBjaGVja3MKaW4gbWVzb25faGRt
+aV9waHlfdmFsaWRhdGUoKSBhbmQgbWVzb25faGRtaV9waHlfY29uZmlndXJlKCkgZGVhZCBjb2Rl
+LCBhbmQKbWVzb25faGRtaV9waHlfdmFsaWRhdGUoKSBhY2NlcHRzIGFueSB0bWRzX2NoYXJfcmF0
+ZSB2YWx1ZSAoaW5jbHVkaW5nIDAgSHoKb3IgcmF0ZXMgYWJvdmUgdGhlIDU5NCBNSHogaGFyZHdh
+cmUgbGltaXQpLgoKSW4gYWRkaXRpb24sIG1lc29uX2hkbWlfcGh5X3ZhbGlkYXRlKCkgZG9lcyBu
+b3QgY2hlY2sgdGhhdCBzdWJtb2RlIGlzClBIWV9IRE1JX01PREVfVE1EUyBiZWZvcmUgcmVhZGlu
+ZyBvcHRzLT5oZG1pLnRtZHNfY2hhcl9yYXRlLCB3aGljaCBzaGFyZXMKYW4gYW5vbnltb3VzIHVu
+aW9uIHdpdGggb3B0cy0+aGRtaS5mcmwgd2hlbiBzdWJtb2RlIGlzIFBIWV9IRE1JX01PREVfRlJM
+LgoKLS0gClNhc2hpa28gQUkgcmV2aWV3IMK3IGh0dHBzOi8vc2FzaGlrby5kZXYvIy9wYXRjaHNl
+dC8yMDI2MTExNy1tZXNvbi1kcm0tY3JlYXRlLWhkbWl0eC1waHktdjEtMC05ZTBhYzkzMTM4MWNA
+YWxpZWwuZnI/cGFydD00CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmlu
+ZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9s
+aW51eC1hbWxvZ2ljCg==
