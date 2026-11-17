@@ -2,57 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 290F5606A31C
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2026 20:11:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9792E606A32F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2026 20:13:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mta/N2T0;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mxK01jt4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1z1LVG/B;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=P9/AQEwM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:References:
-	In-Reply-To:Cc:To:Subject:From:Message-ID:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
+	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Z5JNsrhb+hpdebyyNnHyR+pLoETqnMD+dDP2JTvkX9s=; b=mta/N2T0wognh4SCmQ1FqH/X1f
-	kVNw0vqRhVdZHApAlIax1RmUmHeEB2rTiJjhHNZ5k+eMPTB+FmWXynFAGmwAzVG0iYtpauymiKHrb
-	xQRTlsIhsKAYjegh7LjXgcPA8SP7+M473q0FC/ZAUpVxzL1RrL1j0/nCsn1gmZy3vTQzfboCjI11C
-	cpfoOnxYcPXyNOua6ALulB+cqmZq4L34sE7YaJkj/rBnGRUxjfoGIhqMj0gTER6HgnmlmF2uskW4M
-	BBTJgfxDKURI+MrRcjDLoYYjR2I+A77ZoOhtNRxzES0ywTwYZx17kWZR13V+PVQuGbllDDVU2QjGV
-	3ROsBquA==;
+	bh=5HNeCYXgSbB7zLhNDmRmj+xvR8jsI4sE2pJ60plcUhQ=; b=1z1LVG/BnmzHCnqMOD4CLxewQh
+	AdpXTKna2kNhsUB47/CC/y97D8a+75darbeth2EUsVr/1WD6csI4sJ+YsqhH7kvgPNM6Imm0kiekO
+	E05nvNEa/cHhgRXDoc34l0ezU67ykINSkZ/B2cAuAtOzt2VKUJAYd87mxQd+2A+dQ4yoEfNWHpBSv
+	z/atSv4bRZWtaYvTWEVTW5JfkcRWAZaE4j/XI2wYiF/CxxOEU6DRDq/QKdGn5dfuQOrNGR4dgLfQ8
+	GuG7jzImvdZH5/xgjAcK+bJ50up+eMwIxpQBK5s+GpolxQo5Ip5Pp7KEIDBdjrJqJ9+xG9hMefcVp
+	cjJ9hXHg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTPWi-00000006zaq-1LzD;
-	Tue, 17 Nov 2026 20:11:36 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xTPYD-00000006zfy-2A8k;
+	Tue, 17 Nov 2026 20:13:09 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTPWf-00000006zah-1o0M;
-	Tue, 17 Nov 2026 20:11:34 +0000
+	id 1xTPYB-00000006zfa-3XWK;
+	Tue, 17 Nov 2026 20:13:07 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7E8EB60F34;
-	Tue, 17 Nov 2026 20:11:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B82BB1F000C5;
-	Tue, 17 Nov 2026 20:11:31 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id B544B60610;
+	Tue, 17 Nov 2026 20:13:06 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794946386;
+	b=sHPmjReHDcmP4sUGexlJZk5ELlY0xWR3ozvT1lzsE3wKblV815v91bCOp56N4PJ0GnJK
+	 ec8XYsy204IrGPAxxHnRyH8t+j7REQmP5qdGEZ/XmqSxr9myqNzx7sLkAb+kEx0ZIX17L
+	 4FSp/BTTs0Wzc64Ljxn/NSZlOpaYWJ3rwXSRHpfQpzvCVQluZXYfSWopFz79CZiKEqywY
+	 FSYb6+AXqVWYnBf64uzPxy76OYxK9So+vVw8a/UYwvjRU9wwcWzb8IrQiUh/r5B1r0RzZ
+	 RTztFPrJ26QUwUb/HLaRf4lij8GbZaWy7B6ud6FOp1Uk1EzUZ/b+sVBadQdDsPJql4Q==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794946386;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:To:Cc:X-Mailer:X-Developer-Signature:
+	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To:
+	 Content-Transfer-Encoding;
+	bh=U1zAc4lGwOD81/4mD5AHdHewiPUIO3rCF6SmQhWg03k=;
+	b=B/+5NSOsn64gyC/zXDOb4juMCu4dp9/mENcr2HcSxV4Dgci1rgBWKcUKe5nacZjVTHFe
+	 yK9NRqzk9ObL4ASuirqo18sP7rYD/VK0/IC/tpPcPFLBOZvgACGU1pEaGxMdt/eaVBLX1
+	 xdg/1FUzqd17KiL3TW1WlXIbWhkQTIyhA34lI9TLL7QOky8wo5q8124p+guJPZzfCieER
+	 0E8/SYCZ77yp9cwnPD0qcIr3V7XzysqDGMnRhYFJ0oQ+F8HS0V4WWCpFy2pjaA1HLPEZA
+	 q5QG1QglcWE3DoyNi0Z+QFdYZ5EjcHrtrcEX4apOK9HfxMX1G6ieXZWe0O7JEIUvZaQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id F3D441F000C5;
+	Tue, 17 Nov 2026 20:13:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794946292;
-	bh=o1Y/yNbkW2bZMPXGpyxomoYGDfphc/X8oVtcisFJF/w=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=mxK01jt4UnB6GGRkK3XBjM7Wv9pTSp0H6bwXjTnQrTNecq0e19UljW9rpEbjbLou2
-	 HT051gZxjbrrOFqQZEEhkMRikxEOy8ATUMeXemwAGWbOtdSVTh+KDD3yl8rYoGfFh+
-	 yDOeuBxfYbfClk89EWalLhTbOY22jZv1ufcflwJnyaLtoz855Y7JrAwcPvPYpnSh48
-	 Ms8Zv8AEo5qtbbja0tXJxpDK3K2tOJLCwDCYr7vGiOzK+XTMcVlGpT77h0TPwa67r6
-	 jPBaSryASiMUdgxzpqyRTLDfff3DRr/jfbvfe8jWjYQ+b3xCbJizPA87xoKAVW5RtO
-	 X0Ri0s6MRn/Fw==
-Message-ID: <sashiko-outbox-219570@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 06/10] drm/meson: dw-hdmi: Drop manual HHI clock and
- memory PD setup
-To: "Ronald Claveau" <linux-kernel-dev@aliel.fr>
-Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-phy@lists.infradead.org, dri-devel@lists.freedesktop.org, robh@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org, vkoul@kernel.org, olteanv@gmail.com
-In-Reply-To: <20261117-meson-drm-create-hdmitx-phy-v1-6-9e0ac931381c@aliel.fr>
-References: <20261117-meson-drm-create-hdmitx-phy-v1-0-9e0ac931381c@aliel.fr>
- <20261117-meson-drm-create-hdmitx-phy-v1-6-9e0ac931381c@aliel.fr>
-Date: Tue, 17 Nov 2026 20:11:31 +0000
+	s=k20260515; t=1794946386;
+	bh=U1zAc4lGwOD81/4mD5AHdHewiPUIO3rCF6SmQhWg03k=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=P9/AQEwMo7mPnpzkHhyqxkd2+HG2qoz+1fN6+ObkX/uawWvneNV0Z1kcIpXXCBqJ4
+	 Olj6FSLTqrU9LD66qxwpYFUtggghwnkgL2bi7MsYHGoudpiQZ09RgoA+VsE+I6fN8l
+	 4gi7U2jPwRIB/INUanwrMbIijJ0APbD8D7ojMtSHyxvBziOKRJHzxKj9irEfjnEDsj
+	 4nEh6Q1D/lmWXSqd/taDyrpot7p5vvk8WMQPNERevloVgCfa5W2FD66ueuP3jzHO7S
+	 HynWqfp8eoqJwjFqOpQgNbgC+r0Sh0uwe/k7MbcG5YQoc+0fC2ttxzw6zmtqTgaW8z
+	 BWLzFT1bQqQLA==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 85DB14AAA2;
+	Tue, 17 Nov 2026 20:13:05 +0000 (UTC)
+From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
+Date: Tue, 17 Nov 2026 20:13:03 +0000
+Subject: [PATCH] rtc: meson-vrtc: keep the alarm across the hibernation
+ snapshot
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Message-Id: <20261117-meson-vrtc-thaw-v1-1-b58a2c3919d3@iav.lv>
+X-B4-Tracking: v=1; b=H4sIAE61/GoC/x3MQQqAIBBA0avIrBtwggq7SrQQm2oWaahUEN49a
+ fkW/7+QOAonGNULkS9JEnwFNQrcbv3GKEs1tLrtiWjAg1PweMXsMO/2Rm2sJmecsR1Drc7Iqzz
+ /cZpL+QDTRidsYQAAAA==
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Igor Velkov <iav@iav.lv>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2531; i=iav@iav.lv;
+ h=from:subject:message-id;
+ bh=SA/YHiFrtpyx141R9I9mj/voNyRERhsuFPxCUy/+Hlc=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDFl/tgYcyVxedunn3MdR+1ew5Nh862Dv8X7Ju+ZICfexS
+ VzicnzXOkpZGMS4GGTFFFkmHNK4lbHk6l9/D/MHMHNYmUCGMHBxCsBE8v8zMhzPfWsf7n1ry6d1
+ ezY5iXmqHVh4vPzG7tIdus/2Lr1Ue1qOkeHZR7Vi5yjlZvUzcnXHOtvCf0fedb+mPf3kttJivUX
+ np7ECAA==
+X-Developer-Key: i=iav@iav.lv; a=openpgp;
+ fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
+X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
+X-Original-From: Igor Velkov <iav@iav.lv>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,81 +110,90 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: iav@iav.lv
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MSBwb3RlbnRpYWwKaXNzdWUgdG8gY29uc2lkZXI6Ci0gW0hpZ2hdIGRybS9tZXNvbjogZHctaGRt
-aTogc2tpcHBlZCBIRE1JVFggbWVtIFBEIHBvd2VyLXVwIGluCiAgbWVzb25fZHdfaGRtaV9pbml0
-KCkKLS0KCmNvbW1pdCBjOGU3ODIwOTlmNzU4YmY2MzU0MDI3MDVhMjBmNTdkN2RmOTY4MmE3CkF1
-dGhvcjogUm9uYWxkIENsYXZlYXUgPGxpbnV4LWtlcm5lbC1kZXZAYWxpZWwuZnI+Cgpkcm0vbWVz
-b246IGR3LWhkbWk6IERyb3AgbWFudWFsIEhISSBjbG9jayBhbmQgbWVtb3J5IFBEIHNldHVwCgpU
-aGlzIGNvbW1pdCByZW1vdmVzIHRoZSBkaXJlY3QgSEhJX0hETUlfQ0xLX0NOVEwgYW5kIEhISV9N
-RU1fUERfUkVHMApyZWdpc3RlciB3cml0ZXMgaW4gbWVzb25fZHdfaGRtaV9pbml0KCkgYW5kIHRh
-a2VzIGEgcnVudGltZSBQTSByZWZlcmVuY2UKaW4gbWVzb25fZHdfaGRtaV9wcm9iZSgpIHRvIHBv
-d2VyIG9uIHRoZSBWUFUgcG93ZXIgZG9tYWluLgoKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL21lc29uL21lc29uX2R3X2hkbWkuYyBiL2RyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl9k
-d19oZG1pLmMKPiBpbmRleCBlYjMzYzcwZjI5YzMxLi4yMGE4MjE5MzZiM2FmIDEwMDY0NAo+IC0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl9kd19oZG1pLmMKPiArKysgYi9kcml2ZXJz
-L2dwdS9kcm0vbWVzb24vbWVzb25fZHdfaGRtaS5jClsgLi4uIF0KPiBAQCAtNTk5LDEyICs1OTgs
-NiBAQCBzdGF0aWMgdm9pZCBtZXNvbl9kd19oZG1pX2luaXQoc3RydWN0IG1lc29uX2R3X2hkbWkg
-Km1lc29uX2R3X2hkbWkpCj4gIHsKPiAgCXN0cnVjdCBtZXNvbl9kcm0gKnByaXYgPSBtZXNvbl9k
-d19oZG1pLT5wcml2Owo+ICAKPiAtCS8qIEVuYWJsZSBjbG9ja3MgKi8KPiAtCXJlZ21hcF91cGRh
-dGVfYml0cyhwcml2LT5oaGksIEhISV9IRE1JX0NMS19DTlRMLCAweGZmZmYsIDB4MTAwKTsKPiAt
-Cj4gLQkvKiBCcmluZyBIRE1JVFggTUVNIG91dHB1dCBvZiBwb3dlciBkb3duICovCj4gLQlyZWdt
-YXBfdXBkYXRlX2JpdHMocHJpdi0+aGhpLCBISElfTUVNX1BEX1JFRzAsIDB4ZmYgPDwgOCwgMCk7
-Cj4gLQo+ICAJLyogUmVzZXQgSERNSVRYIEFQQiAmIFRYICYgUEhZICovCj4gIAlyZXNldF9jb250
-cm9sX3Jlc2V0KG1lc29uX2R3X2hkbWktPmhkbWl0eF9hcGIpOwo+ICAJcmVzZXRfY29udHJvbF9y
-ZXNldChtZXNvbl9kd19oZG1pLT5oZG1pdHhfY3RybCk7Cj4gQEAgLTgyOSw5ICs4MjIsMjkgQEAg
-c3RhdGljIGludCBfX21heWJlX3VudXNlZCBtZXNvbl9kd19oZG1pX3BtX3Jlc3VtZShzdHJ1Y3Qg
-ZGV2aWNlICpkZXYpCj4gIAlyZXR1cm4gMDsKPiAgfQo+ICAKPiArc3RhdGljIHZvaWQgbWVzb25f
-ZHdfaGRtaV9wbV9wdXQodm9pZCAqZGV2KQo+ICt7Cj4gKwlwbV9ydW50aW1lX3B1dF9zeW5jKGRl
-dik7Cj4gK30KPiArCj4gIHN0YXRpYyBpbnQgbWVzb25fZHdfaGRtaV9wcm9iZShzdHJ1Y3QgcGxh
-dGZvcm1fZGV2aWNlICpwZGV2KQo+ICB7Cj4gLQlyZXR1cm4gY29tcG9uZW50X2FkZCgmcGRldi0+
-ZGV2LCAmbWVzb25fZHdfaGRtaV9vcHMpOwo+ICsJc3RydWN0IGRldmljZSAqZGV2ID0gJnBkZXYt
-PmRldjsKPiArCWludCByZXQ7Cj4gKwo+ICsJcmV0ID0gZGV2bV9wbV9ydW50aW1lX2VuYWJsZShk
-ZXYpOwo+ICsJaWYgKHJldCkKPiArCQlyZXR1cm4gcmV0Owo+ICsKPiArCXJldCA9IHBtX3J1bnRp
-bWVfcmVzdW1lX2FuZF9nZXQoZGV2KTsKPiArCWlmIChyZXQpCj4gKwkJcmV0dXJuIGRldl9lcnJf
-cHJvYmUoZGV2LCByZXQsICJGYWlsZWQgdG8gcG93ZXIgb24gSERNSSBUWFxuIik7CgpbU2V2ZXJp
-dHk6IEhpZ2hdCkNhbiBkcm9wcGluZyB0aGUgSEhJX01FTV9QRF9SRUcwIHdyaXRlIGxlYXZlIHRo
-ZSBIRE1JVFggbWVtb3J5IHBvd2VyZWQKZG93biB3aGVuIHRoZSBib290bG9hZGVyIHR1cm5zIG9u
-IHRoZSB0b3AtbGV2ZWwgVlBVIGRvbWFpbiB3aXRob3V0CmVuYWJsaW5nIEhETUk/CgpJbiB0aGUg
-VlBVIHBvd2VyIGRvbWFpbiBkcml2ZXIsIHB3cmNfZWVfaXNfcG93ZXJlZF9vZmYoKSBvbmx5IGNo
-ZWNrcyB0aGUKdG9wLWxldmVsIEFPIHNsZWVwIGJpdCBhbmQgZG9lcyBub3QgY2hlY2sgSEhJX01F
-TV9QRF9SRUcwWzE1OjhdLiAgV2hlbgp0aGUgdG9wLWxldmVsIFZQVSBkb21haW4gaXMgYWxyZWFk
-eSBwb3dlcmVkIG9uIGF0IGJvb3QsCm1lc29uX2VlX3B3cmNfaW5pdF9kb21haW4oKSByZWdpc3Rl
-cnMgdGhlIGdlbnBkIGFzIGFscmVhZHkgb24gd2l0aG91dApjYWxsaW5nIG1lc29uX2VlX3B3cmNf
-b24oKToKCmRyaXZlcnMvcG1kb21haW4vYW1sb2dpYy9tZXNvbi1lZS1wd3JjLmM6bWVzb25fZWVf
-cHdyY19pbml0X2RvbWFpbigpIHsKCS4uLgoJaWYgKGRvbS0+bnVtX2Nsa3MgJiYgZG9tLT5kZXNj
-LmlzX3Bvd2VyZWRfb2ZmICYmICFkb20tPmRlc2MuaXNfcG93ZXJlZF9vZmYoZG9tKSkgewoJCXJl
-dCA9IGNsa19idWxrX3ByZXBhcmVfZW5hYmxlKGRvbS0+bnVtX2Nsa3MsIGRvbS0+Y2xrcyk7CgkJ
-aWYgKHJldCkKCQkJcmV0dXJuIHJldDsKCgkJZG9tLT5iYXNlLmZsYWdzID0gR0VOUERfRkxBR19B
-TFdBWVNfT047CgkJcmV0ID0gcG1fZ2VucGRfaW5pdCgmZG9tLT5iYXNlLCBOVUxMLCBmYWxzZSk7
-CgkJaWYgKHJldCkKCQkJcmV0dXJuIHJldDsKCX0KCS4uLgp9CgpCZWNhdXNlIHRoZSBnZW5wZCBp
-cyBpbml0aWFsaXplZCBpbiB0aGUgT04gc3RhdGUgd2l0aApHRU5QRF9GTEFHX0FMV0FZU19PTiwg
-cG1fcnVudGltZV9yZXN1bWVfYW5kX2dldCgpIGlzIGEgbm8tb3AgYW5kCm1lc29uX2VlX3B3cmNf
-b24oKSBuZXZlciBydW5zIHRvIGNsZWFyIEhISV9NRU1fUERfUkVHMFsxNTo4XSwgbGVhdmluZwpI
-RE1JVFggbWVtb3J5IHBvd2VyZWQgZG93biB3aGVuIG1lc29uX2R3X2hkbWlfaW5pdCgpIGFuZCBk
-d19oZG1pX3Byb2JlKCkKYWNjZXNzIHRoZSBjb250cm9sbGVyLgoKSW4gYWRkaXRpb24sIHBvd2Vy
-LWRvbWFpbnMgYW5kIGFzc2lnbmVkLWNsb2NrcyBhcmUgb3B0aW9uYWwgaW4gdGhlCmFtbG9naWMs
-bWVzb24tZHctaGRtaSBiaW5kaW5nIGFuZCB3ZXJlIG9ubHkgYWRkZWQgdG8gaW4tdHJlZSBEVHMg
-aW4KdjYuMTEsIHNvIGRyb3BwaW5nIHRoZSBISElfSERNSV9DTEtfQ05UTCBhbmQgSEhJX01FTV9Q
-RF9SRUcwIHdyaXRlcyBhbHNvCnJlZ3Jlc3NlcyBvbGRlciBEVEJzICh3aGVyZSBtZXNvbl92Y2xr
-X3NldCgpIG9ubHkgY29uZmlndXJlcwpISElfSERNSV9DTEtfQ05UTCBsYXRlciBhdCBhdG9taWNf
-ZW5hYmxlIHRpbWUpIGFuZCBidWlsZHMgd2l0aCBDT05GSUdfUE0KZGlzYWJsZWQuCgotLSAKU2Fz
-aGlrbyBBSSByZXZpZXcgwrcgaHR0cHM6Ly9zYXNoaWtvLmRldi8jL3BhdGNoc2V0LzIwMjYxMTE3
-LW1lc29uLWRybS1jcmVhdGUtaGRtaXR4LXBoeS12MS0wLTllMGFjOTMxMzgxY0BhbGllbC5mcj9w
-YXJ0PTYKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxp
-bnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9y
-ZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9n
-aWMK
+From: Igor Velkov <iav@iav.lv>
+
+SIMPLE_DEV_PM_OPS also installs meson_vrtc_resume() as the .thaw
+callback, so the alarm is cleared as soon as the hibernation image has
+been created. An alarm set through the RTC (rtcwake, wakealarm) is then
+lost: with hybrid-sleep the system suspends with a zero wakeup time in
+the SCP and does not wake on it. The alarmtimer is not affected, as it
+sets the alarm again from its own suspend callback.
+
+Set only the suspend/resume and poweroff/restore callbacks, so freeze
+and thaw leave the alarm alone.
+
+Tested on ODROID-HC4 with v7.4-rc3, rtcwake -m no before hybrid-sleep:
+BL301 printed alarm=0S before this change and the remaining time with
+it, and woke the board on the alarm 3 of 3 times. Waking needs a BL301
+that acts on this alarm; the stock one for HC4 does not. Deep suspend
+still wakes on the alarm.
+
+Fixes: 6ef35398e827 ("rtc: Add Amlogic Virtual Wake RTC")
+Signed-off-by: Igor Velkov <iav@iav.lv>
+---
+ drivers/rtc/rtc-meson-vrtc.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/rtc/rtc-meson-vrtc.c b/drivers/rtc/rtc-meson-vrtc.c
+index e5f9f05ffee0..f34a98defee6 100644
+--- a/drivers/rtc/rtc-meson-vrtc.c
++++ b/drivers/rtc/rtc-meson-vrtc.c
+@@ -86,7 +86,7 @@ static int meson_vrtc_probe(struct platform_device *pdev)
+ 	return devm_rtc_register_device(rtc);
+ }
+ 
+-static int __maybe_unused meson_vrtc_suspend(struct device *dev)
++static int meson_vrtc_suspend(struct device *dev)
+ {
+ 	struct meson_vrtc_data *vrtc = dev_get_drvdata(dev);
+ 
+@@ -115,7 +115,7 @@ static int __maybe_unused meson_vrtc_suspend(struct device *dev)
+ 	return 0;
+ }
+ 
+-static int __maybe_unused meson_vrtc_resume(struct device *dev)
++static int meson_vrtc_resume(struct device *dev)
+ {
+ 	struct meson_vrtc_data *vrtc = dev_get_drvdata(dev);
+ 
+@@ -126,8 +126,12 @@ static int __maybe_unused meson_vrtc_resume(struct device *dev)
+ 	return 0;
+ }
+ 
+-static SIMPLE_DEV_PM_OPS(meson_vrtc_pm_ops,
+-			 meson_vrtc_suspend, meson_vrtc_resume);
++static const struct dev_pm_ops meson_vrtc_pm_ops = {
++	.suspend = pm_sleep_ptr(meson_vrtc_suspend),
++	.resume = pm_sleep_ptr(meson_vrtc_resume),
++	.poweroff = pm_sleep_ptr(meson_vrtc_suspend),
++	.restore = pm_sleep_ptr(meson_vrtc_resume),
++};
+ 
+ static const struct of_device_id meson_vrtc_dt_match[] = {
+ 	{ .compatible = "amlogic,meson-vrtc"},
+
+---
+base-commit: aebb7274476403040d582c61478df8f4a7bf9cd3
+change-id: 20261117-meson-vrtc-thaw-09a01c9c9a5e
+
+Best regards,
+-- 
+Igor Velkov <iav@iav.lv>
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
