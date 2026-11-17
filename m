@@ -2,65 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D641606A32F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2026 16:39:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EFB5606A32A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2026 16:59:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ai29F/h7;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=cMuQJ9FK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0zFV6YQ9;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=FboX1a6j
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=cdrt7Jk3wjOZEst0O5nDnX1ho5lQfFBb3vDRYP7Eq8A=; b=ai29F/h7/gWtla7OtSbyYofTz4
-	0RcfvbQKx1RFKm8KgqSjkp3XzIP6U6XUAypx++DOVMfp5jKMBdBJkn0nZ+QopdwdlMa8cq5zoY7eg
-	hW5E13HgT36EaVqQxElMXY6QqPxI++ald+snBeNUpJ+QfQjxOcmR1GCjJy07qkJ8344NLALURaM0j
-	0CUzNXHxv+nmN3FeA6L/GvrbGBUmvPTroI43vqYM4azHRCcNJz8VqYCXrFHNXirx0y5U6A5NmZyZQ
-	nnROG5w5DyceLPUq5AMztqh5xEkA+k/jPlE/mP/9A+AwRaHnfrwhxvPAr0W/7zRSCQy5iUWTsKRmR
-	60t8m5NA==;
+	bh=APZUH0oiKWh8NLtS2ml7oP5Ccj4UbSuIleLp++Uql9I=; b=0zFV6YQ9QSib5YKwaCJWl5BVpK
+	i35mpP7D8v+9IYSJetmoHbIrkp02DHpIxM76drLLd8v4mQpJ2pb1Onq5pp15zXu5iYQZPWzO8bfpf
+	UAV/zu8ywVFw2FycprgUtCAvRYNArbrgB35em+5GJLqFGCJtBpdE2hbOlEek/DHbAIAft36kEHB3G
+	eO2x/on/+1eDcsnK5PTpE/cOfzV1/vUqZztZbhaijNxyG43MZbPTFTqtwbdKQn/x6ZJwD8pxq3Ngu
+	zLUjmW/B72yvolV2aqi7DN39l9974Lu0ALFZWXbZ0+XbjyVtKzh96SMoOmKJM/SMpkBB2cgefb1O6
+	XSOjbvqg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTMD5-00000006RrB-07NI;
-	Tue, 17 Nov 2026 16:39:07 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xTMWQ-00000006UOe-2L19;
+	Tue, 17 Nov 2026 16:59:06 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTMD3-00000006RqY-3FkR
+	id 1xTMWN-00000006UNe-09Qi
 	for linux-amlogic@lists.infradead.org;
-	Tue, 17 Nov 2026 16:39:05 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id DD13261920;
-	Tue, 17 Nov 2026 16:39:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D5151F000C4;
-	Tue, 17 Nov 2026 16:39:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794933543;
-	bh=Pfmnvxj9CbfQ1DpBEMDbGnnfXt+Q39t2/T0T0Pu6Ftc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=cMuQJ9FK1PHznyu4NZPRUAJ4VOHdcaqMcn2LHbIAcspA0Jn+nJyNCZ0gTsLKwf8jX
-	 4ll6OimP/Cx450xqbmlmw7SiXpEyRzzU2PZ/oUjKybiqRG/GzjIVOWX4r328I0lEOk
-	 tUoTDGkaFL3kjuJrpi/tyANJvtivxjA0ySxUP4g2SC9vG/M5CoPLn10OzYdXhByYKW
-	 taU8JTxpwGudZGRLlmTZP3fzgJHi1V3251d9OwSztxyJL38KXbbJtZCQnkr+QRjLID
-	 YFqoP5jhB7iASLudc4UgwxZMTdnjPwHCvXTlVMy7BrlUUidZbkvPDBgP1kD3PzUZbH
-	 PSWlDY739hPow==
-From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Frank Li <Frank.Li@kernel.org>,
-	linux-amlogic@lists.infradead.org,
-	dmaengine@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: stable@vger.kernel.org
-Subject: [PATCH v2 06/11] dmaengine: amlogic: Destroy free_wq after devres DMA device unregistration
-Date: Tue, 17 Nov 2026 16:37:07 +0000
-Message-ID: <20261117163809.622249-7-lee@kernel.org>
-X-Mailer: git-send-email 2.56.0.679.gc527c65306-goog
-In-Reply-To: <20261117163809.622249-1-lee@kernel.org>
-References: <20261117163809.622249-1-lee@kernel.org>
+	Tue, 17 Nov 2026 16:59:05 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 511071A167C;
+	Tue, 17 Nov 2026 16:59:01 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 165B55FDAD;
+	Tue, 17 Nov 2026 16:59:01 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2CE8411BC0067;
+	Tue, 17 Nov 2026 17:58:49 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1794934735; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=/sExmZ117jhWvHZ7v1Er7gDQc9fAtZqbDp3VfinKnpY=;
+	b=FboX1a6jpgdrVKL/ht3sgG7t6f0D8SfPrcwbol6vq5wDpxPQY7SoQdJDc3YVK2fNTVju/G
+	VCMTCUrTZfxjETxJRDUXpar/89Z8mFGrpJi5ht9qzSD5TUPQgoEORfBXq0UCJINqZYtda+
+	Qm/AUiI60CfwXcDYhNzeWUSFjfYWcOZ5TmAfd+2+1/GquSDcIuEp/Te1WPwZnwlKT6dNoh
+	6D5P8DyLWLhzN4vM1BzzVLQpmwQCcrKLQ5m+IkUeZQpCt3/oRNYJG2sUhGEWZkPSJoUayx
+	nOin4yeYWx6FgE4wEe6ghfBlRh8DAnmJklmdQHaMPjDOOZLsIIJIpYXmzi95WQ==
+Message-ID: <3bb32808-2c16-4bee-a593-4e7d10dd34b4@bootlin.com>
+Date: Tue, 17 Nov 2026 17:58:49 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 4/7] net: stmmac: dwmac-meson8b: follow the generic
+ RGMII delay rules on the T7
+To: Lucas Tanure <tanure@linux.com>, xianwei.zhao@amlogic.com,
+ Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net,
+ Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>
+References: <20261113121852.334604-1-tanure@linux.com>
+ <20261113121852.334604-5-tanure@linux.com>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <20261113121852.334604-5-tanure@linux.com>
+X-Last-TLS-Session-Version: TLSv1.3
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261117_085904_826816_6C08C166 
+X-CRM114-Status: UNSURE (   8.88  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,59 +89,34 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-aml_dma_probe() registers the DMA device with
-dmaenginem_async_device_register(), so dma_async_device_unregister() is
-deferred until devres release after aml_dma_remove() returns.  However,
-aml_dma_remove() destroys aml_dma->free_wq directly, causing
-aml_dma_free_desc() to queue work onto a destroyed workqueue when
-channels and descriptors are released during devres teardown, and early
-error returns in aml_dma_probe() also leak aml_dma->free_wq.
+Hi,
 
-Allocate aml_dma->free_wq with devm_alloc_ordered_workqueue() so it is
-destroyed on probe failure and after dmaenginem_async_device_register()
-unwinds on removal.
+On 11/13/26 13:18, Lucas Tanure wrote:
+> The delay code reads phy-mode as the list of delays this glue has to
+> add, falls back to a 2ns transmit delay when no property asks for one,
+> and takes the vendor delay properties. ethernet-controller.yaml says
+> the opposite: the PHY adds the 2ns delays, and the MAC properties only
+> hold small fine tuning added on top. Every board in the tree depends on
+> the old reading, so it stays as it is.
+> 
+> No T7 board uses this glue yet, so the T7 gets a path of its own that
+> follows the generic rules: the receive delay line is fine tuning in
+> 200ps steps, and the transmit side, a quarter-period phase step, offers
+> none, so the transmit property is refused.
+> 
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Signed-off-by: Lucas Tanure <tanure@linux.com>
 
-Fixes: b84b5197e344 ("dmaengine: amlogic: Add general DMA driver for A9")
-Closes: https://sashiko.dev/#/bug/linux-c216084a-f89a-48d5-bdea-584522d1bdda
-Cc: stable@vger.kernel.org
-Signed-off-by: Lee Jones <lee@kernel.org>
----
+Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
 
-v1 => v2: No changes
-
- drivers/dma/amlogic-dma.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
-
-diff --git a/drivers/dma/amlogic-dma.c b/drivers/dma/amlogic-dma.c
-index 684121d13fca..791bd82743d3 100644
---- a/drivers/dma/amlogic-dma.c
-+++ b/drivers/dma/amlogic-dma.c
-@@ -620,7 +620,7 @@ static int aml_dma_probe(struct platform_device *pdev)
- 	if (!aml_dma)
- 		return -ENOMEM;
- 
--	aml_dma->free_wq = alloc_ordered_workqueue("aml_dma_free", 0);
-+	aml_dma->free_wq = devm_alloc_ordered_workqueue(&pdev->dev, "aml_dma_free", 0);
- 	if (!aml_dma->free_wq)
- 		return -ENOMEM;
- 
-@@ -712,7 +712,6 @@ static void aml_dma_remove(struct platform_device *pdev)
- 		if (aml_chan)
- 			tasklet_kill(&aml_chan->vchan.task);
- 	}
--	destroy_workqueue(aml_dma->free_wq);
- }
- 
- static const struct of_device_id aml_dma_ids[] = {
--- 
-2.56.0.679.gc527c65306-goog
+Maxime
 
 
 _______________________________________________
