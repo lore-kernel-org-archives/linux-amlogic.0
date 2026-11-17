@@ -2,68 +2,111 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B2DC606A32C
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2026 18:16:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DFDC60A262E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2026 19:33:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZNDivaU7;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=iav.lv header.i=@iav.lv header.a=rsa-sha256 header.s=zoho header.b=ZllJTcWm
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Bxt2ux3v;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=EuE/NPpm
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:References:
-	In-Reply-To:Message-ID:Subject:Cc:To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Unsubscribe-Post:List-Owner;
-	bh=xksNZOSt/i+NpxWTAeOHPx4uBGwS6vROnCOGyl7b7N4=; b=ZNDivaU7wG5oXiOCGEKfsOXola
-	NVcOZ86Bndt/DsGaJHFljxXTmNVUJ1TbpV5O0+7qpPQcRAZUhVuQgro0uWsSCe2Ni7ceW0+lWhr3g
-	hr4TY98s51oHO7xbacRN7SAGq6jmXoqLWZ6SNY6uNPCYlj0f/v7dTAh6LzWV0Kv1MOuO/BjMSsSsH
-	pEtagrvZ63/U98PJWE+L4RFvMO+Sid4wbYsH9Ey+RReUDoetig1lcTGAxLyagAVWY9a7D4nWR3/w7
-	gV4y1ltTeb2tHxux5EZppTbea/BnmhdEerdgxC9FKM+7EWWSZK0Vp8RpGwyPJU8+mMbYCNwWWIpgJ
-	Pe01k0Zw==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=YBl45CPtj6KY5Z8gu1Ph3mHkdMD53SmZRypYMeJ3BrM=; b=Bxt2ux3vc+jZfeSM+/cz1anYo/
+	CDS7YihnMHKyWLf40XN8M3+/PCOnLGhhUx0J97kf2f1sNwDkc1DalLZTCzCvU1DXHSFu589hNsVEZ
+	Gy26FSrDZ3p435vmfrQljm6F9BxwnEweDit2JB9lMz0G/ZVv9/0pyQha5cX/0nVqKwDmVl4VIaQpN
+	uhDSL3N93fJacX8ewMQWwHNyPe3apiJlB8sIwyWFCVwefoqHoTdLpehw7hlcRmNbgee080SB7DaFJ
+	/9UuzqDFl51dywGUHI0thsLvgtIRQZ9Uq3wRmMXhHx0hOVpWNl58EhxIi3R0lSqhO/jM/7UCwYW+y
+	cCCZhyBQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTNjE-00000006juz-29Lm;
-	Tue, 17 Nov 2026 18:16:24 +0000
-Received: from sender-op-o15.zoho.eu ([136.143.169.15])
+	id 1xTOvy-00000006tNc-3LsU;
+	Tue, 17 Nov 2026 19:33:38 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTNjC-00000006ju8-0lZP
-	for linux-amlogic@lists.infradead.org;
-	Tue, 17 Nov 2026 18:16:23 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1794939373; cv=none; 
-	d=zohomail.eu; s=zohoarc; 
-	b=jPM86I5fXXkHprkvLBi4twb7QXQFfGNSR471U4Xj2AmO33WwucwF4X/RByhfEVf/qStA55x0RUW+OLfQHVLvSLHp/cGG38CJxWp8GDdwPWTa7xrK9EGlg3N448KFGzVcMM+HvIBOmy/sKLpOfhpdHTF9ZCHSaeAu0wzy46Onpiw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
-	t=1794939373; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=WHIQxeoR6vINETekLiTI/f5ywXyoHU09pB3XVrXEfXE=; 
-	b=c0PUZxL6+rrPi5a894TpamTZZdLM9HmSRhUkHs/m/153b9lQT/XXZgwWeQpmCs8boR1MSN8RlUSNw8wnhkFGinH9MmtxzDxayDDSwqtJ49pO1e/IcAgdKfdUgESEuIXj1xtJhi9kXMsirBr6K75g+PXjTbD04KycgRz3UmS++1I=
-ARC-Authentication-Results: i=1; mx.zohomail.eu;
-	dkim=pass  header.i=iav.lv;
-	spf=pass  smtp.mailfrom=iav@iav.lv;
-	dmarc=pass header.from=<iav@iav.lv>
-DKIM-Signature: a=rsa-sha256; b=ZllJTcWmygp+HGw1t9C5Z3dZMdLLoAUl+GmOz6SupgIpuMNnG+fiqVVkUkHp+W0yv7C46SBl/YZy3rcIcplXT07wDPPAcVL0FyCMESvt4CFt+q6QxfKHwswFWUjvmoIDVb7ALKrCqk/lRkdOB8BlvPX4iSwusI1uh4IKABJcexA=; c=relaxed/relaxed; s=zoho; d=iav.lv; v=1; bh=WHIQxeoR6vINETekLiTI/f5ywXyoHU09pB3XVrXEfXE=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zoho.eu with SMTPS id 1794939371281278.3710763207241;
-	Tue, 17 Nov 2026 19:16:11 +0100 (CET)
-From: Igor Velkov <iav@iav.lv>
-To: Bartosz Golaszewski <brgl@kernel.org>
-Cc: Linus Walleij <linusw@kernel.org>,
- Shawn Guo <shengchao.guo@oss.qualcomm.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- linux-gpio@vger.kernel.org,
- linux-amlogic@lists.infradead.org,
- regressions@lists.linux.dev
-Subject: Re: [REGRESSION] gpio: shared-proxy: open-drain regulators on ODROID-HC4 fail with -EPERM
-Message-ID: <20261117-hc4-gpio-shared-od-2@iav.lv>
-In-Reply-To: <kcopbszdsz2amzas3hmchxokw4bjxafu2wzjplthyihkellwd2@hd2k3tomwvdq>
-References: <20261115-hc4-gpio-shared-od-1@iav.lv>
- <kcopbszdsz2amzas3hmchxokw4bjxafu2wzjplthyihkellwd2@hd2k3tomwvdq>
-Date: Tue, 17 Nov 2026 20:15:00 +0200
+	id 1xTOvx-00000006tLT-1dYJ;
+	Tue, 17 Nov 2026 19:33:37 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 17800409D2;
+	Tue, 17 Nov 2026 19:33:35 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794944015;
+	b=vY8WuBodXDcU+B42H6RWJWY3svgZ/F8F1qn3bqbQ8lMv4HaavagL2riskuKa8k7FBVHF
+	 FBIE4idypg44ZSeQSzAf8k+3LO5eyaS4Bh4PxlxYKc4RehXdlZ/PYsgyZuKbO9Nk82Lfa
+	 1Np8cQYc1JKO7mu0Ik2nY6cRg53H3zZMjZf09ktPbU3TY8+yPQAizyD9tORktiH84Nfbr
+	 5264w7q8SbGnnwjHJFe87tuH/Q6d9M9fyoBKDkiBH9yww431koyWJALvO1MYsVMRjOynA
+	 EcZLz5tprafJP7JiNzEYrP63Pm2LLj14wScziXTyG6QoF/+sijzqi16D36JJXn5k2MQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794944015;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=pi02oACzfdxXr2T3FmhOigKXGph09mYpGwByVOMN+iA=;
+	b=pNN1YMvPW0xCdAoMXIPvf8B4s0hMFNxOTKqABF2WR5ZgwodBZzC0CLZo20Sflbv2S85l
+	 rpfRssT4qE6xXqi/DPYo83RMAuj/UXt6L6LV41FkkewyJ7dGbz8FBASR3BmQYvyIEglYq
+	 LwxrteJI14b37zWe8t4aQs50o23dzhJKuOa42iu1pIBlllAo3SnjS/3cNOCRtDN9dsYar
+	 X1CIRGgIF42GSfvzSpA1XfkecxgQ+Vg4J+w6woEo1FlNATw/so93DGyCKke/07uNtrIIv
+	 wKHwIMwv4CZs31A/tkh2ohXCRC8fupIEPVFjBbfIaZfbYEF5GvKPIez5CjGks5Aj2xw==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 52F2B1F000C5;
+	Tue, 17 Nov 2026 19:33:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794944014;
+	bh=pi02oACzfdxXr2T3FmhOigKXGph09mYpGwByVOMN+iA=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=EuE/NPpm0JbsCfiQB4W8YZN/Zqr6e+/6FKO1NgP/WspzEc/M6pBDiVitgnJE5grc5
+	 lhiBvf/W0GbvfeRQZpKDPcQZ7Fglnzy32VCDHxRVE+DGhx1QFJ+FjPbP7ggMOXXdZV
+	 y+Eu1c0I7BFK92bFFWnjjBHxaNJC7WSw0IImVtaTXlJ8nd8sE8KTnD9Q5Ml277RqRc
+	 CFHckku0k+qFaWKDM5NTG525UEYt/ugQY2hJBshSPtwc0BoU+tCP4hv3e4iTxjUNvS
+	 //HuefQ2wevv0Q1Skw2uQ7vX6kQTS4yWxXRn7Pc3KxP5lmzcJR7XvAw+cdlLQHKA6h
+	 TgkRZ0BZEYRAg==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id CE16C4AA76;
+	Tue, 17 Nov 2026 19:33:33 +0000 (UTC)
+From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
+Date: Tue, 17 Nov 2026 20:33:06 +0100
+Subject: [PATCH 01/10] dt-bindings: soc: amlogic: meson-gx-hhi-sysctrl: Fix
+ compatible matching in conditionals
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_101622_500123_BEE5A39B 
-X-CRM114-Status: UNSURE (   6.23  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+Message-Id: <20261117-meson-drm-create-hdmitx-phy-v1-1-9e0ac931381c@aliel.fr>
+References: <20261117-meson-drm-create-hdmitx-phy-v1-0-9e0ac931381c@aliel.fr>
+In-Reply-To: <20261117-meson-drm-create-hdmitx-phy-v1-0-9e0ac931381c@aliel.fr>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Vinod Koul <vkoul@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-phy@lists.infradead.org, dri-devel@lists.freedesktop.org, 
+ Ronald Claveau <linux-kernel-dev@aliel.fr>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3283;
+ i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
+ bh=x0gAaIsGyNXcvLzc+ccXQ6Xun/9RxOJpIfK6iHxxYkw=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ9af1X+FP0QstiwV5zUz3THZc8LbKLuUecJZs17bBPDtt
+ jdNOP69o5SFQYyLQVZMkaV/ruWJd5ePnvm6Rz0FZg4rE8gQBi5OAZiIzztGhnk3lXjfneNo9WAt
+ 0BE5uk7sseMrM85F8bL2agZvXRocfBgZ/hvdlCzYsenNohvTX6/3Z3ZXvKYwYYqhdDLr4T/zer8
+ dYwIA
+X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
+ fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
+X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
+ auth_id=744
+X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,28 +116,123 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: linux-kernel-dev@aliel.fr
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 17, 2026 at 02:35:03PM +0100, Bartosz Golaszewski wrote:
-> I think the issue is with the proxy driver not
-> propagating the -ENOTSUPP error code in set_config().
-[...]
-> Could you try the following diff?
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 
-Thanks, that fixes it. With the diff on v7.4-rc3, 4 of 4 cold boots:
-no -EPERM, vcc_5v and both p12v regulators probe as open-drain
-outputs, and both SATA disks come up. Stock rc3 on the same board
-failed both p12v regulators on the boot before.
+The conditional schemas select on "compatible" with a bare enum. On a
+list such as:
 
-Tested-by: Igor Velkov <iav@iav.lv>
+  compatible = "amlogic,meson-gx-hhi-sysctrl", "syscon", "simple-mfd";
+
+an enum applied to the whole array only matches single-entry lists, so
+the if: blocks never match as intended and the per-variant constraints
+are not applied reliably.
+
+Wrap the enums in "contains" so that the conditions match on any entry
+of the compatible list.
+
+Doing so exposes the "phy" child node of "amlogic,meson-gx-hhi-sysctrl":
+it was forbidden (phy: false), but some DT legitimately describe an
+"amlogic,g12a-mipi-dphy-analog" PHY node under this system controller,
+which resulted in dtbs_check warnings such as:
+
+  system-controller@0 (amlogic,meson-gx-hhi-sysctrl): False schema does
+  not allow {'compatible': ['amlogic,g12a-mipi-dphy-analog'],
+  '#phy-cells': 0, ...}
+
+Allow the phy child node for amlogic,meson-gx-hhi-sysctrl by referencing
+the amlogic,g12a-mipi-dphy-analog binding instead of rejecting it.
+
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+---
+ .../soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml  | 32 +++++++++++++---------
+ 1 file changed, 19 insertions(+), 13 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
+index f3a85c67ce8a..285edac4c082 100644
+--- a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
++++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
+@@ -40,8 +40,9 @@ allOf:
+   - if:
+       properties:
+         compatible:
+-          enum:
+-            - amlogic,meson-hhi-sysctrl
++          contains:
++            enum:
++              - amlogic,meson-hhi-sysctrl
+     then:
+       properties:
+         clock-controller:
+@@ -53,9 +54,10 @@ allOf:
+   - if:
+       properties:
+         compatible:
+-          enum:
+-            - amlogic,meson-gx-hhi-sysctrl
+-            - amlogic,meson-axg-hhi-sysctrl
++          contains:
++            enum:
++              - amlogic,meson-gx-hhi-sysctrl
++              - amlogic,meson-axg-hhi-sysctrl
+     then:
+       properties:
+         clock-controller:
+@@ -67,9 +69,10 @@ allOf:
+   - if:
+       properties:
+         compatible:
+-          enum:
+-            - amlogic,meson-gx-ao-sysctrl
+-            - amlogic,meson-axg-ao-sysctrl
++          contains:
++            enum:
++              - amlogic,meson-gx-ao-sysctrl
++              - amlogic,meson-axg-ao-sysctrl
+     then:
+       properties:
+         clock-controller:
+@@ -81,17 +84,20 @@ allOf:
+   - if:
+       properties:
+         compatible:
+-          enum:
+-            - amlogic,meson-gx-hhi-sysctrl
++          contains:
++            enum:
++              - amlogic,meson-gx-hhi-sysctrl
+     then:
+       properties:
+-        phy: false
++        phy:
++          $ref: /schemas/phy/amlogic,g12a-mipi-dphy-analog.yaml
+ 
+   - if:
+       properties:
+         compatible:
+-          enum:
+-            - amlogic,meson-axg-hhi-sysctrl
++          contains:
++            enum:
++              - amlogic,meson-axg-hhi-sysctrl
+     then:
+       properties:
+         phy:
+
+-- 
+2.43.0
+
+
 
 _______________________________________________
 linux-amlogic mailing list
