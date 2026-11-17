@@ -2,97 +2,62 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 439C7606A329
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2026 13:22:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4B39606A334
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2026 13:35:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=olVgsmTn;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.a=rsa-sha256 header.s=s29768273 header.b=aPLpo4Y8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=F6V33KNN;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aMYUJUxw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Ru5GN3hJFmEyzmcAOZMYA61v89ElwKuAHvmh7P4hl48=; b=olVgsmTnbFG2/IPJnTbr1KH7Kk
-	wNa2zXE/ZXXUTvBXeD/OYasp1zYIPbX7TmXKVf8NvO7dgcR9DlhzPDh04ecdTXXa/bhI0KaHgUvtZ
-	KXGz/IZxWjKnkhbfyQ5QSpLDs4r05L9K6BzwU2WcT0SJ8otxwYwAx4Z9fFCWdJxtCMn5zNVo4MusT
-	Pi3AZqf2au9pB600YGjWmdZJEZnvWk5hN+Hr1KOWO11paZKCPypG2IgeaGSybjqg1N1TEsybF/DTS
-	N23xNChx1Pdq9B7HF58E3fOEmPVO13Mz7nDc/2knBCQs4PciAsyS0ygmPz7F505PGc6//TMBCJdz5
-	j/zhX27w==;
+	bh=CO0iv90FoBVqJMqj9vf5QZG6yWNnbcnOk/jOrrQx/YE=; b=F6V33KNNZ6gXeeXrbOUa/bp2X8
+	0vUUsAn8M1yJgFzm3aBlTpN0Qt3HYkEhcwinHP3uz+lqIvvr7ltqko6GkVzpUJnHAl9pbrVAyrKCu
+	Yu3/FaOtyu1Sw19t3rcEp3yl8eWi3tzoUvPmrNBfhPN4KfbWnQZCjN4W0n7yd8s78nGu2YBczFpMP
+	ZQz2YfGRZGFtElKbUkKUjjDvnbdROclgXZfwWlLbuFWmbWZnp/SUDn/aT06hpJNv+D9Cv7m6L+hq/
+	Mh+v/W8mQ4Z194mGJVEfl81/1HZBC01ryIH++Z1RKZkM3JFTfn3Bij4wjyw6icbknFsgkp4bCO5he
+	7xcRKZnQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTJ8H-00000005uMb-1SA9;
-	Tue, 17 Nov 2026 13:21:57 +0000
-Received: from mout.web.de ([212.227.15.14])
+	id 1xTJL4-00000005xYe-0CO3;
+	Tue, 17 Nov 2026 13:35:10 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTJ8E-00000005uKc-07HA
+	id 1xTJL2-00000005xYU-3Bcw
 	for linux-amlogic@lists.infradead.org;
-	Tue, 17 Nov 2026 13:21:55 +0000
-DKIM2-Signature: i=1; m=1; t=1794921711;
- mf=PE1hcmt1cy5FbGZyaW5nQHdlYi5kZT4=;
- rt=PGxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
- d=web.de;
- s=s29768273:rsa-sha256:S5WyBEptLekQI3AfMr5mPb1lJG4V
-   g7W0oLXI0h+b1pRdf9St4tU9l1b26Z/md0MdU9QCpTvgSFo0PHk06/xR8GGF2U7a7d6i06L0pX8
-   RuPUxWwXYzoa81ClnX6mDMHPL1uP5/O7VfsajSc+0YtoXgR4k5GeiRbk5QSIsqXiPBLz9a6wK2x
-   436Q0V+MPB/wBUPzqsSlLfA6xczSloxz/p/9fpa46hV6zKnpApREV6cQJOan1xrFdTA8WxNvMJZ
-   aId9JkgNoSXeMiWPnUBpHNUlo9ALaK98dkcDCjbW7Q39Qq5RJVu9+/P4WHisGsWtvhbDy7psGhg
-   y1g+2w+IaKM0Pg==;
-Message-Instance: m=1;
- h=sha256:
-   wk8Ebnxj9+uopn4oAfe8XpNBl4GkL+Ot7cX4DU6EhPY=:
-   S8Svh5yjcoWGeKVpnzI1TFn8gCquX/Z15gpJRqPt1ZA=,
-  sha512:
-   8eXnFb3w2Nkab4Z+20FZIBTTnw0F9c+jvS27XhdGtw7lliSG6/ZuKQxlxjGaeXBQIHAKAn2souTmbnt1zZeCdA==:
-   UMcSWdpUjOx21yU3m9ZtF4VAL4Bhqao2FLpjla4ft5MnND5cAUB0Goe3D2UTUhc6WdqxmI2fGmu2nIV3tvqpPg==;
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1794921668; x=1795526468; i=markus.elfring@web.de;
-	bh=O15KmHjK/IjChmIg1MswoAKQRe54mKR/YNVKMpoI2GE=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=aPLpo4Y8DtSyFl7Mthdr+W+ylySNgZTQrZ58sb5NGgqFj++PK30a++2re0BR5bNi
-	 kHyq963u5ID0J6uvg7/xalaJlbmaWR4P+kMmZWo487/b9e6jYpRqpejAYvU69fGGB
-	 xHDPZCjO06OTE71k8ng6BCFoqaaOpHYr0b1u8HO6U6aPKlSB3TI/VLD2YqqXLKDb7
-	 FWJ5mGL57y4lVWyAScHYHhXHO4aoyhShuqgsn7ZysVCgc7wYYaA1MYLg8w82FKnXL
-	 OyvUEyydaGWYpRBSlJQbwK7WdV7Vt6dIVAQLEtxNPXnNd0oMMCXVj9ApjVJscIG/7
-	 DN7ewQI4V+tOv4vHHg==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from client.hidden.invalid by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MNwjc-1x520i1eFU-00Puxo; Tue, 17
- Nov 2026 14:21:08 +0100
-Message-ID: <23a72c5e-7eb7-4a4e-9f06-fdc4976b05bc@web.de>
-Date: Tue, 17 Nov 2026 14:21:06 +0100
+	Tue, 17 Nov 2026 13:35:08 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with UTF8SMTP id 4626B43BA8;
+	Tue, 17 Nov 2026 13:35:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with UTF8SMTPSA id 6C2D91F000C5;
+	Tue, 17 Nov 2026 13:35:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794922508;
+	bh=ioA43pJHcDJQL8W7VvWm4+CiwKJ1zY7tj7ZN6Wqk5cw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=aMYUJUxwV3D3h7O6WftIBGjTr+39NhtyC9CFwIximBe8cUa2/9uJe/qc/n5Rk8Ze+
+	 maEFKoZ6vfLi6KHduZDmxqIk/j4OqtlebeG3zquyHhgR82OPzXHVwk7UbK+WoD+v+L
+	 m61h+VgjWkU0IS03f1wbbCRReTD0YQyeGXS8fmqMF9FEAjfJn8HkE0whcU51ZTWzGu
+	 jYAbvI5xz6QmfX18oN/PdFlluZ8U/w7JQG2Hna7vkaye5SzcLO0IEfW+/lCfPC3APH
+	 5aMLQa/sEY09iCzj4ob1EXD8r/6bR5nFWn0Io5z0wO6aLSC4sVyKqEg1dDYj/nJZzj
+	 IQWQDrA+EnYVQ==
+Date: Tue, 17 Nov 2026 14:35:03 +0100
+From: Bartosz Golaszewski <brgl@kernel.org>
+To: Igor Velkov <iav@iav.lv>
+Cc: Linus Walleij <linusw@kernel.org>, 
+	Shawn Guo <shengchao.guo@oss.qualcomm.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	linux-gpio@vger.kernel.org, linux-amlogic@lists.infradead.org, regressions@lists.linux.dev
+Subject: Re: [REGRESSION] gpio: shared-proxy: open-drain regulators on
+ ODROID-HC4 fail with -EPERM
+Message-ID: <kcopbszdsz2amzas3hmchxokw4bjxafu2wzjplthyihkellwd2@hd2k3tomwvdq>
+References: <20261115-hc4-gpio-shared-od-1@iav.lv>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 2/2] i2c: amlogic: Add Amlogic A9 I2C controller
- driver
-To: Junyi Zhao <junyi.zhao@amlogic.com>,
- Xianwei Zhao <xianwei.zhao@amlogic.com>, linux-amlogic@lists.infradead.org,
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- Andi Shyti <andi.shyti@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: LKML <linux-kernel@vger.kernel.org>
-References: <20261117-a9-i2c-v10-0-33ea9aefce20@amlogic.com>
- <20261117-a9-i2c-v10-2-33ea9aefce20@amlogic.com>
-Content-Language: en-GB, de-DE
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20261117-a9-i2c-v10-2-33ea9aefce20@amlogic.com>
-X-Provags-ID: V03:K1:yeW+56fcqwFFgnUzBcgflsIOb76VlxacHTsho9siUjw90d9mZHr
- dxav4ru3MrzMawKzrlfhN95X+hCUY5BaAYCNL8np5RMU0dDbKHJcmS2wbMebvFXgONnUlOV
- B3Qfk5dh/HntvJU5BUcxq5/6A6Zrgk02MbN3K4POWPqD4Zpr/bwhUeXE+EXmNUn5+dWgeWD
- QkocangnXLGbMPiABL3uQ==
-UI-OutboundReport: notjunk:1;M01:P0:HIpqy9YjjqI=;apDQbC5a7Xs5fGXisT7dSxx9Hdl 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 F/mz2v8wPPH2F566/h+HFA=
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_052154_358142_CE260C16 
-X-CRM114-Status: UNSURE (   6.75  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+Content-Disposition: inline
+In-Reply-To: <20261115-hc4-gpio-shared-od-1@iav.lv>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,30 +67,69 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-4oCmCj4gKysrIGIvZHJpdmVycy9pMmMvYnVzc2VzL2kyYy1hbWxvZ2ljLWE5LmMKPiBAQCAtMCww
-ICsxLDQyOCBAQArigKYKPiArc3RhdGljIGludCBhbWxfaTJjX3hmZXJfbXNnKHN0cnVjdCBhbWxf
-aTJjICppMmMsIHN0cnVjdCBpMmNfbXNnICptc2csIGJvb2wgbGFzdCkKPiArewrigKYKPiArCXNw
-aW5fbG9ja19pcnFzYXZlKCZpMmMtPmxvY2ssIGZsYWdzKTsKPiArCWkyYy0+c3RhdGUgPSAobXNn
-LT5mbGFncyAmIEkyQ19NX1JEKSA/IEE5X1NUQVRFX1JFQUQgOiBBOV9TVEFURV9XUklURTsK4oCm
-Cj4gKwkvKiBTdGFydCB0aGUgdHJhbnNmZXIgKi8KPiArCWFtbF9pMmNfZG9fc3RhcnQoaTJjLCBt
-c2cpOwo+ICsJc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgmaTJjLT5sb2NrLCBmbGFncyk7CuKApgo+
-ICsJaWYgKCF0aW1lX2xlZnQpIHsKPiArCQlndWFyZChzcGlubG9ja19pcnFzYXZlKSgmaTJjLT5s
-b2NrKTsK4oCmCj4gKwl9Cj4gKwo+ICsJcmV0dXJuIGkyYy0+ZXJyb3I7Cj4gK33igKYKCldpbGwg
-ZGV2ZWxvcG1lbnQgaW50ZXJlc3RzIGdyb3cgYWxzbyBmb3IgdGhlIGFwcGxpY2F0aW9uIG9mIGFu
-b3RoZXIgc2NvcGVkIGxvY2sgZ3VhcmQ/Cmh0dHBzOi8vZWxpeGlyLmJvb3RsaW4uY29tL2xpbnV4
-L3Y3LjQtcmMxL3NvdXJjZS9pbmNsdWRlL2xpbnV4L2NsZWFudXAuaCNMMzI1LUwzMjgKClJlZ2Fy
-ZHMsCk1hcmt1cwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRl
-YWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgt
-YW1sb2dpYwo=
+On Sun, Nov 15, 2026 at 04:55:00AM +0200, Igor Velkov wrote:
+> Since f918e3804498 ("arm64: enable HAVE_SHARED_GPIOS for all ARM64
+> platforms"), two of the three fixed regulators sharing GPIOH_8
+> (GPIO_OPEN_DRAIN) on ODROID-HC4 fail on every boot:
+> 
+>   reg-fixed-voltage regulator-p12v-0: setup of GPIO (default) failed: -1
+>   reg-fixed-voltage regulator-p12v-0: error -EPERM: can't get GPIO
+> 
+> The first user (vcc_5v) sets the line to output high in
+> gpiod_configure_flags(). Its enable then goes through
+> gpio_set_open_drain_value_commit(), which emulates high by calling
+> direction_input on the proxy, and the proxy switches the shared line to
+> input. The next users hit "Shared GPIO's direction already set to input,
+> refusing to change" in gpio_shared_proxy_direction_output(). Stack from
+> trace_trigger=gpio_direction.stacktrace:
+> 
+>   gpiod_direction_input <- gpio_shared_proxy_direction_input
+>   <- gpio_set_open_drain_value_commit <- gpiod_set_value_cansleep
+>   <- _regulator_do_enable <- set_machine_constraints <- regulator_register
+> 
+> Armbian v7.4-rc2 (its patches don't touch gpiolib or these nodes); same
+> with the five shared-proxy fixes from the v7.4-rc3 pull. The winner
+> depends on probe order: without the fixes vcc_5v lost in 2 of 4 boots,
+> leaving the SD card unpowered and no rootfs.
+>
+
+I was wondering why does the second user even arrive in
+gpio_shared_proxy_direction_output() at all when it should take the
+emulation path. I think the issue is with the proxy driver not
+propagating the -ENOTSUPP error code in set_config(). While I did author
+that code, I have no idea why I did it and if I even had any reason at
+all. Could you try the following diff?
+
+diff --git a/drivers/gpio/gpio-shared-proxy.c b/drivers/gpio/gpio-shared-proxy.c
+index cb593192076f..8197ebb5f9a2 100644
+--- a/drivers/gpio/gpio-shared-proxy.c
++++ b/drivers/gpio/gpio-shared-proxy.c
+@@ -186,7 +186,7 @@ static int gpio_shared_proxy_set_config(struct gpio_chip *gc,
+ 	}
+
+ 	ret = gpiod_set_config(desc, cfg);
+-	if (ret && ret != -ENOTSUPP)
++	if (ret)
+ 		return ret;
+
+ 	shared_desc->cfg = cfg;
+
+With it, both users should take the simulation route.
+
+Thanks,
+Bartosz
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
