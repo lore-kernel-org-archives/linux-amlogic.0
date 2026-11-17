@@ -2,98 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BCAD606A32A
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2026 10:06:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9BED606A31C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Nov 2026 11:59:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mIaWk6aj;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=web.de header.i=markus.elfring@web.de header.a=rsa-sha256 header.s=s29768273 header.b=JhC/bJcM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TPUIiMfe;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=d4NuoOmU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=C6O07Jy2HNvuWjb4Ps8212F0xpyLJ8IbMOaGVTpHIWk=; b=mIaWk6ajDI0GvMqHAJ21PvBBmz
-	2NCxtU/ulKNSi2TwZ1T8bWWosvQUYz3YA/809OEhEREZO4vAX8EjKHovBQYyf7loJLqRhUdByC+5k
-	LcK0DzdLDcEtIsa2RvGWCX6MGXTasgmeUIwb9zCbepkKqsTdVCdrtl3xfuqwoTNeAq3gH0xonTukU
-	fMOyT6I3eFiFyoxcNwfgykD8XvK7vRgVs5tDKUJkI6ugeJ/xuGOPn3jlL9uM0KOqAyUz/aa7C8T69
-	5DC0ii0nbx5I/kcR++2ee/WNKvN1WPqOSLHkax3bAoBOFxygRuRI5CMCJlXcmR1o1cBWhQqcI3aj1
-	ODxMuXNw==;
+	bh=/DKFIb/EnDY52qR/ev9MXwyJCJGpXNjZqLA0l8kVebQ=; b=TPUIiMfeXk29Qjcl+PMoqSC55d
+	//cKecQ/tRYbjgjb4TJam8iN6Bvp9u2Hr00WFY2ZnI32ImV5MS5zSi7ozBHtNKQJL0yg2c2DaWgtP
+	VVeb1dQyIMvk3VZUlvmq6sIq888b4BbxJ/p5WlxxDNajJOu+LyJ8VWHKWQ+YoMZRgF4Qy7sdx8Ilp
+	CfbCFZit/jTLuAI6bNKmdShAWgCi38x456CnpnIC9/V8kokvZYfYt0xZ+8RNALzWPD37toX3kvbch
+	UdgQFjqYDyukTN6r1dTXPUWkmRZBYKmf4MT5KAMJVPzEW45H0Zhyfa+bsFomJrcRKLgPmcql5fkdF
+	rQUH2u9g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTG5M-00000005Dim-2xGQ;
-	Tue, 17 Nov 2026 10:06:44 +0000
-Received: from mout.web.de ([212.227.15.3])
+	id 1xTHqW-00000005WBA-0OeX;
+	Tue, 17 Nov 2026 11:59:32 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTG5K-00000005DhR-0bqs
+	id 1xTHq4-00000005W9r-2scF
 	for linux-amlogic@lists.infradead.org;
-	Tue, 17 Nov 2026 10:06:43 +0000
-DKIM2-Signature: i=1; m=1; t=1794909999;
- mf=PE1hcmt1cy5FbGZyaW5nQHdlYi5kZT4=;
- rt=PGxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
- d=web.de;
- s=s29768273:rsa-sha256:PNkJv832wc/MBzJAuKuI02xEOO6X
-   Q41W9mq7bdmGh3h962yUwx1ZfwGuRz/O+nM6G6JEjSFNlk/vlWU/VbtBRkqrJF2kvvVzH7CAAJd
-   8ke+i2/K/WyMafxRuefooLQqM4KBF/PBEXPBmBPsZ0RM+FYlgmSdg4B6upiG2QVRwocvcOGsjmC
-   w02e6xprJXvTRv4aR+a5x85dmcr79TQz5DdijmFxuJ4oQuh3Wf/vJnFkp+U7f3OvQeW7qnLmEZp
-   mL08x2QOr/V2HyFWojNqfNY52WPieYCRiGNK9n/p0tie/rGo4nkrR60ZX6BhRfqZxSmXi3ZBfE9
-   jfkmzZZtO8o8Vg==;
-Message-Instance: m=1;
- h=sha256:
-   NKwsYXHmqn45NZOrpyyw14aRH7lfrzYfSuBhd2u1XrE=:
-   Ntr8PEGmlRO3PYN06EGTXmyLQ8vwRW6LTHIMnPTPO0s=,
-  sha512:
-   +K4LXoqaAUHdqNUnq7IWYxJswHnHQOsEjNgcQSPIqkwNcEMYzuaR7HvXKPJVf5LF+onQ5RZ/tgNw2x7HcwEx7A==:
-   /KGLbByOwim0rlrxRqe9NvMW8BXKk72i6ciKjnbFhNtZ1jxjhiWpGYus6CgthVxcTy+TTHUP06kZuKZwMdmEPA==;
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1794909975; x=1795514775; i=markus.elfring@web.de;
-	bh=Ntr8PEGmlRO3PYN06EGTXmyLQ8vwRW6LTHIMnPTPO0s=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=JhC/bJcMb0R/bGRDiJmM+ffSrmcNwTFQRG0c+1JUpC069/8riRDsqbxaOlJqtVkG
-	 XEDBRg/bf4DM43ikshlBPYwJUMZLUN5a5+P1OBuH6LHzDq4qyTq+0QITY1B+ymjPn
-	 0utOMalClBwKD6rNN+TwO8270NoLOaJgYWhNxICRlB0qY20seAbJ9qYqgo5vCL2tw
-	 sHxg0fMxcNsH0c7+IuG3QeYIYYgrO4mGMbnRJWgSZ8tx0d5ZKqa8hg5xoXJIVsU4F
-	 IpKtJHKISTxBBBH9MbEBqcmn4dRzrtIxYi2MF7DAAGhbI9UF5J5RM/4np7EV8CkVK
-	 1jgUzT8e1UbDhySHxQ==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from client.hidden.invalid by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MJnrh-1x9oLv1R7p-00LpF8; Tue, 17
- Nov 2026 11:06:14 +0100
-Message-ID: <54461ef0-033d-4ea4-b160-7da5afd34a43@web.de>
-Date: Tue, 17 Nov 2026 11:06:12 +0100
+	Tue, 17 Nov 2026 11:59:05 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id BC456601CF;
+	Tue, 17 Nov 2026 11:59:03 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794916743;
+	b=Be+Rb4G2jpVf42MkQ+fNnG9AkkhwrP37RiYuRSGtB2F5jrLPBdJe8Tg1i5c5UwCiT05f
+	 wGys3LIn30DiX4EKShR2pttifWI/CHcRDn6HholTSgsIawbn6lf7/G4dhndGfJp7dZMKL
+	 wFzJXqS4WbG009laz9mLpwZkcyhNunSeIuypYiWLFm6UNNIKxAs6wxnUv8BOPNnqH8GMV
+	 w/InSGmdhoMJ/RCZfk9kJG/6a+qhv5JYQ7kVNA4z5hZXVuetpVWDkIvYBfy0395GNymBK
+	 6wLfEQOZzuLB01Oh1HYicdX3xNnZ6wsxLVbsrvGQ9IxPTZ0aNHJtj6BStq+If0Sb67A==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794916743;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=hzfOUTtrb4gURy/ze3K34NDYNNCwcpFVgEVGom5qxcU=;
+	b=x+RFpTC+Ip363HimUqyZmjx51kbKjoWEw3FOM/J8tBMmwQ6ypDIJEIAX3Z5rE0A7+QdS
+	 qlyqydz5mRyCfwwsEoT6NrH6wbNwYOSiN5yRkLdduSzikggE5noZjuXFKafLHIrJoY6bf
+	 OX0wNucequG/ZK07+doYHRxu9hUd4Bdc4BWPLkMRfVzWvKoo/0C/BrxeeFgi7bhgI/Aqo
+	 xBCsdtpN6yOmbuH7a6Zl4GinXTPjpPdOaglB+aGsNxcekNidSbYeOAdOPy4nliSRqjjCB
+	 /wo7dpPaVbADeGGNGnevI87iLlq3MsQ9TlV0LVE4KpCsC+l5TV32nV/53rfmSjV0AJg==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id CAD111F000C5;
+	Tue, 17 Nov 2026 11:59:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794916743;
+	bh=hzfOUTtrb4gURy/ze3K34NDYNNCwcpFVgEVGom5qxcU=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=d4NuoOmUdWtwhAdSqUiCa3+LozeP0ncJpDDouO7f0DID5KaIviZ8QdB3PdR4KT44n
+	 VI9w6MlowIEYnJgYMXYT+cBOn7AF+VT8gJLAcuy9exexeX/zjV1Xvf0F2fARldQGf1
+	 YALvP3S+YE1AJrYV8FfT5uqCNrmIrwM/3Ik9d6Z9RX5o5xorVh8C+wDg7BsLC2Nj1A
+	 cwSed25Caqv4lQ2cQQuL2rlM/kAXEDd0Lpvy1SYulgIvjRe0GMgoABERwOokWiqp8s
+	 h932hfw4yZq0LcOpIzJQlqAwxY9Km9LDtGM6J4MmhIkn/wSE60h+cpFcpe5u0tkYKZ
+	 cnV//nYSp2PYQ==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 46C3F4A829;
+	Tue, 17 Nov 2026 11:59:02 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Tue, 17 Nov 2026 11:58:56 +0000
+Subject: [PATCH v10 1/2] dt-bindings: i2c: add Amlogic A9 I2C controller
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v9 2/2] i2c: amlogic: Add Amlogic A9 I2C controller driver
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>,
- Junyi Zhao <junyi.zhao@amlogic.com>, linux-amlogic@lists.infradead.org,
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
-Cc: LKML <linux-kernel@vger.kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>
-References: <20261117-a9-i2c-v9-0-7b303c894fea@amlogic.com>
- <20261117-a9-i2c-v9-2-7b303c894fea@amlogic.com>
- <7026e0f7-5d7a-4756-8783-4d8558f420d1@web.de>
- <cd3d821b-1cc7-4134-b902-1f05ca2526dc@amlogic.com>
-Content-Language: en-GB, de-DE
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <cd3d821b-1cc7-4134-b902-1f05ca2526dc@amlogic.com>
-X-Provags-ID: V03:K1:crGa4K7MsRhzUbJBxp8Ypw3rq1AOPWH2iznSBYKf4fNdq4wDBJ4
- UYZhuLGjiu5LIZ7CSYScYUnJLgLvdjk47lC6vHRLJADfPfwOQhH9BNvoKB05fZ9Mb3hwRI9
- ysfLQjbtVMHQngFhEo0LLjjTVgPYp0V7t27Wket/eJJZw0MrItacect57x1xLP6y9QjzHHG
- K1NFCKaoidZlu+C1HNdsg==
-UI-OutboundReport: notjunk:1;M01:P0:ajIHWB4FTEM=;2N2RvmtFDsr4MXt+swrX2YDyXGc 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
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261117_020642_565866_91795441 
-X-CRM114-Status: UNSURE (   2.95  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+Message-Id: <20261117-a9-i2c-v10-1-33ea9aefce20@amlogic.com>
+References: <20261117-a9-i2c-v10-0-33ea9aefce20@amlogic.com>
+In-Reply-To: <20261117-a9-i2c-v10-0-33ea9aefce20@amlogic.com>
+To: Junyi Zhao <junyi.zhao@amlogic.com>, Andi Shyti <andi.shyti@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Xianwei Zhao <xianwei.zhaol@amlogic.com>
+Cc: Junyi Zhao <junyi.zhaol@amlogic.com>, 
+ Markus Elfring <Markus.Elfring@web.de>, linux-i2c@vger.kernel.org, 
+ linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794916741; l=1772;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=iah66EzLU1pEytVqMNVVA1xNmz2D/VOvKtLvjcbBFk4=;
+ b=3GGZM+bn2Jmb5O7qdF184r5WouD9/Zl9wk+Q45sX98ioLD2maUiU7hrGTya/C2U1NxYbB/4UT
+ ZMMeZ5+mod3CZf89+JN+Xa08ts5JRbRNFa1y9Glc9RmN4VOkI4ueZoq
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,26 +110,97 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.4 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Pj4g4oCmCj4+PiArbW9kdWxlX3BsYXRmb3JtX2RyaXZlcihhbWxfaTJjX2RyaXZlcik7Cj4+PiAr
-Cj4+PiArTU9EVUxFX0RFU0NSSVBUSU9OKCJBbWxvZ2ljIEkyQyBCdXMgZHJpdmVyIik7Cj4+PiAr
-TU9EVUxFX0FVVEhPUigiSnVueWkgWmhhbzxqdW55aS56aGFvQGFtbG9naWMuY29tPiIpO+KApgo+
-PiBXb3VsZCBhbm90aGVyIG1hY3JvIGNhbGwg4oCcTU9EVUxFX0FVVEhPUuKAnSBiZWNvbWUgaGVs
-cGZ1bCBoZXJlPwo+PiBodHRwczovL2VsaXhpci5ib290bGluLmNvbS9saW51eC92Ny40LXJjMS9z
-b3VyY2UvaW5jbHVkZS9saW51eC9tb2R1bGUuaCNMMjMzLUwyMzYKPiAKPiBEbyB5b3UgbWVhbiBw
-dXQgTU9EVUxFX0FVVEhPUiBpbiBmcm9udCBvZiBNT0RVTEVfREVTQ1JJUFRJT04/Ck5vLgoKSSBz
-dWdnZXN0IHRvIGNhbGwgdGhpcyBtYWNybyBtdWx0aXBsZSB0aW1lcyAob24gZGVtYW5kKS4KClJl
-Z2FyZHMsCk1hcmt1cwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZy
-YWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGlu
-dXgtYW1sb2dpYwo=
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+Add a device tree binding for the I2C controller found on the
+Amlogic A9 SoC.
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+ .../devicetree/bindings/i2c/amlogic,a9-i2c.yaml    | 56 ++++++++++++++++++++++
+ 1 file changed, 56 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/i2c/amlogic,a9-i2c.yaml b/Documentation/devicetree/bindings/i2c/amlogic,a9-i2c.yaml
+new file mode 100644
+index 000000000000..31ddc6d23732
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i2c/amlogic,a9-i2c.yaml
+@@ -0,0 +1,56 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/i2c/amlogic,a9-i2c.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic A9 I2C Controller
++
++maintainers:
++  - Xianwei Zhao <xianwei.zhao@amlogic.com>
++  - Junyi Zhao <junyi.zhao@amlogic.com>
++
++allOf:
++  - $ref: /schemas/i2c/i2c-controller.yaml#
++
++properties:
++  compatible:
++    const: amlogic,a9-i2c
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  dmas:
++    items:
++      - description: DMA controller phandle and request line for RX
++      - description: DMA controller phandle and request line for TX
++
++  dma-names:
++    items:
++      - const: rx
++      - const: tx
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c@3a4400 {
++        compatible = "amlogic,a9-i2c";
++        reg = <0x3a4400 0x3c>;
++        interrupts = <0 164 1>;
++        clocks = <&clkc_periphs 11>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++    };
+
+-- 
+2.52.0
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
