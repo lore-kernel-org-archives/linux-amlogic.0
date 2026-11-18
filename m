@@ -2,107 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D27FD606A320
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Nov 2026 14:06:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22851606A325
+	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Nov 2026 14:28:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uBggcQGz;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=a7OWiBHH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QEVnZqrj;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=mail.sdu.edu.cn header.i=@mail.sdu.edu.cn header.a=rsa-sha256 header.s=default header.b=J9u6jso8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=RNm2s1z9CWk9uaBWmq07fRoJtn4UwlzPGuJn6tJk+rQ=; b=uBggcQGzOM86Df35T5kDrqSOQj
-	cKI94iWsuob3lwHh04vabNRaiPJQTa745Ro6DwjnLo79jh/eZqYZ3Tw/2WxrFPaNY+VwKqIPOwdPA
-	P81qiP1uSwAcy9OvXOT47SMLliFVH1HReiEQcwrLq5z9UYWRpqEv6Q0ya91Cz9yKlJP4sxnFG/gfU
-	7G3K6e5p/40kADlzVpzAZfwwgl7ki3Owf3/zosiQfRg4C6N9fh8hil7p0jrnfJ7m7K3nRDSYqv9ck
-	ZEv9d/MGgxUNpmkMwykjbWS4hS3Z39jSqChrDrvyY0sDmInvdJ4hPOdRitEinfetzhdOewjwRYOtf
-	IjNciRcw==;
+	bh=2XxUsEPxVfDOW/k+i+OEyjzcKTaMMWC2p+eoWsHREdI=; b=QEVnZqrjAzkhvmEhAtLF2D55QI
+	i0mr9oi6EzkTjs0rJp4OYQ2Gr+SCg8U2VhY9xk2jlvS1gRAj/baJi7NVxeQ3Ml01wfVL6U70EDdFe
+	68wOMp60vDveIiciUiqhanLTfq2h6nvs3xshuK6JfCW4V9LQb4bjmx4uClvniUUo4jMIYDeLZAjal
+	0rYQ3xiqXtAH6BE7EAOKSgXNpqz8prITksnjRKHGh1AmdtsZnA4hH5zBxBeEjRUjNjgYDbWbdwOh3
+	f1es/R+QybW5X0xJl1hjKS3REAI9QLfFKA2YVVEsuxkCbRfoNwrP1vHI0A1Fb8Mr6bWIW4B2qbNx2
+	WrWqcnCA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTgJF-00000009392-3oSo;
-	Wed, 18 Nov 2026 14:06:49 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1xTgeD-000000096dx-113D;
+	Wed, 18 Nov 2026 14:28:29 +0000
+Received: from mail-m49197.qiye.163.com ([45.254.49.197])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTgJC-0000000936Z-0iz6
-	for linux-amlogic@lists.infradead.org;
-	Wed, 18 Nov 2026 14:06:48 +0000
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4bb6886d30aso9014695e9.3
-        for <linux-amlogic@lists.infradead.org>; Wed, 18 Nov 2026 06:06:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795010804; x=1795615604; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=O8kUxWwNMGGKdJF+2JBGIvhWCx8VFS9Gq0fs2XPEP3c=;
-        b=a7OWiBHHeBpBKtUK3YqsZwYROT3IvgmEwhlPetuS3hbUlbRr10imUpHdv6Dpp+R+wT
-         KisRdOfJX0VF6DabLD35EFA7Dui7hBEV6T74DFHVSHKTnC6bNPb3AqpLJL6WxQUzy9eW
-         o46uMoRW/+HvWciMAq3Mel5tp/M52RDky/6heoKBFRcfJqg2/nYFG2NDy+4XndV4ye9a
-         QWm7RfulzKFt1uWqtft6CanEwUoMrKppKO1/y1pVW73bPzoHJh/i3GJ3c+cpJxyZpCwE
-         bFErBKRMhS1T/x0cnLX3y2jGeKTryHHkifoYXmPkVSqhfIIhbnnxtx3mUHBjxhMPlGM8
-         xpmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795010804; x=1795615604;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=O8kUxWwNMGGKdJF+2JBGIvhWCx8VFS9Gq0fs2XPEP3c=;
-        b=cBMEKY4kpfb5coA4HhOs/iTl22vxG9NRWTcFm8nLlUWKv6LeJdXdhR4lnBXR0YtrBO
-         syu2rXUqMwax0Nc5tRjwM+TnuBTnr2gfCWXb5JMQ7HR5k9PIk+Q7Va8QG4ioQxMBDO71
-         TVeES353wngNTxsRaqFIIFQm9zzDs5dsSkLZIwZKHwklDcFrGSUrUR3kZWj/pBKgsc2/
-         skE3rV5byTAqv55mZjIyOmfHMN2f7wBu15tZ4nsc3Tf6rNf3z7SfsVJMgnl5U05PT7J/
-         tj0Fl5pSwQ5UOpXBZ7NaN1fnUGYdtABWwvUXeLqcwhhkr7K78KBf1MJ/LkhCBlschiVq
-         0nmQ==
-X-Forwarded-Encrypted: i=1; AL+hErFUS1ItV0UN73yAIaj1DQ+IDjq8wrYi1/HWrHOVpYK2TQ5e7MEkPObxPXrJ4EHzOcHS5UEwV4UDr65YB+OQ@lists.infradead.org
-X-Gm-Message-State: APuU4Z8whyvNiOv37BFnmQrxleYAe9s8F+Bg7Ie/PgGu2quGXWEiT3c5
-	2Ft3y8bLu8Ic14X0NXTofxty0HXvQprQ1+ec3uEdF8rqCuaZKjZJsuGEP6rY7/563shUsAPTY/m
-	Oewo33ZE=
-X-Gm-Gg: AYBFou2SmEC+eJ0VjU4o+562uXb+2L9+5T0IlkZ8ziWYf9+qnNvSNi+y+mAYgp6fjsd
-	YDqiqTAzn3Eatw1geun9HCKef9TT56a8FpVmFNzCHECOVrAqUJWeLR+qew5QaVSbOcCQsgUT4o/
-	hX2BO3eVwe1Qge5DRxlkfXgGHRZEzNMWqlerDP7CvmixKqPI+h7/XvQ6KzrFpLMEEk/Hf73XT0H
-	QQqFt5HIuPhGWOy+o8MIMgTr4VMzqeyBlOEEs3QMaJSmSJZ8Q6jvhok6PUODM8N67dPvWHzGFXl
-	K8B+VAcxA5nmS2KQU6SXR+JSRStIsW0NvwINH8YSE3OFO3bdcA1S8vnaa5RERv8vqsUJBLRUSwc
-	bQ4JiMpLDIyiDfdKqVwu+/4lCqA1+U6dGcMmZZBRccaKZojpNBzkqBvWHkZXC8m85SBOMKTNcEO
-	dZipRXJrQqd2Vr+OpkY9xzc0OShajqHuuyAlCyoNJdXY9HXe9dJT89c89HFrOYlTjGtbeHjaXtL
-	fu0A2QTQJeArTAcLmxbkgN40QmTWVwe77ylaUFg9qIHvvkamx/zynWADsOy2LQKjQzMUOIo0Mpn
-	25TUnTMgBPUAxs4sNZZ1as3Yo1HQunekW2A=
-X-Received: by 2002:a05:600c:3509:b0:4bb:68b9:f610 with SMTP id 5b1f17b1804b1-4bb7da03954mr52120315e9.9.1795010803953;
-        Wed, 18 Nov 2026 06:06:43 -0800 (PST)
-Received: from localhost ([2a02:8071:56d1:2de0:1d24:d58d:2b65:c291])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-4bb7d256f64sm61534715e9.1.2026.11.18.06.06.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2026 06:06:43 -0800 (PST)
-Date: Wed, 18 Nov 2026 15:06:41 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sasha Finkelstein <k@chaosmail.tech>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, dri-devel@lists.freedesktop.org, asahi@lists.linux.dev, 
-	linux-aspeed@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, 
-	linux-riscv@lists.infradead.org, etnaviv@lists.freedesktop.org, linux-samsung-soc@vger.kernel.org, 
-	intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
-	imagination@lists.freedesktop.org, linux-mips@vger.kernel.org, lima@lists.freedesktop.org, 
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
-	virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org, 
-	linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v1 9/9] drm: Unify coding style for *_device_id arrays
-Message-ID: <av2rKJQ0AKU9CFZI@monoceros>
-References: <cover.1795002467.git.ukleinek@kernel.org>
- <a2d5ce256b8ec150de4a6494c177b19693a33222.1795002467.git.ukleinek@kernel.org>
- <7692c160e418e7ad0528739fcc879b11fbac8ab0@intel.com>
+	id 1xTgeB-000000096ch-0cMa;
+	Wed, 18 Nov 2026 14:28:28 +0000
+Received: from lgs.. (unknown [101.76.249.61])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 5526d7a04;
+	Wed, 18 Nov 2026 22:28:22 +0800 (GMT+08:00)
+From: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
+To: Yue Wang <yue.wang@Amlogic.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-pci@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] PCI: meson: Fix potential use-after-free after PHY provider removal
+Date: Wed, 18 Nov 2026 22:28:21 +0800
+Message-ID: <20261118-324f82bd41-pci-meson-0@mail.sdu.edu.cn>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <7692c160e418e7ad0528739fcc879b11fbac8ab0@intel.com>
+X-HM-Tid: 0aa1ef0f076c03a1kunmfe1958691a169f
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZTUhLVhlCGElJQxodSU5KGVYeHw
+	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlKS0pVTE1VSU9CVU1KWVdZFhoPEhUdFFlBWUtVS1VLVUtZBg
+	++
+DKIM-Signature: a=rsa-sha256;
+	b=J9u6jso8uxOqF1ixoniwY6KndX5ryqPnNLKDGPlR9JGvTenW6T/GKKNor60TS/vnGbYxX0j8BNgeGR0r0YsTF++W2HC7PNfYDWjjjYnI/B3koqT04ZOX/BoSjjUBFpp6ZiFVZ7KtiIwTKzejsAanv1MECs2sJcjTwO+b9mE5ugY=; c=relaxed/relaxed; s=default; d=mail.sdu.edu.cn; v=1;
+	bh=fSgwhlmKyQGQwctHqc43zOlvjdBzMgAkGZ09qlZCKuI=;
+	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_060646_602179_1C3493CE 
-X-CRM114-Status: GOOD (  18.81  )
+X-CRM114-CacheID: sfid-20261118_062827_443455_6F072825 
+X-CRM114-Status: UNSURE (   8.16  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -113,123 +76,53 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============4553960179982383113=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+The PHY reference keeps the PHY device alive, but not the provider
+driver resources used by its callbacks. Without a managed dependency,
+unbinding the provider first can leave meson_pcie_power_off() accessing
+freed provider data during PCIe removal.
 
---===============4553960179982383113==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="5c6ped4sw6nigwko"
-Content-Disposition: inline
+Add a managed link to the PHY provider so the PCIe controller is unbound
+before the provider releases its resources.
 
+This issue was found by our static analysis tool under development.
+Fixes: 4b0dc84b2939 ("PCI: meson: Add missing remove callback")
+Signed-off-by: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
+---
+ drivers/pci/controller/dwc/pci-meson.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
---5c6ped4sw6nigwko
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v1 9/9] drm: Unify coding style for *_device_id arrays
-MIME-Version: 1.0
+diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+index 8559d132dcde..251673bc5963 100644
+--- a/drivers/pci/controller/dwc/pci-meson.c
++++ b/drivers/pci/controller/dwc/pci-meson.c
+@@ -401,6 +401,10 @@ static int meson_pcie_probe(struct platform_device *pdev)
+ 		return PTR_ERR(mp->phy);
+ 	}
+ 
++	if (!device_link_add(dev, mp->phy->dev.parent,
++			     DL_FLAG_AUTOREMOVE_CONSUMER))
++		return dev_err_probe(dev, -EINVAL, "failed to link PHY provider\n");
++
+ 	mp->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+ 	if (IS_ERR(mp->reset_gpio)) {
+ 		dev_err(dev, "get reset gpio failed\n");
 
-Hello Jani,
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+-- 
+2.43.0
 
-On Wed, Nov 18, 2026 at 03:27:40PM +0200, Jani Nikula wrote:
-> > [...]
-> >  drivers/gpu/ipu-v3/ipu-common.c               |   8 +-
-> >  drivers/gpu/ipu-v3/ipu-pre.c                  |   4 +-
-> >  drivers/gpu/ipu-v3/ipu-prg.c                  |   4 +-
-> >  254 files changed, 1155 insertions(+), 940 deletions(-)
->=20
-> How do you expect a patch of this size be merged?
-
-Using b4 am :-) Honestly, in the cover letter I wrote about an immutable
-branch and offered to rebase to 7.4-rc1. When trying to apply this
-series on top ov 7.4-rc1 there are only 6 conflicts (1x modify/delete
-and 5x content); these are all not so hard to resolve (and even dropping
-the respective hunks (i.e. resolving using `git checkout HEAD`) is fine
-for me.)
-
-> > diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i91=
-5_pci.c
-> > index 84a7dc6ab5db..faceb3de4fa3 100644
-> > --- a/drivers/gpu/drm/i915/i915_pci.c
-> > +++ b/drivers/gpu/drm/i915/i915_pci.c
-> > @@ -870,7 +870,7 @@ static const struct pci_device_id pciidlist[] =3D {
-> >  	INTEL_ATS_M_IDS(INTEL_VGA_DEVICE, &ats_m_info),
-> >  	INTEL_ARL_IDS(INTEL_VGA_DEVICE, &mtl_info),
-> >  	INTEL_MTL_IDS(INTEL_VGA_DEVICE, &mtl_info),
-> > -	{}
-> > +	{ }
->=20
-> Personally, I would *always* use {} instead of { }, and would rather not
-> change.
->=20
-> Across the tree, {} is slightly more common than { }. IMO changing them
-> is pointless churn.
-
-It depends on how you count. My statistic looks as follows (on top of
-next-20261117):
-
-	$ git grep -l device_id | xargs -n 1 perl -g -n -e 'print "$1\n" if m/devi=
-ce_id\s*[a-zA-Z_0-9]*\[\]\s*=3D\s*{(?:\s*{[^}]*},\s*({\s*}))/' | sort | uni=
-q -c
-	      2 	}
-	      2 {
-	      6 {  }
-	   2598 { }
-	   1262 {}
-
-So over all *_device_id { } is more common by a factor of > 2. This
-series fixes one {  } and reduces the number of {} by 37. For only
-pci_device_id it's:
-
-	$ git grep -l pci_device_id | xargs -n 1 perl -g -n -e 'print "$1\n" if m/=
-pci_device_id\s*[a-zA-Z_0-9]*\[\]\s*=3D\s*{(?:\s*{[^}]*},\s*({\s*}))/' | so=
-rt | uniq -c
-	    159 { }
-	     32 {}
-
-Without the context of an array initializer there are many empty
-code blocks (function bodys or `do {} while (0)`), empty dt nodes, and
-{} in Rust code, which IMHO have to be considered off-topic for this
-statistic.
-
-Best regards
-Uwe
-
---5c6ped4sw6nigwko
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmr9sOcACgkQj4D7WH0S
-/k4vggf+PQfM4MkbLgaQRCdXRWWsc4/Fa0tTMBQAl4gjx2p5NE/N7TDUO571o3+N
-oWcelzY5O1uRcc2qHZVnu3vAxFqzk4YHfGjsbGHsxQAibxnIFW7ttYTzt0w5a9NH
-v65V6+sebCdwLrPVE5ilcqzFFSgmnv1wTNm2vCEUxdKGacifySaGRmg4+ax+fLb1
-CL+RS7fM2EkQxG1k4iDEPv1Onrm9S4DtwTts0wxkK780rWYD9FoSLjHyX/x21Y8x
-SZKaXeNZlxtHJpQLq8ub8AL/t6k82nC020wYZOUbUmvPyqxhNoUuuS0/RVlz9xT6
-kXiliIwWzcMtAKt4ik8nbTRO5JERhQ==
-=0alU
------END PGP SIGNATURE-----
-
---5c6ped4sw6nigwko--
-
-
---===============4553960179982383113==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============4553960179982383113==--
-
