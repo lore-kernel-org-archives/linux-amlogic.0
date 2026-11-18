@@ -2,67 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1620F606C713
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Nov 2026 19:35:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89069606A31C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Nov 2026 02:23:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GPPZ08Dr;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.a=rsa-sha256 header.s=courrier-s1 header.b=ndG0zBXt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=a6sBpStl;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.a=rsa-sha256 header.s=korg header.b=SNG9njAR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=qNEAIsc5ZzPmXMZoprNZMIEgPsPXfz/gpmIhVRcyugg=; b=GPPZ08DrghuWYiS8ruatd+PP6/
-	SrbCzKnRfpTj0sPp9dA+vOS32cOPIyTEq6O+OlPN4KLg6cCXEfUomYYWPHZ68vRHgnJctT207NHzL
-	br4sF3mgsJ+eiCfB1hps4+LRJC2ifq7GSK+uPlKy13jQJ0DZaP71d5q/7n4kFB2booOqh3EMZqt85
-	z2x5Gw7HnJOJLZCe37ax9dQeOAL5AYynpPEsxXqlYqkulGVR0Y03s5fxSqctEoSGih7q2jbt/Lko5
-	xwVYQvYrhUznRwMG+raET3vLimHRbb96q3EJnIDK5OG9TigkQESug5RLDQR1nuiiVHBNVSWi8ZzzH
-	WgaMcdvg==;
+	bh=wliEYXsHgJMhQCOGCic7fZMJnmTlTBEPqI8fzlEX8dM=; b=a6sBpStl+1HP2iiKaAHBvT6EQD
+	qyi9YLP4nElQMCM/ygh1EfLhCFOSyMt+i3tyN+V/wubRoEMtOdjaJFeLPs/zK27is3sY8qW9lSGXe
+	yfxeeL/BitQ7nslw8I6l67Gvo91HWHTDfDp/9L3AdMPvdZkYzeUD2/qAELnwo5oL9mSkTcsZHDI/v
+	jI8AZ+rebJYWqM3s8l4KTaiKifJR2RK+pRibTigDUwX/xJZX83wLjqArxmuAsPmYlS5y1huaVufL8
+	dHziWlc+ehSEUklFc5jf/BuPf8mjtefePCGpAoOkjMproQ6ZEDP4VRXKoM/ObQ8bBjENAMTYjeI7g
+	H5zVpKhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTlRQ-0000000A7DE-23uA;
-	Wed, 18 Nov 2026 19:35:36 +0000
-Received: from courrier.aliel.fr ([65.21.61.41])
+	id 1xTrnu-0000000Ag8e-1qAB;
+	Thu, 19 Nov 2026 02:23:14 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTlRO-0000000A7Cj-0IkY;
-	Wed, 18 Nov 2026 19:35:36 +0000
-Message-ID: <bb027d3b-6a43-4dd3-9771-3448c86996b5@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1795030528;
-	bh=q1cF5XXNw8wayh7tmwKgKYk42pA4x2pEosRpTQBiONs=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To;
-	b=ndG0zBXtIkXmu8cIOYlH+3B1SMMIDc0k+dvgANzIY8Ozgmjct+TTGgEoa7gSphunO
-	 0AXufkyeSVgWo3D6KVe6HRmfyLS3iX46o/Pl+5HbAgr5n5x9SLYhGz28KNTSqlOcPY
-	 MsHPzH5KILeT1ZpzQl3i4QUKSPEqHlbunwygoMmE=
-Date: Wed, 18 Nov 2026 20:35:26 +0100
+	id 1xTrnt-0000000Ag8T-3ECk
+	for linux-amlogic@lists.infradead.org;
+	Thu, 19 Nov 2026 02:23:13 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id BBD6361B4A;
+	Thu, 19 Nov 2026 02:23:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02BF51F000C7;
+	Thu, 19 Nov 2026 02:23:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
+	s=korg; t=1795054992;
+	bh=muBtTw03L5Q+ktViRHTg43LW47QauHPdA3EAg4zKHgQ=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=SNG9njARziaXtEHSElrg/Wp6NNx7U0+Cxmy4BtndUZ8ljw0EkiYfFObiUaCh9BrOv
+	 jNinBl/8NdGv+xyMypU9KLL7vWeFrXWG0moumvazG6swe8sD/tYsLJMKQUmMaEXvyt
+	 8NpqL5IcDixIujGsVDYp/uCF16B+8OgupSSRpKe8=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: stable@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	patches@lists.linux.dev,
+	Corentin Labbe <clabbe@baylibre.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>,
+	linux-crypto@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Jack Wang <jinpu.wang@ionos.com>,
+	Sasha Levin <sashal@kernel.org>
+Subject: [PATCH 5.15 1473/2214] crypto: amlogic - Fix dma_map_sg error check
+Date: Wed, 18 Nov 2026 15:52:29 +0100
+Message-ID: <20261118150110.101789092@linuxfoundation.org>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <20261118150009.797899913@linuxfoundation.org>
+References: <20261118150009.797899913@linuxfoundation.org>
+User-Agent: quilt/0.69
+X-stable: review
+X-Patchwork-Hint: ignore
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: linux-kernel-dev@aliel.fr
-Subject: Re: [PATCH 00/10] phy/drm: amlogic: Extract Meson HDMI TX PHY into a
- dedicated driver
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, dri-devel@lists.freedesktop.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Vinod Koul <vkoul@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-References: <20261117-meson-drm-create-hdmitx-phy-v1-0-9e0ac931381c@aliel.fr>
- <51831581-525f-418c-86ea-3b5c6a80709b@linaro.org>
-Content-Language: en-US
-In-Reply-To: <51831581-525f-418c-86ea-3b5c6a80709b@linaro.org>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261118_113534_797955_4F50FA66 
-X-CRM114-Status: GOOD (  21.57  )
-X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,105 +73,79 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-15.3 required=3.0 tests=BAYES_00,DATE_IN_PAST_06_12,
+	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-T24gMTEvMTgvMjYgMTM6MzgsIE5laWwgQXJtc3Ryb25nIHdyb3RlOgo+IEhpLAo+IAo+IE9uIDEx
-LzE3LzI2IDIwOjMzLCBSb25hbGQgQ2xhdmVhdSB2aWEgQjQgUmVsYXkgd3JvdGU6Cj4+IFRoaXMg
-c2VyaWVzIG1vdmVzIHRoZSBBbWxvZ2ljIE1lc29uIEhETUkgVFggUEhZIGhhbmRsaW5nIChjb3Zl
-cmluZyBHWEJCLAo+PiBHWEwsIEdYTSwgYW5kIEcxMkEgU29Dcykgb3V0IG9mIHRoZSBtZXNvbl9k
-d19oZG1pIERSTSBkcml2ZXIgYW5kIGludG8gYQo+PiBkZWRpY2F0ZWQgZ2VuZXJpYyBQSFkgZHJp
-dmVyLgo+Pgo+PiBVbnRpbCBub3csIG1lc29uX2R3X2hkbWkgZGlyZWN0bHkgbWFuaXB1bGF0ZWQg
-dGhlIEhISSBzeXN0ZW0gY29udHJvbGxlcgo+PiByZWdpc3RlcnMgKEhISV9IRE1JX1BIWV9DTlRM
-MC4uNSkgdG8gY29uZmlndXJlIGFuYWxvZyBwYXJhbWV0ZXJzLCB0b2dnbGUKPj4gcmVzZXRzLCBh
-bmQgbWFuYWdlIHBvd2VyIHN0YXRlcywgYXMgd2VsbCBhcyBtYW51YWxseSB1bmdhdGluZyBIRE1J
-Cj4+IGNsb2NrcyBhbmQgcG93ZXIgZG9tYWlucyBhbHJlYWR5IGRlc2NyaWJlZCBpbiB0aGUgRFQu
-Cj4+Cj4+IEJ5IGV4dHJhY3RpbmcgdGhpcyBsb2dpYyBpbnRvIGEgc3RhbmRhbG9uZSBQSFkgZHJp
-dmVyIHVuZGVyCj4+IGRyaXZlcnMvcGh5L2FtbG9naWMvOgo+PiAtIEhhcmR3YXJlIHJlcHJlc2Vu
-dGF0aW9uIGluIHRoZSBEVCBpcyBjbGVhbmVyLCBtb2RlbGluZyB0aGUgSERNSSBUWCBQSFkKPj4g
-wqDCoCBhcyBhIGNoaWxkIG5vZGUgb2YgdGhlIEhISSBzeXNjb24gcmVmZXJlbmNlZCB2aWEgc3Rh
-bmRhcmQgInBoeXMiIGFuZAo+PiDCoMKgICJwaHktbmFtZXMiIHByb3BlcnRpZXMuCj4+IC0gVGhl
-IERSTSBicmlkZ2UgZHJpdmVyIHJlbGllcyBvbiB0aGUgc3RhbmRhcmQgZ2VuZXJpYyBQSFkgQVBJ
-Cj4+IMKgwqAgKHBoeV9pbml0LCBwaHlfY29uZmlndXJlLCBwaHlfcG93ZXJfb24vb2ZmLCBwaHlf
-ZXhpdCkgcmF0aGVyIHRoYW4KPj4gwqDCoCB0b3VjaGluZyBzeXNjb24gcmVnaXN0ZXJzIGRpcmVj
-dGx5Lgo+PiAtIExlZ2FjeSBEVHMgbGFja2luZyB0aGUgInBoeXMiIHByb3BlcnR5IHJlbWFpbiBz
-dXBwb3J0ZWQgdmlhIGEKPj4gwqDCoCB0ZW1wb3JhcnkgZmFsbGJhY2sgaGVscGVyIChtZXNvbl9o
-ZG1pX3BoeV9jcmVhdGVfbGVnYWN5KSB0byBwcmVzZXJ2ZQo+PiDCoMKgIGJhY2t3YXJkIGNvbXBh
-dGliaWxpdHkgdG8gYmUgcmVtb3ZlZCBvbiBuZXh0IHBoYXNlIG9mIGNvbXBvbmVudAo+PiDCoMKg
-IHJlbW92YWwuCj4+Cj4+IE92ZXJ2aWV3IG9mIHRoZSBzZXJpZXM6Cj4+IC0gUGF0Y2hlcyAxLTM6
-IEZpeCBjb21wYXRpYmxlIG1hdGNoaW5nIGluIG1lc29uLWd4LWhoaS1zeXNjdHJsIGJpbmRpbmdz
-LAo+PiDCoMKgIGFkZCB0aGUgbmV3IGFtbG9naWMsbWVzb24taGRtaS10eC1waHkgRFQgc2NoZW1h
-LCBhbmQgYWxsb3cgdGhlCj4+IMKgwqAgImhkbWktcGh5IiBjaGlsZCBub2RlIHVuZGVyIHRoZSBI
-SEkgc3lzY29uLgo+PiAtIFBhdGNoIDQ6IEFkZCB0aGUgbmV3IE1lc29uIEhETUkgVFggUEhZIGRy
-aXZlciBpbXBsZW1lbnRpbmcgdGhlIEhETUkKPj4gwqDCoCBQSFkgY29uZmlndXJhdGlvbiBvcHMs
-IGFsb25nIHdpdGggdGhlIHRlbXBvcmFyeSBsZWdhY3kgY3JlYXRpb24KPj4gwqDCoCBoZWxwZXIu
-Cj4+IC0gUGF0Y2ggNTogRG9jdW1lbnQgdGhlIG9wdGlvbmFsICJwaHlzIiBhbmQgInBoeS1uYW1l
-cyIgcHJvcGVydGllcyBpbgo+PiDCoMKgIHRoZSBhbWxvZ2ljLG1lc29uLWR3LWhkbWkgYmluZGlu
-Zy4KPj4gLSBQYXRjaGVzIDYtNzogQ2xlYW4gdXAgbWFudWFsIEhISSBjbG9jay9wb3dlci1kb21h
-aW4gd3JpdGVzIGluCj4+IMKgwqAgbWVzb25fZHdfaGRtaSAocmVseWluZyBvbiBydW50aW1lIFBN
-IGluc3RlYWQpIGFuZCBjb252ZXJ0IHRoZSBkcml2ZXIKPj4gwqDCoCB0byB1c2UgdGhlIGdlbmVy
-aWMgUEhZIGZyYW1ld29yay4KPj4gLSBQYXRjaGVzIDgtMTA6IEFkZCB0aGUgImhkbWktcGh5IiBj
-aGlsZCBub2RlIGFuZCB3aXJlIHVwIHRoZSAicGh5cyIKPj4gwqDCoCBwaGFuZGxlIGZvciBHMTIs
-IEdYQkIsIGFuZCBHWEwgRGV2aWNlIFRyZWVzLgo+Pgo+PiBUZXN0ZWQgb246Cj4+IC0gS2hhZGFz
-IFZJTTEgKEdYTCkKPj4gLSBkdGJzX2NoZWNrIGFuZCBkdF9iaW5kaW5nX2NoZWNrIHJ1biBjbGVh
-bmx5IHdpdGggbm8gbmV3IHdhcm5pbmdzLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBSb25hbGQgQ2xh
-dmVhdSA8bGludXgta2VybmVsLWRldkBhbGllbC5mcj4KPj4gLS0tCj4+IFJvbmFsZCBDbGF2ZWF1
-ICgxMCk6Cj4+IMKgwqDCoMKgwqDCoCBkdC1iaW5kaW5nczogc29jOiBhbWxvZ2ljOiBtZXNvbi1n
-eC1oaGktc3lzY3RybDogRml4IGNvbXBhdGlibGUKPj4gbWF0Y2hpbmcgaW4gY29uZGl0aW9uYWxz
-Cj4+IMKgwqDCoMKgwqDCoCBkdC1iaW5kaW5nczogcGh5OiBhbWxvZ2ljOiBBZGQgTWVzb24gSERN
-SSBUWCBQSFkgYmluZGluZwo+PiDCoMKgwqDCoMKgwqAgZHQtYmluZGluZ3M6IHNvYzogYW1sb2dp
-YzogbWVzb24tZ3gtaGhpLXN5c2N0cmw6IEFkZCBoZG1pLXBoeQo+PiBjaGlsZCBub2RlCj4+IMKg
-wqDCoMKgwqDCoCBwaHk6IGFtbG9naWM6IEFkZCBNZXNvbiBIRE1JIFRYIFBIWSBkcml2ZXIKPj4g
-wqDCoMKgwqDCoMKgIGR0LWJpbmRpbmdzOiBkaXNwbGF5OiBhbWxvZ2ljLG1lc29uLWR3LWhkbWk6
-IEFkZCBwaHlzIGFuZCBwaHktCj4+IG5hbWVzCj4+IMKgwqDCoMKgwqDCoCBkcm0vbWVzb246IGR3
-LWhkbWk6IERyb3AgbWFudWFsIEhISSBjbG9jayBhbmQgbWVtb3J5IFBEIHNldHVwCj4+IMKgwqDC
-oMKgwqDCoCBkcm0vbWVzb246IGR3LWhkbWk6IFVzZSB0aGUgZ2VuZXJpYyBQSFkgZnJhbWV3b3Jr
-IGZvciB0aGUgSERNSQo+PiBUWCBQSFkKPj4gwqDCoMKgwqDCoMKgIGFybTY0OiBkdHM6IGFtbG9n
-aWM6IEFkZCBIRE1JIFRYIFBIWSBub2RlIGZvciBHMTIKPj4gwqDCoMKgwqDCoMKgIGFybTY0OiBk
-dHM6IGFtbG9naWM6IEFkZCBIRE1JIFRYIFBIWSBub2RlIGZvciBHWEJCCj4+IMKgwqDCoMKgwqDC
-oCBhcm02NDogZHRzOiBhbWxvZ2ljOiBBZGQgSERNSSBUWCBQSFkgbm9kZSBmb3IgR1hMCj4+Cj4+
-IMKgIC4uLi9iaW5kaW5ncy9kaXNwbGF5L2FtbG9naWMsbWVzb24tZHctaGRtaS55YW1swqDCoMKg
-IHzCoMKgIDggKwo+PiDCoCAuLi4vYmluZGluZ3MvcGh5L2FtbG9naWMsbWVzb24taGRtaS10eC1w
-aHkueWFtbMKgwqDCoCB8wqAgMzMgKysrCj4+IMKgIC4uLi9zb2MvYW1sb2dpYy9hbWxvZ2ljLG1l
-c29uLWd4LWhoaS1zeXNjdHJsLnlhbWzCoCB8wqAgNDMgKystCj4+IMKgIGFyY2gvYXJtNjQvYm9v
-dC9kdHMvYW1sb2dpYy9tZXNvbi1nMTItY29tbW9uLmR0c2nCoCB8wqDCoCA3ICsKPj4gwqAgYXJj
-aC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWd4YmIuZHRzacKgwqDCoMKgwqDCoMKgIHzC
-oMKgIDcgKwo+PiDCoCBhcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tZ3hsLmR0c2nC
-oMKgwqDCoMKgwqDCoMKgIHzCoMKgIDcgKwo+PiDCoCBkcml2ZXJzL2dwdS9kcm0vbWVzb24vS2Nv
-bmZpZ8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqDCoCAxICsK
-Pj4gwqAgZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29uX2R3X2hkbWkuY8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIHwgMjAzICsrKysrKy0tLS0tLS0tCj4+IMKgIGRyaXZlcnMvcGh5L2FtbG9n
-aWMvS2NvbmZpZ8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-fMKgIDExICsKPj4gwqAgZHJpdmVycy9waHkvYW1sb2dpYy9NYWtlZmlsZcKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoMKgIDEgKwo+PiDCoCBkcml2ZXJzL3Bo
-eS9hbWxvZ2ljL3BoeS1tZXNvbi1oZG1pLXR4LmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHwgMzA5
-ICsrKysrKysrKysrCj4+ICsrKysrKysrKysKPj4gwqAgaW5jbHVkZS9saW51eC9waHkvcGh5LW1l
-c29uLWhkbWktdHguaMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoCAxOSArKwo+PiDCoCAx
-MiBmaWxlcyBjaGFuZ2VkLCA1MTMgaW5zZXJ0aW9ucygrKSwgMTM2IGRlbGV0aW9ucygtKQo+PiAt
-LS0KPj4gYmFzZS1jb21taXQ6IDZkNTgyZDc4ZmFkOWQ4MjhlNTc1Y2EwY2RjZmY4ZWE0N2E3NzIy
-MGIKPj4gY2hhbmdlLWlkOiAyMDI2MTExNS1tZXNvbi1kcm0tY3JlYXRlLWhkbWl0eC1waHktNGFj
-NDBhNjU0ZDA5Cj4+Cj4+IEJlc3QgcmVnYXJkcywKPj4gLS0gCj4+IFJvbmFsZCBDbGF2ZWF1IDxs
-aW51eC1rZXJuZWwtZGV2QGFsaWVsLmZyPgo+IAo+IE92ZXJhbGwgaXQncyB2ZXJ5IGdvb2QsIGJ1
-dCBJIHdvdWxkJ3ZlIHByZWZlcmVkIGEgbW9yZSBzZXF1ZW5jaWFsIG1vdmUKPiB0byB0aGUgUEhZ
-IGRyaXZlciwgd2l0aCBhbiBleGFjdCBjb3B5IG9mIHRoZSBjb2RlIGFuZCBzaW1wbGlmaWNhdGlv
-bgo+IHRvd2FyZHMgdGhlIGN1cnJlbnQgUEhZIGNvZGUuCj4gCj4gQW55d2F5LCB0aGUgc2FzaGlr
-byByZXZpZXcgY29tbWVudHMgYXJlIGdvb2QsIGVzcGVjaWFsbHkgdGhlIG9uZSBvbgo+IHBhdGNo
-IDYgdG8ga2VlcCB0aGUgZHJpdmVyIHdvcmtpbmcgb24gb2xkIERUcywgc29ycnkgbXkgYmFkLi4u
-Cj4gCj4gTmVpbAoKVGhhbmtzIGZvciB5b3VyIGZlZWRiYWNrLCBJIGFtIGFuYWx5emluZy90ZXN0
-aW5nIHNhc2hpa28gZmVlZGJhY2suCgpBYm91dCB0aGUgc3VzcGVuZC9yZXN1bWUgdW5iaW5kL2Jp
-bmQsIEkgZG8gbm90IGhhdmUgYW55IGlzc3VlIG9uIG15CnNpZGUsIGJ1dCBJIGNhbiBjaGFuZ2Ug
-dGhlIG9yZGVycy4KCkFib3V0IHBhdGNoIDYgYW5kIHRoZSBvbGQgRFRzLCBJIHdpbGwgcmVpbnRy
-b2R1Y2UgdGhlbSB3aXRoIHRoZSBsZWdhY3kKY2hlY2suIERvIHlvdSBrbm93IHdoYXQgd291bGQg
-YmUgYSBnb29kIHRpbWVsaW5lIHRvIGFkZCBhIHJlcXVpcmUgb24KdGhvc2UgZWxlbWVudHMgYW5k
-IGRyb3AgdGhlIGZhbGxiYWNrIGNvZGUgPwoKLS0gCkJlc3QgcmVnYXJkcywKUm9uYWxkCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2lj
-IG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xp
-c3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+5.15-stable review patch.  If anyone has any objections, please let me know.
+
+------------------
+
+From: Jack Wang <jinpu.wang@ionos.com>
+
+[ Upstream commit 45fa321e7de604146603e24ee5bf3c0b766efe46 ]
+
+dma_map_sg return 0 on error.
+
+Cc: Corentin Labbe <clabbe@baylibre.com>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: linux-crypto@vger.kernel.org
+Cc: linux-amlogic@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+
+Signed-off-by: Jack Wang <jinpu.wang@ionos.com>
+Signed-off-by: Herbert Xu <herbert@gondor.apana.org.au>
+Stable-dep-of: 6c2373dd818b ("crypto: amlogic - Fix DMA memory leak in cipher error path")
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+index e79514fce731f..af017a087ebf0 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+@@ -177,7 +177,7 @@ static int meson_cipher(struct skcipher_request *areq)
+ 	if (areq->src == areq->dst) {
+ 		nr_sgs = dma_map_sg(mc->dev, areq->src, sg_nents(areq->src),
+ 				    DMA_BIDIRECTIONAL);
+-		if (nr_sgs < 0) {
++		if (!nr_sgs) {
+ 			dev_err(mc->dev, "Invalid SG count %d\n", nr_sgs);
+ 			err = -EINVAL;
+ 			goto theend;
+@@ -186,14 +186,14 @@ static int meson_cipher(struct skcipher_request *areq)
+ 	} else {
+ 		nr_sgs = dma_map_sg(mc->dev, areq->src, sg_nents(areq->src),
+ 				    DMA_TO_DEVICE);
+-		if (nr_sgs < 0 || nr_sgs > MAXDESC - 3) {
++		if (!nr_sgs || nr_sgs > MAXDESC - 3) {
+ 			dev_err(mc->dev, "Invalid SG count %d\n", nr_sgs);
+ 			err = -EINVAL;
+ 			goto theend;
+ 		}
+ 		nr_sgd = dma_map_sg(mc->dev, areq->dst, sg_nents(areq->dst),
+ 				    DMA_FROM_DEVICE);
+-		if (nr_sgd < 0 || nr_sgd > MAXDESC - 3) {
++		if (!nr_sgd || nr_sgd > MAXDESC - 3) {
+ 			dev_err(mc->dev, "Invalid SG count %d\n", nr_sgd);
+ 			err = -EINVAL;
+ 			goto theend;
+-- 
+2.53.0
+
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
