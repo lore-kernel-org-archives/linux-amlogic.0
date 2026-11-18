@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89069606A31C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Nov 2026 02:23:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 838FF606A335
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Nov 2026 03:55:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=a6sBpStl;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.a=rsa-sha256 header.s=korg header.b=SNG9njAR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mdgN1vHF;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.a=rsa-sha256 header.s=korg header.b=hk4HoXWf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -14,33 +14,33 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=wliEYXsHgJMhQCOGCic7fZMJnmTlTBEPqI8fzlEX8dM=; b=a6sBpStl+1HP2iiKaAHBvT6EQD
-	qyi9YLP4nElQMCM/ygh1EfLhCFOSyMt+i3tyN+V/wubRoEMtOdjaJFeLPs/zK27is3sY8qW9lSGXe
-	yfxeeL/BitQ7nslw8I6l67Gvo91HWHTDfDp/9L3AdMPvdZkYzeUD2/qAELnwo5oL9mSkTcsZHDI/v
-	jI8AZ+rebJYWqM3s8l4KTaiKifJR2RK+pRibTigDUwX/xJZX83wLjqArxmuAsPmYlS5y1huaVufL8
-	dHziWlc+ehSEUklFc5jf/BuPf8mjtefePCGpAoOkjMproQ6ZEDP4VRXKoM/ObQ8bBjENAMTYjeI7g
-	H5zVpKhw==;
+	bh=KMUiRHCKtsWM30ZzY2uurGBrOCArgZJLDAd82qC2WTc=; b=mdgN1vHFs6hmI3qn3KNhyoBB7v
+	2dpjAPuEChRbF0Q4Wddog2IdC+LUhUIpz3otdazGfBMSL2uLDbgZMFF4nWwHLsZPgEiTKYagJsD2s
+	UI3BQr0c952QUPby5L6yf8s/uRnpckWlGyXzNy/rrlbw4ZVNgj4BqsFziQ/KN8IKmGvBsZL5vP1OA
+	RRPh4LD7DusK3vhEuxSTudl3HKXXKucq1FlYMzeGtcb90+GHMo5mBLlifJF6lf2fOO3BI0C9Xcbu2
+	c+pd9Hyq8ChrLV6jM8w7E4xJGdLMesTDlA0I+CrKoowEvgFN+ShPjRTrWpGGfhMoeR4DCOaJ0vUVE
+	5SfRz8Sw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTrnu-0000000Ag8e-1qAB;
-	Thu, 19 Nov 2026 02:23:14 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xTtF8-0000000AnZq-02RR;
+	Thu, 19 Nov 2026 03:55:26 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTrnt-0000000Ag8T-3ECk
+	id 1xTtF6-0000000AnZi-1AmR
 	for linux-amlogic@lists.infradead.org;
-	Thu, 19 Nov 2026 02:23:13 +0000
+	Thu, 19 Nov 2026 03:55:24 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id BBD6361B4A;
-	Thu, 19 Nov 2026 02:23:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02BF51F000C7;
-	Thu, 19 Nov 2026 02:23:11 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 81A1E40F8C;
+	Thu, 19 Nov 2026 03:55:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E67FD1F000C5;
+	Thu, 19 Nov 2026 03:55:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
-	s=korg; t=1795054992;
-	bh=muBtTw03L5Q+ktViRHTg43LW47QauHPdA3EAg4zKHgQ=;
+	s=korg; t=1795060523;
+	bh=WEt/YL0S6oFg190mD8vgDrEaHyqe24Y1ZZy6luJKlZ0=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=SNG9njARziaXtEHSElrg/Wp6NNx7U0+Cxmy4BtndUZ8ljw0EkiYfFObiUaCh9BrOv
-	 jNinBl/8NdGv+xyMypU9KLL7vWeFrXWG0moumvazG6swe8sD/tYsLJMKQUmMaEXvyt
-	 8NpqL5IcDixIujGsVDYp/uCF16B+8OgupSSRpKe8=
+	b=hk4HoXWfmCXcQIgoMofTfvC4uO+AzKLP7f/rRNS0G1uxFdyYNFmJIXIxkaYWDTgSf
+	 JAuI9zuycffw8fpD3dyVblVbjhUF03YwXlei2ZJRnJdwa+MFJiDPkJyJDPWAAl3x+C
+	 MUSShllo2eRhmRl1IxOGbMFrbNGiOqq9dSLuMuXw=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: stable@vger.kernel.org
 Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -53,12 +53,12 @@ Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	linux-kernel@vger.kernel.org,
 	Jack Wang <jinpu.wang@ionos.com>,
 	Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 5.15 1473/2214] crypto: amlogic - Fix dma_map_sg error check
-Date: Wed, 18 Nov 2026 15:52:29 +0100
-Message-ID: <20261118150110.101789092@linuxfoundation.org>
+Subject: [PATCH 5.10 1228/1848] crypto: amlogic - Fix dma_map_sg error check
+Date: Wed, 18 Nov 2026 15:54:26 +0100
+Message-ID: <20261118150011.316782510@linuxfoundation.org>
 X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261118150009.797899913@linuxfoundation.org>
-References: <20261118150009.797899913@linuxfoundation.org>
+In-Reply-To: <20261118145911.150052362@linuxfoundation.org>
+References: <20261118145911.150052362@linuxfoundation.org>
 User-Agent: quilt/0.69
 X-stable: review
 X-Patchwork-Hint: ignore
@@ -76,7 +76,7 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.3 required=3.0 tests=BAYES_00,DATE_IN_PAST_06_12,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DATE_IN_PAST_12_24,
 	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
@@ -84,7 +84,7 @@ X-Spam-Status: No, score=-15.3 required=3.0 tests=BAYES_00,DATE_IN_PAST_06_12,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-5.15-stable review patch.  If anyone has any objections, please let me know.
+5.10-stable review patch.  If anyone has any objections, please let me know.
 
 ------------------
 
@@ -110,7 +110,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
-index e79514fce731f..af017a087ebf0 100644
+index 652e72d030bb0..43f1c6a691bf5 100644
 --- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
 +++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
 @@ -177,7 +177,7 @@ static int meson_cipher(struct skcipher_request *areq)
