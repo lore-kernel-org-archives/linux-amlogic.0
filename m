@@ -2,56 +2,110 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4C1360A2620
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Nov 2026 08:27:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79D5560A260F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Nov 2026 10:42:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uftaR8DO;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UEmCllkf
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hyjfQmbU;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=Dy0I3WJF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:References:
-	In-Reply-To:Cc:To:Subject:From:Message-ID:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=7z8zqQICm6zOdclpR58fobU0i7XXS2itsv8JQU+hhuo=; b=uftaR8DODdQcjhyNmHrIRKp/qL
-	r33CnWsAePct5zVBqWoZCEM6a66phKBR6ufk4hP+OTPoyh8ONOYJc60SVtEPDimAZtzVEshtqf3U2
-	KpqwHpgG6itz+VtK3c7IiPBnxzdjW0nvRTz+NYqwGk3k8YJhWxVqsoLbkyVF/ArvQNo6JnM3hljPx
-	KgyJOsP55nBeDgYXQvpgKT3iMVjBfIOV374LqsFBtoCndaaSJoR7iO2i5GolcmZ822rSIbU0OAY6l
-	7PHh2jbxpmOcefnJNlghRxEY2C09c2JokYzq3xBC1MZ3rk3+zhieBl/lrQU9xwps7a2zELHoJN4oT
-	y7v8PQ0w==;
+	bh=8L1rVdoT4dwLC/rZW6Cs7C8j07/KdYUzyexurDaNR0g=; b=hyjfQmbUVtxilPk8L/nfMjTVKA
+	zKPEWoC6S+YH9etGD8Mlwqveh2yG10rKqeopqAQTtY/PsRAg6nUBJY2ssDhv0SS8PtL8ZXMDnTh62
+	HcIFrJhs32uxaXWSgkddnQcHVDJ1xssR/9BvlnUTFEIA5sb52vftCfLGnkXOxwYBg/ZDK6JXZjoT9
+	8tSeqOvQ7rnmH5vAr8sb0IXtcwlj+p2INQ35hL8zRsM9fBJxoWVFf9QM/0Mrgs+qAkYJxU6RDal04
+	WlQCUkco1ULFa3vPApYIc9hR6Dn1JJIqVhNaZH4eBhwXksrjs8s3Z3X087jkOaFPJoaeyLOVJIeKB
+	5ZVtpMVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTxTx-0000000BAvH-25k1;
-	Thu, 19 Nov 2026 08:27:01 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xTzaW-0000000Bac0-3EvT;
+	Thu, 19 Nov 2026 10:41:56 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTxTw-0000000BAuf-1Bda
+	id 1xTzaT-0000000BaaC-33CQ
 	for linux-amlogic@lists.infradead.org;
-	Thu, 19 Nov 2026 08:27:00 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id B986862941;
-	Thu, 19 Nov 2026 08:26:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 365A01F000C8;
-	Thu, 19 Nov 2026 08:26:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795076819;
-	bh=2nUzOUiLl/rliKZGphpwEUHVcG97xuXQod6AGDHIk4Y=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=UEmCllkfjEpk6drgcaxUS6JXXJnGCf3yuUosATPiiDuoFCkdVTSboi4HhsY17N4QT
-	 8PONkhKmvyFFCysL/qwyUKRLYtKxrA78GKBbJgm8K/F9EalJbzXP7EQ3cqoglXQ8mn
-	 I82rgE681P8OqwrObauJZQfw2LYMMCbnZgjeQrnb4f0NU0sOs28Qz8H/K9j+sfL2R1
-	 nYOErvwPTbRWcxVV9WDWTn52nwsvxcYdgl6z9F7CsEnnJeS33QcoYYS+LKCaTsLHj+
-	 KnIzLp7salsBCVPkEsZ2h+fE3azfitEKFfC8oQcIM5cLGyqZXvLbKkXcjRkZdtINOg
-	 lObsWEL3vNG9g==
-Message-ID: <sashiko-outbox-222669@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] usb: dwc3: meson: g12a: disable vbus on removal
-To: "Wang Haoran" <wanghr2026@mail.zgclab.edu.cn>
-Cc: linux-usb@vger.kernel.org, linux-amlogic@lists.infradead.org, neil.armstrong@linaro.org
-In-Reply-To: <1795076109480-15-f562c8e5@mail.zgclab.edu.cn>
-References: <1795076109480-15-f562c8e5@mail.zgclab.edu.cn>
-Date: Thu, 19 Nov 2026 08:26:58 +0000
+	Thu, 19 Nov 2026 10:41:54 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1795084912;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=h5gnvDpKTbCpj4T8Sh/mh+pY79fspdBewFbkHfm2FeQ=;
+	b=Dy0I3WJFRfP/F6ndjejx8nSGhPn3vVSu4ji5XFkg1JSta9WtmtiUhEJF0dhhfwUlrxXeLW
+	L/Xq1TA/Dqip97eZOcK3RWWZWk7/0DDlmRudy6HNaa5A72j0sN+HWHn5Gb8AX+RSzCZL2l
+	dkSw2trK/B8ycw9rn/uZQHS3vqGtHCc=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-563-MNiwjwogNliXpB55PS2upg-1; Thu, 19 Nov 2026 05:41:49 -0500
+X-MC-Unique: MNiwjwogNliXpB55PS2upg-1
+X-Mimecast-MFC-AGG-ID: MNiwjwogNliXpB55PS2upg_1795084908
+Received: by mail-wr1-f72.google.com with SMTP id ffacd0b85a97d-48e0ef019a4so1611132f8f.3
+        for <linux-amlogic@lists.infradead.org>; Thu, 19 Nov 2026 02:41:49 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795084908; x=1795689708;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=h5gnvDpKTbCpj4T8Sh/mh+pY79fspdBewFbkHfm2FeQ=;
+        b=kxJvduiONPvHlLeFCtUWfbIXhla7RVPxP/I5Ndb7iMi0e268ox0B1z2qKOxUwz5x2M
+         Ql3c1n+Y/LjS+d0UqpjiHAtlpJAg1lX34l3kqOrJgvRgJ2EoMn+msTwNfrZyPLYW+XeR
+         z+y0ayHnjDcpxw26gqS5tAUxxD59e5rqJUuBJ/zjXHAem5E5ZmHCav+h1RDwRm6xRyXZ
+         7tYVZM+B2EVIlKNVpVaz32jGBDsGQ8x5Rw4lZ9poW0mbDVKsqa/ldXXPQT/1NagAS8/S
+         mOJpW9PBzMMkd6rT9IJ9REww/HLachgjX6Nj/O3ptK7vAF+oQi0iAns6+hCbOup8XkNK
+         UvyQ==
+X-Forwarded-Encrypted: i=1; AL+hErEmVdYyhrKlcSOk7nNkc9TICnlLmOrlyITebfH1J8Bp/ZLroBj9/qvLAcmUNRlYG94D5FA7YLGt35U1dXOF@lists.infradead.org
+X-Gm-Message-State: APuU4Z/MS3pvyE65Z8ow+L3taRI8nHynuN2u2kvrZjv8QhyDlQeGyj3i
+	2s1wsrnLp8FTxq8pvGA2FTtitf7hJ31b9XyzCN5UW1BKPumQBoIzHsqpWEeUfL1ywAhCSd/QzVy
+	YULcFXrRRFKG8BrJHvCRfH1RkuQxEvY+t/cia2fLHb54rPlDrqw7Uwegm2NH/kHhFa8IJKUjD
+X-Gm-Gg: AZFdTZf3N3cHMjU9hgFM1B6r/RQu/M/y53gQgQD+rw/+clml9M5hsmadOQF0HP2bd8s
+	NbZbkND956fGdnob9wP9FieWqFNOjTe+/2nmNwB5u6hHku7gVxgza2I4Ycn8DE7s2CSks2SsrUR
+	ok+61OlonovyUI5W2XeUCKF/17XbS5CX8GhSd5gqbywpTfuPOQjeU+fU+J7tTO6Iv+3jtD1elxI
+	lSoZqNykSfyXzMGvL5K0fvWCajvjEsx+RCQyQ7ZQ7M7Pa3CilXb2636UHlhBsYy+cpBI7jGyvuh
+	9NF150x9J/l8r6oPmWzCCbOKed2ZZegw7+aPCBcwvgHQzxBOax10G5jCSx+dYQjJFbwIAile0GL
+	OVfIL0CSVPfb6CgJLO045LRwX43+ewLHxIPplmTZchtgAH52J4CjQ08ZkmMynmSZG//B6HfaU36
+	gmOEFwj0aOBIHF2RJDd/fg6AnHtQVogsE6glNNYGhtBjJp
+X-Received: by 2002:a05:6000:4908:b0:4a6:9f2f:414b with SMTP id ffacd0b85a97d-4a69f2f4192mr10315981f8f.32.1795084908179;
+        Thu, 19 Nov 2026 02:41:48 -0800 (PST)
+X-Received: by 2002:a05:6000:4908:b0:4a6:9f2f:414b with SMTP id ffacd0b85a97d-4a69f2f4192mr10315924f8f.32.1795084907691;
+        Thu, 19 Nov 2026 02:41:47 -0800 (PST)
+Received: from [192.168.88.30] (ip231-128-192-82.pool-bba.aruba.it. [82.192.128.231])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4a656a28b8esm10196704f8f.50.2026.11.19.02.41.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Nov 2026 02:41:47 -0800 (PST)
+Message-ID: <44ea3f0a-f992-4101-9cfc-bec1ebf6a3c3@redhat.com>
+Date: Thu, 19 Nov 2026 11:41:45 +0100
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net] net: mdio: mux-meson-g12a: keep the MAC data path
+ when switching MDIO
+To: Igor Velkov <iav@iav.lv>, Andrew Lunn <andrew@lunn.ch>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20261115-g12a-mux-data-path-v1-1-011dad738698@iav.lv>
+From: Paolo Abeni <pabeni@redhat.com>
+In-Reply-To: <20261115-g12a-mux-data-path-v1-1-011dad738698@iav.lv>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: IXjAS-Qyl8Mnld9d6aLCPFzlrWqczgnozVWh14Z_oqI_1795084908
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261119_024153_835511_75751D5A 
+X-CRM114-Status: GOOD (  11.66  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -61,71 +115,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MSBwb3RlbnRpYWwKaXNzdWUgdG8gY29uc2lkZXI6Ci0gW01lZGl1bV0gdXNiOiBkd2MzOiBtZXNv
-bi1nMTJhOiB1bmJhbGFuY2VkIHZidXMgZGlzYWJsZSBpbgogIGR3YzNfbWVzb25fZzEyYV9yZW1v
-dmUoKQpJdCBhbHNvIG5vdGljZWQgMSByZWxhdGVkIHByZS1leGlzdGluZyBpc3N1ZSB0aGlzIHBh
-dGNoIGRvZXMgbm90CmludHJvZHVjZToKLSBbSGlnaF0gdXNiOiBkd2MzOiBtZXNvbi1nMTJhOiB1
-bmNsb2NrZWQgYWNjZXNzIGluCiAgZHdjM19tZXNvbl9nMTJhX2lycV90aHJlYWQoKSBbMV0KLS0K
-CmNvbW1pdCBjNjFjNDA1Y2E0M2U1YjBkOTc2YmUxMTc3ODQwMjdlOGM5Y2UxMzBkCkF1dGhvcjog
-V2FuZyBIYW9yYW4gPHdhbmdocjIwMjZAbWFpbC56Z2NsYWIuZWR1LmNuPgoKdXNiOiBkd2MzOiBt
-ZXNvbjogZzEyYTogZGlzYWJsZSB2YnVzIG9uIHJlbW92YWwKClRoaXMgY29tbWl0IGRpc2FibGVz
-IHRoZSB2YnVzIHJlZ3VsYXRvciBpbiBkd2MzX21lc29uX2cxMmFfcmVtb3ZlKCkgdG8KYmFsYW5j
-ZSB0aGUgcmVndWxhdG9yX2VuYWJsZSgpIGNhbGwgaW4gZHdjM19tZXNvbl9nMTJhX3Byb2JlKCku
-Cgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3VzYi9kd2MzL2R3YzMtbWVzb24tZzEyYS5jIGIvZHJp
-dmVycy91c2IvZHdjMy9kd2MzLW1lc29uLWcxMmEuYwo+IGluZGV4IGNhMDdlODEzZmQ2NGYuLjRk
-NjhiNTA3MjJlNzYgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy91c2IvZHdjMy9kd2MzLW1lc29uLWcx
-MmEuYwo+ICsrKyBiL2RyaXZlcnMvdXNiL2R3YzMvZHdjMy1tZXNvbi1nMTJhLmMKPiBAQCAtODQ3
-LDYgKzg0Nyw5IEBAIHN0YXRpYyB2b2lkIGR3YzNfbWVzb25fZzEyYV9yZW1vdmUoc3RydWN0IHBs
-YXRmb3JtX2RldmljZSAqcGRldikKPiAgCQlwaHlfZXhpdChwcml2LT5waHlzW2ldKTsKPiAgCX0K
-PiAgCj4gKwlpZiAocHJpdi0+dmJ1cykKPiArCQlyZWd1bGF0b3JfZGlzYWJsZShwcml2LT52YnVz
-KTsKCltTZXZlcml0eTogTWVkaXVtXQpDYW4gdGhpcyBjYXVzZSBhbiB1bmJhbGFuY2VkIHJlZ3Vs
-YXRvcl9kaXNhYmxlKCkgb24gcHJpdi0+dmJ1cyB3aGVuIHRoZQpjb250cm9sbGVyIGlzIHJlbW92
-ZWQgd2hpbGUgaW4gZGV2aWNlIG1vZGU/CgpXaGVuIGR3YzNfbWVzb25fZzEyYV9vdGdfbW9kZV9z
-ZXQoKSBzd2l0Y2hlcyB0byBQSFlfTU9ERV9VU0JfREVWSUNFLCBpdAphbHJlYWR5IGRpc2FibGVz
-IHByaXYtPnZidXM6Cgpkcml2ZXJzL3VzYi9kd2MzL2R3YzMtbWVzb24tZzEyYS5jOmR3YzNfbWVz
-b25fZzEyYV9vdGdfbW9kZV9zZXQoKSB7CiAgICAuLi4KCWlmIChwcml2LT52YnVzKSB7CgkJaWYg
-KG1vZGUgPT0gUEhZX01PREVfVVNCX0RFVklDRSkKCQkJcmV0ID0gcmVndWxhdG9yX2Rpc2FibGUo
-cHJpdi0+dmJ1cyk7CgkJZWxzZQoJCQlyZXQgPSByZWd1bGF0b3JfZW5hYmxlKHByaXYtPnZidXMp
-OwoJCWlmIChyZXQpCgkJCXJldHVybiByZXQ7Cgl9CgoJcHJpdi0+b3RnX3BoeV9tb2RlID0gbW9k
-ZTsKICAgIC4uLgp9CgpTaG91bGQgdGhpcyBjaGVjayBwcml2LT5vdGdfcGh5X21vZGUgPT0gUEhZ
-X01PREVfVVNCX0hPU1QgYmVmb3JlIGNhbGxpbmcKcmVndWxhdG9yX2Rpc2FibGUocHJpdi0+dmJ1
-cyksIG1hdGNoaW5nIGR3YzNfbWVzb25fZzEyYV9zdXNwZW5kKCk/Cgo+ICsKPiAgCXBtX3J1bnRp
-bWVfZGlzYWJsZShkZXYpOwo+ICAJcG1fcnVudGltZV9wdXRfbm9pZGxlKGRldik7Cj4gIAlwbV9y
-dW50aW1lX3NldF9zdXNwZW5kZWQoZGV2KTsKCltTZXZlcml0eTogSGlnaF0KVGhpcyBwcm9ibGVt
-IHdhc24ndCBpbnRyb2R1Y2VkIGJ5IHRoaXMgcGF0Y2gsIGJ1dCBjYW4KZHdjM19tZXNvbl9nMTJh
-X2lycV90aHJlYWQoKSByZWFkIHVuY2xvY2tlZCByZWdpc3RlcnMgZHVyaW5nIGRyaXZlciByZW1v
-dmFsClsxXT8KClRoZSBPVEcgaW50ZXJydXB0IGlzIHJlcXVlc3RlZCB2aWEgZGV2bV9yZXF1ZXN0
-X3RocmVhZGVkX2lycSgpLCBzbyBpdCBzdGF5cwplbmFibGVkIHVudGlsIGRldnJlcyBjbGVhbnVw
-IHJ1bnMgYWZ0ZXIgZHdjM19tZXNvbl9nMTJhX3JlbW92ZSgpIHJldHVybnMsCndoaWxlIGR3YzNf
-bWVzb25fZzEyYV9yZW1vdmUoKSBkaXNhYmxlcyB0aGUgY2xvY2tzIHZpYQpjbGtfYnVsa19kaXNh
-YmxlX3VucHJlcGFyZSgpIGJlZm9yZSByZXR1cm5pbmc6CgpDUFUwICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICBDUFUxCmR3YzNfbWVzb25fZzEyYV9yZW1vdmUoKQogIC4uLgogIGNsa19i
-dWxrX2Rpc2FibGVfdW5wcmVwYXJlKCkKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgZHdjM19tZXNvbl9nMTJhX2lycV90aHJlYWQoKQogICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgIGR3YzNfbWVzb25fZzEyYV9nZXRfaWQoKQogICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgcmVnbWFwX3JlYWQocHJpdi0+dXNiX2dsdWVfcmVnbWFwLCAu
-Li4pCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwtLSB1bmNsb2Nr
-ZWQgcmVnaXN0ZXIgYWNjZXNzCmRldnJlc19yZWxlYXNlX2FsbCgpCgpJZiBhbiBPVEcgaW50ZXJy
-dXB0IGZpcmVzIGluIHRoYXQgd2luZG93LCByZWFkaW5nIHByaXYtPnVzYl9nbHVlX3JlZ21hcCB3
-aXRoCnRoZSBjbG9ja3MgZGlzYWJsZWQgdHJpZ2dlcnMgYW4gYXN5bmNocm9ub3VzIGV4dGVybmFs
-IGFib3J0LgoKWzFdIGh0dHBzOi8vc2FzaGlrby5kZXYvIy9idWcvbGludXgtOTAxZDhmNzUtYjgw
-ZS00M2Q3LWI1MGQtMWRjMTc1NWNlNGY1CgotLSAKU2FzaGlrbyBBSSByZXZpZXcgwrcgaHR0cHM6
-Ly9zYXNoaWtvLmRldi8jL3BhdGNoc2V0LzE3OTUwNzYxMDk0ODAtMTUtZjU2MmM4ZTVAbWFpbC56
-Z2NsYWIuZWR1LmNuP3BhcnQ9MQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0
-cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGlu
-Zm8vbGludXgtYW1sb2dpYwo=
+On 11/15/26 20:22, Igor Velkov wrote:
+> Switching the mux to the internal MDIO bus writes SMI_SRC_MAC together
+> with USE_INTERNAL and RX_CLK_EPHY to ETH_PHY_CNTL2. The last two move the
+> MAC data path and RX clock to the internal PHY. On boards whose MAC uses
+> an external PHY, any access to the internal PHY stops reception until an
+> access to the external bus switches the mux back.
+> 
+> phylib suspends and resumes the unattached internal PHY across system
+> sleep. stmmac sets mac_managed_pm, and with Wake-on-LAN in the MAC
+> phylink_resume() does not start the external PHY, so nothing switches
+> the mux back. On ODROID-HC4 (RTL8211F), after suspend-to-RAM with WoL in
+> the MAC and an RTC wakeup, ETH_PHY_CNTL2 stays at 0x260 and the MAC
+> receives nothing while TX works.
+> 
+> With the MAC on the external PHY, SMI_SRC_MAC alone is enough to read
+> the internal PHY ID (0x0180/0x3301) while RX keeps running; adding
+> USE_INTERNAL or RX_CLK_EPHY stops RX.
+> 
+> Set the data path bits only when the MAC's phy-handle names a PHY on
+> the internal bus. As in dwmac-rk, which reads phy-is-integrated from
+> that node, the node phy-handle names decides; here it is the mux bus
+> the PHY sits on.
+> 
+> Fixes: 7090425104db ("net: phy: add amlogic g12a mdio mux support")
+> Signed-off-by: Igor Velkov <iav@iav.lv>
+Not that this 'broken since introduction' H/W setup does not qualify
+anymore as 'net' material. I'm applying this to 'net-next'
+
+/P
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
