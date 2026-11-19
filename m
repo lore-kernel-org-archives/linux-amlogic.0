@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F82F606A324
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Nov 2026 15:34:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4411606A332
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Nov 2026 16:30:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yDFQVxCK;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.a=rsa-sha256 header.s=courrier-s1 header.b=KnTib98g
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FAgiyYSq;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.a=rsa-sha256 header.s=courrier-s1 header.b=vAWBsD/e
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -14,56 +14,47 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=w1qrzoBCOcs3OjIkU5dyiT3gSTJDVLa2UarTCwHSbfU=; b=yDFQVxCKkZpxNSIAJFz7NfuAD3
-	gnac9X0gitoEF0zC+0To7nQrWTHhReG+zXXi43lAGhvaGmQLq0YJ+QD7bIoix/iKPs1Wc0u2WUduw
-	ZOPgS40ma62xKa7seYVMwk7rXAcMclkdRBnDjQyQdaYjbG9Vb7mat7VQQGPkP+2AGNKCmLiGRyynX
-	t19nKchcnPQsm0FuaH9BqB38nftEZo0GUgYAsLWixGbbv5V3h53SfPTLKi5DxMB6OA2w72UEjMZ3w
-	v39BwdBeO4+cyeQyl2Ry5YY5F6KRW79xhK1qX0crPiWvgEgBr2wu1UbL3Zd77aedaCDy2xGUPDTEt
-	cCdH/TOw==;
+	bh=W6ntY8210GojVGTL+ZA+m1/Ulo4ulfl8xApT393jDgs=; b=FAgiyYSqoUMvOBmZZIGGXJwWWq
+	HfGJRLvATFbraf1q5FwoogutT7UOJoUnmF89nR+x+OkcYetoSL0MUfyd5CJMuDVdJ4T3QH7jam/YA
+	X2dFi4Ay54PS/HJrCJnb5fstXxVVQFj6JOIAqzmGvc3Ot7uvbsaYi07okJZJZk+uPG6fF4fhcz900
+	W7YsFKExTrjKSx8iKh1EJA7YmNMlAOjzBSXoQ/TdkLoJx0+LnzrKcpxNEKpYjHoA3hXODtoILrh98
+	mUfgd1GAnIFtSr3Iji2t+J8BYkVtZLt5NZT3BpBesoP8qLXUPJ/y1Vr+AfepE7xpgiP/Mzw9/AFHW
+	N/Us94zg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU49G-0000000CTwD-1ikT;
-	Thu, 19 Nov 2026 15:34:06 +0000
+	id 1xU51K-0000000CdwJ-2i78;
+	Thu, 19 Nov 2026 16:29:58 +0000
 Received: from courrier.aliel.fr ([2a01:4f9:c011:1c83::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU49D-0000000CTv7-3aLE;
-	Thu, 19 Nov 2026 15:34:05 +0000
-Message-ID: <8dc67b9e-3c83-4149-ada5-86675c4d2dc2@aliel.fr>
+	id 1xU51I-0000000Cdtt-0Flf;
+	Thu, 19 Nov 2026 16:29:57 +0000
+Message-ID: <8652ae36-7506-4fc2-b8ff-0b05a61dec63@aliel.fr>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1795102437;
-	bh=wpMLumcitgieg7hRcQXz7Vzp64VudourAIROoFR57dc=;
+	s=courrier-s1; t=1795105792;
+	bh=McqmrGGoBsWtFO9rSLDSWUOXL2yC9fScta0oWrJ5HFE=;
 	h=Date:From:Subject:To:Cc:References:In-Reply-To;
-	b=KnTib98gZlovMirVwATCatAsBtP2DNRnDFKysRiVCegJuFOC87OHIPabVkcAPIbm7
-	 /fD1M9YTofAMuc/Za9WUQT1UrBnvs+gIPWJ+njLqEBMk2ia8rD+QYHawQvvXTh9kCN
-	 FFH8d7wCA8lXUrcRNXkEIAYvdDFCF/aQ4AGIruDg=
-Date: Thu, 19 Nov 2026 16:33:56 +0100
+	b=vAWBsD/ePEqL301DdsswEq/IJ55Q9aS6ABXHAzDCh/3C+pvw0XpvcS29dDjLwcplb
+	 hd+k7v1hm1gr9jRkQZ++5bJzAtYbEpgtsEhf/4A2PhL0xMr3fnz9iT7fogwUm0eIvh
+	 cD2c1SFpljoYu0Acms8xnIjDxltOhLszWv3MK2j8=
+Date: Thu, 19 Nov 2026 17:29:51 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: linux-kernel-dev@aliel.fr
-Subject: Re: [PATCH 00/10] phy/drm: amlogic: Extract Meson HDMI TX PHY into a
- dedicated driver
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Subject: Re: [PATCH 04/10] phy: amlogic: Add Meson HDMI TX PHY driver
+To: sashiko-reviews@lists.linux.dev
+Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-phy@lists.infradead.org, dri-devel@lists.freedesktop.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Vinod Koul <vkoul@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+ robh@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org,
+ vkoul@kernel.org, olteanv@gmail.com
 References: <20261117-meson-drm-create-hdmitx-phy-v1-0-9e0ac931381c@aliel.fr>
- <51831581-525f-418c-86ea-3b5c6a80709b@linaro.org>
- <bb027d3b-6a43-4dd3-9771-3448c86996b5@aliel.fr>
- <04447713-32bb-46ff-8dd9-ba00bce186db@linaro.org>
+ <20261117-meson-drm-create-hdmitx-phy-v1-4-9e0ac931381c@aliel.fr>
+ <sashiko-outbox-219538@kernel.org>
 Content-Language: en-US
-In-Reply-To: <04447713-32bb-46ff-8dd9-ba00bce186db@linaro.org>
+In-Reply-To: <sashiko-outbox-219538@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_073404_496151_8CB63009 
-X-CRM114-Status: GOOD (  25.20  )
+X-CRM114-CacheID: sfid-20261119_082956_617594_2809A2B7 
+X-CRM114-Status: GOOD (  17.77  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -74,125 +65,100 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-T24gMTEvMTkvMjYgMDg6NTgsIE5laWwgQXJtc3Ryb25nIHdyb3RlOgo+IE9uIDExLzE4LzI2IDIw
-OjM1LCBsaW51eC1rZXJuZWwtZGV2QGFsaWVsLmZyIHdyb3RlOgo+PiBPbiAxMS8xOC8yNiAxMzoz
-OCwgTmVpbCBBcm1zdHJvbmcgd3JvdGU6Cj4+PiBIaSwKPj4+Cj4+PiBPbiAxMS8xNy8yNiAyMDoz
-MywgUm9uYWxkIENsYXZlYXUgdmlhIEI0IFJlbGF5IHdyb3RlOgo+Pj4+IFRoaXMgc2VyaWVzIG1v
-dmVzIHRoZSBBbWxvZ2ljIE1lc29uIEhETUkgVFggUEhZIGhhbmRsaW5nIChjb3ZlcmluZwo+Pj4+
-IEdYQkIsCj4+Pj4gR1hMLCBHWE0sIGFuZCBHMTJBIFNvQ3MpIG91dCBvZiB0aGUgbWVzb25fZHdf
-aGRtaSBEUk0gZHJpdmVyIGFuZCBpbnRvIGEKPj4+PiBkZWRpY2F0ZWQgZ2VuZXJpYyBQSFkgZHJp
-dmVyLgo+Pj4+Cj4+Pj4gVW50aWwgbm93LCBtZXNvbl9kd19oZG1pIGRpcmVjdGx5IG1hbmlwdWxh
-dGVkIHRoZSBISEkgc3lzdGVtIGNvbnRyb2xsZXIKPj4+PiByZWdpc3RlcnMgKEhISV9IRE1JX1BI
-WV9DTlRMMC4uNSkgdG8gY29uZmlndXJlIGFuYWxvZyBwYXJhbWV0ZXJzLAo+Pj4+IHRvZ2dsZQo+
-Pj4+IHJlc2V0cywgYW5kIG1hbmFnZSBwb3dlciBzdGF0ZXMsIGFzIHdlbGwgYXMgbWFudWFsbHkg
-dW5nYXRpbmcgSERNSQo+Pj4+IGNsb2NrcyBhbmQgcG93ZXIgZG9tYWlucyBhbHJlYWR5IGRlc2Ny
-aWJlZCBpbiB0aGUgRFQuCj4+Pj4KPj4+PiBCeSBleHRyYWN0aW5nIHRoaXMgbG9naWMgaW50byBh
-IHN0YW5kYWxvbmUgUEhZIGRyaXZlciB1bmRlcgo+Pj4+IGRyaXZlcnMvcGh5L2FtbG9naWMvOgo+
-Pj4+IC0gSGFyZHdhcmUgcmVwcmVzZW50YXRpb24gaW4gdGhlIERUIGlzIGNsZWFuZXIsIG1vZGVs
-aW5nIHRoZSBIRE1JIFRYCj4+Pj4gUEhZCj4+Pj4gwqDCoMKgIGFzIGEgY2hpbGQgbm9kZSBvZiB0
-aGUgSEhJIHN5c2NvbiByZWZlcmVuY2VkIHZpYSBzdGFuZGFyZCAicGh5cyIKPj4+PiBhbmQKPj4+
-PiDCoMKgwqAgInBoeS1uYW1lcyIgcHJvcGVydGllcy4KPj4+PiAtIFRoZSBEUk0gYnJpZGdlIGRy
-aXZlciByZWxpZXMgb24gdGhlIHN0YW5kYXJkIGdlbmVyaWMgUEhZIEFQSQo+Pj4+IMKgwqDCoCAo
-cGh5X2luaXQsIHBoeV9jb25maWd1cmUsIHBoeV9wb3dlcl9vbi9vZmYsIHBoeV9leGl0KSByYXRo
-ZXIgdGhhbgo+Pj4+IMKgwqDCoCB0b3VjaGluZyBzeXNjb24gcmVnaXN0ZXJzIGRpcmVjdGx5Lgo+
-Pj4+IC0gTGVnYWN5IERUcyBsYWNraW5nIHRoZSAicGh5cyIgcHJvcGVydHkgcmVtYWluIHN1cHBv
-cnRlZCB2aWEgYQo+Pj4+IMKgwqDCoCB0ZW1wb3JhcnkgZmFsbGJhY2sgaGVscGVyIChtZXNvbl9o
-ZG1pX3BoeV9jcmVhdGVfbGVnYWN5KSB0bwo+Pj4+IHByZXNlcnZlCj4+Pj4gwqDCoMKgIGJhY2t3
-YXJkIGNvbXBhdGliaWxpdHkgdG8gYmUgcmVtb3ZlZCBvbiBuZXh0IHBoYXNlIG9mIGNvbXBvbmVu
-dAo+Pj4+IMKgwqDCoCByZW1vdmFsLgo+Pj4+Cj4+Pj4gT3ZlcnZpZXcgb2YgdGhlIHNlcmllczoK
-Pj4+PiAtIFBhdGNoZXMgMS0zOiBGaXggY29tcGF0aWJsZSBtYXRjaGluZyBpbiBtZXNvbi1neC1o
-aGktc3lzY3RybAo+Pj4+IGJpbmRpbmdzLAo+Pj4+IMKgwqDCoCBhZGQgdGhlIG5ldyBhbWxvZ2lj
-LG1lc29uLWhkbWktdHgtcGh5IERUIHNjaGVtYSwgYW5kIGFsbG93IHRoZQo+Pj4+IMKgwqDCoCAi
-aGRtaS1waHkiIGNoaWxkIG5vZGUgdW5kZXIgdGhlIEhISSBzeXNjb24uCj4+Pj4gLSBQYXRjaCA0
-OiBBZGQgdGhlIG5ldyBNZXNvbiBIRE1JIFRYIFBIWSBkcml2ZXIgaW1wbGVtZW50aW5nIHRoZSBI
-RE1JCj4+Pj4gwqDCoMKgIFBIWSBjb25maWd1cmF0aW9uIG9wcywgYWxvbmcgd2l0aCB0aGUgdGVt
-cG9yYXJ5IGxlZ2FjeSBjcmVhdGlvbgo+Pj4+IMKgwqDCoCBoZWxwZXIuCj4+Pj4gLSBQYXRjaCA1
-OiBEb2N1bWVudCB0aGUgb3B0aW9uYWwgInBoeXMiIGFuZCAicGh5LW5hbWVzIiBwcm9wZXJ0aWVz
-IGluCj4+Pj4gwqDCoMKgIHRoZSBhbWxvZ2ljLG1lc29uLWR3LWhkbWkgYmluZGluZy4KPj4+PiAt
-IFBhdGNoZXMgNi03OiBDbGVhbiB1cCBtYW51YWwgSEhJIGNsb2NrL3Bvd2VyLWRvbWFpbiB3cml0
-ZXMgaW4KPj4+PiDCoMKgwqAgbWVzb25fZHdfaGRtaSAocmVseWluZyBvbiBydW50aW1lIFBNIGlu
-c3RlYWQpIGFuZCBjb252ZXJ0IHRoZQo+Pj4+IGRyaXZlcgo+Pj4+IMKgwqDCoCB0byB1c2UgdGhl
-IGdlbmVyaWMgUEhZIGZyYW1ld29yay4KPj4+PiAtIFBhdGNoZXMgOC0xMDogQWRkIHRoZSAiaGRt
-aS1waHkiIGNoaWxkIG5vZGUgYW5kIHdpcmUgdXAgdGhlICJwaHlzIgo+Pj4+IMKgwqDCoCBwaGFu
-ZGxlIGZvciBHMTIsIEdYQkIsIGFuZCBHWEwgRGV2aWNlIFRyZWVzLgo+Pj4+Cj4+Pj4gVGVzdGVk
-IG9uOgo+Pj4+IC0gS2hhZGFzIFZJTTEgKEdYTCkKPj4+PiAtIGR0YnNfY2hlY2sgYW5kIGR0X2Jp
-bmRpbmdfY2hlY2sgcnVuIGNsZWFubHkgd2l0aCBubyBuZXcgd2FybmluZ3MuCj4+Pj4KPj4+PiBT
-aWduZWQtb2ZmLWJ5OiBSb25hbGQgQ2xhdmVhdSA8bGludXgta2VybmVsLWRldkBhbGllbC5mcj4K
-Pj4+PiAtLS0KPj4+PiBSb25hbGQgQ2xhdmVhdSAoMTApOgo+Pj4+IMKgwqDCoMKgwqDCoMKgIGR0
-LWJpbmRpbmdzOiBzb2M6IGFtbG9naWM6IG1lc29uLWd4LWhoaS1zeXNjdHJsOiBGaXggY29tcGF0
-aWJsZQo+Pj4+IG1hdGNoaW5nIGluIGNvbmRpdGlvbmFscwo+Pj4+IMKgwqDCoMKgwqDCoMKgIGR0
-LWJpbmRpbmdzOiBwaHk6IGFtbG9naWM6IEFkZCBNZXNvbiBIRE1JIFRYIFBIWSBiaW5kaW5nCj4+
-Pj4gwqDCoMKgwqDCoMKgwqAgZHQtYmluZGluZ3M6IHNvYzogYW1sb2dpYzogbWVzb24tZ3gtaGhp
-LXN5c2N0cmw6IEFkZCBoZG1pLXBoeQo+Pj4+IGNoaWxkIG5vZGUKPj4+PiDCoMKgwqDCoMKgwqDC
-oCBwaHk6IGFtbG9naWM6IEFkZCBNZXNvbiBIRE1JIFRYIFBIWSBkcml2ZXIKPj4+PiDCoMKgwqDC
-oMKgwqDCoCBkdC1iaW5kaW5nczogZGlzcGxheTogYW1sb2dpYyxtZXNvbi1kdy1oZG1pOiBBZGQg
-cGh5cyBhbmQgcGh5LQo+Pj4+IG5hbWVzCj4+Pj4gwqDCoMKgwqDCoMKgwqAgZHJtL21lc29uOiBk
-dy1oZG1pOiBEcm9wIG1hbnVhbCBISEkgY2xvY2sgYW5kIG1lbW9yeSBQRCBzZXR1cAo+Pj4+IMKg
-wqDCoMKgwqDCoMKgIGRybS9tZXNvbjogZHctaGRtaTogVXNlIHRoZSBnZW5lcmljIFBIWSBmcmFt
-ZXdvcmsgZm9yIHRoZSBIRE1JCj4+Pj4gVFggUEhZCj4+Pj4gwqDCoMKgwqDCoMKgwqAgYXJtNjQ6
-IGR0czogYW1sb2dpYzogQWRkIEhETUkgVFggUEhZIG5vZGUgZm9yIEcxMgo+Pj4+IMKgwqDCoMKg
-wqDCoMKgIGFybTY0OiBkdHM6IGFtbG9naWM6IEFkZCBIRE1JIFRYIFBIWSBub2RlIGZvciBHWEJC
-Cj4+Pj4gwqDCoMKgwqDCoMKgwqAgYXJtNjQ6IGR0czogYW1sb2dpYzogQWRkIEhETUkgVFggUEhZ
-IG5vZGUgZm9yIEdYTAo+Pj4+Cj4+Pj4gwqDCoCAuLi4vYmluZGluZ3MvZGlzcGxheS9hbWxvZ2lj
-LG1lc29uLWR3LWhkbWkueWFtbMKgwqDCoCB8wqDCoCA4ICsKPj4+PiDCoMKgIC4uLi9iaW5kaW5n
-cy9waHkvYW1sb2dpYyxtZXNvbi1oZG1pLXR4LXBoeS55YW1swqDCoMKgIHzCoCAzMyArKysKPj4+
-PiDCoMKgIC4uLi9zb2MvYW1sb2dpYy9hbWxvZ2ljLG1lc29uLWd4LWhoaS1zeXNjdHJsLnlhbWzC
-oCB8wqAgNDMgKystCj4+Pj4gwqDCoCBhcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24t
-ZzEyLWNvbW1vbi5kdHNpwqAgfMKgwqAgNyArCj4+Pj4gwqDCoCBhcmNoL2FybTY0L2Jvb3QvZHRz
-L2FtbG9naWMvbWVzb24tZ3hiYi5kdHNpwqDCoMKgwqDCoMKgwqAgfMKgwqAgNyArCj4+Pj4gwqDC
-oCBhcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tZ3hsLmR0c2nCoMKgwqDCoMKgwqDC
-oMKgIHzCoMKgIDcgKwo+Pj4+IMKgwqAgZHJpdmVycy9ncHUvZHJtL21lc29uL0tjb25maWfCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgwqAgMSArCj4+Pj4gwqDC
-oCBkcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fZHdfaGRtaS5jwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAgfCAyMDMgKysrKysKPj4+PiArLS0tLS0tLS0KPj4+PiDCoMKgIGRyaXZlcnMvcGh5
-L2FtbG9naWMvS2NvbmZpZ8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgfMKgIDExICsKPj4+PiDCoMKgIGRyaXZlcnMvcGh5L2FtbG9naWMvTWFrZWZpbGXCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqDCoCAxICsKPj4+PiDC
-oMKgIGRyaXZlcnMvcGh5L2FtbG9naWMvcGh5LW1lc29uLWhkbWktdHguY8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAgfCAzMDkgKysrKysrKysrKysKPj4+PiArKysrKysrKysrCj4+Pj4gwqDCoCBpbmNs
-dWRlL2xpbnV4L3BoeS9waHktbWVzb24taGRtaS10eC5owqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgfMKgIDE5ICsrCj4+Pj4gwqDCoCAxMiBmaWxlcyBjaGFuZ2VkLCA1MTMgaW5zZXJ0aW9ucygr
-KSwgMTM2IGRlbGV0aW9ucygtKQo+Pj4+IC0tLQo+Pj4+IGJhc2UtY29tbWl0OiA2ZDU4MmQ3OGZh
-ZDlkODI4ZTU3NWNhMGNkY2ZmOGVhNDdhNzcyMjBiCj4+Pj4gY2hhbmdlLWlkOiAyMDI2MTExNS1t
-ZXNvbi1kcm0tY3JlYXRlLWhkbWl0eC1waHktNGFjNDBhNjU0ZDA5Cj4+Pj4KPj4+PiBCZXN0IHJl
-Z2FyZHMsCj4+Pj4gLS3CoAo+Pj4+IFJvbmFsZCBDbGF2ZWF1IDxsaW51eC1rZXJuZWwtZGV2QGFs
-aWVsLmZyPgo+Pj4KPj4+IE92ZXJhbGwgaXQncyB2ZXJ5IGdvb2QsIGJ1dCBJIHdvdWxkJ3ZlIHBy
-ZWZlcmVkIGEgbW9yZSBzZXF1ZW5jaWFsIG1vdmUKPj4+IHRvIHRoZSBQSFkgZHJpdmVyLCB3aXRo
-IGFuIGV4YWN0IGNvcHkgb2YgdGhlIGNvZGUgYW5kIHNpbXBsaWZpY2F0aW9uCj4+PiB0b3dhcmRz
-IHRoZSBjdXJyZW50IFBIWSBjb2RlLgo+Pj4KPj4+IEFueXdheSwgdGhlIHNhc2hpa28gcmV2aWV3
-IGNvbW1lbnRzIGFyZSBnb29kLCBlc3BlY2lhbGx5IHRoZSBvbmUgb24KPj4+IHBhdGNoIDYgdG8g
-a2VlcCB0aGUgZHJpdmVyIHdvcmtpbmcgb24gb2xkIERUcywgc29ycnkgbXkgYmFkLi4uCj4+Pgo+
-Pj4gTmVpbAo+Pgo+PiBUaGFua3MgZm9yIHlvdXIgZmVlZGJhY2ssIEkgYW0gYW5hbHl6aW5nL3Rl
-c3Rpbmcgc2FzaGlrbyBmZWVkYmFjay4KPj4KPj4gQWJvdXQgdGhlIHN1c3BlbmQvcmVzdW1lIHVu
-YmluZC9iaW5kLCBJIGRvIG5vdCBoYXZlIGFueSBpc3N1ZSBvbiBteQo+PiBzaWRlLCBidXQgSSBj
-YW4gY2hhbmdlIHRoZSBvcmRlcnMuCj4+Cj4+IEFib3V0IHBhdGNoIDYgYW5kIHRoZSBvbGQgRFRz
-LCBJIHdpbGwgcmVpbnRyb2R1Y2UgdGhlbSB3aXRoIHRoZSBsZWdhY3kKPj4gY2hlY2suIERvIHlv
-dSBrbm93IHdoYXQgd291bGQgYmUgYSBnb29kIHRpbWVsaW5lIHRvIGFkZCBhIHJlcXVpcmUgb24K
-Pj4gdGhvc2UgZWxlbWVudHMgYW5kIGRyb3AgdGhlIGZhbGxiYWNrIGNvZGUgPwo+Pgo+IAo+IFRo
-ZSBwcm9ibGVtIGlzIG5vdCBuZWNlc3NhcmlseSB0aGUga2VybmVsIERUIGJ1dCB0aGUgVS1Cb290
-IERUIHdoaWNoCj4gY291bGQgYmUgdXNlZCBieSB0aGUga2VybmVsLgo+IAo+IFRoZSBVLUJvb3Qg
-RFQgd2FzIHVzaW5nIHY2LjIgYmVmb3JlIHYyMDI0LjA3IGFuZCBhZnRlciBpdCB1c2VzIHRoZQo+
-IHN5bmNocm9uaXplZAo+IERUIGZyb20gTGludXgsIHdoaWNoIGNvaW5jaWRlcyB3aXRoIHRoZSB2
-Ni4xMSBEVCB3aGljaCBjb250YWlucyB0aGUgRFQKPiBjbG9ja3MKPiBjaGFuZ2VzLgo+IAo+IEl0
-IHNlZW1zIG1vc3Qgb2YgdGhlIFNCQ3MgZGlzdHJvIHVzZXMgcmVjZW50IFUtQm9vdCB2ZXJzaW9u
-cywgYW5kIHNvbWUKPiBuaWNlIGRpc3Rybwo+IHNoaXBzIG9sZGVyIFUtQm9vdCB2ZXJzaW9uLCBz
-byBpdCBjb3VsZCBicmVhayBvbiB0aG9zZSBpZiBhIG5ldyBrZXJuZWwKPiB3YXMgZGVwbG95ZWQu
-Cj4gCj4gQnV0LCBVLUJvb3QgYWxyZWFkeSBzZXQgSEhJX0hETUlfQ0xLX0NOVEwgYW5kIEhISV9N
-RU1fUERfUkVHMCB3aGVuCj4gcHJvYmluZyBkd19oZG1pCj4gc2luY2UgMjAxOS4wNCBzbyBjb25z
-aWRlcmluZyB0aGF0IEkgdGhpbmcgdGhlIHJpc2sgaXMgc3VwZXIgbG93Lgo+IAo+IEFkZCB0aGlz
-IHRvIHlvdXIgY29tbWl0IG1lc3NhZ2UgYW5kIHNlbmQgYSB2Mi4KCkNyeXN0YWwgY2xlYXIsIHdp
-bGwgYWRkIHRoYXQgaW4gdjIuCgotLSAKQmVzdCByZWdhcmRzLApSb25hbGQKCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGlu
-ZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5m
-cmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+On 11/17/26 20:58, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential
+> issue to consider:
+> - [Medium] phy: amlogic: broken rate and submode check in
+>   meson_hdmi_phy_validate()
+> --
+> 
+> commit 0bf49ea77c864cdcf7af96e59e1ffba5194d9636
+> Author: Ronald Claveau <linux-kernel-dev@aliel.fr>
+> 
+> phy: amlogic: Add Meson HDMI TX PHY driver
+> 
+> This commit adds a generic PHY driver for the HDMI TX PHY on Amlogic GXBB,
+> GXL, GXM, and G12A SoCs, along with a legacy helper for device trees
+> lacking a "phys" property.
+> 
+>> diff --git a/drivers/phy/amlogic/phy-meson-hdmi-tx.c b/drivers/phy/amlogic/phy-meson-hdmi-tx.c
+>> new file mode 100644
+>> index 0000000000000..69833a080dc35
+>> --- /dev/null
+>> +++ b/drivers/phy/amlogic/phy-meson-hdmi-tx.c
+> [ ... ]
+>> +/* GXBB */
+>> +static const struct meson_hdmi_phy_rate gxbb_rates[] = {
+>> +	/* 5.94Gbps, 3.7125Gbps */
+>> +	{ 371250000, 0x33353245, 0x2100115b },
+>> +	/* 2.97Gbps */
+>> +	{ 297000000, 0x33634283, 0xb000115b },
+>> +	/* 1.485Gbps, and below */
+>> +	{ 0,         0x33632122, 0x2000115b },
+>> +};
+> [ ... ]
+>> +static const struct meson_hdmi_phy_rate *
+>> +meson_hdmi_phy_find_rate(const struct meson_hdmi_phy_data *data, u64 rate)
+>> +{
+>> +	unsigned int i;
+>> +
+>> +	for (i = 0; i < data->num_rates; i++)
+>> +		if (rate >= data->rates[i].min_rate)
+>> +			return &data->rates[i];
+>> +
+>> +	return NULL;
+>> +}
+> [ ... ]
+>> +static int meson_hdmi_phy_validate(struct phy *phy, enum phy_mode mode,
+>> +				   int submode, union phy_configure_opts *opts)
+>> +{
+>> +	struct meson_hdmi_phy *priv = phy_get_drvdata(phy);
+>> +
+>> +	if (mode != PHY_MODE_HDMI)
+>> +		return -EINVAL;
+>> +
+>> +	if (opts->hdmi.bpc != 8)
+>> +		return -EINVAL;
+>> +
+>> +	if (!meson_hdmi_phy_find_rate(priv->data, opts->hdmi.tmds_char_rate))
+>> +		return -EINVAL;
+>> +
+>> +	return 0;
+>> +}
+> 
+> [Severity: Medium]
+> Can meson_hdmi_phy_find_rate() ever return NULL here?
+> 
+> Every per-SoC rate table ends with an entry where min_rate is 0, and rate
+> is an unsigned u64, so rate >= data->rates[i].min_rate is always true on
+> the final entry.  That makes the NULL return and the callers' NULL checks
+> in meson_hdmi_phy_validate() and meson_hdmi_phy_configure() dead code, and
+> meson_hdmi_phy_validate() accepts any tmds_char_rate value (including 0 Hz
+> or rates above the 594 MHz hardware limit).
+> 
+> In addition, meson_hdmi_phy_validate() does not check that submode is
+> PHY_HDMI_MODE_TMDS before reading opts->hdmi.tmds_char_rate, which shares
+> an anonymous union with opts->hdmi.frl when submode is PHY_HDMI_MODE_FRL.
+> 
+
+I will add min_rate 25175000 in table end and a check on max_rate 600MHz
+in v2.
+
+-- 
+Best regards,
+Ronald
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
