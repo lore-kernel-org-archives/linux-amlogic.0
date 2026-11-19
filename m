@@ -2,121 +2,60 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AB87606A320
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Nov 2026 12:49:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B72460A2602
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Nov 2026 15:30:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=A4t2sTHy;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=mteItAuJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KC4HL2lY;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.a=rsa-sha256 header.s=courrier-s1 header.b=Nj6zi7Fo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=03oGM2fJbLZFF24i6BDxwDWfMr2tc/SPtY3wY8F5g2s=; b=A4t2sTHy1OYsuDi6ZtxWhFwn+u
-	6StMYjIt2VEv0RG46fApXEYahP2tNPHe7fxRlIiDvKg7gB9AyXJp1nzmRUp96Ot489O+gtHl4fBif
-	34xCVerhpNkah3IZ3u4B+n865TV8BLq6giWnLFGaTcQH0HN//C5rXSQ+HycOrbC8cOkokEij4KxNR
-	EWOl/8IJ2vtzONZzyaC4pG22RgPr6pMbXcRSdDQml8C72hBkQB6JnNarq+Ou/0asU11gMsz2Wlwjt
-	OkPN3J5reI1Kwe9JNNZUzGoCoriQNXJaO5hCfXkz30y2WVR4PLUYovBeevrTI4WYYvJP3O885dVAU
-	r74NN1jg==;
+	bh=ZUvrFn2A1kwqfiUiIXNtR+jqMDR529Zc493Hlsl4iHA=; b=KC4HL2lY0bu5q1jdSKwlK4O5Cj
+	Fm962OWsLAAaRSpNCrVSFrczvEKHEMbzFg+3So4ZKNBJsEChb8V3k2jl4UFlVe7tNxSpH2uC1Kbv/
+	YChv6Ok8Gtha/QBR2AcMuwBZRz3hLuXpxsjWeNim78o3w6L+a+0E1zlXgM6opurBLXGQ5qe67W7bS
+	Tl9OumGh+V30XVLWDZTMLpWhZCVHWq+IHVWSat8DH7y77/aYRs6QMZofQmjhqJKofE75CsCf7sONS
+	dCz+sHtKc2GkoYNjz8CthjO6mIxtBEZqPnRtNoUHdk0X7FkW7Utdpb5E7Oe2zL0GL2lxbrrkWrCDy
+	lWTA/9Tg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU1Zd-0000000BvMK-3Nhb;
-	Thu, 19 Nov 2026 12:49:09 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+	id 1xU460-0000000CSof-0sB4;
+	Thu, 19 Nov 2026 15:30:44 +0000
+Received: from courrier.aliel.fr ([65.21.61.41])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU1Za-0000000BvKw-1g8O
-	for linux-amlogic@lists.infradead.org;
-	Thu, 19 Nov 2026 12:49:07 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 838274E41665;
-	Thu, 19 Nov 2026 12:49:04 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 3F14960237;
-	Thu, 19 Nov 2026 12:49:04 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CC49311BC0673;
-	Thu, 19 Nov 2026 13:48:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795092535; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=FrqcePVIbKpJOlr0CwwEXmHuYmHa3yUMeo1BTUrWcl0=;
-	b=mteItAuJBxCXIm6o7Tz4CiCkaMG9jXhvMU2sSQLnSpwBcZpG8f2MBEvcJ1Bx2lQIvEFPHc
-	cDtQgbCpT1F3jW229XoKlV3ReW5mnP/ABdent9sCr/5183826BqbllILfT90L05VaHMgtP
-	dUJUiAyMuYUR1NhbdpZFwHZONdW4QU9si+WZSm1qV6DhZI6XlaK2xQVRCAOzwBKLP1wBFh
-	3qw4wVp4q47Ts1Jsp/lIRy+UYxCPzeFEV89KDKzTVDondoVzVYjpyUCZKV/Oz4GxrsbGus
-	YTBzHCONs5aDQShHm1+BnPAiQ9L4baKhNKmb68Cs/uKC0//BXan270Bf1Uz6BQ==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: James Hilliard <james.hilliard1@gmail.com>
-Cc: Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
- <vigneshr@ti.com>,  linux-mtd@lists.infradead.org,
-  linux-kernel@vger.kernel.org,  Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>,  Srinivas Kandagatla <srini@kernel.org>,
-  Tze Yee Ng <tze.yee.ng@altera.com>,  Richard Cochran
- <richardcochran@gmail.com>,  Jonathan Lemon <jonathan.lemon@gmail.com>,
-  Vadim Fedorenko <vadim.fedorenko@linux.dev>,  Yuqiang Sun
- <izaiahsun@gmail.com>,  Amit Kumar Mahapatra
- <amit.kumar-mahapatra@amd.com>,  Luca Ceresoli
- <luca.ceresoli@bootlin.com>,  Bernhard Frauendienst
- <kernel@nospam.obeliks.de>,  "Gustavo A. R. Silva"
- <gustavoars@kernel.org>,  Kees Cook <kees@kernel.org>,
-  linux-hardening@vger.kernel.org,  Arseniy Krasnov
- <AVKrasnov@sberdevices.ru>,  Boris Brezillon <bbrezillon@kernel.org>,
-  Brian Norris <computersforpeace@gmail.com>,  Jernej Skrabec
- <jernej.skrabec@gmail.com>,  linux-arm-kernel@lists.infradead.org,
-  linux-sunxi@lists.linux.dev,  Samuel Holland <samuel@sholland.org>,
-  Chen-Yu Tsai <wens@kernel.org>,  David Woodhouse <dwmw2@infradead.org>,
-  Thomas Gleixner <tglx@kernel.org>,  Vitaly Wool <vitalywool@gmail.com>,
-  David Woodhouse <David.Woodhouse@intel.com>,  Russell King
- <rmk+kernel@arm.linux.org.uk>,  Mike Rapoport <rppt@kernel.org>,
-  Alexandre Torgue <alexandre.torgue@foss.st.com>,  Christophe Kerello
- <christophe.kerello@st.com>,  Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-  Jason Roberts <jason.e.roberts@intel.com>,  Boris Brezillon
- <boris.brezillon@collabora.com>,  Michal Simek <michal.simek@amd.com>,
-  Mason Yang <masonccyang@mxic.com.tw>,  Ramuthevar Vadivel Murugan
- <vadivel.muruganx.ramuthevar@linux.intel.com>,  Lucas Stach
- <dev@lynxeye.de>,  Dmitry Osipenko <digetx@gmail.com>,  Jonathan Hunter
- <jonathanh@nvidia.com>,  linux-tegra@vger.kernel.org,  Stefan Agner
- <stefan@agner.ch>,  Thierry Reding <thierry.reding@kernel.org>,
-  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-  Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>,
-  linux-mediatek@lists.infradead.org,  Matthias Brugger
- <matthias.bgg@gmail.com>,  Heiko Stuebner <heiko@sntech.de>,
-  linux-rockchip@lists.infradead.org,  Yifeng Zhao
- <yifeng.zhao@rock-chips.com>,  Alexandre Belloni
- <alexandre.belloni@bootlin.com>,  Claudiu Beznea
- <claudiu.beznea@tuxon.dev>,  Nicolas Ferre <nicolas.ferre@microchip.com>,
-  Keguang Zhang <keguang.zhang@gmail.com>,  linux-mips@vger.kernel.org,
-  Shan-Chun Hung <schung@nuvoton.com>,  Jacky Huang <ychuang3@nuvoton.com>,
-  Fabio Estevam <festevam@gmail.com>,  Frank Li <Frank.Li@nxp.com>,
-  imx@lists.linux.dev,  Pengutronix Kernel Team <kernel@pengutronix.de>,
-  Sascha Hauer <s.hauer@pengutronix.de>,  Han Xu <han.xu@nxp.com>,
-  linux-renesas-soc@vger.kernel.org,  Wolfram Sang
- <wsa+renesas@sang-engineering.com>,  Jerome Brunet <jbrunet@baylibre.com>,
-  Kevin Hilman <khilman@baylibre.com>,  Liang Yang
- <liang.yang@amlogic.com>,  linux-amlogic@lists.infradead.org,  Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>,  Neil Armstrong
- <neil.armstrong@linaro.org>,  linux-arm-msm@vger.kernel.org,  Manivannan
- Sadhasivam <mani@kernel.org>,  Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,  Kamal Dasu
- <kamal.dasu@broadcom.com>,  Piotr Wojtaszczyk
- <piotr.wojtaszczyk@timesys.com>,  Vladimir Zapolskiy <vz@mleia.com>,
-  Harvey Hunt <harveyhuntnexus@gmail.com>,  Paul Cercueil
- <paul@crapouillou.net>,  Maxim Levitsky <maximlevitsky@gmail.com>
-Subject: Re: [PATCH v5 00/58] mtd: rawnand: retain chip and controller state
- across removal
-In-Reply-To: <20261115-submit-rawnand-retained-handle-lifetime-v1-v5-0-cbc49c5c5e74@gmail.com>
-	(James Hilliard's message of "Sun, 15 Nov 2026 23:29:15 -0700")
-References: <20261115-submit-rawnand-retained-handle-lifetime-v1-v5-0-cbc49c5c5e74@gmail.com>
-User-Agent: mu4e 1.12.12; emacs 30.2
-Date: Thu, 19 Nov 2026 13:48:02 +0100
-Message-ID: <87v75tc7i5.fsf@bootlin.com>
+	id 1xU45u-0000000CSjM-3AnJ;
+	Thu, 19 Nov 2026 15:30:43 +0000
+Message-ID: <ec9c8460-a8de-460e-92bb-dc03240152bb@aliel.fr>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1795102234;
+	bh=3cxvdL4KfFwcHXkWK7rQriyomVokMs5MeD2OaggeClQ=;
+	h=Date:From:Subject:To:Cc:References:In-Reply-To;
+	b=Nj6zi7Fo0ca5Ps9aUATozF/jxT6gCv+7SS7P/dwLIZlh4hIVjAk7MXSsgA7JbBLy7
+	 lf+mFz55owqBoYAWIJldfRz0SSqxgdM6lEpUk0rQzL+74rNH31mts30Mc31SPIGjA+
+	 FTOPuTK24MLzcb6ip2CCC7ddL/fChzsbgAjliXNI=
+Date: Thu, 19 Nov 2026 16:30:02 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Subject: Re: [PATCH 06/10] drm/meson: dw-hdmi: Drop manual HHI clock and
+ memory PD setup
+To: sashiko-reviews@lists.linux.dev
+Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-phy@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ robh@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org,
+ vkoul@kernel.org, olteanv@gmail.com
+References: <20261117-meson-drm-create-hdmitx-phy-v1-0-9e0ac931381c@aliel.fr>
+ <20261117-meson-drm-create-hdmitx-phy-v1-6-9e0ac931381c@aliel.fr>
+ <sashiko-outbox-219570@kernel.org>
+Content-Language: en-US
+In-Reply-To: <sashiko-outbox-219570@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_044906_718486_D6F06055 
-X-CRM114-Status: GOOD (  22.82  )
+X-CRM114-CacheID: sfid-20261119_073039_262413_4A12CE00 
+X-CRM114-Status: GOOD (  21.00  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -127,83 +66,124 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-SGkgSmFtZXMsCgpPbiAxNS8xMS8yMDI2IGF0IDIzOjI5OjE1IC0wNywgSmFtZXMgSGlsbGlhcmQg
-PGphbWVzLmhpbGxpYXJkMUBnbWFpbC5jb20+IHdyb3RlOgoKPiBBbiBNVEQgaGFuZGxlIGNhbiBv
-dXRsaXZlIGNvbnRyb2xsZXIgdW5iaW5kLiBJdHMgbWV0YWRhdGEgYW5kIE5BTkQgbG9ja3MKPiBt
-dXN0IHJlbWFpbiB2YWxpZCwgaW5jbHVkaW5nIHdoZW4gYSB3cml0YWJsZSBmaWxlIGNsb3NlcyBh
-bmQgY2FsbHMgc3luYywKPiB3aGlsZSBmdXJ0aGVyIGhhcmR3YXJlIGFjY2VzcyBtdXN0IGJlIHJl
-amVjdGVkIGFmdGVyIGRpc2Nvbm5lY3Rpb24uCj4KPiBUaGlzIGJ1aWxkcyBvbiBlYXJsaWVyIE1U
-RCByZW1vdmFsLWxpZmV0aW1lIHdvcmsuIENvbW1pdCAxOWJmYTllYmViYjUKPiAoIm10ZDogdXNl
-IHJlZmNvdW50IHRvIHByZXZlbnQgY29ycnVwdGlvbiIpIGFkZGVkIE1URCByZWZlcmVuY2UgY291
-bnRpbmcKPiBbMF0sIGJ1dCByZXRhaW5pbmcgYW4gTVREIHJlZmVyZW5jZSBkb2VzIG5vdCBieSBp
-dHNlbGYgcmV0YWluIHRoZQo+IGRyaXZlci1vd25lZCBhbGxvY2F0aW9uIGNvbnRhaW5pbmcgdGhl
-IG1hc3Rlci4gVGhlIHJlYWQvdW5iaW5kIGRpc2N1c3Npb24KPiBhbHNvIGNvdmVyZWQgcmF3IE5B
-TkQgWzFdIGFuZCBkcmFpbmluZyBhY3RpdmUgb3BlcmF0aW9ucyBbMl0uIFR6ZSBZZWUgTmcncwo+
-IFNQSS1OT1Igc2VyaWVzIGFkZHJlc3NlcyB0aGUgY29ycmVzcG9uZGluZyBTUEktTk9SIHBhdGhz
-IFszXS4KPgo+IEZvbGxvd2luZyBHcmVnJ3MgcmV2aWV3IFs3XSwgc2VwYXJhdGUgY2xhc3MtZGV2
-aWNlIGRhdGEgZnJvbSB0aGUgTVRECj4gYmFja2luZyBhbGxvY2F0aW9uLiBEZWxldGUgdGhlIGRl
-dmljZSdzIGludGVyZmFjZXMgYW5kIGRyYWluIE5WTUVNIGFuZAo+IGNsYXNzIFBNIGNhbGxiYWNr
-cyBiZWZvcmUgcmVsZWFzaW5nIGJhY2tpbmcgZGF0YS4gQmFyZSBkZXZpY2UgcmVmZXJlbmNlcwo+
-IHJldGFpbiBhbiBpbmRlcGVuZGVudGx5IGFsbG9jYXRlZCBkZXZpY2UsIHdob3NlIHR5cGUsIFBN
-IGRpc3BhdGNoIGFuZAo+IGZpbmFsIHJlbGVhc2UgYXJlIGJ1aWx0IGluIGV2ZW4gd2hlbiBNVEQg
-aXMgbW9kdWxhci4gTlZNRU0gc2ltaWxhcmx5Cj4gZGlzY29ubmVjdHMgYW5kIGRyYWlucyBwcm92
-aWRlciBhbmQgbGF5b3V0IGNhbGxiYWNrcyBiZWZvcmUgdW5yZWdpc3Rlcgo+IHJldHVybnM7IHJl
-dGFpbmVkIGNvbnN1bWVycyBrZWVwIGNvcmUtb3duZWQgbWV0YWRhdGEgYW5kIHJlY2VpdmUgLUVO
-T0RFVgo+IG9uIHN1YnNlcXVlbnQgYWNjZXNzLgo+Cj4gSW50cm9kdWNlIG9wdC1pbiBiYWNraW5n
-LW9iamVjdCBvd25lcnNoaXAgZm9yIE1URCBtYXN0ZXJzLiBSZWdpc3RlcmVkCj4gbm9kZXMgYW5k
-IGFjcXVpcmVkIE1URCBoYW5kbGVzIHJldGFpbiB0aGUgY2hpcCwgd2hpbGUgbmVzdGVkIHBhcnRp
-dGlvbnMKPiBhbHNvIHJldGFpbiB0aGVpciBwYXJlbnQgbWV0YWRhdGEuIFVucmVnaXN0ZXIgZmly
-c3Qgc28gcmVtb3ZhbCBub3RpZmllcnMKPiBjYW4gZmluaXNoIEkvTywgdGhlbiBkaXNjb25uZWN0
-IHJhdyBOQU5EIGFuZCBkcmFpbiBhZG1pdHRlZCBvcGVyYXRpb25zLgo+IEhhcmR3YXJlIHJlc291
-cmNlcyBjYW4gYmUgcmVsZWFzZWQgd2l0aG91dCB3YWl0aW5nIGZvciBvcGVuIGZpbGVzIHRvIGNs
-b3NlLgo+Cj4gVmlydHVhbCBjb25jYXRlbmF0aW9ucyBzZXJpYWxpemUgcHVibGljYXRpb24gYW5k
-IHJlbW92YWwgYWNyb3NzIHBoeXNpY2FsCj4gY29udHJvbGxlcnMuIERpc2Nvbm5lY3QgYW5kIGRy
-YWluIGEgcHVibGlzaGVkIGNvbmNhdGVuYXRpb24gYmVmb3JlIGFueQo+IGNvbXBvbmVudCBjYW4g
-ZGlzYXBwZWFyLCB0aGVuIHJlbGVhc2UgaXRzIGNvbXBvbmVudCByZWZlcmVuY2VzLiBBbiBvbGQK
-PiBoYW5kbGUga2VlcHMgdGhlIGRpc2Nvbm5lY3RlZCB2aXJ0dWFsIGRldmljZSwgaW5kZXBlbmRl
-bnRseSBvZiBhIGxhdGVyCj4gcmVwbGFjZW1lbnQuCj4KPiBSdW4gTkFORCBhbmQgY29udHJvbGxl
-ci1zcGVjaWZpYyBjbGVhbnVwIGR1cmluZyBkaXNjb25uZWN0aW9uLCB3aGlsZQo+IHRoZSBjb250
-cm9sbGVyIGRyaXZlciBpcyBzdGlsbCBib3VuZC4gU25hcHNob3QgdGhlIE9PQiBsYXlvdXQgaW4g
-Y29yZS1vd25lZAo+IGRhdGEgYmVmb3JlIHB1YmxpY2F0aW9uIHNvIG1ldGFkYXRhIHF1ZXJpZXMg
-cmVtYWluIHZhbGlkIHdpdGhvdXQgZHJpdmVyCj4gY2FsbGJhY2tzLiBUaGUgTkFORCBjb3JlIGZy
-ZWVzIHJldGFpbmVkIGNoaXAgYW5kIGNvbnRyb2xsZXIgYWxsb2NhdGlvbnM7Cj4gdGhlIGZpbmFs
-IE1URCBwdXQgbmV2ZXIgY2FsbHMgYmFjayBpbnRvIHRoZSBjb250cm9sbGVyIG1vZHVsZS4gT3Jk
-aW5hcnkKPiBNVEQgYW5kIE5WTUVNIGhhbmRsZXMgcmV0YWluIHRoZSBOQU5EIGNvcmUgdGhhdCBp
-bXBsZW1lbnRzIHRoZWlyCj4gb3BlcmF0aW9ucywgcmF0aGVyIHRoYW4gdGhlIGhhcmR3YXJlIGRy
-aXZlci4KPgo+IFNoYXJlIGFsbG9jYXRpb24gb3duZXJzaGlwIGFjcm9zcyB0aGUgcmF3LU5BTkQg
-ZHJpdmVycywgaW5jbHVkaW5nCj4gcGFydGlhbGx5IHB1Ymxpc2hlZCBwcm9iZXMuIFNoYXJlZCBj
-b250cm9sbGVycyByZW1haW4gYWxsb2NhdGVkIHVudGlsCj4gdGhlaXIgbGFzdCByZXRhaW5lZCBj
-aGlwIGlzIHJlbGVhc2VkLiBSODUyIGFsbG9jYXRlcyBhIG5ldyBjaGlwIGZvciBlYWNoCj4gY2Fy
-ZCwgYW5kIE5ERkMgYWxsb2NhdGVzIGNvbnRyb2xsZXIgc3RhdGUgcGVyIGJpbmRpbmcuCj4KPiBC
-YXNlZCBvbiBOQU5EIG5leHQgYXQgMzBkYWFmM2U3ODk3LCB3aXRoIFR6ZSBZZWUgTmcncyBtb2R1
-bGUtcmVmZXJlbmNlCj4gb3JkZXJpbmcgZml4IFs0XSwgS2FybCBNZWhsdHJldHRlcidzIE9UUCBj
-bGVhbnVwIGZpeCBbNl0sIGFuZCB0aGUgc2VwYXJhdGVseQo+IHBvc3RlZCByZWdpc3RyYXRpb24s
-IG9wZXJhdGlvbi1sb2NraW5nIGFuZCBjb250cm9sbGVyIHByb2JlL3RlYXJkb3duIGZpeGVzCj4g
-aWRlbnRpZmllZCBieSB0aGUgcHJlcmVxdWlzaXRlIG1ldGFkYXRhLiBUTEErIG1vZGVscyBhbmQg
-dGhlaXIgYXNzdW1wdGlvbnMKPiBhbmQgY292ZXJhZ2UgbGltaXRzIGFyZSBhdmFpbGFibGUgaW4g
-WzVdLgoKV2hpbGUgbGlmZXRpbWUgaXNzdWVzIGFyZSBhIHJlYWwgY29uY2VybiBpbiB0aGUga2Vy
-bmVsLCBwbGVhc2Ugbm90ZSB0aGF0CmluIGdlbmVyYWwsIHJlbW92aW5nIG9yIHVuYmluZGluZyB0
-aGUgZmxhc2ggY29udHJvbGxlciBkcml2ZXIgaXMgbm90IGEKcHJhY3RpY2FsIG9wZXJhdGlvbi4g
-V2hpbGUgaGlnaGx5IHVubGlrZWx5LCB0aGlzIGlzIHBvc3NpYmxlIHRob3VnaC4gQnV0CkkgYW0g
-bm90IGdvaW5nIHRvIHNhY3JpZmljZSBhbGwgdGhlIGRldm1fIGNhbGxzIGluIGZhdm9yIG9mIHJl
-aW5zdGF0aW5nCm1hbnVhbCBlcnJvciBoYW5kbGluZyBqdXN0IGZvciB0aGF0LiBJZiB0aGVyZSBp
-cyBhIHdheSwgaXQgbXVzdCBiZQpkaWZmZXJlbnQuCgpBbHNvLCB0aGlzIGtpbmQgb2YgY29udHJp
-YnV0aW9uIGNhbiBvbmx5IGJlIGRvbmUgaWYgeW91ICp1bmRlcnN0YW5kKgp3aGF0IHlvdSBhcmUg
-ZG9pbmcuIEdldHRpbmcgdGhlIGJpZyBwaWN0dXJlIGhlcmUgaXMgbm90IG9wdGlvbmFsLgoKTWF5
-YmUgdGhlIHByb2JsZW0gaXMgTVREIHJlZmNvdW50aW5nPyBNYXliZSB0aGUgcHJvYmxlbSBpcyB0
-aGUgZGV2bV8Kb3JkZXJnaW5nPyBJIGRvbid0IGtub3csIEkgaGF2ZW4ndCBsb29rZWQgaW4gZGVw
-dGggYXQgYWxsIHRoZQpwYXRjaGVzLiBCdXQgdGhlIGN1cnJlbnQgYXBwcm9hY2ggaXMgY2xlYXJs
-eSBub3QgYWNjZXB0YWJsZS4KClRoYW5rcywKTUlxdcOobAoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGlu
-dXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3Jn
-L21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On 11/17/26 21:11, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential
+> issue to consider:
+> - [High] drm/meson: dw-hdmi: skipped HDMITX mem PD power-up in
+>   meson_dw_hdmi_init()
+> --
+> 
+> commit c8e782099f758bf635402705a20f57d7df9682a7
+> Author: Ronald Claveau <linux-kernel-dev@aliel.fr>
+> 
+> drm/meson: dw-hdmi: Drop manual HHI clock and memory PD setup
+> 
+> This commit removes the direct HHI_HDMI_CLK_CNTL and HHI_MEM_PD_REG0
+> register writes in meson_dw_hdmi_init() and takes a runtime PM reference
+> in meson_dw_hdmi_probe() to power on the VPU power domain.
+> 
+>> diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+>> index eb33c70f29c31..20a821936b3af 100644
+>> --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
+>> +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+> [ ... ]
+>> @@ -599,12 +598,6 @@ static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
+>>  {
+>>  	struct meson_drm *priv = meson_dw_hdmi->priv;
+>>  
+>> -	/* Enable clocks */
+>> -	regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL, 0xffff, 0x100);
+>> -
+>> -	/* Bring HDMITX MEM output of power down */
+>> -	regmap_update_bits(priv->hhi, HHI_MEM_PD_REG0, 0xff << 8, 0);
+>> -
+>>  	/* Reset HDMITX APB & TX & PHY */
+>>  	reset_control_reset(meson_dw_hdmi->hdmitx_apb);
+>>  	reset_control_reset(meson_dw_hdmi->hdmitx_ctrl);
+>> @@ -829,9 +822,29 @@ static int __maybe_unused meson_dw_hdmi_pm_resume(struct device *dev)
+>>  	return 0;
+>>  }
+>>  
+>> +static void meson_dw_hdmi_pm_put(void *dev)
+>> +{
+>> +	pm_runtime_put_sync(dev);
+>> +}
+>> +
+>>  static int meson_dw_hdmi_probe(struct platform_device *pdev)
+>>  {
+>> -	return component_add(&pdev->dev, &meson_dw_hdmi_ops);
+>> +	struct device *dev = &pdev->dev;
+>> +	int ret;
+>> +
+>> +	ret = devm_pm_runtime_enable(dev);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = pm_runtime_resume_and_get(dev);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret, "Failed to power on HDMI TX\n");
+> 
+> [Severity: High]
+> Can dropping the HHI_MEM_PD_REG0 write leave the HDMITX memory powered
+> down when the bootloader turns on the top-level VPU domain without
+> enabling HDMI?
+> 
+> In the VPU power domain driver, pwrc_ee_is_powered_off() only checks the
+> top-level AO sleep bit and does not check HHI_MEM_PD_REG0[15:8].  When
+> the top-level VPU domain is already powered on at boot,
+> meson_ee_pwrc_init_domain() registers the genpd as already on without
+> calling meson_ee_pwrc_on():
+> 
+> drivers/pmdomain/amlogic/meson-ee-pwrc.c:meson_ee_pwrc_init_domain() {
+> 	...
+> 	if (dom->num_clks && dom->desc.is_powered_off && !dom->desc.is_powered_off(dom)) {
+> 		ret = clk_bulk_prepare_enable(dom->num_clks, dom->clks);
+> 		if (ret)
+> 			return ret;
+> 
+> 		dom->base.flags = GENPD_FLAG_ALWAYS_ON;
+> 		ret = pm_genpd_init(&dom->base, NULL, false);
+> 		if (ret)
+> 			return ret;
+> 	}
+> 	...
+> }
+> 
+> Because the genpd is initialized in the ON state with
+> GENPD_FLAG_ALWAYS_ON, pm_runtime_resume_and_get() is a no-op and
+> meson_ee_pwrc_on() never runs to clear HHI_MEM_PD_REG0[15:8], leaving
+> HDMITX memory powered down when meson_dw_hdmi_init() and dw_hdmi_probe()
+> access the controller.
+> 
+
+I will add a new patch with a function to release the memories power off
+bits in v2.
+
+> In addition, power-domains and assigned-clocks are optional in the
+> amlogic,meson-dw-hdmi binding and were only added to in-tree DTs in
+> v6.11, so dropping the HHI_HDMI_CLK_CNTL and HHI_MEM_PD_REG0 writes also
+> regresses older DTBs (where meson_vclk_set() only configures
+> HHI_HDMI_CLK_CNTL later at atomic_enable time) and builds with CONFIG_PM
+> disabled.
+> 
+
+I will add a depends on PM in v2.
+
+-- 
+Best regards,
+Ronald
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
