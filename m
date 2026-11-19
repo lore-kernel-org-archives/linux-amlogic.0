@@ -2,60 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4411606A332
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Nov 2026 16:30:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 944D6606A33B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Nov 2026 19:10:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FAgiyYSq;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.a=rsa-sha256 header.s=courrier-s1 header.b=vAWBsD/e
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=U4LGtQSs;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=naJe9zJl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-Id:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=W6ntY8210GojVGTL+ZA+m1/Ulo4ulfl8xApT393jDgs=; b=FAgiyYSqoUMvOBmZZIGGXJwWWq
-	HfGJRLvATFbraf1q5FwoogutT7UOJoUnmF89nR+x+OkcYetoSL0MUfyd5CJMuDVdJ4T3QH7jam/YA
-	X2dFi4Ay54PS/HJrCJnb5fstXxVVQFj6JOIAqzmGvc3Ot7uvbsaYi07okJZJZk+uPG6fF4fhcz900
-	W7YsFKExTrjKSx8iKh1EJA7YmNMlAOjzBSXoQ/TdkLoJx0+LnzrKcpxNEKpYjHoA3hXODtoILrh98
-	mUfgd1GAnIFtSr3Iji2t+J8BYkVtZLt5NZT3BpBesoP8qLXUPJ/y1Vr+AfepE7xpgiP/Mzw9/AFHW
-	N/Us94zg==;
+	bh=dREGFXv9JzBgFsICTExMO1D7RA9m6VUSyRnaBKAotUM=; b=U4LGtQSs8+ffD6RLBrFx3JxAgo
+	D0bn0VL45WtVqWuxis6jPdFIThrG1mdfnnKU4JPRZdSjCg8lGPjJO5vJbIDD3bcJAWWT49OvILcc9
+	OuTkL0AseZMvFLfBwiIBdwQRAJB9d/5097quqSZB9lk/tm4jAiaPaxrZADb5VdFzpaS5qI/Ucpqrk
+	QHmIMfnBe4QztUv9S15c+J5joz/qKLzhiP+Ch5wn3PYHmaksoDyyLOxA9UGL12KaD3UMHNkcxMWIN
+	tXwbEND193HsVXqzy2Vucaca5MSrRC+Vsf93tOljg0TUi67+Z2EclljOvUqMlHIKU6tjcvpIgorqg
+	Y5MwGGIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU51K-0000000CdwJ-2i78;
-	Thu, 19 Nov 2026 16:29:58 +0000
-Received: from courrier.aliel.fr ([2a01:4f9:c011:1c83::1])
+	id 1xU7Wb-0000000DAJD-3EzE;
+	Thu, 19 Nov 2026 19:10:25 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU51I-0000000Cdtt-0Flf;
-	Thu, 19 Nov 2026 16:29:57 +0000
-Message-ID: <8652ae36-7506-4fc2-b8ff-0b05a61dec63@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1795105792;
-	bh=McqmrGGoBsWtFO9rSLDSWUOXL2yC9fScta0oWrJ5HFE=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To;
-	b=vAWBsD/ePEqL301DdsswEq/IJ55Q9aS6ABXHAzDCh/3C+pvw0XpvcS29dDjLwcplb
-	 hd+k7v1hm1gr9jRkQZ++5bJzAtYbEpgtsEhf/4A2PhL0xMr3fnz9iT7fogwUm0eIvh
-	 cD2c1SFpljoYu0Acms8xnIjDxltOhLszWv3MK2j8=
-Date: Thu, 19 Nov 2026 17:29:51 +0100
+	id 1xU7Wa-0000000DAJ0-3pEb;
+	Thu, 19 Nov 2026 19:10:24 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 587D34047E;
+	Thu, 19 Nov 2026 19:10:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E0AE1F000C4;
+	Thu, 19 Nov 2026 19:10:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795115424;
+	bh=qukOtTwYNeY65fV7GEd3+hUFNE24AN69HXQ89jir/To=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=naJe9zJlPJDbDr9Uzls5auFH8KkqnjthM6eaxXlB8hrSg+hQ8foeq0O4wSfSmyZFy
+	 6XtXt9s6dTzaL72CUzXE1lWAAUjmEsXLrqcw58S6neziNlGosVZ2SLy6Dd/X8RBb+k
+	 UtFhcuUi9hNmuuWtagAKPlPOTde5ayAeemBqG/RUnasBJj18MZh+vYZQwgtjkspv8I
+	 qBRanuyR2zld1GAqteWK721ZZ82Mio95OPV31090Y1BOcmiJ37zKE87440mXfxhUYu
+	 6m6A1bEL9tHjiQSzZujS0X17zKTOuwZZRjcme/O97XvO1mAD0JZxLH7VbXb98KxhMk
+	 sklQSxtzurEhA==
+From: Mark Brown <broonie@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Valerio Setti <vsetti@baylibre.com>
+Cc: linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20261111-gx-formatter-use-spinlock-v2-0-763241aeca52@baylibre.com>
+References: <20261111-gx-formatter-use-spinlock-v2-0-763241aeca52@baylibre.com>
+Subject: Re: [PATCH v2 0/2] ASoC: meson: gx-formatter: change stream lock
+ from mutex to spinlock
+Message-Id: <179509708687.116416.8043243616213914673.b4-ty@b4>
+Date: Thu, 19 Nov 2026 14:04:46 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Subject: Re: [PATCH 04/10] phy: amlogic: Add Meson HDMI TX PHY driver
-To: sashiko-reviews@lists.linux.dev
-Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-phy@lists.infradead.org, dri-devel@lists.freedesktop.org,
- robh@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org,
- vkoul@kernel.org, olteanv@gmail.com
-References: <20261117-meson-drm-create-hdmitx-phy-v1-0-9e0ac931381c@aliel.fr>
- <20261117-meson-drm-create-hdmitx-phy-v1-4-9e0ac931381c@aliel.fr>
- <sashiko-outbox-219538@kernel.org>
-Content-Language: en-US
-In-Reply-To: <sashiko-outbox-219538@kernel.org>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_082956_617594_2809A2B7 
-X-CRM114-Status: GOOD (  17.77  )
-X-Spam-Score: -2.1 (--)
+X-Mailer: b4 0.17-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1516; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=mNbQf2yq7zE9LqqFnCB2s6MtlcWOuguvqz25adVY+6E=;
+ b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLL+e84RWsB8MiHt67zybwFHZLx2hNyZ+s1QXaC06Phdh
+ k7mzX+EO0pZGMS4GGTFFFnisrhf1pe8XsN3cGEbzBxWJpAhDFycAjCR458ZGY7V7/NXmP6t7Pcz
+ jeWJO99/XyxxzWLnxNjWd84qE3quJM5hZPinu1fo7sa60p9casKbFnF18TF8zFX5vsRL30Lv4Er
+ jr6wA
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -68,95 +81,54 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.3 required=3.0 tests=BAYES_00,DATE_IN_PAST_03_06,
+	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/17/26 20:58, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential
-> issue to consider:
-> - [Medium] phy: amlogic: broken rate and submode check in
->   meson_hdmi_phy_validate()
-> --
+On Wed, 11 Nov 2026 11:12:47 +0100, Valerio Setti wrote:
+> ASoC: meson: gx-formatter: change stream lock from mutex to spinlock
 > 
-> commit 0bf49ea77c864cdcf7af96e59e1ffba5194d9636
-> Author: Ronald Claveau <linux-kernel-dev@aliel.fr>
+> Patch 1 fixes a pre-existing bugs, present since v7.3, reported by
+> Sashiko [1] while reviewing the series adding I2S input support for
+> Amlogic GX SoCs [2].
+> [2] depends on patch 1 to address Sashiko's comment.
 > 
-> phy: amlogic: Add Meson HDMI TX PHY driver
-> 
-> This commit adds a generic PHY driver for the HDMI TX PHY on Amlogic GXBB,
-> GXL, GXM, and G12A SoCs, along with a legacy helper for device trees
-> lacking a "phys" property.
-> 
->> diff --git a/drivers/phy/amlogic/phy-meson-hdmi-tx.c b/drivers/phy/amlogic/phy-meson-hdmi-tx.c
->> new file mode 100644
->> index 0000000000000..69833a080dc35
->> --- /dev/null
->> +++ b/drivers/phy/amlogic/phy-meson-hdmi-tx.c
-> [ ... ]
->> +/* GXBB */
->> +static const struct meson_hdmi_phy_rate gxbb_rates[] = {
->> +	/* 5.94Gbps, 3.7125Gbps */
->> +	{ 371250000, 0x33353245, 0x2100115b },
->> +	/* 2.97Gbps */
->> +	{ 297000000, 0x33634283, 0xb000115b },
->> +	/* 1.485Gbps, and below */
->> +	{ 0,         0x33632122, 0x2000115b },
->> +};
-> [ ... ]
->> +static const struct meson_hdmi_phy_rate *
->> +meson_hdmi_phy_find_rate(const struct meson_hdmi_phy_data *data, u64 rate)
->> +{
->> +	unsigned int i;
->> +
->> +	for (i = 0; i < data->num_rates; i++)
->> +		if (rate >= data->rates[i].min_rate)
->> +			return &data->rates[i];
->> +
->> +	return NULL;
->> +}
-> [ ... ]
->> +static int meson_hdmi_phy_validate(struct phy *phy, enum phy_mode mode,
->> +				   int submode, union phy_configure_opts *opts)
->> +{
->> +	struct meson_hdmi_phy *priv = phy_get_drvdata(phy);
->> +
->> +	if (mode != PHY_MODE_HDMI)
->> +		return -EINVAL;
->> +
->> +	if (opts->hdmi.bpc != 8)
->> +		return -EINVAL;
->> +
->> +	if (!meson_hdmi_phy_find_rate(priv->data, opts->hdmi.tmds_char_rate))
->> +		return -EINVAL;
->> +
->> +	return 0;
->> +}
-> 
-> [Severity: Medium]
-> Can meson_hdmi_phy_find_rate() ever return NULL here?
-> 
-> Every per-SoC rate table ends with an entry where min_rate is 0, and rate
-> is an unsigned u64, so rate >= data->rates[i].min_rate is always true on
-> the final entry.  That makes the NULL return and the callers' NULL checks
-> in meson_hdmi_phy_validate() and meson_hdmi_phy_configure() dead code, and
-> meson_hdmi_phy_validate() accepts any tmds_char_rate value (including 0 Hz
-> or rates above the 594 MHz hardware limit).
-> 
-> In addition, meson_hdmi_phy_validate() does not check that submode is
-> PHY_HDMI_MODE_TMDS before reading opts->hdmi.tmds_char_rate, which shares
-> an anonymous union with opts->hdmi.frl when submode is PHY_HDMI_MODE_FRL.
-> 
+> [...]
 
-I will add min_rate 25175000 in table end and a check on max_rate 600MHz
-in v2.
+Applied to
 
--- 
-Best regards,
-Ronald
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.4
+
+Thanks!
+
+[1/2] ASoC: meson: gx-formatter: change stream lock from mutex to spinlock
+      https://git.kernel.org/broonie/sound/c/0bd345a04dc4
+[2/2] ASoC: meson: gx-formatter: add lockdep_assert_held check
+      https://git.kernel.org/broonie/sound/c/e38a24552453
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
 _______________________________________________
 linux-amlogic mailing list
