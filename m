@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B72460A2602
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Nov 2026 15:30:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F82F606A324
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Nov 2026 15:34:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KC4HL2lY;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.a=rsa-sha256 header.s=courrier-s1 header.b=Nj6zi7Fo
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yDFQVxCK;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.a=rsa-sha256 header.s=courrier-s1 header.b=KnTib98g
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -14,48 +14,56 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ZUvrFn2A1kwqfiUiIXNtR+jqMDR529Zc493Hlsl4iHA=; b=KC4HL2lY0bu5q1jdSKwlK4O5Cj
-	Fm962OWsLAAaRSpNCrVSFrczvEKHEMbzFg+3So4ZKNBJsEChb8V3k2jl4UFlVe7tNxSpH2uC1Kbv/
-	YChv6Ok8Gtha/QBR2AcMuwBZRz3hLuXpxsjWeNim78o3w6L+a+0E1zlXgM6opurBLXGQ5qe67W7bS
-	Tl9OumGh+V30XVLWDZTMLpWhZCVHWq+IHVWSat8DH7y77/aYRs6QMZofQmjhqJKofE75CsCf7sONS
-	dCz+sHtKc2GkoYNjz8CthjO6mIxtBEZqPnRtNoUHdk0X7FkW7Utdpb5E7Oe2zL0GL2lxbrrkWrCDy
-	lWTA/9Tg==;
+	bh=w1qrzoBCOcs3OjIkU5dyiT3gSTJDVLa2UarTCwHSbfU=; b=yDFQVxCKkZpxNSIAJFz7NfuAD3
+	gnac9X0gitoEF0zC+0To7nQrWTHhReG+zXXi43lAGhvaGmQLq0YJ+QD7bIoix/iKPs1Wc0u2WUduw
+	ZOPgS40ma62xKa7seYVMwk7rXAcMclkdRBnDjQyQdaYjbG9Vb7mat7VQQGPkP+2AGNKCmLiGRyynX
+	t19nKchcnPQsm0FuaH9BqB38nftEZo0GUgYAsLWixGbbv5V3h53SfPTLKi5DxMB6OA2w72UEjMZ3w
+	v39BwdBeO4+cyeQyl2Ry5YY5F6KRW79xhK1qX0crPiWvgEgBr2wu1UbL3Zd77aedaCDy2xGUPDTEt
+	cCdH/TOw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU460-0000000CSof-0sB4;
-	Thu, 19 Nov 2026 15:30:44 +0000
-Received: from courrier.aliel.fr ([65.21.61.41])
+	id 1xU49G-0000000CTwD-1ikT;
+	Thu, 19 Nov 2026 15:34:06 +0000
+Received: from courrier.aliel.fr ([2a01:4f9:c011:1c83::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xU45u-0000000CSjM-3AnJ;
-	Thu, 19 Nov 2026 15:30:43 +0000
-Message-ID: <ec9c8460-a8de-460e-92bb-dc03240152bb@aliel.fr>
+	id 1xU49D-0000000CTv7-3aLE;
+	Thu, 19 Nov 2026 15:34:05 +0000
+Message-ID: <8dc67b9e-3c83-4149-ada5-86675c4d2dc2@aliel.fr>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1795102234;
-	bh=3cxvdL4KfFwcHXkWK7rQriyomVokMs5MeD2OaggeClQ=;
+	s=courrier-s1; t=1795102437;
+	bh=wpMLumcitgieg7hRcQXz7Vzp64VudourAIROoFR57dc=;
 	h=Date:From:Subject:To:Cc:References:In-Reply-To;
-	b=Nj6zi7Fo0ca5Ps9aUATozF/jxT6gCv+7SS7P/dwLIZlh4hIVjAk7MXSsgA7JbBLy7
-	 lf+mFz55owqBoYAWIJldfRz0SSqxgdM6lEpUk0rQzL+74rNH31mts30Mc31SPIGjA+
-	 FTOPuTK24MLzcb6ip2CCC7ddL/fChzsbgAjliXNI=
-Date: Thu, 19 Nov 2026 16:30:02 +0100
+	b=KnTib98gZlovMirVwATCatAsBtP2DNRnDFKysRiVCegJuFOC87OHIPabVkcAPIbm7
+	 /fD1M9YTofAMuc/Za9WUQT1UrBnvs+gIPWJ+njLqEBMk2ia8rD+QYHawQvvXTh9kCN
+	 FFH8d7wCA8lXUrcRNXkEIAYvdDFCF/aQ4AGIruDg=
+Date: Thu, 19 Nov 2026 16:33:56 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Subject: Re: [PATCH 06/10] drm/meson: dw-hdmi: Drop manual HHI clock and
- memory PD setup
-To: sashiko-reviews@lists.linux.dev
-Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+From: linux-kernel-dev@aliel.fr
+Subject: Re: [PATCH 00/10] phy/drm: amlogic: Extract Meson HDMI TX PHY into a
+ dedicated driver
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
  linux-phy@lists.infradead.org, dri-devel@lists.freedesktop.org,
- robh@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org,
- vkoul@kernel.org, olteanv@gmail.com
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Vinod Koul <vkoul@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
 References: <20261117-meson-drm-create-hdmitx-phy-v1-0-9e0ac931381c@aliel.fr>
- <20261117-meson-drm-create-hdmitx-phy-v1-6-9e0ac931381c@aliel.fr>
- <sashiko-outbox-219570@kernel.org>
+ <51831581-525f-418c-86ea-3b5c6a80709b@linaro.org>
+ <bb027d3b-6a43-4dd3-9771-3448c86996b5@aliel.fr>
+ <04447713-32bb-46ff-8dd9-ba00bce186db@linaro.org>
 Content-Language: en-US
-In-Reply-To: <sashiko-outbox-219570@kernel.org>
+In-Reply-To: <04447713-32bb-46ff-8dd9-ba00bce186db@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_073039_262413_4A12CE00 
-X-CRM114-Status: GOOD (  21.00  )
+X-CRM114-CacheID: sfid-20261119_073404_496151_8CB63009 
+X-CRM114-Status: GOOD (  25.20  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -66,124 +74,125 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/17/26 21:11, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential
-> issue to consider:
-> - [High] drm/meson: dw-hdmi: skipped HDMITX mem PD power-up in
->   meson_dw_hdmi_init()
-> --
-> 
-> commit c8e782099f758bf635402705a20f57d7df9682a7
-> Author: Ronald Claveau <linux-kernel-dev@aliel.fr>
-> 
-> drm/meson: dw-hdmi: Drop manual HHI clock and memory PD setup
-> 
-> This commit removes the direct HHI_HDMI_CLK_CNTL and HHI_MEM_PD_REG0
-> register writes in meson_dw_hdmi_init() and takes a runtime PM reference
-> in meson_dw_hdmi_probe() to power on the VPU power domain.
-> 
->> diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
->> index eb33c70f29c31..20a821936b3af 100644
->> --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
->> +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> [ ... ]
->> @@ -599,12 +598,6 @@ static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
->>  {
->>  	struct meson_drm *priv = meson_dw_hdmi->priv;
->>  
->> -	/* Enable clocks */
->> -	regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL, 0xffff, 0x100);
->> -
->> -	/* Bring HDMITX MEM output of power down */
->> -	regmap_update_bits(priv->hhi, HHI_MEM_PD_REG0, 0xff << 8, 0);
->> -
->>  	/* Reset HDMITX APB & TX & PHY */
->>  	reset_control_reset(meson_dw_hdmi->hdmitx_apb);
->>  	reset_control_reset(meson_dw_hdmi->hdmitx_ctrl);
->> @@ -829,9 +822,29 @@ static int __maybe_unused meson_dw_hdmi_pm_resume(struct device *dev)
->>  	return 0;
->>  }
->>  
->> +static void meson_dw_hdmi_pm_put(void *dev)
->> +{
->> +	pm_runtime_put_sync(dev);
->> +}
->> +
->>  static int meson_dw_hdmi_probe(struct platform_device *pdev)
->>  {
->> -	return component_add(&pdev->dev, &meson_dw_hdmi_ops);
->> +	struct device *dev = &pdev->dev;
->> +	int ret;
->> +
->> +	ret = devm_pm_runtime_enable(dev);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = pm_runtime_resume_and_get(dev);
->> +	if (ret)
->> +		return dev_err_probe(dev, ret, "Failed to power on HDMI TX\n");
-> 
-> [Severity: High]
-> Can dropping the HHI_MEM_PD_REG0 write leave the HDMITX memory powered
-> down when the bootloader turns on the top-level VPU domain without
-> enabling HDMI?
-> 
-> In the VPU power domain driver, pwrc_ee_is_powered_off() only checks the
-> top-level AO sleep bit and does not check HHI_MEM_PD_REG0[15:8].  When
-> the top-level VPU domain is already powered on at boot,
-> meson_ee_pwrc_init_domain() registers the genpd as already on without
-> calling meson_ee_pwrc_on():
-> 
-> drivers/pmdomain/amlogic/meson-ee-pwrc.c:meson_ee_pwrc_init_domain() {
-> 	...
-> 	if (dom->num_clks && dom->desc.is_powered_off && !dom->desc.is_powered_off(dom)) {
-> 		ret = clk_bulk_prepare_enable(dom->num_clks, dom->clks);
-> 		if (ret)
-> 			return ret;
-> 
-> 		dom->base.flags = GENPD_FLAG_ALWAYS_ON;
-> 		ret = pm_genpd_init(&dom->base, NULL, false);
-> 		if (ret)
-> 			return ret;
-> 	}
-> 	...
-> }
-> 
-> Because the genpd is initialized in the ON state with
-> GENPD_FLAG_ALWAYS_ON, pm_runtime_resume_and_get() is a no-op and
-> meson_ee_pwrc_on() never runs to clear HHI_MEM_PD_REG0[15:8], leaving
-> HDMITX memory powered down when meson_dw_hdmi_init() and dw_hdmi_probe()
-> access the controller.
-> 
-
-I will add a new patch with a function to release the memories power off
-bits in v2.
-
-> In addition, power-domains and assigned-clocks are optional in the
-> amlogic,meson-dw-hdmi binding and were only added to in-tree DTs in
-> v6.11, so dropping the HHI_HDMI_CLK_CNTL and HHI_MEM_PD_REG0 writes also
-> regresses older DTBs (where meson_vclk_set() only configures
-> HHI_HDMI_CLK_CNTL later at atomic_enable time) and builds with CONFIG_PM
-> disabled.
-> 
-
-I will add a depends on PM in v2.
-
--- 
-Best regards,
-Ronald
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMTEvMTkvMjYgMDg6NTgsIE5laWwgQXJtc3Ryb25nIHdyb3RlOgo+IE9uIDExLzE4LzI2IDIw
+OjM1LCBsaW51eC1rZXJuZWwtZGV2QGFsaWVsLmZyIHdyb3RlOgo+PiBPbiAxMS8xOC8yNiAxMzoz
+OCwgTmVpbCBBcm1zdHJvbmcgd3JvdGU6Cj4+PiBIaSwKPj4+Cj4+PiBPbiAxMS8xNy8yNiAyMDoz
+MywgUm9uYWxkIENsYXZlYXUgdmlhIEI0IFJlbGF5IHdyb3RlOgo+Pj4+IFRoaXMgc2VyaWVzIG1v
+dmVzIHRoZSBBbWxvZ2ljIE1lc29uIEhETUkgVFggUEhZIGhhbmRsaW5nIChjb3ZlcmluZwo+Pj4+
+IEdYQkIsCj4+Pj4gR1hMLCBHWE0sIGFuZCBHMTJBIFNvQ3MpIG91dCBvZiB0aGUgbWVzb25fZHdf
+aGRtaSBEUk0gZHJpdmVyIGFuZCBpbnRvIGEKPj4+PiBkZWRpY2F0ZWQgZ2VuZXJpYyBQSFkgZHJp
+dmVyLgo+Pj4+Cj4+Pj4gVW50aWwgbm93LCBtZXNvbl9kd19oZG1pIGRpcmVjdGx5IG1hbmlwdWxh
+dGVkIHRoZSBISEkgc3lzdGVtIGNvbnRyb2xsZXIKPj4+PiByZWdpc3RlcnMgKEhISV9IRE1JX1BI
+WV9DTlRMMC4uNSkgdG8gY29uZmlndXJlIGFuYWxvZyBwYXJhbWV0ZXJzLAo+Pj4+IHRvZ2dsZQo+
+Pj4+IHJlc2V0cywgYW5kIG1hbmFnZSBwb3dlciBzdGF0ZXMsIGFzIHdlbGwgYXMgbWFudWFsbHkg
+dW5nYXRpbmcgSERNSQo+Pj4+IGNsb2NrcyBhbmQgcG93ZXIgZG9tYWlucyBhbHJlYWR5IGRlc2Ny
+aWJlZCBpbiB0aGUgRFQuCj4+Pj4KPj4+PiBCeSBleHRyYWN0aW5nIHRoaXMgbG9naWMgaW50byBh
+IHN0YW5kYWxvbmUgUEhZIGRyaXZlciB1bmRlcgo+Pj4+IGRyaXZlcnMvcGh5L2FtbG9naWMvOgo+
+Pj4+IC0gSGFyZHdhcmUgcmVwcmVzZW50YXRpb24gaW4gdGhlIERUIGlzIGNsZWFuZXIsIG1vZGVs
+aW5nIHRoZSBIRE1JIFRYCj4+Pj4gUEhZCj4+Pj4gwqDCoMKgIGFzIGEgY2hpbGQgbm9kZSBvZiB0
+aGUgSEhJIHN5c2NvbiByZWZlcmVuY2VkIHZpYSBzdGFuZGFyZCAicGh5cyIKPj4+PiBhbmQKPj4+
+PiDCoMKgwqAgInBoeS1uYW1lcyIgcHJvcGVydGllcy4KPj4+PiAtIFRoZSBEUk0gYnJpZGdlIGRy
+aXZlciByZWxpZXMgb24gdGhlIHN0YW5kYXJkIGdlbmVyaWMgUEhZIEFQSQo+Pj4+IMKgwqDCoCAo
+cGh5X2luaXQsIHBoeV9jb25maWd1cmUsIHBoeV9wb3dlcl9vbi9vZmYsIHBoeV9leGl0KSByYXRo
+ZXIgdGhhbgo+Pj4+IMKgwqDCoCB0b3VjaGluZyBzeXNjb24gcmVnaXN0ZXJzIGRpcmVjdGx5Lgo+
+Pj4+IC0gTGVnYWN5IERUcyBsYWNraW5nIHRoZSAicGh5cyIgcHJvcGVydHkgcmVtYWluIHN1cHBv
+cnRlZCB2aWEgYQo+Pj4+IMKgwqDCoCB0ZW1wb3JhcnkgZmFsbGJhY2sgaGVscGVyIChtZXNvbl9o
+ZG1pX3BoeV9jcmVhdGVfbGVnYWN5KSB0bwo+Pj4+IHByZXNlcnZlCj4+Pj4gwqDCoMKgIGJhY2t3
+YXJkIGNvbXBhdGliaWxpdHkgdG8gYmUgcmVtb3ZlZCBvbiBuZXh0IHBoYXNlIG9mIGNvbXBvbmVu
+dAo+Pj4+IMKgwqDCoCByZW1vdmFsLgo+Pj4+Cj4+Pj4gT3ZlcnZpZXcgb2YgdGhlIHNlcmllczoK
+Pj4+PiAtIFBhdGNoZXMgMS0zOiBGaXggY29tcGF0aWJsZSBtYXRjaGluZyBpbiBtZXNvbi1neC1o
+aGktc3lzY3RybAo+Pj4+IGJpbmRpbmdzLAo+Pj4+IMKgwqDCoCBhZGQgdGhlIG5ldyBhbWxvZ2lj
+LG1lc29uLWhkbWktdHgtcGh5IERUIHNjaGVtYSwgYW5kIGFsbG93IHRoZQo+Pj4+IMKgwqDCoCAi
+aGRtaS1waHkiIGNoaWxkIG5vZGUgdW5kZXIgdGhlIEhISSBzeXNjb24uCj4+Pj4gLSBQYXRjaCA0
+OiBBZGQgdGhlIG5ldyBNZXNvbiBIRE1JIFRYIFBIWSBkcml2ZXIgaW1wbGVtZW50aW5nIHRoZSBI
+RE1JCj4+Pj4gwqDCoMKgIFBIWSBjb25maWd1cmF0aW9uIG9wcywgYWxvbmcgd2l0aCB0aGUgdGVt
+cG9yYXJ5IGxlZ2FjeSBjcmVhdGlvbgo+Pj4+IMKgwqDCoCBoZWxwZXIuCj4+Pj4gLSBQYXRjaCA1
+OiBEb2N1bWVudCB0aGUgb3B0aW9uYWwgInBoeXMiIGFuZCAicGh5LW5hbWVzIiBwcm9wZXJ0aWVz
+IGluCj4+Pj4gwqDCoMKgIHRoZSBhbWxvZ2ljLG1lc29uLWR3LWhkbWkgYmluZGluZy4KPj4+PiAt
+IFBhdGNoZXMgNi03OiBDbGVhbiB1cCBtYW51YWwgSEhJIGNsb2NrL3Bvd2VyLWRvbWFpbiB3cml0
+ZXMgaW4KPj4+PiDCoMKgwqAgbWVzb25fZHdfaGRtaSAocmVseWluZyBvbiBydW50aW1lIFBNIGlu
+c3RlYWQpIGFuZCBjb252ZXJ0IHRoZQo+Pj4+IGRyaXZlcgo+Pj4+IMKgwqDCoCB0byB1c2UgdGhl
+IGdlbmVyaWMgUEhZIGZyYW1ld29yay4KPj4+PiAtIFBhdGNoZXMgOC0xMDogQWRkIHRoZSAiaGRt
+aS1waHkiIGNoaWxkIG5vZGUgYW5kIHdpcmUgdXAgdGhlICJwaHlzIgo+Pj4+IMKgwqDCoCBwaGFu
+ZGxlIGZvciBHMTIsIEdYQkIsIGFuZCBHWEwgRGV2aWNlIFRyZWVzLgo+Pj4+Cj4+Pj4gVGVzdGVk
+IG9uOgo+Pj4+IC0gS2hhZGFzIFZJTTEgKEdYTCkKPj4+PiAtIGR0YnNfY2hlY2sgYW5kIGR0X2Jp
+bmRpbmdfY2hlY2sgcnVuIGNsZWFubHkgd2l0aCBubyBuZXcgd2FybmluZ3MuCj4+Pj4KPj4+PiBT
+aWduZWQtb2ZmLWJ5OiBSb25hbGQgQ2xhdmVhdSA8bGludXgta2VybmVsLWRldkBhbGllbC5mcj4K
+Pj4+PiAtLS0KPj4+PiBSb25hbGQgQ2xhdmVhdSAoMTApOgo+Pj4+IMKgwqDCoMKgwqDCoMKgIGR0
+LWJpbmRpbmdzOiBzb2M6IGFtbG9naWM6IG1lc29uLWd4LWhoaS1zeXNjdHJsOiBGaXggY29tcGF0
+aWJsZQo+Pj4+IG1hdGNoaW5nIGluIGNvbmRpdGlvbmFscwo+Pj4+IMKgwqDCoMKgwqDCoMKgIGR0
+LWJpbmRpbmdzOiBwaHk6IGFtbG9naWM6IEFkZCBNZXNvbiBIRE1JIFRYIFBIWSBiaW5kaW5nCj4+
+Pj4gwqDCoMKgwqDCoMKgwqAgZHQtYmluZGluZ3M6IHNvYzogYW1sb2dpYzogbWVzb24tZ3gtaGhp
+LXN5c2N0cmw6IEFkZCBoZG1pLXBoeQo+Pj4+IGNoaWxkIG5vZGUKPj4+PiDCoMKgwqDCoMKgwqDC
+oCBwaHk6IGFtbG9naWM6IEFkZCBNZXNvbiBIRE1JIFRYIFBIWSBkcml2ZXIKPj4+PiDCoMKgwqDC
+oMKgwqDCoCBkdC1iaW5kaW5nczogZGlzcGxheTogYW1sb2dpYyxtZXNvbi1kdy1oZG1pOiBBZGQg
+cGh5cyBhbmQgcGh5LQo+Pj4+IG5hbWVzCj4+Pj4gwqDCoMKgwqDCoMKgwqAgZHJtL21lc29uOiBk
+dy1oZG1pOiBEcm9wIG1hbnVhbCBISEkgY2xvY2sgYW5kIG1lbW9yeSBQRCBzZXR1cAo+Pj4+IMKg
+wqDCoMKgwqDCoMKgIGRybS9tZXNvbjogZHctaGRtaTogVXNlIHRoZSBnZW5lcmljIFBIWSBmcmFt
+ZXdvcmsgZm9yIHRoZSBIRE1JCj4+Pj4gVFggUEhZCj4+Pj4gwqDCoMKgwqDCoMKgwqAgYXJtNjQ6
+IGR0czogYW1sb2dpYzogQWRkIEhETUkgVFggUEhZIG5vZGUgZm9yIEcxMgo+Pj4+IMKgwqDCoMKg
+wqDCoMKgIGFybTY0OiBkdHM6IGFtbG9naWM6IEFkZCBIRE1JIFRYIFBIWSBub2RlIGZvciBHWEJC
+Cj4+Pj4gwqDCoMKgwqDCoMKgwqAgYXJtNjQ6IGR0czogYW1sb2dpYzogQWRkIEhETUkgVFggUEhZ
+IG5vZGUgZm9yIEdYTAo+Pj4+Cj4+Pj4gwqDCoCAuLi4vYmluZGluZ3MvZGlzcGxheS9hbWxvZ2lj
+LG1lc29uLWR3LWhkbWkueWFtbMKgwqDCoCB8wqDCoCA4ICsKPj4+PiDCoMKgIC4uLi9iaW5kaW5n
+cy9waHkvYW1sb2dpYyxtZXNvbi1oZG1pLXR4LXBoeS55YW1swqDCoMKgIHzCoCAzMyArKysKPj4+
+PiDCoMKgIC4uLi9zb2MvYW1sb2dpYy9hbWxvZ2ljLG1lc29uLWd4LWhoaS1zeXNjdHJsLnlhbWzC
+oCB8wqAgNDMgKystCj4+Pj4gwqDCoCBhcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24t
+ZzEyLWNvbW1vbi5kdHNpwqAgfMKgwqAgNyArCj4+Pj4gwqDCoCBhcmNoL2FybTY0L2Jvb3QvZHRz
+L2FtbG9naWMvbWVzb24tZ3hiYi5kdHNpwqDCoMKgwqDCoMKgwqAgfMKgwqAgNyArCj4+Pj4gwqDC
+oCBhcmNoL2FybTY0L2Jvb3QvZHRzL2FtbG9naWMvbWVzb24tZ3hsLmR0c2nCoMKgwqDCoMKgwqDC
+oMKgIHzCoMKgIDcgKwo+Pj4+IMKgwqAgZHJpdmVycy9ncHUvZHJtL21lc29uL0tjb25maWfCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgwqAgMSArCj4+Pj4gwqDC
+oCBkcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fZHdfaGRtaS5jwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqAgfCAyMDMgKysrKysKPj4+PiArLS0tLS0tLS0KPj4+PiDCoMKgIGRyaXZlcnMvcGh5
+L2FtbG9naWMvS2NvbmZpZ8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgfMKgIDExICsKPj4+PiDCoMKgIGRyaXZlcnMvcGh5L2FtbG9naWMvTWFrZWZpbGXCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqDCoCAxICsKPj4+PiDC
+oMKgIGRyaXZlcnMvcGh5L2FtbG9naWMvcGh5LW1lc29uLWhkbWktdHguY8KgwqDCoMKgwqDCoMKg
+wqDCoMKgwqAgfCAzMDkgKysrKysrKysrKysKPj4+PiArKysrKysrKysrCj4+Pj4gwqDCoCBpbmNs
+dWRlL2xpbnV4L3BoeS9waHktbWVzb24taGRtaS10eC5owqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgfMKgIDE5ICsrCj4+Pj4gwqDCoCAxMiBmaWxlcyBjaGFuZ2VkLCA1MTMgaW5zZXJ0aW9ucygr
+KSwgMTM2IGRlbGV0aW9ucygtKQo+Pj4+IC0tLQo+Pj4+IGJhc2UtY29tbWl0OiA2ZDU4MmQ3OGZh
+ZDlkODI4ZTU3NWNhMGNkY2ZmOGVhNDdhNzcyMjBiCj4+Pj4gY2hhbmdlLWlkOiAyMDI2MTExNS1t
+ZXNvbi1kcm0tY3JlYXRlLWhkbWl0eC1waHktNGFjNDBhNjU0ZDA5Cj4+Pj4KPj4+PiBCZXN0IHJl
+Z2FyZHMsCj4+Pj4gLS3CoAo+Pj4+IFJvbmFsZCBDbGF2ZWF1IDxsaW51eC1rZXJuZWwtZGV2QGFs
+aWVsLmZyPgo+Pj4KPj4+IE92ZXJhbGwgaXQncyB2ZXJ5IGdvb2QsIGJ1dCBJIHdvdWxkJ3ZlIHBy
+ZWZlcmVkIGEgbW9yZSBzZXF1ZW5jaWFsIG1vdmUKPj4+IHRvIHRoZSBQSFkgZHJpdmVyLCB3aXRo
+IGFuIGV4YWN0IGNvcHkgb2YgdGhlIGNvZGUgYW5kIHNpbXBsaWZpY2F0aW9uCj4+PiB0b3dhcmRz
+IHRoZSBjdXJyZW50IFBIWSBjb2RlLgo+Pj4KPj4+IEFueXdheSwgdGhlIHNhc2hpa28gcmV2aWV3
+IGNvbW1lbnRzIGFyZSBnb29kLCBlc3BlY2lhbGx5IHRoZSBvbmUgb24KPj4+IHBhdGNoIDYgdG8g
+a2VlcCB0aGUgZHJpdmVyIHdvcmtpbmcgb24gb2xkIERUcywgc29ycnkgbXkgYmFkLi4uCj4+Pgo+
+Pj4gTmVpbAo+Pgo+PiBUaGFua3MgZm9yIHlvdXIgZmVlZGJhY2ssIEkgYW0gYW5hbHl6aW5nL3Rl
+c3Rpbmcgc2FzaGlrbyBmZWVkYmFjay4KPj4KPj4gQWJvdXQgdGhlIHN1c3BlbmQvcmVzdW1lIHVu
+YmluZC9iaW5kLCBJIGRvIG5vdCBoYXZlIGFueSBpc3N1ZSBvbiBteQo+PiBzaWRlLCBidXQgSSBj
+YW4gY2hhbmdlIHRoZSBvcmRlcnMuCj4+Cj4+IEFib3V0IHBhdGNoIDYgYW5kIHRoZSBvbGQgRFRz
+LCBJIHdpbGwgcmVpbnRyb2R1Y2UgdGhlbSB3aXRoIHRoZSBsZWdhY3kKPj4gY2hlY2suIERvIHlv
+dSBrbm93IHdoYXQgd291bGQgYmUgYSBnb29kIHRpbWVsaW5lIHRvIGFkZCBhIHJlcXVpcmUgb24K
+Pj4gdGhvc2UgZWxlbWVudHMgYW5kIGRyb3AgdGhlIGZhbGxiYWNrIGNvZGUgPwo+Pgo+IAo+IFRo
+ZSBwcm9ibGVtIGlzIG5vdCBuZWNlc3NhcmlseSB0aGUga2VybmVsIERUIGJ1dCB0aGUgVS1Cb290
+IERUIHdoaWNoCj4gY291bGQgYmUgdXNlZCBieSB0aGUga2VybmVsLgo+IAo+IFRoZSBVLUJvb3Qg
+RFQgd2FzIHVzaW5nIHY2LjIgYmVmb3JlIHYyMDI0LjA3IGFuZCBhZnRlciBpdCB1c2VzIHRoZQo+
+IHN5bmNocm9uaXplZAo+IERUIGZyb20gTGludXgsIHdoaWNoIGNvaW5jaWRlcyB3aXRoIHRoZSB2
+Ni4xMSBEVCB3aGljaCBjb250YWlucyB0aGUgRFQKPiBjbG9ja3MKPiBjaGFuZ2VzLgo+IAo+IEl0
+IHNlZW1zIG1vc3Qgb2YgdGhlIFNCQ3MgZGlzdHJvIHVzZXMgcmVjZW50IFUtQm9vdCB2ZXJzaW9u
+cywgYW5kIHNvbWUKPiBuaWNlIGRpc3Rybwo+IHNoaXBzIG9sZGVyIFUtQm9vdCB2ZXJzaW9uLCBz
+byBpdCBjb3VsZCBicmVhayBvbiB0aG9zZSBpZiBhIG5ldyBrZXJuZWwKPiB3YXMgZGVwbG95ZWQu
+Cj4gCj4gQnV0LCBVLUJvb3QgYWxyZWFkeSBzZXQgSEhJX0hETUlfQ0xLX0NOVEwgYW5kIEhISV9N
+RU1fUERfUkVHMCB3aGVuCj4gcHJvYmluZyBkd19oZG1pCj4gc2luY2UgMjAxOS4wNCBzbyBjb25z
+aWRlcmluZyB0aGF0IEkgdGhpbmcgdGhlIHJpc2sgaXMgc3VwZXIgbG93Lgo+IAo+IEFkZCB0aGlz
+IHRvIHlvdXIgY29tbWl0IG1lc3NhZ2UgYW5kIHNlbmQgYSB2Mi4KCkNyeXN0YWwgY2xlYXIsIHdp
+bGwgYWRkIHRoYXQgaW4gdjIuCgotLSAKQmVzdCByZWdhcmRzLApSb25hbGQKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGlu
+ZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5m
+cmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
