@@ -2,114 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8B1F606A320
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Nov 2026 08:11:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E25BC606A338
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Nov 2026 08:15:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jIWzT1Iu;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=XUf4JWzP
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PdP6uQKX;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=mail.zgclab.edu.cn header.i=@mail.zgclab.edu.cn header.a=rsa-sha256 header.s=dkim header.b=jDdk1o2c
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:In-Reply-To:
-	Cc:To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=dvvbuY5gfZ3mqsACAzlbRHzAQPnXctKaJFtdwe4ah40=; b=jIWzT1Iug4BdN6tXGT4WbmFaNG
-	2r9GF/oSjM8DYsAQ826vsKNhk6faqd1B9jbERLN/0b4CFv/FgC+gNgx/pN0vf5TgMQiWnEgdcQ+Ul
-	KMAxsO2DDU2eUUhvHStVB06KkDjYerMEnBEux3QyIu35a5FhWHujwyl3zmtwlYzb1x3MmQWL+mnip
-	ZyNxXxHG2HBN6e4ROXNDnQZ53kfNKO6+zf4N3sF+bBoblsxwKAtHFP/d4EQFWczTK9N/Ar56NYz2l
-	GvN2GICDdR8qeeZyDwKxI4S/hprGYv7KOAB+RlL0pUcrozmC2Ab8EpBkGJauLwlPSf8I5pAgtG7SD
-	n99octqA==;
+	bh=ivZjZfEzFthOox+ikTZSnULFTj2VyyQzC4fYYuDp518=; b=PdP6uQKXUAYrPZsU82eD9YOJzg
+	H48kbbnKML/SOCvYPvGLcoi+P/GXkp+njZNMihMz/TWIohQX2AzMgyuCKj0ACKh66X6yt6PSPAo6e
+	bTsq3Y/LoWJkcoPY6OVcJYqjk9eEJ2a3EKHajAX86KOFVYZGXDGTu1saUXbQvxkeJOgW3rvL2CJS8
+	pqnchIQPRD41dJXQ/o6NDHi1z8Jd9IwNO8TC7Wrt2S7TTEaL7Crnh1R+kE8OLeVGXpTykA7/nq/UR
+	x5ansNg/X1wxnYWdoqy+WxY6WOdnWtm8A18WK6PC74k26Hw/LXjtT21MuMEKQzcHOcf3bOV+Dt1hi
+	vXfDhrtA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTxEl-0000000B9Dn-3iwp;
-	Thu, 19 Nov 2026 08:11:19 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTxEi-0000000B9D3-23Ax
-	for linux-amlogic@lists.infradead.org;
-	Thu, 19 Nov 2026 08:11:18 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4bb68c197c7so27185445e9.1
-        for <linux-amlogic@lists.infradead.org>; Thu, 19 Nov 2026 00:11:15 -0800 (PST)
+	id 1xTxIl-0000000B9kA-1XsL;
+	Thu, 19 Nov 2026 08:15:27 +0000
+Received: from smtp46.tsinghua.edu.cn ([101.6.4.70] helo=tsinghua.edu.cn)
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xTxIc-0000000B9bQ-1Uzt;
+	Thu, 19 Nov 2026 08:15:22 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795075874; x=1795680674; darn=lists.infradead.org;
-        h=message-id:date:references:in-reply-to:cc:to:from:subject
-         :content-transfer-encoding:content-type:mime-version:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=K0w6PkVxkXL/Xi4LQWFqwmMKxwRSK2toKIJ5FNqLRfQ=;
-        b=XUf4JWzPKEWrTSrHPkv5rxCX/Y3yQnlG+w5omuSOEUsh9MI1mit3gV//D1Hs5qpZhI
-         hj9USIoE1pAYQwGVZkfOtH1gGjxXzYmI+aOzUaKPyYTtIjKGPCnq8xo+8biYMlT0ckaB
-         yFTPwikG8JVScjIzQNMiX2kj4NEbIz+M11EQbAdY3t4hNrHlOgpbK7tCV+rAVJPip+kN
-         iputGHLmG0Fk8/vPLlr+TUVzqsnM4ydperySYp/paJpLSWofArKV1kMVDj1933ITc0aO
-         tn6sCGEVJ1+b9fuGe/JOkIDAuItJylcUPUqftzos7ax3jUQzj7ZrTMhcYFHMzEJMp4uU
-         u61g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795075874; x=1795680674;
-        h=message-id:date:references:in-reply-to:cc:to:from:subject
-         :content-transfer-encoding:content-type:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=K0w6PkVxkXL/Xi4LQWFqwmMKxwRSK2toKIJ5FNqLRfQ=;
-        b=zx3PUdmqxphb3XW7qYf7T5LmGdJh0AbDkXmNcoHvKBEOHkUkSqnXB7kKv+0ulb0wR7
-         5P7oyDhR8O0ixKXb2DIWZWbRzjTVnUgq4Vx/t7wDMrbnDrAhnqNAYMJ6aEvnX+gI4RkI
-         8D/EgA4VSAbfk/bQnsjfvZ0eK3uDa4v9EzFMw46UK61rxKI9wCqRwSDTe3cFjTlu5zFw
-         zG991my4ecDljTsH5W8WCB6OKqYZmcycPcox37uij8L2vl5O/hPD7KqXYeeXIAp/YixX
-         NAYNtey1YpM/2eN77dtuv9ekN6P11Ub1qLgdmjb/nkUOuNk+VTgZ2M/ILhJSoWQnp1f4
-         +OXA==
-X-Forwarded-Encrypted: i=1; AL+hErHuUhi0gP0MUWONFotSP0PSVGKPkJCpJ9qDnN0hrytnfjvcRbY5R2ZuwRZuEtbBCNtoMjkk25DFLmMdj7Yy@lists.infradead.org
-X-Gm-Message-State: APuU4Z8zVbsPWY4cFx0qTOA3mxI+5btPZ9BFs0CUKDOiiXPOvn1Zv7yB
-	KgQH6kJ5/i6aX190hVg5tACgby54A3uaP1fvapXP18/ENjPv1eM47e2tv4vyGEEaILM=
-X-Gm-Gg: AYBFou1xyROy59DuebP/h/Slfouqid9Vok0J5y3IKybjaehgyLVZ2j4xHsW/CGhzzbS
-	XseGaTmuNELaKGvPnYzpp2aVamkD7/CJfwqHcvF75VFYP9SQFXk7ymOcsAN/cSZ1B91IABkMu4i
-	sAylWrWC/0Xu3sG2x+rtm1AUMUs+4NP1RrviRRZ00YnAauP/GCz2sQVYE3IXAsEJs6BnVKwSYTf
-	mihtTMoPnpj0Nn3ZNThVMRz7EpujFvEWMpG/R28WitZK0iDReJfD24GIUAof6UApHHXp65QJ8yz
-	H60ZGQMihJR9nl8E+Z45X2x379gsNaW2RRAyJh0WDOFJvEjkLaifH2ran7+KoPdNyMyq4WMEJKI
-	iwVRrRYhtfmwuaEpdn+0EIMS0kayaPetECz1vKtJhEnnFBENZ8ksfT6JOwJ6y3Tf1f+Yrtw2MgA
-	f4oBEv5tkxDNphNRXSZd+MW7No+b9fBOL4YBb+oXv1GQVXlJnAXyJV61dhZFSvkUi8XD1EEjjuq
-	tUyeis8LmQpYj1DV48FcGWIuemEEwZ5iZEE17UzBxaDt15kjVj7EtX+j/jUf3i0aCcNbF+9DZhL
-	iQCG3QytN6eqDCETreu3rLjG7avNnnbKXpfxw/QZj3IYsSBUUp6uUrzOFhzbPIgVIdu+Ag==
-X-Received: by 2002:a05:600c:6095:b0:4a2:c2b:a91b with SMTP id 5b1f17b1804b1-4bb7da03b45mr88477785e9.10.1795075874056;
-        Thu, 19 Nov 2026 00:11:14 -0800 (PST)
-Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb85343607sm21511305e9.6.2026.11.19.00.11.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2026 00:11:13 -0800 (PST)
+	d=mail.zgclab.edu.cn; s=dkim; h=Received:From:To:Cc:Subject:Date:
+	Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding;
+	bh=PfMvdnhdeogIiO1WmdL45eNHWMcCOvoX8KJZ6bMV1Mg=; b=jDdk1o2c0ScQp
+	c0eE/FReFR4+2cFplHU82F5WuKstNL5jgNUE5c4ba7YUuWqEhrdNP7o4jT1z1LuH
+	H0n4Wp1PLcULOdfpTRNldC6RkQZ9FbmTH7e00ksVRTtAJH69mlNdy/dvKrYroeFd
+	i1uUrRpl63rlHz+1VzeBw0esjJFJJ0=
+Received: from 15.eml (unknown [58.206.202.11])
+	by web4 (Coremail) with SMTP id ywQGZQD3swEMsP5q47whAg--.22637S2;
+	Thu, 19 Nov 2026 16:15:08 +0800 (CST)
+From: Wang Haoran <wanghr2026@mail.zgclab.edu.cn>
+To: Thinh.Nguyen@synopsys.com, gregkh@linuxfoundation.org, neil.armstrong@linaro.org, khilman@baylibre.com
+Cc: jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, wanghr2026@mail.zgclab.edu.cn
+Subject: [PATCH] usb: dwc3: meson: g12a: disable vbus on removal
+Date: Thu, 19 Nov 2026 16:15:09 +0800
+Message-ID: <1795076109480-15-f562c8e5@mail.zgclab.edu.cn>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 5/7] clk: amlogic: Add S7 PLL clock controller driver
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Carlo Caione <ccaione@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
- Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jian Hu <jian.hu@amlogic.com>, Chuan Liu <chuan.liu@amlogic.com>, 
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org
-In-Reply-To: <av2kitSLJNxlAKiv@macbook.homenet.telecomitalia.it>
-References: <20261106-upstream-s7-clk-v1-0-7d501d62621f@baylibre.com>
- <20261106-upstream-s7-clk-v1-5-7d501d62621f@baylibre.com>
- <179499607256.413320.18141155995846183804.b4-review@b4>
- <av2kitSLJNxlAKiv@macbook.homenet.telecomitalia.it>
-Date: Thu, 19 Nov 2026 09:11:12 +0100
-Message-Id: <179507587229.639563.16969059581009770947.b4-reply@b4>
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3952; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=S/MfAZNg1Wj0rP92aDgSVxBVGdkD8yDNkTKcT4QFMoE=;
- b=owGbwMvMwCW2VtK+WnvWU3HG02pJDFn/1iu8i1iwfEKNoRkvi4zy/bIXjwRtU6/s8V0fuO3VT
- TWRBxHXO0pZGMS4GGTFFFlquKvF30lqfZk1Xec2zBxWJpAhDFycAjAR7z8M/2t8bt7abX4m7O3v
- 3dPPaMWWVe2yjevLrM38W560U2uPUTzDP7Pci74zz3e+mZJ1qb+nmYnXff7OG779u5Xu/7N/fv3
- 3eT4A
-X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
- fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
+X-CM-TRANSID: ywQGZQD3swEMsP5q47whAg--.22637S2
+X-Coremail-Antispam: 1UD129KBjvdXoWruF18Xr1DurWDJw4DtF4kCrg_yoWkKFgEk3
+	Z8Xr4kAw13AFsrKw17AFySvFWjga48XrW8Zan5tw1fKFy0kr45ZF40vr98Arn8Z3yUuF9r
+	W3yUAFn3Cw4j9jkaLaAFLSUrUUUU8b8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJTRUUUbmkFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
+	A2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j
+	6F4UJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r
+	4UJVWxJr1ln4kS14v26r1Y6r17M2vYz4IE04k24VAvwVAKI4IrM2AIxVAIcxkEcVAq07x2
+	0xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1q6rW5Mc
+	Ij6I8E87Iv67AKxVWxJVW8Jr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JM4x0
+	x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628vn2kIc2xKxwCY1x0262kKe7AKxV
+	WUtVW8ZwCY02Avz4vE14v_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_
+	Gr1l4IxYO2xFxVAFwI0_Jrv_JF1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67
+	AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8I
+	cVAFwI0_Gr0_Xr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4UJVWxJr1lIxAIcVCF04k26c
+	xKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26F4j6r4UJwCI42IY6I8E87Iv6xkF7I0E
+	14v26r4UJVWxJrUvcSsGvfC2KfnxnUUI43ZEXa7VUjtEf5UUUUU==
+X-CM-SenderInfo: pzdqwxbusqjlo62juzldeovvfxof0/1tbiAQMQD2r+rmUDOwAFs-
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_001116_569076_2AE38869 
-X-CRM114-Status: GOOD (  34.85  )
+X-CRM114-CacheID: sfid-20261119_001518_885723_7E4EA50A 
+X-CRM114-Status: UNSURE (   6.37  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -123,111 +82,44 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 2026-11-18 19:51 +0100, Carlo Caione wrote:
-> On Wed, Nov 18, 2026 at 11:01:12 +0100, Jerome Brunet wrote:
-> > > The S7 PLL controller provides the fixed PLL with its fclk dividers,
-> > > the GP0, HIFI0 and HIFI1 PLLs, and the HDMI PLL.
-> > > 
-> > > Add a driver for it. The GP0 and HIFI PLLs are expected to run with
-> > > their input divided by 2 (div0p5) and the HDMI PLL without it, as the
-> > > firmware and the init sequences set them up.
-> > > 
-> > > Signed-off-by: Carlo Caione <ccaione@baylibre.com>> > +
-> 
-> [...]
-> > > +/* The datasheet documents FIXPLL_CTRL1[30:26] as a single fclk_en field */
-> > 
-> > Not sure what this imply ?
-> 
-> It means that each of the five bits enables one divider, while the
-> datasheet only documents the five bits as a single field. I'll reword
-> the comment to say that.
-> 
-> > > +S7_FCLK(fclk_div2, 1, 2, FIXPLL_CTRL1, 30);
-> > > +S7_FCLK(fclk_div3, 1, 3, FIXPLL_CTRL1, 26);
-> > > +S7_FCLK(fclk_div4, 1, 4, FIXPLL_CTRL1, 27);
-> > > +S7_FCLK(fclk_div5, 1, 5, FIXPLL_CTRL1, 28);
-> > > +S7_FCLK(fclk_div7, 1, 7, FIXPLL_CTRL1, 29);
-> > > +S7_FCLK(fclk_div2p5, 2, 5, FIXPLL_CTRL0, 25);
-> > > +
-> > > +static const struct pll_mult_range s7_pll_mult_range = {
-> > > +	.min = 134,
-> > > +	.max = 265,
-> > > +};
-> > > +
-> > > +static const struct reg_sequence s7_gp0_pll_init_regs[] = {
-> > > +	{ .reg = GP0PLL_CTRL0,	.def = 0x02520800 },
-> > > +	{ .reg = GP0PLL_CTRL1,	.def = 0x09900322 },
-> > > +	{ .reg = GP0PLL_CTRL2,	.def = 0x00000000 },
-> > > +	{ .reg = GP0PLL_CTRL3,	.def = 0x00000006 },
-> > > +};
-> > > +
-> > > +static struct clk_fixed_factor s7_gp0_pll_div0p5 = {
-> > > +	.mult = 1,
-> > > +	.div = 2,
-> > > +	.hw.init = &(struct clk_init_data) {
-> > > +		.name = "gp0_pll_div0p5",
-> > > +		.ops = &clk_fixed_factor_ops,
-> > > +		.parent_data = &(const struct clk_parent_data) {
-> > > +			.fw_name = "gp0",
-> > > +		},
-> > > +		.num_parents = 1,
-> > > +	},
-> > 
-> > Is it the good old predivider here ? Shouldn't it be modelled with
-> > a read-only divider rather that a fixed factor ? just in case whatever
-> > came before did not leave things as we first expected ?
-> > 
-> > Applies to the other PLL instances
-> 
-> Nope, not the good old provider, this is separate from N: N is in CTRL0
-> and our init sequence sets it to 1. This is CTRL1[27], div0p5_en.
->
+dwc3_meson_g12a_probe() enables the vbus regulator, but the remove path
+neither disables it nor runs the suspend callback (pm_runtime_disable +
+pm_runtime_set_suspended short-circuits it), so VBUS stays powered after
+the driver is detached. The probe error path already unwinds the regulator,
+so this is simply the missing remove-side counterpart: the USB port keeps
+supplying 5V to an attached device even after the glue driver is unbound.
 
-Humm, still looks very much like it ...
+Disable vbus in the remove path to match probe.
 
-> Now, it was indeed a read-only divider in an earlier (messier and
-> unpublished) version. The problem was that with a cold PLL it could
-> cache the power-on setting (/1) at registration, then the VCO init
-> sequence would enable /2 without updating that cached parent rate
-> basically breaking both rate reporting and set_rate. The fixed factor
-> avoids this mismatch when Linux initializes the PLL.
->
+Signed-off-by: Wang Haoran <wanghr2026@mail.zgclab.edu.cn>
+Fixes: c99993376f72 ("usb: dwc3: Add Amlogic G12A DWC3 glue")
+---
 
-If the divider is part of the VCO init (which I'm not a fan of),
-this makes sense but it needs a comment near the fixed factor to
-explain how this works on the HW, that you are setting this up
-with the VCO init() otherwise it looks like there is an actual fixed
-divider in front of the VCO no matter what.
+diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
+index ca07e813fd64..4d68b50722e7 100644
+--- a/drivers/usb/dwc3/dwc3-meson-g12a.c
++++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
+@@ -847,6 +847,9 @@ static void dwc3_meson_g12a_remove(struct platform_device *pdev)
+ 		phy_exit(priv->phys[i]);
+ 	}
+ 
++	if (priv->vbus)
++		regulator_disable(priv->vbus);
++
+ 	pm_runtime_disable(dev);
+ 	pm_runtime_put_noidle(dev);
+ 	pm_runtime_set_suspended(dev);
 
-> After dropping NOINIT_ENABLED from the HIFI PLLs, the remaining
-> assumption is that an already-running GP0 has div0p5 enabled. That
-> matches the firmware I tested, but the driver does not check it.
->
+---
 
-If a PLL is going to use NOINIT_ENABLED, then a RO divider is the
-required approach because you no longer control the init.
-
-To get the rate right, we could play a little trick but it would need
-a BIG FAT WARNING comment.
-
-Register VCO first - basically re-order the IDs. .init() runs if the PLL is
-disabled or if it does not have NOINIT_ENABLED. At this point you know the
-predivider is set and the VCO orphaned. Then register the RO divider with
-NOCACHE, it should pick up its correct rate.
-
-It is a bit fragile but safer and more correct that the fixed_factor
-approach IMO.
-
--- 
-Jerome
+The vulnerability was found by static analysis.
 
 
 _______________________________________________
