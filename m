@@ -2,68 +2,111 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 838FF606A335
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Nov 2026 03:55:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 737E560A263D
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Nov 2026 04:22:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mdgN1vHF;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.a=rsa-sha256 header.s=korg header.b=hk4HoXWf
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Z9K6zBIV;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=H8Md+S4d
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=KMUiRHCKtsWM30ZzY2uurGBrOCArgZJLDAd82qC2WTc=; b=mdgN1vHFs6hmI3qn3KNhyoBB7v
-	2dpjAPuEChRbF0Q4Wddog2IdC+LUhUIpz3otdazGfBMSL2uLDbgZMFF4nWwHLsZPgEiTKYagJsD2s
-	UI3BQr0c952QUPby5L6yf8s/uRnpckWlGyXzNy/rrlbw4ZVNgj4BqsFziQ/KN8IKmGvBsZL5vP1OA
-	RRPh4LD7DusK3vhEuxSTudl3HKXXKucq1FlYMzeGtcb90+GHMo5mBLlifJF6lf2fOO3BI0C9Xcbu2
-	c+pd9Hyq8ChrLV6jM8w7E4xJGdLMesTDlA0I+CrKoowEvgFN+ShPjRTrWpGGfhMoeR4DCOaJ0vUVE
-	5SfRz8Sw==;
+	bh=08aSYR8A63hkZFprO1iJfHOS9HotqLxZUhi+R6jZNCY=; b=Z9K6zBIVV4lBNz4rD/XpcTt/+4
+	BmTJQevlVjxw50K9tiDkVq6jG+wmBpUxWRvQkonWy3SGWcDmTS9c4m1nEQmwbimLDVuY8UytI5DTh
+	Z9JC+IRVHfl1qoBSHd7bkpw8A48q3opeYIlLzYF1ZUnKCe6ny3OIrwW27Z+YNxo4hDFcwVWyiSC7r
+	rqQdjQgdhxM+waIyvJc4vJA/si9PQ7KnfrHVHPRPL+IxPTeoqjXNeImDv0CxPvKBdKg4iY5BVIVX5
+	/fRepDHBjpExPUM1Igom25rQ2rBNQCBU6lDOszWSkFtr/8yvACQJoXvvlUM72l1pUgaMCNNaid2eH
+	UNrwAq4A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTtF8-0000000AnZq-02RR;
-	Thu, 19 Nov 2026 03:55:26 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xTtfh-0000000Aofm-13Kr;
+	Thu, 19 Nov 2026 04:22:53 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xTtF6-0000000AnZi-1AmR
-	for linux-amlogic@lists.infradead.org;
-	Thu, 19 Nov 2026 03:55:24 +0000
+	id 1xTtff-0000000Aof9-3K5a;
+	Thu, 19 Nov 2026 04:22:51 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 81A1E40F8C;
-	Thu, 19 Nov 2026 03:55:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E67FD1F000C5;
-	Thu, 19 Nov 2026 03:55:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
-	s=korg; t=1795060523;
-	bh=WEt/YL0S6oFg190mD8vgDrEaHyqe24Y1ZZy6luJKlZ0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=hk4HoXWfmCXcQIgoMofTfvC4uO+AzKLP7f/rRNS0G1uxFdyYNFmJIXIxkaYWDTgSf
-	 JAuI9zuycffw8fpD3dyVblVbjhUF03YwXlei2ZJRnJdwa+MFJiDPkJyJDPWAAl3x+C
-	 MUSShllo2eRhmRl1IxOGbMFrbNGiOqq9dSLuMuXw=
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: stable@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	patches@lists.linux.dev,
-	Corentin Labbe <clabbe@baylibre.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S. Miller" <davem@davemloft.net>,
-	linux-crypto@vger.kernel.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Jack Wang <jinpu.wang@ionos.com>,
-	Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 5.10 1228/1848] crypto: amlogic - Fix dma_map_sg error check
-Date: Wed, 18 Nov 2026 15:54:26 +0100
-Message-ID: <20261118150011.316782510@linuxfoundation.org>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261118145911.150052362@linuxfoundation.org>
-References: <20261118145911.150052362@linuxfoundation.org>
-User-Agent: quilt/0.69
-X-stable: review
-X-Patchwork-Hint: ignore
+	by tor.source.kernel.org (Postfix) with ESMTP id 0644E64A3E;
+	Thu, 19 Nov 2026 04:22:51 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795062170;
+	b=hSqV8Td7cBnX5aggYL8jidXDmoQkifnuXf+RCZYrUClLFQk9Dk7njZqi29ELMJoZ7QYg
+	 FfRaXFqOenJDsqGdH3b1vdpPct8z9sSv7EbB0m6AHPPnH6lL2LlK3SsQAkuCMPk9+zUgU
+	 g8tpB/bOGHZdvXUcsT0zu+lFl4asHqUtkL2X5WcHvMCXHDPYcKN1lpuhDzMe37n1yNl9p
+	 KD0FY/e/yyf8M8LzZ6heEXltQEnod5pWDZF/fv8gkmQHVR+j+SBa2K41eUY390Do4yzR1
+	 0aGsqzyUqZpEBhtBH1yKSEh2SpGdd69b9zt1vpp+x89wq0+mJvGrkzp6GVYYxZVfyYQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795062170;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=hOfT/6IE+yXiSnyrTuJj5KzeTLeDeuD5KGuDO9NiLTo=;
+	b=vERX+JxA91i/mo/21MYwuPyuAM+bYv3ndFBM3aTUUvaFxjSudq0d1fV+zfbRDlpwykmJ
+	 MyutyJTX4iPFe1Rew/6ihXlp9xL3b3KdcG0tsfLZIhyovSbizosbS2hZFtUKcNv0Hhz+Q
+	 lXeDtEtHqIN0L3UUt0enjmjGUoIlm1BJktdDCgwwO+5sXmZQup+N29KpLPE/fhtzrXsHi
+	 7DyYdE78873CslSrtBBQ4SaBD36trndct2RXeJ0k7H1zG6dDOGaNUlWe/8CCeRR62ZX1B
+	 7meVcQGKmhcZA/MZrrmgFp1ZO3HpAdiQE9fAwtz3/IkFWk/yMY4D9+esGx5UpzTWO6A==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id A718A1F000C6;
+	Thu, 19 Nov 2026 04:22:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795062170;
+	bh=hOfT/6IE+yXiSnyrTuJj5KzeTLeDeuD5KGuDO9NiLTo=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=H8Md+S4demg9p41U88+RTr5Tw3YBxYQ1bFAO4OCfnqhWuttdYybzTZ5IMnh4ZKFp5
+	 PcVjaVLJ4zh/kKvTQuVC0aiD8X/RLdL/FXdPAPDJqi8crI70vY1kmdrR3sQPWJpVPr
+	 A0Et0oahvnb+abMYWWFsl+ujJtop6DE8YxTYEPM1dTBd9j6ITezIvoKhhNvKPKgx49
+	 hYY4+mKcw9qSoDT/ay9nqb11hHg1eabjYocRAcbrvPM15m/FaggI0tRWsd9gaJCyvN
+	 stEb84zSrpiYdaJhhBhs+tVj7+SE2pAScVucHO5U00LVQ9IITajEMAQQD5q8x6uJ/R
+	 2hFH/vrR5VE9Q==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 24F5B4B0CE;
+	Thu, 19 Nov 2026 04:22:49 +0000 (UTC)
+From: Junyi Zhao via B4 Relay <devnull+junyi.zhao.amlogic.com@kernel.org>
+Date: Thu, 19 Nov 2026 12:22:46 +0800
+Subject: [PATCH v5 1/2] dt-bindings: i3c: silvaco,i3c-master: Add Amlogic
+ A9 support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Message-Id: <20261119-a9_i3c-v5-1-6ec51f8fb59d@amlogic.com>
+References: <20261119-a9_i3c-v5-0-6ec51f8fb59d@amlogic.com>
+In-Reply-To: <20261119-a9_i3c-v5-0-6ec51f8fb59d@amlogic.com>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Miquel Raynal <miquel.raynal@bootlin.com>, Kees Cook <kees@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>
+Cc: linux-i3c@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, imx@lists.linux.dev, 
+ linux-hardening@vger.kernel.org, xianwei.zhao@amlogic.com, 
+ Kelvin.Zhang@amlogic.com, Junyi Zhao <junyi.zhao@amlogic.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795062168; l=3123;
+ i=junyi.zhao@amlogic.com; s=20260924; h=from:subject:message-id;
+ bh=Ic31Gjxqnh4s2EDXW6pNiciBkQWy1/9jndpHbnOW4yg=;
+ b=U24vad6OC2nqL7S8VmpM1fVCastdgiDzxgkGZb+7cAToCkFrSvfKC+guCx2FTg/+uSFVddGCk
+ iXD1AiCvR/iDqxk7KS2P5QdgH2NuPbY03rZRKI3VawX7mrNjHfDDl+H
+X-Developer-Key: i=junyi.zhao@amlogic.com; a=ed25519;
+ pk=hiL5PjGIksGFiWvEx9J3MhQqU/ro6vNbj72NIw4bbvA=
+X-Endpoint-Received: by B4 Relay for junyi.zhao@amlogic.com/20260924 with
+ auth_id=1054
+X-Original-From: Junyi Zhao <junyi.zhao@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,75 +116,114 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: junyi.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DATE_IN_PAST_12_24,
-	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-5.10-stable review patch.  If anyone has any objections, please let me know.
+From: Junyi Zhao <junyi.zhao@amlogic.com>
 
-------------------
+Amlogic A9 SoCs integrate the Silvaco I3C master IP in two domains:
+the EE-domain instance (amlogic,a9-i3c) takes "pclk" and "fast_clk"
+like the NXP integration, while the AO-domain instance
+(amlogic,a9-ao-i3c) lives in the Always-On domain and generates its
+bus clock from a divider inside the controller's own register space,
+so there is no external fast clock and only "pclk" is exposed.
 
-From: Jack Wang <jinpu.wang@ionos.com>
+The two instances differ from the vanilla Silvaco/NXP integrations in
+clock topology and required init, so the driver matches them by
+dedicated compatibles instead of the "silvaco,i3c-master-v1"
+fallback: a fallback would bind the generic driver data, which
+neither programs the fast clock rate nor handles the AO internal
+divider, and the variant would then fail to work.
 
-[ Upstream commit 45fa321e7de604146603e24ee5bf3c0b766efe46 ]
+Add both compatibles to the schema without the fallback, following
+nuvoton,npcm845-i3c, and use per-compatible if/then conditionals to
+enforce the clock counts: two clocks for the EE-domain instance and
+one clock for the AO-domain instance.
 
-dma_map_sg return 0 on error.
-
-Cc: Corentin Labbe <clabbe@baylibre.com>
-Cc: Herbert Xu <herbert@gondor.apana.org.au>
-Cc: "David S. Miller" <davem@davemloft.net>
-Cc: linux-crypto@vger.kernel.org
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
-
-Signed-off-by: Jack Wang <jinpu.wang@ionos.com>
-Signed-off-by: Herbert Xu <herbert@gondor.apana.org.au>
-Stable-dep-of: 6c2373dd818b ("crypto: amlogic - Fix DMA memory leak in cipher error path")
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
 ---
- drivers/crypto/amlogic/amlogic-gxl-cipher.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ .../bindings/i3c/silvaco,i3c-master.yaml           | 26 ++++++++++++++++++++--
+ 1 file changed, 24 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
-index 652e72d030bb0..43f1c6a691bf5 100644
---- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
-+++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
-@@ -177,7 +177,7 @@ static int meson_cipher(struct skcipher_request *areq)
- 	if (areq->src == areq->dst) {
- 		nr_sgs = dma_map_sg(mc->dev, areq->src, sg_nents(areq->src),
- 				    DMA_BIDIRECTIONAL);
--		if (nr_sgs < 0) {
-+		if (!nr_sgs) {
- 			dev_err(mc->dev, "Invalid SG count %d\n", nr_sgs);
- 			err = -EINVAL;
- 			goto theend;
-@@ -186,14 +186,14 @@ static int meson_cipher(struct skcipher_request *areq)
- 	} else {
- 		nr_sgs = dma_map_sg(mc->dev, areq->src, sg_nents(areq->src),
- 				    DMA_TO_DEVICE);
--		if (nr_sgs < 0 || nr_sgs > MAXDESC - 3) {
-+		if (!nr_sgs || nr_sgs > MAXDESC - 3) {
- 			dev_err(mc->dev, "Invalid SG count %d\n", nr_sgs);
- 			err = -EINVAL;
- 			goto theend;
- 		}
- 		nr_sgd = dma_map_sg(mc->dev, areq->dst, sg_nents(areq->dst),
- 				    DMA_FROM_DEVICE);
--		if (nr_sgd < 0 || nr_sgd > MAXDESC - 3) {
-+		if (!nr_sgd || nr_sgd > MAXDESC - 3) {
- 			dev_err(mc->dev, "Invalid SG count %d\n", nr_sgd);
- 			err = -EINVAL;
- 			goto theend;
+diff --git a/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml b/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
+index 853092f75..d892d42be 100644
+--- a/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
++++ b/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
+@@ -13,6 +13,8 @@ properties:
+   compatible:
+     oneOf:
+       - enum:
++          - amlogic,a9-i3c
++          - amlogic,a9-ao-i3c
+           - nuvoton,npcm845-i3c
+           - silvaco,i3c-master-v1
+       - items:
+@@ -28,14 +30,14 @@ properties:
+     maxItems: 1
+ 
+   clocks:
+-    minItems: 2
++    minItems: 1
+     items:
+       - description: system clock
+       - description: bus clock
+       - description: other (slower) events clock
+ 
+   clock-names:
+-    minItems: 2
++    minItems: 1
+     items:
+       - const: pclk
+       - const: fast_clk
+@@ -70,15 +72,35 @@ allOf:
+         compatible:
+           contains:
+             enum:
++              - amlogic,a9-i3c
+               - nxp,imx94-i3c
+               - nxp,imx95-i3c
+     then:
+       properties:
+         clocks:
++          minItems: 2
+           maxItems: 2
+         clock-names:
++          minItems: 2
+           maxItems: 2
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - amlogic,a9-ao-i3c
++    then:
++      properties:
++        clocks:
++          maxItems: 1
++          description:
++            The "ao" variant is the controller instance in the Always-On (AO)
++            domain, which has no separate bus clock and derives the
++            bus clock from an internal divider.
++        clock-names:
++          maxItems: 1
++
+ unevaluatedProperties: false
+ 
+ examples:
+
 -- 
-2.53.0
-
+2.42.0
 
 
 
