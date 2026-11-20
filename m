@@ -2,58 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B97B3606A320
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Nov 2026 08:09:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20C53606A32C
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Nov 2026 08:22:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=foenhZ1r
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ihkQvo78;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=GE5c121U
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=F4eomiETFo31yIIjnDerEBgr3S46pxCLVAdOGfttauE=; b=foenhZ1r4ExzLLL9+em5uU4AR9
-	m4LHpkrelWHJ/BHWDNb2WPzc/qxqxIVTFawVHCKsm8Rsa3/1nf76i8Ap4ChvwBV8/R4DDdjivtNpn
-	Cph/DabW09BUa//VBYtuOKcKCYYMSgEia+mLfyZ5+LbiS0Mqs1ify1P27TgZMSBekDTmZdQ2Q+Zcg
-	7NFYsOlw6HQWOLehFpg9Z2BFQGTpxFE1oO9QGYwIka91md9nqZgOwaB/n0jmz92McqHTh3t7yv7LF
-	QWlcDhyNI5BPQY8Hob2I5c0neNuW5EHesfK+USA2a9qq0Znd68iOaKOlfXnZJKa79Ul/dQtQiHeRH
-	3TSK3TKw==;
+	bh=v6W6yIud486hB0JEdWQxpqQHkuP3oVPqkhwzjulZH1s=; b=ihkQvo78oUlNFTMOcJk1tbGLJ8
+	SqEaCnAa0V/C24O7XrRxWCPkrvK9qAoIUiIB5ESoSu/3xdw/278IvBiBNNG32npf2mpXaY2ih3Gjv
+	rzK/JY1ll6PsyoJDNs8SOd7J1yvX3MR+CVf8wxjN+pMqTGevV+qTu3Ngv9ufrKpO2f3ZL8KHg+/ER
+	1IpeRsU99OtoX1We4bGS4izfMIAyaqHhekMvve7rBcZw94iU/h7Phh94gC6khH03ZVkWZ1fdLzaEc
+	Tl8jFQ9DjcbBRHgRkSBeN5GCZPe27nBWnLfsXhbc9WJbWr12GSNqT3vta0FIZMhWtv2xuX8BBzJKZ
+	NEAdwuBg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUJgN-0000000EIeM-1g4p;
-	Fri, 20 Nov 2026 08:09:19 +0000
-Received: from [64.106.246.77] (helo=mailsc.amlogic.com)
+	id 1xUJtI-0000000EK5O-1Jw7;
+	Fri, 20 Nov 2026 08:22:40 +0000
+Received: from mx1.white.stw.pengutronix.de ([185.203.200.13])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUJft-0000000EIRT-1r3l;
-	Fri, 20 Nov 2026 08:08:53 +0000
-Received: from rd03-sz.software.amlogic (10.28.11.121) by mailsc.amlogic.com
- (10.8.11.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Fri, 20 Nov
- 2026 00:08:46 -0800
-From: zelong dong <zelong.dong@amlogic.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
-	<khilman@baylibre.com>, Rob Herring <robh@kernel.org>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-can@vger.kernel.org>, Zelong Dong <zelong.dong@amlogic.com>
-Subject: [PATCH 3/3] arm64: dts: amlogic: a9: add CAN controller node
-Date: Fri, 20 Nov 2026 16:08:20 +0800
-Message-ID: <20261120080820.3340646-4-zelong.dong@amlogic.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20261120080820.3340646-1-zelong.dong@amlogic.com>
+	id 1xUJtE-0000000EK3t-3hXq;
+	Fri, 20 Nov 2026 08:22:39 +0000
+Received: from pengutronix.de (ptz.office.stw.pengutronix.de [IPv6:2a0a:edc0:0:900:1d::77])
+	(Authenticated sender: mkl@pengutronix.de)
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 78CB92017E5;
+	Fri, 20 Nov 2026 09:22:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1795162952;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Y/5uQGxEblP1QNa5FQUl4azsIJFSa7HqVTp4kxYVMp8=;
+	b=GE5c121UHs2n5BSAgKfgB4UAg22dahNMv8gtW8T2J12eMm8NWP4QfMcsA4Z/dd7JIX3c3w
+	kAsaRzKHrTRRyriliRNGceNDflXU6FxTsmig1p3unObLiIix1YolCi3LEBKkhOnzLyyHYH
+	fmvF0zXqTs6c4OGjtL706Si1AUHqRBhIPDXUVc2X6JRUDRnUIb2u69t+ei2OvFKt6ZLn+0
+	UI8EoqDujX0CvFY+2jiLswSoIq4/Ckb+zmSU8svWN7mRAF4lsrzKLpl65XHzbDNruPffnC
+	MJ/w+kRsCwOvGlOzJF9j1caHNV7/qNG+HT4LPB6g+YPhzgPzD3HnA05tuJd8VA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1795162952;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Y/5uQGxEblP1QNa5FQUl4azsIJFSa7HqVTp4kxYVMp8=;
+	b=WtWg6lZX1FCqjke3jm7mml4iR6FqFYZP0OoLInJvvasFfuJD/5Lvq9ITSg3OK3zEmmkI8i
+	cbYBmRgMEuL43mJdx7pczD05NrkJK0oXtOnTjE+xcqMtgD0FsXCXOWp86u582KjoKeXD2t
+	fsnNuOz2Mu4dORhQPpIV4HcRaJuGmHyT5cgk3Dr2/ajUrGdFEpzBkbEg9ZDhRNXKwld/qi
+	Dj5P4TTudFfmm3uw2YRxmbIxqO79ZtQH5k975bkmLVU/VphxHSeuJ9yyfvNu2lk26wAYNY
+	O7QqNtbBlvXlP+GWqieo4J4VYabJ/hh55Wc4SfGkS+H6DGG0+rz/41DIOat4HQ==
+ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1795162952; a=rsa-sha256;
+	cv=none;
+	b=bzTC6V8bGxwSBtKuK9w/OJX7PmSMssI45hU9zRkWP7aFfLVIP0rKU06oktbxd9al9fxcAf
+	qzM+4R9BjYHj2majw+Dq8JXxNyACL8Q3XCU09KSlbfpbCLWs1XUqRdctZMO7bDBszK9kTR
+	tdYAl4aE9ogR62rkZA6/2FNN9jY58ONd3UyS9+1YcB+Yk+AAVyoElD6aBOsJiQjuempAAh
+	/bxSM8KdzTAfNwRVL+GpfwxWJQqyb4G02dFMwu3lQKCrnk3xZPb8N/zvZgA2qOnKZ04o8G
+	+rv5uGFhR4c3tkzKF45T0rGDD0KWOgF90CaSvUvfq9DvwuEz/Xw7iBKG43Gytw==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=mkl@pengutronix.de smtp.mailfrom=mkl@pengutronix.de
+Date: Fri, 20 Nov 2026 09:22:32 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: zelong dong <zelong.dong@amlogic.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh@kernel.org>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Vincent Mailhol <mailhol@kernel.org>, linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-can@vger.kernel.org
+Subject: Re: [PATCH 0/3] can: amlogic: add support for Amlogic A9 CAN-FD
+ controller
+Message-ID: <20261120-positive-strong-rooster-bb80bf-mkl@pengutronix.de>
 References: <20261120080820.3340646-1-zelong.dong@amlogic.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-ClientProxiedBy: mailsh.amlogic.com (10.18.11.5) To mailsc.amlogic.com
- (10.8.11.35)
+In-Reply-To: <20261120080820.3340646-1-zelong.dong@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_000852_127038_5EC19D4A 
-X-CRM114-Status: UNSURE (   7.91  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.1 (-)
+X-CRM114-CacheID: sfid-20261120_002237_075927_5FCBEB7B 
+X-CRM114-Status: GOOD (  12.53  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,90 +92,80 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============3382764346927002987=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Zelong Dong <zelong.dong@amlogic.com>
 
-Add the CAN controller node and its pinmux states to the Amlogic A9
-SoC device tree. Enable the controller on the A311Y3 BY401 board.
+--===============3382764346927002987==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ufvdvwkayadg7w25"
+Content-Disposition: inline
 
-Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
----
- .../dts/amlogic/amlogic-a9-a311y3-by401.dts   |  7 ++++++
- arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi   | 25 +++++++++++++++++++
- 2 files changed, 32 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts b/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts
-index 503e38a29ce6..dffcdd4c35d0 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts
-@@ -136,3 +136,10 @@ &spisg_e {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&spisg_e_pins_z>;
- };
-+
-+&canbus {
-+	pinctrl-0 = <&can0_pins>;
-+	pinctrl-1 = <&can0_pins_sleep>;
-+	pinctrl-names = "default", "sleep";
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
-index 509dd1c37a5d..7c3734c4d23f 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
-@@ -605,6 +605,20 @@ spisg_e_pins_z: group-spisg-e-pins {
- 						drive-strength-microamp = <3000>;
- 					};
- 				};
-+
-+				func-can0 {
-+					can0_pins: group-can0-pins {
-+						pinmux = <AML_PINMUX(AMLOGIC_GPIO_A, 18, 3)>,
-+							 <AML_PINMUX(AMLOGIC_GPIO_A, 19, 3)>;
-+						bias-disable;
-+					};
-+
-+					can0_pins_sleep: group-can0-pins-sleep {
-+						pinmux = <AML_PINMUX(AMLOGIC_GPIO_A, 18, 0)>,
-+							 <AML_PINMUX(AMLOGIC_GPIO_A, 19, 0)>;
-+						input-enable;
-+					};
-+				};
- 			};
- 
- 			spisg_e: spi@50100 {
-@@ -677,6 +691,17 @@ i2c8: i2c@3a4800 {
- 				clocks = <&clkc_periphs CLKID_SYS_I2C_M_I>;
- 				status = "disabled";
- 			};
-+
-+			canbus: can@3a8000 {
-+				compatible = "amlogic,a9-can";
-+				reg = <0x0 0x3a8000 0x0 0x383c>;
-+				interrupts = <GIC_SPI 82 IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&clkc_periphs CLKID_CAN0_PE>,
-+					 <&clkc_periphs CLKID_CAN0_FILTER>;
-+				clock-names = "can_pe", "can_filter";
-+				power-domains = <&pwrc PWRC_A9_CAN0_ID>;
-+				status = "disabled";
-+			};
- 		};
- 
- 		gic: interrupt-controller@ff800000 {
--- 
-2.47.1
+--ufvdvwkayadg7w25
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 0/3] can: amlogic: add support for Amlogic A9 CAN-FD
+ controller
+MIME-Version: 1.0
 
+On 20.11.2026 16:08:17, zelong dong wrote:
+> From: Zelong Dong <zelong.dong@amlogic.com>
+>
+> This series adds support for the CAN-FD controller found on the
+> Amlogic A9 SoC family.
+>
+> The controller supports classic CAN and CAN-FD. The
+> driver uses the generic RX offload infrastructure with hardware
+> timestamps, reports bus errors through the CAN berr counter, and
+> implements suspend/resume support.
+
+Have you had a look at the flexcan driver? The register layout of the IP
+core (and parts of your driver) looks like they were heavily inspired by
+it.
+
+Can you summarize why you require a separate driver?
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--ufvdvwkayadg7w25
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQSl+MghEFFAdY3pYJLMOmT6rpmt0gUCawADRQAKCRDMOmT6rpmt
+0owUAP4yQwL4nDipSaSrhs+obdRM1fx21ITtqamlnevbzqV9ygEAx8vF0wxa8/dG
+vO+cu0wayf87TVvPzR8g6YzWU8+KGAY=
+=gxBT
+-----END PGP SIGNATURE-----
+
+--ufvdvwkayadg7w25--
+
+
+--===============3382764346927002987==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============3382764346927002987==--
+
