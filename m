@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B7C6606A33E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Nov 2026 03:48:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DC41606A325
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Nov 2026 05:53:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dGCcBsO/;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VFnS7eiD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fj0quB9B;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iw0Bqh9w
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
@@ -14,92 +14,93 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=C7wu4aSt/FTtzhqpy4e2JNKyy/1WFERcgKjjrnSUVic=; b=dGCcBsO/vDCE4pwcqCKLlTq0T6
-	7pAUGBMTsiu/GGH2VqMy4EzPmB4vkAkOMMluJgNmWXe8heP+mC9tn22vQ/1uJuQqpggabIPk0SH7W
-	64JAZd6QTRERMF7wYm3jfXjZKJGvyuppI0XGj6H6pSDo0TJWARacak3jewXzy2gZUHfiphcE3fDK3
-	4x0Gex6rIPeO554mH7Wvk5mLuqlkKRCYltYcoqO87FnJpAqtpkgj+5sHwGGsZfzXPUlYLa5p1oh5E
-	hsYzCgmUJH3szE8e1S/kC0r1PocOPzS6V9euMTt4IUvCgTWbTNMKv8xgAXr0FwsORTslPc06CmAOd
-	HpymyKlw==;
+	bh=DwLn9eodcOeKM/aNZ7LCkmpMN9pZLNW7BHRtIsv/KaU=; b=fj0quB9B6JIb1s6ybovurZ2HGh
+	XpX88ud7vUvwWTCU5y1fv8TvNf0mJe44JPXiiorPKZFh+4jNHruioB6QkbAlulkViR3zwnPHyIiNz
+	yO4ERthTzw4XbDYPoLV64Cp5fZwbsBoaap3IEDN8TzDpBOTM5wdDKjlfe3KjelPCtUWFLBXRhCgE6
+	DYVBbw+oC1j75lkXJPYnyavki5lr4Hvh0jsKQF6w+5hOxKcVEspFZhuc9ZN0tyHuDpE+vblgvqpEm
+	yjUFjsB+al2cKNCAWlU+SPHm6FZVhSA6dglN3zuM8ZuOfg8Icsk+ZfLP1/wzMOegclYBRH+o7P7+A
+	PwMpnLkQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUFbU-0000000DzfP-2DpA;
-	Fri, 20 Nov 2026 03:48:00 +0000
+	id 1xUHYv-0000000E6qS-0DOQ;
+	Fri, 20 Nov 2026 05:53:29 +0000
 Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUFbT-0000000DzfE-40ME;
-	Fri, 20 Nov 2026 03:48:00 +0000
+	id 1xUHYt-0000000E6qE-43Bq;
+	Fri, 20 Nov 2026 05:53:28 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1EE916024D;
-	Fri, 20 Nov 2026 03:47:59 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 1A44A60D4C;
+	Fri, 20 Nov 2026 05:53:27 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795146478;
-	b=xTw1Aq8nAMxlAntiEjq99J3tUz6QChOIvQAzUZnnkyoJNGsxtNionoTfWsNARuOor9uY
-	 qCh4rGpif+WSrBOfXux1UpsWRxc9s/R39O9GT5xzPbNR/grdBXkIbxyjR2sLzvT349OxH
-	 mbtngeDn141zbJEgPb1aXEdL4/RyZAY2y0KEp82LMIH0FW199QCibVLW5Ma6ITvUNMMay
-	 vqyX9ZN/1YRKN2k0Ow9AxCalZHyutPN2vrkb2RgcAHwSFKOpjMus0Yi6eTobPRyOdkJ0p
-	 czeiCfCRreH++qTVvD6YXiaEx0Zpe7DJTnmUPEM8/HloR3ucDQGniJHdHmVeoXSBHQA==
+	t=1795154006;
+	b=GGMHMyavf4fMZPselc4WIMbgQHp6NAY6UGC+wEo3CpN+ZrePegbuQE5fYfHpausDum5E
+	 EmUaZ76NWwaj7N28SWnIB0dAvky8OnJLOmvEUrN4mcdi8Rwp2MayqQLD+A1ugo7lZc0fR
+	 YG3MTCBk6zbPJm20BlOwHtHrMoFOVckR5RWozvdeRIW1zegKa9d0eVhtGC6Fm6qezVUrQ
+	 DTHgAi9wI9OyJ0DNMjWgZJEFpANH8guEXIg80OHhi3cY/Vn9y9k3dM8uQgLWA5PioDI1h
+	 OGqpx0rHtXeuQLsr2HLNZVR46UPW/tQrwqIrZ2dbtyPuahB3yJyW0UdvcMEP7z4i/cQ==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795146478;
+	c=relaxed/relaxed; t=1795154006;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:To:Cc:X-Mailer:X-Developer-Signature:
-	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To:
-	 Content-Transfer-Encoding;
-	bh=qdqEqHGVw1OWCXQxDxaongHTpRkboAUMShHg0oRNY2Y=;
-	b=GRtez5BQC4d9BIK1pNzktRGEXzvLy4tRqtg5mh4VG72UPkq0ncdEnXNyFQD5hkvGuNog
-	 3iD1p/ZA8EL/tWx9p/7B1agYKmSJaSy855EN93ksF2KR0eiZJXOdZ7jwIlR995iz/14gr
-	 Ho8PM5USrRppOZIiagapyUOXA7cVZXo4AumwkRkqpSxeqQgUWDTWZZ6cWkcKkmoNg54AV
-	 dMVNWm4OfTnuT+9rzrBXeNbqIBDhM4c3KaiVWQk4pHLQi42NNJCEVhM6HdjVifMbAX9+Q
-	 TMtFFCHX9USp9BRzbGt0azOp+F8DOs86RxmRln8H8UKjbAIoAvU+QjPdL/BRm1IsSIg==
+	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=8acJLKDDuAq49IKqU6CJftqIRFxZoq6oCQgLOqzp0Bg=;
+	b=vlXBCw5qXAsAmYP7N59br6of32YNVRu0tdAmtXyqr6Yo+CLAGYg9lTEdGfe0AGtPaoUj
+	 1EMsLYubS411468xlfi24vbFyEdfzI2TFA2QDllp85WXLI30vbAFnV5oUi/lbl3zzgWcd
+	 UFUPKL2wRci0P1R3x5XbN46b+I5rN5g89Y1EUZYoIZB/MbSIRRa0WAcAqL2zC3eBklb7Z
+	 eHW/jHSJ9dSaI6eJ6KIppzLGFnm48U6VFVmy63Zc9JtLB8p1EQceQgHiQS5GUez8Eg/g6
+	 top6ra0ex7lVIEhNmI7fWuzrSXyrIUIN0QNu6ywKkR1t2/4OPJcQ6yNup5NqZM/u/Og==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 1457B1F000CA;
-	Fri, 20 Nov 2026 03:47:58 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 5852F1F000C4;
+	Fri, 20 Nov 2026 05:53:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795146478;
-	bh=qdqEqHGVw1OWCXQxDxaongHTpRkboAUMShHg0oRNY2Y=;
+	s=k20260515; t=1795154006;
+	bh=8acJLKDDuAq49IKqU6CJftqIRFxZoq6oCQgLOqzp0Bg=;
 	h=From:Date:Subject:To:Cc:Reply-To;
-	b=VFnS7eiDFIvbwn2Z1Nsk1drf4qKmmn+9wdVyfi4tKPO0ardQxnZvFFmZNqMRqwIru
-	 r2cDhie7gcsBYa/rBsiWs1Sd4TSUZCm1lV+YwlFxxXqUr7oq1QLPLbkdOuHgNwuXhN
-	 gJRN56GZ+Zro54SZYZ34BZRQ0yjPjbhCVzSbwlO/cu3AsRsR1uzNg/UBjYlIbL+8UG
-	 jwTuCohlkxquVyFrHE8iN/85BY0ocUScVEqlT1KGFg4t7VR2h4QuhZO6wIRn8THOvo
-	 fdBdoVX1GPt2rJX4514r4kqQCbS5+16hHj4UDtmQ12MIrYpe2fqE6xNCF7fqKYqcJe
-	 QRPR+b9ATn7Xg==
+	b=iw0Bqh9wb8tTOidAb/HlGTBIGtJX44CNzW5JojcVGgFeKn7k5Q+6rY0J89QcWrlYV
+	 1w0b5p9MRswDBhqP4wGFUTwU5LOTtz0QMPpIHo/ou5k4hOKLnfYGNOpgOVj7PtxGJB
+	 QAjo5dZv+yjwJekN6U1Ea0RygS+SfxU6kPNik+7Xh//McOmWnJQZZgCSKwf15Jar7r
+	 HyZiD7p/2lNBK0bOmRGZpPN/qEyWrhytwzCIDdnFpbpPkt0f/7UH4ep6QT7naNoJ3Q
+	 fXaKfcr2W0bw3FRX/RcmyTt3RO6qHv7XOp2MBXuoJjBTdsDsp90eMYez0eWarWCeOr
+	 z6MFRRce4qMKg==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 9DA7A49585;
-	Fri, 20 Nov 2026 03:47:57 +0000 (UTC)
-From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Fri, 20 Nov 2026 05:47:56 +0200
-Subject: [PATCH] pwm: meson: Restore the registers after hibernation
+	by lkml.kernel.org (Postfix) with ESMTP id D93A0496E5;
+	Fri, 20 Nov 2026 05:53:25 +0000 (UTC)
+From: Rong Chen via B4 Relay <devnull+rong.chen.amlogic.com@kernel.org>
+Date: Fri, 20 Nov 2026 13:53:23 +0800
+Subject: [PATCH] mmc: meson-gx: Add reset for Response Mode Error Mask
+ (RMEM)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261120-pwm-meson-hib-v1-1-606e947b2c1f@iav.lv>
-X-B4-Tracking: v=1; b=H4sIAOvC/2oC/x3MQQqAIBBA0avIrBvIgaK6SrTQnHIWmShUEN49a
- fkW/7+QOQlnmNQLiS/JcoYK3ShYvQk7o7hqoJZ6ranFeB94cD4DerFoBjey7cgxGahNTLzJ8//
- mpZQPMlWZmF8AAAA=
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+Message-Id: <20261120-a4_mmc-v1-1-5a84cbcdcace@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAFLg/2oC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzNDQyMD3UST+NzcZN2UFJMkyyRjs+QkAwMloOKCotS0zAqwQdGxtbUAKoW
+ 1klgAAAA=
+X-Change-ID: 20261120-a4_mmc-dd4b9b36cb00
+To: Ulf Hansson <ulfh@kernel.org>, 
  Neil Armstrong <neil.armstrong@linaro.org>, 
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-pwm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+Cc: linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Igor Velkov <iav@iav.lv>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3326; i=iav@iav.lv;
- h=from:subject:message-id;
- bh=JOoyPeCQ7AebKuZzzp2MRiGi9mXQP+9Qpistecz8jTo=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDFn/D705s6n3fvJShpulGrb7l9lk+SrsyFnyslh6fd0x3
- S3p9xcVdpSyMIhxMciKKbJMOKRxK2PJ1b/+HuYPYOawMoEMYeDiFICJCK5g+MOztfBx1UmLo0c3
- FB03X9HL0K4VyWBrlj/BRqLp6EIjZSaG/zX6vZzxqnxf/czXTmNL/BTPxvbw/pq/M27LuSV3NGk
- 1MQAA
-X-Developer-Key: i=iav@iav.lv; a=openpgp;
- fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
-X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
-X-Original-From: Igor Velkov <iav@iav.lv>
+ Rong Chen <rong.chen@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795154005; l=1328;
+ i=rong.chen@amlogic.com; s=20261116; h=from:subject:message-id;
+ bh=ldcBzSWY8qmDPf31J18ds1oMT+JS17QVuWgrGqm9XrQ=;
+ b=vUz2tYdPH+vzuS5s+wTBf+hkZRqWYYUyOdbqg+YHDpmn5FeQ9cDaWszezykoMJ1UlbazSXAHf
+ h8TBoKOe9beBd9UcK2PbvOvH2MvbmouhGCLdFdEwtpaXhSYmstq5V9C
+X-Developer-Key: i=rong.chen@amlogic.com; a=ed25519;
+ pk=vFtPE1jHKfpAuk10u/dq9u25ZzVsUM3t2Sew8vz0YWc=
+X-Endpoint-Received: by B4 Relay for rong.chen@amlogic.com/20261116 with
+ auth_id=1539
+X-Original-From: Rong Chen <rong.chen@amlogic.com>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,7 +110,7 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: iav@iav.lv
+Reply-To: rong.chen@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
@@ -120,107 +121,51 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Igor Velkov <iav@iav.lv>
+From: Rong Chen <rong.chen@amlogic.com>
 
-When a hibernation image is restored after the system was powered off,
-the PWM registers are reset. The channel clocks (mux, divider and gate)
-are fields of REG_MISC_AB, and the clock framework still counts the gate
-as enabled and the rate as set, so none of these fields is written
-again. pwm-fan reconfigures its channel on resume, but that rewrites
-only the counters and the enable bits, not the clock fields, and the
-PWM core skips an unchanged state altogether. On ODROID-HC4 the fan
-stays stopped after the restore.
+For T7 and older SoC families, the RMEM has no effect. Starting from
+the SoC family A4, RMEM acts as an interrupt mask for the device status
+field received in R1/R1b responses.
 
-Save REG_PWM_A, REG_PWM_B and REG_MISC_AB on suspend and write them back
-on resume. pwm_AO_cd, which drives the VDDCPU regulator on this board,
-is restored the same way.
+By setting RMEM to zero, the device status is ignored, thereby
+preventing controller hangs caused by spurious IRQs under specific
+device states.
 
-Tested on ODROID-HC4: after two restores following a power cut, the fan
-follows both manual pwm1 settings and the thermal control.
-
-Signed-off-by: Igor Velkov <iav@iav.lv>
+Signed-off-by: Rong Chen <rong.chen@amlogic.com>
 ---
-Tested on a v7.3.5 based kernel, before the waveform API conversion, which did not change the clock handling relevant here; build-tested on pwm/for-next.
----
- drivers/pwm/pwm-meson.c | 43 +++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
+ drivers/mmc/host/meson-gx-mmc.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index 633b384358c0..c8fec42ae414 100644
---- a/drivers/pwm/pwm-meson.c
-+++ b/drivers/pwm/pwm-meson.c
-@@ -119,6 +119,8 @@ struct meson_pwm {
- 	 * that is shared between the two PWMs.
- 	 */
- 	spinlock_t lock;
-+	u32 saved_pwm[MESON_NUM_PWMS];
-+	u32 saved_misc;
- };
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index 49df33bbd8e5..9d9b00b199b6 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -113,6 +113,7 @@
+ #define SD_EMMC_CMD_RSP1 0x60
+ #define SD_EMMC_CMD_RSP2 0x64
+ #define SD_EMMC_CMD_RSP3 0x68
++#define SD_EMMC_CMD_RMEM 0x150
  
- static inline struct meson_pwm *to_meson_pwm(struct pwm_chip *chip)
-@@ -732,13 +734,54 @@ static int meson_pwm_probe(struct platform_device *pdev)
- 		return dev_err_probe(&pdev->dev, err,
- 				     "failed to register PWM chip\n");
+ #define SD_EMMC_RXD 0x94
+ #define SD_EMMC_TXD 0x94
+@@ -1086,6 +1087,9 @@ static void meson_mmc_cfg_init(struct meson_host *host)
+ 	cfg |= CFG_ERR_ABORT;
  
-+	platform_set_drvdata(pdev, chip);
+ 	writel(cfg, host->regs + SD_EMMC_CFG);
 +
-+	return 0;
-+}
-+
-+/*
-+ * After a power loss the registers are reset, but the PWM core and the clock
-+ * framework keep their state and skip unchanged writes.
-+ */
-+static int meson_pwm_suspend(struct device *dev)
-+{
-+	struct pwm_chip *chip = dev_get_drvdata(dev);
-+	struct meson_pwm *meson = to_meson_pwm(chip);
-+	unsigned int i;
-+
-+	for (i = 0; i < MESON_NUM_PWMS; i++)
-+		meson->saved_pwm[i] = readl(meson->base +
-+					    meson_pwm_per_channel_data[i].reg_offset);
-+	meson->saved_misc = readl(meson->base + REG_MISC_AB);
-+
- 	return 0;
++	/* ignore status in response */
++	writel(0x0, host->regs + SD_EMMC_CMD_RMEM);
  }
  
-+static int meson_pwm_resume(struct device *dev)
-+{
-+	struct pwm_chip *chip = dev_get_drvdata(dev);
-+	struct meson_pwm *meson = to_meson_pwm(chip);
-+	unsigned long flags;
-+	unsigned int i;
-+
-+	spin_lock_irqsave(&meson->lock, flags);
-+	for (i = 0; i < MESON_NUM_PWMS; i++)
-+		writel(meson->saved_pwm[i], meson->base +
-+		       meson_pwm_per_channel_data[i].reg_offset);
-+	writel(meson->saved_misc, meson->base + REG_MISC_AB);
-+	spin_unlock_irqrestore(&meson->lock, flags);
-+
-+	return 0;
-+}
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(meson_pwm_pm_ops, meson_pwm_suspend,
-+				meson_pwm_resume);
-+
- static struct platform_driver meson_pwm_driver = {
- 	.driver = {
- 		.name = "meson-pwm",
- 		.of_match_table = meson_pwm_matches,
-+		.pm = pm_sleep_ptr(&meson_pwm_pm_ops),
- 	},
- 	.probe = meson_pwm_probe,
- };
+ static int meson_mmc_card_busy(struct mmc_host *mmc)
 
 ---
-base-commit: 3f9bd3ccc80af2684cfc0901757f85a78358cbab
-change-id: 20261120-pwm-meson-hib-a8d9eb52de2a
+base-commit: d2616724e01132376c78872b8324f38659af9f28
+change-id: 20261120-a4_mmc-dd4b9b36cb00
 
 Best regards,
 -- 
-Igor Velkov <iav@iav.lv>
+Rong Chen <rong.chen@amlogic.com>
 
 
 
