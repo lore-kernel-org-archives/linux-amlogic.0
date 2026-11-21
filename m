@@ -2,61 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 770CA606A320
-	for <linux-amlogic@archiver.kernel.org>; Sat, 21 Nov 2026 19:10:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0562D606A68B
+	for <linux-amlogic@archiver.kernel.org>; Sat, 21 Nov 2026 19:21:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Q43ddJ3g;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.a=rsa-sha256 header.s=courrier-s1 header.b=RohhYpvv
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=O/ozs2Ip;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bu2qiCQM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=8LDd4qpKPDTM7LBTSYrU93nGm4rNdqImnT2S5GOrSF4=; b=Q43ddJ3gkkqi9WINMWikxNx3jp
-	Jj5ze+OKm/F78gSOKrWuoPmFgqmn3FJYbT8EC9siHb6c7YdfxsjklbXK8qxLKQ0SWQ92uXHuALVS9
-	SzMVkaae3rRF2N0cJC6eXtvNMmsbTqj9dEsHeoxYkDO0oVIwbWd9aY5KNGjfh7d5ReVwz3FOYRgDG
-	PZqzxcnjVR8zyQgZVtUCrga1iyadw11FCRWl5VaaOYgOjCtcscyRSbYS3gOMF/E3C3FzBa/nxvnPx
-	u/B/bDHW/u9OGvmZqcVu7aaJpadz/28aDUVo6iOJJfbV68AC4iEFljmsrd0SgwHonoe74MpXM793D
-	PF6Zv0hQ==;
+	bh=02m2pNMQiedXH6oNgTjPOPTsfTAH/NkvrnLhd8zikrY=; b=O/ozs2IpOyfwYVmHPeJg1uzWy6
+	AvfWTsZj3upS+pKPRdTDBMzGXUnHG5WzmGsepcTXLg4Hjps1LjEjzsUPkt+gvEEcJH+hbxWYyq1hh
+	tuWA0BDN6s10p/rxwKiYP147wNogmB0M535z89Ey8eQmd8bAWGRGpyeY6DVYoyTKQj4nwbNgXA+ju
+	RFMQkKxMSoR7x/SG03gCcu1tnH65xzaOv9VI8ekH9VP6uM9ziFuvyD43hVQn6QeroL4hktVQRLI0F
+	fhDByJBqYwcBOmZivM33zpCjlzudsDnRSLGVB66cOdgNSKOAeK0lsHswSAoZVsP6wKBokrBjPYQ5t
+	45ZAlFlA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUqTe-000000004gi-34EU;
-	Sat, 21 Nov 2026 19:10:26 +0000
-Received: from courrier.aliel.fr ([65.21.61.41])
+	id 1xUqeb-000000005IM-41dK;
+	Sat, 21 Nov 2026 19:21:41 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUqTb-000000004gH-1ytB;
-	Sat, 21 Nov 2026 19:10:21 +0000
-Message-ID: <a2a8fefd-b589-444d-96a4-f679ab5c9946@aliel.fr>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1795288214;
-	bh=8y0heA0u3ZMdaEjr38+zX0yS05Hb8knX6np75X1lRvU=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To;
-	b=RohhYpvv9RadrymbNJo6Qxw+FczCEVwhco12YIXZkMV3lPg5fzO2zo8xhxGf+YPsD
-	 OVUJwSqBXpMk+DJZTvezI3yDG+W4zcaQbOI0m6LaftP/AwT7sjS+HKkUWWsndd05W9
-	 ZPViQuLSAYZQQ4+ajv7Y3Go0Rxh0X778e6B6n5so=
-Date: Sat, 21 Nov 2026 20:10:13 +0100
+	id 1xUqea-000000005HS-40FW;
+	Sat, 21 Nov 2026 19:21:41 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 0B87361448;
+	Sat, 21 Nov 2026 19:21:40 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795288899;
+	b=hkRQjjwfqaITcKXXTCcNyD3CuZKzrXPr8wJvTIKIjDP3gUTgZs/dD2KyklRY9jasA2XA
+	 5BUx8BFcgoCcXrThTvtHGjx9DcC2X4BZSXudVG86SnxqExZslwq94KVT3ymM+oWqP9UhR
+	 nKfoO6iNm9seOBQbD8qbuWhp2p2OqMoQ5H3yLCvazHv61qnxbRH2p4dEERKI3hqtfJROe
+	 ZYoDruhfR7pACI3p8GB1/JpdPqAoBJJI6ML0G9pWMQpI/W8eJxCQ1ozqJdSJ08OgsPQuI
+	 nRIhS2ag0PsCC8mQ+LORNGgh7J3PiA2SHdC6O/5tuBLNZ8q3gUOixyuWGyqV4yXsi7w==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795288899;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=NgtfBGZW6JnOX8QXxkHMy03vg6zeloIYXjLXT43yxao=;
+	b=x6kbJgYgR2u9/OctG1nPvc0uqD0+ZkUJRcWhQn5Pbn7HwjUQ7+n5wxinLNb1Mpr7kolM
+	 rB6ooRK5mnvw5b+YXTPcIXF83wWNW66j7kOBJBluPtvIR0iKi5DLhMf8hSCwPuBtWELg4
+	 KC7Win2+Bcsy1FP1iuVMSrC1E/9eW/4vhDIUOkJr5fzwN/F7HXdwyFYHAcriIcf0gjzQY
+	 ESUcydJ/p6bfbOLqbt9USTm6OCCgrVj9kPjKWvm+kVU1gjvsK9p/+yd3RarorY7X1OA3a
+	 +7c8qMH57Qixu+fyJabY8b+uwd9hdhN1+ZHQqZP5XzXSWXTtmMCSEg8b/num/tlngTQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 1A99A1F000C0;
+	Sat, 21 Nov 2026 19:21:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795288899;
+	bh=NgtfBGZW6JnOX8QXxkHMy03vg6zeloIYXjLXT43yxao=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=bu2qiCQMU1osHOpdUN2on0rAgOTnfShprejvu04fJbqGwFJlFzfbj8nPbmXN7Z/Pp
+	 jPibZooHoMmF3x3b2mTz6Gzwx1LV6agSRsYJF0e/t7icIhubJ34J6DVBLsT4wwbQRv
+	 AUmcKQusTMbQvfKnCl7tqoNK+ETlEGSWf3+UcrOvqB/c0jg6/Wv5tWax0lWZYEldod
+	 ZzjXZudB7icOcceTZJMM6fanLfNKo496ki6yfZw2sIQabXaS7P177K3KNAwEGsjrX/
+	 TAfH7eDjKlW12WIJi9ulBbzlOKSvosvTwqU8uMBPo1+QF3lX+0ATEvu/TGcQgntHxQ
+	 ugVabyE8GSAAw==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 8E5194BD60;
+	Sat, 21 Nov 2026 19:21:38 +0000 (UTC)
+From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
+Date: Sat, 21 Nov 2026 20:21:03 +0100
+Subject: [PATCH v3 01/11] dt-bindings: soc: amlogic: meson-gx-hhi-sysctrl:
+ Fix compatible matching in conditionals
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Subject: Re: [PATCH v2 08/11] drm/meson: dw-hdmi: Use the generic PHY
- framework for the HDMI TX PHY
-To: sashiko-reviews@lists.linux.dev
-Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-phy@lists.infradead.org, dri-devel@lists.freedesktop.org,
- robh@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org,
- vkoul@kernel.org, olteanv@gmail.com
-References: <20261120-meson-drm-create-hdmitx-phy-v2-0-93d622d9bb07@aliel.fr>
- <20261120-meson-drm-create-hdmitx-phy-v2-8-93d622d9bb07@aliel.fr>
- <sashiko-outbox-225914@kernel.org>
-Content-Language: en-US
-In-Reply-To: <sashiko-outbox-225914@kernel.org>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_111020_136834_B55EB479 
-X-CRM114-Status: GOOD (  19.26  )
-X-Spam-Score: -2.1 (--)
+Message-Id: <20261121-meson-drm-create-hdmitx-phy-v3-1-f8f471788076@aliel.fr>
+References: <20261121-meson-drm-create-hdmitx-phy-v3-0-f8f471788076@aliel.fr>
+In-Reply-To: <20261121-meson-drm-create-hdmitx-phy-v3-0-f8f471788076@aliel.fr>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Vinod Koul <vkoul@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Ulf Hansson <ulfh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-phy@lists.infradead.org, dri-devel@lists.freedesktop.org, 
+ Ronald Claveau <linux-kernel-dev@aliel.fr>, linux-pm@vger.kernel.org
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3283;
+ i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
+ bh=PVKFWIK5TVZ+BrIG2D/sPckomoO1CwEMBpgyzjwKon8=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQzbje1XfldbHf9f21s259Mfgxdld5jw8bXvcZQwXbn9Wr
+ FtYe8i8o5SFQYyLQVZMkaV/ruWJd5ePnvm6Rz0FZg4rE8gQBi5OAZhIKzcjwxTtg+futHWkzJzD
+ ePpq54OJN5YubGy58Vv5V+OX56KVLlcZ/sdozeLY5T631v2Zwrbqkk0cV1s65nv+itJRnTu/ffv
+ GbH4A
+X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
+ fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
+X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
+ auth_id=744
+X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -66,137 +117,123 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: linux-kernel-dev@aliel.fr
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/20/26 20:20, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 2 potential
-> issues to consider:
-> - [High] drm/meson: dw-hdmi: missing PHY init in meson_dw_hdmi_init()
->   breaks CEC/ARC
-> - [Medium] drm/meson: dw-hdmi: phy_init() leak on error path in
->   dw_hdmi_phy_init()
-> --
-> 
-> commit 9c4e52bbd305f6371ee6545c479c9a84e6845324
-> Author: Ronald Claveau <linux-kernel-dev@aliel.fr>
-> 
-> drm/meson: dw-hdmi: Use the generic PHY framework for the HDMI TX PHY
-> 
-> This commit converts the Meson DW-HDMI driver from direct HHI register
-> programming to the generic PHY API, with a legacy fallback when the DT
-> node lacks a "phys" property.
-> 
->> diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
->> index 20a821936b3af..1ca1ce6173563 100644
->> --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
->> +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-> [ ... ]
->> @@ -364,10 +276,18 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
->>  	unsigned int wr_clk =
->>  		readl_relaxed(priv->io_base + _REG(VPU_HDMI_SETTING));
->>  	bool mode_is_420 = false;
->> +	unsigned int pixel_clock = mode->clock;
->> +	union phy_configure_opts opts = {};
->> +	int ret;
->>  
->>  	DRM_DEBUG_DRIVER("\"%s\" div%d\n", mode->name,
->>  			 mode->clock > 340000 ? 40 : 10);
->>  
->> +	/* Setup PHY */
->> +	ret = phy_init(dw_hdmi->phy);
->> +	if (ret)
->> +		return ret;
->> +
->>  	if (drm_mode_is_420_only(display, mode) ||
->>  	    (!is_hdmi2_sink && drm_mode_is_420_also(display, mode)) ||
->>  	    dw_hdmi_bus_fmt_is_420(hdmi))
->> @@ -392,19 +312,22 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
->>  	dw_hdmi->data->top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_CNTL, 0x2);
->>  
->>  	/* Setup PHY parameters */
->> -	meson_hdmi_phy_setup_mode(dw_hdmi, mode, mode_is_420);
->> -
->> -	/* Disable clock, fifo, fifo_wr */
->> -	regmap_update_bits(priv->hhi, HHI_HDMI_PHY_CNTL1, 0xf, 0);
->> +	if (mode_is_420)
->> +		pixel_clock /= 2;
->> +	opts.hdmi.tmds_char_rate = (u64)pixel_clock * 1000;
->> +	opts.hdmi.bpc = 8;
->> +	ret = phy_configure(dw_hdmi->phy, &opts);
->> +	if (ret)
->> +		return ret;
->>  
->>  	dw_hdmi_set_high_tmds_clock_ratio(hdmi, display);
->>  
->>  	msleep(100);
->>  
->>  	/* Reset PHY 3 times in a row */
->> -	meson_dw_hdmi_phy_reset(dw_hdmi);
->> -	meson_dw_hdmi_phy_reset(dw_hdmi);
->> -	meson_dw_hdmi_phy_reset(dw_hdmi);
->> +	ret = phy_power_on(dw_hdmi->phy);
->> +	if (ret)
->> +		return ret;
-> 
-> [Severity: Medium]
-> Do the error returns from phy_configure() and phy_power_on() leak a
-> dw_hdmi->phy->init_count reference?
-> 
-> When dw_hdmi_phy_init() fails, dw_hdmi_setup() leaves hdmi->phy.enabled
-> false, so dw_hdmi_poweroff() never calls dw_hdmi_phy_disable() to balance
-> phy_init() with phy_exit().  A non-VIC DMT mode with a pixel clock below
-> 25.175 MHz passes meson_encoder_hdmi_mode_valid() but is rejected with
-> -EINVAL by meson_hdmi_phy_configure() -> meson_hdmi_phy_find_rate(),
-> permanently elevating init_count so subsequent phy_init() calls skip
-> hardware initialization.
-> 
-> [ ... ]
-> 
->> @@ -623,10 +542,6 @@ static void meson_dw_hdmi_init(struct meson_dw_hdmi *meson_dw_hdmi)
->>  	/* Enable normal output to PHY */
->>  	meson_dw_hdmi->data->top_write(meson_dw_hdmi, HDMITX_TOP_BIST_CNTL, BIT(12));
->>  
->> -	/* Setup PHY */
->> -	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL1, meson_dw_hdmi->data->cntl1_init);
->> -	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0, meson_dw_hdmi->data->cntl0_init);
->> -
->>  	/* Enable HDMI-TX Interrupt */
->>  	meson_dw_hdmi->data->top_write(meson_dw_hdmi, HDMITX_TOP_INTR_STAT_CLR,
->>  				       HDMITX_TOP_INTR_CORE);
-> 
-> [Severity: High]
-> Does removing the initial PHY setup from meson_dw_hdmi_init() leave the
-> HDMI TX PHY uninitialized whenever no HDMI video mode is active?
-> 
-> meson_dw_hdmi_init() pulses reset_control_reset(meson_dw_hdmi->hdmitx_phy)
-> at bind and system resume time, while meson_venc_init() zeroes
-> HHI_HDMI_PHY_CNTL0.  Commits 04703bfd7f99 ("drm/meson: dw-hdmi: power up
-> phy on device init") and 08001033121d ("drm/meson: dw-hdmi: add bandgap
-> setting for g12") programmed HHI_HDMI_PHY_CNTL1 and HHI_HDMI_PHY_CNTL0
-> here because CEC and the G12A ARC/eARC utility pin need the PHY
-> initialized even before the first HDMI modeset or when another display
-> interface is used.
-> 
-> With phy_init() deferred to dw_hdmi_phy_init(), which dw_hdmi_setup() only
-> calls when enabling an active HDMI display mode (and which
-> meson_dw_hdmi_pm_resume() -> dw_hdmi_resume() does not call), the PHY
-> stays in its post-reset state at boot and after resume whenever HDMI
-> video is inactive.
-> 
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 
-I will use v1 code and add a device link to solve suspend/resume order.
+The conditional schemas select on "compatible" with a bare enum. On a
+list such as:
+
+  compatible = "amlogic,meson-gx-hhi-sysctrl", "syscon", "simple-mfd";
+
+an enum applied to the whole array only matches single-entry lists, so
+the if: blocks never match as intended and the per-variant constraints
+are not applied reliably.
+
+Wrap the enums in "contains" so that the conditions match on any entry
+of the compatible list.
+
+Doing so exposes the "phy" child node of "amlogic,meson-gx-hhi-sysctrl":
+it was forbidden (phy: false), but some DT legitimately describe an
+"amlogic,g12a-mipi-dphy-analog" PHY node under this system controller,
+which resulted in dtbs_check warnings such as:
+
+  system-controller@0 (amlogic,meson-gx-hhi-sysctrl): False schema does
+  not allow {'compatible': ['amlogic,g12a-mipi-dphy-analog'],
+  '#phy-cells': 0, ...}
+
+Allow the phy child node for amlogic,meson-gx-hhi-sysctrl by referencing
+the amlogic,g12a-mipi-dphy-analog binding instead of rejecting it.
+
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+---
+ .../soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml  | 32 +++++++++++++---------
+ 1 file changed, 19 insertions(+), 13 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
+index f3a85c67ce8a..285edac4c082 100644
+--- a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
++++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
+@@ -40,8 +40,9 @@ allOf:
+   - if:
+       properties:
+         compatible:
+-          enum:
+-            - amlogic,meson-hhi-sysctrl
++          contains:
++            enum:
++              - amlogic,meson-hhi-sysctrl
+     then:
+       properties:
+         clock-controller:
+@@ -53,9 +54,10 @@ allOf:
+   - if:
+       properties:
+         compatible:
+-          enum:
+-            - amlogic,meson-gx-hhi-sysctrl
+-            - amlogic,meson-axg-hhi-sysctrl
++          contains:
++            enum:
++              - amlogic,meson-gx-hhi-sysctrl
++              - amlogic,meson-axg-hhi-sysctrl
+     then:
+       properties:
+         clock-controller:
+@@ -67,9 +69,10 @@ allOf:
+   - if:
+       properties:
+         compatible:
+-          enum:
+-            - amlogic,meson-gx-ao-sysctrl
+-            - amlogic,meson-axg-ao-sysctrl
++          contains:
++            enum:
++              - amlogic,meson-gx-ao-sysctrl
++              - amlogic,meson-axg-ao-sysctrl
+     then:
+       properties:
+         clock-controller:
+@@ -81,17 +84,20 @@ allOf:
+   - if:
+       properties:
+         compatible:
+-          enum:
+-            - amlogic,meson-gx-hhi-sysctrl
++          contains:
++            enum:
++              - amlogic,meson-gx-hhi-sysctrl
+     then:
+       properties:
+-        phy: false
++        phy:
++          $ref: /schemas/phy/amlogic,g12a-mipi-dphy-analog.yaml
+ 
+   - if:
+       properties:
+         compatible:
+-          enum:
+-            - amlogic,meson-axg-hhi-sysctrl
++          contains:
++            enum:
++              - amlogic,meson-axg-hhi-sysctrl
+     then:
+       properties:
+         phy:
 
 -- 
-Best regards,
-Ronald
+2.56.1
+
+
 
 _______________________________________________
 linux-amlogic mailing list
