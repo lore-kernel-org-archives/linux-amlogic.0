@@ -2,82 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56D02606A31E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Nov 2026 08:25:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BE9E606A31E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Nov 2026 09:21:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mAUUjERb;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ogRty5oH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=J0QDcdIy;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=Bu8fXEOZ;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=NAO/oTEq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:MIME-Version
-	:Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Ou9uhUZ4GmevdsfuFYkeJ/EsuTQen9DGkPvKfglVk44=; b=mAUUjERbuHuAC14Z0V6ZxH28ry
-	l1xJBDQ66vRvSilRHd0A9MTRihoJMsce54MgJC211TREJSNxzXD6wIOdgZeetE8YgrwKcRvW/b615
-	ZLva8ItYK1EKfCGxLHZ4JuQxtQTo6qJJ0C/hcTo6v+l07XiQCg2UlsAvKEK/5+eCTEhI//xa2df/c
-	pzaPYjnPtl21HApaK9g+KtdG9zVVeI36/TORQhgCDKEeNh93FQbrmZUphJpn+souiGnTNhYWoX4DQ
-	7QTe/hIPpKxW80aA39yvhTAMl9vj9YR0zsMq/XX+/UxCL9BGJrqjvKktwtQEBjmq7ZgJeb6wxKwFG
-	68X8ZQ2w==;
+	bh=OiZPplx6oseDGacgASbmnwXKDuM3ffxN2V/Q6NsWrrA=; b=J0QDcdIyuCwlGiUReOXtjMs7vK
+	CXAF9qtRx3L/mnE9KxQhVSj4n6SxHkjUdxctwJ0l9B6IXFLOOYVg105nxN9e34xNKb3GGRCCapbIW
+	u5m75OI9QH88wFCPMtl1YVf2YmZMQQjFxg0O1SifEIuDfOLbQpngHkVOtNDh/5LAeKHHBEM7h9GGC
+	ecnPZmwxOtEoSXUMgu3QAxj/Xqu/+7v5VACnapMhQO4OtTIWY9vijyKlhDIoUn5M6yKbxyr6eCPuA
+	yApTSPXuIcxTovKCL45sqyk7igqW2KTPqMV/Bp131h2KT2KvoGdDS7gWnwJPZ8dNbqYFO3ORBWZM5
+	LFUDSZoQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVPMI-00000002Yr6-0RGI;
-	Mon, 23 Nov 2026 08:25:06 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xVQEV-00000002grn-1K6R;
+	Mon, 23 Nov 2026 09:21:07 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVPMG-00000002Yqt-2Vjb;
-	Mon, 23 Nov 2026 08:25:04 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id AD51261865;
-	Mon, 23 Nov 2026 08:25:03 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795422303;
-	b=2BXkzopxQFLzqfYRGc+JAp3eepRK2A8PI3yfFNIyE5blOOaJMF4FSSaDDDNGFBe47H/M
-	 uhfE7IsD66Ro9LemuVBpWvbzuy0LngrhuUklbnfl1enkh++hQamTyQkWis8RE2KcEAbbv
-	 y2n/hPbgUAzs4t18EsS2FvkrkxTG8ljp2QtFZBDZ2/0DXEQwSNSSjiQBT50nRrEXEIvFC
-	 JoO26Qu4eKf5FYFGyvfL9byF4Ye/dlTUHtRfD3HrBgnhATwsnQ7ukimJ64if21dtdSfcy
-	 YgshyUJZbMCRJluCMk9N0SMz7yKgfjCreRi9DklVYSRjffI4LT1onov5pYeMjIG1KaA==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795422303;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:To:Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:
-	 X-Endpoint-Received:X-Original-From:Reply-To:
-	 Content-Transfer-Encoding;
-	bh=eWwZSVnTTdj+etI/fDq4YnbyDy94jcEEPt8yqACsXOY=;
-	b=t1jlKfDqA3FxGNEnGepQ5lFK7+USshMX2+szWT64/q9PFywRhre9jBLHN4bxdACnMwbl
-	 BZoMuGMmUzQ2AtRqJrEc6NIN3nXv1UXQShkQMiA3BO6smb/8qP+dsuAggKmwqqbjebfNC
-	 PDa2m0e79fXMcSUZGv7tf7Yd+f3kRl7jX/YYTOxok4z15q9ixBGx8FKEbCd6m80BYE1+I
-	 uJvy/HQWPCCjlqQI8jVhopLkdCjeyulSSbfA/m8pZlfemm2ZLLU305aI2HMtNz6ng+r8Z
-	 1qLmJFZaN9fKITJ6PeCGDR6R6CRaulsJX85tK14gY121MKN6x7ZhOoyXnXbF2a+qEiA==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 17ACB1F000C6;
-	Mon, 23 Nov 2026 08:24:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795422303;
-	bh=eWwZSVnTTdj+etI/fDq4YnbyDy94jcEEPt8yqACsXOY=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=ogRty5oHHmLAONxMDMouuQ2HjewcC3aF6deTwPDZ6LdkITKQWRs64oeovH/M1TxqX
-	 bRVQsv+xEeSLgyeOAZJB9++tEpg3eae7Qw7yePc+E7uBaGk1aCjNZ5T1h3YMv/IA28
-	 EXNGDFcInSw+90Qqwh8sxelAoYb5ZATb2qLwHLtisry4GEoVCEp6AEyi2sDv60xguu
-	 cZ5UCdWiUZQ5gQkPlnlhCZjYiT/2m8fcmNm2AvXKGEA0Qe8GIfjgO73IujdQQvQpxN
-	 vNmVCjlVfWZaHuhWHWhg3rMgirmc7ScQhBqqBDgdf9k7AekE0K+sHg0BK8lf5tAR4y
-	 RwC9+G8xQQA/w==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 6A7984C3CF;
-	Mon, 23 Nov 2026 08:24:54 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Mon, 23 Nov 2026 08:24:53 +0000
-Subject: [PATCH RESEND] arm64: dts: amlogic: a4: fix pinctrl node
+	id 1xVQEN-00000002gnB-03cE
+	for linux-amlogic@bombadil.infradead.org;
+	Mon, 23 Nov 2026 09:21:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=SlPceQ/NGCnBw4wRJ/5LfNtk5NdmNItuCsSpVWw73H8=; b=Bu8fXEOZhV3R2wDsWextGDGeI9
+	OkQPRNk7A1N64yGHBSVoGRli9WsLYYApAyoEEG+KzN/VilCw/h6lLRhcn3Hn8qMMJl3p5Ml8E04Kr
+	CVJP2FWszP5c3ZlvHvPz+CYSX3vXSZeloS9fW04Xpi4Ezty5RsYy0MbujjF0QoeKq9pKvkWDRRgVY
+	AtbYKnr/oZcLaPgF5Y9l7l3Fy4yKEXYCAWKMXk0sK721H6xfhMSTHlH990If5zQAcLs3fbyd4JVhC
+	sbg7Lm4saFG8rtVCqO3O6Ky/GwoXhIIx2y2wG+mLpXubGk1nMA0BGUnX9OIxjXnbqBW6Ld3ouIUsx
+	z19vXsRg==;
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVQEI-00000002uef-47i1
+	for linux-amlogic@lists.infradead.org;
+	Mon, 23 Nov 2026 09:20:57 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4a210470b49so28531105e9.2
+        for <linux-amlogic@lists.infradead.org>; Mon, 23 Nov 2026 01:20:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1795425653; x=1796030453; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=SlPceQ/NGCnBw4wRJ/5LfNtk5NdmNItuCsSpVWw73H8=;
+        b=NAO/oTEqONKbJk/jSnhihjkV2QAUnIFMMXusnGhuC63VdEcwe0e/A5dOM0pTEqmbSA
+         U47vUY1U7Jqdsk/S0cKTi50NxG/JTBPNr7NfygiJoYfQiB+IxLtnd53G5PFwiCiibQO1
+         C++qV/cjlsAn3WuiEbsJmZFSsNVPtSDCWwpyfMO5anltnXUw98Csku/gzKaQlHWUcd5D
+         Y15XhQw4ckaxGc3QlumOx/yF+4DdWSldtIEz6I18g6K1HEEYVhtB2e5yQX/nhXspwuce
+         q3S/LxWZINQsu7JH2IZBFNLTiWzogIvWo4NPH8iAFgd/KKWRWqCN/kakWHk1Xp74rUhf
+         8+eA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795425653; x=1796030453;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=SlPceQ/NGCnBw4wRJ/5LfNtk5NdmNItuCsSpVWw73H8=;
+        b=pJDfNNzeUMmUBcK1Kc6l5HpYtg/lMmuPJRnXzik3ANPm679lX/ZcD5mwud0F3ptkew
+         q6jk6b/E+gCz+bHzW+tji+l9J8oOYksg9ze6ci0AxaUguTtEFPU8itAmStodmm/WFMYT
+         UvslPxOLm01AqD5zHBN0Tq39OqmgHomBk0VQ6evactw90b+HJG6emiENQ8Un7+JbqclG
+         h36vLd+fdaQJ6Qiq94JyK9PFbsoxumH+8JCfYQRwRX0OpNK6/jix31lvVl1AJaKF8iow
+         tgpipF9DfdzMctuwcyOmCaDbSX0luDw6o/x9WuF1I9fPF2CyX2pyS6LIqSZJo/phkj5A
+         rLFA==
+X-Forwarded-Encrypted: i=1; AL+hErHqUy7+NMncW6txngA3TlU0C5cXTiCj1G52fUoULXljrW+gYgamIz40uYOqJxtPBmN0C82YOS7xuSAL00bU@lists.infradead.org
+X-Gm-Message-State: APuU4Z9T/DtlqwQnszjpklMv1tJ0cABooI8RjlQU56YoTx0jujlx340S
+	6EbKzokNIG0Eh/4NSbd3qaZu1fhdpgW8wbrfFbVWJmpkEKSvMlYGXh23TKsIvKs/jL10RqF7Qir
+	UKDwV
+X-Gm-Gg: AZFdTZc6MF71+eLPNynRB6IzjgAO9iYQshPgZ6Slx1tR4vnbJGe5+CFhZapOPpmCnol
+	K8mp/JWP4GBd2M7MYNNwhpAC8kOu+0NwLHMMiO2sF5w+GQ0o7M+X/WZO3joriItniSRynxnFqEQ
+	Lx9wgVfRmFIEB76bAPfnAuVrpE19u8CqVgMIFJnITvVVyGahhkQOdxwMRFBib9956G1/Y4FGvLU
+	mXdYQYiYwfMU9+AznQiCvzedYr3G5Pb9DDGRoC2NexUZAJM+Car8QxS5geWo30OaAD8Qq02th67
+	s+U+/dCCBY5PAqUbOSfL0rAuTHKKxW3l5Foy1COjYX5KbbVsX0ZwvYP0M2agVLGhsrNGH+LeOb+
+	g03RLexvjkN5p9ZfrVvlhjqzV/iJbLZejLPlatzfnr8DD70qEEPQqHrw4PJKumPik6pwowMe+Ej
+	/eX6c/bGDw3uH5s8XeDWlDd8KD29EZ1i+CmnbYJyBt4v/cLgZHZDKNt9v/aJEHLXDruHqP3Mxw1
+	quKVlEtZZem5yW1+mhe5fZnJECjs3sMpeAYuYd5ln9f+kNAH+lwHQj3VZU1HpNth/SfaTUq5sy9
+	OCLcj4bFaWHboHubXzM3fu3tXj4viWEDIjF5pe9K3LVJRLZymdnq43d7xRAtl3QoMhspFKAVy27
+	rBOiuephyiuoe6+7qyD6KHIzbDSvHWzPRQnoSryAQzWo/6w==
+X-Received: by 2002:a05:600c:190d:b0:4ba:2bfc:c8b5 with SMTP id 5b1f17b1804b1-4bb888267aemr218707705e9.10.1795425652884;
+        Mon, 23 Nov 2026 01:20:52 -0800 (PST)
+Received: from macbook.homenet.telecomitalia.it (host-95-246-144-141.retail.telecomitalia.it. [95.246.144.141])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb884b39b6sm296458505e9.12.2026.11.23.01.20.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2026 01:20:52 -0800 (PST)
+From: Carlo Caione <ccaione@baylibre.com>
+Date: Mon, 23 Nov 2026 10:20:47 +0100
+Subject: [PATCH 3/3] arm64: dts: amlogic: s7: add the peripherals clock
+ controller
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261123-fix-a4-pinctl-node-v1-1-c92b931a1766@amlogic.com>
+Message-Id: <20261123-upstream-s7-clk-dt-v1-3-95f46d67d8b4@baylibre.com>
+References: <20261123-upstream-s7-clk-dt-v1-0-95f46d67d8b4@baylibre.com>
+In-Reply-To: <20261123-upstream-s7-clk-dt-v1-0-95f46d67d8b4@baylibre.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
  Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
@@ -85,18 +108,13 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>
 Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795422293; l=1293;
- i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=F6Np6Gg5OfDL8SOtdbBhRnTvyEqILZTAt6VZ6iphZjU=;
- b=2dxV+0wsY1Ywhc+kDyD+eZvF3rsgbZstTiIl1B/WVrx9YK6YakfBPZQrpFk5WF0T3+IeHAgt1
- 9IA6xRRM3OjDcCrYZYMLqMJTZzDCqnCVhf9KFj6lSByienpTJswTQpr
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
- auth_id=578
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+ Carlo Caione <ccaione@baylibre.com>
+X-Mailer: b4 0.16.0
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_092055_004636_A3A25A47 
+X-CRM114-Status: UNSURE (   8.05  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,7 +124,6 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
@@ -117,49 +134,61 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Add the peripherals clock controller of the Amlogic S7 SoC family.
 
-Fix incorrect pinctrl device reference when adding GPIO to pinctrl device.
-
-Fixes: e9bb91734871 ("arm64: dts: amlogic: a4: add pinctrl node")
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Signed-off-by: Carlo Caione <ccaione@baylibre.com>
 ---
-Fix A4 pinctrl node.
----
- arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi | 34 +++++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-index fce45933fa28..6587e3578f8d 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-@@ -218,7 +218,7 @@ gpioao: gpio@4 {
- 			reg-names = "gpio", "mux";
- 			gpio-controller;
- 			#gpio-cells = <2>;
--			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_AO<<8) 7>;
-+			gpio-ranges = <&ao_pinctrl 0 (AMLOGIC_GPIO_AO<<8) 7>;
- 		};
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi
+index eb123d022bce..5e0cce9149ff 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi
+@@ -162,6 +162,40 @@ apb: bus@fe000000 {
+ 			#size-cells = <2>;
+ 			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
  
- 		test_n: gpio@44 {
-@@ -226,7 +226,7 @@ test_n: gpio@44 {
- 			reg-names = "gpio";
- 			gpio-controller;
- 			#gpio-cells = <2>;
--			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_TEST_N<<8) 1>;
-+			gpio-ranges = <&ao_pinctrl 0 (AMLOGIC_GPIO_TEST_N<<8) 1>;
- 		};
- 	};
- 
++			clkc_periphs: clock-controller@0 {
++				compatible = "amlogic,s7-peripherals-clkc";
++				reg = <0x0 0x0 0x0 0x49c>;
++				#clock-cells = <1>;
++				clocks = <&clkc_pll CLKID_FCLK_DIV2>,
++					 <&clkc_pll CLKID_FCLK_DIV2P5>,
++					 <&clkc_pll CLKID_FCLK_DIV3>,
++					 <&clkc_pll CLKID_FCLK_DIV4>,
++					 <&clkc_pll CLKID_FCLK_DIV5>,
++					 <&clkc_pll CLKID_FCLK_DIV7>,
++					 <&clkc_pll CLKID_HIFI0_PLL>,
++					 <&clkc_pll CLKID_GP0_PLL>,
++					 <&clkc_pll CLKID_HIFI1_PLL>,
++					 <&scmi_clk CLKID_GP1_PLL>,
++					 <&clkc_pll CLKID_HDMI_PLL>,
++					 <&clkc_pll CLKID_HDMI_PLL_PIX>,
++					 <&xtal>,
++					 <&scmi_clk CLKID_ACLKM>;
++				clock-names = "fclk_div2",
++					      "fclk_div2p5",
++					      "fclk_div3",
++					      "fclk_div4",
++					      "fclk_div5",
++					      "fclk_div7",
++					      "hifi0_pll",
++					      "gp0_pll",
++					      "hifi1_pll",
++					      "gp1_pll",
++					      "hdmi_pll",
++					      "vid_pix",
++					      "xtal",
++					      "axi_frcpu";
++			};
++
+ 			clkc_pll: clock-controller@8000 {
+ 				compatible = "amlogic,s7-pll-clkc";
+ 				reg = <0x0 0x8000 0x0 0x1e8>;
 
----
-base-commit: e3194dfb772304a1b7ca3bcfccacefec3468b7bf
-change-id: 20260128-fix-a4-pinctl-node-6d7f9c29b32a
-
-Best regards,
 -- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
-
+2.56.1
 
 
 _______________________________________________
