@@ -2,130 +2,118 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD6EE606A326
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Nov 2026 16:12:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC0C6606A31E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Nov 2026 20:45:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=shcTPQrj;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=UdocUu54
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jIOqvyz6;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.a=rsa-sha256 header.s=20260707 header.b=R90t7onI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=xsj8cdTAKgFkErcLnLPGjFlE6z88o5nvaS50RxcLP84=; b=shcTPQrj7D+4eW2d2x+uPEjBFT
-	ht8B9rFqvq5KN5MwCGOoG6QT9EcQKAAyaK3B9IH5DKjfn3K+I7qElFb3+VCj2CJ5y4t5K7I2Huijy
-	TRP7ntf1A81iem7RTXI82PDdUkmo/fw9Zyi7+Vvvwv4YLRK/3f12a6C42g53Et8AqHFInxYSNV5mt
-	60foIC1cHQFL7n8z+gNoNTXhTNc5hDKWBEjDBFshGOUIlVefchywNe4qIeKVj62lZMA5XptvUdby5
-	z2+hQ9B5ivIQqXXKlg5DZJDK21iDKJDfj8GT4WlWXk9l5fgBEFd9MBfn1WarbKPyKU5p3ZJU07cUg
-	IQPcwytQ==;
+	bh=uimnGVleO/eSSHzB/lmqEwYar7Cy1ZiBpn5BUi3Ke8A=; b=jIOqvyz6NVqHp4qLLxnw98kUdD
+	xOBNBoF7kIkmKyMqmSSpv/bXvVb8HcqgW0cGIgGqL/eqNci4d3SWDGvonAUwq1ryepcpi2OPMOgMe
+	EriwemFH+tsHIV1gWREkJv1S7YO6fABphm0k0PqafNj/pcSBjDLLZmGGgdRiuiG0fay4se+4XI8Qr
+	XmOHOWA++O37yU7kkTacsdkvNDrXWFUxPpklgq2hm54+gY7igR85vvaGiBvidroIZz8jjB3KWb+10
+	TnO5QvmzIjU8EoZYQmti92x2fcKj30IMx/pvTLVIfkPM8T9kEdRhfxnwI8VQAbvC3G/Qq2VfyvdZI
+	R1BglpEQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVt7z-000000074RY-0jiT;
-	Tue, 24 Nov 2026 16:12:19 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1xVxOR-00000007kks-2o6X;
+	Tue, 24 Nov 2026 20:45:35 +0000
+Received: from mail-yw1-x1136.google.com ([2607:f8b0:4864:20::1136])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVt7q-000000074OT-0bWC
+	id 1xVxOP-00000007kj3-2GuW
 	for linux-amlogic@lists.infradead.org;
-	Tue, 24 Nov 2026 16:12:13 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4bb606491faso25844885e9.3
-        for <linux-amlogic@lists.infradead.org>; Tue, 24 Nov 2026 08:12:09 -0800 (PST)
+	Tue, 24 Nov 2026 20:45:34 +0000
+Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-8b4cd576f2aso37671317b3.0
+        for <linux-amlogic@lists.infradead.org>; Tue, 24 Nov 2026 12:45:32 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795553132; cv=none;
+        d=google.com; s=arc-20260327;
+        b=pIHwFOBIwohZYFHh25vTXiRJaKq1DgNFdahCfUf6U0HKDzBTU8PME41NF7tSBTQXB9
+         zji8du1I8Gr0+68oVszogOIB7JHT6qISUnCdOtG9HVXlh/O/6ql08oc4/iSXfU/EvDp+
+         CmL8zP/UGkdNndlNyea8dd5GluVxzl5AFEPVZLkNflN7iZC1KB9hl2Vy8BcnjCsTNt5R
+         0i8tZrUncYIbleTbXkCbwkBV5isgGRh6AJoftqL0t7bB5Lexzlig0uLWFsmLhNRjYg6Z
+         mtHiRBWT6TMalYhlmipO1+p9YCv0uEJ4A0KfA2oBvKjxwvL68w1gipcsHAhjyo6mE8EK
+         DkuQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=KFzLi3vzdDSPGhuH40A8wZRyinBPu8g/pRL5DsdlYi8=;
+        fh=TV009M/X3vVrTucJvPWlsq3lpX4ETb5meeToJHvxiko=;
+        b=DKDtvi0gSseGmK07rGcTlRYsqXycs/GPw0sRYqGBaXbpKQGOwM+M1VGAHoCzq5lu5l
+         Exl1lHa0Sk9/7DuJe10SuDv/uRpiCqnsNArm67Rs6ZaLFbqRM5mMT8duTGOu1XpS6aDf
+         0ieHcVEF1/RG+NUuTw9K868pZ/zUUThr3BvU8gmEGETH9QiCsOcD1zZrBorQ3bBTQCRC
+         p67+0igQlHjzdXzt+z70pyFwhseKSZxpaUJpRXpI9AdOW2l9qB7kjHvFVh7Wg/w5cf8l
+         tccU3ykMVmzzZMtCkcaEI3xAKNXiYoL8IB4ZgfZVLZsA6vhvC49qM/Yze9p/7yuJ/HJU
+         t29g==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1795536728; x=1796141528; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:organization
-         :autocrypt:content-language:references:cc:to:subject:reply-to:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=+6LKQYgkr2YxzPjh0brr5Y4vnuislFHhKsvQIh4zTc8=;
-        b=UdocUu54gggqTUHivGFN9LyoIrTSrQeYHz7Q5/BnOuqXSTdVHc8hDWVuwmn/FRk32u
-         9zSrj5vVvuKbUPu6ZRHdNl1m07gM2RJFy74CLYEikqtxvsyXhl9EyMNjt/jci5zzrQCY
-         dDRJ12hE9qqLqywN3ALWLSTqpW+uLkgK12vwLtUnwTE1TIOuYKMAZ2W7F71h+dw8Kasx
-         4C7pzE7mq5t7IpK5F6Zlcp1r909TVDUV/hqK0cFM68iAaIxngQudwlTUzs+Uoj83mYOQ
-         kT9FV0kIyPaOoAZLOiSeRQNer5z2pLv6DtiHcORnH3I2VTBDYMMweRPZWfua5R5EmNgb
-         95bg==
+        d=googlemail.com; s=20260707; t=1795553132; x=1796157932; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=KFzLi3vzdDSPGhuH40A8wZRyinBPu8g/pRL5DsdlYi8=;
+        b=R90t7onIqWceTO7ycfHwDRpJODze4oLHqHC+nwDR5adEV7+dsLUebxRWRkUVu1Iksx
+         zk/xva1PZLoc3nYIymmFYC2L5cSOUnVFeotjeiycz/j/0gjXPUWXgkMQdpb/4o63lhDL
+         AdSuquUPKU8HR90/ofdDULHjgPcuYVfcfzQb+NEh2wjh9KhPPGMXaLOY0fShBAkPcSM7
+         WjBCTJ/ZxpCsTO4JyF22c3KmRlj/mlnuKK/o7tx6u/qmshkV2hkuy4LqBV8GpCyKUQSJ
+         MEE2W19m6EqqY3EFx3tqf2wxaGHZvam+vGLAYz7ZEWxsExh3Es5FO40vs7BphzsN6IcE
+         Z4rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795536728; x=1796141528;
-        h=content-transfer-encoding:content-type:in-reply-to:organization
-         :autocrypt:content-language:references:cc:to:subject:reply-to:from
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=+6LKQYgkr2YxzPjh0brr5Y4vnuislFHhKsvQIh4zTc8=;
-        b=IcC+PRU10kWeXSjAKrSwck+749wDR7JyhMMXus3XWr+N5IjA39bqdOLCcda5dNItrq
-         W/CcV2rj3GuhZ1t8hhtC20DWnwvai0onW4+3JjZMqUCXSoCrbFS4ycYSn7ltzlwT31r5
-         zMGUmmYv577VeBsiWVN9Hbc8vhhTZfKDKd8SpWy7c1Us/gqJp65xFDaKZS/GXeRODabD
-         Vg4JM4Hz7QM4Rfzt349SG0OVFddqK9iLkMMgCSXO1/qcsy1T3XEICrTKqCoqficgFzfY
-         ogHXu/8GGK5QwmgLtJFhKqm8sBFBb2JE87HxlxZtneudY7LIaMRDyiQsskyu29UMllZ5
-         dOAg==
-X-Forwarded-Encrypted: i=1; AL+hErEEOQz2svrW14asPIkJtkv1HKdatq+k7KC0QsQCqWrPH28Ms9TYZwTVO6/6DP22xBMETLVV2QmyNz0vdTAH@lists.infradead.org
-X-Gm-Message-State: APuU4Z/uosgMqwZ+1273y7duSolrkCDThdKwAw53v8dtHQcXVmtTXZrF
-	xYL+NJ55m5udDKU4e9tl3PZnm7wVBI6Wl74hlKYIwJ6rUkwRwGZRUqwW034Bn9x+uhk=
-X-Gm-Gg: AZFdTZfj7pqQmMfUcKbtHiFCchPJLoJanLkSDN2f5JREUI1xxvPiFxKZ74kUjiOuX7v
-	VG5zf8aXTGfCIldQB9JtTp9OCkfWneBMe2pAnJB4k1YyIIfPa/7w2U+W1k/wTmcx3CAOFi98lmX
-	QVz1/mRelgdq7UDX7mfBsp54pbswxpF7XAOVfzAVRgW5noD05oE9Er6XI8S9ftI4XLf/bsxAzCW
-	CN1wV1yT3NnOuaFt9TPlFdcvWqZm5dKJ+XjZCFlMnm6+fgW5mfOPsbpa8ckUKpN1azY0vCXV/pa
-	H7kCckuhNY8JDcGASO+cMIoaHFPY+OYwGdROjyNbGXIZXkvxOd82gCiE56tYjE4MpAdKJSyx2Ht
-	FROLIXC/fbikX8GXkXCQwYKH5i/b7QQzINxXlnVD5Hi7irdXZKYDGpSSBdhLpL+fZNFWDf9jqB4
-	A8WOyuQnu982bjozLb0u9Y7o4355xRtqatBFet6eVoMx1GsqGl+s+HghsXiYUCc0CdtxDFm5PLh
-	OIA47/k8sS1/R0pm+nwW5+Q2vTwNenmd/gnGx5cUIUqX49CWmRyTyzUgQvzHzNQlEpdRlRKiGHv
-	HV0kRf2ZZ8sT1KKIei96VlRRwcchtT46LhLayijwu83ZZlgJaTsJaWUfvolOn4zj16T4gL991Jt
-	wj3trCRo7
-X-Received: by 2002:a05:600d:82d3:b0:49f:e701:51c8 with SMTP id 5b1f17b1804b1-4bb8880f0ebmr344659275e9.9.1795536727863;
-        Tue, 24 Nov 2026 08:12:07 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:106d:1080:ac27:24a0:7b1a:dd94? ([2a01:e0a:106d:1080:ac27:24a0:7b1a:dd94])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb88402ce9sm358970025e9.0.2026.11.24.08.12.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Nov 2026 08:12:07 -0800 (PST)
-Message-ID: <afcf78be-b017-485c-8e11-402b0948c9f8@linaro.org>
-Date: Tue, 24 Nov 2026 17:12:06 +0100
+        d=1e100.net; s=20260707; t=1795553132; x=1796157932;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=KFzLi3vzdDSPGhuH40A8wZRyinBPu8g/pRL5DsdlYi8=;
+        b=BVVmsYN90iu+DHkD2GjPEmow3HeOGmAuhIQeJ/b1q7jgOLdgHhollZrDsWJqOVK/+s
+         kJzAb5vQidh06PzCdDdux+KUCfyam/dYBblMFVCE8Y/sqghhsgNHrCjrHYtpHcswZMpz
+         +567jKyT6dElEGDN7DmTZAkARfNuzBumpRmJ+cweY5dcGJoV0sg2P7CGnk1s+Z/BDmJc
+         sLoRjjWircGAeX9LlWEcJrHKDrwxpOX5/M8nll43dW1OPQ9xdnpAVCXehn78J/NXGgAv
+         JcnmstY1s1qAUE+qq5USwrhfuZpyMHGq/ZoQs1Hd9evlbmD1KpYuYiuRd9zxrsQUQ0xt
+         t//Q==
+X-Forwarded-Encrypted: i=1; AL+hErGmezEXWryjh1X13lx8Bt/IAcGWnkShrv7SIfRFOadD6ZXl5gKxW8P+Eo//FXeM/+m7QSPtGXGbm3g1dfVz@lists.infradead.org
+X-Gm-Message-State: APuU4Z9V1myeOvuTQGaBeScMlxli+ANIBimBge8bZJydoR95OwK/eqB3
+	V4J6e+ySyAhfi7YwuN+crEq6dwOo6Pk5SH8GBAKsAbW+LlkuxZSm2MKgLICA3OtmqP9UdpJcw7/
+	bXSOJEFfaM7WbG6nqpgZynGhzL+67a0c=
+X-Gm-Gg: AZFdTZfS0YjJmfHgz7U3mR+wIKlWNgDxXS9/SGvhXRVT/Y/A0QQGSDuIkN6jamJPZZ+
+	wUIE+GaOdtukoekRB6wlKeDAB5a0mV5CWCe/Kg30xYwpseXLshEWOsa8a98vR0LAkBQzqLs/HYO
+	dRBpowIOj6OlaKKthaizn6CAM1gCIXaSvu0l/tHGwsAlkqU2Eeud1njAglrJ7HqJ5FJxJK1QcHM
+	xzT/B4hSflXl52yap1wVACsab/04Wxl7M1HuoRMD/8jt55zpsC77LijldXubRWi4QbRwvtIwG3j
+	QQgP4AlRIhdXrPgbuv2UHxMCo7NVP/HXMWERWNmVFgQqWBuWOuv+xiDBOTRpHIL+A5U7gHegZb/
+	RwN/SA+JuFuY8KM1AneGAIRpChF+QBpPMHbEOuhc0/YabztYlfSyzc9oG5htwxloqszbpsPYphy
+	n30z6fTsVvGSBNnlJY
+X-Received: by 2002:a05:690c:799:b0:8b4:d584:6165 with SMTP id
+ 00721157ae682-8b52043ff55mr69264227b3.21.1795553131511; Tue, 24 Nov 2026
+ 12:45:31 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [RFC PATCH 0/2] drm/meson: add HDMI support for GXLX2
-To: zinan@mieulab.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20260718111527.119231-1-zinan@mieulab.com>
- <ac5ef957c03ab3bf3fdb464680f3b024a883aefa@mieulab.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <ac5ef957c03ab3bf3fdb464680f3b024a883aefa@mieulab.com>
+References: <20261121213102.143130-1-tanure@linux.com> <20261121213102.143130-2-tanure@linux.com>
+In-Reply-To: <20261121213102.143130-2-tanure@linux.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 24 Nov 2026 21:45:20 +0100
+X-Gm-Features: Aa3M54pybnp1CQPsafQYDf0P2DptibC917JzUwMw-x18aat2wfvVMhiMsv1rR3s
+Message-ID: <CAFBinCDPGYpR6rmtJvN5pT1OdSN-ne=YJVeT0kk4Ff2SB2vraA@mail.gmail.com>
+Subject: Re: [PATCH v8 1/4] dt-bindings: net: amlogic,g12a-mdio-mux: add the
+ T7 compatible
+To: Lucas Tanure <tanure@linux.com>
+Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, 
+	Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_081212_417350_DB168BCD 
-X-CRM114-Status: GOOD (  28.79  )
+X-CRM114-CacheID: sfid-20261124_124533_602891_8BA85248 
+X-CRM114-Status: GOOD (  11.60  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -136,128 +124,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
-
-On 11/24/26 15:19, zinan@mieulab.com wrote:
-> Hi Neil and all,
-> 
-> Following up on this GXLX2 HDMI RFC from July. Since then, users have reported working HDMI output on several
-> S905L3-family boxes with a downstream implementation, including a P291 board. Their reports are here:
-> https://github.com/ophub/amlogic-s9xxx-armbian/issues/3604 <https://github.com/ophub/amlogic-s9xxx-armbian/issues/3604>
-> Before I refresh the series, would you recommend keeping the proposed amlogic,meson-gxlx2-dw-hdmi compatible and a
-> single MMIO resource for DWC and TOP, or describing the two windows as separate named resources?
-
-Please rebase on https://lore.kernel.org/all/20261123-meson-drm-create-hdmitx-phy-v4-0-3fb94f5534ca@aliel.fr/ and adapt your patch.
-
-Thanks,
-Neil
-
-> 
-> Thanks,
-> Zinan
-> 
-> July 18, 2026 at 8:15 PM, "Zinan Zhou" <zinan@mieulab.com <mailto:zinan@mieulab.com?to=%22Zinan%20Zhou%22%20%3Czinan%40mieulab.com%3E>> wrote:
-> 
->     This RFC adds HDMI transmitter support for the Amlogic GXLX2 family,
->     observed as an S905L3 (CPU major ID 0x2a) in a FiberHome HG680-LC set-top
->     box.
-> 
->     GXLX2 is unusual in that the display pipeline, clocks and HDMI PHY follow
->     the older GXL path, while the HDMI controller register interface is
->     directly mapped: DWC registers are byte-addressed from 0xda800000 and TOP
->     registers are 32-bit registers at 0xda808000 + index * 4. The existing
->     G12A access callbacks implement this layout, but using all G12A match data
->     would select the wrong PHY initialization for GXLX2.
-> 
->     Patch 1 proposes a dedicated amlogic,meson-gxlx2-dw-hdmi compatible
->     without a meson-gx-dw-hdmi fallback. Patch 2 adds dedicated match data
->     combining direct register callbacks with GXL PHY behavior. It also handles
->     the GXLX2 value for the 297 MHz PHY bucket and adds the compatible to the
->     Meson DRM component match list.
-> 
->     This RFC depends on the separately posted common Meson DW-HDMI regmap fix:
-> 
->     drm/meson: constrain the DW-HDMI regmap range
->     https://lore.kernel.org/all/20260718090710.70534-1-zinan@mieulab.com/ <https://lore.kernel.org/all/20260718090710.70534-1-zinan@mieulab.com/>
-> 
->     That formal bug-fix patch bounds register iteration below the directly
->     mapped TOP block and prevents the legacy 16-bit indirect interface from
->     wrapping. It is intentionally not part of this RFC so it can be reviewed
->     and merged without waiting for agreement on the GXLX2 DT ABI.
-> 
->     I would particularly appreciate feedback on two DT ABI questions:
-> 
->     1. Is amlogic,meson-gxlx2-dw-hdmi the appropriate block compatible name?
->     2. Should the DWC and TOP windows be represented as one contiguous MMIO
->     resource, as in this RFC, or as two named resources?
-> 
->     Evidence and disclosure:
-> 
->     - The GXLX2 addresses and 297 MHz value are factual results of analysis of
->     the HG680-LC vendor kernel. Firmware SHA-256 and focused behavioral
->     evidence can be supplied if useful, but no firmware, kallsyms dump or
->     disassembly is part of this submission.
->     - Public Amlogic-derived GPL source documents the ordinary GXL 2.97 Gbps
->     values and public GPL-2.0+/MIT source documents the same direct DWC/TOP
->     access mechanism used on later SoCs. The implementation here does not
->     copy a vendor function body.
-> 
->     Testing:
-> 
->     - An equivalent Linux 6.6.18 implementation boots from eMMC on the
->     HG680-LC.
->     - 1920x1080 HDMI video was physically verified on an LG 27GL850.
->     - Two-channel HDMI LPCM through the display and analog stereo audio were
->     physically verified.
->     - The downstream 6.12 port boots from eMMC with working Ethernet/SSH and
->     has physically verified 1920x1080@60 video and HDMI LPCM.
->     - With the generic Meson non-CEA mode-range change already present in
->     current mainline, 2560x1440@59.95 video and HDMI LPCM were physically
->     verified on the display's native timing.
->     - The RFC port builds on arm64 and its binding passes dt_binding_check.
->     - 3840x2160 at 30 Hz has not yet been physically tested. That test is
->     required before a non-RFC PATCH v1 because it exercises the
->     GXLX2-specific 297 MHz branch. It is not a blocker for the verified
->     1080p/1440p use case.
->     - No other GXLX2 board has been tested yet.
-> 
->     The initial RFC intentionally contains no board DTS. A downstream-only
->     HG680-LC DTS is being kept as DO NOT MERGE until the compatible and resource
->     model have received initial feedback.
-> 
->     Assisted-by: Codex:gpt-5.6-sol
-> 
->     Zinan Zhou (2):
->     dt-bindings: display: meson-dw-hdmi: add GXLX2 compatible
->     drm/meson: add GXLX2 HDMI register support
-> 
->     .../display/amlogic,meson-dw-hdmi.yaml | 7 ++--
->     drivers/gpu/drm/meson/meson_drv.c | 1 +
->     drivers/gpu/drm/meson/meson_dw_hdmi.c | 33 ++++++++++++++++---
->     3 files changed, 34 insertions(+), 7 deletions(-)
-> 
-> 
->     base-commit: b0a652436b892eb9a036a031b33099dca036faaa
->     prerequisite-patch-id: 0a689485bbc3c1d77d52aeee0b81e4943d1e904a
->     -- 
->     2.43.0
-> 
-> 
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gU2F0LCBOb3YgMjEsIDIwMjYgYXQgMTA6MzHigK9QTSBMdWNhcyBUYW51cmUgPHRhbnVyZUBs
+aW51eC5jb20+IHdyb3RlOgo+Cj4gVGhlIFQ3IGhhcyB0aGUgc2FtZSBtYW5hZ2VtZW50IGJ1cyBt
+dWx0aXBsZXhlciBhcyB0aGUgRzEyQSwgaW4gZnJvbnQKPiBvZiB0aGUgc2FtZSBvbi1jaGlwIDEw
+ME0gUEhZLCBhbmQgdGhlIEcxMkEgZHJpdmVyIHJ1bnMgaXQgdW5jaGFuZ2VkLgo+IEJ1dCBhIGRl
+dmljZSB0cmVlIHRoYXQgbmFtZXMgb25seSB0aGUgRzEyQSBzdHJpbmcgbGVhdmVzIG5vIHdheSB0
+bwo+IHRlbGwgdGhlIHR3byBhcGFydCBsYXRlcjogaWYgYSBkaWZmZXJlbmNlIGJldHdlZW4gdGhl
+IHR3byBibG9ja3MKPiB0dXJucyB1cCwgZXZlcnkgVDcgYm9hcmQgd291bGQgaGF2ZSB0byBjaGFu
+Z2UgaXRzIGNvbXBhdGlibGUgdG8gZ2V0Cj4gdGhlIGZpeC4KPgo+IEdpdmUgdGhlIFQ3IGEgY29t
+cGF0aWJsZSBvZiBpdHMgb3duIHdpdGggdGhlIEcxMkEgb25lIGFzIGZhbGxiYWNrLCBzbwo+IHRo
+ZSBleGlzdGluZyBkcml2ZXIga2VlcHMgYmluZGluZyBhbmQgYSBUNy1zcGVjaWZpYyBtYXRjaCBj
+YW4gYmUgYWRkZWQKPiB3aXRob3V0IHRvdWNoaW5nIHRoZSBib2FyZHMuCj4KPiBTaWduZWQtb2Zm
+LWJ5OiBMdWNhcyBUYW51cmUgPHRhbnVyZUBsaW51eC5jb20+ClJldmlld2VkLWJ5OiBNYXJ0aW4g
+Qmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPgoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBt
+YWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0
+cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
