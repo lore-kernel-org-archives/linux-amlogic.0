@@ -2,114 +2,157 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DE54606A33D
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2026 15:09:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F01D606A327
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2026 16:29:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3qQ6QShC;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=sang-engineering.com header.i=@sang-engineering.com header.a=rsa-sha256 header.s=k1 header.b=DwelXj2y
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Emtv9ifG;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=thegoodpenguin-co-uk.20260707.gappssmtp.com header.i=@thegoodpenguin-co-uk.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=ox4qw2Bl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=pjXHufRxNap9AvPpYGoU3DZkKHjDLZTkoY0joved+1c=; b=3qQ6QShC96YRMw+Tf/Xn5OhW+V
-	epRt0XvZUJRcTNNgZeoWpQ6xdoH2v9MlExFuuOv4Wvs8o5hOfO7cWT7Gy/CeDLgfq7Hfx4joUWWBX
-	teRRYS3QD51niuE5gPnuIlmVnpSvKiEIYbVtanVzYC6U9XBW2E73zgMqcWt4I7O1b/lVMU8Wr1vZF
-	ISe5dr13rAaSrNcWQEEKy8AoSbDR5xmufRNmHTQfBkyYfauOV85ubK1IGUaw2q2nSFXmjGspVmYdc
-	OEhDlGxq8Rh85SrU/Y0JY07SvJRNxEJCZVijlzDo+krc83snY3ZZHAKvdd7MfglNbKyOdaLNSDp+R
-	fPXNNWRg==;
+	bh=6I/lU1UBfC7BSkknqfot2EdVmUaWUwfAeaD5UUCSiTM=; b=Emtv9ifGegzVlM5ON5sTG4a4og
+	lhh3o9EgdM2VsxlRfNHAfce90VGILaV0Jo0FTS2ciyiX/VccT1k59K3qQgZvuD6KJBP2cr83Ok32b
+	9K2Sd1fSRemlHVCmV3pOMBGNxg1sU+VzVAHxY0G7uStiYIX335MiMH7gRSkzhX+iH7UnERUqrCyLd
+	rYfuFPHyB76HA0KtM7rQq0bA2IRfBNdxq/mxR2oKWkwvROa4fuSlMy139rnpw5MRKSQ0YwZI4mhQx
+	EWMgYGli3g44UR1h5mWFavCILQj8peF2NBRAhrT2IRTaNHFx/RuAHOpFleI/Zxd4ZEkPdIWdSKkSz
+	2X4koDIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWEcL-0000000AIcH-0Lsu;
-	Wed, 25 Nov 2026 15:09:05 +0000
-Received: from zeus03.de ([194.117.254.33] helo=mail.zeus03.de)
+	id 1xWFs7-0000000AYal-2pff;
+	Wed, 25 Nov 2026 16:29:27 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWEc1-0000000AIaj-1gGU
+	id 1xWFrR-0000000AYOr-3eNG
 	for linux-amlogic@lists.infradead.org;
-	Wed, 25 Nov 2026 15:08:54 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=j5WS
-	HF96nKodvhrZlDzmgM50kjWquzlJzGWnJzYvtHs=; b=DwelXj2yeMhW0OjANYw+
-	l1Seg4y1ORKWxjsmdYbitbYB/uB1b//e8z24C6e9pIqrLOoptN+gYqAPFZYwU5uR
-	YoVp5DpD9PktyL3ZY7CbCk6CxjxhYeJ6dc4xOubAHsG4YssrApDBtrdx4gd56V9Z
-	4q9AGZtEDHz3LGKjHtZ5EnHV/ipb0hzBAxExVNK+xzTTnHME6EXIJWtnBC6HNRT3
-	Wjpq+YXghOLxvjtKj/bvpdMk7+8zxhe/OfkodwQnF+tf9W9xlsOZmPc5UPeObbTY
-	QVwTDmPDUBrfbRIvkUwX23wTxUVMuYlDnUc2BavH8zwKPmoUMWR9ZLKoGJacM5EF
-	9Q==
-Received: (qmail 995227 invoked from network); 25 Nov 2026 16:08:39 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 25 Nov 2026 16:08:39 +0100
-X-UD-Smtp-Session: l3s3148p1@XUmlMxthFqJtKXCX
-Date: Wed, 25 Nov 2026 16:08:38 +0100
-From: wsa+renesas <wsa+renesas@sang-engineering.com>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Lee Jones <lee@kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	=?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig_=28The_Capable_Hub=29?= <u.kleine-koenig@baylibre.com>,
-	Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Aidan MacDonald <aidanmacdonald.0x0@gmail.com>,
-	Al Cooper <alcooperx@gmail.com>, Alex Dubov <oakad@yahoo.com>,
-	Allen Pais <allen.lkml@gmail.com>,
-	Apelete Seketeli <apelete@seketeli.net>,
-	Aubin Constans <aubin.constans@microchip.com>,
-	Binbin Zhou <zhoubinbin@loongson.cn>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Cavium Inc <support@cavium.com>,
-	Christian Loehle <christian.loehle@arm.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Georgi Djakov <djakov@kernel.org>,
-	Guangshuo Li <lgs201920130244@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Hiroshi DOYU <Hiroshi.DOYU@nokia.com>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	Jaehoon Chung <jh80.chung@samsung.com>,
-	Jan Glauber <jan.glauber@gmail.com>,
-	Jarkko Lavinen <jarkko.lavinen@nokia.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Josua Mayer <josua@solid-run.com>,
-	Juha Yrjola <juha.yrjola@nokia.com>,
-	Kamal Dasu <kamal.dasu@broadcom.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-	"linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-	"linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Paul Cercueil <paul@crapouillou.net>,
-	Phil Blundell <pb@handhelds.org>, Pierre Ossman <drzeus@drzeus.cx>,
-	Pramod Gurav <pramod.gurav@linaro.org>,
-	Ritesh Harjani <riteshh@codeaurora.org>,
-	Robert Richter <rric@kernel.org>,
-	Samuel Ortiz <sameo@openedhand.com>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Tony Lindgren <tony@atomide.com>, Ulf Hansson <ulfh@kernel.org>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: Re: [PATCH 00/13] mmc: Assorted bug fixes across MMC host drivers
-Message-ID: <awb59uLiTOEfLaSm@shikoro>
-References: <20261123191703.179283-1-lee@kernel.org>
- <OS3PR01MB65968B3C9FD48C0A7515AA1986432@OS3PR01MB6596.jpnprd01.prod.outlook.com>
+	Wed, 25 Nov 2026 16:29:17 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4a5b2be99a8so51024875e9.2
+        for <linux-amlogic@lists.infradead.org>; Wed, 25 Nov 2026 08:28:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=thegoodpenguin-co-uk.20260707.gappssmtp.com; s=20260707; t=1795624116; x=1796228916; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=F33PfOK0msjzeBxtvP6gRqlD2SQxJhJCJJqwD2eVgsE=;
+        b=ox4qw2BldEcNONUt17NbqI0nV1dJjcKUMhc9qmEf4LQM3U/t20BZhnH2iQBaO5CoN0
+         6XMxHSPT7krkyCoUkqXHFXSjwEOnFgnKMnyAtNE7RUibp7b83Ot5miVCtM4PIu7RRhJ8
+         raJg/v4I8Coea1GrFB52qTYoU1opvz/W5t/x1ef1mMA2gq8QlFDvHcHfNvZ+4wkE7k16
+         yPDMfRRdu8V3urBui+kMMg2PtVMClhiwCm1/TpJFCE03zsErXilnqqPYsVVbk3b/4d08
+         SipEmpeBpEd4rcGs+YTAmFKIZtKo8ZhH+ndQjN6t1PvU9anWwCzWXdOnrh1DiQTQrSFK
+         27ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795624116; x=1796228916;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=F33PfOK0msjzeBxtvP6gRqlD2SQxJhJCJJqwD2eVgsE=;
+        b=AqDyasV8WhZXtifZE9vAWlYnin6C93rEMTNIofaXMqU2MDHU4eHnJLpgTuWKhS600d
+         C4VRoD8Q/LhKdfXrcbcl+j6Vhj9GK7G/97jW+yp/0ozklLOL68G7Axet4QpGfNYgFFQT
+         JxUC2o8lMWu5Osh9ZldcweP/asafLtohb+ogmKQkFxJiNqc3xI/m0vb0BBW6W2grWBYo
+         uLWoIsiLprWe28v2RjLXHe+rACoPEiH+vdXlHmUMWsRyK5kd8RaGI3EbxTp3mzOSdopb
+         RuyoxvN7bP6ZGntalP93uYYQAF+PvAH0kAY1TLsi2rnXaJ/vl/qkOJgJYytUFA0zsnY6
+         ZBCA==
+X-Forwarded-Encrypted: i=1; AL+hErGb1alK74raPYByU6xXubs/7gGH0+KmeO4BZ8RyBZpwtNdE6Cdt1KYAh7ZjV690E7S7KEkMwWOQlDkjwipc@lists.infradead.org
+X-Gm-Message-State: APuU4Z8/Fu0u431zh0YIVNUA5mwE9+90jK75Idb4CQqn2IdMcS1VfZN4
+	AhQ/2fwbpsiuAFSCM+IiHNhaP9870RIEPSmo7uKKUInNub68TR+SClqk33/btMuzlG8=
+X-Gm-Gg: AZFdTZc5Wmrb6Vr1C4eWjtRs2wzcgrFwhFlhzIimH2AF7KfC8nS/H0MRhJOvoFvO5Cn
+	5q6b7GVOjYUDSDfwKIovD5zeu0WNN8C9jNzXiyOElHAA7I8KLoUBfay05XMeKeTidSWpukZAol0
+	mPSjg6uApKtBNLo2Y9HLLmWx8lEWsmu7b13QMnbKQCnKo65s/si1cudThh5QjzOhoXZg8bmiWAa
+	hos7iqg8sa8vSSp1GGerGXHpZKtv7f5WvlSQHRZRPpuwdaDQbDVa2AyOBoMOeAWO83fq0cwupRO
+	wePe4qKlHiP7QOnUArdUTzVXxcbDZg1GzewHpyrW155jyyB7QIPR/wLZdlRo6RaxN/HJ/TYvgL3
+	6mxRW757txCfjG5JgoshTRyYNzZLksjMEBHUzZn99mJKyStNBD2cVu29HNqzkLOc+OcUAxvqy20
+	KYyO4Ll33DHmYEDEJT4Q1fVF2QuCN/ECAetJhy2MK8eGKyEV3xj0TpAPrdGWmUYAc64+zZfxOAc
+	scDf7PZ6LCRBB6061I8R/LRjPvrmrdysL/O93b+2hjywHoxDZb8eV56mYTLXzmH/9YPg1cLzH6K
+	UJjIGLDVYBHvtHtz4vOhvxvXk4l+TQwt3F6iN9vI0IxoiVsKc8dp4bhUiWGtuORIG/0=
+X-Received: by 2002:a05:600c:5395:b0:4a3:5a98:c279 with SMTP id 5b1f17b1804b1-4bb8880e599mr376023745e9.8.1795624116009;
+        Wed, 25 Nov 2026 08:28:36 -0800 (PST)
+Received: from [10.42.0.1] ([2a00:23c7:1d1a:9c01:f716:ba19:8aaa:f1c2])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb853368d3sm527336375e9.1.2026.11.25.08.28.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Nov 2026 08:28:35 -0800 (PST)
+From: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
+Subject: [PATCH 00/10] mtd: use desginated initializers in *_device_id
+ arrays
+Date: Wed, 25 Nov 2026 16:28:26 +0000
+Message-Id: <20261125-acpi-mtd-v1-0-42ad2f645bee@thegoodpenguin.co.uk>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <OS3PR01MB65968B3C9FD48C0A7515AA1986432@OS3PR01MB6596.jpnprd01.prod.outlook.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMQQqAIBCF4avErBPUSqirRAvTqSbIQi2C6O5ZL
+ T/437sgoCcM0GQXeDwo0OoSRJ6BmbQbkZFNBsmlEkIWTJuN2BIt4zgoXXHLy9pCyjePA53fVdv
+ 9Dns/o4nvHu77AVc++4JsAAAA
+X-Change-ID: 20261123-acpi-mtd-0ef6a50d049d
+To: Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, 
+ Takahiro Kuwano <takahiro.kuwano@infineon.com>, 
+ Vladimir Zapolskiy <vz@mleia.com>, Robert Jarzmik <robert.jarzmik@free.fr>, 
+ Alexander Usyskin <alexander.usyskin@intel.com>, 
+ Joern Engel <joern@lazybastard.org>, 
+ Madhavan Srinivasan <maddy@linux.ibm.com>, 
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, 
+ "Ritesh Harjani (IBM)" <ritesh.list@gmail.com>, 
+ Shrikanth Hegde <sshegde@linux.ibm.com>, 
+ Michal Simek <michal.simek@amd.com>, 
+ Nicolas Ferre <nicolas.ferre@microchip.com>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+ Brian Norris <computersforpeace@gmail.com>, 
+ Kamal Dasu <kamal.dasu@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ William Zhang <william.zhang@broadcom.com>, 
+ Anand Gore <anand.gore@broadcom.com>, 
+ Kursad Oney <kursad.oney@broadcom.com>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Han Xu <han.xu@nxp.com>, Paul Cercueil <paul@crapouillou.net>, 
+ Harvey Hunt <harveyhuntnexus@gmail.com>, 
+ Keguang Zhang <keguang.zhang@gmail.com>, 
+ Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>, 
+ Liang Yang <liang.yang@amlogic.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Manivannan Sadhasivam <mani@kernel.org>, 
+ Heiko Stuebner <heiko@sntech.de>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Stefan Agner <stefan@agner.ch>, 
+ Lucas Stach <dev@lynxeye.de>, Thierry Reding <thierry.reding@kernel.org>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, Jacky Huang <ychuang3@nuvoton.com>, 
+ Shan-Chun Hung <schung@nuvoton.com>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Linus Walleij <linusw@kernel.org>, 
+ Kyungmin Park <kyungmin.park@samsung.com>
+Cc: linux-mtd@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linuxppc-dev@lists.ozlabs.org, imx@lists.linux.dev, 
+ linux-mips@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+ linux-arm-msm@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev, 
+ linux-tegra@vger.kernel.org, 
+ Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795624113; l=7528;
+ i=pzalewski@thegoodpenguin.co.uk; s=20260430; h=from:subject:message-id;
+ bh=5meG2QA5zHmWMtBw+F49CrqQgn4FVKx2LdaJonRgfn8=;
+ b=VsRd3x/iYztgIPcpTxO4VQupjJr1Sy2+c/9eTKQar8LJIPG9KJ1ebtAJORbrWf8vSzuEg1YpX
+ faQork5qqUYCOdbRXiu56hLw5mIk8BvbvFb2W3hRkqwPWXFxr+5Gj8A
+X-Developer-Key: i=pzalewski@thegoodpenguin.co.uk; a=ed25519;
+ pk=vHq4n9IonORH2GTzLv8r6CWAFHzgfBuNkQPXA8NSly0=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_070849_941947_E27601CE 
-X-CRM114-Status: UNSURE (   6.11  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261125_082846_249591_4D5F477C 
+X-CRM114-Status: GOOD (  13.92  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -122,19 +165,153 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+This series is converting lists that contain the *_device_id structs,
+to make use of named initializers (which they do not use currently).
+This work is part of the on going effort in the kernel associated with
+device-ids [1]
 
-> > Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>
+The plan is to convert *_device_id::driver_data to have an anonymous
+union, like it was introduced for PCI and I2C device ID tables.
+The goal is to increase type-safety (most of the existing casts are gone),
+to improve readability and to make use intent a bit more clear:
 
-I plan to review the Renesas related changes early next week.
+```
+union {
+	kernel_ulong_t driver_data;
+	const void *driver_data_ptr;
+}
+```
 
-Thanks!
+But for that to work all lists containing the structs need to use named
+initializers first to avoid triggering -Wmissing-braces for that field.
+This effort is split per every subsystem into:
+- pre-clean-ups that convert the lists to use named initializers
+  (which is this series)
+- actual implementations that make some of the modules use the new
+  driver_data_ptr member (which is not needed in the mtd subsystem)
+
+That way the task can be fragmented into manageable and independent chunks
+of work and makes this effort easier to review.
+
+Patches 1-3 implement the named initializer change.
+Patched 4-10 are just churn to unify the list termination and can be dropped.
+
+[1] https://lore.kernel.org/all/cover.1780048925.git.u.kleine-koenig@baylibre.com
+
+Signed-off-by: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
+---
+Pawel Zalewski (10):
+      mtd: maps: pismo: Use named initializers for i2c_device_id
+      mtd: spi-nor: Use named initializers for spi_device_id
+      mtd: maps: int0800: Use named initializers for acpi_device_id
+      mtd: spi-nor: Unify of_device_id list terminator
+      mtd: devices: Unify *_device_id list terminator.
+      mtd: nand: raw: Unify list terminator for *_device_id lists
+      mtd: hyperbus: Unify list terminator for *_device_id lists
+      mtd: maps: Unify list terminator for of_device_id lists
+      mtd: nand: Unify list terminator for *_device_id lists
+      mtd: parsers: Unify list terminator for of_device_id lists
+
+ drivers/mtd/devices/docg3.c                        |  2 +-
+ drivers/mtd/devices/mchp23k256.c                   |  4 +-
+ drivers/mtd/devices/mchp48l640.c                   |  4 +-
+ drivers/mtd/devices/mtd_dataflash.c                |  8 +--
+ drivers/mtd/devices/mtd_intel_dg.c                 |  4 +-
+ drivers/mtd/devices/phram.c                        |  2 +-
+ drivers/mtd/devices/powernv_flash.c                |  2 +-
+ drivers/mtd/devices/spear_smi.c                    |  2 +-
+ drivers/mtd/devices/st_spi_fsm.c                   |  2 +-
+ drivers/mtd/hyperbus/hbmc-am654.c                  |  2 +-
+ drivers/mtd/hyperbus/rpc-if.c                      |  2 +-
+ drivers/mtd/maps/int0800.c                         |  2 +-
+ drivers/mtd/maps/lantiq-flash.c                    |  2 +-
+ drivers/mtd/maps/physmap-versatile.c               |  4 +-
+ drivers/mtd/maps/pismo.c                           |  4 +-
+ drivers/mtd/maps/sun_uflash.c                      |  2 +-
+ drivers/mtd/nand/ecc-mtk.c                         |  2 +-
+ drivers/mtd/nand/ecc-mxic.c                        |  2 +-
+ drivers/mtd/nand/ecc-realtek.c                     |  2 +-
+ drivers/mtd/nand/onenand/onenand_omap2.c           |  2 +-
+ drivers/mtd/nand/onenand/onenand_samsung.c         |  3 +-
+ drivers/mtd/nand/raw/ams-delta.c                   |  7 +-
+ drivers/mtd/nand/raw/arasan-nand-controller.c      |  2 +-
+ drivers/mtd/nand/raw/atmel/nand-controller.c       |  4 +-
+ drivers/mtd/nand/raw/atmel/pmecc.c                 |  4 +-
+ drivers/mtd/nand/raw/brcmnand/bcm6368_nand.c       |  2 +-
+ drivers/mtd/nand/raw/brcmnand/bcmbca_nand.c        |  2 +-
+ drivers/mtd/nand/raw/brcmnand/brcmnand.c           |  2 +-
+ drivers/mtd/nand/raw/brcmnand/brcmstb_nand.c       |  2 +-
+ drivers/mtd/nand/raw/brcmnand/iproc_nand.c         |  2 +-
+ drivers/mtd/nand/raw/cadence-nand-controller.c     |  3 +-
+ drivers/mtd/nand/raw/davinci_nand.c                |  2 +-
+ drivers/mtd/nand/raw/denali_dt.c                   |  2 +-
+ drivers/mtd/nand/raw/fsl_elbc_nand.c               |  2 +-
+ drivers/mtd/nand/raw/fsl_ifc_nand.c                |  2 +-
+ drivers/mtd/nand/raw/fsl_upm.c                     |  2 +-
+ drivers/mtd/nand/raw/fsmc_nand.c                   |  2 +-
+ drivers/mtd/nand/raw/gpio.c                        |  2 +-
+ drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.c         |  2 +-
+ drivers/mtd/nand/raw/hisi504_nand.c                |  2 +-
+ drivers/mtd/nand/raw/ingenic/ingenic_nand_drv.c    |  2 +-
+ drivers/mtd/nand/raw/ingenic/jz4725b_bch.c         |  2 +-
+ drivers/mtd/nand/raw/ingenic/jz4740_ecc.c          |  2 +-
+ drivers/mtd/nand/raw/ingenic/jz4780_bch.c          |  2 +-
+ drivers/mtd/nand/raw/intel-nand-controller.c       |  2 +-
+ drivers/mtd/nand/raw/loongson-nand-controller.c    |  2 +-
+ drivers/mtd/nand/raw/lpc32xx_mlc.c                 |  2 +-
+ drivers/mtd/nand/raw/lpc32xx_slc.c                 |  2 +-
+ drivers/mtd/nand/raw/marvell_nand.c                |  4 +-
+ drivers/mtd/nand/raw/meson_nand.c                  |  2 +-
+ drivers/mtd/nand/raw/mpc5121_nfc.c                 |  2 +-
+ drivers/mtd/nand/raw/mtk_nand.c                    |  2 +-
+ drivers/mtd/nand/raw/mxc_nand.c                    |  2 +-
+ drivers/mtd/nand/raw/mxic_nand.c                   |  2 +-
+ drivers/mtd/nand/raw/ndfc.c                        |  2 +-
+ .../mtd/nand/raw/nuvoton-ma35d1-nand-controller.c  |  2 +-
+ drivers/mtd/nand/raw/omap_elm.c                    |  2 +-
+ drivers/mtd/nand/raw/orion_nand.c                  |  2 +-
+ drivers/mtd/nand/raw/pasemi_nand.c                 |  2 +-
+ drivers/mtd/nand/raw/pl35x-nand-controller.c       |  2 +-
+ drivers/mtd/nand/raw/plat_nand.c                   |  2 +-
+ drivers/mtd/nand/raw/qcom_nandc.c                  |  2 +-
+ drivers/mtd/nand/raw/rockchip-nand-controller.c    |  2 +-
+ drivers/mtd/nand/raw/sh_flctl.c                    |  2 +-
+ drivers/mtd/nand/raw/socrates_nand.c               |  2 +-
+ drivers/mtd/nand/raw/stm32_fmc2_nand.c             |  2 +-
+ drivers/mtd/nand/raw/sunxi_nand.c                  |  2 +-
+ drivers/mtd/nand/raw/technologic-nand-controller.c |  2 +-
+ drivers/mtd/nand/raw/tegra_nand.c                  |  2 +-
+ drivers/mtd/nand/raw/vf610_nfc.c                   |  2 +-
+ drivers/mtd/nand/raw/xway_nand.c                   |  2 +-
+ drivers/mtd/nand/spi/core.c                        |  4 +-
+ drivers/mtd/parsers/afs.c                          |  2 +-
+ drivers/mtd/parsers/bcm47xxpart.c                  |  2 +-
+ drivers/mtd/parsers/bcm63xxpart.c                  |  2 +-
+ drivers/mtd/parsers/brcm_u-boot.c                  |  2 +-
+ drivers/mtd/parsers/parser_imagetag.c              |  2 +-
+ drivers/mtd/parsers/parser_trx.c                   |  2 +-
+ drivers/mtd/parsers/qcomsmempart.c                 |  2 +-
+ drivers/mtd/parsers/redboot.c                      |  2 +-
+ drivers/mtd/parsers/scpart.c                       |  2 +-
+ drivers/mtd/parsers/tplink_safeloader.c            |  2 +-
+ drivers/mtd/spi-nor/controllers/hisi-sfc.c         |  2 +-
+ drivers/mtd/spi-nor/controllers/nxp-spifi.c        |  2 +-
+ drivers/mtd/spi-nor/core.c                         | 77 +++++++++++++++-------
+ 85 files changed, 153 insertions(+), 123 deletions(-)
+---
+base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
+change-id: 20261123-acpi-mtd-0ef6a50d049d
+
+Best regards,
+--  
+Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
 
 
 _______________________________________________
