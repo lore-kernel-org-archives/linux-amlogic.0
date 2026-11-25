@@ -2,12 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA138606A323
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2026 17:54:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F13C606A32A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2026 17:54:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2izxpiDg;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=pR89v9Q4;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=ouWcG3I4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gK82MIjE;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=KYGCCatk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -15,59 +14,43 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=swz0dlpjE/xlHQdEC8t9b/AonNK7VpDz3begtOD57CQ=; b=2izxpiDgsOZljjo+ZwXM5Gp87X
-	PMwPPUKVsOqRasPmbr9pyDX4RoSi+h4utHmpyQReyQe4ymKz65OTuQYmZy18O8vQPquicoW570sAa
-	ppBN1kuUOwVlIPjjrbeyGjDK76MEpURljbOwuHxZfFptCXchuMWPk4IottcxmMU/h+0T2zKTS7+/b
-	MnkXSjP24ms3GbkCHtsxQ39Je/6sDDeQEONr+aHprDGhWfKSYiTqEb5UTrfxE0pVkTnI+WVaQ3S3I
-	gYm7jzqQBsQTBAAXPFWMrvV1YWc8zIkwF0HyTEqKnCG64M/ykwL30DVj8/vWH8bXQd4CMUH6qfTWB
-	N7jmDZDw==;
+	bh=XFdYQkl+vI1MDbmhNh6nX0Yu0rQyMECWuURzwW41gsU=; b=gK82MIjEkcjRA1zW2PHvUWO4Fi
+	cca6JyN9D+iDCHNKmkLeAB+fsJwgXXLMPsGACTQ1BAiEaPRBePKf+uWD5QLC5D+QrTjxJuA3+mCh1
+	gJJ2l3fDlAL9pl2Xo827e2n/2EHgF3is9zE6gpP76rZMWwiDDwsOy07ZLq6y7Vz4Ab/wmxkYOlcxy
+	bJX1c+2cxsdsAk7tWFAd9YxWwQ8IyRrwXF/3AQnfi5Rwt3cCCFkcjP3Fh9u/h3dy9G+b12kr7azgy
+	WCSBq2iDTJftbMziSxQ8Fh6QFBWeqGZ5B2m8qsP7hy4af0Diw9s8MpGLgvgGnHwvgbO1WpVKB1srY
+	2h0QExNw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHCp-0000000ArB3-028f;
+	id 1xWHCp-0000000ArCz-3QhZ;
 	Wed, 25 Nov 2026 17:54:55 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+Received: from smtpout-03.galae.net ([185.246.85.4])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHAw-0000000AoUS-0nje
-	for linux-amlogic@bombadil.infradead.org;
-	Wed, 25 Nov 2026 17:52:58 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=Cc:To:In-Reply-To:References:Message-Id
-	:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender
-	:Reply-To:Content-ID:Content-Description;
-	bh=cB8ERaf54ceIobkfi+P1+y1V3nLqzohkwuRk0Ck5Kv4=; b=pR89v9Q4S4i28Iw4NjBzKnTHAc
-	BxbICmaIAXJ3xCw0DxgWuw99NHSd9eZYltqLbmoEk4uJBFO9BPIAgFmx7sUoIKfJr3KedjQU+ul/t
-	t22BGrifTM6/qRVAsozXo7XG1W/gkjZj5rq0EgeNZLKMJPKkC16KAdFSd4TuOXRc0EtE6xPj5rFdR
-	eSa1Z6dYY6j6QDPCYab3QVMzHYWP9xalPxuzclBZAmNvQfhUh7lWl4bYJRkbqkoWbmhcAfvAJ5Jwm
-	FqBULeu/cuz/XCpc1QfptqPbuiS2wbtYHdN7O2I5xhHpinSmzZ8yku4W4lLDwFFrbZj4UdcUXlu+U
-	m5IgQ1aQ==;
-Received: from smtpout-02.galae.net ([185.246.84.56])
-	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHAk-00000002B72-1x13
-	for linux-amlogic@lists.infradead.org;
-	Wed, 25 Nov 2026 17:52:52 +0000
+	id 1xWHB0-0000000AobP-1DIf;
+	Wed, 25 Nov 2026 17:53:12 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id D760E1A17FD;
-	Wed, 25 Nov 2026 17:52:37 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 41B144E40B00;
+	Wed, 25 Nov 2026 17:53:00 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id A37B160480;
-	Wed, 25 Nov 2026 17:52:37 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4D4D511E6B0D1;
-	Wed, 25 Nov 2026 18:52:31 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 0D09660480;
+	Wed, 25 Nov 2026 17:53:00 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AA5F911E6B0CA;
+	Wed, 25 Nov 2026 18:52:49 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795629155; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1795629174; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=cB8ERaf54ceIobkfi+P1+y1V3nLqzohkwuRk0Ck5Kv4=;
-	b=ouWcG3I4Ncsf3bbLH8YHWAHCMo4HHl+np7P2+zwFQ/DQi3GjhcgPShJUDwCcGCVPvQ2+R5
-	hpxDVOwUjlfcz7jyoawSnPcO93n99dd3b9wVvsIr3pWowOPWrTOAM6NN09QWahwTjydzCt
-	jmgckOEREt+2Ws+uo20USUe8/IwrOal0NWwwK2FGsuPtFb3w3SG8zWINU8IhIKAH1AS8Kl
-	wZts/MI7cV2f0FLuSPAhIkqD7yadTKc/uZZqEpo9qnP9qU8ExG+qJabhIWQ/rirWoKI/ec
-	JdaJDygcx+r94a3NGaPvC7iM831kL7hUWwDT/YfxvGlPjLvQiCZy3vFRJwwsXQ==
+	bh=JCAVXopcRhsu0R7W2AJRcPS4xlZfnpyxLhZGemjrQaY=;
+	b=KYGCCatkpDwAP39xFucHg5OhSZCQx2BzoSiOJhGTIvhyjU0iH9MR3Nou9ORwOoHqcQnXWZ
+	k8WtGng3n56RvyZGJYrcqIQmYvx22XJkDzMlShSyJBKI1pVqipDqav+hHfIZm2R/LFJK3Z
+	R6orNWggySMk4Bc/p8PcSNb1BxXblXaYw9rHsTY/CnCvJeuoEbwAJNPf2WEx0KM/Hyp5pe
+	0hJTCcMIveklGb7007f++ldutFB9U0ere1MsT+1fGqCRqCdDgCnONrX7FzjaT87hZFmq75
+	e8h0wMhWaaGOEr+pML/ay1JGJuzjfo0QVZXl39N8Dn+JQqgG8evHxLIQmzJ6BA==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
-Date: Wed, 25 Nov 2026 18:51:24 +0100
-Subject: [PATCH RFC 10/16] spi: nxp-xspi: Consume dummy cycles directly
+Date: Wed, 25 Nov 2026 18:51:28 +0100
+Subject: [PATCH RFC 14/16] spi: stm32-ospi: Consume dummy cycles directly
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261125-macronix-upstreaming-spi-mem-cycles-v1-10-fd036402fd37@bootlin.com>
+Message-Id: <20261125-macronix-upstreaming-spi-mem-cycles-v1-14-fd036402fd37@bootlin.com>
 References: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
 In-Reply-To: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
 To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
@@ -93,9 +76,8 @@ Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_175247_647452_FEEACFDA 
-X-CRM114-Status: UNSURE (   9.75  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261125_095302_559991_2A264203 
+X-CRM114-Status: GOOD (  12.00  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -124,55 +106,55 @@ and drop the extra conversions.
 
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- drivers/spi/spi-nxp-xspi.c | 12 +++++-------
- 1 file changed, 5 insertions(+), 7 deletions(-)
+ drivers/spi/spi-stm32-ospi.c | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/spi/spi-nxp-xspi.c b/drivers/spi/spi-nxp-xspi.c
-index 38c8d6269aad..8b836662a5da 100644
---- a/drivers/spi/spi-nxp-xspi.c
-+++ b/drivers/spi/spi-nxp-xspi.c
-@@ -392,7 +392,7 @@ static bool nxp_xspi_supports_op(struct spi_mem *mem,
- 	if (op->addr.nbytes)
- 		ret |= nxp_xspi_check_buswidth(xspi, op->addr.buswidth);
- 
--	if (op->dummy.nbytes)
-+	if (op->dummy.ncycles)
- 		ret |= nxp_xspi_check_buswidth(xspi, op->dummy.buswidth);
- 
- 	if (op->data.nbytes)
-@@ -408,8 +408,7 @@ static bool nxp_xspi_supports_op(struct spi_mem *mem,
- 		return false;
- 
- 	/* Max 32 dummy clock cycles supported */
--	if (op->dummy.buswidth &&
--	    (op->dummy.nbytes * 8 / op->dummy.buswidth > 64))
-+	if (op->dummy.ncycles > 64)
- 		return false;
- 
- 	if (needs_ip_only(xspi) && op->data.dir == SPI_MEM_DATA_IN &&
-@@ -453,12 +452,10 @@ static void nxp_xspi_prepare_lut(struct nxp_xspi *xspi,
+diff --git a/drivers/spi/spi-stm32-ospi.c b/drivers/spi/spi-stm32-ospi.c
+index fa0e8e83cb1b..9b28d1f24482 100644
+--- a/drivers/spi/spi-stm32-ospi.c
++++ b/drivers/spi/spi-stm32-ospi.c
+@@ -492,10 +492,9 @@ static int stm32_ospi_send(struct spi_device *spi, const struct spi_mem_op *op)
  	}
  
- 	/* Dummy bytes, if needed */
--	if (op->dummy.nbytes) {
-+	if (op->dummy.ncycles) {
- 		lutval[lutidx / 2] |= LUT_DEF(lutidx, LUT_DUMMY,
- 					      LUT_PAD(op->data.buswidth),
--					      op->dummy.nbytes * 8 /
--						/* need distinguish ddr mode */
--					      op->dummy.buswidth / (op->dummy.dtr ? 2 : 1));
-+					      op->dummy.ncycles);
- 		lutidx++;
- 	}
+ 	tcr = TCR_SSHIFT;
+-	if (op->dummy.buswidth && op->dummy.nbytes) {
+-		tcr |= FIELD_PREP(TCR_DCYC_MASK,
+-				  op->dummy.nbytes * 8 / op->dummy.buswidth);
+-	}
++	if (op->dummy.buswidth && op->dummy.ncycles)
++		tcr |= FIELD_PREP(TCR_DCYC_MASK, op->dummy.ncycles);
++
+ 	writel_relaxed(tcr, regs_base + OSPI_TCR);
  
-@@ -1307,6 +1304,7 @@ static const struct spi_controller_mem_caps nxp_xspi_mem_caps = {
- 	.dtr = true,
- 	.per_op_freq = true,
- 	.swap16 = true,
-+	.dummy_cycles = true,
+ 	if (op->data.nbytes) {
+@@ -691,7 +690,7 @@ static int stm32_ospi_transfer_one_message(struct spi_controller *ctrl,
+ 		 */
+ 		if (transfer->dummy_data) {
+ 			op.dummy.buswidth = transfer->tx_nbits;
+-			op.dummy.nbytes = transfer->len;
++			op.dummy.ncycles = transfer->len * 8 / transfer->tx_nbits;
+ 			dummy_bytes = transfer->len;
+ 
+ 			/* If happens, means that message is not correctly built */
+@@ -784,6 +783,10 @@ static const struct spi_controller_mem_ops stm32_ospi_mem_ops = {
+ 	.poll_status	= stm32_ospi_poll_status,
  };
  
- static void nxp_xspi_cleanup(void *data)
++static const struct spi_controller_mem_caps stm32_ospi_mem_caps = {
++	.dummy_cycles = true,
++};
++
+ static int stm32_ospi_get_resources(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
+@@ -933,6 +936,7 @@ static int stm32_ospi_probe(struct platform_device *pdev)
+ 	ctrl->setup = stm32_ospi_setup;
+ 	ctrl->bus_num = -1;
+ 	ctrl->mem_ops = &stm32_ospi_mem_ops;
++	ctrl->mem_caps = &stm32_ospi_mem_caps;
+ 	ctrl->use_gpio_descriptors = true;
+ 	ctrl->transfer_one_message = stm32_ospi_transfer_one_message;
+ 	ctrl->num_chipselect = STM32_OSPI_MAX_NORCHIP;
 
 -- 
 2.56.0
