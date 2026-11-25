@@ -2,65 +2,83 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C736B606A331
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2026 18:02:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00902606A321
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2026 18:02:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XKmQkeXU;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=AgO/4R8B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=G/JMB1Qu;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=euK18Za8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:References:
-	In-Reply-To:Cc:To:Subject:From:Message-ID:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
+	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=N71omI7JQ5/8lbW9DODTrErPTgsBJlD7NbrQJCyqsRs=; b=XKmQkeXUONkdUwn9yh+4bNAXbh
-	LJf0GhnsYLa/YUEGlK8wF/1LsjdzSHpQJP4XD4w9KkdoYAXD++WOWZT+VtcNqhjbMyojHQlZhakpl
-	mLwzTwMTqRYcpCT8KZMFiezEfqQxalzbutJwOVb7Qi0Kuq8zLes90Gb0W20+N4D0pdHnAw5OabT8q
-	+yStUgz2Ut05P+bE+YOuxuXA//NuvP26jXvXPGxXjSehSF9mnlW2gKoN5uZkb13WGL+SQcHR+PHDe
-	6VPhPZ+Ou+3rUDcnV+lHGnbfrB0N8xoafWo7MIFdMPPAhzZoLZXHo7o7FbzAS50pEoiHdJ9TI/PuP
-	HcrhWc4Q==;
+	bh=CVRU/a7O9UniqHxfuH4D3vMpYz01UIKcO3dlV38DzgM=; b=G/JMB1QuAW9ppWMOGXshXjTsQG
+	sllYbSHpuMNlS1ZiN0peRBC50j9v3IccPHxMvMW410C9uCwiksshiizOAKMbOc4Ggr1aYJ1z5sLov
+	VCAAHyDNdPa8GwnORNaf0v0Hcl/tOjVnOhGmfERuHAaEDer2zDl991+Q8yTfzQTkqvukZxSxWasnb
+	tU6FCp3QUW+hIllszTCAx/nnyAy/+EOZhBPqpw0uDxgWePgvFLDJIoWUaQdzjaVdUNEjGET22HUc2
+	x9HtNmlSP7emXAAGAQGXqW2FQOoTWY5sC1doR5ifxNddfcxV42/80oR0ov6PzHT8hGIFMzIOGUeFM
+	Ee9tUFDw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHK1-0000000AvIf-1gN3;
-	Wed, 25 Nov 2026 18:02:21 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xWHKI-0000000Ava3-1Poh;
+	Wed, 25 Nov 2026 18:02:38 +0000
+Received: from smtpout-03.galae.net ([185.246.85.4])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHJn-0000000AvAg-2acE;
-	Wed, 25 Nov 2026 18:02:07 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id DD5D263500;
-	Wed, 25 Nov 2026 18:02:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 294941F000CF;
-	Wed, 25 Nov 2026 18:02:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795629726;
-	bh=NR8kPtL7fWba57Aw01s+W/eWyi2it+pqLm6YFuaUa6A=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=AgO/4R8BYBJe0S3TCx+w0Fo8nFpVdeZ1BLuxLlcOJ/lcZh9CPTRaNcbswsa1vZKAg
-	 vIOiMwE96Smc3wQcP6P3UiM3rxwrmJ2OulRPj6igx6yMKe/ECWB+7I3PzATf5wJa0B
-	 HM0AmEp9KVkHRcUTLyhW/toFmV+f3nhY0PTyLrUPiKWtoqgH4uPGap396bEzis2ahe
-	 8nXSjL+MpcOGWt07HatKDQAyvE30Awo19X8Vtu67vLzr9MzordUgiyt1Xo0PRwJWgW
-	 e2jwonigcBeAuodvo1pEtcYSJ8kSQxJR6Xdsn6S/lEMTlpYXf0KrGnuQ2YGQRR/9id
-	 oKXiMhDMpyGaQ==
-Message-ID: <sashiko-outbox-233890@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH RFC 12/16] spi: rtk-nor: Consume dummy cycles directly
-To: "Miquel Raynal" <miquel.raynal@bootlin.com>, "Mark Brown" <broonie@kernel.org>, "Liang
- Yang" <liang.yang@amlogic.com>, "Feng Chen" <feng.chen@amlogic.com>, "Xianwei
- Zhao" <xianwei.zhao@amlogic.com>, "Han Xu" <han.xu@nxp.com>, "Conor Dooley" <conor.dooley@microchip.com>, "Valentina
- Fernandez" <valentina.fernandezalanis@microchip.com>, "Daire McNamara" <daire.mcnamara@microchip.com>, "Haibo
- Chen" <haibo.chen@nxp.com>, "Jyan Chou" <jyanchou@realtek.com>, "Yu-Chun
- Lin" <eleanor.lin@realtek.com>, "Maxime Coquelin" <mcoquelin.stm32@gmail.com>, "Alexandre
- Torgue" <alexandre.torgue@foss.st.com>, "Pratyush Yadav" <pratyush@kernel.org>, "Michael
- Walle" <mwalle@kernel.org>, "Takahiro Kuwano" <takahiro.kuwano@infineon.com>, "Richard
- Weinberger" <richard@nod.at>, "Vignesh Raghavendra" <vigneshr@ti.com>
-Cc: "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>, "Alvin Zhou" <alvinzhou@mxic.com.tw>, "Cheng
- Ming Lin" <chengminglin@mxic.com.tw>, linux-amlogic@lists.infradead.org, imx@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com, linux-mtd@lists.infradead.org, Frank.Li@kernel.org, neil.armstrong@linaro.org
-In-Reply-To: <20261125-macronix-upstreaming-spi-mem-cycles-v1-12-fd036402fd37@bootlin.com>
+	id 1xWHKE-0000000AvSX-0Umi;
+	Wed, 25 Nov 2026 18:02:35 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 3F8E04E4178B;
+	Wed, 25 Nov 2026 17:53:19 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 11F2C60480;
+	Wed, 25 Nov 2026 17:53:19 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3407811E6B0CB;
+	Wed, 25 Nov 2026 18:53:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795629192; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=voL9T1Z3XGsgqOOZRJCgMdwANraTsa7bt67oUn9zWHQ=;
+	b=euK18Za8g+jR4jPPzVdC9Sb8FWmROFOxXu1Vue+OinDIz92TekRJynKuIYn2tedgMIcrnI
+	7PFZfnGPbaXMpRb10YjGK/VpP0FW8l6K9lS5/rchszGPcrzK1m1kAvEVIAUJx68cqrKGPp
+	oMvIwp8C+AmLH3JOuXmkv/MpctDiFscOEOInMDLrvg0jrFSBt9Y4KGy+p7ueS4LC+C6DY8
+	2VSSeZlaP9ToNrDeDmmPG50G+V41hSNVuRPLKu/ip+tHRJZQkbr81UPGjTrC7tq1kjL08B
+	0F4W8Ox0F4cN9gfQziGW8GcmZlDvGqoDN02vgdHkIi+PxFumAYy/NTlnKewLsw==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+Date: Wed, 25 Nov 2026 18:51:30 +0100
+Subject: [PATCH RFC 16/16] mtd: spi-nor: Express the dummy phase in cycles
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Message-Id: <20261125-macronix-upstreaming-spi-mem-cycles-v1-16-fd036402fd37@bootlin.com>
 References: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
- <20261125-macronix-upstreaming-spi-mem-cycles-v1-12-fd036402fd37@bootlin.com>
-Date: Wed, 25 Nov 2026 18:02:04 +0000
+In-Reply-To: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
+To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
+ Feng Chen <feng.chen@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Han Xu <han.xu@nxp.com>, Conor Dooley <conor.dooley@microchip.com>, 
+ Valentina Fernandez <valentina.fernandezalanis@microchip.com>, 
+ Daire McNamara <daire.mcnamara@microchip.com>, 
+ Haibo Chen <haibo.chen@nxp.com>, Jyan Chou <jyanchou@realtek.com>, 
+ Yu-Chun Lin <eleanor.lin@realtek.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, 
+ Takahiro Kuwano <takahiro.kuwano@infineon.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Alvin Zhou <alvinzhou@mxic.com.tw>, 
+ Cheng Ming Lin <chengminglin@mxic.com.tw>, linux-spi@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ imx@lists.linux.dev, linux-riscv@lists.infradead.org, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org, 
+ Miquel Raynal <miquel.raynal@bootlin.com>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261125_100234_467360_20D8540C 
+X-CRM114-Status: GOOD (  17.49  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,48 +88,225 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-VGhhbmsgeW91IGZvciB5b3VyIGNvbnRyaWJ1dGlvbiEgU2FzaGlrbyBBSSByZXZpZXcgZm91bmQg
-MSBwb3RlbnRpYWwKaXNzdWUgdG8gY29uc2lkZXI6Ci0gW0hpZ2hdIHNwaTogcnRrLW5vcjogYnVp
-bGQgZmFpbHVyZSBpbiBydGtfc3BpX2NvbW1hbmRfcmVhZCgpIGZyb20gZG90CiAgb24gcG9pbnRl
-ciBvcAotLQoKY29tbWl0IDMzNDgyYWYzNzAxZTc3YTI4NjYwMjUwYzg5Y2ZiYTZiYmFkOGI0YTcK
-QXV0aG9yOiBNaXF1ZWwgUmF5bmFsIDxtaXF1ZWwucmF5bmFsQGJvb3RsaW4uY29tPgoKc3BpOiBy
-dGstbm9yOiBDb25zdW1lIGR1bW15IGN5Y2xlcyBkaXJlY3RseQoKVGhpcyBjb21taXQgYWR2ZXJ0
-aXNlcyBzcGktbWVtIGR1bW15X2N5Y2xlcyBzdXBwb3J0IGluIHRoZSBSZWFsdGVrIFNQSSBOT1IK
-Y29udHJvbGxlciBkcml2ZXIgYW5kIHJlcGxhY2VzIHRoZSBieXRlLXRvLWN5Y2xlIGhlbHBlciB3
-aXRoIGRpcmVjdCB1c2Ugb2YKb3AtPmR1bW15Lm5jeWNsZXMuCgo+IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL3NwaS9zcGktcnRrLW5vci5jIGIvZHJpdmVycy9zcGkvc3BpLXJ0ay1ub3IuYwo+IGluZGV4
-IDU1ZWE3YzM3MTg1NDMuLjZmZWJlZWUyNTQxZDYgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9zcGkv
-c3BpLXJ0ay1ub3IuYwo+ICsrKyBiL2RyaXZlcnMvc3BpL3NwaS1ydGstbm9yLmMKClsgLi4uIF0K
-Cj4gQEAgLTE5Miw3ICsxODIsNyBAQCBzdGF0aWMgaW50IHJ0a19zcGlfY29tbWFuZF9yZWFkKHN0
-cnVjdCBydGtfc3BpX2hvc3QgKmhvc3QsIGNvbnN0IHN0cnVjdCBzcGlfbWVtXwo+ICAJc2l6ZV90
-IGxlbiA9IG9wLT5kYXRhLm5ieXRlczsKPiAgCWxvZmZfdCBvZmZzZXQgPSBvcC0+YWRkci52YWw7
-Cj4gIAl1OCBvcGNvZGUgPSBvcC0+Y21kLm9wY29kZTsKPiAtCXUzMiBkdW1teV9jeWNsZXMsIHZh
-bDsKPiArCXUzMiB2YWw7Cj4gIAo+ICAJd3JpdGVsKG9wY29kZSwgaG9zdC0+cmVnYmFzZSArIFNG
-Q19PUENPREUpOwo+ICAKPiBAQCAtMjAzLDggKzE5Myw3IEBAIHN0YXRpYyBpbnQgcnRrX3NwaV9j
-b21tYW5kX3JlYWQoc3RydWN0IHJ0a19zcGlfaG9zdCAqaG9zdCwgY29uc3Qgc3RydWN0IHNwaV9t
-ZW1fCj4gIAlpZiAob3AtPmFkZHIubmJ5dGVzID4gMCkKPiAgCQl2YWwgfD0gQUREUl9FTjsKPiAg
-Cj4gLQlkdW1teV9jeWNsZXMgPSBydGtfc3BpX2NhbGNfZHVtbXlfY3ljbGVzKG9wKTsKPiAtCXZh
-bCB8PSAoZHVtbXlfY3ljbGVzIDw8IFNGQ19DVExfRE1ZQ05UX1NISUZUKSAmIFNGQ19DVExfRE1Z
-Q05UX01BU0s7Cj4gKwl2YWwgfD0gKG9wLmR1bW15Lm5jeWNsZXMgPDwgU0ZDX0NUTF9ETVlDTlRf
-U0hJRlQpICYgU0ZDX0NUTF9ETVlDTlRfTUFTSzsKCltTZXZlcml0eTogSGlnaF0KU2hvdWxkIHRo
-aXMgYmUgb3AtPmR1bW15Lm5jeWNsZXMgaW5zdGVhZCBvZiBvcC5kdW1teS5uY3ljbGVzPyAgb3Ag
-aXMgYQpjb25zdCBzdHJ1Y3Qgc3BpX21lbV9vcCAqLCBzbyB1c2luZyB0aGUgZG90IG9wZXJhdG9y
-IGZhaWxzIHRvIGNvbXBpbGUuCgotLSAKU2FzaGlrbyBBSSByZXZpZXcgwrcgaHR0cHM6Ly9zYXNo
-aWtvLmRldi8jL3BhdGNoc2V0LzIwMjYxMTI1LW1hY3Jvbml4LXVwc3RyZWFtaW5nLXNwaS1tZW0t
-Y3ljbGVzLXYxLTAtZmQwMzY0MDJmZDM3QGJvb3RsaW4uY29tP3BhcnQ9MTIKCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGlu
-ZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5m
-cmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+SFDP tables and datasheets provide the number of dummy cycles, not the
+number of dummy bytes. Set dummy.ncycles directly instead of converting
+it to dummy.nbytes. Depending on controller capabilities, this may help
+supporting more use cases (typically Macronix 1S-8S-8S 20 dummy cycles)
+while performing less useless maths in the core.
+
+Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+---
+ drivers/mtd/spi-nor/core.c      | 36 ++++++++++--------------------------
+ drivers/mtd/spi-nor/core.h      |  8 ++++----
+ drivers/mtd/spi-nor/micron-st.c |  2 +-
+ drivers/mtd/spi-nor/spansion.c  |  6 +++---
+ 4 files changed, 18 insertions(+), 34 deletions(-)
+
+diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
+index a04d22d2e2e1..dcc36f532aaa 100644
+--- a/drivers/mtd/spi-nor/core.c
++++ b/drivers/mtd/spi-nor/core.c
+@@ -91,7 +91,7 @@ void spi_nor_spimem_setup_op(const struct spi_nor *nor,
+ 	if (op->addr.nbytes)
+ 		op->addr.buswidth = spi_nor_get_protocol_addr_nbits(proto);
+ 
+-	if (op->dummy.nbytes)
++	if (op->dummy.nbytes || op->dummy.ncycles)
+ 		op->dummy.buswidth = spi_nor_get_protocol_addr_nbits(proto);
+ 
+ 	if (op->data.nbytes)
+@@ -109,9 +109,6 @@ void spi_nor_spimem_setup_op(const struct spi_nor *nor,
+ 		op->dummy.dtr = true;
+ 		op->data.dtr = true;
+ 
+-		/* 2 bytes per clock cycle in DTR mode. */
+-		op->dummy.nbytes *= 2;
+-
+ 		ext = spi_nor_get_cmd_ext(nor, op);
+ 		op->cmd.opcode = (op->cmd.opcode << 8) | ext;
+ 		op->cmd.nbytes = 2;
+@@ -205,7 +202,7 @@ static ssize_t spi_nor_spimem_read_data(struct spi_nor *nor, loff_t from,
+ 	struct spi_mem_op op =
+ 		SPI_MEM_OP(SPI_MEM_OP_CMD(nor->read_opcode, 0),
+ 			   SPI_MEM_OP_ADDR(nor->addr_nbytes, from, 0),
+-			   SPI_MEM_OP_DUMMY(nor->read_dummy, 0),
++			   SPI_MEM_OP_DUMMY_CYCLES(nor->read_dummy, 0),
+ 			   SPI_MEM_OP_DATA_IN(len, buf, 0));
+ 	bool usebouncebuf;
+ 	ssize_t nbytes;
+@@ -213,11 +210,6 @@ static ssize_t spi_nor_spimem_read_data(struct spi_nor *nor, loff_t from,
+ 
+ 	spi_nor_spimem_setup_op(nor, &op, nor->read_proto);
+ 
+-	/* convert the dummy cycles to the number of bytes */
+-	op.dummy.nbytes = (nor->read_dummy * op.dummy.buswidth) / 8;
+-	if (spi_nor_protocol_is_dtr(nor->read_proto))
+-		op.dummy.nbytes *= 2;
+-
+ 	usebouncebuf = spi_nor_spimem_bounce(nor, &op);
+ 
+ 	if (nor->dirmap.rdesc) {
+@@ -418,22 +410,23 @@ int spi_nor_write_disable(struct spi_nor *nor)
+  * @nor:	pointer to 'struct spi_nor'.
+  * @naddr:	number of address bytes to send. Can be zero if the operation
+  *		does not need to send an address.
+- * @ndummy:	number of dummy bytes to send after an opcode or address. Can
+- *		be zero if the operation does not require dummy bytes.
++ * @ncycles:	number of dummy clock cycles to insert after an opcode or
++ *		address. Can be zero if the operation does not require dummy
++ *		cycles.
+  * @id:		pointer to a DMA-able buffer where the value of the JEDEC ID
+  *		will be written.
+  * @proto:	the SPI protocol for register operation.
+  *
+  * Return: 0 on success, -errno otherwise.
+  */
+-int spi_nor_read_id(struct spi_nor *nor, u8 naddr, u8 ndummy, u8 *id,
++int spi_nor_read_id(struct spi_nor *nor, u8 naddr, u8 ncycles, u8 *id,
+ 		    enum spi_nor_protocol proto)
+ {
+ 	int ret;
+ 
+ 	if (nor->spimem) {
+ 		struct spi_mem_op op =
+-			SPI_NOR_READID_OP(naddr, ndummy, id, SPI_NOR_MAX_ID_LEN);
++			SPI_NOR_READID_OP(naddr, ncycles, id, SPI_NOR_MAX_ID_LEN);
+ 
+ 		spi_nor_spimem_setup_op(nor, &op, proto);
+ 		ret = spi_mem_exec_op(nor->spimem, &op);
+@@ -741,7 +734,7 @@ int spi_nor_read_sr_ll(struct spi_nor *nor, u8 opcode, u8 *sr,
+ 
+ 		if (nor->reg_proto == SNOR_PROTO_8_8_8_DTR) {
+ 			op.addr.nbytes = nor->params->rdsr_addr_nbytes;
+-			op.dummy.nbytes = nor->params->rdsr_dummy;
++			op.dummy.ncycles = nor->params->rdsr_dummy;
+ 			/*
+ 			 * We don't want to read only one byte in DTR mode. So,
+ 			 * read 2 and then discard the second byte.
+@@ -2247,11 +2240,7 @@ static int spi_nor_spimem_check_readop(struct spi_nor *nor,
+ 
+ 	spi_nor_spimem_setup_op(nor, &op, read->proto);
+ 
+-	/* convert the dummy cycles to the number of bytes */
+-	op.dummy.nbytes = (read->num_mode_clocks + read->num_wait_states) *
+-			  op.dummy.buswidth / 8;
+-	if (spi_nor_protocol_is_dtr(read->proto))
+-		op.dummy.nbytes *= 2;
++	op.dummy.ncycles = read->num_mode_clocks + read->num_wait_states;
+ 
+ 	return spi_nor_spimem_check_read_pp_op(nor, &op);
+ }
+@@ -3492,7 +3481,7 @@ static int spi_nor_create_read_dirmap(struct spi_nor *nor)
+ 		.op_tmpl = &info.primary_op_tmpl,
+ 		.primary_op_tmpl = SPI_MEM_OP(SPI_MEM_OP_CMD(nor->read_opcode, 0),
+ 					      SPI_MEM_OP_ADDR(nor->addr_nbytes, 0, 0),
+-					      SPI_MEM_OP_DUMMY(nor->read_dummy, 0),
++					      SPI_MEM_OP_DUMMY_CYCLES(nor->read_dummy, 0),
+ 					      SPI_MEM_OP_DATA_IN(0, NULL, 0)),
+ 		.offset = 0,
+ 		.length = nor->params->size,
+@@ -3501,11 +3490,6 @@ static int spi_nor_create_read_dirmap(struct spi_nor *nor)
+ 
+ 	spi_nor_spimem_setup_op(nor, op, nor->read_proto);
+ 
+-	/* convert the dummy cycles to the number of bytes */
+-	op->dummy.nbytes = (nor->read_dummy * op->dummy.buswidth) / 8;
+-	if (spi_nor_protocol_is_dtr(nor->read_proto))
+-		op->dummy.nbytes *= 2;
+-
+ 	/*
+ 	 * Since spi_nor_spimem_setup_op() only sets buswidth when the number
+ 	 * of data bytes is non-zero, the data buswidth won't be set here. So,
+diff --git a/drivers/mtd/spi-nor/core.h b/drivers/mtd/spi-nor/core.h
+index 670182b3c2ad..11817280f650 100644
+--- a/drivers/mtd/spi-nor/core.h
++++ b/drivers/mtd/spi-nor/core.h
+@@ -19,10 +19,10 @@
+ #define SPI_NOR_DEFAULT_SECTOR_SIZE SZ_64K
+ 
+ /* Standard SPI NOR flash operations. */
+-#define SPI_NOR_READID_OP(naddr, ndummy, buf, len)			\
++#define SPI_NOR_READID_OP(naddr, ncycles, buf, len)			\
+ 	SPI_MEM_OP(SPI_MEM_OP_CMD(SPINOR_OP_RDID, 0),			\
+ 		   SPI_MEM_OP_ADDR(naddr, 0, 0),			\
+-		   SPI_MEM_OP_DUMMY(ndummy, 0),				\
++		   SPI_MEM_OP_DUMMY_CYCLES(ncycles, 0),			\
+ 		   SPI_MEM_OP_DATA_IN(len, buf, 0))
+ 
+ #define SPI_NOR_WREN_OP							\
+@@ -82,7 +82,7 @@
+ #define SPI_NOR_READ_OP(opcode)						\
+ 	SPI_MEM_OP(SPI_MEM_OP_CMD(opcode, 0),				\
+ 		   SPI_MEM_OP_ADDR(3, 0, 0),				\
+-		   SPI_MEM_OP_DUMMY(1, 0),				\
++		   SPI_MEM_OP_DUMMY_CYCLES(1, 0),			\
+ 		   SPI_MEM_OP_DATA_IN(2, NULL, 0))
+ 
+ #define SPI_NOR_PP_OP(opcode)						\
+@@ -652,7 +652,7 @@ int spi_nor_wait_till_ready(struct spi_nor *nor);
+ int spi_nor_global_block_unlock(struct spi_nor *nor);
+ int spi_nor_prep_and_lock(struct spi_nor *nor);
+ void spi_nor_unlock_and_unprep(struct spi_nor *nor);
+-int spi_nor_read_id(struct spi_nor *nor, u8 naddr, u8 ndummy, u8 *id,
++int spi_nor_read_id(struct spi_nor *nor, u8 naddr, u8 ncycles, u8 *id,
+ 		    enum spi_nor_protocol reg_proto);
+ int spi_nor_sr_ready(struct spi_nor *nor);
+ int spi_nor_read_sr_ll(struct spi_nor *nor, u8 opcode, u8 *sr,
+diff --git a/drivers/mtd/spi-nor/micron-st.c b/drivers/mtd/spi-nor/micron-st.c
+index f97f2dead8c2..34eb15c7d3b3 100644
+--- a/drivers/mtd/spi-nor/micron-st.c
++++ b/drivers/mtd/spi-nor/micron-st.c
+@@ -525,7 +525,7 @@ static int micron_st_nor_read_fsr(struct spi_nor *nor, u8 *fsr)
+ 
+ 		if (nor->reg_proto == SNOR_PROTO_8_8_8_DTR) {
+ 			op.addr.nbytes = nor->params->rdsr_addr_nbytes;
+-			op.dummy.nbytes = nor->params->rdsr_dummy;
++			op.dummy.ncycles = nor->params->rdsr_dummy;
+ 			/*
+ 			 * We don't want to read only one byte in DTR mode. So,
+ 			 * read 2 and then discard the second byte.
+diff --git a/drivers/mtd/spi-nor/spansion.c b/drivers/mtd/spi-nor/spansion.c
+index b1b14ed0fd46..72cc11d3f1d3 100644
+--- a/drivers/mtd/spi-nor/spansion.c
++++ b/drivers/mtd/spi-nor/spansion.c
+@@ -53,10 +53,10 @@
+ 		   SPI_MEM_OP_NO_DUMMY,					\
+ 		   SPI_MEM_OP_DATA_OUT(ndata, buf, 0))
+ 
+-#define CYPRESS_NOR_RD_ANY_REG_OP(naddr, addr, ndummy, buf)		\
++#define CYPRESS_NOR_RD_ANY_REG_OP(naddr, addr, ncycles, buf)		\
+ 	SPI_MEM_OP(SPI_MEM_OP_CMD(SPINOR_OP_RD_ANY_REG, 0),		\
+ 		   SPI_MEM_OP_ADDR(naddr, addr, 0),			\
+-		   SPI_MEM_OP_DUMMY(ndummy, 0),				\
++		   SPI_MEM_OP_DUMMY_CYCLES(ncycles, 0),			\
+ 		   SPI_MEM_OP_DATA_IN(1, buf, 0))
+ 
+ #define CYPRESS_NOR_EN4B_EX4B_OP(enable)				\
+@@ -115,7 +115,7 @@ static int cypress_nor_sr_ready_and_clear_reg(struct spi_nor *nor, u64 addr)
+ 
+ 	if (nor->reg_proto == SNOR_PROTO_8_8_8_DTR) {
+ 		op.addr.nbytes = nor->addr_nbytes;
+-		op.dummy.nbytes = params->rdsr_dummy;
++		op.dummy.ncycles = params->rdsr_dummy;
+ 		op.data.nbytes = 2;
+ 	}
+ 
+
+-- 
+2.56.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
