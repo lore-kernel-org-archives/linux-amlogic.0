@@ -2,72 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C06CE606A31E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Nov 2026 22:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8ADD606A321
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2026 06:22:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NoHAmQ2Q;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=iav.lv header.i=@iav.lv header.a=rsa-sha256 header.s=zoho header.b=bLuAcqiy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZsiUPZKt;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Iz8yFJcG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	Content-Transfer-Encoding:Content-Type:Cc:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:To:Message-Id:MIME-Version:
+	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=iVfWFdUcs+Ipnoc8mFgUWEHuC/uA25AqNRU/ON2jVTQ=; b=NoHAmQ2QTY2HmYTloV9nxQQ9Xm
-	9su4/KagdAZfvpkvcJRERD4QEwNDtC7KpN8/hKCqSEBEU9ja9zEIF/1XjR4h3MOwjaW2j/zeybhtu
-	T9+2ipg7HjIzavfvc6zHVQ4GJFGEiw0CtC9xgwutugTK14ESI2BtmTE3ntnkVF3fT/+BoLo5eLs7a
-	XEAw1+8mpRHlWH+/AVoheEclOACR1J1YR+yMXF7J6msLQh1pQeshmM3BthOj9Icj3SHbZ3+LWEep6
-	aWvrefG9ULTlEKqKnPubeFxSA7c3t7H1CR7805Af3RnGhiN/tiNiiWZ16c7X4qKbOVc1/861FFXPP
-	ciQmw53A==;
+	bh=tnvuIdeO+qNxvd/G/8ux138XdXHd+9F+9zBGK9PCkx0=; b=ZsiUPZKt7eDf4lJbgBMBr8pGR9
+	YrYIc7zLSOEHNgeNCEl1NQNP7p5xI2iPX6mQXh2gfrqXCagOXTNDOKcIp1H9zq5ySjXNYofsmFxFY
+	4+7jBajTvJoQUlOZNKwnmXUQIf14V8H73aU8ReYtjpGdpCT+07QFrTUyHRB09MP5fjWrBQcFKX5dm
+	JQClXAyuxpGV7YTVNCsJlndQ10doD/sSQR6EdRUPLESFXuCa/Z+mOmtUuxXXi9gpgcVX4WCrfGEIy
+	e1p8bgK6/FR2fKFT3lV+uV9myRygnoLb8b6mDZvlpOLSEgwcTLmL9z+lAytCh6tqaZ/WD3sJpT4bF
+	PYVgatWQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVz8A-000000080QS-3V4A;
-	Tue, 24 Nov 2026 22:36:54 +0000
-Received: from sender-op-o15.zoho.eu ([136.143.169.15])
+	id 1xW6Oz-00000008ejB-0Fhv;
+	Wed, 25 Nov 2026 06:22:45 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVz87-000000080Pv-0G1i;
-	Tue, 24 Nov 2026 22:36:52 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795559795; cv=none; 
-	d=zohomail.eu; s=zohoarc; 
-	b=ewXRmMb/grqcXCqyajSzPlfeA/UDX7AMuaxljNmoIbgYjL/stoOVXyeBBylOGTuOruUI9LiFvufhL7vImnTZSuGrM69X45WAvVEw7Bocwd5nz/OWlroGXNWNb7BBDN2pxa+LHxAog2ZkivD/fjX/XsFGPMu6rVRj6XSL9Mkkqtw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
-	t=1795559795; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=+7yriBQmp4Pyg6LBithbao3yq/ei5DDnd+Y7B6DQccw=; 
-	b=cKHptoyaaTagkSHXihPzIdff/Uc4akXknMvBVW7tuUk0MB9Izpmv2t9Jf/2BeCs7UjpyTtY0WGcfCF+fX95BQUVEg0SUh2tIO7+xeWLZ6F/fCTTREI0OHGjSPcUg7PiTyHkO+NWSxN+0LcTs7CJ7tcpK0AuW/Owamz3/44Qv7jc=
-ARC-Authentication-Results: i=1; mx.zohomail.eu;
-	dkim=pass  header.i=iav.lv;
-	spf=pass  smtp.mailfrom=iav@iav.lv;
-	dmarc=pass header.from=<iav@iav.lv>
-DKIM-Signature: a=rsa-sha256; b=bLuAcqiyejhD8ctiq+ItIKKiQyQISUabktWt5nEuDtTsq2FG8y0JqEBT9OuvSz0+reHdkXBXZQTdcSRa5c+ofBV+xuFYIOrfugTunuIb4RAkfvvCo1BZbh5rJxWS5mqBqm0XuQp2M54mC9kg9wREqicEJuTWDPeDl+RcUcR9oyg=; c=relaxed/relaxed; s=zoho; d=iav.lv; v=1; bh=+7yriBQmp4Pyg6LBithbao3yq/ei5DDnd+Y7B6DQccw=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zoho.eu with SMTPS id 1795559793494282.3032309807419;
-	Tue, 24 Nov 2026 23:36:33 +0100 (CET)
-Date: Wed, 25 Nov 2026 00:36:32 +0200
-From: Igor Velkov <iav@iav.lv>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
- Russell King <linux@armlinux.org.uk>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Lucas Tanure <tanure@linux.com>,
- netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- iav@iav.lv
-Subject: Re: [PATCH net v2] net: mdio: mux-meson-g12a: keep the MAC data path when switching MDIO
-Message-ID: <20261125-re-martin-g12a-mux-cleaner-plan@iav.lv>
-In-Reply-To: <CAFBinCB3auaxcJ4wV+Q-KS4hBKfacrPpu_X9BAVBirAuMNbDvw@mail.gmail.com>
-References: <20261117-g12a-mux-data-path-v2-1-fc56db5973af@iav.lv>
- <CAFBinCALe-8oB5Mwpyx-B_7dKJ-WZcMCjycHv=xH+JasRBOaPw@mail.gmail.com>
- <20261124-re-martin-g12a-mux-t7@iav.lv>
- <CAFBinCB3auaxcJ4wV+Q-KS4hBKfacrPpu_X9BAVBirAuMNbDvw@mail.gmail.com>
+	id 1xW6Oy-00000008eif-0ap4;
+	Wed, 25 Nov 2026 06:22:44 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 3B5846060F;
+	Wed, 25 Nov 2026 06:22:43 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795587762;
+	b=nzp4RRl7WuBrtJObMTont1sKLeq3qAmsievJjGzRmgGbN54KwFHnoeYh8cAewxI7sk7z
+	 p8WUjuJ6TomsZFvUl7QXX9V+LHNDoLLz6OPw6LtukyODdRzFJTQvW1A5PqqfNDI/XVBu4
+	 LPZ9vctNxep91aQhJNqlWn6oLxlOT4KuL9Qe8GkQysP8/0M3O38leYBNZEPzrTMRNAz0w
+	 kHonyDwLaJbwEeCfANgPcdLp5xKRpBGfP5t+VLdaBKGkdHZ2p1V4X/At79ylxyNrL70mW
+	 Xxm5aRmhDGiE0D1PSFDWGryQBnRCUBiIaT2ReeUrHRhBLl3EjRHyBKrTU7hpEWUOzTA==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795587762;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:To:Cc:X-Mailer:X-Developer-Signature:
+	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To:
+	 Content-Transfer-Encoding;
+	bh=yN6sorU/+V+/y3FUt4PkhSOz62znNRL5ZJduK+CC3yw=;
+	b=hMClWBJ8ZPxlGy0J6NkQ344BcMEYmilFyA8hBUQ8yDJ+8ArzD/SumpvjZ9RmNDVasjJJ
+	 z4kk17kaVQOmt6XFj0cc/I3hI+z1odg1E3peG3uNv62/ffVWtj9tMxB3N3FTuL+JnM1/y
+	 JQIGkrPzftawZyXEj3J6UHMSpiHsVe6TgFd9z35akJAr8eVwU15gRsVEbkQ3MK1Dr0OMD
+	 EQNzqBJ9eJc4F3FGO0DlYaXK6em6pPW2cqSnt30kE0PwkOHI+ht7n+MqMtQwehU6U1cTW
+	 /FS10OmYBvg0UaziCSSsWaiahEoT703QCUV6iqmUKJoBjEAV3rwXYJkWj+zGbH2UrLA==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 0732B1F000F2;
+	Wed, 25 Nov 2026 06:22:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795587762;
+	bh=yN6sorU/+V+/y3FUt4PkhSOz62znNRL5ZJduK+CC3yw=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=Iz8yFJcGjycrx82YfeygoMRskP7QpN88ZMzQMfHUQIncIT3RlfI5d53NccBmKuDy8
+	 7cHI7PcP/oC/ByWmT1XVW5oKVCFOUJ6LCfy4U6oCkoySMp73vCIaSLD6TpIkSTR1pG
+	 P6hqT9KpqyxojZwCtb8UpHjLof6b1kuPVuFuWoLEBbEG/7S0K2KY0029y/IVgPHQ1i
+	 s+8/cKvXl+2pXsMWMdfbLAjCHgrZ1k26IOLB5rlhuhwQnom9RVhXbdSLdyte0RTiSV
+	 z7p8gH9khBJ6Jxumta1JUKv5rQUMGYrGngvmV4t5HRoCG9reH67Uo0t+YN4P+CDEIP
+	 HfvL/FmEzErmA==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 9484F4CD3C;
+	Wed, 25 Nov 2026 06:17:49 +0000 (UTC)
+From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
+Date: Wed, 25 Nov 2026 08:17:43 +0200
+Subject: [PATCH] arm64: dts: amlogic: meson-g12b-odroid-n2-plus: enable SD
+ UHS modes
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_143651_413223_28ED443C 
-X-CRM114-Status: GOOD (  10.09  )
-X-Spam-Score: -2.1 (--)
+Message-Id: <20261125-n2plus-sd-uhs-v1-1-cc2019e68da8@iav.lv>
+X-B4-Tracking: v=1; b=H4sIAIZ9BmsC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzNDQyNT3TyjgpzSYt3iFN3SjGJd8zQTUwPzJFNTYzMTJaCegqLUtMwKsHn
+ RsbW1AMWaA5xfAAAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1880; i=iav@iav.lv;
+ h=from:subject:message-id;
+ bh=QFes7H4ehieglLItkfgr4kYTQK7rp6WUcLDiwVP/k2s=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDNlstR1RXhcXX5uev6Fur7Ks5LLQgykv7evK2TVvv6m45
+ VOc1i7XUcrCIMbFICumyDLhkMatjCVX//p7mD+AmcPKBDKEgYtTACbSGM7IcP1e8CrDSHebFxZ2
+ p/o4v3Gu+Ht7ftHltVGLpqaXCfA97mH47/h32bzrcd4bPn/Yc8cw6271txDD+RpJ9n6/2rT/vdh
+ 7lQMA
+X-Developer-Key: i=iav@iav.lv; a=openpgp;
+ fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
+X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
+X-Original-From: Igor Velkov <iav@iav.lv>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,37 +108,73 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Reply-To: iav@iav.lv
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Igor Velkov <iav@iav.lv>, Valerio Setti <vsetti@baylibre.com>, Dongjin Kim <tobetter@gmail.com>, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Martin,
+From: Igor Velkov <iav@iav.lv>
 
-On Tue, Nov 24, 2026 at 10:52 PM Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> What caught my eye is that the code now reads strange: we have a mux
-> that we're following for half of the register values while another
-> part is fixed at probe time.
+The ODROID-N2+ (board rev 0.5 and later) feeds the SD I/O rail from an
+FC8731 LDO that a GPIO switches between 3.3 V and 1.8 V, so the card can
+switch to UHS-I signalling. Enable SDR12 to SDR104 and raise
+max-frequency to 200 MHz, as meson-sm1-odroid.dtsi already does for the
+ODROID-C4/HC4.
 
-A cleaner plan, for the record: set the data path once at probe from
-the board (USE_INTERNAL, RX_CLK_EPHY, and the ephy PLL when the MAC
-uses the internal PHY), and let switch_fn flip only SMI_SRC_MAC. That
-also covers the reverse case: today an access to the external bus
-writes CNTL2 = 0 and stops the PLL, which would cut a MAC on the
-internal PHY. No in-tree board triggers it: their ext_mdio is empty.
+Tested on an ODROID-N2+ with a SanDisk 256 GB card and a v7.3-rc6 based
+kernel: SDR104 at 200 MHz, reads at 86 MB/s instead of 23 MB/s in
+high-speed mode. 20 warm reboots, 10 of them with the BootROM loading
+the bootloader from the SD card, and 4 watchdog resets with the card
+left in SDR104 at 1.8 V all booted from the SD card again. That is the
+case for which commit 663bfe77b6f7 ("arm64: dts: amlogic:
+gxbb-odroidc2: remove UHS capability for SD card") dropped UHS on the
+ODROID-C2.
 
-I did not do it that way: my boards (ODROID-HC4, N2) all use an
-external PHY, so I cannot test the internal PHY side, and these boards
-needed the fix. If someone has a board with the internal PHY, that
-version can be tried.
+The ODROID-N2 (rev 0.4) uses an RT9179 with other divider resistors; by
+the schematic its 1.8 V setting is about 1.9 V. This is not tested, so
+the ODROID-N2 keeps high-speed.
 
-Igor
+Signed-off-by: Igor Velkov <iav@iav.lv>
+---
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2-plus.dts | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2-plus.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2-plus.dts
+index ce1198ad34e4..1f49686f359d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2-plus.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2-plus.dts
+@@ -15,6 +15,14 @@ / {
+ 	model = "Hardkernel ODROID-N2Plus";
+ };
+ 
++&sd_emmc_b {
++	max-frequency = <200000000>;
++	sd-uhs-sdr12;
++	sd-uhs-sdr25;
++	sd-uhs-sdr50;
++	sd-uhs-sdr104;
++};
++
+ &vddcpu_a {
+ 	regulator-min-microvolt = <680000>;
+ 	regulator-max-microvolt = <1040000>;
+
+---
+base-commit: 36f28822232ae35d36ccd2587e333db1ac961ff7
+change-id: 20261125-n2plus-sd-uhs-7f4507b55364
+
+Best regards,
+-- 
+Igor Velkov <iav@iav.lv>
+
+
 
 _______________________________________________
 linux-amlogic mailing list
