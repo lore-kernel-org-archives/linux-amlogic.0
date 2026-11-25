@@ -2,11 +2,12 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DB32606A326
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2026 16:29:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AEFA606A33E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2026 16:29:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=m6JTpJ/Y;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=thegoodpenguin-co-uk.20260707.gappssmtp.com header.i=@thegoodpenguin-co-uk.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=rL50TBMR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GJKt57F/;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=DFXOQXYK;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=thegoodpenguin-co-uk.20260707.gappssmtp.com header.i=@thegoodpenguin-co-uk.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=n41994kl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -14,73 +15,87 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=1Z+7pS4pENpYpLoW6JNG/uDTAxTLpzzVItJJkPlgrrM=; b=m6JTpJ/Yetffo0inYmHGB44g8p
-	brmwayG/1zO3WxqTjBBJ+RmOGBSZxvYoRyJrm3JFvLK7D/ZFzFwLZt4HJ7qiwOkARTiO7JHXJBSU3
-	UuXUEl0qaSA+6/4CDGxxQI9kMy6SmNN1xdPJOvYVthvG7HEz7CmforV9ZqdC6FgMMFPHU5e/sey8t
-	6Re28AFV+MR5GfM/g+bKU/Duc13Wl75GxbiaoIPbI6OV0EYTQM5g/Znknus1706zwpRNhFuBaJaqY
-	itpv7Nt0N6VpoPNnWIw4U7FPizdylkgr7oMk8IQm23d/c/eK4jqdXQPyEz/FToyhtOt0BI60UWlAP
-	CxTMCziA==;
+	bh=5kOioeM2hlJ7V3OqhzQ2fH+Y4qIWk6xo7S1TTOAFOE8=; b=GJKt57F/H+tPnRM2X0Oe6+I8FN
+	oDz3TjrGhqyfXB9J1o5P+ahMq19A3OgBUrSTXES3WQ7iGra90LfveiCzuoLVQiA83ztFbFGdW4SyD
+	AXtON6w7vl+EqC/9ce2QAYrOHia1z9mmD/NIm46ySn9mKBfb6LYwX3NQoeNyUlXbHzdfLVoA31f6S
+	XtCOo8LhHPhsjvd2L660YczPoRprMuCoEkjYv/FrXADdleXEQgJszhMXukMu4+k3BKqlEABvc0pAL
+	Ost8YMPt5vGsh6TdYiV2ov1U8vnHyrhuQzKgvUF59eqEiOjyvQJES94yhNHpDMz3iqfPSUloaYmlW
+	jpCcQBxg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWFs7-0000000AYaB-0MlL;
-	Wed, 25 Nov 2026 16:29:27 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1xWFsY-0000000AYpx-2Nac;
+	Wed, 25 Nov 2026 16:29:54 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWFrR-0000000AYP8-3h8K
+	id 1xWFrc-0000000AYU2-3vGn
+	for linux-amlogic@bombadil.infradead.org;
+	Wed, 25 Nov 2026 16:29:13 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=Jkpq3Qrv0SgVfFgdH0HjFFR4TiuDoTsfQLCdgkzvL4U=; b=DFXOQXYKZxliNaXEYbQ6nlGOaq
+	z7XD/iFrV7DDtMPhuNxfz5Nkt0rlfhVRdKfnugLoTErhAfW5+8e4EEXWywrdI8bzWei8DkQdSYS9a
+	zLr1c3AJ+lsQljgCz35fNm21Zm5nU3sRxVVrTgxroEOqsKHisC8JQLY2t5uvz8x07pvDWCISokCwg
+	EyRg0/KAGxXg0nrTqEWdRNcukpkpyvQ+noJT573FVyR8TsJz8YkJ57YBb/r9yjIow0bJS5tswJlnj
+	+FO3G7sTJOJDEYn/ivOX8Y+S6dzpXJfQzD1BHO0YooTjgFI73F+6aNOJ/iPznflLiQ+XMgAtow1MZ
+	MuyPlsfw==;
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWFrW-00000005WxG-1Dbp
 	for linux-amlogic@lists.infradead.org;
-	Wed, 25 Nov 2026 16:29:06 +0000
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-4bb702a7548so53622095e9.1
-        for <linux-amlogic@lists.infradead.org>; Wed, 25 Nov 2026 08:28:40 -0800 (PST)
+	Wed, 25 Nov 2026 16:28:53 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4bba5e17728so8513055e9.2
+        for <linux-amlogic@lists.infradead.org>; Wed, 25 Nov 2026 08:28:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=thegoodpenguin-co-uk.20260707.gappssmtp.com; s=20260707; t=1795624119; x=1796228919; darn=lists.infradead.org;
+        d=thegoodpenguin-co-uk.20260707.gappssmtp.com; s=20260707; t=1795624129; x=1796228929; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=AFDbeCHQMCzywmdZtzco98P0xWzZOKchEiBzgROq0f4=;
-        b=rL50TBMR+CdRxrtlIKePzz1kb9Fj1EyA/NjbLj8ghD2cY+GUc/QSE01MBjAL089E43
-         4GZpe9Bc1P6aer0dSaHXGnawgDCE6qAZN2Yij25tKEaI87eGIg6mJvMsADEMTIG9H8Io
-         p3pzFGp6OnDIRf6R9ldCaU/1DqF0j/Frj1YeZMz2sINWtnp5nFhxj9OTycxGskhEIAFw
-         9FvGyY7bNLdthUR25r3jDsOUh8xf0jqJHZ+yLd0CxgfBY1UreUq/eVMjxjQM1wbwQopQ
-         3uHUGH1N3P9PYyS3348hFvCl+jZFXeBuiK4HGLBeEr5C+Om2zg3Lcasx/VZAtEdUxB3j
-         gmuQ==
+        bh=Jkpq3Qrv0SgVfFgdH0HjFFR4TiuDoTsfQLCdgkzvL4U=;
+        b=n41994kltmS6AoQHC/glsGT8E44bWagzz1nJ6zpRQxcJxZJopTuHkb8iJvVOKiki0y
+         aR7ALEXcCkT7jOm6VWokikuHwBvGhvaH+JcIgiHK5qM8MOYchwwv6mtA1IntIwh9KXCP
+         4uzrcnnPRC3waorISEPoCpaGz9BzwHPJ+UC3xvi4Jscw91NdZZrcgrqSTqwRvjy0nLrW
+         5NxNH3R9G1Wkop+I5RPk1AzJ/i91Ge0xuTFVq0K7YodfIpZTrky0sOMRfM2m04h9P7BL
+         SPDkBe5ia+rOSZkojN8hadK8IIru827KFETLYJ0dK3GPy0VJCwdAvRyVYZdfD3hN14Cf
+         wbyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795624119; x=1796228919;
+        d=1e100.net; s=20260707; t=1795624129; x=1796228929;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=AFDbeCHQMCzywmdZtzco98P0xWzZOKchEiBzgROq0f4=;
-        b=sods4lghRPN1lKxZ0lg5ESbZbz3Oahjn/fdoSsuAJM36xNFHlhUbo52H1EfXTmsqnY
-         WQOEC+fOxQENKl2UTRszmjxGgJ7QsSKojsDtdQFwxbD7TdlNcNmK7gBpOQtQXDKK297G
-         ujHFaF9Guo4iafe/iBenTcPTn1QL6ixaILcl9a/Nrss8Nv6WLoc1yCF3/aPpkfXbQvhq
-         F67BOIk+Gm6UPc59+t4kfvsRoBO2lRQ38g0uyD/gyBHDaHayIBVZuq9kGJum5s3vPW5n
-         7LJurPaY1uYX5qPSRLWcuGvXCTnOEqUTn/CK8j/LD6vpyKPDw3CdRD0gjJJbIbkiOyft
-         BBYA==
-X-Forwarded-Encrypted: i=1; AL+hErFth4xjmoKoPOCGGJnx8n5k3DAfUOS6Ga7yQvnC4L5qWSWdeNLzYxNDjbRrSYIiKALAl58XBih95tZT8KrJ@lists.infradead.org
-X-Gm-Message-State: APuU4Z/FukiH9IXUOdxRzIOv7nS9pA7Nung6NBYovXryNO0cJvqwCYiO
-	LxUnYaN1SHDHQbdolMNtXi9itKY5tZ9R8tA2NrgUs4slpK8iWXYLDCvkqMP7LdfkLFY=
-X-Gm-Gg: AZFdTZe5NIrL6Zir1rjnZb6MRnho1NxL7TB04Fyc5FHviWICX48FaoOxKB1WS8TfBrm
-	wkd4lAgVjEjqeuJfH5ysfyOP9b62nO+MijaT9Bb0DAV8WVLesN65wfuouBk9m4ZzYBApZwIG8t2
-	Hhkw9uKAptLMybpdLf36UY8cJ1rJaiUk8MBAYs6Ru+RmCmlsuNr5TAZO/BZTwaUDQOELEZEjlOm
-	CAZmKnwbcfDcsJIgf7jyYy6DT60sQH6YyKzn0b/tSvODyaaJ/drBVHAm5cKWKzRn4o7dvLcSXpX
-	+XFtsgfS0kq78h5+AZyN9N4ghhfBwQK/lxAdvrJc9ssBaMBLNJSM/v61YZEZjSNxeXTTNZ04vRU
-	LhQVHx3HYo96zg8brkzim76IBBdlTx/tE/IqGRsyFPn1fPYvpDZ7B1odY5EsEg2wmI2Y7HtEyFv
-	B+nmzIuTohra0NFGOl/IVkJqRCeZn75zX+mtAyLHy+X+QQb1WgFB1U88H6qrOvHu9fydn5uncGT
-	8mtY6mtplD5708lHB+hYRRZ/k3bUpUpXvugPce10s3rHts/NGqG38IvaVKfJgrfzaKifEXmAk5k
-	LEUiCBiNNQjGt1//DTX9+spY1BcOYeC4++XV3AwlzalcEQ==
-X-Received: by 2002:a05:600c:5246:b0:4bb:6de4:2f7c with SMTP id 5b1f17b1804b1-4bb8881c5bdmr384806975e9.20.1795624119085;
-        Wed, 25 Nov 2026 08:28:39 -0800 (PST)
+        bh=Jkpq3Qrv0SgVfFgdH0HjFFR4TiuDoTsfQLCdgkzvL4U=;
+        b=JDTfPgipzWYdYl82cS4310j6WQGJlG2J5+ZbluX36iJtZMJNGp76GE1PJypkQvl9HU
+         Oen+/M34TYWTKCPSJlwlFEuNabl8+TY/+1g0P2NWVmUGM5dtYOyvBnBmYt6ax+1cmSSd
+         X/Cjclq3xVM9RjNG4hKFh5+FZyM3jnUigLl/AmJJsNxSzShDIl/c98u167tHQ2gMQt1q
+         r+SsxHVN19yczotGSTbDUJuMFWtlqT7yShgqWaggm86I4NEq5+yMMt7iWIHSyXgmVMTF
+         ypIt3eGudJMo5QucQdjlN3qriwOluTQBj+YskiSSa/+SOEHJU/cZAcW+DYh8Px19zix+
+         FZUQ==
+X-Forwarded-Encrypted: i=1; AL+hErFKi/oMIxT8480oN+K0UadgbCZ+PEbW2yji7GuVN1oz5BR3zkaTvBn4QOBhGHKx1J3N97dVPk1WUOIanWE4@lists.infradead.org
+X-Gm-Message-State: APuU4Z9stiowqReQnioZkVBytVV8aZT4sKEyXguMg5D9s5gztsdeWlss
+	pJ8KwjscCkYqnPsDvNMWIPBz+DxNZeOzOzPflbSJW2I0Pjnf8dh5g/K1wJDal00XUMI=
+X-Gm-Gg: AZFdTZd9csqq96pUVqPbCrvLl0n4b/biNJIoVz/u1IwZlyJF0feIhk7u0BR1pZIbFc7
+	AHaCEn+6G47KRY6plOyVD1o2HJsWemukVIaNLzluVHJ+yPcPYw+j5+IFBjL2/WyvtFC8ef/flAH
+	/DvA4Bnj0pOGEP9Pb61ZUSz/m0ftOOGenV1tbbydOSSpIz2SOfOjpuSu6g6HRgoPr7MF0I9S41j
+	Lp1187tYOEicEInqcv+aTtRxS1DFFE4cDIFPwIj4+exp0z/1xbUO3Kb8QsrJIKRbOQ6IhnmoJBg
+	hIHtvHCDc7MPo0FvsAvRl9KEl7eI0CNPFGGNzbwQgqoezjRrgVR17F6SuhVLTyW43lPL0axLbTl
+	HhuF47isgfzShux8xiUWKwEOBw3QGToLP3VucZecg6fSBS00uBaAaN+eLq/HPd0MWNhPdAqOtYP
+	f9EyPKLnlbnRrWc2C7hoEXbaK5h40MoUXytkT0wkWQCOm2M2VIddgZh2Xgu3E3w0U/C0Z4qgTTj
+	K0TfjSn4oQFEerK2gnGz8DH9thOvMvN/3OH3yTTm9P5jB0aoJoZXyqIzDle1ZxGQvLzZCGNOqF3
+	69/fBgzDNAg5D0Nu9Kb5Ky9cUrWrBFTvPhkpoPv175PorA==
+X-Received: by 2002:a05:600c:8b11:b0:4a2:a9:ed5a with SMTP id 5b1f17b1804b1-4bb88826835mr369069605e9.8.1795624128871;
+        Wed, 25 Nov 2026 08:28:48 -0800 (PST)
 Received: from [10.42.0.1] ([2a00:23c7:1d1a:9c01:f716:ba19:8aaa:f1c2])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb853368d3sm527336375e9.1.2026.11.25.08.28.36
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb853368d3sm527336375e9.1.2026.11.25.08.28.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2026 08:28:38 -0800 (PST)
+        Wed, 25 Nov 2026 08:28:48 -0800 (PST)
 From: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
-Date: Wed, 25 Nov 2026 16:28:27 +0000
-Subject: [PATCH 01/10] mtd: maps: pismo: Use named initializers for
- i2c_device_id
+Date: Wed, 25 Nov 2026 16:28:31 +0000
+Subject: [PATCH 05/10] mtd: devices: Unify *_device_id list terminator.
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261125-acpi-mtd-v1-1-42ad2f645bee@thegoodpenguin.co.uk>
+Message-Id: <20261125-acpi-mtd-v1-5-42ad2f645bee@thegoodpenguin.co.uk>
 References: <20261125-acpi-mtd-v1-0-42ad2f645bee@thegoodpenguin.co.uk>
 In-Reply-To: <20261125-acpi-mtd-v1-0-42ad2f645bee@thegoodpenguin.co.uk>
 To: Miquel Raynal <miquel.raynal@bootlin.com>, 
@@ -141,17 +156,17 @@ Cc: linux-mtd@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>, 
  =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795624113; l=851;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795624113; l=5688;
  i=pzalewski@thegoodpenguin.co.uk; s=20260430; h=from:subject:message-id;
- bh=IHAi0qeArnt0Dz3MPX/pMNLkcr4ipLn3XGqru6V8PMg=;
- b=FYYb5NZv5bMag5GUq5jhUZI3EA/wssPu4IODYyOGaefHzIx0GqzM1xxUbS1yXt9hVm+9RShR6
- U7w6XKaTkOyAdXUAkIbyQhY8qzilz1ISb3JVyfa0dct/S0WrrapbtfS
+ bh=e38PNjVjjK9fQET0Z5RSjQeQUR9n82Nx3ix8ylWZkAc=;
+ b=UmynCOwoYM4GS77+J2oETnIgPnWornuOiaAN1UaN6yWzj88g2jweJvGkqkw5pwk01i9dDTzKw
+ jhi+aPV+h/XAaOKJSEM/GC0voUs+NMNtgllLP1rD+cGxum6pU8i9x47
 X-Developer-Key: i=pzalewski@thegoodpenguin.co.uk; a=ed25519;
  pk=vHq4n9IonORH2GTzLv8r6CWAFHzgfBuNkQPXA8NSly0=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_082846_222423_FDB65401 
-X-CRM114-Status: GOOD (  14.61  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261125_162850_621635_4E87EA98 
+X-CRM114-Status: GOOD (  19.69  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -171,32 +186,171 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Use a designated initializer for the i2c_device_id fields which makes the
-code more readable and consistent with how lists are initialized in the
-rest of the kernel code base.
-
 Unify the list terminator to have a single space between the brackets and
-no trailing comma.
+no trailing comma. This change doesn't introduce any diffs between
+pre/post to the compiled binaries of the modified drivers and just aligns
+these to the common style with other *_device_id arrays.
 
 Signed-off-by: Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>
 ---
- drivers/mtd/maps/pismo.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/mtd/devices/docg3.c         | 2 +-
+ drivers/mtd/devices/mchp23k256.c    | 4 ++--
+ drivers/mtd/devices/mchp48l640.c    | 4 ++--
+ drivers/mtd/devices/mtd_dataflash.c | 8 ++++----
+ drivers/mtd/devices/mtd_intel_dg.c  | 4 +---
+ drivers/mtd/devices/phram.c         | 2 +-
+ drivers/mtd/devices/powernv_flash.c | 2 +-
+ drivers/mtd/devices/spear_smi.c     | 2 +-
+ drivers/mtd/devices/st_spi_fsm.c    | 2 +-
+ 9 files changed, 14 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/mtd/maps/pismo.c b/drivers/mtd/maps/pismo.c
-index b0310fddcaa3..babb6d367623 100644
---- a/drivers/mtd/maps/pismo.c
-+++ b/drivers/mtd/maps/pismo.c
-@@ -250,8 +250,8 @@ static int pismo_probe(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id pismo_id[] = {
--	{ "pismo" },
--	{ },
-+	{ .name = "pismo" },
+diff --git a/drivers/mtd/devices/docg3.c b/drivers/mtd/devices/docg3.c
+index a8a77de1c6f0..1f0b1b0f4a83 100644
+--- a/drivers/mtd/devices/docg3.c
++++ b/drivers/mtd/devices/docg3.c
+@@ -2051,7 +2051,7 @@ static void docg3_release(struct platform_device *pdev)
+ #ifdef CONFIG_OF
+ static const struct of_device_id docg3_dt_ids[] = {
+ 	{ .compatible = "m-systems,diskonchip-g3" },
+-	{}
 +	{ }
  };
- MODULE_DEVICE_TABLE(i2c, pismo_id);
+ MODULE_DEVICE_TABLE(of, docg3_dt_ids);
+ #endif
+diff --git a/drivers/mtd/devices/mchp23k256.c b/drivers/mtd/devices/mchp23k256.c
+index 05a4ebe21e4b..31c0f414f449 100644
+--- a/drivers/mtd/devices/mchp23k256.c
++++ b/drivers/mtd/devices/mchp23k256.c
+@@ -225,7 +225,7 @@ static const struct of_device_id mchp23k256_of_table[] = {
+ 		.compatible = "microchip,mchp23lcv1024",
+ 		.data = &mchp23lcv1024_caps,
+ 	},
+-	{}
++	{ }
+ };
+ MODULE_DEVICE_TABLE(of, mchp23k256_of_table);
+ 
+@@ -238,7 +238,7 @@ static const struct spi_device_id mchp23k256_spi_ids[] = {
+ 		.name = "mchp23lcv1024",
+ 		.driver_data = (kernel_ulong_t)&mchp23lcv1024_caps,
+ 	},
+-	{}
++	{ }
+ };
+ MODULE_DEVICE_TABLE(spi, mchp23k256_spi_ids);
+ 
+diff --git a/drivers/mtd/devices/mchp48l640.c b/drivers/mtd/devices/mchp48l640.c
+index c6e83775638d..60dfe0980557 100644
+--- a/drivers/mtd/devices/mchp48l640.c
++++ b/drivers/mtd/devices/mchp48l640.c
+@@ -372,7 +372,7 @@ static const struct of_device_id mchp48l640_of_table[] = {
+ 		.compatible = "fujitsu,mb85rs128ty",
+ 		.data = &mb85rs128ty_caps,
+ 	},
+-	{}
++	{ }
+ };
+ MODULE_DEVICE_TABLE(of, mchp48l640_of_table);
+ 
+@@ -385,7 +385,7 @@ static const struct spi_device_id mchp48l640_spi_ids[] = {
+ 		.name = "mb85rs128ty",
+ 		.driver_data = (kernel_ulong_t)&mb85rs128ty_caps,
+ 	},
+-	{}
++	{ }
+ };
+ MODULE_DEVICE_TABLE(spi, mchp48l640_spi_ids);
+ 
+diff --git a/drivers/mtd/devices/mtd_dataflash.c b/drivers/mtd/devices/mtd_dataflash.c
+index e766258d76f7..607c5cbd2a83 100644
+--- a/drivers/mtd/devices/mtd_dataflash.c
++++ b/drivers/mtd/devices/mtd_dataflash.c
+@@ -99,15 +99,15 @@ struct dataflash {
+ static const struct of_device_id dataflash_dt_ids[] = {
+ 	{ .compatible = "atmel,at45", },
+ 	{ .compatible = "atmel,dataflash", },
+-	{ /* sentinel */ }
++	{ }
+ };
+ MODULE_DEVICE_TABLE(of, dataflash_dt_ids);
+ #endif
+ 
+ static const struct spi_device_id dataflash_spi_ids[] = {
+-	{ .name = "at45", },
+-	{ .name = "dataflash", },
+-	{ /* sentinel */ }
++	{ .name = "at45" },
++	{ .name = "dataflash" },
++	{ }
+ };
+ MODULE_DEVICE_TABLE(spi, dataflash_spi_ids);
+ 
+diff --git a/drivers/mtd/devices/mtd_intel_dg.c b/drivers/mtd/devices/mtd_intel_dg.c
+index 55a945c1a67a..63685615a02d 100644
+--- a/drivers/mtd/devices/mtd_intel_dg.c
++++ b/drivers/mtd/devices/mtd_intel_dg.c
+@@ -863,9 +863,7 @@ static const struct auxiliary_device_id intel_dg_mtd_id_table[] = {
+ 	{
+ 		.name = "xe.nvm",
+ 	},
+-	{
+-		/* sentinel */
+-	}
++	{ }
+ };
+ MODULE_DEVICE_TABLE(auxiliary, intel_dg_mtd_id_table);
+ 
+diff --git a/drivers/mtd/devices/phram.c b/drivers/mtd/devices/phram.c
+index b42cadcd76b1..7c6b2852916c 100644
+--- a/drivers/mtd/devices/phram.c
++++ b/drivers/mtd/devices/phram.c
+@@ -371,7 +371,7 @@ MODULE_PARM_DESC(phram, "Memory region to map. \"phram=<name>,<start>,<length>[,
+ #ifdef CONFIG_OF
+ static const struct of_device_id phram_of_match[] = {
+ 	{ .compatible = "phram" },
+-	{}
++	{ }
+ };
+ MODULE_DEVICE_TABLE(of, phram_of_match);
+ #endif
+diff --git a/drivers/mtd/devices/powernv_flash.c b/drivers/mtd/devices/powernv_flash.c
+index 4bd7b41a03b7..596d592a8ede 100644
+--- a/drivers/mtd/devices/powernv_flash.c
++++ b/drivers/mtd/devices/powernv_flash.c
+@@ -278,7 +278,7 @@ static void powernv_flash_release(struct platform_device *pdev)
+ 
+ static const struct of_device_id powernv_flash_match[] = {
+ 	{ .compatible = "ibm,opal-flash" },
+-	{}
++	{ }
+ };
+ 
+ static struct platform_driver powernv_flash_driver = {
+diff --git a/drivers/mtd/devices/spear_smi.c b/drivers/mtd/devices/spear_smi.c
+index dc66ed852d80..947d82bebe4a 100644
+--- a/drivers/mtd/devices/spear_smi.c
++++ b/drivers/mtd/devices/spear_smi.c
+@@ -1079,7 +1079,7 @@ static SIMPLE_DEV_PM_OPS(spear_smi_pm_ops, spear_smi_suspend, spear_smi_resume);
+ #ifdef CONFIG_OF
+ static const struct of_device_id spear_smi_id_table[] = {
+ 	{ .compatible = "st,spear600-smi" },
+-	{}
++	{ }
+ };
+ MODULE_DEVICE_TABLE(of, spear_smi_id_table);
+ #endif
+diff --git a/drivers/mtd/devices/st_spi_fsm.c b/drivers/mtd/devices/st_spi_fsm.c
+index 94872e03a04d..abdcef3c91b0 100644
+--- a/drivers/mtd/devices/st_spi_fsm.c
++++ b/drivers/mtd/devices/st_spi_fsm.c
+@@ -2124,7 +2124,7 @@ static DEFINE_SIMPLE_DEV_PM_OPS(stfsm_pm_ops, stfsmfsm_suspend, stfsmfsm_resume)
+ 
+ static const struct of_device_id stfsm_match[] = {
+ 	{ .compatible = "st,spi-fsm", },
+-	{},
++	{ }
+ };
+ MODULE_DEVICE_TABLE(of, stfsm_match);
  
 
 -- 
