@@ -2,82 +2,169 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00902606A321
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B31D606A321
 	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Nov 2026 18:02:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=G/JMB1Qu;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=euK18Za8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=r7fvbK22;
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=bp.renesas.com header.i=@bp.renesas.com header.a=rsa-sha256 header.s=selector1 header.b=R94wr7SI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:Message-Id
-	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=CVRU/a7O9UniqHxfuH4D3vMpYz01UIKcO3dlV38DzgM=; b=G/JMB1QuAW9ppWMOGXshXjTsQG
-	sllYbSHpuMNlS1ZiN0peRBC50j9v3IccPHxMvMW410C9uCwiksshiizOAKMbOc4Ggr1aYJ1z5sLov
-	VCAAHyDNdPa8GwnORNaf0v0Hcl/tOjVnOhGmfERuHAaEDer2zDl991+Q8yTfzQTkqvukZxSxWasnb
-	tU6FCp3QUW+hIllszTCAx/nnyAy/+EOZhBPqpw0uDxgWePgvFLDJIoWUaQdzjaVdUNEjGET22HUc2
-	x9HtNmlSP7emXAAGAQGXqW2FQOoTWY5sC1doR5ifxNddfcxV42/80oR0ov6PzHT8hGIFMzIOGUeFM
-	Ee9tUFDw==;
+	bh=WB5k/HQAqEmJCHJ4xdT6Qa6Zfq388q3u8/CtE91BVyM=; b=r7fvbK227GLHsg8lBlg02ILygV
+	SbumQ5r7lSNes1i39WOkHPEzymtFg2Lpb9p6LwPSqAHnFe4biNnevxdiUw6gqPnGHeeRx0oLkfhgd
+	2IWXKftDq+/Grlo60TwXzx5+xoeCzf6BH2WuAIDHzzGUwql3zRqI1v/aHy3tvFgoFYE+fCLJBMhT/
+	FB0uYLmV75lYqZqXNpHo32SexJnVBnLObpjxOMR0fi4v0GY7F1hAIeiGYabFeJs6HPvLwV62/r7N5
+	0CKOaC/skJ1AVHAsbWc0hWYlF/BjRRxb5ORe46skv8BffwlgHpZ6WKeGVIwPYDguYy3oYQAvg/1Yi
+	Vag1uTRg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHKI-0000000Ava3-1Poh;
+	id 1xWHKI-0000000AvaX-2mbJ;
 	Wed, 25 Nov 2026 18:02:38 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+Received: from mail-japanwestazlp170110001.outbound.protection.outlook.com ([2a01:111:f403:c407::1] helo=OS0P286CU010.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHKE-0000000AvSX-0Umi;
-	Wed, 25 Nov 2026 18:02:35 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 3F8E04E4178B;
-	Wed, 25 Nov 2026 17:53:19 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 11F2C60480;
-	Wed, 25 Nov 2026 17:53:19 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3407811E6B0CB;
-	Wed, 25 Nov 2026 18:53:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795629192; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=voL9T1Z3XGsgqOOZRJCgMdwANraTsa7bt67oUn9zWHQ=;
-	b=euK18Za8g+jR4jPPzVdC9Sb8FWmROFOxXu1Vue+OinDIz92TekRJynKuIYn2tedgMIcrnI
-	7PFZfnGPbaXMpRb10YjGK/VpP0FW8l6K9lS5/rchszGPcrzK1m1kAvEVIAUJx68cqrKGPp
-	oMvIwp8C+AmLH3JOuXmkv/MpctDiFscOEOInMDLrvg0jrFSBt9Y4KGy+p7ueS4LC+C6DY8
-	2VSSeZlaP9ToNrDeDmmPG50G+V41hSNVuRPLKu/ip+tHRJZQkbr81UPGjTrC7tq1kjL08B
-	0F4W8Ox0F4cN9gfQziGW8GcmZlDvGqoDN02vgdHkIi+PxFumAYy/NTlnKewLsw==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-Date: Wed, 25 Nov 2026 18:51:30 +0100
-Subject: [PATCH RFC 16/16] mtd: spi-nor: Express the dummy phase in cycles
+	id 1xWHKE-0000000AvSE-0MT8;
+	Wed, 25 Nov 2026 18:02:36 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oGjCayexn8PY1xwZznQXOmeKE60BaZ1KOsJ//3p1rsckaLW2DxefkH6eS/59eWsz7WS60BC3fbj+wzq6KCjh9gkgWBVsvBFgZOMPYPUNkePmygkYw3H/9lhkgiukqYfX8cMpTX6OkdQ+BEVeqwiyaqHwm28e61ItU/POEW+wAkWw3euEeFnJsTA60y4DCjKFQUAf5c4aGPZMBh25apSuaFai+fovw2myqnKiXKNIb71Mlkqhu2s954+W0dgSS2Eu5Crzo8Fwn5Y//FongCfa1khEwnIzl98dwKQShsniq8siPy2MieOk0BcJ/epFsyVIgj5zDVL0cgD+FFcBfHWL6Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GeUjGYJL4PALjYceCyp224ORorBllon9uh1dwU1Ob9g=;
+ b=C2ImF31fZCQik7OpDQvdLkelLiBB/WsSwOruZAnFeSP3ji1iRCboQE9qn71u9ZlhjslJtBfwNWL1pCXikCf1MtfXSliTVlsJzDep3QkxnVr+dV69/PLU0VdXcumMa3SJ+VSfRprgeCvBmIif9BudwBUoSTA3NJTpglBKkkbhg6vmMIA7DzaAoVNZBc/j34F3NtMSYbiTlinx3tGrv4Hy3ffn/VGAkjtSLf50AOX7vwCazuAXDQemBbsgIphYHViI3ssfA2zpB4H/orHj5iEzH1Mne0P49H2w5Us41CnxYulS0VQS1eXuQXrJdPAPxtu7H0d4CbpkTcPeuOcuOM26Rg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GeUjGYJL4PALjYceCyp224ORorBllon9uh1dwU1Ob9g=;
+ b=R94wr7SIWi1wEzSnkDAvN47fF4EczJ47KMARRJrwmtyt6jjB9IcweLH/EA8znapRiX9JUOTUaTowf1w1DwqsonPjfCdV8QTA8Pc9wpgXCf9dPJoS49fOUKvv5q7S0DtE9b5Ol6rntTjBdmMJX8bm1zCdH6vHgzq1WvJ2ZUPgyyM=
+Received: from TYYPR01MB6603.jpnprd01.prod.outlook.com (2603:1096:400:e0::9)
+ by TYWPR01MB12075.jpnprd01.prod.outlook.com (2603:1096:400:43f::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.7; Wed, 25 Nov
+ 2026 18:02:26 +0000
+Received: from TYYPR01MB6603.jpnprd01.prod.outlook.com
+ ([fe80::145b:b854:162:2e7f]) by TYYPR01MB6603.jpnprd01.prod.outlook.com
+ ([fe80::145b:b854:162:2e7f%5]) with mapi id 15.21.0662.004; Wed, 25 Nov 2026
+ 18:02:26 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: wsa+renesas <wsa+renesas@sang-engineering.com>
+CC: Lee Jones <lee@kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, =?iso-8859-2?Q?Micha=B3_Miros=B3aw?=
+	<mirq-linux@rere.qmqm.pl>, =?iso-8859-2?Q?Niklas_S=F6derlund?=
+	<niklas.soderlund+renesas@ragnatech.se>,
+	=?iso-8859-2?Q?Uwe_Kleine-K=F6nig_=28The_Capable_Hub=29?=
+	<u.kleine-koenig@baylibre.com>, Aaro Koskinen <aaro.koskinen@iki.fi>, Adrian
+ Hunter <adrian.hunter@intel.com>, Aidan MacDonald
+	<aidanmacdonald.0x0@gmail.com>, Al Cooper <alcooperx@gmail.com>, Alex Dubov
+	<oakad@yahoo.com>, Allen Pais <allen.lkml@gmail.com>, Apelete Seketeli
+	<apelete@seketeli.net>, Aubin Constans <aubin.constans@microchip.com>, Binbin
+ Zhou <zhoubinbin@loongson.cn>, Broadcom internal kernel review list
+	<bcm-kernel-feedback-list@broadcom.com>, Cavium Inc <support@cavium.com>,
+	Christian Loehle <christian.loehle@arm.com>, Florian Fainelli
+	<florian.fainelli@broadcom.com>, Geert Uytterhoeven
+	<geert+renesas@glider.be>, Georgi Djakov <djakov@kernel.org>, Guangshuo Li
+	<lgs201920130244@gmail.com>, Heiner Kallweit <hkallweit1@gmail.com>, Hiroshi
+ DOYU <Hiroshi.DOYU@nokia.com>, Huacai Chen <chenhuacai@kernel.org>, Jaehoon
+ Chung <jh80.chung@samsung.com>, Jan Glauber <jan.glauber@gmail.com>, Jarkko
+ Lavinen <jarkko.lavinen@nokia.com>, Jerome Brunet <jbrunet@baylibre.com>,
+	Josua Mayer <josua@solid-run.com>, Juha Yrjola <juha.yrjola@nokia.com>, Kamal
+ Dasu <kamal.dasu@broadcom.com>, Kevin Hilman <khilman@baylibre.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, Prabhakar Mahadev
+ Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Lars-Peter Clausen
+	<lars@metafoo.de>, "linux-amlogic@lists.infradead.org"
+	<linux-amlogic@lists.infradead.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-arm-msm@vger.kernel.org"
+	<linux-arm-msm@vger.kernel.org>, "linux-mips@vger.kernel.org"
+	<linux-mips@vger.kernel.org>, "linux-mmc@vger.kernel.org"
+	<linux-mmc@vger.kernel.org>, "linux-omap@vger.kernel.org"
+	<linux-omap@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
+	<linux-renesas-soc@vger.kernel.org>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Paul Cercueil <paul@crapouillou.net>, Phil
+ Blundell <pb@handhelds.org>, Pierre Ossman <drzeus@drzeus.cx>, Pramod Gurav
+	<pramod.gurav@linaro.org>, Ritesh Harjani <riteshh@codeaurora.org>, Robert
+ Richter <rric@kernel.org>, Samuel Ortiz <sameo@openedhand.com>, Shawn Lin
+	<shawn.lin@rock-chips.com>, Tony Lindgren <tony@atomide.com>, Ulf Hansson
+	<ulfh@kernel.org>, Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: RE: [PATCH 00/13] mmc: Assorted bug fixes across MMC host drivers
+Thread-Topic: [PATCH 00/13] mmc: Assorted bug fixes across MMC host drivers
+Thread-Index: AQHde39EmwGk/BJHN0mctvCzIQKx+bc+zFjwgAAaWwCAADAc0A==
+Date: Wed, 25 Nov 2026 18:02:25 +0000
+Message-ID: <TYYPR01MB66030F3A816556D40E658BB986432@TYYPR01MB6603.jpnprd01.prod.outlook.com>
+References: <20261123191703.179283-1-lee@kernel.org>
+ <OS3PR01MB65968B3C9FD48C0A7515AA1986432@OS3PR01MB6596.jpnprd01.prod.outlook.com>
+ <awb59uLiTOEfLaSm@shikoro>
+In-Reply-To: <awb59uLiTOEfLaSm@shikoro>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYYPR01MB6603:EE_|TYWPR01MB12075:EE_
+x-ms-office365-filtering-correlation-id: 35baa816-a6d6-48d2-62e1-08df4b1e4356
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|23010399003|7416014|376014|366016|4143699003|18002099003|22082099003|10067099003|11063799006|56012099006|261026121527099003|38070700021;
+x-microsoft-antispam-message-info: rtgwF68RK+AVuhV74y0yc9+6h5WeyzxUJrcdHM4/wtnzg6SonvrcC/sPFobQEyDcirtdHXXgpROILTtCs1aS754wGpGdkuM6R+pg+/b6fzYhjDMnhDI39k9+iUZnE7351iefnVRbXQNCsJN6EZnb7mcxx2hD5IySpHScwLvLhwb02cR07pbRDKjQ//L5DxlDUJJKuoec/unvhc68CeetbIH5ReeV3RqzWHA9/dN+PD0ekSwN+wWtDNCSGBuD7QblJrnV5iVEMOEeir3kmGVjEsPs6abL3IjE8H9b4F4pIqGvpSL3De8HtslYvIbgUovjLRW6Ym+sOZ36aMZ/0NkM1jiU9p6xxPbAH2bbwvP4hcdO+muMv8nvW+I86ooDEzDxGQlNQvJJ7eWCI5EypbSXx8pFSTdizNVc0hbcaRN4O582kOlsdwEaGXIe8ANAcRjkVbBiBN9QvcVQijPA0iY2nc4N/YRkOmz17dzU6/GUnAc+pLXI6a3SIQbguKSi0NTQJOkglmywY5iuaakOYNd1orkvjBH0eYGdZddethWwq1hSi6n552LTNGMdZpzy330vCKlmXUkUQcVfBnMD7L2OfySeNWu6CWU4xbltnNNGuyEP7Hsa/cW9xjQ5nM3POVXYNEnPy4D8KnIlgveO+GY1iNg9XueifaF+5VkbMJrQFkjuKh4sV++fW1Z513a7gbjW6wJetcdAC0+f9GTWvM45k8CE8BiP8/2vjxgUdpgwjpI=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYYPR01MB6603.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(23010399003)(7416014)(376014)(366016)(4143699003)(18002099003)(22082099003)(10067099003)(11063799006)(56012099006)(261026121527099003)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-2?Q?Mreph5UG7Qm9M9v7K0UwmMM0YzXGjWgARYLeLRjXaYZ7G9Xm7pbr//vDp2?=
+ =?iso-8859-2?Q?9TPx4TORE2jbYdn+FYjU14RxDCVDtgN8k7jXbaAlo3ZS20xAI3WUQBI+Tn?=
+ =?iso-8859-2?Q?cgdCWSlEVzM4/aIY2CEznrn4w0oSyA59Udd5SaCG3MIH/mVQcVBSGmt13H?=
+ =?iso-8859-2?Q?HGibRDfBXIfytrCiboDe1NnCNmyVzLwbHBoEq6NdBVZ6TreGAYDSkTeeFT?=
+ =?iso-8859-2?Q?W6flec9uKLaUkEvLwk8w6Xq1MsMAwVPQiFJGOq24/gV6qcySXe/QQnVvlP?=
+ =?iso-8859-2?Q?GS+wWO8wvOATT95N6A8GnEb0esgdgaCz6IfpxpJv5gItIwcub7P+xnGHO5?=
+ =?iso-8859-2?Q?VBydLK40esIzFP1HPfTnfzBqTk3p+6xBDiFuQTrh6xc4tZGso3yEBzIDqP?=
+ =?iso-8859-2?Q?e8M907QATuUA/f0wiDiXHtu3VjoRz74XNbZ5WjVs7Foo556U2tw9HXy6OQ?=
+ =?iso-8859-2?Q?wPzVMm2C1Rf/bGHI0rh3ub+egYGgRGM+AvSJCR3JQ75SDB8iv2SGwsOuhz?=
+ =?iso-8859-2?Q?iXZW+AdPFu0DsdNJFOzoJJ5ehOePmo11zZaP24WvZmZz/XMUTrObSluiyr?=
+ =?iso-8859-2?Q?g/LBwPbQl9CCSvTV/phNqLBGJSD0mtev7Yf68Ap+mnhBf8nA1SemBdTrI9?=
+ =?iso-8859-2?Q?e9+Ogm+2EbHuHumHnDkfTLsK5RAnKYmp/qEWJNX4aooAKzjraNpdAk0R4f?=
+ =?iso-8859-2?Q?nXcJaR3hiCH0c7Q/sSy7Ex+zsvUVFpIbObTqKk3xc67rmvQhze4euEDh2p?=
+ =?iso-8859-2?Q?tbIzRZ3+H82Yn+I0h6VHDT+RMwYViQlSWQkVbVGPQyiEu64s2kHHb5xNWV?=
+ =?iso-8859-2?Q?RvqDJvdaSiD0iEqVY7gu2ii2OKBSnhEx97b/xcPJi9sOfVDx8Da6RwGZha?=
+ =?iso-8859-2?Q?ieojSC4Es6orKNttCzTpb9yf2IzGk+NHHMKIFq2jMdlt6TKOir3lU3LjP8?=
+ =?iso-8859-2?Q?wNE1IKInvzO8PX2pUC520/6N0Xkqru/g+zVHm1GCPvmFYZy1HLR6dUYHve?=
+ =?iso-8859-2?Q?VLZ2Wkyy56fCNUHXk2qOPcZhzwHCtBr+UiIC62qUTI8BGYYwP87eM2Unbx?=
+ =?iso-8859-2?Q?ImBtgPhES57FbszgSbrXqDMkRml67RdPmaS/vroNi7IyETAN2H8TgDQ51U?=
+ =?iso-8859-2?Q?+eJTTvm90YQGZjBd9LMhgJfmD1saXGWNtbRNfO6fE0U3BaQc+OzcfmTnbZ?=
+ =?iso-8859-2?Q?c6KizA9H9PKQz7dSofHpHpwCHUDVwG6T8M4UYCiXmWWD+R9QSn5aeIEETS?=
+ =?iso-8859-2?Q?PdXx6ydS4BZY/idm6IFph5FWIfM8VfGH0WEcr+K++x+dNnQlsBSDCrtQgT?=
+ =?iso-8859-2?Q?LXr21hYx0Q+kVepf1zQTiQ+SNiyCgzhBy+uYoB+Qoj+6rhnm9CveFCpU0E?=
+ =?iso-8859-2?Q?G6uIJxvwvxm5/b6Lx6EzcW7aG7OgbFeLQRFF54+it+4r33td/Q4WEjfg8A?=
+ =?iso-8859-2?Q?Yv7I0aJ+wa8HftxWoaz33/2EjVNOee6pYJ6XlkO7zoqvBEZVZi2uBACM3G?=
+ =?iso-8859-2?Q?8e/NiyunGCs4YZ6tYmRpdM8vesEoypYYiB9erM8dbPCSrE6mIK9Cema+kf?=
+ =?iso-8859-2?Q?mb4NtODhSIRpUkHcHWKljQ287gWklH51bL43vBjJ2N8VgeO4YJxKeRqC50?=
+ =?iso-8859-2?Q?FhePVGYqSuLWp4EwWpyEbz4T6B98sfn2uU6FDVns9tPWyUiYYcevl3QDQI?=
+ =?iso-8859-2?Q?iM8kDaIa18B0ArnrFUABTCN3DbhsIsO480cO22j5OocHi14eiNkINuWm5d?=
+ =?iso-8859-2?Q?/w6gB+fMglN1OjMEMDuVnKIGGSAxDYFcz9MyJsWfcf//iesmf0wu+wx36Q?=
+ =?iso-8859-2?Q?n1WyYwk7lQ=3D=3D?=
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261125-macronix-upstreaming-spi-mem-cycles-v1-16-fd036402fd37@bootlin.com>
-References: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
-In-Reply-To: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
-To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
- Feng Chen <feng.chen@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
- Han Xu <han.xu@nxp.com>, Conor Dooley <conor.dooley@microchip.com>, 
- Valentina Fernandez <valentina.fernandezalanis@microchip.com>, 
- Daire McNamara <daire.mcnamara@microchip.com>, 
- Haibo Chen <haibo.chen@nxp.com>, Jyan Chou <jyanchou@realtek.com>, 
- Yu-Chun Lin <eleanor.lin@realtek.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, 
- Takahiro Kuwano <takahiro.kuwano@infineon.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Alvin Zhou <alvinzhou@mxic.com.tw>, 
- Cheng Ming Lin <chengminglin@mxic.com.tw>, linux-spi@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- imx@lists.linux.dev, linux-riscv@lists.infradead.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org, 
- Miquel Raynal <miquel.raynal@bootlin.com>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYYPR01MB6603.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 35baa816-a6d6-48d2-62e1-08df4b1e4356
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Nov 2026 18:02:26.0231
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: YFgqRNVoAO7pFsZSuXHdlATS9oED7vihFqGkHNkuPnMa8DbOW4gDeOw0fWRjVPHeycBIBVZvxW/845W5Q1R5Ff5e+LLUdq1uIewe2CqifGs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB12075
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_100234_467360_20D8540C 
-X-CRM114-Status: GOOD (  17.49  )
+X-CRM114-CacheID: sfid-20261125_100234_263956_9C1381F3 
+X-CRM114-Status: UNSURE (   9.60  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -91,220 +178,34 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-SFDP tables and datasheets provide the number of dummy cycles, not the
-number of dummy bytes. Set dummy.ncycles directly instead of converting
-it to dummy.nbytes. Depending on controller capabilities, this may help
-supporting more use cases (typically Macronix 1S-8S-8S 20 dummy cycles)
-while performing less useless maths in the core.
+Hi Wolfram,
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- drivers/mtd/spi-nor/core.c      | 36 ++++++++++--------------------------
- drivers/mtd/spi-nor/core.h      |  8 ++++----
- drivers/mtd/spi-nor/micron-st.c |  2 +-
- drivers/mtd/spi-nor/spansion.c  |  6 +++---
- 4 files changed, 18 insertions(+), 34 deletions(-)
+> -----Original Message-----
+> From: wsa+renesas <wsa+renesas@sang-engineering.com>
+> Sent: 25 November 2026 15:09
+> Subject: Re: [PATCH 00/13] mmc: Assorted bug fixes across MMC host drivers
+> 
+> 
+> > > Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> 
+> I plan to review the Renesas related changes early next week.
 
-diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
-index a04d22d2e2e1..dcc36f532aaa 100644
---- a/drivers/mtd/spi-nor/core.c
-+++ b/drivers/mtd/spi-nor/core.c
-@@ -91,7 +91,7 @@ void spi_nor_spimem_setup_op(const struct spi_nor *nor,
- 	if (op->addr.nbytes)
- 		op->addr.buswidth = spi_nor_get_protocol_addr_nbits(proto);
- 
--	if (op->dummy.nbytes)
-+	if (op->dummy.nbytes || op->dummy.ncycles)
- 		op->dummy.buswidth = spi_nor_get_protocol_addr_nbits(proto);
- 
- 	if (op->data.nbytes)
-@@ -109,9 +109,6 @@ void spi_nor_spimem_setup_op(const struct spi_nor *nor,
- 		op->dummy.dtr = true;
- 		op->data.dtr = true;
- 
--		/* 2 bytes per clock cycle in DTR mode. */
--		op->dummy.nbytes *= 2;
--
- 		ext = spi_nor_get_cmd_ext(nor, op);
- 		op->cmd.opcode = (op->cmd.opcode << 8) | ext;
- 		op->cmd.nbytes = 2;
-@@ -205,7 +202,7 @@ static ssize_t spi_nor_spimem_read_data(struct spi_nor *nor, loff_t from,
- 	struct spi_mem_op op =
- 		SPI_MEM_OP(SPI_MEM_OP_CMD(nor->read_opcode, 0),
- 			   SPI_MEM_OP_ADDR(nor->addr_nbytes, from, 0),
--			   SPI_MEM_OP_DUMMY(nor->read_dummy, 0),
-+			   SPI_MEM_OP_DUMMY_CYCLES(nor->read_dummy, 0),
- 			   SPI_MEM_OP_DATA_IN(len, buf, 0));
- 	bool usebouncebuf;
- 	ssize_t nbytes;
-@@ -213,11 +210,6 @@ static ssize_t spi_nor_spimem_read_data(struct spi_nor *nor, loff_t from,
- 
- 	spi_nor_spimem_setup_op(nor, &op, nor->read_proto);
- 
--	/* convert the dummy cycles to the number of bytes */
--	op.dummy.nbytes = (nor->read_dummy * op.dummy.buswidth) / 8;
--	if (spi_nor_protocol_is_dtr(nor->read_proto))
--		op.dummy.nbytes *= 2;
--
- 	usebouncebuf = spi_nor_spimem_bounce(nor, &op);
- 
- 	if (nor->dirmap.rdesc) {
-@@ -418,22 +410,23 @@ int spi_nor_write_disable(struct spi_nor *nor)
-  * @nor:	pointer to 'struct spi_nor'.
-  * @naddr:	number of address bytes to send. Can be zero if the operation
-  *		does not need to send an address.
-- * @ndummy:	number of dummy bytes to send after an opcode or address. Can
-- *		be zero if the operation does not require dummy bytes.
-+ * @ncycles:	number of dummy clock cycles to insert after an opcode or
-+ *		address. Can be zero if the operation does not require dummy
-+ *		cycles.
-  * @id:		pointer to a DMA-able buffer where the value of the JEDEC ID
-  *		will be written.
-  * @proto:	the SPI protocol for register operation.
-  *
-  * Return: 0 on success, -errno otherwise.
-  */
--int spi_nor_read_id(struct spi_nor *nor, u8 naddr, u8 ndummy, u8 *id,
-+int spi_nor_read_id(struct spi_nor *nor, u8 naddr, u8 ncycles, u8 *id,
- 		    enum spi_nor_protocol proto)
- {
- 	int ret;
- 
- 	if (nor->spimem) {
- 		struct spi_mem_op op =
--			SPI_NOR_READID_OP(naddr, ndummy, id, SPI_NOR_MAX_ID_LEN);
-+			SPI_NOR_READID_OP(naddr, ncycles, id, SPI_NOR_MAX_ID_LEN);
- 
- 		spi_nor_spimem_setup_op(nor, &op, proto);
- 		ret = spi_mem_exec_op(nor->spimem, &op);
-@@ -741,7 +734,7 @@ int spi_nor_read_sr_ll(struct spi_nor *nor, u8 opcode, u8 *sr,
- 
- 		if (nor->reg_proto == SNOR_PROTO_8_8_8_DTR) {
- 			op.addr.nbytes = nor->params->rdsr_addr_nbytes;
--			op.dummy.nbytes = nor->params->rdsr_dummy;
-+			op.dummy.ncycles = nor->params->rdsr_dummy;
- 			/*
- 			 * We don't want to read only one byte in DTR mode. So,
- 			 * read 2 and then discard the second byte.
-@@ -2247,11 +2240,7 @@ static int spi_nor_spimem_check_readop(struct spi_nor *nor,
- 
- 	spi_nor_spimem_setup_op(nor, &op, read->proto);
- 
--	/* convert the dummy cycles to the number of bytes */
--	op.dummy.nbytes = (read->num_mode_clocks + read->num_wait_states) *
--			  op.dummy.buswidth / 8;
--	if (spi_nor_protocol_is_dtr(read->proto))
--		op.dummy.nbytes *= 2;
-+	op.dummy.ncycles = read->num_mode_clocks + read->num_wait_states;
- 
- 	return spi_nor_spimem_check_read_pp_op(nor, &op);
- }
-@@ -3492,7 +3481,7 @@ static int spi_nor_create_read_dirmap(struct spi_nor *nor)
- 		.op_tmpl = &info.primary_op_tmpl,
- 		.primary_op_tmpl = SPI_MEM_OP(SPI_MEM_OP_CMD(nor->read_opcode, 0),
- 					      SPI_MEM_OP_ADDR(nor->addr_nbytes, 0, 0),
--					      SPI_MEM_OP_DUMMY(nor->read_dummy, 0),
-+					      SPI_MEM_OP_DUMMY_CYCLES(nor->read_dummy, 0),
- 					      SPI_MEM_OP_DATA_IN(0, NULL, 0)),
- 		.offset = 0,
- 		.length = nor->params->size,
-@@ -3501,11 +3490,6 @@ static int spi_nor_create_read_dirmap(struct spi_nor *nor)
- 
- 	spi_nor_spimem_setup_op(nor, op, nor->read_proto);
- 
--	/* convert the dummy cycles to the number of bytes */
--	op->dummy.nbytes = (nor->read_dummy * op->dummy.buswidth) / 8;
--	if (spi_nor_protocol_is_dtr(nor->read_proto))
--		op->dummy.nbytes *= 2;
--
- 	/*
- 	 * Since spi_nor_spimem_setup_op() only sets buswidth when the number
- 	 * of data bytes is non-zero, the data buswidth won't be set here. So,
-diff --git a/drivers/mtd/spi-nor/core.h b/drivers/mtd/spi-nor/core.h
-index 670182b3c2ad..11817280f650 100644
---- a/drivers/mtd/spi-nor/core.h
-+++ b/drivers/mtd/spi-nor/core.h
-@@ -19,10 +19,10 @@
- #define SPI_NOR_DEFAULT_SECTOR_SIZE SZ_64K
- 
- /* Standard SPI NOR flash operations. */
--#define SPI_NOR_READID_OP(naddr, ndummy, buf, len)			\
-+#define SPI_NOR_READID_OP(naddr, ncycles, buf, len)			\
- 	SPI_MEM_OP(SPI_MEM_OP_CMD(SPINOR_OP_RDID, 0),			\
- 		   SPI_MEM_OP_ADDR(naddr, 0, 0),			\
--		   SPI_MEM_OP_DUMMY(ndummy, 0),				\
-+		   SPI_MEM_OP_DUMMY_CYCLES(ncycles, 0),			\
- 		   SPI_MEM_OP_DATA_IN(len, buf, 0))
- 
- #define SPI_NOR_WREN_OP							\
-@@ -82,7 +82,7 @@
- #define SPI_NOR_READ_OP(opcode)						\
- 	SPI_MEM_OP(SPI_MEM_OP_CMD(opcode, 0),				\
- 		   SPI_MEM_OP_ADDR(3, 0, 0),				\
--		   SPI_MEM_OP_DUMMY(1, 0),				\
-+		   SPI_MEM_OP_DUMMY_CYCLES(1, 0),			\
- 		   SPI_MEM_OP_DATA_IN(2, NULL, 0))
- 
- #define SPI_NOR_PP_OP(opcode)						\
-@@ -652,7 +652,7 @@ int spi_nor_wait_till_ready(struct spi_nor *nor);
- int spi_nor_global_block_unlock(struct spi_nor *nor);
- int spi_nor_prep_and_lock(struct spi_nor *nor);
- void spi_nor_unlock_and_unprep(struct spi_nor *nor);
--int spi_nor_read_id(struct spi_nor *nor, u8 naddr, u8 ndummy, u8 *id,
-+int spi_nor_read_id(struct spi_nor *nor, u8 naddr, u8 ncycles, u8 *id,
- 		    enum spi_nor_protocol reg_proto);
- int spi_nor_sr_ready(struct spi_nor *nor);
- int spi_nor_read_sr_ll(struct spi_nor *nor, u8 opcode, u8 *sr,
-diff --git a/drivers/mtd/spi-nor/micron-st.c b/drivers/mtd/spi-nor/micron-st.c
-index f97f2dead8c2..34eb15c7d3b3 100644
---- a/drivers/mtd/spi-nor/micron-st.c
-+++ b/drivers/mtd/spi-nor/micron-st.c
-@@ -525,7 +525,7 @@ static int micron_st_nor_read_fsr(struct spi_nor *nor, u8 *fsr)
- 
- 		if (nor->reg_proto == SNOR_PROTO_8_8_8_DTR) {
- 			op.addr.nbytes = nor->params->rdsr_addr_nbytes;
--			op.dummy.nbytes = nor->params->rdsr_dummy;
-+			op.dummy.ncycles = nor->params->rdsr_dummy;
- 			/*
- 			 * We don't want to read only one byte in DTR mode. So,
- 			 * read 2 and then discard the second byte.
-diff --git a/drivers/mtd/spi-nor/spansion.c b/drivers/mtd/spi-nor/spansion.c
-index b1b14ed0fd46..72cc11d3f1d3 100644
---- a/drivers/mtd/spi-nor/spansion.c
-+++ b/drivers/mtd/spi-nor/spansion.c
-@@ -53,10 +53,10 @@
- 		   SPI_MEM_OP_NO_DUMMY,					\
- 		   SPI_MEM_OP_DATA_OUT(ndata, buf, 0))
- 
--#define CYPRESS_NOR_RD_ANY_REG_OP(naddr, addr, ndummy, buf)		\
-+#define CYPRESS_NOR_RD_ANY_REG_OP(naddr, addr, ncycles, buf)		\
- 	SPI_MEM_OP(SPI_MEM_OP_CMD(SPINOR_OP_RD_ANY_REG, 0),		\
- 		   SPI_MEM_OP_ADDR(naddr, addr, 0),			\
--		   SPI_MEM_OP_DUMMY(ndummy, 0),				\
-+		   SPI_MEM_OP_DUMMY_CYCLES(ncycles, 0),			\
- 		   SPI_MEM_OP_DATA_IN(1, buf, 0))
- 
- #define CYPRESS_NOR_EN4B_EX4B_OP(enable)				\
-@@ -115,7 +115,7 @@ static int cypress_nor_sr_ready_and_clear_reg(struct spi_nor *nor, u64 addr)
- 
- 	if (nor->reg_proto == SNOR_PROTO_8_8_8_DTR) {
- 		op.addr.nbytes = nor->addr_nbytes;
--		op.dummy.nbytes = params->rdsr_dummy;
-+		op.dummy.ncycles = params->rdsr_dummy;
- 		op.data.nbytes = 2;
- 	}
- 
+Thanks.
 
--- 
-2.56.0
+FYI, I just done mmc_test read/write performance on both SD/eMMC
+interfaces RZ boards.
 
+I have n't tested SDIO
+
+Cheers,
+Biju
 
 _______________________________________________
 linux-amlogic mailing list
