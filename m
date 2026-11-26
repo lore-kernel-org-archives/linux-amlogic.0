@@ -2,12 +2,12 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5151B606A31E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F826606A321
 	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Nov 2026 19:34:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=c3IoOeMq;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=A1bZ6+Nq;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=ziNyLQoc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Qo6F10PI;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=XXg5WRKa;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=DUF1LCP7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -15,80 +15,80 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Z192NKKFj+BmY1RXL3aFSpvUHI5JQLG8FjXoqr8io+M=; b=c3IoOeMqqtjFMVzw8URWaciycg
-	oP0bMKWpn1I0BnoZbZp0lmHLHRIUIYK/bf2e9HK3X60ssoZFntxClPZjYRUlXKyXaDZEGyoQb21dd
-	JDJZgbGcvpUF8TlDPYQOFNN/Ff8+DlUnDYpW8ayeDG/VGAoiua7so/2BSUT0HDGrI68FyFYlyHbwE
-	6qOAOrOQfenhIv5cX+G93S4j6lRJbVSjoHUONA2EPHFrW/tjNufmMfMwsMJh01fRmNna/9orzpBe8
-	nJyMc9Z+F7n+fTXF49GnJN1Q6J4+cC1oHsC6PLmjTh9HAAh8XIiCD51auRVWZLlVlszShGqwtc8uQ
-	7fvNkyHg==;
+	bh=3ZkzRQSLdcUGeVBIRQ1Q3jCZiM3Zg4QK+ZxaJhYwtjA=; b=Qo6F10PIXca2BYXdHJa3WnNR8G
+	Sh5LaYPQXLNCj/xIn3QM8suZqAZDXxEcJQPoxBq1P2OiHwb+wVR+m/ukwh4b1PxRDjtPwazvEdncm
+	1SlD92PWSDd1PdaN0FIDOQf7G8ZkmYetq8cpblx34KmwKTvc1C9zLp1ZpUa/I7ycMNy7OIJJjW7WB
+	y4SjgWngmzIFseCeWFCt9QRcrTjxJzFVSnRtJyW21f7ojpHikvnuPv3EABB6OyjjHLxdo4OREwb0E
+	uRxw7CEuXTgq+ECcA7v6IN5tDbW+pQs5kGiy4QVdRUZHT4zfI3sbG3CHl/MaWdmC7B4DubTEQa1m9
+	aAbmtouw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWfEI-0000000EKsY-3QyX;
-	Thu, 26 Nov 2026 19:34:06 +0000
+	id 1xWfEN-0000000EKz9-2mk1;
+	Thu, 26 Nov 2026 19:34:07 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWfDs-0000000EJz0-2QUi
+	id 1xWfDv-0000000EK6D-3eRx
 	for linux-amlogic@bombadil.infradead.org;
-	Thu, 26 Nov 2026 19:33:36 +0000
+	Thu, 26 Nov 2026 19:33:40 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
 	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-Type:Content-ID:Content-Description;
-	bh=hbddC97o04ZKg1StPMOMc8GcEnBHPu2bJqDhfBcc/DY=; b=A1bZ6+NqcnEnCUaKbbNwvJ5AW5
-	Lz3BEMeGdVUHcB2MdpZBYliDUYNKKbSdISlNVx+pK5Rv+VO3Xcjh83y+MiyVRqK1duHZyETVn12yu
-	u9hIIIPlGpqRE0K+kIB7OaGecaPTdb1de9NxgEc90i5h6ZkHz8HElVKN1ldziglkmRch82MEhK7Cl
-	d2BeBzPfcNrH72b+fo0vvqdaUeW77woDwzT4kLRrJZSvwC7PmQJ1M9drCUyWHx02qHNk5QvMR8fA7
-	Cq5cS9c5MOd6oeSAWobQ8U6T6EJGwDUHAZA0EXQMSPfroqsL2o1Ra+7kfpHLSZEBabSczP7G25EZK
-	E9/SqjlA==;
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	bh=IrCPEDuRLj9X86b6iS7crxRsYz+wud1Y8dJ9yChy4/Q=; b=XXg5WRKawZzAq/elMfCgoBFVoS
+	Jz/cDJ6gcz2ElAenArRtKatftV1mu4AfEiKLrHcPEz/BCmMos/jfouLR6OwxK9r8FsZSuh2m1J1+K
+	KoQ21R+7NBMZdwPcVma6RmkGEpiCttsTVBbkCooxUYy15J6TeVCS7r6vs2bMI1V4ujQDwnxNxuwiX
+	C7nRQq+h/o2zuGBurrWFkaXCTIc+lzJzjSM8ylLP5UMVvr2PBC6s98cfKw0370Ybx63oCLie5TUGc
+	8bM3UZYDV2ToIL/I3RGQdAUqgeaknblk68GjcJ1fw9Shj8RMF6NhEj5ot5SEGR4Wxy6Be8HE8Qf8C
+	M1kV5Ejg==;
+Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
 	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWfDp-00000006zzO-3Gh0
+	id 1xWfDq-0000000700E-3u7B
 	for linux-amlogic@lists.infradead.org;
-	Thu, 26 Nov 2026 19:33:35 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-4a1fbd52ab6so50542895e9.0
-        for <linux-amlogic@lists.infradead.org>; Thu, 26 Nov 2026 11:33:32 -0800 (PST)
+	Thu, 26 Nov 2026 19:33:36 +0000
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4a207b02a2cso52984495e9.1
+        for <linux-amlogic@lists.infradead.org>; Thu, 26 Nov 2026 11:33:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795721612; x=1796326412; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795721613; x=1796326413; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=hbddC97o04ZKg1StPMOMc8GcEnBHPu2bJqDhfBcc/DY=;
-        b=ziNyLQoc/yttYwhcp421scxzon0cpp/im0qjpeGOhCf7uzO+CAF9jDUCXPAZfGLeAw
-         YYrc9+GMYCz9NnWv2P424czPESJl/0ANCBO2K1Y7pr3paxjslP+tJRKscuqi44DF6YB9
-         UUoQSE+WpIYEFtuOOIziSOs4LaBKaQIBfTMZSQy43gpFrpmQ4cojkTRBbiKQ4ZRuBa43
-         qK4LWg5MgjHBFLJVDmQRqZsBdPLyHUCsskzCPV90xKruqjAnHTXbWDrfPfJ2+GD1zi1Q
-         do91y1FCVbia4WlqSa4SvJwF6SwhoJravhlDJVS7sk+SgSVnRHUB4bR7uE4p6noSYEs+
-         2wqw==
+        bh=IrCPEDuRLj9X86b6iS7crxRsYz+wud1Y8dJ9yChy4/Q=;
+        b=DUF1LCP7w75f4dgZqzCctLdlHnIfLLW38uJvQmXLABUYoaOApb37Nz+aYqpMS55FEj
+         KdpiSKQGn9v8DJsMnoc8tME6C/3m+fntHd341MEkcJD81sZssHON/eHPSkewCjK4Tu2d
+         qH+jaxsxU5CwYKFrOxI7wYaakt2jllpBxKUg9zK27vNyRELuB6fHugaT9UmzTRuDw3U+
+         dmFJufTv8KaIpH6huPasGE1hjlEYPQVSWggLOhyZ9WbHRjI5euEi3sRL8kJ5IidWxf88
+         XRPCSfwuYTwvTUZPHyWdy/l3/uhPKzaiobP+8WX7piiUNFUXJ/mod+XKJt1JuPzQkYPG
+         cJYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795721612; x=1796326412;
+        d=1e100.net; s=20260707; t=1795721613; x=1796326413;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=hbddC97o04ZKg1StPMOMc8GcEnBHPu2bJqDhfBcc/DY=;
-        b=nH2iqmsI49ernJ3QJ6VnE5mrTB9/c+/oezsUrtKcvviqBjbAKyrm3ege+AYYPbaG51
-         RBaSFIucGcJYON/RPJtPa5ZSnBhssu4QqKJaWXSHkm+S7paUR6317sYrrKJOXjCGDqJg
-         wmMxXzddtUqtFEdTIa6f/4ZnzMnethS+v28HFZn3UmDCvH7pEByUKLmtDFX46gn28i46
-         WY7b43fNF+qpNuhUoI1dRbxWKWfIC26AND0JBQvO8FF1Kn2NBMMxrf/Y2/HRzYCT2Myd
-         Eui+AhKqT7KyBDfBRf1ofGfad5kgrYBGj3ag7ydGWRfG79FbLuSjcWHlxIN9E8jwTf3Y
-         moKA==
-X-Forwarded-Encrypted: i=1; AL+hErHQbZGl9u0xzNm0HEpriZu/7D+cL0G8NSwPhsx0nrkd237U/1bs5PtLrYKLLCT4V1Im/PbRmtRV5P46/wMm@lists.infradead.org
-X-Gm-Message-State: APuU4Z9pmKdQQoSB1FHEuvXjqHPb8eKv8q4PjGQzXbW345peNcSy5TUB
-	3z9vTpPgFsXXg05ZdW+3Tx+wZDeyYRcLdXu1m3pnkVi+uzmOo0QZ/ZCZ
-X-Gm-Gg: AZFdTZfou76ZIkgCOBbSGytgyLhdnnOg4n/s8QWQDS+OfiuQ1AnEcBMOUtT14M3Uye6
-	isA/DM8xL0oT7LAjS7gclXEVGuCrdAohFNNR2dyM7r0Dlsg/z4Mr/cEEyJLc+o2lq23JTqqwNvD
-	gHUDA7gaRvhxz/KeEEhLwvDa0MtuPiGQJJYODAJoKlqFkex3dMuer96h3qAHccURyMsKqasIqW/
-	OH3lLlGA6laGpfGCo1ZxyoU2fa+sAzNXY/m1Gj9ZCZZMcSaHzACMEBXD+d/OJWlnCPbn2uRNIp1
-	/8/1UKYqxReEyL2lRRfWhFRWqrkKOBRBlj/YVtxwkRza56Bn8IaWOCyHsWjx+BjOHYBq+57KMc+
-	GJwX2uAZjU3lC2L5sYWxU9EmAoweHODtC/WVfXRmzmqzwWQsFlQxj8iRXHyi87Ro8lCBr2qD1Gv
-	ftBgjfscobVOvD1G1IfMhVpuADWWLxuEqDBYGEUIGuvNF3gQun3yEDSKQ1EpcLhM4PxIhGTD+pN
-	Y7h6w7N/1Qr1L7SFsL2NZAGM1e9ZwL9DY2I08Bn5mmil68Rl0T4KfFBPjnCTzjjvQssKqGJwDB1
-	FJaEUWWSvgpsWzoF+utOIofnShrw2R1hDafgZQ1F68YfpA==
-X-Received: by 2002:a05:600c:a08e:b0:4a1:fae5:f2e2 with SMTP id 5b1f17b1804b1-4bb887e0682mr449158305e9.4.1795721611530;
-        Thu, 26 Nov 2026 11:33:31 -0800 (PST)
+        bh=IrCPEDuRLj9X86b6iS7crxRsYz+wud1Y8dJ9yChy4/Q=;
+        b=yj1HE+PiAoKbJNvZ/um1ZifEnzlIoU13Hh+37W+EM6QXwGVJN6+W89X12wcOFTdkNA
+         wT3Nu6UJB+w7mZevTcwdJ6/Ty6b6q3tpvznFXsABoGKR+eTUgQKZ1sG32HE3uIiPP0XP
+         H+BplKHrTqwEqhZhXBWQ2Wme6Sx68IH7O+Udd2iLC+8bOKQIL39F6KSt0JRSuMIeiJhV
+         nuY8LfC+jN22yzEXYPv23NcSLJmIaMcWq5iqr5rXpJni9aXstL6vWVcWIDdyb2wNsF7n
+         lI+vm9OsUJA5cVXwz7+/O3iQtl6vxDJL5iE39wrSXTlfrhjeAGcLqH6TiCoCrjv0MdKf
+         R39Q==
+X-Forwarded-Encrypted: i=1; AL+hErE/DA+BJ12z4Cf4+HLuNCqrh8vzFarTTvGQMEQqfBp+ecAm1KFKn6sLs8e98GVVKxOCrbvau7T7gu+Bqpi6@lists.infradead.org
+X-Gm-Message-State: APuU4Z/ZE6M/NC9Y+WNMdBrA+EuhlsVdT7Z852rsOduu++2/S+HdK6vZ
+	f2Sj4/IzYoVRQQs9a/1gOdIMwLmZ3lFbEfw4u67MoukUdZ0ISaPyCO0g
+X-Gm-Gg: AZFdTZcny9J8LX+Aqwm/GZyEukV7bvwwN0lHcx6mp+Y8kj97KSvNrbFH/IUwwCIhr4Y
+	qqzjh3Wfc35s0qn4cdZCObiEEa1NKZdjmR6JMFyWyr79SsoDhGioI3UybCQLVQ22OPtverUiJyc
+	EOLCvh1cQx6v7NhNK6XeGT8Sj3VtUTzh7rJVMCBtgLivL9TNAV9hJTl2QHLYMZn3WJLbgi4jGfD
+	/rXE5I/gvRhOy3UO0YwpOR5r7v4Z1bA9ecwfR/VHE1d+9Ae1mLs9DDllKILO/0rwlmr12Hfr7oM
+	elVWicGGr7njC+YBfcrhPjNXo4LLLJnEpPIzj0XV0B4o0DvfNDIhUCtTyGpajjktUKJSgO3S9E4
+	9Tok62ysiuCD5tqO+mRhbIPWlG7Emvpyvuplb8tuUrZiSow7Dg6E4PkEAxSkr5yV6wXr4UYex/I
+	mq6opxmyJ/+NNgOWzT0aYRBNz1kj8J8v4Glmyfy/mzd4ShsCRpYHYcaQNRHsaVqEtHpQ1TGYkCN
+	DCfK/itXARedJ+TLvluoKSxPauYzNQamGzDvUqo5a2nFpTL7rTlnkoiHF5gtDtVo7xoFFee+AgS
+	6UIdbZEddQESKOEPMyLhdcx+4R7QBn1oEGSpekcUEE/605Zy0IUEbJoAv5U0oy5BQoc=
+X-Received: by 2002:a05:600c:4f4c:b0:4bb:8503:69f4 with SMTP id 5b1f17b1804b1-4bb888097a2mr548704265e9.5.1795721612906;
+        Thu, 26 Nov 2026 11:33:32 -0800 (PST)
 Received: from localhost.localdomain ([79.117.198.103])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906cdcc1sm368287675e9.2.2026.11.26.11.33.30
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906cdcc1sm368287675e9.2.2026.11.26.11.33.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 11:33:31 -0800 (PST)
+        Thu, 26 Nov 2026 11:33:32 -0800 (PST)
 From: Jose Nieto <jnieto.alaber@gmail.com>
 To: Corentin Labbe <clabbe@baylibre.com>,
 	Herbert Xu <herbert@gondor.apana.org.au>
@@ -102,17 +102,17 @@ Cc: linux-crypto@vger.kernel.org,
 	Rob Herring <robh@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Jose Nieto <jnieto.alaber@gmail.com>
-Subject: [PATCH v13 19/25] crypto: amlogic: hasher: add one-shot digest path
-Date: Thu, 26 Nov 2026 20:32:35 +0100
-Message-ID: <20261126193241.1471372-20-jnieto.alaber@gmail.com>
+Subject: [PATCH v13 20/25] crypto: amlogic: drop unused field and stale includes
+Date: Thu, 26 Nov 2026 20:32:36 +0100
+Message-ID: <20261126193241.1471372-21-jnieto.alaber@gmail.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261126193241.1471372-1-jnieto.alaber@gmail.com>
 References: <20261126193241.1471372-1-jnieto.alaber@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_193333_647964_6D091AAD 
-X-CRM114-Status: GOOD (  19.36  )
+X-CRM114-CacheID: sfid-20261126_193334_834175_30225CDD 
+X-CRM114-Status: GOOD (  15.13  )
 X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -134,137 +134,95 @@ X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Implement the ahash ->digest callback so one-shot SHA requests are sent
-as a single engine transfer instead of the init/update/final sequence,
-and skip the spurious trailing block for digest requests.
-
-Also unregister the hasher on device removal and lower the "hasher not
-supported" message to dev_dbg.
+Remove the unused meson_flow.keylen field, drop unused includes in the
+cipher and core files, and fix stale kernel-doc field names.
 
 Signed-off-by: Jose Nieto <jnieto.alaber@gmail.com>
 ---
- drivers/crypto/amlogic/amlogic-gxl-core.c   |  1 +
- drivers/crypto/amlogic/amlogic-gxl-hasher.c | 29 +++++++++++++++++++--
- drivers/crypto/amlogic/amlogic-gxl.h        |  5 +++-
- 3 files changed, 32 insertions(+), 3 deletions(-)
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c |  3 ---
+ drivers/crypto/amlogic/amlogic-gxl-core.c   |  2 --
+ drivers/crypto/amlogic/amlogic-gxl.h        | 10 +++-------
+ 3 files changed, 3 insertions(+), 12 deletions(-)
 
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+index 72892fdcd55d..c11ccbaf920d 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+@@ -9,9 +9,6 @@
+  */
+ 
+ #include <linux/crypto.h>
+-#include <linux/delay.h>
+-#include <linux/io.h>
+-#include <crypto/scatterwalk.h>
+ #include <linux/scatterlist.h>
+ #include <linux/dma-mapping.h>
+ #include <crypto/internal/skcipher.h>
 diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
-index 3a6bac10bb04..e79175368d8c 100644
+index e79175368d8c..90c817e412ad 100644
 --- a/drivers/crypto/amlogic/amlogic-gxl-core.c
 +++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
-@@ -269,6 +269,7 @@ static void meson_crypto_remove(struct platform_device *pdev)
- 	debugfs_remove_recursive(mc->dbgfs_dir);
- #endif
+@@ -19,9 +19,7 @@
+ #include <linux/of.h>
+ #include <linux/of_device.h>
+ #include <linux/platform_device.h>
+-#include <crypto/internal/skcipher.h>
+ #include <crypto/internal/hash.h>
+-#include <linux/dma-mapping.h>
  
-+	meson_hasher_unregister(mc);
- 	meson_cipher_unregister(mc);
- 
- 	meson_free_chanlist(mc, mc->flow_cnt - 1);
-diff --git a/drivers/crypto/amlogic/amlogic-gxl-hasher.c b/drivers/crypto/amlogic/amlogic-gxl-hasher.c
-index c83739ec3456..978cdcd8a4f9 100644
---- a/drivers/crypto/amlogic/amlogic-gxl-hasher.c
-+++ b/drivers/crypto/amlogic/amlogic-gxl-hasher.c
-@@ -51,6 +51,25 @@ static int meson_sha_final(struct ahash_request *req)
- 	return crypto_transfer_hash_request_to_engine(engine, req);
- }
- 
-+static int meson_sha_digest(struct ahash_request *req)
-+{
-+	struct crypto_ahash *tfm = crypto_ahash_reqtfm(req);
-+	struct meson_hasher_tfm_ctx *tctx = crypto_ahash_ctx_dma(tfm);
-+	struct meson_hasher_req_ctx *rctx = ahash_request_ctx(req);
-+	struct crypto_engine *engine;
-+
-+	memset(rctx, 0, sizeof(struct meson_hasher_req_ctx));
-+
-+	rctx->flow = meson_get_engine_number(tctx->mc);
-+	rctx->begin_req = true;
-+	rctx->final_req = true;
-+	rctx->digest_req = true;
-+
-+	engine = tctx->mc->chanlist[rctx->flow].engine;
-+
-+	return crypto_transfer_hash_request_to_engine(engine, req);
-+}
-+
- static int meson_hasher_req_map(struct ahash_request *req)
- {
- 	struct crypto_ahash *tfm = crypto_ahash_reqtfm(req);
-@@ -251,7 +270,7 @@ static int meson_hasher_do_one_request(struct crypto_engine *engine, void *areq)
- 	struct hasher_ctx ctx = {
- 		.tloffset = 0,
- 		.src_offset = 0,
--		.nbytes = rctx->final_req ? 0 : req->nbytes,
-+		.nbytes = (rctx->final_req && !rctx->digest_req) ? 0 : req->nbytes,
- 		.src_sg = req->src,
- 		.areq = areq,
- 	};
-@@ -310,6 +329,9 @@ static int meson_hasher_do_one_request(struct crypto_engine *engine, void *areq)
- 		if (!ctx.todo && ctx.nbytes)
- 			continue;
- 
-+		if (!ctx.todo && rctx->final_req && rctx->partial_size)
-+			continue;
-+
- 		if (!ctx.todo && !rctx->final_req && !ctx.tloffset)
- 			continue;
- 
-@@ -393,6 +415,7 @@ static struct meson_alg_template mc_algs[] = {
- 		.init = meson_sha_init,
- 		.update = meson_sha_update,
- 		.final = meson_sha_final,
-+		.digest = meson_sha_digest,
- 		.export = meson_hasher_export,
- 		.import = meson_hasher_import,
- 	},
-@@ -421,6 +444,7 @@ static struct meson_alg_template mc_algs[] = {
- 		.init = meson_sha_init,
- 		.update = meson_sha_update,
- 		.final = meson_sha_final,
-+		.digest = meson_sha_digest,
- 		.export = meson_hasher_export,
- 		.import = meson_hasher_import,
- 	},
-@@ -449,6 +473,7 @@ static struct meson_alg_template mc_algs[] = {
- 		.init = meson_sha_init,
- 		.update = meson_sha_update,
- 		.final = meson_sha_final,
-+		.digest = meson_sha_digest,
- 		.export = meson_hasher_export,
- 		.import = meson_hasher_import,
- 	},
-@@ -463,7 +488,7 @@ int meson_hasher_register(struct meson_dev *mc)
- 	int i;
- 
- 	if (!mc->pdata->hasher_supported) {
--		pr_info("amlogic-gxl-hasher: hasher not supported at current platform");
-+		dev_dbg(mc->dev, "hasher is not supported on this platform\n");
- 		return 0;
- 	}
+ #include "amlogic-gxl.h"
  
 diff --git a/drivers/crypto/amlogic/amlogic-gxl.h b/drivers/crypto/amlogic/amlogic-gxl.h
-index a44290fcf3a0..3f1ce6c05558 100644
+index 3f1ce6c05558..9c3df0d162b9 100644
 --- a/drivers/crypto/amlogic/amlogic-gxl.h
 +++ b/drivers/crypto/amlogic/amlogic-gxl.h
-@@ -161,7 +161,9 @@ struct meson_cipher_tfm_ctx {
-  * @partial_size:	size of the partial buffer
-  * @partial_addr:	physical address of partial buffer
-  * @partial_mapped:	indicates is partial buffer currently mapped or not
-- * @flags:		request flags (for example, is this final req or not)
-+ * @begin_req:		indicates this is the first request
-+ * @final_req:		indicates this is the final request
-+ * @digest_req:		indicates a one-shot digest request
-  * @flow:		the flow to use for this request
+@@ -69,18 +69,16 @@ struct meson_desc {
+ /*
+  * struct meson_flow - Information used by each flow
+  * @engine:	ptr to the crypto_engine for this flow
+- * @keylen:	keylen for this flow operation
+  * @complete:	completion for the current task on this flow
+  * @irq:	IRQ number for amlogic-crypto
+  * @t_phy:	Physical address of task
+- * @tl:		pointer to the current ce_task for this flow
++ * @tl:		pointer to the current descriptor for this flow
+  * @stat_req:	number of request done by this flow
   */
- struct meson_hasher_req_ctx {
-@@ -173,6 +175,7 @@ struct meson_hasher_req_ctx {
+ struct meson_flow {
+ 	struct crypto_engine *engine;
+ 	struct completion complete;
+ 	int irq;
+-	unsigned int keylen;
+ 	dma_addr_t t_phy;
+ 	struct meson_desc *tl;
+ #ifdef CONFIG_CRYPTO_DEV_AMLOGIC_GXL_DEBUG
+@@ -90,8 +88,8 @@ struct meson_flow {
  
- 	bool begin_req;
- 	bool final_req;
-+	bool digest_req;
- 	int flow;
- };
+ /*
+  * struct meson_pdata - SoC series dependent data.
+- * @reg_descs:	offset to descriptors register
+- * @reg_status:	offset to status register
++ * @descs_reg:	offset to descriptors register
++ * @status_reg:	offset to status register
+  * @setup_desc_cnt:	number of setup descriptor to configure.
+  * @hasher_supported:	indecates whether hasher is supported.
+  * @support_192bit_key:	indicates whether platform support AES 192-bit key
+@@ -112,7 +110,6 @@ struct meson_pdata {
+  * @flow:	flow to use in next request
+  * @flow_cnt:	flow count for amlogic-crypto
+  * @dbgfs_dir:	Debugfs dentry for statistic directory
+- * @dbgfs_stats: Debugfs dentry for statistic counters
+  */
+ struct meson_dev {
+ 	void __iomem *base;
+@@ -181,7 +178,6 @@ struct meson_hasher_req_ctx {
  
+ /*
+  * struct meson_hasher_tfm_ctx - context for a hasher TFM
+- * @enginectx:		crypto_engine used by this TFM
+  * @mc:			pointer to the private data of driver handling this TFM
+  */
+ struct meson_hasher_tfm_ctx {
 -- 
 2.47.3
 
