@@ -2,106 +2,102 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7409560A2611
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Nov 2026 09:53:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 719C2606A323
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Nov 2026 10:34:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=prTtpv1V;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QkxKWwtk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ekIEZCPX;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=GNzdroPs
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
-	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=/R5yZl7ETudvn/xkTCftMZESeYbpgg9RrT+n3ER62rM=; b=prTtpv1V4IB8gqBodiNdxqINU4
-	lGVmJVr5JJSl7BdrSRotVsoYP4TxQdfAZm3iABrFmIxWV9z87Oyu/xjbH61YVIENzW9Y2W5Sj9RTH
-	YOob3soFYwaBO1bGvLgsnt6+2bnBv5tPNFP3sySIgmhgdeaybR1MZpcVgnFNZai2MDMO9XdykdHiy
-	BjR2uKKABxR1xMeK8Wg5bxdpnmi5r53kYXU21iRgn7I5G69PsfwDeS8LsVumDla1fQvtyStKs4iqY
-	nwDXtFLsluOJHl1v4BSxG5M7x+NhC+UNag0pd2xBF3cZsGSlT88FmQOjClUQ5NkSQ2BUSbBTPcr0t
-	qkyySuag==;
+	bh=nmqLGnD+BOsjoLbvKhevNklmMbFjiYOaAtZqf2C6bN8=; b=ekIEZCPXhWJ+o+th8hijbvPXIo
+	H/vK8x2xsKop/fcnmjwE1F7Zz6cKazoEzJdCPG9WkHXesSsz+lWlJyt2GFaX6jcihgVhMYA6Ad4UP
+	W4lOranzJku1bsxZEdwjltOFqgyW4lmG5sSXPaz/YIOhqFsyyN8GmNsMfY0WMGu7UczihLJKjQXny
+	6crZ4gZ10FsJHZOROM23iNFtvpshnYixtLDx5ay9xkCLfkNyuUyU7g3hhP/aBhozfXB5adlcxPL53
+	9DXIqfFUsC+a819WhHNtwmsbg2W9/SAijkb2+ukiY2t+WV2vXmhKcpmAlv7WmgNPkT7zjhCMERWSA
+	Rmwy/4dw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWWAt-0000000CcvV-0HKh;
-	Thu, 26 Nov 2026 09:53:55 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xWWnn-0000000Ckue-0InU;
+	Thu, 26 Nov 2026 10:34:07 +0000
+Received: from mail-dy1-x1332.google.com ([2607:f8b0:4864:20::1332])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWWAq-0000000CcrI-2aky;
-	Thu, 26 Nov 2026 09:53:52 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7F0B063129;
-	Thu, 26 Nov 2026 09:53:51 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795686831;
-	b=0IfKGXjz15YBjyNMeGMO7hXeI7STB4GBojugFtfpF4a04MHkfJPAciWZxc3yo73i62Fq
-	 KHcrVHUdXu04U8uJu8wq1f6SHRv65VatzJc1TGnEFEt9UUOVMmz4cdKfAXHAXrhJ1IZie
-	 uyZQo64TtVduTib7pTsvyiTW5MMKtO5r0MSVIzVzT6WIVJNoMj449q4VGWrtTNPxQIS7R
-	 Oz7OdIVrA6Y0u0OwmeGxoPtFcB3Q6Fz8lPEGwkCgkQl6n1JLiJ3UFmbPTmc2wJMtpfsGc
-	 1IFWuR5FnAmKngdBnnLgSWsT3+jcPyqn7XiYz58l9lYxBMoiyWtgv/Laa9z0eGBiDJg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795686831;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=ncZEOFwP6rVHKLPZIgaSh4joPCImz4xzJxYzeEGBoGA=;
-	b=qlN42smftSJjJnUKER/yIH825YxOu8jPWkV1rROAY5hc5H5qfVY9XAxJ17i+6XMKXhl8
-	 I/5o9EHfqxQCZsoyGsGCIlbDNr5/SDGqh1iTzgfQVQLzJYtK1cvwxSQVDEGlj+XWRAq4S
-	 0044TCRhIkdDE+HLC5cohAimVFhIeLuq9/vSZ/xWD/kUxDkI2f5paqaEV6u/injcNNUvs
-	 8yhuFeceVpyZ+5WqmBj8COhJfRYLbNaeZOkTro7Sw3fwBrfk1YV50ZiEv/CwmrupehjGD
-	 21MrqTuUA8mJcX4oDYi1ZJfocyrhnOaK7V51ZFZKVsPAMfhGzFpXVK3vEQ6qwQt2Rrg==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 576B91F000E1;
-	Thu, 26 Nov 2026 09:53:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795686831;
-	bh=ncZEOFwP6rVHKLPZIgaSh4joPCImz4xzJxYzeEGBoGA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=QkxKWwtkX/nVhcHv1Y+WkL5e7li+hZeXB7ko/ox22pjS36GsgE/T3cfPAsl129467
-	 9+ld0JoB1Z1EGXMsnItsad5NlXKWlYNa6rq92KRUuPjq9HBYMOiZ+AEKMZZD3X9mAD
-	 zHGNLOP+NfS7Ex2H029bEOzfEqVhz7cqyh7xiA9UES6AccEABe0YqMxMW4QVVk9iuR
-	 cIVnJexExWesJzvIlCs0YPND62uo+okOb7I73skhLRIFW1d6ThCfsKOIN5LDpk0AQY
-	 rZoIkgeH5I26APVmmQxkiaQqt9da6uiLwX3T4kNNZXly6qRKYqT8tuUY2K6P62S1wJ
-	 8cpbbwFgVoysw==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id C73864D3C6;
-	Thu, 26 Nov 2026 09:53:40 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Thu, 26 Nov 2026 09:53:38 +0000
-Subject: [PATCH v3 1/3] dt-bindings: reset: amlogic: Add A9 reset
- compatibles
+	id 1xWWnk-0000000Ckty-2gfY
+	for linux-amlogic@lists.infradead.org;
+	Thu, 26 Nov 2026 10:34:05 +0000
+Received: by mail-dy1-x1332.google.com with SMTP id 5a478bee46e88-3282db206d3so2534274eec.0
+        for <linux-amlogic@lists.infradead.org>; Thu, 26 Nov 2026 02:34:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1795689244; x=1796294044; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=QUY9+Y2VxoEdHCsHD5R8MfHCWDCl4kBtw61OaYnUOhg=;
+        b=GNzdroPsYfHRU1JXLTSwTuGObrhhYet3CCLV8GOOUv/jx+ScufxXjnv8VBoDnkiY6k
+         6Qs/A/ezx5bpFyXvorYL8HVN8+odd9bYHYqPtlnjpyslnNZk1m3I8eAw8Gx8+Ah7BSwk
+         RV+DNEIzo2jNt/gRNn2Y5wC518fqOpN/EdIrU9q2LNnzf9pReAWVrCW9fWHl8NF2Fhbx
+         fCJkUqBi2dIM9gZIyPQ9SluLVVdLdp0o4atcfLOC8KkuWPxG4WoU9VSNHVE5i6XXWDUI
+         l+0jUNnqRdOn4nb0dGnaEMG7B6LNS7YNnnnJK9dDK2zJkCCifmldMZrMXwWdgwOgZnO4
+         djZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795689244; x=1796294044;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=QUY9+Y2VxoEdHCsHD5R8MfHCWDCl4kBtw61OaYnUOhg=;
+        b=MSAs1eiaIhmFTkKas3VJfEan3XKvwnbAQoZeBlQCSKUmmNh0VoM2X4KuTeTMgSmGwm
+         wlg5OrPfTXSgPC5ZB8DgltC2FNvveLfIPZup8NSP6dO7Koh9px1p0aO9+QUwMSMgaORC
+         847+/huhALM1z9I/Cj9TlFToxDkgoRh7q3A2HFIyS+Njaz9LctKNF4k4ZPbROXC+xvaa
+         T+akgfL+SrtFLWqjpQeHLLAk06DDoN5WC8byFhe3KXZJbnsfyZ6jMrwfl7pFBjrnqcBC
+         HRW1rhStkKBUZcvMNkqOZNoGjvwa/8j9LsIYxLEFOljTnLPfKY05hKbI6fnuSZm+MPfD
+         kSjw==
+X-Forwarded-Encrypted: i=1; AL+hErEuKkqC1w4H47rbqDGVAbidE51YZlgfksVKvG8KZnKbk2x0aSrssJMVt379IVBhBaT00AOBq6BG6dRDJZ0l@lists.infradead.org
+X-Gm-Message-State: APuU4Z++D1FOExiO0BZUT9dJECoDmzgR9cRGNgzpQg37btteG/gqDa1Z
+	KXK4Qx+O/FeswdofhrlIpnMVGMxogvQCNy+NVmjm0NBtS/uIrSoBZGSeijkQWIMDkAw=
+X-Gm-Gg: AZFdTZc/CjjYti2aKEtwz8JlhYHMDPgO9hirJZSs9LzLX+y/4uXqAi7PRKRui6NVfsb
+	OmriQ8zCF42eCS0Q+D3R3S05oPLcsAKqWmTvEpiOjMm8EZHGv4oWoGHAtHVntO1ClatWzNbrNB4
+	9BAlBMMnkQLJXgdsXFKPflf0spftV86R9A/qn+BFNOQwshmV036d7i7zxwuTe6y74004F4bqHJC
+	VvDpogMyK4ZqLzfIuJ2cARfJLgf944qJ8GR9eAU+civSdTQMAZVGXEGnxkGkP0lyEDBag2jKVga
+	T6l1rFOxsAndA03GN/vOYaXAjPzXxv//EefZbDxTJqPkacohsv250jdlfpB+7A1nAu2vt+OmDfr
+	2iSBySwegHVuk6S7XtN76AaVoZQybI1LLRMloD1JoH1JVwCs1AArDHsiHtCVqx3puyVo9gtJc6y
+	wvM8QjFVuJqSZhjpMRy+wLeAPptLW/hZHjeYnB0PNI8I+c6ENB08Kkwx4xWn9WJNXSblUsUWUIB
+	HAbbKz1OZ15XWvX8zgi8hZweAPLnX/yA3mqMw86KAAj08wjimtVjeRiCAVrfV4tWujo0ondF585
+	ePVvr96Cy9BuMtk+rojcP7ZWfhke8w==
+X-Received: by 2002:a05:7301:dc3:b0:386:ce5a:41aa with SMTP id 5a478bee46e88-386ce5a47f9mr4653486eec.13.1795689243454;
+        Thu, 26 Nov 2026 02:34:03 -0800 (PST)
+Received: from localhost ([122.172.83.36])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-38566cd46c5sm76487652eec.11.2026.11.26.02.34.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Nov 2026 02:34:02 -0800 (PST)
+Date: Thu, 26 Nov 2026 16:04:00 +0530
+From: Viresh Kumar <viresh.kumar@linaro.org>
+To: Chuan Liu <chuan.liu@amlogic.com>
+Subject: Re: [PATCH 4/4] cpufreq: add an Amlogic speed-bin driver
+Message-ID: <awgLGFpH73_fcnbC@vireshk-B250M-D3H>
+References: <at8WfX_G0tfTlFrm@vireshk-B250M-D3H>
+ <9556e959-daf3-4c85-8794-9613e7e7a9ae@gmail.com>
+ <A45EC676-5B14-4932-A4CF-87ED3B71108D@gmail.com>
+ <4a51e879-708c-49dc-a08a-3f64eeec8bbf@amlogic.com>
+ <CAFBinCBkJJeRPKLFBA9KYjwXMxFjow_NOtvFoKRQdxD=rOPW3w@mail.gmail.com>
+ <48b333a3-ef88-4739-a087-3ed9d8ec60a4@amlogic.com>
+ <CAFBinCCgmRmk--W53wqdJhF-SzJbai--s7wyzDNt3LpfN00spw@mail.gmail.com>
+ <b606819a-661e-4488-b5fb-9e786de463c6@amlogic.com>
+ <awe_Wur5fVbeqV2d@vireshk-B250M-D3H>
+ <1dbf65eb-fd04-41a3-876b-e2941cc10172@amlogic.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261126-a9-reset-v3-1-fb9bb01f33d1@amlogic.com>
-References: <20261126-a9-reset-v3-0-fb9bb01f33d1@amlogic.com>
-In-Reply-To: <20261126-a9-reset-v3-0-fb9bb01f33d1@amlogic.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>, 
- Conor Dooley <conor.dooley@microchip.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795686819; l=1488;
- i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=5WFk+q6Lu4hN8rJdO/6ZEotdvqyA2ABmhWD4G7n6Cis=;
- b=dF+zC/R2hKdYjOk4FgQd/q+Qc5H0I9rypOWA/RdenL6HJf8CfhzudBCo6SHCCW8vGDSmT1FaC
- CKiEAc1L0ItAEFTjMNPdKPtipcsVj0bPQgJRqN+lBIC5/muiTPnlptU
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
- auth_id=578
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Content-Disposition: inline
+In-Reply-To: <1dbf65eb-fd04-41a3-876b-e2941cc10172@amlogic.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261126_023404_701298_68B54CDB 
+X-CRM114-Status: UNSURE (   8.06  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,57 +107,29 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
+Cc: Christian Stefan =?iso-8859-1?Q?K=F6v=E9r-Draxl?= <ckoever@outlook.de>, neil.armstrong@linaro.org, conor+dt@kernel.org, christian.koever-draxl@student.uibk.ac.at, rafael@kernel.org, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, khilman@baylibre.com, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, sboyd@kernel.org, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, krzk+dt@kernel.org, bmasney+clk@redhat.com, robh@kernel.org, linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On 26-11-26, 17:49, Chuan Liu wrote:
+> Yes, as shown in this patch [1], I forced the above two
+> "assert_single_clk()" to "assert_clk_index()" and it worked.
 
-Document the reset controller compatibles used by the Amlogic A9 SoC.
-Add support for the A9 AO reset controller and add the A9 reset
-compatible with the T7 reset controller as fallback.
+Maybe this is the right thing to do:
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-index 150e95c0d9be..e585f71879f2 100644
---- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-+++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
-@@ -19,6 +19,7 @@ properties:
-           - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
-           - amlogic,meson-a1-reset # Reset Controller on A1 and compatible SoCs
-           - amlogic,meson-s4-reset # Reset Controller on S4 and compatible SoCs
-+          - amlogic,a9-ao-reset
-           - amlogic,c3-reset # Reset Controller on C3 and compatible SoCs
-           - amlogic,t7-reset
-       - items:
-@@ -26,6 +27,10 @@ properties:
-               - amlogic,a4-reset
-               - amlogic,a5-reset
-           - const: amlogic,meson-s4-reset
-+      - items:
-+          - enum:
-+              - amlogic,a9-reset
-+          - const: amlogic,t7-reset
- 
-   reg:
-     maxItems: 1
+Functions using assert_single_clk(fixed-index-0), can be converted to
+assert_clk_index(fixed-index-0). Lets make this change in the OPP core (in a
+separate patch).
 
 -- 
-2.52.0
-
-
+viresh
 
 _______________________________________________
 linux-amlogic mailing list
