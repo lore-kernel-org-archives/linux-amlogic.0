@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52710606A32A
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Nov 2026 19:33:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE707606A327
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Nov 2026 19:33:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=b7F0uJJe;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=OGQg6/Fc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=u/QQEW4h;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=z13Wo8eH
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -14,65 +14,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=yawqtm1JAPXroMvCxl3pHk4v5+h8DripJ8KUjetDuvs=; b=b7F0uJJebAeXk8/l+hOFN9oSk7
-	FiCN13bnpaK1KlTdrmnty0I3KfgUdRjbQW6rQ4LgbI7xLg5D3vN/dNjvlQBQ51saukipioXptZEEB
-	Tf+ipnYipZoPmV3KeurTVyQEQE0R+HYO60RJM8hHfQQldOFIhVx8pxyUXxXkWnvHBhJneIZ9NkVdq
-	tBOMYNvsmCWiDGsFMyiiqLlmVq4W3IiVmHDP4/akNubHJHI1mYhZ714un6z4oyOhVTD0Yc1qplwKE
-	NXIvEiZGTUFI/hCMc0PDoTZxTXxKHiXdRaq788x9RBj5qvP+K70TUCIn2XOmSmjqnV3YiroGJ6jJ7
-	83ZVuc7w==;
+	bh=1ts3juziLBqRkXWjipE0OAXu2tdkT6W6yGKdS7211d0=; b=u/QQEW4hI717y0mFbTuAOM74m4
+	rlNxbt/hR6Y3CnXkZkuG5ze9NnzrH4JH5Q6tqx78p9+XGccW/wFceDf5B1Tv+SuZ/DErIjSMwleNX
+	tD8yxNIhtowibsQEocuLAJP1pzYqLMBOCxYXhV0a8h9bEDINEZ82ieKx0ycDtMyb6SA1EYv6ImVsd
+	6jC038ZXR954OUcMzqRuYwgTwOmWqisZJBdMWZguhhmyc17GLzqyPTEbelRL8jWM2OACJJPRN0NC5
+	bCiZwBeLE0d75gyl/VfW2zlJniBe37Rb8RrpoQo4BAeFSt2AUIAxkhZADoB54AUadMA8166Bfmo0f
+	MZhI/BzQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWfDh-0000000EJhL-3Xwv;
-	Thu, 26 Nov 2026 19:33:25 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1xWfDj-0000000EJlT-0Hgw;
+	Thu, 26 Nov 2026 19:33:27 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWfDM-0000000EJOM-05kV
+	id 1xWfDU-0000000EJTR-0RP0
 	for linux-amlogic@lists.infradead.org;
-	Thu, 26 Nov 2026 19:33:05 +0000
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4bb64ef5a00so60042345e9.3
-        for <linux-amlogic@lists.infradead.org>; Thu, 26 Nov 2026 11:33:03 -0800 (PST)
+	Thu, 26 Nov 2026 19:33:13 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-4a214c5c4c0so70892995e9.3
+        for <linux-amlogic@lists.infradead.org>; Thu, 26 Nov 2026 11:33:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795721582; x=1796326382; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795721590; x=1796326390; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=LiLmIUs0OkCCdpFo34dseBA6Y4Jh270a70ul1A3BXtY=;
-        b=OGQg6/Fc0KxekiOFbAbMIhO608iJWOrhyJJgKnuI5hoedw8+odx5PEWbzTy++pNtNm
-         1s5lkYuP0fEjWuOQ4tjdza3VwPF9ZaDNbCRRElxnB0PiK3Q7kvfkKQMztLXUy9vxPLnm
-         rHM2yq/trh3Veg2TRllROcQTM91K3oDxZWjHq5/mprtDVf0XJetlsFLGrALIJxoHlZ27
-         EzMhhD1T7Xt4nrDK+DQjf6qFaNiXrE2DZsHk4DqIs5Ddv14YY1jQ+ViSNOcinIlzlMJ3
-         CZPttgc5+RIRY1DDNIEHAmm70Gy39QTS0oMPSQCjURSK6fsXuAk02im8evlUb090l2+B
-         u5eA==
+        bh=GbFTXgWz4qbUUEtYKh+mkh290tQbhLkX/pW25drgstk=;
+        b=z13Wo8eH+CO0k6mux2qkmQc+2exHkhicrwhsrb0DMfkXrZbXoZAyRN5bBczfx36si8
+         Gc+WlGtqvi07t5VTroM1eTUNRncsM/rz41cGUbY+gtcTDBKqUZY7TgpAbzzSykDb6YLM
+         pMcBFlRVcItI3R+LvhJkH5NxM/gBeb6bVggrtwdq+Se4qf3rbKWrhCsZR4c15ZQZMLG8
+         IWkcDw91HsKByRARlgvCDtl5fftJAtq3H+ggrQxB90rhpvqIHKtGpS/FoKMxEkyIonrg
+         F6r1E5N5eus40KBVFmFuuahpDj4VFQAB7X5oRPDSYSNk5W9YUEHeJ4nvIJ2miL3Dgf4F
+         h3eA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795721582; x=1796326382;
+        d=1e100.net; s=20260707; t=1795721590; x=1796326390;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=LiLmIUs0OkCCdpFo34dseBA6Y4Jh270a70ul1A3BXtY=;
-        b=Oi9NDwqksVJhdMMtx5hCVRVFsHHFfP3MFv6cVHB0J87xYfxYFMySu0SkQYS9T0yHnT
-         bKQD/71talwcJJergS1UZNmWASrHPkdxIdcayRkDy4en4bi8GPmJgav6EXKbwwkEwneN
-         dXlRFYGvOaIXz02RMFgbIk+lgRY9td45E2e//GmwLSiih4QmUIrCP4RYdZql8PBk4Eag
-         P6W6FCJETYe5fhLF49H+Pj96gI8W0PQeSXe4Q6hl0C7yrNT9N0hH9iB45LlAYvPoeWb1
-         KRfm8UvxZNxSTjx+i/d8vkuXh8SXVY7HZrtlmn1Dxn1XY53MNqRv1/fHgf0wCMqIKd9O
-         mKSg==
-X-Forwarded-Encrypted: i=1; AL+hErGQo3G38ikEYH16eamafeGkjFyvtf00VWe2aBmgMkbYWgSZf+DRg1M/geC1V7o9yBOQIYd3JNJYuKvDQnLr@lists.infradead.org
-X-Gm-Message-State: APuU4Z8DOkKzHHG0jrTMjQ6ep1xjAz4Rr5CqJe+jtn2wUVOs7BnnFGVp
-	KARitTXe6MP9h3qF0GQdb3zEQMYh8Uc7IObT3uvMA9R6/LXbqSCy8KGk
-X-Gm-Gg: AZFdTZeo7kzj5cgtX2ClsVm5CIQX9BtQsnrJevRLlySyogRumLQVJiH6fxT1ZyxpqDc
-	4eSq5Z14lluagGJ+mtLN9dnheAqJzk0nfjG53gmdKXoiC33SQVGCMstzuqU58dghqHx9DniGRjZ
-	QGoofPxsPFUc98zabezQJpbQRsDjLe8O1fgFTfkrhdSUudTehTrfId+wSKNMqzrx7/8WRAVH/KI
-	kuJu8vRB3CnscLw7cFPCQnP1xdibeqCwCQ9Eqy5b30jZwqVfG8u0Np1Q2YTi1mzl+E0NERk6KHB
-	s2qeO4uL/BdOkfpUIhm9lk4t1Jbt+MFZOm6xogRREpTmSVfoCYq2mlgl4E8Asor68TwlADTa4Ou
-	1abkeQQCowJnLKZuF1dRoSxXTc9ECYwhGpIUSnC+NhSleNvOnfM6c685fbqHgcULzdITwN2PSqK
-	sf9kJNhQbVavQZdqRyUB3rMsUU/yjURyqSMX6nmgZlzCb0S5+Zq6dOvrf25msi/W5bADLAb+WPG
-	9ShcMWna6DurK/iwMFNLxE0Z1+qdN15owaxN8O6LBCoSUtzpztsESgLrSJ/cLtv2s9z6X0BT7DC
-	nl7lARiaH0qMGQBfQ6X4lRRLkJXmhbV6IFPs/22qeOqs/A==
-X-Received: by 2002:a05:600c:4f4e:b0:4bb:6c71:b268 with SMTP id 5b1f17b1804b1-4bb8882672fmr465522865e9.6.1795721582273;
-        Thu, 26 Nov 2026 11:33:02 -0800 (PST)
+        bh=GbFTXgWz4qbUUEtYKh+mkh290tQbhLkX/pW25drgstk=;
+        b=bexAriUh1Y8Hi1o68OmR2fmCYBH4GkeRp3kMiiinwQ/7ARvLU5e/KDpEJ5VsKCpjQ4
+         dshU2Voig0VUbk52El7obO6PulQtlppwGbFMYJ5xkIjuHpgGtIk05mrXpAnCvmf2GYXp
+         YcRdZNdFbCHecsjhHRx36k9dhHP/+zgX9mKrnB3Eb4qvEQiA8xKmbyfCKzfxTkJbQKNl
+         1IwtwknLQE3BTSwa85ysGpeGCy0/Sj3YgCdPnvsMaU08YE4QmCRE+xMqEkmSmCVfvpjv
+         TXN1s35qmKzNR8BH3j45o+rosys+FG4Cpa6ODO47ngv7lnrpjDU+ceVFToSy0H2tV+Qj
+         LcZg==
+X-Forwarded-Encrypted: i=1; AL+hErE77jetLO5y1gsS4ZCUGb9VEfno9ZOEnlRiP1abJO2X1UIlCnihcA2gF3xaCND4eUz9ERV6iMhzpnYLZNwo@lists.infradead.org
+X-Gm-Message-State: APuU4Z/cqP2cJaEHfIet/7PyjDsiEhdj4uSl0x/a17ITeX//kpR0mSmB
+	9B8fHC2/o/furQoRYk3Bdt57UiUg3tR1z3cnGN+3Wya0aCEsxLDOH3cm
+X-Gm-Gg: AZFdTZeVbMPGmw1UMrpL0Hh2B1DRsF5sX2y8x8TONr2oCSAiETUb9GGoop2VPqywpvr
+	TJzTTboN+RWkDa9pgAAxfy8ArOcJx+EAYXPWwLh25W+nXTCBXlHvHmCRaKFKdIjy0/tVqHtx3om
+	pTxd4S0OW97pD5yH6CbfFKDXsySwv8yIIUB4JoCWsogPIECL5vMZhknmDynlRPx2IPawkuuG11d
+	jO8Lsr9z5F9b9tO3Zuy2p1GeVfUfvliwJx9AT/LTo4ACvF4hdRXBbPbqyJybpszr8aMF6NYKMqs
+	ySQ9Nu+Bt+WZo3zJMazVvCeIwkof05jnh8iFxqnOuMkS6QcqgLVnZcUpPDtuVkt2gtpaswJctjF
+	riBKtf7wbyP1dHuFVX78L2qHUfCScTAvUu29ezYpdwUEWA0xc+sJzTBJZn/U+COLEnEvhMn+7x6
+	+Mux4a5BbKDPrFDocUyDBu6ycDWXTFbZCZKpcIP6Madib537TQdrEu6xh6noGEAUy7sxhEDAn8M
+	zv7X9lHuoj6kG3kBaXm+hJyj3DZbuxuiNjcX5zHBDNFE/WFVgnivD4n2h094fPZ/v9ruBzQhYvY
+	R9I5rt99T3pCkXJT4TENs8ccFhM3NTsYMhA660+Xz3k6rlBilcy0ljT3TnV6WlZGhFQ=
+X-Received: by 2002:a05:600c:3ba9:b0:4a2:1050:aff with SMTP id 5b1f17b1804b1-4bb8881c741mr514973795e9.6.1795721590419;
+        Thu, 26 Nov 2026 11:33:10 -0800 (PST)
 Received: from localhost.localdomain ([79.117.198.103])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906cdcc1sm368287675e9.2.2026.11.26.11.33.01
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906cdcc1sm368287675e9.2.2026.11.26.11.33.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2026 11:33:01 -0800 (PST)
+        Thu, 26 Nov 2026 11:33:09 -0800 (PST)
 From: Jose Nieto <jnieto.alaber@gmail.com>
 To: Corentin Labbe <clabbe@baylibre.com>,
 	Herbert Xu <herbert@gondor.apana.org.au>
@@ -86,18 +86,17 @@ Cc: linux-crypto@vger.kernel.org,
 	Rob Herring <robh@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Alexey Romanov <romanov.alexey2000@gmail.com>
-Subject: [PATCH v13 02/25] dt-bindings: crypto: amlogic,gxl-crypto: support new SoC's
-Date: Thu, 26 Nov 2026 20:32:18 +0100
-Message-ID: <20261126193241.1471372-3-jnieto.alaber@gmail.com>
+Subject: [PATCH v13 07/25] crypto: amlogic - Move get_engine_number()
+Date: Thu, 26 Nov 2026 20:32:23 +0100
+Message-ID: <20261126193241.1471372-8-jnieto.alaber@gmail.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261126193241.1471372-1-jnieto.alaber@gmail.com>
 References: <20261126193241.1471372-1-jnieto.alaber@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_113304_667194_9D7416B2 
-X-CRM114-Status: UNSURE (   9.27  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261126_113312_169472_29DEA8F5 
+X-CRM114-Status: GOOD (  10.45  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -121,78 +120,79 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Alexey Romanov <romanov.alexey2000@gmail.com>
 
-Now crypto module available at G12A/G12B/S4/A1/SM1/AXG.
-
-1. Add new compatibles:
-  - amlogic,g12a-crypto
-  - amlogic,axg-crypto
-  - amlogic,a1-crypto
-  - amlogic,s4-crypto (uses a1-crypto as fallback)
-
-Difference between this compatibles:
- * Different registers offset and the number of setup descriptors.
- * GXL doesn't support hashing like the others.
- * G12A/B and A1/S4 crypto HW don't support 192 AES key.
- * GXL, G12A/B and AXG require a reverse IV key before processing.
-
-2. Add power-domains in schema, which is required only for A1.
-This is specific vendor design: in old SoC's power domain for
-crypto HW was not configurable, but in A1-series it is configurable.
+Move get_engine_number() function from cipher.c to core.c
 
 Signed-off-by: Alexey Romanov <romanov.alexey2000@gmail.com>
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../bindings/crypto/amlogic,gxl-crypto.yaml   | 24 +++++++++++++++++--
- 1 file changed, 22 insertions(+), 2 deletions(-)
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c | 9 ++-------
+ drivers/crypto/amlogic/amlogic-gxl-core.c   | 5 +++++
+ drivers/crypto/amlogic/amlogic-gxl.h        | 2 ++
+ 3 files changed, 9 insertions(+), 7 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
-index fdc39797a2a9..106a9d1fed69 100644
---- a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
-+++ b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
-@@ -11,8 +11,16 @@ maintainers:
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+index 62aa82e1cb5d..f6c13d8fcb47 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+@@ -17,11 +17,6 @@
+ #include <crypto/internal/skcipher.h>
+ #include "amlogic-gxl.h"
  
- properties:
-   compatible:
--    items:
--      - const: amlogic,gxl-crypto
-+    oneOf:
-+      - items:
-+          - enum:
-+              - amlogic,s4-crypto
-+          - const: amlogic,a1-crypto
-+      - enum:
-+          - amlogic,gxl-crypto
-+          - amlogic,axg-crypto
-+          - amlogic,g12a-crypto
-+          - amlogic,a1-crypto
+-static int get_engine_number(struct meson_dev *mc)
+-{
+-	return atomic_inc_return(&mc->flow) % mc->flow_cnt;
+-}
+-
+ static bool meson_cipher_need_fallback(struct skcipher_request *areq)
+ {
+ 	struct scatterlist *src_sg = areq->src;
+@@ -297,7 +292,7 @@ int meson_skdecrypt(struct skcipher_request *areq)
+ 	rctx->op_dir = MESON_DECRYPT;
+ 	if (meson_cipher_need_fallback(areq))
+ 		return meson_cipher_do_fallback(areq);
+-	e = get_engine_number(op->mc);
++	e = meson_get_engine_number(op->mc);
+ 	engine = op->mc->chanlist[e].engine;
+ 	rctx->flow = e;
  
-   reg:
-     maxItems: 1
-@@ -24,12 +32,24 @@ properties:
-   clocks:
-     maxItems: 1
+@@ -315,7 +310,7 @@ int meson_skencrypt(struct skcipher_request *areq)
+ 	rctx->op_dir = MESON_ENCRYPT;
+ 	if (meson_cipher_need_fallback(areq))
+ 		return meson_cipher_do_fallback(areq);
+-	e = get_engine_number(op->mc);
++	e = meson_get_engine_number(op->mc);
+ 	engine = op->mc->chanlist[e].engine;
+ 	rctx->flow = e;
  
-+  power-domains:
-+    maxItems: 1
+diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
+index b972df44e8b5..58d56f352dd6 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl-core.c
++++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
+@@ -22,6 +22,11 @@
+ 
+ #include "amlogic-gxl.h"
+ 
++int meson_get_engine_number(struct meson_dev *mc)
++{
++	return atomic_inc_return(&mc->flow) % mc->flow_cnt;
++}
 +
- required:
-   - compatible
-   - reg
-   - interrupts
-   - clocks
+ void meson_dma_start(struct meson_dev *mc, int flow)
+ {
+ 	u32 offset = (mc->pdata->descs_reg + flow) << 2;
+diff --git a/drivers/crypto/amlogic/amlogic-gxl.h b/drivers/crypto/amlogic/amlogic-gxl.h
+index 64f2f0e63f12..e14cd5021add 100644
+--- a/drivers/crypto/amlogic/amlogic-gxl.h
++++ b/drivers/crypto/amlogic/amlogic-gxl.h
+@@ -159,6 +159,8 @@ struct meson_alg_template {
+ #endif
+ };
  
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          const: amlogic,a1-crypto
-+    then:
-+      required:
-+        - power-domains
++int meson_get_engine_number(struct meson_dev *mc);
 +
- additionalProperties: false
+ void meson_dma_start(struct meson_dev *mc, int flow);
  
- examples:
+ int meson_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
 -- 
 2.47.3
 
