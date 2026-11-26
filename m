@@ -2,87 +2,84 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3139606A335
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Nov 2026 09:53:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F08D60A2608
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Nov 2026 09:53:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=z/0y3pOi;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QoqNCh7n
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wkcyL1sG;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=I0b4U7+z
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id
-	:Date:Subject:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References:
+	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=XHmLdO4RM4J4oM49jp+o0a1u1y0U1ThYrTdLIClB9s0=; b=z/0y3pOiBZ5s6Jku71B7RerAyn
-	9GRrDjrOaPQUsx2xDj1p39YtbISWDbQtYpTFszSExeYcxoWQJ3kc6DBSpbkqyu4CRuOoomijUNoM3
-	4lqR661FR8UTUZClVheuhD2wTiASLi8HGLRAbxBEkJkEX3x0iwQo1tNU0XcvmwyUq3jc2jg/2iPs9
-	2tzMgcrws0SUjzVi6U8n3IbPCOyfjRAMJp/NBaNexR/k0AVGGerhhRpY4cQ5EsFliEix1deyHOI2H
-	3/p6Fdq0DVZOFUtDR+8g8Ahs2BcJjMZM4UDf2QR6Qdyivm/cgoEWIcu1jyFCGscj6mRSgz9dtTTAK
-	/Hgwoaew==;
+	bh=QIjYejfWevJXulKauEapEoqRQ+wwLZAyhlDfDjL+CF4=; b=wkcyL1sGcCB3/7qBjIYwayZVI2
+	THyaoXHsbvvTPLyfCd6vq29cKg5INcDrzCZMR0xjL2NtTbUAKSBURrrcjzoLGoKHS9BrT2bXzoNQi
+	Ol2ncWwBLd6HmzQBIvsIUcAzPepZ6zAxhnggCMfrD76CGGyf+dM/28tFAVfx7QufNWs+Ei63t456e
+	E1fOuyTTODjmdUij5f6RemfDPmQrLZ53PH8tUD/plGOcxu0G3us+xULwE4EzIOMoPxvrMwc/fMerH
+	LxVCni7cbq06Nszte6ez5zg9xLPdjmKZGFNxuFb0w+WavCNXBAjksflZ1lXwFIn4EGGMfJ9KfN0JN
+	nIJBOkFA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWWAp-0000000Ccql-1ON2;
-	Thu, 26 Nov 2026 09:53:51 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xWWAs-0000000CcuU-2reF;
+	Thu, 26 Nov 2026 09:53:54 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWWAn-0000000Ccpo-3l60;
-	Thu, 26 Nov 2026 09:53:49 +0000
+	id 1xWWAq-0000000CcrN-2VlL;
+	Thu, 26 Nov 2026 09:53:52 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 321944347B;
-	Thu, 26 Nov 2026 09:53:49 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id B0BB26309D;
+	Thu, 26 Nov 2026 09:53:51 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795686828;
-	b=rSGvo3dup4oCPBHhslCBCSG6KgEcFlBIioBrKy6gPc1cXZHtkHwE+gXEeEamtX4IYUD3
-	 SdjheIOfta/jF2FShQu4rb8fnr1a0ChT+YBGSpoDeiB9kQTrnRou6angsRay1rjpQcIwN
-	 RzNZssmXgi0mSKOUPDUcZw43AGn3XVkJatIMJjQfxhspSJ2j9uub7bzVyGxgENV1Uamkk
-	 ofnIx7aRm1cg/MjaABOJnIh4nTQm+HEzjeuCgin6J5tV3D5OdFwO+oqEpTNWYhDJEJ3f9
-	 NqSGgLzVy5g3aCzfQTpAwqkkx3J7/DWTuUIiN3hTikjU6k6fALD9XrLdqLA8aHBv5AQ==
+	t=1795686831;
+	b=mC2Zfft2/9oQKXdaWjFUeEPDYaqrUgtu1R/iuBRyniM6lE7+Myfyp5IW+V/OIsWgE3G6
+	 MbJtK9Q0+ji1x2BY4zxhnpQP5FzV6TROoRPce4dSLOD+6I+grbt5XWNThAwa+ascLRiaU
+	 5hcRCwT3LDL/CakBgwA6uUN8HKm0alALiqEZaGmKBZFvTGCjcUlFu2iwsgyy0UMomyf1R
+	 Q6iJDoDi87sn0nitvCyn5YIDAJq+Wedj2qbt9pZtkQrlCOoz3dPzMC7Cb7sETLpmx4izO
+	 eRr5SrdRoU2iN1ZtpwPiwW/aPRbXxZXCxqbYT3cqWJcWKEzE4MUr7wNkEzkhPqeyqGA==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795686828;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=4z2oKg4uwmOJVBZfpANbqdPA2a5xQkXipkOD6MSZYT4=;
-	b=qwA3WciiQsBt5yuKxASsAi5fnTKcqGnYrZnnru6Cqe87qdqR5tTU1YXR5R2CwhY+Sqqb
-	 OV0cV7SKm9Jv/1BRDdmLqdaE/QJNKNjpNntEFfouKT6vXXV9Wss1cWkg/l3/NErrsC4xE
-	 NqsjXhNJ53/ZEUDeE9kOuLbFW6CVq7oBNlsDSOXgYzD/y72wlrkp0L/jfJHLfIOwNM608
-	 9t956ctwxtv7MZyIIdwLB52uYZR15HEWazr9a791vw4Jxh3P5bjEBDJwnhOwuAUu/ttzY
-	 lTH7/zbEmj1nQ25EVumNPIgiE1BjZ43r6n+mbHUkgeCVxSL79m8Gr3g/p5zWSQckD0g==
+	c=relaxed/relaxed; t=1795686831;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=8cDIDFbGuBC/8lO1ZpWSJqXlhRb6S14RvYjUWs4IY68=;
+	b=vb9G7HTBSnYIPM7UapR89LFmOWO8lUFrkVOWRpykt+TAmPcDnOVjfmbpD/shIPu1F647
+	 2XbOn618zGc+3wj91cE9ii6S8/zpEgq6xjoSUJz244UsBb5OlUOYPyHMmbSZrXy9mY41d
+	 FEiUrL6f8g96XuTBboovlX6A/I/49bqmPH6CLyplzp8hWBU1Dc7TbZEAD4FkMyTWOLCEI
+	 2ySrBOkrR35tICT012J6T6j9JxjXpvF6GoQGRvffq911AWbOVwBVdMcIBwjWWoDnoC37t
+	 q7J5//kJ8U72NsMebdG8+E1T6bijcJFhZdtgw+jbQt1FgDRnrCN9nxXlvbunc7E93Ug==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 576881F000E0;
+	by smtp.kernel.org (Postfix) with ESMTPS id 6C29D1F000E6;
 	Thu, 26 Nov 2026 09:53:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795686828;
-	bh=4z2oKg4uwmOJVBZfpANbqdPA2a5xQkXipkOD6MSZYT4=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=QoqNCh7nDB/nDGu4fo1Txr2KQPaxgTi/TIfBMZA4MhbpO6X7m06V1okNDe5tSGN3I
-	 znmWqxi1DaVV1GEqd9aQtk4LjJKYJ6QXcGd0VTeLAgLjykKjKiheKbqZ7C0HzcL1Y3
-	 eTZlpK0sp49zGHz0CzNz3ZGeI/fQSqebC4nicD+8vuP4w1P8Zhs7DZAfm8tkhAhHM/
-	 0AlvMZ/zkdxraj1ghB26LoA5IcFXn4zORELOlaANv/DuD9Z1Dt/OprXMz94alZ5kZv
-	 aUudvbMUDbH6SRcxBjlsnTGXtT1nmcwvamV9HHh4kTr6wXMlzIXeKQKjqKPC7Rk2t5
-	 d/qY7UyOKdUVw==
+	s=k20260515; t=1795686831;
+	bh=8cDIDFbGuBC/8lO1ZpWSJqXlhRb6S14RvYjUWs4IY68=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=I0b4U7+zFAm5ZDR8hcm5BxW1Z/NyHd3zecClrngpJe2iXorchqI7IDTkn/CDJRnEF
+	 45v+bfku6939eMVEujRYEKs8GPgYGvivz+kXj6wLCe+vm5gaJjgrwx5lQaHEi1FqzA
+	 hXwceuy+ZByycKa53aTLFPz9DmJFSYwt2baVLpDqVpL1plJurOFZsnANCd9O2wGz0x
+	 RrsyJKsH6ZQxsZf9L44scthYxhIBjH10oy47rKOQVjTXvfWfuboflUYT8bNpxvu1cg
+	 ls+H/yRVSvVwxHGqFGeOcVwnp95lgGo1IiWiJQuiSrcQ90LD8xFAg8MEMOZYot8E++
+	 4Do4njmHwfgww==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id A21D64D3BE;
+	by lkml.kernel.org (Postfix) with ESMTP id EDB724D3C9;
 	Thu, 26 Nov 2026 09:53:40 +0000 (UTC)
 From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Subject: [PATCH v3 0/3] reset: support reset for Amlogic A9 SoC
-Date: Thu, 26 Nov 2026 09:53:37 +0000
-Message-Id: <20261126-a9-reset-v3-0-fb9bb01f33d1@amlogic.com>
+Date: Thu, 26 Nov 2026 09:53:39 +0000
+Subject: [PATCH v3 2/3] reset: amlogic: Add A9 AO reset controller support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-B4-Tracking: v=1; b=H4sIAKEBCGsC/1WMwQ6CMBAFf4Xs2ZqlRaCe/A/jAdotNBFKWtJoC
- P9uITHicV7ezAKBvKUA12wBT9EG68YE4pSB6puxI2Z1YuDIS6ywZI1kngLNTCohqTa6xVJDuk+
- ejH3tqfsjcW/D7Px7L8d8W78R+YvEnCEzulIGhWzri7g1w9N1Vp2VG2DLRH5Q8+Kg8qTW2qBsu
- SlEpf7VdV0/PdiiEt0AAAA=
-X-Change-ID: 20260706-a9-reset-9c39e8fdb06d
+Message-Id: <20261126-a9-reset-v3-2-fb9bb01f33d1@amlogic.com>
+References: <20261126-a9-reset-v3-0-fb9bb01f33d1@amlogic.com>
+In-Reply-To: <20261126-a9-reset-v3-0-fb9bb01f33d1@amlogic.com>
 To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
@@ -91,14 +88,13 @@ To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>, 
- Conor Dooley <conor.dooley@microchip.com>
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795686819; l=1303;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795686819; l=1467;
  i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=L96yI3Yx/j1d5Y6jYRCC8qNnGbrQ6QxdVZQl+y4ySbs=;
- b=WMm59vQS484rXbcEcS4wquK1SzMIxM+At+yBWURtC90oFy1BzU7wucfOBfl3VRHdXvT1ICQoB
- P6l6pxsUsTSAf1vR1tF7V7HtpxD7gOpiR05J67x6YVg14qSBKDWXRD/
+ bh=OWsqjX5BEhrTnFs/Fj0tsLvGRnqbrMxArQetg4Ut+Y0=;
+ b=QnTQL9ISVQl23/RsYQ9JPNOENIG3HckSM/HnrFoeInV/eQnmD1AKHHhS1qdGZSAiNYLDzUhN4
+ oZwBM3oeBefDpYzYVhSD5zcKrvWv95Cm+LyqMQccsDC+EGPCEV/eOMg
 X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
  pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
 X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
@@ -124,39 +120,47 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Document the reset controller compatibles used by the Amlogic A9 SoC, and
-add the reset configuration and compatible entry for the Amlogic A9 AO
-reset controller, and add reset node for Amlogic A9.
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
+Add the reset configuration and compatible entry for the Amlogic A9 AO
+reset controller.
+
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
-Changes in v3:
-- Update the header guard to use a consistent naming convention.
-- Add Neil Armstrong's Reviewed-by tag.
-- Link to v2: https://lore.kernel.org/r/20260714-a9-reset-v2-0-8df09b2f437c@amlogic.com
+ drivers/reset/amlogic/reset-meson.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-Changes in v2:
-- Use standard node name reset-controller.
-- Link to v1: https://lore.kernel.org/r/20260709-a9-reset-v1-0-fd7cf039b853@amlogic.com
+diff --git a/drivers/reset/amlogic/reset-meson.c b/drivers/reset/amlogic/reset-meson.c
+index c303e8590dd6..5e8afbceaf23 100644
+--- a/drivers/reset/amlogic/reset-meson.c
++++ b/drivers/reset/amlogic/reset-meson.c
+@@ -49,6 +49,14 @@ static const struct meson_reset_param t7_param = {
+ 	.level_low_reset = true,
+ };
+ 
++static const struct meson_reset_param a9_ao_param = {
++	.reset_ops	= &meson_reset_ops,
++	.reset_num      = 32,
++	.reset_offset	= 0x0,
++	.level_offset   = 0x4,
++	.level_low_reset = true,
++};
++
+ static const struct of_device_id meson_reset_dt_ids[] = {
+ 	 { .compatible = "amlogic,meson8b-reset",    .data = &meson8b_param},
+ 	 { .compatible = "amlogic,meson-gxbb-reset", .data = &meson8b_param},
+@@ -57,6 +65,7 @@ static const struct of_device_id meson_reset_dt_ids[] = {
+ 	 { .compatible = "amlogic,meson-s4-reset",   .data = &meson_s4_param},
+ 	 { .compatible = "amlogic,c3-reset",   .data = &meson_s4_param},
+ 	 { .compatible = "amlogic,t7-reset",   .data = &t7_param},
++	 { .compatible = "amlogic,a9-ao-reset",      .data = &a9_ao_param},
+ 	 { /* sentinel */ },
+ };
+ MODULE_DEVICE_TABLE(of, meson_reset_dt_ids);
 
----
-Xianwei Zhao (3):
-      dt-bindings: reset: amlogic: Add A9 reset compatibles
-      reset: amlogic: Add A9 AO reset controller support
-      arm64: dts: amlogic: a9: Add reset controller support
-
- .../bindings/reset/amlogic,meson-reset.yaml        |   5 +
- arch/arm64/boot/dts/amlogic/amlogic-a9-reset.h     | 247 +++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi        |  14 ++
- drivers/reset/amlogic/reset-meson.c                |   9 +
- 4 files changed, 275 insertions(+)
----
-base-commit: 807a34cf91c1d91f2beb3cacef9eaa98bd56d172
-change-id: 20260706-a9-reset-9c39e8fdb06d
-
-Best regards,
 -- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
+2.52.0
 
 
 
