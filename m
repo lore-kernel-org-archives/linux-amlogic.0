@@ -2,84 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF5E8606A327
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Nov 2026 11:09:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80B96606A323
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Nov 2026 11:29:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ciZS5KZP;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=CT0q90WV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BR3GR8tZ;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jGLBP+Jk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=36In/CNeMEkf8nNrMZhlRsLXkqV62c6CSdfUAfZJip8=; b=ciZS5KZPqKF4hrLEuL3PtIrvTh
-	ZrFBgBIJSKR8h54xn0aClLpFKJ83JhiFjZ7K6H3mRI3ZDJevHh3w27LeUQXJl91VKdzBwOjlmcwXZ
-	gq/8BAW1kVqXdcSsYiUhBFGcoTcMO8+bM/M3n0hvemRX+lAb7xvTO1fbuaLJuJTtKO9c5mPP+Ty4N
-	KzPiwL3nJQHXmMIPgzSEL4bpFpQrWRiJ2+piWNtQL7VLdFAaoQPoCUClIVdX6At9Qj0rTVs50n3Di
-	hslEpnkUPHJlADJtrgFVRNMiNDRbfd9wWGG6vXr5WTbM6OEm0DJLZjPzE5aQSv1EF1yGdxpwWCtAw
-	AriZqnFw==;
+	bh=X2XS2Gph6dHKMKwTQreNKlEJuUpOV8m5uCIjzrBgFNc=; b=BR3GR8tZ9aAVqcFBqwOQddCwzq
+	Da1oQJF43yO33KUmUe3YnInuhmGfqxLmSJsVEg/Km/qKyQWSFzDK72qS/HWeTIOoB2ArrdyV7cs5L
+	uLq2C/WNZLP91m3asUlfgxaERo1slzaOdoA4Vyp3BrHUsteAeFdIqYfvsXxkXQATexhnDc5iusauD
+	m1pdUmo2XaHdvSfTC9ypanRac0QUEu/S8ORAl9ibDLGuuNafNbDyF6e20Tv9AEGT4a5SSTE92W61/
+	ij6BQMQRPmQDplOcChZBTwbigYlnqn1gLOEWQFAQBZg4ABClZK2KIlmOuk+ELwc4Zc17dlk5eY5o1
+	7GoWClYQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXLx-0000000Cp0m-1ny4;
-	Thu, 26 Nov 2026 11:09:25 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+	id 1xWXfO-0000000D1As-2rKe;
+	Thu, 26 Nov 2026 11:29:30 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWXLt-0000000Cozf-40iS;
-	Thu, 26 Nov 2026 11:09:23 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id AEA2C4E4179C;
-	Thu, 26 Nov 2026 11:09:19 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 7CAF460237;
-	Thu, 26 Nov 2026 11:09:19 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A61D211E6B368;
-	Thu, 26 Nov 2026 12:09:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795691353; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=y1/wD7Wi9STowuQTsl3HDTiGkdek0lFr2Qc9ETyKkHc=;
-	b=CT0q90WVIJc4zyZoQOxtFRwovUp/lD1tvYC8y28IdlSTZHylCR+SJOmgbdnavDoSIkKJZ7
-	UQHzhfp1dRSy6+1mQ58pLkQKWb6rDLC50feZHn9Pd5znOcWpj7D5Q9l8chtedbMZd2oDLJ
-	ZmLDRvMzlrHQxZPH5Eic6XzwoJQMgIXhdfgkIsLG7EiBT8CbTTjEdoIHRCvVjU+Te4B3r8
-	AQFb4tWn9rZC2cYUS3f3KjYpHTHLUb6guHhBk2tbVLMW1Bfs4Eaee4bo7sjgUwuMgJ4yos
-	1IXLZNk6X6lqfWFueUY4owHyk7QJ2sJAxW6L5yGfOuj+wpDnU0wIA23rihiUPw==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: Liang Yang <liang.yang@amlogic.com>,  Feng Chen <feng.chen@amlogic.com>,
-  Xianwei Zhao <xianwei.zhao@amlogic.com>,  Han Xu <han.xu@nxp.com>,  Conor
- Dooley <conor.dooley@microchip.com>,  Valentina Fernandez
- <valentina.fernandezalanis@microchip.com>,  Daire McNamara
- <daire.mcnamara@microchip.com>,  Haibo Chen <haibo.chen@nxp.com>,  Jyan
- Chou <jyanchou@realtek.com>,  Yu-Chun Lin <eleanor.lin@realtek.com>,
-  Maxime Coquelin <mcoquelin.stm32@gmail.com>,  Alexandre Torgue
- <alexandre.torgue@foss.st.com>,  Pratyush Yadav <pratyush@kernel.org>,
-  Michael Walle <mwalle@kernel.org>,  Takahiro Kuwano
- <takahiro.kuwano@infineon.com>,  Richard Weinberger <richard@nod.at>,
-  Vignesh Raghavendra <vigneshr@ti.com>,  Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>,  Alvin Zhou <alvinzhou@mxic.com.tw>,
-  Cheng Ming Lin <chengminglin@mxic.com.tw>,  linux-spi@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  linux-amlogic@lists.infradead.org,
-  imx@lists.linux.dev,  linux-riscv@lists.infradead.org,
-  linux-stm32@st-md-mailman.stormreply.com,
-  linux-arm-kernel@lists.infradead.org,  linux-mtd@lists.infradead.org
-Subject: Re: [PATCH RFC 00/16] spi: spi-mem: Express the dummy phase using
- cycles when relevant
-In-Reply-To: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
-	(Miquel Raynal's message of "Wed, 25 Nov 2026 18:51:14 +0100")
-References: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
-User-Agent: mu4e 1.12.12; emacs 30.2
-Date: Thu, 26 Nov 2026 12:09:05 +0100
-Message-ID: <87wlpzx31q.fsf@bootlin.com>
+	id 1xWXfM-0000000D1AM-2i4J;
+	Thu, 26 Nov 2026 11:29:30 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id DF53162B42;
+	Thu, 26 Nov 2026 11:29:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F051C1F000ED;
+	Thu, 26 Nov 2026 11:29:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795692567;
+	bh=KzkXaWiJVAGevwCKGmXrszqK2VboCvPIQ4QmMjaaIPc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=jGLBP+JkU2AJkwG9HWQna8c8E2ZvqeVoV5+VRg7CN6hd6tZtRBknL2TpTaNnOZLkp
+	 ++wUEWQMUvtqiKaa0n7aHWor/sUtoYJePQ4+wk8KbuBx+y4dNsrrB1DzOLdxu/fd84
+	 7nJ+qaZaEIdV/ui+bWcw7Y9XXykuYFkNX5usk+qZyoZjTWQ8jTuqdAK+/uvAfhfBYm
+	 vLD1rwU46gYuEBsyZVKz9IY7OLhaa+QXs5xBMV4s82f/hBfe/3SwdDDBmdRgkcmTu1
+	 ImNQEPC/1S4bLzmmUQWpOrLnIUoLzzMnK5BacdDhrKMn8QfcSOGBubn0/jVnTBv2cw
+	 Qqj2bkOrMtc0Q==
+Date: Thu, 26 Nov 2026 11:29:07 +0000
+From: Lee Jones <lee@kernel.org>
+To: Markus Elfring <Markus.Elfring@web.de>
+Cc: linux-mmc@vger.kernel.org, aaro.koskinen@iki.fi,
+	adrian.hunter@intel.com, aidanmacdonald.0x0@gmail.com,
+	alcooperx@gmail.com, allen.lkml@gmail.com, apelete@seketeli.net,
+	aubin.constans@microchip.com, bcm-kernel-feedback-list@broadcom.com,
+	chenhuacai@kernel.org, christian.loehle@arm.com, djakov@kernel.org,
+	florian.fainelli@broadcom.com, geert+renesas@glider.be,
+	hkallweit1@gmail.com, jan.glauber@gmail.com, jbrunet@baylibre.com,
+	jh80.chung@samsung.com, josua@solid-run.com,
+	kamal.dasu@broadcom.com, khilman@baylibre.com,
+	krzysztof.kozlowski@oss.qualcomm.com, lars@metafoo.de,
+	lgs201920130244@gmail.com, linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+	linux-omap@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	martin.blumenstingl@googlemail.com, mirq-linux@rere.qmqm.pl,
+	neil.armstrong@linaro.org, niklas.soderlund+renesas@ragnatech.se,
+	oakad@yahoo.com, paul@crapouillou.net, pb@handhelds.org,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, pramod.gurav@linaro.org,
+	rric@kernel.org, sameo@openedhand.com, shawn.lin@rock-chips.com,
+	support@cavium.com, tony@atomide.com, u.kleine-koenig@baylibre.com,
+	ulfh@kernel.org, wsa+renesas@sang-engineering.com,
+	yoshihiro.shimoda.uh@renesas.com, zhoubinbin@loongson.cn
+Subject: Re: [00/13] mmc: Assorted bug fixes across MMC host drivers
+Message-ID: <20261126112907.GE38590@joneslee-macbookpro.roam.internal>
+References: <20261123191703.179283-1-lee@kernel.org>
+ <bc602723-07fb-4af9-9201-272dd0fe759e@web.de>
+ <20261126085340.GC38590@joneslee-macbookpro.roam.internal>
+ <9e76edf9-433e-43ab-a748-8a71804e2b26@web.de>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Last-TLS-Session-Version: TLSv1.3
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261126_030922_128792_9EA3DE7A 
-X-CRM114-Status: UNSURE (   9.80  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+Content-Disposition: inline
+In-Reply-To: <9e76edf9-433e-43ab-a748-8a71804e2b26@web.de>
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,8 +87,8 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
@@ -99,22 +97,36 @@ X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Cj4gQ29udmVydCBzcGktbWVtLCBhbGwgdGhlIHRyaXZpYWwgc3BpLW1lbSBjb250cm9sbGVyIGRy
-aXZlcnMgYW5kIHRoZW4KPiBTUEkgTk9SIHRvIHVzZSBkdW1teSBjeWNsZXMgaW5zdGVhZCBvZiBk
-dW1teSBieXRlcy4gU1BJIE5BTkQgbWF5IGNvbWUKPiBsYXRlci4KPgo+IFRoaXMgaXMgb25seSBi
-dWlsZCB0ZXN0ZWQgZm9yIHRoZSBtb21lbnQgYW5kIHNlbnQgYXMgYW4gUkZDIGJlY2F1c2UgdGhp
-cwo+IHRvcGljIGhhcyByYWlzZWQgYSBsb3Qgb2YgcXVlc3Rpb25zLCB0aGVyZSBtYXkgYmUgdGhp
-bmdzIEkgaGF2ZQo+IGZvcmdvdHRlbiBhYm91dCwgc28gSSB3b3VsZCBsaWtlIGFsbCBwYXJ0aWVz
-IHRvIGFncmVlIG9uIHRoZSBkaXJlY3Rpb24KPiBiZWZvcmUgSSBjb21taXQgaW50byBzb21ldGhp
-bmcgY2xlYW5lci4gSSBiZXQgU2FzaGlrbyB3aWxsIGFsc28gaGF2ZQo+IGludGVyZXN0aW5nIGZl
-ZWRiYWNrIHRvIG1ha2UuLi4KCkkgbWFkZSBzZXZlcmFsIHRyaXZpYWwgaXNzdWVzIGluIHRoZSBj
-b250cm9sbGVyJ3MgY29udmVyc2lvbnMgd2hpY2gKdHJpZ2dlcmVkIGEgbG90IG9mIFNhc2hpa28g
-YW5zd2VycyBleHByZXNzaW5nIHRoZSBmZWVsaW5nIHRoYXQgdGhlCnBhdGNoc2V0IHdhcyBub3Qg
-cmVhZHkuIFRoZSBpbXBvcnRhbnQgcGFydCBjbGVhcmx5IGFyZSB0aGUgc3BpLW1lbQpjaGFuZ2Vz
-LCB0aGUgbW9kaWZpY2F0aW9ucyBvbiB0b3AgYXJlIGFsbW9zdCBpbmRlcGVuZGVudCBmb2xsb3ct
-dXBzCnNob3dpbmcgd2h5IHRoaXMgbWF5IGJlIHVzZWZ1bC4gTmV2ZXJ0aGVsZXNzLCBJJ20gZ29u
-bmEgYWRkcmVzcyBhbGwKdGhvc2UgaXNzdWVzIGFuZCBzZW5kIGEgdjIgd2l0aCBob3BlZnVsbHkg
-bGVzcyBvYnZpb3VzIGlzc3Vlcy4KClRoYW5rcywKTWlxdcOobAoKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QK
-bGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQu
-b3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On Thu, 26 Nov 2026, Markus Elfring wrote:
+
+> >> How do you think about to sort (and group) desired adjustments
+> >> by affected software components?
+> > 
+> > This is new to me.  What guidance says to do that?
+> > 
+> > Making your own rules up and spraying them at contributors wastes people's time.
+> Can the following list variant be more helpful eventually?
+> 
+>   mmc: cavium: Prevent slot_pdev[] out-of-bounds write during probe
+>   mmc: cavium: Remove MMC slots before destroying slot platform devices
+>   mmc: dw_mmc: Disarm central watchdog when ending a request
+>   mmc: jz4740: Apply DMA max_seg_size limit to unified tx-rx channel
+>   mmc: jz4740: Skip DMA cleanup in PIO mode during post_req
+>   mmc: meson-gx: Fail request when descriptor chain DMA mapping fails
+>   mmc: omap: Shut down cover timer before disabling cover BH work
+>   mmc: renesas_sdhi: Disable internal DMAC BH work items on release
+>   mmc: renesas_sdhi: Fix SDIO manual tap correction in SDR104 mode
+>   mmc: renesas_sdhi: Guard host->cmd access in internal DMAC issue work
+>   mmc: sdhci-brcmstb: Handle absent optional sdio_freq clock in probe
+>   mmc: sdhci-msm: Resume runtime PM before accessing registers on remove
+>   mmc: tifm_sd: Synchronise timeout handler with request completion
+
+No.  Stop making up rules!
+
+-- 
+Lee Jones
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
