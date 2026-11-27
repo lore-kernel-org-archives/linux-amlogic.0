@@ -2,106 +2,150 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DE09606A327
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2026 08:45:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 966ED606A321
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2026 08:49:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Paec6WG1;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=FoZ49Ukh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dHpjLqBn;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=neyg6qmT
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=7K4NsLmWWp7dgq6Y5zcVNizOdp/XTdQpca7tKc1CGX4=; b=Paec6WG16N/cIa8RYHYbEPbYdI
-	cXRHNbVe/V5QyKgn3vAXmCgaesR3amVio1gwHGX/exG887kgBLoTdXYhdLAXrrL5I14GmEMqq+aJ0
-	/s9pkTMUYpeu7ZvGnQyWR3zgN7SEY9aQKwgiuwwzyc9tV+k9XrFQYkYWo2aXvlkKsQQboclhSwDx+
-	swd/d93/VLlButxrzuFndXfPpKo8jGJLZaIDTTODipwnOhtZKuhHbteipbkn5c82wdNYfSXHgOQPK
-	VF2BwXPBnwTFUZlQqYVJXBhJd4tuHx6F0JS+7zN7u5+urLC/sSkSdy4T7DbBysZ3FO/bKG4pmBfcL
-	X4fYBfew==;
+	bh=gYt7K2STCcn0tbLJnmMs12kr9zYg3qexVD/TMtGfC14=; b=dHpjLqBnm12OfRJMrBbLuTk8TM
+	LPOBQrdeStRUh+hw67B1EUgYteBoL5pvfvkzH5D92oHFLBTGGqpSSUnljzJ9ipfMOlt+MQpcoptar
+	1cjAT6/01KYCoiEIUNq3zxjh7uz/2eQEhyGcslYLSldeilcHxGDbvoqo3CblIWg+xdr8UkXLZUzrR
+	aowuc+MHWgzxPrk+AngLp6RCaCOv3OSKfAX7sgw9GqLPwy/KzEsCC/Ull8sqnDmruwnwE8Swb1glb
+	KjDdw490vZE7lFitQBhGzk5hG7S0C31+A3uikywxVECjLeYb0SiWggMw1bvo3mgFaTsZUKeTe58jB
+	9yR/zFsg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWrZz-0000000FI7U-0zSw;
-	Fri, 27 Nov 2026 08:45:15 +0000
-Received: from mail-ej1-x632.google.com ([2a00:1450:4864:20::632])
+	id 1xWrdh-0000000FIa0-0MFJ;
+	Fri, 27 Nov 2026 08:49:05 +0000
+Received: from mail-northeuropeazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c200::5] helo=DUZPR83CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWrZv-0000000FI6Y-3Pau
-	for linux-amlogic@lists.infradead.org;
-	Fri, 27 Nov 2026 08:45:14 +0000
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-c506a231b88so1045385066b.3
-        for <linux-amlogic@lists.infradead.org>; Fri, 27 Nov 2026 00:45:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795769109; x=1796373909; darn=lists.infradead.org;
-        h=content-type:mime-version:message-id:date:references:in-reply-to
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=/Dn2D8XkSGEfDxJntGFmwA2DusnT2l4fyR3s26i/q2k=;
-        b=FoZ49UkhLXhSqP1CCix2xLkR7lDbFIn88Nxr+x1QcE/PVs62JWJCsKxRif3piH9ufu
-         QzIWB60IYVsL2QVO5U3wk0iSvRPDKPxQ3x0UDdE1Q42Pd5sPqy1rcJpKOEa9IMWLfvQi
-         Io5y93vKT7U15QtPvsBeS58hDpOE+ecHvBCgFOjN3JN9Wl03hR0druf5GAPoMJMugZnA
-         AAm5hFcrFgUaNsxOcEOoOjXFoygxUQmGM+qPibQrCDSw9h2c4/s3GgPUwfMtzfaRS2Od
-         0w1ibiFGhQYBrGUk+4TImvz8DbAULDcHx2Ry1ual778tvS0TvLz7EdZwv9keu2z4M/Fg
-         15Xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795769109; x=1796373909;
-        h=content-type:mime-version:message-id:date:references:in-reply-to
-         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=/Dn2D8XkSGEfDxJntGFmwA2DusnT2l4fyR3s26i/q2k=;
-        b=tMt6ehj5ajkFzAKM7IifFoFPxelTZ8OlC9QRSq+eTOL1BPxo3a2Bl1QgvqRGsEWuCD
-         nSZC4prhxN2ZGCz+iKt9ZaGUjXGNASKS7MMg8gg8fXaaShvlUE6dBSOmOsybaiy79GM4
-         DN23hkesA5rkNgzST7wGPR2ljIFykIRgTcWU9OA41NEb0uzBD9XQ07oXNR+LlqrXhIfb
-         mr3FWejw2T37gTRdIxTaYy8P3MGinF8YZkkVUtA5gGaWqVwWVUm01UJ5JLmUMeoh32wb
-         +dHbzsmX4Ajb0xTVaQv96iTOe81uusTH0Kikc8F+6xS+JK9X10+Hyw4HevI3XynY5YaS
-         X/Dg==
-X-Forwarded-Encrypted: i=1; AL+hErFMNyrmcn+hJgODqCxSqFBpdaEGrPojomFEuv3KI4RwwQzJbMI4yr62O0jP/HHh6rTAYg3mV+6uxCBKsLUf@lists.infradead.org
-X-Gm-Message-State: APuU4Z/ob9aZSrZrKMJRQdVLBPtFbd33iHQn2RIkErnh4fmrjj9kS1EI
-	REHspac1qjDLVw4z6bUDrkP+gNlYzGduRWpIMvlZlCld7PjtvbnOisWdFoeyniUbESbTeyn51Kb
-	74/Mk
-X-Gm-Gg: AZFdTZeCi4kiH42puPfNG6MnZCGWkGAyI5vENk+iqDfZYzpH2QDMN+RdGb+0jZ/rG2H
-	dPfY/OBCrxQOV/iDj0WwiF7+Lcy+c7AA1OmjkriLNbXSgZ4ftv44Yes09T35VWTfORT0LNvCYtV
-	ewMH9sCYNrIXV+xpM85soBESVoIawsZYdgDIq6cCe0Jm2VEJ/YSFlQSvxe5xOs183BEgrsC79ZT
-	gJkThkp2KIJL7iquzFhNkCMKnkn2hUVKqB1f+fEyzU4/WSQj1k5jjZML0fMp5ER3/udMBfdobFI
-	dI4XE+e8SlXpCfSsmEtE+GW5XETc0GqOTj5Kslva70OS56BQNNgFwPwFFyhvMGeNISCmK/mR1PC
-	tdtEBRXHaoqW+OKIRZiSX/cIqO9UScMvT9iGeFm8G+S6B9Kfcun39Zp9lFEaLeVEFAaKEA5BLLT
-	7dcWlb32iKPxHpKflpPWt8aILITIyn/E+ZOMLNUk58ZbypslntczGtiDTsbQ94F0JS4hkpPR7aM
-	maJzT41tTR9jxzriiq8UvT123koV7t01FkbJ823iT2T1kisIadAxnx8xFtWTTZ00Wz2YE6CNIHa
-	IvsXGQ+xsALoQeZOlsonlSb3OpwZ1nc6dT8tPc8A/5RkXLmi
-X-Received: by 2002:a17:907:6c17:b0:c51:3cb6:5b11 with SMTP id a640c23a62f3a-c513cb65d73mr1971796666b.49.1795769109636;
-        Fri, 27 Nov 2026 00:45:09 -0800 (PST)
-Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c513aea31e4sm851467866b.39.2026.11.27.00.45.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 00:45:08 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Jiebing Chen <jiebing.chen@amlogic.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- jian.xu@amlogic.com, shuai.li@amlogic.com, zhe.wang@amlogic.com
-Subject: Re: [PATCH v8 5/5] arm64: dts: amlogic: Add Amlogic S4 Audio
-In-Reply-To: <832c4090-d6d7-4c3b-85e7-ed7dfb8c85c4@amlogic.com>
-References: <20261110-audio_drvier-v8-0-1489241e4c83@amlogic.com>
- <20261110-audio_drvier-v8-5-1489241e4c83@amlogic.com>
- <179536111581.2728475.9919460533427781841.b4-review@b4>
- <832c4090-d6d7-4c3b-85e7-ed7dfb8c85c4@amlogic.com>
-Date: Fri, 27 Nov 2026 09:45:08 +0100
-Message-ID: <1j5wxi3bor.fsf@starbuckisacylon.baylibre.com>
+	id 1xWrdc-0000000FIWr-0vSZ;
+	Fri, 27 Nov 2026 08:49:01 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Iarn8R1Ys1Py+5Cgbw2TF86eWql1I+/EWRpJ47hepO4M2qwU9FVgfIcdV9JAv7fPVT6yHJc8+9QVeB3BJjhTfcQxpGiYpL+M5EENRtdcr7deKlbnYrgitZ9UEY7cbyRrqpynY22S7I44asdbFnCZLDdZkeYgXHEQQyhajPYywewgoxTTq8mrkBrMXqaz4lMvl9udWccZaJqChWNKAqf1XXOBBFaZQAOPWBRzpkG+iwE8phFGmYNw+RkSbdYjJVkuk19i/EZUUK6Ut3vFJUh5tUCpaPhkMoaWyQpj+Bc7SLLju+mXSAlgOa89awK+uLK/+3oI+98lMfvk4TQFf/cm2g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=w/9nysUAzo/sUvB/H87KxmuFhaOI/JhNQOPVqJx+WJA=;
+ b=IgE7EJGLdZmyNUgOsqom3lqRrEZ12SG9qXKyt7pH93fypVJm2VjJUxBBHXJAWHtYZiYKMY5ncBEwJCOoX2KVxXXrPfTgfkbyABhIHGnYTDkINxhZQYSJqNDXjZzmi9WgkfDe3RzVYdgIjM0JfUOoLqU7z9lBiqUxm6Xe8sFBVFwlsBX1hes+Q4VfsX1BrZ0YAnG32cGSsqsSgN6/DShB3jANGt/2IbwFVR9Io8sGKDIuMv8SznRM86MRrVYJq0z6DU1x1sYpHBsxL4ZVmraNKm7BpUzdDcslsVtvKN6v3q/Me/+40jGp21qs2Xp/UM/HMYZvQdwx7JosqovylgXmiA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=w/9nysUAzo/sUvB/H87KxmuFhaOI/JhNQOPVqJx+WJA=;
+ b=neyg6qmTmStJWEVfgzrS+3S/CnB2PMyNJbDgq1vc5ZVV3npwfEtlMhiW1RGDZG8gsgV8aTcQCwvn/ziTxmCYmfIfo98pcdZwg7oHmtaDFDssNfye88BjHzP1dft9q4gePJR9TTlM5hId9c2kyT0JImk0pH0I22swzz0EmLUihMR/XNwNYxrbg8duyhgtqiF6soZCtqpVzATaHQCmcTby65KaIxpLQBaIXtlFflIuXxUOudHWaaVaIwg0eDp3eCAReTDN5PA+S0JLJCcUMWRzrzYu2Iy0JG/zjKB+7OFHt7Hl1+6tNDnlfocfOoox+O/IlyKirjk4VRG+vKF5W6uB5g==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from PA6PR04MB11909.eurprd04.prod.outlook.com
+ (2603:10a6:102:51c::22) by PA2PR04MB674656.eurprd04.prod.outlook.com
+ (2603:10a6:102:601::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.9; Fri, 27 Nov
+ 2026 08:48:53 +0000
+Received: from PA6PR04MB11909.eurprd04.prod.outlook.com
+ ([fe80::a4b:fa4e:7fe7:e6a2]) by PA6PR04MB11909.eurprd04.prod.outlook.com
+ ([fe80::a4b:fa4e:7fe7:e6a2%7]) with mapi id 15.21.0662.007; Fri, 27 Nov 2026
+ 08:48:53 +0000
+Date: Fri, 27 Nov 2026 16:53:59 +0800
+From: Bough Chen <haibo.chen@oss.nxp.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>,
+	Feng Chen <feng.chen@amlogic.com>,
+	Xianwei Zhao <xianwei.zhao@amlogic.com>, Han Xu <han.xu@nxp.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Valentina Fernandez <valentina.fernandezalanis@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Haibo Chen <haibo.chen@nxp.com>, Jyan Chou <jyanchou@realtek.com>,
+	Yu-Chun Lin <eleanor.lin@realtek.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Pratyush Yadav <pratyush@kernel.org>,
+	Michael Walle <mwalle@kernel.org>,
+	Takahiro Kuwano <takahiro.kuwano@infineon.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Alvin Zhou <alvinzhou@mxic.com.tw>,
+	Cheng Ming Lin <chengminglin@mxic.com.tw>,
+	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org, imx@lists.linux.dev,
+	linux-riscv@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org
+Subject: Re: [PATCH RFC 02/16] spi: spi-mem: Stop checking the dummy buswidth
+ against board wiring
+Message-ID: <20261127085359.euu6z5rydr655ycr@shlinux89>
+References: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
+ <20261125-macronix-upstreaming-spi-mem-cycles-v1-2-fd036402fd37@bootlin.com>
+Content-Disposition: inline
+In-Reply-To: <20261125-macronix-upstreaming-spi-mem-cycles-v1-2-fd036402fd37@bootlin.com>
+X-ClientProxiedBy: SI2PR02CA0003.apcprd02.prod.outlook.com
+ (2603:1096:4:194::13) To PA6PR04MB11909.eurprd04.prod.outlook.com
+ (2603:10a6:102:51c::22)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA6PR04MB11909:EE_|PA2PR04MB674656:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0bb6c318-5d47-4a32-de22-08df4c6343b2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|23010399003|19092799006|376014|7416014|10067099003|56012099006|261026121527099003|261026140227099003|261028144727099003|261022075727099003|261022105027099003|261021123027099003|261021121427099003|261102123227099003|261009223027099003|11063799006|18002099003|22082099003|4143699003;
+X-Microsoft-Antispam-Message-Info: 6nHCKI+hs5gu8T6kZX6mem+V2Nty6h+ykOCcZV+a+pOIPRWejyr3uLSBxvD9v9lraVgiZlwt5YT1/6I0kZCv/t78l0QuTj/s7Io0N5ekZdQq5uNWuQKBrq8co60kA+h2BrZmvuQJENUOOU+plbE+ebU8/3O3vs1lq1y97Qd8oj6DQnOPwADGF9Wzeg2TLtVqHPNIGgRfvWyYJPrBAT0jyDOjA7PLUXnhpVeFHwKm2Clw7qYofvO5AmropDVN79z0MgCEljVJULAiW2aqhnLSZN7eYNYz1etGyfXSXZoLWpXZBbDx+kL1BhWcT/jNe5qhi69ftVhgvuXfsD6oJb3afcLWNzN7VeUxXhwie79vhayGpS8kw3U5P8FCIXtVnzw4knbOGKvXho9QAI2Hq5Z2Hc+VS0Hg6qeQoNHRxn0myhnEhFp4rrAd0g7irF2lZMYGDSlXKl6itd/LT41wRfFW0ksSTybCi0XJ5NNktFTboJisZWWRRwDnefo01i4WlK8gQgqdrCM/qerGYA1NjpA086Stgul96VEqvXGQgtVuzBK811uTwDu5cjDWiXqrWTIe4rXHhsG6b0zb4kqISsjAX8/BuM/NzYzNJyrobxSJpgA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA6PR04MB11909.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(23010399003)(19092799006)(376014)(7416014)(10067099003)(56012099006)(261026121527099003)(261026140227099003)(261028144727099003)(261022075727099003)(261022105027099003)(261021123027099003)(261021121427099003)(261102123227099003)(261009223027099003)(11063799006)(18002099003)(22082099003)(4143699003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Ztkymg4PGnN5nhctfBV5xV33VMhiFwxqikBupDWI5kmF8SpsY+aqmvrOgcze?=
+ =?us-ascii?Q?h4vHOBYzll8sLpEO4CbDdGbV5JstmjqhQt7O/Mr37YWeLz7YiHnjhk9QSdXz?=
+ =?us-ascii?Q?jq9y9EVwZyq4iWt8w3Awa9ADsuhQIbKZzO7Ese1ZWvWsqqXdOiMepEafdDJ/?=
+ =?us-ascii?Q?cGvYJfeQSbyNeds+9d0rNt9uDAyh1P1N9DmyOYYqkzJ9jGGuLBGoCoHtErCh?=
+ =?us-ascii?Q?+0MVgui8air929+MaC0GZCxbe/BZY41KOvp4YvxxL2S5q6YkkRDriOJSpTaP?=
+ =?us-ascii?Q?A+HusPI6uAaXgc3G91S8lrlyKEVvRVDeWQd4OOI3IlRpIYlpMNCO2lS28/GW?=
+ =?us-ascii?Q?qrOWJYUJXq2bJrqt/jQ5vKVKN1AsBWbLWKgYwcDC+F+Rg0KN9D/q96QjOlaR?=
+ =?us-ascii?Q?6VQvZbyR4Zeibx6oAZH556bSevzxabHwg/NTDC4eO5dG//mSdynTYBWiclgh?=
+ =?us-ascii?Q?Q9d64pQWc0OHJC9w83kdEUCOKFR2hochFpcNh5HcIlg6RzhDokVP1RTusnZb?=
+ =?us-ascii?Q?/hrYlxu4DDk9Cx/uilaazZfBLd8nWEZtEWBlD+OaVeyKSBwpyStdmOowR4u+?=
+ =?us-ascii?Q?BFPlJUr5oe9PfWPzGf3B/9kB6mCq9/gkgn4QHLqN8FLGMBmBVbGfyPR8mr8X?=
+ =?us-ascii?Q?IRZHwd3LiarwT9SGUGsQp6EqYzhJ0W9KrbGFAg2e4IE9VEneKp7ETfEo0nPW?=
+ =?us-ascii?Q?BLva2ohdr8VqXCxbYyl1dII04rCGgaQJpjz0wdJP5OxfmUIR85cbH0d4Tyuc?=
+ =?us-ascii?Q?ZkfqzX4IfXIf0c+aHIV/RkClmw6jqFjuzlt87InBESBAi/7um21QEXN4PI7p?=
+ =?us-ascii?Q?DmZXLPHsGrYOImhrEzKHK2b4rK9Wy6h6/3fVLTUkPZ9A/IKL57hkx6fFjcb0?=
+ =?us-ascii?Q?64ZBJhUWwraTcvFObABY41Ew95y4270S0THi7pqB+2W/Sga/H0JwdahRQDuC?=
+ =?us-ascii?Q?07APO1UIiXCoW3wZuJCjmZU2zacpgdZ/jxriSgEPxW16IkHoPepal4K/gUMr?=
+ =?us-ascii?Q?LfohDYUKSCPkS3TGXzzkv2Q/SJVIEBbxIJKLuuzTaKOD8uf6VGFPXN/okVAT?=
+ =?us-ascii?Q?OK+1/uYYgbBqmHZCT/UgsUq49V24QPkL5KPL2W/Ha2HhP6CufeoyMhEpBcBg?=
+ =?us-ascii?Q?NwWKX05cef1gnNjRAFhIP830lTR6Exx+SJCXIMPMUCRgvF8xt6nHq7LuZdXZ?=
+ =?us-ascii?Q?AaJEk++JP6n3maycN1W72V4njsCo4y/n1toHRnn/WMbSLIAmeek3oj5UZsnD?=
+ =?us-ascii?Q?k6rxBx0bFRYp9BiphNvvuQFZnZBxkynZETn+/MHgOmwuIMvg8E8zJEZrR6+T?=
+ =?us-ascii?Q?IsjxMkA2ucOY9qmAKiqLbghTQ19awJRy2Ke0pdrRrWpyxiK8Cjr+eHqb80mb?=
+ =?us-ascii?Q?UyC9noSMYxjOWzP0wFQxYwdq1V926hbn+2B4xEyTR6rX33ZQN/OAAdwmsnnW?=
+ =?us-ascii?Q?/vaSJfLsSOFLXFAT3MLxqPjRmTph+tN6cMDDLwoR6T+RgXbNZkzz9LoP94PU?=
+ =?us-ascii?Q?Rv0ubbUawQ09b9WkEWeDHwbxr/oIGfPEF8a3jTnTBZbKwzsmp74D2Jj9XJ8b?=
+ =?us-ascii?Q?gejtTU97/+ETWbQRk/cI24nwjXw3bZLf0OvBXgLB+ouCq2vc1n7i+i3uosxQ?=
+ =?us-ascii?Q?0/NrsTtYfwlS7b2Y42ZdrX6/m8J1eapbvfKkXl8VSREhQir0zY5KyFe9fNIZ?=
+ =?us-ascii?Q?O31T8o2Ow6KmAB3zuTpsdWOGzw+C/mAhypIF2IPn42fTp92wJztVJktS+Ug3?=
+ =?us-ascii?Q?5n7bLLwAfMtN/q3XS6qz/WMBFrwu0LAaSCIBlpMWma4Y/KA++Tt4?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0bb6c318-5d47-4a32-de22-08df4c6343b2
+X-MS-Exchange-CrossTenant-AuthSource: PA6PR04MB11909.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2026 08:48:53.4613
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: aafNgz5nvQya5/rGJEG+5TFReOfJ9YCqgxwdeDzs+PWPZa4WzX8PbUspzHjLYO3ZMJWpcIrztzU4au53EhW65h0JCm2NEUlbbbELvfwod9l86FQZTUNwZhxLEjm4uq/R
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA2PR04MB674656
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_004511_851804_2FFCCE90 
-X-CRM114-Status: UNSURE (   8.35  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261127_004900_260386_35EE802F 
+X-CRM114-Status: GOOD (  19.53  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,36 +158,58 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On lun. 23 nov. 2026 at 10:48, Jiebing Chen <jiebing.chen@amlogic.com> wrote:
+On Wed, Nov 25, 2026 at 06:51:16PM +0100, Miquel Raynal wrote:
+> The dummy phase does not transfer any data. Its buswidth only describes
+> the pin state during the dummy cycles, so it must not be validated
+> against the board's Tx/Rx wiring.
+> 
+> Drop that check (the sanity check in spi_mem_check_op() stays).
+> 
+> Suggested-by: Pratyush Yadav <pratyush@kernel.org>
+> Link: https://lore.kernel.org/linux-mtd/20241112075242.174010-1-linchengming884@gmail.com/T/#m7cc1a5055702f5a42a8f3949c968842d845914d7
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+> This is not really a fix, so no fixes/cc:stable is on purpose.
+> ---
+>  drivers/spi/spi-mem.c | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/spi/spi-mem.c b/drivers/spi/spi-mem.c
+> index c64e906ba919..9b8b8f2b3387 100644
+> --- a/drivers/spi/spi-mem.c
+> +++ b/drivers/spi/spi-mem.c
+> @@ -152,9 +152,10 @@ static bool spi_mem_check_buswidth(struct spi_mem *mem,
+>  	    spi_check_buswidth_req(mem, op->addr.buswidth, true))
+>  		return false;
+>  
+> -	if (op->dummy.nbytes &&
+> -	    spi_check_buswidth_req(mem, op->dummy.buswidth, true))
+> -		return false;
+> +	/*
+> +	 * The dummy phase implies no actual transmission nor reception.
+> +	 * Its buswidth therefore does not matter much.
+> +	 */
+>  
+Hi Miquel,
 
->>> +
->>> +&spdifin {
->>> +     status = "okay";
->> ... as sashiko pointed out, you are indeed missing a pinctrl for it.
->>
->> With sashiko remarks handled
-> AP222 does not have an SPDIF IN port. I will remove it and update the 
-> interrupt number for SPDIF IN.
+With this change, do you plan to add the linked patch back?
+Setting the dummy buswidth to match the data buswidth is more reasonable.
 
-If you need an immutable branch for the clock changes, I need you to
-submit them in a dedicated series. Let me know
-
->>
->> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
->>
->> --
->> Jerome
->>
-
--- 
-Jerome
+Regards
+Haibo Chen
+>  	if (op->data.dir != SPI_MEM_NO_DATA &&
+>  	    spi_check_buswidth_req(mem, op->data.buswidth,
+> 
+> -- 
+> 2.56.0
+> 
 
 _______________________________________________
 linux-amlogic mailing list
