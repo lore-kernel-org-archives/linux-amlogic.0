@@ -2,34 +2,34 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6DAF606A323
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2026 11:33:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F2AD606A31C
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2026 11:33:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=v2yxwBqk;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=mail.sdu.edu.cn header.i=@mail.sdu.edu.cn header.a=rsa-sha256 header.s=default header.b=eFaCwpCl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ldzli04f;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=mail.sdu.edu.cn header.i=@mail.sdu.edu.cn header.a=rsa-sha256 header.s=default header.b=guYxVVeI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=FImXqvBuvsRlj/yWSxKJ+rOO8pt7n8Tsyk8SbEHmm7Q=; b=v2yxwBqkICdfLpGEO3B1aGS4BO
-	HouUcWteeoNCyw6Pc+zkdhnrHV8ScOQWsHL8G77vcr5UldsWn1Ho6yp5X4xiNKKBy7QuASsIUFpX5
-	ccWuMLG85luyzrc4C6LJ3Y4qtAW7zybz9TESzp19xHVdO7sZ4G6QF12WMI58cdoWPnusZpCK6NN2N
-	86S0PUb0Nge9d2nvzG2ybsjdkmcYshQR7KqNpNxRftG3+quvopdMKvJh7qoqMIiuPxATssj5clFxB
-	5qW85lTgu7FnUYDM7jRW6CeoSb0v4T+iFSNGg6iKbwbpkI+KL6Nr1qdRz+J3o4QJV5vJkjtotQ9Q5
-	Jk2bVaCA==;
+	bh=EncgFRZ5igfE/B0/LRZiVV3OmaLU7neyc0mHU3iqz1Y=; b=Ldzli04fu09Oc0OLZDoimYP5HV
+	ytA+9lx87As8YX+vos4HWQ3e7HIIqAMtpcNU0lof8aJSy2vIQy/sIRJlDgKUXiLiF3YnqarHlKdQy
+	ke+kiAs/QOGjEujrMjl+bMB9HnL+vnhONJaKLMyPKf61GNmFS109Ri6nUW2K52rXL8mzFMPisU/mQ
+	R829fzUbEfYNCXZ/xqyBehkIc6QkMEZBUTJThySyXgmebLwyqSM1bBGiQoOxJWcnKc69xIm+jUnD7
+	HSEn01i8iYokgaEwo6XEceI+Ze2QKnFWbIq21zMWeuKdFK9zJWQyQhKHZ2vHxGRNy3bsikskMl3sx
+	yWSRalFg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWuD1-0000000FpT7-38DT;
+	id 1xWuD1-0000000FpSA-1JZX;
 	Fri, 27 Nov 2026 11:33:43 +0000
-Received: from mail-m49198.qiye.163.com ([45.254.49.198])
+Received: from mail-m155101.qiye.163.com ([101.71.155.101])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWuCq-0000000FpJV-2Hvp;
-	Fri, 27 Nov 2026 11:33:34 +0000
+	id 1xWuCp-0000000FpJT-3DQD;
+	Fri, 27 Nov 2026 11:33:33 +0000
 Received: from user.localdomain (unknown [223.80.110.101])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 56429982e;
+	by smtp.qiye.163.com (Hmail) with ESMTP id 56429982d;
 	Fri, 27 Nov 2026 19:33:27 +0800 (GMT+08:00)
 From: Tian Xuechen <202300460064@mail.sdu.edu.cn>
 To: ulfh@kernel.org,
@@ -41,27 +41,25 @@ Cc: jbrunet@baylibre.com,
 	linux-pm@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-amlogic@lists.infradead.org
-Subject: [PATCH 1/2] pmdomain: amlogic: Tear down EE domains and their OF provider
-Date: Fri, 27 Nov 2026 19:33:25 +0800
-Message-Id: <20261127113326.390398-2-202300460064@mail.sdu.edu.cn>
+Subject: [PATCH 0/2] pmdomain: amlogic: Add teardown for EE and secure power domains
+Date: Fri, 27 Nov 2026 19:33:24 +0800
+Message-Id: <20261127113326.390398-1-202300460064@mail.sdu.edu.cn>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261127113326.390398-1-202300460064@mail.sdu.edu.cn>
-References: <20261127113326.390398-1-202300460064@mail.sdu.edu.cn>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-HM-Tid: 0aa21cc8230303a2kunm351106c8395dd7
+X-HM-Tid: 0aa21cc81fa103a2kunm351106c8395dd3
 X-HM-MType: 10
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlDSR1OVkxOTExNTRlPGEpNTVYeHw
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZTh0YVk1MSR0ZTkxKTB5LGlYeHw
 	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlJSUhVQ0tVSkpLVUpLSllXWRYaDxIVHRRZQVlPS0hVSktJQk
 	NDTFVKS0tVS1kG
 DKIM-Signature: a=rsa-sha256;
-	b=eFaCwpClZEM3BORHOVvcDNoKNbseIf0IPFEyct3qIYCYm43POZwhMqKINaEtr3E6rrtW5v9GVA/Fd0M/wrIwia7PAJA6m/8ELPxNAAOEgsYGngQPQGw9fFugePdhsbTaz46+HtvSkdnjlcQM6bJAf6ns4TT/1/rRs6gkbBOCOJ4=; s=default; c=relaxed/relaxed; d=mail.sdu.edu.cn; v=1;
-	bh=n9iKJQ0ODduFNUuImSDNNL7ErQfbbfsZlX7pZrvxC9o=;
+	b=guYxVVeIdIVSPNNE9ee9t77nGKoQjgpSKtxeiWZUEWbsvqnjiaRShOPowLqtmWgsGJmwQWOf1ITb9gsRJcXzrkKvutoquuFRL8qFMt3Vk/kJeiYJLcohpyeSjsQm9zjrgJ6lDeXMioYpA4+JzidvwVqsBUaDm1W9TID+RIMuAMU=; s=default; c=relaxed/relaxed; d=mail.sdu.edu.cn; v=1;
+	bh=Vpyy6zemv+YuuqJrdJ4wj3yo8jYAVZ/C6m+mZJr7VhA=;
 	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_033332_857789_0218B3A4 
-X-CRM114-Status: UNSURE (   9.74  )
+X-CRM114-CacheID: sfid-20261127_033332_058703_D1125A50 
+X-CRM114-Status: UNSURE (   1.13  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -76,71 +74,23 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-6.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,FROM_LOCAL_DIGITS,FROM_LOCAL_HEX,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 From: Tian Xuechen <202300460064@mail.sdu.edu.cn>
 
-The Meson EE power driver leaves the provider and domains registered
-after freeing their backing storage. Remove the OF provider on unbind
-and release initialized domains during managed cleanup, including when
-probe fails.
+Unregister the domains published by the EE and secure power controllers
+during removal.
 
-This issue was found by our static analysis tool under development.
+Tian Xuechen (2):
+  pmdomain: amlogic: Tear down EE domains and their OF provider
+  pmdomain: amlogic: Tear down secure domains and their OF provider
 
-Fixes: eef3c2ba0a42 ("soc: amlogic: Add support for Everything-Else power domains controller")
-Signed-off-by: Tian Xuechen <202300460064@mail.sdu.edu.cn>
----
- drivers/pmdomain/amlogic/meson-ee-pwrc.c | 14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/pmdomain/amlogic/meson-ee-pwrc.c b/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-index 338f70d77bf0..f108d9337e5e 100644
---- a/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-+++ b/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-@@ -428,6 +428,16 @@ static int meson_ee_pwrc_on(struct generic_pm_domain *domain)
- 				       pwrc_domain->clks);
- }
- 
-+static void meson_ee_pwrc_remove_domain(void *data)
-+{
-+	pm_genpd_remove(data);
-+}
-+
-+static void meson_ee_pwrc_remove(struct platform_device *pdev)
-+{
-+	of_genpd_del_provider(pdev->dev.of_node);
-+}
-+
- static int meson_ee_pwrc_init_domain(struct platform_device *pdev,
- 				     struct meson_ee_pwrc *pwrc,
- 				     struct meson_ee_pwrc_domain *dom)
-@@ -494,7 +504,8 @@ static int meson_ee_pwrc_init_domain(struct platform_device *pdev,
- 			return ret;
- 	}
- 
--	return 0;
-+	return devm_add_action_or_reset(&pdev->dev, meson_ee_pwrc_remove_domain,
-+					&dom->base);
- }
- 
- static int meson_ee_pwrc_probe(struct platform_device *pdev)
-@@ -641,6 +652,7 @@ MODULE_DEVICE_TABLE(of, meson_ee_pwrc_match_table);
- 
- static struct platform_driver meson_ee_pwrc_driver = {
- 	.probe = meson_ee_pwrc_probe,
-+	.remove = meson_ee_pwrc_remove,
- 	.shutdown = meson_ee_pwrc_shutdown,
- 	.driver = {
- 		.name		= "meson_ee_pwrc",
--- 
-2.43.0
-
+base-commit: 4dce97c6c265544342e716e62fd24bbb232590c5
 
 _______________________________________________
 linux-amlogic mailing list
