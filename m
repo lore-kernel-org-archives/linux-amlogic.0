@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF702606A334
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2026 15:30:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1793D606A31C
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2026 15:30:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qrWaCXui;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=g0h59hDe
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=l66B5PiE;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Gslis+xZ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
@@ -14,71 +14,70 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Message-Id:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=BvjA/rz5Atvjmi2c15jiRqS6Siqa/gHrzF4m6enY4hs=; b=qrWaCXuiSv/UnaQKTKuD60Qm9M
-	IybHpXLEHNNCYTG9sDIaiAl/eidLl6zbJnAaIEGrXs31O43Ltnh87OoFnJSyz71UEhjWtPUR7OD1o
-	DPx1kpahHlGxsGaBcrgFAWlIyjTrD+hsvClroXlA9flc7CS5Dc7CCLkYJN1uPRJbVuo5KXgGCeiKg
-	E6UDw6kvxtqNAaRTlx7rhlUPVX9N4BglJl0DVtK62VSOK0wtjBt4PdjVOmb/DrGD4kTjNicm8EO+Q
-	zEXjXmGe/ed9mKF1/0m8kl/sC8POWfl7kYvHVP703bQF2C1YT35L33tC0d6e0aPndeTO4N/cGW+xU
-	5oDT+ZiQ==;
+	bh=xWoBMwQb3yB6+BHcUe7RJjVMGc8YZxfgaJ0tOUJw35E=; b=l66B5PiEE8my4dGdNCgVu8vnRo
+	1haKqajPQS8IC/RCRpHEmFYRyo2OjmRvQDRIBi0FSoB6ceiKKWebqz1bwdAX654uGDxKh3GdHyQXb
+	0l1P2KSZ5XXCF6P4pYgXXRPVCdkfkUj+lk8RjQ55b0Y0OrJ0ClQYKzpi3xFZxO98NxHDGSvGRGGSr
+	LkAHpQXb5Y59wDbC7DbcHhz3UfJ2L1lwFq4msPBHgmjXhlvN6IomCcal8hD2TJpUOzIMxUoAvd8BP
+	9uQRdZ4fsPSIiI41HjqAbvQDxMs7Jp8vI7VkaRnuMSZMNT70f/agb/DPE8VvEbE7tYJdQw69Me0k4
+	gvn/2pGg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxu2-0000000Gnql-1S9R;
-	Fri, 27 Nov 2026 15:30:22 +0000
+	id 1xWxuQ-0000000GoAu-3CEZ;
+	Fri, 27 Nov 2026 15:30:46 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWxsk-0000000GmsT-1x3M;
-	Fri, 27 Nov 2026 15:29:02 +0000
+	id 1xWxsl-0000000GmtX-30ZW;
+	Fri, 27 Nov 2026 15:29:03 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 2961245460;
-	Fri, 27 Nov 2026 15:29:02 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 5FAB4431E2;
+	Fri, 27 Nov 2026 15:29:03 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795793341;
-	b=itMu9fLDQxUBfOsUGomLfMEW5mrzEds2Up+R2kkdRUcJZQI4795KTITgXS+CofYDV3y6
-	 jl/DBlrbL0vdMkTw5ST7vhgBdVctXI/uuvs9uUQPuBSwoEi0mq1HefhmgosrplV4ANpSY
-	 radhDvashyKTKokznYVuT0LALDeUbdRnYZv27A5zVtI1eZmXJjqvLXzQLIkQ23vE4EqzS
-	 YrdmONZ2f6C7JN2EzjRzPDDsVMYXSyqaqykuIiGYoA8SeJBlWhkHpAazV4CnCkzQUQ7lk
-	 7O76bUmnvhxxJsAckkhnRdaCS+IoLrsPtDomwX0AwS2x9Fv408vjYFo6Hu8lRLkN5Dw==
+	t=1795793343;
+	b=fLe02NPJmq5u8U4ngZMHcCcfzyneC2tVGsuTQplmvZKnTzPgAWiK8svfyAz1dAVbvPEY
+	 cNoRAgqWIcbuj5JJ3lhF2YBjUHcjBQMB+eWr10xTghRQC5nmcznFU8EuZe8em9oeBvYlT
+	 kUCHNACRu26Vz9Lem0jsTnaFQOdgwp3RH4ZVrlNZKLVlqBw+ICYwSupamcGb1mCMEcdZn
+	 tNR5Ah3C722kZ9qox3AjDxGSl7otSAcnNB0AfCrQtDsx9qILTSiKAk3UjN96OfmSvLxR9
+	 Ie9LjZivbidioanFkWICIugToXjsbYxp2I6/EN0yMfbEtCXbIpLuoA84S0M1SVy4mxA==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795793341;
+	c=relaxed/relaxed; t=1795793343;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=rAgcqIqOw6zcaQD0GaowJvtaNg3/b1Y5Y23WzFleRQ4=;
-	b=KJWy82oggkW6v+DlMEZp0JOb7WBONdlCKVSwLkn7eSnDOY4ZGYJWPO9Ak0tz/NyIEQHV
-	 7kyeSrMrRGwrOcnHWzB2zTYz+jWHtaLy2SJU+FssAhC9MqC5qLqEJgHiX3ydhYxUVorb1
-	 VCc4vXBxGBE9hdQ2L11LvQzFIuDx8iwqzkvsH4Xu3I1qvAPMKy4hyDN4/PZT1iQbzFXOG
-	 NFJAxGuriY/5UnNR8YHhZb9vVn8CU0XD6g+VFVvkrVJ0qdNTiB2UDD87v7lptlqNBO1xq
-	 Lo+P5qHXq2AZWlRmRIFmTT+PBY5e1ucdZ30nMzaiNJQnSysLiImcZZwHXGbYIPldBqw==
+	bh=3ySlJUTZg8+yNINn5sfi2SIyHBWA5zVWlGALJ4M1cgM=;
+	b=kxhEj9o5ovLPQ6FJmIrSihrfAbh3zjK0hapvJ6sQ9Q+qv1KYWCZbPOMU3cEYznWRVzC6
+	 INIIYNQe1vW9XQvQhm9GIFkwLxKcxQwawf9eSwjFO+xq74JEwZpoy1ibYiJLlUcpwYJ1Z
+	 T7Om+Z0YAKoOwsehj0LROHa0k/TKNrUIQu1UcAyV0M/IOBXXrHIZLBK6zuNDRPT/yGWYG
+	 58nzYRtwM3X7maExHImfgOMLiluZpxpSyToz4MtDMYvdVBkR09Pr6lOFm6+8zMze+o1t2
+	 rerQ0A4WM0jT32buDdHmkam0E7XmrqmTX5uVyuzRsUgBaEEmJivUCrToWMktU8sVrdg==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 1570F1F00A1A;
-	Fri, 27 Nov 2026 15:28:40 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 12B9F1F00937;
+	Fri, 27 Nov 2026 15:28:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795793341;
-	bh=rAgcqIqOw6zcaQD0GaowJvtaNg3/b1Y5Y23WzFleRQ4=;
+	s=k20260515; t=1795793343;
+	bh=3ySlJUTZg8+yNINn5sfi2SIyHBWA5zVWlGALJ4M1cgM=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=g0h59hDe/mJg48hOgbf4+rxb1vygJARjLWbwi/LJ4DpRXxlosU7Ff7bEz26h5XiFm
-	 I3w8mxYJHXVWGC5fAQSpQde2hZYNZcFlbpi4FPb7HEmlP0SYYMNnC2RbVbgKs6hJd+
-	 ZXvry3J/0hQDVCvUKLFBam7J71CylVbALlT6Do9H4IAHeTm4X13pVLHANI4Ix1hq4S
-	 cqKaqfBMYVBgd3Yj2wS1cTrN+7VK4dkXzEgqt2PI5NJyjOzdTSiJD3u4gQqq3MZWm3
-	 kOD5UoxnHU0SMwp/xXzI9iWlgCTwEAQ1pCJzoUKFBkDPUNxmWNrfeh7Tr/ND4IVnHo
-	 3/GDjjtZ6WP+w==
+	b=Gslis+xZnS+2REIpiQdcNiZNM+Y1zSfDdY5/FlxxP5IRzih44CgiqlmFRMuiSFReA
+	 bxKrQyUstSGutE5TZyYLf4D5m2XF4zi6BFDlBLuI5P0EugAQrR1VvtqofQylPv1or6
+	 uTaxJy5oAKZa9mUYqpAFHIBZT7LN3i3gkda5ygtpCO229UF0DhRUfRsv6XeRgo5Y4m
+	 SDUSaOMZrlC8v6RRdLbVoF6v6HYWLunRkldkupFGlYDK698wMh0lpIRg5d7ahaTsco
+	 77pCOzds15gaUh3aPJXhaYmU26IcDZTIAYGjwkNSVY/xEnvRWTNBrMWhAJzG//Odhg
+	 FkKfUGdjg3MkQ==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id B69A14DC88;
-	Fri, 27 Nov 2026 15:28:29 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 6E59E4DC9C;
+	Fri, 27 Nov 2026 15:28:30 +0000 (UTC)
 From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Fri, 27 Nov 2026 16:27:08 +0100
-Subject: [PATCH v5 07/12] pmdomain: amlogic: meson-ee-pwrc: power up
- memories for boot-enabled domains
+Date: Fri, 27 Nov 2026 16:27:13 +0100
+Subject: [PATCH v5 12/12] arm64: dts: amlogic: Add HDMI TX PHY node for GXL
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261127-meson-drm-create-hdmitx-phy-v5-7-88c43eb95468@aliel.fr>
+Message-Id: <20261127-meson-drm-create-hdmitx-phy-v5-12-88c43eb95468@aliel.fr>
 References: <20261127-meson-drm-create-hdmitx-phy-v5-0-88c43eb95468@aliel.fr>
 In-Reply-To: <20261127-meson-drm-create-hdmitx-phy-v5-0-88c43eb95468@aliel.fr>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -96,13 +95,13 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-phy@lists.infradead.org, dri-devel@lists.freedesktop.org, 
  Ronald Claveau <linux-kernel-dev@aliel.fr>, linux-pm@vger.kernel.org
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2681;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1074;
  i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=2pSroicxmn87L6WpeMI1TQ71NJdXRXfygd9gmAxHGRQ=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQzbnwkmna0x2M3+6ml8XrZtddFambW/Dxc1lXx4JPv93o
- T1xxdEjHaUsDGJcDLJiiiz9cy1PvLt89MzXPeopMHNYmUCGMHBxCsBEnLcxMnyMCes8suaC0xc7
- g5nuIYE+5xr1JJQeS036GXDwyqvtr1sY/gpwfyxnPeW8JaWlRnJCq6XP+1zvTQUPmApfTf8ZLn6
- CkxsA
+ bh=JP7lAwalWZ4HUjkBJydQfX0hMiglUBnijIXqwFKtcOI=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQzbnwllvI19u+fvVaHv1Eu48TfcX1xSshKMrH1TdmiOxa
+ 0k+Vw1DRykLgxgXg6yYIkv/XMsT7y4fPfN1j3oKzBxWJpAhDFycAjCRi1qMDDdMjt5QZFwiHnrz
+ SX39vxktgTL9uueeB85O6Ffk5PnCHM/wh7tb9uiX3YcnsTlLMug5WR9/kX5kypvpZ8/zL1v4yvo
+ GCzsA
 X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
  fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
 X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
@@ -130,75 +129,39 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ronald Claveau <linux-kernel-dev@aliel.fr>
 
-When a power domain is found already powered on at probe time (typically
-the VPU domain left enabled by the bootloader), the driver registers the
-genpd in the ON state with GENPD_FLAG_ALWAYS_ON and never calls
-meson_ee_pwrc_on(). As a result, the memory power-down bits of the domain
-are not touched.
-
-pwrc_ee_is_powered_off() only checks the top-level sleep bit, so a
-bootloader that enabled the VPU without waking every memory block
-leaves those memories powered down, and nothing in the genpd framework
-will wake them since pm_runtime_resume_and_get() is a no-op for an
-always-on domain.
-
-This is a preparatory change: a following patch drops the explicit
-HHI_MEM_PD_REG0 write from the meson_dw_hdmi driver, which relies on the
-power domain to power the HDMITX memory.
+Describe the HDMI TX PHY as a child of the HHI system controller, with
+the amlogic,meson-gxl-hdmi-tx-phy compatible and reference
+it from the HDMI TX node through "phys".
 
 Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
- drivers/pmdomain/amlogic/meson-ee-pwrc.c | 19 ++++++++++++++-----
- 1 file changed, 14 insertions(+), 5 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/pmdomain/amlogic/meson-ee-pwrc.c b/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-index 338f70d77bf0..b3ae5cd7bea8 100644
---- a/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-+++ b/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-@@ -392,11 +392,21 @@ static int meson_ee_pwrc_off(struct generic_pm_domain *domain)
- 	return 0;
- }
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+index f257fe3860f7..d205eec1cff7 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+@@ -328,6 +328,7 @@ &hdmi_tx {
+ 		 <&clkc CLKID_GCLK_VENCI_INT0>;
+ 	clock-names = "isfr", "iahb", "venci";
+ 	power-domains = <&pwrc PWRC_GXBB_VPU_ID>;
++	phys = <&hdmi_tx_phy>;
  
-+static void meson_ee_pwrc_mem_power_up(struct meson_ee_pwrc_domain *dom)
-+{
-+	int i;
+ 	assigned-clocks = <&clkc CLKID_HDMI_SEL>,
+ 			  <&clkc CLKID_HDMI>;
+@@ -342,6 +343,11 @@ clkc: clock-controller {
+ 		clocks = <&xtal>;
+ 		clock-names = "xtal";
+ 	};
 +
-+	for (i = 0; i < dom->desc.mem_pd_count; i++)
-+		regmap_update_bits(dom->pwrc->regmap_hhi,
-+				   dom->desc.mem_pd[i].reg,
-+				   dom->desc.mem_pd[i].mask, 0);
-+}
-+
- static int meson_ee_pwrc_on(struct generic_pm_domain *domain)
- {
- 	struct meson_ee_pwrc_domain *pwrc_domain =
- 		container_of(domain, struct meson_ee_pwrc_domain, base);
--	int i, ret;
-+	int ret;
++	hdmi_tx_phy: hdmi-phy {
++		compatible = "amlogic,meson-gxl-hdmi-tx-phy";
++		#phy-cells = <0>;
++	};
+ };
  
- 	if (pwrc_domain->desc.top_pd)
- 		regmap_update_bits(pwrc_domain->pwrc->regmap_ao,
-@@ -404,10 +414,7 @@ static int meson_ee_pwrc_on(struct generic_pm_domain *domain)
- 				   pwrc_domain->desc.top_pd->sleep_mask, 0);
- 	udelay(20);
- 
--	for (i = 0 ; i < pwrc_domain->desc.mem_pd_count ; ++i)
--		regmap_update_bits(pwrc_domain->pwrc->regmap_hhi,
--				   pwrc_domain->desc.mem_pd[i].reg,
--				   pwrc_domain->desc.mem_pd[i].mask, 0);
-+	meson_ee_pwrc_mem_power_up(pwrc_domain);
- 
- 	udelay(20);
- 
-@@ -478,6 +485,8 @@ static int meson_ee_pwrc_init_domain(struct platform_device *pdev,
-          * prepare/enable counters won't be in sync.
-          */
- 	if (dom->num_clks && dom->desc.is_powered_off && !dom->desc.is_powered_off(dom)) {
-+		meson_ee_pwrc_mem_power_up(dom);
-+
- 		ret = clk_bulk_prepare_enable(dom->num_clks, dom->clks);
- 		if (ret)
- 			return ret;
+ &hwrng {
 
 -- 
 2.56.1
