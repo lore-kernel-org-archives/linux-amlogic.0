@@ -2,12 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9618F606A32D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2026 14:29:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF62E606A31F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2026 14:32:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VBuqw6L7;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=tAWYGEmu;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=E5CGmgTl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KpGfoHEd;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=zAkwwjJh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -15,58 +14,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=mqgIbMNlriCysBLeWkHbL0ygr1//1NNh+QXxPNz68/I=; b=VBuqw6L7l6l4TuBM+PUv76wb6B
-	msa7HdKHpKSjYS4PXvpMal85Q86sc5S1tJEFNxzvqx54cIaG9KGMYoTeQRK1aO5yWLd5LXBCM/8Wx
-	VYatr4AxQFek/tIsPG4C9KLgHtaN1orMNbbP9lkYl5eWoJ0ApGa8OJc22F3bQ8k/TjWA8kNPNXf7p
-	7DYCiZL0pV0Fxk+49TzdDP7sZ0S2IUH+GDmobTGYbxphLRekTBOnlIhoPWTlRG/iXdlAdfY3k2syQ
-	6qpch1D/Qc7FN+30lonlJ4BBako9c160i9gKZcxw7rZlIFYrgHiylv16fRJagytJ3InfegnGyH9zN
-	Bkzk77cQ==;
+	bh=4bBPJTgAJ+TruB9bz89i/lXRut/dSpAlWgbUBPUn0Ec=; b=KpGfoHEdIfspNgpQTFx6L0IqY6
+	7Ud8pD/6eimCzDZgoSEDfFQ6L4A5uTjo0NASRmMY5DD7evA1XOhLxWgonGC46Po9vYAWGaJxNMwdB
+	7ou/0SWv/VMLDOmx8AeCxqeWXvLeqwg/oYMZZSn+Tytz5LBood4yMigzcOXAVUoLhvrdroK0rp8mw
+	8ih2LRWzkTRRVG9y6fjLfmGusw0foixxBQyaQRRNfb1jKgh0LfN1Iyhn9UwQw6aw5fmMh/K+zE9ze
+	pBRUJ+EnDRsiWgATqyUDLxb+KLVOuBJBOWJSsfCwt4xN9HqpeJsN+hlBSAZrKTpPgoqrjGaedfmvc
+	KCuVgxiA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWwxY-0000000GWip-3Yer;
-	Fri, 27 Nov 2026 14:29:56 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1xWx0D-0000000GYda-0Sqj;
+	Fri, 27 Nov 2026 14:32:41 +0000
+Received: from smtpout-03.galae.net ([185.246.85.4])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWwvo-0000000GV2H-3W9d;
-	Fri, 27 Nov 2026 14:28:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=Cc:To:In-Reply-To:References:Message-Id
-	:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender
-	:Reply-To:Content-ID:Content-Description;
-	bh=t8xaCGkapw3XVy4Hw7CV1emEcGQK7H2PmWY00ef3WO0=; b=tAWYGEmuwWllL2iRqJCQWcBUxw
-	o65Y1bGF3WatcDkYnIALqWOOhlAa6VMKlvBf1nBR2fgZBd8xCrC+8iPEEi4TEvRhVOtq2zW2XZDUp
-	9Q3EVU5qKBgxRMXlABCSKCm1DiF/8fMMTA1o+DUxvdGO9BJognANJox7Yw6z30EIq6j/AzItWbSlb
-	izztmc/FlCZl0K2VZVNIXk5bniy/AzkR0XKG+CEIxuwlIdPv5Xb0xtXY3YHXQlljWEDtATdCC5cTt
-	jqq1fpHkOmRuqhmMD5NPFBXP6AllWs3Q32DXJ+st8pXRu3Xzg1zqvRthN0ZbX4Gb3lUy53oTl8joG
-	DgFyrCRg==;
-Received: from smtpout-02.galae.net ([185.246.84.56])
-	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWwvf-0000000FczG-44hD;
-	Fri, 27 Nov 2026 14:28:06 +0000
+	id 1xWx05-0000000GYbx-3bUO
+	for linux-amlogic@lists.infradead.org;
+	Fri, 27 Nov 2026 14:32:39 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 64BAE1A1844;
-	Fri, 27 Nov 2026 14:27:58 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id E9B534E417C8;
+	Fri, 27 Nov 2026 14:26:13 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 2E54A6049C;
-	Fri, 27 Nov 2026 14:27:58 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 50A7611E68FDF;
-	Fri, 27 Nov 2026 15:27:47 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id B32536049C;
+	Fri, 27 Nov 2026 14:26:13 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DC5DB11E68FF4;
+	Fri, 27 Nov 2026 15:25:59 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795789675; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1795789567; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=t8xaCGkapw3XVy4Hw7CV1emEcGQK7H2PmWY00ef3WO0=;
-	b=E5CGmgTl43LUv/Wxw0p2JNyzgHt6z+dpetXd2kS2qL+rL3snuzvIp+P3rbNz+oyk3fu7hU
-	TreJNAyLrcFBm0ugH5RPSeM0g9U79sBAo6XOxTA0gykC687ycVdJNNS8Omz1uj7z0kNkMj
-	ptomlmpr0rgl6yiczbLUuJ0sCh9qWzEjbvJpVGx3HrxQZmFyOInGk/ho6nHCOJrDnNMGKQ
-	/ffnWqCFriCA1995pfJqfSAshYk3zJkoF0AyX/et/5qq9IVuqHC+Wx+beqi9s7hknfy5a3
-	XVhD4IsrEdp1utYqalbP0yCtkNQrPGdfvYa4RkylmyJh+fe3smtIk4rCrLocDQ==
+	bh=AoxU+JhvKBTXrYbtTbJzsGk9QEyditaab6z3oGK2TJY=;
+	b=zAkwwjJhwVG0zSV6YA46JQojW1bolXRH0EAHLZlwyqXLXtk9FaxqcsUZKb+OQ07CO9PpA4
+	KfDre7rmcmytfCYVyYQ/OPPYrgRL6OYfPg+JczDL2rRTLqgsiKqd8JeYHfs7JrB8GOsNf8
+	kl17IMq1kAfobSqitEG6cidb+v+vQDJ85/q88WXuQEB+rNQg8RJyVPQA6f+UfBnf4WRIBc
+	IGFxwV1X5/oObK49PmVtOCrbpeahRDC87AewuGKejSG2iCgDQZoLexg4JQdwtq76TRMFbI
+	pA+e5j/GlD477cxLSbyqWFl/HVZGTzoDgvxYow1S58Kv/pjmgX0fa86bkaMgpw==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
-Date: Fri, 27 Nov 2026 15:22:56 +0100
-Subject: [PATCH RFC v2 34/35] spi: zynqmp-gqspi: Consume dummy cycles
- directly
+Date: Fri, 27 Nov 2026 15:22:43 +0100
+Subject: [PATCH RFC v2 21/35] spi: nxp-xspi: Fix a comment
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261127-macronix-upstreaming-spi-mem-cycles-v2-34-5c93f5e5d630@bootlin.com>
+Message-Id: <20261127-macronix-upstreaming-spi-mem-cycles-v2-21-5c93f5e5d630@bootlin.com>
 References: <20261127-macronix-upstreaming-spi-mem-cycles-v2-0-5c93f5e5d630@bootlin.com>
 In-Reply-To: <20261127-macronix-upstreaming-spi-mem-cycles-v2-0-5c93f5e5d630@bootlin.com>
 To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
@@ -106,8 +91,8 @@ Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_142800_050993_F7EF70E5 
-X-CRM114-Status: GOOD (  16.01  )
+X-CRM114-CacheID: sfid-20261127_063235_178977_BE38EC9A 
+X-CRM114-Status: GOOD (  11.68  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -128,118 +113,30 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The controller programs the dummy phase in clock cycles in the GEN_FIFO,
-but the driver converts the legacy dummy byte count itself. Advertise the
-dummy_cycles capability and use op->dummy.ncycles directly.
+Looking at the i.MX952 TRM which is I believe one of the SoCs with this
+controller inside, the maximum number of supported dummy clock cycles is
+64 and not 32, so the code seems more accurate than the comment, which
+needs fixing.
 
-Store the dummy cycle count in a dedicated dummy_cycles field instead of
-reusing bytes_to_transfer, which is reserved for byte-oriented transfers.
-
+Reviewed-by: Haibo Chen <haibo.chen@nxp.com>
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- drivers/spi/spi-zynqmp-gqspi.c | 29 +++++++++++++++++++++--------
- 1 file changed, 21 insertions(+), 8 deletions(-)
+ drivers/spi/spi-nxp-xspi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/spi/spi-zynqmp-gqspi.c b/drivers/spi/spi-zynqmp-gqspi.c
-index 15e9d3ef8839..6289e33c2807 100644
---- a/drivers/spi/spi-zynqmp-gqspi.c
-+++ b/drivers/spi/spi-zynqmp-gqspi.c
-@@ -176,6 +176,8 @@ struct qspi_platform_data {
-  * @rxbuf:		Pointer to the RX buffer
-  * @bytes_to_transfer:	Number of bytes left to transfer
-  * @bytes_to_receive:	Number of bytes left to receive
-+ * @dummy_cycles:	Number of dummy cycles to insert
-+ * @dummy_phase:	Whether the dummy phase is currently executing
-  * @genfifocs:		Used for chip select
-  * @genfifobus:		Used to select the upper or lower bus
-  * @dma_rx_bytes:	Remaining bytes to receive by DMA mode
-@@ -198,6 +200,8 @@ struct zynqmp_qspi {
- 	void *rxbuf;
- 	int bytes_to_transfer;
- 	int bytes_to_receive;
-+	u32 dummy_cycles;
-+	bool dummy_phase;
- 	u32 genfifocs;
- 	u32 genfifobus;
- 	u32 dma_rx_bytes;
-@@ -681,8 +685,14 @@ static void zynqmp_qspi_fillgenfifo(struct zynqmp_qspi *xqspi, u8 nbits,
- 			transfer_len = xqspi->dma_rx_bytes;
- 		else
- 			transfer_len = xqspi->bytes_to_receive;
--	} else {
-+	} else if (xqspi->txbuf) {
- 		transfer_len = xqspi->bytes_to_transfer;
-+	} else {
-+		/*
-+		 * The GEN_FIFO immediate_data field carries a number of
-+		 * dummy SCLK cycles, not a byte count.
-+		 */
-+		transfer_len = xqspi->dummy_cycles;
- 	}
+diff --git a/drivers/spi/spi-nxp-xspi.c b/drivers/spi/spi-nxp-xspi.c
+index 8b836662a5da..ccd00c744d18 100644
+--- a/drivers/spi/spi-nxp-xspi.c
++++ b/drivers/spi/spi-nxp-xspi.c
+@@ -407,7 +407,7 @@ static bool nxp_xspi_supports_op(struct spi_mem *mem,
+ 	if (op->addr.nbytes > 4)
+ 		return false;
  
- 	if (xqspi->txbuf)
-@@ -832,7 +842,8 @@ static irqreturn_t zynqmp_qspi_irq(int irq, void *dev_id)
- 			(mask & GQSPI_IER_GENFIFOEMPTY_MASK))
- 		zynqmp_qspi_readrxfifo(xqspi, GQSPI_RX_FIFO_FILL);
+-	/* Max 32 dummy clock cycles supported */
++	/* Max 64 dummy clock cycles supported */
+ 	if (op->dummy.ncycles > 64)
+ 		return false;
  
--	if (xqspi->bytes_to_receive == 0 && xqspi->bytes_to_transfer == 0 &&
-+	if (!xqspi->dummy_phase &&
-+	    xqspi->bytes_to_receive == 0 && xqspi->bytes_to_transfer == 0 &&
- 	    ((status & GQSPI_IRQ_MASK) == GQSPI_IRQ_MASK)) {
- 		zynqmp_gqspi_write(xqspi, GQSPI_IDR_OFST, GQSPI_ISR_IDR_MASK);
- 		complete(&xqspi->data_completion);
-@@ -1109,15 +1120,13 @@ static int zynqmp_qspi_exec_op(struct spi_mem *mem,
- 		}
- 	}
- 
--	if (op->dummy.nbytes) {
-+	if (op->dummy.ncycles) {
- 		xqspi->txbuf = NULL;
- 		xqspi->rxbuf = NULL;
--		/*
--		 * xqspi->bytes_to_transfer here represents the dummy circles
--		 * which need to be sent.
--		 */
--		xqspi->bytes_to_transfer = op->dummy.nbytes * 8 / op->dummy.buswidth;
-+		xqspi->dummy_cycles = op->dummy.ncycles;
-+		xqspi->bytes_to_transfer = 0;
- 		xqspi->bytes_to_receive = 0;
-+		xqspi->dummy_phase = true;
- 		/*
- 		 * Using op->data.buswidth instead of op->dummy.buswidth here because
- 		 * we need to use it to configure the correct SPI mode.
-@@ -1136,6 +1145,7 @@ static int zynqmp_qspi_exec_op(struct spi_mem *mem,
- 			xqspi->rxbuf = NULL;
- 			xqspi->bytes_to_transfer = op->data.nbytes;
- 			xqspi->bytes_to_receive = 0;
-+			xqspi->dummy_phase = false;
- 			zynqmp_qspi_write_op(xqspi, op->data.buswidth,
- 					     genfifoentry);
- 			zynqmp_gqspi_write(xqspi, GQSPI_CONFIG_OFST,
-@@ -1151,6 +1161,7 @@ static int zynqmp_qspi_exec_op(struct spi_mem *mem,
- 			xqspi->rxbuf = (u8 *)op->data.buf.in;
- 			xqspi->bytes_to_receive = op->data.nbytes;
- 			xqspi->bytes_to_transfer = 0;
-+			xqspi->dummy_phase = false;
- 			err = zynqmp_qspi_read_op(xqspi, op->data.buswidth,
- 					    genfifoentry);
- 			if (err)
-@@ -1179,6 +1190,7 @@ static int zynqmp_qspi_exec_op(struct spi_mem *mem,
- 
- return_err:
- 
-+	xqspi->dummy_phase = false;
- 	zynqmp_qspi_chipselect(mem->spi, true);
- 	mutex_unlock(&xqspi->op_lock);
- 
-@@ -1206,6 +1218,7 @@ static const struct spi_controller_mem_ops zynqmp_qspi_mem_ops = {
- 
- static const struct spi_controller_mem_caps zynqmp_qspi_mem_caps = {
- 	.per_op_freq = true,
-+	.dummy_cycles = true,
- };
- 
- /**
 
 -- 
 2.56.0
