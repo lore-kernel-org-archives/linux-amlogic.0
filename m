@@ -2,12 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AE00606EF12
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2026 14:24:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADC466071E48
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2026 14:24:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Nq6f0EpI;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=ijV+YBCb;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=VUC9H8n3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZWQBjuuZ;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=KqziPh8l
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -15,57 +14,43 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=q1Nz9dYyeBpxUpqKHpVoc94EP44HYvjTGZdDz3Vc2Qc=; b=Nq6f0EpIBjF+SoQSTpdpmBDacv
-	MavR3ZjB13xgyIwe92E3/EA8BoJiLb/opLXQYGk8ej+Dyqtc3HRNlYS1/iAxRx6n/BS6lebThgiEk
-	Hc+zEW2FzaNEUdj/o6euDoajCYZBoT6b8Phq8Qd/DY4oEB3MBEvzAer/qGMIo2vRJ+ugATOWmmgSo
-	OUOUMoRdLd7e8mohCvCw0+LWfgaw4Tb3N12tctHBywezyQPJw4EvlXHSMHTMGAxz7VC4zMvnWRtLb
-	CfZAL32swaSoUSrC0j25+pjNR1S+uIjOsnATvW2DReVJB/023jPIqsUsS986ZjwUJGmfTGTvV21q1
-	8MobqsRA==;
+	bh=ZC5g7Gi4q9hlgqqNvv4i9h7CFXrjkUxo2tr0fA8SQEo=; b=ZWQBjuuZPrt4HNoGckmMg8LNd9
+	+v1yq7J/RdYQhqNnZB7UAm71jEfsSeDJbp4MN1p5E8Gwy6luEyj6gkRHIAAVgEFTOYFogIpsnjj3p
+	Ft1fQkUk8RFnPBi6rdpnP2Uhy19RsO0BQtmeVquXkylgNAq5NDydduDP07khmraowrlmT3Mtu+LLO
+	6X+Xtkwfy18bgZpHMsM3IuxzeiguBNPMRic74RWHvoVTF/EXOPZD0ISNoVZwqjHdXD/+uLxGB5Y/m
+	9WRakRk/MgxHHss5OqMxxzRMihy9WOef6MV0Mo2xDgpQTLG7oKHJzXSMbHlETeHROEX9VNQToNC1M
+	K0ZWnzhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWws6-0000000GNhd-3Ty0;
-	Fri, 27 Nov 2026 14:24:18 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWwrt-0000000GNQa-3HwL;
-	Fri, 27 Nov 2026 14:24:05 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=Cc:To:In-Reply-To:References:Message-Id
-	:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender
-	:Reply-To:Content-ID:Content-Description;
-	bh=rLV3AiVfesH7+JN4SghWwMFjSPsBHJqy3yngjEbzPMg=; b=ijV+YBCbU29noyaPUwSUdml4oX
-	b1jwZM+q8JQu8cjOkpGY7StsbVrQpVIE4lvDzx15GUcJ+qP3uHXFKedlaz1lHqnAlvxjPHM0P2qXz
-	Rm7c8sxPrtWKi+VDhDYnHy+vB53QjrBmk4C0+mE4StwTKu1ew8m6DqIgrpzEg1ciU3hV4cx6XwAqK
-	iczXdzK1g2egnKkOnlgWSNLNR+ODngUimF/6KGTh8sr66qXbFuO42097vCqw9nWPQKy/3WznbXxfg
-	n9eayF4itWoXfiDWiv36/X19NoQWzKD5hm2ynCgWp6zLyNBYiTwB2YWn2bIUvyAdDfxjEZ5Tvf/sZ
-	Qp1KN+1w==;
+	id 1xWwsD-0000000GNu7-2RrK;
+	Fri, 27 Nov 2026 14:24:25 +0000
 Received: from smtpout-03.galae.net ([185.246.85.4])
-	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWwro-0000000FVld-3LQ9;
-	Fri, 27 Nov 2026 14:24:04 +0000
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWwrv-0000000GNSi-3J5z;
+	Fri, 27 Nov 2026 14:24:10 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 89DFA4E417C8;
-	Fri, 27 Nov 2026 14:23:52 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id ABD934E417C8;
+	Fri, 27 Nov 2026 14:24:05 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 547B16049C;
-	Fri, 27 Nov 2026 14:23:52 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6422611E68FDF;
-	Fri, 27 Nov 2026 15:23:41 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 72CDF6049C;
+	Fri, 27 Nov 2026 14:24:05 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1C07811E69006;
+	Fri, 27 Nov 2026 15:23:49 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795789429; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1795789439; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=rLV3AiVfesH7+JN4SghWwMFjSPsBHJqy3yngjEbzPMg=;
-	b=VUC9H8n3pAarXQo2g6qN067XkCpnQwpm/9E/2Hk/I/tB2/1XjdWLGM9P4hBoCk9E1JFxvl
-	7J73tquQz2tKFGE2WS1IAUZmedaT+KEy8IOWHjtt+NZ5NVCKpzAogmzQQ432xXmK788h7I
-	OPnifGiuXyvdQgpKjfmZW/6R/gmGUXYAqZN5x8erH8kLD7UZmo88dREo0edxaZo7/VHVOB
-	O8HcV8efoiegMzRWc5KP4Jp+8apQaRGkS6nhprcWVDoH/FjQQxuOI06RFltCq+Kqlauzdv
-	16TuJt77aMuawELzzNmaPR/mVBrmDeGr+G1nP3Q9031kHufg6haf+aH0byuP1A==
+	bh=wxfJPUKHoAB+1K3wnXPXnqak814WKCu5TUfSaAEjIso=;
+	b=KqziPh8ltiM8u5+b6eKfqHjpZwwL1tuSrz9B43KqmDBcTFYtGFxkYvIYsXji0ngHmJfQMz
+	HMYknla3frw6GZAIimkPVVve5WfMCll0ltxhioVlYXjqQK8QDtC+0X4nyAizs1G2E8mjSx
+	QEmiP3NpEAk1JuFMrlPs/jHoMSE3uRpjOgOXUHCyiijgIHx9/ZQG0DU/2WZILymrbq1sRP
+	qgX5ttf/7/I1Ei7RuCVq0X1p4AtlqgzQ5mCqeZFZYv+l14QKJWryXuh/kRwtSZXUH+2o/P
+	Br+32uJQRsmzsk7ElCYdt/m/ZNr1crLvAtt1D58vA61ocIx1A+3fg26Xcipd3g==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
-Date: Fri, 27 Nov 2026 15:22:26 +0100
-Subject: [PATCH RFC v2 04/35] spi: spi-mem: Sanitize mixed DTR modes
+Date: Fri, 27 Nov 2026 15:22:27 +0100
+Subject: [PATCH RFC v2 05/35] spi: spi-mem: Sanitize mixed buswidth
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261127-macronix-upstreaming-spi-mem-cycles-v2-4-5c93f5e5d630@bootlin.com>
+Message-Id: <20261127-macronix-upstreaming-spi-mem-cycles-v2-5-5c93f5e5d630@bootlin.com>
 References: <20261127-macronix-upstreaming-spi-mem-cycles-v2-0-5c93f5e5d630@bootlin.com>
 In-Reply-To: <20261127-macronix-upstreaming-spi-mem-cycles-v2-0-5c93f5e5d630@bootlin.com>
 To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
@@ -105,8 +90,8 @@ Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_142400_914936_4E10200F 
-X-CRM114-Status: GOOD (  10.64  )
+X-CRM114-CacheID: sfid-20261127_062407_993353_67DC4A56 
+X-CRM114-Status: GOOD (  10.06  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -127,50 +112,39 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The following operations are supported:
-- S-S-D
-- S-D-D
-- D-D-D
-But the following are not:
-- S-D-S
-- D-D-S
-- D-S-S
+Buswidth is allowed to evolve over phases. Many controllers strictly
+apply the settings passed by the core. In practice for an X-Y-Z
+operation where X, Y and Z represent the buswidth of the command,
+address and data phase, respectively. We do not support:
+- Y < X
+- Z < Y
+- Z < X
 
-Make sure these cases are refused by the core.
+Make sure those conditions are sanitized early by the core, to avoid the
+feeling that these needs to be checked in controller drivers. The
+implementation also covers the dummy.nbytes case with the same logic.
 
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- drivers/spi/spi-mem.c | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+ drivers/spi/spi-mem.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
 diff --git a/drivers/spi/spi-mem.c b/drivers/spi/spi-mem.c
-index 3989017dd86f..25f795d5e9ba 100644
+index 25f795d5e9ba..a1f129c47698 100644
 --- a/drivers/spi/spi-mem.c
 +++ b/drivers/spi/spi-mem.c
-@@ -195,6 +195,27 @@ bool spi_mem_default_supports_op(struct spi_mem *mem,
- 		return false;
+@@ -216,6 +216,15 @@ bool spi_mem_default_supports_op(struct spi_mem *mem,
+ 			return false;
  	}
  
-+	/* xD-xS-xS is not allowed */
-+	if (op->cmd.dtr) {
-+		if ((op->addr.nbytes && !op->addr.dtr) ||
-+		    (op->dummy.nbytes && !op->dummy.dtr) ||
-+		    (op->data.nbytes && !op->data.dtr))
-+			return false;
-+	}
-+
-+	/* xS-xD-xS is not allowed */
-+	if (op->addr.nbytes && op->addr.dtr) {
-+		if ((op->dummy.nbytes && !op->dummy.dtr) ||
-+		    (op->data.nbytes && !op->data.dtr))
-+			return false;
-+	}
-+
-+	/* xS-xS-xD-xS is not allowed */
-+	if (op->dummy.nbytes && op->dummy.dtr) {
-+		if (op->data.nbytes && !op->data.dtr)
-+			return false;
-+	}
++	/* Bus width can only grow across phases, ie. 1-4-1, or 1-8-4 are not allowed */
++	if ((op->addr.nbytes && op->addr.buswidth < op->cmd.buswidth) ||
++	    (op->dummy.nbytes && op->dummy.buswidth < op->cmd.buswidth) ||
++	    (op->data.nbytes && op->data.buswidth < op->cmd.buswidth) ||
++	    (op->addr.nbytes && op->dummy.nbytes && op->dummy.buswidth < op->addr.buswidth) ||
++	    (op->addr.nbytes && op->data.nbytes && op->data.buswidth < op->addr.buswidth) ||
++	    (op->dummy.nbytes && op->data.nbytes && op->data.buswidth < op->dummy.buswidth))
++		return false;
 +
  	if (op->data.ecc) {
  		if (!spi_mem_controller_is_capable(ctlr, ecc))
