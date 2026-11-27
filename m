@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF62E606A31F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2026 14:32:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFA7F606A326
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2026 14:34:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KpGfoHEd;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=zAkwwjJh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=c9rpVypR;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=mCPupFMk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
@@ -14,44 +14,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:MIME-Version:Subject:Date:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=4bBPJTgAJ+TruB9bz89i/lXRut/dSpAlWgbUBPUn0Ec=; b=KpGfoHEdIfspNgpQTFx6L0IqY6
-	7Ud8pD/6eimCzDZgoSEDfFQ6L4A5uTjo0NASRmMY5DD7evA1XOhLxWgonGC46Po9vYAWGaJxNMwdB
-	7ou/0SWv/VMLDOmx8AeCxqeWXvLeqwg/oYMZZSn+Tytz5LBood4yMigzcOXAVUoLhvrdroK0rp8mw
-	8ih2LRWzkTRRVG9y6fjLfmGusw0foixxBQyaQRRNfb1jKgh0LfN1Iyhn9UwQw6aw5fmMh/K+zE9ze
-	pBRUJ+EnDRsiWgATqyUDLxb+KLVOuBJBOWJSsfCwt4xN9HqpeJsN+hlBSAZrKTpPgoqrjGaedfmvc
-	KCuVgxiA==;
+	bh=hLKPPXWj+CRdzlpGrbteuNCCoHSNtrwMYvFtja6U2Ww=; b=c9rpVypRsC+b0Z5XUZs6r/UAx7
+	yVcYSZKaHjHA1a9aZB/mqYM4xTI+/NM+YnV5p3hbcI81vo8ofPLCBsPGJU5gS8e4ImoH23dPqBebL
+	JL2c5KFGa9v72vuQ+rdNUlLnq3sfUjeEF0vLOU3ia4nnSj85o/grRm9fA3X5aRND2Vd4KPyIT2Xgg
+	TbK+5EoY3awoOV7F/Z/BWbTVlIF9h9I6TjL13iAwyYQWhqobJnzGNZTVl9tphZizbqp3I7DjmWo4d
+	FuZeXk/j5UbqybGx560L182fskD+czUiiydrmrGDb2sBA7rniqjHmaGs0GDZ6QznJYFhhpldBoQII
+	ZZeYV8Nw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWx0D-0000000GYda-0Sqj;
-	Fri, 27 Nov 2026 14:32:41 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+	id 1xWx1d-0000000GYyL-3Rvb;
+	Fri, 27 Nov 2026 14:34:09 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWx05-0000000GYbx-3bUO
+	id 1xWx1a-0000000GYv8-0NZw
 	for linux-amlogic@lists.infradead.org;
-	Fri, 27 Nov 2026 14:32:39 +0000
+	Fri, 27 Nov 2026 14:34:08 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id E9B534E417C8;
-	Fri, 27 Nov 2026 14:26:13 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id A2DCC1A1836;
+	Fri, 27 Nov 2026 14:25:07 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id B32536049C;
-	Fri, 27 Nov 2026 14:26:13 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DC5DB11E68FF4;
-	Fri, 27 Nov 2026 15:25:59 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 6EC866049C;
+	Fri, 27 Nov 2026 14:25:07 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D3EAA11E68FF4;
+	Fri, 27 Nov 2026 15:24:56 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795789567; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1795789504; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=AoxU+JhvKBTXrYbtTbJzsGk9QEyditaab6z3oGK2TJY=;
-	b=zAkwwjJhwVG0zSV6YA46JQojW1bolXRH0EAHLZlwyqXLXtk9FaxqcsUZKb+OQ07CO9PpA4
-	KfDre7rmcmytfCYVyYQ/OPPYrgRL6OYfPg+JczDL2rRTLqgsiKqd8JeYHfs7JrB8GOsNf8
-	kl17IMq1kAfobSqitEG6cidb+v+vQDJ85/q88WXuQEB+rNQg8RJyVPQA6f+UfBnf4WRIBc
-	IGFxwV1X5/oObK49PmVtOCrbpeahRDC87AewuGKejSG2iCgDQZoLexg4JQdwtq76TRMFbI
-	pA+e5j/GlD477cxLSbyqWFl/HVZGTzoDgvxYow1S58Kv/pjmgX0fa86bkaMgpw==
+	bh=VDYSicKqp2OeFF0Ws3pjAHSZvsSuFmA+Av5A7v9g3uU=;
+	b=mCPupFMkcRfnTzAr1Spz4Iuoof0rLblYlcTgdlvYugdCRiPEsvTHWNKbhADlCvSGKwJ1Je
+	lG5Vz4gbMxFDMXUAKX2zEYbs9SW2y0Jt47OVeQdpx5boCZeYYwietaLpwk2CBCcFzA01od
+	hVYZ222UDqBIVsfEuci6NiuPKeuD2ZvKxyVqhraL0Objx+rpc+fqiGjWVnPgNKypPf0fKm
+	JBTqjtXV9bIr1kQI/iTrkEOQPe34K0Ljw8c3zBiDtM4FKtg1390PqeJTgE3ARKDWqV77no
+	PMvdPfBmyC4s/lrYEyIosPnLrCgIz2+uZdciTN3WxwezM/pZCt3kVrFNO09jVQ==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
-Date: Fri, 27 Nov 2026 15:22:43 +0100
-Subject: [PATCH RFC v2 21/35] spi: nxp-xspi: Fix a comment
+Date: Fri, 27 Nov 2026 15:22:35 +0100
+Subject: [PATCH RFC v2 13/35] spi: cadence-qspi: Drop redundant checks
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261127-macronix-upstreaming-spi-mem-cycles-v2-21-5c93f5e5d630@bootlin.com>
+Message-Id: <20261127-macronix-upstreaming-spi-mem-cycles-v2-13-5c93f5e5d630@bootlin.com>
 References: <20261127-macronix-upstreaming-spi-mem-cycles-v2-0-5c93f5e5d630@bootlin.com>
 In-Reply-To: <20261127-macronix-upstreaming-spi-mem-cycles-v2-0-5c93f5e5d630@bootlin.com>
 To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
@@ -91,8 +91,9 @@ Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_063235_178977_BE38EC9A 
-X-CRM114-Status: GOOD (  11.68  )
+X-CRM114-CacheID: sfid-20261127_063406_282763_045B379F 
+X-CRM114-Status: UNSURE (   9.80  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -113,30 +114,41 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Looking at the i.MX952 TRM which is I believe one of the SoCs with this
-controller inside, the maximum number of supported dummy clock cycles is
-64 and not 32, so the code seems more accurate than the comment, which
-needs fixing.
+The core already sanitizes the spi-mem operations, these checks are
+redundant so let's drop them.
 
-Reviewed-by: Haibo Chen <haibo.chen@nxp.com>
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- drivers/spi/spi-nxp-xspi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/spi/spi-cadence-quadspi.c | 9 +--------
+ 1 file changed, 1 insertion(+), 8 deletions(-)
 
-diff --git a/drivers/spi/spi-nxp-xspi.c b/drivers/spi/spi-nxp-xspi.c
-index 8b836662a5da..ccd00c744d18 100644
---- a/drivers/spi/spi-nxp-xspi.c
-+++ b/drivers/spi/spi-nxp-xspi.c
-@@ -407,7 +407,7 @@ static bool nxp_xspi_supports_op(struct spi_mem *mem,
- 	if (op->addr.nbytes > 4)
- 		return false;
+diff --git a/drivers/spi/spi-cadence-quadspi.c b/drivers/spi/spi-cadence-quadspi.c
+index df7c04e0e2d2..97725ffeae93 100644
+--- a/drivers/spi/spi-cadence-quadspi.c
++++ b/drivers/spi/spi-cadence-quadspi.c
+@@ -476,9 +476,6 @@ static int cqspi_setup_opcode_ext(struct cqspi_flash_pdata *f_pdata,
+ 	unsigned int reg;
+ 	u8 ext;
  
--	/* Max 32 dummy clock cycles supported */
-+	/* Max 64 dummy clock cycles supported */
- 	if (op->dummy.ncycles > 64)
- 		return false;
+-	if (op->cmd.nbytes != 2)
+-		return -EINVAL;
+-
+ 	/* Opcode extension is the LSB. */
+ 	ext = op->cmd.opcode & 0xff;
  
+@@ -1515,11 +1512,7 @@ static bool cqspi_supports_mem_op(struct spi_mem *mem,
+ 
+ 	if (all_true) {
+ 		/* Right now we only support 8-8-8 DTR mode. */
+-		if (op->cmd.nbytes && op->cmd.buswidth != 8)
+-			return false;
+-		if (op->addr.nbytes && op->addr.buswidth != 8)
+-			return false;
+-		if (op->data.nbytes && op->data.buswidth != 8)
++		if (op->cmd.buswidth != 8)
+ 			return false;
+ 
+ 		if (cqspi->is_rzn1)
 
 -- 
 2.56.0
