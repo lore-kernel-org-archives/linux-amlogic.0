@@ -2,112 +2,100 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BEBD606A321
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2026 13:21:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B24E5606A33B
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2026 14:23:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GeNh2ybl;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=I3pMIz5b
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fOy6tJ8z;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=eYvkNVD9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:In-Reply-To:
-	Cc:To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:MIME-Version:Message-Id:Date:
+	Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=C/MOls+/wIguOwXy7Z5oIRT7EZj0e84RJmjmWcjt89M=; b=GeNh2yblBKOl5TMmZj0i264P+u
-	7t3YRpi3NFxp/sokV5ttmOOAtWATXpyq5oimmhlNXCUlf1+KYaQMoqLIwuDUxYrVzkiepb8HVJQKA
-	QJTISxD8fBRj00fx7tQIBgKGs9oOgKEhdUomxQp3Mp45No0XEH7Meuxy+vLwxsdTDVVVrHNEmekIO
-	YDnqp8jX3e6TyYoz/9HDd4zSDJip+FJ1Mcu+R7HL/67z9e9s2vfHS/I2UgITRcOmMWVnv+wdmfxv0
-	V5eC2Pk8V7ofhLpzqpVYK/KXjMmC5bCbO/eBafcaJtY2jG9oSaRjU4obYNlnxgTUGFgBYetMxQYml
-	og8nd6Ag==;
+	bh=T8deroHNN32Vrhp4kidcxTvp+1H9ZiKla5PXfQJn69U=; b=fOy6tJ8z1tJqsWhEwknZ53sO6n
+	W1frKJ7w82MkaDMaVf72i2IpYdbZwrs4PN7ap7rccXUVQQrxhJA3rR900vOUtDYK7NUQEQbPbzBYr
+	IzOByHXstiLirEXhqjIAfT6CS4VTGlzpyzRNmSqiUJV6NKGid5q9xmoftVxSVbvq2q2AD0tfq/9nX
+	Ap3TljLgDagXLn7zXXMujRvDRl9EGGIsqZOmUPd/T24RITt7sS9mbMU+z2VKa67jaFpN7+cFsb+4H
+	/hSOQy+5l9XGwvEv6ztWeTCBkHuIiTzR+jj+b/4+1FccJygCOkJ7sJdmfc5AxZzirDube1K+Td8Jo
+	DktDfPfw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWvtS-0000000GFIA-3MRE;
-	Fri, 27 Nov 2026 13:21:38 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1xWwr9-0000000GMbv-2svN;
+	Fri, 27 Nov 2026 14:23:19 +0000
+Received: from smtpout-03.galae.net ([185.246.85.4])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWvtP-0000000GFH8-3Fmk
-	for linux-amlogic@lists.infradead.org;
-	Fri, 27 Nov 2026 13:21:37 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4a35ac4475dso58268825e9.2
-        for <linux-amlogic@lists.infradead.org>; Fri, 27 Nov 2026 05:21:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795785694; x=1796390494; darn=lists.infradead.org;
-        h=message-id:date:references:in-reply-to:cc:to:from:subject
-         :content-transfer-encoding:content-type:mime-version:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=RDUoKetlpdAW6F7tqFiNvozrVLWT1jW3suYfmlHrOCM=;
-        b=I3pMIz5bhFmJ2MJaxqICWamZQvkHEhRGEGaToL4H+84m2UEYTz2YrA2hit5WNWZUog
-         AlEsYyCW3mDI0ikkrf9GOKYVTCw+uN2eX10aItLUU40MZbywYf7eQU5/OeUDqamECsTL
-         S/EzEpH+S9aWqmGqT69evftIS/9osIXinXr5vTnuwlOWJM2F32F9YOU8lYCxpYp5cT1d
-         jOCP43rEh6aD2lxXCxmVb/CGc7HKcs/OWK4aF+/BnO+YgTpyLRvbu/vqmcRqlsVmPIks
-         d9AibZrw8ITA54B/eyqyZSR2u7oZ8MiEkm781tXV9lG/aZzsPTR8FPwRUdIzGgsnlZRd
-         dMUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795785694; x=1796390494;
-        h=message-id:date:references:in-reply-to:cc:to:from:subject
-         :content-transfer-encoding:content-type:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=RDUoKetlpdAW6F7tqFiNvozrVLWT1jW3suYfmlHrOCM=;
-        b=YSlkKxyJMRn8HZ9n14XmpJt2L3PEXJqWaG9HK0gDtWmQy8RqKWy8h5RSCQldaoPGD4
-         /IPZ4zT5XT8KUSGdrlsE8ZgjG4Zy2uaJ114qWNczbSJ6KVXqx26o3HNtP38YRcc65M6e
-         AdrsZHTtzjQKe0NC2U7Xg4uM3WDBx3DezrJ1JkTukNukjRWdnSTDbQJi1TSH11jx9QVQ
-         kM0xQe4fwBxsbDeFcUYFbPAEKvOllZlyMeB4yPnjVjh/19c9jX5O48f22Jed4L9snsRn
-         CFZizR1VAwPGaLRNhMo4wM/Am+SQAqsDMQusnx++hyK3liRziEsugHG9YIfwx8mUEqmn
-         gr+A==
-X-Forwarded-Encrypted: i=1; AL+hErEhdOL5lHxnEnla3Z4F2O+moKXJ7GYeiQya+cJwd4WIrl+QJLH1ljgp5XXPCZ0qrillwAAjQSWxnG99e2RI@lists.infradead.org
-X-Gm-Message-State: APuU4Z/n5a9k1IElEYdWjHskuc6UwJ/lEgYg8vGX/R2V3E9E8Abd3Nd3
-	y7M2fLPquuFLpD+U97NegFUW+9mBf8BQwLh6JrF2c/dpw92Gz4v4dHVjxaOvaHGDn5s=
-X-Gm-Gg: AZFdTZehbMzKjObvjsnEUeDCYcjGLOrbtYgWMPPtu/CKIwG/hMJaEnJKVkTgc2m1TZD
-	buFjooWmmcNQ7jbswpYgjWvhLakJgLWemlS8YLq6JTGyYBhNflZaKhRx4ReIJyWUQ1AUeyCekje
-	rtDq+ws1WGQ3ok4n8ue0kt4cp6H1u03ZyCIVS4LIuqZNkSWpKUvZWfykvWZzlaPwGbxwE0IOdC0
-	5k74hmg7xget+X19Vdu1UZS4x4jxfh4bt6S4XSphGiCwhFve0hMgD7o3XYlwkVfxIGuy2czJbJA
-	Y/NU0pKMb5yZbOOTtMobXVVFthULHcmvxh65MHhNTYA2UbYZ+4ts6C6nUUifg9G37aBmP/2xX2G
-	bSNOaKIfqxDUbylPfubFUTkpRJ03iJ5azFEAuu2QEyGF5ZuTtGzElWF/MdRhb+myZA3taeKhrzh
-	N7aT6SoUlTg6qQBFBcphB0sXw2++CEyuSLDQFUWJtc07d3yslKy12fyoWCPzxCp7x8o7PBQGqlg
-	5XFkfJemoELI/PsIHlfTM1gAR53xdhYUEXuNKyNDg//4bR6TiB9uSKDpS9WZi2yeNgJr23b9NgF
-	uItMG6kdY4shsF5SnPuIC2bFkt7gVHJ6rQ6nhkebNyc2h4gL
-X-Received: by 2002:a05:600c:1389:b0:4af:83ad:8f70 with SMTP id 5b1f17b1804b1-4bb88924f66mr492570985e9.35.1795785693896;
-        Fri, 27 Nov 2026 05:21:33 -0800 (PST)
-Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb853a9687sm772362675e9.10.2026.11.27.05.21.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 05:21:33 -0800 (PST)
+	id 1xWwr6-0000000GMaj-2Q1p;
+	Fri, 27 Nov 2026 14:23:18 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 88BFD4E417C8;
+	Fri, 27 Nov 2026 14:23:13 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 4A1126049C;
+	Fri, 27 Nov 2026 14:23:13 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B385411E68FDF;
+	Fri, 27 Nov 2026 15:22:47 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795789386; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=nWNmoo5X8Cbiui7JsHWvBd0DmI9ElE6Coz8fMgnKz3Y=;
+	b=eYvkNVD9ibOwzR3jSz45y1QP0jTLhR/g35hR35UKGohQvsmRXUquMb8JxFNh2gUAOzSyG7
+	fA6ZjGOlmj0vG0gFf1t/WLCCKnqz61bAAKNgrGmbTJCuyCJ2f6Xd4+GsQFhDkcSEVnMkY2
+	z1Oih0WZUxa29fMByWmvF6WIT/IIiDpXsfJM3y6TwbFcoUZUnX7PqXJjRUowhOGE3rGmRh
+	QGf8WLOlK+B41nAQB8rmHgIAfxTaJvtqqEHpLwonKQy02n2+VGSWIxvLEWxAdvtMaBL6Dg
+	8pBNU4784T9zEUg3OzZCiPL+WggC3DR8jJuPu6VNOBdQnx2WUdJrSSyXI74l/Q==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH RFC v2 00/35] spi: spi-mem: Express the dummy phase using
+ cycles when relevant
+Date: Fri, 27 Nov 2026 15:22:22 +0100
+Message-Id: <20261127-macronix-upstreaming-spi-mem-cycles-v2-0-5c93f5e5d630@bootlin.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH RFC RFT v2 3/3] clk: meson: pll: Remove the dedicated n
- parameter
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Jian Hu <jian.hu@amlogic.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Stephen Boyd <sboyd@kernel.org>, 
- Brian Masney <bmasney+clk@redhat.com>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-amlogic@lists.infradead.org, 
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <98fc8cb8-186b-493e-b74c-d8625d11dab1@amlogic.com>
-References: <20261029-meson_refactor_n-v2-0-ff4ac74e527b@amlogic.com>
- <20261029-meson_refactor_n-v2-3-ff4ac74e527b@amlogic.com>
- <179390104085.2573818.48733523079260500.b4-review@b4>
- <98fc8cb8-186b-493e-b74c-d8625d11dab1@amlogic.com>
-Date: Fri, 27 Nov 2026 14:21:32 +0100
-Message-Id: <179578569228.3130490.14256403264790878680.b4-reply@b4>
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4243; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=E4dLgfAPlyGRAwDDbFxbbsD6Cc9CC30EoXytcCxZdeQ=;
- b=owGbwMvMwCW2VtK+WnvWU3HG02pJDNmczXf6cy9W/3oi+bV7cZXnU8vLz/4zK0vWJ22ebHPE8
- 1Rj933DjlIWBjEuBlkxRZYa7mrxd5JaX2ZN17kNM4eVCWQIAxenAEykdjrDX9la7iuLNjZrtM37
- zPl+mruZ18OzH1TXHuZwtM4/pKVmeoLhf2VL+Znd7z8cP9NrZe//sNuyqU+n/2fIGoVzx+ZwPDh
- Txg8A
-X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
- fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/5WQwWrDMAyGXyX4PBXbyZIulDEY7AF2HT04jtIKa
+ juT3dBS8u7zvB522WHHT4L/+6WbiMiEUfTVTTAuFCn4DPqhEvZo/AGBxsxCS90qpR/BGcvB0wX
+ Oc0yMxpE/QJwJHDqwV3vCCErWums6uZ3Qipw0M050KZYP8f72KvY/Q8bPczam+8ZhjKYY+2p3F
+ 7Z/C0emBRlKMiwKJFizxSfdWGvU8DKEkE7kNza45+8Sg4kIGRylvlq6TQNs69LkSDEFvpYfLKp
+ U+de5xT2Nsm4bqaex7n67xX5d1y8Uyea3ZwEAAA==
+X-Change-ID: 20261125-macronix-upstreaming-spi-mem-cycles-103274708fec
+To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
+ Feng Chen <feng.chen@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Han Xu <han.xu@nxp.com>, Conor Dooley <conor.dooley@microchip.com>, 
+ Valentina Fernandez <valentina.fernandezalanis@microchip.com>, 
+ Daire McNamara <daire.mcnamara@microchip.com>, 
+ Haibo Chen <haibo.chen@nxp.com>, Jyan Chou <jyanchou@realtek.com>, 
+ Yu-Chun Lin <eleanor.lin@realtek.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, 
+ Takahiro Kuwano <takahiro.kuwano@infineon.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Steven Rostedt <rostedt@goodmis.org>, 
+ Masami Hiramatsu <mhiramat@kernel.org>, 
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
+ Nicolas Ferre <nicolas.ferre@microchip.com>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Yogesh Gaur <yogeshgaur.83@gmail.com>, 
+ Chris Packham <chris.packham@alliedtelesis.co.nz>, 
+ =?utf-8?q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
+ Michal Simek <michal.simek@amd.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Alvin Zhou <alvinzhou@mxic.com.tw>, 
+ Cheng Ming Lin <chengminglin@mxic.com.tw>, linux-spi@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ imx@lists.linux.dev, linux-riscv@lists.infradead.org, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org, 
+ linux-trace-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+ openbmc@lists.ozlabs.org, Miquel Raynal <miquel.raynal@bootlin.com>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_052135_846621_551E1D1A 
-X-CRM114-Status: GOOD (  22.45  )
+X-CRM114-CacheID: sfid-20261127_062316_887862_054536D6 
+X-CRM114-Status: GOOD (  20.02  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -118,88 +106,152 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Cj4gPj4gLXN0YXRpYyBjb25zdCBzdHJ1Y3QgcGxsX3BhcmFtc190YWJsZSBheGdfcGNpZV9wbGxf
-cGFyYW1zX3RhYmxlW10gPSB7Cj4gPj4gLSAgICAgewo+ID4+IC0gICAgICAgICAgICAgLm0gPSAy
-MDAsCj4gPj4gLSAgICAgICAgICAgICAubiA9IDMsCj4gPj4gKy8qCj4gPj4gKyAqIEEgcHJlLWRp
-dmlkZXIgdmFsdWUgb2YgMyBwcm92aWRlcyB0aGUgYmVzdCBwZXJmb3JtYW5jZSBmb3IKPiA+PiAr
-ICogdGhlIEFYRyBQQ0llIFBMTC4KPiA+PiArICovCj4gPiBBZ2FpbiwgZGVmaW5lIHBlcmZvcm1h
-bmNlIGhlcmUuIHdoYXQgZG9lcyBpdCBtZWFuID8KPiAKPiAKPiBUbyBjbGFyaWZ5IHdoYXQgInBl
-cmZvcm1hbmNlIiBtZWFucyBpbiB0aGF0IGNvbW1lbnQ6Cj4gCj4gU29tZSB0YXJnZXQgZnJlcXVl
-bmNpZXMgY2Fubm90IGJlIGFjaGlldmVkIHdpdGggTj0xLCByZXF1aXJpbmcgYSBub24gMSAKPiBw
-cmUtZGl2aWRlci4KPiAKPiBOIG1heSBub3QgYmUgMSBmb3IgQW1sb2dpYyBmaXhlZCBQTExzIGFu
-ZCBQQ0llIFBMTHMuCj4gCj4gVGhpcyBBWEcgUENJZSBQTEwgaXMgZGVzaWduZWQgYmFzZWQgb24g
-Tj0zIGZvciBvcHRpbWFsIGJhbmR3aWR0aC4KPiAKPiAKPiBUaGUgQVhHIFBDSWUgUExMIHJhdGUg
-aXM6Cj4gCj4gMjRNaHovMyAqIDIwMCAvMi84ID0xMDBNaHouCj4gCj4gCj4gSSB3aWxsIHVwZGF0
-ZSB0aGUgY29tbWVudDoKPiAKPiAvKgo+IAo+ICDCoCogVGhpcyBBWEcgUENJZSBQTEwgbmVlZHMg
-cHJlLWRpdmlkZXIgMyB0byBoaXQgdGhlIHRhcmdldCBmcmVxdWVuY3kgCj4gMTAwTWh6LAo+IAo+
-ICDCoCogd2hpY2ggYWxzbyB5aWVsZHMgb3B0aW1hbCBiYW5kd2lkdGguCj4gCj4gIMKgKi8KCkFs
-bCBJJ20gc2VlaW5nIGluIHlvdXIgZXhwbGFuYXRpb24gaXMgImFiaWxpdHkiIHRvIHJlYWNoIGEg
-cmF0ZSwgbm90aGluZyByZW1vdGx5CiJwZXJmb3JtYW5jZSIgcmVsYXRlZC4gRWl0aGVyIGRyb3Ag
-dGhlIHdvcmQgb3IgZXhwbGFpbiB3aGF0IG1lYW4gYmV0dGVyLgoKPiAKPiA+PiArc3RhdGljIGNv
-bnN0IHN0cnVjdCBjbGtfZGl2X3RhYmxlIGF4Z19wY2llX3ByZWRpdl9kaXZfdGFibGVbXSA9IHsK
-PiA+PiArICAgICB7IC52YWwgPSAzLCAuZGl2ID0gMyB9LAo+ID4+ICsgICAgIHsgLyogc2VudGlu
-ZWwgKi8gfQo+ID4+ICt9Owo+ID4+ICsKPiA+PiArc3RhdGljIHN0cnVjdCBjbGtfcmVnbWFwIGF4
-Z19wY2llX3ByZWRpdiA9IHsKPiA+PiArICAgICAuZGF0YSA9ICYoc3RydWN0IGNsa19yZWdtYXBf
-ZGl2X2RhdGEpewo+ID4+ICsgICAgICAgICAgICAgLm9mZnNldCA9IEhISV9QQ0lFX1BMTF9DTlRM
-LAo+ID4+ICsgICAgICAgICAgICAgLnNoaWZ0ICAgPSA5LAo+ID4+ICsgICAgICAgICAgICAgLndp
-ZHRoICAgPSA1LAo+ID4+ICsgICAgICAgICAgICAgLnRhYmxlID0gYXhnX3BjaWVfcHJlZGl2X2Rp
-dl90YWJsZSwKPiA+PiArICAgICAgICAgICAgIC5mbGFncyA9IENMS19ESVZJREVSX0lOVkFMSURf
-WkVSTywKPiA+PiArICAgICB9LAo+ID4+ICsgICAgIC5ody5pbml0ID0gJihzdHJ1Y3QgY2xrX2lu
-aXRfZGF0YSl7Cj4gPj4gKyAgICAgICAgICAgICAubmFtZSA9ICJwY2llX3ByZWRpdiIsCj4gPj4g
-KyAgICAgICAgICAgICAub3BzID0gJmNsa19yZWdtYXBfZGl2aWRlcl9vcHMsCj4gPj4gKyAgICAg
-ICAgICAgICAucGFyZW50X2RhdGEgPSAmKGNvbnN0IHN0cnVjdCBjbGtfcGFyZW50X2RhdGEpIHsK
-PiA+PiArICAgICAgICAgICAgICAgICAgICAgLmZ3X25hbWUgPSAieHRhbCIsCj4gPj4gKyAgICAg
-ICAgICAgICB9LAo+ID4+ICsgICAgICAgICAgICAgLm51bV9wYXJlbnRzID0gMSwKPiA+PiAgICAg
-ICAgfSwKPiA+PiArfTsKPiA+PiArCj4gPj4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgcGxsX211bHRf
-dGFibGUgYXhnX3BjaWVfcGxsX3BhcmFtc190YWJsZVtdID0gewo+ID4+ICsgICAgIFBMTF9NVUxU
-KDIwMCksCj4gPj4gICAgICAgIHsgLyogc2VudGluZWwgKi8gfSwKPiA+PiAgIH07Cj4gPj4KClsu
-Li5dCgo+ID4+Cj4gPj4gLXN0YXRpYyBjb25zdCBzdHJ1Y3QgcGxsX3BhcmFtc190YWJsZSBzeXNf
-cGxsX3BhcmFtc190YWJsZVtdID0gewo+ID4+IC0gICAgIFBMTF9QQVJBTVMoNTAsIDEpLAo+ID4+
-IC0gICAgIFBMTF9QQVJBTVMoNTEsIDEpLAo+ID4+IC0gICAgIFBMTF9QQVJBTVMoNTIsIDEpLAo+
-ID4+IC0gICAgIFBMTF9QQVJBTVMoNTMsIDEpLAo+ID4+IC0gICAgIFBMTF9QQVJBTVMoNTQsIDEp
-LAo+ID4+IC0gICAgIFBMTF9QQVJBTVMoNTUsIDEpLAo+ID4+IC0gICAgIFBMTF9QQVJBTVMoNTYs
-IDEpLAo+ID4+IC0gICAgIFBMTF9QQVJBTVMoNTcsIDEpLAo+ID4+IC0gICAgIFBMTF9QQVJBTVMo
-NTgsIDEpLAo+ID4+IC0gICAgIFBMTF9QQVJBTVMoNTksIDEpLAo+ID4+IC0gICAgIFBMTF9QQVJB
-TVMoNjAsIDEpLAo+ID4+IC0gICAgIFBMTF9QQVJBTVMoNjEsIDEpLAo+ID4+IC0gICAgIFBMTF9Q
-QVJBTVMoNjIsIDEpLAo+ID4+IC0gICAgIFBMTF9QQVJBTVMoNjMsIDEpLAo+ID4+IC0gICAgIFBM
-TF9QQVJBTVMoNjQsIDEpLAo+ID4+IC0gICAgIFBMTF9QQVJBTVMoNjUsIDEpLAo+ID4+IC0gICAg
-IFBMTF9QQVJBTVMoNjYsIDEpLAo+ID4+IC0gICAgIFBMTF9QQVJBTVMoNjcsIDEpLAo+ID4+IC0g
-ICAgIFBMTF9QQVJBTVMoNjgsIDEpLAo+ID4+IC0gICAgIFBMTF9QQVJBTVMoODQsIDEpLAo+ID4+
-ICtzdGF0aWMgY29uc3Qgc3RydWN0IHBsbF9tdWx0X3RhYmxlIHN5c19wbGxfcGFyYW1zX3RhYmxl
-W10gPSB7Cj4gPj4gKyAgICAgUExMX01VTFQoNTApLAo+ID4+ICsgICAgIFBMTF9NVUxUKDUxKSwK
-PiA+PiArICAgICBQTExfTVVMVCg1MiksCj4gPj4gKyAgICAgUExMX01VTFQoNTMpLAo+ID4+ICsg
-ICAgIFBMTF9NVUxUKDU0KSwKPiA+PiArICAgICBQTExfTVVMVCg1NSksCj4gPj4gKyAgICAgUExM
-X01VTFQoNTYpLAo+ID4+ICsgICAgIFBMTF9NVUxUKDU3KSwKPiA+PiArICAgICBQTExfTVVMVCg1
-OCksCj4gPj4gKyAgICAgUExMX01VTFQoNTkpLAo+ID4+ICsgICAgIFBMTF9NVUxUKDYwKSwKPiA+
-PiArICAgICBQTExfTVVMVCg2MSksCj4gPj4gKyAgICAgUExMX01VTFQoNjIpLAo+ID4+ICsgICAg
-IFBMTF9NVUxUKDYzKSwKPiA+PiArICAgICBQTExfTVVMVCg2NCksCj4gPj4gKyAgICAgUExMX01V
-TFQoNjUpLAo+ID4+ICsgICAgIFBMTF9NVUxUKDY2KSwKPiA+PiArICAgICBQTExfTVVMVCg2Nyks
-Cj4gPj4gKyAgICAgUExMX01VTFQoNjgpLAo+ID4+ICsgICAgIFBMTF9NVUxUKDg0KSwKPiA+PiAg
-ICAgICAgeyAvKiBzZW50aW5lbCAqLyB9LAo+ID4+ICAgfTsKPiA+Pgo+ID4+ICtzdGF0aWMgY29u
-c3Qgc3RydWN0IGNsa19kaXZfdGFibGUgbWVzb244Yl9maXhlZF9wcmVkaXZfZGl2X3RhYmxlW10g
-PSB7Cj4gPj4gKyAgICAgeyAudmFsID0gNCwgLmRpdiA9IDQgfSwKPiA+IFByZXZpb3VzIHRhYmxl
-IHdhcyBzaG93aW5nIGEgcHJlZGl2IG9mIDEgLi4uIGhlcmUgaXQganVtcHMgdG8gNCB3aXRob3V0
-Cj4gPiBhbiBleHBsYW5hdGlvbiAhCj4gPgo+ID4gQWxzbywgaXQgaXMgYSBSTyBjbG9jaywgc28g
-d2hhdCBpcyB0aGUgcG9pbnQgPwo+IAo+IAo+IFRoaXMgaXMgc2ltaWxhciB0byB0aGUgQVhHIFBD
-SWUgUExMIGNhc2UuIFRoZSBwcmUtZGl2aWRlciBpcyBmaXhlZCBhdCA0LAo+IHdoaWNoIGxldHMg
-dGhpcyBmaXhlZCBQTEwgb3V0cHV0IDI1NTBNSHogYW5kIGdpdmVzIG9wdGltYWwgYmFuZHdpZHRo
-Lgo+IFRoZSB0YWJsZSB3YXMgdXNlZCBzbyB0aGUgZml4ZWQgUExMIERDTyByYXRlIGNhbiBiZSBj
-YWxjdWxhdGVkIGNvcnJlY3RseS4KPiBXaXRob3V0IHRoZSB0YWJsZSBvciBgQ0xLX0RJVklERVJf
-T05FX0JBU0VEYCwgdGhlIGRpdmlkZXIgd291bGQgYmUgCj4gaW50ZXJwcmV0ZWQgYXMgNSwKPiBs
-ZWFkaW5nIHRvIHdyb25nIERDTyByYXRlIGNhbGN1bGF0aW9uLgoKQnV0IHlvdSBhcmUgaGlkZGlu
-ZyBhIGZpeCBpbiBhIHJld29yayB0aGVuLgoKWW91ciByZXdvcmsgc2hvdWxkIGtlZXAgdGhlIHBy
-ZWRpdiBhcyBpdCB3YXMuClRoZW4geW91IGNhbiBjaGFuZ2UgZXhwbGFpbmluZyBjbGVhcmx5IHdo
-eSB5b3UgYXJlIGRvaW5nIGl0LCB3aXRoIGEgcHJvcGVyIGZpeGVzIHRhZy4KCi0tIApKZXJvbWUK
-CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1h
-bWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0
-cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+SPI NOR SFDP data gives dummy cycles. SPI NAND devices express the dummy
+phase using cycles as well. Those numbers are converted to bytes, then
+passed to the spi and spi-mem controller drivers. A non-negligible
+amount of those controller drivers convert bytes into cycles before
+programming the registers.
+
+When the conversions are lossless, it is not a big deal, just time
+spent. However these silent conversions sometimes hide bugs and
+sometimes also prevent using certain chips/configurations, as recently
+reported on Macronix 1-1-8 chips requiring 20 cycles. Not all
+controllers can do that, but the ones that can, would anyway reject
+those chips.
+
+Convert spi-mem, the trivial spi-mem controller drivers and then SPI NOR
+to use dummy cycles instead of dummy bytes. SPI NAND may come later. As
+part of those conversions, I also instated new de-facto sanity
+checks. Those core checks allow us to drop many redundant checks from
+the drivers after the conversion into using the cycles.
+
+This second RFC adds the remaining controller conversions (nxp-fspi,
+zynqmp-gqspi, atmel-quadspi and rpc-if), the range checks for the
+controllers with limited dummy cycle fields, and the controller-specific
+dummy buswidth fixes that depend on the cycles conversion. The dummy
+buswidth fixes that do not depend on it have been (mostly) sent as a
+separate series.
+
+The series is build tested, but not run on hardware yet. I plan do
+perform testing on the various controllers I have access to. This
+version is not meant to be applied in the spi tree yet. Applying it for
+your own review or testing requires the previous patch series cleaning
+up the drivers (I split the two because of the size of the number of
+patches...).
+
+Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+---
+Changes in v2:
+- Better sanitize the operations in the core.
+- Drop more redundant checks from the controller drivers.
+- Add a Fixes tag and fix the DTR sanitizing corner case.
+- Fix the dummy conversion ordering, the spi_sync() fallback, the
+  poll_status() path and the dirmap fallback.
+- Fix the trace event to report the dummy phase for both representations.
+- Fix the listed controller driver bugs (unused code, missing capability,
+  pointer typos, range checks) and the s25fs256t dummy count.
+- Convert nxp-fspi, zynqmp-gqspi, atmel-quadspi and rpc-if to dummy
+  cycles.
+- Add range checks for the controllers with limited dummy cycle fields.
+- Link to v1: https://lore.kernel.org/r/20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com
+
+---
+Miquel Raynal (35):
+      spi: spi-mem: Stop checking the dummy buswidth against board wiring
+      spi: spi-mem: Fix the odd byte count error message
+      spi: spi-mem: Handle a corner case while sanitizing ops
+      spi: spi-mem: Sanitize mixed DTR modes
+      spi: spi-mem: Sanitize mixed buswidth
+      spi: spi-mem: Add support for dummy cycles
+      spi: amlogic-spifc-a1: Consume dummy cycles directly
+      spi: amlogic-spifc-a1: Reject excessive dummy cycle counts
+      spi: amlogic-spifc-a4: Consume dummy cycles directly
+      spi: atmel-quadspi: Consume dummy cycles directly
+      spi: atmel-quadspi: Reject excessive dummy cycle counts
+      spi: cadence-qspi: Consume dummy cycles directly
+      spi: cadence-qspi: Drop redundant checks
+      spi: cadence-qspi: Drop now useless checks
+      spi: fsl-qspi: Consume dummy cycles directly
+      spi: microchip-core-qspi: Consume dummy cycles directly
+      spi: mtk-snfi: Drop redundant check
+      spi: nxp-fspi: Consume dummy cycles directly
+      spi: nxp-fspi: Reject mixed DTR modes
+      spi: nxp-xspi: Consume dummy cycles directly
+      spi: nxp-xspi: Fix a comment
+      spi: nxp-xspi: Reject mixed DTR modes
+      spi: realtek-rtl-snand: Drop redundant check
+      spi: rpc-if: Consume dummy cycles directly
+      spi: rtk-nor: Consume dummy cycles directly
+      spi: rtk-nor: Drop redundant checks
+      spi: sn-f-ospi: Consume dummy cycles directly
+      spi: spi-qpic-snand: Drop redundant check
+      spi: stm32-ospi: Consume dummy cycles directly
+      spi: stm32-ospi: Reject excessive dummy cycle counts
+      spi: stm32-qspi: Consume dummy cycles directly
+      spi: stm32-qspi: Reject excessive dummy cycle counts
+      spi: wpcm-fiu: Drop redundant checks
+      spi: zynqmp-gqspi: Consume dummy cycles directly
+      mtd: spi-nor: Express the dummy phase in cycles
+
+ drivers/mtd/spi-nor/core.c            |  36 ++---
+ drivers/mtd/spi-nor/core.h            |   8 +-
+ drivers/mtd/spi-nor/micron-st.c       |   2 +-
+ drivers/mtd/spi-nor/spansion.c        |   8 +-
+ drivers/spi/atmel-quadspi.c           |  27 ++--
+ drivers/spi/spi-amlogic-spifc-a1.c    |  15 +-
+ drivers/spi/spi-amlogic-spifc-a4.c    |  29 +---
+ drivers/spi/spi-cadence-quadspi.c     |  50 ++----
+ drivers/spi/spi-fsl-qspi.c            |  13 +-
+ drivers/spi/spi-mem.c                 | 287 ++++++++++++++++++++++++++++++----
+ drivers/spi/spi-microchip-core-qspi.c |  12 +-
+ drivers/spi/spi-mtk-snfi.c            |   2 +-
+ drivers/spi/spi-nxp-fspi.c            |  24 ++-
+ drivers/spi/spi-nxp-xspi.c            |  24 ++-
+ drivers/spi/spi-qpic-snand.c          |   2 +-
+ drivers/spi/spi-realtek-rtl-snand.c   |   2 +-
+ drivers/spi/spi-rpc-if.c              |  10 +-
+ drivers/spi/spi-rtk-nor.c             |  31 ++--
+ drivers/spi/spi-sn-f-ospi.c           |  15 +-
+ drivers/spi/spi-stm32-ospi.c          |  28 ++--
+ drivers/spi/spi-stm32-qspi.c          |  26 ++-
+ drivers/spi/spi-wpcm-fiu.c            |   3 -
+ drivers/spi/spi-zynqmp-gqspi.c        |  29 +++-
+ include/linux/spi/spi-mem.h           |  39 ++++-
+ include/trace/events/spi-mem.h        |   5 +-
+ 25 files changed, 482 insertions(+), 245 deletions(-)
+---
+base-commit: 19d1b4de6d37bccecc3ad9144d279f1baa405eb1
+change-id: 20261125-macronix-upstreaming-spi-mem-cycles-103274708fec
+prerequisite-message-id: <20261126-macronix-upstreaming-spi-driver-fixes-v1-0-ca8e924cca1b@bootlin.com>
+prerequisite-patch-id: 2f68de4139876dfa8e57afb65b429a69628214ab
+prerequisite-patch-id: 7182a6b4808193323664f79c226ae2a57104b473
+prerequisite-patch-id: 34a99e8e6644d1db0978b5aa6ca90342a42561f8
+prerequisite-patch-id: cc060f58179f09af4593df6909b958a29bf11cb2
+prerequisite-patch-id: c5a7a78ef01696c25c10b6d2968c0b65ab0f4ec6
+prerequisite-patch-id: 340ee3d69095259d6141c017ea59c0c137d353b5
+prerequisite-patch-id: 1629dd27a1f0b1d6622199cc7603dad4b17d29b6
+prerequisite-patch-id: 29bc9e59b1d732a00cd65ba1d73270e051898fd7
+prerequisite-patch-id: 7a028831f1df214099241bfac0dc290e2f799276
+prerequisite-patch-id: c28c78ff316ce2ac8c1b6151367662ca8039acd3
+prerequisite-patch-id: eea3b5adeb19b753a14bf03c5114eb407566c248
+prerequisite-patch-id: 87bd95813776fe216ac157f9fad23586c71db87b
+
+Best regards,
+-- 
+Miquel Raynal <miquel.raynal@bootlin.com>
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
