@@ -2,97 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C39A606A31C
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2026 09:34:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6DAF606A323
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2026 11:33:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uvzkeino;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=kw1DNwAq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=v2yxwBqk;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=mail.sdu.edu.cn header.i=@mail.sdu.edu.cn header.a=rsa-sha256 header.s=default header.b=eFaCwpCl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=5hGcwI5ObVMadJOTkJLZ4zo4+81PEuxwW1i+kyR1fv8=; b=uvzkeinoH/p+xGCnHakt+GdzVF
-	7ZXIdiRepbbd5FpbshzCIcK7LPpIhjBtrTTF0LzLB0GJP9UQIoDEb4ZDzNs6bXeIt+4kvQJx+a9dX
-	OKjV4vQAZe177GxKXAr8VZavJyt/eZ+J+w4U3/gW5IHBuGERALGH7GoIR3GsolVNWIOrzYBdAZ8lr
-	iuN1BvbudN8yujOON92U/VXd1h1nkG1RUDkP9hwMJyXElzSPS1VCfXIpzV0qNmt5+6yNEZKh0aoPz
-	R/9RjIJoZtMytZw+xtgVZXgEbfsKd+vwxWvttu83R+san/hBFNgkRoFjecJtZpCx1PW3VpXp1DTq1
-	PDST2kLQ==;
+	bh=FImXqvBuvsRlj/yWSxKJ+rOO8pt7n8Tsyk8SbEHmm7Q=; b=v2yxwBqkICdfLpGEO3B1aGS4BO
+	HouUcWteeoNCyw6Pc+zkdhnrHV8ScOQWsHL8G77vcr5UldsWn1Ho6yp5X4xiNKKBy7QuASsIUFpX5
+	ccWuMLG85luyzrc4C6LJ3Y4qtAW7zybz9TESzp19xHVdO7sZ4G6QF12WMI58cdoWPnusZpCK6NN2N
+	86S0PUb0Nge9d2nvzG2ybsjdkmcYshQR7KqNpNxRftG3+quvopdMKvJh7qoqMIiuPxATssj5clFxB
+	5qW85lTgu7FnUYDM7jRW6CeoSb0v4T+iFSNGg6iKbwbpkI+KL6Nr1qdRz+J3o4QJV5vJkjtotQ9Q5
+	Jk2bVaCA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWsLH-0000000FSMh-0s6H;
-	Fri, 27 Nov 2026 09:34:07 +0000
-Received: from mail-ed1-x532.google.com ([2a00:1450:4864:20::532])
+	id 1xWuD1-0000000FpT7-38DT;
+	Fri, 27 Nov 2026 11:33:43 +0000
+Received: from mail-m49198.qiye.163.com ([45.254.49.198])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWsLD-0000000FSLM-2vbs
-	for linux-amlogic@lists.infradead.org;
-	Fri, 27 Nov 2026 09:34:05 +0000
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-6b167ffd132so12232045a12.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 27 Nov 2026 01:34:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795772042; x=1796376842; darn=lists.infradead.org;
-        h=content-type:mime-version:message-id:date:references:in-reply-to
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=Jn5vbA2HA26YYZAVHurR2qnRXvY7PEKSS/j0oDB/fbA=;
-        b=kw1DNwAqvKPcm9EHAFVid2zlPD15dBG/vO85Uj7kYAqCixFZRUJkXB0ku4+RB6SpXQ
-         y9G3oD4VtkvWIBH812HAXZEJry8nECg+5cuJJbFp7zd8ziKvW0GEYFCBeEosW9LfH5jL
-         IydPg4c2veb4LzRqeytQv+17HTX+ZMfUIy1ZRWo2a+xbONe9+shCFvFN8+tzfYNa3uBS
-         L1tzwoF/g6EfaqgM/TPW1opDcQOH9L3mwtvV6coYwhAyn9GfwU9m9luki75YzBw+2Kk+
-         jdq6IOjbkSpDN+bkBD9Byepe7/9rHjD6xJUpsyZ0rm9+oy8BezzYtpcEo5JV5R/KEoAg
-         EZng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795772042; x=1796376842;
-        h=content-type:mime-version:message-id:date:references:in-reply-to
-         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=Jn5vbA2HA26YYZAVHurR2qnRXvY7PEKSS/j0oDB/fbA=;
-        b=HZsPuz4i2+paqMi8hF+/fYiPRcksfCW/SGP8WzS+kyJqaw7/tIhbUcvkDi0j0SyBxi
-         GaTJmdFSH5E1t7vIFAn205wAzc2+LYrje1prsV5VvQqMzMkRByt2SSGiIKtM/8tEPbTr
-         cbjJ8vODqP5TwY0xnjS02aCHsF6BMWhfzn8RvVMCL4Os1hMwWgTxY0O+5x47wOkmMz5A
-         R7ekTQ8lWExHoaYnJSkGAHDJHZhK659G8/Ka6vbiF2KsIeeh9ajvkTyUHps3sVS7o6SD
-         9KPUyu4MxONNN9ySeQoSHrDmaJRhx/L9zrCG4XWU6s+LSxXMy+0Wkj64EKfwU04wPdwy
-         nYXg==
-X-Gm-Message-State: APuU4Z8B2v2TJ/UUQXSpM0IqF8XPwe0Czp/KLaP00xVKVNEsJCQgswFw
-	1LD4247K5noyNrS87NjkhFSyKUCDnO+jPv/pPa7Hzf5C1Fi0uBSAbBQZkAirGxfBwk0=
-X-Gm-Gg: AZFdTZfr1xsSG/2vwkoS/J5/d5tISBt2vI5k1rhJO9Zo+SABq86FpfdtKIgRWKYwRr/
-	T6vU3ufi5XGnf81ghYT4XTWGCqqQN7Sg8K8wqXvpit681LU7WN23ZbP0O7S1nKsH/YfW/Trnh2k
-	1aiZzDWFh0qLruOjZ/rsKcwQGJmWhpiZo2QJMUt7CjSd2rNtpBdZrCogwEZaN5osaAjs9jABDVO
-	aLofdYG9N+ZL4MtP6IlZiIwYNyHRoIiSQtqJM2VY35JlFUoBW0/R64rDk1sFzmW5UbFg3v9fa4p
-	uVikwrO77I8DMPJjTN6v/xnmdp2VfqDZA81gysFySl/cmM3GPTxeGNjocC1kkrSME1c6bAaRqwk
-	kbpzeguS5RL1iA1wllz7AFSacEzzczd+qm8seofBeTGuA1J1bOXrWMRefmOcY8Ogcl3igwDlvKw
-	UNNRZGKcr05ZYJ+3Mi9IIbRjGgWMNWg8pXzrJCjOsvnn8NsHIjPgnJlaDLE24vXgIRAMc2T9hz6
-	TPU4e3k11FSQk5zh9L+5qTRxCSf/LhIlYL/yIz3FQdmLQoKBuKRqIlyQAR6+Ttbzuwbjh8Wi1oh
-	DEKuVqbcbaj7shtjMa/KcX1ptKrmxPLSM7MfCS7W7Km0kMPkwE+2IBPlaRxrlaswAn6uvA==
-X-Received: by 2002:a05:6402:2403:b0:6bb:aaf:5d94 with SMTP id 4fb4d7f45d1cf-6bb0aaf5f7emr8353882a12.25.1795772041771;
-        Fri, 27 Nov 2026 01:34:01 -0800 (PST)
-Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6ba370fc020sm10607522a12.25.2026.11.27.01.34.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 01:34:01 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Jiebing Chen via B4 Relay <devnull+jiebing.chen.amlogic.com@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Kevin Hilman
- <khilman@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Jiebing Chen <jiebing.chen@amlogic.com>
-Subject: Re: [PATCH 0/2] Add Amlogic S4 audio clock controller support.
-In-Reply-To: <20261127-clock_audio-v1-0-cf3ccf6b2bf0@amlogic.com>
-References: <20261127-clock_audio-v1-0-cf3ccf6b2bf0@amlogic.com>
-Date: Fri, 27 Nov 2026 10:33:59 +0100
-Message-ID: <1jmrquwrco.fsf@starbuckisacylon.baylibre.com>
+	id 1xWuCq-0000000FpJV-2Hvp;
+	Fri, 27 Nov 2026 11:33:34 +0000
+Received: from user.localdomain (unknown [223.80.110.101])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 56429982e;
+	Fri, 27 Nov 2026 19:33:27 +0800 (GMT+08:00)
+From: Tian Xuechen <202300460064@mail.sdu.edu.cn>
+To: ulfh@kernel.org,
+	neil.armstrong@linaro.org,
+	khilman@baylibre.com,
+	jianxin.pan@amlogic.com
+Cc: jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com,
+	linux-pm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org
+Subject: [PATCH 1/2] pmdomain: amlogic: Tear down EE domains and their OF provider
+Date: Fri, 27 Nov 2026 19:33:25 +0800
+Message-Id: <20261127113326.390398-2-202300460064@mail.sdu.edu.cn>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261127113326.390398-1-202300460064@mail.sdu.edu.cn>
+References: <20261127113326.390398-1-202300460064@mail.sdu.edu.cn>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+X-HM-Tid: 0aa21cc8230303a2kunm351106c8395dd7
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlDSR1OVkxOTExNTRlPGEpNTVYeHw
+	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlJSUhVQ0tVSkpLVUpLSllXWRYaDxIVHRRZQVlPS0hVSktJQk
+	NDTFVKS0tVS1kG
+DKIM-Signature: a=rsa-sha256;
+	b=eFaCwpClZEM3BORHOVvcDNoKNbseIf0IPFEyct3qIYCYm43POZwhMqKINaEtr3E6rrtW5v9GVA/Fd0M/wrIwia7PAJA6m/8ELPxNAAOEgsYGngQPQGw9fFugePdhsbTaz46+HtvSkdnjlcQM6bJAf6ns4TT/1/rRs6gkbBOCOJ4=; s=default; c=relaxed/relaxed; d=mail.sdu.edu.cn; v=1;
+	bh=n9iKJQ0ODduFNUuImSDNNL7ErQfbbfsZlX7pZrvxC9o=;
+	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_013403_755613_A3413509 
-X-CRM114-Status: GOOD (  14.40  )
+X-CRM114-CacheID: sfid-20261127_033332_857789_0218B3A4 
+X-CRM114-Status: UNSURE (   9.74  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -106,57 +76,71 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,FROM_LOCAL_DIGITS,FROM_LOCAL_HEX,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On ven. 27 nov. 2026 at 17:11, Jiebing Chen via B4 Relay <devnull+jiebing.chen.amlogic.com@kernel.org> wrote:
+From: Tian Xuechen <202300460064@mail.sdu.edu.cn>
 
-> S4 uses the existing AXG audio clock driver and reuses the SM1 and
-> G12A clock hardware. Pad clock and data selection is done by pinmux,
-> so those pad clocks are not registered. The controller has an internal
-> reset line, like G12A and SM1, and an audio power domain that must be
-> enabled before use. The new compatible is amlogic,s4-audio-clkc;
-> power-domains is required for S4 and forbidden for the other
-> compatibles.
->
-> Signed-off-by: Jiebing Chen <jiebing.chen@amlogic.com>
-> ---
-> Jiebing Chen (2):
->       clk: meson: axg_audio: add S4 support
->       ASoC:dt-bindings:clock: Add audio power domain for S4 soc
+The Meson EE power driver leaves the provider and domains registered
+after freeing their backing storage. Remove the OF provider on unbind
+and release initialized domains during managed cleanup, including when
+probe fails.
 
-This title is messed up - Remove ASoC and proper spacing please.
-Also you did not collect the trailer given on the v8 by Krzysztof.
+This issue was found by our static analysis tool under development.
 
-Next time you send something like this, keep the series numbering
-please. This could either be a v8 RESEND or v9. Like this, it looks
-brand new, which it isn't.
+Fixes: eef3c2ba0a42 ("soc: amlogic: Add support for Everything-Else power domains controller")
+Signed-off-by: Tian Xuechen <202300460064@mail.sdu.edu.cn>
+---
+ drivers/pmdomain/amlogic/meson-ee-pwrc.c | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
 
->
->  .../bindings/clock/amlogic,axg-audio-clkc.yaml     |  17 +++
->  drivers/clk/meson/axg-audio.c                      | 165 +++++++++++++++++++++
->  2 files changed, 182 insertions(+)
-> ---
-> base-commit: a0c666c25aeefd16f4b088c6549a6fb6b65a8a1d
-> change-id: 20261127-clock_audio-76eed7ee7ca2
->
-> Best regards,
-> --  
-> Jiebing Chen <jiebing.chen@amlogic.com>
->
->
->
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
+diff --git a/drivers/pmdomain/amlogic/meson-ee-pwrc.c b/drivers/pmdomain/amlogic/meson-ee-pwrc.c
+index 338f70d77bf0..f108d9337e5e 100644
+--- a/drivers/pmdomain/amlogic/meson-ee-pwrc.c
++++ b/drivers/pmdomain/amlogic/meson-ee-pwrc.c
+@@ -428,6 +428,16 @@ static int meson_ee_pwrc_on(struct generic_pm_domain *domain)
+ 				       pwrc_domain->clks);
+ }
+ 
++static void meson_ee_pwrc_remove_domain(void *data)
++{
++	pm_genpd_remove(data);
++}
++
++static void meson_ee_pwrc_remove(struct platform_device *pdev)
++{
++	of_genpd_del_provider(pdev->dev.of_node);
++}
++
+ static int meson_ee_pwrc_init_domain(struct platform_device *pdev,
+ 				     struct meson_ee_pwrc *pwrc,
+ 				     struct meson_ee_pwrc_domain *dom)
+@@ -494,7 +504,8 @@ static int meson_ee_pwrc_init_domain(struct platform_device *pdev,
+ 			return ret;
+ 	}
+ 
+-	return 0;
++	return devm_add_action_or_reset(&pdev->dev, meson_ee_pwrc_remove_domain,
++					&dom->base);
+ }
+ 
+ static int meson_ee_pwrc_probe(struct platform_device *pdev)
+@@ -641,6 +652,7 @@ MODULE_DEVICE_TABLE(of, meson_ee_pwrc_match_table);
+ 
+ static struct platform_driver meson_ee_pwrc_driver = {
+ 	.probe = meson_ee_pwrc_probe,
++	.remove = meson_ee_pwrc_remove,
+ 	.shutdown = meson_ee_pwrc_shutdown,
+ 	.driver = {
+ 		.name		= "meson_ee_pwrc",
 -- 
-Jerome
+2.43.0
+
 
 _______________________________________________
 linux-amlogic mailing list
