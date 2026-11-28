@@ -2,110 +2,102 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F9C8606A31C
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Nov 2026 23:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF0E2606A321
+	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Nov 2026 07:16:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=S6JUdWtw;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=oco3E//2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4V9dy791
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:In-Reply-To:
-	Cc:To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=xAGFNKwupjfzMFugRXolwVgoUlJFSG04J27N1eemYtw=; b=S6JUdWtwiZp1zLmKIGpqeMSMLF
-	3lpQIHjkNajebmAedb7SiY5ORv7p/kNUf1QQNnJ4iDP4oh6KtnNJmkvhb/hSYsBOVVagypGo4zw9O
-	pLsi64psc7SaIX/VIMW94eXyQxizRRxy0HHoKkuBqJD9pIPq9U2ad1Lbm/JcopqfSTo89NvlR5QMQ
-	+JCT+fh5EZz+s68CZk8ScbiaalsOWd7G3kue28qQdBLscsRSrhHdHmKHy/nIJ9+NUG94OqRqZzVBr
-	Y/dewvU3LdKLiXj4MJwE7VSJhe6NNo3HG5vJcxDtmkIMPqOogrbYJO56soSoNKsoavqEnJ/fxye7b
-	ez8FlvCQ==;
+	bh=zh8sNInjjNHnjUvU3pwoetLUPI/1UqzcgHVKFd0Jyak=; b=4V9dy791LoV8EqSH7xbTxcBYgN
+	fOAbFi+PYTf1hNvcHSqfVMkxZYOtOFZuj2j5ea7Cw8VR/AEiTbveijMHdYOpQsenapvDy7qYNiKYy
+	BofSfpkAY18oThVBh0NIpXjyYq0hYSkl/f4/aTd/yuzoW8rmS77hzkOovXw/pF0MOaF1+aG6gbK3a
+	zada55lywxxY4648NF0yh976pGkKK0KbNNZkxH/AIK5JZrjWLq/2VqSobZ+kgxtyLtuOlpHcJ/MJP
+	bebDg1yPrqSeJmGFWG4KkRca5g/Wbw5EjKOjoU9ITP7ytj4652R/Bl4RkP869LNYG2CtM1WPdmK0j
+	KzRYXM+A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX5DF-00000000BQI-3P9Z;
-	Fri, 27 Nov 2026 23:18:41 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1xXCfZ-00000000RNF-03J4;
+	Sat, 28 Nov 2026 07:16:25 +0000
+Received: from mail-wr1-f42.google.com ([209.85.221.42])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xX5DA-00000000BPQ-3Tf4
+	id 1xXCfO-00000000RK2-2nzf
 	for linux-amlogic@lists.infradead.org;
-	Fri, 27 Nov 2026 23:18:38 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-4a68190a2a7so7279420f8f.1
-        for <linux-amlogic@lists.infradead.org>; Fri, 27 Nov 2026 15:18:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795821514; x=1796426314; darn=lists.infradead.org;
-        h=message-id:date:references:in-reply-to:cc:to:from:subject
-         :content-transfer-encoding:content-type:mime-version:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=L68NfkLh2sSnkPajUSfsYj9MfFaavbba0O0y/vWyU0c=;
-        b=oco3E//2uR4lUxYmjy6czUDhDjuW6+hkOQx/egG389p9BvAD+1yy4kr6Z4yT2QkZTb
-         quivBvxKR1kSMbf9k6ZQR6lLYv3ym8bQ2t0M3Ha5UdT9eMPPQIYlnMMpEa4JmtBG7Pt3
-         GF16cfyAcZVwE8AEubVF8guWFucaK54N+OkF+lX2oKpWUUfT2y+mbMsxrz/IZOI9AR0X
-         O2G6Q1JBy+B/oHAHJC7Ms+zSXvvBwkJfo1IufrZq7tnCbahLUp2qpZRc0QeMKq86K1D5
-         s0FyhEJ875q5CVLXdD2yUsXA82rTEaq04duzZAqC1PlVlrScVNHz2bwgRTaaCZmem+0S
-         1VMg==
+	Sat, 28 Nov 2026 07:16:16 +0000
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-4ad6219f7d8so7911111f8f.0
+        for <linux-amlogic@lists.infradead.org>; Fri, 27 Nov 2026 23:16:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795821514; x=1796426314;
-        h=message-id:date:references:in-reply-to:cc:to:from:subject
-         :content-transfer-encoding:content-type:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=L68NfkLh2sSnkPajUSfsYj9MfFaavbba0O0y/vWyU0c=;
-        b=U8F6pBal4+BAmhrpAKZtR8PvNPOApU/a8RukMvSQRk1MUiwuWX21NFeeRwfpOkj1kH
-         FuNyvofQK+cVXPt5K8YYBV3Fh+VLcv+krOEFR5k3UiqRZmAiApoRAezfKEAtIQRCLKIZ
-         GB4R/tMuGTggyl5BIVRWHlTxaH6cNZbnyo6d9U+8vYENosbVYfVS9RxcLfVpyK9curmp
-         8TdKzqCMVTtyyudtAFI9GbJt8FscyLv6xLm6NPwle1qjQW0CfuD4LtAu1dliYt9qcqqH
-         MUy48WWk4/xcILsPjqNw0a0gDI2OHByhCrOnsC9mvzVKxFVXlBMckZWJ/i3Sq61otnhH
-         Psrw==
-X-Forwarded-Encrypted: i=1; AL+hErG2sMPJ+k+PnbzBLCr18GDC85o/AXY6xnTjkmZCHkraI6v8vNknR+GIGiTRV4YREFMmEvAGP7DVD/8WUCVR@lists.infradead.org
-X-Gm-Message-State: APuU4Z/vslQMPJeDSlN4nLQLPD0v2mSbO4EjPNX41pzl+A3RrXTriZxV
-	u03Pe2ZKWhtyU2R0HYw+VDduxp1Pi7dfCSGlles96/ViVcYwHgeNvTu4H+gFjnan+Sg=
-X-Gm-Gg: AZFdTZeTyg1hi98JiQPkBme6YTtZlQ+V30aCgibmVtRydol/Mc1cUfIu5E5k3T7i/Y9
-	0CFcgtTmo3a2Bt8gNrS0bNxEoWD8YwbYJowclTgCJh9QYX12y2vHhCBM+fG21LhcyXNrRGxYR0H
-	R64iNPJh1XXv5XirHvbLSFelBp3zpun1/MV+CntjpGiiNqF7vwjegITuMqNnb7Fp+A2qeKjigMd
-	WiX0wTAqbwnQpJCYEfzOD8rHf6ocjH05zFeOiUiwGKSK9NRICQVQgXPfX5ytJjIATL14acPCAP0
-	h76P6+osWq2RJCfU6FssvxTKDDpobBUEjmyA8kV1AAqpLVUUHbkqtBLW7j4UNnexIecpL2ccFAY
-	lg879XcmWcItqyv82T7bmA8Evcasp9PSb6hpcjZmDzL/q8yCUYJl/b+b+7VGdS2wRivyRjVNClp
-	ib3ZxxnfAJmGHfvyDVbKO0+KLEzu+MLmYiysfyb2blRy3SvHywaCUJjwU6mNMk6Nq6ycic+LXmY
-	RYGL8vI8N1YPxcW/GmwJc7DfrS2OKFjJYDdI2j+HT7UmWteEVpvbQaLwmHPHEg7eeqbR4zmuWad
-	BvQ9AGgcf+IQhakJslNKjqf82fo=
-X-Received: by 2002:a05:6000:2b8e:b0:491:45bc:d69a with SMTP id ffacd0b85a97d-4abb3f158c5mr33838415f8f.44.1795821513578;
-        Fri, 27 Nov 2026 15:18:33 -0800 (PST)
-Received: from [127.0.1.1] ([151.42.79.162])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6b2052c8sm49822762f8f.41.2026.11.27.15.18.32
+        d=1e100.net; s=20260707; t=1795850173; x=1796454973;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=dtqYmTVYC4JBzLZ7wsVy+ZmEXW7ipAMfwG1KmZFCxQs=;
+        b=lHXyJE7P3najfcTRT9c5krAG+OKOs4LZgXUzqicmqLUFTdQj6cJBmtotL0XYW0gUec
+         3Ysa9x89eb5f+pWEv1r3WIhHDvutUF/AG0KeJo/IlCVCc8nEl2XnrXcFJCj6rPUeUV+i
+         1j0VSte4uddF4vyRfCwnAdnxdOzRNfVOS50IrB5UnC0DMB/5EFl8BPigx1y6F39m+Whw
+         Wm/8OIHVhNZcodrv1EWe75LYCaco07jRYqL7ol8715GY+C7PCDPQnvXvk11cBIoy6e8k
+         tn//eLTMh0YmfSbS3blj3Cz6+GEs8qIEW0ew/yd+9UX9ClwFysDsDO6PHmrESeJKnuHI
+         ifSg==
+X-Forwarded-Encrypted: i=1; AL+hErFhdIkvcbvxpTsKSeqjIWNUSVB3JDdoumQIMezm4nxkj3tPECzlIwp+WXdBNv7SXjqg6mZ6dXX6QCHh+hdL@lists.infradead.org
+X-Gm-Message-State: APuU4Z/8Wc3KbHpponNWFksFZd9tJXc5MU7ZuQiFUw7Ef1VPRn0dVh6D
+	AEoS1nAD/IODx0Z6QMVHPK/F+cCjw+wQQYBu0SsP2UsDZWIARH6Q4WW5
+X-Gm-Gg: AZFdTZev0CDol20B1UeiwD0BTdM4KBCZioLp0UjpFd46O/hgJ3ZKmxqe386SMLB1qJk
+	nKiTYc8KDWTQAeG8ktJwy6YEzvwENAB4CXhMPHyqxgrUD7+CGQiDFmeV9f6y1fEjZEsvx7/rP0o
+	U3Ly5Fi26CJrqJ+MlOaU82LUomlI2E1k5aWtNrVquDIJH3QhbKpS0U6Kd1ajjsTHKWynwODLBtK
+	seI3tt9w0VzTFugmLEAbKI8HFKgIuHpwiMs5qQIwkp53N46yt5zIhvFoIBSpH+sTsO5Hl5Ml0E0
+	DtIJWQdBxMbl6vGIZLb0jmsHzpjrg/5OZvfBRvkOawes2kEKu7eP/a4soeFa/EYdEKV3+ehQXnI
+	CT5jzpSYhqfD24n3LVtfDGZTnBwi9PwxXlmDa1c5bzx1qwAsq42r0nmjIlwfDWekM2HP3FPftLw
+	+mq+nn+1nZMd0iF9Bp/Zku+Mh1np3CApl77VRFsQbb21FR2yIETrhXrQ+qwU/ROGpe2GeZ3iidN
+	ONKXJ0qiNVlmL4PiA8aXqnQVXLqhwzVzKju6Zjho5Mz4blKSSleM2dVrnXLGMOzpJMdTYW4fDmO
+	Oqp61prvCDnEGtRlgYQ5FDES5iXv/N+Ueq81RfyPqpCN5Wxl5dl8cYYMGscHINjLxqMn9ABC1Ef
+	z3ygaIzKbeRgdSA7WTCzl06o=
+X-Received: by 2002:a05:600c:4f42:b0:4bb:5c5c:8130 with SMTP id 5b1f17b1804b1-4bb8881c726mr687806825e9.5.1795850172794;
+        Fri, 27 Nov 2026 23:16:12 -0800 (PST)
+Received: from threads.localdomain ([84.70.136.3])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb884c3063sm729509045e9.15.2026.11.27.23.16.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2026 15:18:33 -0800 (PST)
+        Fri, 27 Nov 2026 23:16:12 -0800 (PST)
+From: Lucas Tanure <tanure@linux.com>
+To: xianwei.zhao@amlogic.com,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	davem@davemloft.net,
+	Eric Dumazet <edumazet@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: Igor Velkov <iav@iav.lv>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: [PATCH v9 1/4] dt-bindings: net: amlogic,g12a-mdio-mux: add the T7 compatible
+Date: Sat, 28 Nov 2026 07:16:07 +0000
+Message-ID: <20261128071610.27855-2-tanure@linux.com>
+X-Mailer: git-send-email 2.56.1
+In-Reply-To: <20261128071610.27855-1-tanure@linux.com>
+References: <20261128071610.27855-1-tanure@linux.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 04/13] mmc: meson-gx: Fail request when descriptor
- chain DMA mapping fails
-From: Valerio Setti <vsetti@baylibre.com>
-To: Lee Jones <lee@kernel.org>
-Cc: Ulf Hansson <ulfh@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Heiner Kallweit <hkallweit1@gmail.com>, linux-mmc@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-In-Reply-To: <20261123191703.179283-5-lee@kernel.org>
-References: <20261123191703.179283-1-lee@kernel.org>
- <20261123191703.179283-5-lee@kernel.org>
-Date: Sat, 28 Nov 2026 00:18:21 +0100
-Message-Id: <179582150150.1958718.8445295799895434689.b4-review@b4>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=784; i=vsetti@baylibre.com;
- h=from:subject:message-id; bh=8BHON/4l5h6q1xjm/WKKH4SM6biaPJLVHJzVeZlzOuU=;
- b=owGbwMvMwCV2z3ty7kUrRgbG02pJDNlc/Ef1ln9ojoqOfGmv63j0Za3rE67Ytoe1i3aea+zbk
- Xl4U/HOjlIWBjEuBlkxRRaW6fd+F5SqPTROOFkAM4eVCWQIAxenAEykKpHhv/skRnH3ZWsKxTbM
- FxcprJMXFZi7cAO3n97ixSuES+q0PzAyPN0r92Wbun/44eYT/FZf7qt8Piy7m+G/VFx8vqJM/Qc
- PNgA=
-X-Developer-Key: i=vsetti@baylibre.com; a=openpgp;
- fpr=0497DEFB707526E13360C970DE4B936DD13A0100
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261127_151836_938675_1D7F3E10 
-X-CRM114-Status: UNSURE (   6.03  )
+X-CRM114-CacheID: sfid-20261127_231614_719364_0E1BBBCF 
+X-CRM114-Status: UNSURE (   7.17  )
 X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-Spam-Score: -0.8 (/)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,31 +110,43 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, 23 Nov 2026 19:15:48 +0000, Lee Jones <lee@kernel.org> wrote:
-> meson_mmc_pre_req() flags eligible transfers with
-> SD_EMMC_DESC_CHAIN_MODE before mapping the scatterlist with
-> dma_map_sg().  If dma_map_sg() fails and returns 0, meson_mmc_pre_req()
-> logs an error but leaves SD_EMMC_DESC_CHAIN_MODE set with
-> data->sg_count equal to 0.  When meson_mmc_request() subsequently
-> dispatches the transfer to meson_mmc_desc_chain_transfer(), the
-> for_each_sg() loop executes zero iterations and
-> desc[data->sg_count - 1].cmd_cfg writes to desc[-1], corrupting memory
-> immediately preceding the coherent descriptor buffer before starting the
-> DMA engine.
-> 
-> [...]
+The Amlogic T7 has the same MDIO multiplexer as the G12A. Document it
+with a compatible of its own and the G12A one as fallback.
 
-Reviewed-by: Valerio Setti <vsetti@baylibre.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Lucas Tanure <tanure@linux.com>
+---
+ .../devicetree/bindings/net/amlogic,g12a-mdio-mux.yaml      | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
+diff --git a/Documentation/devicetree/bindings/net/amlogic,g12a-mdio-mux.yaml b/Documentation/devicetree/bindings/net/amlogic,g12a-mdio-mux.yaml
+index ec5c038ce6a0..ad95562d1f3b 100644
+--- a/Documentation/devicetree/bindings/net/amlogic,g12a-mdio-mux.yaml
++++ b/Documentation/devicetree/bindings/net/amlogic,g12a-mdio-mux.yaml
+@@ -19,7 +19,11 @@ allOf:
+ 
+ properties:
+   compatible:
+-    const: amlogic,g12a-mdio-mux
++    oneOf:
++      - const: amlogic,g12a-mdio-mux
++      - items:
++          - const: amlogic,t7-mdio-mux
++          - const: amlogic,g12a-mdio-mux
+ 
+   reg:
+     maxItems: 1
 -- 
-Valerio Setti <vsetti@baylibre.com>
+2.56.1
+
 
 _______________________________________________
 linux-amlogic mailing list
